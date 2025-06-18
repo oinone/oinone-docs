@@ -35,14 +35,17 @@ Oinone 是一个企业级产品化引擎，专注于业务软件产品构建及�
     - 适用于客户持续的适应性需求调整。
 
 ### 5、了解更多
-了解更多关于 Oinone 的信息，您可以访问【[官网](https://www.oinone.top) | [Gitee-中文](https://gitee.com/oinone) | [Github-EN](https://github.com/Oinone)】。
+- 了解更多关于 Oinone 的信息，您可以访问【[🍀 官网 ](https://www.oinone.top) | [🍀 Gitee-中文](https://gitee.com/oinone) | [🍀 Github-EN](https://github.com/Oinone)】。
+- 【[⚡ 后端框架-中文](https://gitee.com/oinone/oinone-pamirs) | [⚡ 前端框架-中文](https://gitee.com/oinone/oinone-kunlun) | [⚡ Back-end Framework](https://github.com/oinone/oinone-pamirs) | [⚡ Front-end Framework](https://github.com/oinone/oinone-kunlun)】
 
 ### 6、目录结构
-- [产品白皮书](https://www.oinone.top/whitePaper)
-- [培训中心](https://www.oinone.top/video)
-- [用户手册](https://guide.oinone.top/zh-cn/UserHandbook)
 - [安装与升级](https://guide.oinone.top/zh-cn/InstallOrUpgrade)
+- [用户手册](https://guide.oinone.top/zh-cn/UserHandbook)
 - [研发手册](https://guide.oinone.top/zh-cn/Development)
+- [产品白皮书](https://www.oinone.top/whitePaper)
+- [最佳范式](https://guide.oinone.top/zh-cn/DevManual/R_DParadigm)
+- [常见解决方案](https://guide.oinone.top/zh-cn/DevManual/CommonSolutions)
+- [常见问题](https://guide.oinone.top/zh-cn/DevManual/FAQ)
 
 ### 7、许可协议
 - Oinone 遵循 AGPL-3.0 协议，详情请参考各代码仓 License 声明。
@@ -54,3 +57,4 @@ Oinone 是一个企业级产品化引擎，专注于业务软件产品构建及�
 ### 9、联系我们
 - 官网：https://www.oinone.top
 - 邮箱：oinone@shushi.pro
+- 小助手：![assistant](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Open%20Source/zh-cn/Oinone%E5%B0%8F%E5%8A%A9%E6%89%8B.png)

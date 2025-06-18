@@ -38,14 +38,17 @@ Oinone is an enterprise-grade productization engine that focuses on business sof
     - Continuous adaptation to evolving requirements.
 
 ### 5. Learn More
-To learn more about Oinone，please visit【[Website](https://www.oinone.top) | [Gitee-中文](https://gitee.com/oinone) | [Github-EN](https://github.com/Oinone)】。
+- To learn more about Oinone，please visit【[🍀 Website](https://www.oinone.top) | [🍀 Gitee-中文](https://gitee.com/oinone) | [🍀 Github-EN](https://github.com/Oinone)】.
+- 【[⚡ 后端框架-中文](https://gitee.com/oinone/oinone-pamirs) | [⚡ 前端框架-中文](https://gitee.com/oinone/oinone-kunlun) | [⚡ Back-end Framework](https://github.com/oinone/oinone-pamirs) | [⚡ Front-end Framework](https://github.com/oinone/oinone-kunlun)】
 
 ### 6. Documents
-- [Product White Paper](https://www.oinone.top/whitePaper)
-- [Training Center](https://www.oinone.top/video)
-- [User Manual](https://guide.oinone.top/zh-cn/UserHandbook)
 - [Installation Or Upgrade](https://guide.oinone.top/zh-cn/InstallOrUpgrade)
-- [Developer Manual](https://guide.oinone.top/zh-cn/Development)
+- [User Manual](https://guide.oinone.top/zh-cn/UserManual)
+- [DEV Manual](https://guide.oinone.top/zh-cn/DevManual)
+- [White Paper](https://www.oinone.top/whitePaper)
+- [R&D Paradigm](https://guide.oinone.top/zh-cn/DevManual/R_DParadigm)
+- [Common Solutions](https://guide.oinone.top/zh-cn/DevManual/CommonSolutions)
+- [FAQ](https://guide.oinone.top/zh-cn/DevManual/FAQ)
 
 ### 7. License
 - Oinone repository is licensed under AGPL-3.0.
