@@ -1048,7 +1048,7 @@ order: 2
 
 动态：
 
-同嵌入网页。
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1750213786284-806d5bf9-abc6-4cdb-bebc-355162b76bf1.png)
 
 展示页面：
 
@@ -1058,7 +1058,7 @@ order: 2
 
 动态：
 
-同嵌入网页。
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1750214026006-b724a184-b4ae-429d-9d9c-a9af03e19d1e.gif)
 
 :::
 
