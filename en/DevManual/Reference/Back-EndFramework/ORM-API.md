@@ -1351,7 +1351,7 @@ M represents precision (total digits), D represents scale (decimal places), frac
 | List<`primitive type`>      | @Field.Enum(dictionary=Data Dictionary Code)                 | ENUM          | multi=true           | varchar(512)       |
 | Model class               | @Field.Relation                                              | M2O           | None                 | text               |
 | DataMap                   | @Field.Relation                                              | M2O           | None                 | text               |
-| List<Model class>         | @Field.Relation                                              | O2M           | multi=true           | text               |
+| List\<Model class>         | @Field.Relation                                              | O2M           | multi=true           | text               |
 | List<`DataMap`>             | @Field.Relation                                              | O2M           | multi=true           | text               |
 
 
