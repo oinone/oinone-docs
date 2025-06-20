@@ -189,6 +189,47 @@ Product sales data
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/bg.png)
 
 :::
+## (II) Cross Table
+
+A Cross Table (Pivot Table) is a tabular component that combines data across multiple dimensions and presents summarized views, allowing flexible combination of different fields as **row dimensions** and **column dimensions**, with aggregated values of corresponding indicator fields displayed in the intersecting areas. Cross tables enable users to view business data under different dimension combinations clearly and intuitively, facilitating trend insight, anomaly detection, and decision-making support.
+
++ Dimension Configuration
+  - **Row Dimension**: Used for vertical classification display, such as "Province > City" structure
+  - **Column Dimension**: Used for horizontal classification display, such as "Product Category > Product Name"
+  - Supports combination of multiple fields, renaming, and ascending/descending sorting
+
+:::info Note:
+
+At least one field must be configured for both row and column dimensions
+
+:::
+
++ Numeric Field Configuration
+  - Supported field examples: Order Amount, Profit, Cost
+  - Default aggregation method: **Sum (sum)**
+  - Supports aggregation method switching:
+    * No Processing, Minimum, Maximum, Average, Sum, Count, Distinct Count, Sample/ Population Standard Deviation and Variance
++ Style - Numeric Display Format:
+  - **Null Handling**: Display as null / 0 / custom text / do not display
+  - **Display Name**: Can be custom renamed
+  - **Data Format**: Standard numeric / thousands separator / percentage / custom unit
+  - **Decimal Places**: Supports precision setting (e.g.,保留2位小数 / retain 2 decimal places)
++ Style - Numeric Position Style
+  - **Numeric as Column Display**: Each indicator field is a column, commonly used when there are few dimension fields and many indicator fields
+  - **Numeric as Row Display**: Indicator fields are displayed as additional rows, suitable for scenarios with limited horizontal space
++ Style - Total and Subtotal
+  - **Total Display**: Can set to show row total and column total
+  - **Subtotal**: Supports setting the first N-1 dimensions as grouping criteria (e.g., Province > City, can total by province)
+    * When a dimension is removed, the total level automatically moves up
+  - **Custom Total Algorithm**: Supports `sum`, `avg`, `min`, `max`, `count`, `count_distinct`
+
+:::tip Example
+
+Regional - Clothing - Sales Situation
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1750126465051-e50e471b-a6b4-4aa6-b461-53c4929109fe.png)
+
+:::
 
 # X. Map
 ## (1) China Map
