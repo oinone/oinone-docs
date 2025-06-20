@@ -1,38 +1,38 @@
 ---
-title: 页面设计：全局首页及应用首页配置方法（homepage）
+title: Page Design：Configuration Methods for Global Home and Application Home Pages (homepage)
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 69
 ---
 
-# 一、Oinone 平台首页介绍
-## （一）首页包括`全局首页`和`应用首页`两类
-+ 全局首页：指用户在登录时未指定重定向地址的情况下使用的应用首页
-+ 应用首页：指用户在切换应用时使用的首页
+# 1. Introduction to Oinone Platform Home Pages
+## (1) Home pages include two types: `global home page` and `application home page`
++ **Global home page**: Refers to the application home page used when users do not specify a redirect address during login.
++ **Application home page**: Refers to the home page used when users switch applications.
 
-:::info 注意：
+:::info Note:
 
-全局首页本质上也是应用首页，是在用户没有指定应用时使用的首页。如登录后。
+The global home page is essentially an application home page, serving as the home page when no specific application is specified (e.g., after login).
 
 :::
 
-## （二）全局首页查找规则
-+ 找到当前用户有权限访问的全部应用。
-+ 若使用 AppConfig 配置首页，则优先使用该配置作为全局首页。若未指定或无权限访问，则继续第3步。
-+ 依次按照应用优先级，获取有权限的首页或菜单作为全局首页。
-+ 若未查找到任何可访问页面，则提示无权限访问相关异常，用户无法进入平台。
+## (2) Global Home Page Search Rules
+1. Retrieve all applications accessible to the current user.
+2. If the home page is configured using AppConfig, this configuration takes precedence as the global home page. If not specified or no access permission exists, proceed to step 3.
+3. Sequentially obtain accessible home pages or menus as the global home page based on application priorities.
+4. If no accessible pages are found, prompt an unauthorized access exception, preventing users from entering the platform.
 
-### （三）应用首页查找规则
-+ 在指定应用下，获取有权限的首页或菜单作为应用首页。
-+ 若未查找到任何可访问页面，则提示无权限访问相关异常，用户进入应用后无法正常查看或操作。
+### (3) Application Home Page Search Rules
+1. Under the specified application, obtain accessible home pages or menus as the application home page.
+2. If no accessible pages are found, prompt an unauthorized access exception, preventing users from normal viewing or operation after entering the application.
 
-# 二、配置`全局首页`
-使用应用优先级设置全局首页
+# 2. Configuring the `Global Home Page`
+Set the global home page using application priority
 
 ```java
 /**
- * 演示模块
+ * Demo Module
  *
  * @author Adamancy Zhang at 16:55 on 2024-03-24
  */
@@ -41,7 +41,7 @@ order: 69
 @Boot
 @Module(
     name = DemoModule.MODULE_NAME,
-    displayName = "演示应用",
+    displayName = "Demo Application",
     version = "1.0.0",
     dependencies = {ModuleConstants.MODULE_BASE},
     priority = 0
@@ -62,67 +62,64 @@ public class DemoModule implements PamirsModule {
 }
 ```
 
-:::info 注意：
+:::info Note:
 
-+ `@UxHomepage`用于指定应用首页
-+ `@Module#priority`用于指定模块优先级，按升序排列
++ `@UxHomepage` specifies the application home page.
++ `@Module#priority` specifies the module priority, sorted in ascending order.
 
 :::
 
-# 三、配置`应用首页`
-## （一）使用`@UxHomepage`配置应用首页
-### 1、指定模型的默认表格视图作为应用首页
+# 3. Configuring the `Application Home Page`
+## (1) Configuring the Application Home Page with `@UxHomepage`
+### 1. Designate the default table view of a model as the application home page
 ```java
 @UxHomepage(@UxRoute(DemoDepartment.MODEL_MODEL))
 ```
 
-该指定方式将产生以下结果：
+This designation produces the following results:
++ Generates a navigation action (ViewAction) with the model code `DemoDepartment.MODEL_MODEL` and action name `homepage`.
++ Sets `ModuleDefinition#homePageModel` and `ModuleDefinition#homePageName` to this navigation action.
 
-+ 生成一个跳转动作（ViewAction），其模型编码为`DemoDepartment.MODEL_MODEL`，动作名称为`homepage`。
-+ 设置`ModuleDefinition#homePageModel`和`ModuleDefinition#homePageName`为该跳转动作。
-
-### 2、指定模型对应的菜单作为应用首页
-在当前应用下有如下菜单定义：
+### 2. Designate the menu corresponding to the model as the application home page
+The current application has the following menu definitions:
 
 ```java
 /**
- * 演示模块菜单
+ * Demo Module Menus
  *
  * @author Adamancy Zhang at 17:16 on 2024-03-24
  */
 @UxMenus
 public class DemoMenus {
 
-    @UxMenu("演示部门")
+    @UxMenu("Demo Department")
     @UxRoute(DemoDepartment.MODEL_MODEL)
     class DepartmentManagement {
     }
 
-    @UxMenu("演示员工")
+    @UxMenu("Demo Employee")
     @UxRoute(DemoEmployee.MODEL_MODEL)
     class EmployeeManagement {
     }
 }
 ```
 
-根据菜单定义我们可以知道：
+Based on the menu definitions:
+The "Demo Department" menu generates a navigation action (ViewAction) with the model code `DemoDepartment.MODEL_MODEL` and action name `DemoMenus_DepartmentManagement`.
 
-`演示部门`这个菜单会生成一个跳转动作（ViewAction），其模型编码为`DemoDepartment.MODEL_MODEL`，动作名称为`DemoMenus_DepartmentManagement`。
-
-因此，我们可以使用如下方式指定应用首页为`演示部门`这个菜单：
+Therefore, the application home page can be designated as the "Demo Department" menu using:
 
 ```java
 @UxHomepage(actionName = "DemoMenus_DepartmentManagement", value = @UxRoute(DemoDepartment.MODEL_MODEL))
 ```
 
-# 四、在应用中心修改应用首页
-在平台启动之后，将无法通过代码的方式修改首页，因此需要在应用中心修改应用首页。
+# 4. Modifying the Application Home Page in the App Center
+After the platform starts, the home page cannot be modified via code, requiring modifications in the App Center.
 
-按照如下图所示操作对应用首页进行设置。
+Follow the operations shown in the figure to set the application home page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032409373428-20250530144822627.png)
 
-在绑定菜单选项中，选择指定菜单即可。
+In the menu binding options, select the specified menu.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032409373725-20250530144822685.png)
-

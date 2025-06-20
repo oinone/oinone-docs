@@ -1,18 +1,18 @@
 ---
-title: 数据操作：如何自定义Excel导入导出功能
+title: Data Operation:How to Customize Excel Import and Export Functions
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 32
 ---
 
-# 一、场景描述
-在平台提供的默认导入导出功能无法满足业务需求的时候，我们可以自定义导入导出功能，以满足业务中个性化的需求。
+# 一、Scenario Description
+When the default import and export functions provided by the platform cannot meet business requirements, we can customize import and export functions to satisfy personalized business needs.
 
-# 二、导入功能示例
-下面以导入文件的时候加入`发布人`的字段作为示例讲解。
+# 二、Import Function Example
+The following takes adding a `Publisher` field during file import as an example for explanation.
 
-## （一）继承平台的导入任务模型，加上需要在导入的弹窗视图需要展示的字段。
+## （一）Inherit the platform's import task model and add fields to be displayed in the import pop-up view.
 ```java
 package pro.shushi.pamirs.demo.api.model;
 
@@ -21,19 +21,18 @@ import pro.shushi.pamirs.meta.annotation.Field;
 import pro.shushi.pamirs.meta.annotation.Model;
 
 @Model.model(DemoItemImportTask.MODEL_MODEL)
-@Model(displayName = "商品-Excel导入任务")
+@Model(displayName = "Product - Excel Import Task")
 public class DemoItemImportTask extends ExcelImportTask {
     public static final String MODEL_MODEL = "demo.DemoItemImportTask";
 
-    // 自定义显示的字段
+    // Custom display field
     @Field.String
-    @Field(displayName = "发布人")
+    @Field(displayName = "Publisher")
     private String publishUserName;
 }
-
 ```
 
-## （二）编写自定义导入弹窗视图的数据初始化方法和导入提交的 action。
+## （二）Write the data initialization method for the custom import pop-up view and the import submission action.
 ```java
 package pro.shushi.pamirs.demo.core.action;
 
@@ -62,7 +61,7 @@ public class DemoItemExcelImportTaskAction extends ExcelImportTaskAction {
         super(fileProperties, excelFileService);
     }
 
-    @Action(displayName = "导入", contextType = ActionContextTypeEnum.CONTEXT_FREE, bindingType = {ViewTypeEnum.TABLE})
+    @Action(displayName = "Import", contextType = ActionContextTypeEnum.CONTEXT_FREE, bindingType = {ViewTypeEnum.TABLE})
     public DemoItemImportTask createImportTask(DemoItemImportTask data) {
         if (data.getWorkbookDefinitionId() != null) {
             ExcelWorkbookDefinition workbookDefinition = new ExcelWorkbookDefinition();
@@ -90,11 +89,10 @@ public class DemoItemExcelImportTaskAction extends ExcelImportTaskAction {
     }
 
 }
-
 ```
 
-## （三）编写导入单行数据的处理逻辑。
-在此过程中，能够获取到导入弹窗内自定义字段所提交的值。基于这些值，可对自定义逻辑进行处理。例如，在本演示代码中，具体逻辑为将导入商品的发布人统一设置为自定义导入视图中所填写的发布人信息。
+## （三）Write the processing logic for single-row import data.
+In this process, values submitted by custom fields in the import pop-up can be obtained. Based on these values, custom logic can be processed. For example, in this demo code, the specific logic is to uniformly set the publisher of imported products to the publisher information filled in the custom import view.
 
 ```java
 package pro.shushi.pamirs.demo.core.excel.extPoint;
@@ -131,39 +129,38 @@ public class DemoItemImportExtPoint extends AbstractExcelImportDataExtPointImpl<
             DemoItemImportTask hrExcelImportTask = new DemoItemImportTask().queryById(importTask.getId());
 
             String publishUserName = Optional.ofNullable(hrExcelImportTask).map(DemoItemImportTask::getPublishUserName).orElse(null);
-            // 个性化字段设置到模型数据中
+            // Set personalized fields into model data
             data.setPublishUserName(publishUserName);
 
             demoItemService.create(data);
         } catch(PamirsException e) {
-            log.error("导入异常", e);
+            log.error("Import exception", e);
         } catch (Exception e) {
-            log.error("导入异常", e);
+            log.error("Import exception", e);
         }
         return Boolean.TRUE;
     }
 }
 ```
 
-## （四）编写导入的视图 xml。
+## （四）Write the import view xml.
 ```xml
-<view type="FORM" title="导入" name="import_dialog" widget="form" model="demo.DemoItemImportTask" width="small">
+<view type="FORM" title="Import" name="import_dialog" widget="form" model="demo.DemoItemImportTask" width="small">
     <template slot="form" cols="1">
         <field data="model" invisible="true"/>
         <field data="publishUserName"/>
-        <field data="workbookDefinition" widget="Select" label="导入模板" required="true"
+        <field data="workbookDefinition" widget="Select" label="Import Template" required="true"
                domain="model == ${activeRecord.model} and dataStatus == 'ENABLED' and type =in= ('IMPORT_EXPORT','IMPORT')"/>
-        <field data="file" widget="Upload" label="上传文件" required="true"/>
+        <field data="file" widget="Upload" label="Upload File" required="true"/>
     </template>
     <template slot="footer">
-        <action name="$$internal_DownloadImportWorkbook" label="下载模板" type="PRIMARY"/>
-        <action name="createImportTask" label="导入" type="PRIMARY" validateForm="true" closeDialog="true" refreshData="true"/>
+        <action name="$$internal_DownloadImportWorkbook" label="Download Template" type="PRIMARY"/>
+        <action name="createImportTask" label="Import" type="PRIMARY" validateForm="true" closeDialog="true" refreshData="true"/>
     </template>
 </view>
-
 ```
 
-## （五）初始化导入的动作。
+## （五）Initialize the import action.
 ```java
 package pro.shushi.pamirs.demo.core.init;
 
@@ -195,7 +192,7 @@ public class DemoModuleAppInstall implements MetaDataEditor, LifecycleCompletedA
     public void edit(AppLifecycleCommand command, Map<String, Meta> metaMap) {
         InitializationUtil util = InitializationUtil.get(metaMap, DemoModule.MODULE_MODULE, DemoModule.MODULE_NAME);
 
-        util.createViewAction("demoItemImportAction", "商品导入", DemoItem.MODEL_MODEL,
+        util.createViewAction("demoItemImportAction", "Product Import", DemoItem.MODEL_MODEL,
                               InitializationUtil.getOptions(ViewTypeEnum.TABLE,ViewTypeEnum.GALLERY), DemoItemImportTask.MODEL_MODEL, ViewTypeEnum.FORM,
                               ActionContextTypeEnum.CONTEXT_FREE, ActionTargetEnum.DIALOG, FileExportAndImportViewActionInit.DEFAULT_IMPORT_VIEW_NAME, "", _va->{
                                   Map<String, Object> context = new HashMap<>();
@@ -209,12 +206,13 @@ public class DemoModuleAppInstall implements MetaDataEditor, LifecycleCompletedA
     public void process(AppLifecycleCommand command, Map<String, ModuleDefinition> runModuleMap) {
     }
 }
-
 ```
 
-## （六）导入功能完成，我们看导入弹窗页面的截图 。![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20231122-042634@2x-20250530144823169.png)
-# 三、导出功能示例
-## （一）继承平台的导出任务模型，加上需要在导出的弹窗视图需要展示的字段
+## （六）The import function is completed. Here is a screenshot of the import pop-up page.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20231122-042634@2x-20250530144823169.png)
+
+# 三、Export Function Example
+## （一）Inherit the platform's export task model and add fields to be displayed in the export pop-up view.
 ```java
 package pro.shushi.pamirs.demo.api.model;
 
@@ -223,19 +221,18 @@ import pro.shushi.pamirs.meta.annotation.Field;
 import pro.shushi.pamirs.meta.annotation.Model;
 
 @Model.model(DemoItemExportTask.MODEL_MODEL)
-@Model(displayName = "商品-Excel导出任务")
+@Model(displayName = "Product - Excel Export Task")
 public class DemoItemExportTask extends ExcelExportTask {
     public static final String MODEL_MODEL = "demo.DemoItemExportTask";
 
-    // 自定义显示的字段
+    // Custom display field
     @Field.String
-    @Field(displayName = "发布人")
+    @Field(displayName = "Publisher")
     private String publishUserName;
 }
-
 ```
 
-## （二）编写自定义导出弹窗视图的数据初始化方法和导出提交的 action
+## （二）Write the data initialization method for the custom export pop-up view and the export submission action.
 ```java
 package pro.shushi.pamirs.demo.core.action;
 
@@ -262,7 +259,7 @@ public class DemoItemExcelExportTaskAction extends ExcelExportTaskAction {
         super(excelFileService);
     }
 
-    @Action(displayName = "导出", contextType = ActionContextTypeEnum.CONTEXT_FREE, bindingType = {ViewTypeEnum.TABLE})
+    @Action(displayName = "Export", contextType = ActionContextTypeEnum.CONTEXT_FREE, bindingType = {ViewTypeEnum.TABLE})
     public DemoItemExportTask createExportTask(DemoItemExportTask data) {
         if (data.getWorkbookDefinitionId() != null) {
             ExcelWorkbookDefinition workbookDefinition = new ExcelWorkbookDefinition();
@@ -285,10 +282,9 @@ public class DemoItemExcelExportTaskAction extends ExcelExportTaskAction {
     }
 
 }
-
 ```
 
-## （三）编写导出的数据处理逻辑，此处可以拿到导出弹窗内自定义的字段提交的值，然后根据这些值处理自定义逻辑
+## （三）Write the export data processing logic, where values submitted by custom fields in the export pop-up can be obtained to process custom logic.
 ```java
 package pro.shushi.pamirs.demo.core.excel.extPoint;
 
@@ -311,19 +307,19 @@ import java.util.List;
 
 @Component
 public class DemoItemExportExtPoint extends ExcelExportSameQueryPageTemplate implements ExcelTemplateInit , ExcelExportFetchDataExtPoint {
-    public static final String TEMPLATE_NAME ="商品导出";
+    public static final String TEMPLATE_NAME ="Product Export";
 
     @Override
     public List<ExcelWorkbookDefinition> generator() {
-        //可以返回多个模版，导出的时候页面上由用户选择导出模版
+        // Can return multiple templates for users to choose on the export page
         return Collections.singletonList(
             ExcelHelper.fixedHeader(DemoItem.MODEL_MODEL,TEMPLATE_NAME)
             .createBlock(TEMPLATE_NAME, DemoItem.MODEL_MODEL)
             .setType(ExcelTemplateTypeEnum.EXPORT)
-            .addColumn("name","名称")
-            .addColumn("description","描述")
-            .addColumn("itemPrice","单价")
-            .addColumn("inventoryQuantity","库存")
+            .addColumn("name","Name")
+            .addColumn("description","Description")
+            .addColumn("itemPrice","Unit Price")
+            .addColumn("inventoryQuantity","Inventory")
             .build());
     }
 
@@ -332,33 +328,31 @@ public class DemoItemExportExtPoint extends ExcelExportSameQueryPageTemplate imp
     public List<Object> fetchExportData(ExcelExportTask exportTask, ExcelDefinitionContext context) {
         DemoItemExportTask excelImportTask = new DemoItemExportTask().queryById(exportTask.getId());
 
-        // 取出自定义字段，处理自定义逻辑
+        // Get custom fields and process custom logic
         String publishUserName = excelImportTask.getPublishUserName();
         List<Object> result =  super.fetchExportData(exportTask,context);
         return result;
     }
 }
-
 ```
 
-## （四）编写导出的视图xml
+## （四）Write the export view xml.
 ```xml
-<view type="FORM" title="导出" name="export_dialog" widget="form" model="demo.DemoItemExportTask" width="small">
+<view type="FORM" title="Export" name="export_dialog" widget="form" model="demo.DemoItemExportTask" width="small">
     <template slot="form" cols="1">
         <field data="model" invisible="true"/>
         <field data="publishUserName"/>
-        <field data="workbookDefinition" widget="Select" label="导出模板" required="true"
+        <field data="workbookDefinition" widget="Select" label="Export Template" required="true"
                domain="model == ${activeRecord.model} and dataStatus == 'ENABLED' and type =in= ('IMPORT_EXPORT','EXPORT')"/>
     </template>
     <template slot="footer">
-        <action name="$$internal_ExportWorkbook" label="导出" type="PRIMARY" validateForm="true" closeDialog="true" refreshData="false"/>
-        <action name="$$internal_DialogCancel" label="取消" type="DEFAULT"/>
+        <action name="$$internal_ExportWorkbook" label="Export" type="PRIMARY" validateForm="true" closeDialog="true" refreshData="false"/>
+        <action name="$$internal_DialogCancel" label="Cancel" type="DEFAULT"/>
     </template>
 </view>
-
 ```
 
-## （五）初始化导出的动作
+## （五）Initialize the export action.
 ```java
 package pro.shushi.pamirs.demo.core.init;
 
@@ -382,7 +376,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 安装设计器导出的元数据
+ * Install metadata exported by the designer
  */
 @Slf4j
 @Component
@@ -391,7 +385,7 @@ public class DemoModuleAppInstall implements MetaDataEditor, LifecycleCompletedA
     @Override
     public void edit(AppLifecycleCommand command, Map<String, Meta> metaMap) {
         InitializationUtil util = InitializationUtil.get(metaMap, DemoModule.MODULE_MODULE, DemoModule.MODULE_NAME);
-        util.createViewAction("demoItemExportAction", "商品导出", DemoItem.MODEL_MODEL,
+        util.createViewAction("demoItemExportAction", "Product Export", DemoItem.MODEL_MODEL,
                               InitializationUtil.getOptions(ViewTypeEnum.TABLE,ViewTypeEnum.GALLERY), DemoItemExportTask.MODEL_MODEL, ViewTypeEnum.FORM,
                               ActionContextTypeEnum.CONTEXT_FREE, ActionTargetEnum.DIALOG, FileExportAndImportViewActionInit.DEFAULT_EXPORT_VIEW_NAME, "", _va->{
                                   Map<String, Object> context = new HashMap<>();
@@ -406,7 +400,7 @@ public class DemoModuleAppInstall implements MetaDataEditor, LifecycleCompletedA
     }
 
 }
-
 ```
 
-## （六）导出弹窗页面截图 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240103-203537-20250530144823225.png)
+## （六）Screenshot of the export pop-up page.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240103-203537-20250530144823225.png)

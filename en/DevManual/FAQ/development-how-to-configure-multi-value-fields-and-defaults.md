@@ -1,19 +1,18 @@
 ---
-title: 开发中：多值字段、字段默认值如何配置
+title: How to Configure Multi-value Fields and Field Default Values During Development
 index: true
 category:
-  - 常见问题（faq）
+  - FAQ (Frequently Asked Questions)
 order: 4
 ---
-# 一、多值字段
-字段配置 `multi = true` 字段类型为 `List<>`
+# I. Multi-value Fields
+Configure the field with `multi = true` and the field type as `List<>`.
 
 ```java
 @Field.String
-@Field(displayName ="多值字段", multi = true)
-private List<String> multivaluedFile;
+@Field(displayName ="Multi-value Field", multi = true)
+private List<String> multivaluedField;
 ```
 
-# 二、字段默认值
-字段默认值`defaultValue`可以是基本类型或者关系类型的序列化值。时间类型可以使用`format`来格式化时间表达式或者使用长整数来设置默认值。枚举类型使用枚举项值`value`来设置默认值。如果需要进行复杂的计算请使用模型的`construct`构造函数来配置解决。
-
+# II. Field Default Values
+The `defaultValue` of a field can be a serialized value of a primitive type or a relationship type. For time types, you can use `format` to format time expressions or use long integers to set default values. For enumeration types, use the enumeration item value `value` to set the default value. If complex calculations are required, please use the `construct` constructor of the model for configuration.

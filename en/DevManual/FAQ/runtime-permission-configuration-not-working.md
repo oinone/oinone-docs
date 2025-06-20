@@ -1,19 +1,19 @@
 ---
-title: 运行时：权限配置不生效
+title: Runtime:Permission Configuration Not Taking Effect
 index: true
 category:
-- 常见问题（faq）
+- FAQs (Frequently Asked Questions)
 order: 18
 ---
-# 一、场景概述
-配置好按钮或页面对应的权限之后，登录到对应账号发现该按钮或页面任然没有访问权限。
+# I. Scenario Overview
+After configuring permissions for buttons or pages, users with the corresponding roles still cannot access them.
 
-# 二、解决方案
-管理中心 - 角色与权限 - 角色管理页面，勾选刚刚配置的角色，顶部有个权限生效的按钮，点击权限生效。
+# II. Solution
+1. Navigate to **Management Center > Role & Permission > Role Management**.
+2. Select the role you just configured.
+3. Click the **Activate Permissions** button at the top of the page to apply the changes immediately.
 
-:::warning
-
-页面设计器设计的按钮，有5分钟左右的刷新缓存时间，缓存生效后才会在权限配置处显示。
-
+:::warning  
+**Note for Interface Designer Elements**:  
+Buttons designed using the Interface Designer may take up to **5 minutes** to refresh their permission cache. The new permissions will only appear after the cache update.  
 :::
-

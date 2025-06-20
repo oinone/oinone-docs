@@ -1,92 +1,92 @@
 ---
-title: 用户与商业主体 API（User & Business API）
+title: User & Business API
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 标准模块
+  - Standard Modules
 order: 1
 prev:
   text: Translate Service
   link: /en/DevManual/Reference/Front-EndFramework/Services/translate-service.md
 ---
-# 一、概述
+# I. Overview
 
-## （一）名词解释
+## (一) Nomenclature Explanation
 
-+ **商业主体（PamirsPartner）**：指参与商业活动的独立实体，延续社会化概念，代表自然人或法人，作为商业关系与交易行为的主体（如签约、合同履约）。
-  - 指参与商业活动的独立实体，延续社会化概念，代表自然人或法人，作为商业关系与交易行为的主体（如签约、合同履约）。
-+ **商业关系（PamirsPartnerRelation）**：指商业主体之间的关联类型，用于明确双方在特定场景下的角色（如 “供应商 - 采购方”“母公司 - 子公司”“总代 - 分销商” 等）。
-  - **关键要素**：
-    * **关系类型**：定义关系的性质（如供货关系、控股关系、代理关系）。
-    * **双向性**：关系通常具有双向视角（如 A 是 B 的供应商 → B 是 A 的客户）。
-    * **业务规则**：关系可关联业务逻辑（如限制交易范围、自动匹配流程）。
-+ **用户（PamirsUser）**：聚焦 “系统使用者”，指拥有账号（含用户名、密码或第三方登录凭证）、通过界面交互操作的实体，强调操作行为主体（如登录、数据编辑）。
++ **Business Entity (PamirsPartner)**: Refers to an independent entity participating in commercial activities, continuing the socialized concept, representing natural persons or legal persons, and serving as the subject of commercial relationships and transaction behaviors (such as signing contracts, performing contracts).
+  - An independent entity participating in commercial activities, continuing the socialized concept, representing natural persons or legal persons, and serving as the subject of commercial relationships and transaction behaviors (such as signing contracts, performing contracts).
++ **Business Relationship (PamirsPartnerRelation)**: Refers to the association type between business entities, used to clarify the roles of both parties in specific scenarios (such as "supplier - purchaser", "parent company - subsidiary", "general agent - distributor", etc.).
+  - **Key Elements**:
+    * **Relationship Type**: Defines the nature of the relationship (such as supply relationship, holding relationship, agency relationship).
+    * **Bidirectionality**: Relationships usually have a two-way perspective (e.g., A is B's supplier → B is A's customer).
+    * **Business Rules**: Relationships can be associated with business logic (such as restricting transaction scope, automatically matching processes).
++ **User (PamirsUser)**: Focuses on the "system user", referring to an entity with an account (including username, password, or third-party login credentials) that operates through interface interaction, emphasizing the subject of operational behavior (such as logging in, editing data).
 
-## （二）**商业主体**与用户的设计逻辑
+## (二) Design Logic of Business Entities and Users
 
-二者在底层独立，通过上层业务逻辑关联（如登录时通过用户账号绑定客户主体）：
+These two are independent at the underlying level and associated through upper-layer business logic (such as binding the customer entity through the user account during login):
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/1635235910168-1d3e76ad-486f-41fc-9bf7-960729481122.jpeg)
 
-### 1、商业主体：商业关系的主体建模
+### 1. Business Entity: Modeling the Subject of Business Relationships
 
-+ **基础模型**：`PamirsPartner` 作为商业主体抽象，派生两个子类：
-  - `PamirsCompany`（法人客户）：关联多个 `PamirsDepartment`（部门）和 `PamirsEmployee`（员工），支持企业组织架构管理。
-  - `PamirsPerson`（自然人客户）：直接对应个体客户，聚焦个人信息管理。
-+ **关联关系**：
-  - 一个 `PamirsCompany` 包含多个部门和员工，部门隶属于唯一客户，员工可属于多个部门或客户（支持主客户关联）。
++ **Basic Model**: `PamirsPartner` serves as the abstraction of a business entity, deriving two subclasses:
+  - `PamirsCompany` (legal entity customer): Associated with multiple `PamirsDepartment` (departments) and `PamirsEmployee` (employees), supporting enterprise organizational structure management.
+  - `PamirsPerson` (natural person customer): Directly corresponding to individual customers, focusing on personal information management.
++ **Associative Relationships**:
+  - One `PamirsCompany` contains multiple departments and employees, departments belong to a unique customer, and employees can belong to multiple departments or customers (supporting primary customer association).
 
-### 2、用户设计：操作行为的主体建模
+### 2. User Design: Modeling the Subject of Operational Behavior
 
-+ `PamirsUser` 作为操作主体，核心特征包括：
-  - 绑定登录账号（用户名 / 密码），支持多 `PamirsUserThirdParty`（第三方登录账户，如微信、钉钉）。
-  - 独立于客户体系，通过上层业务逻辑（如会话管理）与一个或多个客户主体关联（例如：员工账号可操作所属公司的多个客户业务）。
++ `PamirsUser` as the operational subject, core features include:
+  - Bound to a login account (username/password), supporting multiple `PamirsUserThirdParty` (third-party login accounts, such as WeChat, DingTalk).
+  - Independent of the customer system, associated with one or more customer entities through upper-layer business logic (e.g., session management) (for example: an employee account can operate the business of multiple customers belonging to the company).
 
-## （三）Oinone的商业关系（合作伙伴关系）
+## (三) Oinone's Business Relationships (Partnerships)
 
-在 Oinone 平台中，通过**关系设计模式 + 多表继承**的组合，可高效构建灵活、可扩展的合作伙伴关系体系，为供应链管理、分销网络、集团化业务等场景提供底层支撑。在企业级系统架构中，商业关系建模是核心挑战之一。主流设计模式主要分为**角色模式**与**关系模式**，Oinone 选择关系模式的决策背后，是对扩展性、业务灵活性和系统复杂度的综合权衡。
+In the Oinone platform, through the combination of **relationship design patterns + multi-table inheritance**, a flexible and extensible partnership system can be efficiently constructed, providing underlying support for scenarios such as supply chain management, distribution networks, and group-level businesses. In enterprise-level system architecture, business relationship modeling is one of the core challenges. Mainstream design patterns are mainly divided into **role patterns** and **relationship patterns**. Oinone's choice of relationship patterns is based on a comprehensive trade-off among extensibility, business flexibility, and system complexity.
 
-### 1、角色设计模式（基于主体扩展）
+### 1. Role Design Pattern (Based on Subject Extension)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/1694848958081-2b76d396-ebbd-46bd-a559-f47c955e21e3.jpeg)
 
-+ **思路**：枚举商业角色（如经销商、供应商），每个角色对应独立的主体子类，通过字段或关系表维护主体间关系。
-+ **优缺点**：角色与主体强绑定，业务语义明确。
-+ **实现痛点**：
-  - 主体与关系需同步扩展（新增角色需创建子类，维护 M2O/O2M/M2M 关系表），复杂度高。
-  - 场景限制：例如创建合同时，若要求乙方必须是甲方的 “经销商”，需预先维护大量角色关联关系，灵活性差。
++ **Idea**: Enumerate business roles (such as distributors, suppliers), each role corresponds to an independent subject subclass, and maintains the relationship between subjects through fields or relationship tables.
++ **Advantages and Disadvantages**: Roles are strongly bound to subjects, and business semantics are clear.
++ **Implementation Pain Points**:
+  - Subjects and relationships need to be extended synchronously (adding roles requires creating subclasses and maintaining M2O/O2M/M2M relationship tables), with high complexity.
+  - Scenario limitations: For example, when creating a contract, if the乙方 must be the甲方's "distributor", a large number of role associations need to be maintained in advance, with poor flexibility.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/1635327300661-2a1082a1-b118-418c-ac40-9e639f6d75f2.jpeg)
 
-### 2、关系设计模式（Oinone 选择）
+### 2. Relationship Design Pattern (Chosen by Oinone)
 
-+ **思路**：统一抽象 “商业关系”，通过独立模型描述主体间关联（如 “合作关系”“母子公司关系”），不依赖主体子类。
++ **Idea**: Uniformly abstract "business relationships", describing the association between subjects through an independent model (such as "cooperative relationship", "parent-subsidiary relationship"), without relying on subject subclasses.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/1747660831784-4dca467d-7bad-4b2d-930f-4b1f89d2406a.jpeg)
 
-+ **实现优势**：
-  - 只需维护**关系模型扩展**，主体模型保持稳定，降低复杂度。
-  - 统一管理所有商业关系（如合作类型、有效期、权限范围），支持灵活的场景组合（如跨行业合作、多层级关联）。
-+ **技术实现**：
-  - 采用**多表继承**：父模型 `PamirsPartnerRelation` 定义核心字段（如主体 A、主体 B、关系类型），子模型扩展个性化属性（如合同有效期、合作条款）。
-  - 收敛关系类型，通过统一接口管理，避免重复开发。
++ **Implementation Advantages**:
+  - Only need to maintain **relationship model extension**, the subject model remains stable, reducing complexity.
+  - Uniformly manage all business relationships (such as cooperation type, validity period, permission scope), supporting flexible scenario combinations (such as cross-industry cooperation, multi-level association).
++ **Technical Implementation**:
+  - Adopt **multi-table inheritance**: The parent model `PamirsPartnerRelation` defines core fields (such as Subject A, Subject B, relationship type), and the child model extends personalized attributes (such as contract validity period, cooperation terms).
+  - Converge relationship types and manage them through a unified interface to avoid repeated development.
 
-![画板](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/1635320927409-8b3c0d27-9068-4ffa-bba2-8be50dd5442c.jpeg)
+![Drawing Board](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/1635320927409-8b3c0d27-9068-4ffa-bba2-8be50dd5442c.jpeg)
 
-# 二、常见示例
+# II. Common Examples
 
-## （一）示例设计：用户 - 员工 - 公司关联建模与 Session 集成
+## (一) Example Design: User-Employee-Company Association Modeling and Session Integration
 
-### 1、场景目标
+### 1. Scenario Objectives
 
-实现用户登录后自动关联所属公司，并在创建业务对象（如店铺）时自动填充公司主体信息，基于 Oinone 框架演示多模型关联与 Session 上下文管理。
+Achieve automatic association of the affiliated company after user login, and automatically fill in the company entity information when creating business objects (such as stores), demonstrating multi-model association and Session context management based on the Oinone framework.
 
-### 2、准备工作
+### 2. Preparation Work
 
-**目标**：引入基础业务模块，建立模型继承关系。
+**Objective**: Introduce basic business modules and establish model inheritance relationships.
 
-+ **添加 Maven 依赖**
++ **Add Maven Dependency**
 
 ```xml
 <dependency>
@@ -95,9 +95,9 @@ prev:
 </dependency>
 ```
 
-**说明**：`pamirs-business-api`包含`PamirsCompany`（公司）、`PamirsEmployee`（员工）等基础模型。
+**Explanation**: `pamirs-business-api` contains basic models such as `PamirsCompany` (company) and `PamirsEmployee` (employee).
 
-+ **声明模块依赖**
++ **Declare Module Dependencies**
 
 ```java
 @Module(
@@ -106,40 +106,40 @@ prev:
 public class TestModule { /* ... */ }
 ```
 
-### 3、场景示例
+### 3. Scenario Example
 
-#### 步骤 1：新建业务模型与服务
+#### Step 1: Create New Business Models and Services
 
-**目标**：扩展基础模型，定义用户 - 员工 - 公司关联关系。
+**Objective**: Extend basic models and define the association between users, employees, and companies.
 
-**员工模型（TestEmployee）**
+**Employee Model (TestEmployee)**
 
 ```java
 @Model.model(TestEmployee.MODEL_MODEL)
-@Model(displayName = "公司员工", labelFields = "name")
+@Model(displayName = "Company Employee", labelFields = "name")
 public class TestEmployee extends PamirsEmployee {
     public static final String MODEL_MODEL = "test.TestEmployee";
 
-    @Field(displayName = "用户")
-    private PamirsUser user; // 关联用户模型
+    @Field(displayName = "User")
+    private PamirsUser user; // Associate with the user model
 }
 ```
 
-**公司模型（TestCompany）**
+**Company Model (TestCompany)**
 
 ```java
 @Model.model(TestCompany.MODEL_MODEL)
-@Model(displayName = "公司", labelFields = "name")
+@Model(displayName = "Company", labelFields = "name")
 public class TestCompany extends PamirsCompany {
     public static final String MODEL_MODEL = "test.TestCompany";
 
     @Field.Text
-    @Field(displayName = "简介")
-    private String introduction; // 扩展公司简介字段
+    @Field(displayName = "Introduction")
+    private String introduction; // Extend the company introduction field
 }
 ```
 
-**员工查询服务**
+**Employee Query Service**
 
 ```java
 @Fun(TestEmployeeQueryService.FUN_NAMESPACE)
@@ -147,11 +147,11 @@ public interface TestEmployeeQueryService {
     String FUN_NAMESPACE = "test.TestEmployeeQueryService";
 
     @Function
-    TestEmployee queryByUserId(Long userId); // 通过用户ID查询员工
+    TestEmployee queryByUserId(Long userId); // Query employees by user ID
 }
 ```
 
-**实现类**：
+**Implementation Class**:
 
 ```java
 @Fun(TestEmployeeQueryService.FUN_NAMESPACE)
@@ -169,7 +169,7 @@ public class TestEmployeeQueryServiceImpl implements TestEmployeeQueryService {
 }
 ```
 
-**公司查询服务**
+**Company Query Service**
 
 ```java
 @Fun(TestCompanyQueryService.FUN_NAMESPACE)
@@ -177,11 +177,11 @@ public interface TestCompanyQueryService {
     String FUN_NAMESPACE = "test.TestCompanyQueryService";
 
     @Function
-    TestCompany queryByCode(String code); // 通过公司编码查询
+    TestCompany queryByCode(String code); // Query companies by company code
 }
 ```
 
-**实现类**：
+**Implementation Class**:
 
 ```java
 @Fun(TestCompanyQueryService.FUN_NAMESPACE)
@@ -194,54 +194,54 @@ public class TestCompanyQueryServiceImpl implements TestCompanyQueryService {
 }
 ```
 
-#### 步骤 2：Session 上下文集成
+#### Step 2: Session Context Integration
 
-参考：与此主题相关的文档可在 “[扩展PamirsSession](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/request-context-API.md#二-扩展pamirssession)” 中找到。
+Reference: Documentation related to this topic can be found in "[Extending PamirsSession](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/request-context-API.md#二-扩展pamirssession)".
 
-**目标**：登录时建立用户→员工→公司的关联，存储于 Session。
+**Objective**: Establish the association of user→employee→company during login and store it in the Session.
 
-**扩展 Session 数据模型**
+**Extend the Session Data Model**
 
-修改`DemoSessionData`，增加公司属性：
+Modify `DemoSessionData` to add company attributes:
 
 ```java
 public class DemoSessionData {
     private PamirsUser user;
-    private TestCompany company; // 新增公司属性
+    private TestCompany company; // Add company attribute
     // getters and setters
 }
 ```
 
-**修改 DemoSessionCache 缓存逻辑**
+**Modify the DemoSessionCache Cache Logic**
 
 ```java
 public class DemoSessionCache {
     private static final ThreadLocal<DemoSessionData> BIZ_DATA_THREAD_LOCAL = new ThreadLocal<>();
 
-    // 获取当前用户
+    // Get the current user
     public static PamirsUser getUser() { /* ... */ }
 
-    // 获取当前公司
+    // Get the current company
     public static TestCompany getCompany() { /* ... */ }
 
 
-    // 初始化上下文
+    // Initialize the context
     public static void init() {
         Long uid = PamirsSession.getUserId();
         if (uid == null) return;
 
-        // 1. 查询用户
+        // 1. Query the user
         PamirsUser user = CommonApiFactory.getApi(UserService.class).queryById(uid);
         if (user == null) return;
 
-        // 2. 通过用户查询员工
+        // 2. Query the employee through the user
         TestEmployee employee = CommonApiFactory.getApi(TestEmployeeQueryService.class).queryByUserId(uid);
         if (employee == null) return;
 
-        // 3. 通过员工公司编码查询公司
+        // 3. Query the company by the employee's company code
         TestCompany company = CommonApiFactory.getApi(TestCompanyQueryService.class).queryByCode(employee.getCompanyCode());
 
-        // 4. 存储至Session
+        // 4. Store in the Session
         TestSessionData data = new TestSessionData();
         data.setUser(user);
         data.setCompany(company);
@@ -250,9 +250,9 @@ public class DemoSessionCache {
 }
 ```
 
-#### 步骤 3：业务模型关联与自动填充
+#### Step 3: Business Model Association and Automatic Filling
 
-**重写业务模型的创建方法**
+**Override the business model's creation method**
 
 ```java
 @Component
@@ -260,10 +260,10 @@ public class DemoSessionCache {
 public class TestShopAction {
     @Action.Advanced(name = FunctionConstants.create, type = {FunctionTypeEnum.CREATE}, managed = true,check = true)
     public TestShop create(TestShop data) {
-        // 从Session获取当前公司
+        // Get the current company from the Session
         TestCompany company = DemoSessionCache.getCompany();
         if (company != null) {
-            data.setPartner(company); // 自动填充所属主体
+            data.setPartner(company); // Automatically fill in the affiliated entity
         }
         data.create();
         return data;
@@ -271,126 +271,126 @@ public class TestShopAction {
 }
 ```
 
-**逻辑**：创建店铺时，若未手动选择主体，则从 Session 中获取当前用户关联的公司。
+**Logic**: When creating a store, if the entity is not manually selected, obtain the company associated with the current user from the Session.
 
-### 4、注意事项与优化点
+### 4. Notes and Optimization Points
 
-+ **员工创建逻辑**
-  - 需重写`TestEmployee`的`create`方法，确保`employeeType`字段非空（基础模型必填）：
++ **Employee Creation Logic**
+  - Need to override the `create` method of `TestEmployee` to ensure that the `employeeType` field is not empty (required in the basic model):
 
 ```java
 @Action.Advanced(name = FunctionConstants.create, type = {FunctionTypeEnum.CREATE}, managed = true,check = true)
 public TestEmployee create(TestEmployee data) {
-    data.setEmployeeType(EmployeeTypeEnum.COMMON); // 手动赋值
+    data.setEmployeeType(EmployeeTypeEnum.COMMON); // Manually assign a value
     return data.create();
 }
 ```
 
-+ **多员工场景**
-  - 当前`queryByUserId`方法未处理 “一用户多员工” 场景，需调整为返回列表或指定主员工：****
++ **Multi-Employee Scenario**
+  - The current `queryByUserId` method does not handle the scenario of "one user with multiple employees" and needs to be adjusted to return a list or specify the primary employee:****
 
 ```java
-// 修改服务接口
+// Modify the service interface
 List<TestEmployee> queryByUserId(Long userId);
 ```
 
-### **5、总结**
+### **5. Summary**
 
-本示例通过**用户→员工→公司**的三层关联，演示了 Oinone 框架中模型继承、Session 上下文管理和业务逻辑自动填充的核心能力。关键技术点包括：
+This example demonstrates the core capabilities of model inheritance, Session context management, and automatic business logic filling in the Oinone framework through the three-layer association of **user→employee→company**. Key technical points include:
 
-+ 模型扩展
-+ ThreadLocal 实现请求级上下文管理
-+ 业务动作（Action）对 Session 数据的调用
-+ 自动填充规则在创建场景中的应用
++ Model extension
++ ThreadLocal implementation of request-level context management
++ Invocation of Session data in business actions (Action)
++ Application of automatic filling rules in creation scenarios
 
-通过此类设计，可实现用户登录后自动关联商业主体，减少人工操作并提升数据一致性，适用于权限控制、组织架构管理等企业级场景。
+Through such design, automatic association of business entities after user login can be achieved, reducing manual operations and improving data consistency, suitable for enterprise-level scenarios such as permission control and organizational structure management.
 
-# 三、更多常用 API
+# III. More Commonly Used APIs
 
-描述 Oinone 平台用户登录、密码管理及信息维护相关 API，包含核心模型、接口定义、扩展机制及示例代码，适用于二次开发和功能扩展。
+Describes the Oinone platform's APIs related to user login, password management, and information maintenance, including core models, interface definitions, extension mechanisms, and sample code, suitable for secondary development and function extension.
 
-## （一）PamirsUserTransient（用户临时模型）
+## (一) PamirsUserTransient (User Temporary Model)
 
-**类路径**：`pro.shushi.pamirs.user.api.model.tmodel.PamirsUserTransient`
-**功能**：处理用户登录、注册、信息修改等临时数据，包含加密字段和业务状态标识。
+**Class Path**: `pro.shushi.pamirs.user.api.model.tmodel.PamirsUserTransient`
+**Function**: Processes temporary data such as user login, registration, and information modification, including encrypted fields and business status identifiers.
 
-### 1、成员变量
+### 1. Member Variables
 
-| **字段名**        | **类型**              | **注释**                     | **示例值**          |
-| :---------------- | :-------------------- | :--------------------------- | :------------------ |
-| login             | String                | 登录账号（加密字段），必填   | "user123"           |
-| password          | String                | 密码（加密字段），必填       | "******"            |
-| verificationCode  | String                | 验证码，必填                 | "123456"            |
-| errorCode         | Integer               | 错误代码，用于扩展逻辑返回   | 40001               |
-| broken            | Boolean               | 是否中断流程（默认 false）   | true                |
-| autoLogin         | Boolean               | 自动登录标识                 | true                |
-| userBehaviorEvent | UserBehaviorEventEnum | 用户行为事件（如登录、注册） | LOGIN_BY_PHONE_CODE |
-
-
-其他字段详见源码
-
-### 2、关键方法
-
-| **方法名**             | **描述**                 | **参数** | **返回值** | **异常处理**         |
-| :--------------------- | :----------------------- | :------- | :--------- | :------------------- |
-| getBroken()            | 获取中断状态             | 无       | Boolean    | 若未设置则返回 false |
-| setLogin(String login) | 设置登录账号（自动加密） | login    | void       | 加密异常由框架处理   |
+| **Field Name**        | **Type**              | **Comment**                     | **Example Value**          |
+| :------------------- | :-------------------- | :--------------------------- | :------------------ |
+| login             | String                | Login account (encrypted field), required   | "user123"           |
+| password          | String                | Password (encrypted field), required       | "******"            |
+| verificationCode  | String                | Verification code, required                 | "123456"            |
+| errorCode         | Integer               | Error code, used for extended logic return   | 40001               |
+| broken            | Boolean               | Whether to interrupt the process (default false)   | true                |
+| autoLogin         | Boolean               | Auto-login identifier                 | true                |
+| userBehaviorEvent | UserBehaviorEventEnum | User behavior event (such as login, registration) | LOGIN_BY_PHONE_CODE |
 
 
-## （二）PamirsUserAction（用户信息维护）
+Other fields are as detailed in the source code
 
-**类路径**：`pro.shushi.pamirs.user.view.action.PamirsUserAction`
-**功能**：处理用户创建、修改、查询等持久化操作，支持 API 接口调用。
+### 2. Key Methods
 
-**关键方法如下：**
-
-| **方法名**              | **功能描述**     | **参数**                         | **返回值** |
-| :---------------------- | :--------------- | :------------------------------- | :--------- |
-| create(PamirsUser data) | 创建用户         | data：用户实体（含 login、name） | PamirsUser |
-| update(PamirsUser data) | 修改用户信息     | data：需更新的字段（ID 必填）    | PamirsUser |
-| userInfo()              | 查询当前用户信息 | 无                               | PamirsUser |
-| active(PamirsUser user) | 激活用户         | user：含 ID 的用户实体           | PamirsUser |
+| **Method Name**             | **Description**                 | **Parameters** | **Return Value** | **Exception Handling**         |
+| :------------------------- | :----------------------- | :------- | :--------- | :------------------- |
+| getBroken()            | Get the interrupt status             | None       | Boolean    | Return false if not set |
+| setLogin(String login) | Set the login account (auto-encrypt) | login    | void       | Encryption exceptions handled by the framework |
 
 
-## （三）UserBehaviorAction（用户行为处理）
+## (二) PamirsUserAction (User Information Maintenance)
 
-**类路径**：`pro.shushi.pamirs.user.view.action.UserBehaviorAction`
-**功能**：处理登录、登出、密码修改、验证码发送等核心行为，支持多种登录方式（Cookie、Token、验证码）。
+**Class Path**: `pro.shushi.pamirs.user.view.action.PamirsUserAction`
+**Function**: Processes persistent operations such as user creation, modification, and query, supporting API interface calls.
 
-**关键方法如下：**
+**Key methods are as follows**:
 
-| **方法名**                      | **功能描述**        | **参数**                         | **返回值**          |
+| **Method Name**              | **Function Description**     | **Parameters**                         | **Return Value** |
+| :------------------------- | :--------------- | :------------------------------- | :--------- |
+| create(PamirsUser data) | Create a user         | data: User entity (including login, name) | PamirsUser |
+| update(PamirsUser data) | Modify user information     | data: Fields to be updated (ID is required)    | PamirsUser |
+| userInfo()              | Query current user information | None                               | PamirsUser |
+| active(PamirsUser user) | Activate a user         | user: User entity with ID           | PamirsUser |
+
+
+## (三) UserBehaviorAction (User Behavior Processing)
+
+**Class Path**: `pro.shushi.pamirs.user.view.action.UserBehaviorAction`
+**Function**: Processes core behaviors such as login, logout, password modification, and verification code sending, supporting multiple login methods (Cookie, Token, verification code).
+
+**Key methods are as follows**:
+
+| **Method Name**                      | **Function Description**        | **Parameters**                         | **Return Value**          |
 | :------------------------------ | :------------------ | :------------------------------- | :------------------ |
-| login(PamirsUserTransient user) | Cookie 登录         | user：含 login/password          | PamirsUserTransient |
-| tokenLoginByVerificationCode    | 验证码 + Token 登录 | user：含 phone/verificationCode  | PamirsUserTransient |
-| modifyCurrentUserPassword       | 修改当前用户密码    | user：含 rawPassword/newPassword | PamirsUserTransient |
-| firstResetPassword              | 首次登录重置密码    | user：含初始密码和新密码         | PamirsUserTransient |
+| login(PamirsUserTransient user) | Cookie login         | user: Including login/password          | PamirsUserTransient |
+| tokenLoginByVerificationCode    | Verification code + Token login | user: Including phone/verificationCode  | PamirsUserTransient |
+| modifyCurrentUserPassword       | Modify the current user's password    | user: Including rawPassword/newPassword | PamirsUserTransient |
+| firstResetPassword              | Reset the password for the first login | user: Including initial password and new password         | PamirsUserTransient |
 
 
-## （四）常见示例
+## (四) Common Examples
 
-对用户相关的API进行扩展，可以利用Oinone的 “[ 默认扩展点](/en/DevManual/Reference/Back-EndFramework/functions-API.md#一-默认扩展点)”和 [SPI](/en/DevManual/Reference/common-extension-points-and-SPI-list.md#一、spi-机制) 机制进行。
+To extend user-related APIs, you can use Oinone's "[Default Extension Points](/en/DevManual/Reference/Back-EndFramework/functions-API.md#一-默认扩展点)" and [SPI](/en/DevManual/Reference/common-extension-points-and-SPI-list.md#一、spi-机制) mechanisms.
 
-### 1、首次登录修改密码
+### 1. Modify Password on First Login
 
-自定义User增加是否是第一次登录的属性，登录后执行一个扩展点。 判断是否是一次登录，如果是则返回对应的状态码，前端根据状态码重定向到修改密码的页面。修改完成则重置第一次登录的标识。
+Customize the User to add an attribute indicating whether it is the first login, and execute an extension point after login. Determine whether it is the first login, and if so, return the corresponding status code, and the front end redirects to the password modification page based on the status code. After modification, reset the first login flag.
 
 ```java
 /**
  * @author wangxian
  */
 @Model.model(DemoUser.MODEL_MODEL)
-@Model(displayName = "用户", labelFields = {"nickname"})
+@Model(displayName = "User", labelFields = {"nickname"})
 @Model.Advanced(index = {"companyId"})
 public class DemoUser extends PamirsUser {
     public static final String MODEL_MODEL = "demo.DemoUser";
 
     /**
-     * 默认true->1
+     * Default true->1
      */
     @Field.Boolean
     @Field.Advanced(columnDefinition = "tinyint(1) DEFAULT '1'")
-    @Field(displayName = "是否首次登录")
+    @Field(displayName = "Is First Login")
     private Boolean firstLogin;
 }
 ```
@@ -409,7 +409,7 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
     }
 
     private PamirsUserTransient checkFirstLogin(PamirsUserTransient user) {
-        //首次登录需要修改密码
+        // Password modification required for first login
         Long userId = PamirsSession.getUserId();
 
         if (userId == null) {
@@ -417,11 +417,11 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
         }
 
         DemoUser companyUser = new DemoUser().queryById(userId);
-        // 判断用户是否是第一次登录，如果是第一次登录，需要返回错误码，页面重新向登录
+        // Determine whether the user is logging in for the first time. If so, return an error code and redirect to the login page
         Boolean isFirst = companyUser.getFirstLogin();
         if (isFirst) {
-            //如果是第一次登录，返回一个标识给前端。
-            // 首次登录的标识平台已默认实现
+            // If it is the first login, return an identifier to the front end.
+            // The first login identifier is already implemented by default in the platform
             user.setBroken(Boolean.TRUE);
             user.setErrorCode(UserExpEnumerate.USER_FIRST_LOGIN_ERROR.code());
             return user;
@@ -446,7 +446,7 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
         if (userId == null) {
             return user;
         }
-        //修改密码后 将首次登录标识改为false
+        // After modifying the password, change the first login flag to false
         Integer update = new DemoUser().updateByWrapper(new DemoUser().setFirstLogin(Boolean.FALSE),
                 Pops.<DemoUser>lambdaUpdate()
                         .from(DemoUser.MODEL_MODEL)
@@ -468,16 +468,16 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
 }
 ```
 
-### 2、修改平台密码规则
+### 2. Modify Platform Password Rules
 
-平台已提供内置SPI：UserPatternCheckApi 支持用户自定义密码、用户Nick、邮箱等指定以校验规则。内置SPI接口定义如下：
+The platform provides a built-in SPI: UserPatternCheckApi supports users to customize password, user Nick, email, etc., with specified validation rules. The built-in SPI interface is defined as follows:
 
 ```java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface UserPatternCheckApi {
 
     default Boolean userPatternCheck(PamirsUser pamirsUser) {
-        // 过滤掉系统用户（即系统用户的密码修改不受扩展点影响）8848:eip_system.; 10088L:workflow_system; 10086L:trigger_system
+        // Filter out system users (i.e., password modification of system users is not affected by extension points) 8848:eip_system.; 10088L:workflow_system; 10086L:trigger_system
         if (pamirsUser.getId()!=null && (8848L==pamirsUser.getId() || 10086L==pamirsUser.getId() || 10088L==pamirsUser.getId())) {
             return Boolean.TRUE;
         }
@@ -588,30 +588,30 @@ public interface UserPatternCheckApi {
 }
 ```
 
-下面的示例实现自定义校验：
+The following example implements custom validation:
 
-+ 用户账号不检验格式，只检验登录login不为空；
-+ 密码不检验格式，只校验长度是 3 到 8位；
++ User accounts are not checked for format, only that the login is not empty;
++ Passwords are not checked for format, only that the length is between 3 and 8 characters;
 
 ```java
 @Slf4j
 @SPI.Service
-@Order(50) //默认优先级最低，业务配置需要配置成为优先级高
+@Order(50) // Default lowest priority, business configuration needs to be set to high priority
 @Component
 public class DemoUserPatternCheckApi implements UserPatternCheckApi {
 
     /**
-     * 按需（无特殊逻辑无需实现），修改密码的校验规则
+     * As needed (no need to implement if there is no special logic), modify the password validation rules
      **/
     @Override
     public Boolean checkPassword(String password) {
-        //自定义校验逻辑
+        // Custom validation logic
         checkPasswordPattern(password);
         return Boolean.TRUE;
     }
 
     /**
-     * 按需（无特殊逻辑无需实现），修改Login的校验规则
+     * As needed (no need to implement if there is no special logic), modify the Login validation rules
      **/
     @Override
     public Boolean checkLogin(String login) {
@@ -633,4 +633,3 @@ public class DemoUserPatternCheckApi implements UserPatternCheckApi {
     }
 }
 ```
-

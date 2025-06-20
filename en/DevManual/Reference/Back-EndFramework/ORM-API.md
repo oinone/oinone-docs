@@ -2,332 +2,272 @@
 title: ORM API
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 后端API
+  - Back-End API
 order: 2
 
 ---
-# 一、模型 Model
+# I. Model
 
-模型由元信息、字段、数据管理器和自定义函数构成。
+A model consists of metadata, fields, data managers, and custom functions. Models are categorized into meta-models and business models. Metadata refers to the dataset describing the data, rules, and logic necessary for application operation; a meta-model is a set of schemas used to describe kernel metadata; a business model is a set of schemas used to describe business application metadata.
 
-模型分为元模型和业务模型。元数据是指描述应用程序运行所必需的数据、规则和逻辑的数据集；元模型是指用于描述内核元数据的一套模式集合；业务模型是指用于描述业务应用元数据的一套模式集合。
+Meta-models are divided into three domains: module domain, model domain, and function domain. The domain division rule is determined by the discreteness of data association relationships defined in the meta-model—the smaller the discreteness, the more aggregated into one domain.
 
-元模型分为模块域、模型域和函数域三个域。域的划分规则是根据元模型定义数据关联关系的离散性来判断，离散程度越小越聚集到一个域。
+## (一) Model Types
 
-## （一）模型的类型
+### 1. Abstract Model:
 
-### 1、抽象模型：
-
-往往是提供公共能力和字段的模型，它本身不会直接用于构建协议和基础设施（如表结构等）。
+An abstract model typically provides common capabilities and fields but is not directly used to build protocols or infrastructure (such as table structures).
 
 ```java
 @Model.Advanced(type = ModelTypeEnum.ABSTRACT)
 @Model.model(TestCommonItem.MODEL_MODEL)
-@Model(displayName = "测试抽象模型", summary = "测试抽象模型")
+@Model(displayName = "Test Abstract Model", summary = "Test Abstract Model")
 public class TestCommonItem extends IdModel {
     private static final long serialVersionUID = 7927471701701984895L;
 
     public static final String MODEL_MODEL = "test.TestCommonItem";
 
-    // 此处省略公用字段配置
+    // Common field configurations omitted here
 
 }
 ```
 
-通过 `@Model.Advanced(type = ModelTypeEnum.ABSTRACT)` 注解，可将模型标记为抽象模型。这类模型能够构建可复用的公共抽象业务模型库，在业务场景中，若需进行数据存储，可在扩展模块中创建存储模型，直接继承抽象业务模型库中的抽象模型，快速复用其模型结构与字段配置，有效提升开发效率。
+Marking a model as abstract using the `@Model.Advanced(type = ModelTypeEnum.ABSTRACT)` annotation enables the creation of a reusable library of abstract business models. In business scenarios requiring data storage, a storage model can be created in an extension module by inheriting from the abstract model, reusing its structure and field configurations to enhance development efficiency.
 
-### 2、传输模型：
+### 2. Transient Model:
 
-用于表现层和应用层之间的数据交互，本身不会存储，没有默认的数据管理器，只有数据构造器。
+Used for data interaction between the presentation layer and application layer, it does not store data, has no default data manager, and only includes a data constructor.
 
 ```java
 @Model.Advanced(type = ModelTypeEnum.TRANSIENT)
 @Model.model(TestRemark.MODEL_MODEL)
-@Model(displayName = "测试传输模型", summary = "测试传输模型")
+@Model(displayName = "Test Transient Model", summary = "Test Transient Model")
 public class TestRemark extends TransientModel {
 
     private static final long serialVersionUID = 5587370859051459028L;
 
     public static final String MODEL_MODEL = "test.TestRemark";
 
-    // 此处省略传输字段配置
+    // Transient field configurations omitted here
 
 }
 ```
 
-可通过两种方式将模型定义为传输模型：
+A model can be defined as a transient model in two ways:
+- Using the `@Model.Advanced(type = ModelTypeEnum.TRANSIENT)` annotation.
+- Inheriting from the `TransientModel` class. Both methods clearly define the model's purpose for efficient data transfer between components/modules.
 
-+ 采用 `@Model.Advanced(type = ModelTypeEnum.TRANSIENT)` 注解进行标注；
-+ 让模型继承 `TransientModel` 类。这两种方式均可快速明确模型的传输用途，实现数据在不同组件或模块间的高效传递 。
+### 3. Storage Model:
 
-### 3、存储模型：
-
-存储模型用于定义数据表结构和数据的增删改查（数据管理器）功能，是直接与连接器进行交互的数据容器。
+A storage model defines table structures and CRUD (data manager) functions, serving as a data container directly interacting with connectors.
 
 ```java
 @Model.model(TestModel.MODEL_MODEL)
-@Model(displayName = "测试模型",labelFields = {"name"})
+@Model(displayName = "Test Model", labelFields = {"name"})
 public class TestModel extends IdModel {
-    public static final String MODEL_MODEL="test.TestModel";
+    public static final String MODEL_MODEL = "test.TestModel";
 
-    @Field(displayName = "名称")
+    @Field(displayName = "Name")
     private String name;
 }
 ```
 
-### 4、代理模型：
+### 4. Proxy Model:
 
-用于代理存储模型的数据管理器能力的同时，扩展出非存储数据信息的交互功能的模型。
+A proxy model proxies the data manager capabilities of a storage model while extending interaction functions for non-stored data information.
 
 ```java
 @Model.Advanced(type = ModelTypeEnum.PROXY)
 @Model.model(Context.MODEL_MODEL)
-@Model(displayName = "测试代理模型", summary = "测试代理模型")
+@Model(displayName = "Test Proxy Model", summary = "Test Proxy Model")
 public class TestProxyModel extends IdModel {
 
     public static final String MODEL_MODEL = "test.TestProxyModel";
 
-    // 此处省略传输字段配置
+    // Transient field configurations omitted here
 
 }
 ```
 
-使用`@Model.Advanced(type = ModelTypeEnum.PROXY)`注解标识代理模型。
+Mark a proxy model using the `@Model.Advanced(type = ModelTypeEnum.PROXY)` annotation.
 
-## （二）模型定义种类
+## (二) Model Definition Categories
 
-模型定义就是模型描述，不同定义类型，代表计算描述模型的元数据的规则不同
+Model definition refers to model description. Different definition types represent different rules for calculating metadata describing the model:
+- Static model definition: Model metadata is not persisted, and model definition calculations (default values, primary keys, inheritance, relationships) are not performed.
+- Static computed model definition: Model metadata is not persisted, but model definition calculations are performed during initialization to obtain the final model definition.
+- Dynamic model definition: Model metadata is persisted, and model definition calculations are performed during initialization to obtain the final model definition.
 
-+ 静态模型定义：模型元数据不持久化、不进行模型定义的计算（默认值、主键、继承、关联关系）
-+ 静态计算模型定义：模型元数据不持久化但初始化时进行模型定义计算获得最终的模型定义
-+ 动态模型定义：模型元数据持久化且初始化时进行模型定义计算获得最终的模型定义
+A static model definition requires the `@Model.Static` annotation; a static computed model definition uses `@Model.Static(compute=true)`; a dynamic model definition omits the `@Model.Static` annotation.
 
-静态模型定义需要使用@Model.Static进行注解；静态计算模型定义使用@Model.Static(compute=true)进行注解;动态模型定义不注解@Model.Static注解。
+## (三) Installation and Update
 
-## （三）安装与更新
+Use `@Model.model` to configure the non-modifiable code of a model. Once installed, the model code cannot be modified; subsequent configuration updates will be found and updated based on this code. If the annotation configuration is modified, the system will recognize it as a new model, create a new database table for storage models, and rename the original table as a deprecated table.
 
-使用@Model.model来配置模型的不可变更编码。模型一旦安装，无法在对该模型编码值进行修改，之后的模型配置更新会依据该编码进行查找并更新；如果仍然修改该注解的配置值，则系统会将该模型识别为新模型，存储模型会创建新的数据库表，而原表将会rename为废弃表。
+If a model is configured with the `@Base` annotation, it indicates that the model configuration is non-modifiable in the model designer; if a field is configured with `@Base`, the field configuration is non-modifiable in the model designer.
 
-如果模型配置了@Base注解，表明在模型设计器中该模型配置不可变更；如果字段配置了@Base注解，表明在模型设计器中该字段配置不可变更。
+## (四) Basic Configuration
 
-## （四）基础配置
+### 1. Model Base Classes
 
-### 1、模型基类
+All models must inherit from one of the following to indicate the model type and inherit default data managers:
+- Inherit `BaseModel` to build a storage model with no default id attribute.
+- Inherit `BaseRelation` to build a many-to-many relationship model with no default id attribute.
+- Inherit `TransientModel` to build a transient (transport) model, which has no data manager or id attribute.
+- Inherit `EnhanceModel` to build an enhanced model with ElasticSearch as the data source.
 
-所有的模型都需要继承以下模型中的一种，来表明模型的类型，同时继承以下模型的默认数据管理器。
+### 2. Quick Inheritance
 
-+ 继承BaseModel，构建存储模型，默认无id属性。
-+ 继承BaseRelation，构建多对多关系模型，默认无id属性。
-+ 继承TransientModel，构建临时模型（传输模型），临时模型没有数据管理器，也没有id属性。
-+ 继承EnhanceModel，构建数据源为ElasticSearch的增强模型。
+- Inherit `IdModel` to build a model with `id` as the primary key. The data manager of the inherited `IdModel` adds a `queryById` method (query a single record by id).
+- Inherit `CodeModel` to build a model with a unique code `code` and `id` as the primary key. Use the `@Model.Code` annotation to configure the code generation rule, override the `generateCode` method of `CodeModel`, or customize the code generation logic in pre-extension points. The data manager of the inherited `CodeModel` adds a `queryByCode` method (query a single record by unique code).
+- Inherit `VersionModel` to build a model with optimistic locking, a unique code `code`, and `id` as the primary key.
+- Inherit `IdRelation` to build a many-to-many relationship model with `id` as the primary key.
 
-### 2、快捷继承
-
-+ 继承IdModel，构建主键为id的模型。继承IdModel的模型会数据管理器会增加queryById方法（根据id查询单条记录）
-+ 继承CodeModel，构建带有唯一编码code的主键为id的模型。可以使用@Model.Code注解配置编码生成规则。也可以直接重载CodeModel的generateCode方法或者自定义新增的前置扩展点自定义编码生成逻辑。继承CodeModel的模型会数据管理器会增加queryByCode方法（根据唯一编码查询单条记录）
-+ 继承VersionModel，构建带有乐观锁，唯一编码code且主键为id的模型。
-+ 继承IdRelation，构建主键为id的多对多关系模型。
-
-### 3、模型继承关系图
+### 3. Model Inheritance Diagram
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1610353738674-f1c4392d-109f-46aa-a06b-7b82e26efdb6.jpeg)
 
-+ AbstractModel抽象基类是包含createDate创建时间、writeDate更新时间、createUid创建用户ID、writeUid更新用户ID、aggs聚合结果和activePks批量主键列表等基础字段的抽象模型。
-+ TransientModel传输模型抽象基类是所有传输模型的基类，传输模型不存储，没有数据管理器。
-+ TransientRelation传输关系模型是所有传输关系模型的基类，传输关系模型不存储，用于承载多对多关系，没有数据管理器。
-+ BaseModel存储模型基类提供数据管理器功能，数据模型主键可以不是ID。
-+ IdModel带id模型抽象基类，在BaseModel数据管理器基础之上提供根据ID查询、更新、删除数据的功能。
-+ BaseRelation关系模型抽象基类用于承载多对多关系，是多对多关系的中间模型，数据模型主键可以不是ID。
-+ IdRelation带id模型抽象基类，在BaseModel数据管理器基础之上提供根据ID查询、更新、删除数据的功能。
-+ CodeModel带code模型抽象基类，提供按配置生成业务唯一编码功能，根据code查询、更新、删除数据的功能。
-+ EnhanceModel增强模型，提供全文检索能力。
+- The `AbstractModel` abstract base class is an abstract model containing basic fields such as `createDate`, `writeDate`, `createUid`, `writeUid`, `aggs`, and `activePks`.
+- The `TransientModel` abstract base class is the base class for all transient models, which do not store data and have no data manager.
+- `TransientRelation` is the base class for all transient relation models, which do not store data, are used to carry many-to-many relationships, and have no data manager.
+- The `BaseModel` storage model base class provides data manager functions, and the primary key of the data model can be other than `id`.
+- The `IdModel` abstract base class with `id` provides functions to query, update, and delete data by `id` based on the `BaseModel` data manager.
+- The `BaseRelation` abstract base class for relation models is used to carry many-to-many relationships, serving as an intermediate model for many-to-many relationships, and the primary key of the data model can be other than `id`.
+- The `IdRelation` abstract base class with `id` provides functions to query, update, and delete data by `id` based on the `BaseModel` data manager.
+- The `CodeModel` abstract base class with `code` provides functions to generate business unique codes according to configurations and query, update, and delete data by `code`.
+- The `EnhanceModel` provides full-text search capabilities.
 
-### 4、注解配置 @Model
+### 4. Annotation Configuration @Model
 
-模型类必需使用@Model注解来标识当前类为模型类。
+A model class must use the `@Model` annotation to identify it as a model class.
 
-可以使用@Model.model、@Fun注解模型的模型编码（也表示命名空间），先取@Model.model注解值，若为空则取@Fun注解值，若皆为空则取全限定类名。
+Use `@Model.model` and `@Fun` to annotate the model code (also representing the namespace). The value of `@Model.model` is preferred; if empty, `@Fun` is used; if both are empty, the fully qualified class name is used.
 
-使用@Model.model注解配置模型编码，模型编码唯一标识一个模型。
+Use the `@Model.model` annotation to configure the model code, which uniquely identifies a model.
 
-:::danger 警告
+:::danger Warning
 
-请勿使用Query和Mutation作为模型编码和技术名称的结尾。
+Do not use `Query` or `Mutation` as the end of model codes or technical names.
 
 :::
 
 ```plsql
 @Model.model(TestModel.MODEL_MODEL)
-@Model(displayName = "测试模型",labelFields = {"name"})
+@Model(displayName = "Test Model", labelFields = {"name"})
 public class TestModel extends IdModel {
-    public static final String MODEL_MODEL="test.TestModel";
+    public static final String MODEL_MODEL = "test.TestModel";
 
-    @Field(displayName = "名称")
+    @Field(displayName = "Name")
     private String name;
 }
 ```
 
 @Model
 
-├── displayName 显示名称
-
-├── summary 描述摘要
-
-├── labelFields 数据标题, 用于前端展示
-
-├── label 数据标题格式, 默认为空
-
-├── model 模型编码
-
+├── displayName Display name
+├── summary Description summary
+├── labelFields Data title for front-end display
+├── label Data title format, default is empty
+├── model Model code
 │   └── value
-
-├── Ds 逻辑数据源名
-
+├── Ds Logical data source name
 │   └── value
-
-├── Advanced 更多配置
-
-│   ├── name 技术名称，默认取model.model的点分割最后一位
-
-│   ├── priority 排序
-
-│   ├── chain 是否是链式模型
-
-│   ├── table 逻辑数据表名
-
-│   ├── remark 表备注，默认取简介summary
-
-│   ├── index 索引/联合索引
-
-│   ├── unique 唯一索引
-
-│   ├── managed 可被管理，例如自动建表或更新表，默认为true
-
-│   ├── ordering 数据排序
-
-│   ├── type 模型类型，默认：STORE存储模型
-
-│   ├── relationship 是否是描述多对多关系的模型
-
-│   ├── supportClient 支持客户端 默认为true
-
-│   ├── inherited 继承，配模型编码
-
-│   ├── inheritedClass 继承类，配置模型所在类
-
-│   ├── unInheritedFields 不从父类继承的字段
-
-│   └── unInheritedFunctions 不从父类继承的函数
-
+├── Advanced More configurations
+│   ├── name Technical name, default is the last part of model.model split by dots
+│   ├── priority Sorting
+│   ├── chain Whether it is a chain model
+│   ├── table Logical data table name
+│   ├── remark Table comment, default is the summary
+│   ├── index Index/composite index
+│   ├── unique Unique index
+│   ├── managed Can be managed, such as automatic table creation or update, default is true
+│   ├── ordering Data sorting
+│   ├── type Model type, default: STORE storage model
+│   ├── relationship Whether it is a model describing many-to-many relationships
+│   ├── supportClient Support client, default is true
+│   ├── inherited Inheritance, configure model code
+│   ├── inheritedClass Inherited class, configure the class where the model is located
+│   ├── unInheritedFields Fields not inherited from the parent class
+│   └── unInheritedFunctions Functions not inherited from the parent class
 ├── MultiTable
+│   └── typeField Type field code of the parent model in multi-table inheritance
+├── MultiTableInherited Child model multi-table inherits parent model
+│   ├── type Type field value of the parent model in multi-table inheritance
+│   └── redundancy Redundant data of the parent model except the primary key value
+├── ChangeTableInherited Table-changing inheritance
+├── Persistence Data persistence layer configuration. If not configured, follow module configuration; if configured, use model configuration.
+│   ├── logicDelete Whether to logically delete, default is true
+│   ├── logicDeleteColumn Logical delete column, default "is_deleted"
+│   ├── logicDeleteValue Field value after logical deletion, default "REPLACE(unix_timestamp(NOW(6)),'.','')"
+│   ├── logicNotDeleteValue Default value of the logical delete column, default "0"
+│   ├── underCamel Underline to camel case conversion, default is true
+│   ├── capitalMode Table uppercase mode, default is false
+│   ├── charset Default is utf8mb4
+│   └── collate Default is bin
+├── Code Model code generator. If this attribute is configured, the model must have a code field.
+│   ├── sequence Sequence generation function, optional values:
+  * SEQ—Auto-incrementing serial number (non-consecutive)
+  * ORDERLY—Auto-incrementing ordered serial number (consecutive)
+  * DATE_SEQ—Date + auto-incrementing serial number (non-consecutive)
+  * DATE_ORDERLY_SEQ—Date + strongly ordered serial number (consecutive)
+  * DATE—Date
+  * UUID—Random 32-character string containing numbers and lowercase letters
+│   ├── prefix Prefix
+│   ├── suffix Suffix
+│   ├── size Length
+│   ├── step Step size (valid for serial numbers)
+│   ├── initial Starting value (valid for serial numbers)
+│   ├── format Format (valid for dates)
+│   └── separator Separator
+├── Static Static model configuration
+│   ├── module Module
+│   ├── moduleAbbr Module abbreviation
+│   └── onlyBasicTypeField Default is true
+└── Fuse Low-code and no-code integrated model
 
-│   └── typeField  多表继承父模型中的类型字段编码
+### 5. Model Naming Conventions
 
-├── MultiTableInherited 子模型多表继承父模型
-
-│   ├── type  多表继承父模型中的类型字段值
-
-│   └── redundancy  冗余父模型除主键值外的数据
-
-├── ChangeTableInherited 换表继承
-
-├── Persistence 数据持久层配置，如不配置，则跟随模块配置，如配置，则取模型中的配置
-
-│   ├── logicDelete  	   是否逻辑删除，默认为true
-
-│   ├── logicDeleteColumn  逻辑删除列，默认“is_deleted”
-
-│   ├── logicDeleteValue      逻辑删除后字段值，默认“REPLACE(unix_timestamp(NOW(6)),'.','')”
-
-│   ├── logicNotDeleteValue 逻辑删除列默认值，默认“0”
-
-│   ├── underCamel 	    下划线驼峰转化，默认为true
-
-│   ├── capitalMode 	    表大写模式，默认为false
-
-│   ├── charset 	    	    默认为 utf8mb4
-
-│   └── collate  		    默认为 bin
-
-├── Code  模型编码生成器，如果配置该属性，模型必须有code字段
-
-│   ├── sequence  序列生成函数，可选值
-
-  * SEQ——自增流水号（不连续）
-  * ORDERLY——自增强有序流水号（连续）
-  * DATE_SEQ——日期+自增流水号（不连续）
-  * DATE_ORDERLY_SEQ——日期+强有序流水号（连续）
-  * DATE——日期
-  * UUID——随机32位字符串，包含数字和小写英文字母
-
-│   ├── prefix  前缀
-
-│   ├── suffix  后缀
-
-│   ├── size  长度
-
-│   ├── step  步长（包含流水号有效）
-
-│   ├── initial  起始值（包含流水号有效）
-
-│   ├── format  格式化（包含日期有效）
-
-│   └── separator  分隔符
-
-├── Static 静态模型配置
-
-│   ├── module  模块
-
-│   ├── moduleAbbr  模块缩略
-
-│   └── onlyBasicTypeField 默认值为true
-
-└── Fuse 低无一体融合模型
-
-### 5、模型命名规范
-
-| **模型属性** | **默认取值规范**                                             | **命名规则规范**                                             |
+| **Model Attribute** | **Default Naming Convention**                                             | **Naming Rule**                                                      |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| name         | 默认取model.model的点分割最后一位                            | 1. 仅支持数字、字母<br/>2. 必须以字母开头<br/>3. 长度必须小于等于128个字符 |
-| model        | 默认使用全类名，取lname的值<br/>开发人员定义规范示例：<br/>{项目名称}.{模块功能示意名称}.{简单类名} | 1. 仅支持数字、字母、点<br/>2. 必须以字母开头<br/>3. 不能以点结尾<br/>4. 长度必须小于等于128个字符 |
-| display_name | 空字符串                                                     | 1. 长度必须小于等于128个字符                                 |
+| name         | Default is the last part of model.model split by dots                            | 1. Only supports numbers and letters<br/>2. Must start with a letter<br/>3. Length must be ≤ 128 characters |
+| model        | Default is the full class name, taking the value of lname<br/>Development definition example:<br/>{project name}.{module function name}.{simple class name} | 1. Only supports numbers, letters, and dots<br/>2. Must start with a letter<br/>3. Cannot end with a dot<br/>4. Length must be ≤ 128 characters |
+| display_name | Empty string                                                     | 1. Length must be ≤ 128 characters                                 |
 
 
-## （五）模型元信息
+## (五) Model Metadata
 
-模型的priority，当展示模型定义列表时，使用priority配置来对模型进行排序。
+The `priority` of a model is used to sort models when displaying the model definition list.
 
-模型的ordering，使用ordering属性来配置该模型的数据列表的默认排序。
+The `ordering` of a model configures the default sorting of the model's data list using the `ordering` attribute.
 
-模型元信息继承形式：
+Model metadata inheritance forms:
+- No inheritance (N)
+- Child model takes precedence for the same code (C)
+- Parent model takes precedence for the same code (P)
+- Parent and child must be consistent, child model can be omitted (P=C)
 
-+ 不继承（N）
-+ 同编码以子模型为准（C）
-+ 同编码以父模型为准（P）
-+ 父子需保持一致，子模型可缺省（P=C）
+Note: Indexes and unique indexes configured on models are not inherited, so they need to be redefined in child models. The table name, comment, and code of the data table are ultimately based on the parent model configuration; when the field codes of extended inheritance parent and child models are consistent, the data table field definition is based on the parent model configuration.
 
-注意：模型上配置的索引和唯一索引不会继承，所以需要在子模型重新定义。数据表的表名、表备注和表编码最终以父模型配置为准；扩展继承父子模型字段编码一致时，数据表字段定义以父模型配置为准。
-
-<table  cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 1600px; margin: 20px auto;">
+<table cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 1600px; margin: 20px auto;">
   <thead>
     <tr style="background-color: #f5f5f5;">
-      <th style="text-align: left; font-weight: bold;">名称</th>
-      <th style="text-align: left; font-weight: bold;">描述</th>
-      <th style="text-align: left; font-weight: bold;">抽象继承</th>
-      <th style="text-align: left; font-weight: bold;">同表继承</th>
-      <th style="text-align: left; font-weight: bold;">代理继承</th>
-      <th style="text-align: left; font-weight: bold;">多表继承</th>
+      <th style="text-align: left; font-weight: bold;">Name</th>
+      <th style="text-align: left; font-weight: bold;">Description</th>
+      <th style="text-align: left; font-weight: bold;">Abstract Inheritance</th>
+      <th style="text-align: left; font-weight: bold;">Same-table Inheritance</th>
+      <th style="text-align: left; font-weight: bold;">Proxy Inheritance</th>
+      <th style="text-align: left; font-weight: bold;">Multi-table Inheritance</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">基本信息</td>
+      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">Basic Information</td>
     </tr>
     <tr>
       <td>displayName</td>
-      <td>显示名称</td>
+      <td>Display name</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -335,7 +275,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>summary</td>
-      <td>描述摘要</td>
+      <td>Description summary</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -343,7 +283,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>label</td>
-      <td>数据标题格式</td>
+      <td>Data title format</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -351,7 +291,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>labelFields</td>
-      <td>数据标题字段</td>
+      <td>Data title fields</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -359,7 +299,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>check</td>
-      <td>模型校验方法</td>
+      <td>Model validation method</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -367,29 +307,29 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>rule</td>
-      <td>模型校验表达式</td>
+      <td>Model validation expression</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
     </tr>
     <tr>
-      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">模型编码</td>
+      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">Model Code</td>
     </tr>
     <tr>
       <td>model</td>
-      <td>模型编码</td>
+      <td>Model code</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
     </tr>
     <tr>
-      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">高级特性</td>
+      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">Advanced Features</td>
     </tr>
     <tr>
       <td>name</td>
-      <td>技术名称</td>
+      <td>Technical name</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -397,7 +337,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>table</td>
-      <td>逻辑数据表名</td>
+      <td>Logical data table name</td>
       <td>N</td>
       <td>P=C</td>
       <td>P=C</td>
@@ -405,7 +345,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>type</td>
-      <td>模型类型</td>
+      <td>Model type</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -413,7 +353,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>chain</td>
-      <td>是否是链式模型</td>
+      <td>Whether it is a chain model</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -421,7 +361,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>index</td>
-      <td>索引</td>
+      <td>Index</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -429,7 +369,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>unique</td>
-      <td>唯一索引</td>
+      <td>Unique index</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -437,7 +377,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>managed</td>
-      <td>需要数据管理器</td>
+      <td>Requires a data manager</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -445,7 +385,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>priority</td>
-      <td>优先级，默认100</td>
+      <td>Priority, default 100</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -453,7 +393,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>ordering</td>
-      <td>模型查询数据排序</td>
+      <td>Model query data sorting</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -461,7 +401,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>relationship</td>
-      <td>是否是多对多关系模型</td>
+      <td>Whether it is a many-to-many relationship model</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -469,7 +409,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>inherited</td>
-      <td>多重继承</td>
+      <td>Multiple inheritance</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -477,7 +417,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>unInheritedFields</td>
-      <td>不从父类继承的字段</td>
+      <td>Fields not inherited from the parent class</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -485,29 +425,29 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>unInheritedFunctions</td>
-      <td>不从父类继承的函数</td>
+      <td>Functions not inherited from the parent class</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
     </tr>
     <tr>
-      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">高级特性-数据源</td>
+      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">Advanced Features - Data Source</td>
     </tr>
     <tr>
       <td>dsKey</td>
-      <td>数据源</td>
+      <td>Data source</td>
       <td>N</td>
       <td>P=C</td>
       <td>P=C</td>
       <td>N</td>
     </tr>
     <tr>
-      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">高级特性-持久化</td>
+      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">Advanced Features - Persistence</td>
     </tr>
     <tr>
       <td>logicDelete</td>
-      <td>是否逻辑删除</td>
+      <td>Whether to logically delete</td>
       <td>P</td>
       <td>P</td>
       <td>P</td>
@@ -515,7 +455,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>logicDeleteColumn</td>
-      <td>逻辑删除字段</td>
+      <td>Logical delete field</td>
       <td>P</td>
       <td>P</td>
       <td>P</td>
@@ -523,7 +463,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>logicDeleteValue</td>
-      <td>逻辑删除状态值</td>
+      <td>Logical delete status value</td>
       <td>P</td>
       <td>P</td>
       <td>P</td>
@@ -531,7 +471,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>logicNotDeleteValue</td>
-      <td>非逻辑删除状态值</td>
+      <td>Non-logical delete status value</td>
       <td>P</td>
       <td>P</td>
       <td>P</td>
@@ -539,7 +479,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>underCamel</td>
-      <td>字段是否驼峰下划线映射</td>
+      <td>Whether to map camel case to underscore</td>
       <td>P</td>
       <td>P</td>
       <td>P</td>
@@ -547,18 +487,18 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>capitalMode</td>
-      <td>字段是否大小写映射</td>
+      <td>Whether to map case</td>
       <td>P</td>
       <td>P</td>
       <td>P</td>
       <td>N</td>
     </tr>
     <tr>
-      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">高级特性-序列生成配置</td>
+      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">Advanced Features - Sequence Generation Configuration</td>
     </tr>
     <tr>
       <td>sequence</td>
-      <td>配置编码</td>
+      <td>Configuration code</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -566,7 +506,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>prefix</td>
-      <td>前缀</td>
+      <td>Prefix</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -574,7 +514,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>suffix</td>
-      <td>后缀</td>
+      <td>Suffix</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -582,7 +522,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>separator</td>
-      <td>分隔符</td>
+      <td>Separator</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -590,7 +530,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>size</td>
-      <td>序列长度</td>
+      <td>Sequence length</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -598,7 +538,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>step</td>
-      <td>序列步长</td>
+      <td>Sequence step</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -606,7 +546,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>initial</td>
-      <td>初始值</td>
+      <td>Initial value</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -614,18 +554,18 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>format</td>
-      <td>序列格式化</td>
+      <td>Sequence format</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
       <td>N</td>
     </tr>
     <tr>
-      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">高级特性-关联关系（或逻辑外键）</td>
+      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;">Advanced Features - Association Relationships (or Logical Foreign Keys)</td>
     </tr>
     <tr>
       <td>unique</td>
-      <td>外键值是否唯一</td>
+      <td>Whether foreign key values are unique</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -633,7 +573,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>foreignKey</td>
-      <td>外键名称</td>
+      <td>Foreign key name</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -641,7 +581,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>relationFields</td>
-      <td>关系字段列表</td>
+      <td>Relation field list</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -649,7 +589,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>references</td>
-      <td>关联模型</td>
+      <td>Associated model</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -657,7 +597,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>referenceFields</td>
-      <td>关联字段列表</td>
+      <td>Associated field list</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -665,7 +605,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>limit</td>
-      <td>关系数量限制</td>
+      <td>Relationship quantity limit</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -673,7 +613,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>pageSize</td>
-      <td>查询每页个数</td>
+      <td>Number of items per query page</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -681,7 +621,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>domainSize</td>
-      <td>模型筛选可选项每页个数</td>
+      <td>Number of items per page for model filter options</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -689,7 +629,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>domain</td>
-      <td>模型筛选，前端可选项</td>
+      <td>Model filter, front-end options</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -697,7 +637,7 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>onUpdate</td>
-      <td>更新关联操作</td>
+      <td>Update association operation</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
@@ -705,18 +645,18 @@ public class TestModel extends IdModel {
     </tr>
     <tr>
       <td>onDelete</td>
-      <td>删除关联操作</td>
+      <td>Delete association operation</td>
       <td>C</td>
       <td>C</td>
       <td>C</td>
       <td>N</td>
     </tr>
     <tr>
-      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;" >静态配置</td>
+      <td colspan="6" style="background-color: #f0f0f0; font-weight: bold;" >Static Configuration</td>
     </tr>
     <tr>
       <td>Static</td>
-      <td>静态元数据模型</td>
+      <td>Static metadata model</td>
       <td>N</td>
       <td>N</td>
       <td>N</td>
@@ -725,58 +665,57 @@ public class TestModel extends IdModel {
   </tbody>
 </table>
 
-字段定义继承形式
+Field definition inheritance form:
 
-| 名称     | 描述     | 抽象继承 | 同表继承 | 代理继承 | 多表继承 |
-| -------- | -------- | -------- | -------- | -------- | -------- |
-| 字段定义 | 字段定义 | C        | C        | C        | C        |
+| Name       | Description | Abstract Inheritance | Same-table Inheritance | Proxy Inheritance | Multi-table Inheritance |
+| ---------- | ----------- | -------------------- | ---------------------- | ------------------- | ----------------------- |
+| Field definition | Field definition | C                    | C                      | C                   | C                       |
 
 
-## （六）模型约束
+## (六) Model Constraints
 
-### 1、Sql 约束
+### 1. SQL Constraints
 
-每个模型都可以配置自身的主键列表，也可以不配置主键。主键值不可缺省，可以索引到模型所对应数据表中唯一的一条记录。
+Each model can configure its primary key list or omit it. Primary key values cannot be missing and can index a unique record in the model's corresponding data table.
 
-接下来，我们将进一步介绍几个与数据库相关的属性。
-
-+ @Field(index)，请求 Oinone 在该列上创建数据库索引。
-+ @Field(unique)，请求 Oinone 在该列上创建数据库唯一索引。
-+ @PrimaryKey，请求 Oinone 在该列上创建数据库主健约束。
-+ @Field.Advanced(columnDefinition)，请求 Oinone 在该列上创建数据库列定义。
+Next, we introduce several database-related attributes:
+- `@Field(index)` requests Oinone to create a database index on this column.
+- `@Field(unique)` requests Oinone to create a database unique index on this column.
+- `@PrimaryKey` requests Oinone to create a database primary key constraint on this column.
+- `@Field.Advanced(columnDefinition)` requests Oinone to create a database column definition on this column.
 
 ```yaml
-@Field(displayName = "名称")
+@Field(displayName = "Name")
 @Field.Advanced(columnDefinition = "varchar(12) NOT NULL ")
 private String name;
 ```
 
-### 2、校验约束 Validation
+### 2. Validation Constraints
 
-模型或字段可以配置校验函数以及规则对该模型的数据进行校验，存储数据时，校验数据是否合法合规。
+Models or fields can configure validation functions and rules to validate model data, ensuring data合法性 (legality) and compliance when storing.
 
-SQL 约束是确保数据一致性的有效方法。然而，我们的应用程序并不想跟具体的数据库进行强绑定，甚至有更复杂的检查，这就需要用到 JAVA 代码。在这种情况下，我们就需要校验约束。
+SQL constraints are effective for ensuring data consistency. However, applications may avoid tight binding to specific databases or require more complex checks, necessitating Java code—enter validation constraints.
 
-校验约束被定义为一个使用 @Validation 注解的模型与字段，并在一个记录集上调用。当这些字段中的任何一个被修改时，约束会自动进行评估。如果约束规则不满足，该方法应抛出一个异常：
+Validation constraints are defined as models/fields with the `@Validation` annotation and called on a record set. When any of these fields are modified, constraints are automatically evaluated. If rules are not met, the method should throw an exception:
 
 ```java
 @Validation(ruleWithTips = {
-        @Validation.Rule(value = "!IS_NULL(age)", error = "年龄为必填项"),
-        @Validation.Rule(value = "age >=0 && age <= 200", error = "年龄只能在0-200之间"),
+        @Validation.Rule(value = "!IS_NULL(age)", error = "Age is required"),
+        @Validation.Rule(value = "age >=0 && age <= 200", error = "Age must be between 0-200"),
 })
-@Field(displayName = "年龄")
+@Field(displayName = "Age")
 private Integer age;
 ```
 
-+ **多规则配置**：通过 `ruleWithTips` 数组可声明多条校验规则，每条规则由 `@Validation.Rule` 定义，包含 `value`（校验表达式）和 `error`（错误提示）两个参数。
-+ **内置函数支持**：支持 `IS_BLANK`（判断文本是否为空）、`LEN`（获取文本长度）等内置函数，完整函数列表与使用方法详见[内置函数](/en/DevManual/Reference/Back-EndFramework/functions-API.md#六、表达式)
+- **Multi-rule configuration**: Declare multiple validation rules via the `ruleWithTips` array, each defined by `@Validation.Rule` with `value` (validation expression) and `error` (error message).
+- **Built-in function support**: Supports functions like `IS_BLANK` (check if text is empty) and `LEN` (get text length); see [Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#六、表达式) for the full list.
 
-若需要开展更为复杂的检查工作，可在模型与字段定义时使用 `@Validation(check="X")`，其中 `X` 指代给定模型的一个函数。
+For complex checks, use `@Validation(check="X")` in model/field definitions, where `X` refers to a function of the given model.
 
 ```yaml
 ……
 @Model.model(TestConstraintsModel.MODEL_MODEL)
-@Model(displayName = "约束测试模型")
+@Model(displayName = "Constraint Test Model")
 @Validation(check = "checkData")
 public class TestConstraintsModel extends IdModel {
     ……
@@ -789,7 +728,7 @@ public class TestConstraintsModel extends IdModel {
                     .msg(Message.init()
                             .setLevel(InformationLevelEnum.ERROR)
                             .setField(LambdaUtil.fetchFieldName(TestConstraintsModel::getName))
-                            .setMessage("名称为必填项"));
+                            .setMessage("Name is required"));
             success = false;
         }
         if (name.length() > 4) {
@@ -797,7 +736,7 @@ public class TestConstraintsModel extends IdModel {
                     .msg(Message.init()
                             .setLevel(InformationLevelEnum.ERROR)
                             .setField(LambdaUtil.fetchFieldName(TestConstraintsModel::getName))
-                            .setMessage("名称过长，不能超过4位"));
+                            .setMessage("Name is too long, cannot exceed 4 characters"));
             success = false;
         }
         return success;
@@ -805,35 +744,34 @@ public class TestConstraintsModel extends IdModel {
 }
 ```
 
-:::warning 提示
+:::warning Note
 
-1. 在 Oinone 中，可通过 `@Validation` 注解对 Action 操作添加校验约束。
-2. 该校验机制仅在前端发起请求时触发生效，以确保数据合法性；而通过 Java 代码直接调用时，此校验逻辑 **不会自动执行**，避免因重复校验带来额外性能开销，帮助开发者灵活控制校验场景，平衡系统性能与数据验证需求。
-
-:::
-
-:::warning 提示
-
-通过网关协议 API 文档的 requestStrategy 策略，可灵活激活 Validation 校验能力。支持设置函数仅校验不提交，自由选择检查完成后返回或失败即返回，还能定制消息返回规则，仅展示失败信息 。
+1. In Oinone, validation constraints for Action operations can be added via the `@Validation` annotation.
+2. This validation mechanism only triggers when requests are initiated from the front end to ensure data legality. When called directly via Java code, this validation logic **does not execute automatically** to avoid performance overhead from repeated validation, allowing developers to flexibly control validation scenarios.
 
 :::
 
-## （七）数据管理
+:::warning Note
 
-在 Oinone 中，数据管理器和数据构造器是系统为模型自动配备的核心功能组件，为模型提供了强大的内在数据管理能力。
+The Validation validation capability can be flexibly activated via the requestStrategy policy in the gateway protocol API documentation, supporting settings such as function-only validation without submission, return after check completion, return on failure, and custom message return rules to show only failure information.
 
-**数据管理器**：针对存储模型设计，在编程过程中，开发者可直接调用其提供的 Function，快速实现数据查询、更新、删除等常见操作，显著提升数据处理效率。
+:::
 
-**数据构造器**：主要用于模型初始化场景，负责计算字段默认值，同时也在页面交互环节发挥重要作用，确保数据在前端与后端之间的正确传递和展示。
+## (七) Data Management
 
-### 1、数据管理函数
+In Oinone, data managers and data constructors are core functional components automatically equipped for models, providing powerful inherent data management capabilities.
 
-以 `test.ExtendIdModel` 模型（继承自 `IdModel`）为例，查询函数为数据管理器函数（ `data_manager=1`  ），其中`bean_name`：即函数定义所在 Java 类的 bean 名称。另外 `type` 和 `open_level` 采用按位与方式表示功能含义：
+**Data Manager**: Designed for storage models, developers can directly call its provided Functions during programming to quickly implement common operations like data query, update, and deletion, significantly improving data processing efficiency.
 
-+ `type`**取值**：`CREATE(1L)` 新增、`DELETE(2L)` 删除、`UPDATE(4L)` 更新、`QUERY(8L)` 查询
-+ `open_level`**取值**：`LOCAL(2)` 本地调用、`REMOTE(4)` 远程调用、`API(8)` 开放接口
+**Data Constructor**: Mainly used in model initialization scenarios, responsible for calculating field default values and playing an important role in page interaction to ensure correct data transmission and display between the front end and back end.
 
-数据管理器中，默认读函数列表：
+### 1. Data Management Functions
+
+Take the `test.ExtendIdModel` model (inheriting from `IdModel`) as an example. The query function is a data manager function (`data_manager=1`), where `bean_name` is the bean name of the Java class where the function is defined. The `type` and `open_level` use bitwise AND to represent functional meanings:
+- `type` values: `CREATE(1L)` for creation, `DELETE(2L)` for deletion, `UPDATE(4L)` for update, `QUERY(8L)` for query
+- `open_level` values: `LOCAL(2)` for local calls, `REMOTE(4)` for remote calls, `API(8)` for open interfaces
+
+Default read function list in the data manager:
 
 ```plsql
 mysql> select method,fun,open_level,bean_name from base_function where namespace ='test.ExtendIdModel'and data_manager=1 and type&8=8;
@@ -859,7 +797,7 @@ mysql> select method,fun,open_level,bean_name from base_function where namespace
 15 rows in set (0.00 sec)
 ```
 
-数据管理器中，默认写函数列表：
+Default write function list in the data manager:
 
 ```plsql
 mysql> select method,fun,open_level,bean_name from base_function where namespace ='test.ExtendIdModel'and data_manager=1 and type&8!=8;
@@ -902,138 +840,135 @@ mysql> select method,fun,open_level,bean_name from base_function where namespace
 32 rows in set (0.00 sec)
 ```
 
-:::warning 提示
+:::warning Tip
 
-在查看模型函数表时，默认数据管理函数集中定义于 `constructManager`、`defaultReadApi`、`defaultWriteApi`、`defaultWriteWithFieldApi`、`defaultIdDataManager` 等 Java 类中，我们可以试着追溯其来源父模型与实现逻辑。比如`defaultIdDataManager`定义的是 `IdModel` ，那么我们就清楚哪些函数是继承至 `IdModel` 。
+When viewing the model function table, default data management functions are centrally defined in Java classes like `constructManager`, `defaultReadApi`, `defaultWriteApi`, `defaultWriteWithFieldApi`, and `defaultIdDataManager`. Tracing their source parent models and implementation logic helps understand inheritance—for example, `defaultIdDataManager` is defined for `IdModel`, clarifying which functions are inherited from `IdModel`.
 
 :::
 
-### 2、**数据管理器**
+### 2. **Data Manager**
 
-只有存储模型才有数据管理器。如果@Model.Advanced注解设置了dataManager属性为false，则表示在UI层不开放默认数据管理器。开放级别为API则表示UI层可以通过HTTP请求利用Pamirs标准网关协议进行数据交互。
+Only storage models have data managers. If the `dataManager` attribute of the `@Model.Advanced` annotation is set to `false`, it means the default data manager is not exposed at the UI layer. An open level of `API` means the UI layer can use the Pamirs standard gateway protocol for data interaction via HTTP requests.
 
-#### 继承 `IdModel`
+#### Inheriting `IdModel`
 
-模型继承 `IdModel` 后，主键自动设为 `id`，并继承 `queryById`、`updateById` 和 `deleteById` 函数，开放级别均为 `Remote`，分别用于按 ID 查询、更新和删除单条记录。
+After a model inherits `IdModel`, the primary key is automatically set to `id`, and it inherits `queryById`, `updateById`, and `deleteById` functions with an open level of `Remote` for querying, updating, and deleting single records by ID.
 
-#### 继承 `CodeModel`
+#### Inheriting `CodeModel`
 
-继承 `CodeModel` 会一并继承 `IdModel` 的数据管理器，`code` 作为唯一索引字段，新增数据时按规则自动赋值，同时继承 `queryByCode`、`updateByCode` 和 `deleteByCode` 函数，同样为 `Remote` 开放级别。
+Inheriting `CodeModel` inherits the `IdModel` data manager, uses `code` as a unique index field, automatically assigns values according to rules when adding data, and inherits `queryByCode`, `updateByCode`, and `deleteByCode` functions with a `Remote` open level.
 
-#### 无主键或唯一索引模型
+#### Models Without Primary Keys or Unique Indexes
 
-无主键或唯一索引的模型，UI 层不开放默认数据写管理器。
+For models without primary keys or unique indexes, the UI layer does not expose the default data write manager.
 
-### 3、数据构造器
+### 3. Data Constructor
 
-在 Oinone 中，模型数据构造器`construct`用于为前端新开页面提供默认数据。所有模型均内置此构造器，默认返回字段配置的默认值（枚举类型默认值为枚举名称）。如需自定义逻辑，可在子类中重载`construct`方法。
+In Oinone, the model data constructor `construct` provides default data for newly opened front-end pages. All models have this constructor built-in, which returns the default values configured for fields by default (the default value for enum types is the enum name). To customize the logic, override the `construct` method in the subclass.
 
-`construct`函数开放级别为`API`，属于`QUERY`查询类型。系统会自动将模型中名为`construct`的函数设置为此固定属性。默认值可通过`@Field`注解的`defaultValue`属性配置。
+The `construct` function has an open level of `API` and belongs to the `QUERY` query type. The system automatically sets the function named `construct` in the model to this fixed attribute. Default values can be configured via the `defaultValue` attribute of the `@Field` annotation.
 
 
+# II. Field
 
-# 二、字段 Field
+Model fields define the characteristic attributes of an entity, establishing an association through `Model`'s `model` and `Field`'s `model`. `ModelField` inherits from the abstract class `Relation` for construction.
 
-模型字段用于定义实体的特征属性，通过 `Model` 类的 `model` 与 `Field` 类的 `model` 建立关联关系，ModelField继承于抽象类 `Relation` 构建。
+Field definitions use the `@Field` annotation. If the field type is not explicitly specified, the system automatically identifies the field declaration type in the Java code as the business type. To ensure front-end display standards, set the field display name via the `displayName` attribute and configure default values using the `defaultValue` attribute.
 
-字段定义采用 `@Field` 注解。若未显式指定字段类型，系统将自动识别 Java 代码中的字段声明类型作为业务类型。为确保前端展示规范，建议通过 `displayName` 属性设置字段展示名称；同时，可利用 `defaultValue` 属性配置字段默认值。
+## (一) Field Types
 
-## （一）字段的类型
+The type system consists of four types: basic types, composite (component) types, reference types, and relation types. It describes how applications, databases, and front-end visual views interact and how data and data relationships are processed.
 
-类型系统由基本类型、复合（组件）类型、引用类型和关系类型四种类型系统构成。通过类型系统描述应用程序、数据库和前端视觉视图如何进行交互，数据及数据间关系如何处理的协议。
+### 1. Basic Types
 
-### 1、基础类型
-
-| **Ttype枚举**      | **注解**                                                     | **描述** |
+| **Ttype Enum**      | **Annotation**                                                     | **Description** |
 | ------------------ | ------------------------------------------------------------ | -------- |
-| TtypeEnum.BINARY   | Field.Binary                                                 | 二进制   |
-| TtypeEnum.INTEGER  | Field.Integer                                                | 整数     |
-| TtypeEnum.FLOAT    | Field.Float                                                  | 浮点数   |
-| TtypeEnum.BOOLEAN  | Field.Boolean                                                | 布尔     |
-| TtypeEnum.STRING   | Field.String                                                 | 文本     |
-| TtypeEnum.TEXT     | Field.Text                                                   | 多行文本 |
-| TtypeEnum.HTML     | Field.Html                                                   | 富文本   |
-| TtypeEnum.ENUM     | Field.Enum                                                   | 枚举     |
-| TtypeEnum.DATETIME | Field.Date                                                   | 日期时间 |
-| TtypeEnum.YEAR     | Field.Date(type = DateTypeEnum.YEAR, format = DateFormatEnum.YEAR) | 年份     |
-| TtypeEnum.DATE     | Field.Date(type = DateTypeEnum.DATE, format = DateFormatEnum.DATE) | 日期     |
-| TtypeEnum.TIME     | Field.Date(type = DateTypeEnum.TIME, format = DateFormatEnum.TIME) | 时间     |
+| TtypeEnum.BINARY   | Field.Binary                                                 | Binary   |
+| TtypeEnum.INTEGER  | Field.Integer                                                | Integer  |
+| TtypeEnum.FLOAT    | Field.Float                                                  | Floating point |
+| TtypeEnum.BOOLEAN  | Field.Boolean                                                | Boolean  |
+| TtypeEnum.STRING   | Field.String                                                 | Text     |
+| TtypeEnum.TEXT     | Field.Text                                                   | Multiline text |
+| TtypeEnum.HTML     | Field.Html                                                   | Rich text |
+| TtypeEnum.ENUM     | Field.Enum                                                   | Enum     |
+| TtypeEnum.DATETIME | Field.Date                                                   | Date and time |
+| TtypeEnum.YEAR     | Field.Date(type = DateTypeEnum.YEAR, format = DateFormatEnum.YEAR) | Year     |
+| TtypeEnum.DATE     | Field.Date(type = DateTypeEnum.DATE, format = DateFormatEnum.DATE) | Date     |
+| TtypeEnum.TIME     | Field.Date(type = DateTypeEnum.TIME, format = DateFormatEnum.TIME) | Time     |
 
 
-#### 二进制类型（BINARY）
+#### Binary Type (BINARY)
 
-+ **Java 类型**：Byte、Byte[]
-+ **数据库类型**：TINYINT、BLOB
-+ **规则**：此为二进制类型，同时前端交互默认不支持。不建议使用
++ **Java Type**: Byte, Byte[]
++ **Database Type**: TINYINT, BLOB
++ **Rules**: This is a binary type, and front-end interaction is not supported by default. Not recommended for use.
 
 ```java
 @Field(displayName = "byteField")
 private Byte byteField;
 ```
 
-#### 整数类型（INTEGER）
+#### Integer Type (INTEGER)
 
-+ **Java 类型**：Short、Integer、Long、BigInteger
-+ **数据库类型**：smallint、int、bigint、decimal(size,0)
-+ **规则**：
-  - **数据库规则**：默认用 int；若 size 小于 6，用 smallint；size 超 6 用 int；size 超 10 位数字（含符号位），用长整数 bigint；size 超 19 位数字（含符号位），用大数 decimal。若未配置 size，按 Java 类型推测。
-  - **前端交互规则**：整数用 Number 类型，长整数和大整数前后端协议用字符串类型。
++ **Java Type**: Short, Integer, Long, BigInteger
++ **Database Type**: smallint, int, bigint, decimal(size,0)
++ **Rules**:
+  - **Database Rules**: Use int by default; if size < 6, use smallint; if size > 6, use int; if size > 10 digits (including sign), use bigint; if size > 19 digits (including sign), use decimal. If size is not configured, infer from the Java type.
+  - **Front-end Interaction Rules**: Use Number type for integers, and string type for long and big integers in the front-end-backend protocol.
 
 ```java
 @Field(displayName = "integerField")
 private Integer integerField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745397729891-7b11e9f1-7730-479d-92d8-a677bb841198.gif)
 
 :::
 
-#### 浮点类型（FLOAT）
+#### Floating-point Type (FLOAT)
 
-+ **Java 类型**：Float、Double、BigDecimal
-+ **数据库类型**：float(M,D)、double(M,D)、decimal(M,D)
-+ **规则**：
-  - **数据库规则**：默认用单精度浮点数 float；size 超 7 位数字（即大于等于 8），用双精度浮点数 double；size 超 15 位数字（即大于等于 16），用大数 decimal。若未配置 size，按 Java 类型推测。
-  - **前端交互规则**：单精度和双精度浮点数用 Number 类型（因都用 IEEE754 协议 64 位存储），大数前后端协议用字符串类型。
++ **Java Type**: Float, Double, BigDecimal
++ **Database Type**: float(M,D), double(M,D), decimal(M,D)
++ **Rules**:
+  - **Database Rules**: Use float by default; if size > 7 digits (≥8), use double; if size > 15 digits (≥16), use decimal. If size is not configured, infer from the Java type.
+  - **Front-end Interaction Rules**: Use Number type for float and double (both stored with 64-bit IEEE754 protocol), and string type for big decimals in the front-end-backend protocol.
 
 ```java
 @Field(displayName = "floatField")
 private BigDecimal floatField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745397783975-ceb9c6de-0579-44a6-8a38-5af2b3a6d878.png)
 
 :::
 
-#### 布尔类型（BOOLEAN）
+#### Boolean Type (BOOLEAN)
 
-+ **Java 类型**：Boolean
-+ **数据库类型**：tinyint(1)
-+ **规则**：布尔类型，值为 1、true（真）或 0、false（假）。
++ **Java Type**: Boolean
++ **Database Type**: tinyint(1)
++ **Rules**: Boolean type, values are 1, true (true) or 0, false (false).
 
 ```java
 @Field(displayName = "booleanField")
 private Boolean booleanField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745397545716-35900428-fdc4-43cc-b994-5b3b0c9e0bb9.png)
 
 :::
 
+#### Enum Type (ENUM)
 
-
-#### 枚举类型（ENUM）
-
-+ **Java 类型**：Enum
-+ **数据库类型**：与数据字典指定基本类型一致
-+ **规则**：
-  - **前端交互规则**：可选项从 ModelField 的 options 字段获取，该字段值是字段指定数据字典子集的 JSON 序列化字符串。前后端传递可选项的 name，数据库存储用可选项的 value。若 multi 属性为 true，用多选控件；multi 属性为 false，用单元控件。
++ **Java Type**: Enum
++ **Database Type**: Consistent with the basic type specified in the data dictionary
++ **Rules**:
+  - **Front-end Interaction Rules**: Options are obtained from the `options` field of `ModelField`, which is a JSON serialized string of the field-specified data dictionary subset. The front end and back end pass the option `name`, and the database stores the option `value`. If `multi` is true, use a multi-select control; if false, use a single-select control.
 
 ```java
 @Field.Enum
@@ -1044,31 +979,29 @@ private TestEnum testEnum;
 @Field(displayName = "testEnums",multi = true)
 private List<TestEnum> testEnums;
 
-//当以枚举项值类型声明字段类型时，字段类型与枚举值类型必须严格保持一致。
+// When declaring the field type as the enum value type, the field type must strictly match the enum value type.
 @Field.Enum(dictionary=TestEnum.dictionary)
 @Field(displayName = "testDictionaries",multi = true)
 private List<String> testDictionaries;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745399469553-f6fe5989-e19b-4738-835b-bd3267dac4dd.png)
 
 :::
 
-:::info 注意
+:::info Note
 
-当以枚举项值类型声明字段类型时，字段类型与枚举值类型必须严格保持一致。
+When declaring the field type as the enum value type, the field type must strictly match the enum value type.
 
 :::
 
+#### String Type (STRING)
 
-
-#### 字符串类型（STRING）
-
-+ **Java 类型**：String
-+ **数据库类型**：varchar(size)
-+ **规则**：字符串，size 是长度限制默认值参考，前端可在 view 中覆盖该配置。
++ **Java Type**: String
++ **Database Type**: varchar(size)
++ **Rules**: String, where size is the default length limit, which can be overridden in the view at the front end.
 
 ```java
 @Field.String(size = 128,min = "3",max = "128")
@@ -1079,17 +1012,17 @@ private String stringField2;
 private String stringField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745397464636-e0752e18-512d-4942-b107-4fe3895a3480.png)
 
 :::
 
-#### 多行文本类型（TEXT）
+#### Multiline Text Type (TEXT)
 
-+ **Java 类型**：String
-+ **数据库类型**：text
-+ **规则**：多行文本，编辑态组件是多行文本框，长度限制为配置项 min 值 与 max 值 。
++ **Java Type**: String
++ **Database Type**: text
++ **Rules**: Multiline text, the edit-state component is a multiline text box, with length limits of min and max values.
 
 ```java
 @Field.Text(min = "3",max = "512")
@@ -1097,17 +1030,17 @@ private String stringField;
 private String textField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745396787958-0d5cdbb1-14d4-42c1-849c-f9a816aa1f16.png)
 
 :::
 
-#### 富文本类型（HTML）
+#### Rich Text Type (HTML)
 
-+ **Java 类型**：String
-+ **数据库类型**：text
-+ **规则**：使用富文本编辑器。
++ **Java Type**: String
++ **Database Type**: text
++ **Rules**: Use a rich text editor.
 
 ```java
 @Field.Html
@@ -1115,38 +1048,38 @@ private String textField;
 private String htmlField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745396840743-1dc55159-a161-41c8-ba5d-81d8555bda45.png)
 
 :::
 
-#### 日期时间类型（DATETIME）
+#### Date and Time Type (DATETIME)
 
-+ **Java 类型**：java.util.Date、java.sql.Timestamp
-+ **数据库类型**：datetime(fraction)、timestamp(fraction)
-+ **规则**：
-  - **数据库规则**：是日期和时间的组合，时间格式为 YYYY - MM - DD HH:MM:SS [.fraction]，默认精确到秒，可带小数，最多 6 位，即精确到 microseconds (6 digits) precision。可通过设置 fraction 设置精确小数位数，最终存储在字段的 decimal 属性上。
-  - **前端交互规则**：前端默认用日期时间控件，按日期时间类型格式化格式 format 格式化日期时间。
++ **Java Type**: java.util.Date, java.sql.Timestamp
++ **Database Type**: datetime(fraction), timestamp(fraction)
++ **Rules**:
+  - **Database Rules**: A combination of date and time in the format YYYY - MM - DD HH:MM:SS [.fraction], accurate to seconds by default, with up to 6 decimal places (microseconds precision). Set the decimal places via `fraction`, which is stored in the field's `decimal` attribute.
+  - **Front-end Interaction Rules**: Use a date and time control by default, formatting the date and time according to the date and time type's `format`.
 
 ```java
 @Field(displayName = "dateTimeField")
 private Date dateTimeField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745396951179-f8c1c320-f8e6-4bad-ad08-7b32d6a434f9.gif)
 
 :::
 
-#### 年份类型（YEAR）
+#### Year Type (YEAR)
 
-+ **Java 类型**：java.util.Date
-+ **数据库类型**：year
-+ **规则**：
-  - **数据库规则**：默认以 “YYYY” 格式表示日期值。
-  - **前端交互规则**：前端默认用年份控件，按日期类型格式化格式 format 格式化日期。
++ **Java Type**: java.util.Date
++ **Database Type**: year
++ **Rules**:
+  - **Database Rules**: Represents date values in the "YYYY" format by default.
+  - **Front-end Interaction Rules**: Use a year control by default, formatting the date according to the date type's `format`.
 
 ```java
 @Field.Date(type = DateTypeEnum.YEAR,format = DateFormatEnum.YEAR)
@@ -1154,19 +1087,19 @@ private Date dateTimeField;
 private Date yearField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745397027069-46f4f105-03af-49d1-914c-898c639a6cc6.gif)
 
 :::
 
-#### 日期类型（DATE）
+#### Date Type (DATE)
 
-+ **Java 类型**：java.util.Date、java.sql.Date
-+ **数据库类型**：date
-+ **规则**：
-  - **数据库规则**：默认以 “YYYY - MM - DD” 格式表示日期值。
-  - **前端交互规则**：前端默认用日期控件，按日期类型格式化格式 format 格式化日期。
++ **Java Type**: java.util.Date, java.sql.Date
++ **Database Type**: date
++ **Rules**:
+  - **Database Rules**: Represents date values in the "YYYY - MM - DD" format by default.
+  - **Front-end Interaction Rules**: Use a date control by default, formatting the date according to the date type's `format`.
 
 ```java
 @Field.Date(type = DateTypeEnum.DATE,format = DateFormatEnum.DATE)
@@ -1174,19 +1107,19 @@ private Date yearField;
 private Date dateField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745397095700-c4437d51-cc95-4965-9c19-7677169d761a.gif)
 
 :::
 
-#### 时间类型（TIME）
+#### Time Type (TIME)
 
-+ **Java 类型**：java.util.Date、java.sql.Time
-+ **数据库类型**：time(fraction)
-+ **规则**：
-  - **数据库规则**：默认以 “HH:MM:SS” 格式表示时间值。
-  - **前端交互规则**：前端默认用时间控件，按日期类型格式化格式 format 格式化日期。
++ **Java Type**: java.util.Date, java.sql.Time
++ **Database Type**: time(fraction)
++ **Rules**:
+  - **Database Rules**: Represents time values in the "HH:MM:SS" format by default.
+  - **Front-end Interaction Rules**: Use a time control by default, formatting the date according to the date type's `format`.
 
 ```java
 @Field.Date(type = DateTypeEnum.TIME,format = DateFormatEnum.TIME)
@@ -1194,21 +1127,21 @@ private Date dateField;
 private Date timeField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745397162583-a98e93bd-5aff-487f-a4b3-37e7f65eb8c1.gif)
 
 :::
 
-### 2、复合类型
+### 2. Composite Types
 
-| 业务类型 | Java类型                                       | 数据库类型                                       | 规则说明                                                     |
+| Business Type | Java Type                                       | Database Type                                       | Rule Description                                                     |
 | -------- | ---------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| MAP      | Map                                            | String                                           | 键值对，序列化方式 Field.serialize.JSON                      |
-| MONEY    | BigDecimal | decimal(M,D) | 金额，前端使用金额控件，默认标度与精度为：数字最大位数 65，小数位数6 |
+| MAP      | Map                                            | String                                           | Key-value pairs, serialized via Field.serialize.JSON                      |
+| MONEY    | BigDecimal | decimal(M,D) | Amount, front-end uses an amount control, default scale and precision: maximum digits 65, decimal places 6 |
 
 
-#### 金额 MONEY
+#### Amount MONEY
 
 ```java
 @Field.Money
@@ -1216,24 +1149,24 @@ private Date timeField;
 private BigDecimal testMoney;
 ```
 
-#### 键值对 MAP
+#### Key-value Pair MAP
 
 ```java
 @Field(displayName = "testMapField")
 private Map<String,Object> testMapField;
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745547724926-43f92169-399c-4ec0-a76b-5d6fd7b2a857.png)
 
 :::
 
-### 3、引用类型 RELATED
+### 3. Reference Type RELATED
 
-| 业务类型 | Java类型           | 数据库类型            | 规则说明                                                     |
+| Business Type | Java Type           | Database Type            | Rule Description                                                     |
 | -------- | ------------------ | --------------------- | ------------------------------------------------------------ |
-| RELATED  | 基本类型或关系类型 | 不存储或varchar、text | 引用字段<br/>【数据库规则】：点表达式最后一级对应的字段类型；数据库字段值默认为Java字段的序列化值，默认使用JSON序列化<br/>【前端交互规则】：点表达式最后一级对应的字段控件类型 |
+| RELATED  | Basic type or relation type | Not stored or varchar、text | Reference field<br/>【Database Rule】: The type of the last level of the dot expression; the database field value is the serialized value of the Java field by default, using JSON serialization<br/>【Front-end Interaction Rule】: The control type of the last level of the dot expression |
 
 
 ```java
@@ -1241,112 +1174,110 @@ private Map<String,Object> testMapField;
 private String stringField;
 
 @Field.many2one
-@Field(displayName = "用户",required = true)
+@Field(displayName = "User",required = true)
 @Field.Relation(relationFields = {"userId"},referenceFields = {"id"})
 private PamirsUser user;
 
 @Field.Related("stringField")
-@Field(displayName = "引用字段stringField")
+@Field(displayName = "Referenced Field stringField")
 private String relatedStringField;
 
 @Field.Related({"user","name"})
-@Field(displayName = "引用创建者名称")
+@Field(displayName = "Referenced Creator Name")
 private String userName;
 
 ```
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745400920071-bdadae3f-0409-4d1d-8e10-bf0c816463b8.gif)
 
 :::
 
-### 4、关系类型
+### 4. Relation Types
 
-是对模型间关联方式的描述，涵盖关联关系类型、关联关系双边的模型以及关联关系的读写操作。业务类型 `ttype` 为 `O2O`、`O2M`、`M2O` 或 `M2M` 的字段。
+Relation types describe the association between models, including the association type, associated models on both sides, and read-write operations of the association. Fields with business type `ttype` as `O2O`, `O2M`, `M2O`, or `M2M`.
 
-| 业务类型 | Java类型           | 数据库类型                                                | 规则说明   |
+| Business Type | Java Type           | Database Type                                                | Rule Description   |
 | -------- | ------------------ | --------------------------------------------------------- | ---------- |
-| O2O      | 模型/DataMap       | 不存储或varchar、text | 一对一关系 |
-| M2O      | 模型/DataMap       | 不存储或varchar、text | 多对一关系 |
-| O2M      | List<模型/DataMap> | 不存储或varchar、text | 一对多关系 |
-| M2M      | List<模型/DataMap> | 不存储或varchar、text | 多对多关系 |
+| O2O      | Model/DataMap       | Not stored or varchar、text | One-to-one relationship |
+| M2O      | Model/DataMap       | Not stored or varchar、text | Many-to-one relationship |
+| O2M      | List<Model/DataMap> | Not stored or varchar、text | One-to-many relationship |
+| M2M      | List<Model/DataMap> | Not stored or varchar、text | Many-to-many relationship |
 
 
-若需存储多值字段或关系字段，默认采用 JSON 格式进行序列化。多值字段的数据库字段类型默认为 varchar (1024)，而关系字段的数据库字段类型则默认为 text。
+If storing multi-value or relation fields, JSON format is used for serialization by default. The database field type for multi-value fields is varchar (1024) by default, and for relation fields, it is text by default.
 
-关联关系用于描述模型间的关联方式：
-
-+ 多对一关系，主要用于明确从属关系
-+ 一对多关系，主要用于明确从属关系
-+ 多对多关系，主要用于弱依赖关系的处理，提供中间模型进行关联关系的操作
-+ 一对一关系，主要用于多表继承和行内合并数据
+Association relationships describe how models are associated:
+- Many-to-one relationships mainly clarify subordination.
+- One-to-many relationships mainly clarify subordination.
+- Many-to-many relationships mainly handle weak dependency relationships, using an intermediate model for association operations.
+- One-to-one relationships are mainly used for multi-table inheritance and in-line data merging.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1745401686025-b8b170bf-79f1-4316-ad21-690fe3372bac.png)
 
-关联关系比较重要的名词解释如下：
+Important terms for association relationships:
+- **Associated model**: Represented by `references`, referring to the model associated with the own model.
+- **Associated fields**: Represented by `referenceFields`, which are fields of the associated model used to clarify which fields of the associated model are related to which fields of the own model.
+- **Relation model**: The own model.
+- **Relation fields**: Represented by `relationFields`, which are fields of the own model used to clarify which fields of the own model are related to which fields of the associated model.
+- **Intermediate model**: Represented by `through`, only existing in many-to-many relationships, and the model has `relationship=true`.
 
-+ **关联模型**：用 `references` 表示，指自身模型所关联的模型。
-+ **关联字段**：用 `referenceFields` 表示，是关联模型的字段，用于明确关联模型的哪些字段与自身模型的哪些字段建立关系。
-+ **关系模型**：即 自身模型。
-+ **关系字段**：用 `relationFields` 表示，是自身模型的字段，用于明确自身模型的哪些字段与关联模型的哪些字段建立关系。
-+ **中间模型**：用 `through` 表示，仅多对多关系存在中间模型，且模型的 `relationship=true`。
+#### Many-to-one Relationship (many2one)
 
-#### 多对一关系（many2one）
+After adding the `@Field` annotation to a field, if the field type is a model, the system infers the field's `Ttype` as `many2one` and generates the association based on the current model's primary key. For example, if the current model is `TestModel`, the associated model is `TestRelationModel`, and the primary key is `id`, a `testRelationModelId` field will be generated in the `TestModel` model to store the association.
 
-在字段上添加 `@Field` 注解后，若字段类型为模型，系统会推断该字段的 `Ttype` 为 `many2one`，并依据当前模型主键生成关联关系。例如，当前模型为 `TestModel`，关联模型为 `TestRelationModel`，主键为 `id`，则会在 `TestModel` 模型中生成 `testRelationModelId` 字段来保存关联关系。
-
-+ `@Field.Relation` 注解的 `relationFields` 属性：用于配置左端模型的属性作为关联字段，默认值为**当前字段名称**加上右端模型的主键属性。
-+ `@Field.Relation` 注解的 `referenceFields` 属性：用于配置右端模型的属性作为关联字段，默认值为主键集合。
+- The `relationFields` attribute of the `@Field.Relation` annotation: Configures the left model's attributes as relation fields, defaulting to the current field name plus the right model's primary key attribute.
+- The `referenceFields` attribute of the `@Field.Relation` annotation: Configures the right model's attributes as associated fields, defaulting to the primary key set.
 
 ```java
 @Field.many2one
-@Field(displayName = "多对一测试字段")
-// 等同于配置 @Field.Relation(relationFields = {"rightModelId"},referenceFields = {"id"})
+@Field(displayName = "Many-to-one Test Field")
+// Equivalent to @Field.Relation(relationFields = {"rightModelId"},referenceFields = {"id"})
 private TestRelationModel rightModel;
 ```
 
-该示例中，`TestModel`对应的表会默认生成`right_model_id`字段 。
+In this example, the table corresponding to `TestModel` will default to generating the `right_model_id` field.
 
-#### 一对多关系（one2many）
+#### One-to-many Relationship (one2many)
 
-在字段上添加 `@Field` 注解后，若字段类型为 `List<T>`，系统会推断该字段的 `Ttype` 为 `one2many`，并依据当前模型主键生成关联关系。例如，当前模型为 `TestModel`，关联模型为 `TestRelationModel`，主键为 `id`，则会在 `TestRelationModel` 模型中生成 `testModelId` 字段来保存关联关系。
+After adding the `@Field` annotation to a field, if the field type is `List<T>`, the system infers the field's `Ttype` as `one2many` and generates the association based on the current model's primary key. For example, if the current model is `TestModel`, the associated model is `TestRelationModel`, and the primary key is `id`, a `testModelId` field will be generated in the `TestRelationModel` model to store the association.
 
-+ `@Field.one2many` 注解：可用于为该字段配置查询和提交策略等属性。
-+ `@Field.Relation` 注解的 `relationFields` 属性：用于配置左端模型的属性作为关联字段，默认值为主键集合。
-+ `@Field.Relation` 注解的 `referenceFields` 属性：用于配置右端模型的属性作为关联字段，默认值为左端模型的简单模型编码加主键属性。
+- The `@Field.one2many` annotation: Configures query and submission strategies for the field.
+- The `relationFields` attribute of the `@Field.Relation` annotation: Configures the left model's attributes as relation fields, defaulting to the primary key set.
+- The `referenceFields` attribute of the `@Field.Relation` annotation: Configures the right model's attributes as associated fields, defaulting to the simple model code of the left model plus the primary key attribute.
 
 ```java
 @Field.one2many
-@Field(displayName = "一对多测试字段")
-// 等同于配置 @Field.Relation(relationFields = {"id"},referenceFields = {"testModelId"})
+@Field(displayName = "One-to-many Test Field")
+// Equivalent to @Field.Relation(relationFields = {"id"},referenceFields = {"testModelId"})
 private List<TestRelationModel> rightModels;
 ```
 
-在此示例中，系统会在 `TestRelationModel` 对应的表中默认生成一个名为 `test_model_id` 的字段，用于建立与 `TestModel` 的关联关系。
+In this example, the system will generate a field named `test_model_id` in the table corresponding to `TestRelationModel` to establish the association with `TestModel`.
 
-#### 多对多关系（many2many）
+#### Many-to-many Relationship (many2many)
 
-在字段上除了添加 `@Field` 注解，还需添加 `@Field.many2many` 注解来标识该字段为多对多类型。多对多关系需要配置中间模型，可通过 `@Field.many2many` 注解的 `through` 属性（值为中间模型编码，若没有中间模型的 `Class`，系统会根据关联关系字段配置自动生成中间模型）或 `throughClass` 属性（值为中间模型 `Class`）来确定中间模型，且这两个属性有且仅能配置一个。
+In addition to the `@Field` annotation, add the `@Field.many2many` annotation to mark the field as many-to-many. A many-to-many relationship requires configuring an intermediate model, which can be determined via the `through` attribute of the `@Field.many2many` annotation (value is the intermediate model code; if there is no intermediate model `Class`, the system automatically generates one based on the association field configuration) or the `throughClass` attribute (value is the intermediate model `Class`), with one and only one of these attributes configured.
 
-+ `@Field.many2many` 注解的 `relationFields` 属性：用于配置中间模型与左端模型关联的关系字段。若未配置，则使用关联关系字段配置的关系字段（`@Field.Relation` 注解的 `relationFields` 配置值）作为默认值。
-+ `@Field.many2many` 注解的 `referenceFields` 属性：用于配置中间模型与右端模型关联的关系字段。若未配置，则使用关联关系字段配置的关联字段（`@Field.Relation` 注解的 `referenceFields` 配置值）作为默认值。
-  若没有中间模型的 `Class` 且左右两端模型都配置了关联关系字段，系统会采用先加载的模型的关联关系字段配置来生成中间模型。使用模型作为中间模型时，建议使用 `BaseRelation` 基类构造中间模型。
+- The `relationFields` attribute of the `@Field.many2many` annotation: Configures the relation fields between the intermediate model and the left model. If not configured, uses the relation fields from the association field configuration (`relationFields` of the `@Field.Relation` annotation) as the default.
+- The `referenceFields` attribute of the `@Field.many2many` annotation: Configures the relation fields between the intermediate model and the right model. If not configured, uses the associated fields from the association field configuration (`referenceFields` of the `@Field.Relation` annotation) as the default.
+  If there is no intermediate model `Class` and both left and right models have association field configurations, the system uses the association field configuration of the first-loaded model to generate the intermediate model. When using a model as the intermediate model, it is recommended to use the `BaseRelation` base class to construct the intermediate model.
 
 ```java
 @Field.many2many
-//	  等同与把 @Field.many2many 换成下面注释掉的配置
+// Equivalent to replacing @Field.many2many with the commented configuration below
 //    @Field.many2many(through = "TestModelRelTestRelationModel",relationFields = {"testModelId"},referenceFields = {"testRelationModelId"})
 //    @Field.Relation(relationFields = {"id"},referenceFields = {"id"})
-@Field(displayName = "多对多测试字段")
+@Field(displayName = "Many-to-many Test Field")
 private List<TestRelationModel> rightModelM2Ms;
 ```
 
-另一种配置：
+Another configuration:
 
 ```java
 @Model.model(TestModelRelTestRelationModel.MODEL_MODEL)
-@Model(displayName = "测试中间表")
+@Model(displayName = "Test Intermediate Table")
 public class TestModelRelTestRelationModel extends BaseRelation {
 
     public static final String MODEL_MODEL="test.TestModelRelTestRelationModel";
@@ -1362,22 +1293,22 @@ public class TestModelRelTestRelationModel extends BaseRelation {
 ```java
 @Field.many2many(throughClass = TestModelRelTestRelationModel.class,relationFields = {"testModelId"},referenceFields = {"testRelationModelId"})
 @Field.Relation(relationFields = {"id"},referenceFields = {"id"})
-@Field(displayName = "多对多测试字段")
+@Field(displayName = "Many-to-many Test Field")
 private List<TestRelationModel> rightModelM2Ms;
 ```
 
-在此示例中，在`TestModel`的`Ds`所指向的数据库中，会自动生成一张名为`test_model_rel_test_relation_model`的关联表。该表中，`test_model_id`字段与`TestModel`表的`id`字段关联，`test_relation_model_id`字段则与`TestRelationModel`表的`id`字段关联，用于建立两张表之间的关系。
+In this example, a关联表 (association table) named `test_model_rel_test_relation_model` will be automatically generated in the database pointed to by `Ds` of `TestModel`. In this table, the `test_model_id` field is associated with the `id` field of the `TestModel` table, and the `test_relation_model_id` field is associated with the `id` field of the `TestRelationModel` table to establish the relationship between the two tables.
 
-#### 关系字段的一些特殊场景
+#### Special Scenarios for Relation Fields
 
-:::warning 提示
+:::warning Tip
 
-当关联关系字段并非一一对应，且存在常量的情况，示例代码中 `#1#` 代表 `type` 为 1 ，可通过增加 `domain` 描述来实现特定过滤逻辑。在用户进行页面选择操作时，系统会依据此规则自动筛选出 `type` 为 1 的 `TestRelationModel` 数据记录。
+When association fields are not one-to-one and contain constants, `#1#` in the example code represents `type` = 1. Add a `domain` description to implement specific filtering logic. When users perform page selection operations, the system automatically filters `TestRelationModel` records with `type` = 1 based on this rule.
 
 :::
 
 ```java
-@Field(displayName = "多对多")
+@Field(displayName = "Many-to-many")
 @Field.many2many(
         through = "TestModelRelTestRelationModel",
         relationFields = {"testModelId"},
@@ -1387,118 +1318,118 @@ private List<TestRelationModel> rightModelM2Ms;
 private List<TestRelationModel> petTalents;
 ```
 
-在上述代码中，通过 `@Field.many2many` 注解配置多对多关系的中间模型及关联字段，同时利用 `@Field.Relation` 注解的 `domain` 属性指定过滤条件，确保仅展示符合条件的数据。
+In the above code, configure the many-to-many relationship's intermediate model and associated fields via the `@Field.many2many` annotation, and use the `domain` attribute of the `@Field.Relation` annotation to specify filtering conditions, ensuring only qualified data is displayed.
 
-### 5、类型默认推断
+### 5. Type Default Inference
 
-M代表精度，即有效长度（总位数）， D代表标度，即小数点后的位数，fraction为时间秒以下精度。multi表示该字段为多值字段。
+M represents precision (total digits), D represents scale (decimal places), fraction is the precision below seconds for time, and multi indicates the field is multi-valued.
 
-| **Java类型**              | **Field注解**                                                | **推断ttype** | **推断配置**         | **推断数据库配置** |
+| **Java Type**              | **Field Annotation**                                                | **Inferred ttype** | **Inferred Configuration** | **Inferred Database Configuration** |
 | ------------------------- | :----------------------------------------------------------- | :------------ | -------------------- | :----------------- |
-| Byte                      | @Field                                                       | BINARY        | 无                   | tinyint(1)         |
+| Byte                      | @Field                                                       | BINARY        | None                 | tinyint(1)         |
 | String                    | @Field                                                       | STRING        | size=128             | varchar(128)       |
-| List<`primitive type`>      | @Field                                                       | STRING        | size=1024,multi=true | varchar(1024)      |
+| List<`primitive type`>      | @Field                                                       | STRING        | size=1024, multi=true | varchar(1024)      |
 | Map                       | @Field                                                       | STRING        | size=1024            | varchar(1024)      |
 | Short                     | @Field                                                       | INTEGER       | M=5                  | smallint(6)        |
 | Integer                   | @Field                                                       | INTEGER       | M=10                 | integer(11)        |
 | Long                      | @Field                                                       | INTEGER       | M=19                 | bigint(20)         |
 | BigInteger                | @Field                                                       | INTEGER       | M=64                 | decimal(64,0)      |
-| Float                     | @Field                                                       | FLOAT         | M=7,D=2              | float(7,2)         |
-| Double                    | @Field                                                       | FLOAT         | M=15,D=4             | double(15, 4)      |
-| BigDecimal                | @Field                                                       | FLOAT         | M=64,D=6             | decimal(64,6)      |
-| Boolean                   | @Field                                                       | BOOLEAN       | 无                   | tinyint(1)         |
+| Float                     | @Field                                                       | FLOAT         | M=7, D=2             | float(7,2)         |
+| Double                    | @Field                                                       | FLOAT         | M=15, D=4            | double(15, 4)      |
+| BigDecimal                | @Field                                                       | FLOAT         | M=64, D=6            | decimal(64,6)      |
+| Boolean                   | @Field                                                       | BOOLEAN       | None                 | tinyint(1)         |
 | java.util.Date            | @Field                                                       | DATETIME      | fraction=0           | datetime           |
-| java.util.Date            | @Field.Date(type=DateTypeEnum.YEAR) | YEAR          | 无                   | year               |
-| java.util.Date            | @Field.Date(type=DateTypeEnum.DATE) | DATE          | 无                   | date               |
+| java.util.Date            | @Field.Date(type=DateTypeEnum.YEAR) | YEAR          | None                 | year               |
+| java.util.Date            | @Field.Date(type=DateTypeEnum.DATE) | DATE          | None                 | date               |
 | java.util.Date            | @Field.Date(type=DateTypeEnum.TIME) | TIME          | fraction=0           | time               |
 | java.sql.Timestamp        | @Field                                                       | DATETIME      | fraction=0           | timestamp          |
-| java.sql.Date             | @Field                                                       | DATE          | 无                   | date               |
+| java.sql.Date             | @Field                                                       | DATE          | None                 | date               |
 | java.sql.Time             | @Field                                                       | TIME          | fraction=0           | time               |
 | Long                      | @Field.Date                                                  | DATETIME      | fraction=0           | datetime           |
-| enum implements<br/>IEnum | @Field                                                       | ENUM          | 无                   | 根据枚举value类型  |
-| primitive type            | @Field.Enum(dictionary=数据字典编码)                         | ENUM          | 无                   | 根据枚举value类型  |
-| List<`primitive type`>      | @Field.Enum(dictionary=数据字典编码)                         | ENUM          | multi=true           | varchar(512)       |
-| 模型类                    | @Field.Relation                                              | M2O           | 无                   | text               |
-| DataMap                   | @Field.Relation                                              | M2O           | 无                   | text               |
-| List<模型类>              | @Field.Relation                                              | O2M           | multi=true           | text               |
+| enum implements<br/>IEnum | @Field                                                       | ENUM          | None                 | Based on enum value type |
+| primitive type            | @Field.Enum(dictionary=Data Dictionary Code)                 | ENUM          | None                 | Based on enum value type |
+| List<`primitive type`>      | @Field.Enum(dictionary=Data Dictionary Code)                 | ENUM          | multi=true           | varchar(512)       |
+| Model class               | @Field.Relation                                              | M2O           | None                 | text               |
+| DataMap                   | @Field.Relation                                              | M2O           | None                 | text               |
+| List<Model class>         | @Field.Relation                                              | O2M           | multi=true           | text               |
 | List<`DataMap`>             | @Field.Relation                                              | O2M           | multi=true           | text               |
 
 
-## （二）安装与更新
+## (二) Installation and Update
 
-通过 `@Field.field` 配置字段的不可变编码，该编码一经设定便无法修改。后续对字段配置的更新，均以该编码为依据进行检索处理。若修改此注解的配置值，系统将视其为新字段，在存储模型中创建新的数据库表字段，同时将原字段 rename 为废弃字段。
+Configure the immutable code of a field via `@Field.field`, which cannot be modified once set. Subsequent updates to field configurations are retrieved based on this code. Modifying the annotation value will treat it as a new field, creating a new database table field for storage models and renaming the original field as deprecated.
 
-## （三）基础配置
+## (三) Basic Configuration
 
-### 1、不可变更字段
+### 1. Immutable Fields
 
-使用 `immutable` 属性可将字段标记为前后端均不可更新，系统会自动忽略针对此类不可变更字段的更新操作。此外，若字段添加了 `@Base` 注解，其 `immutable` 属性将自动设为 `true`。
+Mark a field as unupdatable in both front-end and back-end using the `immutable` attribute; the system ignores update operations on such fields. Additionally, if a field has the `@Base` annotation, its `immutable` attribute is automatically set to `true`.
 
 ```plsql
-@Field(displayName = "名称", immutable = true)
+@Field(displayName = "Name", immutable = true)
 private String name;
 ```
 
-### 2、字段编码生成器
+### 2. Field Code Generator
 
-通过 `@Field.Sequence` 注解，可便捷地为字段配置编码生成规则。当字段编码为空时，系统将依据预设规则自动生成对应编码，实现数据编码的自动化管理 。如：
+Conveniently configure field code generation rules via the `@Field.Sequence` annotation. When a field code is empty, the system automatically generates the corresponding code based on preset rules for automated data coding management. For example:
 
 ```plsql
 @Field.String
-@Field(displayName = "编码", unique = true)
+@Field(displayName = "Code", unique = true)
 @Field.Sequence(sequence = "SEQ", prefix = "C", size = 5, step = 1, initial = 10000)
 private String code;
 ```
 
-:::warning 提示
+:::warning Tip
 
-在模型层面，编码生成器同样能够借助`@Model.Code`进行定义。不过，有一点需要特别留意：应用了`@Model.Code`的模型必须设置`code`字段，因为该生成器是与`code`字段绑定的。
+At the model level, code generators can also be defined via `@Model.Code`. Note that a model with `@Model.Code` must have a `code` field, as the generator is bound to the `code` field.
 
 :::
 
 ```java
-@Model.Code(sequence = "DATE_ORDERLY_SEQ",prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
+@Model.Code(sequence = "DATE_ORDERLY_SEQ", prefix = "P", size = 6, step = 1, initial = 10000, format = "yyyyMMdd")
 public class TestModel extends CodeModel {}
 ```
 
-### 3、字段的序列化与反序列化
+### 3. Field Serialization and Deserialization
 
-通过 `@Field` 注解的 `serialize` 属性，可灵活配置非字符串类型属性的序列化与反序列化策略。经处理后的数据将以序列化生成的字符串形式，持久化存储至系统中。如：
+Flexibly configure serialization and deserialization strategies for non-string type attributes via the `serialize` attribute of the `@Field` annotation. Processed data is persisted in the system as a serialized string. For example:
 
 ```plsql
-// 以逗号拼接集合元素序列化，允许存储，支持多值
-@Field(displayName = "商品标签", serialize = Field.serialize.COMMA, store = NullableBoolEnum.TRUE, multi = true)
+// Serialize collection elements with commas, allow storage, support multi-values
+@Field(displayName = "Product Tags", serialize = Field.serialize.COMMA, store = NullableBoolEnum.TRUE, multi = true)
 @Field.Advanced(columnDefinition = "varchar(1024)")
 private List<String> tags;
 
-// 采用JSON格式序列化，允许存储，关联关系不单独存储
+// Serialize in JSON format, allow storage, do not store relationships separately
 @Field.Text
 @Field.Relation(store = false)
-@Field(displayName = "JSON序列化", serialize = Field.serialize.JSON, store = NullableBoolEnum.TRUE)
+@Field(displayName = "JSON Serialization", serialize = Field.serialize.JSON, store = NullableBoolEnum.TRUE)
 private List<TestRelationModel> list;
 ```
 
-:::info 注意
+:::info Note
 
-1. 若需持久化字段数据，必须将`Field#store`属性显式设置为`NullableBoolEnum.TRUE`；
-2. `Field#serialize`默认采用 JSON 序列化，可按需切换为其他方式；
-3. 对于包含关联关系的字段（如`list`），需将`Field.Relation#store`设为`false`，避免重复存储字段值与关联表记录。
+1. To persist field data, explicitly set the `Field#store` attribute to `NullableBoolEnum.TRUE`.
+2. `Field#serialize` uses JSON serialization by default, which can be switched to other methods as needed.
+3. For fields containing relationships (e.g., `list`), set `Field.Relation#store` to `false` to avoid duplicate storage of field values and relationship table records.
 
 :::
 
-#### 字段序列化方式可选项
+#### Field Serialization Options
 
-| **序列化方式**                          | **说明**                              | **备注**                                                     |
+| **Serialization Method**                          | **Description**                              | **Remarks**                                                     |
 | --------------------------------------- | ------------------------------------- | ------------------------------------------------------------ |
-| JSON                                    | 采用 JSON 格式进行序列化              | 为`@Field.serialize`<br/>默认配置项，适用于模型相关类型字段序列化 |
-| DOT                                     | 将集合元素以点号拼接                  |                                                              |
-| COMMA                                   | 将集合元素以逗号拼接                  |                                                              |
-| BIT | 基于按位与运算，通过 2 次幂数求和实现 | 专用于二进制枚举序列化，无需在`@Field.serialize`<br/>中配置，Oinone 自动识别处理 |
+| JSON                                    | Serialize in JSON format              | Default configuration for `@Field.serialize`, suitable for serializing model-related type fields |
+| DOT                                     | Concatenate collection elements with dots                  |                                                              |
+| COMMA                                   | Concatenate collection elements with commas                  |                                                              |
+| BIT | Implement via bitwise AND operation and summation of powers of 2 | Specialized for binary enum serialization, no need to configure in `@Field.serialize`—Oinone automatically handles recognition |
 
 
-#### 自定义序列化方式
+#### Custom Serialization Methods
 
-若需自定义序列化逻辑，可通过实现`pro.shushi.pamirs.meta.api.core.orm.serialize.Serializer`接口创建专属序列化器。完成开发后，在字段配置中，将`@Field`注解的`serialize`属性指定为`X`（X为自定义序列化类型，如示例中为`custom`），即可应用该自定义序列化器。
+To customize serialization logic, create a dedicated serializer by implementing the `pro.shushi.pamirs.meta.api.core.orm.serialize.Serializer` interface. After development, specify the `serialize` attribute of the `@Field` annotation as `X` (where `X` is the custom serialization type, e.g., `custom` in the example) to apply the custom serializer.
 
 ```java
 @Component
@@ -1521,347 +1452,279 @@ public class CustomSerializer implements Serializer<Object, Object> {
 }
 ```
 
-#### 默认值的反序列化
+#### Default Value Deserialization
 
-在字段上配置`defaultValue`属性时，系统将依据字段的`Ttype`、`Ltype`等类型属性自动执行反序列化。具体规则如下：
+When configuring the `defaultValue` attribute on a field, the system automatically performs deserialization based on the field's `Ttype`, `Ltype`, and other type attributes. Specific rules are as follows:
 
-+ OBJ、STRING、TEXT、HTML——类型保持原值；
-+ BINARY、INTEGER——转为整数；
-+ FLOAT、MONEY——转为浮点数；
-+ DATETIME、DATE、TIME、YEAR——按`Field.Date#format`指定格式解析；
-+ BOOLEAN——仅支持`null`、`true`、`false`；
-+ ENUM——通过`value`匹配赋值。
+- OBJ, STRING, TEXT, HTML—Preserve the original value for the type;
+- BINARY, INTEGER—Convert to integers;
+- FLOAT, MONEY—Convert to floating-point numbers;
+- DATETIME, DATE, TIME, YEAR—Parse according to the format specified by `Field.Date#format`;
+- BOOLEAN—Only supports `null`, `true`, `false`;
+- ENUM—Assign values by matching `value`.
 
-### 4、多值字段
+### 4. Multi-value Fields
 
-多值字段特性仅适用于基础数据类型及枚举类型字段。如需将字段配置为多值模式，可通过设置字段的`multi`属性实现。
+The multi-value field feature applies only to basic data type and enum type fields. To configure a field as multi-value, set the field's `multi` attribute.
 
 ```java
-@Field(displayName = "名称组", multi = true)
+@Field(displayName = "Name Group", multi = true)
 private List<String> name;
 ```
 
-### 5、默认值
+### 5. Default Values
 
-通过字段的`defaultValue`配置项，能够为字段设定默认值，具体的反序列化规则可参考 “默认值的反序列化” 章节内容。
+Set default values for fields via the field's `defaultValue` configuration, with specific deserialization rules referenced in the "Default Value Deserialization" section.
 
 ```java
-@Field(displayName = "名称", defaultValue = "默认值")
+@Field(displayName = "Name", defaultValue = "Default Value")
 private String name;
 ```
 
-### 6、前端默认配置
+### 6. Front-end Default Configuration
 
-可使用 `@Field` 注解中的以下属性来配置前端的默认视觉与交互规则，这些规则也能在前端进行重载设置。具体属性如下：
+Use the following attributes in the `@Field` annotation to configure front-end default visual and interaction rules, which can also be overridden in the front-end. Specific attributes include:
 
-+ `required`：用于指定字段是否为必填项。
-+ `invisible`：控制字段是否不可见。
-+ `priority`：表示字段优先级，列表的列会依据此属性进行排序。
+- `required`: Specifies whether the field is mandatory.
+- `invisible`: Controls whether the field is invisible.
+- `priority`: Represents field priority, and list columns are sorted based on this attribute.
 
-### 7、注解配置 @Field
+### 7. Annotation Configuration @Field
 
-#### @Field 字段通用配置
+#### @Field General Field Configuration
 
-├── displayName 显示名称
-
-├── summary 	    属性的描述
-
-├── store            是否存储，默认 NullableBoolEnum.NULL 即未选择，会跟进字段的Ttype自行推断
-
-├── multi 	    是否是多值字段，默认值为false
-
-├── priority 	    数据库字段优先级
-
-├── serialize 	    后端序列化函数 SerializeEnum 或者 自定义序列化函数
-
-├── requestSerialize 前端序列化函数 SerializeEnum 或者 自定义序列化函数
-
-├── defaultValue  默认值，支持[内置函数](/en/DevManual/Reference/Back-EndFramework/functions-API.md#六、表达式)
-
-├── required	    必填，默认值为false
-
-├── invisible	    不可见，默认值为false
-
-├── immutable     不可变更，默认值为false
-
-├── unique          唯一索引，默认值为false
-
-├── index            是否可索引，默认值为false
-
-├── translate       国际化，是否需要翻译，默认值为false
-
-├── immutable     不可变更，默认值为false
-
-└── field             默认使用java属性名
-
+├── displayName Display name
+├── summary Attribute description
+├── store Whether to store, default is NullableBoolEnum.NULL (i.e., not selected), which infers based on the field's Ttype
+├── multi Whether it is a multi-value field, default is false
+├── priority Database field priority
+├── serialize Back-end serialization function SerializeEnum or custom serialization function
+├── requestSerialize Front-end serialization function SerializeEnum or custom serialization function
+├── defaultValue Default value, supporting [built-in functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#六、表达式)
+├── required Mandatory, default is false
+├── invisible Invisible, default is false
+├── immutable Unchangeable, default is false
+├── unique Unique index, default is false
+├── index Whether indexable, default is false
+├── translate Internationalization, whether translation is needed, default is false
+├── immutable Unchangeable, default is false
+└── field Default uses java attribute name
      └── value
 
-#### @Field.Advanced 字段高级属性
+#### @Field.Advanced Field Advanced Attributes
 
-├── name        api名称，默认使用java属性名
+├── name API name, default uses java attribute name
+├── column Data table field name
+├── columnDefinition Database field type—use this field to fill in the complete database field definition if customizing types not in the ttype corresponding database field type list
+├── onlyColumn Persistence layer query directly returns the column name without attribute name mapping
+└── copied Whether copyable, default is true—whether it can be copied when copying data records in the front-end.
 
-├── column 	 数据表字段名
+#### @Field.PrimaryKey Primary Key Indicator
 
-├── columnDefinition  数据库字段类型，如果需要自定义不在ttype对应数据库字段类型列表中的类型请使用此字段填写完整数据库字段定义
+├── value Sorting
+└── keyGenerator ID generation strategy, default: NON (follows system rules), optional: AUTO_INCREMENT (database auto-increment ID), DISTRIBUTION (distributed ID)
 
-├── onlyColumn 持久层查询直接返回列名，不做属性名映射
+#### @Field.Version Optimistic Lock
 
-└── copied 是否可被拷贝，默认值为true，在前端复制数据记录的时候是否可被复制。
+#### @Filed.Sequence Code Generation Configuration
 
-#### @Field.PrimaryKey 主键标识
+├── sequence Sequence generation function, optional values:
+  - SEQ—Auto-increment serial number (non-consecutive)
+  - ORDERLY—Auto-increment ordered serial number (consecutive)
+  - DATE_SEQ—Date + auto-increment serial number (non-consecutive)
+  - DATE_ORDERLY_SEQ—Date + strongly ordered serial number (consecutive)
+  - DATE—Date
+  - UUID—Random 32-character string containing numbers and lowercase letters
+├── prefix Prefix
+├── suffix Suffix
+├── size Length
+├── step Step size (valid for serial numbers)
+├── initial Starting value (valid for serial numbers)
+├── format Formatting (valid for dates)
+└── separator Separator
 
-├── value   排序
+#### @Field.Integer Integer Type
 
-└── keyGenerator id生成策略，默认：NON走系统规则，可选：AUTO_INCREMENT数据库自增ID、DISTRIBUTION分布式ID
+├── M Scale, maximum number of digits
+├── min Minimum value
+└── max Maximum value
 
-#### @Field.Version 乐观锁
+#### @Field.Float Floating-point Type
 
-#### @Filed.Sequence 编码生成配置
+├── M Scale, maximum number of digits
+├── D Precision, number of decimal places
+├── min Minimum value
+└── max Maximum value
 
-├── sequence  序列生成函数，可选值
+#### @Field.Boolean Boolean Type
 
-  - SEQ——自增流水号（不连续）
-  - ORDERLY——自增强有序流水号（连续）
-  - DATE_SEQ——日期+自增流水号（不连续）
-  - DATE_ORDERLY_SEQ——日期+强有序流水号（连续）
-  - DATE——日期
-  - UUID——随机32位字符串，包含数字和小写英文字母
+#### @Field.String String Type
 
-├── prefix  前缀
+├── size String length, default 128 for single value, default 512 for multi-value
+├── min Minimum value
+└── max Maximum value
 
-├── suffix  后缀
+#### @Field.Text Multiline Text Type
 
-├── size  长度
+├── min Minimum value
+└── max Maximum value
 
-├── step  步长（包含流水号有效）
+#### @Field.Date Date-time, Year, Date, Time, etc., Types
 
-├── initial  起始值（包含流水号有效）
-
-├── format  格式化（包含日期有效）
-
-└── separator  分隔符
-
-#### @Field.Integer 整型类型
-
-├── M  标度，数字最大位数，maximum
-
-├── min 最小值
-
-└── max 最大值
-
-#### @Field.Float 浮点类型
-
-├── M  标度，数字最大位数，maximum
-
-├── D  精度，小数位数，decimal
-
-├── min 最小值
-
-└── max 最大值
-
-#### @Field.Boolean 布尔类型
-
-#### @Field.String 字符串类型
-
-├── size  字符串长度，单值默认128，多值默认512
-
-├── min 最小值
-
-└── max 最大值
-
-#### @Field.Text 多行文本类型
-
-├── min 最小值
-
-└── max 最大值
-
-#### @Field.Date 日期时间、年份、日期、时间等类型
-
-├── type 时间类型
-
-├── format 时间格式
-
-├── fraction 时间精度
-
-├── min 最小值
-
-└── max 最大值
+├── type Time type
+├── format Time format
+├── fraction Time precision
+├── min Minimum value
+└── max Maximum value
 
 #### @Field.Money
 
-├── M  标度，数字最大位数，maximum，默认值：65
+├── M Scale, maximum number of digits, default: 65
+├── D Precision, number of decimal places, default: 6
+├── min Minimum value
+└── max Maximum value
 
-├── D  精度，小数位数，decimal，默认值：6
+#### @Field.Html Rich Text Type
 
-├── min 最小值
+├── size String length, default: 1024
+├── min Minimum value
+└── max Maximum value
 
-└── max 最大值
+#### @Field.Enum Enum Type
 
-#### @Field.Html 富文本类型
+├── dictionary Data dictionary code
+├── size Storage character length
+└── limit Enum selection quantity limit, default: -1 (unlimited)
 
-├── size  字符串长度，默认值：1024
+#### @Field.Related Reference Field
 
-├── min 最小值
+└── value(or related) Used with relation, the field of the associated model
 
-└── max 最大值
+#### @Field.Relation Common Configuration for Relation Types
 
-#### @Field.Enum 枚举类型
+├── store Whether to store the relationship, default is true
+├── relationFields Relation fields of the own model, foreign keys, used to get values as query conditions for the associated model, corresponding to referenceField fields one-to-one
+├── references Associated model—fill this for low-code models without a class
+├── referenceClass Associated model class—fill this for Java models with a class
+├── referenceFields Associated fields of the associated model, unique indexes of the associated model
+├── domainSize Number of items per page for model filter options
+├── domain Model filter, data query filter conditions
+├── context Context, passed by the front-end during query, JSON string
+├── search Search function (function code)
+└── columnSize Storage length during serialization storage, default length 1024
 
-├── dictionary  数据字典编码
+#### @Field.one2many One-to-many
 
-├── size 存储字符长度
+├── limit Relation quantity limit, default is -1 (i.e., unlimited)
+├── pageSize Number of items per query page
+├── ordering Sorting
+├── inverse Reverse association, store the association relationship at the "one" end of the one-to-many relationship, default: false
+├── onUpdate Update association operation, default: SET_NULL (set to null), other options: NO_ACTION (no operation), CASCADE (cascade operation), RESTRICT (restrict operation)
+└── onDelete Update association operation, default: SET_NULL (set to null), other options: NO_ACTION (no operation), CASCADE (cascade operation), RESTRICT (restrict operation)
 
-└── limit 枚举选择数量限制 默认：-1（无限制）
+#### @Field.many2one Many-to-one
 
-#### @Field.Related 引用字段
+#### @Field.many2many Many-to-many
 
-└── value(或related)   配合relation使用，关联模型的字段
+├── through Intermediate model—fill this for low-code models without a class
+├── throughClass Intermediate model class—fill this for Java models with a class
+├── relationFields Association fields between the intermediate model and the relation model
+├── referenceFields Association fields between the intermediate model and the associated model
+├── limit Relation quantity limit, default is -1 (i.e., unlimited)
+├── pageSize Number of items per query page
+└── ordering Sorting
 
-#### @Field.Relation 关系类型通用配置
+#### @Field.Page Pagination Indicator
 
-├── store  关系是否存储，默认为true
+└── value Pagination configuration can be performed on the field for one-to-many and many-to-many relationships, default true
 
-├── relationFields 自身模型的关系字段，外键，用于取值作为查询条件查询关联模型，与referenceField的字段一一对应
+#### @Field.Override Override
 
-├── references  关联模型，low code模型没有class可以填此项
+└── value Override inherited fields (association relation fields)
 
-├── referenceClass  关联模型class，java模型有class可以填此项
+### 8. Field Naming Conventions
 
-├── referenceFields  关联模型的关联字段，关联模型的唯一索引
-
-├── domainSize  模型筛选可选项每页个数
-
-├── domain  模型筛选，数据查询过滤条件
-
-├── context  上下文，查询时前端传入，JSON字符串
-
-├── search  搜索函数（函数编码）
-
-└── columnSize 序列化存储时的存储长度，默认长度1024
-
-#### @Field.one2many 一对多
-
-├── limit  关系数量限制，默认为-1（即不限制）
-
-├── pageSize  查询每页个数
-
-├── ordering  排序
-
-├── inverse  反向关联，关联关系存储在一对多关系"一"这一端，默认：false
-
-├── onUpdate  更新关联操作，默认：SET_NULL（设置空值），其他可选：NO_ACTION（不任何操作）\CASCADE（级联操作）\RESTRICT（限制操作）
-
-└── onDelete  更新关联操作，默认：SET_NULL（设置空值），其他可选：NO_ACTION（不任何操作）\CASCADE（级联操作）\RESTRICT（限制操作）
-
-#### @Field.many2one 多对一
-
-#### @Field.many2many 多对多
-
-├── through  中间模型，low code模型没有class可以填此项
-
-├── throughClass  中间模型class，java模型有class可以填此项
-
-├── relationFields  中间模型与关系模型的关联字段
-
-├── referenceFields  中间模型与关联模型的关联字段
-
-├── limit  关系数量限制，默认为-1（即不限制）
-
-├── pageSize  查询每页个数
-
-└── ordering  排序
-
-#### @Field.Page 分页标识
-
-└── value 一对多和多对多关系可以在字段上进行分页配置，默认true
-
-#### @Field.Override 重写
-
-└── value  重写继承字段（关联关系字段）
-
-### 8、字段命名规范
-
-| **字段属性** | **默认取值规范**                                           | **命名规则规范**                                             |
+| **Field Attribute** | **Default Naming Convention**                                           | **Naming Rule**                                                     |
 | :----------- | :--------------------------------------------------------- | :----------------------------------------------------------- |
-| name         | 默认使用java属性名                                         | 1. 仅支持数字、字母<br/>2. 必须以小写字母开头<br/>3. 长度必须小于等于128个字符 |
-| field        | 默认使用java属性名                                         | 与name使用相同命名规则约束                                   |
-| display_name | 默认使用name属性                                           | 1. 长度必须小于等于128个字符                                 |
-| lname        | 使用java属性名，符合java命名规范，真实的属性名称，无法指定 | 与name使用相同命名规则约束                                   |
-| column       | 列名为属性名的小驼峰转下划线格式                           | 1. 仅支持数字、字母、下划线<br/>2. 长度必须小于等于128个字符（此限制为系统存储约束，与数据库本身无关） |
-| summary      | 默认使用displayName属性                                    | 1. 不能使用分号<br/>2. 长度必须小于等于500个字符             |
+| name         | Default uses java attribute name                                         | 1. Only supports numbers and letters<br/>2. Must start with a lowercase letter<br/>3. Length must be ≤ 128 characters |
+| field        | Default uses java attribute name                                         | Same naming rule constraints as name                                   |
+| display_name | Default uses name attribute                                           | 1. Length must be ≤ 128 characters                                 |
+| lname        | Uses java attribute name, conforms to java naming conventions, real attribute name, cannot be specified | Same naming rule constraints as name                                   |
+| column       | Column name is the camelCase to snake_case format of the attribute name                           | 1. Only supports numbers, letters, and underscores<br/>2. Length must be ≤ 128 characters (this limit is a system storage constraint, independent of the database itself) |
+| summary      | Default uses displayName attribute                                      | 1. Cannot use semicolons<br/>2. Length must be ≤ 500 characters             |
 
 
-## （四）字段约束
+## (四) Field Constraints
 
-### 1、主键
+### 1. Primary Key
 
-配置模型主键的自动生成规则，可通过 YAML 文件或使用 `@Model.Advanced` 注解的 `keyGenerator` 属性来实现。支持的生成规则包括自增序列（`AUTO_INCREMENT`）以及分布式 ID。若未进行相关配置，系统将不会自动生成主键值。
+Configure the automatic generation rule for model primary keys via a YAML file or using the `keyGenerator` attribute of the `@Model.Advanced` annotation. Supported generation rules include auto-increment sequences (`AUTO_INCREMENT`) and distributed IDs. If no configuration is made, the system will not automatically generate primary key values.
 
-### 2、逻辑外键约束
+### 2. Logical Foreign Key Constraints
 
-在创建关联关系字段时，可借助 `@Field.Relation` 注解的 `onUpdate` 和 `onDelete` 属性，明确在删除模型或更新模型关系字段值时，关联模型应执行的相应操作。这些操作选项包括 `RESTRICT`、`NO_ACTION`、`SET_NULL` 和 `CASCADE`，默认值为 `SET_NULL`。各操作含义如下：
+When creating association relation fields, use the `onUpdate` and `onDelete` attributes of the `@Field.Relation` annotation to specify the corresponding operations for the associated model when deleting the model or updating the model's relation field value. Operation options include `RESTRICT`, `NO_ACTION`, `SET_NULL`, and `CASCADE`, with the default being `SET_NULL`. The meanings of each operation are as follows:
 
-+ **RESTRICT**：若模型与关联模型存在关联记录，引擎将阻止模型关系字段的更新操作，或阻止删除该模型记录。
-+ **NO_ACTION**：此操作意味着不进行约束（与数据库约束的定义有所不同）。
-+ **CASCADE**：当更新模型关系字段或删除模型时，会级联更新关联模型对应记录的关联字段值，或者级联删除关联模型的对应记录。
-+ **SET_NULL**：在更新模型关系字段或删除模型时，若关联模型的对应关联字段允许为 `null`，则该字段将被置为 `null`；若不允许为 `null`，引擎将阻止对模型的操作。
++ **RESTRICT**: If the model has associated records with the associated model, the engine prevents updating the model's relation field or deleting the model record.
++ **NO_ACTION**: This operation means no constraints (different from database constraint definitions).
++ **CASCADE**: When updating the model's relation field or deleting the model, cascade updates the associated field values of the corresponding records in the associated model or cascade deletes the corresponding records in the associated model.
++ **SET_NULL**: When updating the model's relation field or deleting the model, if the corresponding association field of the associated model allows `null`, the field is set to `null`; if `null` is not allowed, the engine prevents operations on the model.
 
-### 3、通用校验约束
+### 3. General Validation Constraints
 
-| **字段业务类型** | **size**   | **limit**    | **decimal** | **mime** | **min**    | **max**    |
+| **Field Business Type** | **size**   | **limit**    | **decimal** | **mime** | **min**    | **max**    |
 | ---------------- | ---------- | ------------ | ----------- | -------- | ---------- | ---------- |
-| BINARY           |            |              |             | 文件类型 | 最小比特位 | 最大比特位 |
-| INTEGER          | 有效数字   |              |             |          | 最小值     | 最大值     |
-| FLOAT            | 有效数字   |              | 小数位数    |          | 最小值     | 最大值     |
+| BINARY           |            |              |             | File type | Minimum bits | Maximum bits |
+| INTEGER          | Effective digits   |              |             |          | Minimum value    | Maximum value    |
+| FLOAT            | Effective digits   |              | Decimal places    |          | Minimum value    | Maximum value    |
 | BOOLEAN          |            |              |             |          |            |            |
-| ENUM             | 存储字符数 | 多选最多数量 |             |          |            |            |
-| STRING           | 存储字符数 |              |             |          | 字符数     | 字符数     |
-| TEXT             |            |              |             |          | 字符数     | 字符数     |
-| HTML             |            |              |             |          | 字符数     | 字符数     |
-| MONEY            | 有效数字   |              | 小数位数    |          | 最小值     | 最大值     |
+| ENUM             | Storage characters | Maximum multi-select quantity |             |          |            |            |
+| STRING           | Storage characters |              |             |          | Character count  | Character count  |
+| TEXT             |            |              |             |          | Character count  | Character count  |
+| HTML             |            |              |             |          | Character count  | Character count  |
+| MONEY            | Effective digits   |              | Decimal places    |          | Minimum value    | Maximum value    |
 | RELATED          |            |              |             |          |            |            |
 
 
-| **字段业务类型** | **fraction** | **format** | **min**      | **max**      |
+| **Field Business Type** | **fraction** | **format** | **min**      | **max**      |
 | ---------------- | ------------ | ---------- | ------------ | ------------ |
-| DATETIME         | 时间精度     | 时间格式   | 最早日期时间 | 最晚日期时间 |
-| YEAR             |              | 时间格式   | 最早年份     | 最晚年份     |
-| DATE             |              | 时间格式   | 最早日期     | 最晚日期     |
-| TIME             | 时间精度     | 时间格式   | 最早时间     | 最晚时间     |
+| DATETIME         | Time precision     | Time format   | Earliest date-time | Latest date-time |
+| YEAR             |              | Time format   | Earliest year    | Latest year    |
+| DATE             |              | Time format   | Earliest date    | Latest date    |
+| TIME             | Time precision     | Time format   | Earliest time    | Latest time    |
 
 
-| **字段业务类型** | **size**                 | **domainSize** | **limit**    | **pageSize** |
+| **Field Business Type** | **size**                 | **domainSize** | **limit**    | **pageSize** |
 | ---------------- | ------------------------ | -------------- | ------------ | ------------ |
-| RELATED          | 存储字符数(若序列化存储) |                |              |              |
-| O2O              | 存储字符数(若序列化存储) | 可选项每页个数 |              |              |
-| M2O              | 存储字符数(若序列化存储) | 可选项每页个数 |              |              |
-| O2M              | 存储字符数(若序列化存储) | 可选项每页个数 | 关系数量限制 | 查询每页个数 |
-| M2M              | 存储字符数(若序列化存储) | 可选项每页个数 | 关系数量限制 | 查询每页个数 |
+| RELATED          | Storage characters (if serialized storage) |                |              |              |
+| O2O              | Storage characters (if serialized storage) | Items per page of options |              |              |
+| M2O              | Storage characters (if serialized storage) | Items per page of options |              |              |
+| O2M              | Storage characters (if serialized storage) | Items per page of options | Relation quantity limit | Items per query page |
+| M2M              | Storage characters (if serialized storage) | Items per page of options | Relation quantity limit | Items per query page |
 
 
-### 4、校验约束 Validation
+### 4. Validation Constraints
 
-关于此主题的详细内容，可参考 模型的[**校验约束（Validation）**](#qkm8t) 相关文档。
+For detailed content on this topic, refer to the [Validation Constraints](#qkm8t) documentation for models.
 
-# 三、**枚举与数据字典**
+# III. Enums and Data Dictionaries
 
-枚举是列举出一个有穷序列集的所有成员的程序。在元数据中，我们使用数据字典进行描述。
+An enum is a program that lists all members of a finite sequence set. In metadata, we use data dictionaries for description.
 
-### 1、协议约定
+### 1. Protocol Conventions
 
-+ **配置要求**：枚举需实现 `IEnum` 接口，并使用 `@Dict` 注解进行配置。通过设置 `@Dict` 注解的 `dictionary` 属性，可指定数据字典的唯一编码。
-+ **前后端交互**：在前端展示时，使用枚举的 `displayName`；在前端与后端进行交互时，前端使用枚举的 `name`，而后端则使用枚举的 `value`，包括默认值的设置也采用枚举的 `value`。
-+ **存储方式**：枚举信息会被存储在元数据的数据字典表中。
-+ **枚举分类**：枚举可分为异常类和业务类两种类型。异常类枚举主要用于定义程序运行过程中的错误提示信息；业务类枚举则用于明确业务中某个字段值的有穷有序集合。
++ **Configuration Requirements**: Enums must implement the `IEnum` interface and be configured using the `@Dict` annotation. Specify the unique code of the data dictionary by setting the `dictionary` attribute of the `@Dict` annotation.
++ **Front-end-backend Interaction**: Use the enum's `displayName` for front-end display; during front-end-backend interaction, the front-end uses the enum's `name`, while the back-end uses the enum's `value`, including setting default values with the enum's `value`.
++ **Storage Method**: Enum information is stored in the data dictionary table of metadata.
++ **Enum Classification**: Enums are divided into two types: exception and business. Exception enums mainly define error prompt information during program operation; business enums clarify the finite ordered set of values for a field in business.
 
-### 2、可变（可继承）枚举
+### 2. Mutable (Inheritable) Enums
 
-#### 父枚举定义
+#### Parent Enum Definition
 
-以下是父枚举 `ParentExtendEnum` 的定义代码，它继承自 `BaseEnum`，并使用 `@Dict` 注解进行配置。
+The following is the definition code for the parent enum `ParentExtendEnum`, which inherits from `BaseEnum` and is configured using the `@Dict` annotation.
 
 ```java
-@Dict(dictionary = ParentExtendEnum.DICTIONARY, displayName = "测试枚举继承父枚举", summary = "测试枚举继承父枚举")
+@Dict(dictionary = ParentExtendEnum.DICTIONARY, displayName = "Test Enum Inheritance Parent Enum", summary = "Test Enum Inheritance Parent Enum")
 public class ParentExtendEnum extends BaseEnum<ParentExtendEnum, String> {
 
     public static final String DICTIONARY = "test.ParentExtendEnum";
@@ -1872,12 +1735,12 @@ public class ParentExtendEnum extends BaseEnum<ParentExtendEnum, String> {
 }
 ```
 
-#### 子枚举定义
+#### Child Enum Definition
 
-下面是子枚举 `ChildExtendEnum` 的定义代码，它继承自 `ParentExtendEnum`，同样使用 `@Dict` 注解进行配置。
+Below is the definition code for the child enum `ChildExtendEnum`, which inherits from `ParentExtendEnum` and is also configured using the `@Dict` annotation.
 
 ```java
-@Dict(dictionary = ChildExtendEnum.DICTIONARY, displayName = "测试枚举继承子枚举", summary = "测试枚举继承子枚举")
+@Dict(dictionary = ChildExtendEnum.DICTIONARY, displayName = "Test Enum Inheritance Child Enum", summary = "Test Enum Inheritance Child Enum")
 public class ChildExtendEnum extends ParentExtendEnum {
 
     public static final String DICTIONARY = "test.ChildExtendEnum";
@@ -1888,45 +1751,45 @@ public class ChildExtendEnum extends ParentExtendEnum {
 }
 ```
 
-上述代码展示了 Java 中枚举继承的使用，通过父枚举和子枚举的定义，可以实现枚举的扩展。
+The above code demonstrates the use of enum inheritance in Java, enabling enum extension through parent and child enum definitions.
 
-### 3、可变枚举的 Switch API
+### 3. Switch API for Mutable Enums
 
-在 Java 里，直接继承 `BaseEnum` 能够实现 Java 原生不支持的可变枚举功能。可变枚举具备独特优势，它可以在程序运行期间动态增加非 Java 代码定义的枚举项，并且还支持枚举继承特性。不过，由于可变枚举并非 Java 规范中的标准枚举类型，所以不能使用 `switch...case...` 语句来处理。但 K2 提供了两种替代方式，即 `swithes`（无需返回值）和 `swithGet`（需要返回值），以此实现与 `switch...case...` 相同的功能和逻辑。
+Directly inheriting `BaseEnum` in Java enables mutable enums, which are not supported natively. Mutable enums offer unique advantages, allowing dynamic addition of enum items not defined in Java code during program runtime and supporting enum inheritance. However, since mutable enums are not standard enum types in the Java specification, the `switch...case...` statement cannot be used. K2 provides two alternatives, `swithes` (no return value) and `swithGet` (requires a return value), to achieve the same functionality and logic as `switch...case...`.
 
-#### swithes 方法示例
+#### `swithes` Method Example
 
 ```java
-BaseEnum.switches(比较变量, 比较方式/*系统默认提供两种方式：caseName()和caseValue()*/,
-                  cases(枚举列表1).to(() -> {/*逻辑处理*/}),
-                  cases(枚举列表2).to(() -> {/*逻辑处理*/}),
-                  // 可以继续添加更多的 cases
-                  cases(枚举列表N).to(() -> {/*逻辑处理*/}),
-                  defaults(() -> {/*默认逻辑处理*/})
+BaseEnum.switches(comparisonVariable, comparisonMethod /* The system provides two default methods: caseName() and caseValue() */,
+                  cases(enumList1).to(() -> {/* Logic processing */}),
+                  cases(enumList2).to(() -> {/* Logic processing */}),
+                  // More cases can be added
+                  cases(enumListN).to(() -> {/* Logic processing */}),
+                  defaults(() -> {/* Default logic processing */})
 );
 ```
 
-#### switchGet 方法示例
+#### `switchGet` Method Example
 
 ```java
-BaseEnum.<比较变量类型, 返回值类型>switchGet(比较变量,
-                                  比较方式/*系统默认提供两种方式：caseName()和caseValue()*/,
-                cases(枚举列表1).to(() -> {/*return 逻辑处理的结果*/}),
-                cases(枚举列表2).to(() -> {/*return 逻辑处理的结果*/}),
-                // 可以继续添加更多的 cases
-                cases(枚举列表N).to(() -> {/*return 逻辑处理的结果*/}),
-                defaults(() -> {/*return 逻辑处理的结果*/})
+BaseEnum.<comparisonVariableType, returnValueType>switchGet(comparisonVariable,
+                                  comparisonMethod /* The system provides two default methods: caseName() and caseValue() */,
+                cases(enumList1).to(() -> {/*return logic processing result*/}),
+                cases(enumList2).to(() -> {/*return logic processing result*/}),
+                // More cases can be added
+                cases(enumListN).to(() -> {/*return logic processing result*/}),
+                defaults(() -> {/*return logic processing result*/})
 );
 ```
 
-#### 比较方式说明
+#### Comparison Method Description
 
-+ `caseName()`：该方式会使用枚举项的 `name` 与比较变量进行匹配比较。
-+ `caseValue()`：此方式会使用枚举项的 `value` 值与比较变量进行匹配比较。
++ `caseName()`: This method matches and compares the enum item's `name` with the comparison variable.
++ `caseValue()`: This method matches and compares the enum item's `value` with the comparison variable.
 
-#### 实际应用示例
+#### Practical Application Example
 
-以下逻辑展示了如何使用 `switchGet` 方法判断 `ttype` 的值。当 `ttype` 的值为 `O2O`、`O2M`、`M2O` 或 `M2M` 枚举值时返回 `true`，否则返回 `false`。
+The following logic uses the `switchGet` method to determine the value of `ttype`, returning `true` when `ttype` is the enum value of `O2O`, `O2M`, `M2O`, or `M2M`, and `false` otherwise.
 
 ```java
 return BaseEnum.<String, Boolean>switchGet(ttype, caseValue(),
@@ -1935,47 +1798,47 @@ return BaseEnum.<String, Boolean>switchGet(ttype, caseValue(),
 );
 ```
 
-通过上述方法，即使是可变枚举，也能灵活地实现类似 `switch...case...` 的逻辑判断。
+Through the above methods, flexible logic judgment similar to `switch...case...` can be achieved even for mutable enums.
 
-### 4、二进制枚举
+### 4. Binary Enums
 
-#### 二进制枚举概述
+#### Binary Enum Overview
 
-二进制枚举要求其枚举项的值为 2 的次幂，并且该值必须大于 0。这种设计使得在进行位运算时可以方便地组合和判断枚举项。
+Binary enums require enum item values to be powers of 2 and greater than 0, facilitating bitwise operations for combining and judging enum items.
 
-#### 二进制枚举的实现
+#### Binary Enum Implementation
 
-要定义二进制枚举，需要实现 `BitEnum` 接口。以下是一个示例代码，展示了如何定义一个名为 `TestBitEnum` 的二进制枚举：
+To define a binary enum, implement the `BitEnum` interface. The following is an example code demonstrating the definition of a binary enum named `TestBitEnum`:
 
 ```java
-@Dict(dictionary = TestBitEnum.DICTIONARY, displayName = "测试二进制枚举", summary = "测试二进制枚举")
+@Dict(dictionary = TestBitEnum.DICTIONARY, displayName = "Test Binary Enum", summary = "Test Binary Enum")
 public class TestBitEnum extends BaseEnum<TestBitEnum, Long> implements BitEnum {
 
     public static final String DICTIONARY = "test.ParentExtendEnum";
 
-    // 注意：原代码中 C 的值 3 不是 2 的次幂，这里应修改为 4L
+    // Note: The value 3 for C in the original code is not a power of 2; it should be modified to 4L here
     public static final TestBitEnum A = create("A", 1L, "Aa", "AA");
     public static final TestBitEnum B = create("B", 2L, "Bb", "BB");
     public static final TestBitEnum C = create("C", 4L, "Cc", "CC");
 }
 ```
 
-在上述代码中，`TestBitEnum` 继承自 `BaseEnum` 并实现了 `BitEnum` 接口。同时，每个枚举项的值都是 2 的次幂，符合二进制枚举的定义要求。
+In the above code, `TestBitEnum` inherits from `BaseEnum` and implements the `BitEnum` interface. Meanwhile, each enum item's value is a power of 2, conforming to the definition requirements of binary enums.
 
-:::danger 警告
+:::danger Warning
 
-需要注意的是，原代码中 `C` 的值 `3L` 不是 2 的次幂，这不符合二进制枚举的规则，因此这里将其修改为 `4L`。
+Note that the value `3L` for `C` in the original code is not a power of 2, which does not conform to binary enum rules, so it is modified to `4L` here.
 
 :::
 
-### 5、兼容 Java Enum 的枚举
+### 5. Enums Compatible with Java Enum
 
-在 Java 中，可以直接使用 `enum` 关键字来声明枚举类型。然而，这种方式存在一定的局限性，即声明的枚举无法继承其他类，也难以进行功能扩展。因此，它仅适用于定义那些固定不变、无需修改的基础枚举场景，一般情况下，并不推荐在大多数项目中使用这种方式。
+In Java, the `enum` keyword can be directly used to declare enum types. However, this approach has limitations—declared enums cannot inherit other classes and are difficult to extend. Therefore, it is only suitable for defining fixed, unmodifiable basic enum scenarios and is generally not recommended for use in most projects.
 
-以下是一个具体的代码示例，展示了如何声明一个名为 `TestEnum` 的兼容 Java Enum 的枚举：
+The following is a specific code example demonstrating the declaration of an enum named `TestEnum` compatible with Java Enum:
 
 ```java
-@Dict(dictionary = TestEnum.dictionary, displayName = "测试枚举")
+@Dict(dictionary = TestEnum.dictionary, displayName = "Test Enum")
 public enum TestEnum implements IEnum<String> {
     enum1("enum1", "枚举1", "枚举1"),
     enum2("enum1", "枚举2", "枚举2");
@@ -2006,260 +1869,260 @@ public enum TestEnum implements IEnum<String> {
 }
 ```
 
-### 6、枚举类型的应用
+### 6. Application of Enum Types
 
-#### 字段定义的两种方式
+#### Two Methods for Field Definition
 
-对字段值的数据字典进行配置，有以下两种方式：
+There are two ways to configure the data dictionary for field values:
 
-+ **使用枚举类声明字段类型**：直接以枚举类来定义字段类型。
-+ **使用枚举项值类型声明字段类型**：若采用此方式，需设置 `@Field.Enum` 注解的 `dictionary` 属性，该属性值应为对应数据字典的编码。
++ **Declare the field type using an enum class**: Directly define the field type with an enum class.
++ **Declare the field type using the enum item value type**: If this method is used, set the `dictionary` attribute of the `@Field.Enum` annotation to the code of the corresponding data dictionary.
 
 ```java
 @Field.Enum
 @Field(displayName = "testEnum")
 private TestEnum testEnum;
 
-//当以枚举项值类型声明字段类型时，字段类型与枚举值类型必须严格保持一致。
+// When declaring the field type as the enum item value type, the field type must strictly match the enum value type.
 @Field.Enum(dictionary=TestEnum.dictionary)
 @Field(displayName = "testDictionarie")
 private String testDictionarie;
 ```
 
-:::info 注意
+:::info Note
 
-当以枚举项值类型声明字段类型时，字段类型与枚举值类型必须严格保持一致。
+When declaring the field type as the enum item value type, the field type must strictly match the enum value type.
 
 :::
 
-#### 多选枚举
+#### Multi-select Enums
 
 ```java
-@Field(displayName = "testEnums",multi = true)
+@Field(displayName = "testEnums", multi = true)
 private List<TestEnum> testEnums;
 ```
 
-#### 关联关系常量
+#### Association Relation Constants
 
-使用**#常量#**的形式可定义关联关系常量
+Define association relation constants using the form **#Constant#**
 
 ```java
 @Field.one2many
 @Field.Relation(relationFields = {"id", "#DEMO#"}, referenceFields = {"testModelId", "type"})
-@Field(displayName = "关联模型")
+@Field(displayName = "Associated Model")
 private List<TestRelationModel> relationModel;
 ```
 
-# 四、模型继承
+# IV. Model Inheritance
 
-模型继承允许子模型继承父模型的元信息、字段、数据管理器和函数，不同的继承方式适用于不同的业务场景：
+Model inheritance allows child models to inherit metadata, fields, data managers, and functions from parent models, with different inheritance methods suitable for different business scenarios:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/ORM-API/1603810885615-e6271d3c-47b1-4066-831c-101acb7fc0e1-20250529114616657.png)
 
-### 1、抽象继承（ABSTRACT）
+### 1. Abstract Inheritance (ABSTRACT)
 
-抽象基类模型用于存放那些不希望在每个子模型中重复编写的信息。它不会生成对应的数据表来存储数据，仅作为其他模型继承模型可继承域的模板。并且，抽象基类还能继承其他抽象基类。
+Abstract base class models store information that should not be repeatedly written in each child model. They do not generate corresponding data tables for storing data, serving only as templates for other models to inherit inheritable domains. Additionally, abstract base classes can inherit other abstract base classes.
 
-+ **适用场景**：主要用于解决公用字段问题，避免在多个子模型中重复定义相同的字段。
-+ **特点**：不生成数据表，仅作为模板供其他模型继承。
++ **Application Scenario**: Mainly used to solve common field problems, avoiding repeated definition of the same fields in multiple child models.
++ **Characteristics**: Does not generate data tables, only serves as a template for other models to inherit.
 
-子模型继承了抽象父模型称为抽象继承。父模型不会生成表和页面，子模型会继承父模型字段与函数，对应有自己的增删改查页面。
+A child model inheriting an abstract parent model is called abstract inheritance. The parent model does not generate tables and pages; the child model inherits fields and functions from the parent model and has its own CRUD pages.
 
-#### 父模型定义
+#### Parent Model Definition
 
-以下是父模型的定义代码，使用 `@Model.Advanced(type = ModelTypeEnum.ABSTRACT)` 注解将其标记为抽象模型：
+The following is the definition code for the parent model, marked as an abstract model using the `@Model.Advanced(type = ModelTypeEnum.ABSTRACT)` annotation:
 
 ```java
 @Model.Advanced(type = ModelTypeEnum.ABSTRACT)
 @Model.model(PetCommonItem.MODEL_MODEL)
-@Model(displayName = "抽象商品", summary = "抽象商品")
+@Model(displayName = "Abstract Product", summary = "Abstract Product")
 public class PetCommonItem extends IdModel {
 
     public static final String MODEL_MODEL = "pet.CommonItem";
 
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-#### 子模型定义
+#### Child Model Definition
 
-子模型通过 `extends` 关键字继承父模型，示例代码如下：
+The child model inherits from the parent model using the `extends` keyword, as shown in the example code:
 
 ```java
 @Model.model(PetItem.MODEL_MODEL)
-@Model(displayName = "宠物商品", summary = "宠物商品")
+@Model(displayName = "Pet Product", summary = "Pet Product")
 public class PetItem extends PetCommonItem {
 
     public static final String MODEL_MODEL = "pet.Item";
 
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-上述代码展示了抽象继承的实现方式，通过这种方式可以避免在多个子模型中重复定义相同的字段和函数，提高代码的复用性。
+The above code demonstrates the implementation of abstract inheritance, which avoids repeating the same fields and functions in multiple child models, improving code reusability.
 
-### 2、扩展继承（EXTENDS）
+### 2. Extended Inheritance (EXTENDS)
 
-子模型与父模型共用同一张数据表。子模型会继承父模型的字段和函数。在存储模型之间的继承关系时，默认采用的就是扩展继承方式。
+The child model shares the same data table with the parent model. The child model inherits fields and functions from the parent model. Extended inheritance is the default method for storing inheritance relationships between models.
 
-+ **适用场景**：扩展继承是一种实用的模型继承方式，在这种继承关系里，父模型与子模型会共用同一张数据表来存储数据，不过它们会分别拥有各自独立的增删改查操作页面。
-+ **特点**：
-  - 父子模型共用同一张数据表，表名一致，但模型编码不同。
-  - 子模型可覆盖父模型的模型管理器、数据排序规则和函数，原模型被扩展成新模型。
++ **Application Scenario**: Extended inheritance is a practical model inheritance approach where the parent and child models share the same data table for data storage but have independent CRUD operation pages.
++ **Characteristics**:
+  - Parent and child models share the same data table with consistent table names but different model codes.
+  - The child model can override the parent model's model manager, data sorting rules, and functions, extending the original model into a new one.
 
-#### 父模型定义
+#### Parent Model Definition
 
-以下是父模型 `PetItem` 的定义代码：
+The following is the definition code for the parent model `PetItem`:
 
 ```java
 @Model.model(PetItem.MODEL_MODEL)
-@Model(displayName = "宠物商品", summary = "宠物商品")
+@Model(displayName = "Pet Product", summary = "Pet Product")
 public class PetItem extends PetCommonItem {
     private static final long serialVersionUID = -8807269787958617447L;
     public static final String MODEL_MODEL = "pet.PetItem";
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-#### 子模型定义
+#### Child Model Definition
 
-下面是子模型 `PetDogItem` 的定义代码，它继承自父模型 `PetItem`：
+Below is the definition code for the child model `PetDogItem`, which inherits from the parent model `PetItem`:
 
 ```java
 @Model.model(PetDogItem.MODEL_MODEL)
-@Model(displayName = "宠狗商品", summary = "宠狗商品")
+@Model(displayName = "Dog Product", summary = "Dog Product")
 public class PetDogItem extends PetItem {
     private static final long serialVersionUID = 5471421982501585732L;
     public static final String MODEL_MODEL = "pet.PetDogItem";
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-通过上述的父模型和子模型定义，我们可以看到在扩展继承中，子模型能够继承父模型的属性和方法，并且由于共用同一张表，能有效减少数据库表的数量，同时各自独立的操作页面又能满足不同的业务交互需求。
+Through the definitions of the parent and child models above, we can see that in extended inheritance, the child model can inherit the attributes and methods of the parent model. Sharing the same table effectively reduces the number of database tables, while independent operation pages meet different business interaction needs.
 
-### 3、多表继承（MULTI_TABLE）
+### 3. Multi-table Inheritance (MULTI_TABLE)
 
-多表继承是指在模型继承体系中，父模型与子模型分别生成独立的数据表，并拥有各自对应的增删改查操作页面，通过特定配置实现父子模型间的数据关联与继承关系。
+Multi-table inheritance means that in the model inheritance hierarchy, the parent and child models generate independent data tables and have their respective CRUD operation pages, with the inheritance relationship between parent and child models achieved through specific configurations.
 
-#### 父模型定义
+#### Parent Model Definition
 
-父模型需使用 `@Model.MultiTable` 注解进行标识，示例如下：
+The parent model needs to be marked with the `@Model.MultiTable` annotation, as shown in the example:
 
 ```java
 @Model.MultiTable
 @Model.model(Context.MODEL_MODEL)
-@Model(displayName = "上下文", summary = "上下文")
+@Model(displayName = "Context", summary = "Context")
 public class Context extends IdModel {
     public static final String MODEL_MODEL = "pet.Context";
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-**配置说明**：父模型可通过 `Model.MultiTable#typeField` 属性，指定用于识别子类类型的字段。若未进行配置，系统将自动生成名为 `type` 的字段，用以标识子类类型。
+**Configuration Description**: The parent model can specify the field used to identify the child class type through the `Model.MultiTable#typeField` attribute. If not configured, the system automatically generates a field named `type` to identify the child class type.
 
-#### 子模型定义
+#### Child Model Definition
 
-子模型需使用 `@Model.MultiTableInherited` 注解，继承自父模型，示例代码如下：
+The child model needs to use the `@Model.MultiTableInherited` annotation and inherit from the parent model, as shown in the example code:
 
 ```java
 @Model.MultiTableInherited
 @Model.model(SubContext.MODEL_MODEL)
-@Model(displayName = "子上下文", summary = "子上下文")
+@Model(displayName = "Sub-context", summary = "Sub-context")
 public class SubContext extends Context {
     public static final String MODEL_MODEL = "pet.SubContext";
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-**配置说明**：子模型可通过 `Model.MultiTableInherited#type` 属性，指定自身的子类类型，该类型信息将存储在父模型的数据表中。若不设置此属性，系统默认使用子模型的模型编码作为子类类型标识。
+**Configuration Description**: The child model can specify its own sub-class type through the `Model.MultiTableInherited#type` attribute, which is stored in the parent model's data table. If this attribute is not set, the system uses the child model's code as the sub-class type identifier by default.
 
-### 4、代理继承（PROXY）
+### 4. Proxy Inheritance (PROXY)
 
-代理继承指的是**代理子模型继承父模型**的特殊继承方式。在这种模式下，代理子模型**不会单独生成数据表**，但会拥有独立的增删改查页面。这些页面是在父模型页面的基础上，自动补充了代理子模型新增的**传输字段**。
+Proxy inheritance refers to a special inheritance method where a proxy child model inherits from a parent model. In this mode, the proxy child model does not generate a separate data table but has independent CRUD pages. These pages automatically supplement the proxy child model's new transport fields based on the parent model's pages.
 
-#### 父模型定义
+#### Parent Model Definition
 
-父模型可以是存储数据的普通模型，也可以是其他代理模型。以下是一个普通存储模型的示例：
+The parent model can be an ordinary model storing data or another proxy model. Here is an example of an ordinary storage model:
 
 ```java
 @Model.model(PetItem.MODEL_MODEL)
-@Model(displayName = "宠物商品", summary = "宠物商品")
+@Model(displayName = "Pet Product", summary = "Pet Product")
 public class PetItem extends PetCommonItem {
     public static final String MODEL_MODEL = "pet.Item";
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-#### 子模型定义
+#### Child Model Definition
 
-使用 `@Model.Advanced(type = ModelTypeEnum.PROXY)` 注解将子模型声明为代理模型，示例如下：
+Use the `@Model.Advanced(type = ModelTypeEnum.PROXY)` annotation to declare the child model as a proxy model, as shown in the example:
 
 ```java
 @Model.model(PetItemProxy.MODEL_MODEL)
 @Model.Advanced(type = ModelTypeEnum.PROXY)
-@Model(displayName = "宠物商品代理模型", summary = "宠物商品代理模型")
+@Model(displayName = "Pet Product Proxy Model", summary = "Pet Product Proxy Model")
 public class PetItemProxy extends PetItem {
     public static final String MODEL_MODEL = "pet.PetItemProxy";
-    // 新增传输字段
-    @Field(displayName = "扩展字段")
+    // New transport field
+    @Field(displayName = "Extended Field")
     private String extend;
 }
 ```
 
-**关键说明**：代理模型中新增的 `extend` 字段属于**传输字段**，仅用于数据传递和页面展示，**不会在数据库表中生成对应的列**。这意味着它只影响前端页面交互，不改变底层数据存储结构，方便在不修改父模型的前提下，快速扩展功能和展示需求。
+**Key Description**: The newly added `extend` field in the proxy model is a **transport field** used only for data transfer and page display, and **does not generate a corresponding column in the database table**. This means it only affects front-end page interaction without changing the underlying data storage structure, facilitating quick functional and display extensions without modifying the parent model.
 
-### 传输（临时）继承（TRANSIENT）
+### Transport (Transient) Inheritance (TRANSIENT)
 
-传输（临时）继承是一种特殊的模型继承方式，当子模型继承传输父模型时，便形成了传输继承。在这种继承关系下，模型**不会生成独立的数据表**，但会拥有各自的增删改查页面，且列表页不具备后端分页功能。
+Transport (transient) inheritance is a special model inheritance method where a child model inherits from a transport parent model. In this inheritance relationship, the model does not generate an independent data table but has its own CRUD pages, and the list page does not have back-end pagination functionality.
 
-+ **适用场景**：主要用于解决使用现有模型进行数据传输的问题。
-+ **特点**：将父模型作为传输模型，可添加传输字段。
++ **Application Scenario**: Mainly used to solve the problem of using existing models for data transmission.
++ **Characteristics**: Uses the parent model as a transport model and can add transport fields.
 
-#### 父模型定义
+#### Parent Model Definition
 
-父模型需通过 `extends TransientModel` 来定义为传输模型，示例如下：
+The parent model needs to be defined as a transport model by `extends TransientModel`, as shown in the example:
 
 ```java
 @Model.model(PetItemRemark.MODEL_MODEL)
-@Model(displayName = "宠物商品备注", summary = "宠物商品备注")
+@Model(displayName = "Pet Product Remarks", summary = "Pet Product Remarks")
 public class PetItemRemark extends TransientModel {
     public static final String MODEL_MODEL = "pet.PetItemRemark";
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-#### 子模型定义
+#### Child Model Definition
 
-子模型通过 `extends` 关键字继承父模型，示例代码如下：
+The child model inherits from the parent model using the `extends` keyword, as shown in the example code:
 
 ```java
 @Model.model(PetItemDetail.MODEL_MODEL)
-@Model(displayName = "宠物商品详细描述", summary = "宠物商品详细描述")
+@Model(displayName = "Pet Product Detailed Description", summary = "Pet Product Detailed Description")
 public class PetItemDetail extends PetItemRemark {
     public static final String MODEL_MODEL = "pet.PetItemDetail";
-    // 此处省略字段配置
+    // Field configurations omitted here
 }
 ```
 
-**关键说明**：继承传输模型的子模型同样属于传输模型。这种方式适用于仅需在内存中临时处理和传递数据的场景，避免了不必要的数据持久化操作，提高了数据处理效率。
+**Key Description**: A child model inheriting a transport model is also a transport model. This approach is suitable for scenarios where data needs to be temporarily processed and transmitted in memory, avoiding unnecessary data persistence operations and improving data processing efficiency.
 
-# 五、Common ORM Methods
+# V. Common ORM Methods
 
-在 Oinone 使用 ORM 框架时经常会用到的方法，像数据的增删改查、关联查询、事务处理等方法都属于常见的 ORM 方法。
+When using the ORM framework in Oinone, commonly used methods include basic CRUD operations, association queries, transaction processing, etc.
 
-## （一）基础CRUD
+## (一) Basic CRUD
 
-### 1、create
+### 1. create
 
-+ **方法签名**：`<T extends AbstractModel> T create()`
-+ **来源类**：AbstractModel
-+ **功能描述**：创建一条新的数据记录，并返回创建后的模型实例。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **返回值**：创建后的模型实例。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T create()`
++ **Source Class**: AbstractModel
++ **Function Description**: Creates a new data record and returns the created model instance.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Return Value**: Created model instance.
++ **Example Code**:
 
 ```java
-// 假设 User 类继承自 AbstractModel
+// Assume User class inherits from AbstractModel
 User user = new User();
 user.setName("John");
 user.setAge(25);
@@ -2267,13 +2130,13 @@ User createdUser = user.create();
 System.out.println("Created user ID: " + createdUser.getId());
 ```
 
-### 2、createOrUpdate
+### 2. createOrUpdate
 
-+ **方法签名**：`Integer createOrUpdate()`
-+ **来源类**：AbstractModel
-+ **功能描述**：创建或更新数据记录。如果模型中没有主键且没有唯一索引字段，或者主键、唯一索引字段数据为空，则执行新增操作；否则执行更新操作。返回影响的行数。
-+ **返回值**：影响的行数。
-+ **示例代码**：
++ **Method Signature**: `Integer createOrUpdate()`
++ **Source Class**: AbstractModel
++ **Function Description**: Creates or updates a data record. If the model has no primary key and no unique index field, or the primary key/unique index field data is empty, it performs an insert operation; otherwise, it performs an update operation. Returns the number of affected rows.
++ **Return Value**: Number of affected rows.
++ **Example Code**:
 
 ```java
 User user = new User();
@@ -2283,14 +2146,14 @@ int rows = user.createOrUpdate();
 System.out.println("Rows affected: " + rows);
 ```
 
-### 3、createOrUpdateWithResult
+### 3. createOrUpdateWithResult
 
-+ **方法签名**：`<T extends AbstractModel> Result<T> createOrUpdateWithResult()`
-+ **来源类**：AbstractModel
-+ **功能描述**：创建或更新数据记录，并返回包含操作结果的 `Result` 对象。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **返回值**：包含操作结果的 `Result` 对象。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Result<T> createOrUpdateWithResult()`
++ **Source Class**: AbstractModel
++ **Function Description**: Creates or updates a data record and returns a `Result` object containing the operation result.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Return Value**: `Result` object containing the operation result.
++ **Example Code**:
 
 ```java
 User user = new User();
@@ -2304,13 +2167,13 @@ if (result.isSuccess()) {
 }
 ```
 
-### 4、updateByPk
+### 4. updateByPk
 
-+ **方法签名**：`Integer updateByPk()`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据主键更新数据记录，模型数据中必须包含主键。返回影响的行数。
-+ **返回值**：影响的行数。
-+ **示例代码**：
++ **Method Signature**: `Integer updateByPk()`
++ **Source Class**: AbstractModel
++ **Function Description**: Updates a data record by primary key; the model must contain the primary key. Returns the number of affected rows.
++ **Return Value**: Number of affected rows.
++ **Example Code**:
 
 ```java
 User user = new User();
@@ -2320,13 +2183,13 @@ int rows = user.updateByPk();
 System.out.println("Rows affected: " + rows);
 ```
 
-### 5、updateByUnique
+### 5. updateByUnique
 
-+ **方法签名**：`Integer updateByUnique()`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据主键与唯一索引更新数据记录，模型数据中必须包含主键或至少一个唯一索引。返回影响的行数。
-+ **返回值**：影响的行数。
-+ **示例代码**：
++ **Method Signature**: `Integer updateByUnique()`
++ **Source Class**: AbstractModel
++ **Function Description**: Updates a data record by primary key or unique index; the model must contain the primary key or at least one unique index. Returns the number of affected rows.
++ **Return Value**: Number of affected rows.
++ **Example Code**:
 
 ```java
 User user = new User();
@@ -2336,17 +2199,17 @@ int rows = user.updateByUnique();
 System.out.println("Rows affected: " + rows);
 ```
 
-### 6、updateByEntity
+### 6. updateByEntity
 
-+ **方法签名**：`<T extends AbstractModel> Integer updateByEntity(T entity, T query)`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据实体条件更新数据记录，`entity` 为更新的实体，`query` 为更新条件。返回影响的行数。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `entity` - 更新实体。
-  - `query` - 更新条件。
-+ **返回值**：影响的行数。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Integer updateByEntity(T entity, T query)`
++ **Source Class**: AbstractModel
++ **Function Description**: Updates data records based on entity conditions; `entity` is the entity to update, and `query` is the update condition. Returns the number of affected rows.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameters**:
+  - `entity` - Entity to update.
+  - `query` - Update condition.
++ **Return Value**: Number of affected rows.
++ **Example Code**:
 
 ```java
 User updateEntity = new User();
@@ -2359,17 +2222,17 @@ int rows = user.updateByEntity(updateEntity, queryEntity);
 System.out.println("Rows affected: " + rows);
 ```
 
-### 7、updateByWrapper
+### 7. updateByWrapper
 
-+ **方法签名**：`<T extends AbstractModel> Integer updateByWrapper(T entity, IWrapper<`T`> updateWrapper)`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据条件包装器更新数据记录，`entity` 为更新的实体，`updateWrapper` 为更新条件包装器。返回影响的行数。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `entity` - 更新实体。
-  - `updateWrapper` - 更新条件包装器。
-+ **返回值**：影响的行数。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Integer updateByWrapper(T entity, IWrapper<`T`> updateWrapper)`
++ **Source Class**: AbstractModel
++ **Function Description**: Updates data records based on a condition wrapper; `entity` is the entity to update, and `updateWrapper` is the update condition wrapper. Returns the number of affected rows.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameters**:
+  - `entity` - Entity to update.
+  - `updateWrapper` - Update condition wrapper.
++ **Return Value**: Number of affected rows.
++ **Example Code**:
 
 ```java
 User updateEntity = new User();
@@ -2382,13 +2245,13 @@ int rows = user.updateByWrapper(updateEntity, updateWrapper);
 System.out.println("Rows affected: " + rows);
 ```
 
-### 8、deleteByPk
+### 8. deleteByPk
 
-+ **方法签名**：`Boolean deleteByPk()`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据主键删除单条记录，模型数据中必须包含主键。返回删除结果。
-+ **返回值**：删除成功返回 `true`，否则返回 `false`。
-+ **示例代码**：
++ **Method Signature**: `Boolean deleteByPk()`
++ **Source Class**: AbstractModel
++ **Function Description**: Deletes a single record by primary key; the model must contain the primary key. Returns the deletion result.
++ **Return Value**: `true` if deletion is successful, otherwise `false`.
++ **Example Code**:
 
 ```java
 User user = new User();
@@ -2397,13 +2260,13 @@ boolean deleted = user.deleteByPk();
 System.out.println("Delete success: " + deleted);
 ```
 
-### 9、deleteByUnique
+### 9. deleteByUnique
 
-+ **方法签名**：`Boolean deleteByUnique()`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据主键或唯一索引删除单条记录，模型数据中必须包含主键或者至少一个唯一索引。返回删除结果。
-+ **返回值**：删除成功返回 `true`，否则返回 `false`。
-+ **示例代码**：
++ **Method Signature**: `Boolean deleteByUnique()`
++ **Source Class**: AbstractModel
++ **Function Description**: Deletes a single record by primary key or unique index; the model must contain the primary key or at least one unique index. Returns the deletion result.
++ **Return Value**: `true` if deletion is successful, otherwise `false`.
++ **Example Code**:
 
 ```java
 User user = new User();
@@ -2412,13 +2275,13 @@ boolean deleted = user.deleteByUnique();
 System.out.println("Delete success: " + deleted);
 ```
 
-### 10、deleteByEntity
+### 10. deleteByEntity
 
-+ **方法签名**：`Integer deleteByEntity()`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据实体条件删除记录，返回删除的行数。
-+ **返回值**：删除的行数。
-+ **示例代码**：
++ **Method Signature**: `Integer deleteByEntity()`
++ **Source Class**: AbstractModel
++ **Function Description**: Deletes records based on entity conditions; returns the number of deleted rows.
++ **Return Value**: Number of deleted rows.
++ **Example Code**:
 
 ```java
 User queryEntity = new User();
@@ -2427,15 +2290,15 @@ int rows = queryEntity.deleteByEntity();
 System.out.println("Rows deleted: " + rows);
 ```
 
-### 11、deleteByWrapper
+### 11. deleteByWrapper
 
-+ **方法签名**：`<T extends AbstractModel> Integer deleteByWrapper(IWrapper<`T`> queryWrapper)`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据条件包装器删除记录，返回删除的行数。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`queryWrapper` - 删除条件包装器。
-+ **返回值**：删除的行数。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Integer deleteByWrapper(IWrapper<`T`> queryWrapper)`
++ **Source Class**: AbstractModel
++ **Function Description**: Deletes records based on a condition wrapper; returns the number of deleted rows.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameter**: `queryWrapper` - Deletion condition wrapper.
++ **Return Value**: Number of deleted rows.
++ **Example Code**:
 
 ```java
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
@@ -2444,16 +2307,16 @@ int rows = user.deleteByWrapper(queryWrapper);
 System.out.println("Rows deleted: " + rows);
 ```
 
-## （二）条件查询与分页
+## (二) Conditional Query and Pagination
 
-### 1、queryByPk
+### 1. queryByPk
 
-+ **方法签名**：`<T extends AbstractModel> T queryByPk()`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据主键查询单条记录，模型数据中必须包含主键。返回查询到的模型实例。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **返回值**：查询到的模型实例，如果未找到则返回 `null`。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T queryByPk()`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a single record by primary key; the model must contain the primary key. Returns the queried model instance.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Return Value**: Queried model instance, `null` if not found.
++ **Example Code**:
 
 ```java
 User user = new User();
@@ -2466,14 +2329,14 @@ if (queriedUser != null) {
 }
 ```
 
-### 2、queryOne
+### 2. queryOne
 
-+ **方法签名**：`<T extends AbstractModel> T queryOne()`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据主键或唯一索引查询单条记录，模型数据中必须包含主键或唯一索引，查出多条记录会抛异常。返回查询到的模型实例。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **返回值**：查询到的模型实例，如果未找到则返回 `null`。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T queryOne()`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a single record by primary key or unique index; the model must contain the primary key or unique index, and an exception is thrown if multiple records are found. Returns the queried model instance.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Return Value**: Queried model instance, `null` if not found.
++ **Example Code**:
 
 ```java
 User user = new User();
@@ -2486,15 +2349,15 @@ if (queriedUser != null) {
 }
 ```
 
-### 3、queryOneByWrapper
+### 3. queryOneByWrapper
 
-+ **方法签名**：`<T extends AbstractModel> T queryOneByWrapper(IWrapper<`T`> queryWrapper)`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据条件包装器查询单条记录，查出多条记录会抛异常。返回查询到的模型实例。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`queryWrapper` - 查询条件包装器。
-+ **返回值**：查询到的模型实例，如果未找到则返回 `null`。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T queryOneByWrapper(IWrapper<`T`> queryWrapper)`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a single record based on a condition wrapper; an exception is thrown if multiple records are found. Returns the queried model instance.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameter**: `queryWrapper` - Query condition wrapper.
++ **Return Value**: Queried model instance, `null` if not found.
++ **Example Code**:
 
 ```java
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
@@ -2507,14 +2370,14 @@ if (queriedUser != null) {
 }
 ```
 
-### 4、queryList
+### 4. queryList
 
-+ **方法签名**：`<T extends AbstractModel> List<T> queryList()`
-+ **来源类**：AbstractModel
-+ **功能描述**：按实体条件查询数据列表，返回满足条件的数据记录列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **返回值**：满足条件的数据记录列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> queryList()`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a data list based on entity conditions; returns a list of records that meet the conditions.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Return Value**: List of records that meet the conditions.
++ **Example Code**:
 
 ```java
 User queryEntity = new User();
@@ -2525,15 +2388,15 @@ for (User user : userList) {
 }
 ```
 
-### 5、queryList(int batchSize)
+### 5. queryList(int batchSize)
 
-+ **方法签名**：`<T extends AbstractModel> List<T> queryList(int batchSize)`
-+ **来源类**：AbstractModel
-+ **功能描述**：按实体条件查询数据列表，可以设置 `batchSize` 来分批次查询。返回满足条件的数据记录列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`batchSize` - 每批次查询的记录数。
-+ **返回值**：满足条件的数据记录列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> queryList(int batchSize)`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a data list based on entity conditions, and can set `batchSize` for batch querying. Returns a list of records that meet the conditions.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameter**: `batchSize` - Number of records per batch query.
++ **Return Value**: List of records that meet the conditions.
++ **Example Code**:
 
 ```java
 User queryEntity = new User();
@@ -2544,15 +2407,15 @@ for (User user : userList) {
 }
 ```
 
-### 6、queryList(IWrapper<`T`> queryWrapper)
+### 6. queryList(IWrapper<`T`> queryWrapper)
 
-+ **方法签名**：`<T extends AbstractModel> List<T> queryList(IWrapper<`T`> queryWrapper)`
-+ **来源类**：AbstractModel
-+ **功能描述**：按条件包装器查询数据列表，返回满足条件的数据记录列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`queryWrapper` - 查询条件包装器。
-+ **返回值**：满足条件的数据记录列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> queryList(IWrapper<`T`> queryWrapper)`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a data list based on a condition wrapper; returns a list of records that meet the conditions.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameter**: `queryWrapper` - Query condition wrapper.
++ **Return Value**: List of records that meet the conditions.
++ **Example Code**:
 
 ```java
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
@@ -2563,17 +2426,17 @@ for (User user : userList) {
 }
 ```
 
-### 7、queryList(Pagination<`T`> page, T query)
+### 7. queryList(Pagination<`T`> page, T query)
 
-+ **方法签名**：`<T extends AbstractModel> List<T> queryList(Pagination<`T`> page, T query)`
-+ **来源类**：AbstractModel
-+ **功能描述**：按分页和实体条件查询数据列表，返回查询分页结果。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `page` - 分页对象。
-  - `query` - 查询实体。
-+ **返回值**：查询分页结果。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> queryList(Pagination<`T`> page, T query)`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a data list based on pagination and entity conditions; returns the query pagination result.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameters**:
+  - `page` - Pagination object.
+  - `query` - Query entity.
++ **Return Value**: Query pagination result.
++ **Example Code**:
 
 ```java
 Pagination<User> page = new Pagination<>(1, 10);
@@ -2585,17 +2448,17 @@ for (User user : userList) {
 }
 ```
 
-### 8、queryListByWrapper
+### 8. queryListByWrapper
 
-+ **方法签名**：`<T extends AbstractModel> List<T> queryListByWrapper(Pagination<`T`> page, IWrapper<`T`> queryWrapper)`
-+ **来源类**：AbstractModel
-+ **功能描述**：按分页条件查询数据列表，返回查询分页结果。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `page` - 分页对象。
-  - `queryWrapper` - 查询条件包装器。
-+ **返回值**：查询分页结果。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> queryListByWrapper(Pagination<`T`> page, IWrapper<`T`> queryWrapper)`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a data list based on pagination conditions; returns the query pagination result.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameters**:
+  - `page` - Pagination object.
+  - `queryWrapper` - Query condition wrapper.
++ **Return Value**: Query pagination result.
++ **Example Code**:
 
 ```java
 Pagination<User> page = new Pagination<>(1, 10);
@@ -2607,17 +2470,17 @@ for (User user : userList) {
 }
 ```
 
-### 9、queryPage
+### 9. queryPage
 
-+ **方法签名**：`<T extends AbstractModel> Pagination<`T`> queryPage(Pagination<`T`> page, IWrapper<`T`> queryWrapper)`
-+ **来源类**：AbstractModel
-+ **功能描述**：按条件查询数据列表，并返回分页对象，包含总记录数、总页数等信息。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `page` - 分页对象。
-  - `queryWrapper` - 查询条件包装器。
-+ **返回值**：包含分页信息的 `Pagination` 对象。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Pagination<`T`> queryPage(Pagination<`T`> page, IWrapper<`T`> queryWrapper)`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries a data list based on conditions and returns a pagination object containing total records, total pages, etc.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameters**:
+  - `page` - Pagination object.
+  - `queryWrapper` - Query condition wrapper.
++ **Return Value**: `Pagination` object containing pagination information.
++ **Example Code**:
 
 ```java
 Pagination<User> page = new Pagination<>(1, 10);
@@ -2632,13 +2495,13 @@ for (User user : result.getRecords()) {
 }
 ```
 
-### 10、count
+### 10. count
 
-+ **方法签名**：`Long count()`
-+ **来源类**：AbstractModel
-+ **功能描述**：按实体条件查询数据数量，返回满足查询条件的记录数量。
-+ **返回值**：满足查询条件的记录数量。
-+ **示例代码**：
++ **Method Signature**: `Long count()`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries the number of data records based on entity conditions; returns the number of records that meet the query conditions.
++ **Return Value**: Number of records that meet the query conditions.
++ **Example Code**:
 
 ```java
 User queryEntity = new User();
@@ -2647,15 +2510,15 @@ long count = queryEntity.count();
 System.out.println("Record count: " + count);
 ```
 
-### 11、count(IWrapper<`T`> queryWrapper)
+### 11. count(IWrapper<`T`> queryWrapper)
 
-+ **方法签名**：`<T extends AbstractModel> Long count(IWrapper<`T`> queryWrapper)`
-+ **来源类**：AbstractModel
-+ **功能描述**：按条件包装器查询数据数量，返回满足查询条件的记录数量。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`queryWrapper` - 查询条件包装器。
-+ **返回值**：满足查询条件的记录数量。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Long count(IWrapper<`T`> queryWrapper)`
++ **Source Class**: AbstractModel
++ **Function Description**: Queries the number of data records based on a condition wrapper; returns the number of records that meet the query conditions.
++ **Generic Parameter**: `<T>` - Model type, must be a subclass of `AbstractModel`.
++ **Parameter**: `queryWrapper` - Query condition wrapper.
++ **Return Value**: Number of records that meet the query conditions.
++ **Example Code**:
 
 ```java
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
@@ -2664,57 +2527,57 @@ long count = user.count(queryWrapper);
 System.out.println("Record count: " + count);
 ```
 
-## （三）字段级关联操作
+## (III) Field-Level Association Operations  
 
-### 1、fieldQuery Lambda 表达式指定字段
+### 1. fieldQuery: Specify Fields via Lambda Expression  
 
-+ **方法签名**：`<T extends AbstractModel> T fieldQuery(Getter<T, ?> getter)`
-+ **来源类**：AbstractModel
-+ **功能描述**：关联关系字段查询，通过 `Getter` 方法指定关联关系字段。返回包含查询字段值的模型数据。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`getter` - 关联关系字段的 `Getter` 方法，例如 `Model::getField`。
-+ **返回值**：包含查询字段值的模型数据。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T fieldQuery(Getter<T, ?> getter)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Query association fields by specifying the association field via a `Getter` method. Returns the model data with the queried field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `getter` - The `Getter` method for the association field, e.g., `Model::getField`.  
++ **Return Value**: Model data containing the queried field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
 user.setId(1L);
-User queriedUser =  = user.queryByPk();
+User queriedUser = user.queryByPk();
 queriedUser.fieldQuery(User::getRelationField);
 if (queriedUser.getRelationField() != null) {
     System.out.println("Relation field value: " + queriedUser.getRelationField());
 }
-```
+```  
 
-### 2、fieldQuery
+### 2. fieldQuery  
 
-+ **方法签名**：`<T extends AbstractModel> T fieldQuery(String fieldName)`
-+ **来源类**：AbstractModel
-+ **功能描述**：关联关系字段查询，通过字段名指定关联关系字段。返回包含查询字段值的模型数据。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`fieldName` - Java 字段名称。
-+ **返回值**：包含查询字段值的模型数据。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T fieldQuery(String fieldName)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Query association fields by specifying the association field via its name. Returns the model data with the queried field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `fieldName` - The Java field name.  
++ **Return Value**: Model data containing the queried field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
 user.setId(1L);
-User queriedUser =  = user.queryByPk();
+User queriedUser = user.queryByPk();
 queriedUser.fieldQuery("relationField");
 if (queriedUser.getRelationField() != null) {
     System.out.println("Relation field value: " + queriedUser.getRelationField());
 }
-```
+```  
 
-### 3、fieldSave Lambda 表达式指定字段
+### 3. fieldSave: Specify Fields via Lambda Expression  
 
-+ **方法签名**：`<T extends AbstractModel> T fieldSave(Getter<T, ?> getter)`
-+ **来源类**：AbstractModel
-+ **功能描述**：新增或更新关联关系字段（增量），根据指令系统的数据提交策略新增或更新关联关系字段。返回包含更新字段值的模型数据。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`getter` - 关联关系字段的 `Getter` 方法，例如 `Model::getField`。
-+ **返回值**：包含更新字段值的模型数据。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T fieldSave(Getter<T, ?> getter)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Add or update association fields (incrementally) based on the data submission strategy of the instruction system. Returns the model data with updated field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `getter` - The `Getter` method for the association field, e.g., `Model::getField`.  
++ **Return Value**: Model data containing the updated field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
@@ -2724,21 +2587,21 @@ List<RelationObject> o2mObjects = new ArrayList<RelationObject>();
 RelationObject relationObject = new RelationObject()
 o2mObjects.add(relationObject);
 user.setO2MField(o2mObjects);
-//先保存one这边的记录
+// Save the one-side record first
 user.create();
-//再保存one2many,many2many的关系字段
+// Then save the one2many/many2many relation fields
 user.fieldSave(User::getO2MField);
-```
+```  
 
-### 4、fieldSave
+### 4. fieldSave  
 
-+ **方法签名**：`<T extends AbstractModel> T fieldSave(String fieldName)`
-+ **来源类**：AbstractModel
-+ **功能描述**：新增或更新关联关系字段（增量），通过字段名指定关联关系字段。返回包含更新字段值的模型数据。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`fieldName` - Java 字段名称。
-+ **返回值**：包含更新字段值的模型数据。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T fieldSave(String fieldName)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Add or update association fields (incrementally) by specifying the association field via its name. Returns the model data with updated field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `fieldName` - The Java field name.  
++ **Return Value**: Model data containing the updated field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
@@ -2748,163 +2611,163 @@ List<RelationObject> o2mObjects = new ArrayList<RelationObject>();
 RelationObject relationObject = new RelationObject()
 o2mObjects.add(relationObject);
 user.setO2MField(o2mObjects);
-//先保存one这边的记录
+// Save the one-side record first
 user.create();
-//再保存one2many,many2many的关系字段
+// Then save the one2many/many2many relation fields
 user.fieldSave("o2mField");
-```
+```  
 
-### 5、fieldSaveOnCascade Lambda 表达式指定字段
+### 5. fieldSaveOnCascade: Specify Fields via Lambda Expression  
 
-+ **方法签名**：`<T extends AbstractModel> T fieldSaveOnCascade(Getter<T, ?> getter)`
-+ **来源类**：AbstractModel
-+ **功能描述**：新增或更新关联关系字段（全量），并按照字段级联策略处理旧记录的关系数据（如：删除、SET_NULL），通过 `Getter` 方法指定关联关系字段。返回包含更新字段值的模型数据。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`getter` - 关联关系字段的 `Getter` 方法，例如 `Model::getField`。
-+ **返回值**：包含更新字段值的模型数据。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T fieldSaveOnCascade(Getter<T, ?> getter)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Add or update association fields (fully) and handle the relationship data of old records according to the field cascade strategy (e.g., delete, SET_NULL) by specifying the association field via a `Getter` method. Returns the model data with updated field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `getter` - The `Getter` method for the association field, e.g., `Model::getField`.  
++ **Return Value**: Model data containing the updated field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
 user.setId(1L);
-User queriedUser =  = user.queryByPk();
+User queriedUser = user.queryByPk();
 List<RelationObject> o2mObjects = new ArrayList<RelationObject>();
 RelationObject relationObject = new RelationObject()
 o2mObjects.add(relationObject);
 queriedUser.setO2MField(o2mObjects);
-//如过使用fieldSave方法，需要自行处理关系差量如：删除与旧记录的关联
+// When using fieldSave, you need to handle the relation delta manually, e.g., delete associations with old records
 queriedUser.fieldSaveOnCascade(User::getO2MField);
-```
+```  
 
-### 6、fieldSaveOnCascade
+### 6. fieldSaveOnCascade  
 
-+ **方法签名**：`<T extends AbstractModel> T fieldSaveOnCascade(String fieldName)`
-+ **来源类**：AbstractModel
-+ **功能描述**：新增或更新关联关系字段（全量），并按照字段级联策略处理旧记录的关系数据（如：删除、SET_NULL），通过 `Getter` 方法指定关联关系字段。返回包含更新字段值的模型数据。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`fieldName` - Java 字段名称。
-+ **返回值**：包含更新字段值的模型数据。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T fieldSaveOnCascade(String fieldName)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Add or update association fields (fully) and handle the relationship data of old records according to the field cascade strategy (e.g., delete, SET_NULL) by specifying the association field via its name. Returns the model data with updated field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `fieldName` - The Java field name.  
++ **Return Value**: Model data containing the updated field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
 user.setId(1L);
-User queriedUser =  = user.queryByPk();
+User queriedUser = user.queryByPk();
 List<RelationObject> o2mObjects = new ArrayList<RelationObject>();
 RelationObject relationObject = new RelationObject()
 o2mObjects.add(relationObject);
 queriedUser.setO2MField(o2mObjects);
-//如过使用fieldSave方法，需要自行处理关系差量如：删除与旧记录的关联
+// When using fieldSave, you need to handle the relation delta manually, e.g., delete associations with old records
 queriedUser.fieldSaveOnCascade("o2MField");
-```
+```  
 
-### 7、relationDelete Lambda 表达式指定字段
+### 7. relationDelete: Specify Fields via Lambda Expression  
 
-+ **方法签名**：`<T extends AbstractModel> T relationDelete(Getter<T, ?> getter)`
-+ **来源类**：AbstractModel
-+ **功能描述**：删除关联关系（增量），通过 `Getter` 方法指定关联关系字段。返回模型数据。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`getter` - 关联关系字段的 `Getter` 方法，例如 `Model::getField`。
-+ **返回值**：模型数据。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T relationDelete(Getter<T, ?> getter)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Delete association (incrementally) by specifying the association field via a `Getter` method. Returns the model data.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `getter` - The `Getter` method for the association field, e.g., `Model::getField`.  
++ **Return Value**: Model data.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
 user.setId(1L);
-User queriedUser =  = user.queryByPk();
+User queriedUser = user.queryByPk();
 queriedUser.fieldQuery(User::getO2MField);
 queriedUser.relationDelete(User::getO2MField);
-```
+```  
 
-### 8、relationDelete
+### 8. relationDelete  
 
-+ **方法签名**：`<T extends AbstractModel> T relationDelete(String fieldName)`
-+ **来源类**：AbstractModel
-+ **功能描述**：删除关联关系（增量），通过字段名指定关联关系字段。返回模型数据。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`fieldName` - Java 字段名称。
-+ **返回值**：模型数据。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> T relationDelete(String fieldName)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Delete association (incrementally) by specifying the association field via its name. Returns the model data.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `fieldName` - The Java field name.  
++ **Return Value**: Model data.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
 user.setId(1L);
-User queriedUser =  = user.queryByPk();
+User queriedUser = user.queryByPk();
 queriedUser.fieldQuery(User::getO2MField);
 queriedUser.relationDelete("o2MField");
-```
+```  
 
-### 9、listFieldQuery Lambda 表达式指定字段
+### 9. listFieldQuery: Specify Fields via Lambda Expression  
 
-+ **方法签名**：`<T extends AbstractModel> List<T> listFieldQuery(List<T> dataList, Getter<T, ?> getter)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量关联关系字段查询，通过 `Getter` 方法指定关联关系字段。返回包含查询字段值的模型数据列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `dataList` - 当前模型数据列表。
-  - `getter` - 关联关系字段的 `Getter` 方法，例如 `Model::getField`。
-+ **返回值**：包含查询字段值的模型数据列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> listFieldQuery(List<T> dataList, Getter<T, ?> getter)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch query association fields by specifying the association field via a `Getter` method. Returns a list of model data with the queried field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameters**:  
+  - `dataList` - The current model data list.  
+  - `getter` - The `Getter` method for the association field, e.g., `Model::getField`.  
++ **Return Value**: A list of model data containing the queried field values.  
++ **Sample Code**:  
 
 ```java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setId(1L);
-User queriedUser1 =  = user1.queryByPk();
+User queriedUser1 = user1.queryByPk();
 userList.add(queriedUser1);
 
 User user2 = new User();
 user2.setId(2L);
-User queriedUser2 =  = user2.queryByPk();
+User queriedUser2 = user2.queryByPk();
 userList.add(queriedUser2);
 
 List<User> queriedUsers = new User().listFieldQuery(userList, User::getRelationField);
 for (User queriedUser : queriedUsers) {
     System.out.println("Relation field value for user " + queriedUser.getId() + ": " + queriedUser.getRelationField());
 }
-```
+```  
 
-### 10、listFieldQuery
+### 10. listFieldQuery  
 
-+ **方法签名**：`<T extends AbstractModel> List<T> listFieldQuery(List<T> dataList, String fieldName)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量关联关系字段查询，通过字段名指定关联关系字段。返回包含查询字段值的模型数据列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `dataList` - 当前模型数据列表。
-  - `fieldName` - Java 字段名称。
-+ **返回值**：包含查询字段值的模型数据列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> listFieldQuery(List<T> dataList, String fieldName)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch query association fields by specifying the association field via its name. Returns a list of model data with the queried field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameters**:  
+  - `dataList` - The current model data list.  
+  - `fieldName` - The Java field name.  
++ **Return Value**: A list of model data containing the queried field values.  
++ **Sample Code**:  
 
 ```java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setId(1L);
-User queriedUser1 =  = user1.queryByPk();
+User queriedUser1 = user1.queryByPk();
 userList.add(queriedUser1);
 
 User user2 = new User();
 user2.setId(2L);
-User queriedUser2 =  = user2.queryByPk();
+User queriedUser2 = user2.queryByPk();
 userList.add(queriedUser2);
 
 List<User> queriedUsers = new User().listFieldQuery(userList,"relationField");
 for (User queriedUser : queriedUsers) {
     System.out.println("Relation field value for user " + queriedUser.getId() + ": " + queriedUser.getRelationField());
 }
-```
+```  
 
-### 11、listFieldSave  Lambda 表达式指定字段
+### 11. listFieldSave: Specify Fields via Lambda Expression  
 
-+ **方法签名**：`<T extends AbstractModel> List<T> listFieldSave(List<T> dataList, Getter<T, ?> getter)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量新增或更新关联关系字段记录，通过 `Getter` 方法指定关联关系字段。返回包含更新字段值的模型数据列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `dataList` - 当前模型数据列表。
-  - `getter` - 关联关系字段的 `Getter` 方法，例如 `Model::getField`。
-+ **返回值**：包含更新字段值的模型数据列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> listFieldSave(List<T> dataList, Getter<T, ?> getter)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch add or update association field records by specifying the association field via a `Getter` method. Returns a list of model data with updated field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameters**:  
+  - `dataList` - The current model data list.  
+  - `getter` - The `Getter` method for the association field, e.g., `Model::getField`.  
++ **Return Value**: A list of model data containing the updated field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
@@ -2914,25 +2777,25 @@ List<RelationObject> o2mObjects = new ArrayList<RelationObject>();
 RelationObject relationObject = new RelationObject()
 o2mObjects.add(relationObject);
 user.setO2MField(o2mObjects);
-//先保存one这边的记录
+// Save the one-side record first
 user.create();
-//再保存one2many,many2many的关系字段
+// Then save the one2many/many2many relation fields
 List<User> userList = new ArrayList<>();
 userList.add(user);
 List<User> updatedUsers = new User().listFieldSave(userList, User::getO2MField);
-```
+```  
 
-### 12、listFieldSave
+### 12. listFieldSave  
 
-+ **方法签名**：`<T extends AbstractModel> List<T> listFieldSave(List<T> dataList, String fieldName)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量新增或更新关联关系字段记录，通过字段名指定关联关系字段。返回包含更新字段值的模型数据列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `dataList` - 当前模型数据列表。
-  - `fieldName` - Java 字段名称。
-+ **返回值**：包含更新字段值的模型数据列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> listFieldSave(List<T> dataList, String fieldName)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch add or update association field records by specifying the association field via its name. Returns a list of model data with updated field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameters**:  
+  - `dataList` - The current model data list.  
+  - `fieldName` - The Java field name.  
++ **Return Value**: A list of model data containing the updated field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
@@ -2942,77 +2805,77 @@ List<RelationObject> o2mObjects = new ArrayList<RelationObject>();
 RelationObject relationObject = new RelationObject()
 o2mObjects.add(relationObject);
 user.setO2MField(o2mObjects);
-//先保存one这边的记录
+// Save the one-side record first
 user.create();
-//再保存one2many,many2many的关系字段
+// Then save the one2many/many2many relation fields
 List<User> userList = new ArrayList<>();
 userList.add(user);
 List<User> updatedUsers = new User().listFieldSave(userList, "o2MField");
-```
+```  
 
-### 13、listFieldSaveOnCascade Lambda 表达式指定字段
+### 13. listFieldSaveOnCascade: Specify Fields via Lambda Expression  
 
-+ **方法签名**：`<T extends AbstractModel> List<T> fieldSaveOnCascade(List<T> dataList, Getter<T, ?> getter)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量新增或更新关联关系字段（全量），并按照字段级联策略处理旧记录的关系数据（如：删除、SET_NULL），通过 `Getter` 方法指定关联关系字段。返回包含更新字段值的模型数据列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `dataList` - 当前模型数据列表。
-  - `getter` - 关联关系字段的 `Getter` 方法，例如 `Model::getField`。
-+ **返回值**：包含更新字段值的模型数据列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> fieldSaveOnCascade(List<T> dataList, Getter<T, ?> getter)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch add or update association fields (fully) and handle the relationship data of old records according to the field cascade strategy (e.g., delete, SET_NULL) by specifying the association field via a `Getter` method. Returns a list of model data with updated field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameters**:  
+  - `dataList` - The current model data list.  
+  - `getter` - The `Getter` method for the association field, e.g., `Model::getField`.  
++ **Return Value**: A list of model data containing the updated field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
 user.setId(1L);
-User queriedUser =  = user.queryByPk();
+User queriedUser = user.queryByPk();
 List<RelationObject> o2mObjects = new ArrayList<RelationObject>();
 RelationObject relationObject = new RelationObject()
 o2mObjects.add(relationObject);
 queriedUser.setO2MField(o2mObjects);
 List<User> userList = new ArrayList<>();
 userList.add(queriedUser);
-//如过使用listFieldSave方法，需要自行处理关系差量如：删除与旧记录的关联
+// When using listFieldSave, you need to handle the relation delta manually, e.g., delete associations with old records
 new User().listFieldSaveOnCascade(userList,User::getO2MField);
-```
+```  
 
-### 14、listFieldSaveOnCascade
+### 14. listFieldSaveOnCascade  
 
-+ **方法签名**：`<T extends AbstractModel> List<T> fieldSaveOnCascade(List<T> dataList, String fieldName)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量新增或更新关联关系字段（全量），并按照字段级联策略处理旧记录的关系数据（如：删除、SET_NULL），通过字段名指定关联关系字段。返回包含更新字段值的模型数据列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：
-  - `dataList` - 当前模型数据列表。
-  - `fieldName` - Java 字段名称。
-+ **返回值**：包含更新字段值的模型数据列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> fieldSaveOnCascade(List<T> dataList, String fieldName)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch add or update association fields (fully) and handle the relationship data of old records according to the field cascade strategy (e.g., delete, SET_NULL) by specifying the association field via its name. Returns a list of model data with updated field values.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameters**:  
+  - `dataList` - The current model data list.  
+  - `fieldName` - The Java field name.  
++ **Return Value**: A list of model data containing the updated field values.  
++ **Sample Code**:  
 
 ```java
 User user = new User();
 user.setId(1L);
-User queriedUser =  = user.queryByPk();
+User queriedUser = user.queryByPk();
 List<RelationObject> o2mObjects = new ArrayList<RelationObject>();
 RelationObject relationObject = new RelationObject()
 o2mObjects.add(relationObject);
 queriedUser.setO2MField(o2mObjects);
 List<User> userList = new ArrayList<>();
 userList.add(queriedUser);
-//如过使用listFieldSave方法，需要自行处理关系差量如：删除与旧记录的关联
+// When using listFieldSave, you need to handle the relation delta manually, e.g., delete associations with old records
 new User().listFieldSaveOnCascade(userList,"o2MField");
-```
+```  
 
-## （四）批量操作
+## (IV) Batch Operations  
 
-### 1、createBatch
+### 1. createBatch  
 
-+ **方法签名**：`<T extends AbstractModel> List<T> createBatch(List<T> dataList)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量创建数据记录，返回创建后的模型列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`dataList` - 待创建的数据列表。
-+ **返回值**：创建后的模型列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> List<T> createBatch(List<T> dataList)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch create data records and return the list of created models.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `dataList` - The list of data to be created.  
++ **Return Value**: The list of created models.  
++ **Sample Code**:  
 
 ```java
 List<User> userList = new ArrayList<>();
@@ -3028,17 +2891,17 @@ userList.add(user2);
 
 List<User> createdUsers = user.createBatch(userList);
 System.out.println("Created " + createdUsers.size() + " users.");
-```
+```  
 
-### 2、createOrUpdateBatch
+### 2. createOrUpdateBatch  
 
-+ **方法签名**：`<T extends AbstractModel> Integer createOrUpdateBatch(List<T> dataList)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量创建或更新数据记录，返回影响的行数。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`dataList` - 待操作的数据列表。
-+ **返回值**：影响的行数。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Integer createOrUpdateBatch(List<T> dataList)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch create or update data records and return the number of affected rows.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `dataList` - The list of data to be operated on.  
++ **Return Value**: The number of affected rows.  
++ **Sample Code**:  
 
 ```java
 List<User> userList = new ArrayList<>();
@@ -3054,17 +2917,17 @@ userList.add(user2);
 
 int rows = user.createOrUpdateBatch(userList);
 System.out.println("Rows affected: " + rows);
-```
+```  
 
-### 3、createOrUpdateBatchWithResult
+### 3. createOrUpdateBatchWithResult  
 
-+ **方法签名**：`<T extends AbstractModel> Result<List<T>> createOrUpdateBatchWithResult(List<T> dataList)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量创建或更新数据记录，并返回包含操作结果的 `Result` 对象，其中包含操作后的模型列表。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`dataList` - 待操作的数据列表。
-+ **返回值**：包含操作结果的 `Result` 对象，其中包含操作后的模型列表。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Result<List<T>> createOrUpdateBatchWithResult(List<T> dataList)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch create or update data records and return a `Result` object containing the operation result, which includes the list of operated models.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `dataList` - The list of data to be operated on.  
++ **Return Value**: A `Result` object containing the operation result, including the list of operated models.  
++ **Sample Code**:  
 
 ```java
 List<User> userList = new ArrayList<>();
@@ -3084,17 +2947,17 @@ if (result.isSuccess()) {
 } else {
     System.out.println("Operation failed. Error message: " + result.getErrorMessage());
 }
-```
+```  
 
-### 4、updateBatch
+### 4. updateBatch  
 
-+ **方法签名**：`<T extends AbstractModel> Integer updateBatch(List<T> dataList)`
-+ **来源类**：AbstractModel
-+ **功能描述**：批量更新数据记录，模型数据中必须包含主键或至少一个唯一索引。返回影响的行数。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`dataList` - 待更新的数据列表。
-+ **返回值**：影响的行数。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Integer updateBatch(List<T> dataList)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch update data records. The model data must contain a primary key or at least one unique index. Returns the number of affected rows.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `dataList` - The list of data to be updated.  
++ **Return Value**: The number of affected rows.  
++ **Sample Code**:  
 
 ```java
 List<User> userList = new ArrayList<>();
@@ -3110,17 +2973,17 @@ userList.add(user2);
 
 int rows = user.updateBatch(userList);
 System.out.println("Rows affected: " + rows);
-```
+```  
 
-### 5、deleteByPks
+### 5. deleteByPks  
 
-+ **方法签名**：`<T extends AbstractModel> Boolean deleteByPks(List<T> dataList)`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据主键批量删除记录，模型数据中必须包含主键。返回删除结果。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`dataList` - 待删除的数据列表。
-+ **返回值**：删除成功返回 `true`，否则返回 `false`。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Boolean deleteByPks(List<T> dataList)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch delete records by primary keys. The model data must contain primary keys. Returns the deletion result.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `dataList` - The list of data to be deleted.  
++ **Return Value**: `true` if deletion is successful, otherwise `false`.  
++ **Sample Code**:  
 
 ```java
 List<User> userList = new ArrayList<>();
@@ -3134,17 +2997,17 @@ userList.add(user2);
 
 boolean deleted = user.deleteByPks(userList);
 System.out.println("Delete success: " + deleted);
-```
+```  
 
-### 6、deleteByUniques
+### 6. deleteByUniques  
 
-+ **方法签名**：`<T extends AbstractModel> Boolean deleteByUniques(List<T> dataList)`
-+ **来源类**：AbstractModel
-+ **功能描述**：根据主键或唯一索引批量删除记录，模型数据中必须包含主键或者至少一个唯一索引。返回删除结果。
-+ **泛型参数**：`<T>` - 模型类型，必须是 `AbstractModel` 的子类。
-+ **参数**：`dataList` - 待删除的数据列表。
-+ **返回值**：删除成功返回 `true`，否则返回 `false`。
-+ **示例代码**：
++ **Method Signature**: `<T extends AbstractModel> Boolean deleteByUniques(List<T> dataList)`  
++ **Source Class**: AbstractModel  
++ **Function Description**: Batch delete records by primary keys or unique indices. The model data must contain primary keys or at least one unique index. Returns the deletion result.  
++ **Generic Parameter**: `<T>` - The model type, must be a subclass of `AbstractModel`.  
++ **Parameter**: `dataList` - The list of data to be deleted.  
++ **Return Value**: `true` if deletion is successful, otherwise `false`.  
++ **Sample Code**:  
 
 ```java
 List<User> userList = new ArrayList<>();
@@ -3158,88 +3021,88 @@ userList.add(user2);
 
 boolean deleted = user.deleteByUniques(userList);
 System.out.println("Delete success: " + deleted);
-```
+```  
 
-## （五）QueryWrapper 与 LambdaQueryWrapper 基础用法
+## (V) Basic Usage of QueryWrapper and LambdaQueryWrapper  
 
-### 1、初始化与链式调用
+### 1. Initialization and Chaining  
 
 ```java
-// 初始化 QueryWrapper（指定实体类型）、LambdaQueryWrapper（指定实体类型）
-// 没有传入模型对象的，一定要记住要用调用.from()来传递模型编码
+// Initialize QueryWrapper (specify entity type) and LambdaQueryWrapper (specify entity type)
+// For those not passing a model object, remember to use .from() to pass the model code
 
 QueryWrapper<User> wrapper1 = Pops.query(new User());
 QueryWrapper<User> wrapper2 = Pops.<User>query().from(User.MODEL_MODEL);
-QueryWrapper<User> wrapper3= new QueryWrapper<User>().from(User.MODEL_MODEL);
+QueryWrapper<User> wrapper3 = new QueryWrapper<User>().from(User.MODEL_MODEL);
 
 LambdaQueryWrapper<User> lambdaWrapper1 = Pops.lambdaQuery(new User());
 LambdaQueryWrapper<User> lambdaWrapper2 = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
-LambdaQueryWrapper<User> lambdaWrapper3= new LambdaQueryWrapper<User>().from(User.MODEL_MODEL);
+LambdaQueryWrapper<User> lambdaWrapper3 = new LambdaQueryWrapper<User>().from(User.MODEL_MODEL);
 
 
-// 链式构建条件
+// Build conditions chainably
 wrapper1
     .eq("age", 25)             // age = 25
     .like("name", "张%")       // name LIKE '张%'
-    .orderBy("createDate", false); // 按 createDate 降序
-```
+    .orderBy("createDate", false); // Sort descending by createDate
+```  
 
-### 2、常用条件方法
+### 2. Common Condition Methods  
 
-| **方法**                                                     | **说明**                                                     | **示例**                                                     |
+| **Method**                                                     | **Description**                                                     | **Example**                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `eq(column, value)` | 等于             | `.eq("status", 1)` |
-| `ne(column, value)` | 不等于           | `.ne("deleted", 0)` |
-| `gt(column, value)`<br/>`ge(column, value)`<br/>`lt(column, value)`<br/>`le(column, value)` | 大于<br/>大于等于<br/>小于<br/>小于等于 | `.gt("createDate", "2023-01-01")` |
-| `isNull(column)`<br/>`isNotNull(column)` | 为空<br/>不为空 | `.isNull("email")` |
-| `in(column, collection)` | IN 查询          | `.in("id", Arrays.asList(1,2,3))` |
-| `between(column, value1,value2)` | 闭区间查询       | `.between(User::getCreateDate, "2023-01-01", "2023-12-31")` |
-| `like(column, value)` | 模糊匹配         | `.like("email", "%@example.com")` |
-| `orderBy(column, isAsc)` | 排序             | `.orderBy("age", true)` |
-| `and/or(consumer)` | 嵌套条件         | `.or(sub -> sub.eq("status", 1))` |
-| `groupBy(columns)` | 分组             | `.groupBy("age","status")` |
+| `eq(column, value)` | Equal to             | `.eq("status", 1)` |
+| `ne(column, value)` | Not equal to           | `.ne("deleted", 0)` |
+| `gt(column, value)`<br/>`ge(column, value)`<br/>`lt(column, value)`<br/>`le(column, value)` | Greater than<br/>Greater than or equal to<br/>Less than<br/>Less than or equal to | `.gt("createDate", "2023-01-01")` |
+| `isNull(column)`<br/>`isNotNull(column)` | Is null<br/>Is not null | `.isNull("email")` |
+| `in(column, collection)` | IN query          | `.in("id", Arrays.asList(1,2,3))` |
+| `between(column, value1,value2)` | Closed interval query       | `.between(User::getCreateDate, "2023-01-01", "2023-12-31")` |
+| `like(column, value)` | Fuzzy match         | `.like("email", "%@example.com")` |
+| `orderBy(column, isAsc)` | Sorting             | `.orderBy("age", true)` |
+| `and/or(consumer)` | Nested conditions         | `.or(sub -> sub.eq("status", 1))` |
+| `groupBy(columns)` | Grouping             | `.groupBy("age","status")` |
 
 
 ```java
-// 示例：查询年龄 25 岁且姓名以 "张" 开头的用户
+// Example: Query users aged 25 with names starting with "张"
 QueryWrapper<User> wrapper = Pops.<User>query().from(User.MODEL_MODEL);
 wrapper.eq("age", 25).like("name", "张%");
 
 List<User> users = new User().queryList(wrapper);
-```
+```  
 
-## （六）LambdaQueryWrapper 高级用法
+## (VI) Advanced Usage of LambdaQueryWrapper  
 
-### 1、初始化与类型安全
+### 1. Initialization and Type Safety  
 
 ```java
-// 初始化 LambdaQueryWrapper（避免字段名硬编码）
+// Initialize LambdaQueryWrapper (avoid hardcoding field names)
 LambdaQueryWrapper<User> lambdaWrapper = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
 
 
-// 通过 Lambda 表达式指定字段
+// Specify fields via Lambda expressions
 lambdaWrapper
-    .eq(User::getAge, 25)             // 编译时检查字段存在性
+    .eq(User::getAge, 25)             // Compile-time check for field existence
     .like(User::getName, "张%")
     .orderByDesc(User::getCreateDate);
-```
+```  
 
-### 2、复杂条件组合
+### 2. Complex Condition Combination  
 
 ```java
-// 嵌套条件：年龄 > 30 或 (姓名包含 "李" 且状态为激活)
+// Nested conditions: Age > 30 or (name contains "李" and status is active)
 lambdaWrapper
     .gt(User::getAge, 30)
     .or(sub -> sub
         .like(User::getName, "李%")
         .eq(User::getStatus, "active")
     );
-```
+```  
 
-### 3、动态条件构建
+### 3. Dynamic Condition Building  
 
 ```java
-// 动态添加条件（根据业务逻辑）
+// Dynamically add conditions based on business logic
 String searchName = "王";
 Integer minAge = 20;
 
@@ -3253,200 +3116,198 @@ if (minAge != null) {
 }
 
 List<User> users = new User().queryList(wrapper);
-```
+```  
 
-### 4、拼接 sql
+### 4. SQL Splicing  
 
 ```java
-// apply sql中要用数据库字段的column，而不是模型中的字段名
+// apply: Use database column names, not model field names in SQL
 LambdaQueryWrapper<User> wrapper = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
 // wrapper.apply("date_format(dateColumn,'%Y-%m-%d') = '2008-08-08'")
 wrapper.apply("date_format(create_date,'%Y-%m-%d') = {0}", LocalDate.now())
 
 List<User> users = new User().queryList(wrapper);
-```
+```  
 
-## （七）分页查询实战
+## (VII) Paging Query Practice  
 
-### 1、基础分页
+### 1. Basic Paging  
 
 ```java
-// 分页参数：第 2 页，每页 10 条
+// Paging parameters: Page 2, 10 items per page
 Pagination<User> page = new Pagination<>(2, 10);
 
-// 构建条件
+// Build conditions
 LambdaQueryWrapper<User> wrapper = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
 
 wrapper.eq(User::getDepartmentId, 5);
 
-// 执行分页查询
+// Execute paging query
 page = new User().queryPage(page, wrapper);
 
-// 获取结果
+// Get results
 List<User> userList = page.getContent();
 long total = page.getTotal();
-```
+```  
 
-### 2、分页 + 排序
+### 2. Paging + Sorting  
 
 ```java
 LambdaQueryWrapper<User> wrapper = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
 
 wrapper
     .between(User::getCreateDate, "2023-01-01", "2023-12-31")
-    .orderByAsc(User::getAge)   // 年龄升序
-    .orderByDesc(User::getId);  // ID 降序
-// 分页参数：第 1 页，每页 10 条
+    .orderByAsc(User::getAge)   // Sort age in ascending order
+    .orderByDesc(User::getId);  // Sort ID in descending order
+// Paging parameters: Page 1, 10 items per page
 Pagination<User> page = new Pagination<>(1, 10);
 Pagination<User> page = new User().queryPage(page, wrapper);
-```
+```  
 
-### 3、**分页时关闭 count 查询（性能优化）**
+### 3. Disable Count Query During Paging (Performance Optimization)  
 
 ```java
 Pagination<User> page = new Pagination<>(1, 10);
-page.setSearchCount(false); // 禁用 SELECT COUNT(*)
-```
+page.setSearchCount(false); // Disable SELECT COUNT(*)
+```  
 
-### 4、完整示例：多条件分页查询
+### 4. Complete Example: Multi-Condition Paging Query  
 
 ```java
-// 1. 构建分页参数
+// 1. Build paging parameters
 Pagination<User> page = new Pagination<>(1, 10);
-// page.setSearchCount(true); // 默认返回总记录数，不需要设置
+// page.setSearchCount(true); // Default returns total records, no need to set
 
-// 2. 构建 Lambda 条件
+// 2. Build Lambda conditions
 LambdaQueryWrapper<User> wrapper = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
 wrapper
-    .ge(User::getAge, 18)                    // 年龄 >= 18
-    .le(User::getAge, 30)                    // 年龄 <= 30
-    .in(User::getRole, Arrays.asList("admin", "editor")) // 角色 IN 查询
-    .orderByAsc(User::getAge)                // 年龄升序
-    .orderByDesc(User::getCreateDate);       // 创建时间降序
+    .ge(User::getAge, 18)                    // Age >= 18
+    .le(User::getAge, 30)                    // Age <= 30
+    .in(User::getRole, Arrays.asList("admin", "editor")) // Role IN query
+    .orderByAsc(User::getAge)                // Sort age in ascending order
+    .orderByDesc(User::getCreateDate);       // Sort creation time in descending order
 
-// 3. 执行分页查询
+// 3. Execute paging query
 page = new User().queryPage(page, wrapper);
 
-// 4. 获取结果
+// 4. Get results
 List<User> userList = page.getContent();
 long total = page.getTotal();
-```
+```  
 
-### 5、list查询使用技巧
+### 5. List Query Tips  
 
-#### BatchSizeHintApi
+#### BatchSizeHintApi  
 
-在处理大量数据查询时，合理设置查询的批量数量可以优化性能，减少内存消耗和网络传输压力。比如在分页查询或批量数据处理场景中，根据数据量和系统资源情况，精确控制每次查询返回的数据量。
+When handling large data queries, reasonably setting the query batch size can optimize performance, reduce memory consumption, and network transmission pressure. For example, in paging queries or batch data processing scenarios, control the amount of data returned per query based on the data volume and system resources.  
 
 ```java
 public static BatchSizeHintApi use(Integer batchSize) {
-    // 具体实现
+    // Specific implementation
 }
-```
+```  
 
-`use(Integer batchSize)`：通过传入一个整数值来指定查询的批量数量。该整数值代表每次查询返回的数据量，特殊值`-1`表示不分页，一次性返回所有符合条件的数据。
+`use(Integer batchSize)`: Specify the query batch size by passing an integer value. This integer represents the number of data items returned per query. The special value `-1` means no paging, returning all qualified data at once.  
 
-#### BatchSizeHintApi 使用示例
+#### BatchSizeHintApi Usage Example  
 
-在`try`块内，所有查询操作都会按照指定的`batchSize`进行查询。
+Within the `try` block, all query operations will be performed according to the specified `batchSize`.  
 
 ```java
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
     PetShopProxy data2 = data.queryById();
     data2.fieldQuery(PetShopProxy::getPetTalents);
 }
-```
+```  
 
-# 六、持久层操作
+# VI. Persistence Layer Operations  
 
-## （一）批量操作
+## (I) Batch Operations  
 
-批量操作涵盖**批量创建**与**批量更新**两种模式，系统默认采用 `batchCommit` 作为提交类型。目前支持以下四种提交类型，配置参考：[批量操作配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#3、批量操作配置)。
+Batch operations cover two modes: **batch creation** and **batch update**. The system uses `batchCommit` as the default submission type. Currently, four submission types are supported. For configuration references, see: [Batch Operation Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#3、批量操作配置).  
 
-### 1、运行时配置
+### 1. Runtime Configuration  
 
-系统批量更新提交方式默认规则：
+Default rules for the system's batch update submission method:  
++ Non-optimistic lock models use `batchCommit` (single-script batch submission, no affected rows returned).  
++ Optimistic lock models use `useAndJudgeAffectRows` (submit item by item and validate row counts; throw an exception if inconsistent).  
 
-+ 非乐观锁模型用 `batchCommit`（单脚本批量提交，不返回影响行数）；
-+ 乐观锁模型用 `useAndJudgeAffectRows`（逐条提交并校验行数，不一致则抛异常）。
-  支持运行时修改提交方式：
+Supports modifying the submission method at runtime:  
 
 ```java
 Spider.getDefaultExtension(BatchApi.class).run(() -> {
-    更新逻辑
-}, 批量提交类型枚举);
-```
+    Update logic
+}, Batch commit type enum);
+```  
 
-### 2、运行时校正
+### 2. Runtime Correction  
 
-系统会根据模型配置在运行时自动校正批量提交类型，具体规则如下：
+The system automatically corrects the batch submission type based on model configuration at runtime. The specific rules are as follows:  
++ **Batch addition scenario**: If the model configures a database auto-increment primary key and the batch submission type is set to `batchCommit`, the system will automatically change it to `collectionCommit`. This is because using `batchCommit` requires single-item submission to obtain the correct primary key return value, which reduces performance.  
++ **Batch update scenario**: If the model configures an optimistic lock and the batch submission type is set to `collectionCommit` or `batchCommit`, the system will automatically change it to `useAndJudgeAffectRows`. If you want the system to not perform batch submission type changes, you can choose to invalidate the optimistic lock.  
 
-+ **批量新增场景**：若模型配置了数据库自增主键，且批量提交类型设为 `batchCommit`，系统会自动将其变更为 `collectionCommit`。因为使用 `batchCommit` 时需单条提交才能获取正确的主键返回值，这会降低性能。
-+ **批量更新场景**：若模型配置了乐观锁，且批量提交类型设为 `collectionCommit` 或 `batchCommit`，系统会自动将其变更为 `useAndJudgeAffectRows`。若希望系统不进行批量提交类型变更处理，可选择使乐观锁失效。
+## (II) Optimistic Lock  
 
-## （二）乐观锁
+When processing data that may encounter concurrent modifications, concurrent control is usually required. There are two common concurrent control methods at the database level: pessimistic lock and optimistic lock. Oinone provides certain support for optimistic locks.  
 
-在处理可能遭遇并发修改的数据时，通常需要进行并发控制。数据库层面常见的并发控制方式有两种：悲观锁和乐观锁。oinone 对乐观锁提供了一定的支持。
+### 1. Optimistic Lock Definition Methods  
 
-### 1、乐观锁定义方式
+There are two ways to define an optimistic lock:  
++ **Quick inheritance**: By inheriting `VersionModel`, you can quickly build a model with an optimistic lock, a unique code `code`, and a primary key `id`.  
++ **Annotation marking**: Using the `@Field.Version` annotation on a field marks that the model uses an optimistic lock when updating data.  
 
-乐观锁有以下两种定义方式：
+### 2. Exception Handling  
 
-+ **快捷继承**：通过继承 `VersionModel`，可以快速构建一个带有乐观锁、唯一编码 `code` 且主键为 `id` 的模型。
-+ **注解标识**：在字段上使用 `@Field.Version` 注解，可标识该模型在更新数据时使用乐观锁。
+When the number of actual affected rows in an update operation does not match the number of input parameters, the system throws an exception with the error code 10150024. When updating data in batches, to accurately return the number of actual affected rows, the system changes batch submission to cyclic single-item submission for updates, which may cause certain performance loss.  
 
-### 2、异常处理
+### 3. Optimistic Lock Invalidation Handling  
 
-当更新操作的实际影响行数与传入参数的数量不一致时，系统会抛出异常，错误码为 10150024。在批量更新数据时，为了准确返回实际影响行数，系统会将批量提交改为循环单条数据提交更新，这可能会导致一定的性能损失。
-
-### 3、乐观锁失效处理
-
-若一个模型在某些场景下需要使用乐观锁更新数据，而在另一些场景下不需要，可以使用以下代码在特定场景下使乐观锁失效：
+If a model needs to use an optimistic lock to update data in some scenarios but not in others, you can use the following code to invalidate the optimistic lock in specific scenarios:  
 
 ```java
 PamirsSession.directive().disableOptimisticLocker();
 try {
-    // 更新逻辑
+    // Update logic
 } finally {
     PamirsSession.directive().enableOptimisticLocker();
 }
-```
+```  
 
-### 4、不抛乐观锁异常处理
+### 4. Handle Without Throwing Optimistic Lock Exception  
 
-若不想抛出乐观锁异常，可将批量提交类型设置为 `useAffectRows`，这样就能由外层逻辑自主判断返回的实际影响行数。示例代码如下：
+If you do not want to throw an optimistic lock exception, you can set the batch submission type to `useAffectRows`, allowing the outer logic to independently determine the returned number of actual affected rows. Sample code:  
 
 ```java
 Spider.getDefaultExtension(BatchApi.class).run(() -> {
-    // 更新逻辑，返回实际影响行数
+    // Update logic, return the number of actual affected rows
 }, BatchCommitTypeEnum.useAffectRows);
-```
+```  
 
-通过上述方式，你可以灵活地运用乐观锁进行并发控制，同时根据实际需求处理异常和性能问题。
+Through the above methods, you can flexibly use optimistic locks for concurrent control while handling exceptions and performance issues according to actual needs.  
 
-:::danger 警告
+:::danger Warning  
 
-使用乐观锁时，单记录更新操作要手动判断影响行数。若未判断，更新失败时程序不会报错，而`batch`接口则会自动校验并报错 。
+When using optimistic locks, manual judgment of affected rows is required for single-record update operations. If not judged, the program will not report an error when the update fails, while the `batch` interface will automatically validate and report an error.  
 
-:::
+:::  
 
-:::danger 警告：对可能产生的严重后果的提醒
+:::danger Warning: Reminder of Possible Serious Consequences  
 
-自定义页面使用乐观锁，需在视图 xml 中配置`optVersion`字段（可设为隐藏），否则校验失败。
+When using optimistic locks in custom pages, you need to configure the `optVersion` field in the view XML (can be set to hidden); otherwise, the validation will fail.  
 
-:::
+:::  
 
-# 七、异常处理
+# VII. Exception Handling  
 
-## （一）模块异常枚举定义
+## (I) Module Exception Enum Definition  
 
-使用 `@Errors` 注解定义模块专属异常枚举，示例：
+Use the `@Errors` annotation to define module-specific exception enums. Example:  
 
 ```java
-@Errors(displayName = "xxx模块错误枚举")
+@Errors(displayName = "xxx module error enum")
 public enum XxxxExpEnumerate implements ExpBaseEnum {
     CUSTOM_ERROR(ERROR_TYPE.SYSTEM_ERROR, xxxxxxxx,""),
-    SYSTEM_ERROR(ERROR_TYPE.SYSTEM_ERROR, xxxxxxxx, "系统异常");
+    SYSTEM_ERROR(ERROR_TYPE.SYSTEM_ERROR, xxxxxxxx, "System exception");
 
     private ERROR_TYPE type;
     private int code;
@@ -3462,15 +3323,12 @@ public enum XxxxExpEnumerate implements ExpBaseEnum {
     @Override public int code() { return code; }
     @Override public String msg() { return msg; }
 }
-```
+```  
 
-## （二）异常抛出
+## (II) Throwing Exceptions  
 
-通过 `PamirsException.construct` 方法抛出异常：
+Throw exceptions via the `PamirsException.construct` method:  
 
 ```java
-throw PamirsException.construct(XxxxExpEnumerate.CUSTOM_ERROR).appendMsg("异常附带必要的信息，非必须").errThrow();
+throw PamirsException.construct(XxxxExpEnumerate.CUSTOM_ERROR).appendMsg("Necessary information attached to the exception, non-mandatory").errThrow();
 ```
-
-
-

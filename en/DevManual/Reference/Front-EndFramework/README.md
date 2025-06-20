@@ -1,17 +1,17 @@
 ---
-title: 前端API（Front-End framework）
+title: Front-End framework
 index: false
 category:
-  - 研发手册
+  - DevManual
   - Reference
-  - 前端API
+  - Front-End framework
 dir:
   link: false
   order: 2
 prev:
-  text: 通用工具 API（Tools API）
+  text: Tools API
   link: /en/DevManual/Reference/Back-EndFramework/AdvanceAPI/tools-API.md
 next:
-  text: 框架概览（Framework Overview）
+  text: Framework Overview
   link: /en/DevManual/Reference/Front-EndFramework/framework-overview.md
 ---

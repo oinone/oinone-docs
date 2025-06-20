@@ -1,23 +1,23 @@
 ---
-title: 数据操作：复杂字段类型的导入导出
+title: Data Operations:Import and Export of Complex Field Types
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 28
 ---
 
-若期望导出的字段来自该模型所关联对象中的某一字段，那么在创建模板时，需采用 “对象.字段” 的形式 。并且，在执行导出操作时，要手动设置该字段。举例而言，对于 PamirsEmployee 模型中的 company 关联对象，可通过 `company.name` 的方式创建对应的值用于导出。
+If the field to be exported is from a related object of the model, when creating the template, you need to use the form of "object.field". Additionally, during the export operation, you must manually set this field. For example, for the company associated object in the PamirsEmployee model, you can create the corresponding value for export using `company.name`.
 
-# 一、模型定义
+# I. Model Definition
 ```java
 @Field.many2one
 @Field.Relation(relationFields = {"companyCode"}, referenceFields = {"code"})
-@Field(displayName = "所属公司")
+@Field(displayName = "Affiliated Company")
 private PamirsCompany company;
 ```
 
 ```java
-//定义员工导入导出模版
+// Define the employee import/export template
 @Component
 public class EmployeeTemplate implements ExcelTemplateInit {
 
@@ -25,22 +25,22 @@ public class EmployeeTemplate implements ExcelTemplateInit {
 
     @Override
     public List<ExcelWorkbookDefinition> generator() {
-        //可以返回多个模版，导出的时候页面上由用户选择导出模版
+        // Can return multiple templates, and the user selects the export template on the page
         return Collections.singletonList(
             ExcelHelper.fixedHeader(PetShop.MODEL_MODEL, TEMPLATE_NAME)
             .createBlock(TEMPLATE_NAME, PetShop.MODEL_MODEL)
             .setType(ExcelTemplateTypeEnum.EXPORT)
-            //使用company.name获取PamirsCompany里面的name字段
-            .addColumn("company.name", "所属公司")
+            // Use company.name to get the name field in PamirsCompany
+            .addColumn("company.name", "Affiliated Company")
             .build());
     }
 }
-//手动设置该字段，如2所示
+// Manually set this field, as shown in 2
 ```
 
-# 二、代码示例
-## （一）非存储字段的导出
-若期望导出的字段为非存储字段，鉴于默认情况下仅导出存储于数据库中的字段，因而针对非存储字段，需在导出时进行手动设置 。
+# II. Code Examples
+## (一) Export of Non-Stored Fields
+If the field to be exported is a non-stored field, since by default only fields stored in the database are exported, manual setting is required for non-stored fields during export.
 
 ```java
 @Slf4j
@@ -54,7 +54,7 @@ public class EmpTemplateExportExtPoint extends DefaultExcelExportFetchDataExtPoi
             return super.fetchExportData(exportTask, context);
         }
 
-        //重写rawQueryList方法，使用listFieldQuery将非存储字段单独设置
+        // Override the rawQueryList method and use listFieldQuery to set non-stored fields separately
         @Override
         protected List<?> rawQueryList(IWrapper<?> wrapper) {
             List<PamirsEmployee> pamirsEmployeeProxies = (List<PamirsEmployee>) Models.data().queryListByWrapper(wrapper);
@@ -66,12 +66,12 @@ public class EmpTemplateExportExtPoint extends DefaultExcelExportFetchDataExtPoi
 }
 ```
 
-## （二）多值字段导入
-若所需导入的字段存在多个值的情况，可创建一个代理模型。在此代理模型中，设置一个字段用于接收该多值字段。具体操作方式为，在 Excel 中，于一个单元格内填写多值字段，每个字段之间使用自定义符号（例如：“;”）进行分割。在创建模板时，使用该代理类对应的模板。在执行导入与导出操作时，再依据 “;” 对字段进行截取处理。
+## (二) Multi-Value Field Import
+If the field to be imported has multiple values, you can create a proxy model. In this proxy model, set a field to receive the multi-value field. Specifically, in Excel, fill the multi-value field in a single cell, with each value separated by a custom symbol (e.g., ";"). When creating the template, use the template corresponding to this proxy class. During import and export operations, split the field based on ";".
 
 ```java
 @Model.model(PamirsEmployeeProxy.MODEL_MODEL)
-@Model(displayName = "员工导出代理")
+@Model(displayName = "Employee Export Proxy")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
 public class PamirsEmployeeProxy extends PamirsEmployee {
 
@@ -80,29 +80,29 @@ public class PamirsEmployeeProxy extends PamirsEmployee {
         public static final String MODEL_MODEL = "business.PamirsEmployeeProxy";
 
         @Field.String
-        @Field(displayName = "部门编码列表")
+        @Field(displayName = "Department Code List")
         private String departmentCodeList;
 }
 ```
 
-创建模版时创建代理模型的字段
+Create fields of the proxy model when creating the template
 
 ```java
-.addColumn("departmentCodeList", "部门编码列表")
+.addColumn("departmentCodeList", "Department Code List")
 ```
 
-导入操作：创建一个新类，将其作为导入功能的扩展点，该类需继承 `AbstractExcelImportDataExtPointImpl` 类 。
+Import operation: Create a new class as an extension point for the import function, which needs to inherit the `AbstractExcelImportDataExtPointImpl` class.
 
 ```java
 @Component
 @Ext(ExcelImportTask.class)
 @Slf4j
 public class EmpTemplateImportExtPoint extends AbstractExcelImportDataExtPointImpl<PamirsEmployeeProxy> {
-    //必须加这个方法，它使用EmployeeTemplate.TEMPLATE_NAME来指定导入模版
+    // This method must be added, which uses EmployeeTemplate.TEMPLATE_NAME to specify the import template
     @Override
     @ExtPoint.Implement(expression = "importContext.definitionContext.name==\"" + EmployeeTemplate.TEMPLATE_NAME + "\"")
     public Boolean importData(ExcelImportContext importContext, PamirsEmployeeProxy data) {
-        //TODO 根据逻辑校验数据
+        // TODO Validate data according to business logic
         String departmentCodeList = data.getDepartmentCodeList();
         if (StringUtils.isNotEmpty(departmentCodeList)) {
             String[] departmentCodes = departmentCodeList.split(";");
@@ -113,7 +113,7 @@ public class EmpTemplateImportExtPoint extends AbstractExcelImportDataExtPointIm
 }
 ```
 
-导出操作：创建一个新类，将其作为导出功能的扩展点，该类需继承 `DefaultExcelExportFetchDataExtPoint` 类。
+Export operation: Create a new class as an extension point for the export function, which needs to inherit the `DefaultExcelExportFetchDataExtPoint` class.
 
 ```java
 @Slf4j
@@ -121,17 +121,17 @@ public class EmpTemplateImportExtPoint extends AbstractExcelImportDataExtPointIm
 @Ext(ExcelExportTask.class)
 @SuppressWarnings({"unchecked"})
 public class EmpTemplateExportExtPoint extends DefaultExcelExportFetchDataExtPoint {
-    //必须加这个方法，它使用EmployeeTemplate.TEMPLATE_NAME来指定导出模版
+    // This method must be added, which uses EmployeeTemplate.TEMPLATE_NAME to specify the export template
     @Override
     @ExtPoint.Implement(expression = "context.name==\"" + EmployeeTemplate.TEMPLATE_NAME + "\"")
     public List<Object> fetchExportData(ExcelExportTask exportTask, ExcelDefinitionContext context) {
-        //TODO 根据逻辑校验数据
+        // TODO Validate data according to business logic
         return super.fetchExportData(exportTask, context);
     }
 
     @Override
     protected List<?> rawQueryList(IWrapper<?> wrapper) {
-        //TODO 根据逻辑校验行数据
+        // TODO Validate row data according to business logic
         List<PamirsEmployeeProxy> pamirsEmployeeProxies = (List<PamirsEmployeeProxy>) Models.data().queryListByWrapper(wrapper);
         if (CollectionUtils.isNotEmpty(pamirsEmployeeProxies)) {
             new PamirsEmployeeProxy().listFieldQuery(pamirsEmployeeProxies, PamirsEmployeeProxy::getDepartmentList);
@@ -148,4 +148,3 @@ public class EmpTemplateExportExtPoint extends DefaultExcelExportFetchDataExtPoi
     }
 }
 ```
-

@@ -1,35 +1,35 @@
 ---
-title: 依赖配置：如何添加数据可视化运行时依赖
+title: Dependency Configuration:How to Add Data Visualization Runtime Dependencies
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 1
 prev:
-  text: 路由扩展：添加新路由，比如覆盖默认的登录页
+  text: Routing Extension:Add New Routes, Such as Overriding the Default Login Page
   link: /en/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
 ---
 
-# 一、前端
-1. `package.json`中新增依赖 `@kunlun/data-designer-open-pc`,版本跟`@kunlun/dependencies`的填一样
-2. `src/main.ts`内导入依赖
+# 一、Frontend
+1. Add the dependency `@kunlun/data-designer-open-pc` in `package.json` with the same version as `@kunlun/dependencies`.
+2. Import the dependency in `src/main.ts`:
 
 ```typescript
 import 'reflect-metadata';
 import { VueOioProvider } from '@kunlun/dependencies';
 
-// START 导入代码放在导入@kunlun/dependencies之后
+// START Import code after importing @kunlun/dependencies
 import '@kunlun/data-designer-open-pc';
-// END 导入代码放在VueOioProvider()方法执行前
+// END Import code before executing VueOioProvider()
 
 VueOioProvider({
     // TODO
 });
 ```
 
-# 二、后端
-## （一）父pom新增依赖
+# 二、Backend
+## （一）Add Dependencies to Parent pom
 ```xml
-<!-- 平台基础 -->
+<!-- Platform Basics -->
 <oinone.version>5.3.5</oinone.version>
 
 <dependencyManagement>
@@ -45,16 +45,15 @@ VueOioProvider({
 </dependencyManagement>
 ```
 
-## （二）boot启动工程的pom新增依赖
+## （二）Add Dependencies to pom of Boot Startup Project
 ```xml
 <dependency>
     <groupId>pro.shushi.pamirs.data.visualization</groupId>
     <artifactId>pamirs-data-visualization-core</artifactId>
 </dependency>
-
 ```
 
-## （三）application.yml配置新增依赖
+## （三）Add Dependencies to application.yml Configuration
 ```yaml
 pamirs:
   boot:
@@ -62,9 +61,8 @@ pamirs:
       - datavi
 ```
 
-:::info 注意：
+:::info Note:
 
-datavi 这个模块在业务工程和设计器指定数据源要保持一致。
+The `datavi` module must use consistent data sources in both business projects and the designer.
 
 :::
-

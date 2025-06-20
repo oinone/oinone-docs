@@ -1,164 +1,161 @@
 ---
-title: 软件公司：标准化与定制化共生的范式
+title: Software Companies:The Paradigm of Standardization and Customization Symbiosis
 index: true
 category:
-  - 研发手册
-  - 最佳范式
+  - Development Manual
+  - Best Paradigms
 order: 5
 next:
-  text: 全局layout：自定义树形组件，树形组件默认选中第一个值
+  text: Global Layout:Custom Tree Component with Default First Value Selection
   link: /en/DevManual/CommonSolutions/Front-End/global-layout-custom-tree-component-default-selection.md
 ---
-# 一、引言
+# I. Introduction
 
-中国软件企业在产品化与项目化之间长期面临两难选择：
+Chinese software enterprises have long faced a dilemma between productization and projectization:
 
-+ **模式一：拷贝分支交付**（项目制）：每个客户独立部署分支版本，导致版本碎片化、升级困难、运维成本高、技术资产无法沉淀。
-+ **模式二：统一标品交付**（产品制）：强推标准化产品，却陷入客户个性化需求与产品通用性的无休止博弈，需求排队严重，交付周期失控。
++ **Model 1: Copy Branch Delivery** (Project-based): Each customer deploys independent branch versions, leading to fragmented versions, difficult upgrades, high operation and maintenance costs, and inability to precipitate technical assets.
++ **Model 2: Unified Standard Product Delivery** (Product-based): Forcing standardized products into the market, yet falling into endless games between customer personalized needs and product universality, with serious demand backlogs and out-of-control delivery cycles.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/1746582258145-54a27012-c76e-4dee-aede-400ebbff0b97.png)
 
-这两种模式均难以平衡"规模化复制"与"客户价值兑现"的矛盾。而基于Oinone构建企业级产品化引擎，或将成为破局关键。
+Both models struggle to balance the contradiction between "large-scale replication" and "customer value realization". Building an enterprise-level productization engine based on Oinone may become the key to breaking this deadlock.
 
-# 二、Oinone的共生范式
+# II. Oinone's Symbiosis Paradigm
 
-Oinone的价值不在于替代软件公司现有系统，提供一种"标准化与定制化共生"的范式：
+The value of Oinone does not lie in replacing existing systems of software companies but in providing a paradigm of "symbiosis between standardization and customization":
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/1746582250592-d448ef90-c760-42f0-98c9-fcc1b5784fc6.png)
 
-**（1）模块化架构：标品研发的工业化底座**
+**(1) Modular Architecture: The Industrial Foundation for Standard Product R&D**
 
-+ 模块间松耦合设计，支持"核心标品+可插拔扩展"的产品组合策略
++ Loosely coupled design between modules supports a product portfolio strategy of "core standard products + pluggable extensions"
 
-**（2）低代码平台：项目交付的效率革命**
+**(2) Low-Code Platform: The Efficiency Revolution for Project Delivery**
 
-+ 无代码设计器实现无代码配置（表单/流程/报表/系统集成/AI集成定制），满足快速原型验证
-+ 基于Java+Vue的低代码研发框架支持深度开发，复杂业务逻辑开发效率提升50%
++ No-code designers enable no-code configuration (forms/processes/reports/system integration/AI integration customization) to meet rapid prototype verification
++ Low-code R&D framework based on Java+Vue supports in-depth development, improving complex business logic development efficiency by 50%
 
-**（3）标准化与定制化共生：破解升级魔咒**
+**(3) Symbiosis of Standardization and Customization: Cracking the Upgrade魔咒 (Curse)**
 
-+ 定制模块与标准代码物理隔离，确保核心系统可维护性
-+ 通过继承体系实现客户定制与产品演进的并行发展
++ Physical isolation between customized modules and standard code ensures core system maintainability
++ Parallel development of customer customization and product evolution through inheritance systems
 
-Oinone技术框架的本质价值在于**建立软件工业化的技术基座**：当技术架构具备持续进化能力时，软件公司才能真正摆脱"项目越多，负担越重"的死亡螺旋，走向价值增长的良性循环。
+The essential value of the Oinone technical framework lies in **establishing the technical foundation for software industrialization**: When the technical architecture has the ability to continuously evolve, software companies can truly escape the "death spiral" where more projects mean heavier burdens and move towards a virtuous cycle of value growth.
 
-# 三、Oinone的实施路线图
+# III. Oinone Implementation Roadmap
 
-**（1）技术底座构建阶段**
+**(1) Technical Foundation Construction Stage**
 
-+ 集成Oinone框架，结合自身场景需求整合第3方能力
-+ 基于Oinone追加符合自身场景需求的主题风格与前端组件
++ Integrate the Oinone framework and combine third-party capabilities according to self-scene requirements
++ Add theme styles and frontend components that meet self-scene requirements based on Oinone
 
-**（2）标品建设与交付体系重构**
+**(2) Standard Product Construction and Delivery System Reconstruction**
 
-+ **研发模式升级**：功能模块开发标准化（从需求分析→模型定义→视图设计→权限配置的工业化流水线）。
-+ **交付体系重构**：基础框架层（Oinone 企业专属）+ 业务标品层（模块化开发）+ 客户定制层（覆盖继承）的三级架构
++ **R&D Model Upgrade**: Standardize functional module development (industrialized pipeline from requirement analysis→model definition→view design→permission configuration).
++ **Delivery System Reconstruction**: Three-level architecture of basic framework layer (Oinone enterprise exclusive) + business standard product layer (modular development) + customer customization layer (coverage inheritance)
 
-**（3）生态体系成型阶段**
+**(3) Ecological System Formation Stage**
 
-+ 组织边界拓展，建立本地化销售与实施团队
-+ 生态边界拓展，构建销售、实施伙伴体系
++ Expand organizational boundaries and establish localized sales and implementation teams
++ Expand ecological boundaries and build sales and implementation partner systems
 
-# 四、标品开发最佳范式
+# IV. Best Paradigms for Standard Product Development
 
-## （一）研发流程最佳范式
+## (一) Best Paradigms for R&D Processes
 
-参考：与此主题相关的文档可在 “[研发范式：研发流程](/en/DevManual/R&DParadigm/R&D-paradigm-R&D-process.md)” 中找到。
+Reference: Documents related to this topic can be found in "[Development Paradigm: R&D Process](/en/DevManual/R&DParadigm/R&D-paradigm-R&D-process.md)".
 
-数式 Oinone 框架优化前后端分离开发模式。前端仅在组件不满足需求或开发特色组件时介入，减少前后端沟通成本，提升整体效率。
+The Shushi Oinone framework optimizes the front-end and back-end separation development model. The front-end only intervenes when components fail to meet requirements or when developing featured components, reducing communication costs and improving overall efficiency.
 
-**传统模式问题**：流程繁琐，沟通成本高，重复工作多，研发关注点分散，各阶段质量影响系统交付。
+**Problems with Traditional Models**: Tedious processes, high communication costs, excessive repetitive work, scattered R&D focus, and quality at each stage affecting system delivery.
 
-**Oinone 新模式优势**：基于低代码框架，后端专注业务研发和设计，前端专注交互组件沉淀，前端与特定项目解耦，成为公共组织。
+**Advantages of Oinone's New Model**: Based on a low-code framework, the back-end focuses on business R&D and design, the front-end focuses on interactive component precipitation, and the front-end is decoupled from specific projects to become a public organization.
 
-核心建议流程如下：
+The core recommended process is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/401a7d24389d02966575096c2312877c.svg)
 
-## （二）模块设计最佳范式
+## (二) Best Paradigms for Module Design
 
-参考：与此主题相关的文档可在 “[研发范式：模块化设计](/en/DevManual/R&DParadigm/R&D-paradigm-modular-design.md)” 中找到。
+Reference: Documents related to this topic can be found in "[Development Paradigm: Modular Design](/en/DevManual/R&DParadigm/R&D-paradigm-modular-design.md)".
 
-Oinone 的模块化架构是其技术体系的基石，强调 "高内聚、低耦合" 的设计原则。每个模块作为独立单元，封装特定领域的功能逻辑。在业务模块划分中，应充分利用这一特性，将不同的业务功能封装在独立的模块中，每个模块专注于解决特定的业务领域问题。
+Oinone's modular architecture is the cornerstone of its technical system, emphasizing the design principle of "high cohesion, low coupling". Each module serves as an independent unit encapsulating functional logic for specific domains. In business module division, this feature should be fully utilized to encapsulate different business functions in independent modules, with each module focusing on solving problems in specific business domains.
 
-## （三）模型设计最佳范式
+## (三) Best Paradigms for Model Design
 
-参考：与此主题相关的文档可在 “[研发范式：模型设计](/en/DevManual/R&DParadigm/R&D-paradigm-model-design.md)” 中找到。
+Reference: Documents related to this topic can be found in "[Development Paradigm: Model Design](/en/DevManual/R&DParadigm/R&D-paradigm-model-design.md)".
 
-Oinone 作为特定的业务系统或框架，其模型设计的优劣直接影响系统的性能和扩展性。数据库设计的第三范式（3NF）是一种经过实践检验的数据建模准则，将第三范式融入 Oinone 模型设计，有助于构建出结构清晰、高效稳定的模型体系，从而更好地满足业务需求。实际建议如下：
+As a specific business system or framework, the quality of model design in Oinone directly affects system performance and extensibility. The Third Normal Form (3NF) of database design is a proven data modeling criterion. Integrating 3NF into Oinone model design helps construct a clear, efficient, and stable model system to better meet business needs. Practical recommendations are as follows:
 
-**优先遵循3NF的场景：**
+**Scenarios to Prioritize 3NF Compliance**:
 
-+ 核心主数据（如客户、产品）需严格避免冗余。
-+ 高频写操作的字段（如库存数量）需保证一致性。
++ Core master data (such as customers, products) must strictly avoid redundancy.
++ Fields with high-frequency write operations (such as inventory quantity) need to ensure consistency.
 
-**合理反范式的场景：**
+**Scenarios for Reasonable Denormalization**:
 
-+ 高频读操作的报表字段（如统计金额）。
-+ 需要简化复杂查询的业务逻辑（如合并常用关联字段）。
-+ 历史数据归档表（如日志记录允许冗余）。
++ Report fields with high-frequency read operations (such as statistical amounts).
++ Business logic requiring simplified complex queries (such as merging commonly associated fields).
++ Historical data archive tables (such as log records allowing redundancy).
 
-# 五、项目交付-制定二开最佳范式
+# V. Project Delivery - Formulating Best Paradigms for Secondary Development
 
-针对客户的个性化需求，设计具体的标品二开方案。包括功能模块的新增或修改、业务流程的优化、界面的定制化设计等。方案设计需遵循 Oinone 的开发规范和最佳实践，确保二开后的系统稳定、可靠、易于维护。
+Design specific standard product secondary development solutions for customer personalized needs, including新增 (addition) or modification of functional modules, optimization of business processes, and customized interface design. Solution design must follow Oinone's development specifications and best practices to ensure the secondary developed system is stable, reliable, and easy to maintain.
 
-## （一）适用**标品建设进程时**
+## (一) Applicable During Standard Product Construction
 
-**交付体系为**：基础框架层（Oinone 企业专属）+ 业务标品层（模块化开发）+ 客户定制层（覆盖继承）的三级架构
+**Delivery System**: Three-level architecture of basic framework layer (Oinone enterprise exclusive) + business standard product layer (modular development) + customer customization layer (coverage inheritance)
 
-#### 步骤一、新建客户化定制模块，扩展业务逻辑
+#### Step 1: Create a Customized Module to Extend Business Logic
 
-以代码方式：新建客户化定制模块，利用 Oinone 的 upstream 特性，复制标品菜单，以客户化定制模块做为访问入口，方便比对标品与个性化的差异，并遵循 Oinone 的开发规范利用继承、扩展点、钩子等特性开发客户化定制逻辑。
+In code mode: Create a customized module, use Oinone's upstream feature to copy standard product menus, take the customized module as the access entry to facilitate comparison of differences between standard products and personalized features, and follow Oinone's development specifications to develop customized logic using features such as inheritance, extension points, and hooks.
 
-:::warning 提示
+:::warning Tip
 
-Oinone从技术层：很大层度降低了定制化开发需求，如界面、流程、数据可视化，甚至集成都能通过无代码设计器进行配置。
+At the technical layer, Oinone greatly reduces requirements for customized development. Functions like interfaces, processes, data visualization, and even integration can be configured through no-code designers.
 
-业务产品从业务层：当然成熟度越高，业务配置化程度越高，对定制化开发的需求也会越少。
-
-:::
-
-#### 步骤二、借助 界面设计器、流程设计器，以及数据可视化，扩展逻辑
-
-【新增】可以为模块新增页面、流程、数据可视化
-
-【修改】需先复制原有页面、流程、数据可视化相关内容，再进行修改，最后进行触发绑定。符合开闭原则，确保标品与定制化共生，Oinone在设计器中无法直接修改标品内容
-
-:::warning 提示
-
-在此种模式下，模型的新增或扩展通过以代码的方式进行，而不是无代码的模式
+At the business product layer: The higher the maturity, the higher the degree of business configuration, and the fewer requirements for customized development.
 
 :::
 
-#### 步骤三、借助 API 与集成能力，拓展系统边界
+#### Step 2: Extend Logic with Interface Designer, Process Designer, and Data Visualization
 
-Oinone 集成设计器支持丰富的连接器类型，如应用（WebService 和 RESTful API）、数据库（ SQL ）、文件等，为系统与外部应用的集成提供了可能。
+[New] Add new pages, processes, and data visualizations for modules.  
+[Modify] First copy original page, process, and data visualization content, then modify, and finally bind triggers. This complies with the开闭原则 (Open-Closed Principle) to ensure symbiosis between standard products and customization. Oinone's designer cannot directly modify standard product content.
 
-## （二）适用**生态体系成型阶段**
+:::warning Tip
 
-:::warning 提示
-
-较前一种二开方案，此模式的优越性基于：大部分客户无需开发介入。
+In this mode, model addition or extension is done through code rather than no-code mode.
 
 :::
 
-#### 步骤一、通过应用中心新建客户化定制模块
+#### Step 3: Expand System Boundaries with API and Integration Capabilities
 
-以无代码方式：在应用中心新建客户化定制模块，配置 upstream 特性，复制标品菜单，以客户化定制模块做为访问入口，方便比对标品与个性化的差异。
+Oinone's integration designer supports rich connector types, such as applications (WebService and RESTful API), databases (SQL), files, etc., enabling integration between systems and external applications.
 
-#### 步骤二、借助 模型设计器、界面设计器、流程设计器，以及数据可视化，扩展逻辑
+## (二) Applicable During Ecological System Formation Stage
 
-【新增】可以为模块新增模型字段、新增页面、流程、数据可视化
+:::warning Tip
 
-【修改】需先复制原有页面、流程、数据可视化相关内容，再进行修改，最后进行触发绑定。符合开闭原则，确保标品与定制化共生，Oinone在设计器中无法直接修改标品内容
+Compared with the previous secondary development solution, the superiority of this model is based on: most customers do not require development intervention.
 
-#### 步骤三、借助 API 与集成能力，拓展系统边界
+:::
 
-Oinone 集成设计器支持丰富的连接器类型，如应用（WebService 和 RESTful API）、数据库（ SQL ）、文件等，为系统与外部应用的集成提供了可能。
+#### Step 1: Create a Customized Module via the Application Center
 
-#### 步骤四、借助 Oinone 的低无一体特性
+In no-code mode: Create a customized module in the application center, configure the upstream feature, copy standard product menus, and use the customized module as the access entry to facilitate comparison of differences between standard products and personalized features.
 
-参考：与此主题相关的文档可在 “[用户手册：低无一体](/en/UserManual/low-code-no-code-integration.md)” 中找到。
+#### Step 2: Extend Logic with Model Designer, Interface Designer, Process Designer, and Data Visualization
 
-当出现有特殊逻辑时，利用低无一体反向生产 Oinone 的代码工程，再同样以遵循 Oinone 的开发规范利用继承、扩展点、钩子等特性开发客户化定制逻辑。
+[New] Add new model fields, pages, processes, and data visualizations for modules.  
+[Modify] First copy original page, process, and data visualization content, then modify, and finally bind triggers. This complies with the Open-Closed Principle to ensure symbiosis between standard products and customization. Oinone's designer cannot directly modify standard product content.
 
+#### Step 3: Expand System Boundaries with API and Integration Capabilities
+
+Oinone's integration designer supports rich connector types, such as applications (WebService and RESTful API), databases (SQL), files, etc., enabling integration between systems and external applications.
+
+#### Step 4: Leverage Oinone's Low-Code and No-Code Integration Feature
+
+Reference: Documents related to this topic can be found in "[User Manual: Low-Code and No-Code Integration](/en/UserManual/low-code-no-code-integration.md)".
+
+When special logic arises, use low-code and no-code integration to reversely generate Oinone's code project, and then follow Oinone's development specifications to develop customized logic using features such as inheritance, extension points, and hooks.

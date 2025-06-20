@@ -2,9 +2,9 @@
 title: Gallery Field
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 前端API
+  - Front-end API
   - Widget
   - Field
 order: 5
@@ -14,11 +14,11 @@ next:
 ---
 # 一、Reference List
 
-## （一）文本（String）
+## （一）Text (String)
 
 ### 1、GalleryStringFieldWidget{#quote1}
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -30,13 +30,13 @@ next:
 export class GalleryStringFieldWidget extends DetailStringFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ justifyContent：内容对齐方式。（`string | undefined`）
++ justifyContent: Content alignment. (`string | undefined`)
 
 ### 2、GalleryStringColorPickerFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -51,7 +51,7 @@ export class GalleryStringColorPickerFieldWidget extends DetailStringColorPicker
 
 ### 3、GalleryStringHyperlinksFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -64,14 +64,14 @@ export class GalleryStringColorPickerFieldWidget extends DetailStringColorPicker
 export class GalleryStringHyperlinksFieldWidget extends FormStringHyperlinksFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ target：链接打开方式。（`RedirectTargetEnum`）
-+ text：链接文本。（`string | undefined`）
++ target: Link opening method. (`RedirectTargetEnum`)
++ text: Link text. (`string | undefined`)
 
 ### 4、GalleryStringIframeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -86,7 +86,7 @@ export class GalleryStringIframeFieldWidget extends DetailStringIframeFieldWidge
 
 ### 5、GalleryStringMediaPlayerWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -99,13 +99,13 @@ export class GalleryStringIframeFieldWidget extends DetailStringIframeFieldWidge
 export class GalleryStringMediaPlayerWidget extends FormInputAbstractFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ justifyContent：内容对齐方式。（`string | undefined`）
++ justifyContent: Content alignment. (`string | undefined`)
 
 ### 6、GalleryStringUploadFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -118,14 +118,14 @@ export class GalleryStringMediaPlayerWidget extends FormInputAbstractFieldWidget
 export class GalleryStringUploadFieldWidget extends DetailStringUploadFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ cdnKey：CDN 密钥。（`string | undefined`）
-+ privateLink：是否使用私有链接。（`boolean`）
++ cdnKey: CDN key. (`string | undefined`)
++ privateLink: Whether to use a private link. (`boolean`)
 
 ### 7、GalleryStringUploadImgFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -140,7 +140,7 @@ export class GalleryStringUploadImgFieldWidget extends DetailStringUploadImgFiel
 
 ### 8、GalleryStringTagFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -153,15 +153,15 @@ export class GalleryStringUploadImgFieldWidget extends DetailStringUploadImgFiel
 export class GalleryStringTagFieldWidget extends DetailStringTagFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ displayNameList：标签显示列表，从值数组转换而来。（`{ label: string }[]`）
++ displayNameList: Tag display list converted from the value array. (`{ label: string }[]`)
 
-## （二）多行文本（Text）
+## （二）Multiline Text (Text)
 
 ### 1、GalleryCommonFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -179,15 +179,15 @@ export class GalleryStringTagFieldWidget extends DetailStringTagFieldWidget
 export class GalleryCommonFieldWidget extends DetailCommonFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ justifyContent：内容对齐方式。（`string | undefined`）
++ justifyContent: Content alignment. (`string | undefined`)
 
-## （三）富文本（Html）
+## （三）Rich Text (Html)
 
 ### 1、GalleryHtmlFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -199,27 +199,27 @@ export class GalleryCommonFieldWidget extends DetailCommonFieldWidget
 export class GalleryHtmlFieldWidget extends DetailHtmlFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ showHeight：显示高度。（`number | undefined`）
++ showHeight: Display height. (`number | undefined`)
 
-## （四）手机（Phone）
-
-### 1、GalleryStringFieldWidget
-
-**引用**：文本（String）- [GalleryStringFieldWidget](#quote1)
-
-## （五）邮箱（Email）
+## （四）Phone (Phone)
 
 ### 1、GalleryStringFieldWidget
 
-**引用**：文本（String）- [GalleryStringFieldWidget](#quote1)
+**Reference**: Text (String) - [GalleryStringFieldWidget](#quote1)
 
-## （六）整数（Integer）
+## （五）Email (Email)
+
+### 1、GalleryStringFieldWidget
+
+**Reference**: Text (String) - [GalleryStringFieldWidget](#quote1)
+
+## （六）Integer (Integer)
 
 ### 1、GalleryNumberWidget{#quote2}
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -231,23 +231,23 @@ export class GalleryHtmlFieldWidget extends DetailHtmlFieldWidget
 export class GalleryNumberWidget extends DetailNumberWidget
 ```
 
-## （七）浮点数（Float）
+## （七）Floating Point (Float)
 
 ### 1、GalleryNumberWidget
 
-**引用**：整数（Integer）- [GalleryNumberWidget](#quote2)
+**Reference**: Integer (Integer) - [GalleryNumberWidget](#quote2)
 
-## （八）金额（Money）
+## （八）Amount (Money)
 
 ### 1、GalleryNumberWidget
 
-**引用**：整数（Integer）- [GalleryNumberWidget](#quote2)
+**Reference**: Integer (Integer) - [GalleryNumberWidget](#quote2)
 
-## （九）布尔（Boolean）
+## （九）Boolean (Boolean)
 
 ### 1、GalleryBooleanFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -261,7 +261,7 @@ export class GalleryBooleanFieldWidget extends DetailBooleanFieldWidget
 
 ### 2、GalleryBooleanSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -274,11 +274,11 @@ export class GalleryBooleanFieldWidget extends DetailBooleanFieldWidget
 export class GalleryBooleanSelectFieldWidget extends DetailBooleanSelectFieldWidget
 ```
 
-## （十）数据字典（Enum）
+## （十）Data Dictionary (Enum)
 
 ### 1、GalleryEnumFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -290,13 +290,13 @@ export class GalleryBooleanSelectFieldWidget extends DetailBooleanSelectFieldWid
 export class GalleryEnumFieldWidget extends DetailEnumFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ justifyContent：内容对齐方式。（`string | undefined`）
++ justifyContent: Content alignment. (`string | undefined`)
 
 ### 2、GalleryEnumTagFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -309,14 +309,14 @@ export class GalleryEnumFieldWidget extends DetailEnumFieldWidget
 export class GalleryEnumTagFieldWidget extends DetailEnumFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ displayName：当前选中项的标签文本。（`string | null`）
-+ optConfig：选项配置，包含背景色、图标等信息。（`Record<string, any>`）
++ displayName: Label text of the currently selected item. (`string | null`)
++ optConfig: Option configuration, including background color, icon, etc. (`Record<string, any>`)
 
 ### 3、GalleryEnumMultiFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -329,15 +329,15 @@ export class GalleryEnumTagFieldWidget extends DetailEnumFieldWidget
 export class GalleryEnumMultiFieldWidget extends DetailEnumMultiFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ justifyContent：内容对齐方式。（`string | undefined`）
++ justifyContent: Content alignment. (`string | undefined`)
 
-## （十一）时间日期（Datetime）
+## （十一）Time and Date (Datetime)
 
 ### 1、GalleryDateTimeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -351,7 +351,7 @@ export class GalleryDateTimeFieldWidget extends DetailDateTimeFieldWidget
 
 ### 2、GalleryDateTimeCountdownWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -366,7 +366,7 @@ export class GalleryDateTimeCountdownWidget extends GalleryDateTimeFieldWidget
 
 ### 3、GalleryDateTimeRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -378,11 +378,11 @@ export class GalleryDateTimeCountdownWidget extends GalleryDateTimeFieldWidget
 export class GalleryDateTimeRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 ```
 
-## （十二）日期（Date）
+## （十二）Date (Date)
 
 ### 1、GalleryDateFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -396,7 +396,7 @@ export class GalleryDateFieldWidget extends DetailDateFieldWidget
 
 ### 2、GalleryDateCountdownWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -411,7 +411,7 @@ export class GalleryDateCountdownWidget extends GalleryDateFieldWidget
 
 ### 3、GalleryDateRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -423,11 +423,11 @@ export class GalleryDateCountdownWidget extends GalleryDateFieldWidget
 export class GalleryDateRangeFieldWidget extends DetailDateRangeFieldWidget
 ```
 
-## （十三）时间（Time）
+## （十三）Time (Time)
 
 ### 1、GalleryTimeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -441,7 +441,7 @@ export class GalleryTimeFieldWidget extends DetailTimeFieldWidget
 
 ### 2、GalleryTimeRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -453,11 +453,11 @@ export class GalleryTimeFieldWidget extends DetailTimeFieldWidget
 export class GalleryTimeRangeFieldWidget extends DetailTimeRangeFieldWidget
 ```
 
-## （十四）年份（Year）
+## （十四）Year (Year)
 
 ### 1、GalleryYearFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -471,7 +471,7 @@ export class GalleryYearFieldWidget extends DetailYearFieldWidget
 
 ### 2、GalleryYearRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -483,11 +483,11 @@ export class GalleryYearFieldWidget extends DetailYearFieldWidget
 export class GalleryYearRangeFieldWidget extends DetailYearRangeFieldWidget
 ```
 
-## （十五）键值对（Map）
+## （十五）Key-Value Pair (Map)
 
 ### 1、GalleryMapFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -499,11 +499,11 @@ export class GalleryYearRangeFieldWidget extends DetailYearRangeFieldWidget
 export class GalleryMapFieldWidget extends DetailMapFieldWidget
 ```
 
-## （十六）多对一（M2O）
+## （十六）Many-to-One (M2O)
 
 ### 1、GalleryM2OSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -515,11 +515,11 @@ export class GalleryMapFieldWidget extends DetailMapFieldWidget
 export class GalleryM2OSelectFieldWidget extends DetailM2OSelectFieldWidget
 ```
 
-## （十七）一对多（O2M）
+## （十七）One-to-Many (O2M)
 
 ### 1、GalleryO2MSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -531,15 +531,15 @@ export class GalleryM2OSelectFieldWidget extends DetailM2OSelectFieldWidget
 export class GalleryO2MSelectFieldWidget extends DetailO2MSelectFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ currentValueStr：当前选中值的标签文本，用逗号连接。（`string`）
++ currentValueStr: Label text of the currently selected values, separated by commas. (`string`)
 
-## （十八）多对多（M2M）
+## （十八）Many-to-Many (M2M)
 
 ### 1、GalleryM2MSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -550,4 +550,3 @@ export class GalleryO2MSelectFieldWidget extends DetailO2MSelectFieldWidget
 )
 export class GalleryM2MSelectFieldWidget extends GalleryO2MSelectFieldWidget
 ```
-

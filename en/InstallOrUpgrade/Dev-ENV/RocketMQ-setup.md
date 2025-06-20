@@ -1,5 +1,5 @@
 ---
-title: RocketMQ Installation and Notes
+title: RocketMQ Setup
 index: true
 category:
   - installation and upgrade

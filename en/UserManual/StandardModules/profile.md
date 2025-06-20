@@ -1,5 +1,5 @@
 ---
-title: Personal Center
+title: Profile
 index: true
 category:
   - User Manual

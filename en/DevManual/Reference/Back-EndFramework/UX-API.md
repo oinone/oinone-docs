@@ -1,139 +1,139 @@
 ---
-title: 交互 API（UX API）
+title: UX API
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 后端API
+  - Backend API
 order: 5
 
 ---
-# 一、概述
+# 一、Overview
 
-本文档主要介绍 Oinone 中用于配置视觉交互的 Java 注解类。通过这些注解，开发者可以方便地对应用的界面布局、菜单、按钮行为、视图显示等视觉交互相关的功能进行配置。
+This document mainly introduces the Java annotation classes used for configuring visual interactions in Oinone. Through these annotations, developers can easily configure visual interaction-related functions such as application interface layouts, menus, button behaviors, and view displays.
 
-:::warning 提示
+:::warning Tip
 
-Ux类注解只影响默认展示与交互逻辑。
-
-:::
-
-:::warning 提示
-
-本文档可助您快速掌握核心概念与基础逻辑。除了利用`Ux`注解和`XML`配置以外，也推荐使用设计器辅助开发。设计器能够提供可视化操作界面，简化配置流程、降低编码复杂度，帮助您更高效、精准地完成开发任务 ，显著提升开发效率与质量。
+Ux-class annotations only affect the default display and interaction logic.
 
 :::
 
-建议先通过家族图谱建立初步认知，在脑海中形成基础概念框架，以便快速判断需求的可行性
+:::warning Tip
+
+This document helps you quickly master core concepts and basic logic. In addition to using `Ux` annotations and `XML` configuration, it is also recommended to use the designer for auxiliary development. The designer provides a visual operation interface, simplifies the configuration process, reduces coding complexity, helps you complete development tasks more efficiently and accurately, and significantly improves development efficiency and quality.
+
+:::
+
+It is recommended to first establish a preliminary understanding through the family tree and form a basic conceptual framework in your mind to quickly judge the feasibility of requirements.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/UX-API/1745930521148-6df18b41-d756-427b-8b35-05f008bc0ab8.jpeg)
 
-# 二、注解详细说明
+# 二、Detailed Annotation Explanation
 
-## （一）应用相关
+## （一）Application-related
 
 ### 1、`UxAppLogo`
 
-+ **用途**：用于配置应用的 logo。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `value`：应用 logo，与`logo`为别名，默认值为空字符串`""`。
-  - `logo`：应用 logo，与`value`为别名，默认值为空字符串`""`。
-+ **示例**：
++ **Purpose**: Used to configure the application's logo.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `value`: Application logo, alias for `logo`, default empty string `""`.
+  - `logo`: Application logo, alias for `value`, default empty string `""`.
++ **Example**:
 
 ```java
 @UxAppLogo(logo = "path/to/your/app/logo.png")
 public class YourModuleClass {
-    // 类内容
+    // Class content
 }
 ```
 
 ### 2、`UxHomepage`
 
-+ **用途**：配置模块的首页。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `actionName`：引用的 action 名称，默认值为空字符串`""`，为空跳转到模型的表格页面。
-  - `value`：路由配置，类型为`UxRoute`。
-+ **示例**：
++ **Purpose**: Configures the homepage of a module.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `actionName`: Reference action name, default empty string `""`; if empty, redirects to the model's table page.
+  - `value`: Routing configuration, type `UxRoute`.
++ **Example**:
 
 ```java
 @UxHomepage(actionName = "homepageAction", value = @UxRoute(model = TestModel.MODEL_MODEL))
 public class YourModuleClass {
-    // 类内容
+    // Class content
 }
 ```
 
-## （二）菜单相关注解
+## （二）Menu-related Annotations
 
 ### 1、`UxMenus`
 
-+ **用途**：定义菜单集合。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `module`：菜单所属模块，默认为当前模块，默认值为空字符串`""`。
-  - `basePriority`：菜单起始优先级，默认为 0。
++ **Purpose**: Defines a menu collection.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `module`: Module to which the menu belongs, defaults to the current module, default empty string `""`.
+  - `basePriority`: Initial menu priority, default 0.
 
 ### 2、`UxMenu`
 
-+ **用途**：定义单个菜单。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `value`：菜单显示名称，与`label`为别名，默认值为空字符串`""`。
-  - `label`：菜单显示名称，与`value`为别名，默认值为空字符串`""`。
-  - `summary`：菜单的简要描述，默认值为空字符串`""`。
-  - `icon`：菜单图标，默认值为空字符串`""`。
-  - `clientTypes`：菜单适用的客户端类型，默认值为`{ClientTypeEnum.PC, ClientTypeEnum.MOBILE}`。
-+ **示例**：
++ **Purpose**: Defines a single menu.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `value`: Menu display name, alias for `label`, default empty string `""`.
+  - `label`: Menu display name, alias for `value`, default empty string `""`.
+  - `summary`: Brief menu description, default empty string `""`.
+  - `icon`: Menu icon, default empty string `""`.
+  - `clientTypes`: Client types applicable to the menu, default `{ClientTypeEnum.PC, ClientTypeEnum.MOBILE}`.
++ **Example**:
 
 ```java
 @UxMenus public class TestModuleMenus implements ViewActionConstants {
-    @UxMenu("基础数据")
+    @UxMenu("Basic Data")
     class TestModuleBaseMenu {
-        @UxMenu("测试菜单") @UxRoute(TestModel.MODEL_MODEL) class TestModelMenu { }
+        @UxMenu("Test Menu") @UxRoute(TestModel.MODEL_MODEL) class TestModelMenu { }
     }
 }
 ```
 
-:::danger 警告
+:::danger Warning
 
-@UxMenu 必须与 @UxRoute、@UxLink、@UxClient 配合使用
+@UxMenu must be used with @UxRoute, @UxLink, and @UxClient.
 
 :::
 
-## （三）视图相关注解
+## （三）View-related Annotations
 
 ### 1、`UxDetail`
 
-+ **用途**：配置详情视图。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `grid`：栅格数量，默认值为`GridConstants.defaultViewGrid`。
-  - `group`：默认分组标题，默认值为空字符串`""`。
-  - `tabsTable`：是否将所有表格子视图合并为选项卡置于视图底部，默认值为`true`。
-  - **内部注解**`FieldWidget`：用于配置字段组件。
-    * **作用目标**：`ElementType.FIELD`（字段）
-    * **属性**：`value`，类型为`UxWidget`。
-+ **示例**：暂无直接使用示例。
++ **Purpose**: Configures the detail view.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `grid`: Number of grids, default `GridConstants.defaultViewGrid`.
+  - `group`: Default group title, default empty string `""`.
+  - `tabsTable`: Whether to merge all table subviews into tabs at the bottom of the view, default `true`.
+  - **Inner Annotation** `FieldWidget`: Used to configure field components.
+    * **Target**: `ElementType.FIELD` (field)
+    * **Attributes**: `value`, type `UxWidget`.
++ **Example**: No direct usage example currently.
 
 ### 2、`UxForm`
 
-+ **用途**：配置表单视图。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `grid`：栅格数量，默认值为`GridConstants.defaultViewGrid`。
-  - `group`：默认分组标题，默认值为空字符串`""`。
-  - `tabsTable`：是否将所有表格子视图合并为选项卡置于视图底部，默认值为`true`。
-  - **内部注解**`FieldWidget`：用于配置字段组件。
-    * **作用目标**：`ElementType.FIELD`（字段）
-    * **属性**：`value`，类型为`UxWidget`。
-  - **内部注解**`RelationSelect`：用于配置关联关系下拉字段组件。
-    * **作用目标**：`ElementType.FIELD`（字段）
-    * **属性**：`showCreate`，默认值为`true`。
-  - **内部注解**`RelationTable`：用于配置关联关系表格字段组件。
-    * **作用目标**：`ElementType.FIELD`（字段）
-    * **属性**：`showCreate`，默认值为`true`；`showEdit`，默认值为`true`；`showDetail`，默认值为`true`；`showDelete`，默认值为`true`。
-+ **示例**：
++ **Purpose**: Configures the form view.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `grid`: Number of grids, default `GridConstants.defaultViewGrid`.
+  - `group`: Default group title, default empty string `""`.
+  - `tabsTable`: Whether to merge all table subviews into tabs at the bottom of the view, default `true`.
+  - **Inner Annotation** `FieldWidget`: Used to configure field components.
+    * **Target**: `ElementType.FIELD` (field)
+    * **Attributes**: `value`, type `UxWidget`.
+  - **Inner Annotation** `RelationSelect`: Used to configure associated relationship drop-down field components.
+    * **Target**: `ElementType.FIELD` (field)
+    * **Attributes**: `showCreate`, default `true`.
+  - **Inner Annotation** `RelationTable`: Used to configure associated relationship table field components.
+    * **Target**: `ElementType.FIELD` (field)
+    * **Attributes**: `showCreate`, default `true`; `showEdit`, default `true`; `showDetail`, default `true`; `showDelete`, default `true`.
++ **Example**:
 
 ```java
 @Model.model(TestModel.MODEL_MODEL)
@@ -141,38 +141,38 @@ public class YourModuleClass {
 @Model.Advanced(unique = {"code"})
 public class TestModel extends IdModel {
     public static final String MODEL_MODEL = "test.TestModel";
-    @UxForm.FieldWidget(@UxWidget(readonly = "true", hint = "为空时自动生成"))
+    @UxForm.FieldWidget(@UxWidget(readonly = "true", hint = "Automatically generated when empty"))
     @Field.String
-    @Field(displayName = "项目编码", unique = true)
+    @Field(displayName = "Project Code", unique = true)
     @Field.Sequence(sequence = "SEQ", prefix = "C", size = 5, step = 1, initial = 10000)
     private String code;
-    // 其他字段...
+    // Other fields...
 }
 ```
 
 ### 3、`UxTable`
 
-+ **用途**：配置表格视图。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `grid`：栅格数量，默认值为`GridConstants.defaultViewGrid`。
-  - `enableSearch`：是否启用搜索功能，默认值为`true`。
-  - `enableSequence`：是否开启序号，默认值为`false`。
-  - **内部注解**`FieldWidget`：用于配置字段组件。
-    * **作用目标**：`ElementType.FIELD`（字段）
-    * **属性**：`value`，类型为`UxWidget`。
-+ **示例**：暂无直接使用示例。
++ **Purpose**: Configures the table view.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `grid`: Number of grids, default `GridConstants.defaultViewGrid`.
+  - `enableSearch`: Whether to enable the search function, default `true`.
+  - `enableSequence`: Whether to enable sequence numbers, default `false`.
+  - **Inner Annotation** `FieldWidget`: Used to configure field components.
+    * **Target**: `ElementType.FIELD` (field)
+    * **Attributes**: `value`, type `UxWidget`.
++ **Example**: No direct usage example currently.
 
 ### 4、`UxTableSearch`
 
-+ **用途**：配置列表搜索。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `grid`：栅格数量，默认值为`GridConstants.defaultTableSearchGrid`。
-  - **内部注解**`FieldWidget`：用于配置字段组件。
-    * **作用目标**：`ElementType.FIELD`（字段）
-    * **属性**：`value`，类型为`UxWidget`。
-+ **示例**：
++ **Purpose**: Configures list search.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `grid`: Number of grids, default `GridConstants.defaultTableSearchGrid`.
+  - **Inner Annotation** `FieldWidget`: Used to configure field components.
+    * **Target**: `ElementType.FIELD` (field)
+    * **Attributes**: `value`, type `UxWidget`.
++ **Example**:
 
 ```java
 @Model.model(TestModel.MODEL_MODEL)
@@ -181,44 +181,44 @@ public class TestModel extends IdModel {
     public static final String MODEL_MODEL = "test.TestModel";
 
     @UxTableSearch.FieldWidget(@UxWidget())
-    @Field(displayName = "名称", required = true)
+    @Field(displayName = "Name", required = true)
     private String name;
-    // 其他字段...
+    // Other fields...
 }
 ```
 
 ### 5、`UxIgnore`
 
-+ **用途**：指定视图忽略该组件。
-+ **作用目标**：`ElementType.FIELD`（字段）
-+ **属性**：`value`，为`ViewTypeEnum`数组，默认值为空数组`{}`。
-+ **示例**：暂无直接使用示例。
++ **Purpose**: Specifies that the view ignores this component.
++ **Target**: `ElementType.FIELD` (field)
++ **Attributes**: `value`, an array of `ViewTypeEnum`, default empty array `{}`.
++ **Example**: No direct usage example currently.
 
 ### 6、`UxWidget`
 
-+ **用途**：定义自定义组件。
-+ **作用目标**：`ElementType.LOCAL_VARIABLE`（局部变量）
-+ **属性**：
-  - `value`：组件显示名称，与`label`为别名，默认值为空字符串`""`。
-  - `label`：组件显示名称，与`value`为别名，默认值为空字符串`""`。
-  - `widget`：组件类型，默认值为空字符串`""`。
-  - `config`：组件配置参数，类型为`Prop`数组，默认值为空数组`{}`。
-  - `mapping`：数据传输映射 DSL，类型为`Prop`数组，默认值为空数组`{}`。
-  - `context`：上下文，类型为`Prop`数组，默认值为空数组`{}`。
-  - `queryMode`：查询方式，默认值为`QueryModeEnum.DOMAIN`。
-  - `span`：块所占栅格，默认值为`GridConstants.defaultBlockViewGrid`。
-  - `offset`：栅格左侧的间隔格数，默认值为 0。
-  - `placeholder`：占位提示，默认值为空字符串`""`。
-  - `hint`：说明提示，默认值为空字符串`""`。
-  - `required`：必填表达式，默认值为空字符串`""`。
-  - `readonly`：只读表达式，默认值为空字符串`""`。
-  - `invisible`：隐藏表达式，默认值为空字符串`""`。
-  - `disable`：禁用表达式，默认值为空字符串`""`。
-  - `group`：分组，默认值为`CharacterConstants.SEPARATOR_HYPHEN`。
-  - `tab`：选项卡页，默认值为`CharacterConstants.SEPARATOR_HYPHEN`。
-  - `breakTab`：是否不再融入前序组件的选项卡，默认值为`false`。
-  - `priority`：优先级，默认值为`MetaDefaultConstants.FAKE_PRIORITY_VALUE_INT`。
-+ **示例**：
++ **Purpose**: Defines a custom component.
++ **Target**: `ElementType.LOCAL_VARIABLE` (local variable)
++ **Attributes**:
+  - `value`: Component display name, alias for `label`, default empty string `""`.
+  - `label`: Component display name, alias for `value`, default empty string `""`.
+  - `widget`: Component type, default empty string `""`.
+  - `config`: Component configuration parameters, type `Prop` array, default empty array `{}`.
+  - `mapping`: Data transmission mapping DSL, type `Prop` array, default empty array `{}`.
+  - `context`: Context, type `Prop` array, default empty array `{}`.
+  - `queryMode`: Query method, default `QueryModeEnum.DOMAIN`.
+  - `span`: Number of grids occupied by the block, default `GridConstants.defaultBlockViewGrid`.
+  - `offset`: Number of grid intervals on the left, default 0.
+  - `placeholder`: Placeholder prompt, default empty string `""`.
+  - `hint`: Explanatory prompt, default empty string `""`.
+  - `required`: Required expression, default empty string `""`.
+  - `readonly`: Read-only expression, default empty string `""`.
+  - `invisible`: Hidden expression, default empty string `""`.
+  - `disable`: Disabled expression, default empty string `""`.
+  - `group`: Group, default `CharacterConstants.SEPARATOR_HYPHEN`.
+  - `tab`: Tab page, default `CharacterConstants.SEPARATOR_HYPHEN`.
+  - `breakTab`: Whether to no longer merge into the previous component's tab, default `false`.
+  - `priority`: Priority, default `MetaDefaultConstants.FAKE_PRIORITY_VALUE_INT`.
++ **Example**:
 
 ```java
 @Model.model(TestModel.MODEL_MODEL)
@@ -228,29 +228,29 @@ public class TestModel extends IdModel {
 
     @UxForm.FieldWidget(@UxWidget(config = {@Prop(name = "constructFun",value = "onXxxFiledValueChange")}))
     @Field.Enum
-    @Field(displayName = "测试枚举")
+    @Field(displayName = "Test Enum")
     private TestEnum testEnum;
-    // 其他字段...
+    // Other fields...
 }
 ```
 
-## （四）按钮相关注解
+## （四）Button-related Annotations
 
 ### 1、`UxClientButton`
 
-+ **用途**：定义链接按钮，关联客户端动作。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `action`：动作基本配置，类型为`UxAction`。
-  - `value`：客户端动作配置，类型为`UxClient`。
-  - **内部注解**`UxClientButtons`：用于定义按钮配置列表。
-    * **作用目标**：`ElementType.TYPE`（类）
-    * **属性**：`value`，为`UxClientButton`数组。
-+ **示例**：
++ **Purpose**: Defines a link button associated with a client action.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `action`: Basic action configuration, type `UxAction`.
+  - `value`: Client action configuration, type `UxClient`.
+  - **Inner Annotation** `UxClientButtons`: Used to define a button configuration list.
+    * **Target**: `ElementType.TYPE` (class)
+    * **Attributes**: `value`, an array of `UxClientButton`.
++ **Example**:
 
 ```java
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 @UxClientButton(
         value = @UxClient(ClientActionConstants.TableAddRow.fun),
         action = @UxAction(
@@ -262,25 +262,25 @@ public class TestModel extends IdModel {
 )
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL="test.TestButtonModel";
-    // 其他字段...
+    // Other fields...
 }
 ```
 
 ### 2、`UxLinkButton`
 
-+ **用途**：定义链接按钮，关联链接动作。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `action`：动作基本配置，类型为`UxAction`。
-  - `value`：链接动作配置，类型为`UxLink`。
-  - **内部注解**`UxLinkButtons`：用于定义按钮配置列表。
-    * **作用目标**：`ElementType.TYPE`（类）
-    * **属性**：`value`，为`UxLinkButton`数组。
-+ **示例**：
++ **Purpose**: Defines a link button associated with a link action.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `action`: Basic action configuration, type `UxAction`.
+  - `value`: Link action configuration, type `UxLink`.
+  - **Inner Annotation** `UxLinkButtons`: Used to define a button configuration list.
+    * **Target**: `ElementType.TYPE` (class)
+    * **Attributes**: `value`, an array of `UxLinkButton`.
++ **Example**:
 
 ```java
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 @UxLinkButton(
         value =  @UxLink(
                 value = "http://www.baidu.com",
@@ -288,7 +288,7 @@ public class TestButtonModel extends IdModel {
         ),
         action = @UxAction(
                 name = "testUrl",
-                label = "外部链接",
+                label = "External Link",
                 contextType = ActionContextTypeEnum.SINGLE,
                 bindingType = ViewTypeEnum.FORM,
                 bindingView = ViewConstants.Name.formView,
@@ -297,25 +297,25 @@ public class TestButtonModel extends IdModel {
 )
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL="test.TestButtonModel";
-    // 其他字段...
+    // Other fields...
 }
 ```
 
 ### 3、`UxRouteButton`
 
-+ **用途**：定义跳转按钮，关联窗口动作。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `action`：动作基本配置，类型为`UxAction`。
-  - `value`：窗口动作配置，类型为`UxRoute`。
-  - **内部注解**`UxRouteButtons`：用于定义按钮配置列表。
-    * **作用目标**：`ElementType.TYPE`（类）
-    * **属性**：`value`，为`UxRouteButton`数组。
-+ **示例**：
++ **Purpose**: Defines a navigation button associated with a window action.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `action`: Basic action configuration, type `UxAction`.
+  - `value`: Window action configuration, type `UxRoute`.
+  - **Inner Annotation** `UxRouteButtons`: Used to define a button configuration list.
+    * **Target**: `ElementType.TYPE` (class)
+    * **Attributes**: `value`, an array of `UxRouteButton`.
++ **Example**:
 
 ```java
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 @UxRouteButton(
         value = @UxRoute(
                 model = TestButtonModel.MODEL_MODEL,
@@ -324,7 +324,7 @@ public class TestButtonModel extends IdModel {
         ),
         action = @UxAction(
                 name = "customRedirectTablePage",
-                label = "自定义跳转到表格页",
+                label = "Custom Redirect to Table Page",
                 contextType = ActionContextTypeEnum.SINGLE,
                 bindingType = ViewTypeEnum.FORM,
                 bindingView = ViewConstants.Name.formView,
@@ -333,30 +333,30 @@ public class TestButtonModel extends IdModel {
 )
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL="test.TestButtonModel";
-    // 其他字段...
+    // Other fields...
 }
 ```
 
-## （五）动作相关注解
+## （五）Action-related Annotations
 
 ### 1、`UxAction`
 
-+ **用途**：定义动作基本配置。
-+ **作用目标**：`ElementType.LOCAL_VARIABLE`（局部变量）
-+ **属性**：
-  - `name`：动作名称，必填。
-  - `displayName`：展示名称，默认值为空字符串`""`。
-  - `label`：显示文字，默认值为空字符串`""`。
-  - `summary`：描述，默认值为空字符串`""`。
-  - `contextType`：上下文类型，默认值为`ActionContextTypeEnum.SINGLE`。
-  - `bindingType`：action 绑定在源模型上的哪些视图上，默认值为`{ViewTypeEnum.TABLE}`。
-  - `invisible`：客户端显隐表达式，默认值为空字符串`""`。
-  - `rule`：服务端过滤表达式，默认值为空字符串`""`。
-  - `disable`：禁用规则，默认值为空字符串`""`。
-  - `bindingView`：绑定视图名称，设置动作只出现在指定视图，默认值为空字符串`""`。
-  - `priority`：优先级，默认值为 99。
-  - `props`：扩展属性，类型为`Prop`数组，默认值为空数组`{}`。
-+ **示例**：在`UxClientButton`、`UxLinkButton`、`UxRouteButton`的使用示例中均有体现，如：
++ **Purpose**: Defines basic action configuration.
++ **Target**: `ElementType.LOCAL_VARIABLE` (local variable)
++ **Attributes**:
+  - `name`: Action name, required.
+  - `displayName`: Display name, default empty string `""`.
+  - `label`: Display text, default empty string `""`.
+  - `summary`: Description, default empty string `""`.
+  - `contextType`: Context type, default `ActionContextTypeEnum.SINGLE`.
+  - `bindingType`: View types on which the action is bound to the source model, default `{ViewTypeEnum.TABLE}`.
+  - `invisible`: Client-side visibility expression, default empty string `""`.
+  - `rule`: Server-side filtering expression, default empty string `""`.
+  - `disable`: Disabling rule, default empty string `""`.
+  - `bindingView`: Bound view name, setting the action to appear only in the specified view, default empty string `""`.
+  - `priority`: Priority, default 99.
+  - `props`: Extended attributes, type `Prop` array, default empty array `{}`.
++ **Example**: Illustrated in usage examples of `UxClientButton`, `UxLinkButton`, and `UxRouteButton`, such as:
 
 ```java
 @UxClientButton(
@@ -372,20 +372,20 @@ public class TestButtonModel extends IdModel {
 
 ### 2、`UxClient`
 
-+ **用途**：定义链接动作，关联客户端函数。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `value`：客户端函数编码，与`fun`为别名，默认值为空字符串`""`。
-  - `fun`：客户端函数编码，与`value`为别名，默认值为空字符串`""`。
-  - `model`：链接计算函数模型，默认值为空字符串`""`。
-  - `compute`：计算函数编码，默认值为空字符串`""`。
-  - `mapping`：数据传输映射 DSL，类型为`Prop`数组，默认值为空数组`{}`。
-  - `context`：上下文配置，类型为`Prop`数组，默认值为空数组`{}`。
-+ **示例**：
++ **Purpose**: Defines a link action associated with a client function.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `value`: Client function code, alias for `fun`, default empty string `""`.
+  - `fun`: Client function code, alias for `value`, default empty string `""`.
+  - `model`: Link calculation function model, default empty string `""`.
+  - `compute`: Calculation function code, default empty string `""`.
+  - `mapping`: Data transmission mapping DSL, type `Prop` array, default empty array `{}`.
+  - `context`: Context configuration, type `Prop` array, default empty array `{}`.
++ **Example**:
 
 ```java
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 @UxClientButton(
         value = @UxClient(ClientActionConstants.TableAddRow.fun),
         action = @UxAction(
@@ -397,29 +397,29 @@ public class TestButtonModel extends IdModel {
 )
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL="test.TestButtonModel";
-    // 其他字段...
+    // Other fields...
 }
 ```
 
-更多示例讲解参考文档 “Actions API” 中 客户端动作（ClientAction）
+For more example explanations, refer to the "Actions API" document's Client Action (ClientAction).
 
 ### 3、`UxLink`
 
-+ **用途**：定义链接动作，配置链接相关信息。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `value`：链接表达式，与`url`为别名，默认值为空字符串`""`。
-  - `url`：链接表达式，与`value`为别名，默认值为空字符串`""`。
-  - `openType`：打开方式，默认值为`ActionTargetEnum.ROUTER`。
-  - `model`：链接计算函数模型，默认值为空字符串`""`。
-  - `compute`：链接计算函数编码，默认值为空字符串`""`。
-  - `mapping`：数据传输映射 DSL，类型为`Prop`数组，默认值为空数组`{}`。
-  - `context`：上下文配置，类型为`Prop`数组，默认值为空数组`{}`。
-+ **示例**：
++ **Purpose**: Defines a link action to configure link-related information.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `value`: Link expression, alias for `url`, default empty string `""`.
+  - `url`: Link expression, alias for `value`, default empty string `""`.
+  - `openType`: Opening method, default `ActionTargetEnum.ROUTER`.
+  - `model`: Link calculation function model, default empty string `""`.
+  - `compute`: Link calculation function code, default empty string `""`.
+  - `mapping`: Data transmission mapping DSL, type `Prop` array, default empty array `{}`.
+  - `context`: Context configuration, type `Prop` array, default empty array `{}`.
++ **Example**:
 
 ```java
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 @UxLinkButton(
         value =  @UxLink(
                 value = "http://www.baidu.com?wd=${activeRecord.name}",
@@ -429,7 +429,7 @@ public class TestButtonModel extends IdModel {
         ),
         action = @UxAction(
                 name = "testComputeSearchUrl",
-                label = "自定义外部链接",
+                label = "Custom External Link",
                 contextType = ActionContextTypeEnum.SINGLE,
                 bindingType = ViewTypeEnum.FORM,
                 bindingView = ViewConstants.Name.formView,
@@ -438,45 +438,45 @@ public class TestButtonModel extends IdModel {
 )
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL="test.TestButtonModel";
-    // 其他字段...
+    // Other fields...
 }
 ```
 
-:::info 注意
+:::info Note
 
-+ 通过context 跟value配合则添加额外参数，跟compute配合，则做参数转化
-+ URL支持表达式，可动态拼接参数
-+ 在 Oinone 里，计算 URL 函数优先级高于value属性，有函数时优先以其返回值作为 URL
++ Using context with value adds extra parameters; using context with compute performs parameter conversion.
++ URLs support expressions for dynamic parameter concatenation.
++ In Oinone, the URL calculation function has higher priority than the value attribute; when a function exists, its return value is used as the URL first.
 
 :::
 
-更多示例讲解参考文档 “Actions API” 中 跳转动作（UrlAction）
+For more example explanations, refer to the "Actions API" document's Navigation Action (UrlAction).
 
 ### 3、`UxRoute`
 
-+ **用途**：定义窗口动作，配置窗口跳转相关信息。
-+ **作用目标**：`ElementType.TYPE`（类）
-+ **属性**：
-  - `value`：目标模型编码，与`model`为别名，默认值为空字符串`""`。
-  - `model`：目标模型编码，与`value`为别名，默认值为空字符串`""`。
-  - `viewName`：指定目标视图，可缺省，使用默认视图，默认值为空字符串`""`。
-  - `viewType`：视图类型，默认值为`ViewTypeEnum.TABLE`。
-  - `openType`：打开方式，默认值为`ActionTargetEnum.ROUTER`。
-  - `module`：目标模块编码，默认值为空字符串`""`。
-  - `title`：页面标题，默认值为空字符串`""`。
-  - `theme`：主题，默认值为空字符串`""`。
-  - `mask`：母版，默认值为空字符串`""`。
-  - `views`：支持可供切换的视图类型列表，默认值为空数组`{}`。
-  - `load`：数据加载函数编码，默认值为空字符串`""`。
-  - `context`：数据传输映射，类型为`Prop`数组，默认值为空数组`{}`。
-  - `domain`：数据过滤 - 客户端，默认值为空字符串`""`。
-  - `filter`：数据过滤 - 服务端，默认值为空字符串`""`。
-  - `limit`：初始化页面数据数量限制，默认值为 20。
-+ **示例**：
++ **Purpose**: Defines a window action to configure window navigation-related information.
++ **Target**: `ElementType.TYPE` (class)
++ **Attributes**:
+  - `value`: Target model code, alias for `model`, default empty string `""`.
+  - `model`: Target model code, alias for `value`, default empty string `""`.
+  - `viewName`: Specifies the target view, can be omitted to use the default view, default empty string `""`.
+  - `viewType`: View type, default `ViewTypeEnum.TABLE`.
+  - `openType`: Opening method, default `ActionTargetEnum.ROUTER`.
+  - `module`: Target module code, default empty string `""`.
+  - `title`: Page title, default empty string `""`.
+  - `theme`: Theme, default empty string `""`.
+  - `mask`: Master page, default empty string `""`.
+  - `views`: List of view types supporting switching, default empty array `{}`.
+  - `load`: Data loading function code, default empty string `""`.
+  - `context`: Data transmission mapping, type `Prop` array, default empty array `{}`.
+  - `domain`: Data filtering - client-side, default empty string `""`.
+  - `filter`: Data filtering - server-side, default empty string `""`.
+  - `limit`: Initial page data quantity limit, default 20.
++ **Example**:
 
 ```java
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 @UxRouteButton(
         value = @UxRoute(
                 model = TestButtonModel.MODEL_MODEL,
@@ -491,7 +491,7 @@ public class TestButtonModel extends IdModel {
         ),
         action = @UxAction(
                 name = "customRedirectTablePage",
-                label = "自定义跳转到表格页",
+                label = "Custom Redirect to Table Page",
                 contextType = ActionContextTypeEnum.SINGLE,
                 bindingType = ViewTypeEnum.FORM,
                 bindingView = ViewConstants.Name.formView,
@@ -500,9 +500,8 @@ public class TestButtonModel extends IdModel {
 )
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL="expenses.TestButtonModel";
-    // 其他字段...
+    // Other fields...
 }
 ```
 
-更多示例讲解参考文档 “Actions API” 中 窗口动作（ViewAction）
-
+For more example explanations, refer to the "Actions API" document's Window Action (ViewAction).

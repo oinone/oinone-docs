@@ -2,61 +2,61 @@
 title: Form Field
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 前端API
+  - Frontend API
   - Widget
   - Field
 order: 3
 
 ---
-# 一、Reference List
+# Reference List
 
-## （一）文本（String）
+## (一) String
 
 ### 1、FormStringFieldWidget
 
-**继承**：FormInputAbstractFieldWidget
+**Inheritance**: FormInputAbstractFieldWidget
 
-**属性**：
+**Properties**:
 
-+ clearSetEmpty：清空时是否设置为空值，默认值为 `true`。（`boolean`）
-+ crypto：是否开启加密，默认值为 `false`。（`boolean`）
-+ invisibleIcon：不可见状态图标，默认值为 `oinone-invisible`。（`string`）
-+ maxLength：最大长度，优先级：DSL 配置 > 字段存储配置 > 默认值 `1024`。（`number`）
-+ minLength：最小长度，优先级：DSL 配置 > 字段配置 > 默认值 `0`。（`number`）
-+ pattern：正则表达式模式。（`string | undefined`）
-+ patternType：模式类型，通过 DSL 表达式计算获取。（`any`）
-+ showCount：是否显示字符计数，默认值为 `false`。（`boolean`）
-+ type：输入类型，默认值为 `InputType.TEXT`。（`string`）
-+ visibleIcon：可见状态图标，默认值为 `oinone-visible`。（`string`）
++ clearSetEmpty: Whether to set empty when clearing, default value is `true`.（`boolean`）
++ crypto: Whether to enable encryption, default value is `false`.（`boolean`）
++ invisibleIcon: Invisible state icon, default value is `oinone-invisible`.（`string`）
++ maxLength: Maximum length, priority: DSL configuration > field storage configuration > default value `1024`.（`number`）
++ minLength: Minimum length, priority: DSL configuration > field configuration > default value `0`.（`number`）
++ pattern: Regular expression pattern.（`string | undefined`）
++ patternType: Pattern type, obtained through DSL expression calculation.（`any`）
++ showCount: Whether to display character count, default value is `false`.（`boolean`）
++ type: Input type, default value is `InputType.TEXT`.（`string`）
++ visibleIcon: Visible state icon, default value is `oinone-visible`.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，将空值转为 `null` 后触发父类变更逻辑。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的值。
++ **Function Description**: Value change processing, convert empty value to `null` and then trigger the parent class change logic.
++ **Type**: `(value: any) => void`
++ **Parameters**:
+  - `value`: Value after change.
 
 #### **validateLength**
 
-+ **功能描述**：验证输入值长度是否符合配置的最小 / 最大长度。
-+ **类型**：`(realValue: string | undefined) => ValidatorInfo`
-+ **参数**：
-  - `realValue`：待验证的输入值。
-+ **返回值**：验证结果信息。
++ **Function Description**: Verify whether the input value length meets the configured minimum/maximum length.
++ **Type**: `(realValue: string | undefined) => ValidatorInfo`
++ **Parameters**:
+  - `realValue`: Input value to be verified.
++ **Return Value**: Validation result information.
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，先执行特定验证，再验证长度。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the input value, first perform specific validation, then validate the length.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 2、FormStringInputFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -68,29 +68,29 @@ order: 3
 export class FormStringInputFieldWidget extends FormStringFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ translation：是否启用翻译。（`boolean`）
++ translation: Whether to enable translation.（`boolean`）
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：处理表单提交，对加密字段进行值加密后调用默认提交处理器。
-+ **类型**：`(submitValue: SubmitValue) => any`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Process form submission, encrypt the value of the encrypted field and then call the default submission processor.
++ **Type**: `(submitValue: SubmitValue) => any`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，继承父类验证逻辑（特定验证和长度验证）。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the input value, inherit the parent class validation logic (specific validation and length validation).
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 3、FormStringColorPickerFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -103,22 +103,22 @@ export class FormStringInputFieldWidget extends FormStringFieldWidget
 export class FormStringColorPickerFieldWidget extends FormFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ predefine：预定义颜色列表，默认值为 `DEFAULT_PREDEFINE`。（`string[]`）
++ predefine: Predefined color list, default value is `DEFAULT_PREDEFINE`.（`string[]`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，触发父类变更逻辑并失焦。
-+ **类型**：`(v: any) => void`
-+ **参数**：
-  - `v`：变更后的值。
++ **Function Description**: Value change processing, trigger the parent class change logic and lose focus.
++ **Type**: `(v: any) => void`
++ **Parameters**:
+  - `v`: Value after change.
 
 ### 4、FormStringDownloadFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -131,24 +131,24 @@ export class FormStringColorPickerFieldWidget extends FormFieldWidget
 export class FormStringDownloadFieldWidget extends FormStringFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ downloadFileName：下载的文件名，通过 DSL 配置的国际化键解析获取。（`string`）
-+ linkDisplayText：下载提示文本，默认使用字段值。（`string`）
-+ linkDisplayTextPrefix：下载提示文本前缀。（`string | undefined`）
++ downloadFileName: Download file name, obtained by parsing the internationalization key configured in DSL.（`string`）
++ linkDisplayText: Download prompt text, default uses the field value.（`string`）
++ linkDisplayTextPrefix: Download prompt text prefix.（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **onDownload**
 
-+ **功能描述**：处理下载事件，发起网络请求获取文件数据并触发浏览器下载。
-+ **类型**：`(e: Event) => Promise<void>`
-+ **参数**：
-  - `e`：事件对象。
++ **Function Description**: Process the download event, initiate a network request to obtain file data and trigger browser download.
++ **Type**: `(e: Event) => Promise<void>`
++ **Parameters**:
+  - `e`: Event object.
 
 ### 5、FormStringEmailFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -163,7 +163,7 @@ export class FormStringEmailFieldWidget extends FormEmailFieldWidget
 
 ### 6、FormStringHyperlinksFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -176,14 +176,14 @@ export class FormStringEmailFieldWidget extends FormEmailFieldWidget
 export class FormStringHyperlinksFieldWidget extends FormStringInputFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ target：超链接打开方式，默认值为 `BLANK`。（`RedirectTargetEnum`）
-+ text：超链接显示文本。（`string | undefined`）
++ target: Hyperlink opening method, default value is `BLANK`.（`RedirectTargetEnum`）
++ text: Hyperlink display text.（`string | undefined`）
 
 ### 7、FormStringIconSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -196,14 +196,14 @@ export class FormStringHyperlinksFieldWidget extends FormStringInputFieldWidget
 export class FormStringIconSelectFieldWidget extends FormStringFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ icons：可选图标列表。（`any`）
-+ modalTitle：模态框标题。（`string | undefined`）
++ icons: List of optional icons.（`any`）
++ modalTitle: Modal window title.（`string | undefined`）
 
 ### 8、FormStringIframeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -218,7 +218,7 @@ export class FormStringIframeFieldWidget extends FormStringInputFieldWidget
 
 ### 9、FormStringKeyboardInputFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -231,32 +231,32 @@ export class FormStringIframeFieldWidget extends FormStringInputFieldWidget
 export class FormStringKeyboardInputFieldWidget extends FormFieldWidget<string>
 ```
 
-**属性**：
+**Properties**:
 
-+ altKey：Alt 键关联的表单数据字段名。（`string | undefined`）
-+ ctrlKey：Ctrl 键关联的表单数据字段名。（`string | undefined`）
-+ displayValue：显示的快捷键组合文本，格式为 "Ctrl + Alt + Key"。（`string`）
-+ shiftKey：Shift 键关联的表单数据字段名。（`string | undefined`）
++ altKey: Form data field name associated with the Alt key.（`string | undefined`）
++ ctrlKey: Form data field name associated with the Ctrl key.（`string | undefined`）
++ displayValue: Displayed shortcut key combination text, format is "Ctrl + Alt + Key".（`string`）
++ shiftKey: Form data field name associated with the Shift key.（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，将空值转为 `null` 并清空关联的修饰键状态。
-+ **类型**：`(val: any) => void`
-+ **参数**：
-  - `val`：变更后的值。
++ **Function Description**: Value change processing, convert empty value to `null` and clear the associated modifier key status.
++ **Type**: `(val: any) => void`
++ **Parameters**:
+  - `val`: Value after change.
 
 #### **onKeypress**
 
-+ **功能描述**：键盘按键事件处理，更新值和关联的修饰键状态。
-+ **类型**：`(message: KeyboardEventMessage) => void`
-+ **参数**：
-  - `message`：键盘事件消息对象。
++ **Function Description**: Keyboard key event processing, update the value and associated modifier key status.
++ **Type**: `(message: KeyboardEventMessage) => void`
++ **Parameters**:
+  - `message`: Keyboard event message object.
 
 ### 10、FormStringPasswordFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -269,25 +269,25 @@ export class FormStringKeyboardInputFieldWidget extends FormFieldWidget<string>
 export class FormStringPasswordFieldWidget extends FormStringFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：处理表单提交，对加密字段进行值加密后调用默认提交处理器。
-+ **类型**：`(submitValue: SubmitValue) => any`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Process form submission, encrypt the value of the encrypted field and then call the default submission processor.
++ **Type**: `(submitValue: SubmitValue) => any`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，继承父类验证逻辑（特定验证和长度验证）。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the input value, inherit the parent class validation logic (specific validation and length validation).
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 11、FormStringPhoneFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -302,7 +302,7 @@ export class FormStringPhoneFieldWidget extends FormPhoneFieldWidget
 
 ### 12、FormStringSignatureFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -315,58 +315,58 @@ export class FormStringPhoneFieldWidget extends FormPhoneFieldWidget
 export class FormStringSignatureFieldWidget extends FormStringInputFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ clearButtonText：清除按钮文字，默认值为 `清除`。（`string`）
-+ clearFormStringSignatureFieldSubject：清除签名画板流事件。（`WidgetSubjection<Record<string, unknown>>`）
-+ saveButtonText：保存按钮文字，默认值为 `保存`。（`string`）
-+ showClearButton：是否展示清除按钮，默认值为 `true`。（`boolean`）
-+ showPlaceholder：是否展示占位文字，默认值为 `true`。（`boolean`）
-+ showSaveButton：是否展示保存按钮，默认值为 `true`。（`boolean`）
-+ signatureBackGroundColor：签名背景面板颜色，默认值为 `white`。（`string`）
-+ signatureFontColor：签名文字颜色，默认值为 `black`。（`string`）
++ clearButtonText: Clear button text, default value is `Clear`.（`string`）
++ clearFormStringSignatureFieldSubject: Event for clearing the signature drawing board flow.（`WidgetSubjection<Record<string, unknown>>`）
++ saveButtonText: Save button text, default value is `Save`.（`string`）
++ showClearButton: Whether to display the clear button, default value is `true`.（`boolean`）
++ showPlaceholder: Whether to display placeholder text, default value is `true`.（`boolean`）
++ showSaveButton: Whether to display the save button, default value is `true`.（`boolean`）
++ signatureBackGroundColor: Signature background panel color, default value is `white`.（`string`）
++ signatureFontColor: Signature text color, default value is `black`.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **getSmoothSignature**
 
-+ **功能描述**：获取签名画板对象实例。
-+ **类型**：`() => SmoothSignature | undefined`
-+ **返回值**：签名画板对象实例。
++ **Function Description**: Get the signature drawing board object instance.
++ **Type**: `() => SmoothSignature | undefined`
++ **Return Value**: Signature drawing board object instance.
 
 #### **onClear**
 
-+ **功能描述**：清除签名内容并重置状态。
-+ **类型**：`() => void`
++ **Function Description**: Clear the signature content and reset the status.
++ **Type**: `() => void`
 
 #### **onSaveSignature**
 
-+ **功能描述**：保存签名为 PNG 图片并上传。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Save the signature as a PNG image and upload it.
++ **Type**: `() => Promise<void>`
 
 #### **onStart**
 
-+ **功能描述**：开始签名时隐藏占位提示。
-+ **类型**：`() => void`
++ **Function Description**: Hide the placeholder prompt when starting to sign.
++ **Type**: `() => void`
 
 #### **setSmoothSignature**
 
-+ **功能描述**：设置签名画板对象实例。
-+ **类型**：`(smoothSignature: SmoothSignature) => void`
-+ **参数**：
-  - `smoothSignature`：签名画板对象实例。
++ **Function Description**: Set the signature drawing board object instance.
++ **Type**: `(smoothSignature: SmoothSignature) => void`
++ **Parameters**:
+  - `smoothSignature`: Signature drawing board object instance.
 
 #### **submit**
 
-+ **功能描述**：处理表单提交，自动保存签名并加密值。
-+ **类型**：`(submitValue: SubmitValue) => any`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Process form submission, automatically save the signature and encrypt the value.
++ **Type**: `(submitValue: SubmitValue) => any`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 13、FormStringMultiTagFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -379,30 +379,30 @@ export class FormStringSignatureFieldWidget extends FormStringInputFieldWidget
 export class FormStringMultiTagFieldWidget extends FormFieldWidget<string, RuntimeStringField>
 ```
 
-**属性**：
+**Properties**:
 
-+ allowRepeat：是否允许重复标签，默认值为 `false`。（`boolean`）
-+ limit：标签最大个数，继承自字段配置。（`number | undefined`）
-+ unitValueLength：标签值长度，优先级：DSL 配置 > 字段属性配置。（`number | undefined`）
++ allowRepeat: Whether to allow duplicate tags, default value is `false`.（`boolean`）
++ limit: Maximum number of tags, inherited from field configuration.（`number | undefined`）
++ unitValueLength: Tag value length, priority: DSL configuration > field attribute configuration.（`number | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **tagChange**
 
-+ **功能描述**：标签值变更处理，空数组转为 `null` 后触发变更和失焦。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的标签值数组。
++ **Function Description**: Tag value change processing, convert empty array to `null` and then trigger change and lose focus.
++ **Type**: `(value: any) => void`
++ **Parameters**:
+  - `value`: Array of tag values after change.
 
 #### **validator**
 
-+ **功能描述**：异步验证标签数量是否超出限制。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate whether the number of tags exceeds the limit.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 14、FormStringTextAreaFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -417,7 +417,7 @@ export class FormStringTextAreaFieldWidget extends FormTextFieldWidget
 
 ### 15、FormStringUploadFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -430,50 +430,50 @@ export class FormStringTextAreaFieldWidget extends FormTextFieldWidget
 export class FormStringUploadFieldWidget extends FormFieldWidget<string[], RuntimeStringField>
 ```
 
-**属性**：
+**Properties**:
 
-+ allLimitSize：总文件大小限制。（`string`）
-+ cdnKey：CDN 密钥。（`string | undefined`）
-+ chunkUploadThreshold：分块上传阈值，默认值来自配置。（`number`）
-+ defaultValidateTrigger：默认验证触发时机，默认值为 `[ValidateTrigger.CHANGE]`。（`ValidateTrigger[]`）
-+ fileDisplayPrefixText：文件展示前缀文本，默认值为 `prefix：`。（`string`）
-+ fileDisplayText：文件展示占位文本，默认值为 `fileDisplayText`。（`string`）
-+ limit：上传文件数量限制，优先级：DSL 配置 > 字段配置 > 默认值 `-1`。（`number`）
-+ limitFileExtensions：允许的文件扩展名。（`string | undefined`）
-+ limitSize：单个文件大小限制。（`number`）
-+ multiple：是否允许多文件上传。（`boolean`）
-+ parallel：并行上传数，默认值来自配置。（`number`）
-+ partSize：分块大小，默认值来自配置。（`number`）
-+ privateLink：是否为私有链接。（`boolean`）
-+ uploadIcon：上传图标。（`string | undefined`）
-+ uploadIconText：上传图标文本。（`string | undefined`）
-+ uploadPlaceholder：上传占位文本。（`string | undefined`）
++ allLimitSize: Total file size limit.（`string`）
++ cdnKey: CDN key.（`string | undefined`）
++ chunkUploadThreshold: Chunk upload threshold, default value from configuration.（`number`）
++ defaultValidateTrigger: Default validation trigger timing, default value is `[ValidateTrigger.CHANGE]`.（`ValidateTrigger[]`）
++ fileDisplayPrefixText: File display prefix text, default value is `prefix：`.（`string`）
++ fileDisplayText: File display placeholder text, default value is `fileDisplayText`.（`string`）
++ limit: Upload file quantity limit, priority: DSL configuration > field configuration > default value `-1`.（`number`）
++ limitFileExtensions: Allowed file extensions.（`string | undefined`）
++ limitSize: Single file size limit.（`number`）
++ multiple: Whether to allow multiple file uploads.（`boolean`）
++ parallel: Number of parallel uploads, default value from configuration.（`number`）
++ partSize: Chunk size, default value from configuration.（`number`）
++ privateLink: Whether it is a private link.（`boolean`）
++ uploadIcon: Upload icon.（`string | undefined`）
++ uploadIconText: Upload icon text.（`string | undefined`）
++ uploadPlaceholder: Upload placeholder text.（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：文件值变更处理，根据单 / 多文件场景转换值格式后触发父类变更和失焦。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的文件值（数组或对象）。
++ **Function Description**: File value change processing, convert the value format according to single/multiple file scenarios and then trigger parent class change and lose focus.
++ **Type**: `(value: any) => void`
++ **Parameters**:
+  - `value`: File value after change (array or object).
 
 #### **remove**
 
-+ **功能描述**：文件删除处理，更新文件列表并触发父类变更和失焦。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：待删除的文件值。
++ **Function Description**: File deletion processing, update the file list and trigger parent class change and lose focus.
++ **Type**: `(value: any) => void`
++ **Parameters**:
+  - `value`: File value to be deleted.
 
 #### **validator**
 
-+ **功能描述**：异步验证文件链接总长度是否超出字段大小限制。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate whether the total length of file links exceeds the field size limit.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 16、FormStringUploadImgFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -488,7 +488,7 @@ export class FormStringUploadImgFieldWidget extends FormStringUploadFieldWidget
 
 ### 17、FormStringUploadDraggableFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -501,16 +501,16 @@ export class FormStringUploadImgFieldWidget extends FormStringUploadFieldWidget
 export class FormStringUploadDraggableFieldWidget extends FormStringUploadFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ draggableIcon：拖拽上传图标，默认值为 `oinone-shangchuan1`。（`string`）
-+ draggableExtendsionsText：允许上传的文件类型提示文本。（`string`）
-+ draggableTipText：拖拽上传提示词，默认值为 `点击 或 拖拽文件到这里上传`。（`string`）
-+ showDraggableExtendsionsText：是否展示支持拓展名，默认值为 `true`。（`boolean`）
++ draggableIcon: Drag and drop upload icon, default value is `oinone-shangchuan1`.（`string`）
++ draggableExtendsionsText: Allowed file type prompt text.（`string`）
++ draggableTipText: Drag and drop upload prompt, default value is `Click or drag files here to upload`.（`string`）
++ showDraggableExtendsionsText: Whether to display supported extensions, default value is `true`.（`boolean`）
 
 ### 18、FormStringVerificationCodeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -522,22 +522,22 @@ export class FormStringUploadDraggableFieldWidget extends FormStringUploadFieldW
 export class FormStringVerificationCodeFieldWidget extends FormStringFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ imagePath：验证码图片接口路径，默认值为 `/pamirs/api/refreshPicCode`。（`string`）
-+ picCodeScene：验证码场景参数，拼接在图片路径后。（`string`）
++ imagePath: Verification code image interface path, default value is `/pamirs/api/refreshPicCode`.（`string`）
++ picCodeScene: Verification code scene parameter, appended to the image path.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **genPath**
 
-+ **功能描述**：生成带时间戳和场景参数的验证码图片完整路径。
-+ **类型**：`() => string`
-+ **返回值**：验证码图片完整 URL。
++ **Function Description**: Generate the complete verification code image path with timestamp and scene parameters.
++ **Type**: `() => string`
++ **Return Value**: Complete URL of the verification code image.
 
 ### 19、FormStringSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -551,19 +551,19 @@ export class FormStringVerificationCodeFieldWidget extends FormStringFieldWidget
 export class FormStringMultiSelectFieldWidget extends FormEnumMultiSelectFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **handleOptions**
 
-+ **功能描述**：处理枚举选项，将 `displayName` 映射为标签，缺失值时用 `name` 填充。
-+ **类型**：`(ops: RuntimeEnumerationOption[]) => RuntimeEnumerationOption[]`
-+ **参数**：
-  - `ops`：原始枚举选项数组。
-+ **返回值**：处理后的枚举选项数组。
++ **Function Description**: Process enumeration options, map `displayName` to labels, and fill in `name` when the value is missing.
++ **Type**: `(ops: RuntimeEnumerationOption[]) => RuntimeEnumerationOption[]`
++ **Parameters**:
+  - `ops`: Original enumeration option array.
++ **Return Value**: Processed enumeration option array.
 
 ### 20、FormStringMultiSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -577,21 +577,21 @@ export class FormStringMultiSelectFieldWidget extends FormEnumMultiSelectFieldWi
 export class FormStringMultiSelectFieldWidget extends FormEnumMultiSelectFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **handleOptions**
 
-+ **功能描述**：处理枚举选项，将 `displayName` 映射为标签，缺失值时用 `name` 填充。
-+ **类型**：`(ops: RuntimeEnumerationOption[]) => RuntimeEnumerationOption[]`
-+ **参数**：
-  - `ops`：原始枚举选项数组。
-+ **返回值**：处理后的枚举选项数组。
++ **Function Description**: Process enumeration options, map `displayName` to labels, and fill in `name` when the value is missing.
++ **Type**: `(ops: RuntimeEnumerationOption[]) => RuntimeEnumerationOption[]`
++ **Parameters**:
+  - `ops`: Original enumeration option array.
++ **Return Value**: Processed enumeration option array.
 
-## （二）多行文本（Text）
+## (二) Text
 
 ### 1、FormTextFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -603,24 +603,24 @@ export class FormStringMultiSelectFieldWidget extends FormEnumMultiSelectFieldWi
 export class FormTextFieldWidget extends FormStringFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ maxLength：文本最大长度，优先级：DSL 配置 > 字段存储大小 > 默认值 `16383`。（`number`）
-+ rows：文本域行数，默认值为 `3`（DSL 配置非数字时生效）。（`number`）
++ maxLength: Maximum text length, priority: DSL configuration > field storage size > default value `16383`.（`number`）
++ rows: Number of text area rows, default value is `3` (takes effect when DSL configuration is not a number).（`number`）
 
-**方法**：
+**Methods**:
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，继承父类验证逻辑（特定验证和长度验证）。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the input value, inherit the parent class validation logic (specific validation and length validation).
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
-## （三）富文本（Html）
+## (三) Html
 
 ### 1、FormHtmlRichTextFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -632,31 +632,31 @@ export class FormTextFieldWidget extends FormStringFieldWidget
 export class FormHtmlRichTextFieldWidget extends FormStringFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ encode：是否对内容进行 URI 编码，默认值为 `false`。（`boolean`）
-+ height：富文本编辑器高度，自动转换为像素单位（如 `'200'` 转为 `'200px'`）。（`string | undefined`）
++ encode: Whether to perform URI encoding on the content, default value is `false`.（`boolean`）
++ height: Rich text editor height, automatically converted to pixel units (e.g., `'200'` is converted to `'200px'`).（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，根据 `encode` 配置对内容进行编码后触发父类变更。
-+ **类型**：`(val: string) => void`
-+ **参数**：
-  - `val`：变更后的值。
++ **Function Description**: Value change processing, encode the content according to the `encode` configuration and then trigger the parent class change.
++ **Type**: `(val: string) => void`
++ **Parameters**:
+  - `val`: Value after change.
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，自动解码编码内容后执行长度验证。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the input value, perform length validation after automatically decoding the encoded content.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
-## （四）手机（Phone）
+## (四) Phone
 
 ### 1、FormPhoneFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -668,19 +668,19 @@ export class FormHtmlRichTextFieldWidget extends FormStringFieldWidget
 export class FormPhoneFieldWidget extends FormStringFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **validator**
 
-+ **功能描述**：异步验证手机号格式，继承父类验证逻辑并新增手机号正则校验。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the phone number format, inherit the parent class validation logic and add phone number regular expression validation.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
-## （五）邮箱（Email）
+## (五) Email
 
 ### 1、FormEmailFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -692,19 +692,19 @@ export class FormPhoneFieldWidget extends FormStringFieldWidget
 export class FormEmailFieldWidget extends FormStringFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **validator**
 
-+ **功能描述**：异步验证邮箱格式，继承父类验证逻辑并新增邮箱正则校验。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the email format, inherit the parent class validation logic and add email regular expression validation.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
-## （六）整数（Integer）
+## (六) Integer
 
 ### 1、FormIntegerFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -718,44 +718,44 @@ export class FormIntegerFieldWidget<
 > extends FormNumberAbstractFieldWidget<Value>
 ```
 
-**属性**：
+**Properties**:
 
-+ addStep：增加步长。（`any`）
-+ autocorrection：是否自动修正格式，默认值为 `false`。（`boolean`）
-+ max：最大值，优先级：DSL 表达式计算值 > 字段配置 > 自动计算值（基于长度和精度） > 最大安全整数。（`string | number | undefined`）
-+ maxSafeInteger：最大安全整数，默认值为 `9223372036854775807`。（`string | number`）
-+ min：最小值，优先级：DSL 表达式计算值 > 字段配置 > 自动计算值（基于长度和精度） > 最小安全整数。（`string | number | undefined`）
-+ minSafeInteger：最小安全整数，默认值为 `-9223372036854775808`。（`string | number`）
-+ reduceStep：减少步长。（`any`）
-+ step：步长。（`any`）
-+ unit：单位。（`string | undefined`）
++ addStep: Increment step.（`any`）
++ autocorrection: Whether to automatically correct the format, default value is `false`.（`boolean`）
++ max: Maximum value, priority: DSL expression calculation value > field configuration > automatic calculation value (based on length and precision) > maximum safe integer.（`string | number | undefined`）
++ maxSafeInteger: Maximum safe integer, default value is `9223372036854775807`.（`string | number`）
++ min: Minimum value, priority: DSL expression calculation value > field configuration > automatic calculation value (based on length and precision) > minimum safe integer.（`string | number | undefined`）
++ minSafeInteger: Minimum safe integer, default value is `-9223372036854775808`.（`string | number`）
++ reduceStep: Decrement step.（`any`）
++ step: Step size.（`any`）
++ unit: Unit.（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **checkValue**
 
-+ **功能描述**：校验数值是否在合法范围内（最小值 / 最大值 / 安全整数）。
-+ **类型**：`(singleValue: any, res: ValidatorInfo) => ValidatorInfo`
-+ **参数**：
-  - `singleValue`：待校验的值。
-  - `res`：当前验证结果。
-+ **返回值**：更新后的验证结果。
++ **Function Description**: Verify whether the value is within the legal range (minimum value/maximum value/safe integer).
++ **Type**: `(singleValue: any, res: ValidatorInfo) => ValidatorInfo`
++ **Parameters**:
+  - `singleValue`: Value to be verified.
+  - `res`: Current validation result.
++ **Return Value**: Updated validation result.
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，继承父类验证逻辑并新增整数格式校验（非整数时报错）。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the input value, inherit the parent class validation logic and add integer format validation (error when not an integer).
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 #### **rawValidator**
 
-+ **功能描述**：执行父类原始验证逻辑（不包含自定义整数校验）。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Execute the parent class original validation logic (excluding custom integer validation).
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 2、FormIntegerMultiFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -768,31 +768,31 @@ export class FormIntegerFieldWidget<
 export class FormIntegerMultiFieldWidget extends FormIntegerFieldWidget<NumberValue[]>
 ```
 
-**属性**：
+**Properties**:
 
-+ allowRepeat：是否允许重复标签，默认值为 `false`。（`boolean`）
-+ inputRegular：输入内容正则匹配规则，默认值为 `/\[^\d]/g`（过滤非数字字符）。（`RegExp`）
-+ limit：标签最大个数，优先级：字段配置 > DSL 配置 > 默认值 `0`。（`number`）
-+ unitValueLength：标签值长度，优先级：DSL 配置 > 字段属性配置。（`number | undefined`）
++ allowRepeat: Whether to allow duplicate tags, default value is `false`.（`boolean`）
++ inputRegular: Input content regular expression matching rule, default value is `/\[^\d]/g` (filter non-numeric characters).（`RegExp`）
++ limit: Maximum number of tags, priority: field configuration > DSL configuration > default value `0`.（`number`）
++ unitValueLength: Tag value length, priority: DSL configuration > field attribute configuration.（`number | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **tagChange**
 
-+ **功能描述**：标签值变更处理，空数组转为 `null` 后触发变更和失焦。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的标签值数组。
++ **Function Description**: Tag value change processing, convert empty array to `null` and then trigger change and lose focus.
++ **Type**: `(value: any) => void`
++ **Parameters**:
+  - `value`: Array of tag values after change.
 
 #### **validator**
 
-+ **功能描述**：异步验证标签数量及每个标签值的合法性（继承整数校验逻辑）。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the number of tags and the validity of each tag value (inherit integer validation logic).
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 3、FormIntegerTagFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -807,7 +807,7 @@ export class FormIntegerTagFieldWidget extends FormStringMultiTagFieldWidget
 
 ### 4、FormIntegerSliderFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -820,21 +820,21 @@ export class FormIntegerTagFieldWidget extends FormStringMultiTagFieldWidget
 export class FormIntegerSliderFieldWidget extends FormIntegerFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ direction：滑动条方向，默认值为 `SliderDirection.HORIZONTAL`。（`string`）
-+ hasTooltip：是否显示 tooltip，默认值为 `!!tooltipFormatter`（存在格式化函数时显示）。（`boolean`）
-+ max：最大值，默认值为 `100`（DSL 配置为空时生效）。（`number`）
-+ min：最小值，默认值为 `0`（DSL 配置为空时生效）。（`number`）
-+ reverse：是否反向滑动，默认值为 `false`。（`boolean`）
-+ step：滑动步长，默认值为 `1`（DSL 配置为空时生效）。（`number`）
-+ tooltipFormatter：tooltip 格式化函数。（`string | undefined`）
++ direction: Slider direction, default value is `SliderDirection.HORIZONTAL`.（`string`）
++ hasTooltip: Whether to display tooltip, default value is `!!tooltipFormatter` (display when there is a formatting function).（`boolean`）
++ max: Maximum value, default value is `100` (takes effect when DSL configuration is empty).（`number`）
++ min: Minimum value, default value is `0` (takes effect when DSL configuration is empty).（`number`）
++ reverse: Whether to slide in reverse, default value is `false`.（`boolean`）
++ step: Slider step size, default value is `1` (takes effect when DSL configuration is empty).（`number`）
++ tooltipFormatter: Tooltip formatting function.（`string | undefined`）
 
-## （七）浮点数（Float）
+## (七) Float
 
 ### 1、FormFloatFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -846,38 +846,38 @@ export class FormIntegerSliderFieldWidget extends FormIntegerFieldWidget
 export class FormFloatFieldWidget extends FormIntegerFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ maxSafeInteger：最大安全整数，默认值为 `Number.MAX_SAFE_INTEGER`。（`number`）
-+ minSafeInteger：最小安全整数，默认值为 `Number.MIN_SAFE_INTEGER`。（`number`）
-+ precision：小数精度（继承自父类，通过字段配置获取）。（`number | undefined`）
++ maxSafeInteger: Maximum safe integer, default value is `Number.MAX_SAFE_INTEGER`.（`number`）
++ minSafeInteger: Minimum safe integer, default value is `Number.MIN_SAFE_INTEGER`.（`number`）
++ precision: Decimal precision (inherited from the parent class, obtained through field configuration).（`number | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，标记变更状态后触发父类变更。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的值。
++ **Function Description**: Value change processing, mark the change status and then trigger the parent class change.
++ **Type**: `(value: any) => void`
++ **Parameters**:
+  - `value`: Value after change.
 
 #### **submit**
 
-+ **功能描述**：处理表单提交，自动格式化数值（补零 / 转换为字符串）。
-+ **类型**：`(submitValue: SubmitValue) => any`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Process form submission, automatically format the value (fill in zeros/convert to string).
++ **Type**: `(submitValue: SubmitValue) => any`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，新增小数格式校验（禁止纯小数点开头、限制小数位数）。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the input value, add decimal format validation (prohibit pure decimal point at the beginning, limit the number of decimal places).
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 2、FormFloatPlatFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -889,17 +889,17 @@ export class FormFloatFieldWidget extends FormIntegerFieldWidget
 export class FormFloatPlatFieldWidget extends FormRangeFieldsWidget<number>
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultDecimal：默认小数位数，值为 `6`。（`number`）
-+ startFieldDecimal：起始字段小数位数，优先级：起始字段配置 > 默认值 `6`。（`number`）
-+ endFieldDecimal：结束字段小数位数，优先级：结束字段配置 > 默认值 `6`。（`number`）
++ defaultDecimal: Default number of decimal places, value is `6`.（`number`）
++ startFieldDecimal: Starting field decimal places, priority: starting field configuration > default value `6`.（`number`）
++ endFieldDecimal: Ending field decimal places, priority: ending field configuration > default value `6`.（`number`）
 
-## （八）金额（Money）
+## (八) Money
 
 ### 1、FormMoneyFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -911,11 +911,11 @@ export class FormFloatPlatFieldWidget extends FormRangeFieldsWidget<number>
 export class FormMoneyFieldWidget extends FormFloatFieldWidget
 ```
 
-## （九）布尔（Boolean）
+## (九) Boolean
 
 ### 1、FormBooleanSwitchFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -927,17 +927,17 @@ export class FormMoneyFieldWidget extends FormFloatFieldWidget
 export class FormBooleanSwitchFieldWidget extends FormFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，默认返回验证成功。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：始终为验证成功信息。
++ **Function Description**: Asynchronously validate the input value, default returns successful validation.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Always successful validation information.
 
 ### 2、FormBooleanCheckboxFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -950,17 +950,17 @@ export class FormBooleanSwitchFieldWidget extends FormFieldWidget
 export class FormBooleanCheckboxFieldWidget extends FormFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，默认跳过验证。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果。
++ **Function Description**: Asynchronously validate the input value, skip validation by default.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result.
 
 ### 3、FormBooleanRadioFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -973,22 +973,22 @@ export class FormBooleanCheckboxFieldWidget extends FormFieldWidget
 export class FormBooleanRadioFieldWidget extends FormBooleanSelectFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ rowLimit：单选框每行显示数量。（`number | undefined`）
++ rowLimit: Number of radio buttons displayed per row.（`number | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，调用父类变更方法。
-+ **类型**：`(val: EnumerationValue | EnumerationValue[] | null | undefined) => void`
-+ **参数**：
-  - `val`：变更后的值。
++ **Function Description**: Value change processing, call the parent class change method.
++ **Type**: `(val: EnumerationValue | EnumerationValue[] | null | undefined) => void`
++ **Parameters**:
+  - `val`: Value after change.
 
 ### 4、FormBooleanSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1001,44 +1001,44 @@ export class FormBooleanRadioFieldWidget extends FormBooleanSelectFieldWidget
 export class FormBooleanSelectFieldWidget extends FormEnumFieldWidget<EnumerationValue | EnumerationValue[]>
 ```
 
-**属性**：
+**Properties**:
 
-+ value：当前值，自动转换为字符串类型（`'true'`/`'false'`）。（`string | null | undefined`）
++ value: Current value, automatically converted to string type (`'true'`/`'false'`).（`string | null | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，自动将值转换为布尔类型。
-+ **类型**：`(val: EnumerationValue | EnumerationValue[] | null | undefined) => void`
-+ **参数**：
-  - `val`：变更后的值。
++ **Function Description**: Value change processing, automatically convert the value to boolean type.
++ **Type**: `(val: EnumerationValue | EnumerationValue[] | null | undefined) => void`
++ **Parameters**:
+  - `val`: Value after change.
 
 #### **getAvailableOptions**
 
-+ **功能描述**：获取可用选项，无配置时默认返回 `是`（`true`）和 `否`（`false`）。
-+ **类型**：`() => RuntimeEnumerationOption[]`
-+ **返回值**：选项数组。
++ **Function Description**: Get available options, default returns `Yes` (`true`) and `No` (`false`) when there is no configuration.
++ **Type**: `() => RuntimeEnumerationOption[]`
++ **Return Value**: Option array.
 
 #### **getMetaOptionNames**
 
-+ **功能描述**：获取元数据选项名称，默认返回 `['true', 'false']`。
-+ **类型**：`() => string[]`
-+ **返回值**：选项名称数组。
++ **Function Description**: Get metadata option names, default returns `['true', 'false']`.
++ **Type**: `() => string[]`
++ **Return Value**: Option name array.
 
 #### **submit**
 
-+ **功能描述**：处理表单提交，使用布尔值专用提交处理器。
-+ **类型**：`(submitValue: SubmitValue) => any`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Process form submission, use the boolean value dedicated submission processor.
++ **Type**: `(submitValue: SubmitValue) => any`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
-## （十）数据字典（Enum）
+## (十) Enum
 
 ### 1、FormEnumFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1054,7 +1054,7 @@ export class FormEnumFieldWidget<
 
 ### 2、FormEnumRadioWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1067,15 +1067,15 @@ export class FormEnumFieldWidget<
 export class FormEnumRadioWidget extends FormEnumFieldAbstractWidget<EnumerationValue>
 ```
 
-**属性**：
+**Properties**:
 
-+ allowClear：是否允许清除选中状态，默认值为 `false`。（`boolean`）
-+ autocorrection：是否自动修正输入，默认值为 `false`。（`boolean`）
-+ rowLimit：每行显示的单选按钮数量。（`number | undefined`）
++ allowClear: Whether to allow clearing the selection state, default value is `false`.（`boolean`）
++ autocorrection: Whether to automatically correct input, default value is `false`.（`boolean`）
++ rowLimit: Number of radio buttons displayed per row.（`number | undefined`）
 
 ### 3、FormEnumMultiSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1090,7 +1090,7 @@ export class FormEnumMultiSelectFieldWidget extends FormEnumFieldAbstractWidget<
 
 ### 4、FormEnumMultiCheckboxFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1104,15 +1104,15 @@ export class FormEnumMultiSelectFieldWidget extends FormEnumFieldAbstractWidget<
 export class FormEnumMultiCheckboxFieldWidget extends FormEnumFieldAbstractWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ validateTrigger：验证触发时机，默认值为 `[ValidateTrigger.CHANGE]`。（`ValidateTrigger[]`）
++ validateTrigger: Validation trigger timing, default value is `[ValidateTrigger.CHANGE]`.（`ValidateTrigger[]`）
 
-## （十一）时间日期（Datetime）
+## (十一) Datetime
 
 ### 1、FormDateTimeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1124,90 +1124,90 @@ export class FormEnumMultiCheckboxFieldWidget extends FormEnumFieldAbstractWidge
 export class FormDateTimeFieldWidget extends FormFieldWidget<string>
 ```
 
-**属性**：
+**Properties**:
 
-+ allowClear：是否允许清除，默认值为 `true`。（`boolean`）
-+ dateFormat：日期格式化规则，优先级：DSL 表达式 > 资源配置 > 默认值（`YYYY-MM-DD`）。（`string | undefined`）
-+ dateTimeFormat：完整日期时间格式（日期格式和时间格式的组合）。（`string | undefined`）
-+ endDate：结束日期（原始值），支持表达式。（`any`）
-+ endDateOffset：结束日期偏移量，默认值为 `0`。（`number`）
-+ endDateOffsetUnit：结束日期偏移单位。（`string | undefined`）
-+ format：XML 配置的格式化规则（优先级最高）。（`string | undefined`）
-+ open：日期选择面板是否打开。（`boolean`）
-+ quickOptions：快速选择选项，支持逗号分隔字符串转为数组。（`DateQuickOption[]`）
-+ realEndDate：处理后的结束日期（含偏移量）。（`string | undefined`）
-+ realStartDate：处理后的起始日期（含偏移量）。（`string | undefined`）
-+ resourceDateTimeFormat：资源日期时间格式配置。（`IResourceDateTimeFormat`）
-+ showTimeDefaultValue：时间默认值（`00:00:00`）。（`Moment`）
-+ startDate：起始日期（原始值），支持表达式。（`any`）
-+ startDateOffset：起始日期偏移量，默认值为 `0`。（`number`）
-+ startDateOffsetUnit：起始日期偏移单位。（`string | undefined`）
-+ timeFormat：时间格式化规则，优先级：DSL 表达式 > 资源配置 > 默认值（`HH:mm:ss`）。（`string | undefined`）
-+ valueFormat：字段值格式化规则。（`string | undefined`）
++ allowClear: Whether to allow clearing, default value is `true`.（`boolean`）
++ dateFormat: Date formatting rule, priority: DSL expression > resource configuration > default value (`YYYY-MM-DD`).（`string | undefined`）
++ dateTimeFormat: Complete date and time format (combination of date format and time format).（`string | undefined`）
++ endDate: End date (original value), supports expressions.（`any`）
++ endDateOffset: End date offset, default value is `0`.（`number`）
++ endDateOffsetUnit: End date offset unit.（`string | undefined`）
++ format: Formatting rule configured in XML (highest priority).（`string | undefined`）
++ open: Whether the date selection panel is open.（`boolean`）
++ quickOptions: Quick selection options, supports converting comma-separated strings to arrays.（`DateQuickOption[]`）
++ realEndDate: Processed end date (including offset).（`string | undefined`）
++ realStartDate: Processed start date (including offset).（`string | undefined`）
++ resourceDateTimeFormat: Resource date and time format configuration.（`IResourceDateTimeFormat`）
++ showTimeDefaultValue: Time default value (`00:00:00`).（`Moment`）
++ startDate: Start date (original value), supports expressions.（`any`）
++ startDateOffset: Start date offset, default value is `0`.（`number`）
++ startDateOffsetUnit: Start date offset unit.（`string | undefined`）
++ timeFormat: Time formatting rule, priority: DSL expression > resource configuration > default value (`HH:mm:ss`).（`string | undefined`）
++ valueFormat: Field value formatting rule.（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **changeOpenValue**
 
-+ **功能描述**：更新日期选择面板的打开状态。
-+ **类型**：`(open: boolean) => void`
-+ **参数**：
-  - `open`：面板打开状态。
++ **Function Description**: Update the open state of the date selection panel.
++ **Type**: `(open: boolean) => void`
++ **Parameters**:
+  - `open`: Panel open state.
 
 #### **closePanelChange**
 
-+ **功能描述**：关闭日期选择面板时触发，处理值变更和失焦逻辑。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Trigger when closing the date selection panel, process value change and lose focus logic.
++ **Type**: `() => Promise<void>`
 
 #### **correctingStartShowTimeDefaultValue**
 
-+ **功能描述**：校正起始时间默认值，确保不早于处理后的起始日期。
-+ **类型**：`(e: string | Date) => string | Date`
-+ **参数**：
-  - `e`：原始时间值。
++ **Function Description**: Correct the start time default value to ensure it is not earlier than the processed start date.
++ **Type**: `(e: string | Date) => string | Date`
++ **Parameters**:
+  - `e`: Original time value.
 
 #### **disabledDate**
 
-+ **功能描述**：禁用日期校验，根据起止日期（含偏移量）限制可选范围。
-+ **类型**：`(current: Moment) => boolean`
-+ **参数**：
-  - `current`：当前日期。
++ **Function Description**: Disable date verification, limit the selectable range according to the start and end dates (including offset).
++ **Type**: `(current: Moment) => boolean`
++ **Parameters**:
+  - `current`: Current date.
 
 #### **disabledTime**
 
-+ **功能描述**：禁用时间校验，根据起止日期（含偏移量）限制可选时间范围。
-+ **类型**：`(e: Moment) => Object`
-+ **参数**：
-  - `e`：当前时间。
++ **Function Description**: Disable time verification, limit the selectable time range according to the start and end dates (including offset).
++ **Type**: `(e: Moment) => Object`
++ **Parameters**:
+  - `e`: Current time.
 
 #### **openPanelChange**
 
-+ **功能描述**：打开日期选择面板时触发，设置初始值。
-+ **类型**：`() => void`
++ **Function Description**: Trigger when opening the date selection panel, set the initial value.
++ **Type**: `() => void`
 
 #### **quickChange**
 
-+ **功能描述**：快速选项切换处理，更新选中值。
-+ **类型**：`(quickOption: DateQuickOption) => void`
-+ **参数**：
-  - `quickOption`：快速选项值。
++ **Function Description**: Process quick option switching, update the selected value.
++ **Type**: `(quickOption: DateQuickOption) => void`
++ **Parameters**:
+  - `quickOption`: Quick option value.
 
 #### **quickOptionsCompareDisable**
 
-+ **功能描述**：判断快速选项是否禁用（超出起止日期范围）。
-+ **类型**：`(quickOption: DateQuickOption) => boolean`
-+ **参数**：
-  - `quickOption`：快速选项值。
++ **Function Description**: Determine whether the quick option is disabled (exceeds the start and end date range).
++ **Type**: `(quickOption: DateQuickOption) => boolean`
++ **Parameters**:
+  - `quickOption`: Quick option value.
 
 #### **validator**
 
-+ **功能描述**：异步验证输入值，校验日期是否在起止范围内。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the input value, verify whether the date is within the start and end range.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
 ### 2、FormDateTimeRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1219,54 +1219,54 @@ export class FormDateTimeFieldWidget extends FormFieldWidget<string>
 export class FormDateTimeRangeFieldWidget extends FormRangeFieldsWidget<StandardString>
 ```
 
-**属性**：
+**Properties**:
 
-+ allowClear：是否允许清除，默认值为 `true`。（`boolean`）
-+ dateFormat：日期格式化规则，优先级：DSL 表达式 > 资源配置 > 默认值（`YYYY-MM-DD`）。（`string | undefined`）
-+ defaultValidateTrigger：验证触发时机，固定为 `[ValidateTrigger.CHANGE]`。（`ValidateTrigger[]`）
-+ endPlaceholder：结束日期占位符。（`string | undefined`）
-+ format：XML 配置的格式化规则（优先级最高）。（`string | undefined`）
-+ resourceDateTimeFormat：资源日期时间格式配置。（`IResourceDateTimeFormat`）
-+ showTimeDefaultValue：时间默认值（`[00:00:00, 00:00:00]`）。（`Moment[]`）
-+ startPlaceholder：起始日期占位符。（`string | undefined`）
-+ timeFormat：时间格式化规则，优先级：DSL 表达式 > 资源配置 > 默认值（`HH:mm:ss`）。（`string | undefined`）
++ allowClear: Whether to allow clearing, default value is `true`.（`boolean`）
++ dateFormat: Date formatting rule, priority: DSL expression > resource configuration > default value (`YYYY-MM-DD`).（`string | undefined`）
++ defaultValidateTrigger: Validation trigger timing, fixed as `[ValidateTrigger.CHANGE]`.（`ValidateTrigger[]`）
++ endPlaceholder: End date placeholder.（`string | undefined`）
++ format: Formatting rule configured in XML (highest priority).（`string | undefined`）
++ resourceDateTimeFormat: Resource date and time format configuration.（`IResourceDateTimeFormat`）
++ showTimeDefaultValue: Time default value (`[00:00:00, 00:00:00]`).（`Moment[]`）
++ startPlaceholder: Start date placeholder.（`string | undefined`）
++ timeFormat: Time formatting rule, priority: DSL expression > resource configuration > default value (`HH:mm:ss`).（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，触发父类变更逻辑并处理面板关闭。
-+ **类型**：`(val: StandardString[] | null | undefined) => void`
-+ **参数**：
-  - `val`：变更后的日期范围值。
++ **Function Description**: Value change processing, trigger the parent class change logic and process panel closing.
++ **Type**: `(val: StandardString[] | null | undefined) => void`
++ **Parameters**:
+  - `val`: Date range value after change.
 
 #### **closePanelChange**
 
-+ **功能描述**：关闭日期选择面板时触发，处理值变更和失焦逻辑。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Trigger when closing the date selection panel, process value change and lose focus logic.
++ **Type**: `() => Promise<void>`
 
 #### **generatorConstructMirrorSubmitData**
 
-+ **功能描述**：生成提交数据镜像，映射起始 / 结束字段值。
-+ **类型**：`() => ActiveRecord`
-+ **返回值**：包含起始和结束字段值的对象。
++ **Function Description**: Generate a submission data mirror, map the start/end field values.
++ **Type**: `() => ActiveRecord`
++ **Return Value**: Object containing start and end field values.
 
 #### **getInitializeComponent**
 
-+ **功能描述**：获取初始化组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：日期时间范围选择器组件 `DefaultDateTimeRangePicker`。
++ **Function Description**: Get the initialization component.
++ **Type**: `() => WidgetComponent`
++ **Return Value**: Date and time range picker component `DefaultDateTimeRangePicker`.
 
 #### **openPanelChange**
 
-+ **功能描述**：打开日期选择面板时触发，设置初始值。
-+ **类型**：`() => void`
++ **Function Description**: Trigger when opening the date selection panel, set the initial value.
++ **Type**: `() => void`
 
-## （十二）日期（Date）
+## (十二) Date
 
 ### 1、FormDateFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1278,36 +1278,36 @@ export class FormDateTimeRangeFieldWidget extends FormRangeFieldsWidget<Standard
 export class FormDateFieldWidget extends FormDateTimeFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，调用父类变更方法并触发失焦。
-+ **类型**：`(v: string | null | undefined) => void`
-+ **参数**：
-  - `v`：变更后的值。
++ **Function Description**: Value change processing, call the parent class change method and trigger lose focus.
++ **Type**: `(v: string | null | undefined) => void`
++ **Parameters**:
+  - `v`: Value after change.
 
 #### **defaultConstructDataTrigger**
 
-+ **功能描述**：返回数据构造触发条件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发条件数组。
++ **Function Description**: Return the data construction trigger condition.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Trigger condition array.
 
 #### **defaultClearFieldsTrigger**
 
-+ **功能描述**：返回字段清除触发条件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发条件数组。
++ **Function Description**: Return the field clearing trigger condition.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Trigger condition array.
 
 #### **getInitializeComponent**
 
-+ **功能描述**：获取初始化组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：日期选择器组件 `DefaultDatePicker`。
++ **Function Description**: Get the initialization component.
++ **Type**: `() => WidgetComponent`
++ **Return Value**: Date picker component `DefaultDatePicker`.
 
 ### 2、FormDateRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1319,19 +1319,19 @@ export class FormDateFieldWidget extends FormDateTimeFieldWidget
 export class FormDateRangeFieldWidget extends FormDateTimeRangeFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **getInitializeComponent**
 
-+ **功能描述**：获取初始化组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：日期范围选择器组件， 默认值为 `DefaultDateRangePicker`。
++ **Function Description**: Get the initialization component.
++ **Type**: `() => WidgetComponent`
++ **Return Value**: Date range picker component, default value is `DefaultDateRangePicker`.
 
-## （十三）时间（Time）
+## (十三) Time
 
 ### 1、FormTimeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1343,17 +1343,17 @@ export class FormDateRangeFieldWidget extends FormDateTimeRangeFieldWidget
 export class FormTimeFieldWidget extends FormDateTimeFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **getInitializeComponent**
 
-+ **功能描述**：获取初始化组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：时间选择器组件， 默认值为 `DefaultTimePicker`。
++ **Function Description**: Get the initialization component.
++ **Type**: `() => WidgetComponent`
++ **Return Value**: Time picker component, default value is `DefaultTimePicker`.
 
 ### 2、FormTimeRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1365,19 +1365,19 @@ export class FormTimeFieldWidget extends FormDateTimeFieldWidget
 export class FormTimeRangeFieldWidget extends FormDateTimeRangeFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **getInitializeComponent**
 
-+ **功能描述**：获取初始化组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：时间范围选择器组件， 默认值为 `DefaultTimeRangePicker`。
++ **Function Description**: Get the initialization component.
++ **Type**: `() => WidgetComponent`
++ **Return Value**: Time range picker component, default value is `DefaultTimeRangePicker`.
 
-## （十四）年份（Year）
+## (十四) Year
 
 ### 1、FormYearFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1389,36 +1389,36 @@ export class FormTimeRangeFieldWidget extends FormDateTimeRangeFieldWidget
 export class FormYearFieldWidget extends FormDateTimeFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，调用父类变更方法并触发失焦。
-+ **类型**：`(v: string | null | undefined) => void`
-+ **参数**：
-  - `v`：变更后的值。
++ **Function Description**: Value change processing, call the parent class change method and trigger lose focus.
++ **Type**: `(v: string | null | undefined) => void`
++ **Parameters**:
+  - `v`: Value after change.
 
 #### **defaultConstructDataTrigger**
 
-+ **功能描述**：返回数据构造触发条件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发条件数组。
++ **Function Description**: Return the data construction trigger condition.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Trigger condition array.
 
 #### **defaultClearFieldsTrigger**
 
-+ **功能描述**：返回字段清除触发条件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发条件数组。
++ **Function Description**: Return the field clearing trigger condition.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Trigger condition array.
 
 #### **getInitializeComponent**
 
-+ **功能描述**：获取初始化组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：年份选择器组件， 默认值为 `DefaultYearPicker`。
++ **Function Description**: Get the initialization component.
++ **Type**: `() => WidgetComponent`
++ **Return Value**: Year picker component, default value is `DefaultYearPicker`.
 
 ### 2、FormYearRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1430,19 +1430,19 @@ export class FormYearFieldWidget extends FormDateTimeFieldWidget
 export class FormYearRangeFieldWidget extends FormDateTimeRangeFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **getInitializeComponent**
 
-+ **功能描述**：获取初始化组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：年份范围选择器组件， 默认值为 `DefaultYearRangePicker`。
++ **Function Description**: Get the initialization component.
++ **Type**: `() => WidgetComponent`
++ **Return Value**: Year range picker component, default value is `DefaultYearRangePicker`.
 
-## （十五）键值对（Map）
+## (十五) Map
 
 ### 1、FormMapFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1454,61 +1454,70 @@ export class FormYearRangeFieldWidget extends FormDateTimeRangeFieldWidget
 export class FormMapFieldWidget extends FormFieldWidget<Record<string, string>>
 ```
 
-**属性**：
+**Properties**:
 
-+ items：地图项数组，默认值为 `[]`。（`MapItem[]`）
-+ limit：条目数量限制（DSL 配置转换为数字）。（`number | undefined`）
-+ mountedCallChaining：挂载时的链式调用钩子（注入属性）。（`CallChaining | undefined`）
++ items: Map item array, default value is `[]`.（`MapItem[]`）
++ limit: Number of item limits (DSL configuration converted to number).（`number | undefined`）
++ mountedCallChaining: Mounted chaining call hook (injected attribute).（`CallChaining | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **addRecord**
 
-+ **功能描述**：添加空地图项。
-+ **类型**：`() => void`
++ **Function Description**: Add an empty map item.
++ **Type**: `() => void`
 
 #### **generatorValue**
 
-+ **功能描述**：生成当前地图项对应的键值对对象，忽略空项。
-+ **类型**：`() => Record<string, string> | null | undefined`
-+ **返回值**：键值对对象或 `null`（无有效项时）。
++ **Function Description**: Generate the key-value pair object corresponding to the current map item, ignoring empty items.
++ **Type**: `() => Record<string, string> | null | undefined`
++ **Return Value**: Key-value pair object or `null` (when there are no valid items).
 
 #### **onHandleChange**
 
-+ **功能描述**：地图项变更时触发，更新字段值。
-+ **类型**：`() => void`
++ **Function Description**: Trigger when the map item changes, update the field value.
++ **Type**: `() => void`
 
 #### **removeRecord**
 
-+ **功能描述**：删除指定索引的地图项，并触发值变更和失焦。
-+ **类型**：`(index: number) => void`
-+ **参数**：
-  - `index`：要删除的地图项索引。
++ **Function Description**: Delete the map item at the specified index, and trigger value change and lose focus.
++ **Type**: `(index: number) => void`
++ **Parameters**:
+  - `index`: Index of the map item to be deleted.
 
 #### **submit**
 
-+ **功能描述**：提交字段值，使用默认提交处理器。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交值对象。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit the field value, use the default submission processor.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Submission value object.
++ **Return Value**: Submission processing result.
 
 #### **validator**
 
-+ **功能描述**：异步验证字段值，校验必填项和键唯一性。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Asynchronously validate the field value, verify required items and key uniqueness.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
+  
+---
+title: Form Field
+index: true
+category:
+  - R&D Manual
+  - Reference
+  - Frontend API
+  - Widget
+  - Field
+order: 3
 
-#### **mountedProcess**
+---
+# Reference List
 
-+ **功能描述**：挂载时处理逻辑，将初始值转换为地图项数组。
-+ **类型**：`() => ReturnPromise<void>`
-
-## （十六）多对一（M2O）
+## (十六) ManyToOne (M2O)
 
 ### 1、FormM2OSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1520,72 +1529,72 @@ export class FormMapFieldWidget extends FormFieldWidget<Record<string, string>>
 export class FormM2OSelectFieldWidget extends FormSelectComplexFieldWidget<ActiveRecord, RuntimeM2OField>
 ```
 
-**属性**：
+**Properties**:
 
-+ computeQueryOneKey：查询关联记录的键名。（`string | undefined`）
-+ currentValueLabel：当前选中值的标签文本。（`string`）
++ computeQueryOneKey: Key name for querying associated records.（`string | undefined`）
++ currentValueLabel: Label text of the currently selected value.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，支持空值、空对象等特殊情况。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的值。
++ **Function Description**: Value change processing, supporting special cases such as empty values and empty objects.
++ **Type**: `(value: any) => void`
++ **Parameters**:
+  - `value`: Value after change.
 
 #### **computeQueryOneDefaultKey**
 
-+ **功能描述**：获取默认查询键名，默认为 `id`。
-+ **类型**：`() => string`
++ **Function Description**: Get the default query key name, default is `id`.
++ **Type**: `() => string`
 
 #### **fillOptions**
 
-+ **功能描述**：填充选项数据（单值模式）。
-+ **类型**：`(dataList: Record<string, unknown>[], insetDefaultValue?: boolean) => Promise<void>`
-+ **参数**：
-  - `dataList`：选项数据列表。
-  - `insetDefaultValue`：是否插入默认值。
++ **Function Description**: Fill option data (single-value mode).
++ **Type**: `(dataList: Record<string, unknown>[], insetDefaultValue?: boolean) => Promise<void>`
++ **Parameters**:
+  - `dataList`: Option data list.
+  - `insetDefaultValue`: Whether to insert default value.
 
 #### **handleSelectedValueLabel**
 
-+ **功能描述**：处理选中值的标签文本。
-+ **类型**：`(val: any) => Promise<void>`
-+ **参数**：
-  - `val`：选中的值。
++ **Function Description**: Process the label text of the selected value.
++ **Type**: `(val: any) => Promise<void>`
++ **Parameters**:
+  - `val`: Selected value.
 
 #### **m2oChange**
 
-+ **功能描述**：ManyToOne 关系变更，调用父类变更方法。
-+ **类型**：`(value: Record<string, unknown>) => void`
-+ **参数**：
-  - `value`：变更后的值。
++ **Function Description**: ManyToOne relationship change, call the parent class change method.
++ **Type**: `(value: Record<string, unknown>) => void`
++ **Parameters**:
+  - `value`: Value after change.
 
 #### **mounted**
 
-+ **功能描述**：组件挂载后处理，监听值变化。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Processing after component mounting, listening to value changes.
++ **Type**: `() => Promise<void>`
 
 #### **submit**
 
-+ **功能描述**：提交 ManyToOne 关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
++ **Function Description**: Submit ManyToOne relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
 
 #### **updateM2oValue**
 
-+ **功能描述**：更新 ManyToOne 关系值，支持表达式计算。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Update ManyToOne relationship value, supporting expression calculation.
++ **Type**: `() => Promise<void>`
 
 #### **watchM2OValue**
 
-+ **功能描述**：监听表单数据变化，延迟更新 ManyToOne 值。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Listen to form data changes, delay updating ManyToOne value.
++ **Type**: `() => Promise<void>`
 
 ### 2、FormM2ORadioFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1598,22 +1607,22 @@ export class FormM2OSelectFieldWidget extends FormSelectComplexFieldWidget<Activ
 export class FormM2ORadioFieldWidget extends FormRelationFieldRadioWidget<RuntimeM2OField>
 ```
 
-**属性**：
+**Properties**:
 
-+ selectedValues：当前选中值的 ID 数组。（`string[] | undefined`）
++ selectedValues: ID array of currently selected values.（`string[] | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交多对一关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
++ **Function Description**: Submit ManyToOne relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
 
 ### 3、FormM2OTreeSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1626,18 +1635,18 @@ export class FormM2ORadioFieldWidget extends FormRelationFieldRadioWidget<Runtim
 export class FormM2OTreeSelectFieldWidget extends FormTreeSelectFieldWidget<ActiveRecord, RuntimeM2OField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交 ManyToOne 关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
++ **Function Description**: Submit ManyToOne relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
 
 ### 4、FormM2OCascaderFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1650,18 +1659,18 @@ export class FormM2OTreeSelectFieldWidget extends FormTreeSelectFieldWidget<Acti
 export class FormM2OCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRecord, RuntimeM2OField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交 ManyToOne 关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
++ **Function Description**: Submit ManyToOne relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
 
 ### 5、FormM2OUploadFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1674,32 +1683,32 @@ export class FormM2OCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRe
 export class FormM2OUploadFieldWidget extends AbstractFormM2OUploadFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，支持数组转单值。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的值。
++ **Function Description**: Value change processing, supporting array to single value conversion.
++ **Type**: `(value: any) => void`
++ **Parameters**:
+  - `value`: Value after change.
 
 #### **getImportFile**
 
-+ **功能描述**：处理导入文件，更新值为第一个文件或 `null`。
-+ **类型**：`(data: any[]) => void`
-+ **参数**：
-  - `data`：文件数据数组。
++ **Function Description**: Process imported files, update value to the first file or `null`.
++ **Type**: `(data: any[]) => void`
++ **Parameters**:
+  - `data`: File data array.
 
 #### **remove**
 
-+ **功能描述**：移除文件，更新值为 `null`。
-+ **类型**：`(file: any) => void`
-+ **参数**：
-  - `file`：要移除的文件。
++ **Function Description**: Remove file, update value to `null`.
++ **Type**: `(file: any) => void`
++ **Parameters**:
+  - `file`: File to be removed.
 
 ### 6、FormM2OUploadImgFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1712,36 +1721,36 @@ export class FormM2OUploadFieldWidget extends AbstractFormM2OUploadFieldWidget
 export class FormM2OUploadImgFieldWidget extends AbstractFormM2OUploadFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ showPreviewTitle：是否显示预览标题，优先级：DSL 配置（布尔值 / 字符串布尔值）> 默认值 `true`。（`boolean`）
++ showPreviewTitle: Whether to display the preview title, priority: DSL configuration (boolean/string boolean) > default value `true`.（`boolean`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，支持数组转单值，触发失焦。
-+ **类型**：`(v: any) => void`
-+ **参数**：
-  - `v`：变更后的值。
++ **Function Description**: Value change processing, supporting array to single value conversion, trigger lose focus.
++ **Type**: `(v: any) => void`
++ **Parameters**:
+  - `v`: Value after change.
 
 #### **getImportFile**
 
-+ **功能描述**：处理导入图片文件，更新值为第一个文件或 `null`。
-+ **类型**：`(data: any[]) => void`
-+ **参数**：
-  - `data`：图片数据数组。
++ **Function Description**: Process imported image files, update value to the first file or `null`.
++ **Type**: `(data: any[]) => void`
++ **Parameters**:
+  - `data`: Image data array.
 
 #### **remove**
 
-+ **功能描述**：移除图片文件，更新值为 `null`，触发失焦。
-+ **类型**：`(file: any) => void`
-+ **参数**：
-  - `file`：要移除的图片文件。
++ **Function Description**: Remove image file, update value to `null`, trigger lose focus.
++ **Type**: `(file: any) => void`
++ **Parameters**:
+  - `file`: Image file to be removed.
 
 ### 7、FormM2OUploadDraggableFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1754,16 +1763,16 @@ export class FormM2OUploadImgFieldWidget extends AbstractFormM2OUploadFieldWidge
 export class FormM2OUploadDraggableFieldWidget extends FormM2OUploadFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ draggableIcon：拖拽上传图标，默认值为 `oinone-shangchuan1`。（`string`）
-+ draggableTipText：拖拽上传提示词，默认值为 `点击 或 拖拽文件到这里上传`。（`string`）
-+ draggableExtendsionsText：允许上传的文件类型提示文本，默认值为 `支持拓展名: {extensions}`。（`string`）
-+ showDraggableExtendsionsText：是否展示支持拓展名，默认值为 `true`。（`boolean`）
++ draggableIcon: Drag and drop upload icon, default value is `oinone-shangchuan1`.（`string`）
++ draggableTipText: Drag and drop upload prompt, default value is `Click or drag files here to upload`.（`string`）
++ draggableExtendsionsText: Allowed file type prompt text, default value is `Support extensions: {extensions}`.（`string`）
++ showDraggableExtendsionsText: Whether to display supported extensions, default value is `true`.（`boolean`）
 
 ### 8、FormM2OCompanyFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1776,18 +1785,18 @@ export class FormM2OUploadDraggableFieldWidget extends FormM2OUploadFieldWidget
 export class FormM2OCompanyFieldWidget extends FormM2OTreeSelectFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **generatorDefaultTreeDefinition**
 
-+ **功能描述**：生成默认的公司树定义。
-+ **类型**：`(props: any) => any`
-+ **参数**：
-  - `props`：组件属性。
++ **Function Description**: Generate default company tree definition.
++ **Type**: `(props: any) => any`
++ **Parameters**:
+  - `props`: Component properties.
 
 ### 9、FormM2ODepartmentFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1800,18 +1809,18 @@ export class FormM2OCompanyFieldWidget extends FormM2OTreeSelectFieldWidget
 export class FormM2ODepartmentFieldWidget extends FormM2OTreeSelectFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **generatorDefaultTreeDefinition**
 
-+ **功能描述**：生成默认的部门树定义。
-+ **类型**：`(props: any) => any`
-+ **参数**：
-  - `props`：组件属性。
++ **Function Description**: Generate default department tree definition.
++ **Type**: `(props: any) => any`
++ **Parameters**:
+  - `props`: Component properties.
 
 ### 10、FormM2OEmployeeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1824,18 +1833,18 @@ export class FormM2ODepartmentFieldWidget extends FormM2OTreeSelectFieldWidget
 export class FormM2OEmployeeFieldWidget extends FormM2OTreeSelectFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **generatorDefaultTreeDefinition**
 
-+ **功能描述**：生成默认的员工树定义。
-+ **类型**：`(props: any) => any`
-+ **参数**：
-  - `props`：组件属性。
++ **Function Description**: Generate default employee tree definition.
++ **Type**: `(props: any) => any`
++ **Parameters**:
+  - `props`: Component properties.
 
 ### 11、FormM2OAddressFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1848,64 +1857,64 @@ export class FormM2OEmployeeFieldWidget extends FormM2OTreeSelectFieldWidget
 export class FormM2OAddressFieldWidget extends FormM2OCascaderFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ changeOnSelect：选择节点时是否立即触发变更，默认值为 `true`（DSL 配置转换为布尔值）。（`boolean`）
++ changeOnSelect: Whether to trigger change immediately when selecting a node, default value is `true` (DSL configuration converted to boolean).（`boolean`）
 
-**方法**：
+**Methods**:
 
 #### **fetchBackfillData**
 
-+ **功能描述**：反向查询回填数据，根据当前值和元数据生成回填树节点。
-+ **类型**：`(currentValues: ActiveRecord[], metadataList: TreeNodeMetadata[]) => Promise<TreeNodeResponseBody[] | undefined>`
-+ **参数**：
-  - `currentValues`：当前值列表。
-  - `metadataList`：元数据列表。
-+ **返回值**：回填树节点响应体数组，或 `undefined`（无匹配数据时）。
++ **Function Description**: Reverse query backfill data, generate backfill tree nodes based on current values and metadata.
++ **Type**: `(currentValues: ActiveRecord[], metadataList: TreeNodeMetadata[]) => Promise<TreeNodeResponseBody[] | undefined>`
++ **Parameters**:
+  - `currentValues`: Current value list.
+  - `metadataList`: Metadata list.
++ **Return Value**: Backfill tree node response body array, or `undefined` (when no matching data).
 
 #### **generatorCompareRecords**
 
-+ **功能描述**：生成用于比较的记录，提取当前值中的关联字段。
-+ **类型**：`(currentValues: ActiveRecord[], metadataList: TreeNodeMetadata[]) => ActiveRecord[] | undefined>`
-+ **参数**：
-  - `currentValues`：当前值列表。
-  - `metadataList`：元数据列表。
-+ **返回值**：比较记录数组，或 `undefined`（无有效记录时）。
++ **Function Description**: Generate records for comparison, extract associated fields from current values.
++ **Type**: `(currentValues: ActiveRecord[], metadataList: TreeNodeMetadata[]) => ActiveRecord[] | undefined>`
++ **Parameters**:
+  - `currentValues`: Current value list.
+  - `metadataList`: Metadata list.
++ **Return Value**: Comparison record array, or `undefined` (when no valid records).
 
 #### **generatorDefaultTreeDefinition**
 
-+ **功能描述**：生成默认的地址树定义。
-+ **类型**：`(props: any) => any`
-+ **参数**：
-  - `props`：组件属性。
-+ **返回值**：地址树定义对象。
++ **Function Description**: Generate default address tree definition.
++ **Type**: `(props: any) => any`
++ **Parameters**:
+  - `props`: Component properties.
++ **Return Value**: Address tree definition object.
 
 #### **getSubmitField**
 
-+ **功能描述**：获取提交字段映射配置，从节点元数据中解析。
-+ **类型**：`(metadata: TreeNodeMetadata) => Record<string, string> | undefined`
-+ **参数**：
-  - `metadata`：节点元数据。
-+ **返回值**：提交字段映射对象，或 `undefined`（无有效配置时）。
++ **Function Description**: Get submit field mapping configuration, parsed from node metadata.
++ **Type**: `(metadata: TreeNodeMetadata) => Record<string, string> | undefined`
++ **Parameters**:
+  - `metadata`: Node metadata.
++ **Return Value**: Submit field mapping object, or `undefined` (when no valid configuration).
 
 #### **submit**
 
-+ **功能描述**：提交字段数据，使用默认提交处理器。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit field data, use default submission processor.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 #### **$onSelectedChange**
 
-+ **功能描述**：选中节点变更时触发，递归处理选中节点及其父节点的值。
-+ **类型**：`(selectedNodes: OioTreeNode<TreeData>[] | null | undefined) => void`
-+ **参数**：
-  - `selectedNodes`：选中的节点列表。
++ **Function Description**: Trigger when selected nodes change, recursively process values of selected nodes and their parent nodes.
++ **Type**: `(selectedNodes: OioTreeNode<TreeData>[] | null | undefined) => void`
++ **Parameters**:
+  - `selectedNodes`: Selected node list.
 
 ### 12、FormM2OFormFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1918,11 +1927,11 @@ export class FormM2OAddressFieldWidget extends FormM2OCascaderFieldWidget
 export class FormM2OFormFieldWidget extends FormSubviewObjectFieldWidget<RuntimeM2OField>
 ```
 
-## （十七）一对多（O2M）
+## (十七) OneToMany (O2M)
 
 ### 1、FormO2MSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1934,40 +1943,40 @@ export class FormM2OFormFieldWidget extends FormSubviewObjectFieldWidget<Runtime
 export class FormO2MSelectFieldWidget extends FormSelectComplexFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ selectedValues：当前选中值数组（继承自父类）。（`any[]`）
++ selectedValues: Current selected value array (inherited from parent class).（`any[]`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，过滤无效选项并更新父类值。
-+ **类型**：`(value: { value: string }[]) => void`
-+ **参数**：
-  - `value`：变更后的选项值数组（含`value`属性）。
++ **Function Description**: Value change processing, filter invalid options and update parent class value.
++ **Type**: `(value: { value: string }[]) => void`
++ **Parameters**:
+  - `value`: Changed option value array (with `value` attribute).
 
 #### **fetchData**
 
-+ **功能描述**：获取关联数据（逻辑未完全实现，包含注释掉的查询逻辑）。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Get associated data (logic not fully implemented, includes commented query logic).
++ **Type**: `() => Promise<void>`
 
 #### **fillOptions**
 
-+ **功能描述**：填充多选项数据，调用父类批量填充逻辑。
-+ **类型**：`(dataList: Record<string, unknown>[], insetDefaultValue?: boolean) => Promise<void>`
-+ **参数**：
-  - `dataList`：选项数据列表。
-  - `insetDefaultValue`：是否插入默认值（默认值为 `true`）。
++ **Function Description**: Fill multi-option data, call parent class batch fill logic.
++ **Type**: `(dataList: Record<string, unknown>[], insetDefaultValue?: boolean) => Promise<void>`
++ **Parameters**:
+  - `dataList`: Option data list.
+  - `insetDefaultValue`: Whether to insert default value (default is `true`).
 
 #### **loadOriginValue**
 
-+ **功能描述**：组件挂载后加载原始值（继承自父类）。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Load original value after component mounting (inherited from parent class).
++ **Type**: `() => Promise<void>`
 
 ### 2、FormO2MCheckboxFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1980,19 +1989,19 @@ export class FormO2MSelectFieldWidget extends FormSelectComplexFieldWidget
 export class FormO2MCheckboxFieldWidget extends FormRelationFieldCheckboxWidget<RuntimeO2MField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交一对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit OneToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 3、FormO2MCascaderFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2005,23 +2014,23 @@ export class FormO2MCheckboxFieldWidget extends FormRelationFieldCheckboxWidget<
 export class FormO2MCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRecord[], RuntimeO2MField>
 ```
 
-**属性**：
+**Properties**:
 
-+ selectMode：选择模式，固定为多选模式。（`SelectMode`）
++ selectMode: Selection mode, fixed as multi-select mode.（`SelectMode`）
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交一对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit OneToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 4、FormO2MTreeSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2034,23 +2043,23 @@ export class FormO2MCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRe
 export class FormO2MTreeSelectFieldWidget extends FormTreeSelectFieldWidget<ActiveRecord[], RuntimeO2MField>
 ```
 
-**属性**：
+**Properties**:
 
-+ selectMode：选择模式，固定为多选模式。（`SelectMode`）
++ selectMode: Selection mode, fixed as multi-select mode.（`SelectMode`）
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交一对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit OneToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 5、FormO2MUploadFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2063,14 +2072,14 @@ export class FormO2MTreeSelectFieldWidget extends FormTreeSelectFieldWidget<Acti
 export class FormO2MUploadFieldWidget extends FormO2MFieldUploadBaseWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ cdnKey：CDN 密钥。（`string | undefined`）
-+ privateLink：是否为私有链接，将 DSL 配置转换为布尔值。（`boolean`）
++ cdnKey: CDN key.（`string | undefined`）
++ privateLink: Whether it is a private link, convert DSL configuration to boolean.（`boolean`）
 
 ### 6、FormO2MUploadImgFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2085,7 +2094,7 @@ export class FormO2MUploadImgFieldWidget extends FormO2MFieldUploadBaseWidget
 
 ### 7、FormO2MUploadDraggableFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2098,16 +2107,16 @@ export class FormO2MUploadImgFieldWidget extends FormO2MFieldUploadBaseWidget
 export class FormO2MUploadDraggableFieldWidget extends FormO2MUploadFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ draggableIcon：拖拽上传图标，默认值为 `oinone-shangchuan1`。（`string`）
-+ draggableTipText：拖拽上传提示词，默认值为 `点击 或 拖拽文件到这里上传`。（`string`）
-+ draggableExtendsionsText：允许上传的文件类型提示文本，格式为 `支持拓展名: {extensions}`。（`string`）
-+ showDraggableExtendsionsText：是否展示支持拓展名，默认值为 `true`。（`boolean`）
++ draggableIcon: Drag and drop upload icon, default value is `oinone-shangchuan1`.（`string`）
++ draggableTipText: Drag and drop upload prompt, default value is `Click or drag files here to upload`.（`string`）
++ draggableExtendsionsText: Allowed file type prompt text, format is `Support extensions: {extensions}`.（`string`）
++ showDraggableExtendsionsText: Whether to display supported extensions, default value is `true`.（`boolean`）
 
 ### 8、FormO2MTableFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2120,31 +2129,31 @@ export class FormO2MUploadDraggableFieldWidget extends FormO2MUploadFieldWidget
 export class FormO2MTableFieldWidget extends FormSubviewListFieldWidget<RuntimeO2MField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **initSubviewData**
 
-+ **功能描述**：初始化子视图数据，生成一对多关系查询条件。
-+ **类型**：`() => ReturnPromise<void>`
++ **Function Description**: Initialize subview data, generate OneToMany relationship query conditions.
++ **Type**: `() => ReturnPromise<void>`
 
 #### **refreshValueProcess**
 
-+ **功能描述**：刷新值处理，当作为数据源提供者时重新加载缓存。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Refresh value processing, reload cache when acting as data source provider.
++ **Type**: `() => Promise<void>`
 
 #### **submit**
 
-+ **功能描述**：提交一对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit OneToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
-## （十八）多对多（M2M）
+## (十八) ManyToMany (M2M)
 
 ### 1、FormM2MFieldSelectWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2156,34 +2165,34 @@ export class FormO2MTableFieldWidget extends FormSubviewListFieldWidget<RuntimeO
 export class FormM2MFieldSelectWidget extends FormSelectComplexFieldWidget<ActiveRecord[], RuntimeM2MField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：值变更处理，过滤无效选项并更新父类值。
-+ **类型**：`(value: any[]) => void`
-+ **参数**：
-  - `value`：变更后的值数组。
++ **Function Description**: Value change processing, filter invalid options and update parent class value.
++ **Type**: `(value: any[]) => void`
++ **Parameters**:
+  - `value`: Changed value array.
 
 #### **fillOptions**
 
-+ **功能描述**：填充多选项数据，调用父类批量填充逻辑。
-+ **类型**：`(dataList: Record<string, unknown>[], insetDefaultValue?: boolean) => Promise<void>`
-+ **参数**：
-  - `dataList`：选项数据列表。
-  - `insetDefaultValue`：是否插入默认值（默认值为 `true`）。
++ **Function Description**: Fill multi-option data, call parent class batch fill logic.
++ **Type**: `(dataList: Record<string, unknown>[], insetDefaultValue?: boolean) => Promise<void>`
++ **Parameters**:
+  - `dataList`: Option data list.
+  - `insetDefaultValue`: Whether to insert default value (default is `true`).
 
 #### **submit**
 
-+ **功能描述**：提交多对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit ManyToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 2、FormM2MCheckboxFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2196,19 +2205,19 @@ export class FormM2MFieldSelectWidget extends FormSelectComplexFieldWidget<Activ
 export class FormM2MCheckboxFieldWidget extends FormRelationFieldCheckboxWidget<RuntimeM2MField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交多对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit ManyToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 3、FormM2MTreeSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2221,23 +2230,23 @@ export class FormM2MCheckboxFieldWidget extends FormRelationFieldCheckboxWidget<
 export class FormM2MTreeSelectFieldWidget extends FormTreeSelectFieldWidget<ActiveRecord[], RuntimeM2MField>
 ```
 
-**属性**：
+**Properties**:
 
-+ selectMode：选择模式，默认值为多选模式。（`SelectMode`）
++ selectMode: Selection mode, default is multi-select mode.（`SelectMode`）
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交多对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit ManyToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 4、FormM2MCascaderFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2250,23 +2259,23 @@ export class FormM2MTreeSelectFieldWidget extends FormTreeSelectFieldWidget<Acti
 export class FormM2MCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRecord[], RuntimeM2MField>
 ```
 
-**属性**：
+**Properties**:
 
-+ selectMode：选择模式，默认值为多选模式。（`SelectMode`）
++ selectMode: Selection mode, default is multi-select mode.（`SelectMode`）
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交多对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit ManyToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 5、FormM2MUploadFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2279,14 +2288,14 @@ export class FormM2MCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRe
 export class FormM2MUploadFieldWidget extends FormM2MFieldUploadBaseWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ cdnKey：CDN 密钥。（`string | undefined`）
-+ privateLink：是否为私有链接。（`boolean`）
++ cdnKey: CDN key.（`string | undefined`）
++ privateLink: Whether it is a private link.（`boolean`）
 
 ### 6、FormM2MUploadImgFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2301,7 +2310,7 @@ export class FormM2MUploadImgFieldWidget extends FormM2MFieldUploadBaseWidget
 
 ### 7、FormM2MUploadDraggableFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2314,16 +2323,16 @@ export class FormM2MUploadImgFieldWidget extends FormM2MFieldUploadBaseWidget
 export class FormM2MUploadDraggableFieldWidget extends FormM2MUploadFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ draggableIcon：拖拽上传图标，默认值为 `oinone-shangchuan1`。（`string`）
-+ draggableTipText：拖拽上传提示词，默认值为 `点击 或 拖拽文件到这里上传`。（`string`）
-+ draggableExtendsionsText：允许上传的文件类型提示文本，默认值为 `支持拓展名: {extensions}`。（`string`）
-+ showDraggableExtendsionsText：是否展示支持拓展名，默认值为 `true`。（`boolean`）
++ draggableIcon: Drag and drop upload icon, default value is `oinone-shangchuan1`.（`string`）
++ draggableTipText: Drag and drop upload prompt, default value is `Click or drag files here to upload`.（`string`）
++ draggableExtendsionsText: Allowed file type prompt text, default value is `Support extensions: {extensions}`.（`string`）
++ showDraggableExtendsionsText: Whether to display supported extensions, default value is `true`.（`boolean`）
 
 ### 8、FormM2MTreeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2336,23 +2345,23 @@ export class FormM2MUploadDraggableFieldWidget extends FormM2MUploadFieldWidget
 export class FormM2MTreeFieldWidget extends FormTreeFieldWidget<ActiveRecord[], RuntimeM2MField>
 ```
 
-**属性**：
+**Properties**:
 
-+ selectMode：选择模式，默认值为多选模式。（`SelectMode`）
++ selectMode: Selection mode, default is multi-select mode.（`SelectMode`）
 
-**方法**：
+**Methods**:
 
 #### **submit**
 
-+ **功能描述**：提交多对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit ManyToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
 ### 9、FormM2MCompanyFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2365,18 +2374,18 @@ export class FormM2MTreeFieldWidget extends FormTreeFieldWidget<ActiveRecord[], 
 export class FormM2MCompanyFieldWidget extends FormM2MTreeSelectFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **generatorDefaultTreeDefinition**
 
-+ **功能描述**：生成默认的公司树结构定义。
-+ **类型**：`(props: any) => any`
-+ **参数**：
-  - `props`：组件属性。
++ **Function Description**: Generate default company tree structure definition.
++ **Type**: `(props: any) => any`
++ **Parameters**:
+  - `props`: Component properties.
 
 ### 10、FormM2MDepartmentFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2389,18 +2398,18 @@ export class FormM2MCompanyFieldWidget extends FormM2MTreeSelectFieldWidget
 export class FormM2MDepartmentFieldWidget extends FormM2MTreeSelectFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **generatorDefaultTreeDefinition**
 
-+ **功能描述**：生成默认的部门树结构定义。
-+ **类型**：`(props: any) => any`
-+ **参数**：
-  - `props`：组件属性。
++ **Function Description**: Generate default department tree structure definition.
++ **Type**: `(props: any) => any`
++ **Parameters**:
+  - `props`: Component properties.
 
 ### 11、FormM2MEmployeeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2413,18 +2422,18 @@ export class FormM2MDepartmentFieldWidget extends FormM2MTreeSelectFieldWidget
 export class FormM2MEmployeeFieldWidget extends FormM2MTreeSelectFieldWidget
 ```
 
-**方法**：
+**Methods**:
 
 #### **generatorDefaultTreeDefinition**
 
-+ **功能描述**：生成默认的员工树结构定义。
-+ **类型**：`(props: any) => any`
-+ **参数**：
-  - `props`：组件属性。
++ **Function Description**: Generate default employee tree structure definition.
++ **Type**: `(props: any) => any`
++ **Parameters**:
+  - `props`: Component properties.
 
 ### 12、FormM2MTableFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -2437,84 +2446,84 @@ export class FormM2MEmployeeFieldWidget extends FormM2MTreeSelectFieldWidget
 export class FormM2MTableFieldWidget extends FormSubviewListFieldWidget<RuntimeM2MField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **initSubviewData**
 
-+ **功能描述**：初始化子视图数据，生成多对多关系查询条件。
-+ **类型**：`() => ReturnPromise<void>`
++ **Function Description**: Initialize subview data, generate ManyToMany relationship query conditions.
++ **Type**: `() => ReturnPromise<void>`
 
 #### **refreshValueProcess**
 
-+ **功能描述**：刷新值处理，当作为数据源提供者时重新加载缓存。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Refresh value processing, reload cache when acting as data source provider.
++ **Type**: `() => Promise<void>`
 
 #### **submit**
 
-+ **功能描述**：提交多对多关系字段数据。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：提交的值。
-+ **返回值**：提交处理结果。
++ **Function Description**: Submit ManyToMany relationship field data.
++ **Type**: `(submitValue: SubmitValue) => Promise<any>`
++ **Parameters**:
+  - `submitValue`: Value to be submitted.
++ **Return Value**: Submission processing result.
 
-## （十九）抽象基类
+## (十九) Abstract Base Classes
 
 ### 1、FormInputAbstractFieldWidget
 
-**继承**：FormFieldWidget
+**Inheritance**: FormFieldWidget
 
-**属性**：
+**Properties**:
 
-+ inputRealValue：输入的实际值。（`unknown`）
-+ independentlyEditable：是否可独立编辑。（`boolean`）
-+ mode：输入模式，默认为动态模式。（`InputMediaMode`）
-+ prefix：前缀具体内容。（`string`）
-+ prefixStore：前缀是否存储。（`boolean`）
-+ prefixType：前缀类型。（`InputPreSuffixType`）
-+ prefixes：前缀列表。（`string[] | undefined`）
-+ prefixesValue：当前选中的前缀值。（`unknown`）
-+ showPrefix：是否显示前缀。（`boolean`）
-+ showSuffix：是否显示后缀。（`boolean`）
-+ suffix：后缀具体内容。（`string`）
-+ suffixStore：后缀是否存储。（`boolean`）
-+ suffixType：后缀类型。（`InputPreSuffixType`）
-+ type：输入类型。（`unknown`）
++ inputRealValue: Actual input value.（`unknown`）
++ independentlyEditable: Whether it can be edited independently.（`boolean`）
++ mode: Input mode, default is dynamic mode.（`InputMediaMode`）
++ prefix: Prefix content.（`string`）
++ prefixStore: Whether the prefix is stored.（`boolean`）
++ prefixType: Prefix type.（`InputPreSuffixType`）
++ prefixes: Prefix list.（`string[] | undefined`）
++ prefixesValue: Currently selected prefix value.（`unknown`）
++ showPrefix: Whether to display the prefix.（`boolean`）
++ showSuffix: Whether to display the suffix.（`boolean`）
++ suffix: Suffix content.（`string`）
++ suffixStore: Whether the suffix is stored.（`boolean`）
++ suffixType: Suffix type.（`InputPreSuffixType`）
++ type: Input type.（`unknown`）
 
-**方法**：
+**Methods**:
 
 #### **addPrefixSuffix**
 
-+ **功能描述**：添加前缀和后缀到输入值。
-+ **类型**：`(e: string) => string`
-+ **参数**：
-  - `e`：输入值。
-+ **返回值**：添加前缀和后缀后的处理值。
++ **Function Description**: Add prefix and suffix to the input value.
++ **Type**: `(e: string) => string`
++ **Parameters**:
+  - `e`: Input value.
++ **Return Value**: Processed value with prefix and suffix added.
 
 #### **changeInputRealValue**
 
-+ **功能描述**：更改输入的实际值并触发变更事件。
-+ **类型**：`(val: unknown) => void`
-+ **参数**：
-  - `val`：新的实际值。
++ **Function Description**: Change the actual input value and trigger the change event.
++ **Type**: `(val: unknown) => void`
++ **Parameters**:
+  - `val`: New actual value.
 
 #### **changePrefixesValue**
 
-+ **功能描述**：更改前缀值并触发变更事件。
-+ **类型**：`(val: unknown) => void`
-+ **参数**：
-  - `val`：新的前缀值。
++ **Function Description**: Change the prefix value and trigger the change event.
++ **Type**: `(val: unknown) => void`
++ **Parameters**:
+  - `val`: New prefix value.
 
 #### **removePrefixSuffix**
 
-+ **功能描述**：从输入值中移除前缀和后缀。
-+ **类型**：`(e: string) => string`
-+ **参数**：
-  - `e`：输入值。
-+ **返回值**：移除前缀和后缀后的处理值。
++ **Function Description**: Remove prefix and suffix from the input value.
++ **Type**: `(e: string) => string`
++ **Parameters**:
+  - `e`: Input value.
++ **Return Value**: Processed value with prefix and suffix removed.
 
 ### 2、FormNumberAbstractFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 export class FormNumberAbstractFieldWidget<
@@ -2522,598 +2531,593 @@ export class FormNumberAbstractFieldWidget<
 > extends FormInputAbstractFieldWidget<Value, RuntimeNumberField>
 ```
 
-**属性**：
+**Properties**:
 
-+ hiddenStepHandle：是否隐藏步进操作。（`boolean`）
-+ precision：数值精度（小数位数）。（`number | null | undefined`）
-+ size：输入框尺寸。（`unknown`）
-+ showThousandth：是否显示千分位分隔符。（`boolean`）
-+ unit：数值单位。（`string`）
++ hiddenStepHandle: Whether to hide step operations.（`boolean`）
++ precision: Numeric precision (number of decimal places).（`number | null | undefined`）
++ size: Input box size.（`unknown`）
++ showThousandth: Whether to display thousandth separators.（`boolean`）
++ unit: Numeric unit.（`string`）
 
 ### 3、FormEnumFieldAbstractWidget
 
-**继承**：FormFieldWidget
+**Inheritance**: FormFieldWidget
 
-**属性**：
+**Properties**:
 
-+ autocorrection：是否启用自动校正。（`boolean`）
-+ internalSelectedOptions：内部选中的选项值数组。（`string[]`）
-+ maxNumber：最多可选数量，默认值为无穷大。（`number`）
-+ minNumber：最少可选数量，默认值为负无穷。（`number`）
-+ optionColor：选项是否启用多彩样式。（`boolean`）
-+ optionColorStyle：选项颜色样式，默认值为多彩样式。（`OptionColorStyle`）
-+ options：可用选项列表。（`RuntimeEnumerationOption[]`）
-+ orientation：排列方向。（`string | undefined`）
-+ radioMode：单选模式。（`string | undefined`）
-+ renderOnParent：是否在父容器中渲染。（`boolean`）
++ autocorrection: Whether to enable auto-correction.（`boolean`）
++ internalSelectedOptions: Array of internally selected option values.（`string[]`）
++ maxNumber: Maximum number of selections, default is infinity.（`number`）
++ minNumber: Minimum number of selections, default is negative infinity.（`number`）
++ optionColor: Whether options use colorful styles.（`boolean`）
++ optionColorStyle: Option color style, default is colorful style.（`OptionColorStyle`）
++ options: List of available options.（`RuntimeEnumerationOption[]`）
++ orientation: Arrangement direction.（`string | undefined`）
++ radioMode: Radio mode.（`string | undefined`）
++ renderOnParent: Whether to render in the parent container.（`boolean`）
 
-**方法**：
+**Methods**:
 
 #### **defaultConstructDataTrigger**
 
-+ **功能描述**：获取默认构造数据的触发事件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发事件数组（包含 `CHANGE`）。
++ **Function Description**: Get the trigger events for default construct data.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Array of trigger events (including `CHANGE`).
 
 #### **defaultClearFieldsTrigger**
 
-+ **功能描述**：获取默认清空字段的触发事件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发事件数组（包含 `CHANGE`）。
++ **Function Description**: Get the trigger events for default clear fields.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Array of trigger events (including `CHANGE`).
 
 #### **fetchLabelByValue**
 
-+ **功能描述**：根据值获取选项标签。
-+ **类型**：`(value: EnumerationValue | EnumerationValue[]) => string`
-+ **参数**：
-  - `value`：选项值。
-+ **返回值**：对应的标签字符串。
++ **Function Description**: Get the option label based on the value.
++ **Type**: `(value: EnumerationValue | EnumerationValue[]) => string`
++ **Parameters**:
+  - `value`: Option value.
++ **Return Value**: Corresponding label string.
 
 #### **getAvailableOptions**
 
-+ **功能描述**：获取可用选项列表，处理配置与元数据的匹配、可见性和自动校正逻辑。
-+ **类型**：`() => RuntimeEnumerationOption[]`
-+ **返回值**：过滤后的选项数组。
++ **Function Description**: Get the list of available options, handling configuration and metadata matching, visibility, and auto-correction logic.
++ **Type**: `() => RuntimeEnumerationOption[]`
++ **Return Value**: Filtered option array.
 
 #### **getPopupContainer**
 
-+ **功能描述**：获取弹出容器的渲染位置，若配置 `renderOnParent` 则返回父节点或文档体。
-+ **类型**：`() => ((triggerNode: HTMLElement) => HTMLElement) | null`
-+ **返回值**：弹出容器定位函数或 `null`。
++ **Function Description**: Get the rendering position of the popup container, return the parent node or document body if `renderOnParent` is configured.
++ **Type**: `() => ((triggerNode: HTMLElement) => HTMLElement) | null`
++ **Return Value**: Popup container positioning function or `null`.
 
 #### **handleOptions**
 
-+ **功能描述**：处理选项列表，过滤元数据中不存在的选项并补充默认值。
-+ **类型**：`(ops: RuntimeEnumerationOption[]) => RuntimeEnumerationOption[]`
-+ **参数**：
-  - `ops`：原始选项数组。
-+ **返回值**：处理后的选项数组。
++ **Function Description**: Process the option list, filter options not present in metadata and supplement default values.
++ **Type**: `(ops: RuntimeEnumerationOption[]) => RuntimeEnumerationOption[]`
++ **Parameters**:
+  - `ops`: Original option array.
++ **Return Value**: Processed option array.
 
 #### **getMetaOptionNames**
 
-+ **功能描述**：获取元数据中选项的名称列表。
-+ **类型**：`() => string[] | undefined`
-+ **返回值**：选项名称数组或 `undefined`。
++ **Function Description**: Get the list of option names in the metadata.
++ **Type**: `() => string[] | undefined`
++ **Return Value**: Option name array or `undefined`.
 
 #### **validator**
 
-+ **功能描述**：校验枚举值，检查必填性、数量范围及选项有效性。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：校验结果信息（成功或错误）。
++ **Function Description**: Validate enumeration values, checking requiredness, quantity range, and option validity.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information (success or error).
 
 #### **compute**
 
-+ **功能描述**：计算组件值，继承父类逻辑并返回结果。
-+ **类型**：`() => boolean | Value`
-+ **返回值**：计算后的有效值或布尔结果。
++ **Function Description**: Compute the component value, inherit parent class logic and return the result.
++ **Type**: `() => boolean | Value`
++ **Return Value**: Computed valid value or boolean result.
 
 ### 4、FormRelationFieldCheckboxWidget
 
-**继承**：FormComplexFieldWidget
+**Inheritance**: FormComplexFieldWidget
 
-**属性**：
+**Properties**:
 
-+ autocorrection：是否启用自动校正。（`boolean`）
-+ fullOptions：完整选项列表。（`SelectItem<ActiveRecord>[] | undefined`）
-+ fullOptionsMap：完整选项映射表。（`Map<string, SelectItem<ActiveRecord>> | undefined`）
-+ loadFullOptions：是否加载完整选项。（`boolean | undefined`）
-+ loadMaxTotalPage：最大加载总页数，默认值为 - 1。（`number`）
-+ loadPageSize：分页加载大小，默认值为 100。（`number`）
-+ maxNumber：最多可选数量，默认值为无穷大。（`number`）
-+ minNumber：最少可选数量，默认值为负无穷。（`number`）
-+ optionLabel：选项标签表达式。（`string | undefined`）
-+ orientation：排列方向。（`string | undefined`）
-+ options：可用选项列表。（`SelectItem<ActiveRecord>[]`）
-+ selectedValues：选中的选项键值数组。（`string[] | undefined`）
++ autocorrection: Whether to enable auto-correction.（`boolean`）
++ fullOptions: Complete option list.（`SelectItem<ActiveRecord>[] | undefined`）
++ fullOptionsMap: Complete option mapping table.（`Map<string, SelectItem<ActiveRecord>> | undefined`）
++ loadFullOptions: Whether to load full options.（`boolean | undefined`）
++ loadMaxTotalPage: Maximum load total pages, default is -1.（`number`）
++ loadPageSize: Pagination load size, default is 100.（`number`）
++ maxNumber: Maximum number of selections, default is infinity.（`number`）
++ minNumber: Minimum number of selections, default is negative infinity.（`number`）
++ optionLabel: Option label expression.（`string | undefined`）
++ orientation: Arrangement direction.（`string | undefined`）
++ options: List of available options.（`SelectItem<ActiveRecord>[]`）
++ selectedValues: Array of selected option key values.（`string[] | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **backfillSelectedValues**
 
-+ **功能描述**：根据当前值回填选中的选项键值。
-+ **类型**：`() => void`
++ **Function Description**: Backfill the selected option key values based on the current value.
++ **Type**: `() => void`
 
 #### **defaultConstructDataTrigger**
 
-+ **功能描述**：获取默认构造数据的触发事件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发事件数组（包含 `CHANGE`）。
++ **Function Description**: Get the trigger events for default construct data.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Array of trigger events (including `CHANGE`).
 
 #### **defaultClearFieldsTrigger**
 
-+ **功能描述**：获取默认清空字段的触发事件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发事件数组（包含 `CHANGE`）。
++ **Function Description**: Get the trigger events for default clear fields.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Array of trigger events (including `CHANGE`).
 
 #### **executeExpressionByItem**
 
-+ **功能描述**：根据数据项执行表达式，支持翻译和动态计算。
-+ **类型**：`(item: ActiveRecord, expression: string, errorValue?: T) => T | string | undefined`
-+ **参数**：
-  - `item`：数据项对象。
-  - `expression`：表达式字符串。
-  - `errorValue`：表达式执行失败时的默认值（可选）。
-+ **返回值**：表达式执行结果或默认值。
++ **Function Description**: Execute expressions based on data items, supporting translation and dynamic calculation.
++ **Type**: `(item: ActiveRecord, expression: string, errorValue?: T) => T | string | undefined`
++ **Parameters**:
+  - `item`: Data item object.
+  - `expression`: Expression string.
+  - `errorValue`: Default value when expression execution fails (optional).
++ **Return Value**: Expression execution result or default value.
 
 #### **fillFullOptionsForAll**
 
-+ **功能描述**：加载并填充所有分页的完整选项数据。
-+ **类型**：`(firstPage: QueryPageResult<ActiveRecord>, pageSize: number) => Promise<void>`
-+ **参数**：
-  - `firstPage`：第一页查询结果。
-  - `pageSize`：分页大小。
++ **Function Description**: Load and fill complete option data for all pages.
++ **Type**: `(firstPage: QueryPageResult<ActiveRecord>, pageSize: number) => Promise<void>`
++ **Parameters**:
+  - `firstPage`: First page query result.
+  - `pageSize`: Pagination size.
 
 #### **fillFullOptionsForFirstPage**
 
-+ **功能描述**：填充第一页的选项数据并回填选中值。
-+ **类型**：`(firstPage: QueryPageResult<ActiveRecord>) => void`
-+ **参数**：
-  - `firstPage`：第一页查询结果。
++ **Function Description**: Fill option data for the first page and backfill selected values.
++ **Type**: `(firstPage: QueryPageResult<ActiveRecord>) => void`
++ **Parameters**:
+  - `firstPage`: First page query result.
 
 #### **generatorFullOptions**
 
-+ **功能描述**：根据数据记录生成完整选项列表及映射表。
-+ **类型**：`(activeRecords: ActiveRecord[]) => void`
-+ **参数**：
-  - `activeRecords`：数据记录数组。
++ **Function Description**: Generate complete option list and mapping table based on data records.
++ **Type**: `(activeRecords: ActiveRecord[]) => void`
++ **Parameters**:
+  - `activeRecords`: Data record array.
 
 #### **generatorKey**
 
-+ **功能描述**：根据数据记录生成唯一键值（基于主键）。
-+ **类型**：`(activeRecord: ActiveRecord) => string | undefined`
-+ **参数**：
-  - `activeRecord`：数据记录对象。
-+ **返回值**：组合主键字符串或 `undefined`。
++ **Function Description**: Generate a unique key value based on data records (based on primary key).
++ **Type**: `(activeRecord: ActiveRecord) => string | undefined`
++ **Parameters**:
+  - `activeRecord`: Data record object.
++ **Return Value**: Composite primary key string or `undefined`.
 
 #### **getAvailableOptions**
 
-+ **功能描述**：获取可用选项列表（直接返回完整选项）。
-+ **类型**：`() => SelectItem<ActiveRecord>[]`
-+ **返回值**：选项数组。
++ **Function Description**: Get the list of available options (directly return complete options).
++ **Type**: `() => SelectItem<ActiveRecord>[]`
++ **Return Value**: Option array.
 
 #### **mountedProcess**
 
-+ **功能描述**：挂载后处理逻辑，加载选项数据。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Processing logic after mounting, load option data.
++ **Type**: `() => Promise<void>`
 
 #### **onSelectedChange**
 
-+ **功能描述**：处理选择变更事件，更新选中值并触发父类变更。
-+ **类型**：`(keys: string[] | undefined) => void`
-+ **参数**：
-  - `keys`：选中的键值数组或 `undefined`。
++ **Function Description**: Process selection change events, update selected values and trigger parent class changes.
++ **Type**: `(keys: string[] | undefined) => void`
++ **Parameters**:
+  - `keys`: Array of selected key values or `undefined`.
 
 #### **queryPage**
 
-+ **功能描述**：分页查询相关数据。
-+ **类型**：`(option: Omit<QueryPageOptions, 'requestFields'>) => Promise<QueryPageResult<T>>`
-+ **参数**：
-  - `option`：分页查询选项（排除请求字段）。
-+ **返回值**：分页查询结果。
++ **Function Description**: Pagination query related data.
++ **Type**: `(option: Omit<QueryPageOptions, 'requestFields'>) => Promise<QueryPageResult<T>>`
++ **Parameters**:
+  - `option`: Pagination query options (excluding request fields).
++ **Return Value**: Pagination query result.
 
 #### **validator**
 
-+ **功能描述**：校验选中项数量是否符合范围要求。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：校验结果信息（成功或错误）。
++ **Function Description**: Validate whether the number of selected items meets the range requirement.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information (success or error).
 
 ### 5、FormRelationFieldRadioWidget
 
-**继承**：FormComplexFieldWidget
+**Inheritance**: FormComplexFieldWidget
 
-**属性**：
+**Properties**:
 
-+ autocorrection：是否启用自动校正。（`boolean`）
-+ fullOptions：完整选项列表。（`SelectItem<ActiveRecord>[] | undefined`）
-+ fullOptionsMap：完整选项映射表。（`Map<string, SelectItem<ActiveRecord>> | undefined`）
-+ loadFullOptions：是否加载完整选项。（`boolean | undefined`）
-+ loadMaxTotalPage：最大加载总页数，默认值为 - 1。（`number`）
-+ loadPageSize：分页加载大小，默认值为 100。（`number`）
-+ optionLabel：选项标签表达式。（`string | undefined`）
-+ orientation：排列方向。（`string | undefined`）
-+ options：可用选项列表。（`SelectItem<ActiveRecord>[]`）
-+ selectedValue：选中的选项键值。（`string | undefined`）
++ autocorrection: Whether to enable auto-correction.（`boolean`）
++ fullOptions: Complete option list.（`SelectItem<ActiveRecord>[] | undefined`）
++ fullOptionsMap: Complete option mapping table.（`Map<string, SelectItem<ActiveRecord>> | undefined`）
++ loadFullOptions: Whether to load full options.（`boolean | undefined`）
++ loadMaxTotalPage: Maximum load total pages, default is -1.（`number`）
++ loadPageSize: Pagination load size, default is 100.（`number`）
++ optionLabel: Option label expression.（`string | undefined`）
++ orientation: Arrangement direction.（`string | undefined`）
++ options: List of available options.（`SelectItem<ActiveRecord>[]`）
++ selectedValue: Selected option key value.（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **backfillSelectedValues**
 
-+ **功能描述**：根据当前值回填选中的选项键值。
-+ **类型**：`() => void`
++ **Function Description**: Backfill the selected option key values based on the current value.
++ **Type**: `() => void`
 
 #### **defaultConstructDataTrigger**
 
-+ **功能描述**：获取默认构造数据的触发事件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发事件数组（包含 `CHANGE`）。
++ **Function Description**: Get the trigger events for default construct data.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Array of trigger events (including `CHANGE`).
 
 #### **defaultClearFieldsTrigger**
 
-+ **功能描述**：获取默认清空字段的触发事件。
-+ **类型**：`() => WidgetTrigger[]`
-+ **返回值**：触发事件数组（包含 `CHANGE`）。
++ **Function Description**: Get the trigger events for default clear fields.
++ **Type**: `() => WidgetTrigger[]`
++ **Return Value**: Array of trigger events (including `CHANGE`).
 
 #### **executeExpressionByItem**
 
-+ **功能描述**：根据数据项执行表达式，支持翻译和动态计算。
-+ **类型**：`(item: ActiveRecord, expression: string, errorValue?: T) => T | string | undefined`
-+ **参数**：
-  - `item`：数据项对象。
-  - `expression`：表达式字符串。
-  - `errorValue`：表达式执行失败时的默认值（可选）。
-+ **返回值**：表达式执行结果或默认值。
++ **Function Description**: Execute expressions based on data items, supporting translation and dynamic calculation.
++ **Type**: `(item: ActiveRecord, expression: string, errorValue?: T) => T | string | undefined`
++ **Parameters**:
+  - `item`: Data item object.
+  - `expression`: Expression string.
+  - `errorValue`: Default value when expression execution fails (optional).
++ **Return Value**: Expression execution result or default value.
 
 #### **fillFullOptionsForAll**
 
-+ **功能描述**：加载并填充所有分页的完整选项数据。
-+ **类型**：`(firstPage: QueryPageResult<ActiveRecord>, pageSize: number) => Promise<void>`
-+ **参数**：
-  - `firstPage`：第一页查询结果。
-  - `pageSize`：分页大小。
++ **Function Description**: Load and fill complete option data for all pages.
++ **Type**: `(firstPage: QueryPageResult<ActiveRecord>, pageSize: number) => Promise<void>`
++ **Parameters**:
+  - `firstPage`: First page query result.
+  - `pageSize`: Pagination size.
 
 #### **fillFullOptionsForFirstPage**
 
-+ **功能描述**：填充第一页的选项数据并回填选中值。
-+ **类型**：`(firstPage: QueryPageResult<ActiveRecord>) => void`
-+ **参数**：
-  - `firstPage`：第一页查询结果。
++ **Function Description**: Fill option data for the first page and backfill selected values.
++ **Type**: `(firstPage: QueryPageResult<ActiveRecord>) => void`
++ **Parameters**:
+  - `firstPage`: First page query result.
 
 #### **generatorFullOptions**
 
-+ **功能描述**：根据数据记录生成完整选项列表及映射表。
-+ **类型**：`(activeRecords: ActiveRecord[]) => void`
-+ **参数**：
-  - `activeRecords`：数据记录数组。
++ **Function Description**: Generate complete option list and mapping table based on data records.
++ **Type**: `(activeRecords: ActiveRecord[]) => void`
++ **Parameters**:
+  - `activeRecords`: Data record array.
 
 #### **generatorKey**
 
-+ **功能描述**：根据数据记录生成唯一键值（基于主键）。
-+ **类型**：`(activeRecord: ActiveRecord) => string | undefined`
-+ **参数**：
-  - `activeRecord`：数据记录对象。
-+ **返回值**：组合主键字符串或 `undefined`。
++ **Function Description**: Generate a unique key value based on data records (based on primary key).
++ **Type**: `(activeRecord: ActiveRecord) => string | undefined`
++ **Parameters**:
+  - `activeRecord`: Data record object.
++ **Return Value**: Composite primary key string or `undefined`.
 
 #### **getAvailableOptions**
 
-+ **功能描述**：获取可用选项列表（直接返回完整选项）。
-+ **类型**：`() => SelectItem<ActiveRecord>[]`
-+ **返回值**：选项数组。
++ **Function Description**: Get the list of available options (directly return complete options).
++ **Type**: `() => SelectItem<ActiveRecord>[]`
++ **Return Value**: Option array.
 
 #### **mountedProcess**
 
-+ **功能描述**：挂载后处理逻辑，加载选项数据。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Processing logic after mounting, load option data.
++ **Type**: `() => Promise<void>`
 
 #### **onSelectedChange**
 
-+ **功能描述**：处理选择变更事件，更新选中值并触发父类变更。
-+ **类型**：`(key: string | undefined) => void`
-+ **参数**：
-  - `key`：选中的键值或 `undefined`。
++ **Function Description**: Process selection change events, update selected values and trigger parent class changes.
++ **Type**: `(key: string | undefined) => void`
++ **Parameters**:
+  - `key`: Selected key value or `undefined`.
 
 #### **queryPage**
 
-+ **功能描述**：分页查询相关数据。
-+ **类型**：`(option: Omit<QueryPageOptions, 'requestFields'>) => Promise<QueryPageResult<T>>`
-+ **参数**：
-  - `option`：分页查询选项（排除请求字段）。
-+ **返回值**：分页查询结果。
++ **Function Description**: Pagination query related data.
++ **Type**: `(option: Omit<QueryPageOptions, 'requestFields'>) => Promise<QueryPageResult<T>>`
++ **Parameters**:
+  - `option`: Pagination query options (excluding request fields).
++ **Return Value**: Pagination query result.
 
 #### **validator**
 
-+ **功能描述**：校验是否选中必填项。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：校验结果信息（成功或错误）。
++ **Function Description**: Validate whether a required item is selected.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information (success or error).
 
 ### 6、AbstractFormM2OUploadFieldWidget
 
-**继承**：FormM2OFieldWidget
+**Inheritance**: FormM2OFieldWidget
 
-**属性**：
+**Properties**:
 
-+ allLimitSize：总文件大小限制配置。（`string`）
-+ chunkUploadThreshold：分块上传阈值，默认值为 `defaultMultiPartConfig.chunkUploadThreshold`。（`number`）
-+ cdnKey：CDN 密钥（处理后的值）。（`string | undefined`）
-+ limit：文件数量限制，默认值为 1。（`number`）
-+ limitFileExtensions：限制的文件扩展名。（`string | undefined`）
-+ limitSize：单个文件大小限制，默认值为 -1（无限制）。（`number`）
-+ parallel：并行上传数，默认值为 `defaultMultiPartConfig.parallel`。（`number`）
-+ partSize：分块大小，默认值为 `defaultMultiPartConfig.partSize`。（`number`）
-+ privateLink：是否为私有链接。（`boolean`）
++ allLimitSize: Total file size limit configuration.（`string`）
++ chunkUploadThreshold: Chunk upload threshold, default is `defaultMultiPartConfig.chunkUploadThreshold`.（`number`）
++ cdnKey: CDN key (processed value).（`string | undefined`）
++ limit: File quantity limit, default is 1.（`number`）
++ limitFileExtensions: Restricted file extensions.（`string | undefined`）
++ limitSize: Single file size limit, default is -1 (unlimited).（`number`）
++ parallel: Number of parallel uploads, default is `defaultMultiPartConfig.parallel`.（`number`）
++ partSize: Chunk size, default is `defaultMultiPartConfig.partSize`.（`number`）
++ privateLink: Whether it is a private link.（`boolean`）
 
 ### 7、FormO2MFieldUploadBaseWidget
 
-**继承**：FormO2MFieldWidget
+**Inheritance**: FormO2MFieldWidget
 
-**属性**：
+**Properties**:
 
-+ allLimitSize：总文件大小限制配置，默认值为空字符串。（`string`）
-+ chunkUploadThreshold：分块上传阈值，默认值为 `defaultMultiPartConfig.chunkUploadThreshold`。（`number`）
-+ limit：文件数量限制，默认值为 -1（无限制）。（`number`）
-+ limitFileExtensions：限制的文件扩展名。（`string | undefined`）
-+ limitSize：单个文件大小限制。（`number | undefined`）
-+ multiple：是否支持多文件上传，基于 `multi` 配置。（`boolean`）
-+ parallel：并行上传数，默认值为 `defaultMultiPartConfig.parallel`。（`number`）
-+ partSize：分块大小，默认值为 `defaultMultiPartConfig.partSize`。（`number`）
++ allLimitSize: Total file size limit configuration, default is empty string.（`string`）
++ chunkUploadThreshold: Chunk upload threshold, default is `defaultMultiPartConfig.chunkUploadThreshold`.（`number`）
++ limit: File quantity limit, default is -1 (unlimited).（`number`）
++ limitFileExtensions: Restricted file extensions.（`string | undefined`）
++ limitSize: Single file size limit.（`number | undefined`）
++ multiple: Whether to support multiple file uploads, based on `multi` configuration.（`boolean`）
++ parallel: Number of parallel uploads, default is `defaultMultiPartConfig.parallel`.（`number`）
++ partSize: Chunk size, default is `defaultMultiPartConfig.partSize`.（`number`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：更新文件列表数据，支持传入 `null` 清空数据。
-+ **类型**：`(data: ActiveRecord[] | null) => void`
-+ **参数**：
-  - `data`：文件数据数组或 `null`。
++ **Function Description**: Update file list data, supporting `null` to clear data.
++ **Type**: `(data: ActiveRecord[] | null) => void`
++ **Parameters**:
+  - `data`: File data array or `null`.
 
 #### **remove**
 
-+ **功能描述**：从文件列表中移除指定文件。
-+ **类型**：`(file: ActiveRecord) => void`
-+ **参数**：
-  - `file`：待移除的文件对象（通过 `id` 匹配）。
++ **Function Description**: Remove specified file from file list.
++ **Type**: `(file: ActiveRecord) => void`
++ **Parameters**:
+  - `file`: File object to be removed (matched by `id`).
 
 ### 8、FormM2MFieldUploadBaseWidget
 
-**继承**：FormM2MFieldWidget
+**Inheritance**: FormM2MFieldWidget
 
-**属性**：
+**Properties**:
 
-+ allLimitSize：总文件大小限制配置，默认值为空字符串。（`string`）
-+ chunkUploadThreshold：分块上传阈值，默认值为 `defaultMultiPartConfig.chunkUploadThreshold`。（`number`）
-+ limit：文件数量限制，默认值为 -1（无限制）。（`number`）
-+ limitFileExtensions：限制的文件扩展名。（`string | undefined`）
-+ limitSize：单个文件大小限制。（`number | undefined`）
-+ multiple：是否支持多文件上传，基于 `multi` 配置。（`boolean`）
-+ parallel：并行上传数，默认值为 `defaultMultiPartConfig.parallel`。（`number`）
-+ partSize：分块大小，默认值为 `defaultMultiPartConfig.partSize`。（`number`）
++ allLimitSize: Total file size limit configuration, default is empty string.（`string`）
++ chunkUploadThreshold: Chunk upload threshold, default is `defaultMultiPartConfig.chunkUploadThreshold`.（`number`）
++ limit: File quantity limit, default is -1 (unlimited).（`number`）
++ limitFileExtensions: Restricted file extensions.（`string | undefined`）
++ limitSize: Single file size limit.（`number | undefined`）
++ multiple: Whether to support multiple file uploads, based on `multi` configuration.（`boolean`）
++ parallel: Number of parallel uploads, default is `defaultMultiPartConfig.parallel`.（`number`）
++ partSize: Chunk size, default is `defaultMultiPartConfig.partSize`.（`number`）
 
-**方法**：
+**Methods**:
 
 #### **change**
 
-+ **功能描述**：更新文件列表数据，支持传入 `null` 清空数据。
-+ **类型**：`(data: ActiveRecord[] | null) => void`
-+ **参数**：
-  - `data`：文件数据数组或 `null`。
++ **Function Description**: Update file list data, supporting `null` to clear data.
++ **Type**: `(data: ActiveRecord[] | null) => void`
++ **Parameters**:
+  - `data`: File data array or `null`.
 
 #### **remove**
 
-+ **功能描述**：从文件列表中移除指定文件。
-+ **类型**：`(file: ActiveRecord) => void`
-+ **参数**：
-  - `file`：待移除的文件对象（通过 `id` 匹配）。
++ **Function Description**: Remove specified file from file list.
++ **Type**: `(file: ActiveRecord) => void`
++ **Parameters**:
+  - `file`: File object to be removed (matched by `id`).
 
 ### 9、FormRangeFieldsWidget
 
-**继承**：BaseFormItemWidget
+**Inheritance**: BaseFormItemWidget
 
-**属性**：
+**Properties**:
 
-+ endField：结束字段对象。（`Field`）
-+ endDefaultValue：结束字段的默认值。（`unknown`）
-+ itemData：项数据标识，默认为开始字段和结束字段数据的组合。（`string`）
-+ itemName：项名称，默认为开始字段和结束字段名称的组合。（`string`）
-+ startField：开始字段对象。（`Field`）
-+ startDefaultValue：开始字段的默认值。（`unknown`）
++ endField: End field object.（`Field`）
++ endDefaultValue: Default value of the end field.（`unknown`）
++ itemData: Item data identifier, default is combination of start and end field data.（`string`）
++ itemName: Item name, default is combination of start and end field names.（`string`）
++ startField: Start field object.（`Field`）
++ startDefaultValue: Default value of the start field.（`unknown`）
 
-**方法**：
+**Methods**:
 
 #### **getValue**
 
-+ **功能描述**：获取范围字段的值，返回开始值和结束值的数组。
-+ **类型**：`() => [Value, Value] | null | undefined`
-+ **返回值**：包含开始值和结束值的数组，或 `null`，或 `undefined`。
++ **Function Description**: Get the value of the range field, return an array of start and end values.
++ **Type**: `() => [Value, Value] | null | undefined`
++ **Return Value**: Array containing start and end values, or `null`, or `undefined`.
 
 #### **setValue**
 
-+ **功能描述**：设置范围字段的值。
-+ **类型**：`(value: [Value, Value] | null | undefined) => void`
-+ **参数**：
-  - `value`：要设置的值，可为包含开始值和结束值的数组、`null` 或 `undefined`。
++ **Function Description**: Set the value of the range field.
++ **Type**: `(value: [Value, Value] | null | undefined) => void`
++ **Parameters**:
+  - `value`: Value to be set, can be an array of start and end values, `null`, or `undefined`.
 
 #### **submit**
 
-+ **功能描述**：提交范围字段数据，返回包含开始字段和结束字段名称及值的对象。
-+ **类型**：`() => Record<string, unknown>`
-+ **返回值**：包含字段名称和值的对象。
++ **Function Description**: Submit range field data, return an object containing start and end field names and values.
++ **Type**: `() => Record<string, unknown>`
++ **Return Value**: Object containing field names and values.
 
 #### **validator**
 
-+ **功能描述**：验证范围字段的值。
-+ **类型**：`() => Promise<ValidatorInfo>`
-+ **返回值**：验证结果信息。
++ **Function Description**: Validate the value of the range field.
++ **Type**: `() => Promise<ValidatorInfo>`
++ **Return Value**: Validation result information.
 
-## （二十）组件基类
+## (二十) Component Base Classes
 
 ### 1、FormTreeSelectFieldWidget
 
-**继承**：AbstractTreeFieldWidget
+**Inheritance**: AbstractTreeFieldWidget
 
-**属性**：
+**Properties**:
 
-+ multipleCheckedStrategy：多选校验策略，参考 `TreeSelectCheckedStrategy`。（`string | undefined`）
-+ onlySelectedLeaf：是否仅选中叶子节点，默认值为 `false`。（`boolean`）
-+ selectedValue：选中的树节点值。（`SimpleTreeSelected | SimpleTreeSelected[] | undefined`）
-+ treeCheckStrictly：是否严格遵循父子节点选中状态，默认值由配置转换而来。（`boolean | undefined`）
++ multipleCheckedStrategy: Multi-select validation strategy, refer to `TreeSelectCheckedStrategy`.（`string | undefined`）
++ onlySelectedLeaf: Whether to only select leaf nodes, default is `false`.（`boolean`）
++ selectedValue: Value of selected tree nodes.（`SimpleTreeSelected | SimpleTreeSelected[] | undefined`）
++ treeCheckStrictly: Whether to strictly follow parent-child node selection status, default converted from configuration.（`boolean | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **backfillDataProcess**
 
-+ **功能描述**：回填数据处理逻辑，根据选中节点生成选中值。
-+ **类型**：`({ selectedNodes }: { selectedNodes: OioTreeNode<TreeData>[] }) => void`
-+ **参数**：
-  - `selectedNodes`：选中的树节点数组。
++ **Function Description**: Backfill data processing logic, generate selected values based on selected nodes.
++ **Type**: `({ selectedNodes }: { selectedNodes: OioTreeNode<TreeData>[] }) => void`
++ **Parameters**:
+  - `selectedNodes`: Array of selected tree nodes.
 
 #### **clearBackfillDataProcess**
 
-+ **功能描述**：清除回填数据，重置根节点、展开状态和选中值。
-+ **类型**：`() => void`
++ **Function Description**: Clear backfill data, reset root node, expansion status, and selected values.
++ **Type**: `() => void`
 
 #### **collectionSelectedNodes**
 
-+ **功能描述**：收集选中的树节点，支持单选和多选模式。
-+ **类型**：`(selectedValue: SimpleTreeSelected | SimpleTreeSelected[]) => OioTreeNode<TreeData>[]`
-+ **参数**：
-  - `selectedValue`：选中的节点值（单个或数组）。
-+ **返回值**：选中的树节点数组。
++ **Function Description**: Collect selected tree nodes, supporting single-select and multi-select modes.
++ **Type**: `(selectedValue: SimpleTreeSelected | SimpleTreeSelected[]) => OioTreeNode<TreeData>[]`
++ **Parameters**:
+  - `selectedValue`: Selected node value (single or array).
++ **Return Value**: Array of selected tree nodes.
 
 #### **collectionSelectedValues**
 
-+ **功能描述**：从树节点中提取选中值对象。
-+ **类型**：`(node: OioTreeNode<TreeData> | undefined) => SimpleTreeSelected | undefined`
-+ **参数**：
-  - `node`：树节点对象或 `undefined`。
-+ **返回值**：选中值对象或 `undefined`。
++ **Function Description**: Extract selected value objects from tree nodes.
++ **Type**: `(node: OioTreeNode<TreeData> | undefined) => SimpleTreeSelected | undefined`
++ **Parameters**:
+  - `node`: Tree node object or `undefined`.
++ **Return Value**: Selected value object or `undefined`.
 
 #### **convertBackfillData**
 
-+ **功能描述**：转换回填数据，支持自定义节点创建和更新回调。
-+ **类型**：`(currentValues: ActiveRecord[], metadataList: TreeNodeMetadata[], list: TreeNodeResponseBody[], customCreateNodeCallback?: (node: OioTreeNode<TreeData>, value: TreeData | undefined) => void, customUpdateNodeCallback?: (node: OioTreeNode<TreeData>, value: TreeData) => void) => BackfillDataParameters | undefined`
-+ **参数**：
-  - `currentValues`：当前数据值数组。
-  - `metadataList`：树元数据列表。
-  - `list`：树节点响应数据列表。
-  - `customCreateNodeCallback`：自定义创建节点回调（可选）。
-  - `customUpdateNodeCallback`：自定义更新节点回调（可选）。
-+ **返回值**：回填数据参数或 `undefined`。
++ **Function Description**: Convert backfill data, supporting custom node creation and update callbacks.
++ **Type**: `(currentValues: ActiveRecord[], metadataList: TreeNodeMetadata[], list: TreeNodeResponseBody[], customCreateNodeCallback?: (node: OioTreeNode<TreeData>, value: TreeData | undefined) => void, customUpdateNodeCallback?: (node: OioTreeNode<TreeData>, value: TreeData) => void) => BackfillDataParameters | undefined`
++ **Parameters**:
+  - `currentValues`: Current data value array.
+  - `metadataList`: Tree metadata list.
+  - `list`: Tree node response data list.
+  - `customCreateNodeCallback`: Custom create node callback (optional).
+  - `customUpdateNodeCallback`: Custom update node callback (optional).
++ **Return Value**: Backfill data parameters or `undefined`.
 
 #### **generatorNewTreeNode**
 
-+ **功能描述**：生成新的树节点，并处理节点属性。
-+ **类型**：`(parent: OioTreeNode<TreeData>, key: string, title: string | undefined, metadata: TreeNodeMetadata, data: ActiveRecord) => OioTreeNode<TreeData>`
-+ **参数**：
-  - `parent`：父节点对象。
-  - `key`：节点键值。
-  - `title`：节点标题。
-  - `metadata`：节点元数据。
-  - `data`：节点关联的数据记录。
-+ **返回值**：生成的树节点对象。
++ **Function Description**: Generate new tree node, and process node attributes.
++ **Type**: `(parent: OioTreeNode<TreeData>, key: string, title: string | undefined, metadata: TreeNodeMetadata, data: ActiveRecord) => OioTreeNode<TreeData>`
++ **Parameters**:
+  - `parent`: Parent node object.
+  - `key`: Node key value.
+  - `title`: Node title.
+  - `metadata`: Node metadata.
+  - `data`: Node associated data record.
++ **Return Value**: Generated tree node object.
 
 #### **getSelectedNodes**
 
-+ **功能描述**：过滤并获取与当前模型关联的选中节点。
-+ **类型**：`(selectedValue: SimpleTreeSelected | SimpleTreeSelected[]) => OioTreeNode<TreeData>[] | undefined`
-+ **参数**：
-  - `selectedValue`：选中的节点值（单个或数组）。
-+ **返回值**：过滤后的树节点数组或 `undefined`。
++ **Function Description**: Filter and get selected nodes associated with the current model.
++ **Type**: `(selectedValue: SimpleTreeSelected | SimpleTreeSelected[]) => OioTreeNode<TreeData>[] | undefined`
++ **Parameters**:
+  - `selectedValue`: Selected node value (single or array).
++ **Return Value**: Filtered tree node array or `undefined`.
 
 #### **onSelectedChange**
 
-+ **功能描述**：处理选中值变更事件，验证并更新选中状态。
-+ **类型**：`(selectedValue: SimpleTreeSelected | SimpleTreeSelected[], event: TreeSelectNodeChangeEvent) => void`
-+ **参数**：
-  - `selectedValue`：选中的节点值（单个或数组）。
-  - `event`：节点变更事件对象。
++ **Function Description**: Process selected value change event, validate and update selection status.
++ **Type**: `(selectedValue: SimpleTreeSelected | SimpleTreeSelected[], event: TreeSelectNodeChangeEvent) => void`
++ **Parameters**:
+  - `selectedValue`: Selected node value (single or array).
+  - `event`: Node change event object.
 
 #### **validatorSelectedValue**
 
-+ **功能描述**：验证选中值是否符合规则（如仅叶子节点、模型匹配等）。
-+ **类型**：`(selectedValue: SimpleTreeSelected | SimpleTreeSelected[], selectedNodes: OioTreeNode<TreeData>[]) => boolean | SimpleTreeSelected | SimpleTreeSelected[] | undefined`
-+ **参数**：
-  - `selectedValue`：选中的节点值（单个或数组）。
-  - `selectedNodes`：选中的树节点数组。
-+ **返回值**：验证结果（布尔值、处理后的选中值或 `undefined`）。
++ **Function Description**: Validate whether the selected value meets the rules (such as only leaf nodes, model matching, etc.).
++ **Type**: `(selectedValue: SimpleTreeSelected | SimpleTreeSelected[], selectedNodes: OioTreeNode<TreeData>[]) => boolean | SimpleTreeSelected | SimpleTreeSelected[] | undefined`
++ **Parameters**:
+  - `selectedValue`: Selected node value (single or array).
+  - `selectedNodes`: Array of selected tree nodes.
++ **Return Value**: Validation result (boolean, processed selected value, or `undefined`).
 
 ### 2、FormCascaderFieldWidget
 
-**继承**：AbstractTreeFieldWidget
+**Inheritance**: AbstractTreeFieldWidget
 
-**属性**：
+**Properties**:
 
-+ changeOnSelect：是否在选择时立即触发变更，默认值为 `false`。（`boolean`）
-+ labelsSeparator：标签分隔符。（`string | undefined`）
-+ multipleCheckedStrategy：多选校验策略，参考 `CascaderCheckedStrategy`。（`string | undefined`）
-+ selectedLabels：选中节点的标签数组（多层级格式）。（`string[] | string[][] | undefined`）
-+ selectedValue：选中节点的键值数组（多层级格式）。（`string[] | string[][] | undefined`）
-+ showPath：是否显示路径，默认值为 `false`。（`boolean`）
++ changeOnSelect: Whether to trigger change immediately when selecting, default is `false`.（`boolean`）
++ labelsSeparator: Label separator.（`string | undefined`）
++ multipleCheckedStrategy: Multi-select validation strategy, refer to `CascaderCheckedStrategy`.（`string | undefined`）
++ selectedLabels: Label array of selected nodes (multi-level format).（`string[] | string[][] | undefined`）
++ selectedValue: Key value array of selected nodes (multi-level format).（`string[] | string[][] | undefined`）
++ showPath: Whether to display the path, default is `false`.（`boolean`）
 
-**方法**：
+**Methods**:
 
 #### **backfillDataProcess**
 
-+ **功能描述**：回填数据处理逻辑，根据选中节点生成键值和标签数组。
-+ **类型**：`({ selectedNodes }: { selectedNodes: OioTreeNode<TreeData>[] }) => void`
-+ **参数**：
-  - `selectedNodes`：选中的树节点数组。
++ **Function Description**: Backfill data processing logic, generate key value and label arrays based on selected nodes.
++ **Type**: `({ selectedNodes }: { selectedNodes: OioTreeNode<TreeData>[] }) => void`
++ **Parameters**:
+  - `selectedNodes`: Array of selected tree nodes.
 
 #### **clearBackfillDataProcess**
 
-+ **功能描述**：清除回填数据，重置根节点、展开状态和选中值。
-+ **类型**：`() => void`
++ **Function Description**: Clear backfill data, reset root node, expansion status, and selected values.
++ **Type**: `() => void`
 
 #### **collectionSelectedLabels**
 
-+ **功能描述**：从树节点向上递归收集标签，生成层级标签数组。
-+ **类型**：`(selectedNode: OioTreeNode<TreeData> | undefined) => string[]`
-+ **参数**：
-  - `selectedNode`：树节点对象或 `undefined`。
-+ **返回值**：层级标签数组。
++ **Function Description**: Recursively collect labels from tree nodes upwards, generate hierarchical label array.
++ **Type**: `(selectedNode: OioTreeNode<TreeData> | undefined) => string[]`
++ **Parameters**:
+  - `selectedNode`: Tree node object or `undefined`.
++ **Return Value**: Hierarchical label array.
 
 #### **collectionSelectedValues**
 
-+ **功能描述**：从树节点向上递归收集键值，生成层级键值数组。
-+ **类型**：`(selectedNode: OioTreeNode<TreeData> | undefined) => string[]`
-+ **参数**：
-  - `selectedNode`：树节点对象或 `undefined`。
-+ **返回值**：层级键值数组。
++ **Function Description**: Recursively collect key values from tree nodes upwards, generate hierarchical key value array.
++ **Type**: `(selectedNode: OioTreeNode<TreeData> | undefined) => string[]`
++ **Parameters**:
+  - `selectedNode`: Tree node object or `undefined`.
++ **Return Value**: Hierarchical key value array.
 
 #### **fetchBackfillData**
 
-+ **功能描述**：获取回填数据，支持全量加载或反向查询。
-+ **类型**：`(currentValues: ActiveRecord[], metadataList: TreeNodeMetadata[]) => Promise<TreeNodeResponseBody[] | undefined>`
-+ **参数**：
-  - `currentValues`：当前数据值数组。
-  - `metadataList`：树元数据列表。
-+ **返回值**：树节点响应数据数组或 `undefined`。
++ **Function Description**: Get backfill data, supporting full load or reverse query.
++ **Type**: `(currentValues: ActiveRecord[], metadataList: TreeNodeMetadata[]) => Promise<TreeNodeResponseBody[] | undefined>`
++ **Parameters**:
+  - `currentValues`: Current data value array.
+  - `metadataList`: Tree metadata list.
++ **Return Value**: Tree node response data array or `undefined`.
 
 #### **getSelectedNodes**
 
-+ **功能描述**：根据选中值和选项生成对应的树节点数组，支持多选策略和选中模式。
-+ **类型**：`(selectedValue: string[] | string[][], selectedOptions: CascaderItemType[] | CascaderItemType[][]) => OioTreeNode<TreeData>[] | undefined`
-+ **参数**：
-  - `selectedValue`：选中的键值数组（单层或多层）。
-  - `selectedOptions`：选中的选项数组（单层或多层）。
-+ **返回值**：树节点数组或 `undefined`。
++ **Function Description**: Generate corresponding tree node array based on selected values and options, supporting multi-select strategy and selection mode.
++ **Type**: `(selectedValue: string[] | string[][], selectedOptions: CascaderItemType[] | CascaderItemType[][]) => OioTreeNode<TreeData>[] | undefined`
++ **Parameters**:
+  - `selectedValue`: Selected key value array (single or multi-level).
+  - `selectedOptions`: Selected option array (single or multi-level).
++ **Return Value**: Tree node array or `undefined`.
 
 #### **onSelectedChange**
 
-+ **功能描述**：处理选中值变更事件，验证并更新选中状态及标签。
-+ **类型**：`(selectedValue: string[] | string[][], selectedOptions: CascaderItemType[] | CascaderItemType[][]) => void`
-+ **参数**：
-  - `selectedValue`：选中的键值数组（单层或多层）。
-  - `selectedOptions`：选中的选项数组（单层或多层）。
++ **Function Description**: Process selected value change event, validate and update selection status and labels.
++ **Type**: `(selectedValue: string[] | string[][], selectedOptions: CascaderItemType[] | CascaderItemType[][]) => void`
++ **Parameters**:
+  - `selectedValue`: Selected key value array (single or multi-level).
+  - `selectedOptions`: Selected option array (single or multi-level).
 
 #### **validatorSelectedValue**
 
-+ **功能描述**：验证选中值是否符合规则（如层级匹配、多选策略等）。
-+ **类型**：`(selectedValue: string[] | string[][], selectedNodes: OioTreeNode<TreeData>[]) => boolean | string[] | string[][]`
-+ **参数**：
-  - `selectedValue`：选中的键值数组（单层或多层）。
-  - `selectedNodes`：选中的树节点数组。
-+ **返回值**：验证结果（布尔值或处理后的键值数组）。
-
-
-
-
-
++ **Function Description**: Validate whether the selected value meets the rules (such as level matching, multi-select strategy, etc.).
++ **Type**: `(selectedValue: string[] | string[][], selectedNodes: OioTreeNode<TreeData>[]) => boolean | string[] | string[][]`
++ **Parameters**:
+  - `selectedValue`: Selected key value array (single or multi-level).
+  - `selectedNodes`: Array of selected tree nodes.
++ **Return Value**: Validation result (boolean or processed key value array).

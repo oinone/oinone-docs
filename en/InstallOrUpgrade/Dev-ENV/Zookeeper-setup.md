@@ -1,5 +1,5 @@
 ---
-title: Zookeeper Installation and Precautions
+title: Zookeeper Setup
 index: true
 category:
   - Installation and Upgrade

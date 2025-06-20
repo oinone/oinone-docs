@@ -1,36 +1,34 @@
 ---
-title: 启动时：Oinone License 许可证使用常见问题
+title: Startup:Common Issues with Oinone License Usage
 index: true
 category:
-  - 常见问题（faq）
+  - Frequently Asked Questions (FAQ)
 order: 1
 prev:
-  text: 项目部署：界面设计器的导入导出
+  text: Project Deployment:Import and Export of UI Designer
   link: /en/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md
 ---
-# 一、如何获取许可证？
-联系数式运维人员获取许可证。（以下内容全部使用 <license.lic> 表示许可证文件路径）
+# I. How to Obtain a License?
+Contact Shushi operation and maintenance personnel to obtain the license. (The following content uses <license.lic> to represent the license file path)
 
-+ subject：授权主体名称
-+ license.lic：许可证文件
++ subject: Authorized entity name
++ license.lic: License file
 
-## 不同许可证类别有什么不同？
-| 许可证类型 | LicenseType | 限制功能 | 适用环境 |
+## What are the Differences Between Different License Categories?
+| License Type | LicenseType | Restricted Functions | Applicable Environment |
 | --- | --- | --- | --- |
-| 研发授权 | `DEVELOP` | 1.每次安装时效1天，超时后无法正常访问设计器相关功能   2.限制CPU和主板序列号或限制许可证使用人数   3.不能用于容器启动   4.有页面水印 | 开发环境（开发人员本地启动业务工程时使用该授权） |
-| 伙伴授权 | `TRIAL` | 1.无安装时效限制   2.无部署环境限制   3.有页面水印 | 非生产环境（测试环境、预发环境等使用该授权） |
-| 客户授权 | `BUSINESS` | 1.无安装时效限制   2.仅能部署一套生产环境   3.无页面水印 | 生产环境 |
+| Development Authorization | `DEVELOP` | 1. 1-day validity per installation, unable to access designer-related functions after timeout <br>2. Restricts CPU and motherboard serial numbers or the number of license users <br>3. Cannot be used for container startup <br>4. Contains page watermarks | Development environment (used by developers when starting business projects locally) |
+| Partner Authorization | `TRIAL` | 1. No installation time limit <br>2. No deployment environment restrictions <br>3. Contains page watermarks | Non-production environments (test environment, pre-release environment, etc.) |
+| Customer Authorization | `BUSINESS` | 1. No installation time limit <br>2. Can only deploy one production environment <br>3. No page watermarks | Production environment |
 
 
-:::info 注意：
-
-一套环境是指共用Base库的所有JVM称为一套环境。
-
+:::info Note:
+A set of environments refers to all JVMs sharing the Base library as a single set of environments.
 :::
 
-# 二、如何配置许可证？
-## （一）在`yaml`中配置许可证
-### 1、单个许可证配置
+# II. How to Configure the License?
+## (一) Configure the License in `yaml`
+### 1. Single License Configuration
 ```yaml
 pamirs:
   license:
@@ -39,7 +37,7 @@ pamirs:
 
 ```
 
-### 2、多个许可证配置
+### 2. Multiple License Configuration
 ```yaml
 pamirs:
   license:
@@ -49,125 +47,122 @@ pamirs:
       - <license2.lic>
 ```
 
-`pamirs.license.path`可以是相对路径、绝对路径以及URL路径。
+`pamirs.license.path` can be a relative path, absolute path, or URL path.
 
-## （二）在`Program Arguments`中配置许可证
+## (二) Configure the License in `Program Arguments`
 ```shell
 java -jar -Psubject=<subject> -Plicense=<license1.lic> -Plicense=<license1.lic> <boot.jar>
 ```
 
-# 三、如何在开发中安装许可证？
-将许可证放入后端运行时工作目录中即可。（一般为 idea 项目根目录）
+# III. How to Install the License During Development?
+Place the license in the backend runtime working directory. (Generally the root directory of the IDEA project)
 
-# 四、如何在物理机生产环境安装许可证？
-将许可证放入与 jar 包平级目录中即可。
+# IV. How to Install the License in a Physical Machine Production Environment?
+Place the license in the same directory as the JAR package.
 
-# 五、如何在docker环境中安装许可证？
-在 docker 运行时目录添加挂载卷映射，并在 yaml 中配置对应的路径即可。
+# V. How to Install the License in a Docker Environment?
+Add a mount volume mapping in the Docker runtime directory and configure the corresponding path in the YAML file.
 
-# 六、如何获取CPU序列号和主板序列号
-## （一）在Linux环境中使用`dmidecode`命令
+# VI. How to Obtain CPU and Motherboard Serial Numbers?
+## (一) Using the `dmidecode` Command in Linux Environment
 ```shell
-# 获取CPU序列号
+# Get CPU serial number
 dmidecode -s system-serial-number
 
-# CPU序列号
+# CPU serial number
 7*****1
 
-# 获取主板序列号
+# Get motherboard serial number
 dmidecode -s baseboard-serial-number
 
-# 主板序列号
+# Motherboard serial number
 ..CN*******V01Y7.
 
-# 获取系统UUID
+# Get system UUID
 dmidecode -s system-uuid
 
-# 系统UUID
+# System UUID
 4c4xxxxx-xxxx-xxxx-xxxx-xxxxxxxx5831
 ```
 
-## （二）在Mac环境中使用`system_profiler`命令
+## (二) Using the `system_profiler` Command in Mac Environment
 ```shell
-# 获取CPU序列号
+# Get CPU serial number
 system_profiler SPHardwareDataType | grep 'Serial Number' | awk -F ':' '{print $2}'
 
-# CPU序列号
+# CPU serial number
 C02******03Y
 
-# 获取主板序列号
+# Get motherboard serial number
 system_profiler SPHardwareDataType | grep 'Hardware UUID' | awk -F ':' '{print $2}'
 
-# 主板序列号
+# Motherboard serial number
 1AAxxxxx-xxxx-xxxx-xxxx-xxxxxxxxF0FC
 ```
 
-## （三）在Windows环境中使用`wmic`命令
+## (三) Using the `wmic` Command in Windows Environment
 ```shell
-# 获取CPU序列号
+# Get CPU serial number
 wmic cpu get processorid
 
-# CPU序列号
+# CPU serial number
 BFExxxxxxxxxx6A3
 
-# 获取主板序列号
+# Get motherboard serial number
 wmic baseboard get serialnumber
 
-# 主板序列号
+# Motherboard serial number
 PFxxxxBY
 
-# 获取系统UUID
+# Get system UUID
 wmic csproduct get uuid
 
-# 系统UUID
+# System UUID
 D0Exxxxx-xxxx-xxxx-xxxx-xxxxxxxx78B8
 ```
 
-# 七、在 Linux 环境出现`dmidecode`命令执行失败该如何处理？
-1. 命令未找到，可使用如下方式尝试安装
+# VII. How to Handle `dmidecode` Command Execution Failure in Linux Environment?
+1. If the command is not found, try installing it using the following methods:
 
 ```shell
-# debian (eg: Ubuntu)
+# debian (e.g., Ubuntu)
 apt-get install dmidecode
 
-# rpm (eg: Fedora/CentOS/RedHat)
+# rpm (e.g., Fedora/CentOS/RedHat)
 yum install dmidecode
 ```
 
-2. 无权限执行命令，尝试切换当前执行用户或为当前用户提高执行权限
+2. If there is no permission to execute the command, try switching the current execution user or elevating the execution permission for the current user.
 
-# 八、在 docker 环境出现证书安装失败该如何处理？
-1. 由于 docke 环境非物理环境，不支持 CPU 序列号和主板序列号校验，尝试更换许可证。
+# VIII. How to Handle Certificate Installation Failure in Docker Environment?
+1. Since the Docker environment is not a physical environment, it does not support CPU and motherboard serial number verification. Try replacing the license.
 
-2. 检查许可证在镜像中的位置是否与配置文件中一致。
+2. Check whether the position of the license in the image matches that in the configuration file.
 
-# 九、许可证安装失败该如何处理？
-## （一）日志出现`License installation failed.`信息
-:::danger 警告：
-
-对JDK版本依赖的问题已在`5.0.0`版本以上得到完整解决，此问题仅会出现在低版本的平台版本中。
-
+# IX. How to Handle License Installation Failure?
+## (一) Log Displays `License installation failed.` Message
+:::danger Warning:
+Issues with JDK version dependencies have been fully resolved in versions above `5.0.0`, and this problem only occurs in lower platform versions.
 :::
 
-请检查 jdk 版本是否高于`1.8_221`以上。
+Check if the JDK version is higher than `1.8_221`.
 
-如无法升级 jdk 版本的环境下，请点击下载 [jce_policy-8.zip](https://pamirs.oss-cn-hangzhou.aliyuncs.com/oinone/doc/jce_policy-8.zip) 并按照如下步骤进行操作：
+In environments where JDK version upgrading is not possible, click to download [jce_policy-8.zip](https://pamirs.oss-cn-hangzhou.aliyuncs.com/oinone/doc/jce_policy-8.zip) and follow these steps:
 
-+ 解压`jce_policy-8.zip`，得到两个文件`US_export_policy.jar`和`local_policy.jar`
-+ 如果安装了JRE，将两个jar文件放到`%JRE_HOME%\lib\security`目录下覆盖原来的文件
-+ 如果安装了JDK，将两个jar文件放到`%JDK_HOME%\jre\lib\security`目录下覆盖原来文件
++ Unzip `jce_policy-8.zip` to get two files: `US_export_policy.jar` and `local_policy.jar`
++ If JRE is installed, place the two JAR files in the `%JRE_HOME%\lib\security` directory to overwrite the original files
++ If JDK is installed, place the two JAR files in the `%JDK_HOME%\jre\lib\security` directory to overwrite the original files
 
-## （二）启动过程中出现Spring上下文被关闭
-请检查启动日志中`pamirs-lic`关键字的相关日志输出，如有许可证相关异常提示，请根据许可证规则确认是否正确使用相应许可证。
+## (二) Spring Context is Closed During Startup
+Check the startup log for logs related to the `pamirs-lic` keyword. If there are license-related exception messages, confirm whether the license is used correctly according to license rules.
 
-# 十、许可证安装成功，但访问出现【未经许可授权模块无法访问】该如何处理？
-## （一）检查启动时许可证信息
-+ `nohup java -jar boot.jar > $home/out.log 2>&1 &`启动的服务需通过查看`out.log`文件查看许可证信息。
-+ `docker`启动的服务需通过`docker logs`查看许可证信息。
-+ `kubernetes`启动的服务需通过`kubectl logs`查看许可证信息。
+# X. License is Installed Successfully, but Access is Denied with "Unauthorized Module Cannot Be Accessed". How to Handle?
+## (一) Check License Information During Startup
++ For services started with `nohup java -jar boot.jar > $home/out.log 2>&1 &`, view license information in the `out.log` file.
++ For services started with `docker`, view license information using `docker logs`.
++ For services started with `kubernetes`, view license information using `kubectl logs`.
 
 ![](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/image-20250529201712947.png)
 
-+ 检查`Type`是否为所需类型。一般用于设计器启动的许可证为`TRIAL`。
-+ 检查`Modules`是否为`ALL`或`模块编码`，`ALL`表示所有设计器模块。
-
++ Check if the `Type` is the required type. Licenses used for designer startup are generally `TRIAL`.
++ Check if `Modules` are `ALL` or `module codes`; `ALL` indicates all designer modules.

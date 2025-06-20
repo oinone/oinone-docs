@@ -2,81 +2,81 @@
 title: Element
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 前端API
+  - Front-end API
   - Widget
 order: 7
 next:
   text: View
   link: /en/DevManual/Reference/Front-EndFramework/Widget/View/README.md
 ---
-在 Oinone Kunlun 中，有这样一类组件无法在一个具体的分类中被描述，它们被称为 `元素组件`。它可以用来实现任何你想实现的功能，并把它放在页面中的任何地方。
+In Oinone Kunlun, there is a type of component that cannot be described in a specific category, known as `element components`. They can be used to implement any functionality you want and placed anywhere on the page.
 
-在 “[自定义视图](/en/DevManual/OperationGuide/customize-a-view-widget.md)” 章节，我们已经初步接触了 Element 视图组件，下面我们将详细介绍一下在 Oinone 中已经内置的 Element 组件、在系统中承担的角色以及它们之间的关系。
+In the "[Customize a View](/en/DevManual/OperationGuide/customize-a-view-widget.md)" chapter, we have already had a preliminary understanding of the Element view component. Below, we will elaborate on the built-in Element components in Oinone, their roles in the system, and the relationships between them.
 
-# 一、元素组件图谱
+# I. Element Component Map
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1748589706552-57bb6e24-a1e8-497b-b848-66b85e459ae7.jpeg)
 
-+ 抽象基类
-  - BaseElement：基础元素组件（SPI Token 组件）。
-  - BaseElementViewWidget：Element 视图组件基类。
-  - BaseElementListViewWidget：列表（List）数据结构视图组件基类。
-  - BaseElementObjectViewWidget：对象（Object）数据结构视图组件基类。
-  - AbstractTreeWidget：树（Tree）数据结构视图组件基类。
-+ 视图组件基类
-  - BaseTableWidget：表格交互组件基类（提供表格交互相似的一类组件）。
-  - BaseSearchWidget：搜索组件基类（提供表单搜索功能的一类组件）。
-  - BaseFormWidget：表单组件基类（提供表单功能的一类组件）。
-  - AbstractTreeElementWidget：树形控件组件基类（提供树形控件基础功能）。
-  - AbstractCardCascaderElementWidget：级联控件组件基类（提供级联控件基础功能）。
-+ 视图组件
-  - TableWidget：表格组件
-  - GalleryWidget：画廊组件
-  - SearchWidget：搜索组件
-  - FormWidget：表单组件
-  - DetailWidget：详情组件
-  - TreeWidget：树形控件组件
-  - CardCascaderWidget：级联控件组件
++ Abstract Base Classes
+  - BaseElement: Basic element component (SPI Token component).
+  - BaseElementViewWidget: Base class for Element view components.
+  - BaseElementListViewWidget: Base class for list (List) data structure view components.
+  - BaseElementObjectViewWidget: Base class for object (Object) data structure view components.
+  - AbstractTreeWidget: Base class for tree (Tree) data structure view components.
++ View Component Base Classes
+  - BaseTableWidget: Base class for table interaction components (providing a class of components similar to table interactions).
+  - BaseSearchWidget: Base class for search components (providing a class of components with form search functions).
+  - BaseFormWidget: Base class for form components (providing a class of components with form functions).
+  - AbstractTreeElementWidget: Base class for tree control components (providing basic tree control functions).
+  - AbstractCardCascaderElementWidget: Base class for cascader control components (providing basic cascader control functions).
++ View Components
+  - TableWidget: Table component
+  - GalleryWidget: Gallery component
+  - SearchWidget: Search component
+  - FormWidget: Form component
+  - DetailWidget: Detail component
+  - TreeWidget: Tree control component
+  - CardCascaderWidget: Cascader control component
 
-# 二、元素组件的注册
+# II. Registration of Element Components
 
-## （一）元素组件的注册可选项
+## (一) Registration Options for Element Components
 
 ```typescript
 /**
- * Element组件注册可选项
+ * Element component registration options
  */
 export interface BaseElementOptions extends SPIOptions {
   /**
-   * 当前视图类型
+   * Current view type
    */
   viewType?: ViewType | ViewType[];
   /**
-   * 组件名称
+   * Component name
    */
   widget?: string | string[];
   /**
-   * 内联组件
+   * Inline component
    */
   inline?: boolean;
   /**
-   * 指定模型
+   * Specified model
    */
   model?: string | string[];
   /**
-   * 指定视图
+   * Specified view
    */
   viewName?: string | string[];
 }
 ```
 
-从上述类型声明中不难发现，其分类维度涵盖以下多个方面：视图类型、组件名称、是否内联组件、模型编码以及视图名称。这些维度用于描述组件的使用位置。一般而言，位置描述得越“精确”，在相应位置进行渲染时，该组件所具备的优先级也就越高。在完全相同的位置描述的情况下，后注册的组件会覆盖先注册的组件。
+From the above type declaration, it is not difficult to find that the classification dimensions cover multiple aspects: view type, component name, whether it is an inline component, model code, and view name. These dimensions are used to describe the usage location of the component. Generally, the more "precise" the location description, the higher the priority of the component when rendering in the corresponding location. In the case of completely identical location descriptions, the later registered component will overwrite the earlier registered one.
 
-## （二）注册组件
+## (二) Registering Components
 
-在注册元素组件时，通常我们通过 `viewType` 以及 `widget` 属性对元素组件进行区分。以 `FormWidget` 为例：
+When registering element components, we usually distinguish them through the `viewType` and `widget` attributes. Take `FormWidget` as an example:
 
 ```typescript
 @SPI.ClassFactory(
@@ -88,1952 +88,1847 @@ export interface BaseElementOptions extends SPIOptions {
 export class FormWidget extends BaseFormWidget
 ```
 
-:::warning 提示：
+:::warning Tip:
 
-使用 widget 属性时可以指定多个组件名称作为这一组件的 “别称” 。
+When using the widget attribute, you can specify multiple component names as "aliases" for this component.
 
 :::
 
-# 一、Reference List
+# I. Reference List
 
-## （一）抽象基类
+## (一) Abstract Base Classes
 
-### 1、BaseElementViewWidget
+### 1. BaseElementViewWidget
 
-**继承**：BaseElementWidget<`Props`>
+**Inheritance**: BaseElementWidget<`Props`>
 
-**属性**：
+**Attributes**:
 
-+ $router：路由实例。（`Router`）
-+ dataSourceConfig：数据源配置。（`ElementViewDataSourceConfig | undefined`）
-+ domain：自定义 RSQL 表达式。（`string | undefined`）
-+ filter：自定义 RSQL 表达式。（`string | undefined`）
-+ isDataSourceProvider：是否是数据源提供者。为 `true` 时数据源由当前组件查询接口获取，为 `false` 时由父组件提供。（`boolean`）
-+ mountedCallChaining：挂载时的链式调用配置（合并当前值与父级值）。（`CallChaining | undefined`）
-+ parentMountedCallChaining：父级挂载时的链式调用配置。（`CallChaining | undefined`）
-+ parentRefreshCallChaining：父级刷新时的链式调用配置。（`CallChaining<boolean> | undefined`）
-+ parentRelationUpdateType：父级关联更新类型。（`RelationUpdateType | undefined`）
-+ parentSubmitType：父级提交类型。（`SubmitType | undefined`）
-+ parentViewMode：父级视图模式。（`ViewMode | undefined`）
-+ refreshCallChaining：刷新时的链式调用配置（合并当前值与父级值）。（`CallChaining | undefined`）
-+ reloadFormData$：刷新表单数据的上下文订阅。（`WidgetSubjection<boolean>`）
-+ relationUpdateType：关联更新类型（合并当前值、DSL 值、父级值）。（`RelationUpdateType`）
-+ submitCallChaining：数据提交的链式调用配置（直接使用父级配置）。（`CallChaining<SubmitValue> | undefined`）
-+ submitType：提交类型（合并当前值、DSL 值、父级值）。（`SubmitType`）
-+ validatorCallChaining：数据校验的链式调用配置（直接使用父级配置）。（`CallChaining<boolean> | undefined`）
-+ viewMode：视图模式（合并当前值与父级值，默认 `Create`）。（`ViewMode`）
++ $router: Routing instance. (`Router`)
++ dataSourceConfig: Data source configuration. (`ElementViewDataSourceConfig | undefined`)
++ domain: Custom RSQL expression. (`string | undefined`)
++ filter: Custom RSQL expression. (`string | undefined`)
++ isDataSourceProvider: Whether it is a data source provider. When `true`, the data source is obtained from the current component's query interface; when `false`, it is provided by the parent component. (`boolean`)
++ mountedCallChaining: Mounting chaining configuration (merges the current value with the parent value). (`CallChaining | undefined`)
++ parentMountedCallChaining: Parent mounting chaining configuration. (`CallChaining | undefined`)
++ parentRefreshCallChaining: Parent refresh chaining configuration. (`CallChaining<boolean> | undefined`)
++ parentRelationUpdateType: Parent relation update type. (`RelationUpdateType | undefined`)
++ parentSubmitType: Parent submission type. (`SubmitType | undefined`)
++ parentViewMode: Parent view mode. (`ViewMode | undefined`)
++ refreshCallChaining: Refresh chaining configuration (merges the current value with the parent value). (`CallChaining | undefined`)
++ reloadFormData$: Context subscription for refreshing form data. (`WidgetSubjection<boolean>`)
++ relationUpdateType: Relation update type (merges current value, DSL value, and parent value). (`RelationUpdateType`)
++ submitCallChaining: Data submission chaining configuration (directly uses parent configuration). (`CallChaining<SubmitValue> | undefined`)
++ submitType: Submission type (merges current value, DSL value, and parent value). (`SubmitType`)
++ validatorCallChaining: Data validation chaining configuration (directly uses parent configuration). (`CallChaining<boolean> | undefined`)
++ viewMode: View mode (merges current value with parent value, default `Create`). (`ViewMode`)
 
-**方法**：
+**Methods**:
 
 #### **getViewMode**
 
-+ **功能描述**：获取当前视图模式。
-+ **类型**：`() => ViewMode`
-+ **返回值**：当前视图模式。
++ **Function Description**: Get the current view mode.
++ **Type**: `() => ViewMode`
++ **Return Value**: Current view mode.
 
 #### **isExpandView**
 
-+ **功能描述**：判断是否为展开视图（通过上下文句柄匹配）。
-+ **类型**：`() => boolean`
-+ **返回值**：`true` 表示是展开视图，`false` 表示否。
++ **Function Description**: Determine if it is an expanded view (matched by context handle).
++ **Type**: `() => boolean`
++ **Return Value**: `true` indicates an expanded view, `false` indicates otherwise.
 
 #### **mountedProcess?**
 
-+ **功能描述**：抽象方法，定义挂载时的具体逻辑（需子类实现）。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Abstract method defining the specific logic during mounting (needs to be implemented by subclasses).
++ **Type**: `() => Promise<void>`
 
 #### **refreshCondition**
 
-+ **功能描述**：刷新过滤条件，合并多级 RSQL 表达式并更新视图过滤。
-+ **类型**：`() => void`
++ **Function Description**: Refresh filter conditions, merge multi-level RSQL expressions, and update view filtering.
++ **Type**: `() => void`
 
 #### **refreshConditionContext**
 
-+ **功能描述**：获取刷新条件上下文（返回当前视图的 `context`）。
-+ **类型**：`() => Record<string, unknown> | undefined`
-+ **返回值**：视图上下文对象或 `undefined`。
++ **Function Description**: Get the refresh condition context (returns the `context` of the current view).
++ **Type**: `() => Record<string, unknown> | undefined`
++ **Return Value**: View context object or `undefined`.
 
 #### **refreshProcess?**
 
-+ **功能描述**：抽象方法，定义刷新时的具体逻辑（需子类实现）。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Abstract method defining the specific logic during refresh (needs to be implemented by subclasses).
++ **Type**: `() => Promise<void>`
 
 #### **setViewMode**
 
-+ **功能描述**：设置当前视图模式。
-+ **类型**：`(mode: ViewMode | undefined) => void`
-+ **参数**：
-  - `mode`：目标视图模式。
++ **Function Description**: Set the current view mode.
++ **Type**: `(mode: ViewMode | undefined) => void`
++ **Parameters**:
+  - `mode`: Target view mode.
 
-### 2、BaseElementObjectViewWidget
+### 2. BaseElementObjectViewWidget
 
-**继承**：BaseElementViewWidget<`Props`>
+**Inheritance**: BaseElementViewWidget<`Props`>
 
-**属性**：
+**Attributes**:
 
-+ cols：计算后的列数，优先读取 DSL 配置，其次继承父级，默认值为 1。（`number`）
-+ currentSubmitCallChaining：可观察的提交链式调用实例。（`CallChaining<SubmitValue> | undefined`）
-+ currentValidatorCallChaining：可观察的校验链式调用实例。（`CallChaining<boolean> | undefined`）
-+ enableScrollToErrorField：是否启用自动滚动到错误字段，默认值为 `true`。（`boolean`）
-+ fieldWidgetMap：字段组件映射表，存储组件实例及索引。（`Map<string, FieldWidgetEntity>`）
-+ formData：当前表单数据，默认返回首个激活记录或空对象。（`ActiveRecord`）
-+ loadFunctionFun：加载函数名称。（`string | undefined`）
-+ loadFunctionNamespace：加载函数命名空间（已弃用）。（`string`）
-+ parentRefreshProcess：父级刷新流程函数。（`RefreshProcessFunction | undefined`）
-+ submitCallChaining：数据提交的链式调用访问器，合并当前实例与父级实例。（`CallChaining<SubmitValue> | undefined`）
-+ validatorCallChaining：数据校验的链式调用访问器，合并当前实例与父级实例。（`CallChaining<boolean> | undefined`）
++ cols: Calculated number of columns, giving priority to DSL configuration, then inheriting from the parent, with a default value of 1. (`number`)
++ currentSubmitCallChaining: Observable submission chaining instance. (`CallChaining<SubmitValue> | undefined`)
++ currentValidatorCallChaining: Observable validation chaining instance. (`CallChaining<boolean> | undefined`)
++ enableScrollToErrorField: Whether to enable automatic scrolling to error fields, with a default value of `true`. (`boolean`)
++ fieldWidgetMap: Field component mapping table storing component instances and indices. (`Map<string, FieldWidgetEntity>`)
++ formData: Current form data, defaulting to returning the first active record or an empty object. (`ActiveRecord`)
++ loadFunctionFun: Load function name. (`string | undefined`)
++ loadFunctionNamespace: Load function namespace (deprecated). (`string`)
++ parentRefreshProcess: Parent refresh process function. (`RefreshProcessFunction | undefined`)
++ submitCallChaining: Data submission chaining accessor, merging the current instance with the parent instance. (`CallChaining<SubmitValue> | undefined`)
++ validatorCallChaining: Data validation chaining accessor, merging the current instance with the parent instance. (`CallChaining<boolean> | undefined`)
 
-**方法**：
+**Methods**:
 
 #### **fieldWidgetMounted**
 
-+ **功能描述**：字段组件挂载时触发，记录组件实例及索引到映射表。
-+ **类型**：`(widget: BaseFieldWidget) => void`
-+ **参数**：
-  - `widget`：字段组件实例。
++ **Function Description**: Triggered when a field component is mounted, recording the component instance and index in the mapping table.
++ **Type**: `(widget: BaseFieldWidget) => void`
++ **Parameters**:
+  - `widget`: Field component instance.
 
 #### **fieldWidgetUnmounted**
 
-+ **功能描述**：字段组件卸载时触发，从映射表中移除组件记录。
-+ **类型**：`(widget: BaseFieldWidget) => void`
-+ **参数**：
-  - `widget`：字段组件实例。
++ **Function Description**: Triggered when a field component is unmounted, removing the component record from the mapping table.
++ **Type**: `(widget: BaseFieldWidget) => void`
++ **Parameters**:
+  - `widget`: Field component instance.
 
 #### **fetchData**
 
-+ **功能描述**：根据条件加载数据，自动处理查询逻辑并返回单条记录。
-+ **类型**：`(condition?: Condition) => Promise<ActiveRecord>`
-+ **参数**：
-  - `condition`：查询条件。
-+ **返回值**：加载后的单条数据。
++ **Function Description**: Load data based on conditions, automatically handling query logic and returning a single record.
++ **Type**: `(condition?: Condition) => Promise<ActiveRecord>`
++ **Parameters**:
+  - `condition`: Query conditions.
++ **Return Value**: Loaded single record.
 
 #### **generatorCondition**
 
-+ **功能描述**：生成最终查询条件，合并过滤条件、域和上下文数据。
-+ **类型**：`(condition?: Condition) => Condition | undefined`
-+ **参数**：
-  - `condition`：基础查询条件。
-+ **返回值**：最终查询条件。
++ **Function Description**: Generate the final query condition, merging filter conditions, domain, and context data.
++ **Type**: `(condition?: Condition) => Condition | undefined`
++ **Parameters**:
+  - `condition`: Basic query conditions.
++ **Return Value**: Final query condition.
 
 #### **generatorQueryContext**
 
-+ **功能描述**：生成查询上下文，补充场景参数到 `__queryParams` 中。
-+ **类型**：`(context?: QueryContext) => QueryContext`
-+ **参数**：
-  - `context`：基础查询上下文。
-+ **返回值**：完整查询上下文。
++ **Function Description**: Generate the query context, supplementing scenario parameters into `__queryParams`.
++ **Type**: `(context?: QueryContext) => QueryContext`
++ **Parameters**:
+  - `context`: Basic query context.
++ **Return Value**: Complete query context.
 
 #### **generatorQueryVariables**
 
-+ **功能描述**：生成查询变量，补充场景信息（如 `scene`）和运行时上下文。
-+ **类型**：`(variables?: QueryVariables) => QueryVariables`
-+ **参数**：
-  - `variables`：基础查询变量。
-+ **返回值**：完整查询变量。
++ **Function Description**: Generate query variables, supplementing scenario information (such as `scene`) and runtime context.
++ **Type**: `(variables?: QueryVariables) => QueryVariables`
++ **Parameters**:
+  - `variables`: Basic query variables.
++ **Return Value**: Complete query variables.
 
 #### **getData**
 
-+ **功能描述**：获取当前表单数据。
-+ **类型**：`() => ActiveRecord`
-+ **返回值**：当前表单数据。
++ **Function Description**: Get current form data.
++ **Type**: `() => ActiveRecord`
++ **Return Value**: Current form data.
 
 #### **getFieldWidgets**
 
-+ **功能描述**：获取所有字段组件，支持按索引排序。
-+ **类型**：`(sort = false) => BaseFieldWidget[]`
-+ **参数**：
-  - `sort`：是否按索引排序（默认值：`false`）。
-+ **返回值**：字段组件数组。
++ **Function Description**: Get all field components, supporting sorting by index.
++ **Type**: `(sort = false) => BaseFieldWidget[]`
++ **Parameters**:
+  - `sort`: Whether to sort by index (default value: `false`).
++ **Return Value**: Array of field components.
 
 #### **mountedProcess**
 
-+ **功能描述**：挂载后处理逻辑，自动加载数据并更新视图模式。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Post-mounting processing logic, automatically loading data and updating the view mode.
++ **Type**: `() => Promise<void>`
 
 #### **onFieldEvent**
 
-+ **功能描述**：监听字段组件事件，支持单个字段或全局监听。
-+ **类型**：`(field: string | string[] | '*', eventName: FieldEventName | { [key in FieldEventName]?: FieldHandlerEvent }, callback?: FieldHandlerEvent) => void`
-+ **参数**：
-  - `field`：字段名或字段数组（`*` 表示所有字段）。
-  - `eventName`：事件名或事件对象。
-  - `callback`：回调函数（可选，当 `eventName` 为对象时不需要）。
++ **Function Description**: Listen to field component events, supporting single field or global listening.
++ **Type**: `(field: string | string[] | '*', eventName: FieldEventName | { [key in FieldEventName]?: FieldHandlerEvent }, callback?: FieldHandlerEvent) => void`
++ **Parameters**:
+  - `field`: Field name or field array (`*` for all fields).
+  - `eventName`: Event name or event object.
+  - `callback`: Callback function (optional, not needed when `eventName` is an object).
 
 #### **queryConstruct**
 
-+ **功能描述**：处理新建场景的数据构造，合并初始值和运行时上下文。
-+ **类型**：`(queryData: ActiveRecords | undefined, variables: QueryVariables, context: QueryContext) => Promise<ActiveRecord>`
-+ **参数**：
-  - `queryData`：初始数据。
-  - `variables`：查询变量。
-  - `context`：查询上下文。
-+ **返回值**：构造后的单条数据。
++ **Function Description**: Handle data construction for new scenarios, merging initial values and runtime context.
++ **Type**: `(queryData: ActiveRecords | undefined, variables: QueryVariables, context: QueryContext) => Promise<ActiveRecord>`
++ **Parameters**:
+  - `queryData`: Initial data.
+  - `variables`: Query variables.
+  - `context`: Query context.
++ **Return Value**: Constructed single record.
 
 #### **queryData**
 
-+ **功能描述**：根据上下文类型（单条 / 批量）执行数据查询，支持构造模式和直接查询。
-+ **类型**：`(variables: QueryVariables, context: QueryContext) => Promise<ActiveRecord>`
-+ **参数**：
-  - `variables`：查询变量。
-  - `context`：查询上下文。
-+ **返回值**：查询结果。
++ **Function Description**: Execute data query based on context type (single/batch), supporting construction mode and direct query.
++ **Type**: `(variables: QueryVariables, context: QueryContext) => Promise<ActiveRecord>`
++ **Parameters**:
+  - `variables`: Query variables.
+  - `context`: Query context.
++ **Return Value**: Query result.
 
 #### **queryOne**
 
-+ **功能描述**：执行单条数据查询，基于 `loadFunctionFun` 或直接返回缓存数据。
-+ **类型**：`(queryData: ActiveRecord, variables: QueryVariables, context: QueryContext) => Promise<ActiveRecord>`
-+ **参数**：
-  - `queryData`：查询条件。
-  - `variables`：查询变量。
-  - `context`：查询上下文。
-+ **返回值**：单条查询结果。
++ **Function Description**: Execute single data query based on `loadFunctionFun` or directly return cached data.
++ **Type**: `(queryData: ActiveRecord, variables: QueryVariables, context: QueryContext) => Promise<ActiveRecord>`
++ **Parameters**:
+  - `queryData`: Query conditions.
+  - `variables`: Query variables.
+  - `context`: Query context.
++ **Return Value**: Single query result.
 
 #### **queryOneByWrapper**
 
-+ **功能描述**：通过条件包装器执行单条数据查询，适用于复杂过滤场景。
-+ **类型**：`(condition: Condition, variables: QueryVariables, context: QueryContext) => Promise<ActiveRecord>`
-+ **参数**：
-  - `condition`：条件包装器。
-  - `variables`：查询变量。
-  - `context`：查询上下文。
-+ **返回值**：单条查询结果。
++ **Function Description**: Execute single data query through a condition wrapper, suitable for complex filtering scenarios.
++ **Type**: `(condition: Condition, variables: QueryVariables, context: QueryContext) => Promise<ActiveRecord>`
++ **Parameters**:
+  - `condition`: Condition wrapper.
+  - `variables`: Query variables.
+  - `context`: Query context.
++ **Return Value**: Single query result.
 
 #### **refreshProcess**
 
-+ **功能描述**：刷新数据流程，支持自动加载或调用父级刷新函数。
-+ **类型**：`(condition?: Condition) => Promise<void>`
-+ **参数**：
-  - `condition`：刷新条件。
++ **Function Description**: Refresh data process, supporting automatic loading or calling the parent refresh function.
++ **Type**: `(condition?: Condition) => Promise<void>`
++ **Parameters**:
+  - `condition`: Refresh conditions.
 
 #### **repairViewMode**
 
-+ **功能描述**：根据当前记录 ID 和父级挂载状态，自动修复视图模式（创建 / 编辑）。
-+ **类型**：`() => void`
++ **Function Description**: Automatically repair the view mode (create/edit) based on the current record ID and parent mount status.
++ **Type**: `() => void`
 
 #### **submit**
 
-+ **功能描述**：触发数据提交，通过提交链式调用或直接返回表单数据。
-+ **类型**：`() => Promise<SubmitValue | undefined>`
-+ **返回值**：提交结果。
++ **Function Description**: Trigger data submission through submission chaining or directly return form data.
++ **Type**: `() => Promise<SubmitValue | undefined>`
++ **Return Value**: Submission result.
 
 #### **testInitialContext**
 
-+ **功能描述**：校验初始上下文中是否包含未在页面中使用的字段，打印警告日志。
-+ **类型**：`() => void`
++ **Function Description**: Verify whether the initial context contains fields not used in the page, printing warning logs.
++ **Type**: `() => void`
 
 #### **validator**
 
-+ **功能描述**：触发数据校验，通过校验链式调用或直接返回校验结果。
-+ **类型**：`() => Promise<boolean>`
-+ **返回值**：校验结果。
++ **Function Description**: Trigger data validation through validation chaining or directly return validation results.
++ **Type**: `() => Promise<boolean>`
++ **Return Value**: Validation result.
 
 #### **setData**
 
-+ **功能描述**：设置表单数据，更新数据源和激活记录。
-+ **类型**：`(data: ActiveRecords | undefined) => void`
-+ **参数**：
-  - `data`：要设置的数据源。
++ **Function Description**: Set form data, updating the data source and active record.
++ **Type**: `(data: ActiveRecords | undefined) => void`
++ **Parameters**:
+  - `data`: Data source to set.
 
 #### **tryScrollToFieldWidget**
 
-+ **功能描述**：尝试滚动到错误字段组件，根据配置决定是否启用滚动。
-+ **类型**：`(fieldWidget: BaseFieldWidget) => void`
-+ **参数**：
-  - `fieldWidget`：错误字段组件实例。
++ **Function Description**: Attempt to scroll to the error field component, deciding whether to enable scrolling based on configuration.
++ **Type**: `(fieldWidget: BaseFieldWidget) => void`
++ **Parameters**:
+  - `fieldWidget`: Error field component instance.
 
-### 3、BaseElementListViewWidget
+### 3. BaseElementListViewWidget
 
-**继承**：BaseElementViewWidget<`Props`>
+**Inheritance**: BaseElementViewWidget<`Props`>
 
-**属性**：
+**Attributes**:
 
-+ checkboxAllCallChaining：复选框全选操作的链式调用实例。（`CallChaining | undefined`）
-+ defaultPageSize：默认分页数。（`number`）
-+ defaultPageSizeOptions：默认分页大小选项。（`number[]`）
-+ emptyImage：空数据图片。（`undefined`）
-+ emptyText：空数据提示。（`string`）
-+ loadFunctionFun：加载函数名称，禁用数据加载时会指定为 `false`。（`string | undefined`）
-+ loadFunctionNamespace：加载函数命名空间。（`string`，已废弃：不允许手动设置）
-+ ordering：默认排序字段。（`ISort[] | undefined`）
-+ pageSizeOptions：分页选项。（`number[]`）
-+ pagination：分页参数。（`Pagination | undefined`）
-+ paginationStyle：分页样式。（`ListPaginationStyle`）
-+ searchBody：搜索数据。（`ActiveRecord | undefined`）
-+ searchCondition：搜索条件（树状结构）。（`TreeNode<RSQLNodeInfo> | undefined`）
-+ searchConditions：搜索表达式。（`QueryExpression[] | undefined`）
-+ searchSortedDataSource：根据搜索内容获取的列表数据。（`ActiveRecord[] | undefined`）
-+ selectable：是否启用选择功能。（`boolean`）
-+ selectMode：选择模式。（`ListSelectMode`）
-+ showDataSource：当前列表展示的数据。（`ActiveRecord[] | undefined`）
-+ showPagination：是否显示分页。（`boolean`）
-+ sortConfig：排序配置。（`VxeTablePropTypes.SortConfig`）
-+ sortList：排序参数。（`ISort[] | undefined`）
-+ sortable：是否启用排序。（`boolean`）
-+ usingSearchCondition：是否前端搜索。（`boolean`）
++ checkboxAllCallChaining: Chaining instance for checkbox all-selection operations. (`CallChaining | undefined`)
++ defaultPageSize: Default number of items per page. (`number`)
++ defaultPageSizeOptions: Default page size options. (`number[]`)
++ emptyImage: Empty data image. (`undefined`)
++ emptyText: Empty data prompt. (`string`)
++ loadFunctionFun: Load function name, specified as `false` when data loading is disabled. (`string | undefined`)
++ loadFunctionNamespace: Load function namespace. (`string`, deprecated: manual setting not allowed)
++ ordering: Default sorting field. (`ISort[] | undefined`)
++ pageSizeOptions: Pagination options. (`number[]`)
++ pagination: Pagination parameters. (`Pagination | undefined`)
++ paginationStyle: Pagination style. (`ListPaginationStyle`)
++ searchBody: Search data. (`ActiveRecord | undefined`)
++ searchCondition: Search conditions (tree structure). (`TreeNode<RSQLNodeInfo> | undefined`)
++ searchConditions: Search expressions. (`QueryExpression[] | undefined`)
++ searchSortedDataSource: List data obtained based on search content. (`ActiveRecord[] | undefined`)
++ selectable: Whether to enable selection function. (`boolean`)
++ selectMode: Selection mode. (`ListSelectMode`)
++ showDataSource: Currently displayed list data. (`ActiveRecord[] | undefined`)
++ showPagination: Whether to display pagination. (`boolean`)
++ sortConfig: Sorting configuration. (`VxeTablePropTypes.SortConfig`)
++ sortList: Sorting parameters. (`ISort[] | undefined`)
++ sortable: Whether to enable sorting. (`boolean`)
++ usingSearchCondition: Whether to search on the front end. (`boolean`)
 
-**方法**：
+**Methods**:
 
 #### **executeSearchExpression**
 
-+ **功能描述**：解析搜索表达式，返回计算后的值。
-+ **类型**：`(searchWidget: BaseRuntimePropertiesWidget, expression: string) => string | undefined`
-+ **参数**：
-  - `searchWidget`：搜索组件实例。
-  - `expression`：待解析的表达式。
-+ **返回值**：表达式执行结果。
++ **Function Description**: Parse search expressions and return calculated values.
++ **Type**: `(searchWidget: BaseRuntimePropertiesWidget, expression: string) => string | undefined`
++ **Parameters**:
+  - `searchWidget`: Search component instance.
+  - `expression`: Expression to be parsed.
++ **Return Value**: Execution result of the expression.
 
 #### **fetchData**
 
-+ **功能描述**：根据条件加载数据，返回修复后的记录数组。
-+ **类型**：`(condition?: Condition) => Promise<ActiveRecord[]>`
-+ **参数**：
-  - `condition`：查询条件（可选）。
-+ **返回值**：加载后的记录数组。
++ **Function Description**: Load data based on conditions and return the repaired record array.
++ **Type**: `(condition?: Condition) => Promise<ActiveRecord[]>`
++ **Parameters**:
+  - `condition`: Query conditions (optional).
++ **Return Value**: Loaded record array.
 
 #### **fieldWidgetMounted**
 
-+ **功能描述**：字段组件挂载。
-+ **类型**：`(widget: any) => void`
-+ **参数**：
-  - `widget`：组件实例。
++ **Function Description**: Field component mounting.
++ **Type**: `(widget: any) => void`
++ **Parameters**:
+  - `widget`: Component instance.
 
 #### **fieldWidgetUnmounted**
 
-+ **功能描述**：字段组件卸载。
-+ **类型**：`(widget: any) => void`
-+ **参数**：
-  - `widget`：组件实例。
++ **Function Description**: Field component unmounting.
++ **Type**: `(widget: any) => void`
++ **Parameters**:
+  - `widget`: Component instance.
 
 #### **generatorCondition**
 
-+ **功能描述**：生成最终查询条件，合并过滤条件、域条件和搜索条件。
-+ **类型**：`(condition?: Condition, usingSearchCondition?: boolean) => Condition`
-+ **参数**：
-  - `condition`：原始条件（可选）。
-  - `usingSearchCondition`：是否使用搜索条件（可选）。
-+ **返回值**：最终查询条件。
++ **Function Description**: Generate final query conditions, merging filter conditions, domain conditions, and search conditions.
++ **Type**: `(condition?: Condition, usingSearchCondition?: boolean) => Condition`
++ **Parameters**:
+  - `condition`: Original conditions (optional).
+  - `usingSearchCondition`: Whether to use search conditions (optional).
++ **Return Value**: Final query conditions.
 
 #### **generatorPagination**
 
-+ **功能描述**：生成或获取分页参数，确保当前页和每页大小为有效值。
-+ **类型**：`() => Pagination`
-+ **返回值**：分页参数对象。
++ **Function Description**: Generate or obtain pagination parameters to ensure the current page and items per page are valid values.
++ **Type**: `() => Pagination`
++ **Return Value**: Pagination parameter object.
 
 #### **generatorQueryContext**
 
-+ **功能描述**：生成查询上下文，自动填充场景信息到查询参数。
-+ **类型**：`(context?: QueryContext) => QueryContext`
-+ **参数**：
-  - `context`：原始上下文（可选）。
-+ **返回值**：查询上下文。
++ **Function Description**: Generate query context, automatically populating scenario information into query parameters.
++ **Type**: `(context?: QueryContext) => QueryContext`
++ **Parameters**:
+  - `context`: Original context (optional).
++ **Return Value**: Query context.
 
 #### **generatorQuerySort**
 
-+ **功能描述**：获取当前排序参数数组。
-+ **类型**：`() => ISort[]`
-+ **返回值**：排序参数数组。
++ **Function Description**: Get the current sorting parameter array.
++ **Type**: `() => ISort[]`
++ **Return Value**: Sorting parameter array.
 
 #### **generatorQueryVariables**
 
-+ **功能描述**：生成查询变量，自动填充场景信息。
-+ **类型**：`(variables?: QueryVariables) => QueryVariables`
-+ **参数**：
-  - `variables`：原始变量（可选）。
-+ **返回值**：查询变量。
++ **Function Description**: Generate query variables, automatically populating scenario information.
++ **Type**: `(variables?: QueryVariables) => QueryVariables`
++ **Parameters**:
+  - `variables`: Original variables (optional).
++ **Return Value**: Query variables.
 
 #### **generatorRequestFields**
 
-+ **功能描述**：生成请求字段列表，合并模型字段和搜索字段。
-+ **类型**：`() => RequestModelField[]`
-+ **返回值**：请求字段数组。
++ **Function Description**: Generate a request field list, merging model fields and search fields.
++ **Type**: `() => RequestModelField[]`
++ **Return Value**: Request field array.
 
 #### **generatorSearchBody**
 
-+ **功能描述**：生成最终搜索体，解析动态表达式。
-+ **类型**：`() => ActiveRecord | undefined`
-+ **返回值**：处理后的搜索体数据。
++ **Function Description**: Generate the final search body and parse dynamic expressions.
++ **Type**: `() => ActiveRecord | undefined`
++ **Return Value**: Processed search body data.
 
 #### **generatorSearchCondition**
 
-+ **功能描述**：根据查询条件生成搜索条件树，或重置搜索条件。
-+ **类型**：`(condition?: Condition) => void`
-+ **参数**：
-  - `condition`：查询条件（可选）。
++ **Function Description**: Generate a search condition tree based on query conditions or reset search conditions.
++ **Type**: `(condition?: Condition) => void`
++ **Parameters**:
+  - `condition`: Query conditions (optional).
 
 #### **getData**
 
-+ **功能描述**：获取数据。
-+ **类型**：`() => ActiveRecord[] | undefined`
-+ **返回值**：列表所有数据。
++ **Function Description**: Get data.
++ **Type**: `() => ActiveRecord[] | undefined`
++ **Return Value**: All list data.
 
 #### **getPaginationStyle**
 
-+ **功能描述**：获取分页样式。
-+ **类型**：`() => ListPaginationStyle`
-+ **返回值**：分页样式枚举值。
++ **Function Description**: Get the pagination style.
++ **Type**: `() => ListPaginationStyle`
++ **Return Value**: Pagination style enumeration value.
 
 #### **mountedProcess**
 
-+ **功能描述**：挂载后处理逻辑，加载数据并处理分页和缓存。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Post-mounting processing logic, loading data and handling pagination and caching.
++ **Type**: `() => Promise<void>`
 
 #### **onCheckedAllChange**
 
-+ **功能描述**：全选状态变更时触发，更新选中记录。
-+ **类型**：`(selected: boolean, data: ActiveRecord[], event?: CheckedChangeEvent) => void`
-+ **参数**：
-  - `selected`：是否全选。
-  - `data`：当前列表数据。
-  - `event`：事件对象（可选）。
++ **Function Description**: Triggered when the all-selection status changes, updating selected records.
++ **Type**: `(selected: boolean, data: ActiveRecord[], event?: CheckedChangeEvent) => void`
++ **Parameters**:
+  - `selected`: Whether to select all.
+  - `data`: Current list data.
+  - `event`: Event object (optional).
 
 #### **onCheckedChange**
 
-+ **功能描述**：复选框选中状态变更时触发，更新激活记录。
-+ **类型**：`(data: ActiveRecords, event?: CheckedChangeEvent) => void`
-+ **参数**：
-  - `data`：选中的记录数组。
-  - `event`：事件对象（可选）。
++ **Function Description**: Triggered when the checkbox selection status changes, updating active records.
++ **Type**: `(data: ActiveRecords, event?: CheckedChangeEvent) => void`
++ **Parameters**:
+  - `data`: Array of selected records.
+  - `event`: Event object (optional).
 
 #### **onPaginationChange**
 
-+ **功能描述**：分页参数变更时触发，更新路由和数据。
-+ **类型**：`(current: number, pageSize: number) => void`
-+ **参数**：
-  - `current`：当前页码。
-  - `pageSize`：每页大小。
++ **Function Description**: Triggered when pagination parameters change, updating routing and data.
++ **Type**: `(current: number, pageSize: number) => void`
++ **Parameters**:
+  - `current`: Current page number.
+  - `pageSize`: Items per page.
 
 #### **onRadioChange**
 
-+ **功能描述**：单选状态变更时触发，更新激活记录。
-+ **类型**：`(data: ActiveRecord, event?: RadioChangeEvent) => void`
-+ **参数**：
-  - `data`：选中的单条记录。
-  - `event`：事件对象（可选）。
++ **Function Description**: Triggered when the radio selection status changes, updating active records.
++ **Type**: `(data: ActiveRecord, event?: RadioChangeEvent) => void`
++ **Parameters**:
+  - `data`: Selected single record.
+  - `event`: Event object (optional).
 
 #### **onSortChange**
 
-+ **功能描述**：排序参数变更时触发，更新路由和数据。
-+ **类型**：`(sortList: ISort[]) => void`
-+ **参数**：
-  - `sortList`：新的排序参数数组。
++ **Function Description**: Triggered when sorting parameters change, updating routing and data.
++ **Type**: `(sortList: ISort[]) => void`
++ **Parameters**:
+  - `sortList`: New sorting parameter array.
 
 #### **queryPage**
 
-+ **功能描述**：执行分页查询，支持关联模型查询。
-+ **类型**：`(condition: Condition, pagination: Pagination, sort: ISort[], variables: QueryVariables, context: QueryContext) => Promise<QueryPageResult<T>>`
-+ **参数**：
-  - `condition`：查询条件。
-  - `pagination`：分页参数。
-  - `sort`：排序参数。
-  - `variables`：查询变量。
-  - `context`：查询上下文。
-+ **返回值**：分页查询结果。
++ **Function Description**: Execute pagination query, supporting associated model queries.
++ **Type**: `(condition: Condition, pagination: Pagination, sort: ISort[], variables: QueryVariables, context: QueryContext) => Promise<QueryPageResult<T>>`
++ **Parameters**:
+  - `condition`: Query conditions.
+  - `pagination`: Pagination parameters.
+  - `sort`: Sorting parameters.
+  - `variables`: Query variables.
+  - `context`: Query context.
++ **Return Value**: Pagination query result.
 
 #### **relationM2MQueryPage**
 
-+ **功能描述**：关联模型多对多查询分页数据。
-+ **类型**：`(field: RuntimeM2MField, queryData: ActiveRecord, condition: Condition, pagination: Pagination, sort: ISort[], variables: QueryVariables, context: QueryContext) => Promise<QueryPageResult<T>>`
-+ **参数**：
-  - `field`：多对多字段模型。
-  - `queryData`：查询数据。
-  - `condition`：查询条件。
-  - `pagination`：分页参数。
-  - `sort`：排序参数。
-  - `variables`：查询变量。
-  - `context`：查询上下文。
-+ **返回值**：分页查询结果。
++ **Function Description**: Associate model many-to-many query for pagination data.
++ **Type**: `(field: RuntimeM2MField, queryData: ActiveRecord, condition: Condition, pagination: Pagination, sort: ISort[], variables: QueryVariables, context: QueryContext) => Promise<QueryPageResult<T>>`
++ **Parameters**:
+  - `field`: Many-to-many field model.
+  - `queryData`: Query data.
+  - `condition`: Query conditions.
+  - `pagination`: Pagination parameters.
+  - `sort`: Sorting parameters.
+  - `variables`: Query variables.
+  - `context`: Query context.
++ **Return Value**: Pagination query result.
 
 #### **repairPaginationAfterDelete**
 
-+ **功能描述**：删除数据后修复分页，切换到正确页码。
-+ **类型**：`() => void`
++ **Function Description**: Repair pagination after deleting data, switching to the correct page number.
++ **Type**: `() => void`
 
 #### **refreshProcess**
 
-+ **功能描述**：刷新数据，支持数据源主动加载或父级刷新。
-+ **类型**：`(condition?: Condition) => Promise<void>`
-+ **参数**：
-  - `condition`：刷新条件（可选）。
++ **Function Description**: Refresh data, supporting active data source loading or parent refresh.
++ **Type**: `(condition?: Condition) => Promise<void>`
++ **Parameters**:
+  - `condition`: Refresh conditions (optional).
 
 #### **resetSearchCondition**
 
-+ **功能描述**：重置搜索条件为 `undefined`。
-+ **类型**：`() => void`
++ **Function Description**: Reset search conditions to `undefined`.
++ **Type**: `() => void`
 
 #### **seekSearchRuntimeContext**
 
-+ **功能描述**：查找搜索组件的运行时上下文。
-+ **类型**：`() => RuntimeContext | RootRuntimeContext`
-+ **返回值**：搜索运行时上下文或根上下文。
++ **Function Description**: Find the runtime context of the search component.
++ **Type**: `() => RuntimeContext | RootRuntimeContext`
++ **Return Value**: Search runtime context or root context.
 
 #### **setData**
 
-+ **功能描述**：设置数据。
-+ **类型**：`(data: ActiveRecords | undefined, currentPage?: number) => void`
-+ **参数**：
-  - `data`：记录数组（可选）。
-  - `currentPage`：当前页码（可选）。
++ **Function Description**: Set data.
++ **Type**: `(data: ActiveRecords | undefined, currentPage?: number) => void`
++ **Parameters**:
+  - `data`: Record array (optional).
+  - `currentPage`: Current page number (optional).
 
 #### **submitCacheProcess**
 
-+ **功能描述**：处理提交缓存，更新数据源和分页信息。
-+ **类型**：`(dataSource: ActiveRecord[]) => void`
-+ **参数**：
-  - `dataSource`：新的数据源数组。
++ **Function Description**: Process submission cache, updating the data source and pagination information.
++ **Type**: `(dataSource: ActiveRecord[]) => void`
++ **Parameters**:
+  - `dataSource`: New data source array.
 
 #### **testInitialContext**
 
-+ **功能描述**：校验初始上下文中是否包含未在搜索条件中使用的字段。
-+ **类型**：`() => void`
++ **Function Description**: Verify whether the initial context contains fields not used in search conditions.
++ **Type**: `() => void`
 
-## （二）视图组件基类
+## (二) View Component Base Classes
 
-### 1、BaseTableWidget
+### 1. BaseTableWidget
 
-**继承**：BaseElementListViewWidget<`Props`>
+**Inheritance**: BaseElementListViewWidget<`Props`>
 
-**属性**：
+**Attributes**:
 
-+ cachedEditActiveRecords：缓存的编辑中的活动记录。（`ActiveRecord | undefined`）
-+ columnWidgetMap：列组件映射。（`Map<string, ColumnWidgetEntity>`）
-+ createMode：创建模式。（`boolean | undefined`）
-+ currentEditorContext：当前编辑模式上下文。（`ActiveEditorContext | undefined`）
-+ currentTriggerCreateAction：当前触发创建操作。（`RuntimeAction | undefined`）
-+ editorCloseTrigger：行内触发关闭触发方式。（`TableEditorCloseTrigger`）
-+ editorMode：行内编辑模式。（`TableEditorMode`）
-+ editorShowIcon：是否显示行内编辑图标。（`boolean`）
-+ editorTrigger：行内编辑触发方式。（`TableEditorTrigger`）
-+ editable：是否启用行内编辑。（`boolean | undefined`）
-+ expandContext：展开上下文。（`Record<string, unknown> | undefined`）
-+ height：表格高度。（`string | undefined`）
-+ lastedCurrentEditorContext：上一个当前编辑模式上下文。（`ActiveEditorContext | undefined`）
-+ maxHeight：表格最大高度。（`string | undefined`）
-+ minHeight：表格最小高度。（`string | undefined`）
-+ rowEditorCreateFun：行内编辑创建函数名称。（`string | undefined`）
-+ rowEditorUpdateFun：行内编辑更新函数名称。（`string | undefined`）
-+ tableInstance：表格实例。（`OioTableInstance | undefined`）
-+ tableRowEditMode：表格行编辑模式。（`TableRowEditMode | undefined`）
-+ userPrefer：用户偏好。（`UserTablePrefer | undefined`）
-+ userPreferEventManager：用户偏好事件管理器。（`UserPreferEventManager | undefined`）
++ cachedEditActiveRecords: Cached active records being edited. (`ActiveRecord | undefined`)
++ columnWidgetMap: Column component mapping. (`Map<string, ColumnWidgetEntity>`)
++ createMode: Creation mode. (`boolean | undefined`)
++ currentEditorContext: Current editing mode context. (`ActiveEditorContext | undefined`)
++ currentTriggerCreateAction: Current trigger creation operation. (`RuntimeAction | undefined`)
++ editorCloseTrigger: In-line trigger close trigger mode. (`TableEditorCloseTrigger`)
++ editorMode: In-line editing mode. (`TableEditorMode`)
++ editorShowIcon: Whether to display in-line editing icons. (`boolean`)
++ editorTrigger: In-line editing trigger mode. (`TableEditorTrigger`)
++ editable: Whether to enable in-line editing. (`boolean | undefined`)
++ expandContext: Expansion context. (`Record<string, unknown> | undefined`)
++ height: Table height. (`string | undefined`)
++ lastedCurrentEditorContext: Previous current editing mode context. (`ActiveEditorContext | undefined`)
++ maxHeight: Maximum table height. (`string | undefined`)
++ minHeight: Minimum table height. (`string | undefined`)
++ rowEditorCreateFun: In-line editing creation function name. (`string | undefined`)
++ rowEditorUpdateFun: In-line editing update function name. (`string | undefined`)
++ tableInstance: Table instance. (`OioTableInstance | undefined`)
++ tableRowEditMode: Table row editing mode. (`TableRowEditMode | undefined`)
++ userPrefer: User preferences. (`UserTablePrefer | undefined`)
++ userPreferEventManager: User preference event manager. (`UserPreferEventManager | undefined`)
 
-**方法**：
+**Methods**:
 
 #### **activeEditor**
 
-+ **功能描述**：激活编辑模式回调。
-+ **类型**：`(context: ActiveEditorContext) => ReturnPromise<void>`
-+ **参数**：
-  - `context`：激活编辑模式上下文。
++ **Function Description**: Callback for activating editing mode.
++ **Type**: `(context: ActiveEditorContext) => ReturnPromise<void>`
++ **Parameters**:
+  - `context`: Activated editing mode context.
 
 #### **activeEditorBefore**
 
-+ **功能描述**：激活编辑模式前的回调。
-+ **类型**：`(context: ActiveEditorContext) => boolean`
-+ **参数**：
-  - `context`：激活编辑模式上下文。
-+ **返回值**：允许打开编辑模式返回 `true`，阻止打开编辑模式返回 `false`。
++ **Function Description**: Callback before activating editing mode.
++ **Type**: `(context: ActiveEditorContext) => boolean`
++ **Parameters**:
+  - `context`: Activated editing mode context.
++ **Return Value**: `true` to allow opening editing mode, `false` to block opening editing mode.
 
 #### **columnWidgetMounted**
 
-+ **功能描述**：列组件挂载。
-+ **类型**：`(widget: BaseTableColumnWidget) => void`
-+ **参数**：
-  - `widget`：列组件实例。
++ **Function Description**: Column component mounting.
++ **Type**: `(widget: BaseTableColumnWidget) => void`
++ **Parameters**:
+  - `widget`: Column component instance.
 
 #### **columnWidgetUnmounted**
 
-+ **功能描述**：列组件卸载。
-+ **类型**：`(widget: BaseTableColumnWidget) => void`
-+ **参数**：
-  - `widget`：列组件实例。
++ **Function Description**: Column component unmounting.
++ **Type**: `(widget: BaseTableColumnWidget) => void`
++ **Parameters**:
+  - `widget`: Column component instance.
 
 #### **editRow**
 
-+ **功能描述**：编辑行。
-+ **类型**：`(type: unknown, data: unknown) => void`
-+ **参数**：
-  - `type`：编辑类型。
-  - `data`：编辑数据（包含记录和操作）。
++ **Function Description**: Edit row.
++ **Type**: `(type: unknown, data: unknown) => void`
++ **Parameters**:
+  - `type`: Editing type.
+  - `data`: Editing data (including records and operations).
 
 #### **executeExpression**
 
-+ **功能描述**：执行表达式。
-+ **类型**：`(activeRecord: ActiveRecord | undefined, expression: string, errorValue?: T) => T | string | undefined`
-+ **参数**：
-  - `activeRecord`：活动记录。
-  - `expression`：待执行的表达式。
-  - `errorValue`：表达式执行错误时的返回值（可选）。
-+ **返回值**：表达式执行结果。
++ **Function Description**: Execute expressions.
++ **Type**: `(activeRecord: ActiveRecord | undefined, expression: string, errorValue?: T) => T | string | undefined`
++ **Parameters**:
+  - `activeRecord`: Active record.
+  - `expression`: Expression to be executed.
+  - `errorValue`: Return value when the expression execution errors (optional).
++ **Return Value**: Execution result of the expression.
 
 #### **filterEditable**
 
-+ **功能描述**：过滤列的行内编辑。
-+ **类型**：`(context: ActiveEditorContext, columnWidget: BaseTableColumnWidget, index: number) => boolean`
-+ **参数**：
-  - `context`：激活编辑模式上下文。
-  - `columnWidget`：列组件。
-  - `index`：列索引。
-+ **返回值**：是否允许当前列进行行内编辑。
++ **Function Description**: Filter in-line editing of columns.
++ **Type**: `(context: ActiveEditorContext, columnWidget: BaseTableColumnWidget, index: number) => boolean`
++ **Parameters**:
+  - `context`: Activated editing mode context.
+  - `columnWidget`: Column component.
+  - `index`: Column index.
++ **Return Value**: Whether in-line editing is allowed for the current column.
 
 #### **getColumnWidgets**
 
-+ **功能描述**：获取列组件。
-+ **类型**：`(sort = false) => BaseTableColumnWidget[]`
-+ **参数**：
-  - `sort`：是否按索引排序列组件（可选，默认值为 `false`）。
-+ **返回值**：列组件数组。
++ **Function Description**: Get column components.
++ **Type**: `(sort = false) => BaseTableColumnWidget[]`
++ **Parameters**:
+  - `sort`: Whether to sort column components by index (optional, default value `false`).
++ **Return Value**: Array of column components.
 
 #### **getTableInstance**
 
-+ **功能描述**：获取表格实例。
-+ **类型**：`() => OioTableInstance | undefined`
-+ **返回值**：表格实例或 `undefined`。
++ **Function Description**: Get the table instance.
++ **Type**: `() => OioTableInstance | undefined`
++ **Return Value**: Table instance or `undefined`.
 
 #### **reloadActiveRecords**
 
-+ **功能描述**：重新加载活动记录，并更新表格实例选中状态。
-+ **类型**：`(records: ActiveRecords | undefined) => void`
-+ **参数**：
-  - `records`：活动记录数组（可选）。
++ **Function Description**: Reload active records and update the selection status of the table instance.
++ **Type**: `(records: ActiveRecords | undefined) => void`
++ **Parameters**:
+  - `records`: Active record array (optional).
 
 #### **reloadTableInstanceActiveRecords**
 
-+ **功能描述**：根据选择模式更新表格实例的选中行。
-+ **类型**：`() => void`
++ **Function Description**: Update the selected rows of the table instance according to the selection mode.
++ **Type**: `() => void`
 
 #### **removeRecordFormDataSource**
 
-+ **功能描述**：从数据源中删除指定记录。
-+ **类型**：`(context: RowContext) => Promise<void>`
-+ **参数**：
-  - `context`：包含记录数据的行上下文。
++ **Function Description**: Delete the specified record from the data source.
++ **Type**: `(context: RowContext) => Promise<void>`
++ **Parameters**:
+  - `context`: Row context containing record data.
 
 #### **rowEditorClosed**
 
-+ **功能描述**：行编辑关闭时的完整处理逻辑，包括验证、提交和后置操作。
-+ **类型**：`(context: RowContext | undefined) => Promise<boolean>`
-+ **参数**：
-  - `context`：行上下文（可选）。
-+ **返回值**：行编辑关闭操作是否成功。
++ **Function Description**: Complete processing logic when row editing is closed, including validation, submission, and post-operations.
++ **Type**: `(context: RowContext | undefined) => Promise<boolean>`
++ **Parameters**:
+  - `context`: Row context (optional).
++ **Return Value**: Whether the row editing closure operation is successful.
 
 #### **rowEditorClosedAfterProcess**
 
-+ **功能描述**：行内编辑关闭后的后置处理，更新数据源和活动记录。
-+ **类型**：`(context: RowContext) => Promise<void>`
-+ **参数**：
-  - `context`：行上下文。
++ **Function Description**: Post-processing after in-line editing is closed, updating the data source and active records.
++ **Type**: `(context: RowContext) => Promise<void>`
++ **Parameters**:
+  - `context`: Row context.
 
 #### **rowEditorClosedBefore**
 
-+ **功能描述**：行编辑关闭前的验证和预处理。
-+ **类型**：`(context: RowContext) => Promise<boolean>`
-+ **参数**：
-  - `context`：行上下文。
-+ **返回值**：是否允许关闭行编辑。
++ **Function Description**: Validation and preprocessing before row editing is closed.
++ **Type**: `(context: RowContext) => Promise<boolean>`
++ **Parameters**:
+  - `context`: Row context.
++ **Return Value**: Whether to allow closing row editing.
 
 #### **rowEditorClosedForCreate**
 
-+ **功能描述**：行内编辑关闭时执行创建操作。
-+ **类型**：`(context: RowContext, data: ActiveRecords) => Promise<boolean>`
-+ **参数**：
-  - `context`：行上下文。
-  - `data`：创建操作的提交数据。
-+ **返回值**：创建操作是否成功。
++ **Function Description**: Execute the creation operation when in-line editing is closed.
++ **Type**: `(context: RowContext, data: ActiveRecords) => Promise<boolean>`
++ **Parameters**:
+  - `context`: Row context.
+  - `data`: Submission data for the creation operation.
++ **Return Value**: Whether the creation operation is successful.
 
 #### **rowEditorClosedForSubmit**
 
-+ **功能描述**：行内编辑关闭时提交数据。
-+ **类型**：`(context: RowContext) => Promise<ActiveRecord | undefined>`
-+ **参数**：
-  - `context`：行上下文。
-+ **返回值**：提交的数据或 `undefined`。
++ **Function Description**: Submit data when in-line editing is closed.
++ **Type**: `(context: RowContext) => Promise<ActiveRecord | undefined>`
++ **Parameters**:
+  - `context`: Row context.
++ **Return Value**: Submitted data or `undefined`.
 
 #### **rowEditorClosedForUpdate**
 
-+ **功能描述**：行内编辑关闭时执行更新操作。
-+ **类型**：`(context: RowContext, data: ActiveRecords) => Promise<boolean>`
-+ **参数**：
-  - `context`：行上下文。
-  - `data`：更新操作的提交数据。
-+ **返回值**：更新操作是否成功。
++ **Function Description**: Execute the update operation when in-line editing is closed.
++ **Type**: `(context: RowContext, data: ActiveRecords) => Promise<boolean>`
++ **Parameters**:
+  - `context`: Row context.
+  - `data`: Submission data for the update operation.
++ **Return Value**: Whether the update operation is successful.
 
 #### **rowEditorClosedForValidator**
 
-+ **功能描述**：行内编辑关闭时的数据验证。
-+ **类型**：`(context?: RowContext) => Promise<boolean>`
-+ **参数**：
-  - `context`：行上下文（可选）。
-+ **返回值**：数据验证是否通过。
++ **Function Description**: Data validation when in-line editing is closed.
++ **Type**: `(context?: RowContext) => Promise<boolean>`
++ **Parameters**:
+  - `context`: Row context (optional).
++ **Return Value**: Whether data validation passes.
 
 #### **setTableInstance**
 
-+ **功能描述**：设置表格实例。
-+ **类型**：`(tableInstance: OioTableInstance | undefined) => void`
-+ **参数**：
-  - `tableInstance`：表格实例（可选）。
++ **Function Description**: Set the table instance.
++ **Type**: `(tableInstance: OioTableInstance | undefined) => void`
++ **Parameters**:
+  - `tableInstance`: Table instance (optional).
 
 #### **updateActiveRecordByData**
 
-+ **功能描述**：根据新数据更新活动记录。
-+ **类型**：`(data: ActiveRecord) => void`
-+ **参数**：
-  - `data`：更新后的活动记录。
++ **Function Description**: Update active records based on new data.
++ **Type**: `(data: ActiveRecord) => void`
++ **Parameters**:
+  - `data`: Updated active record.
 
 #### **updateSubviewFieldWidget**
 
-+ **功能描述**：更新子视图字段组件的数据源。
-+ **类型**：`(context: RowContext, data: ActiveRecord) => void`
-+ **参数**：
-  - `context`：行上下文。
-  - `data`：更新后的数据。
++ **Function Description**: Update the data source of subview field components.
++ **Type**: `(context: RowContext, data: ActiveRecord) => void`
++ **Parameters**:
+  - `context`: Row context.
+  - `data`: Updated data.
 
-### 2、BaseSearchWidget
+### 2. BaseSearchWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 export class BaseSearchWidget extends BaseElementWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ cols：当前搜索组件的列数，优先从 DSL 配置获取，默认值为 `4`。（`number`）
-+ defaultAllInvisible：是否默认全部隐藏，默认值为 `true`。（`boolean`）
-+ defaultSearchBody：默认搜索表单数据。（`ActiveRecord | undefined`）
-+ defaultSearchCondition：默认搜索条件表达式。（`QueryExpression[] | undefined`）
-+ formData：当前表单数据，取活跃记录的第一条，默认空对象。（`ActiveRecord`）
-+ mountedCallChaining：挂载时的链式调用对象。（`CallChaining | undefined`）
-+ parentCols：父级组件的列数。（`number | undefined`）
-+ refreshCallChaining：刷新时的链式调用对象。（`CallChaining<boolean> | undefined`）
-+ searchBody：搜索表单数据。（`ActiveRecord | undefined`）
-+ searchConditions：搜索条件表达式数组。（`QueryExpression[] | undefined`）
++ cols: Number of columns of the current search component, giving priority to DSL configuration, with a default value of `4`. (`number`)
++ defaultAllInvisible: Whether to hide all by default, with a default value of `true`. (`boolean`)
++ defaultSearchBody: Default search form data. (`ActiveRecord | undefined`)
++ defaultSearchCondition: Default search condition expression. (`QueryExpression[] | undefined`)
++ formData: Current form data, taking the first active record, defaulting to an empty object. (`ActiveRecord`)
++ mountedCallChaining: Mounting chaining object. (`CallChaining | undefined`)
++ parentCols: Number of columns of the parent component. (`number | undefined`)
++ refreshCallChaining: Refresh chaining object. (`CallChaining<boolean> | undefined`)
++ searchBody: Search form data. (`ActiveRecord | undefined`)
++ searchConditions: Search condition expression array. (`QueryExpression[] | undefined`)
 
-**方法**：
+**Methods**:
 
 #### **onReset**
 
-+ **功能描述**：重置搜索条件，恢复默认值，更新路由参数（非内联模式），触发数据刷新。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Reset search conditions, restore default values, update routing parameters (non-inline mode), and trigger data refresh.
++ **Type**: `() => Promise<void>`
 
 #### **onSearch**
 
-+ **功能描述**：提交搜索条件，触发数据刷新。
-+ **类型**：`() => void`
++ **Function Description**: Submit search conditions and trigger data refresh.
++ **Type**: `() => void`
 
-### 3、BaseFormWidget
+### 3. BaseFormWidget
 
-**继承**：BaseElementObjectViewWidget<`Props`>
+**Inheritance**: BaseElementObjectViewWidget<`Props`>
 
-**属性**：
+**Attributes**:
 
-+ dataPath：数据路径。（`string | undefined`）
-+ labelCol：标签列配置。（`Partial<OioColModel>`）
-+ layout：表单布局。（`string`）
-+ wrapperCol：包装列配置。（`Partial<OioColModel>`）
++ dataPath: Data path. (`string | undefined`)
++ labelCol: Label column configuration. (`Partial<OioColModel>`)
++ layout: Form layout. (`string`)
++ wrapperCol: Wrapper column configuration. (`Partial<OioColModel>`)
 
-**方法**：
+**Methods**:
 
 #### **getFormInstance**
 
-+ **功能描述**：获取表单实例。
-+ **类型**：`() => OioFormInstance | undefined`
-+ **返回值**：表单实例或 `undefined`。
++ **Function Description**: Get the form instance.
++ **Type**: `() => OioFormInstance | undefined`
++ **Return Value**: Form instance or `undefined`.
 
-### 4、AbstractTreeWidget
+### 4. AbstractTreeWidget
 
-**继承**：BaseElementWidget
+**Inheritance**: BaseElementWidget
 
-**属性**：
+**Attributes**:
 
-+ allInvisible：是否全部不可见。（`boolean`）
-+ currentRefreshCallChaining：当前刷新调用链。（`CallChaining | undefined`）
-+ defaultPagination：默认分页配置。（`Pagination`）
-+ enableSearch：是否启用搜索。（`boolean`）
-+ invisible：是否不可见。（`boolean`）
-+ loadIdempotentKey：加载幂等键。（`Record<string, string>`）
-+ mountedCallChaining：挂载调用链。（`CallChaining | undefined`）
-+ parentRefreshCallChaining：父级刷新调用链。（`CallChaining | undefined`）
-+ refreshCallChaining：刷新调用链（通过 `currentRefreshCallChaining` 暴露）。（`CallChaining | undefined`）
-+ treeDefinition：树结构定义元数据。（`TreeNodeMetadata | undefined`）
++ allInvisible: Whether all are invisible. (`boolean`)
++ currentRefreshCallChaining: Current refresh call chain. (`CallChaining | undefined`)
++ defaultPagination: Default pagination configuration. (`Pagination`)
++ enableSearch: Whether to enable search. (`boolean`)
++ invisible: Whether to be invisible. (`boolean`)
++ loadIdempotentKey: Load idempotent key. (`Record<string, string>`)
++ mountedCallChaining: Mounting call chain. (`CallChaining | undefined`)
++ parentRefreshCallChaining: Parent refresh call chain. (`CallChaining | undefined`)
++ refreshCallChaining: Refresh call chain (exposed through `currentRefreshCallChaining`). (`CallChaining | undefined`)
++ treeDefinition: Tree structure definition metadata. (`TreeNodeMetadata | undefined`)
 
-**方法**：
+**Methods**:
 
 #### **executeExpression**
 
-+ **功能描述**：执行表达式。
-+ **类型**：`(activeRecord: ActiveRecord, expression: string, errorValue?: T) => T | string | undefined`
-+ **参数**：
-  - `activeRecord`：活动记录。
-  - `expression`：待执行的表达式。
-  - `errorValue`：表达式执行错误时的返回值（可选）。
-+ **返回值**：表达式执行结果。
++ **Function Description**: Execute expressions.
++ **Type**: `(activeRecord: ActiveRecord, expression: string, errorValue?: T) => T | string | undefined`
++ **Parameters**:
+  - `activeRecord`: Active record.
+  - `expression`: Expression to be executed.
+  - `errorValue`: Return value when the expression execution errors (optional).
++ **Return Value**: Execution result of the expression.
 
 #### **fillChildren**
 
-+ **功能描述**：填充子节点数据。
-+ **类型**：`(node: OioTreeNode<V>, results: ResponseBody[]) => void`
-+ **参数**：
-  - `node`：目标节点。
-  - `results`：待填充的子节点数据数组。
++ **Function Description**: Fill child node data.
++ **Type**: `(node: OioTreeNode<V>, results: ResponseBody[]) => void`
++ **Parameters**:
+  - `node`: Target node.
+  - `results`: Array of child node data to be filled.
 
 #### **fetchData**
 
-+ **功能描述**：获取节点数据（抽象方法，需子类实现）。
-+ **类型**：`(node: OioTreeNode<V>, disableSelfReferences?: boolean) => Promise<ResponseBody[]>`
-+ **参数**：
-  - `node`：目标节点。
-  - `disableSelfReferences`：是否禁用自引用（可选）。
-+ **返回值**：节点数据数组。
++ **Function Description**: Get node data (abstract method, needs to be implemented by subclasses).
++ **Type**: `(node: OioTreeNode<V>, disableSelfReferences?: boolean) => Promise<ResponseBody[]>`
++ **Parameters**:
+  - `node`: Target node.
+  - `disableSelfReferences`: Whether to disable self-references (optional).
++ **Return Value**: Array of node data.
 
 #### **generatorKey**
 
-+ **功能描述**：生成节点唯一键。
-+ **类型**：`(metadataKey: string, data: ActiveRecord) => string`
-+ **参数**：
-  - `metadataKey`：元数据键。
-  - `data`：节点数据。
-+ **返回值**：唯一键字符串。
++ **Function Description**: Generate a unique node key.
++ **Type**: `(metadataKey: string, data: ActiveRecord) => string`
++ **Parameters**:
+  - `metadataKey`: Metadata key.
+  - `data`: Node data.
++ **Return Value**: Unique key string.
 
 #### **generatorNewTreeNode**
 
-+ **功能描述**：生成新的树节点。
-+ **类型**：`(parent: OioTreeNode<V>, key: string, title: string | undefined, metadata: TreeNodeMetadata | undefined, data: ActiveRecord) => OioTreeNode<V>`
-+ **参数**：
-  - `parent`：父节点。
-  - `key`：节点唯一键。
-  - `title`：节点标题。
-  - `metadata`：节点元数据。
-  - `data`：节点数据。
-+ **返回值**：新生成的树节点。
++ **Function Description**: Generate a new tree node.
++ **Type**: `(parent: OioTreeNode<V>, key: string, title: string | undefined, metadata: TreeNodeMetadata | undefined, data: ActiveRecord) => OioTreeNode<V>`
++ **Parameters**:
+  - `parent`: Parent node.
+  - `key`: Unique node key.
+  - `title`: Node title.
+  - `metadata`: Node metadata.
+  - `data`: Node data.
++ **Return Value**: Newly generated tree node.
 
 #### **getFormInstance**
 
-+ **功能描述**：获取表单实例（当前类未实现，继承自父类）。
-+ **类型**：`() => OioFormInstance | undefined`
-+ **返回值**：表单实例或 `undefined`。
++ **Function Description**: Get the form instance (not implemented in the current class, inherited from the parent class).
++ **Type**: `() => OioFormInstance | undefined`
++ **Return Value**: Form instance or `undefined`.
 
 #### **getTreeMetadataList**
 
-+ **功能描述**：获取树结构元数据列表。
-+ **类型**：`() => TreeNodeMetadata[]`
-+ **返回值**：树结构元数据数组。
++ **Function Description**: Get the tree structure metadata list.
++ **Type**: `() => TreeNodeMetadata[]`
++ **Return Value**: Array of tree structure metadata.
 
 #### **isLeafPredict**
 
-+ **功能描述**：预测节点是否为叶子节点。
-+ **类型**：`(node: TreeNodeMetadata | undefined) => boolean`
-+ **参数**：
-  - `node`：节点元数据（可选）。
-+ **返回值**：是否为叶子节点。
++ **Function Description**: Predict whether the node is a leaf node.
++ **Type**: `(node: TreeNodeMetadata | undefined) => boolean`
++ **Parameters**:
+  - `node`: Node metadata (optional).
++ **Return Value**: Whether it is a leaf node.
 
 #### **loadData**
 
-+ **功能描述**：加载指定节点的子节点（展开时懒加载）。
-+ **类型**：`(node: OioTreeNode<V>) => Promise<ResponseBody[]>`
-+ **参数**：
-  - `node`：目标节点。
-+ **返回值**：子节点数据数组。
++ **Function Description**: Load child nodes of the specified node (lazy loading when expanded).
++ **Type**: `(node: OioTreeNode<V>) => Promise<ResponseBody[]>`
++ **Parameters**:
+  - `node`: Target node.
++ **Return Value**: Array of child node data.
 
 #### **loadMoreData**
 
-+ **功能描述**：加载指定节点的更多子节点（分页加载）。
-+ **类型**：`(node: OioTreeNode<V>) => Promise<ResponseBody[]>`
-+ **参数**：
-  - `node`：目标节点。
-+ **返回值**：更多子节点数据数组。
++ **Function Description**: Load more child nodes of the specified node (pagination loading).
++ **Type**: `(node: OioTreeNode<V>) => Promise<ResponseBody[]>`
++ **Parameters**:
+  - `node`: Target node.
++ **Return Value**: Array of more child node data.
 
 #### **mountedProcess**
 
-+ **功能描述**：挂载后处理逻辑（抽象方法，需子类实现）。
-+ **类型**：`() => ReturnPromise<void>`
++ **Function Description**: Post-mounting processing logic (abstract method, needs to be implemented by subclasses).
++ **Type**: `() => ReturnPromise<void>`
 
 #### **onChecked**
 
-+ **功能描述**：节点勾选状态变更回调。
-+ **类型**：`(node: OioTreeNode<V>, checked: boolean) => ReturnPromise<void>`
-+ **参数**：
-  - `node`：目标节点。
-  - `checked`：是否勾选。
++ **Function Description**: Callback for changes in node check status.
++ **Type**: `(node: OioTreeNode<V>, checked: boolean) => ReturnPromise<void>`
++ **Parameters**:
+  - `node`: Target node.
+  - `checked`: Whether checked.
 
 #### **onNodeChecked**
 
-+ **功能描述**：节点勾选时的具体逻辑（可重写）。
-+ **类型**：`(node: OioTreeNode<V>) => ReturnPromise<void>`
-+ **参数**：
-  - `node`：目标节点。
++ **Function Description**: Specific logic when a node is checked (can be overridden).
++ **Type**: `(node: OioTreeNode<V>) => ReturnPromise<void>`
++ **Parameters**:
+  - `node`: Target node.
 
 #### **onNodeSelected**
 
-+ **功能描述**：节点选中时的具体逻辑（可重写）。
-+ **类型**：`(node: OioTreeNode<V>) => ReturnPromise<void>`
-+ **参数**：
-  - `node`：目标节点。
++ **Function Description**: Specific logic when a node is selected (can be overridden).
++ **Type**: `(node: OioTreeNode<V>) => ReturnPromise<void>`
++ **Parameters**:
+  - `node`: Target node.
 
 #### **onNodeUnchecked**
 
-+ **功能描述**：节点取消勾选时的具体逻辑（可重写）。
-+ **类型**：`(node: OioTreeNode<V>) => ReturnPromise<void>`
-+ **参数**：
-  - `node`：目标节点。
++ **Function Description**: Specific logic when a node is unchecked (can be overridden).
++ **Type**: `(node: OioTreeNode<V>) => ReturnPromise<void>`
++ **Parameters**:
+  - `node`: Target node.
 
 #### **onNodeUnselected**
 
-+ **功能描述**：节点取消选中时的具体逻辑（可重写）。
-+ **类型**：`(node: OioTreeNode<V>) => ReturnPromise<void>`
-+ **参数**：
-  - `node`：目标节点。
++ **Function Description**: Specific logic when a node is unselected (can be overridden).
++ **Type**: `(node: OioTreeNode<V>) => ReturnPromise<void>`
++ **Parameters**:
+  - `node`: Target node.
 
 #### **onSelected**
 
-+ **功能描述**：节点选中状态变更回调。
-+ **类型**：`(node: OioTreeNode<V>, selected: boolean) => ReturnPromise<void>`
-+ **参数**：
-  - `node`：目标节点。
-  - `selected`：是否选中。
++ **Function Description**: Callback for changes in node selection status.
++ **Type**: `(node: OioTreeNode<V>, selected: boolean) => ReturnPromise<void>`
++ **Parameters**:
+  - `node`: Target node.
+  - `selected`: Whether selected.
 
 #### **refreshProcess**
 
-+ **功能描述**：刷新处理逻辑（抽象方法，需子类实现）。
-+ **类型**：`() => ReturnPromise<void>`
++ **Function Description**: Refresh processing logic (abstract method, needs to be implemented by subclasses).
++ **Type**: `() => ReturnPromise<void>`
 
 #### **convertTreeByTreeSearchResponseBody**
 
-+ **功能描述**：根据搜索响应体转换树结构。
-+ **类型**：`(list: TreeNodeResponseBody[]) => OioTreeNode<V>[]`
-+ **参数**：
-  - `list`：搜索响应体数组。
-+ **返回值**：转换后的树节点数组。
++ **Function Description**: Convert the tree structure based on the search response body.
++ **Type**: `(list: TreeNodeResponseBody[]) => OioTreeNode<V>[]`
++ **Parameters**:
+  - `list`: Array of search response bodies.
++ **Return Value**: Converted tree node array.
 
 #### **computeNodeTitle**
 
-+ **功能描述**：计算节点标题。
-+ **类型**：`(val: V) => string`
-+ **参数**：
-  - `val`：节点值对象。
-+ **返回值**：节点标题字符串。
++ **Function Description**: Calculate the node title.
++ **Type**: `(val: V) => string`
++ **Parameters**:
+  - `val`: Node value object.
++ **Return Value**: Node title string.
 
 #### **loadNode**
 
-+ **功能描述**：加载节点数据（支持异步操作和幂等性处理）。
-+ **类型**：`async <R>(node: OioTreeNode<V>, fn: (...args) => R, ...args: any[]) => R`
-+ **参数**：
-  - `node`：目标节点。
-  - `fn`：异步加载函数。
-  - `args`：加载函数参数（可选）。
-+ **返回值**：加载函数的返回结果。
++ **Function Description**: Load node data (supporting asynchronous operations and idempotency processing).
++ **Type**: `async <R>(node: OioTreeNode<V>, fn: (...args) => R, ...args: any[]) => R`
++ **Parameters**:
+  - `node`: Target node.
+  - `fn`: Asynchronous loading function.
+  - `args`: Loading function parameters (optional).
++ **Return Value**: Return result of the loading function.
 
 #### **onSelectedForSearch**
 
-+ **功能描述**：搜索场景下的节点选中处理。
-+ **类型**：`(node: OioTreeNode<V>) => Promise<boolean>`
-+ **参数**：
-  - `node`：选中的树节点。
-+ **返回值**：处理是否成功。
++ **Function Description**: Node selection processing in search scenarios.
++ **Type**: `(node: OioTreeNode<V>) => Promise<boolean>`
++ **Parameters**:
+  - `node`: Selected tree node.
++ **Return Value**: Whether the processing is successful.
 
 #### **onSelectedForQuery**
 
-+ **功能描述**：查询场景下的节点选中处理。
-+ **类型**：`(node: OioTreeNode<CardCascaderItemData>) => Promise<boolean>`
-+ **参数**：
-  - `node`：选中的树节点。
-+ **返回值**：处理是否成功。
++ **Function Description**: Node selection processing in query scenarios.
++ **Type**: `(node: OioTreeNode<CardCascaderItemData>) => Promise<boolean>`
++ **Parameters**:
+  - `node`: Selected tree node.
++ **Return Value**: Whether the processing is successful.
 
 #### **onUnselected**
 
-+ **功能描述**：移除选中状态时的处理逻辑。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Processing logic when the selection status is removed.
++ **Type**: `() => Promise<void>`
 
 #### **setRuntimeFilter**
 
-+ **功能描述**：设置运行时过滤条件。
-+ **类型**：`(filter: string | Condition | undefined) => void`
-+ **参数**：
-  - `filter`：过滤条件（字符串、`Condition` 对象或 `undefined`）。
-
-### 5、AbstractTreeElementWidget
-
-**继承**：AbstractTreeWidget<`V`>
-
-**属性**：
-
-+ autoExpandParent：是否自动展开父节点。（`boolean`）
-+ checkedKeys：已勾选的节点键列表。（`string[] | undefined`）
-+ checkAll：是否全选。（`boolean`）
-+ checkAllLabel：全选按钮标签。（`string | undefined`）
-+ checkable：是否可勾选。（`boolean`）
-+ expandedKeys：已展开的节点键列表。（`string[] | undefined`）
-+ expandLevel：展开层级。（`string | undefined`）
-+ loadedKeys：已加载的节点键列表。（`string[] | undefined`）
-+ rootNode：根节点。（`OioTreeNode<V> | undefined`）
-+ searchPlaceHolder：搜索框占位文本。（`string | undefined`）
-+ searchRemote：是否远程搜索。（`boolean`）
-+ searchRootNode：搜索结果根节点。（`OioTreeNode<V> | undefined`）
-+ searchValue：搜索值。（`string | undefined`）
-+ selectedKeys：已选中的节点键列表。（`string[] | undefined`）
-+ showContent：是否显示内容。（`boolean`）
-+ showIcon：是否显示图标。（`boolean`）
-
-**方法**：
-
-#### **fetchAll**
-
-+ **功能描述**：获取所有节点数据。
-+ **类型**：`() => Promise<TreeNodeResponseBody[]>`
-+ **返回值**：节点响应体数组。
-
-#### **fetchExpandEndLevel**
-
-+ **功能描述**：获取展开到指定层级的节点数据。
-+ **类型**：`(metadataList: TreeNodeMetadata[], options?: { expressionParameters?: ExpressionRunParam }) => Promise<TreeNodeResponseBody[]>`
-+ **参数**：
-  - `metadataList`：元数据列表。
-  - `options`：选项（可选）。
-+ **返回值**：节点响应体数组。
-
-#### **fixExpandLevelNodes**
-
-+ **功能描述**：修复展开层级的节点数据。
-+ **类型**：`(nodes: OioTreeNode<V>[], expandedKeys: string[]) => void`
-+ **参数**：
-  - `nodes`：节点数组。
-  - `expandedKeys`：已展开的节点键列表。
-
-#### **generatorExpressionParameters**
-
-+ **功能描述**：生成表达式运行参数。
-+ **类型**：`() => ExpressionRunParam`
-+ **返回值**：表达式运行参数对象。
-
-#### **generatorRootNode**
-
-+ **功能描述**：生成根节点。
-+ **类型**：`(metadata: TreeNodeMetadata) => OioTreeNode<V>`
-+ **参数**：
-  - `metadata`：元数据。
-+ **返回值**：根节点。
-
-#### **loadAllData**
-
-+ **功能描述**：加载所有节点数据。
-+ **类型**：`() => Promise<void>`
-
-#### **loadExpandLevel**
-
-+ **功能描述**：加载指定展开层级的数据。
-+ **类型**：`(node: OioTreeNode<V>, metadataList: TreeNodeMetadata[]) => Promise<void>`
-+ **参数**：
-  - `node`：节点。
-  - `metadataList`：元数据列表。
-
-#### **loadExpandLevelData**
-
-+ **功能描述**：加载指定展开层级的数据并返回处理结果。
-+ **类型**：`(node: OioTreeNode<V>, metadataList: TreeNodeMetadata[]) => Promise<{ nodes: OioTreeNode<V>[]; expandedKeys: string[] }>`
-+ **参数**：
-  - `node`：节点。
-  - `metadataList`：元数据列表。
-+ **返回值**：包含节点数组和已展开节点键列表的对象。
-
-#### **loadExpandLevelDataAfterProcess**
-
-+ **功能描述**：处理加载展开层级数据后的节点。
-+ **类型**：`(node: OioTreeNode<V>, nodes: OioTreeNode<V>[], expandedKeys: string[]) => { nodes: OioTreeNode<V>[]; expandedKeys: string[] }`
-+ **参数**：
-  - `node`：节点。
-  - `nodes`：节点数组。
-  - `expandedKeys`：已展开的节点键列表。
-+ **返回值**：包含处理后节点数组和已展开节点键列表的对象。
-
-#### **mountedProcess**
-
-+ **功能描述**：组件挂载后的处理。
-+ **类型**：`() => ReturnPromise<void>`
-
-#### **onCheckedAll**
-
-+ **功能描述**：全选 / 取消全选回调。
-+ **类型**：`(checkedAll: boolean) => ReturnPromise<void>`
-+ **参数**：
-  - `checkedAll`：是否全选。
-
-#### **onNodeCheckedAll**
-
-+ **功能描述**：全选时的处理。
-+ **类型**：`() => ReturnPromise<void>`
-
-#### **onNodeUncheckedAll**
-
-+ **功能描述**：取消全选时的处理。
-+ **类型**：`() => ReturnPromise<void>`
-
-#### **onSearch**
-
-+ **功能描述**：搜索回调。
-+ **类型**：`(keywords: string) => Promise<void>`
-+ **参数**：
-  - `keywords`：搜索关键词。
-
-#### **onUpdateCheckedKeys**
-
-+ **功能描述**：更新已勾选的节点键列表。
-+ **类型**：`(val: string[]) => void`
-+ **参数**：
-  - `val`：新的已勾选节点键列表。
-
-#### **onUpdateExpandedKeys**
-
-+ **功能描述**：更新已展开的节点键列表。
-+ **类型**：`(val: string[]) => void`
-+ **参数**：
-  - `val`：新的已展开节点键列表。
-
-#### **onUpdateLoadedKeys**
-
-+ **功能描述**：更新已加载的节点键列表。
-+ **类型**：`(val: string[]) => void`
-+ **参数**：
-  - `val`：新的已加载节点键列表。
-
-#### **onUpdateSearchValue**
-
-+ **功能描述**：更新搜索值。
-+ **类型**：`(val: string) => void`
-+ **参数**：
-  - `val`：新的搜索值。
-
-#### **onUpdateSelectedKeys**
-
-+ **功能描述**：更新已选中的节点键列表。
-+ **类型**：`(val: string[]) => void`
-+ **参数**：
-  - `val`：新的已选中节点键列表。
-
-#### **refreshProcess**
-
-+ **功能描述**：刷新处理。
-+ **类型**：`() => ReturnPromise<void>`
-
-#### **refreshProcessAfterProperties**
-
-+ **功能描述**：刷新处理后的属性设置。
-+ **类型**：`() => void`
-
-### 6、AbstractCardCascaderElementWidget
-
-**继承**：AbstractTreeWidget<`V`>
-
-**属性**：
-
-+ showContent：是否显示内容。（`boolean`）
-+ rootNodes：根节点数组。（`OioTreeNode<V>[] | undefined`）
-
-**方法**：
-
-#### **fetchNodeData**
-
-+ **功能描述**：获取节点数据并更新根节点。
-+ **类型**：`(node: OioTreeNode<V>, metadata: TreeNodeMetadata) => Promise<void>`
-+ **参数**：
-  - `node`：目标节点。
-  - `metadata`：元数据。
-
-#### **isLeafPredict**
-
-+ **功能描述**：预测节点是否为叶子节点。
-+ **类型**：`(node: TreeNodeMetadata | undefined, useSelfReferences?: boolean) => boolean`
-+ **参数**：
-  - `node`：节点元数据。
-  - `useSelfReferences`：是否使用自引用（可选）。
-+ **返回值**：是否为叶子节点。
-
-#### **mountedProcess**
-
-+ **功能描述**：组件挂载后的处理。
-+ **类型**：`() => ReturnPromise<void>`
-
-#### **onSearch**
-
-+ **功能描述**：搜索回调。
-+ **类型**：`(keywords: string, rootNode?: OioTreeNode<V>) => Promise<void>`
-+ **参数**：
-  - `keywords`：搜索关键词。
-  - `rootNode`：根节点（可选）。
-
-#### **refreshNodeFetchData**
-
-+ **功能描述**：刷新节点数据。
-+ **类型**：`(node: OioTreeNode<V>) => Promise<{ node: OioTreeNode<V>; isChange: { total: boolean; totalPageSize: boolean }; results: ResponseBody[] }>`
-+ **参数**：
-  - `node`：目标节点。
-+ **返回值**：包含节点、变更状态和结果的对象。
-
-#### **refreshNodes**
-
-+ **功能描述**：刷新所有节点。
-+ **类型**：`() => Promise<void>`
-
-#### **refreshProcess**
-
-+ **功能描述**：刷新处理。
-+ **类型**：`() => ReturnPromise<void>`
-
-#### **resetRootNode**
-
-+ **功能描述**：重置根节点。
-+ **类型**：`() => Promise<void>`
-
-## （三）视图组件
-
-### 1、TableWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Table,
-    widget: ['table', TABLE_WIDGET]
-  })
-)
-export class TableWidget<Props extends TableWidgetProps = TableWidgetProps> extends BaseTableWidget<Props>
-```
-
-**属性**：
-
-+ activeCount：激活项数量。
-+ allowChecked：是否允许勾选。
-+ autoLineHeight：是否自动行高。
-+ checkbox：是否显示复选框。
-+ cellMinWidth：单元格最小宽度。
-+ cellWidth：单元格宽度。
-+ enableSequence：是否启用序号列。
-+ expandAccordion：是否手风琴式展开。
-+ expandAll：是否展开所有行。
-+ expandOperationField：展开操作字段。
-+ expandRowIndexes：展开行索引数组。
-+ existingExpandElement：是否存在展开行组件。
-+ footerMethod：页脚内容生成方法。
-+ lazyExistExpandRow：是否延迟存在展开行。
-+ lineHeight：行高。
-+ mergeCells：单元格合并配置。
-+ minLineHeight：最小行高。
-+ operatorColumnButtonType：操作列按钮类型。
-+ operatorColumnDirection：操作列方向。
-+ operatorColumnWidth：操作列宽度。
-+ remoteStatisticsRow：远程统计行数据。
-+ rowClickActionDslDefinition：行点击动作配置。
-+ rowClickMode：行点击模式。
-+ rowDblClickActionDslDefinition：行双击动作配置。
-+ scrollX：横向滚动配置。
-+ scrollY：纵向滚动配置。
-+ showFooter：是否显示页脚。
-+ skipStatisticsText：跳过统计文本。
-+ statisticsFun：统计函数名。
-+ statisticsLabel：统计标签。
-+ treeConfig：树结构配置。
-+ usingSimpleUserPrefer：是否使用简单用户偏好。
-
-**方法**：
-
-#### **checkMethod**
-
-+ **功能描述**：校验行是否可勾选。
-+ **类型**：`({ row }: { row: ActiveRecord }) => boolean`
-+ **参数**：
-  - `row`：行数据。
-+ **返回值**：是否可勾选。
-
-#### **clickActionWidget**
-
-+ **功能描述**：触发行点击动作组件。
-+ **类型**：`(activeRecords: ActiveRecords, actionName: string) => Promise<void>`
-+ **参数**：
-  - `activeRecords`：激活记录。
-  - `actionName`：动作名称。
-
-#### **fetchData**
-
-+ **功能描述**：获取表格数据（支持树结构）。
-+ **类型**：`(condition?: Condition) => Promise<ActiveRecord[]>`
-+ **参数**：
-  - `condition`：查询条件（可选）。
-+ **返回值**：数据数组。
-
-#### **getEnabledTreeConfig**
-
-+ **功能描述**：获取是否启用树结构配置。
-+ **类型**：`() => boolean | undefined`
-+ **返回值**：是否启用树结构配置。
-
-#### **initTreeConfig**
-
-+ **功能描述**：初始化树结构配置。
-+ **类型**：`() => void`
-
-#### **loadTreeNodes**
-
-+ **功能描述**：加载树结构子节点。
-+ **类型**：`(condition?: Condition, currentRow?: ActiveRecord) => Promise<Entity[]>`
-+ **参数**：
-  - `condition`：查询条件（可选）。
-  - `currentRow`：当前行数据（可选）。
-+ **返回值**：子节点数据数组。
-
-#### **mountedProcess**
-
-+ **功能描述**：组件挂载后处理。
-+ **类型**：`() => ReturnPromise<void>`
-
-#### **onCurrentChange**
-
-+ **功能描述**：当前行变更处理。
-+ **类型**：`(e: any) => void`
-+ **参数**：
-  - `e`：事件对象。
-
-#### **onPaginationChange**
-
-+ **功能描述**：分页变更回调。
-+ **类型**：`(current: number, pageSize: number) => void`
-+ **参数**：
-  - `current`：当前页。
-  - `pageSize`：每页大小。
-
-#### **onResizableChange**
-
-+ **功能描述**：列宽调整回调。
-+ **类型**：`({ column }: { column: { field: string; resizeWidth: number } }) => Promise<void>`
-+ **参数**：
-  - `column`：调整后的列信息。
-
-#### **onRowClick**
-
-+ **功能描述**：行点击回调。
-+ **类型**：`({ column, row }: { column: VxeTableDefines.ColumnInfo; row: ActiveRecord }) => Promise<void>`
-+ **参数**：
-  - `column`：点击的列。
-  - `row`：点击的行数据。
-
-#### **onRowDblClick**
-
-+ **功能描述**：行双击回调。
-+ **类型**：`({ column, row }: { column: VxeTableDefines.ColumnInfo; row: ActiveRecord }) => Promise<void>`
-+ **参数**：
-  - `column`：点击的列。
-  - `row`：点击的行数据。
-
-#### **onSortChange**
-
-+ **功能描述**：排序变更回调。
-+ **类型**：`(sortList: ISort[]) => void`
-+ **参数**：
-  - `sortList`：排序规则数组。
-
-#### **onToggleRowExpand**
-
-+ **功能描述**：行展开状态切换回调。
-+ **类型**：`({ expanded, rowIndex }: { expanded: boolean; rowIndex: number }) => void`
-+ **参数**：
-  - `expanded`：是否展开。
-  - `rowIndex`：行索引。
-
-#### **refreshProcess**
-
-+ **功能描述**：刷新表格数据及状态。
-+ **类型**：`(condition?: Condition) => Promise<void>`
-+ **参数**：
-  - `condition`：查询条件（可选）。
-
-#### **refreshStatistics**
-
-+ **功能描述**：刷新统计信息。
-+ **类型**：`() => void`
-
-#### **resetExpandRowAttr**
-
-+ **功能描述**：重置展开行属性。
-+ **类型**：`() => void`
-
-#### **resetExpandRowIndexes**
-
-+ **功能描述**：重置展开行索引。
-+ **类型**：`(init?: boolean) => void`
-+ **参数**：
-  - `init`：是否初始化（可选）。
-
-#### **statisticsBySum**
-
-+ **功能描述**：计算统计值总和。
-+ **类型**：`(statisticalValues: unknown[]) => string`
-+ **参数**：
-  - `statisticalValues`：统计值数组。
-+ **返回值**：总和字符串。
-
-#### **remoteStatistics**
-
-+ **功能描述**：远程统计数据。
-+ **类型**：`(columns: VxeTableDefines.ColumnInfo[], fun: string) => Promise<void>`
-+ **参数**：
-  - `columns`：列信息数组。
-  - `fun`：统计函数名。
-
-#### **generatorStatisticsRow**
-
-+ **功能描述**：生成统计行。
-+ **类型**：`(columns: VxeTableDefines.ColumnInfo[], data: ActiveRecord[]) => string[]`
-+ **参数**：
-  - `columns`：列信息数组。
-  - `data`：数据数组。
-+ **返回值**：统计行数据。
-
-#### **fetchStatisticsResult**
-
-+ **功能描述**：获取统计结果。
-+ **类型**：`(columns: VxeTableDefines.ColumnInfo[], fun: string, ...args: unknown[]) => Promise<Record<string, unknown> | undefined>`
-+ **参数**：
-  - `columns`：列信息数组。
-  - `fun`：统计函数名。
-  - `args`：其他参数。
-+ **返回值**：统计结果。
-
-#### **treeConfig**
-
-+ **功能描述**：获取树结构配置。
-+ **类型**：`() => object | undefined`
-+ **返回值**：树结构配置。
-
-### 2、SearchWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Search,
-    widget: ['search', SEARCH_WIDGET]
-  })
-)
-export class SearchWidget extends BaseSearchWidget
-```
-
-**属性**：
-
-+ cateFields：分类字段数组，从 DSL 配置解析，默认返回单字段或双字段数组。（`string[]`）
-+ disabledExpand：是否禁用展开功能，从 DSL 配置获取布尔值，默认 `false`。（`boolean`）
-+ foldSize：折叠时显示的字段数量，从 DSL 配置获取数值，默认 `3`。（`number`）
-+ invisibleSearch：是否隐藏搜索框，从 DSL 配置获取布尔值，默认 `false`。（`boolean`）
-+ isExpand：搜索框展开状态。（`boolean`）
-+ searchPreferOptions：搜索偏好选项列表。（`UserSearchPrefer[] | undefined`）
-+ selectedPrefer：当前选中的搜索偏好。（`UserSearchPrefer | undefined`）
-+ showSearchPrefer：是否显示搜索偏好，非内联模式且存在视图名称时显示。（`boolean`）
-
-**方法**：
-
-#### **onCateSearch**
-
-+ **功能描述**：分类搜索处理，合并搜索数据并触发常规搜索。
-+ **类型**：`(searchData: Entity) => void`
-+ **参数**：
-  - `searchData`：分类搜索数据对象。
-
-#### **onExpand**
-
-+ **功能描述**：切换搜索框展开状态。
-+ **类型**：`(expand: boolean) => void`
-+ **参数**：
-  - `expand`：展开状态的布尔值。
-
-#### **onLoadSearchPreferOptions**
-
-+ **功能描述**：加载搜索偏好选项，首次调用时异步获取数据。
-+ **类型**：`() => Promise<void>`
-
-#### **onCreateSearchPrefer**
-
-+ **功能描述**：创建新的搜索偏好，保存后更新选项列表并选中新创建项。
-+ **类型**：`(value: UserSearchPrefer) => Promise<boolean>`
-+ **参数**：
-  - `value`：待创建的搜索偏好对象。
-
-#### **onRemoveSearchPrefer**
-
-+ **功能描述**：删除指定搜索偏好，从选项列表中移除并调用接口删除。
-+ **类型**：`(value: UserSearchPrefer) => Promise<boolean>`
-+ **参数**：
-  - `value`：待删除的搜索偏好对象。
-
-#### **onReset**
-
-+ **功能描述**：重置搜索条件，清空搜索字符串和选中偏好，调用父类重置方法。
-+ **类型**：`() => Promise<void>`
-
-#### **onSearch**
-
-+ **功能描述**：执行搜索操作，更新路由参数或触发数据刷新，提供搜索条件给父组件。
-+ **类型**：`() => void`
-
-#### **onSelectSearchPrefer**
-
-+ **功能描述**：选中搜索偏好，应用偏好中的搜索条件并触发搜索。
-+ **类型**：`(value: UserSearchPrefer) => void`
-+ **参数**：
-  - `value`：选中的搜索偏好对象。
-
-#### **onUnselectSearchPrefer**
-
-+ **功能描述**：取消选中搜索偏好，重置为默认状态并触发重置。
-+ **类型**：`() => Promise<void>`
-
-#### **onUpdateSearchPrefer**
-
-+ **功能描述**：更新搜索偏好名称，调用接口修改并更新本地列表。
-+ **类型**：`(value: UserSearchPrefer) => Promise<boolean>`
-+ **参数**：
-  - `value`：包含 ID 和新名称的搜索偏好对象。
-
-### 3、FormWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Form,
-    widget: ['form', FORM_WIDGET]
-  })
-)
-export class FormWidget extends BaseFormWidget
-```
-
-### 4、DetailWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Detail,
-    widget: ['detail', DETAIL_WIDGET]
-  })
-)
-export class DetailWidget extends BaseFormWidget
-```
-
-### 5、GalleryWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Gallery,
-    widget: 'gallery'
-  })
-)
-export class GalleryWidget extends BaseElementListViewWidget
-```
-
-**属性**：
-
-+ cols：列数。
-+ gutter：间距配置。
-+ itemWidth：项宽度。
-+ itemMinWidth：项最小宽度。
-+ itemMaxWidth：项最大宽度。
-
-**方法**：
-
-#### **childrenInvisibleProcess**
-
-+ **功能描述**：处理子组件不可见状态。
-+ **类型**：`() => boolean`
-+ **返回值**：是否隐藏子组件。
-
-### 6、TreeWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Tree,
-    widget: 'tree'
-  })
-)
-export class TreeWidget extends AbstractTreeElementWidget
-```
-
-**属性**：
-
-+ showContent：是否显示内容。
-
-**方法**：
-
-#### **onClearSearch**
-
-+ **功能描述**：清除搜索内容时的回调。
-+ **类型**：`() => Promise<void>`
-
-#### **onNodeSelected**
-
-+ **功能描述**：节点选中时的回调。
-+ **类型**：`(node: OioTreeNode<TreeData>) => Promise<void>`
-+ **参数**：
-  - `node`：选中的树节点。
-
-#### **onNodeUnselected**
-
-+ **功能描述**：节点取消选中时的回调。
-+ **类型**：`(node: OioTreeNode<TreeData>) => Promise<void>`
-+ **参数**：
-  - `node`：取消选中的树节点。
-
-#### **onUnselected**
-
-+ **功能描述**：取消选中状态的回调。
-+ **类型**：`() => Promise<void>`
-
-### 7、CardCascaderWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Tree,
-    widget: ['card-cascader', 'cardCascader', 'CardCascader']
-  })
-)
-export class CardCascaderWidget extends AbstractCardCascaderElementWidget
-```
-
-**方法**：
-
-#### **onClearSearch**
-
-+ **功能描述**：清除搜索内容时的回调。
-+ **类型**：`() => Promise<void>`
-
-#### **onNodeSelected**
-
-+ **功能描述**：节点选中时的回调。
-+ **类型**：`(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`
-+ **参数**：
-  - `node`：选中的树节点。
-
-#### **onNodeUnselected**
-
-+ **功能描述**：节点取消选中时的回调。
-+ **类型**：`(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`
-+ **参数**：
-  - `node`：取消选中的树节点。
-
-#### **onUnselected**
-
-+ **功能描述**：取消选中状态的回调。
-+ **类型**：`() => Promise<void>`
-
-#### **onClickLoadData**
-
-+ **功能描述**：点击节点加载数据。
-+ **类型**：`(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`
-+ **参数**：
-  - `node`：点击的树节点。
-
-## （四）其他组件
-
-### 1、ActionBarWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    widget: ['actionBar', 'action-bar', 'ActionBar']
-  })
-)
-export class ActionBarWidget<Props extends ActionBarWidgetProps = ActionBarWidgetProps> extends BaseActionGroupWidget<Props>
-```
-
-**属性**：
-
-+ activeCount：当前活动项数量，从 DSL 配置获取，若未设置则尝试从视图模板获取，支持枚举值。（`number | undefined`）
-+ buttonType：按钮类型，从 DSL 配置获取并转换为小写。（`string | undefined`）
-+ checkboxAllCallChaining：全选复选框的链式调用对象。（`CallChaining | undefined`）
-+ inline：是否为内联模式，从 DSL 配置获取布尔值，默认 `false`。（`boolean | undefined`）
-+ isFloat：是否为浮动模式，从 DSL 配置获取布尔值。（`boolean | undefined`）
-+ justify：布局对齐方式，当 `popupScene` 为空时从 DSL 配置获取并转换为对应值。（`string | undefined`）
-+ moreActionRender：更多操作渲染函数。（`MoreActionRender | undefined`）
-+ moreActionTriggers：更多操作触发方式数组，从 DSL 配置获取，默认 `['click', 'hover']`。（`OioDropdownTrigger[]`）
-+ popupScene：弹出场景。（`string | undefined`）
-+ selectMode：选择模式。（`ListSelectMode | undefined`）
-+ selectModeCallChaining：选择模式的链式调用对象。（`CallChaining | undefined`）
-
-**方法**：
-
-#### **onCheckboxAll**
-
-+ **功能描述**：处理全选复选框的点击事件，调用链式调用对象传递选中状态。
-+ **类型**：`(selected: boolean) => void`
-+ **参数**：
-  - `selected`：全选复选框的选中状态。
-
-#### **onSelectModeChange**
-
-+ **功能描述**：处理选择模式的变化，重新加载活跃记录并调用链式调用对象传递新模式。
-+ **类型**：`(mode: ListSelectMode | undefined) => void`
-+ **参数**：
-  - `mode`：新的选择模式。
-
-### 2、RowActionBarWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    widget: [
-      'actionBar',
-      'action-bar',
-      'ActionBar',
-      'action-column',
-      'ActionColumn',
-      'actionColumn',
-      'row-action',
-      'RowAction',
-      'rowAction',
-      'row-actions',
-      'RowActions',
-      'rowActions'
-    ],
-    inline: true
-  })
-)
-export class RowActionBarWidget<Props extends RowActionBarWidgetProps = RowActionBarWidgetProps> extends ActionBarWidget<Props>
-```
-
-**属性**：
-
-+ activeCount：当前活动项数量，优先从父级内联配置获取，其次父级常规配置，最后继承基类。（`number | undefined`）
-+ buttonType：按钮类型，优先从父级操作列配置获取，否则继承基类。（`string | undefined`）
-+ parentActiveCount：父级常规活动项数量。（`number | undefined`）
-+ parentInlineActiveCount：父级内联活动项数量。（`number | undefined`）
-+ operatorColumnDirection：操作列方向。（`string | undefined`）
-+ operatorColumnButtonType：操作列按钮类型。（`string | undefined`）
-+ rowIndex：行索引，必选属性。（`number`）
-
-### 3、TreeNodeActionsWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    widget: 'TreeNodeActions',
-    inline: true
-  })
-)
-export class TreeNodeActionsWidget<V extends TreeData = TreeData> extends ActionBarWidget<TreeNodeActionsWidgetProps<V>>
-```
-
-**属性**：
-
-+ node：当前树节点数据。（`TreeNode<V> | undefined`）
-
-### 4、CardRowActionsWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    widget: 'CardRowActions',
-    inline: true
-  })
-)
-export class CardRowActionsWidget extends RowActionBarWidget
-```
-
-### 5、TableUserPreferWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Table,
-    widget: ['userPrefer', 'user-prefer', 'UserPrefer']
-  })
-)
-export class TableUserPreferWidget extends BaseElementWidget
-```
-
-**属性**：
-
-+ invisible：组件是否不可见，在用户偏好数据不存在时始终为 `true`。（`boolean`）
-+ simple：是否启用简单模式，从 DSL 配置获取布尔值。（`boolean | undefined`）
-
-**方法**：
-
-#### **enterCallback**
-
-+ **功能描述**：保存用户对表格列的显示 / 隐藏和顺序偏好，并重新加载偏好设置。
-+ **类型**：`(allFields: DataOption[], invisibleFields: DataOption[], visibleFields: DataOption[]) => Promise<boolean>`
-+ **参数**：
-  - `allFields`：所有字段选项。
-  - `invisibleFields`：不可见字段选项。
-  - `visibleFields`：可见字段选项。
-
-#### **resetCallback**
-
-+ **功能描述**：重置用户对表格列的所有偏好设置为默认值。
-+ **类型**：`() => Promise<boolean>`
-
-### 6、TableSearchTreeWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: [ViewType.Table, ViewType.Form],
-    widget: 'tree'
-  })
-)
-export class TableSearchTreeWidget extends AbstractTreeElementWidget
-```
-
-**属性**：
-
-+ dropMode：超出最大勾选数量后的丢弃模式，默认值为 `DropMode.DropEarliest`。（`string`）
-+ maxCheckCount：最大勾选数量，从 DSL 配置获取数值，默认值为 `-1`（无限制）。（`number`）
-
-**方法**：
-
-#### **onChecked**
-
-+ **功能描述**：处理节点勾选事件，更新勾选状态并触发搜索条件处理。
-+ **类型**：`(node: OioTreeNode<TreeData>, checked: boolean) => ReturnPromise<void>`
-+ **参数**：
-  - `node`：被勾选的树节点。
-  - `checked`：勾选状态（`true` 为选中，`false` 为取消选中）。
-
-#### **onCheckedAll**
-
-+ **功能描述**：处理全选 / 全不选事件，更新所有节点勾选状态并触发搜索条件处理。
-+ **类型**：`(checkdAll: boolean) => ReturnPromise<void>`
-+ **参数**：
-  - `checkdAll`：全选状态（`true` 为全选，`false` 为全不选）。
-
-#### **onSearch**
-
-+ **功能描述**：执行搜索操作，更新勾选状态并触发父级刷新。
-+ **类型**：`(keywords: string) => Promise<void>`
-+ **参数**：
-  - `keywords`：搜索关键词。
-
-#### **updateCheckAllStatus**
-
-+ **功能描述**：更新全选状态，根据勾选的节点自动设置全选键的状态。
-+ **类型**：`(allKeys?: string[]) => void`
-+ **参数**：
-  - `allKeys`：可选的所有节点键数组，默认使用搜索根节点的子节点键。
-
-### 7、TableSearchCardCascaderWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Table,
-    widget: ['card - cascader', 'cardCascader', 'CardCascader']
-  })
-)
-export class TableSearchCardCascaderWidget extends AbstractCardCascaderElementWidget
-```
-
-**方法**：
-
-#### **onClickLoadData**
-
-+ **功能描述**：处理节点点击事件，加载节点数据并更新显示内容。
-+ **类型**：`(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`
-+ **参数**：
-  - `node`：被点击的树节点。
-
-#### **onClearSearch**
-
-+ **功能描述**：清除搜索状态，重置根节点并取消所有选择。
-+ **类型**：`() => Promise<void>`
-
-#### **onNodeSelected**
-
-+ **功能描述**：处理节点选中事件，点击加载数据。
-+ **类型**：`(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`
-+ **参数**：
-  - `node`：被选中的树节点。
-
-#### **onNodeUnselected**
-
-+ **功能描述**：处理节点取消选中事件，取消所有选择。
-+ **类型**：`(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`
-+ **参数**：
-  - `node`：被取消选中的树节点。
-
-#### **refreshProcess**
-
-+ **功能描述**：刷新组件，重置根节点并取消所有选择。
-+ **类型**：`() => Promise<void>`
-
-### 8、CardWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BasePackWidget.Token({
-    viewType: ViewType.Gallery,
-    widget: 'card'
-  })
-)
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Gallery,
-    widget: 'card'
-  })
-)
-export class CardWidget extends BaseElementWidget
-```
-
-**属性**：
-
-+ allowClick：是否允许点击卡片，取决于 DSL 配置和点击动作定义。（`boolean`）
-+ cols：卡片列数，默认值为 `DEFAULT_COLS`。（`number`）
-+ formData：当前卡片表单数据，取活跃记录的第一条，默认空对象。（`ActiveRecord`）
-+ height：卡片高度，从 DSL 配置获取数值。（`number | undefined`）
-+ isCard：标识是否为卡片组件，默认 `true`。（`boolean`）
-+ isSelected：当前卡片是否选中，通过活跃记录匹配判断。（`boolean`）
-+ inlineActiveCount：内联模式下活动项数量，支持数值或枚举值。（`number | undefined`）
-+ maxHeight：卡片最大高度，从 DSL 配置获取数值。（`number | undefined`）
-+ maxWidth：卡片最大宽度，从 DSL 配置获取数值。（`number | undefined`）
-+ minHeight：卡片最小高度，默认值为 `338`。（`number`）
-+ minWidth：卡片最小宽度，从 DSL 配置获取数值。（`number | undefined`）
-+ rowIndex：行索引，来源于插槽上下文。（`number | undefined`）
-+ selectMode：选择模式。（`ListSelectMode | undefined`）
-+ width：卡片宽度，从 DSL 配置获取数值。（`number | undefined`）
-
-**方法**：
-
-#### **onClick**
-
-+ **功能描述**：处理卡片点击事件，触发配置的点击动作组件。
-+ **类型**：`() => Promise<void>`
-
-#### **onCheckboxChange**
-
-+ **功能描述**：处理复选框状态变化，更新父级活跃记录。
-+ **类型**：`(val: boolean) => void`
-+ **参数**：
-  - `val`：复选框选中状态（`true` 为选中，`false` 为取消选中）。
-
++ **Function Description**: Set runtime filter conditions.
++ **Type**: `(filter: string | Condition | undefined) => void`
++ **Parameters**:
+  - `filter`: Filter conditions (string, `Condition` object, or `undefined`).
+
+### 5. AbstractTreeElementWidget
+
+**Inheritance**: AbstractTreeWidget<`V`>
+
+**Attributes**:
+
++ autoExpandParent: Whether to automatically expand parent nodes. (`boolean`)
++ checkedKeys: List of checked node keys. (`string[] | undefined`)
++ checkAll: Whether to select all. (`boolean`)
++ checkAllLabel: All-selection button label. (`string | undefined`)
++ checkable: Whether checkable. (`boolean`)
++ expandedKeys: List of expanded node keys. (`string[] | undefined`)
++ expandLevel: Expansion level. (`string | undefined`)
++ loadedKeys: List of loaded node keys. (`string[] | undefined`)
++ rootNode: Root node. (`OioTreeNode<V> | undefined`)
++ searchPlaceHolder: Search box placeholder text. (`string | undefined`)
++ searchRemote: Whether remote search. (`boolean`)
++ searchRootNode: Search result root node. (`OioTreeNode<V> | undefined`)
++ searchValue: Search value. (`string | undefined`)
++ selectedKeys: List of selected node keys. (`string[] | undefined`)
++ showContent: Whether to show content. (`boolean`)
++ showIcon: Whether to show icons. (`boolean`)
+  
+### 5. AbstractTreeElementWidget  
+**Inheritance**: AbstractTreeWidget<`V`>  
+
+**Attributes**:  
+- autoExpandParent: Whether to automatically expand parent nodes. (`boolean`)  
+- checkedKeys: List of checked node keys. (`string[] | undefined`)  
+- checkAll: Whether to select all. (`boolean`)  
+- checkAllLabel: Label for the select all button. (`string | undefined`)  
+- checkable: Whether checkboxes are enabled. (`boolean`)  
+- expandedKeys: List of expanded node keys. (`string[] | undefined`)  
+- expandLevel: Expansion level. (`string | undefined`)  
+- loadedKeys: List of loaded node keys. (`string[] | undefined`)  
+- rootNode: Root node. (`OioTreeNode<V> | undefined`)  
+- searchPlaceHolder: Placeholder text for the search box. (`string | undefined`)  
+- searchRemote: Whether to enable remote search. (`boolean`)  
+- searchRootNode: Root node of search results. (`OioTreeNode<V> | undefined`)  
+- searchValue: Search keyword. (`string | undefined`)  
+- selectedKeys: List of selected node keys. (`string[] | undefined`)  
+- showContent: Whether to display content. (`boolean`)  
+- showIcon: Whether to display icons. (`boolean`)  
+
+**Methods**:  
+#### **fetchAll**  
+- **Function Description**: Fetch data for all nodes.  
+- **Type**: `() => Promise<TreeNodeResponseBody[]>`  
+- **Return Value**: Array of node response bodies.  
+
+#### **fetchExpandEndLevel**  
+- **Function Description**: Fetch node data expanded to a specified level.  
+- **Type**: `(metadataList: TreeNodeMetadata[], options?: { expressionParameters?: ExpressionRunParam }) => Promise<TreeNodeResponseBody[]>`  
+- **Parameters**:  
+  - `metadataList`: List of metadata.  
+  - `options`: Options (optional).  
+- **Return Value**: Array of node response bodies.  
+
+#### **fixExpandLevelNodes**  
+- **Function Description**: Fix node data for the expansion level.  
+- **Type**: `(nodes: OioTreeNode<V>[], expandedKeys: string[]) => void`  
+- **Parameters**:  
+  - `nodes`: Array of nodes.  
+  - `expandedKeys`: List of expanded node keys.  
+
+#### **generatorExpressionParameters**  
+- **Function Description**: Generate expression runtime parameters.  
+- **Type**: `() => ExpressionRunParam`  
+- **Return Value**: Expression runtime parameters object.  
+
+#### **generatorRootNode**  
+- **Function Description**: Generate a root node.  
+- **Type**: `(metadata: TreeNodeMetadata) => OioTreeNode<V>`  
+- **Parameters**:  
+  - `metadata`: Metadata.  
+- **Return Value**: Root node.  
+
+#### **loadAllData**  
+- **Function Description**: Load data for all nodes.  
+- **Type**: `() => Promise<void>`  
+
+#### **loadExpandLevel**  
+- **Function Description**: Load data for a specified expansion level.  
+- **Type**: `(node: OioTreeNode<V>, metadataList: TreeNodeMetadata[]) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Target node.  
+  - `metadataList`: List of metadata.  
+
+#### **loadExpandLevelData**  
+- **Function Description**: Load data for a specified expansion level and return processed results.  
+- **Type**: `(node: OioTreeNode<V>, metadataList: TreeNodeMetadata[]) => Promise<{ nodes: OioTreeNode<V>[]; expandedKeys: string[] }>`  
+- **Parameters**:  
+  - `node`: Target node.  
+  - `metadataList`: List of metadata.  
+- **Return Value**: Object containing node array and expanded key list.  
+
+#### **loadExpandLevelDataAfterProcess**  
+- **Function Description**: Process nodes after loading expansion level data.  
+- **Type**: `(node: OioTreeNode<V>, nodes: OioTreeNode<V>[], expandedKeys: string[]) => { nodes: OioTreeNode<V>[]; expandedKeys: string[] }`  
+- **Parameters**:  
+  - `node`: Target node.  
+  - `nodes`: Array of nodes.  
+  - `expandedKeys`: List of expanded node keys.  
+- **Return Value**: Object containing processed node array and expanded key list.  
+
+#### **mountedProcess**  
+- **Function Description**: Post-mounting processing.  
+- **Type**: `() => ReturnPromise<void>`  
+
+#### **onCheckedAll**  
+- **Function Description**: Callback for select all / deselect all.  
+- **Type**: `(checkedAll: boolean) => ReturnPromise<void>`  
+- **Parameters**:  
+  - `checkedAll`: Whether to select all.  
+
+#### **onNodeCheckedAll**  
+- **Function Description**: Processing when all nodes are checked.  
+- **Type**: `() => ReturnPromise<void>`  
+
+#### **onNodeUncheckedAll**  
+- **Function Description**: Processing when all nodes are unchecked.  
+- **Type**: `() => ReturnPromise<void>`  
+
+#### **onSearch**  
+- **Function Description**: Search callback.  
+- **Type**: `(keywords: string) => Promise<void>`  
+- **Parameters**:  
+  - `keywords`: Search keyword.  
+
+#### **onUpdateCheckedKeys**  
+- **Function Description**: Update the list of checked node keys.  
+- **Type**: `(val: string[]) => void`  
+- **Parameters**:  
+  - `val`: New list of checked node keys.  
+
+#### **onUpdateExpandedKeys**  
+- **Function Description**: Update the list of expanded node keys.  
+- **Type**: `(val: string[]) => void`  
+- **Parameters**:  
+  - `val`: New list of expanded node keys.  
+
+#### **onUpdateLoadedKeys**  
+- **Function Description**: Update the list of loaded node keys.  
+- **Type**: `(val: string[]) => void`  
+- **Parameters**:  
+  - `val`: New list of loaded node keys.  
+
+#### **onUpdateSearchValue**  
+- **Function Description**: Update the search value.  
+- **Type**: `(val: string) => void`  
+- **Parameters**:  
+  - `val`: New search value.  
+
+#### **onUpdateSelectedKeys**  
+- **Function Description**: Update the list of selected node keys.  
+- **Type**: `(val: string[]) => void`  
+- **Parameters**:  
+  - `val`: New list of selected node keys.  
+
+#### **refreshProcess**  
+- **Function Description**: Refresh processing.  
+- **Type**: `() => ReturnPromise<void>`  
+
+#### **refreshProcessAfterProperties**  
+- **Function Description**: Property setup after refresh processing.  
+- **Type**: `() => void`  
+
+
+### 6. AbstractCardCascaderElementWidget  
+**Inheritance**: AbstractTreeWidget<`V`>  
+
+**Attributes**:  
+- showContent: Whether to display content. (`boolean`)  
+- rootNodes: Array of root nodes. (`OioTreeNode<V>[] | undefined`)  
+
+**Methods**:  
+#### **fetchNodeData**  
+- **Function Description**: Fetch node data and update root nodes.  
+- **Type**: `(node: OioTreeNode<V>, metadata: TreeNodeMetadata) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Target node.  
+  - `metadata`: Metadata.  
+
+#### **isLeafPredict**  
+- **Function Description**: Predict whether a node is a leaf node.  
+- **Type**: `(node: TreeNodeMetadata | undefined, useSelfReferences?: boolean) => boolean`  
+- **Parameters**:  
+  - `node`: Node metadata.  
+  - `useSelfReferences`: Whether to use self-references (optional).  
+- **Return Value**: Whether it is a leaf node.  
+
+#### **mountedProcess**  
+- **Function Description**: Post-mounting processing.  
+- **Type**: `() => ReturnPromise<void>`  
+
+#### **onSearch**  
+- **Function Description**: Search callback.  
+- **Type**: `(keywords: string, rootNode?: OioTreeNode<V>) => Promise<void>`  
+- **Parameters**:  
+  - `keywords`: Search keyword.  
+  - `rootNode`: Root node (optional).  
+
+#### **refreshNodeFetchData**  
+- **Function Description**: Refresh node data.  
+- **Type**: `(node: OioTreeNode<V>) => Promise<{ node: OioTreeNode<V>; isChange: { total: boolean; totalPageSize: boolean }; results: ResponseBody[] }>`  
+- **Parameters**:  
+  - `node`: Target node.  
+- **Return Value**: Object containing node, change status, and results.  
+
+#### **refreshNodes**  
+- **Function Description**: Refresh all nodes.  
+- **Type**: `() => Promise<void>`  
+
+#### **refreshProcess**  
+- **Function Description**: Refresh processing.  
+- **Type**: `() => ReturnPromise<void>`  
+
+#### **resetRootNode**  
+- **Function Description**: Reset root nodes.  
+- **Type**: `() => Promise<void>`  
+
+
+## (III) View Components  
+
+### 1. TableWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Table,  
+    widget: ['table', TABLE_WIDGET]  
+  })  
+)  
+export class TableWidget<Props extends TableWidgetProps = TableWidgetProps> extends BaseTableWidget<Props>  
+```  
+
+**Attributes**:  
+- activeCount: Number of active items.  
+- allowChecked: Whether checking is allowed.  
+- autoLineHeight: Whether to enable auto row height.  
+- checkbox: Whether to display checkboxes.  
+- cellMinWidth: Minimum cell width.  
+- cellWidth: Cell width.  
+- enableSequence: Whether to enable sequence columns.  
+- expandAccordion: Whether to enable accordion expansion.  
+- expandAll: Whether to expand all rows.  
+- expandOperationField: Expansion operation field.  
+- expandRowIndexes: Array of expanded row indexes.  
+- existingExpandElement: Whether expanded row components exist.  
+- footerMethod: Footer content generation method.  
+- lazyExistExpandRow: Whether to delay expanded row existence.  
+- lineHeight: Row height.  
+- mergeCells: Cell merging configuration.  
+- minLineHeight: Minimum row height.  
+- operatorColumnButtonType: Operation column button type.  
+- operatorColumnDirection: Operation column direction.  
+- operatorColumnWidth: Operation column width.  
+- remoteStatisticsRow: Remote statistics row data.  
+- rowClickActionDslDefinition: Row click action configuration.  
+- rowClickMode: Row click mode.  
+- rowDblClickActionDslDefinition: Row double-click action configuration.  
+- scrollX: Horizontal scroll configuration.  
+- scrollY: Vertical scroll configuration.  
+- showFooter: Whether to display the footer.  
+- skipStatisticsText: Skip statistics text.  
+- statisticsFun: Statistics function name.  
+- statisticsLabel: Statistics label.  
+- treeConfig: Tree structure configuration.  
+- usingSimpleUserPrefer: Whether to use simple user preferences.  
+
+**Methods**:  
+#### **checkMethod**  
+- **Function Description**: Validate if a row can be checked.  
+- **Type**: `({ row }: { row: ActiveRecord }) => boolean`  
+- **Parameters**:  
+  - `row`: Row data.  
+- **Return Value**: Whether checking is allowed.  
+
+#### **clickActionWidget**  
+- **Function Description**: Trigger row click action components.  
+- **Type**: `(activeRecords: ActiveRecords, actionName: string) => Promise<void>`  
+- **Parameters**:  
+  - `activeRecords`: Active records.  
+  - `actionName`: Action name.  
+
+#### **fetchData**  
+- **Function Description**: Fetch table data (supports tree structure).  
+- **Type**: `(condition?: Condition) => Promise<ActiveRecord[]>`  
+- **Parameters**:  
+  - `condition`: Query conditions (optional).  
+- **Return Value**: Data array.  
+
+#### **getEnabledTreeConfig**  
+- **Function Description**: Get whether tree structure configuration is enabled.  
+- **Type**: `() => boolean | undefined`  
+- **Return Value**: Whether tree structure configuration is enabled.  
+
+#### **initTreeConfig**  
+- **Function Description**: Initialize tree structure configuration.  
+- **Type**: `() => void`  
+
+#### **loadTreeNodes**  
+- **Function Description**: Load tree structure child nodes.  
+- **Type**: `(condition?: Condition, currentRow?: ActiveRecord) => Promise<Entity[]>`  
+- **Parameters**:  
+  - `condition`: Query conditions (optional).  
+  - `currentRow`: Current row data (optional).  
+- **Return Value**: Array of child node data.  
+
+#### **mountedProcess**  
+- **Function Description**: Post-mounting processing.  
+- **Type**: `() => ReturnPromise<void>`  
+
+#### **onCurrentChange**  
+- **Function Description**: Handle current row changes.  
+- **Type**: `(e: any) => void`  
+- **Parameters**:  
+  - `e`: Event object.  
+
+#### **onPaginationChange**  
+- **Function Description**: Pagination change callback.  
+- **Type**: `(current: number, pageSize: number) => void`  
+- **Parameters**:  
+  - `current`: Current page.  
+  - `pageSize`: Items per page.  
+
+#### **onResizableChange**  
+- **Function Description**: Column width resize callback.  
+- **Type**: `({ column }: { column: { field: string; resizeWidth: number } }) => Promise<void>`  
+- **Parameters**:  
+  - `column`: Resized column information.  
+
+#### **onRowClick**  
+- **Function Description**: Row click callback.  
+- **Type**: `({ column, row }: { column: VxeTableDefines.ColumnInfo; row: ActiveRecord }) => Promise<void>`  
+- **Parameters**:  
+  - `column`: Clicked column.  
+  - `row`: Clicked row data.  
+
+#### **onRowDblClick**  
+- **Function Description**: Row double-click callback.  
+- **Type**: `({ column, row }: { column: VxeTableDefines.ColumnInfo; row: ActiveRecord }) => Promise<void>`  
+- **Parameters**:  
+  - `column`: Clicked column.  
+  - `row`: Clicked row data.  
+
+#### **onSortChange**  
+- **Function Description**: Sort change callback.  
+- **Type**: `(sortList: ISort[]) => void`  
+- **Parameters**:  
+  - `sortList`: Array of sort rules.  
+
+#### **onToggleRowExpand**  
+- **Function Description**: Row expand status toggle callback.  
+- **Type**: `({ expanded, rowIndex }: { expanded: boolean; rowIndex: number }) => void`  
+- **Parameters**:  
+  - `expanded`: Whether expanded.  
+  - `rowIndex`: Row index.  
+
+#### **refreshProcess**  
+- **Function Description**: Refresh table data and status.  
+- **Type**: `(condition?: Condition) => Promise<void>`  
+- **Parameters**:  
+  - `condition`: Query conditions (optional).  
+
+#### **refreshStatistics**  
+- **Function Description**: Refresh statistics information.  
+- **Type**: `() => void`  
+
+#### **resetExpandRowAttr**  
+- **Function Description**: Reset expanded row attributes.  
+- **Type**: `() => void`  
+
+#### **resetExpandRowIndexes**  
+- **Function Description**: Reset expanded row indexes.  
+- **Type**: `(init?: boolean) => void`  
+- **Parameters**:  
+  - `init`: Whether to initialize (optional).  
+
+#### **statisticsBySum**  
+- **Function Description**: Calculate the sum of statistical values.  
+- **Type**: `(statisticalValues: unknown[]) => string`  
+- **Parameters**:  
+  - `statisticalValues`: Array of statistical values.  
+- **Return Value**: Sum as a string.  
+
+#### **remoteStatistics**  
+- **Function Description**: Remote statistics data.  
+- **Type**: `(columns: VxeTableDefines.ColumnInfo[], fun: string) => Promise<void>`  
+- **Parameters**:  
+  - `columns`: Array of column information.  
+  - `fun`: Statistics function name.  
+
+#### **generatorStatisticsRow**  
+- **Function Description**: Generate statistics rows.  
+- **Type**: `(columns: VxeTableDefines.ColumnInfo[], data: ActiveRecord[]) => string[]`  
+- **Parameters**:  
+  - `columns`: Array of column information.  
+  - `data`: Data array.  
+- **Return Value**: Statistics row data.  
+
+#### **fetchStatisticsResult**  
+- **Function Description**: Fetch statistics results.  
+- **Type**: `(columns: VxeTableDefines.ColumnInfo[], fun: string, ...args: unknown[]) => Promise<Record<string, unknown> | undefined>`  
+- **Parameters**:  
+  - `columns`: Array of column information.  
+  - `fun`: Statistics function name.  
+  - `args`: Additional parameters.  
+- **Return Value**: Statistics result.  
+
+#### **treeConfig**  
+- **Function Description**: Get tree structure configuration.  
+- **Type**: `() => object | undefined`  
+- **Return Value**: Tree structure configuration.  
+
+
+### 2. SearchWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Search,  
+    widget: ['search', SEARCH_WIDGET]  
+  })  
+)  
+export class SearchWidget extends BaseSearchWidget  
+```  
+
+**Attributes**:  
+- cateFields: Array of category fields, parsed from DSL configuration, defaulting to a single or double field array. (`string[]`)  
+- disabledExpand: Whether to disable expansion, obtained as a boolean from DSL configuration, default `false`. (`boolean`)  
+- foldSize: Number of fields displayed when folded, obtained as a number from DSL configuration, default `3`. (`number`)  
+- invisibleSearch: Whether to hide the search box, obtained as a boolean from DSL configuration, default `false`. (`boolean`)  
+- isExpand: Search box expansion status. (`boolean`)  
+- searchPreferOptions: List of search preference options. (`UserSearchPrefer[] | undefined`)  
+- selectedPrefer: Current selected search preference. (`UserSearchPrefer | undefined`)  
+- showSearchPrefer: Whether to display search preferences, shown in non-inline mode with a view name. (`boolean`)  
+
+**Methods**:  
+#### **onCateSearch**  
+- **Function Description**: Handle category search, merge search data, and trigger regular search.  
+- **Type**: `(searchData: Entity) => void`  
+- **Parameters**:  
+  - `searchData`: Category search data object.  
+
+#### **onExpand**  
+- **Function Description**: Toggle search box expansion status.  
+- **Type**: `(expand: boolean) => void`  
+- **Parameters**:  
+  - `expand`: Expansion status boolean.  
+
+#### **onLoadSearchPreferOptions**  
+- **Function Description**: Load search preference options, asynchronously fetching data on first call.  
+- **Type**: `() => Promise<void>`  
+
+#### **onCreateSearchPrefer**  
+- **Function Description**: Create a new search preference, updating the options list and selecting the new item after saving.  
+- **Type**: `(value: UserSearchPrefer) => Promise<boolean>`  
+- **Parameters**:  
+  - `value`: Search preference object to create.  
+
+#### **onRemoveSearchPrefer**  
+- **Function Description**: Delete a specified search preference, removing it from the options list and calling the interface to delete.  
+- **Type**: `(value: UserSearchPrefer) => Promise<boolean>`  
+- **Parameters**:  
+  - `value`: Search preference object to delete.  
+
+#### **onReset**  
+- **Function Description**: Reset search conditions, clearing the search string and selected preference, and calling the parent class reset method.  
+- **Type**: `() => Promise<void>`  
+
+#### **onSearch**  
+- **Function Description**: Execute the search operation, updating routing parameters or triggering data refresh, and providing search conditions to the parent component.  
+- **Type**: `() => void`  
+
+#### **onSelectSearchPrefer**  
+- **Function Description**: Select a search preference, applying search conditions from the preference and triggering a search.  
+- **Type**: `(value: UserSearchPrefer) => void`  
+- **Parameters**:  
+  - `value`: Selected search preference object.  
+
+#### **onUnselectSearchPrefer**  
+- **Function Description**: Deselect the search preference, resetting to the default state and triggering a reset.  
+- **Type**: `() => Promise<void>`  
+
+#### **onUpdateSearchPrefer**  
+- **Function Description**: Update the search preference name, calling the interface to modify and updating the local list.  
+- **Type**: `(value: UserSearchPrefer) => Promise<boolean>`  
+- **Parameters**:  
+  - `value`: Search preference object containing ID and new name.  
+
+
+### 3. FormWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Form,  
+    widget: ['form', FORM_WIDGET]  
+  })  
+)  
+export class FormWidget extends BaseFormWidget  
+```  
+
+
+### 4. DetailWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Detail,  
+    widget: ['detail', DETAIL_WIDGET]  
+  })  
+)  
+export class DetailWidget extends BaseFormWidget  
+```  
+
+
+### 5. GalleryWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Gallery,  
+    widget: 'gallery'  
+  })  
+)  
+export class GalleryWidget extends BaseElementListViewWidget  
+```  
+
+**Attributes**:  
+- cols: Number of columns.  
+- gutter: Spacing configuration.  
+- itemWidth: Item width.  
+- itemMinWidth: Minimum item width.  
+- itemMaxWidth: Maximum item width.  
+
+**Methods**:  
+#### **childrenInvisibleProcess**  
+- **Function Description**: Handle invisible status of child components.  
+- **Type**: `() => boolean`  
+- **Return Value**: Whether to hide child components.  
+
+
+### 6. TreeWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Tree,  
+    widget: 'tree'  
+  })  
+)  
+export class TreeWidget extends AbstractTreeElementWidget  
+```  
+
+**Attributes**:  
+- showContent: Whether to display content.  
+
+**Methods**:  
+#### **onClearSearch**  
+- **Function Description**: Callback when clearing search content.  
+- **Type**: `() => Promise<void>`  
+
+#### **onNodeSelected**  
+- **Function Description**: Callback when a node is selected.  
+- **Type**: `(node: OioTreeNode<TreeData>) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Selected tree node.  
+
+#### **onNodeUnselected**  
+- **Function Description**: Callback when a node is unselected.  
+- **Type**: `(node: OioTreeNode<TreeData>) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Unselected tree node.  
+
+#### **onUnselected**  
+- **Function Description**: Callback when selection is cleared.  
+- **Type**: `() => Promise<void>`  
+
+
+### 7. CardCascaderWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Tree,  
+    widget: ['card-cascader', 'cardCascader', 'CardCascader']  
+  })  
+)  
+export class CardCascaderWidget extends AbstractCardCascaderElementWidget  
+```  
+
+**Methods**:  
+#### **onClearSearch**  
+- **Function Description**: Callback when clearing search content.  
+- **Type**: `() => Promise<void>`  
+
+#### **onNodeSelected**  
+- **Function Description**: Callback when a node is selected.  
+- **Type**: `(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Selected tree node.  
+
+#### **onNodeUnselected**  
+- **Function Description**: Callback when a node is unselected.  
+- **Type**: `(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Unselected tree node.  
+
+#### **onUnselected**  
+- **Function Description**: Callback when selection is cleared.  
+- **Type**: `() => Promise<void>`  
+
+#### **onClickLoadData**  
+- **Function Description**: Load data when a node is clicked.  
+- **Type**: `(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Clicked tree node.  
+
+
+## (IV) Other Components  
+
+### 1. ActionBarWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    widget: ['actionBar', 'action-bar', 'ActionBar']  
+  })  
+)  
+export class ActionBarWidget<Props extends ActionBarWidgetProps = ActionBarWidgetProps> extends BaseActionGroupWidget<Props>  
+```  
+
+**Attributes**:  
+- activeCount: Number of current active items, obtained from DSL configuration; if not set, attempts to get from the view template, supporting enum values. (`number | undefined`)  
+- buttonType: Button type, obtained from DSL configuration and converted to lowercase. (`string | undefined`)  
+- checkboxAllCallChaining: Chaining object for select all checkboxes. (`CallChaining | undefined`)  
+- inline: Whether in inline mode, obtained as a boolean from DSL configuration, default `false`. (`boolean | undefined`)  
+- isFloat: Whether in float mode, obtained as a boolean from DSL configuration. (`boolean | undefined`)  
+- justify: Layout alignment, obtained from DSL configuration and converted to the corresponding value when `popupScene` is empty. (`string | undefined`)  
+- moreActionRender: Render function for more actions. (`MoreActionRender | undefined`)  
+- moreActionTriggers: Array of more action trigger methods, obtained from DSL configuration, default `['click', 'hover']`. (`OioDropdownTrigger[]`)  
+- popupScene: Popup scene. (`string | undefined`)  
+- selectMode: Selection mode. (`ListSelectMode | undefined`)  
+- selectModeCallChaining: Chaining object for selection mode. (`CallChaining | undefined`)  
+
+**Methods**:  
+#### **onCheckboxAll**  
+- **Function Description**: Handle click events for select all checkboxes, calling the chaining object to pass the selection status.  
+- **Type**: `(selected: boolean) => void`  
+- **Parameters**:  
+  - `selected`: Selection status of the select all checkbox.  
+
+#### **onSelectModeChange**  
+- **Function Description**: Handle changes in selection mode, reloading active records and calling the chaining object to pass the new mode.  
+- **Type**: `(mode: ListSelectMode | undefined) => void`  
+- **Parameters**:  
+  - `mode`: New selection mode.  
+
+
+### 2. RowActionBarWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    widget: [  
+      'actionBar',  
+      'action-bar',  
+      'ActionBar',  
+      'action-column',  
+      'ActionColumn',  
+      'actionColumn',  
+      'row-action',  
+      'RowAction',  
+      'rowAction',  
+      'row-actions',  
+      'RowActions',  
+      'rowActions'  
+    ],  
+    inline: true  
+  })  
+)  
+export class RowActionBarWidget<Props extends RowActionBarWidgetProps = RowActionBarWidgetProps> extends ActionBarWidget<Props>  
+```  
+
+**Attributes**:  
+- activeCount: Number of current active items, preferring inline configuration from the parent, then parent regular configuration, and finally inheriting from the base class. (`number | undefined`)  
+- buttonType: Button type, preferring operation column configuration from the parent, otherwise inheriting from the base class. (`string | undefined`)  
+- parentActiveCount: Number of parent regular active items. (`number | undefined`)  
+- parentInlineActiveCount: Number of parent inline active items. (`number | undefined`)  
+- operatorColumnDirection: Operation column direction. (`string | undefined`)  
+- operatorColumnButtonType: Operation column button type. (`string | undefined`)  
+- rowIndex: Row index, a required attribute. (`number`)  
+
+
+### 3. TreeNodeActionsWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    widget: 'TreeNodeActions',  
+    inline: true  
+  })  
+)  
+export class TreeNodeActionsWidget<V extends TreeData = TreeData> extends ActionBarWidget<TreeNodeActionsWidgetProps<V>>  
+```  
+
+**Attributes**:  
+- node: Current tree node data. (`TreeNode<V> | undefined`)  
+
+
+### 4. CardRowActionsWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    widget: 'CardRowActions',  
+    inline: true  
+  })  
+)  
+export class CardRowActionsWidget extends RowActionBarWidget  
+```  
+
+
+### 5. TableUserPreferWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Table,  
+    widget: ['userPrefer', 'user-prefer', 'UserPrefer']  
+  })  
+)  
+export class TableUserPreferWidget extends BaseElementWidget  
+```  
+
+**Attributes**:  
+- invisible: Whether the component is invisible, always `true` when user preference data does not exist. (`boolean`)  
+- simple: Whether to enable simple mode, obtained as a boolean from DSL configuration. (`boolean | undefined`)  
+
+**Methods**:  
+#### **enterCallback**  
+- **Function Description**: Save user preferences for table column visibility and order, and reload preference settings.  
+- **Type**: `(allFields: DataOption[], invisibleFields: DataOption[], visibleFields: DataOption[]) => Promise<boolean>`  
+- **Parameters**:  
+  - `allFields`: Array of all field options.  
+  - `invisibleFields`: Array of invisible field options.  
+  - `visibleFields`: Array of visible field options.  
+
+#### **resetCallback**  
+- **Function Description**: Reset all user preferences for table columns to default values.  
+- **Type**: `() => Promise<boolean>`  
+
+
+### 6. TableSearchTreeWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: [ViewType.Table, ViewType.Form],  
+    widget: 'tree'  
+  })  
+)  
+export class TableSearchTreeWidget extends AbstractTreeElementWidget  
+```  
+
+**Attributes**:  
+- dropMode: Discard mode when exceeding the maximum check count, default `DropMode.DropEarliest`. (`string`)  
+- maxCheckCount: Maximum check count, obtained as a number from DSL configuration, default `-1` (unlimited). (`number`)  
+
+**Methods**:  
+#### **onChecked**  
+- **Function Description**: Handle node check events, updating check status and triggering search condition processing.  
+- **Type**: `(node: OioTreeNode<TreeData>, checked: boolean) => ReturnPromise<void>`  
+- **Parameters**:  
+  - `node`: Checked tree node.  
+  - `checked`: Check status (`true` for checked, `false` for unchecked).  
+
+#### **onCheckedAll**  
+- **Function Description**: Handle select all / deselect all events, updating check status for all nodes and triggering search condition processing.  
+- **Type**: `(checkdAll: boolean) => ReturnPromise<void>`  
+- **Parameters**:  
+  - `checkdAll`: Select all status (`true` for select all, `false` for deselect all).  
+
+#### **onSearch**  
+- **Function Description**: Execute search operation, updating check status and triggering parent refresh.  
+- **Type**: `(keywords: string) => Promise<void>`  
+- **Parameters**:  
+  - `keywords`: Search keyword.  
+
+#### **updateCheckAllStatus**  
+- **Function Description**: Update the select all status, automatically setting the select all key status based on checked nodes.  
+- **Type**: `(allKeys?: string[]) => void`  
+- **Parameters**:  
+  - `allKeys`: Optional array of all node keys, defaulting to child node keys of the search root node.  
+
+
+### 7. TableSearchCardCascaderWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Table,  
+    widget: ['card-cascader', 'cardCascader', 'CardCascader']  
+  })  
+)  
+export class TableSearchCardCascaderWidget extends AbstractCardCascaderElementWidget  
+```  
+
+**Methods**:  
+#### **onClickLoadData**  
+- **Function Description**: Handle node click events, loading node data and updating display content.  
+- **Type**: `(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Clicked tree node.  
+
+#### **onClearSearch**  
+- **Function Description**: Clear search status, resetting root nodes and canceling all selections.  
+- **Type**: `() => Promise<void>`  
+
+#### **onNodeSelected**  
+- **Function Description**: Handle node selection events, loading data on click.  
+- **Type**: `(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Selected tree node.  
+
+#### **onNodeUnselected**  
+- **Function Description**: Handle node deselection events, canceling all selections.  
+- **Type**: `(node: OioTreeNode<CardCascaderItemData>) => Promise<void>`  
+- **Parameters**:  
+  - `node`: Deselected tree node.  
+
+#### **refreshProcess**  
+- **Function Description**: Refresh the component, resetting root nodes and canceling all selections.  
+- **Type**: `() => Promise<void>`  
+
+
+### 8. CardWidget  
+**Type Declaration**:  
+```typescript  
+@SPI.ClassFactory(  
+  BasePackWidget.Token({  
+    viewType: ViewType.Gallery,  
+    widget: 'card'  
+  })  
+)  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Gallery,  
+    widget: 'card'  
+  })  
+)  
+export class CardWidget extends BaseElementWidget  
+```  
+
+**Attributes**:  
+- allowClick: Whether clicking the card is allowed, determined by DSL configuration and click action definitions. (`boolean`)  
+- cols: Number of card columns, default `DEFAULT_COLS`. (`number`)  
+- formData: Current card form data, taking the first active record, default empty object. (`ActiveRecord`)  
+- height: Card height, obtained as a number from DSL configuration. (`number | undefined`)  
+- isCard: Flag indicating it is a card component, default `true`. (`boolean`)  
+- isSelected: Whether the current card is selected, determined by active record matching. (`boolean`)  
+- inlineActiveCount: Number of active items in inline mode, supporting numbers or enum values. (`number | undefined`)  
+- maxHeight: Maximum card height, obtained as a number from DSL configuration. (`number | undefined`)  
+- maxWidth: Maximum card width, obtained as a number from DSL configuration. (`number | undefined`)  
+- minHeight: Minimum card height, default `338`. (`number`)  
+- minWidth: Minimum card width, obtained as a number from DSL configuration. (`number | undefined`)  
+- rowIndex: Row index, from slot context. (`number | undefined`)  
+- selectMode: Selection mode. (`ListSelectMode | undefined`)  
+- width: Card width, obtained as a number from DSL configuration. (`number | undefined`)  
+
+**Methods**:  
+#### **onClick**  
+- **Function Description**: Handle card click events, triggering configured click action components.  
+- **Type**: `() => Promise<void>`  
+
+#### **onCheckboxChange**  
+- **Function Description**: Handle checkbox status changes, updating parent active records.  
+- **Type**: `(val: boolean) => void`  
+- **Parameters**:  
+  - `val`: Checkbox selection status (`true` for checked, `false` for unchecked).

@@ -1,5 +1,5 @@
 ---
-title: Application Center
+title: Apps Hub
 index: true
 category:
   - User Manual

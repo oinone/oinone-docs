@@ -1,79 +1,70 @@
 ---
-title: 项目部署：Docker部署常见问题
+title: Project Deployment:Common Issues in Docker Deployment
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 75
 ---
 
-# 一、容器启动异常：
-容器启动出现`library initialization failed - unable to allocate file descriptor table - out of memory`异常如何处理？
+# I. Container Startup Exception:
+How to handle the exception `library initialization failed - unable to allocate file descriptor table - out of memory` during container startup?
 
-## （一）原因
-不同操作系统安装 Docker 后，容器运行环境并不一致，需要对 Docker 运行参数进行调整。
+## (I) Cause
+After installing Docker on different operating systems, the container runtime environments are inconsistent, requiring adjustments to Docker runtime parameters.
 
-## （二）解决方案
-+ 编辑`/etc/systemd/system/docker.service`文件， 有些系统该文件位置：`/lib/systemd/system/docker.service`
+## (II) Solution
++ Edit the `/etc/systemd/system/docker.service` file. In some systems, the file is located at `/lib/systemd/system/docker.service`.
 
-查看 docker 的 systemd（docker.service）配置位置
-
+View the location of Docker's systemd (docker.service) configuration:
 ```shell
 systemctl status docker
 ```
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2025032602015086-1024x237-20250530144825593.jpg)
 
-查看 docker 的 systemd 配置位置
-
-+ 将下列参数进行修改
-
++ Modify the following parameters:
 ```xml
 LimitNOFILE=65535
 LimitNPROC=65535
 LimitCORE=65535
 ```
 
-+ 执行以下脚本
-
++ Execute the following scripts:
 ```shell
 systemctl daemon-reload
 systemctl restart docker
 ```
 
-# 二、容器启动异常二：
-容器启动出现`library initialization failed - unable to allocate file descriptor table - out of memorypanic: signal: aborted (core dumped)`异常如何处理？
+# II. Container Startup Exception II:
+How to handle the exception `library initialization failed - unable to allocate file descriptor table - out of memorypanic: signal: aborted (core dumped)` during container startup?
 
-## （一）问题现象
-1、 按照【问题1】的设置进行配置后，仍然不生效；
+## (I) Problem Symptoms
+1. The configuration based on [Issue 1] still does not take effect.
+2. Attempts to modify the ulimits of the host system kernel and restart Docker still result in errors. Modify docker.service (file location: `/etc/systemd/system/docker.service` or `/lib/systemd/system/docker.service` in some systems).
 
-2、 尝试修改宿主机系统内核的 ulimits，重启 docker 仍报错。修改 docker.service（文件位置：`/etc/systemd/system/docker.service`文件， 有些系统该文件位置：`/lib/systemd/system/docker.service`）
+## (II) Solution
+View the location of Docker's systemd (docker.service) configuration using the method in [Issue 1].
 
-## （二）解决方案
-查看 docker 的 systemd（docker.service）配置位置【问题1】中的办法
-
-在 ExecStart 命令后加上创建容器的默认 ulimit 配置，如下，设置容器启动时的 ulimit 为65535:65535
-
+Add the default ulimit configuration for container creation after the ExecStart command, as follows, setting the container's ulimit to 65535:65535 when starting:
 ```plain
 --default-ulimit nofile=65535:65535
 ```
 
-配置好后：
-
+After configuration:
 ```plain
 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-ulimit nofile=65535:65535
 ```
 
-执行以下脚本
-
+Execute the following scripts:
 ```shell
 systemctl daemon-reload
 systemctl restart docker
 ```
 
-资料参考：[https://blog.csdn.net/weixin_42241322/article/details/137122868](https://blog.csdn.net/weixin_42241322/article/details/137122868)
+Reference: [https://blog.csdn.net/weixin_42241322/article/details/137122868](https://blog.csdn.net/weixin_42241322/article/details/137122868)
 
-# 三、拉取设计器镜像报错：
-报错信息，拉取镜像 harbor.oinone.top 连不上。
+# III. Error Pulling Designer Image:
+Error message: Failed to connect to the image harbor.oinone.top.
 
 ```plain
 docker login --username=schhsw_oinone harbor.oinone.top
@@ -96,10 +87,9 @@ Password:
 Error response from daemon: Get "https://harbor.oinone.top/v2/": dial tcp 0.0.0.0:443: connect: connection refused
 ```
 
-排查过程：
+Troubleshooting process:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-14_10-10-46-20250530144822471.jpg)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2025-03-11_18-49-23-20250530144827227.jpg)
 
-排除到后面发现原因是 DNS 配置的问题，换了一个阿里云的 IP 就可以了
-
+After troubleshooting, the cause was found to be a DNS configuration issue. Changing to an Alibaba Cloud IP resolved the problem.

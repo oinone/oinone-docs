@@ -1,13 +1,13 @@
 ---
-title: 数据操作：Excel导入导出模板翻译
+title: Data Operation：Excel Import/Export Template Translation
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 22
 ---
 
-# 一、导出翻译项
-与翻译的导出全部翻译项类似，只是该操作目前没有加入到页面交互中，需要通过工具发起后端服务请求，拿到导入导出翻译Excel模版，添加模版翻译项。（查看路径：文件--导出任务）
+# 1. Export Translation Items
+Similar to exporting all translation items for translation, this operation is not currently integrated into the page interaction. You need to initiate a backend service request through a tool to obtain the Excel template for import/export translations and then add template translation items. (View path: File --> Export Task)
 
 ```graphql
 mutation {
@@ -32,15 +32,15 @@ variables:
 }
 ```
 
-:::warning 提示：
+:::warning Note:
 
-参数说明：（不在以下说明范围内的参数无需修改）
+Parameter Description: (Parameters not within the scope of the following description do not need to be modified)
 
-variables.lang：用于指定翻译项的目标语言编码，与【资源】-【语言】中的编码一致。
+variables.lang: Used to specify the target language code for translation items, which should be consistent with the codes in 【Resources】-【Languages】.
 
 :::
 
-# 二、导入翻译项
+# 2. Import Translation Items
 ```graphql
 mutation {
   excelImportTaskMutation {
@@ -51,7 +51,7 @@ mutation {
           name: "excelLocationTemplate"
         }
         file: {
-          url: "翻译项URL链接"
+          url: "Translation Item URL Link"
         }
       }
     ) {
@@ -66,9 +66,8 @@ variables:
 }
 ```
 
-:::warning 提示：
+:::warning Note:
 
-将翻译项URL链接改为实际可访问的文件链接即可，可通过页面中任意文件上传的组件获取。
+Replace the "Translation Item URL Link" with an actual accessible file link, which can be obtained through any file upload component on the page.
 
 :::
-

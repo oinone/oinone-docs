@@ -1,5 +1,5 @@
 ---
-title: Maven Installation and Precautions
+title: Maven Setup
 index: true
 category:
   - Installation and Upgrade

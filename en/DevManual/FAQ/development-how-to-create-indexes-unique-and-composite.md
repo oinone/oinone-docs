@@ -1,22 +1,25 @@
 ---
-title: 开发中：索引、唯一索引、联合索引如何创建
+title: How to Create Indexes, Unique Indexes, and Composite Indexes During Development
 index: true
 category:
-  - 常见问题（faq）
+  - FAQ (Frequently Asked Questions)
 order: 7
 ---
-模型上添加索引注解，不管是联合的还是唯一的，系统最后生成的DDL中自动把is_deleted自动加到唯一约束中去。
 
-# 一、普通索引
+Add index annotations to the model. Whether it is a composite index or a unique index, the system will automatically add `is_deleted` to the unique constraint in the final generated DDL.
+
+
+# I. Ordinary Index
 `@Model.Advanced(index = "taskId")`
 
-# 二、唯一索引
+
+# II. Unique Index
 `@Model.Advanced(unique = {"techName"})`
 
-# 三、联合索引
-## （一）联合唯一约束
-`@Model.Advanced(unique = {“namespace,fun”})`
 
-## （二）两个独立的唯一约束
-`@Model.Advanced(unique = {“namespace”,”fun”})`
+# III. Composite Index
+## (一) Composite Unique Constraint
+`@Model.Advanced(unique = {"namespace,fun"})`
 
+## (二) Two Independent Unique Constraints
+`@Model.Advanced(unique = {"namespace", "fun"})`

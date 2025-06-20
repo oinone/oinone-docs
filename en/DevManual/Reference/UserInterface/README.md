@@ -2,7 +2,7 @@
 title: User interface
 index: false
 category:
-  - 研发手册
+  - DevManual
   - Reference
   - User interface
 dir:

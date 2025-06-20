@@ -1,17 +1,17 @@
 ---
-title: 权限扩展：如何跳过固定路径的权限
+title: Permission Extension:How to Skip Fixed Path Permissions
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 48
 ---
-# 一、概述
+# I. Overview
 
-业务上需要跳过弹窗打开里面的所有按钮权限。
+Business requirements may necessitate skipping permission control for all buttons within pop-up windows.
 
-# 二、代码实践：
+# II. Code Practice:
 
-实现`AuthFilterService`权限接口。
+Implement the `AuthFilterService` permission interface.
 
 ```java
 package pro.shushi.pamirs.top.api.spi;
@@ -34,7 +34,7 @@ public class CustomAuthFilterService implements AuthFilterService {
     public Boolean isAccessAction(String model, String name) {
         String path = AccessResourceInfoSession.getInfo().getOriginPath();
         if (StringUtils.isNotEmpty(path) && path.startsWith(skipPath)) {
-            //返回true就代表通过验证
+            // Returning true indicates access validation passed
             return true;
         }
         return null;
@@ -43,15 +43,13 @@ public class CustomAuthFilterService implements AuthFilterService {
     @Override
     public Boolean isAccessAction(String path) {
         if (StringUtils.isNotEmpty(path) && path.startsWith(skipPath)) {
-            //返回true就代表通过验证
+            // Returning true indicates access validation passed
             return true;
         }
         return null;
     }
 }
-
 ```
 
-可以看到弹窗下面的按钮都不需要权限控制了。
+After implementation, buttons within the pop-up window no longer require permission control:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2025-03-11_18-49-23-20250530144827227.jpg)
-

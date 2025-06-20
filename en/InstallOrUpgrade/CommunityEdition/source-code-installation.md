@@ -1,5 +1,5 @@
 ---
-title: Source Code Installation
+title: Source code installation
 index: true
 category:
   - Installation and Upgrade

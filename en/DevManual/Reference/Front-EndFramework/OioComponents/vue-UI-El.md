@@ -2,19 +2,19 @@
 title: Vue UI El
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - Oio 组件
+  - Oio Components
 order: 2
 
 ---
-# 一、Reference List
+# 1. Reference List
 
-## （一）数据展示
+## (1) Data Display
 
-### ColorPicker 取色器
+### ColorPicker Color Picker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -22,7 +22,7 @@ order: 2
 </template>
 ```
 
-#### 带输入框的取色器
+#### Color Picker with Input Box
 
 ```vue
 <template>
@@ -31,15 +31,15 @@ order: 2
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
-  <!-- 基础用法 -->
+  <!-- Basic usage -->
   <div class="oio-color-picker">
     <el-color-picker popper-class="oio-color-picker-popper" v-model="value" />
   </div>
-  <!-- 带输入框的取色器 -->
+  <!-- Color picker with input box -->
   <div class="oio-color-picker">
     <el-input v-model="value" readonly>
       <template #append>
@@ -52,33 +52,32 @@ order: 2
 </template>
 ```
 
-更多使用方式，可参考：[Element Plus ColorPicker 取色器 For Vue](https://cn.element-plus.org/en/component/color-picker.html)
+For more usage methods, please refer to: [Element Plus ColorPicker Color Picker For Vue](https://cn.element-plus.org/en/component/color-picker.html)
 
 #### **API**
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| value | string | - | 绑定的颜色值（双向绑定） |
-| defaultValue | string | - | 初始颜色值 |
-| readonly | boolean | `false`             | 是否为只读模式（禁止选择颜色） |
-| disabled | boolean | `false`             | 是否禁用组件 |
-| colorFormat | `ColorFormat`       | `ColorFormat.RGB`   | 颜色格式（枚举值或字符串，如 `'hex'`、`'hsl'`） |
-| predefine | string[] | `DEFAULT_PREDEFINE` | 预设颜色列表（支持 RGB/HEX 格式，自动去重并处理透明度） |
-| showAlpha | boolean | `true`              | 是否显示透明度调节滑块 |
-| hasInput | boolean | `false`             | 是否显示输入框 |
-| inputPlacement | `ColorInputPlacement` | `ColorInputPlacement.BEFORE` | 输入框位置（枚举值，控制在颜色选择器前或后） |
-| inputPlaceholder | string | `'请选择颜色'`      | 输入框占位文本 |
-| inputReadonly | boolean | `true`              | 输入框是否为只读（`hasInput: true` 时生效） |
-| disabledLastedColor | boolean | `false`             | 是否禁用最近使用颜色功能 |
-| lastedColorCount | number | 4                                                            | 最近使用颜色数量 |
+| value | string | - | Bound color value (two-way binding) |
+| defaultValue | string | - | Initial color value |
+| readonly | boolean | `false`             | Whether it is in read-only mode (prohibits color selection) |
+| disabled | boolean | `false`             | Whether to disable the component |
+| colorFormat | `ColorFormat`       | `ColorFormat.RGB`   | Color format (enum value or string, such as `'hex'`, `'hsl'`) |
+| predefine | string[] | `DEFAULT_PREDEFINE` | Preset color list (supports RGB/HEX formats, automatically deduplicates and handles transparency) |
+| showAlpha | boolean | `true`              | Whether to display the alpha adjustment slider |
+| hasInput | boolean | `false`             | Whether to display the input box |
+| inputPlacement | `ColorInputPlacement` | `ColorInputPlacement.BEFORE` | Input box position (enum value, controls before or after the color picker) |
+| inputPlaceholder | string | `'Please select a color'`      | Input box placeholder text |
+| inputReadonly | boolean | `true`              | Whether the input box is read-only (takes effect when `hasInput: true`) |
+| disabledLastedColor | boolean | `false`             | Whether to disable the recently used colors function |
+| lastedColorCount | number | 4                                                            | Number of recently used colors |
 
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:value | string | 颜色值变化时触发（双向绑定） |
-| change | string | 颜色选择完成时触发 |
-
+| update:value | string | Triggered when the color value changes (two-way binding) |
+| change | string | Triggered when color selection is completed |

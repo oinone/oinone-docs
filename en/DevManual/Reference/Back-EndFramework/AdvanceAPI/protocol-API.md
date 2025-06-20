@@ -1,56 +1,56 @@
 ---
-title: 网关协议 API（Protocol API）
+title: Protocol API
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 后端API
+  - Backend API
   - Advance API
 order: 1
 prev:
   text: 安全机制（Security in Oinone）
   link: /en/DevManual/Reference/Back-EndFramework/security-in-oinone.md
 ---
-# 一、请求 URL 规范
+# 一、Request URL Specifications
 
 ```plain
 http://127.0.0.1:8090/pamirs/DemoCore?scene=redirectListPage
 ```
 
-| **组成部分** | **说明**                                                     |
+| **Component** | **Description**                                                     |
 | :----------- | :----------------------------------------------------------- |
-| 服务器地址   | `127.0.0.1`<br/>，支持 IP 地址或域名                         |
-| 服务端口     | `8090`<br/>，默认服务端口号                                  |
-| 固定路径     | `pamirs`<br/>，协议统一前缀                                  |
-| 模块名称     | `DemoCore`<br/>，指定目标业务模块                            |
-| 场景信息     | `scene=redirectListPage`<br/>，通过 URL 参数传递请求场景     |
-| 请求来源模块 | 由 HTTP 头部信息携带，用于负载均衡时进行后端服务器路由策略匹配 |
+| Server Address   | `127.0.0.1`<br/>, supports IP address or domain name                         |
+| Service Port     | `8090`<br/>, default service port number                                  |
+| Fixed Path     | `pamirs`<br/>, unified protocol prefix                                  |
+| Module Name     | `DemoCore`<br/>, specifies the target business module                            |
+| Scene Information     | `scene=redirectListPage`<br/>, passes request scenarios through URL parameters     |
+| Request Source Module | Carried by HTTP header information, used for backend server routing policy matching during load balancing |
 
 
-**应用场景**：在分布式系统中，可根据模块名称`DemoCore`将请求定向到特定的服务器集群，实现流量分发与负载均衡。
+**Application Scenario**: In a distributed system, requests can be directed to a specific server cluster based on the module name `DemoCore` to achieve traffic distribution and load balancing.
 
-# 二、请求协议
+# 二、Request Protocol
 
-Oinone 前后端网络协议采用 GraphQL 和 RSQL 相结合的方式。GraphQL 作为 API 查询语言，负责定义数据的查询和操作规范；RSQL 则用于参数化过滤数据，两者协同工作，为 Oinone 系统提供高效、灵活的数据交互能力。
+The Oinone front-end and back-end network protocol adopts a combination of GraphQL and RSQL. GraphQL, as an API query language, is responsible for defining data query and operation specifications; RSQL is used for parameterized data filtering. The two work together to provide efficient and flexible data interaction capabilities for the Oinone system.
 
-## （一）GraphQL 协议详解
+## (一) Detailed Explanation of GraphQL Protocol
 
-### 1、GraphQL 基础概念
+### 1. Basic Concepts of GraphQL
 
-GraphQL 是一种用于 API 的查询语言，基于类型系统执行查询。它不依赖特定数据库或存储引擎，而是通过定义类型、字段及解析函数，实现客户端与服务器之间的数据交互。GraphQL 服务由类型定义和字段解析函数构成，客户端通过`query`获取数据，`mutation`修改数据，`subscription`接收数据更新。
+GraphQL is a query language for APIs that executes queries based on a type system. It does not depend on a specific database or storage engine but achieves data interaction between the client and the server by defining types, fields, and resolver functions. A GraphQL service consists of type definitions and field resolver functions. The client uses `query` to fetch data, `mutation` to modify data, and `subscription` to receive data updates.
 
-### 2、Oinone 对 GraphQL 的扩展
+### 2. Oinone's Extensions to GraphQL
 
-Oinone 在标准 GraphQL 基础上，扩展支持了以下数据类型：
+Oinone extends and supports the following data types based on standard GraphQL:
 
-+ **数值类型**：`BigDecimal`、`BigInteger`、`Double`
-+ **时间类型**：`Date`
-+ **特殊类型**：`Html`、`Money`、`Void`
-+ **集合类型**：`Map`、`Obj`
++ **Numeric Types**: `BigDecimal`, `BigInteger`, `Double`
++ **Time Types**: `Date`
++ **Special Types**: `Html`, `Money`, `Void`
++ **Collection Types**: `Map`, `Obj`
 
-### 3、GraphQL 示例
+### 3. GraphQL Examples
 
-#### 查询示例
+#### Query Example
 
 ```graphql
 query {
@@ -63,9 +63,9 @@ query {
 }
 ```
 
-上述查询通过`testModelQuery`下的`queryInfo`函数，传入`id`参数，获取指定名称和描述。
+The above query uses the `queryInfo` function under `testModelQuery`, passes the `id` parameter, and fetches the specified name and description.
 
-#### 分页查询示例
+#### Pagination Query Example
 
 ```graphql
 query {
@@ -86,9 +86,9 @@ query {
 }
 ```
 
-该查询使用`queryPage`函数进行分页查询，并通过`queryWrapper`中的`rsql`字段传递 RSQL 过滤条件。
+This query uses the `queryPage` function for pagination query and passes the RSQL filter condition through the `rsql` field in `queryWrapper`.
 
-#### 修改数据示例
+#### Data Modification Example
 
 ```graphql
 mutation {
@@ -101,54 +101,54 @@ mutation {
 }
 ```
 
-通过`testModelMutation`下的`create`函数创建新数据。
+Create new data through the `create` function under `testModelMutation`.
 
-## （二）RSQL 协议详解
+## (二) Detailed Explanation of RSQL Protocol
 
-### 1、RSQL 基础概念
+### 1. Basic Concepts of RSQL
 
-RSQL 是基于 FIQL 的参数化过滤语言，核心特性：
+RSQL is a parameterized filtering language based on FIQL, with core features:
 
-+ **逻辑运算符**：
-  - `;` 或 `and`：逻辑与
-  - `,` 或 `or`：逻辑或
-+ **比较运算符**：**plaintext**
++ **Logical Operators**:
+  - `;` or `and`: Logical AND
+  - `,` or `or`: Logical OR
++ **Comparison Operators**: **plaintext**
 
 ```plain
-== 等于
-!= 不等于
-=lt= 小于
-=le= 小于等于
-=gt= 大于
-=ge= 大于等于
-=in= 包含于
-=out= 不包含于
+== Equals
+!= Not equals
+=lt= Less than
+=le= Less than or equal to
+=gt= Greater than
+=ge= Greater than or equal to
+=in= Contains
+=out= Does not contain
 ```
 
-### 2、Oinone 对 RSQL 的扩展
+### 2. Oinone's Extensions to RSQL
 
-Oinone 在 RSQL 基础上，新增以下操作符：
+Oinone has added the following operators based on RSQL:
 
-+ **正常类型**：
-  - 为空：`=isnull=`
-  - 不为空：`=notnull=`
-  - 模糊匹配：`=like=`
-  - 不模糊匹配：`=notlike=`
-  - 列相等：`=cole=`
-  - 列不相等：`=colnot=`
-  - 前缀匹配：`=starts=`
-  - 无前缀匹配：`=notstarts=`
-  - 后缀匹配：`=ends=`
-  - 无后缀匹配：`=notends=`
-+ **二进制枚举**：
-  - 交集：`=has=`
-  - 无交集：`=hasnt=`
-  - 包含：`=contain=`
-  - 不包含：`=notcontain=`
++ **Normal Types**:
+  - Is null: `=isnull=`
+  - Is not null: `=notnull=`
+  - Fuzzy match: `=like=`
+  - Not fuzzy match: `=notlike=`
+  - Column equals: `=cole=`
+  - Column not equals: `=colnot=`
+  - Prefix match: `=starts=`
+  - No prefix match: `=notstarts=`
+  - Suffix match: `=ends=`
+  - No suffix match: `=notends=`
++ **Binary Enumeration**:
+  - Intersection: `=has=`
+  - No intersection: `=hasnt=`
+  - Contains: `=contain=`
+  - Does not contain: `=notcontain=`
 
-### 3、RSQL 与 GraphQL 结合示例
+### 3. Example of Combining RSQL and GraphQL
 
-在 GraphQL 的`queryPage`查询中，通过`queryWrapper`的`rsql`字段传递 RSQL 过滤条件：
+In the GraphQL `queryPage` query, pass the RSQL filter condition through the `rsql` field of `queryWrapper`:
 
 ```graphql
 query {
@@ -172,25 +172,25 @@ query {
 }
 ```
 
-**查询说明**：通过 RSQL 条件筛选出名称为`testName`且状态为`ENABLED`或`PENDING`的模型数据。
+**Query Description**: Filter model data with the name `testName` and status `ENABLED` or `PENDING` through RSQL conditions.
 
-## （三） GraphQL 与 RESTful 的优势对比
+## (三) Advantage Comparison Between GraphQL and RESTful
 
-| **特性**         | **RESTful**                     | **GraphQL**                    |
+| **Feature**         | **RESTful**                     | **GraphQL**                    |
 | :--------------- | :------------------------------ | :----------------------------- |
-| **数据获取方式** | 多个 URL 端点，固定数据结构返回 | 单一端点，按需获取数据         |
-| **灵活性**       | 结构固定，扩展性较差            | 灵活定义查询，适应复杂需求     |
-| **数据传输效率** | 可能存在超额或不足获取数据      | 精确返回所需数据，减少传输量   |
-| **版本控制**     | URL 中包含版本，非强制          | 强制向后兼容，更安全           |
-| **错误处理**     | 需在代码中内置错误处理          | 强类型检查，自动生成错误消息   |
-| **适用场景**     | 简单数据来源，资源明确          | 复杂、关联数据，客户端需求多变 |
+| **Data Acquisition Method** | Multiple URL endpoints, fixed data structure return | Single endpoint, data acquired on demand         |
+| **Flexibility**       | Fixed structure, poor scalability            | Flexibly define queries, adapt to complex needs     |
+| **Data Transmission Efficiency** | May have excessive or insufficient data acquisition      | Precisely return required data, reducing transmission volume   |
+| **Version Control**     | Version included in URL, not mandatory          | Forced backward compatibility, safer           |
+| **Error Handling**     | Error handling needs to be built into the code          | Strong type checking, automatically generate error messages   |
+| **Applicable Scenarios**     | Simple data sources, clear resources          | Complex, related data,多变 client requirements |
 
 
-## （四）Variables
+## (四) Variables
 
-### 1、Variables 变量
+### 1. Variables
 
-前端可通过 GraphQL 的`Variables`属性传递额外信息，如：
+The front end can pass additional information through the `Variables` attribute of GraphQL, such as:
 
 ```json
 {
@@ -198,20 +198,20 @@ query {
 }
 ```
 
-后端通过`PamirsSession.getRequestVariables()`获取变量值。
+The back end obtains the variable value through `PamirsSession.getRequestVariables()`.
 
 ```java
 PamirsRequestVariables variables = PamirsSession.getRequestVariables();
 String scene = variables.getVariables().get("scene");
 ```
 
-### 2、请求策略requestStrategy
+### 2. Request Strategy
 
-| **配置项**    | **取值范围**                                                | **说明**                               |
+| **Configuration Item**    | **Value Range**                                                | **Description**                               |
 | :------------ | :---------------------------------------------------------- | :------------------------------------- |
-| checkStrategy | `RETURN_WHEN_COMPLETED`<br/> / `RETURN_WHEN_ERROR`          | 校验策略，控制结果返回时机             |
-| msgLevel      | `DEBUG`<br/>/`INFO`<br/>/`WARN`<br/>/`SUCCESS`<br/>/`ERROR` | 消息级别过滤，仅返回指定级别以上的消息 |
-| onlyValidate  | `true`<br/> / `false`                                       | 是否仅执行校验，不提交数据             |
+| checkStrategy | `RETURN_WHEN_COMPLETED`<br/> / `RETURN_WHEN_ERROR`          | Validation strategy, controls the timing of result return             |
+| msgLevel      | `DEBUG`<br/>/`INFO`<br/>/`WARN`<br/>/`SUCCESS`<br/>/`ERROR` | Message level filtering, only return messages above the specified level |
+| onlyValidate  | `true`<br/> / `false`                                       | Whether to only perform validation without submitting data             |
 
 
 ```java
@@ -223,15 +223,15 @@ String scene = variables.getVariables().get("scene");
 }
 ```
 
-`requestStrategy`策略可有效控制`Validation`校验约束的执行。`Validation`已在 ORM API 和 Function API 中说明，能够作用于模型、字段、函数等不同层级，实现灵活且精准的业务校验。
+The `requestStrategy` can effectively control the execution of `Validation` constraints. `Validation` has been described in ORM API and Function API, and can act on different levels such as models, fields, and functions to achieve flexible and precise business validation.
 
-## （五）占位符 PlaceHolder
+## (五) PlaceHolder
 
-在 Oinone 开发中，当遇到需要前端传递一些只有后端才知道值的参数时，可使用后端占位符。
+In Oinone development, when encountering parameters that need to be passed by the front end but whose values are only known by the back end, back-end placeholders can be used.
 
-### 1、后端定义占位符：
+### 1. Backend Define PlaceHolder
 
-新建一个类继承 `AbstractPlaceHolderParser`，定义占位符。例如定义 `currentUserId` 占位符：
+Create a new class inheriting from `AbstractPlaceHolderParser` to define placeholders. For example, define the `currentUserId` placeholder:
 
 ```java
 @Component
@@ -258,9 +258,9 @@ public class UserPlaceHolder extends AbstractPlaceHolderParser {
 }
 ```
 
-### 2、前端使用后端占位符：
+### 2. Frontend Use Backend PlaceHolder
 
-在前端设置过滤条件等场景中使用占位符，如在表格视图的 `search` 部分设置 `domain` 过滤条件：
+Use placeholders in scenarios such as setting filter conditions on the front end, for example, setting the `domain` filter condition in the `search` part of the table view:
 
 ```html
 <template slot="search"  cols="4">
@@ -268,9 +268,8 @@ public class UserPlaceHolder extends AbstractPlaceHolderParser {
 </template>
 ```
 
-前端提交时会将 `#` 过滤掉，后端自动将占位符替换为实际值。
+When the front end submits, the `#` will be filtered out, and the back end will automatically replace the placeholder with the actual value.
 
 
 
-Oinone 通过 GraphQL 和 RSQL 的结合，实现了高效、灵活的数据交互。GraphQL 负责定义数据查询和操作规范，RSQL 用于数据过滤，两者优势互补。同时，GraphQL 相比 RESTful 在数据获取效率、灵活性和错误处理等方面具有显著优势，更适合复杂数据场景。
-
+Oinone realizes efficient and flexible data interaction through the combination of GraphQL and RSQL. GraphQL is responsible for defining data query and operation specifications, and RSQL is used for data filtering. The two complement each other's advantages. At the same time, GraphQL has significant advantages over RESTful in terms of data acquisition efficiency, flexibility, and error handling, making it more suitable for complex data scenarios.

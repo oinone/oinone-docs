@@ -1,27 +1,26 @@
 ---
-title: 页面设计：自定义用户中心菜单
+title: Page Design:Customizing User Center Menu
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 71
 ---
 
-使用扩展点实现用户中心菜单替换
+Implementing User Center Menu Replacement Using Extension Points
 
-# 一、工程中引起 pamirs-user-api
+# 一、Adding pamirs-user-api Dependency in the Project
 ```xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-user-api</artifactId>
 </dependency>
-
 ```
 
-# 二、实现 TopBarUserBlockAction 的后置扩展
-+ 实现 HookAfter 后置扩展接口
-+ `@Hook(model = {TopBarUserBlock.MODEL_MODEL}, fun = {"construct"})`添加Hook注解注明是`TopBarUserBlock`模型的`construct`函数的后置扩展。
+# 二、Implementing Post Extension of TopBarUserBlockAction
++ Implement the `HookAfter` post-extension interface
++ Add the `@Hook` annotation to specify it as a post-extension for the `construct` function of the `TopBarUserBlock` model: `@Hook(model = {TopBarUserBlock.MODEL_MODEL}, fun = {"construct"})`
 
-## （一）增加用户中心菜单
+## （一）Adding User Center Menu
 ```java
 @Component
 @Order(1)
@@ -38,12 +37,12 @@ public class MyTopBarActionExt implements TopBarActionExtendApi {
 }
 ```
 
-实现效果
+Implementation Effect
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1747135080203-3ad3a8a8-0fe7-483d-b5d6-33119ff63db7-20250530144821319.png)
 
-## （二）替换原有的用户中心菜单
-1. 替换原有的菜单跳转
+## （二）Replacing Original User Center Menu
+1. Replacing Original Menu Redirection
 
 ```java
 @Component
@@ -60,14 +59,14 @@ public class DemoTopBarUserBlockDataHookAfter implements HookAfter {
             Object[] rets = (Object[]) ((Object[]) ret);
             if (rets.length == 1) {
                 result = (TopBarUserBlock) rets[0];
-                //例：替换用户中心：修改密码菜单
-                //使用name和model查询出模型的ViewAction替换修改密码ViewAction
+                // Example: Replace User Center: Change Password Menu
+                // Query the model's ViewAction by name and model to replace the change password ViewAction
                 ViewAction demoViewAction = PamirsSession.getContext().getExtendCache(ActionCacheApi.class).get(Dog.MODEL_MODEL, "changePassword");
-                //设置菜单的icon
+                // Set the menu icon
                 Map<String, Object> attributes = Optional.ofNullable(demoViewAction.getAttributes()).orElse(new HashMap<>());
                 attributes.put("icon", "oinone-xiugaimima");
                 demoViewAction.setAttributes(attributes);
-                //UserViewAction第0个是修改密码ViewAction，使用自定义的ViewAction就可以实现替换
+                // The 0th index of UserViewAction is the change password ViewAction; replacing with a custom ViewAction achieves the replacement
                 result.getUserViewAction().set(0, demoViewAction);
             }
         } else {
@@ -78,7 +77,7 @@ public class DemoTopBarUserBlockDataHookAfter implements HookAfter {
 }
 ```
 
-2. 使用`@UxRouteButton`方式新增`ViewAction`
+2. Adding `ViewAction` Using `@UxRouteButton`
 
 ```java
 @Model.model(Dog.MODEL_MODEL)
@@ -90,8 +89,8 @@ public class DogAction {
 }
 ```
 
-# 三、替换原有的个人设置头像跳转
-1. 修改点击头像绑定的跳转逻辑
+# 三、Replacing Original Profile Avatar Redirection
+1. Modifying the Redirection Logic Bound to Avatar Click
 
 ```java
 @Order(10)
@@ -101,7 +100,7 @@ public class DemoTopBarUserBlockDataApi implements TopBarUserBlockDataApi {
 
     @Override
     public TopBarUserBlock extendData(TopBarUserBlock data) {
-        //例如增加一个菜单, PamirsDemo.MODEL_MODEL: 模型。 MenuuiMenu31f22466735a4abe8e0544b428ed88ac：viewAction的name。
+        // For example, adding a menu: PamirsDemo.MODEL_MODEL: model. MenuuiMenu31f22466735a4abe8e0544b428ed88ac: viewAction's name.
         Action demoViewAction = PamirsSession.getContext().getExtendCache(ActionCacheApi.class).get(PamirsDemo.MODEL_MODEL, "MenuuiMenu31f22466735a4abe8e0544b428ed88ac");
         if (demoViewAction != null){
             AccessResourceInfo info = PageLoadHelper.generatorAccessResourceInfo(TopModule.MODULE_MODULE, demoViewAction);
@@ -115,7 +114,7 @@ public class DemoTopBarUserBlockDataApi implements TopBarUserBlockDataApi {
 }
 ```
 
-2. 添加权限节点，用于控制权限。
+2. Adding Permission Nodes for Permission Control
 
 ```java
 @Component
@@ -131,8 +130,8 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
         Action demoViewAction = PamirsSession.getContext().getExtendCache(ActionCacheApi.class).get(PamirsDemo.MODEL_MODEL, "MenuuiMenu31f22466735a4abe8e0544b428ed88ac");
 
         if (demoViewAction != null) {
-            //将该Action放入权限树
-            //权限鉴权的path路径是根据【cacheAction.getModel() + cacheAction.getName()】拼接的。和MODULE没有关系，这里MODULE可以自定义。
+            // Add this Action to the permission tree
+            // The permission authentication path is concatenated as 【cacheAction.getModel() + cacheAction.getName()】, irrelevant to MODULE, which can be customized here.
             AuthNodeHelper.addNode(newNodes, root, AuthNodeHelper.createActionNode(TopModule.MODULE_MODULE, demoViewAction, root));
         }
         nodes.add(0, root);
@@ -141,6 +140,5 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
 }
 ```
 
-3. 管理中心控制个人设置头像权限
+3. Controlling Profile Avatar Permissions in the Management Center
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2025-02-28_10-51-56-20250530144821763.jpg)
-

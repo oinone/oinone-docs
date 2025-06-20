@@ -2,16 +2,16 @@
 title: Redis API
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 后端API
+  - Backend API
   - Advance API
 order: 8
 
 ---
-# 一、基础使用
+# I. Basic Usage
 
-Oinone 平台基于 Spring Data Redis的扩展实现，已提前完成`redisTemplate`与`stringRedisTemplate`的注册，并内置 Oinone Cache Key 构建逻辑。开发者可直接通过依赖注入使用，禁止重复定义 Redis 相关 bean，确保缓存服务一致性。
+The Oinone platform extends based on Spring Data Redis, having completed the registration of `redisTemplate` and `stringRedisTemplate` in advance, and built-in the Oinone Cache Key construction logic. Developers can directly use dependency injection, and are prohibited from redefining Redis-related beans to ensure the consistency of cache services.
 
 ```java
 package pro.shushi.pamirs.demo.core.service;
@@ -30,19 +30,19 @@ public class Test {
 }
 ```
 
-# 二、最佳实践
+# II. Best Practices
 
-## （一）AbstractRedisCacheService
+## (一) AbstractRedisCacheService
 
-**功能概述**：`AbstractRedisCacheService<T>`封装了 Redis 缓存操作，简化数据读写逻辑，同时规范使用方式。即使不使用该封装类，仍可直接调用`RedisTemplate`或`stringRedisTemplate`，功能不受影响。
+**Function Overview**: `AbstractRedisCacheService<T>` encapsulates Redis cache operations, simplifying data read-write logic while standardizing usage. Even without using this encapsulated class, you can directly call `RedisTemplate` or `stringRedisTemplate` with unaffected functionality.
 
-**使用建议**：
+**Usage Recommendations**:
 
-+ **分片管理**：多组数据缓存时，建议通过常量池管理缓存分片，避免键冲突，提升存储效率。
-+ **数据精简**：控制缓存数据大小，仅存储必要信息，减少内存占用。
-+ **定位明确**：缓存应作为性能优化工具，避免替代持久化存储。
++ **Sharding Management**: When caching multiple groups of data, it is recommended to manage cache shards through a constant pool to avoid key conflicts and improve storage efficiency.
++ **Data Streamlining**: Control the size of cached data, storing only necessary information to reduce memory occupation.
++ **Clear Positioning**: Caching should serve as a performance optimization tool, avoiding substitution of persistent storage.
 
-**使用示例**：
+**Usage Example**:
 
 ```java
 @Component
@@ -75,16 +75,16 @@ public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
 }
 ```
 
-## （二）Jedis 与 Lettuce 切换指南
+## (二) Jedis and Lettuce Switching Guide
 
-### 1、核心差异：
+### 1. Core Differences:
 
-+ **Jedis**：同步阻塞式客户端，实例非线程安全，需依赖连接池复用，适合单线程或连接池管理场景。
-+ **Lettuce**：基于 Netty 的异步响应式客户端，线程安全，支持多线程直接操作单连接，同时兼容连接池，适用于高并发异步场景。
++ **Jedis**: Synchronous blocking client, instances are not thread-safe, requiring reliance on connection pools for reuse, suitable for single-threaded or connection pool management scenarios.
++ **Lettuce**: Asynchronous reactive client based on Netty, thread-safe, supporting direct operation of single connections by multiple threads while being compatible with connection pools, suitable for high-concurrency asynchronous scenarios.
 
-### 2、切换步骤：
+### 2. Switching Steps:
 
-**依赖调整**：在`pom.xml`中移除 Jedis 依赖，引入 Lettuce 及连接池依赖：
+**Dependency Adjustment**: Remove the Jedis dependency in `pom.xml` and introduce Lettuce and connection pool dependencies:
 
 ```xml
 <lettuce.version>5.3.6.RELEASE</lettuce.version>
@@ -113,7 +113,7 @@ public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
 </dependencies>
 ```
 
-**配置修改**：在`application.yml`中新增 Lettuce 连接池配置：
+**Configuration Modification**: Add Lettuce connection pool configuration in `application.yml`:
 
 ```yaml
 spring:
@@ -123,7 +123,7 @@ spring:
     port: 6379
     prefix: pamirs
     timeout: 2000
-    # 可选密码配置
+    # Optional password configuration
     password: xxxxx
     lettuce:
       pool:
@@ -134,14 +134,14 @@ spring:
         max-wait: 2000
 ```
 
-# 三、核心配置源码解析
+# III. Source Code Analysis of Core Configuration
 
-## （一）RedisSimpleConfig
+## (一) RedisSimpleConfig
 
-该配置类在单 Redis 模式下生效，负责`redisTemplate`与`stringRedisTemplate`的初始化：
+This configuration class takes effect in the single Redis mode, responsible for the initialization of `redisTemplate` and `stringRedisTemplate`:
 
-1. **序列化定制**：通过`PamirsStringRedisSerializer`为键添加租户前缀，并采用 Jackson2JsonRedisSerializer 实现值的 JSON 序列化，确保数据兼容多租户场景。
-2. **模板注入**：注入`RedisConnectionFactory`与自定义序列化器，完成 Redis 模板配置，简化开发者使用流程。
+1. **Serialization Customization**: Add tenant prefixes to keys through `PamirsStringRedisSerializer`, and use Jackson2JsonRedisSerializer for JSON serialization of values, ensuring data compatibility in multi-tenant scenarios.
+2. **Template Injection**: Inject `RedisConnectionFactory` and custom serializers to complete Redis template configuration, simplifying the usage process for developers.
 
 ```java
 @Validated
@@ -155,7 +155,7 @@ public class RedisSimpleConfig {
 
     @Bean(name = "pamirsStringRedisSerializer")
     public PamirsStringRedisSerializer pamirsStringRedisSerializer() {
-        // 处理租户前缀逻辑
+        // Process tenant prefix logic
     }
 
     @Bean(name = "redisTemplate")
@@ -171,10 +171,10 @@ public class RedisSimpleConfig {
     @Bean(name = "stringRedisTemplate")
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory factory,
                                                    PamirsStringRedisSerializer serializer) {
-        // 同理配置StringRedisTemplate
+        // Similarly configure StringRedisTemplate
     }
 
-    // 序列化器设置方法
+    // Serializer setting methods
     private <K, V> void setKeySerializer(RedisTemplate<K, V> template, PamirsStringRedisSerializer serializer) {
         template.setKeySerializer(serializer);
     }
@@ -187,12 +187,12 @@ public class RedisSimpleConfig {
 }
 ```
 
-## （二）PamirsStringRedisSerializer
+## (二) PamirsStringRedisSerializer
 
-自定义字符串序列化器，实现租户前缀的自动添加与解析：
+A custom string serializer that implements automatic addition and parsing of tenant prefixes:
 
-+ **序列化**：为键添加租户前缀及全局标识，确保键在多租户环境下的唯一性。
-+ **反序列化**：自动移除前缀与标识，还原原始键值，保证数据读写一致性。
++ **Serialization**: Add tenant prefixes and global identifiers to keys to ensure key uniqueness in multi-tenant environments.
++ **Deserialization**: Automatically remove prefixes and identifiers to restore original key values, ensuring data read-write consistency.
 
 ```java
 public class PamirsStringRedisSerializer extends StringRedisSerializer {
@@ -236,4 +236,3 @@ public class PamirsStringRedisSerializer extends StringRedisSerializer {
     }
 }
 ```
-

@@ -1,5 +1,5 @@
 ---
-title: Contributor License Agreement Template
+title: CLA
 index: true
 category:
   - Contribution Manual

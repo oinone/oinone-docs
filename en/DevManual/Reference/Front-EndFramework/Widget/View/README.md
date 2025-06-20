@@ -2,9 +2,9 @@
 title: View
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 前端API
+  - Frontend API
   - Widget
   - View
 dir:
@@ -18,261 +18,252 @@ next:
   link: /en/DevManual/Reference/Front-EndFramework/Widget/View/table.md
 
 ---
-在我们之前学习的 “[精通前端框架 - 前端框架概览](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md)” 章节中，我们已经对 Oinone 中所有的元数据进行了简单的概述。那么，在这一章节中，我们将对 “视图” 这一类组件进行较为完整的介绍。
+In the "[Master the Front-end Framework - Front-end Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md)" chapter we studied earlier, we have already provided a brief overview of all metadata in Oinone. In this chapter, we will provide a more comprehensive introduction to the "view" class of components.
 
-# 一、视图组件
+# 一、View Components
+In Oinone, different view types handle different data structures and presentation forms, and the data processing and rendering methods they adopt are also different. The Widget framework mainly classifies data structures into two categories: `List` and `Object`.
 
-在 Oinone 中，不同的视图类型处理了不同的数据结构和表现形式，其所采取的数据处理和渲染方式也是不同的。Widget 框架对数据结构主要分为 `列表（List）` 和 `对象（Object）` 两大类。
-
-下面根据数据结构和视图类型对一些组件进行了列举：
+The following lists some components based on data structures and view types:
 
 <table cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 1200px; margin: 20px auto;">
   <thead>
     <tr style="background-color: #f5f5f5;">
-      <th style="text-align: left; font-weight: bold;">数据结构</th>
-      <th style="text-align: left; font-weight: bold;">视图类型</th>
-      <th style="text-align: left; font-weight: bold;">组件</th>
-      <th style="text-align: left; font-weight: bold;">基类</th>
+      <th style="text-align: left; font-weight: bold;">Data Structure</th>
+      <th style="text-align: left; font-weight: bold;">View Type</th>
+      <th style="text-align: left; font-weight: bold;">Component</th>
+      <th style="text-align: left; font-weight: bold;">Base Class</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3">列表（List）</td>
-      <td>表格（TABLE）</td>
+      <td rowspan="3">List</td>
+      <td>TABLE</td>
       <td>TableView</td>
       <td rowspan="3">BaseListView</td>
     </tr>
     <tr>
-      <td>画廊（GALLERY）</td>
+      <td>GALLERY</td>
       <td>GalleryView</td>
     </tr>
     <tr>
-      <td>树视图（TREE）</td>
+      <td>TREE</td>
       <td>TreeView</td>
     </tr>
     <tr>
-      <td rowspan="2">对象（Object）</td>
-      <td>表单（FORM）</td>
+      <td rowspan="2">Object</td>
+      <td>FORM</td>
       <td>FormView</td>
       <td rowspan="2">BaseObjectView</td>
     </tr>
     <tr>
-      <td>详情（DETAIL）</td>
+      <td>DETAIL</td>
       <td>DetailView</td>
     </tr>
   </tbody>
 </table>
 
-通常情况下，你不需要特别关心视图组件，它在页面中主要扮演 “桥梁” 角色——无需对其实现细节进行深度干预，即可完成组件与组件之间的协同工作。除此之外，视图还充当元数据隔离的作用域单元——**每个视图内的元数据均基于特定模型的字段拓扑结构展开**，确保数据描述的一致性与作用域边界的清晰性。
+Generally, you don't need to care specially about view components. They mainly play the role of a "bridge" in the page - they can complete the collaborative work between components without deep intervention in their implementation details. In addition, views also act as scope units for metadata isolation - **the metadata within each view is expanded based on the field topology of a specific model**, ensuring the consistency of data description and the clarity of scope boundaries.
 
-这种设计使得视图成为元数据组织的最小逻辑单元，其内部所有数据定义均严格锚定于单一模型的字段层级关系，避免跨模型的数据混杂与逻辑冲突。
+This design makes the view the smallest logical unit for metadata organization. All data definitions within it are strictly anchored to the field hierarchy of a single model, avoiding cross-model data mixing and logical conflicts.
 
-:::info 注意：
+:::info Note:
 
-在 Oinone 中，存在两类视图组件，`View` 视图组件和 `Element` 视图组件。这里需要区分两个视图组件的概念：
+In Oinone, there are two types of view components: `View` view components and `Element` view components. It is necessary to distinguish the concepts of these two view components:
 
-`View` 视图组件：用于视图类型定义和数据结构定义的视图组件。
+`View` view components: View components used for view type definition and data structure definition.
 
-`Element` 视图组件：在 `View` 视图组件中提供数据源及具体表现形式的视图组件。
+`Element` view components: View components that provide data sources and specific presentation forms in `View` view components.
 
-在这一章节中，我们提到的所有视图组件都是 `View` 视图组件。
-
-:::
-
-# 二、数据交互设计
-
-## （一）数据结构设计
-
-数据结构分为三大类，`列表（List）`、`对象（Object）`以及`弹出层（Popup）`。
-
-+ 列表（List）：用于多条数据的展示，主要包括`搜索（用户端）`、`自定义条件（产品端）`、`排序`、`分页`、`数据选中`、`数据提交`、`数据校验`功能。
-+ 对象（Object）：用于单条数据的展示，主要包括`数据提交`、`数据校验`功能。
-+ 弹出层（Popup）：用于在一块独立的空间展示对应类型的数据。
-
-:::info 注意：
-
-严格来说，弹出层不应该称为数据结构，但在 Oinone 整个自动化渲染以及数据交互的框架中，弹出层有其独特的地方，让我们不得不将其独立出来进行单独处理。
+In this chapter, all view components mentioned are `View` view components.
 
 :::
 
-## （二）数据源设计
+# 二、Data Interaction Design
 
-在单个视图中，无外乎只有两种数据结构：`列表（List）` 和 `对象（Object）`。
+## （一）Data Structure Design
+Data structures are divided into three categories: `List`, `Object`, and `Popup`.
 
-为了能将其统一处理，我们可以将 `对象（Object）` 看作是有且仅有一项的 `列表（List）` 。
+- List: Used for displaying multiple data items, mainly including `search (client-side)`, `custom conditions (product-side)`, `sorting`, `pagination`, `data selection`, `data submission`, and `data validation` functions.
+- Object: Used for displaying a single data item, mainly including `data submission` and `data validation` functions.
+- Popup: Used to display corresponding types of data in an independent space.
 
-那么，在任何一个包含 `数据源` 的组件中，我们都可以得到三个 `通用属性`：
+:::info Note:
 
-+ rootData：根数据源
-+ dataSource：当前数据源
-+ activeRecords：当前激活数据源
+Strictly speaking, popups should not be called data structures, but in Oinone's entire automated rendering and data interaction framework, popups have their unique features, which force us to handle them independently.
 
-并且，它们都具有统一的类型：`ActiveRecord[]`
+:::
 
-在不同数据结构的视图类型中，这些数据源表示不同的含义：
+## （二）Data Source Design
+In a single view, there are only two data structures: `List` and `Object`.
 
-+ 列表（List）：`dataSource`为列表当前数据源，`activeRecords`为列表中被选中的数据。特别的，`showDataSource`为当前展示的数据源，它是`dataSource`经过搜索、排序、分页等处理后的数据源，也是我们在组件中真正使用的数据源。
-+ 对象（Object）：`daraSource`和`activeRecords`总是完全一致的，且长度永远为`1`。因此我们有时也在组件中定义`formData`属性，并提供默认实现：`this.activeRecords?.[0] || {}`。
+To handle them uniformly, we can regard `Object` as a `List` with one and only one item.
 
-## （三）组件生命周期与组件行为
+Therefore, in any component that contains a `data source`, we can obtain three `common properties`:
 
-在 `自动化渲染` 过程中，我们通常无法明确知道 `当前组件与子组件` 或者 `当前组件与相邻组件` 交互的具体情况，甚至我们在定义 `当前组件` 时，并不需要关心（某些情况下可能无法关心） `子组件` 的具体情况。这也就决定了我们无法像使用原生 `Vue` 框架那样在单一组件中完整封装页面所需的全部功能逻辑。
+- rootData: Root data source
+- dataSource: Current data source
+- activeRecords: Current active data source
 
-当我们使用原生 `Vue` 框架构建页面时，通常会在`最外层组件` 中通过 `beforeMount` 或 `mounted` 生命周期中发起后端请求来获取数据。但如果将组件交给 `自动化渲染` 机制，`XML` 结构的变化将导致 `组件拓扑结构` 的变化，为了应对这一系列的变化，我们提出了一些概念：
+And they all have a unified type: `ActiveRecord[]`
 
-+ 数据源提供者：在一个视图中用于提供数据源的组件称为 `数据源提供者`。通常为 `Element` 视图组件。
-+ 数据源持有者：在一个视图中用于保存数据源的组件称为 `数据源持有者`。通常为 `View` 视图组件。
-+ CallChaining：链式调用，通过 `组件生命周期` 挂载方法到对应功能链上进行处理，在任何组件都可以发起调用。
+In view types with different data structures, these data sources have different meanings:
 
-**数据源提供者和数据源持有者**
+- List: `dataSource` is the current data source of the list, and `activeRecords` are the selected data in the list. Specifically, `showDataSource` is the current displayed data source, which is the data source processed by search, sorting, pagination, etc., and is also the data source we actually use in the component.
+- Object: `dataSource` and `activeRecords` are always completely consistent, and their length is always `1`. Therefore, we sometimes define a `formData` property in the component and provide a default implementation: `this.activeRecords?.[0] || {}`.
 
-在视图数据源的处理中，我们希望可以有一个具体组件向后端发起获取数据的请求，并且这个组件也承担了对这些数据的展示。显而易见的是，在我们的 `XML` 结构中，最外层组件是 View 视图组件，它仅仅承担了数据结构定义和元数据处理能力而没有具体的数据展示能力。既然我们无法通过最外层组件做到这个事情，就要把它交给更为直观的 Element 视图组件。
+## （三）Component Lifecycle and Component Behavior
+During `automated rendering`, we usually cannot clearly know the specific interaction between the `current component and child components` or the `current component and adjacent components`. Even when defining the `current component`, we do not need to care (and in some cases may not be able to care) about the specific situation of the `child components`. This also determines that we cannot completely encapsulate all the functional logic required for the page in a single component as we do when using the native `Vue` framework.
 
-以表格视图的渲染为例：当 `TableView` 挂载时，我们无法确定应该怎样正确的加载数据，因此，我们需要交给一个具体的 `TableWidget` 来完成这一功能。当 `TableWidget` 对应的组件发生变化时，只需按照既定的 `重载` 方式将数据源提交给 `TableView` 即可。
+When we use the native `Vue` framework to build pages, we usually initiate a backend request in the `beforeMount` or `mounted` lifecycle of the `outermost component` to obtain data. However, if the component is handed over to the `automated rendering` mechanism, changes in the `XML structure` will lead to changes in the `component topology structure`. To cope with this series of changes, we have proposed some concepts:
+
+- Data source provider: A component used to provide a data source in a view is called a `data source provider`. Usually an `Element` view component.
+- Data source holder: A component used to save a data source in a view is called a `data source holder`. Usually a `View` view component.
+- CallChaining: Chained calls, which mount methods to the corresponding function chain through the `component lifecycle` for processing, and can be initiated in any component.
+
+**Data Source Provider and Data Source Holder**
+
+In the processing of view data sources, we hope that there can be a specific component that initiates a request to the backend to obtain data, and this component also assumes the responsibility of displaying these data. Obviously, in our `XML structure`, the outermost component is a View view component, which only assumes the data structure definition and metadata processing capabilities without specific data display capabilities. Since we cannot do this through the outermost component, we need to hand it over to a more intuitive Element view component.
+
+Take the rendering of a table view as an example: When `TableView` is mounted, we cannot determine how to correctly load the data, so we need to hand it over to a specific `TableWidget` to complete this function. When the component corresponding to `TableWidget` changes, it only needs to submit the data source to `TableView` according to the established `reload` method.
 
 **CallChaining**
 
-为了保证组件行为的最终一致性，我们需要某些行为在各个组件的实现做到 `组件自治`。不仅如此，由于 XML 结构是可以动态调整的，因此我们不能完全的信任第三方框架对组件生命周期的处理顺序。因此，我们还需要对组件行为进行进一步的 `有序` 处理。
+To ensure the final consistency of component behavior, we need some behaviors to achieve `component autonomy` in the implementation of each component. Moreover, since the XML structure can be dynamically adjusted, we cannot fully trust the processing order of component lifecycles by third-party frameworks. Therefore, we also need to further `orderly` process component behaviors.
 
-以表格视图的加载为例：我们总是希望 `搜索条件` 的处理总是在 `加载数据` 前就处理完成的，这样将可以保证在 `加载数据` 时可以获得通过搜索视图处理过的 `搜索条件`，而这一特性并不随着 `XML` 结构的变化而变化。
+Take the loading of a table view as an example: We always want the processing of `search conditions` to be completed before `loading data`, which can ensure that the `search conditions` processed by the search view can be obtained when `loading data`, and this feature does not change with changes in the `XML structure`.
 
-上面的描述可能过于抽象，让我们来看一下标准表格视图在渲染时每个相关组件的行为时序图：
+The above description may be too abstract. Let's look at the behavior timing diagram of each related component when a standard table view is rendered:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/40867a7713480ec9ff5a51f49a8f8d2b-20250604141240832.svg)
 
-在上图中，我们可以看到，`mountedCallChaining` 是在所有组件全部渲染并挂载完成后，通过最上层的 `TableView` 发起调用，最终按照预定的优先级顺序执行了每个组件实现的 `挂载钩子函数`。
+In the above figure, we can see that `mountedCallChaining` is initiated by the uppermost `TableView` after all components are rendered and mounted, and finally executes the `mounted hook function` implemented by each component in the预定 priority order.
 
-**内置的优先级常量**
+**Built-in Priority Constants**
 
-+ VIEW_WIDGET_PRIORITY（`0`）：视图组件优先级。
-+ FETCH_DATA_WIDGET_PRIORITY（`100`）：数据提供者组件优先级。
-+ SUBVIEW_WIDGET_PRIORITY（`200`）：子视图组件优先级。
+- VIEW_WIDGET_PRIORITY (`0`): View component priority.
+- FETCH_DATA_WIDGET_PRIORITY (`100`): Data provider component priority.
+- SUBVIEW_WIDGET_PRIORITY (`200`): Subview component priority.
 
-未设置优先级的hook将最后执行，在通常情况下，无需关心优先级的问题。
+Hooks without setting priority will be executed last. In general, there is no need to care about the priority issue.
 
-除了 `mountedCallChaining` 之外，在 Oinone 中还有一些内置的 `CallChaining`，它们对一些通用行为进行了预设。
+In addition to `mountedCallChaining`, Oinone also has some built-in `CallChaining`, which preset some common behaviors.
 
-**内置的CallChaining**
+**Built-in CallChaining**
 
-+ mountedCallChaining：挂载时。
-+ refreshCallChaining：刷新时。
-+ submitCallChaining：提交时。
-+ validatorCallChaining：验证时。
+- mountedCallChaining: During mounting.
+- refreshCallChaining: During refreshing.
+- submitCallChaining: During submission.
+- validatorCallChaining: During validation.
 
-对于数据源的操作也是如此，我们无法知道该如何加载数据源以及数据源应该被哪个组件正确的保存。我们可以预设这样一个场景：
+The operation of the data source is the same. We cannot know how to load the data source and which component should correctly save the data source. We can preset such a scenario:
 
-当 `SearchWidget` 组件执行了 `挂载钩子函数` 时，将从 `URL 参数` 中获取所需的 `searchBody` 和 `searchConditions` 属性，并通过 `flushSearchParameters` 方法将这两个参数提交到 `TableView` 。
+When the `SearchWidget` component executes the `mounted hook function`, it will obtain the required `searchBody` and `searchConditions` attributes from the `URL parameters` and submit these two parameters to `TableView` through the `flushSearchParameters` method.
 
-当 `TableWidget` 组件执行了 `挂载钩子函数` 时，将执行加载数据相关功能，并通过 `reloadDataSource` 和 `reloadActiveRecords` 方法将数据源提交到 `TableView` 。
+When the `TableWidget` component executes the `mounted hook function`, it will execute the data loading-related functions and submit the data source to `TableView` through the `reloadDataSource` and `reloadActiveRecords` methods.
 
-这个场景也是标准表格视图使用的加载场景，让我们来看一下在加载数据时的行为时序图：
+This scenario is also the loading scenario used by the standard table view. Let's look at the behavior timing diagram when loading data:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/51df8aef9f7f73da8ba26e6b39ffafc4-20250604141245615.svg)
 
-到了这里，组件生命周期和组件行为就介绍完了，希望这些内容可以帮助在未来更好的使用 Oinone 做更多有趣的事情。
+Here, the component lifecycle and component behavior are introduced. I hope this content can help you use Oinone to do more interesting things in the future.
 
-下面是在表格视图中，现有的行为交互时序图，可以更好的帮助你理解这些设计在实际页面中的应用：
+The following is the existing behavior interaction timing diagram in the table view, which can better help you understand the application of these designs in actual pages:
 
-**点击搜索**
+**Click Search**
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/%E4%B8%8B%E8%BD%BD.svg)
 
-**排序/分页**
+**Sort/Paginate**
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/%E4%B8%8B%E8%BD%BD%20(1).svg)
 
-
-
-**表格勾选**
+**Table Check**
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/c57184b3bfd76b9b8eb8169fed4f4353.svg)
 
-## （四）数据提交
+## （四）Data Submission
+For form views, the data submission of a form is crucial to the business system.
 
-对于表单视图来说，一个表单的数据提交对业务系统来说是至关重要的。
+Before discussing data submission, we have clear definitions of the field values at different stages:
 
-在讨论数据提交之前，我们对字段的值在不同阶段有明确定义：
+- Real value: The field value stored in the component.
+- Submission value: The value passed into the request during data submission.
+- Display value: The value displayed on the page after calculation processing.
+- Default value: The value when the creation page is first loaded, and the edit page does not回填.
 
-+ 真实值：在组件中存储的字段值。
-+ 提交值：在数据提交时传入请求的值。
-+ 显示值：在经过计算处理后显示在页面上的值。
-+ 默认值：在创建页面首次加载时的值，编辑页面不回填。
+Take a password field as an example: When a user enters some text on the page, the text is stored in the component intact; the display on the page is replaced with "*"; and the submission to the backend request is processed by encryption.
 
-以密码字段为例：当用户从页面上输入一些文本后，这些文本被原封不动保存在组件中；显示在页面上用“*” 替换；提交到后端请求时通过加密处理；
+Let's look at the basic logic of data submission: When the `submit action (ServerAction)` is ready to initiate a request to the backend, it will call the corresponding `submit` method of all field components through `submitCallChaining`, and the `submit` of each field component will provide the current field name and field value. After collection, the submit action sends these data to the backend for processing through a GQL request. This process is the standard data submission process.
 
-再来看数据提交的基本逻辑：当 `提交动作（ServerAction）` 准备向后端发起请求时，会通过 `submitCallChaining` 调用所有字段组件对应的 `submit` 方法，每个字段组件的 `submit` 都会提供当前字段名和字段值。收集完成后，提交动作将这些数据通过 GQL 请求发送到后端进行处理。这一过程就是标准的数据提交过程。
-
-下图是提交动作与后端之间在用户点击后的交互时序图：
+The following is the interaction timing diagram between the submit action and the backend after the user clicks:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/4826e0236d1be7ade1b56bd42e360131.svg)
 
-:::warning 提示：
+:::warning Tip:
 
-不仅是表单的数据提交遵循这一流程，几乎所有的数据提交都遵循了这一流程。比如：表格行内编辑时，我们可以将一行数据的编辑态看作是一个 “表单” ，里面每个字段都可以看作是表单中的字段。这样一来，表格行内编辑功能也完全可以遵循这一流程。
+Not only does the data submission of forms follow this process, but almost all data submissions follow this process. For example, when editing in a table row, we can regard the edit state of a row of data as a "form", and each field in it can be regarded as a field in the form. In this way, the in-line editing function of the table can also fully follow this process.
 
 :::
 
-## （五）结束语
+## （五）Conclusion
+The entire page is split into independent components, which are finally assembled on the page to form a complete page. It is unavoidable that we need to focus on the complete design of data interaction to ensure that it can cope with more changes, which undoubtedly increases the understanding burden of developers. In the process of implementing the entire Widget framework, we try to use simple methods to allow developers to focus on the development of individual independent components without particularly caring about the mechanisms of these data interactions. Especially as introduced in the "[Customize a Field](/en/DevManual/OperationGuide/customize-a-field-widget.md)" chapter, a single field component is nothing more than two parts: rendering and data submission, and most of the repetitive development work is handled built-in.
 
-将整个页面拆分为一个一个独立的组件，最终在页面上进行拼装，形成一个完整的页面。无法避免的是，我们需要重点对数据交互进行完整设计，以保证它可以应对更多变化，这无疑增加了开发人员的理解负担。我们在实现整个 Widget 框架过程中，尽可能用简单的方式让开发人员将注意力专注在单个独立组件的开发中，而不需要特别关心这些数据交互的机制。尤其是 “[自定义字段](/en/DevManual/OperationGuide/customize-a-field-widget.md)” 章节中介绍的那样，单个字段组件无非就是渲染和数据提交这两部分，绝大多数需要重复开发的工作都被内置处理了。
-
-虽然无形中增加了开发难度，但与此同时也带来了一些便利：单个组件的复用度得到了提升，开发人员可以像任何一个第三方组件库那样提供一个一个的独立组件供业务人员使用。这在一个交互风格统一的管理信息系统中无疑是一个重大的提升。
+Although it无形中 increases the development difficulty, it also brings some conveniences: the reusability of individual components is improved, and developers can provide independent components one by one for business personnel to use like any third-party component library. This is undoubtedly a significant improvement in a management information system with a unified interaction style.
 
 <div style="display: none">
 
-# 三、视图组件的工作原理
+# 三、Working Principle of View Components
+As seen in the example in the component lifecycle and component behavior section, it is meaningless to introduce the working principle of View view components alone. Each type of view needs to rely on an Element view component for specific display. For the working principle of each type of view, please refer to the following contents:
 
-正如我们在组件生命周期与组件行为小节中看到的示例那样，单独介绍 View 视图组件的工作原理是没有意义的，每一类视图都需要依靠一个 Element 视图组件进行具像化的展现。关于每一类视图的工作原理可查看下面这些内容：
-
-+ [表格（Table）](/en/DevManual/Reference/Front-EndFramework/Widget/View/table.md)
-+ [表单（Form）](/en/DevManual/Reference/Front-EndFramework/Widget/View/form.md)
-+ [详情（Detail）](/en/DevManual/Reference/Front-EndFramework/Widget/View/detail.md)
-+ [画廊（Gallery）](/en/DevManual/Reference/Front-EndFramework/Widget/View/gallery.md)
-+ [树（Tree）](/en/DevManual/Reference/Front-EndFramework/Widget/View/tree.md)
-+ [Element 视图组件 API](/en/DevManual/Reference/Front-EndFramework/Widget/element.md)
++ [Table](/en/DevManual/Reference/Front-EndFramework/Widget/View/table.md)
++ [Form](/en/DevManual/Reference/Front-EndFramework/Widget/View/form.md)
++ [Detail](/en/DevManual/Reference/Front-EndFramework/Widget/View/detail.md)
++ [Gallery](/en/DevManual/Reference/Front-EndFramework/Widget/View/gallery.md)
++ [Tree](/en/DevManual/Reference/Front-EndFramework/Widget/View/tree.md)
++ [Element View Component API](/en/DevManual/Reference/Front-EndFramework/Widget/element.md)
 
 </div>
 
-# 三 、Reference List
+# 三、Reference List
 
-## （一）抽象基类
+## （一）Abstract Base Classes
 
 ### 1、BaseObjectView
 
-**继承**：BaseView
+**Inheritance**: BaseView
 
-**属性**：
+**Properties**:
 
-+ cols：当前视图的列数，优先从 DSL 配置获取，若未设置则取 `parentCols`，若 `parentCols` 也未设置则默认为 `1`。（`number`）
-+ parentCols：父级视图的列数。（`number | undefined`）
+- cols: The number of columns in the current view, preferentially obtained from the DSL configuration. If not set, it takes `parentCols`. If `parentCols` is also not set, it defaults to `1`. (`number`)
+- parentCols: The number of columns in the parent view. (`number | undefined`)
 
 ### 2、BaseListView
 
-**继承**：BaseView
+**Inheritance**: BaseView
 
-**属性**：
+**Properties**:
 
-+ checkboxAllCallChaining：全选复选框的链式调用对象。（`CallChaining | undefined`）
-+ searchBody：搜索表单数据。（`ActiveRecord | undefined`）
-+ searchConditions：高级搜索条件表达式。（`QueryExpression[] | undefined`）
-+ selectMode：选择模式。（`SelectMode | undefined`）
-+ selectModeCallChaining：选择模式的链式调用对象。（`CallChaining | undefined`）
+- checkboxAllCallChaining: Chaining call object for selecting all checkboxes. (`CallChaining | undefined`)
+- searchBody: Search form data. (`ActiveRecord | undefined`)
+- searchConditions: Advanced search condition expressions. (`QueryExpression[] | undefined`)
+- selectMode: Selection mode. (`SelectMode | undefined`)
+- selectModeCallChaining: Chaining call object for the selection mode. (`CallChaining | undefined`)
 
-**方法**：
+**Methods**:
 
 #### **flushSearchParameters**
 
-+ **功能描述**：刷新搜索参数，更新搜索表单数据和搜索条件表达式。
-+ **类型**：`(searchBody, searchConditions?) => void`
-+ **参数**：
-  - `searchBody`：搜索表单数据对象。
-  - `searchConditions`：高级搜索条件表达式数组（可选）。
+- **Function Description**: Refreshes search parameters, updating search form data and search condition expressions.
+- **Type**: `(searchBody, searchConditions?) => void`
+- **Parameters**:
+  - `searchBody`: Search form data object.
+  - `searchConditions`: Advanced search condition expression array (optional).
 
-## （二）视图组件
+## （二）View Components
 
 ### 1、TableView
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -283,13 +274,13 @@ next:
 export class TableView extends BaseListView
 ```
 
-**属性**：
+**Properties**:
 
-+ editRowCallChaining：编辑行的链式调用对象。（`CallChaining<[string, ActiveRecords]> | undefined`）
+- editRowCallChaining: Chaining call object for editing rows. (`CallChaining<[string, ActiveRecords]> | undefined`)
 
 ### 2、SearchView
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -300,62 +291,62 @@ export class TableView extends BaseListView
 export class SearchView extends BaseObjectView
 ```
 
-**属性**：
+**Properties**:
 
-+ submitCallChaining：数据提交的链式调用对象。（`CallChaining<SubmitValue> | undefined`）
-+ validatorCallChaining：数据校验的链式调用对象。（`CallChaining<boolean> | undefined`）
-+ viewMode：当前视图模式，优先从 DSL 配置获取，默认值为 `ViewMode.Create`。（`ViewMode`）
+- submitCallChaining: Chaining call object for data submission. (`CallChaining<SubmitValue> | undefined`)
+- validatorCallChaining: Chaining call object for data validation. (`CallChaining<boolean> | undefined`)
+- viewMode: The current view mode, preferentially obtained from the DSL configuration, with a default value of `ViewMode.Create`. (`ViewMode`)
 
-**方法**：
+**Methods**:
 
 #### **deleteDataSource**
 
-+ **功能描述**：删除数据源中的记录（按索引）。
-+ **类型**：`(recordIndexes: number[]) => void`
-+ **参数**：
-  - `recordIndexes`：待删除记录的索引数组。
+- **Function Description**: Deletes records in the data source (by index).
+- **Type**: `(recordIndexes: number[]) => void`
+- **Parameters**:
+  - `recordIndexes`: Index array of records to be deleted.
 
 #### **deleteDataSourceByEntity**
 
-+ **功能描述**：根据实体删除数据源中的记录。
-+ **类型**：`(records: ActiveRecords, predict?: DeleteActiveRecordsByEntityPredict) => void`
-+ **参数**：
-  - `records`：待删除的实体记录。
-  - `predict`：删除预测参数（可选）。
+- **Function Description**: Deletes records in the data source according to the entity.
+- **Type**: `(records: ActiveRecords, predict?: DeleteActiveRecordsByEntityPredict) => void`
+- **Parameters**:
+  - `records`: Entity records to be deleted.
+  - `predict`: Delete prediction parameters (optional).
 
 #### **pushDataSource**
 
-+ **功能描述**：向数据源中添加新记录。
-+ **类型**：`(records: ActiveRecords, predict?: PushActiveRecordsPredict) => void`
-+ **参数**：
-  - `records`：待添加的记录。
-  - `predict`：添加预测参数（可选）。
+- **Function Description**: Adds new records to the data source.
+- **Type**: `(records: ActiveRecords, predict?: PushActiveRecordsPredict) => void`
+- **Parameters**:
+  - `records`: Records to be added.
+  - `predict`: Add prediction parameters (optional).
 
 #### **reloadDataSource**
 
-+ **功能描述**：重新加载数据源。
-+ **类型**：`(records?: ActiveRecords) => void`
-+ **参数**：
-  - `records`：重新加载的记录（可选）。
+- **Function Description**: Reloads the data source.
+- **Type**: `(records?: ActiveRecords) => void`
+- **Parameters**:
+  - `records`: Records to be reloaded (optional).
 
 #### **updateDataSource**
 
-+ **功能描述**：更新数据源中的记录（按实体数组）。
-+ **类型**：`(records: UpdateEntity[]) => void`
-+ **参数**：
-  - `records`：待更新的实体数组。
+- **Function Description**: Updates records in the data source (by entity array).
+- **Type**: `(records: UpdateEntity[]) => void`
+- **Parameters**:
+  - `records`: Entity array to be updated.
 
 #### **updateDataSourceByEntity**
 
-+ **功能描述**：根据实体更新数据源中的记录。
-+ **类型**：`(records: ActiveRecords, predict?: UpdateActiveRecordsByEntityPredict) => void`
-+ **参数**：
-  - `records`：待更新的实体记录。
-  - `predict`：更新预测参数（可选）。
+- **Function Description**: Updates records in the data source according to the entity.
+- **Type**: `(records: ActiveRecords, predict?: UpdateActiveRecordsByEntityPredict) => void`
+- **Parameters**:
+  - `records`: Entity records to be updated.
+  - `predict`: Update prediction parameters (optional).
 
 ### 3、FormView
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -366,13 +357,13 @@ export class SearchView extends BaseObjectView
 export class FormView extends BaseObjectView
 ```
 
-**属性**：
+**Properties**:
 
-+ formValidateCallChaining：表单验证的链式调用对象。（`CallChaining<FormValidateResult[]> | undefined`）
+- formValidateCallChaining: Chaining call object for form validation. (`CallChaining<FormValidateResult[]> | undefined`)
 
 ### 4、DetailView
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -385,7 +376,7 @@ export class DetailView extends BaseObjectView
 
 ### 5、GalleryView
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -398,7 +389,7 @@ export class GalleryView extends BaseListView
 
 ### 6、TreeView
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -408,5 +399,3 @@ export class GalleryView extends BaseListView
 )
 export class TreeView extends BaseListView
 ```
-
-

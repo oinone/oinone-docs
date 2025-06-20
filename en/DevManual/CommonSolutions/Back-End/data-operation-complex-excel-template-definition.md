@@ -1,41 +1,41 @@
 ---
-title: 数据操作：复杂Excel模版定义
+title: Data Operation:Complex Excel Template Definition
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 27
 ---
 
-# 一、场景描述
-在某些情形下，简单的模板定义难以契合业务需求，此时需要更为复杂的 Excel 模板定义。下文将阐述如何进行复杂类型模板的定义。
+# 一、Scenario Description
+In some cases, simple template definitions cannot meet business requirements, and more complex Excel template definitions are needed. The following describes how to define complex-type templates.
 
-# 二、代码示例：
+# 二、Code Example:
 ```java
 @Model.model(TestApply.MODEL_MODEL)
-@Model(displayName = "测试申请")
+@Model(displayName = "Test Application")
 public class TestApply extends IdModel {
 
     public static final String MODEL_MODEL = "top.TestApply";
 
     @Field.String
-    @Field(displayName = "发件人")
+    @Field(displayName = "Addresser")
     private String addresser;
 
     @Field.String
-    @Field(displayName = "委托单位")
+    @Field(displayName = "Entrusted Unit")
     private String entrustedUnit;
 
     @Field.String
-    @Field(displayName = "付款单位")
+    @Field(displayName = "Payer")
     private String payer;
 
     @Field.String
-    @Field(displayName = "付款单位地址")
+    @Field(displayName = "Payer Unit Address")
     private String paymentUnitAdd;
 }
 ```
 
-## （一）模版定义
+## （一）Template Definition
 ```java
 package pro.shushi.pamirs.top.core.temp;
 
@@ -61,7 +61,7 @@ public class DemoTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         WorkbookDefinitionBuilder builder = WorkbookDefinitionBuilder.newInstance(TestApply.MODEL_MODEL, TEMPLATE_NAME)
-        .setDisplayName("测试Demo");
+        .setDisplayName("Test Demo");
 
         DemoTemplate.createSheet(builder);
 
@@ -69,18 +69,18 @@ public class DemoTemplate implements ExcelTemplateInit {
     }
 
     private static void createSheet(WorkbookDefinitionBuilder builder) {
-        SheetDefinitionBuilder sheetBuilder = builder.createSheet().setName("测试Demo");
+        SheetDefinitionBuilder sheetBuilder = builder.createSheet().setName("Test Demo");
 
         buildBasicInfo(sheetBuilder);
 
     }
 
     private static void buildBasicInfo(SheetDefinitionBuilder builder) {
-        //A1:D8：表示表头占的单元格数，范围必须大于实际表头行
+        //A1:D8：Indicates the number of cells occupied by the header, and the range must be larger than the actual header row
         BlockDefinitionBuilder mergeRange = builder.createBlock(TestApply.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "A1:D8")
-        //预设行
+        //Preset rows
         .setPresetNumber(10)
-        //合并哪几个单元格
+        //Which cells to merge
         .createMergeRange("A1:D1")
         .createMergeRange("A2:D2")
         .createMergeRange("A3:D3")
@@ -89,7 +89,7 @@ public class DemoTemplate implements ExcelTemplateInit {
         .createMergeRange("C4:C6")
         .createMergeRange("D4:D5");
 
-        //createHeader创建行，createCell创建单元格，setField指定解析字段，setIsConfig指定为true标记该行是需要解析的值
+        //createHeader creates a row, createCell creates a cell, setField specifies the parsing field, and setIsConfig specifies true to mark that this row is a value that needs to be parsed
         mergeRange.createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle()).setIsConfig(Boolean.TRUE)
         .createCell().setField("addresser").setStyleBuilder(ExcelHelper.createDefaultStyle().setWidth(6000)).and()
         .createCell().setField("entrustedUnit").and()
@@ -104,43 +104,43 @@ public class DemoTemplate implements ExcelTemplateInit {
         .createCell().and()
         .and()
 
-        //由于该行合并为一个单元格，所以其他可以不设置value
+        //Since this row is merged into one cell, other values can be left unset
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(typeface -> typeface.setBold(Boolean.TRUE)).setHorizontalAlignment(ExcelHorizontalAlignmentEnum.CENTER))
-        .createCell().setValue("生效金额").and()
+        .createCell().setValue("Effective Amount").and()
         .createCell().and()
         .createCell().and()
         .createCell().and()
         .and()
 
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(typeface -> typeface.setBold(Boolean.TRUE)).setHorizontalAlignment(ExcelHorizontalAlignmentEnum.RIGHT))
-        .createCell().setValue("金额单位：元").and()
+        .createCell().setValue("Amount Unit: RMB").and()
         .createCell().and()
         .createCell().and()
         .createCell().and()
         .and()
 
-        //easyExcel解析不了空行，所以这里写上值。由于上面使用createMergeRange把单元格合并了，并且D列有分割，这里填上每个单元格的值，把合并的单元格填为一样的。
+        //EasyExcel cannot parse empty rows, so values are written here. Since the above uses createMergeRange to merge cells and the D column is split, fill in the values of each cell to make the merged cells the same.
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(typeface -> typeface.setBold(Boolean.TRUE)).setHorizontalAlignment(ExcelHorizontalAlignmentEnum.CENTER))
-        .createCell().setValue("发件人").and()
-        .createCell().setValue("委托单位").and()
-        .createCell().setValue("付款单位").and()
-        .createCell().setValue("地址").and()
+        .createCell().setValue("Addresser").and()
+        .createCell().setValue("Entrusted Unit").and()
+        .createCell().setValue("Payer").and()
+        .createCell().setValue("Address").and()
         .and()
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(typeface -> typeface.setBold(Boolean.TRUE)).setHorizontalAlignment(ExcelHorizontalAlignmentEnum.CENTER))
-        .createCell().setValue("发件人").and()
-        .createCell().setValue("委托单位").and()
-        .createCell().setValue("付款单位").and()
-        .createCell().setValue("地址").and()
+        .createCell().setValue("Addresser").and()
+        .createCell().setValue("Entrusted Unit").and()
+        .createCell().setValue("Payer").and()
+        .createCell().setValue("Address").and()
         .and()
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(typeface -> typeface.setBold(Boolean.TRUE)).setHorizontalAlignment(ExcelHorizontalAlignmentEnum.CENTER))
-        .createCell().setValue("发件人").and()
-        .createCell().setValue("委托单位").and()
-        .createCell().setValue("付款单位").and()
-        .createCell().setValue("付款单位地址").and()
+        .createCell().setValue("Addresser").and()
+        .createCell().setValue("Entrusted Unit").and()
+        .createCell().setValue("Payer").and()
+        .createCell().setValue("Payer Unit Address").and()
         .and()
 
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(typeface -> typeface.setBold(Boolean.TRUE)).setHorizontalAlignment(ExcelHorizontalAlignmentEnum.CENTER))
-        .createCell().setValue("合计").and()
+        .createCell().setValue("Total").and()
         .createCell().and()
         .createCell().and()
         .createCell();
@@ -150,13 +150,12 @@ public class DemoTemplate implements ExcelTemplateInit {
 
 ```
 
-:::info 注意：
+:::info Note:
 
-链式调用不可以太长，如果太长可以使用参数接一下，否则在编译时可能会导致栈溢出。
+Chained calls should not be too long. If they are too long, you can use parameters to承接 (intercept), otherwise it may cause a stack overflow during compilation.
 
 :::
 
-# 三、模版示例：
+# 三、Template Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746791380504-63cf50bd-4211-4d9e-83d9-1e781a917684-20250530144826776.jpeg)
-[Demo Excel样例](https://doc.oinone.top/wp-content/uploads/2024/11/2024112003150091.xlsx)
-
+[Demo Excel Sample](https://doc.oinone.top/wp-content/uploads/2024/11/2024112003150091.xlsx)

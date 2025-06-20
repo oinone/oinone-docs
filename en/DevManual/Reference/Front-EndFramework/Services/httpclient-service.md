@@ -2,9 +2,9 @@
 title: HttpClient Service
 index: true
 category:
-  - 研发手册
+  - DevManual
   - Reference
-  - 前端API
+  - Front-EndFramework
   - Services
 order: 3
 

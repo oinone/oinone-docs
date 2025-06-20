@@ -1,5 +1,5 @@
 ---
-title: Component Introduction
+title: Components
 index: false
 category:
   - User Manual

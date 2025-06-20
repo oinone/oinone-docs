@@ -2,7 +2,7 @@
 title: Router Service
 index: true
 category:
-  - 研发手册
+  - DevManual
   - Reference
   - 前端API
   - Services

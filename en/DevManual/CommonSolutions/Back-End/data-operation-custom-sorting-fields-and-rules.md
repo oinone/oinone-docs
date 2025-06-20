@@ -1,30 +1,30 @@
 ---
-title: 数据操作：查询时自定义排序字段和排序规则
+title: Data Operation:Custom Sort Fields and Sorting Rules During Query
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 33
 ---
 
-# 一、指定字段排序
-平台默认排序字段，参考 IdModel ，按创建时间和ID倒序`ordering = "createDate DESC, id DESC"`
+# 一、Specify Fields for Sorting
+The platform's default sorting fields, refer to IdModel, sorted in descending order by creation time and ID: `ordering = "createDate DESC, id DESC"`
 
-## （一）模型指定排序
-模型定义增加排序字段。`@Model.Advanced(ordering = "xxxxx DESC, yyyy DESC")`
+## （一）Specify Sorting in the Model
+Add sorting fields to the model definition. `@Model.Advanced(ordering = "xxxxx DESC, yyyy DESC")`
 
 ```java
 @Model.model(PetShop.MODEL_MODEL)
-@Model(displayName = "宠物店铺",summary="宠物店铺",labelFields ={"shopName"})
-@Model.Code(sequence = "DATE_ORDERLY_SEQ",prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
+@Model(displayName = "Pet Shop", summary="Pet Shop", labelFields ={"shopName"})
+@Model.Code(sequence = "DATE_ORDERLY_SEQ", prefix = "P", size=6, step=1, initial = 10000, format = "yyyyMMdd")
 @Model.Advanced(ordering = "createDate DESC")
 public class PetShop extends AbstractDemoIdModel {
     public static final String MODEL_MODEL="demo.PetShop";
-    //其它代码
+    // Other code
 }
 ```
 
-## （二）Page 查询中可以自定排序规则
-+ API 参考 `pro.shushi.pamirs.meta.api.dto.condition.Pagination#orderBy`
+## （二）Custom Sorting Rules in Page Queries
++ API reference: `pro.shushi.pamirs.meta.api.dto.condition.Pagination#orderBy`
 
 ```java
 public <G, R> Pagination<T> orderBy(SortDirectionEnum direction, Getter<G, R> getter) {
@@ -36,7 +36,7 @@ public <G, R> Pagination<T> orderBy(SortDirectionEnum direction, Getter<G, R> ge
 }
 ```
 
-+ 具体示例
++ Specific Example
 
 ```java
 @Function.Advanced(type= FunctionTypeEnum.QUERY)
@@ -49,8 +49,8 @@ public Pagination<PetShop> queryPage(Pagination<PetShop> page, IWrapper<PetShop>
 }
 ```
 
-## （三）查询的 wapper 中指定
-+ API参考：`pro.shushi.pamirs.framework.connectors.data.sql.AbstractWrapper#orderBy`
+## （三）Specify in the Query Wrapper
++ API reference: `pro.shushi.pamirs.framework.connectors.data.sql.AbstractWrapper#orderBy`
 
 ```java
 @Override
@@ -66,7 +66,7 @@ public Children orderBy(boolean condition, boolean isAsc, R... columns) {
 }
 ```
 
-具体示例
+Specific Example
 
 ```java
 public List<PetShop> queryList(String name) {
@@ -79,28 +79,28 @@ public List<PetShop> queryList(String name) {
 }
 ```
 
-# 二、设置查询不排序
-## （一）关闭平台默认排序字段，设置模型的 ordering，改成：`ordering = "1=1"`
-模型定义增加排序字段。`@Model.Advanced(ordering = "1=1")`
+# 二、Disable Sorting for Queries
+## （一）Turn Off the Platform's Default Sorting Fields by Setting the Model's Ordering to: `ordering = "1=1"`
+Add sorting fields to the model definition. `@Model.Advanced(ordering = "1=1")`
 
 ```java
 @Model.model(PetShop.MODEL_MODEL)
-@Model(displayName = "宠物店铺",summary="宠物店铺",labelFields ={"shopName"})
-@Model.Code(sequence = "DATE_ORDERLY_SEQ",prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
+@Model(displayName = "Pet Shop", summary="Pet Shop", labelFields ={"shopName"})
+@Model.Code(sequence = "DATE_ORDERLY_SEQ", prefix = "P", size=6, step=1, initial = 10000, format = "yyyyMMdd")
 @Model.Advanced(ordering = "1=1")
 public class PetShop extends AbstractDemoIdModel {
     public static final String MODEL_MODEL="demo.PetShop";
-    //其它代码
+    // Other code
 }
 ```
 
-在`ORDER BY 1=1`中，`1=1` 是一个条件表达式，它总是会返回 true（或者在某些数据库中是1），因为1等于1。因此，这个条件实际上没有改变排序的结果，结果仍然会按照默认的顺序进行排序。这种写法通常用于一些动态生成 SQL 语句的场景中，可以在不知道具体列名的情况下按照顺序进行排序。
+In `ORDER BY 1=1`, `1=1` is a conditional expression that always returns true (or 1 in some databases) because 1 equals 1. Therefore, this condition does not actually change the sorting result, and the result will still be sorted in the default order. This syntax is commonly used in scenarios where SQL statements are dynamically generated to sort by order when the specific column names are unknown.
 
-所以，`ORDER BY 1=1`实际上等效于没有使用`ORDER BY`子句，或者说是按照默认顺序进行排序。
+So, `ORDER BY 1=1` is actually equivalent to not using an `ORDER BY` clause, or sorting in the default order.
 
-## （二）查询是设置 Sortable 属性
+## （二）Set the Sortable Property During Query
 ```java
-// 示例1：
+// Example 1:
 LambdaQueryWrapper<PetShop> query = Pops.<PetShop>lambdaQuery();
 query.from(PetShop.MODEL_MODEL);
 query.setSortable(Boolean.FALSE);
@@ -108,20 +108,19 @@ query.orderBy(true, true, PetShop::getId);
 List<PetShop> petShops2 = new PetShop().queryList(query);
 System.out.printf(petShops2.size() + "");
 
-// 示例2：
+// Example 2:
 List<PetShop> petShops3 = new PetShop().queryList(
     Pops.<PetShop>lambdaQuery().from(PetShop.MODEL_MODEL).setSortable(Boolean.FALSE));
 System.out.printf(petShops3.size() + "");
 
-// 示例3：
+// Example 3:
 IWrapper<PetShop> wrapper = Pops.<PetShop>lambdaQuery()
 .from(PetShop.MODEL_MODEL).setBatchSize(-1).setSortable(Boolean.FALSE);
 List<PetShop> petShops4 = new PetShop().queryList(wrapper);
 System.out.printf(petShops4.size() + "");
 
-// 示例4：
+// Example 4:
 QueryWrapper<PetShop> wrapper2 = new QueryWrapper<PetShop>().from(PetShop.MODEL_MODEL).setSortable(Boolean.FALSE);
 List<PetShop> petShops5 = new PetShop().queryList(wrapper2);
 System.out.printf(petShops5.size() + "");
 ```
-

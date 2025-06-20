@@ -1,34 +1,34 @@
 ---
-title: 文件存储：OSS(CDN)配置和文件系统的一些操作
+title: File Storage:OSS (CDN) Configuration and File System Operations
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 43
 ---
 
-# 一、目前Oinone支持的OSS类型
-| 类型 | 服务 |
+# 一、OSS Types Supported by Oinone
+| Type | Service |
 | --- | --- |
-| OSS | 阿里云OSS |
-| UPYUN | 又拍云 |
+| OSS | Alibaba Cloud OSS |
+| UPYUN | Upyun |
 | MINIO | MinIO |
-| HUAWEI_OBS | 华为云OBS |
-| LOCAL | 本地NGINX文件存储 |
-| TENCENT_COS | 腾讯云COS |
+| HUAWEI_OBS | Huawei Cloud OBS |
+| LOCAL | Local NGINX File Storage |
+| TENCENT_COS | Tencent Cloud COS |
 
 
-# 二、OSS通用yaml配置
+# 二、OSS Universal YAML Configuration
 ```yaml
 cdn:
   oss:
-    name: # 名称
-    type: # 类型
+    name: # Name
+    type: # Type
     bucket:
-    uploadUrl: # 上传URL
-    downloadUrl: # 下载URL
+    uploadUrl: # Upload URL
+    downloadUrl: # Download URL
     accessKeyId:
     accessKeySecret:
-    mainDir: # 主目录
+    mainDir: # Main directory
     validTime: 3600000
     timeout: 600000
     active: true
@@ -36,14 +36,14 @@ cdn:
     localFolderUrl:
     others:
       [key]:
-        name: # 名称
-        type: # 类型
+        name: # Name
+        type: # Type
         bucket:
-        uploadUrl: # 上传URL
-        downloadUrl: # 下载URL
+        uploadUrl: # Upload URL
+        downloadUrl: # Download URL
         accessKeyId:
         accessKeySecret:
-        mainDir: # 主目录
+        mainDir: # Main directory
         validTime: 3600000
         timeout: 600000
         active: true
@@ -51,25 +51,25 @@ cdn:
         localFolderUrl:
 ```
 
-:::info 注意：
+:::info Note:
 
-`others`中使用自定义`key`来指定OSS服务进行文件上传/下载功能。上传/下载必须匹配，否则无法正常使用。
+In `others`, use a custom `key` to specify the OSS service for file upload/download functions. Upload/download configurations must match; otherwise, the functions cannot be used normally.
 
 :::
 
-# 三、OSS 配置示例
-## （一）阿里云OSS
+# 三、OSS Configuration Examples
+## （一）Alibaba Cloud OSS
 ```yaml
 cdn:
   oss:
-    name: 阿里云
+    name: Alibaba Cloud
     type: OSS
-    bucket: pamirs(根据实际情况修改)
+    bucket: pamirs (modify according to actual situation)
     uploadUrl: oss-cn-hangzhou.aliyuncs.com
     downloadUrl: oss-cn-hangzhou.aliyuncs.com
-    accessKeyId: 你的accessKeyId
-    accessKeySecret: 你的accessKeySecret
-    # 根据实际情况修改
+    accessKeyId: Your accessKeyId
+    accessKeySecret: Your accessKeySecret
+    # Modify according to actual situation
     mainDir: upload/
     validTime: 3600000
     timeout: 600000
@@ -78,18 +78,18 @@ cdn:
     referer:
 ```
 
-## （二）华为云OBS
+## （二）Huawei Cloud OBS
 ```yaml
 cdn:
   oss:
-    name: 华为云
+    name: Huawei Cloud
     type: HUAWEI_OBS
-    bucket: pamirs(根据实际情况修改)
+    bucket: pamirs (modify according to actual situation)
     uploadUrl: obs.cn-east-2.myhuaweicloud.com
     downloadUrl: obs.cn-east-2.myhuaweicloud.com
-    accessKeyId: 你的accessKeyId
-    accessKeySecret: 你的accessKeySecret
-    # 根据实际情况修改
+    accessKeyId: Your accessKeyId
+    accessKeySecret: Your accessKeySecret
+    # Modify according to actual situation
     mainDir: upload/
     validTime: 3600000
     timeout: 600000
@@ -98,7 +98,7 @@ cdn:
     referer:
 ```
 
-华为云 OBS 需要在启动工程增加以下依赖
+Huawei Cloud OBS requires adding the following dependencies to the startup project:
 
 ```xml
 <okhttp3.version>4.9.3</okhttp3.version>
@@ -107,28 +107,27 @@ cdn:
     <artifactId>okhttp</artifactId>
     <version>${okhttp3.version}</version>
 </dependency>
-
 ```
 
-:::info 注意：
+:::info Note:
 
-华为云 OBS 的防盗链配置，仅允许携带特定 referer 的才可以，而 excel 导入后端处理的逻辑匿名读的时候是不带 referer 的，所以会被拒绝
+For Huawei Cloud OBS anti-leech configuration, only requests with specific referers are allowed. However, when processing Excel imports anonymously in the backend, no referer is carried, resulting in rejection.
 
 :::
 
 ## （三）MINIO
 ```yaml
-文件系统，mino的配置：
+File system, MinIO configuration:
 cdn:
   oss:
     name: minio
     type: MINIO
-    bucket: pamirs(根据实际情况修改)
-    uploadUrl: http://192.168.243.6:32190(根据实际情况修改)
-    downloadUrl: http://192.168.243.6:9000(根据实际情况修改)
-    accessKeyId: 你的accessKeyId
-    accessKeySecret: 你的accessKeySecret
-    # 根据实际情况修改
+    bucket: pamirs (modify according to actual situation)
+    uploadUrl: http://192.168.243.6:32190 (modify according to actual situation)
+    downloadUrl: http://192.168.243.6:9000 (modify according to actual situation)
+    accessKeyId: Your accessKeyId
+    accessKeySecret: Your accessKeySecret
+    # Modify according to actual situation
     mainDir: upload/
     validTime: 3600000
     timeout: 600000
@@ -137,18 +136,18 @@ cdn:
     localFolderUrl:
 ```
 
-## （四）又拍云
+## （四）Upyun
 ```yaml
 cdn:
   oss:
-    name: 又拍云
+    name: Upyun
     type: UPYUN
-    bucket: pamirs(根据实际情况修改)
+    bucket: pamirs (modify according to actual situation)
     uploadUrl: v0.api.upyun.com
     downloadUrl: v0.api.upyun.com
-    accessKeyId: 你的accessKeyId
-    accessKeySecret: 你的accessKeySecret
-    # 根据实际情况修改
+    accessKeyId: Your accessKeyId
+    accessKeySecret: Your accessKeySecret
+    # Modify according to actual situation
     mainDir: upload/
     validTime: 3600000
     timeout: 600000
@@ -156,25 +155,25 @@ cdn:
     referer:
 ```
 
-## （五）本地文件存储
+## （五）Local File Storage
 ```yaml
 cdn:
   oss:
-    name: 本地文件NG系统
+    name: Local File NG System
     type: LOCAL
-    # uploadUrl 这个是Oinone后端服务地址和端口
+    # uploadUrl is the Oinone backend service address and port
     uploadUrl: http://127.0.0.1:8091
-    # downloadUrl前端地址，即直接映射在nginx的静态资源的路径和端口
+    # downloadUrl is the frontend address, i.e., the path and port directly mapped to Nginx static resources
     downloadUrl: http://127.0.0.1:8081
     validTime: 3600000
     timeout: 600000
     active: true
     referer:
-    # 本地Nginx静态资源目录
+    # Local Nginx static resource directory
     localFolderUrl: /Users/wangxian/nginx/html/designer/static
 ```
 
-## （六）腾讯云COS
+## （六）Tencent Cloud COS
 ```yaml
 cdn:
   oss:
@@ -183,8 +182,8 @@ cdn:
     bucket: cos-dcode-prod-1252296671
     uploadUrl: cos.ap-shanghai.myqcloud.com
     downloadUrl: cos.ap-shanghai.myqcloud.com
-    accessKeyId: 你的accessKeyId
-    accessKeySecret: 你的accessKeySecret
+    accessKeyId: Your accessKeyId
+    accessKeySecret: Your accessKeySecret
     mainDir: upload/demo/
     validTime: 3600000
     timeout: 600000
@@ -194,27 +193,27 @@ cdn:
     referer:
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-# 四、OSS代码示例
-后台要直接上传文件到 OSS，通过`FileClientFactory.getClient()`获取系统配置的文件系统的客户端
+# 四、OSS Code Examples
+To directly upload files to OSS in the background, obtain the file system client through `FileClientFactory.getClient()`:
 
 ```java
-// 获取文件客户端
-// 1、获取默认的文件客户端
+// Get the file client
+// 1. Get the default file client
 FileClient fileClient = FileClientFactory.getClient();
-// 2、根据cdnKey获取文件客户端（多CDN配置下使用）
+// 2. Get the file client by cdnKey (used in multi-CDN configurations)
 FileClient fileClient = FileClientFactory.getClient(resourceFileForm.getCdnKey());
 
-// 示例1
+// Example 1
 CdnFile cdnFile = FileClientFactory.getClient().upload(fileName, data/**byte[]*/);
 
-//示例2
-String fileName = "路径名/" + file.getName();
+// Example 2
+String fileName = "pathname/" + file.getName();
 FileClientFactory.getClient().uploadByFileName(fileName, is/**InputStream*/);
 ```
 
-一个完整的示例：
+A complete example:
 
 ```java
 private static Map<String, String> uploadFiles(File unzipDirectory) {
@@ -225,7 +224,7 @@ private static Map<String, String> uploadFiles(File unzipDirectory) {
     }
     for (File file : files) {
         try (FileInputStream is = new FileInputStream(file)) {
-            // 文件名拼接fileName仅是一个示例，根据实际情况修改
+            // The file name concatenation is just an example; modify it according to actual needs
             String fileName = "widgetFile/" + file.getName();
             FileClientFactory.getClient().uploadByFileName(fileName, is);
             String url = FileClientFactory.getClient().getDownloadUrl(fileName);
@@ -237,4 +236,3 @@ private static Map<String, String> uploadFiles(File unzipDirectory) {
     return result;
 }
 ```
-

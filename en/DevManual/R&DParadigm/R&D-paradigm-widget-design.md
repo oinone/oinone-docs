@@ -1,9 +1,9 @@
 ---
-title: 研发范式：Widget 组件设计范式
+title: R&D Paradigm:Widget Component Design Paradigm
 index: true
 category:
-  - 研发手册
-  - 最佳范式
+  - Development Manual
+  - Best Paradigms
 order: 4
 
 ---

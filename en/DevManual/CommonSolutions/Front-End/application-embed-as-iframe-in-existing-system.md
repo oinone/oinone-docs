@@ -1,21 +1,21 @@
 ---
-title: 应用：作为Iframe嵌入到已有系统中
+title: Application:Embedding as Iframe into Existing Systems
 index: true
 category:
-   - 前端
+   - Frontend
 order: 5
 ---
-# 一、场景概述
-管理后台如何新增 Iframe 嵌入其他系统的界面：
+# I. Scenario Overview
+How to add an interface for embedding other systems via Iframe in the management background:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-12-27_15-02-03.png)
 
-# 二、解决方案
-1. 新建一个模型。模型中有放【url】的字段
-2. 拖入字段![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/51A4BA0B-9A6F-4716-8B74-15C13B76F00B.png)
-3. 切换组件
+# II. Solutions
+1. Create a new model with a field for [URL].
+2. Drag and drop the field.
+   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/51A4BA0B-9A6F-4716-8B74-15C13B76F00B.png)
+3. Switch components.
    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/94056A32-E728-46FB-8072-F6CBB8FC191F.png)
-4. 点击发布
-5. 测试环境验证下，后端那个字段返回嵌入的【url】就可以展示这个url的内容了
-6. 最后效果如下：
+4. Click **Publish**.
+5. Verify in the test environment: if the backend returns the embedded [URL] for that field, the content of the URL will be displayed.
+6. The final effect is as follows:
    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/01D2CD25-D3C7-4540-8FB6-ABE80147E6A3.png)
-

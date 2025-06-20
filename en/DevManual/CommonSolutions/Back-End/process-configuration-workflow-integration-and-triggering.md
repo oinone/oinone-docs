@@ -1,17 +1,19 @@
 ---
-title: 流程配置：项目中工作流引入和流程触发
+title: Process Configuration:Workflow Introduction and Process Triggering in Projects
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 54
 ---
 
-# 一、使用工作流需要依赖的包和设置
-## （一）工作流需要依赖的模块
-### 1、需在 pom.xml 中增加 workflow、sql-record 和 trigger 相关模块的依赖
-+ workflow：工作流运行核心模块
-+ sql-record：监听流程发布以后对应模型的增删改监听
-+ trigger：异步任务调度模块
+# I. Dependencies and Settings Required for Using Workflow
+
+## (一) Modules Dependent on Workflow
+
+### 1. Add dependencies on workflow, sql-record, and trigger related modules in pom.xml
+- workflow: Core module for workflow operation
+- sql-record: Listens to additions, deletions, and modifications of the corresponding model after process publication
+- trigger: Asynchronous task scheduling module
 
 ```xml
 <dependency>
@@ -34,17 +36,16 @@ order: 54
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-trigger-bridge-tbschedule</artifactId>
 </dependency>
-
 ```
 
-### 2、在 application.yml 中增加对应模块的依赖以及 sql-record 路径以及其他相关设置
+### 2. Add dependencies on corresponding modules, sql-record path, and other related settings in application.yml
 ```yaml
 pamirs:
 ...
 
   record:
     sql:
-      #改成自己路径
+      # Modify to your own path
       store: /opt/pamirs/logs
 ...
 
@@ -71,32 +72,34 @@ pamirs:
     enabled: true
     schedule:
       enabled: true
-      # ownSign区分不同应用
+      # ownSign distinguishes different applications
       ownSign: demo
     rocket-mq:
-      # enabled 为 false情况不用配置
+      # No need to configure when enabled is false
       namesrv-addr: 192.168.6.2:19876
     trigger:
       auto-trigger: true
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-# 二、触发方式
-## （一）自动触发方式
-在流程设计器中设置触发方式，如果设置了代码触发方式则不会自动触发
+# II. Trigger Modes
 
-## （二）代码调用方式触发
-### 1、再流程设计器中触发设置中，设置为是否人工触发设置为是
+## (一) Automatic Trigger Mode
+Set the trigger mode in the process designer. If the code trigger mode is set, automatic triggering will not occur.
+
+## (二) Code Invocation Trigger Mode
+
+### 1. In the trigger settings of the process designer, set whether to trigger manually to "Yes"
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2023110703530190-20250530144823478.png)
 
-### 2、查询数据库获取该流程的编码
+### 2. Query the database to obtain the process code
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2023110703554815-20250530144823528.png)
 
-### 3、在代码中调用
+### 3. Invoke in code
 ```java
 /**
-     * 触发⼯作流实例
+     * Trigger workflow instance
      */
 private Boolean startWorkflow(WorkflowD workflowD, IdModel modelData) {
     WorkflowDefinition workflowDefinition = new WorkflowDefinition().queryOneByWrapper(
@@ -106,12 +109,12 @@ private Boolean startWorkflow(WorkflowD workflowD, IdModel modelData) {
         .eq(WorkflowDefinition::getActive, 1)
     );
     if (null == workflowDefinition) {
-        // 流程没有运⾏实例
+        // No running instance of the process
         return Boolean.FALSE;
     }
     String model = Models.api().getModel(modelData);
 
-    //⼯作流上下⽂
+    // Workflow data context
     WorkflowDataContext wdc = new WorkflowDataContext();
     wdc.setDataType(WorkflowVariationTypeEnum.ADD);
     wdc.setModel(model);
@@ -119,13 +122,12 @@ private Boolean startWorkflow(WorkflowD workflowD, IdModel modelData) {
     wdc.setWorkflowDefinition(workflowDefinition);
     wdc.setWorkflowDefinitionId(workflowDefinition.getId());
     IdModel copyData = KryoUtils.get().copy(modelData);
-    // ⼿动触发创建的动作流,将操作⼈设置为当前⽤户,作为流程的发起⼈
+    // Manually trigger the created action flow, set the operator as the current user as the process initiator
     copyData.setCreateUid(PamirsSession.getUserId());
     copyData.setWriteUid(PamirsSession.getUserId());
     String jsonData = JsonUtils.toJSONString(copyData.get_d());
-    //触发⼯作流 新增时触发-onCreateManual 更新时触发-onUpdateManual
+    // Trigger the workflow - trigger onCreateManual for addition, trigger onUpdateManual for update
     Fun.run(WorkflowModelTriggerFunction.FUN_NAMESPACE, "onCreateManual", wdc, msgId, jsonData);
     return Boolean.TRUE;
 }
 ```
-

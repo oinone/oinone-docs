@@ -1,52 +1,52 @@
 ---
-title: 集成接口 API（EIP API）
+title: EIP API
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 标准模块
+  - Standard Modules
 order: 6
 next:
-  text: 通用扩展点与平台SPI清单（Common Extension Points And SPI List）
+  text: Common Extension Points And SPI List
   link: /en/DevManual/Reference/common-extension-points-and-SPI-list.md
 ---
-# 一、概述
+# I. Overview
 
-Oinone 集成平台通过注解 `@Integrate` 和 `@Open` 提供灵活的接口定义能力，支持企业内外部系统的高效集成。
+The Oinone integration platform provides flexible interface definition capabilities through the annotations `@Integrate` and `@Open`, supporting efficient integration of internal and external enterprise systems.
 
-+ `@Open`：用于声明对外开放的接口（供外部系统调用）。
-+ `@Integrate`：用于声明集成接口（调用外部系统的接口）。
++ `@Open`: Used to declare open interfaces for external system invocation.
++ `@Integrate`: Used to declare integration interfaces for invoking external system interfaces.
 
-本文档详细说明这两个注解的配置项、使用场景及示例。
+This document details the configuration items, usage scenarios, and examples of these two annotations.
 
-:::warning 提示
+:::warning Note
 
-本文档可助您快速掌握核心概念与基础逻辑。不过在实际开发过程中，强烈推荐使用设计器辅助开发。设计器能够提供可视化操作界面，简化配置流程、降低编码复杂度，帮助您更高效、精准地完成开发任务 ，显著提升开发效率与质量。
+This document helps you quickly grasp core concepts and basic logic. However, during actual development, using the designer for auxiliary development is highly recommended. The designer provides a visual operation interface, simplifies configuration processes, reduces coding complexity, helps you complete development tasks more efficiently and accurately, and significantly improves development efficiency and quality.
 
 :::
 
-# 二、准备工作
+# II. Preparation Work
 
-## （一）YAML配置
+## (一) YAML Configuration
 
-### 1、开放平台配置
+### 1. Open Platform Configuration
 
-与此主题相关的文档可在 “[集成平台配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#十六-集成平台配置-pamirs-eip)” 中找到。
+Related documentation on this topic can be found in "[Integration Platform Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十六-集成平台配置-pamirs-eip)".
 
-### 2、启动eip模块
+### 2. Start the eip Module
 
 ```yaml
 pamirs:
-	boot:
+  boot:
     modules:
       - eip
 ```
 
-## （二）maven依赖
+## (二) Maven Dependencies
 
-### 1、api工程加入相关依赖包
+### 1. Add Relevant Dependencies to the api Project
 
-在xxxModule-api中增加入pamirs-eip2-api的依赖
+Add the dependency on pamirs-eip2-api to xxxModule-api:
 
 ```xml
 <dependency>
@@ -55,7 +55,7 @@ pamirs:
 </dependency>
 ```
 
-### 2、启动工程加入相关依赖包
+### 2. Add Relevant Dependencies to the Startup Project
 
 ```xml
 <dependency>
@@ -64,75 +64,75 @@ pamirs:
 </dependency>
 ```
 
-## （三）项目的模块增加模块依赖
+## (三) Add Module Dependencies to the Project's Module
 
-xxxModule的定义类增加对EipModule的依赖
+Add dependency on EipModule to the xxxModule definition class:
 
 ```java
 @Module(dependencies = {EipModule.MODULE_MODULE})
 ```
 
-# 三、`@Open` 注解
+# III. `@Open` Annotation
 
-## （一） 功能说明
+## (一) Function Description
 
-`@Open` 注解用于定义开放接口，允许外部系统通过 HTTP 请求调用。它支持配置请求方法、输入输出转换器、认证处理器等功能。
+The `@Open` annotation defines open interfaces, allowing external systems to invoke them via HTTP requests. It supports configuring request methods, input/output converters, authentication processors, and other functions.
 
-## （二）注解结构
+## (二) Annotation Structure
 
 ```java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface Open {
-    String name() default "";        // 接口显示名称
-    Class<?> config() default Void.class; // 关联的配置类
-    String path() default "";        // 接口路径
+    String name() default "";        // Interface display name
+    Class<?> config() default Void.class; // Associated configuration class
+    String path() default "";        // Interface path
 
-    // 高级配置
+    // Advanced configuration
     @interface Advanced {
-        String httpMethod() default "post";                // HTTP方法（默认POST）
-        String inOutConverterFun() default "";             // 输入输出转换函数名
-        String inOutConverterNamespace() default "";       // 输入输出转换函数命名空间
-        String authenticationProcessorFun() default "";    // 认证处理函数名
-        String authenticationProcessorNamespace() default ""; // 认证处理函数命名空间
-        String serializableFun() default "";               // 序列化函数名
-        String serializableNamespace() default "";         // 序列化函数命名空间
-        String deserializationFun() default "";            // 反序列化函数名
-        String deserializationNamespace() default "";      // 反序列化函数命名空间
+        String httpMethod() default "post";                // HTTP method (default POST)
+        String inOutConverterFun() default "";             // Input/output conversion function name
+        String inOutConverterNamespace() default "";       // Input/output conversion function namespace
+        String authenticationProcessorFun() default "";    // Authentication processing function name
+        String authenticationProcessorNamespace() default ""; // Authentication processing function namespace
+        String serializableFun() default "";               // Serialization function name
+        String serializableNamespace() default "";         // Serialization function namespace
+        String deserializationFun() default "";            // Deserialization function name
+        String deserializationNamespace() default "";      // Deserialization function namespace
     }
 }
 ```
 
 Open
 
-├── name 显示名称
+├── name Display name
 
-├── config 配置类
+├── config Configuration class
 
-├── path 路径
+├── path Path
 
-├── Advanced 更多配置
+├── Advanced More configurations
 
-│   ├── httpMethod 请求方法，默认：post
+│   ├── httpMethod Request method, default: post
 
-│   ├── inOutConverterFun 输入输出转换器函数名称
+│   ├── inOutConverterFun Input/output converter function name
 
-│   ├── inOutConverterNamespace 输入输出转换器函数命名空间
+│   ├── inOutConverterNamespace Input/output converter function namespace
 
-│   ├── authenticationProcessorFun 认证处理器函数名称
+│   ├── authenticationProcessorFun Authentication processor function name
 
-│   ├── authenticationProcessorNamespace 认证处理器函数命名空间
+│   ├── authenticationProcessorNamespace Authentication processor function namespace
 
-│   ├── serializableFun 序列化函数名称
+│   ├── serializableFun Serialization function name
 
-│   ├── serializableNamespace 序列化函数命名空间
+│   ├── serializableNamespace Serialization function namespace
 
-│   ├── deserializationFun 反序列化函数名称
+│   ├── deserializationFun Deserialization function name
 
-│   └── deserializationNamespace 反序列化函数命名空间
+│   └── deserializationNamespace Deserialization function namespace
 
-## （三）使用示例
+## (三) Usage Example
 
 ```java
 @Fun(TestOpenApiModelService.FUN_NAMESPACE)
@@ -140,7 +140,7 @@ Open
 public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
     @Function
     @Open(
-        name = "查询开放接口数据",
+        name = "Query Open Interface Data",
         path = "queryById4Open",
         config = TestEipConfig.class
     )
@@ -150,182 +150,182 @@ public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
         authenticationProcessorNamespace = EipFunctionConstant.FUNCTION_NAMESPACE
     )
     public OpenEipResult<TestOpenApiResponse> queryById4Open(IEipContext<SuperMap> context) {
-        // 业务逻辑
+        // Business logic
         return result;
     }
 }
 ```
 
-## （四）参数说明
+## (四) Parameter Description
 
-### 1、成员变量
+### 1. Member Variables
 
-| **变量名**                                           | **类型**                                               | **默认值**                                               | **描述**                                                     |
+| **Variable Name**                                           | **Type**                                               | **Default Value**                                               | **Description**                                                     |
 | ---------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------ |
-| `name`   | `String`   | `""`         | 接口的显示名称   |
-| `config` | `Class<?>` | `Void.class` | 配置类（需实现 `IEipAnnotationSingletonConfig`<br/> 接口） |
-| `path`   | `String`   | `""`         | 接口的请求路径   |
+| `name`   | `String`   | `""`         | Interface display name   |
+| `config` | `Class<?>` | `Void.class` | Configuration class (needs to implement `IEipAnnotationSingletonConfig`<br/> interface) |
+| `path`   | `String`   | `""`         | Interface request path   |
 
 
-### 2、嵌套注解 `@Advanced`
+### 2. Nested Annotation `@Advanced`
 
-用于配置高级选项，可标注在方法或类上。
+Used to configure advanced options, can be annotated on methods or classes.
 
-| **变量名**                                                   | **类型**                                             | **默认值**                                       | **描述**                                                     |
+| **Variable Name**                                                   | **Type**                                             | **Default Value**                                       | **Description**                                                     |
 | ------------------------------------------------------------ | ---------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| `httpMethod`     | `String` | `""` | HTTP 请求方法（如 `POST`<br/>） |
-| `inOutConverterFun` | `String` | `""` | 输入输出转换器的函数名 |
-| `inOutConverterNamespace` | `String` | `""` | 输入输出转换器的命名空间 |
-| `authenticationProcessorFun` | `String` | `""` | 认证处理器的函数名 |
-| `authenticationProcessorNamespace` | `String` | `""` | 认证处理器的命名空间 |
-| `serializableFun` | `String` | `""` | 序列化函数名     |
-| `serializableNamespace` | `String` | `""` | 序列化函数的命名空间 |
-| `deserializationFun` | `String` | `""` | 反序列化函数名   |
-| `deserializationNamespace` | `String` | `""` | 反序列化函数的命名空间 |
+| `httpMethod`     | `String` | `""` | HTTP request method (such as `POST`<br/>) |
+| `inOutConverterFun` | `String` | `""` | Input/output converter function name |
+| `inOutConverterNamespace` | `String` | `""` | Input/output converter namespace |
+| `authenticationProcessorFun` | `String` | `""` | Authentication processor function name |
+| `authenticationProcessorNamespace` | `String` | `""` | Authentication processor namespace |
+| `serializableFun` | `String` | `""` | Serialization function name     |
+| `serializableNamespace` | `String` | `""` | Serialization function namespace |
+| `deserializationFun` | `String` | `""` | Deserialization function name   |
+| `deserializationNamespace` | `String` | `""` | Deserialization function namespace |
 
 
-# 四、`@Integrate` 注解
+# IV. `@Integrate` Annotation
 
-## （一）功能说明
+## (一) Function Description
 
-`@Integrate` 注解用于定义集成接口，支持调用外部系统的开放接口。支持路由配置、参数转换、异常处理等功能。
+The `@Integrate` annotation defines integrated interfaces, supporting invocation of external system open interfaces. It supports routing configuration, parameter conversion, exception handling, and other functions.
 
-## （二）注解结构
+## (二) Annotation Structure
 
 ```java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface Integrate {
-    String name() default "";        // 接口显示名称
-    Class<?> config();               // 关联的配置类（必须）
+    String name() default "";        // Interface display name
+    Class<?> config();               // Associated configuration class (required)
 
-    // 高级配置
+    // Advanced configuration
     @interface Advanced {
-        String host() default "";    // 目标服务域名（如 "api.example.com"）
-        String path() default "";    // 目标接口路径（如 "/v1/data"）
-        String schema() default "";  // 协议（如 "http" 或 "https"）
-        String httpMethod() default "post"; // HTTP方法
+        String host() default "";    // Target service domain name (e.g., "api.example.com")
+        String path() default "";    // Target interface path (e.g., "/v1/data")
+        String schema() default "";  // Protocol (e.g., "http" or "https")
+        String httpMethod() default "post"; // HTTP method
     }
 
-    // 请求处理器配置
+    // Request processor configuration
     @interface RequestProcessor {
-        String finalResultKey() default "";  // 最终请求参数的键
-        Integrate.ConvertParam[] convertParams() default {}; // 参数映射规则
-        // 其他配置项（如序列化、认证处理器等）
+        String finalResultKey() default "";  // Final request parameter key
+        Integrate.ConvertParam[] convertParams() default {}; // Parameter mapping rules
+        // Other configuration items (such as serialization, authentication processor, etc.)
     }
 
-    // 响应处理器配置
+    // Response processor configuration
     @interface ResponseProcessor {
-        String finalResultKey() default "";  // 最终响应结果的键
-        // 其他配置项
+        String finalResultKey() default "";  // Final response result key
+        // Other configuration items
     }
 
-    // 异常处理器配置
+    // Exception processor configuration
     @interface ExceptionProcessor {
-        String exceptionPredictFun() default "";     // 异常判定函数名
-        String exceptionPredictNamespace() default ""; // 异常判定函数命名空间
+        String exceptionPredictFun() default "";     // Exception determination function name
+        String exceptionPredictNamespace() default ""; // Exception determination function namespace
     }
 
-    // 参数映射规则
+    // Parameter mapping rules
     @interface ConvertParam {
-        String inParam();   // 输入参数键
-        String outParam();  // 输出参数键
+        String inParam();   // Input parameter key
+        String outParam();  // Output parameter key
     }
 }
 ```
 
 Integrate
 
-├── name 显示名称
+├── name Display name
 
-├── config 配置类
+├── config Configuration class
 
-├── Advanced 更多配置
+├── Advanced More configurations
 
-│   ├── host 请求域名+端口
+│   ├── host Request domain name + port
 
-│   ├── path 请求路径 以“/”开头
+│   ├── path Request path starting with "/"
 
-│   ├── schema 请求协议 http或者https
+│   ├── schema Request protocol http or https
 
-│   └── httpMethod 请求方法，默认post
+│   └── httpMethod Request method, default post
 
-├── ExceptionProcessor 异常配置
+├── ExceptionProcessor Exception configuration
 
-│   ├── exceptionPredictFun 异常判定函数名
+│   ├── exceptionPredictFun Exception determination function name
 
-│   ├── exceptionPredictNamespace 异常判定函数命名空间
+│   ├── exceptionPredictNamespace Exception determination function namespace
 
-│   ├── errorMsg 异常判定Msg的键值
+│   ├── errorMsg Exception determination Msg key
 
-│   └── errorCode 异常判定errorCode的键值
+│   └── errorCode Exception determination errorCode key
 
-├── RequestProcessor 请求处理配置
+├── RequestProcessor Request processing configuration
 
-│   ├── finalResultKey 请求的最终结果键值
+│   ├── finalResultKey Final result key of the request
 
-│   ├── inOutConverterFun 输入输出转换器函数名称
+│   ├── inOutConverterFun Input/output converter function name
 
-│   ├── inOutConverterNamespace 输入输出转换器函数命名空间
+│   ├── inOutConverterNamespace Input/output converter function namespace
 
-│   ├── paramConverterCallbackFun 参数转换回调函数名称
+│   ├── paramConverterCallbackFun Parameter conversion callback function name
 
-│   ├── paramConverterCallbackNamespace 参数转换回调函数命名空间
+│   ├── paramConverterCallbackNamespace Parameter conversion callback function namespace
 
-│   ├── authenticationProcessorFun 认证处理器函数名称
+│   ├── authenticationProcessorFun Authentication processor function name
 
-│   ├── authenticationProcessorNamespace 认证处理器函数命名空间
+│   ├── authenticationProcessorNamespace Authentication processor function namespace
 
-│   ├── serializableFun 序列化函数名称
+│   ├── serializableFun Serialization function name
 
-│   ├── serializableNamespace 序列化函数命名空间
+│   ├── serializableNamespace Serialization function namespace
 
-│   ├── deserializationFun 反序列化函数名称
+│   ├── deserializationFun Deserialization function name
 
-│   ├── deserializationNamespace 反序列化函数命名空间
+│   ├── deserializationNamespace Deserialization function namespace
 
-│   └── convertParams 参数转化集合
+│   └── convertParams Parameter conversion collection
 
-│        └──  ConvertParam 参数转化
+│        └──  ConvertParam Parameter conversion
 
-│             ├── inParam  输入参数的键值
+│             ├── inParam Input parameter key
 
-│             └── outParam  输出参数的键值
+│             └── outParam Output parameter key
 
-├── ResponseProcessor 请求处理配置
+├── ResponseProcessor Request processing configuration
 
-│   ├── finalResultKey 响应的最终结果键值
+│   ├── finalResultKey Final result key of the response
 
-│   ├── inOutConverterFun 输入输出转换器函数名称
+│   ├── inOutConverterFun Input/output converter function name
 
-│   ├── inOutConverterNamespace 输入输出转换器函数命名空间
+│   ├── inOutConverterNamespace Input/output converter function namespace
 
-│   ├── paramConverterCallbackFun 参数转换回调函数名称
+│   ├── paramConverterCallbackFun Parameter conversion callback function name
 
-│   ├── paramConverterCallbackNamespace 参数转换回调函数命名空间
+│   ├── paramConverterCallbackNamespace Parameter conversion callback function namespace
 
-│   ├── authenticationProcessorFun 认证处理器函数名称
+│   ├── authenticationProcessorFun Authentication processor function name
 
-│   ├── authenticationProcessorNamespace 认证处理器函数命名空间
+│   ├── authenticationProcessorNamespace Authentication processor function namespace
 
-│   ├── serializableFun 序列化函数名称
+│   ├── serializableFun Serialization function name
 
-│   ├── serializableNamespace 序列化函数命名空间
+│   ├── serializableNamespace Serialization function namespace
 
-│   ├── deserializationFun 反序列化函数名称
+│   ├── deserializationFun Deserialization function name
 
-│   ├── deserializationNamespace 反序列化函数命名空间
+│   ├── deserializationNamespace Deserialization function namespace
 
-│   └── convertParams 参数转化集合
+│   └── convertParams Parameter conversion collection
 
-│        └──  ConvertParam 参数转化
+│        └──  ConvertParam Parameter conversion
 
-│             ├── inParam  输入参数的键值
+│             ├── inParam Input parameter key
 
-│             └── outParam  输出参数的键值
+│             └── outParam Output parameter key
 
-## （三）使用示例
+## (三) Usage Example
 
 ```java
 @Fun(TestIntegrateService.FUN_NAMESPACE)
@@ -334,7 +334,7 @@ public class TestIntegrateServiceImpl implements TestIntegrateService {
     @Override
     @Function
     @Integrate(
-        name = "调用外部接口",
+        name = "Invoke External Interface",
         config = TestEipConfig.class
     )
     @Integrate.Advanced(
@@ -348,88 +348,88 @@ public class TestIntegrateServiceImpl implements TestIntegrateService {
         }
     )
     public EipResult<SuperMap> callExternalService(TestOpenApiModel data) {
-        return null; // 实际执行由拦截器处理
+        return null; // Actually processed by the interceptor
     }
 }
 ```
 
-## （四）参数说明
+## (四) Parameter Description
 
-### 1、成员变量
+### 1. Member Variables
 
-| **变量名**                                           | **类型**                                               | **默认值**                                       | **描述**                                                     |
+| **Variable Name**                                           | **Type**                                               | **Default Value**                                       | **Description**                                                     |
 | ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------ |
-| `name`   | `String`   | `""` | 接口的显示名称   |
-| `config` | `Class<?>` | 无   | 配置类（必须实现 `IEipAnnotationSingletonConfig`<br/> 接口） |
+| `name`   | `String`   | `""` | Interface display name   |
+| `config` | `Class<?>` | None   | Configuration class (must implement `IEipAnnotationSingletonConfig`<br/> interface) |
 
 
-### 2、嵌套注解
+### 2. Nested Annotations
 
 #### `@Advanced`
 
-配置请求的基础信息。
+Configures basic request information.
 
-| **变量名**                                               | **类型**                                             | **默认值**                                       | **描述**                                                     |
+| **Variable Name**                                               | **Type**                                             | **Default Value**                                       | **Description**                                                     |
 | -------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| `host`       | `String` | `""` | 目标服务的域名和端口 |
-| `path`       | `String` | `""` | 请求路径         |
-| `schema`     | `String` | `""` | 协议类型（如 `http`<br/> 或 `https`<br/>） |
-| `httpMethod` | `String` | `""` | HTTP 请求方法（如 `POST`<br/>） |
+| `host`       | `String` | `""` | Target service domain name and port |
+| `path`       | `String` | `""` | Request path         |
+| `schema`     | `String` | `""` | Protocol type (such as `http`<br/> or `https`<br/>) |
+| `httpMethod` | `String` | `""` | HTTP request method (such as `POST`<br/>) |
 
 
 #### `@RequestProcessor`
 
-配置请求处理逻辑。
+Configures request processing logic.
 
-| **变量名**                                                   | **类型**                                                     | **默认值**                                       | **描述**                                                     |
+| **Variable Name**                                                   | **Type**                                                     | **Default Value**                                       | **Description**                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------ |
-| `finalResultKey` | `String`         | `""` | 最终请求参数的键值 |
-| `convertParams`  | `ConvertParam[]` | `{}` | 参数映射规则     |
+| `finalResultKey` | `String`         | `""` | Final request parameter key |
+| `convertParams`  | `ConvertParam[]` | `{}` | Parameter mapping rules     |
 
 
 #### `@ConvertParam`
 
-定义参数映射规则。
+Defines parameter mapping rules.
 
-| **变量名**                                             | **类型**                                             | **描述**                                                   |
+| **Variable Name**                                             | **Type**                                             | **Description**                                                   |
 | ------------------------------------------------------ | ---------------------------------------------------- | ---------------------------------------------------------- |
-| `inParam`  | `String` | 输入参数的键值 |
-| `outParam` | `String` | 输出参数的键值 |
+| `inParam`  | `String` | Input parameter key |
+| `outParam` | `String` | Output parameter key |
 
 
-# 五、核心处理函数
+# V. Core Processing Functions
 
-集成平台通过以下函数扩展接口行为：
+The integration platform extends interface behavior through the following functions:
 
-| **函数类型**                                                 | **接口**                                                     | **说明**                                                     |
+| **Function Type**                                                 | **Interface**                                                     | **Description**                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `inOutConverter` | `IEipInOutConverter` | 处理请求/响应体的输入输出转换 |
-| `authenticationProcessor` | `IEipAuthenticationProcessor` | 实现自定义认证逻辑（如Token验证） |
-| `serializable`   | `IEipSerializable` | 自定义序列化方式（如XML、JSON） |
-| `exceptionProcessor` | `IEipExceptionPredict` | 自定义异常判定逻辑 |
+| `inOutConverter` | `IEipInOutConverter` | Processes input/output conversion of request/response bodies |
+| `authenticationProcessor` | `IEipAuthenticationProcessor` | Implements custom authentication logic (such as Token verification) |
+| `serializable`   | `IEipSerializable` | Custom serialization methods (such as XML, JSON) |
+| `exceptionProcessor` | `IEipExceptionPredict` | Custom exception determination logic |
 
 
-# 六、完整调用流程
+# VI. Complete Call Flow
 
-## （一）请求流程
+## (一) Request Flow
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/c8e20cfdb7698815f7ae55e1ab9893ed.svg)
 
-## （二）响应流程
+## (二) Response Flow
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/a76a5527135a992ec7d7f3fbcdb0409e-20250529172921273.svg)
 
-:::warning 提示
+:::warning Note
 
-在`IEipInOutConverter`中做 md5 和加解密处理
+Perform md5 and encryption/decryption processing in `IEipInOutConverter`
 
 :::
 
-# 七、注册开放和集成接口
+# VII. Register Open and Integrated Interfaces
 
-## （一）扫描并注册所有标注 `@Open` 和 `@Integrate` 的接口
+## (一) Scan and Register All Interfaces Marked with `@Open` and `@Integrate`
 
-在模块启动生命周期中调用，与此主题相关的文档可在 “[模块生命周期](/en/DevManual/Reference/Back-EndFramework/module-API.md#三、模块生命周期)” 中找到。
+Called during module startup lifecycle, related documentation on this topic can be found in "[Module Lifecycle](/en/DevManual/Reference/Back-EndFramework/module-API.md#三、模块生命周期)".
 
 ```java
 EipResolver.resolver(TestModule.MODULE_MODULE,null);
@@ -473,29 +473,29 @@ public class SecondModuleBizInit implements InstallDataInit, UpgradeDataInit, Re
 }
 ```
 
-# 八、示例
+# VIII. Examples
 
-## （一）注意事项
+## (一) Notes
 
-:::info 注意：config配置
+:::info Note: config Configuration
 
-+ **开放接口**：`config = TestEipConfig.class`用于设置通用配置类，可在其中加`@Open.Advanced`，其优先级低于方法上的注解。
-+ **集成接口**：必须用`config = TestEipConfig.class`设置通用配置类，可加`@Integrate.Advanced`，优先级低于方法上的注解。
++ **Open Interface**: `config = TestEipConfig.class` is used to set the general configuration class, where `@Open.Advanced` can be added, with priority lower than the annotation on the method.
++ **Integrated Interface**: Must use `config = TestEipConfig.class` to set the general configuration class, and `@Integrate.Advanced` can be added, with priority lower than the annotation on the method.
 
 :::
 
-:::info 注意：开放接口固定路径
+:::info Note: Open Interface Fixed Path
 
 http://localhost:8094/openapi/pamirs/yourPath
 
 :::
 
-## （二）开放接口定义示例
+## (二) Open Interface Definition Examples
 
-### 1、基本开放接口
+### 1. Basic Open Interface
 
-**功能**：定义一个供外部系统调用的查询接口，支持路径参数和基本认证。
-**代码示例**：
+**Function**: Define a query interface for external system invocation, supporting path parameters and basic authentication.
+**Code Example**:
 
 ```java
 @Fun(TestOpenApiModelService.FUN_NAMESPACE)
@@ -521,17 +521,17 @@ public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
 }
 ```
 
-**关键配置**：
+**Key Configurations**:
 
-+ `@Open.path`：接口路径为 `queryById4Open`。
-+ `@Open.config`：关联配置类 `TestEipConfig`。
-+ `@Open.Advanced.httpMethod`：使用 POST 方法。
-+ `@Open.Advanced.authenticationProcessorFun`：启用无加密认证。
++ `@Open.path`: Interface path is `queryById4Open`.
++ `@Open.config`: Associated with configuration class `TestEipConfig`.
++ `@Open.Advanced.httpMethod`: Uses POST method.
++ `@Open.Advanced.authenticationProcessorFun`: Enables unencrypted authentication.
 
-### 2、接口异常响应格式
+### 2. Interface Exception Response Format
 
-**功能**：定义一个返回异常信息的开放接口，用于测试错误处理。
-**代码示例**：
+**Function**: Define an open interface returning exception information for testing error handling.
+**Code Example**:
 
 ```java
 @Function
@@ -542,29 +542,29 @@ public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
 )
 public OpenEipResult<TestOpenApiResponse> queryById4OpenError() {
     throw PamirsException.construct(EipExpEnumerate.SYSTEM_ERROR)
-    .appendMsg("测试异常")
+    .appendMsg("Test Exception")
     .errThrow();
 }
 ```
 
-**响应格式**：
+**Response Format**:
 
 ```plain
 {
   "success": false,
   "errorCode": "20140000",
-  "errorMsg": "系统异常, 测试异常"
+  "errorMsg": "System Exception, Test Exception"
 }
 ```
 
 
 
-## （三）集成接口调用示例
+## (三) Integrated Interface Invocation Examples
 
-### 1、基本集成接口
+### 1. Basic Integrated Interface
 
-**功能**：调用外部开放接口，实现参数映射和路由配置。
-**代码示例**：
+**Function**: Invoke external open interfaces, implementing parameter mapping and routing configuration.
+**Code Example**:
 
 ```java
 @Fun(TestIntegrateService.FUN_NAMESPACE)
@@ -585,21 +585,21 @@ public class TestIntegrateServiceImpl implements TestIntegrateService {
         }
     )
     public EipResult<SuperMap> callQueryByData(TestOpenApiModel data) {
-        return null; // 实际由拦截器处理
+        return null; // Actually processed by the interceptor
     }
 }
 ```
 
-**关键配置**：
+**Key Configurations**:
 
-+ `@Integrate.config`：关联配置类 `TestEipConfig`。
-+ `@Integrate.Advanced.path`：目标接口路径。
-+ `@Integrate.RequestProcessor.convertParams`：将 `data.id` 映射到请求参数 `id`。
++ `@Integrate.config`: Associated with configuration class `TestEipConfig`.
++ `@Integrate.Advanced.path`: Target interface path.
++ `@Integrate.RequestProcessor.convertParams`: Maps `data.id` to request parameter `id`.
 
-### 2、异常处理集成接口
+### 2. Exception Handling Integrated Interface
 
-**功能**：调用可能返回异常的接口，并配置自定义异常判定逻辑。
-**代码示例**：
+**Function**: Invoke interfaces that may return exceptions and configure custom exception determination logic.
+**Code Example**:
 
 ```java
 @Function
@@ -614,7 +614,7 @@ return null;
 }
 ```
 
-**自定义异常判定类**：
+**Custom Exception Determination Class**:
 
 ```java
 @Fun(TestExceptionPredictFunction.FUN_NAMESPACE)
@@ -627,17 +627,17 @@ public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperM
     @Function.fun(FUN)
     public boolean test(IEipContext<SuperMap> context) {
         String errorCode = context.getExecutorContextValue("success");
-        return "false".equals(errorCode); // 判定为异常
+        return "false".equals(errorCode); // Determine as exception
     }
 }
 ```
 
-## （四）安全策略配置示例
+## (四) Security Policy Configuration Examples
 
-### 1、AccessToken 认证
+### 1. AccessToken Authentication
 
-**功能**：在开放接口中启用 AccessToken 认证，并在集成接口中自动获取 Token。
-**开放接口配置**：
+**Function**: Enable AccessToken authentication in open interfaces and automatically obtain tokens in integrated interfaces.
+**Open Interface Configuration**:
 
 ```java
 @Open.Advanced(
@@ -646,7 +646,7 @@ public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperM
 )
 ```
 
-**集成接口认证处理类**：
+**Integrated Interface Authentication Processing Class**:
 
 ```java
 @Component
@@ -659,7 +659,7 @@ public class TestAuthFunction implements IEipAuthenticationProcessor<SuperMap> {
     @Function
     @Function.fun(FUN)
     public boolean authentication(IEipContext<SuperMap> context,ExtendedExchange exchange) {
-        // 从 Redis 获取或申请新 Token
+        // Get or apply for a new Token from Redis
         String token = redisTemplate.opsForValue().get("appKey");
         context.putInterfaceContextValue(IEipContext.HEADER_PARAMS_KEY + ".accessToken", token);
         return true;
@@ -667,10 +667,10 @@ public class TestAuthFunction implements IEipAuthenticationProcessor<SuperMap> {
 }
 ```
 
-### 2、RSA 加密通信
+### 2. RSA Encrypted Communication
 
-**功能**：在集成接口中对请求参数进行 RSA 加密。
-**代码示例**：
+**Function**: Encrypt request parameters in integrated interfaces using RSA.
+**Code Example**:
 
 ```java
 @Integrate.RequestProcessor(
@@ -682,7 +682,7 @@ return null;
 }
 ```
 
-**加密处理类**：
+**Encryption Processing Class**:
 
 ```java
 @Fun(RSAInOutConverter.FUN_NAMESPACE)
@@ -701,12 +701,12 @@ public class RSAInOutConverter implements IEipInOutConverter {
 }
 ```
 
-## （五）自定义序列化示例
+## (五) Custom Serialization Examples
 
-### 1、XML 序列化
+### 1. XML Serialization
 
-**功能**：实现 XML 格式的响应数据解析。
-**代码示例**：
+**Function**: Implement parsing of response data in XML format.
+**Code Example**:
 
 ```java
 @Integrate.ResponseProcessor(
@@ -718,7 +718,7 @@ public EipResult<XmlData> parseXmlResponse() {
 }
 ```
 
-**XML 序列化类**：
+**XML Serialization Class**:
 
 ```java
 public class TestSerializableFunction implements IEipSerializable<SuperMap> {
@@ -726,7 +726,7 @@ public class TestSerializableFunction implements IEipSerializable<SuperMap> {
     public static final String FUN ="xmlParser";
 
     @Override
-    @Function.Advanced(displayName = "自定义xml序列化方式")
+    @Function.Advanced(displayName = "Custom XML Serialization Method")
     @Function.fun(FUN)
     public SuperMap serializable(Object inObject) {
         if (inObject == null) {
@@ -780,10 +780,10 @@ public class TestSerializableFunction implements IEipSerializable<SuperMap> {
     }
 
     public static void iterateNodes(Element node, SuperMap superMap){
-        //获取当前元素的名称
+        //Get the name of the current element
         String nodeName = node.getName();
         if(superMap.containsKey(nodeName)){
-            //该元素在同级下有多个
+            //There are multiple instances of this element at the same level
             Object object = superMap.getIteration(nodeName);
             List<Object> list = Lists.newArrayList();
             if(object instanceof JSONArray){
@@ -792,20 +792,20 @@ public class TestSerializableFunction implements IEipSerializable<SuperMap> {
                 list = Lists.newArrayList();
                 list.add(object);
             }
-            //获取该元素下所有子元素
+            //Get all sub-elements under this element
             List<Element> listElement = node.elements();
             if(listElement.isEmpty()){
-                //该元素无子元素，获取元素的值
+                //This element has no sub-elements, get the element's value
                 String nodeValue = node.getTextTrim();
                 list.add(nodeValue);
                 superMap.putIteration(nodeName, list);
                 return;
             }
-            //有子元素
+            //Has sub-elements
             SuperMap subMap = new SuperMap();
-            //遍历所有子元素
+            //Traverse all sub-elements
             for(Element e:listElement){
-                //递归
+                //Recursion
                 iterateNodes(e, subMap);
             }
             list.add(subMap);
@@ -814,16 +814,16 @@ public class TestSerializableFunction implements IEipSerializable<SuperMap> {
         }
         List<Element> listElement = node.elements();
         if(listElement.isEmpty()){
-            //该元素无子元素，获取元素的值
+            //This element has no sub-elements, get the element's value
             String nodeValue = node.getTextTrim();
             superMap.putIteration(nodeName, nodeValue);
             return;
         }
-        //有子节点，新建一个JSONObject来存储该节点下子节点的值
+        //Has child nodes, create a new JSONObject to store the values of the child nodes under this node
         SuperMap subMap = new SuperMap();
-        //遍历所有一级子节点
+        //Traverse all first-level child nodes
         for(Element e:listElement){
-            //递归
+            //Recursion
             iterateNodes(e, subMap);
         }
         superMap.putIteration(nodeName, subMap);
@@ -832,7 +832,7 @@ public class TestSerializableFunction implements IEipSerializable<SuperMap> {
 }
 ```
 
-:::info 注意：示例中加入了dom4j的依赖
+:::info Note: The example includes the dom4j dependency
 
 <dependency>
 
@@ -845,12 +845,3 @@ public class TestSerializableFunction implements IEipSerializable<SuperMap> {
 </dependency>
 
 :::
-
-
-
-
-
-
-
-
-

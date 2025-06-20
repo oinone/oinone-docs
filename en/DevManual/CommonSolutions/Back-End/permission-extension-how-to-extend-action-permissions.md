@@ -1,20 +1,20 @@
 ---
-title: 权限扩展：如何扩展行为权限
+title: Permission Extension:How to Extend Action Permissions
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 46
 ---
-# 一、概述
+# I. Overview
 
-在本系统权限控制策略下，仅当动作与页面产生交互行为时，方可于管理中心针对该动作的权限展开调控。对于那些在页面上不存在交互的动作，当前无法执行授权操作。因此，本文旨在详细阐述如何将此类缺乏页面交互的动作，融入系统权限管理体系之中。
+Under the permission control strategy of this system, permission regulation for an action can only be carried out in the management center when the action interacts with a page. Currently, authorization operations cannot be performed on actions that have no interaction with pages. Therefore, this article aims to elaborate on how to integrate such actions without page interaction into the system permission management system.
 
-# 二、扩展系统权限的菜单页面
+# II. Menu Page for Extending System Permissions
 
-## （一）实现步骤
+## (一) Implementation Steps
 
-1. 创建授权节点
-   实现权限节点扩展接口：`pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
+1. Create an authorization node
+Implement the permission node extension interface: `pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
 
 ```java
 @Component
@@ -27,14 +27,14 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
 
     @Override
     public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadContext, List<PermissionNode> nodes) {
-        //创建授权根节点
+        // Create an authorization root node
         PermissionNode root = createMyNode();
         List<PermissionNode> newNodes = new ArrayList<>();
-        //从缓存中读取需要授权的Action
+        // Read the Action that needs authorization from the cache
         Action cacheAction = PamirsSession.getContext().getExtendCache(ActionCacheApi.class).get(MODEL, FUN);
         if (cacheAction != null) {
-            //将该Action放入权限树
-            //权限鉴权的path路径是根据【cacheAction.getModel() + cacheAction.getName()】拼接的。和MODULE没有关系，这里MODULE可以自定义。
+            // Put this Action into the permission tree
+            // The path for permission authentication is spliced according to [cacheAction.getModel() + cacheAction.getName()], which has nothing to do with MODULE. Here, MODULE can be customized.
             AuthNodeHelper.addNode(newNodes, root, AuthNodeHelper.createActionNode(MODULE, cacheAction, root));
         }
         nodes.add(0, root);
@@ -42,58 +42,58 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
     }
 
     private PermissionNode createMyNode() {
-        return AuthNodeHelper.createNodeWithTranslate("MyNode", "自定义节点");
+        return AuthNodeHelper.createNodeWithTranslate("MyNode", "Custom Node");
     }
 }
 ```
 
-2. 在管理中心中我们可以看到代码里创建的授权节点。
-   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-06_16-28-30-20250530144820945.jpg)
-3. 给角色分配该动作的权限，调用我们配置的`AuthTest`模型的`dataStatus`动作看效果。
-   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-06_16-31-43-20250530100006800-20250530144821254.jpg)
+2. In the management center, we can see the authorization nodes created in the code.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-06_16-28-30-20250530144820945.jpg)
+3. Assign permissions for this action to a role, and call the `dataStatus` action of the `AuthTest` model we configured to see the effect.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-06_16-31-43-20250530100006800-20250530144821254.jpg)
 
-# 三、扩展菜单下的动作权限
+# III. Action Permissions under the Extended Menu
 
-## （一）实现步骤：
+## (一) Implementation Steps:
 
-1. 创建`viewAction`用于作为权限菜单
-   "permissionExtension"是自定义的`viewAction`的`name`，用于下面拼`path`路径鉴权。
-   因为这里只需要在系统权限那边利用这个`viewAction`创建出授权节点。所以”权限扩展form“可以随意定义名字，系统会拿默认视图。
+1. Create a `viewAction` for use as a permission menu
+"permissionExtension" is the `name` of the custom `viewAction`, used for splicing the `path` for authentication below.
+Because here we only need to use this `viewAction` to create authorization nodes in the system permissions. Therefore, the "permission extension form" can be named arbitrarily, and the system will use the default view.
 
 ```java
 @Model.model(AuthTest.MODEL_MODEL)
 @Component
 @UxRouteButton(
-    action = @UxAction(name = "permissionExtension", displayName = "权限扩展", label = "权限扩展", contextType = ActionContextTypeEnum.CONTEXT_FREE),
-    value = @UxRoute(model = AuthTest.MODEL_MODEL, viewName = "权限扩展form", openType = ActionTargetEnum.ROUTER))
+    action = @UxAction(name = "permissionExtension", displayName = "Permission Extension", label = "Permission Extension", contextType = ActionContextTypeEnum.CONTEXT_FREE),
+    value = @UxRoute(model = AuthTest.MODEL_MODEL, viewName = "Permission Extension Form", openType = ActionTargetEnum.ROUTER))
 public class AuthTestAction {
 
-    @Action(displayName = "启用", contextType = ActionContextTypeEnum.SINGLE)
+    @Action(displayName = "Enable", contextType = ActionContextTypeEnum.SINGLE)
     public AuthTest dataStatus(AuthTest data) {
-        data.setOrgName("给个值");
+        data.setOrgName("Assign a value");
         return data;
     }
 }
 ```
 
-2. 创建授权节点
-   实现权限节点扩展接口：`pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
+2. Create authorization nodes
+Implement the permission node extension interface: `pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
 
 ```java
 @Component
 @Order(88)
 public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
 
-    //创建授权根节点
+    // Create an authorization root node
     @Override
     public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadContext, List<PermissionNode> nodes) {
 
-        PermissionNode root = AuthNodeHelper.createNodeWithTranslate("CustomNode", "自定义节点");
+        PermissionNode root = AuthNodeHelper.createNodeWithTranslate("CustomNode", "Custom Node");
         List<PermissionNode> newNodes = new ArrayList<>();
         newNodes.add(root);
         ViewAction viewAction = new ViewAction().setModel(AuthTest.MODEL_MODEL).setName("permissionExtension").queryOne();
-        //将该Action放入权限树
-        //权限鉴权的path路径是根据【viewAction.getModel(), viewAction.getName()】拼接的。和MODULE没有关系，这里MODULE可以自定义。
+        // Put this Action into the permission tree
+        // The path for permission authentication is spliced according to [viewAction.getModel(), viewAction.getName()], which has nothing to do with MODULE. Here, MODULE can be customized.
         if (viewAction != null) {
             root.getNodes().add(AuthNodeHelper.createViewActionNode(TopModule.MODULE_MODULE, viewAction, root));
         }
@@ -101,21 +101,21 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
         return newNodes;
     }
 
-    //创建权限组里的动作权限节点
+    // Create action permission nodes in the permission group
     @Override
     public List<PermissionNode> buildNextPermissions(PermissionNode selected, List<PermissionNode> nodes) {
-        //需要利用viewAction的path路径去判断当前选中节点是否是我们创建的自定义节点，返回为空则不向下处理授权节点。path路径是根据【viewAction.getModel(), viewAction.getName()】拼接的
+        // Need to use the path of viewAction to determine whether the currently selected node is our created custom node. Returning null means not processing the authorization node downward. The path is spliced according to [viewAction.getModel(), viewAction.getName()]
         String path = "/" + AuthTest.MODEL_MODEL + "/" + "permissionExtension";
         if (!path.equals(selected.getPath())){
             return null;
         }
         List<PermissionNode> newNodes = new ArrayList<>();
-        //从缓存中读取需要授权的Action
+        // Read the Actions that need authorization from the cache
         List<Action> actions = new ArrayList<>();
         actions.add(PamirsSession.getContext().getExtendCache(ActionCacheApi.class).get(AuthTest.MODEL_MODEL, "dataStatus"));
         actions.add(PamirsSession.getContext().getExtendCache(ActionCacheApi.class).get(Teacher.MODEL_MODEL, "queryTea"));
-        //将这些Action放入动作权限树用于授权
-        //权限鉴权的path路径是根据【action.getModel(), action.getName()】拼接的。和TopModule.MODULE_MODULE没有关系，这里TopModule.MODULE_MODULE可以自定义。
+        // Put these Actions into the action permission tree for authorization
+        // The path for permission authentication is spliced according to [action.getModel(), action.getName()], which has nothing to do with TopModule.MODULE_MODULE. Here, TopModule.MODULE_MODULE can be customized.
         for (Action action : actions) {
             newNodes.add(AuthNodeHelper.createActionNode(TopModule.MODULE_MODULE, action, selected));
         }
@@ -125,9 +125,8 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
 }
 ```
 
-2. 在管理中心中我们可以看到代码里创建的授权节点。
-   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-08_10-13-24-20250530144821110.jpg)
-   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-08_10-14-26-20250530144821184.jpg)
-3. 给角色分配该动作的权限，调用我们配置的`AuthTest`模型的`dataStatus`动作看效果。
-   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-06_16-31-43-20250530100006800-20250530144821254.jpg)
-
+2. In the management center, we can see the authorization nodes created in the code.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-08_10-13-24-20250530144821110.jpg)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-08_10-14-26-20250530144821184.jpg)
+3. Assign permissions for this action to a role, and call the `dataStatus` action of the `AuthTest` model we configured to see the effect.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-06_16-31-43-20250530100006800-20250530144821254.jpg)

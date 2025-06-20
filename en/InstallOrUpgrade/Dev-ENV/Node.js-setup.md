@@ -1,5 +1,5 @@
 ---
-title: Node.js Installation and Precautions
+title: Node.js Setup
 index: true
 category:
   - Installation and Upgrade

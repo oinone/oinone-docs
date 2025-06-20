@@ -1,15 +1,14 @@
 ---
-title: 权限扩展：函数如何跳过权限拦截
+title: Permission Extension:How to Skip Permission Interception for Functions
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 44
 ---
-# 一、跳过登录直接调用接口
+# I. Invoking Interfaces Directly Without Login
 
-## （一）示例：
-
-+ 跳过 queryTea 的权限验证
+## (一) Example:
++ Skip permission validation for `queryTea`
 
 ```java
 @Action(displayName = "queryTea", bindingType = ViewTypeEnum.FORM)
@@ -18,40 +17,38 @@ public Teacher queryTea(Teacher data) {
 }
 ```
 
-+ 在 yaml 文件里面配置上该函数的 namespace（模型编码）以及函数名字
++ Configure the function's `namespace` (model code) and function name in the YAML file:
 
 ```yaml
 pamirs:
   auth:
     fun-filter:
       - namespace: user.PamirsUserTransient
-        fun: login #登录
+        fun: login # Login
       - namespace: top.Teacher
         fun: queryTea
 ```
 
-# 二、不跳过登录直接调用接口
+# II. Invoking Interfaces Directly with Login (Without Skipping Login)
 
-## （一）示例：
-
-+ 在 yaml 文件里面配置上该函数的 namespace（模型编码）以及函数名字
+## (一) Example:
++ Configure the function's `namespace` (model code) and function name in the YAML file:
 
 ```yaml
 pamirs:
   auth:
-    fun-filter-only-login: #登录后不再校验该函数的权限
+    fun-filter-only-login: # After login, skip permission validation for this function
       - namespace: top.Teacher
         fun: queryTea
 ```
 
-# 三、按包设置权限过滤
+# III. Setting Permission Filters by Package
 
-+ 如何批量跳过权限验证？以上两种方式提供了在 yml 文件里面配置权限过滤的方式，但如果需要大量过滤权限，配置就变得很繁琐，所以下面主要介绍通过代码扩展的方式去控制权限。
++ How to batch skip permission validation? The above two methods provide ways to configure permission filters in the YML file, but if a large number of permissions need to be filtered, configuration becomes tedious. Therefore, the following mainly introduces controlling permissions through code extension.
 
-## （一）示例：
-
-+ 以下示例通过控制包路径来跳过权限。
-+ 继承`pro.shushi.pamirs.auth.api.spi.AuthFilterService`接口
+## (一) Example:
++ The following example skips permissions by controlling the package path.
++ Inherit the `pro.shushi.pamirs.auth.api.spi.AuthFilterService` interface:
 
 ```java
 @Order(88)
@@ -62,13 +59,13 @@ public class CustomAuthFilterService implements AuthFilterService {
 
     @Override
     public Boolean isAccessAction(String model, String name) {
-        //从缓存中取函数
+        // Retrieve the function from the cache
         Action cacheAction = PamirsSession.getContext().getExtendCache(ActionCacheApi.class).get(model, name);
         if (cacheAction instanceof ServerAction) {
             ServerAction serverAction = (ServerAction) cacheAction;
             Function function = PamirsSession.getContext().getFunction(serverAction.getModel(), serverAction.getFun());
             String clazz = function.getClazz();
-            //返回true就代表通过验证
+            // Return true to indicate validation passed
             if (clazz != null && clazz.startsWith(skipClass)) {
                 return true;
             }
@@ -78,5 +75,4 @@ public class CustomAuthFilterService implements AuthFilterService {
 }
 ```
 
-请求`pro.shushi.pamirs.top.core.action`路径下的动作可以通过验证。
-
+Actions under the `pro.shushi.pamirs.top.core.action` path can pass validation.

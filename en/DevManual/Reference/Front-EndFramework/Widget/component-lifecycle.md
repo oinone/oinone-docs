@@ -2,40 +2,40 @@
 title: Component Lifecycle
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 前端API
+  - Front-End API
   - Widget
 order: 1
 prev:
-  text: 组件（Widget）
+  text: Widget
   link: /en/DevManual/Reference/Front-EndFramework/Widget/README.md
 ---
-在 Oinone Kunlun 中，其组件的生命周期完全遵照 Vue 框架提供的 Vue 组件生命周期进行实现。不仅如此，由于 Oinone Kunlun 是一套基于 DSL Render 实现的渲染框架，其管理范围不仅仅止步于 “组件”。它还需要对数据获取、数据渲染、数据提交等诸多数据行为进行处理，因此，我们还对其组件生命周期进行了扩展，以此来更好的支持整个系统的运行。
+In Oinone Kunlun, the component lifecycle is fully implemented following the Vue component lifecycle provided by the Vue framework. Moreover, since Oinone Kunlun is a rendering framework based on DSL Render, its management scope extends beyond just "components." It also needs to handle various data behaviors such as data fetching, rendering, and submission. Therefore, we have extended the component lifecycle to better support the entire system's operation.
 
-# 一、Vue 组件生命周期
+# I. Vue Component Lifecycle
 
-在了解 Widget 组件生命周期之前，我们先来回顾一下 Vue 组件生命周期。下面是单个组件实例生命周期的图表：（图片来源：Vue 官方文档 - 生命周期）
+Before understanding the Widget component lifecycle, let's first review the Vue component lifecycle. Below is a diagram of the lifecycle of a single component instance: (Image source: Vue official documentation - Lifecycle)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1747724752703-357b528d-6310-4364-9426-66d6c1796bc8.png)
 
-在这里我们只需要对 Vue 组件生命周期进行简单的介绍，以便于对照介绍我们接下来的内容。对于生命周期钩子 `API` ，在 Widget 组件中的定义也是几乎一样的。让我们继续往下看。
+Here we only provide a brief introduction to the Vue component lifecycle for context. The definition of lifecycle hook APIs in Widget components is almost identical. Let's continue.
 
-:::warning 提示
+:::warning Tip
 
-更多关于 Vue 组件生命周期的内容请参考：[Vue 生命周期](https://cn.vuejs.org/guide/essentials/lifecycle.html)
+For more content about the Vue component lifecycle, please refer to: [Vue Lifecycle](https://cn.vuejs.org/guide/essentials/lifecycle.html)
 
 :::
 
-# 二、Widget 生命周期
+# II. Widget Lifecycle
 
-基于 Vue 框架实现的 Widget 组件，其本质也是一个 Vue 组件。那么，其生命周期与 Vue 组件生命周期必然也是完全一致的。例如：
+A Widget component implemented based on the Vue framework is essentially a Vue component, so its lifecycle must be completely consistent with that of a Vue component. For example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1745394198621-ed2b7449-6301-4051-89ac-8b1a92ef879d.jpeg)
 
-一个 Widget 组件会经历很多阶段：它可以被实例化、渲染、挂载、更新、分离、销毁…… 这就是组件的生命周期。上面的图展示了一个组件生命周期中最重要的事件。大致来说，一个组件先被创建，然后被更新（可能会更新很多次），最后被销毁。
+A Widget component goes through many stages: it can be instantiated, rendered, mounted, updated, detached, destroyed... This is the component lifecycle. The diagram above shows the most important events in a component's lifecycle. Generally, a component is first created, then updated (possibly multiple times), and finally destroyed.
 
-Widget 框架提供了各种各样的内置函数。所有这些函数都在`VueWidget`基类中被声明。例如，如果你想在组件挂载时执行一些代码，你可以在当前组件重写`mounted`函数：
+The Widget framework provides various built-in functions, all declared in the `VueWidget` base class. For example, if you want to execute some code when the component is mounted, you can override the `mounted` function in the current component:
 
 ```typescript
 protected mounted() {
@@ -44,29 +44,29 @@ protected mounted() {
 }
 ```
 
-:::info 注意
+:::info Note
 
-Widget 框架使用面向对象继承的特性，因此无法避免的是，部分内置方法被暴露在自定义组件中。为了避免自定义组件对内核功能造成不必要的影响，Widget 框架使用 “$$” 前缀作为框架内置方法进行声明，如无特殊必要，它不应该被自定义组件重写或使用。
+The Widget framework uses the object-oriented inheritance feature, so it is unavoidable that some built-in methods are exposed in custom components. To prevent custom components from causing unnecessary impacts on kernel functions, the Widget framework uses a "$$" prefix to declare framework-built methods, which should not be overridden or used by custom components unless specially necessary.
 
 :::
 
-# 三、Reference List
+# III. Reference List
 
-## （一）标准生命周期函数
+## (一) Standard Lifecycle Functions
 
-### 1、beforeCreated
+### 1. beforeCreated
 
-**功能描述**
+**Function Description**
 
-在实例创建完成前被调用。（在新版 Vue 生命周期中已经合并到 `setup` 中）
+Called before the instance is completely created. (Merged into `setup` in the new Vue lifecycle)
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected beforeCreated(): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected beforeCreated() {
@@ -74,19 +74,19 @@ protected beforeCreated() {
 }
 ```
 
-### 2、created
+### 2. created
 
-**功能描述**
+**Function Description**
 
-在实例创建完成后被调用。（在新版 Vue 生命周期中已经合并到 `setup` 中）
+Called after the instance is created. (Merged into `setup` in the new Vue lifecycle)
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected created(): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected created() {
@@ -94,19 +94,19 @@ protected created() {
 }
 ```
 
-### 3、beforeMount
+### 3. beforeMount
 
-**功能描述**
+**Function Description**
 
-在挂载开始之前被调用。
+Called before mounting begins.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected beforeMount(): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected beforeMount() {
@@ -114,19 +114,19 @@ protected beforeMount() {
 }
 ```
 
-### 4、mounted
+### 4. mounted
 
-**功能描述**
+**Function Description**
 
-组件挂载到 DOM 后调用。
+Called after the component is mounted to the DOM.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected mounted(): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected mounted() {
@@ -134,19 +134,19 @@ protected mounted() {
 }
 ```
 
-### 5、beforeUpdate
+### 5. beforeUpdate
 
-**功能描述**
+**Function Description**
 
-数据更新导致组件重新渲染之前调用。此时组件的状态（`data`、`props`）已更新，但尚未重新渲染 DOM，可获取更新前的状态。
+Called before data updates cause the component to re-render. At this time, the component's state (`data`, `props`) has been updated, but the DOM has not been re-rendered yet, allowing access to the pre-update state.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected beforeUpdate(): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected beforeUpdate() {
@@ -154,24 +154,24 @@ protected beforeUpdate() {
 }
 ```
 
-### 6、updated
+### 6. updated
 
-**功能描述**
+**Function Description**
 
-组件重新渲染并更新 DOM 后调用。此时可访问更新后的 DOM 元素，完成基于新 DOM 的操作。
+Called after the component is re-rendered and the DOM is updated. At this time, updated DOM elements can be accessed to complete operations based on the new DOM.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected updated(): void
 ```
 
-**详细信息**
+**Details**
 
-+ 避免在此钩子中进行**重复渲染操作**，适合执行依赖 DOM 更新的回调（如重置滚动条位置）。
-+ 若组件更新多次，`updated` 会在所有子组件更新完毕后调用。
++ Avoid performing **repeated rendering operations** here; suitable for executing callbacks dependent on DOM updates (such as resetting scrollbar positions).
++ If the component updates multiple times, `updated` is called after all child components are updated.
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected updated() {
@@ -179,19 +179,19 @@ protected updated() {
 }
 ```
 
-### 7、beforeUnmount
+### 7. beforeUnmount
 
-**功能描述**
+**Function Description**
 
-组件卸载前调用。此时组件仍处于挂载状态，可执行**销毁前的清理操作**（如取消订阅、清除定时器）。
+Called before the component is unmounted. At this time, the component is still mounted, allowing cleanup operations before destruction (such as canceling subscriptions, clearing timers).
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected beforeUnmount(): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected beforeUnmount() {
@@ -199,19 +199,19 @@ protected beforeUnmount() {
 }
 ```
 
-### 8、unmounted
+### 8. unmounted
 
-**功能描述**
+**Function Description**
 
-组件卸载后调用。此时组件的 DOM 已被移除，实例即将被销毁，无法再访问组件状态或 DOM。
+Called after the component is unmounted. At this time, the component's DOM has been removed, the instance is about to be destroyed, and component state or DOM can no longer be accessed.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected unmounted(): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected unmounted() {
@@ -219,24 +219,24 @@ protected unmounted() {
 }
 ```
 
-### 9、activated
+### 9. activated
 
-**功能描述**
+**Function Description**
 
-当组件被**激活**时调用（适用于 `keep-alive` 缓存的组件）。例如，从缓存中切回该组件时触发。
+Called when the component is **activated** (applicable to components cached by `keep-alive`). For example, triggered when switching back to the component from the cache.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected activated(): void
 ```
 
-**详细信息**
+**Details**
 
-+ 用于**恢复组件状态**或**重新初始化资源**（如定时器、事件监听）。
-+ 仅在组件被 `keep-alive` 包裹时生效。
++ Used to **restore component state** or **reinitialize resources** (such as timers, event listeners).
++ Only takes effect when the component is wrapped by `keep-alive`.
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected activated() {
@@ -244,24 +244,24 @@ protected activated() {
 }
 ```
 
-### 10、deactivated
+### 10. deactivated
 
-**功能描述**
+**Function Description**
 
-当组件被**停用时**调用（适用于 `keep-alive` 缓存的组件）。例如，切换到其他组件时触发。
+Called when the component is **deactivated** (applicable to components cached by `keep-alive`). For example, triggered when switching to another component.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected deactivated(): void
 ```
 
-**详细信息**
+**Details**
 
-+ 用于**释放资源**，避免内存泄漏（如清除定时器、解绑事件）。
-+ 组件实例不会被销毁，状态会被保留。
++ Used to **release resources** to avoid memory leaks (such as clearing timers, unbinding events).
++ The component instance is not destroyed, and the state is preserved.
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected deactivated() {
@@ -269,27 +269,27 @@ protected deactivated() {
 }
 ```
 
-# （二）Widget 组件扩展函数
+# (二) Widget Component Extended Functions
 
-### 1、initialize
+### 1. initialize
 
-**功能描述**
+**Function Description**
 
-组件初始化，在 `TypeScript Class` 创建时被调用，优先于 `setup` 生命周期。
+Component initialization, called when the `TypeScript Class` is created, prior to the `setup` lifecycle.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 protected initialize(props: VueProps): this
 ```
 
-**详细信息**
+**Details**
 
-+ 用于 DSL 编辑
-+ 用于 Widget 组件绑定对应的 Vue 组件
-+ 用于获取插槽参数（`slotContext`）
++ Used for DSL editing
++ Used for binding Widget components to corresponding Vue components
++ Used for obtaining slot parameters (`slotContext`)
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected initialize(props) {
@@ -299,19 +299,19 @@ protected initialize(props) {
 }
 ```
 
-### 2、setComponent
+### 2. setComponent
 
-**功能描述**
+**Function Description**
 
-Widget 组件绑定对应的 Vue 组件，只能在 `initialize` 中使用。
+Binds the Widget component to the corresponding Vue component, can only be used in `initialize`.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 public setComponent(component: WidgetComponent): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 protected initialize(props) {
@@ -321,21 +321,20 @@ protected initialize(props) {
 }
 ```
 
-### 3、dispose
+### 3. dispose
 
-**功能描述**
+**Function Description**
 
-组件销毁，用于手动创建 Widget 组件时需要手动销毁的场景。
+Component destruction, used for scenarios where manually created Widget components need to be manually destroyed.
 
-**函数签名**
+**Function Signature**
 
 ```typescript
 public dispose(): void
 ```
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 this.formWidget.dispose();
 ```
-

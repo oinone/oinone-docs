@@ -1,16 +1,16 @@
 ---
-title: 运维相关：平台有健康检查接口吗
+title: Operation and Maintenance Related:Does the Platform Have a Health Check Interface?
 index: true
 category:
-  - 常见问题（faq）
+  - Frequently Asked Questions (faq)
 order: 11
 ---
-# 一、场景概述
-想要验证服务是否成功启动，可调用 `********/ruok` 接口，需注意此接口调用所使用的端口应为服务器实际运行端口。当该接口返回 “imok” 时，表明服务已成功启动；若返回 “no”，则意味着服务启动失败。
+# 一、Scenario Overview
+To verify whether a service has started successfully, you can call the `********/ruok` interface. Note that the port used for this interface call should be the actual running port of the server. When the interface returns "imok", it indicates that the service has started successfully; if it returns "no", the service failed to start.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/Snipaste_2024-09-27_11-16-55.jpg)
 
-# 二、代码逻辑
+# 二、Code Logic
 ```java
 @Order(Ordered.LOWEST_PRECEDENCE)
 @RestController
@@ -40,4 +40,3 @@ public class HealthCheckController implements ApplicationListener<ApplicationSta
     }
 }
 ```
-

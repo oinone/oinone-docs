@@ -1,86 +1,86 @@
 ---
-title: 文件导入导出（Import And Export）
+title: Import and Export
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 标准模块
+  - Standard Modules
 order: 4
 
 ---
-# 一、概述
+# I. Overview
 
-在 Oinone 中，导入/导出功能是通过 Excel 文件作为媒介进行处理的，这也是大多数管理信息系统常用的一种方式。
+In Oinone, the import/export function is processed through Excel files as a medium, which is also a common approach in most management information systems.
 
-在功能设计时，我们发现任何一个工作表都可以拆分为一个一个不重复的区块进行单独设计，这也是 Oinone 设计导入/导出模板的设计亮点之一。
+During the functional design, we found that any worksheet can be split into non-repeating blocks for independent design, which is one of the design highlights of Oinone's import/export template design.
 
-Excel 导入/导出模板通过多区块设计简化了单个工作表在业务系统中灵活定义的复杂度，在使用 Oinone 导入/导出功能时，灵活的拆解工作表是一项必备技能。
+The Excel import/export template simplifies the complexity of flexibly defining a single worksheet in a business system through multi-block design. When using Oinone's import/export function, the flexible decomposition of worksheets is an essential skill.
 
-下面将从 Excel 模板设计概念出发，一步一步帮助读者学会使用导入/导出功能以满足业务需求。
+The following will start from the concept of Excel template design and step-by-step help readers learn to use the import/export function to meet business needs.
 
-## （一）Excel 模板设计概念
+## (一) Excel Template Design Concepts
 
-### 1、名词解释
+### 1. Noun Explanations
 
-+ 工作簿（Workbook）：一个 Excel 文件称为一个工作簿。
-+ 工作表（Sheet）：一个工作簿中存在多个工作表。
-+ 区块（Block）：一个工作表中包含多个区块，区块的顺序在多个工作表中是连续的。
++ Workbook: An Excel file is called a workbook.
++ Sheet: A workbook contains multiple worksheets.
++ Block: A worksheet contains multiple blocks, and the order of blocks is continuous across multiple worksheets.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749108162577-a82dbda4-4241-4baf-84c7-a81ebad014b2.png)
 
-+ 行（Row）：在工作表中水平方向的所有单元格的集合。
-+ 列（Col）：在工作表中垂直方向的所有单元格的集合。
++ Row: A collection of all cells in the horizontal direction of a worksheet.
++ Col: A collection of all cells in the vertical direction of a worksheet.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749108323650-def9d835-a55f-4960-8256-01de056dd9b6.png)
 
-+ 单元格（Cell）：由坐标 `A1` 定位可以得到一个数据存放的最小单元。
++ Cell: The smallest unit for data storage located by coordinates like `A1`.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749108402249-1837fcab-15bf-4e4b-bf3a-5ede4e26a43c.png)
 
-+ 解析类型（analysisType）
-  - 固定表头：与 “表格” 类似，多条数据按 “表头” 定义的格式 “向下” 填充。
-  - 固定格式：与 “表单” 类似，单条数据按 “单元格” 定义的格式进行填充。
-+ 排列方向（direction）
-  - 水平排列：子元素水平排列，垂直填充。
-  - 垂直排列：子元素垂直排列，水平填充。
++ Analysis Type
+  - Fixed Header: Similar to a "table", multiple data entries are filled "downward" according to the format defined by the "header".
+  - Fixed Format: Similar to a "form", a single data entry is filled according to the format defined by "cells".
++ Direction
+  - Horizontal: Sub-elements are arranged horizontally and filled vertically.
+  - Vertical: Sub-elements are arranged vertically and filled horizontally.
 
-### 2、固定表头
+### 2. Fixed Header
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749109750688-30b1771e-1e81-47ce-8fde-4018594992c2.png)
 
-如图所示，左侧为设计区域，右侧为填充后的结果，总共由四个区块组成。
+As shown in the figure, the left side is the design area, and the right side is the filled result, consisting of four blocks in total.
 
-+ 第一个区块：允许定义多级表头。
-+ 第二个区块：上下排列的两个区块，第二个区块将根据第一个区块填充内容的数量向下平移。
-+ 第三个区块：当 “末级行” 具备样式时，在填充时将保留原有样式。如图所示：合并单元格样式将在填充时进行保留。
-+ 第四个区块：当 “排列方向” 设置为垂直排列时，表头会自动 “行列转置” 并进行水平填充。
++ The first block: Allows defining multi-level headers.
++ The second block: Two vertically arranged blocks, where the second block will shift downward according to the number of filled contents in the first block.
++ The third block: When the "last level row" has a style, the original style will be retained during filling. As shown in the figure, the merged cell style will be retained during filling.
++ The fourth block: When the "arrangement direction" is set to vertical, the header will automatically "transpose rows and columns" and perform horizontal filling.
 
-### 3、固定格式
+### 3. Fixed Format
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749109861903-d4dac587-c537-4226-bc08-e781ed3bb390.png)
 
-如图所示，左侧为设计区域，右侧为填充后的结果，只有一个区块。显而易见的是，固定格式的填充方式相比固定表头来说要简单的多，仅仅将数据按设计好的位置进行填充即可。
+As shown in the figure, the left side is the design area, and the right side is the filled result, with only one block. Obviously, the filling method of the fixed format is much simpler than that of the fixed header, as it only fills the data into the designed positions.
 
-### 4、设计范围
+### 4. Design Scope
 
-对于不同的 “解析类型” ，设计范围有些许区别：
+For different "analysis types", the design scope varies slightly:
 
-+ 固定表头：设计范围需要向填充方向扩展一行。
-+ 固定格式：设计范围与 Excel 定义范围完全一致。
++ Fixed Header: The design scope needs to expand one row in the filling direction.
++ Fixed Format: The design scope is exactly the same as the Excel-defined scope.
 
-## （二）模型拓扑图
+## (二) Model Topology Diagram
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749110497550-bb3f667e-93fd-4a88-bb76-2001a806cb00.jpeg)
 
-:::warning 提示：
+:::warning Tip:
 
-更多关于 “文件模块” 相关 API 的内容请参考：[Reference List - 模型](#quote1)
+For more content about the "file module" related APIs, please refer to: [Reference List - Model](#quote1)
 
 :::
 
-# 二、准备工作
+# II. Preparation
 
-在使用文件导入导出功能时，需要在 `pamirs-demo-boot` 引入 `pamirs-file2-core` 包依赖，并在启动模块中增加 `file` 模块。
+When using the file import/export function, you need to introduce the `pamirs-file2-core` package dependency in `pamirs-demo-boot` and add the `file` module in the startup module.
 
 ```java
 <dependency>
@@ -96,7 +96,7 @@ pamirs:
       - file
 ```
 
-如果需要在模块中定义导入/导出模板或自定义导入/导出逻辑的，需要在 `pamirs-demo-api` 引入 `pamirs-file2-api` 包依赖：
+If you need to define import/export templates or customize import/export logic in the module, you need to introduce the `pamirs-file2-api` package dependency in `pamirs-demo-api`:
 
 ```xml
 <dependency>
@@ -105,13 +105,13 @@ pamirs:
 </dependency>
 ```
 
-在 Oinone 中，除了对应依赖的引入外，还需要在 `当前模块` 定义中声明对应的模块依赖：
+In Oinone, in addition to introducing the corresponding dependencies, you also need to declare the corresponding module dependencies in the `current module` definition:
 
 ```java
 ……
 @Module(
     name = DemoModule.MODULE_NAME,
-    displayName = "演示模块",
+    displayName = "Demo Module",
     version = "1.0.0",
     priority = 1,
     dependencies = {
@@ -126,7 +126,7 @@ public class DemoModule implements PamirsModule {
 }
 ```
 
-# 三、Yaml 配置
+# III. Yaml Configuration
 
 ```yaml
 pamirs:
@@ -134,22 +134,22 @@ pamirs:
     modules:
       - file
   file:
-    auto-upload-logo: false # 启动时自动上传 logo
-    auto-create-template: true # 启动时自动生成 Excel 模板
+    auto-upload-logo: false # Automatically upload the logo when starting
+    auto-create-template: true # Automatically generate Excel templates when starting
     import-property:
-      default-each-import: false # 默认逐行导入
-      max-error-length: 100 # 默认最大收集错误行数
+      default-each-import: false # Default to import row by row
+      max-error-length: 100 # Default maximum number of error rows to collect
     export-property:
-      default-clear-export-style: false # 默认使用csv导出
-      excel-max-support-length: 100000 # excel导出最大支持100000行
-      csv-max-support-length: 1000000 # csv导出最大支持1000000行
+      default-clear-export-style: false # Default to use CSV export
+      excel-max-support-length: 100000 # Excel export supports up to 100,000 rows
+      csv-max-support-length: 1000000 # CSV export supports up to 1,000,000 rows
 ```
 
-# 四、创建模板
+# IV. Creating Templates
 
-## （一）使用 ExcelHelper 创建模板
+## (一) Creating Templates with ExcelHelper
 
-在之前的 “[教程 - 文件导入导出](/en/DevManual/Tutorials/export-and-import.md)” 中我们已经初步使用过 `ExcelHelper` 工具类来创建一个简单的固定表头的 Excel 模板，先让我们简单回顾一下：
+In the previous "[Tutorial - File Import and Export](/en/DevManual/Tutorials/export-and-import.md)", we have initially used the `ExcelHelper` utility class to create a simple fixed-header Excel template. Let's first briefly review it:
 
 ```java
 @Component
@@ -160,42 +160,42 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(ExcelHelper.fixedHeader(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createBlock("测试模型", TestModel.MODEL_MODEL)
-                .addColumn("code", "编码")
-                .addColumn("name", "名称")
-                .addColumn("user.login", "用户账号")
+                .createBlock("Test Model", TestModel.MODEL_MODEL)
+                .addColumn("code", "Code")
+                .addColumn("name", "Name")
+                .addColumn("user.login", "User Account")
                 .build());
     }
 }
 ```
 
-`ExcelHelper#fixedHeader` 是创建 固定表头 类型模板的一种简化方式，其本质还是通过 WorkbookDefinitionBuilder 创建模板的。其简化了一些常用功能：
+`ExcelHelper#fixedHeader` is a simplified way to create fixed-header type templates, which essentially creates templates through WorkbookDefinitionBuilder. It simplifies some common functions:
 
-+ createBlock：是 `createSheet` 和 `createBlock` 的组合调用，工具类中也提供了单独的调用方法。
-+ 自动计算设计区域，当 `addColumn` 被调用时，将增加一列，设计区域将进行水平扩展。
-+ 简化了配置行和表头一一对应，这一点可以在下一节内容中得到体现。
++ createBlock: A combined call to `createSheet` and `createBlock`, and the utility class also provides separate call methods.
++ Automatically calculates the design area. When `addColumn` is called, a column is added, and the design area will expand horizontally.
++ Simplifies the one-to-one correspondence between configuration rows and headers, which can be reflected in the next section.
 
-对于这样创建的 Excel 模板内容，在下一节内容会详细解释。
+The content of the Excel template created in this way will be explained in detail in the next section.
 
-:::warning 提示：
+:::warning Tip:
 
-在 `ExcelHelper#fixedHeader` 调用之后，会创建一个 `ExcelFixedHeadHelper` 对象提供一些简单的方法创建工作簿，如果出现无法设置或无法定义的场景，请使用 `WorkbookDefinitionBuilder` 创建模板。
-
-:::
-
-:::warning 提示：
-
-在这里我们选择使用 “导入模板” 进行演示，目的是为了通过 “下载导入模板” 功能快速看到 Excel 文件对应的效果，读者可以在每一步骤之后自行通过这一功能下载对应的 Excel 文件查看其内容，导入模板的内容与设计内容是完全一致的。
-
-读者还可自行创建 “导出模板” 对示例中用到的一些功能进行尝试，在本章内容中只会有 “导入模板” 的示例代码。
+After calling `ExcelHelper#fixedHeader`, an `ExcelFixedHeadHelper` object is created to provide some simple methods to create workbooks. If there are scenarios where settings or definitions are not possible, please use `WorkbookDefinitionBuilder` to create templates.
 
 :::
 
-## （二）使用 WorkbookDefinitionBuilder 创建模板
+:::warning Tip:
 
-让我们看一下和上一小节中使用 `ExcelHelper` 创建相同的模板时，使用 `WorkbookDefinitionBuilder` 对应的写法：
+Here we choose to use the "import template" for demonstration, aiming to quickly see the effect of the Excel file through the "download import template" function. The content of the import template is exactly the same as the design content.
+
+Readers can create "export templates" by themselves to try some of the functions used in the examples. Only examples of "import templates" will be provided in this chapter.
+
+:::
+
+## (二) Creating Templates with WorkbookDefinitionBuilder
+
+Let's see the corresponding code when using `WorkbookDefinitionBuilder` to create the same template as in the previous section using `ExcelHelper`:
 
 ```java
 @Component
@@ -206,9 +206,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(WorkbookDefinitionBuilder.newInstance(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createSheet("测试模型")
+                .createSheet("Test Model")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "$A$1:$C$2")
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle()).setIsConfig(Boolean.TRUE)
                 .createCell().setField("code").and()
@@ -216,9 +216,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().setField("user.login").and()
                 .and()
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true)))
-                .createCell().setValue("编码").and()
-                .createCell().setValue("名称").and()
-                .createCell().setValue("用户账号").and()
+                .createCell().setValue("Code").and()
+                .createCell().setValue("Name").and()
+                .createCell().setValue("User Account").and()
                 .and()
                 .and()
                 .and()
@@ -227,46 +227,46 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-我们可以看到，创建 Excel 工作簿的过程是按步骤一步一步处理的：
+We can see that the process of creating an Excel workbook is handled step by step:
 
-1. 创建工作簿并设置属性。
-2. 创建工作表。
-3. 创建区块并设置属性。
-4. 创建配置行，用于字段的声明，不在 Excel 工作簿中显示。
-5. 创建表头行，在 Excel 工作簿中显示的静态内容。
+1. Create a workbook and set properties.
+2. Create a worksheet.
+3. Create a block and set properties.
+4. Create a configuration row for field declaration, which is not displayed in the Excel workbook.
+5. Create a header row, which is the static content displayed in the Excel workbook.
 
-PS：`and` 方法 用于 “返回上一层” 构建。
+PS: The `and` method is used to "return to the upper layer" for construction.
 
-针对每个方法的简单介绍如下所示：
+A brief introduction to each method is as follows:
 
-+ createSheet 和 and 组合：创建工作表并指定工作表名称。
-+ createBlock 和 and 组合：创建区块，并指定区块对应的解析类型、排列方向、模型以及设计区域。
-+ createHeader 和 setIsConfig(true) 组合：创建配置行，仅指定字段即可。
-+ createHeader 和 and 组合：创建表头行，仅指定单元格内容即可。
-+ ExcelHelper.createDefaultStyle：创建默认样式：全边框单元格；水平常规对其；垂直居中；11号字体；无加粗。
-+ setBold(true)：设置字体加粗。
++ createSheet combined with and: Create a worksheet and specify the worksheet name.
++ createBlock combined with and: Create a block and specify the block's corresponding analysis type, arrangement direction, model, and design area.
++ createHeader combined with setIsConfig(true): Create a configuration row, just specify the fields.
++ createHeader combined with and: Create a header row, just specify the cell content.
++ ExcelHelper.createDefaultStyle: Create a default style: full border cells; horizontal normal alignment; vertical center; 11-point font; no bold.
++ setBold(true): Set font bold.
 
-用这样的方式创建出来的 Excel 模板文件是这样的：
+The Excel template file created in this way is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749117001580-20151e1a-74bd-468c-9ac2-3ac92ea2b135.png)
 
-:::warning 提示：
+:::warning Tip:
 
-+ 设计范围可以通过 Excel 单元格定位的语法格式进行表示，固定表头类型的区块需要向填充方向扩展一行。
-+ 在表头行设置的行样式在单元格未设置单元格样式的情况下会使用行样式作为单元格样式，可以理解为行样式是这一行所有单元格的默认样式。
-+ 在配置行设置的行样式将在数据填充时会被每一个被填充单元格使用。
-
-:::
-
-:::danger 警告：
-
-“链式调用” 是 “文件模块” 在设计 API 时根据数据结构特点提供的较为清晰的一种使用方式，但在 Java 中，链式调用的栈长度有一定的限制，如果编译时出现 “java: Compilation failed: internal java compiler error” 异常，可以通过给变量赋值的方式 “打断” 链式调用使程序可以正常运行。
++ The design scope can be expressed in the syntax format of Excel cell positioning, and the fixed-header type block needs to expand one row in the filling direction.
++ The row style set in the header row will use the row style as the cell style when the cell style is not set, which can be understood as the row style being the default style for all cells in this row.
++ The row style set in the configuration row will be used by each filled cell during data filling.
 
 :::
 
-## （三）创建固定格式模板
+:::danger Warning:
 
-下面让我们来看一下 “固定格式” 模板的创建方法，它与固定表头模板类似，唯一不同的是，标题与字段是间隔定义的，完全按照 Excel 单元格顺序一行一行进行创建，正如下面的代码所示：
+"Chain calling" is a relatively clear usage provided by the "file module" when designing the API based on the characteristics of the data structure. However, in Java, the stack length of chain calling has certain limitations. If the exception "java: Compilation failed: internal java compiler error" occurs during compilation, you can "break" the chain calling by assigning values to variables to make the program run normally.
+
+:::
+
+## (三) Creating Fixed Format Templates
+
+Now let's look at the creation method of the "fixed format" template, which is similar to the fixed header template. The only difference is that the title and fields are defined at intervals, and they are created line by line in full accordance with the Excel cell order, as shown in the following code:
 
 ```java
 @Component
@@ -277,9 +277,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(WorkbookDefinitionBuilder.newInstance(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createSheet("测试模型")
+                .createSheet("Test Model")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_FORMAT, ExcelDirectionEnum.HORIZONTAL, "$A$1:$D$2")
                 .createMergeRange("B2:D2")
                 .createHeader().setIsConfig(true)
@@ -289,13 +289,13 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().and()
                 .and()
                 .createRow().setStyleBuilder(ExcelHelper.createDefaultStyle())
-                .createCell().setValue("编码").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("Code").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("code").and()
-                .createCell().setValue("名称").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("Name").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("name").and()
                 .and()
                 .createRow().setStyleBuilder(ExcelHelper.createDefaultStyle())
-                .createCell().setValue("用户账号").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("User Account").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("user.login").and()
                 .createCell().and()
                 .createCell().and()
@@ -307,23 +307,23 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-在我们创建好这个模板后，通过 “下载导入模板” 功能就可以看到如下所示的 Excel 文件内容：
+After we create this template, we can see the content of the following Excel file through the "download import template" function:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749117952347-e8a93d8e-62cb-4130-9978-befde8ed5f0c.png)
 
-:::warning 提示：
+:::warning Tip:
 
-在这个示例中，我们用到了 `createMergeRange` 来创建合并单元格，其坐标定位方式与 Excel 文件支持的方式完全一样。
+In this example, we used `createMergeRange` to create merged cells, and its coordinate positioning method is exactly the same as that supported by Excel files.
 
-这里需要注意的是，如果在 `createSheet` 之后创建合并单元格将不会根据区块填充的变化而变化，读者可以将合并单元格功能尝试用在 “固定表头” 的导出模板中就看到合并效果会有差异。
+It should be noted that if merged cells are created after `createSheet`, they will not change according to the block filling. Readers can try using the merged cell function in the "fixed header" export template to see the difference in the merged effect.
 
 :::
 
-## （四）创建带有预置行的导入模板
+## (四) Creating Import Templates with Preset Rows
 
-### 1、使用 setPresetNumber 方法创建预置空行
+### 1. Creating Preset Empty Rows with the setPresetNumber Method
 
-在第二小节示例代码的基础上，通过 `setPresetNumber(10)` 设置 10 行预置空行。示例代码如下所示：
+Based on the example code in the second section, set 10 preset empty rows by `setPresetNumber(10)`. The example code is as follows:
 
 ```java
 @Component
@@ -334,9 +334,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(WorkbookDefinitionBuilder.newInstance(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createSheet("测试模型")
+                .createSheet("Test Model")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "$A$1:$C$2")
                 .setPresetNumber(10)
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle()).setIsConfig(true)
@@ -345,9 +345,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().setField("user.login").and()
                 .and()
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true)))
-                .createCell().setValue("编码").and()
-                .createCell().setValue("名称").and()
-                .createCell().setValue("用户账号").and()
+                .createCell().setValue("Code").and()
+                .createCell().setValue("Name").and()
+                .createCell().setValue("User Account").and()
                 .and()
                 .and()
                 .and()
@@ -356,13 +356,13 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-下载的导入模板 Excel 文件内容如下：
+The content of the downloaded import template Excel file is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749123159401-083b5801-b732-44b6-96ac-8f5dc4b53ba4.png)
 
-### 2、使用 createRow 方法创建自定义内容的预置行
+### 2. Creating Custom Content Preset Rows with the createRow Method
 
-除了预置空行之外，我们还可以通过 `createRow` 方法创建行并且设置对应值自定义预置行。这在具有示例填写的导入模板中非常是有意义的。示例代码如下所示：
+In addition to preset empty rows, we can also use the `createRow` method to create rows and set corresponding values to customize preset rows. This is very meaningful in import templates with example entries. The example code is as follows:
 
 ```java
 @Component
@@ -373,9 +373,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(WorkbookDefinitionBuilder.newInstance(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createSheet("测试模型")
+                .createSheet("Test Model")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "$A$1:$C$2")
                 .setPresetNumber(10)
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle()).setIsConfig(true)
@@ -384,14 +384,14 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().setField("user.login").and()
                 .and()
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true)))
-                .createCell().setValue("编码").and()
-                .createCell().setValue("名称").and()
-                .createCell().setValue("用户账号").and()
+                .createCell().setValue("Code").and()
+                .createCell().setValue("Name").and()
+                .createCell().setValue("User Account").and()
                 .and()
                 .createRow()
-                .createCell().setValue("这是编码").and()
-                .createCell().setValue("这是名称").and()
-                .createCell().setValue("这是用户账号").and()
+                .createCell().setValue("This is the code").and()
+                .createCell().setValue("This is the name").and()
+                .createCell().setValue("This is the user account").and()
                 .and()
                 .and()
                 .and()
@@ -400,21 +400,21 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-下载的导入模板 Excel 文件内容如下：
+The content of the downloaded import template Excel file is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749125992800-f392fc4b-c175-4a4c-b003-478a0b27915b.png)
 
-:::warning 提示：
+:::warning Tip:
 
-`setPresetNumber` 方法设置预置空数量是预置行的总数，如果手动创建了一行预置行，则在补充预置行时会自动补充不足的部分。比如：示例中预置行总数是 10 行，因为手动创建了一行预置行，则最后只补充了 9 行预置空行。
+The `setPresetNumber` method sets the total number of preset empty rows. If a preset row is manually created, the insufficient part will be automatically supplemented when adding preset rows. For example, the total number of preset rows in the example is 10. Since a preset row is manually created, only 9 preset empty rows are supplemented in the end.
 
 :::
 
-## （五）开启自动列宽
+## (五) Enabling Auto Column Width
 
-在上面通过 `createRow` 创建自定义预置行的示例中，我们发现 “这是用户账号” 这一单元格的数据超出所在单元格了，那么，怎么解决这个问题呢？
+In the example of creating custom preset rows through `createRow` above, we found that the data in the "This is the user account" cell exceeds the cell. So, how to solve this problem?
 
-我们可以通过 “自动列宽” 功能根据内容长度自动计算列宽来处理这个问题。让我们在对应的配置行字段通过 `setAutoSizeColumn` 方法开启这一列的 “自动列宽” 功能。示例代码如下所示：
+We can use the "auto column width" function to automatically calculate the column width according to the content length to handle this problem. Let's enable the "auto column width" function for this column through the `setAutoSizeColumn` method in the corresponding configuration row field. The example code is as follows:
 
 ```java
 @Component
@@ -425,9 +425,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(WorkbookDefinitionBuilder.newInstance(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createSheet("测试模型")
+                .createSheet("Test Model")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "$A$1:$C$2")
                 .setPresetNumber(9)
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle()).setIsConfig(true)
@@ -436,14 +436,14 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().setField("user.login").setAutoSizeColumn(true).and()
                 .and()
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true)))
-                .createCell().setValue("编码").and()
-                .createCell().setValue("名称").and()
-                .createCell().setValue("用户账号").and()
+                .createCell().setValue("Code").and()
+                .createCell().setValue("Name").and()
+                .createCell().setValue("User Account").and()
                 .and()
                 .createRow()
-                .createCell().setValue("这是编码").and()
-                .createCell().setValue("这是名称").and()
-                .createCell().setValue("这是用户账号").and()
+                .createCell().setValue("This is the code").and()
+                .createCell().setValue("This is the name").and()
+                .createCell().setValue("This is the user account").and()
                 .and()
                 .and()
                 .and()
@@ -452,25 +452,25 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-下载的导入模板 Excel 文件内容如下：
+The content of the downloaded import template Excel file is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749123583282-f22fa980-8f59-4a7b-8ea5-df85c23e25c9.png)
 
-:::warning 提示：
+:::warning Tip:
 
-在导出时，如果遇到数据特别长的情况下，自动列宽功能并不是特别万能的解决方案。这时候我们需要使用固定列宽来解决数据过长时展示异常的问题。
+When exporting, if the data is particularly long, the auto column width function is not a universal solution. In this case, we need to use fixed column width to solve the problem of abnormal display when the data is too long.
 
-我们可以将 `setAutoSizeColumn` 改为下面这样：
+We can change `setAutoSizeColumn` to the following:
 
 `setStyleBuilder(ExcelHelper.createDefaultStyle().setWidth(3000))`
 
-单位问题：POI 提供的宽度单位与 Excel 中通常使用的单位不同，在实际使用时可能会出现误差，需要自行调试。
+Unit issue: The width unit provided by POI is different from the unit usually used in Excel, and errors may occur in actual use, which need to be debugged independently.
 
 :::
 
-## （六）多级表头
+## (六) Multi-Level Headers
 
-示例代码如下所示：
+The example code is as follows:
 
 ```java
 @Component
@@ -481,9 +481,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(WorkbookDefinitionBuilder.newInstance(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createSheet("测试模型")
+                .createSheet("Test Model")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "$A$1:$C$2")
                 .createMergeRange("$A1:$B1")
                 .setPresetNumber(10)
@@ -493,19 +493,19 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().setField("user.login").setAutoSizeColumn(true).and()
                 .and()
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true)))
-                .createCell().setValue("基础信息").and()
+                .createCell().setValue("Basic Information").and()
                 .createCell().and()
-                .createCell().setValue("用户信息").and()
+                .createCell().setValue("User Information").and()
                 .and()
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true)))
-                .createCell().setValue("编码").and()
-                .createCell().setValue("名称").and()
-                .createCell().setValue("用户账号").and()
+                .createCell().setValue("Code").and()
+                .createCell().setValue("Name").and()
+                .createCell().setValue("User Account").and()
                 .and()
                 .createRow()
-                .createCell().setValue("这是编码").and()
-                .createCell().setValue("这是名称").and()
-                .createCell().setValue("这是用户账号").and()
+                .createCell().setValue("This is the code").and()
+                .createCell().setValue("This is the name").and()
+                .createCell().setValue("This is the user account").and()
                 .and()
                 .and()
                 .and()
@@ -514,13 +514,13 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-下载的导入模板 Excel 文件内容如下：
+The content of the downloaded import template Excel file is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749128470551-db8c9496-b69f-46b1-9257-927dfeb37560.png)
 
-## （七）混合格式
+## (七) Mixed Format
 
-示例代码如下所示：
+The example code is as follows:
 
 ```java
 @Component
@@ -531,9 +531,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(WorkbookDefinitionBuilder.newInstance(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createSheet("测试模型")
+                .createSheet("Test Model")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_FORMAT, ExcelDirectionEnum.HORIZONTAL, "$A$1:$D$2")
                 .createMergeRange("$B$2:$D$2")
                 .createHeader().setIsConfig(true)
@@ -543,13 +543,13 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().setAutoSizeColumn(true).and()
                 .and()
                 .createRow().setStyleBuilder(ExcelHelper.createDefaultStyle())
-                .createCell().setValue("编码").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("Code").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("code").and()
-                .createCell().setValue("名称").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("Name").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("name").and()
                 .and()
                 .createRow().setStyleBuilder(ExcelHelper.createDefaultStyle())
-                .createCell().setValue("用户账号").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("User Account").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("user.login").and()
                 .createCell().and()
                 .createCell().and()
@@ -564,10 +564,10 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().setField("partners[*].email").and()
                 .and()
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true)))
-                .createCell().setValue("合作伙伴名称").and()
-                .createCell().setValue("合作伙伴类型").and()
-                .createCell().setValue("合作伙伴手机号").and()
-                .createCell().setValue("合作伙伴邮箱").and()
+                .createCell().setValue("Partner Name").and()
+                .createCell().setValue("Partner Type").and()
+                .createCell().setValue("Partner Phone").and()
+                .createCell().setValue("Partner Email").and()
                 .and()
                 .and()
                 .and()
@@ -576,19 +576,19 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-下载的导入模板 Excel 文件内容如下：
+The content of the downloaded import template Excel file is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749124651915-4b045897-6fb0-4ca3-b80e-43c58c1c5e13.png)
 
-:::warning 提示：
+:::warning Tip:
 
-对于 Excel 行/列的设置属性，如果出现冲突的，则只会在最上方或最左边的配置行中生效。比如：示例中自动列宽属性配置在第一个区块的配置行的单元格中。
+For the setting properties of Excel rows/columns, if there is a conflict, it will only take effect in the uppermost or leftmost configuration row. For example, the auto column width property is configured in the cell of the configuration row of the first block.
 
 :::
 
-## （八）创建多工作表模板
+## (八) Creating Multi-Worksheet Templates
 
-示例代码如下所示：
+The example code is as follows:
 
 ```java
 @Component
@@ -599,9 +599,9 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(WorkbookDefinitionBuilder.newInstance(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createSheet("测试模型")
+                .createSheet("Test Model")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_FORMAT, ExcelDirectionEnum.HORIZONTAL, "$A$1:$D$2")
                 .createMergeRange("$B$2:$D$2")
                 .createHeader().setIsConfig(true)
@@ -611,20 +611,20 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().and()
                 .and()
                 .createRow().setStyleBuilder(ExcelHelper.createDefaultStyle())
-                .createCell().setValue("编码").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("Code").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("code").and()
-                .createCell().setValue("名称").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("Name").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("name").and()
                 .and()
                 .createRow().setStyleBuilder(ExcelHelper.createDefaultStyle())
-                .createCell().setValue("用户账号").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
+                .createCell().setValue("User Account").setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true))).and()
                 .createCell().setField("user.login").and()
                 .createCell().and()
                 .createCell().and()
                 .and()
                 .and()
                 .and()
-                .createSheet("合作伙伴列表")
+                .createSheet("Partner List")
                 .createBlock(TestModel.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "$A$1:$D$2")
                 .setPresetNumber(10)
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle()).setIsConfig(true)
@@ -634,10 +634,10 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
                 .createCell().setField("partners[*].email").setAutoSizeColumn(true).and()
                 .and()
                 .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(true)))
-                .createCell().setValue("合作伙伴名称").and()
-                .createCell().setValue("合作伙伴类型").and()
-                .createCell().setValue("合作伙伴手机号").and()
-                .createCell().setValue("合作伙伴邮箱").and()
+                .createCell().setValue("Partner Name").and()
+                .createCell().setValue("Partner Type").and()
+                .createCell().setValue("Partner Phone").and()
+                .createCell().setValue("Partner Email").and()
                 .and()
                 .and()
                 .and()
@@ -646,28 +646,28 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-下载的导入模板 Excel 文件内容如下：
+The content of the downloaded import template Excel file is as follows:
 
-+ 测试模型工作表
++ Test Model Worksheet
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749125363700-f3424164-edb6-4879-b546-02c82d328a64.png)
 
-+ 合作伙伴列表
++ Partner List
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/ImportAndExport/1749125385945-59ccce73-bbb8-4c0d-999a-2da84800374d.png)
 
-# 五、自定义导入/导出逻辑
+# V. Custom Import/Export Logic
 
-不论是导入逻辑还是导出逻辑，都是使用 “扩展点” 对其逻辑进行处理的，下面分别介绍导入扩展点和导出扩展点的一些基本用法和常见场景的处理方式。
+Whether it is import logic or export logic, both use "extension points" to process their logic. The following respectively introduce the basic usage and processing methods for common scenarios of import extension points and export extension points.
 
-扩展点使用 `expression` 属性配置表达式来决定在什么样的条件下执行对应的扩展点，表达式的用法可参考：[函数 API - 表达式](/en/DevManual/Reference/Back-EndFramework/functions-API.md)
+The extension point uses the `expression` attribute to configure expressions to determine under what conditions the corresponding extension point is executed. For the usage of expressions, please refer to: [Function API - Expression](/en/DevManual/Reference/Back-EndFramework/functions-API.md)
 
-## （一）模型解释
+## (一) Model Explanation
 
-+ 工作簿模型：在页面上选择模板时使用的模型编码。
-+ 区块模型：实际导入/导出时使用的模型编码。
++ Workbook Model: The model code used when selecting a template on the page.
++ Block Model: The model code actually used for import/export.
 
-以 “使用 ExcelHelper 创建模板” 小节的示例代码为例：（为了区分不同模型，下面的代码稍做修改）
+Take the example code in the "Creating Templates with ExcelHelper" section as an example: (To distinguish different models, the following code has been slightly modified)
 
 ```java
 @Component
@@ -678,25 +678,25 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(ExcelHelper.fixedHeader(TestModel1.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
-                .createBlock("测试模型", TestModel2.MODEL_MODEL)
-                .addColumn("code", "编码")
-                .addColumn("name", "名称")
-                .addColumn("user.login", "用户账号")
+                .createBlock("Test Model", TestModel2.MODEL_MODEL)
+                .addColumn("code", "Code")
+                .addColumn("name", "Name")
+                .addColumn("user.login", "User Account")
                 .build());
     }
 }
 ```
 
-可以看到：
+It can be seen that:
 
-+ `ExcelHelper#fixedHeader` 方法的第一个入参为：`TestModel1.MODEL_MODEL` ，该模型编码为 “工作簿模型”，被记录在 `ExcelWorkbookDefinition#model` 字段中。
-+ `createBlock` 方法的第二个入参为：`TestModel2.MODEL_MODEL` ，该模型编码为 “区块模型”，被记录在 `ExcelBlockDefinition#bindingModel` 字段中。
++ The first parameter of the `ExcelHelper#fixedHeader` method is: `TestModel1.MODEL_MODEL`, and this model code is the "workbook model", which is recorded in the `ExcelWorkbookDefinition#model` field.
++ The second parameter of the `createBlock` method is: `TestModel2.MODEL_MODEL`, and this model code is the "block model", which is recorded in the `ExcelBlockDefinition#bindingModel` field.
 
-## （二）自定义导入扩展点
+## (二) Custom Import Extension Points
 
-按模板定义的名称使用导入扩展点是最基本的用法之一：
+Using import extension points by the template's defined name is one of the most basic usages:
 
 ```java
 @Component
@@ -706,80 +706,80 @@ public class TestModelImportExtPoint implements ExcelImportDataExtPoint<TestMode
     @ExtPoint.Implement(expression = "importContext.definitionContext.name==\"" + TestModelImportTemplate.TEMPLATE_NAME + "\"")
     @Override
     public Boolean importData(ExcelImportContext importContext, TestModel data) {
-        // 自定义导入逻辑
+        // Custom import logic
         return true;
     }
 }
 ```
 
-+ @Ext(ExcelImportTask.class)：导入扩展点固定参数注解。
-+ ExcelImportDataExtPoint：导入扩展点接口定义。
-+ ExcelImportContext：Excel 导入上下文，包含 Excel 模板定义等导入所需信息。
-+ TestModel：同 “区块模型” 对应的 JAVA 类型。
++ @Ext(ExcelImportTask.class): Annotation for fixed parameters of import extension points.
++ ExcelImportDataExtPoint: Interface definition for import extension points.
++ ExcelImportContext: Excel import context, including Excel template definitions and other import所需 information.
++ TestModel: The JAVA type corresponding to the "block model".
 
-:::warning 提示：
+:::warning Tip:
 
-表达式中，`importContext` 是方法参数名，通过 “.” 分隔的写法获取对象中的值。这是表达式的取值用法，扩展点的 `expression` 属性要求计算结果必须是 `布尔（Boolean）` 类型。示例中表达式可以表述为：当模板名称为 `testModelImportTemplate` 时执行当前扩展点。
+In the expression, `importContext` is the method parameter name, and the value in the object is obtained by the notation separated by ".". This is the value-taking usage of the expression, and the `expression` attribute of the extension point requires that the calculation result must be of type `Boolean` (Boolean). The expression in the example can be stated as: Execute the current extension point when the template name is `testModelImportTemplate`.
 
 :::
 
-### 1、数据验证
+### 1. Data Validation
 
-在数据验证过程中，有两种中断方式：
+There are two ways to interrupt during data validation:
 
-+ 通过 “抛出异常” 或 “return false” 进行中断，此时将不再继续读取数据。
-+ 通过 return true 进行中断，此时将继续读取数据。
++ Interrupt by "throwing an exception" or "returning false", and data reading will no longer continue at this time.
++ Interrupt by returning true, and data reading will continue at this time.
 
-异常中断，不再进行数据导入：（推荐）
+Exception interruption, no longer importing data: (Recommended)
 
 ```java
 public Boolean importData(ExcelImportContext importContext, TestModel data) {
     String code = data.getCode();
     if (StringUtils.isBlank(code)) {
-        throw new IllegalArgumentException("编码不允许为空");
+        throw new IllegalArgumentException("Code is not allowed to be empty");
     }
-    // 其他处理逻辑
+    // Other processing logic
     return true;
 }
 ```
 
-:::warning 提示：
+:::warning Tip:
 
-这里的异常并不是直接与前端进行交互，可以使用任何 JAVA 内置异常。
+The exception here is not directly interacted with the front end, and any JAVA built-in exception can be used.
 
 :::
 
-“return false” 中断，添加错误提示信息，不再继续读取数据：
+"return false" interruption, add error prompt information, and no longer continue reading data:
 
 ```java
 public Boolean importData(ExcelImportContext importContext, TestModel data) {
     String code = data.getCode();
     if (StringUtils.isBlank(code)) {
-        importContext.getImportTask().addTaskMessage(TaskMessageLevelEnum.ERROR, "编码不允许为空");
+        importContext.getImportTask().addTaskMessage(TaskMessageLevelEnum.ERROR, "Code is not allowed to be empty");
         return false;
     }
-    // 其他处理逻辑
+    // Other processing logic
     return true;
 }
 ```
 
-仅添加错误提示信息，继续读取数据：
+Only add error prompt information and continue reading data:
 
 ```java
 public Boolean importData(ExcelImportContext importContext, TestModel data) {
     String code = data.getCode();
     if (StringUtils.isBlank(code)) {
-        importContext.getImportTask().addTaskMessage(TaskMessageLevelEnum.ERROR, "编码不允许为空");
+        importContext.getImportTask().addTaskMessage(TaskMessageLevelEnum.ERROR, "Code is not allowed to be empty");
         return true;
     }
-    // 其他处理逻辑
+    // Other processing logic
     return true;
 }
 ```
 
-### 2、逐行导入
+### 2. Row-by-Row Import
 
-若需要收集错误信息并生成对应的 Excel 错误文件，需要在模板中配置 `eachImport = true` 开启逐行导入功能。
+If you need to collect error information and generate the corresponding Excel error file, you need to configure `eachImport = true` in the template to enable the row-by-row import function.
 
 ```java
 @Component
@@ -790,38 +790,38 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         return Collections.singletonList(ExcelHelper.fixedHeader(TestModel.MODEL_MODEL, TEMPLATE_NAME)
-                .setDisplayName("测试模型导入")
+                .setDisplayName("Test Model Import")
                 .setType(ExcelTemplateTypeEnum.IMPORT)
                 .setEachImport(true)
-                .createBlock("测试模型", TestModel.MODEL_MODEL)
-                .addColumn("code", "编码")
-                .addColumn("name", "名称")
-                .addColumn("user.login", "用户账号")
+                .createBlock("Test Model", TestModel.MODEL_MODEL)
+                .addColumn("code", "Code")
+                .addColumn("name", "Name")
+                .addColumn("user.login", "User Account")
                 .build());
     }
 }
 ```
 
-:::warning 提示：
+:::warning Tip:
 
-启用逐行导入功能后，只有通过 “异常中断” 才会进行错误信息的收集，其他中断方式都不会生成 “导入错误文件”。
+After enabling the row-by-row import function, only "exception interruption" will collect error information, and other interruption methods will not generate an "import error file".
 
 :::
 
-### 3、批量处理导入数据
+### 3. Batch Processing of Imported Data
 
-对于导入性能有要求的业务场景，可以自行控制导入扩展点与数据库操作之间的访问频率。例如我们可以在每一行数据进入之后，先将其保存在 “读取上下文” 提供的 “数据缓冲区”，直到没有最后一行的时候对所有数据进行批量处理。示例代码如下：
+For business scenarios with requirements for import performance, you can control the access frequency between the import extension point and database operations by yourself. For example, after each row of data enters, we can first save it in the "data buffer" provided by the "read context" and perform batch processing on all data until the last row is reached. The example code is as follows:
 
 ```java
 public Boolean importData(ExcelImportContext importContext, TestModel data) {
-    // 数据验证
+    // Data validation
     String code = data.getCode();
     if (StringUtils.isBlank(code)) {
-        throw new IllegalArgumentException("编码不允许为空");
+        throw new IllegalArgumentException("Code is not allowed to be empty");
     }
-    // 获取/创建缓存数据集
+    // Get/create cache data set
     List<TestModel> dataList = importContext.getDataBuffer(0, ArrayList::new);
-    // 判断是否读取完成
+    // Determine if reading is complete
     if (importContext.getCurrentListener().hasNext()) {
         dataList.add(data);
     } else {
@@ -831,29 +831,29 @@ public Boolean importData(ExcelImportContext importContext, TestModel data) {
 }
 ```
 
-### 4、多区块导入数据处理
+### 4. Multi-Block Import Data Processing
 
-不论是一个工作表有多个区块，还是多个工作表每个工作表分别有一个区块，总的来说都是多区块处理。
+Whether a worksheet has multiple blocks or multiple worksheets each have a block, it is generally multi-block processing.
 
-针对每个区块，我们都有对应的区块模型以及模型编码对应的 JAVA 类型，我们可以根据 `区块模型` 或 `区块索引` 来区分这些具体的 JAVA 类型，以便于我们在代码中操作数据。示例代码如下：
+For each block, we have the corresponding block model and the JAVA type corresponding to the model code. We can distinguish these specific JAVA types according to the `block model` or `block index` to facilitate us to operate the data in the code. The example code is as follows:
 
 ```java
 public Boolean importData(ExcelImportContext importContext, Object data) {
     if (importContext.getCurrentBlockNumber() == 0) {
         TestModel1 testModel1 = (TestModel1) data;
-        // 测试模型1处理
+        // Test model 1 processing
     } else if (importContext.getCurrentBlockNumber() == 1) {
         TestModel2 testModel2 = (TestModel2) data;
-        // 测试模型2处理
+        // Test model 2 processing
     }
-    // 其他处理逻辑
+    // Other processing logic
     return true;
 }
 ```
 
-## （三）自定义导出扩展点
+## (三) Custom Export Extension Points
 
-按模板定义的名称使用导出扩展点是最基本的用法之一：
+Using export extension points by the template's defined name is one of the most basic usages:
 
 ```java
 @Component
@@ -864,44 +864,44 @@ public class TestModelExportExtPoint extends ExcelExportSameQueryPageTemplate im
     @Override
     public List<`Object`> fetchExportData(ExcelExportTask exportTask, ExcelDefinitionContext context) {
         List<`Object`> dataList = super.fetchExportData(exportTask, context);
-        // 自定义导入逻辑
+        // Custom import logic
         return dataList;
     }
 }
 ```
 
-+ @Ext(ExcelExportTask.class)：导出扩展点固定参数注解。
-+ ExcelExportFetchDataExtPoint：导出扩展点接口定义。
-+ ExcelExportSameQueryPageTemplate：导出扩展点默认获取数据的默认实现，包含Hook 调用，与前端发起 queryPage 请求完全相同。
-+ List<`Object`>：区块数据，按区块索引进行定义。关于返回值的问题，在下文中可以找到具体解释。
++ @Ext(ExcelExportTask.class): Annotation for fixed parameters of export extension points.
++ ExcelExportFetchDataExtPoint: Interface definition for export extension points.
++ ExcelExportSameQueryPageTemplate: The default implementation for export extension points to obtain data by default, including Hook calls, which is exactly the same as the front-end发起 queryPage request.
++ List<`Object`>: Block data, defined by block index. For questions about return values, specific explanations can be found in the following text.
 
-### 1、导出扩展点返回值
+### 1. Export Extension Point Return Value
 
-为了让导出扩展点的数据获取功能较为通用，其返回值表示区块数据。
+In order to make the data acquisition function of the export extension point more general, its return value represents block data.
 
-假设我们有这样两个区块的模板：
+Suppose we have a template with two blocks:
 
-+ 第一个区块为 “固定格式” 类型，其数据结构为 “对象（Object）”。
-+ 第二个区块为 “固定表头” 类型，其数据结构为 “列表（List）”。
++ The first block is of "fixed format" type, and its data structure is "Object".
++ The second block is of "fixed header" type, and its data structure is "List".
 
-那么，其返回值的伪代码可以表示为：
+Then, the pseudocode of its return value can be expressed as:
 
 ```java
 public List<`Object`> fetchExportData(ExcelExportTask exportTask, ExcelDefinitionContext context) {
-    // 第一个区块数据
+    // First block data
     TestModel data1 = new TestModel();
-    // 第二个区块数据
+    // Second block data
     List<TestModel> data2 = new ArrayList<>();
-    // 按区块定义顺序组合为列表
+    // Combine into a list in the order defined by the blocks
     return Lists.newArrayList(data1, data2);
 }
 ```
 
-### 2、导出时使用权限过滤
+### 2. Using Permission Filtering When Exporting
 
-由于导出功能未经过前端请求，因此 Hook 功能没有被使用，在我们进行自定义数据获取时，需要使用元位指令 API 让 Hook 生效，更多关于 元位指令 API 的内容请参考：[元位指令 API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/meta-directive-API.md)
+Since the export function does not go through the front-end request, the Hook function is not used. When we perform custom data acquisition, we need to use the meta-instruction API to make the Hook take effect. For more content about the meta-instruction API, please refer to: [Meta-Instruction API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/meta-directive-API.md)
 
-下面这段代码示例展示了如何通过自定义数据获取达到与默认扩展点查询逻辑完全一致的情况：
+The following code example shows how to achieve exactly the same query logic as the default extension point through custom data acquisition:
 
 ```java
 @Component
@@ -911,494 +911,491 @@ public class TestModelExportExtPoint implements ExcelExportFetchDataExtPoint {
     @ExtPoint.Implement(expression = "context.name==\"" + TestModelExportTemplate.TEMPLATE_NAME + "\"")
     @Override
     public List<`Object`> fetchExportData(ExcelExportTask exportTask, ExcelDefinitionContext context) {
-        // 查询逻辑需要通过元位指令包裹运行，否则 Hook 不生效
+        // The query logic needs to be wrapped and run through meta-instructions, otherwise the Hook will not take effect
         List<TestModel> dataList = Models.directive().run(() -> {
-            // 拼接传入的 RSQL 表达式，通常仅作用于第一个区块
+            // Concatenate the incoming RSQL expression, which is usually only effective for the first block
             IWrapper<TestModel> wrapper = exportTask.temporaryRsql(exportTask.getWorkbookDefinition().getDomain(), () -> Optional.ofNullable(exportTask.getConditionWrapper())
                     .map(ConditionWrapper::<TestModel>generatorQueryWrapper)
                     .orElseGet(() -> Pops.<TestModel>query().ge(SqlConstants.ID, 0)));
             wrapper.setModel(TestModel.MODEL_MODEL);
-            // 使用带拦截的查询方式
+            // Use the query method with interception
             return Models.data().queryListByWrapper(wrapper);
         }, SystemDirectiveEnum.BUILT_ACTION, SystemDirectiveEnum.HOOK);
-        // 其他处理逻辑
+        // Other processing logic
         return Lists.newArrayList(dataList);
     }
 }
 ```
 
-:::danger 警告：
+:::danger Warning:
 
-和其他重写函数类似，一些内置的导出逻辑也会因为重写扩展点而不再生效。例如：数据集大小的校验、自动查询关联关系字段数据等内置功能。对于关联关系字段的查询操作，可以根据模板定义的内容自行决定是否需要查询。
-
-:::
-
-:::warning 提示：
-
-如果查询逻辑需要自定义，仅实现 `ExcelExportFetchDataExtPoint` 接口即可。
-
-如果在查询后需要进行计算，可通过 `ExcelExportSameQueryPageTemplate` 类辅助查询。辅助查询仅能用于第一个区块，
+Similar to other overridden functions, some built-in export logics will no longer take effect due to overriding extension points. For example: built-in functions such as dataset size verification and automatic query of associated relationship field data. For the query operation of associated relationship fields, you can decide whether to query according to the content defined in the template.
 
 :::
 
-# 六、Reference List
+:::warning Tip:
 
-## （一）模型{#quote1}
+If the query logic needs to be customized, only implement the `ExcelExportFetchDataExtPoint` interface.
 
-### 1、Excel 工作簿（ExcelWorkbookDefinition）
+If calculation is required after querying, you can use the `ExcelExportSameQueryPageTemplate` class to assist in querying. Auxiliary query can only be used for the first block.
 
-| **字段名**            | **类型**                   | **是否必选** | **默认值**    | **描述**                                                     |
+:::
+
+# VI. Reference List
+
+## (一) Models {#quote1}
+
+### 1. Excel Workbook (ExcelWorkbookDefinition)
+
+| **Field Name**            | **Type**                   | **Mandatory** | **Default Value**    | **Description**                                                     |
 | --------------------- | -------------------------- | ------------ | ------------- | ------------------------------------------------------------ |
-| name                  | String                     | 是           |               | Excel 工作簿的定义名称                                       |
-| displayName           | String                     | 是           |               | Excel 工作簿显示名称                                         |
-| filename              | String                     | 否           |               | 导出时使用的文件名，不指定则默认使用名称作为文件名           |
-| model                 | String                     | 是           |               | 模型编码用于决定导入导出展示在哪个模型的 table 页，并不用于模型化操作 |
-| bindingViewName       | String                     | 否           |               | 当指定视图时，该模板仅在指定视图中展示                       |
-| type                  | ExcelTemplateTypeEnum      | 是           | IMPORT_EXPORT | 模板类型                                                     |
-| version               | OfficeVersionEnum          | 是           | AUTO          | Office 版本，导入时根据文件名后缀自动识别，无后缀时需手动指定；导出时默认使用新版本 |
-| sheetList             | List<`ExcelSheetDefinition`> | 否           |               | 工作表列表，当指定工作表索引时，有且仅有一个对象；否则根据 Excel 文件中的 sheet 个数按顺序排列 |
-| redirectUri           | String                     | 否           |               | 下载导入模板重定向地址                                       |
-| sheetDefinitions      | String                     | 是           |               | 工作表定义 JSON 字符串                                       |
-| definitionContext     | String                     | 否           |               | 缓存工作簿定义的解析内容                                     |
-| dataStatus            | DataStatusEnum             | 是           | ENABLED       | 数据状态                                                     |
-| importStrategy        | ExcelImportStrategyEnum    | 否           | STANDARD      | 导入策略                                                     |
-| exportStrategy        | ExcelExportStrategyEnum    | 否           | STANDARD      | 导出策略                                                     |
-| hasErrorRollback      | Boolean                    | 是           | false         | 出现错误进行回滚                                             |
-| maxErrorLength        | Integer                    | 是           | 100           | 最大错误数                                                   |
-| clearExportStyle      | Boolean                    | 是           | false         | 清除导出样式，使用 CSV 格式进行导出                          |
-| excelMaxSupportLength | Integer                    | 否           |               | excel 格式导出最大支持行数                                   |
-| csvMaxSupportLength   | Integer                    | 否           |               | csv 格式导出最大支持行数                                     |
-| templateSource        | ExcelTemplateSourceEnum    | 否           | CUSTOM        | 模板来源                                                     |
-| locations             | List<`ExcelLocation`>        | 否           |               | 国际化配置                                                   |
-| defaultShow           | Boolean                    | 否           |               | 默认是否显示                                                 |
-| show                  | Boolean                    | 否           |               | 是否显示                                                     |
-| eachImport            | Boolean                    | 否           | false         | 逐行导入                                                     |
-| domain                | String                     | 否           |               | 默认过滤规则，rsql 表达式 |
-| excelImportMode       | ExcelImportModeEnum        | 否           | MULTI_MODEL   | 导入模式                                                     |
-| lang                  | String                     | 否           |               | 模板所属语言                                                 |
+| name                  | String                     | Yes           |               | The defined name of the Excel workbook                                       |
+| displayName           | String                     | Yes           |               | The display name of the Excel workbook                                         |
+| filename              | String                     | No           |               | The file name used for export. If not specified, the name is used as the file name by default           |
+| model                 | String                     | Yes           |               | The model code is used to determine which model's table page the import/export is displayed on, and is not used for model operations |
+| bindingViewName       | String                     | No           |               | When a view is specified, this template is only displayed in the specified view                       |
+| type                  | ExcelTemplateTypeEnum      | Yes           | IMPORT_EXPORT | The template type                                                     |
+| version               | OfficeVersionEnum          | Yes           | AUTO          | The Office version. For import, it is automatically identified by the file name suffix. If there is no suffix, it needs to be manually specified. For export, the new version is used by default |
+| sheetList             | List<`ExcelSheetDefinition`> | No           |               | The worksheet list. When the worksheet index is specified, there is one and only one object. Otherwise, it is arranged in order according to the number of sheets in the Excel file |
+| redirectUri           | String                     | No           |               | The redirect address for downloading the import template                                       |
+| sheetDefinitions      | String                     | Yes           |               | The worksheet definition JSON string                                       |
+| definitionContext     | String                     | No           |               | The parsed content of the cached workbook definition                                     |
+| dataStatus            | DataStatusEnum             | Yes           | ENABLED       | The data status                                                     |
+| importStrategy        | ExcelImportStrategyEnum    | No           | STANDARD      | The import strategy                                                     |
+| exportStrategy        | ExcelExportStrategyEnum    | No           | STANDARD      | The export strategy                                                     |
+| hasErrorRollback      | Boolean                    | Yes           | false         | Rollback when an error occurs                                             |
+| maxErrorLength        | Integer                    | Yes           | 100           | The maximum number of errors                                                   |
+| clearExportStyle      | Boolean                    | Yes           | false         | Clear the export style and use the CSV format for export                          |
+| excelMaxSupportLength | Integer                    | No           |               | The maximum number of rows supported for Excel format export                                   |
+| csvMaxSupportLength   | Integer                    | No           |               | The maximum number of rows supported for CSV format export                                     |
+| templateSource        | ExcelTemplateSourceEnum    | No           | CUSTOM        | The template source                                                     |
+| locations             | List<`ExcelLocation`>        | No           |               | The internationalization configuration                                                   |
+| defaultShow           | Boolean                    | No           |               | Whether to display by default                                                 |
+| show                  | Boolean                    | No           |               | Whether to display                                                     |
+| eachImport            | Boolean                    | No           | false         | Import row by row                                                     |
+| domain                | String                     | No           |               | The default filtering rule, RSQL expression |
+| excelImportMode       | ExcelImportModeEnum        | No           | MULTI_MODEL   | The import mode                                                     |
+| lang                  | String                     | No           |               | The language to which the template belongs                                                 |
 
 
-### 2、Excel 工作表（ExcelSheetDefinition）
+### 2. Excel Sheet (ExcelSheetDefinition)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| name | String | 否 |                                                              | 指定工作表名称，当未指定工作表名称时，默认使用模型的显示名称，未绑定模型生成时，默认使用「Sheet + ${index}」作为工作表名称 |
-| autoSizeColumn | Boolean | 否 | true | 自动列宽 |
-| onceFetchData | Boolean | 否 |                                                              | 该属性仅在包含【固定格式】块时生效，并且所有块的绑定模型必须一致 |
-| blockDefinitionList | List<`ExcelBlockDefinition`> | 是 |                                                              | 区块定义 |
-| mergeRangeList | List<`ExcelCellRangeDefinition`> | 否 |                                                              | 单元格合并范围 |
-| uniqueDefinitions | List<`ExcelUniqueDefinition`> | 否 |                                                              | 唯一定义 |
+| name | String | No |                                                              | Specify the worksheet name. When the worksheet name is not specified, the display name of the model is used by default. When no model is bound and generated, it defaults to using「Sheet + ${index}」as the worksheet name |
+| autoSizeColumn | Boolean | No | true | Auto column width |
+| onceFetchData | Boolean | No |                                                              | This attribute is only valid when it contains a [fixed format] block, and all blocks must have the same bound model |
+| blockDefinitionList | List<`ExcelBlockDefinition`> | Yes |                                                              | Block definition |
+| mergeRangeList | List<`ExcelCellRangeDefinition`> | No |                                                              | Cell merge range |
+| uniqueDefinitions | List<`ExcelUniqueDefinition`> | No |                                                              | Unique definition |
 
 
-### 3、Excel 区块（ExcelBlockDefinition）
+### 3. Excel Block (ExcelBlockDefinition)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| bindingModel | String | 否 |                                                              | 在绑定模型后，可使用默认模板及模型解析功能 |
-| fetchNamespace | String | 否 |                                                              | 获取函数命名空间 |
-| fetchFun | String | 否 |                                                              | 获取函数名称 |
-| domain | String | 否 |                                                              | 默认过滤规则，rsql 表达式 |
-| analysisType | ExcelAnalysisTypeEnum | 是 |                                                              | 指定工作表所使用的解析类型，不同的解析类型所需的定义方式存在差异 |
-| direction | ExcelDirectionEnum | 是 |                                                              | 指定当前表头行的排列方向 |
-| designRange | ExcelCellRangeDefinition | 是 |                                                              | 设计范围 |
-| usingCascadingStyle | Boolean | 否 |                                                              | 将样式覆盖变为样式层叠；单个区块有效；优先级顺序为：表头行样式 < 数据行样式 < 单元格样式 |
-| presetNumber | Integer | 否 |                                                              | 使用空的字符串填充数据行的单元格 |
-| headerList | List<`ExcelHeaderDefinition`> | 否 |                                                              | 表头定义 |
-| rowList | List<`ExcelRowDefinition`> | 否 |                                                              | 行定义 |
-| mergeRangeList | List<`ExcelCellRangeDefinition`> | 否 |                                                              | 单元格合并范围 |
-| uniqueDefinitions | List<`ExcelUniqueDefinition`> | 否 |                                                              | 唯一定义 |
+| bindingModel | String | No |                                                              | After binding the model, the default template and model parsing functions can be used |
+| fetchNamespace | String | No |                                                              | The namespace of the acquisition function |
+| fetchFun | String | No |                                                              | The name of the acquisition function |
+| domain | String | No |                                                              | The default filtering rule, RSQL expression |
+| analysisType | ExcelAnalysisTypeEnum | Yes |                                                              | Specify the parsing type used by the worksheet. Different parsing types have different definition methods |
+| direction | ExcelDirectionEnum | Yes |                                                              | Specify the arrangement direction of the current header row |
+| designRange | ExcelCellRangeDefinition | Yes |                                                              | The design scope |
+| usingCascadingStyle | Boolean | No |                                                              | Change the style override to style cascading. Valid for a single block. The priority order is: header row style < data row style < cell style |
+| presetNumber | Integer | No |                                                              | Use empty strings to fill the cells of the data row |
+| headerList | List<`ExcelHeaderDefinition`> | No |                                                              | Header definition |
+| rowList | List<`ExcelRowDefinition`> | No |                                                              | Row definition |
+| mergeRangeList | List<`ExcelCellRangeDefinition`> | No |                                                              | Cell merge range |
+| uniqueDefinitions | List<`ExcelUniqueDefinition`> | No |                                                              | Unique definition |
 
 
-### 4、Excel 行（ExcelRowDefinition）
+### 4. Excel Row (ExcelRowDefinition)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| cellList | List<`ExcelCellDefinition`> | 否 |                                                              | 单元格列表 |
-| style | ExcelStyleDefinition | 否 |                                                              | 在一行中默认使用全局样式，若设置单元格样式，则覆盖全局样式；在表头行中，水平表头行设置整列样式；垂直表头行设置整行样式；若表头行和数据行同时设置样式，则已数据行的样式为全局样式 |
+| cellList | List<`ExcelCellDefinition`> | No |                                                              | Cell list |
+| style | ExcelStyleDefinition | No |                                                              | The global style is used by default in a row. If the cell style is set, it will override the global style. In the header row, the horizontal header row sets the entire column style. The vertical header row sets the entire row style. If the header row and data row set styles at the same time, the style of the data row is the global style |
 
 
-### 5、Excel 表头行（ExcelHeaderDefinition）
+### 5. Excel Header Row (ExcelHeaderDefinition)
 
-**继承**：ExcelRowDefinition
+**Inheritance**: ExcelRowDefinition
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| isConfig | Boolean | 否 | false | 配置行不参与计算，且导出时自动忽略；配置行指定的应用范围必须是需要配置的表头范围 |
-| isFrozen | Boolean | 否 | false | 冻结功能仅在非配置行且非隐藏行中生效 |
+| isConfig | Boolean | No | false | The configuration row does not participate in calculations and is automatically ignored during export. The application scope specified by the configuration row must be the header scope that needs to be configured |
+| isFrozen | Boolean | No | false | The freezing function only takes effect in non-configuration rows and non-hidden rows |
 
 
-### 6、Excel 单元格（ExcelCellDefinition）
+### 6. Excel Cell (ExcelCellDefinition)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| field | String | 否 |                                                              | 单元格属性定义   固定表头：仅在配置行中生效   固定格式：在任意单元格中生效 |
-| value | String | 否 |                                                              | 单元格的值 |
-| type | ExcelValueTypeEnum | 否 |                                                              | 值类型 |
-| format | String | 否 |                                                              | 格式化方式（参考用户手册） |
-| translate | Boolean | 否 |                                                              | 是否翻译   默认情况下，静态值、枚举和布尔字段会自动翻译，其他情况根据指定值处理 |
-| isStatic | Boolean | 否 | false | 是否是静态值   静态值在数据解析时将使用配置值，不读取单元格的值 |
-| isFieldValue | Boolean | 否 |                                                              | 标记该单元格的内容为属性值 |
-| autoSizeColumn | Boolean | 否 | true | 是否自动列宽 |
-| style | ExcelStyleDefinition | 否 |                                                              | 单元格样式 |
-| styleCache | CellStyle（ transient ） | 否 |                                                              | 样式缓存（仅运行时使用，序列化时忽略） |
+| field | String | No |                                                              | Cell attribute definition. Fixed header: Only takes effect in the configuration row. Fixed format: Takes effect in any cell |
+| value | String | No |                                                              | The value of the cell |
+| type | ExcelValueTypeEnum | No |                                                              | Value type |
+| format | String | No |                                                              | The formatting method (refer to the user manual) |
+| translate | Boolean | No |                                                              | Whether to translate. By default, static values, enums, and boolean fields will be automatically translated, and other cases will be processed according to the specified values |
+| isStatic | Boolean | No | false | Whether it is a static value. The static value will use the configuration value during data parsing and will not read the value of the cell |
+| isFieldValue | Boolean | No |                                                              | Mark the content of this cell as an attribute value |
+| autoSizeColumn | Boolean | No | true | Whether to auto column width |
+| style | ExcelStyleDefinition | No |                                                              | Cell style |
+| styleCache | CellStyle（ transient ） | No |                                                              | Style cache (only used at runtime, ignored during serialization) |
 
 
-### 7、Excel 唯一定义（ExcelUniqueDefinition）
+### 7. Excel Unique Definition (ExcelUniqueDefinition)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| model | String | 是 |                                                              | 关联的模型编码 |
-| uniques | List`<String`> | 是 |                                                              | 唯一属性列表   多个属性组合构成唯一标识 |
+| model | String | Yes |                                                              | The associated model code |
+| uniques | List`<String`> | Yes |                                                              | List of unique attributes. Multiple attributes combined form a unique identifier |
 
 
-### 8、Excel 样式（ExcelStyleDefinition）
+### 8. Excel Style (ExcelStyleDefinition)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| horizontalAlignment | ExcelHorizontalAlignmentEnum | 否 | GENERAL | 水平对齐方式 |
-| verticalAlignment | ExcelVerticalAlignmentEnum | 否 |                                                              | 垂直对齐方式 |
-| fillBorderStyle | ExcelBorderStyleEnum | 否 |                                                              | 全边框样式（同时设置上下左右边框） |
-| topBorderStyle | ExcelBorderStyleEnum | 否 |                                                              | 上边框样式 |
-| rightBorderStyle | ExcelBorderStyleEnum | 否 |                                                              | 右边框样式 |
-| bottomBorderStyle | ExcelBorderStyleEnum | 否 |                                                              | 下边框样式 |
-| leftBorderStyle | ExcelBorderStyleEnum | 否 |                                                              | 左边框样式 |
-| fillBorderColor | Integer（RGB 色值） | 否 |                                                              | 全边框颜色（同时设置上下左右边框颜色） |
-| topBorderColor | Integer（RGB 色值） | 否 |                                                              | 上边框颜色 |
-| rightBorderColor | Integer（RGB 色值） | 否 |                                                              | 右边框颜色 |
-| bottomBorderColor | Integer（RGB 色值） | 否 |                                                              | 下边框颜色 |
-| leftBorderColor | Integer（RGB 色值） | 否 |                                                              | 左边框颜色 |
-| fillPatternType | ExcelFillPatternTypeEnum | 否 |                                                              | 背景填充类型（纯色 / 网点等） |
-| backgroundColor | Integer（RGB 色值） | 否 |                                                              | 背景色 |
-| foregroundColor | Integer（RGB 色值） | 否 |                                                              | 前景色（图案颜色） |
-| wrapText | Boolean | 否 | false | 是否自动换行 |
-| shrinkToFit | Boolean | 否 | false | 是否自动收缩文本以适应单元格宽度 |
-| width | Integer | 否 |                                                              | 单元格宽度（仅首行有效，单位：列宽单位） |
-| height | Integer | 否 |                                                              | 单元格高度（仅首列有效，单位：行高单位） |
-| typefaceDefinition | ExcelTypefaceDefinition | 否 |                                                              | 字体定义（包含字体名称、大小、加粗、斜体等属性） |
-| styleCache | CellStyle（transient） | 否 |                                                              | 样式缓存（仅运行时使用，序列化时忽略，自动管理 Workbook 样式对象） |
+| horizontalAlignment | ExcelHorizontalAlignmentEnum | No | GENERAL | Horizontal alignment |
+| verticalAlignment | ExcelVerticalAlignmentEnum | No |                                                              | Vertical alignment |
+| fillBorderStyle | ExcelBorderStyleEnum | No |                                                              | Full border style (set top, bottom, left, and right borders at the same time) |
+| topBorderStyle | ExcelBorderStyleEnum | No |                                                              | Top border style |
+| rightBorderStyle | ExcelBorderStyleEnum | No |                                                              | Right border style |
+| bottomBorderStyle | ExcelBorderStyleEnum | No |                                                              | Bottom border style |
+| leftBorderStyle | ExcelBorderStyleEnum | No |                                                              | Left border style |
+| fillBorderColor | Integer（RGB Color Value） | No |                                                              | Full border color (set top, bottom, left, and right border colors at the same time) |
+| topBorderColor | Integer（RGB Color Value） | No |                                                              | Top border color |
+| rightBorderColor | Integer（RGB Color Value） | No |                                                              | Right border color |
+| bottomBorderColor | Integer（RGB Color Value） | No |                                                              | Bottom border color |
+| leftBorderColor | Integer（RGB Color Value） | No |                                                              | Left border color |
+| fillPatternType | ExcelFillPatternTypeEnum | No |                                                              | Background fill type (solid color/dots, etc.) |
+| backgroundColor | Integer（RGB Color Value） | No |                                                              | Background color |
+| foregroundColor | Integer（RGB Color Value） | No |                                                              | Foreground color (pattern color) |
+| wrapText | Boolean | No | false | Whether to wrap text automatically |
+| shrinkToFit | Boolean | No | false | Whether to automatically shrink the text to fit the cell width |
+| width | Integer | No |                                                              | Cell width (only valid for the first row, unit: column width unit) |
+| height | Integer | No |                                                              | Cell height (only valid for the first column, unit: row height unit) |
+| typefaceDefinition | ExcelTypefaceDefinition | No |                                                              | Font definition (including font name, size, bold, italic, etc.) |
+| styleCache | CellStyle（transient） | No |                                                              | Style cache (only used at runtime, ignored during serialization, automatically manages Workbook style objects) |
 
 
-### 9、Excel 字体（ExcelTypefaceDefinition）
+### 9. Excel Font (ExcelTypefaceDefinition)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| typeface | ExcelTypefaceEnum | 否 | SONG | 字体类型（如宋体、黑体） |
-| size | Integer | 否 | 11 | 字体大小（单位：磅） |
-| italic | Boolean | 否 | false | 是否斜体 |
-| strikeout | Boolean | 否 | false | 是否添加删除线 |
-| color | Integer（RGB 色值，默认 0xfff 为白色） | 否 | 0xfff | 字体颜色（如 0x000000 为黑色） |
-| typeOffset | ExcelTypeOffsetEnum | 否 | NORMAL | 字符偏移类型（正常 / 上标 / 下标） |
-| underline | ExcelUnderlineEnum | 否 | NONE | 下划线类型（无 / 单下划线 / 双下划线等） |
-| bold | Boolean | 否 | false | 是否加粗 |
+| typeface | ExcelTypefaceEnum | No | SONG | Font type (such as Song, Heiti) |
+| size | Integer | No | 11 | Font size (unit: point) |
+| italic | Boolean | No | false | Whether it is italic |
+| strikeout | Boolean | No | false | Whether to add a strikethrough |
+| color | Integer（RGB Color Value, default 0xfff is white） | No | 0xfff | Font color (such as 0x000000 is black) |
+| typeOffset | ExcelTypeOffsetEnum | No | NORMAL | Character offset type (normal/superscript/subscript) |
+| underline | ExcelUnderlineEnum | No | NONE | Underline type (none/single underline/double underline, etc.) |
+| bold | Boolean | No | false | Whether it is bold |
 
 
-### 10、Excel 翻译（ExcelLocation）
+### 10. Excel Translation (ExcelLocation)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| model | String | 是 |                                                              | 关联的模型编码（用于定位模板所属模型） |
-| name | String | 是 |                                                              | 模板名称（对应 ExcelWorkbookDefinition 的 name 字段） |
-| lang | String | 是 |                                                              | 语言标识（如`zh-CN`<br/>、`en-US`<br/>） |
-| locationItems | List<`ExcelLocationItem`> | 否 |                                                              | 国际化配置项列表   存储各语言下的文本映射，支持 JSON 格式序列化 |
+| model | String | Yes |                                                              | The associated model code (used to locate the model to which the template belongs) |
+| name | String | Yes |                                                              | Template name (corresponding to the name field of ExcelWorkbookDefinition) |
+| lang | String | Yes |                                                              | Language identifier (such as `zh-CN`<br/>、`en-US`<br/>） |
+| locationItems | List<`ExcelLocationItem`> | No |                                                              | Internationalization configuration item list. Stores text mappings in each language and supports JSON format serialization |
 
 
-### 11、Excel 翻译项（ExcelLocationItem）
+### 11. Excel Translation Item (ExcelLocationItem)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| origin | String | 是 |                                                              | 原始文本（未翻译的值） |
-| target | String | 是 |                                                              | 翻译后的目标文本（对应语言的值） |
+| origin | String | Yes |                                                              | Original text (untranslated value) |
+| target | String | Yes |                                                              | Translated target text (value corresponding to the language) |
 
 
-### 12、抽象 Excel 任务（AbstractExcelTask）
+### 12. Abstract Excel Task (AbstractExcelTask)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| name | String | 是 |                                                              | 任务名称 |
-| workbookDefinition | ExcelWorkbookDefinition | 是 |                                                              | Excel 工作簿定义对象（关联实体） |
-| workbookDefinitionId | Long | 是 |                                                              | Excel 工作簿定义 ID（数据库存储字段） |
-| workbookName | String | 否 |                                                              | Excel 工作簿名称（冗余字段，方便快速查询） |
-| state | ExcelTaskStateEnum | 是 |                                                              | 任务状态（待处理 / 运行中 / 已完成 / 失败等） |
-| messages | List<`TaskMessage`> | 否 |                                                              | 任务信息列表   存储任务执行中的日志、错误信息，支持 JSON 格式序列化 |
-| module | String | 否 |                                                              | 模块编码（标识操作所属模块，如`order`<br/>、`customer`<br/>） |
-| moduleDefinition | ModuleDefinition | 否 |                                                              | 所属应用对象（关联实体，通过 module 字段关联） |
-| createUserName | String | 否 |                                                              | 创建人名称（非持久化字段，通过关联用户信息获取） |
-| writeUserName | String | 否 |                                                              | 修改人名称（非持久化字段，通过关联用户信息获取） |
-| model | String | 否 |                                                              | 模型编码（标识操作对应的业务模型，如`com.example.Order`<br/>） |
+| name | String | Yes |                                                              | Task name |
+| workbookDefinition | ExcelWorkbookDefinition | Yes |                                                              | Excel workbook definition object (associated entity) |
+| workbookDefinitionId | Long | Yes |                                                              | Excel workbook definition ID (database storage field) |
+| workbookName | String | No |                                                              | Excel workbook name (redundant field for quick query) |
+| state | ExcelTaskStateEnum | Yes |                                                              | Task status (pending/processing/completed/failed, etc.) |
+| messages | List<`TaskMessage`> | No |                                                              | Task information list. Stores logs and error information during task execution and supports JSON format serialization |
+| module | String | No |                                                              | Module code (identifies the module to which the operation belongs, such as `order`<br/>、`customer`<br/>） |
+| moduleDefinition | ModuleDefinition | No |                                                              | The application object to which it belongs (associated entity, associated through the module field) |
+| createUserName | String | No |                                                              | Creator name (non-persistent field, obtained by associating user information) |
+| writeUserName | String | No |                                                              | Modifier name (non-persistent field, obtained by associating user information) |
+| model | String | No |                                                              | Model code (identifies the business model corresponding to the operation, such as `com.example.Order`<br/>） |
 
 
-### 13、导入任务（ExcelImportTask）
+### 13. Import Task (ExcelImportTask)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| file | PamirsFile | 是 |                                                              | 导入文件对象（关联文件存储系统实体，需提前上传文件） |
-| eachImport | Boolean | 否 |                                                              | 是否启用逐行导入模式   启用后将逐行处理数据，失败行可生成错误文件 |
-| hasErrorRollback | Boolean | 否 |                                                              | 出现错误时是否回滚已导入数据   需与 maxErrorLength 配合使用 |
-| maxErrorLength | Integer | 否 |                                                              | 允许的最大错误数   超过该数量时任务终止（默认继承基类配置） |
-| errorFile | PamirsFile | 否 |                                                              | 导入失败文件（逐行模式下生成，包含错误行数据） |
-| importDataList | List<`String`> | 否 |                                                              | 导入数据列表（内存存储，用于临时数据传递，不存入数据库） |
-| readCallbackList | List<`ExcelReadCallback`> | 否 |                                                              | 读取回调列表（运行时注册的回调函数，序列化时忽略） |
+| file | PamirsFile | Yes |                                                              | Import file object (associated with the file storage system entity, the file needs to be uploaded in advance) |
+| eachImport | Boolean | No |                                                              | Whether to enable the row-by-row import mode. After enabling, the data will be processed row by row, and an error file can be generated for failed rows |
+| hasErrorRollback | Boolean | No |                                                              | Whether to roll back the imported data when an error occurs. It needs to be used with maxErrorLength |
+| maxErrorLength | Integer | No |                                                              | The maximum number of errors allowed. The task will be terminated when this number is exceeded (the default inherits the base class configuration) |
+| errorFile | PamirsFile | No |                                                              | Import failure file (generated in row-by-row mode, containing failed row data) |
+| importDataList | List<`String`> | No |                                                              | Import data list (stored in memory, used for temporary data transfer, not stored in the database) |
+| readCallbackList | List<`ExcelReadCallback`> | No |                                                              | Read callback list (callback functions registered at runtime, ignored during serialization) |
 
 
-### 14、导出任务（ExcelExportTask）
+### 14. Export Task (ExcelExportTask)
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| file | PamirsFile | 否 |                                                              | 导出文件对象（关联文件存储系统实体） |
-| fileType | ExcelExportFileTypeEnum | 否 |                                                              | 导出文件类型（Excel 或 CSV 格式） |
-| conditionWrapper | ConditionWrapper | 否 |                                                              | 查询条件包装器   支持 RSQL 表达式及动态条件组合，非持久化存储 |
-| rsql | String | 否 |                                                              | RSQL 过滤条件   自动同步 conditionWrapper 中的 rsql 字段，方便快速查询 |
-| sync | Boolean | 否 | false | 是否同步执行导出任务   同步模式下将阻塞等待导出完成，异步模式返回任务 ID |
-| exportMethod | ExcelExportMethodEnum | 否 | TEMPLATE | 导出方法   TEMPLATE：基于模板导出；DIRECT：直接导出数据 |
-| selectedFields | List<`ModelField`> | 否 |                                                              | 选择字段列表   当 exportMethod 为 DIRECT 时，指定要导出的模型字段 |
-| requestId | String | 否 |                                                              | 单次请求 ID   同步下载时用于标识 Redis 中存储的临时数据 |
+| file | PamirsFile | No |                                                              | Export file object (associated with the file storage system entity) |
+| fileType | ExcelExportFileTypeEnum | No |                                                              | Export file type (Excel or CSV format) |
+| conditionWrapper | ConditionWrapper | No |                                                              | Query condition wrapper. Supports RSQL expressions and dynamic condition combinations, and is not persistently stored |
+| rsql | String | No |                                                              | RSQL filter condition. Automatically synchronizes the rsql field in conditionWrapper for quick query |
+| sync | Boolean | No | false | Whether to execute the export task synchronously. In synchronous mode, it will block and wait for the export to complete. In asynchronous mode, it returns the task ID |
+| exportMethod | ExcelExportMethodEnum | No | TEMPLATE | Export method. TEMPLATE: Export based on the template. DIRECT: Export data directly |
+| selectedFields | List<`ModelField`> | No |                                                              | Selected field list. When exportMethod is DIRECT, specify the model fields to be exported |
+| requestId | String | No |                                                              | Single request ID. Used to identify temporary data stored in Redis when downloading synchronously |
 
 
-### 15、任务消息（TaskMessage）
+### 15. Task Message (TaskMessage)
 
-**继承**：TransientModel
+**Inheritance**: TransientModel
 
-| **字段名** | **类型** | **是否必选** | **默认值** | **描述** |
+| **Field Name** | **Type** | **Mandatory** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| id | Long | 否 |                                                              | 消息唯一标识（可选，用于分页查询或定位特定消息） |
-| level | TaskMessageLevelEnum | 是 |                                                              | 消息级别   ERROR：错误；WARNING：警告；INFO：提示 |
-| recordDate | Date | 否 |                                                              | 消息记录时间（自动生成，精确到毫秒） |
-| rowIndex | Integer | 否 |                                                              | 关联的 Excel 行号（导入任务中用于定位错误行，从 1 开始计数） |
-| message | String | 是 |                                                              | 消息内容   支持国际化翻译（`translate=true`<br/>） |
+| id | Long | No |                                                              | Message unique identifier (optional, used for paging query or locating specific messages) |
+| level | TaskMessageLevelEnum | Yes |                                                              | Message level. ERROR: Error. WARNING: Warning. INFO: Prompt |
+| recordDate | Date | No |                                                              | Message record time (automatically generated, accurate to milliseconds) |
+| rowIndex | Integer | No |                                                              | Associated Excel row number (used to locate error rows in import tasks, counting from 1) |
+| message | String | Yes |                                                              | Message content. Supports internationalization translation (`translate=true`<br/>） |
 
 
-## （二）枚举
+## (二) Enumerations
 
-### 1、模板类型（ExcelTemplateTypeEnum）
+### 1. Template Type (ExcelTemplateTypeEnum)
 
-| **值**   | **显示名称** | **描述** |
+| **Value**   | **Display Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| IMPORT_EXPORT | 全部 | 全部 |
-| IMPORT | 导入 | 仅用作导入 |
-| EXPORT | 导出 | 仅用作导出 |
+| IMPORT_EXPORT | All | All |
+| IMPORT | Import | Only used for import |
+| EXPORT | Export | Only used for export |
 
 
-### 2、Office 版本（OfficeVersionEnum）
+### 2. Office Version (OfficeVersionEnum)
 
-| **值**   | **显示名称** | **描述** | **对应 Excel 类型** |
+| **Value**   | **Display Name** | **Description** | **Corresponding Excel Type** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| AUTO | 自动识别 | 自动识别文件类型，无法识别时会出错 | XLSX |
-| OLD | 旧版 | 指 2003 年及之前发行的 office 版本，使用旧的文件后缀 | XLS |
-| NEW | 新版 | 指 2003 年之后发行的 office 版本，使用新的文件后缀 | XLSX |
+| AUTO | Auto-Identify | Automatically identify the file type and will error if it cannot be identified | XLSX |
+| OLD | Old Version | Refers to the office versions released in 2003 and before, using the old file suffix | XLS |
+| NEW | New Version | Refers to the office versions released after 2003, using the new file suffix | XLSX |
 
 
-### 3、数据状态（DataStatusEnum）
+### 3. Data Status (DataStatusEnum)
 
-| **值**   | **显示名称** | **描述** |
+| **Value**   | **Display Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| DRAFT | 草稿 | 草稿状态 |
-| NOT_ENABLED | 未启用 | 未启用状态 |
-| ENABLED | 已启用 | 已启用状态 |
-| DISABLED | 已禁用 | 已禁用状态 |
+| DRAFT | Draft | Draft status |
+| NOT_ENABLED | Not Enabled | Not enabled status |
+| ENABLED | Enabled | Enabled status |
+| DISABLED | Disabled | Disabled status |
 
 
-### 4、导入策略（ExcelImportStrategyEnum）
+### 4、Import Strategy (ExcelImportStrategyEnum)
 
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| STANDARD | 标准模式 | 标准模式（默认），开发人员自行控制所有导入过程 |
-| EACH | 逐行导入 | 自动收集导入错误并生成错误文件，适合大数据量分步处理 |
-| ALL | 全部成功 | 自动开启导入事务，出现任何错误立即中断并回滚，确保数据一致性 |
-| ALL_EACH | 全部成功并收集错误 | 自动开启导入事务，同时收集导入错误生成错误文件，兼顾一致性和错误定位 |
-
-
-### 5、导出策略（ExcelExportStrategyEnum）
-
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| STANDARD | 默认获取 | 默认使用单个扩展点获取整个工作簿的全部数据（适合小数据量场景） |
-| SINGLE | 单一函数获取 | 使用工作簿中定义的函数完整获取整个工作簿的全部数据（统一数据源） |
-| BLOCK | 多函数获取 | 使用每个块定义的函数分别获取对应块中的数据（适合多数据源分块场景） |
-| STREAM | 流式获取 | 通过分页获取每个块中的数据，数据获取与填充交替执行（优化内存占用） |
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| STANDARD | Standard Mode | Standard mode (default), where developers control all import processes |
+| EACH | Row-by-Row Import | Automatically collect import errors and generate error files, suitable for step-by-step processing of large data volumes |
+| ALL | All Successful | Automatically enable the import transaction, immediately interrupt and roll back if any error occurs to ensure data consistency |
+| ALL_EACH | All Successful and Collect Errors | Automatically enable the import transaction while collecting import errors to generate error files, balancing consistency and error positioning |
 
 
-### 6、模板来源（ExcelTemplateSourceEnum）
+### 5、Export Strategy (ExcelExportStrategyEnum)
 
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| SYSTEM | 系统生成 | 当前模型不存在模板时通过系统自动生成，创建新模板后自动删除，编辑后保留 |
-| INITIALIZATION | 初始化生成 | 系统初始化时创建的模板，不允许编辑或删除 |
-| CUSTOM | 自定义 | 由用户手动创建或编辑的模板 |
-
-
-### 7、导入模式（ExcelImportModeEnum）
-
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| MULTI_MODEL | 多模型 | 一个模板对应多个不同的 Sheet，默认模式 |
-| SINGLE_MODEL | 单模型 | 所有 Sheet 共用同一个数据模型 |
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| STANDARD | Default Fetch | Default to using a single extension point to fetch all data of the entire workbook (suitable for small data volume scenarios) |
+| SINGLE | Single Function Fetch | Use the function defined in the workbook to completely fetch all data of the entire workbook (unified data source) |
+| BLOCK | Multi-Function Fetch | Use the function defined for each block to fetch data in the corresponding block respectively (suitable for multi-data source block scenarios) |
+| STREAM | Streaming Fetch | Fetch data in each block through paging, with data fetching and filling executed alternately (optimizes memory usage) |
 
 
-### 8、解析类型（ExcelAnalysisTypeEnum）
+### 6、Template Source (ExcelTemplateSourceEnum)
 
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| FIXED_HEADER | 固定表头 | 固定表头 |
-| FIXED_FORMAT | 固定格式 | 固定格式 |
-
-
-### 9、排列方向（ExcelDirectionEnum）
-
-| **值**   | **显示名称** | **描述** | **对应 EasyExcel 写入方向** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| HORIZONTAL | 水平排列 | 子元素水平排列，垂直填充 | VERTICAL |
-| VERTICAL | 垂直排列 | 子元素垂直排列，水平填充 | HORIZONTAL |
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| SYSTEM | System-Generated | Automatically generated by the system when the current model has no template, automatically deleted after creating a new template, and retained after editing |
+| INITIALIZATION | Initialization-Generated | Template created during system initialization, not allowing editing or deletion |
+| CUSTOM | Custom | Template manually created or edited by the user |
 
 
-### 10、值类型（ExcelValueTypeEnum）
+### 7、Import Mode (ExcelImportModeEnum)
 
-| **值**   | **显示名称** | **描述** | **默认格式（示例）** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| STRING | 文本 | 普通文本 | - |
-| INTEGER | 整数 | 整数数值 | `0`                 |
-| NUMBER | 数字 | 带小数的数字 | `0.00`              |
-| DATETIME | 日期 + 时间 | 日期时间组合 | `yyyy-MM-dd HH:mm:ss`<br/>（对应`DATETIME`<br/>格式） |
-| FORMULA | 公式 | Excel 公式 | - |
-| BOOLEAN | 布尔 | 布尔值（是 / 否） | `{"true":"是","false":"否"}` |
-| CALENDAR | 日历 | 日期类型 | - |
-| COMMENT | 备注 | 单元格备注 | - |
-| HYPER_LINK | 超链接 | 超链接地址 | - |
-| RICH_TEXT_STRING | 富文本 | 富文本内容 | - |
-| ENUMERATION | 枚举 | 枚举值 | - |
-| BIT | 二进制枚举 | 二进制枚举值 | - |
-| OBJECT | 对象 | 复杂对象 | - |
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| MULTI_MODEL | Multi-Model | One template corresponds to multiple different Sheets, the default mode |
+| SINGLE_MODEL | Single-Model | All Sheets share the same data model |
 
 
-### 11、水平对齐方式（ExcelHorizontalAlignmentEnum）
+### 8、Analysis Type (ExcelAnalysisTypeEnum)
 
-| **值**   | **显示名称** | **描述** | **对应 POI 枚举值** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| GENERAL | 默认 | 文本居左；数字、日期和时间居右；布尔居中 | HorizontalAlignment.GENERAL |
-| LEFT | 左对齐 | 内容左对齐 | HorizontalAlignment.LEFT |
-| CENTER | 居中对齐 | 内容居中对齐 | HorizontalAlignment.CENTER |
-| RIGHT | 右对齐 | 内容右对齐 | HorizontalAlignment.RIGHT |
-| FILL | 填充对齐 | 内容重复填充以适应单元格宽度 | HorizontalAlignment.FILL |
-| JUSTIFY | 左右对齐 | 内容两端对齐，自动调整字间距（适用于多行文本） | HorizontalAlignment.JUSTIFY |
-| CENTER_SELECTION | 居中选择对齐 | 内容在选定区域内居中（需配合单元格合并使用） | HorizontalAlignment.CENTER_SELECTION |
-| DISTRIBUTED | 分散对齐 | 内容均匀分布，两端与单元格边界对齐 | HorizontalAlignment.DISTRIBUTED |
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| FIXED_HEADER | Fixed Header | Fixed header format |
+| FIXED_FORMAT | Fixed Format | Fixed format |
 
 
-### 12、垂直对齐方式（ExcelVerticalAlignmentEnum）
+### 9、Arrangement Direction (ExcelDirectionEnum)
 
-| **值**   | **显示名称** | **描述** | **对应 POI 枚举值** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| TOP | 顶部对齐 | 内容与单元格顶部对齐 | VerticalAlignment.TOP |
-| CENTER | 居中对齐 | 内容垂直居中对齐 | VerticalAlignment.CENTER |
-| BOTTOM | 底部对齐 | 内容与单元格底部对齐 | VerticalAlignment.BOTTOM |
-| JUSTIFY | 上下对齐 | 内容两端对齐，自动调整行间距（适用于多行文本） | VerticalAlignment.JUSTIFY |
-| DISTRIBUTED | 分散对齐 | 内容均匀分布，上下与单元格边界对齐 | VerticalAlignment.DISTRIBUTED |
+| **Value**   | **Display Name** | **Description** | **Corresponding EasyExcel Writing Direction** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| HORIZONTAL | Horizontal Arrangement | Sub-elements are arranged horizontally and filled vertically | VERTICAL |
+| VERTICAL | Vertical Arrangement | Sub-elements are arranged vertically and filled horizontally | HORIZONTAL |
 
 
-### 13、边框样式（ExcelBorderStyleEnum）
+### 10、Value Type (ExcelValueTypeEnum)
 
-| **值**   | **显示名称** | **描述** | **对应 POI 枚举值** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| NONE | 无边框 | 无边框 | BorderStyle.NONE |
-| THIN | 细边框 | 细实线边框 | BorderStyle.THIN |
-| MEDIUM | 常规边框 | 中等粗细实线边框 | BorderStyle.MEDIUM |
-| THICK | 粗边框 | 粗实线边框 | BorderStyle.THICK |
-| DASHED | 虚线边框 | 虚线边框 | BorderStyle.DASHED |
-| DOTTED | 点线边框 | 点线边框 | BorderStyle.DOTTED |
-| DOUBLE | 双线边框 | 双实线边框 | BorderStyle.DOUBLE |
-| HAIR | 发线边框 | 极细实线边框（发丝状） | BorderStyle.HAIR |
-| MEDIUM_DASHED | 中虚线边框 | 中等虚线边框 | BorderStyle.MEDIUM_DASHED |
-| DASH_DOT | 点划线边框 | 点 - 划虚线边框 | BorderStyle.DASH_DOT |
-| MEDIUM_DASH_DOT | 中划线点边框 | 中等点 - 划虚线边框 | BorderStyle.MEDIUM_DASH_DOT |
-| DASH_DOT_DOT | 点 - 点 - 点边框 | 点 - 点 - 划虚线边框 | BorderStyle.DASH_DOT_DOT |
-| MEDIUM_DASH_DOT_DOT | 中短划线 - 点 - 点边框 | 中等点 - 点 - 划虚线边框 | BorderStyle.MEDIUM_DASH_DOT_DOT |
-| SLANTED_DASH_DOT | 斜线点边框 | 倾斜点 - 划虚线边框 | BorderStyle.SLANTED_DASH_DOT |
-
-
-### 14、填充类型（ExcelFillPatternTypeEnum）
-
-| **值**   | **显示名称** | **描述** | **对应 POI 枚举值** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| NO_FILL | 不填充 | 无背景填充 | FillPatternType.NO_FILL |
-| SOLID_FOREGROUND | 纯色填充 | 单一颜色背景填充 | FillPatternType.SOLID_FOREGROUND |
-| FINE_DOTS | 细点填充 | 细密点状背景填充 | FillPatternType.FINE_DOTS |
-| ALT_BARS | 交替条纹填充 | 横向交替条纹背景填充 | FillPatternType.ALT_BARS |
-| SPARSE_DOTS | 稀疏点填充 | 稀疏点状背景填充 | FillPatternType.SPARSE_DOTS |
-| THICK_HORZ_BANDS | 粗横向条纹填充 | 粗横向条纹背景填充 | FillPatternType.THICK_HORZ_BANDS |
-| THICK_VERT_BANDS | 粗纵向条纹填充 | 粗纵向条纹背景填充 | FillPatternType.THICK_VERT_BANDS |
-| THICK_BACKWARD_DIAG | 粗斜线向后填充 | 粗斜线（从左上到右下）背景填充 | FillPatternType.THICK_BACKWARD_DIAG |
-| THICK_FORWARD_DIAG | 粗斜线向前填充 | 粗斜线（从右上到左下）背景填充 | FillPatternType.THICK_FORWARD_DIAG |
-| BIG_SPOTS | 大点填充 | 大尺寸点状背景填充 | FillPatternType.BIG_SPOTS |
-| BRICKS | 砖块填充 | 砖块纹理背景填充 | FillPatternType.BRICKS |
-| THIN_HORZ_BANDS | 细横向条纹填充 | 细横向条纹背景填充 | FillPatternType.THIN_HORZ_BANDS |
-| THIN_VERT_BANDS | 细纵向条纹填充 | 细纵向条纹背景填充 | FillPatternType.THIN_VERT_BANDS |
-| THIN_BACKWARD_DIAG | 细斜线向后填充 | 细斜线（从左上到右下）背景填充 | FillPatternType.THIN_BACKWARD_DIAG |
-| THIN_FORWARD_DIAG | 细斜线向前填充 | 细斜线（从右上到左下）背景填充 | FillPatternType.THIN_FORWARD_DIAG |
+| **Value**   | **Display Name** | **Description** | **Default Format (Example)** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| STRING | Text | Ordinary text | - |
+| INTEGER | Integer | Integer value | `0`                 |
+| NUMBER | Number | Numeric with decimals | `0.00`              |
+| DATETIME | Date + Time | Combination of date and time | `yyyy-MM-dd HH:mm:ss`<br/>（corresponds to `DATETIME` format） |
+| FORMULA | Formula | Excel formula | - |
+| BOOLEAN | Boolean | Boolean value (Yes/No) | `{"true":"Yes","false":"No"}` |
+| CALENDAR | Calendar | Date type | - |
+| COMMENT | Comment | Cell comment | - |
+| HYPER_LINK | Hyperlink | Hyperlink address | - |
+| RICH_TEXT_STRING | Rich Text | Rich text content | - |
+| ENUMERATION | Enum | Enumeration value | - |
+| BIT | Binary Enum | Binary enumeration value | - |
+| OBJECT | Object | Complex object | - |
 
 
-### 15、字体（ExcelTypefaceEnum）
+### 11、Horizontal Alignment (ExcelHorizontalAlignmentEnum)
 
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| SONG | 宋体 | 宋体（中文常用正文字体） |
-| REGULAR_SCRIPT | 楷体 | 楷体（手写风格字体） |
-| BOLDFACE | 黑体 | 黑体（粗体无衬线字体） |
-| YAHEI | Microsoft YaHei | 微软雅黑（清晰易读的无衬线字体） |
-
-
-### 16、字符偏移类型（ExcelTypeOffsetEnum）
-
-| **值**   | **显示名称** | **描述** | **对应 POI 值** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| NORMAL | 常规 | 正常显示 | Font.SS_NONE（0） |
-| SUPER | 上标 | 文字偏上显示 | Font.SS_SUPER（1） |
-| SUB | 下标 | 文字偏下显示 | Font.SS_SUB（2） |
+| **Value**   | **Display Name** | **Description** | **Corresponding POI Enum Value** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| GENERAL | Default | Text left-aligned; numbers, dates, and times right-aligned; booleans centered | HorizontalAlignment.GENERAL |
+| LEFT | Left-Aligned | Content left-aligned | HorizontalAlignment.LEFT |
+| CENTER | Center-Aligned | Content center-aligned | HorizontalAlignment.CENTER |
+| RIGHT | Right-Aligned | Content right-aligned | HorizontalAlignment.RIGHT |
+| FILL | Fill-Aligned | Content repeats to fit cell width | HorizontalAlignment.FILL |
+| JUSTIFY | Justified | Content aligned at both ends, automatically adjusting word spacing (suitable for multi-line text) | HorizontalAlignment.JUSTIFY |
+| CENTER_SELECTION | Center Selection | Content centered within the selected area (requires combined use with cell merging) | HorizontalAlignment.CENTER_SELECTION |
+| DISTRIBUTED | Distributed | Content evenly distributed, aligned with cell borders at both ends | HorizontalAlignment.DISTRIBUTED |
 
 
-### 17、下划线类型（ExcelUnderlineEnum）
+### 12、Vertical Alignment (ExcelVerticalAlignmentEnum)
 
-| **值**   | **显示名称** | **描述** | **对应 POI 值** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| NONE | 无 | 无下划线 | Font.U_NONE（0） |
-| SINGLE | 单下划线 | 单实线下划线 | Font.U_SINGLE（1） |
-| DOUBLE | 双下划线 | 双实线下划线 | Font.U_DOUBLE（2） |
-| SINGLE_ACCOUNTING | 会计风格单下划线 | 适配会计报表的单下划线（与单元格等宽） | Font.U_SINGLE_ACCOUNTING（3） |
-| DOUBLE_ACCOUNTING | 会计风格双下划线 | 适配会计报表的双下划线（与单元格等宽） | Font.U_DOUBLE_ACCOUNTING（4） |
-
-
-### 18、任务状态（ExcelTaskStateEnum）
-
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| PROCESSING | 处理中 | 任务正在执行中（进行数据读写或转换） |
-| SUCCESS | 成功 | 任务已成功完成（所有数据处理完毕且无错误） |
-| FAILURE | 失败 | 任务执行失败（因错误终止，需检查日志或错误文件） |
+| **Value**   | **Display Name** | **Description** | **Corresponding POI Enum Value** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TOP | Top-Aligned | Content aligned with the top of the cell | VerticalAlignment.TOP |
+| CENTER | Center-Aligned | Content vertically center-aligned | VerticalAlignment.CENTER |
+| BOTTOM | Bottom-Aligned | Content aligned with the bottom of the cell | VerticalAlignment.BOTTOM |
+| JUSTIFY | Justified | Content aligned at both ends, automatically adjusting line spacing (suitable for multi-line text) | VerticalAlignment.JUSTIFY |
+| DISTRIBUTED | Distributed | Content evenly distributed, aligned with cell borders at top and bottom | VerticalAlignment.DISTRIBUTED |
 
 
-### 19、导出文件类型（ExcelExportFileTypeEnum）
+### 13、Border Style (ExcelBorderStyleEnum)
 
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| EXCEL | Excel 格式 | 导出 Excel 格式文件（.xlsx） |
-| CSV | CSV 格式 | 导出 CSV 格式文件（逗号分隔值） |
-
-
-### 20、导出方式（ExcelExportMethodEnum）
-
-| **值**   | **显示名称** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| TEMPLATE | 根据模板导出 | 使用预定义的 Excel 模板进行数据填充导出 |
-| SELECT_TEMPLATE_FIELD | 根据模板选择字段导出 | 基于模板选择部分字段进行数据过滤后导出 |
-| SELECT_FIELD | 根据模型选择字段导出 | 直接从数据模型中选择字段生成 Excel 导出 |
-
-
-### 21、消息级别（TaskMessageLevelEnum）
-
-| **值**   | **显示名称** | **描述** | **处理逻辑** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| TIP | 提示 | 控制台输出的常规提示信息 | 仅控制台打印，不存储 |
-| INFO | 信息 | 任务执行的详细信息 | 存储到信息列表，用于追溯 |
-| WARNING | 警告 | 非阻塞性警告（不影响任务主流程） | 不回滚，需人工关注 |
-| ERROR | 异常 | 导致任务失败的错误信息 | 触发回滚，终止任务执行 |
+| **Value**   | **Display Name** | **Description** | **Corresponding POI Enum Value** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| NONE | No Border | No border | BorderStyle.NONE |
+| THIN | Thin Border | Thin solid border | BorderStyle.THIN |
+| MEDIUM | Medium Border | Medium solid border | BorderStyle.MEDIUM |
+| THICK | Thick Border | Thick solid border | BorderStyle.THICK |
+| DASHED | Dashed Border | Dashed border | BorderStyle.DASHED |
+| DOTTED | Dotted Border | Dotted border | BorderStyle.DOTTED |
+| DOUBLE | Double Border | Double solid border | BorderStyle.DOUBLE |
+| HAIR | Hair Border | Extremely thin solid border (hairline) | BorderStyle.HAIR |
+| MEDIUM_DASHED | Medium Dashed Border | Medium dashed border | BorderStyle.MEDIUM_DASHED |
+| DASH_DOT | Dash-Dot Border | Dash-dot border | BorderStyle.DASH_DOT |
+| MEDIUM_DASH_DOT | Medium Dash-Dot Border | Medium dash-dot border | BorderStyle.MEDIUM_DASH_DOT |
+| DASH_DOT_DOT | Dash-Dot-Dot Border | Dash-dot-dot border | BorderStyle.DASH_DOT_DOT |
+| MEDIUM_DASH_DOT_DOT | Medium Dash-Dot-Dot Border | Medium dash-dot-dot border | BorderStyle.MEDIUM_DASH_DOT_DOT |
+| SLANTED_DASH_DOT | Slanted Dash-Dot Border | Slanted dash-dot border | BorderStyle.SLANTED_DASH_DOT |
 
 
+### 14、Fill Pattern (ExcelFillPatternTypeEnum)
 
+| **Value**   | **Display Name** | **Description** | **Corresponding POI Enum Value** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| NO_FILL | No Fill | No background fill | FillPatternType.NO_FILL |
+| SOLID_FOREGROUND | Solid Fill | Solid color background fill | FillPatternType.SOLID_FOREGROUND |
+| FINE_DOTS | Fine Dots | Dense dotted background fill | FillPatternType.FINE_DOTS |
+| ALT_BARS | Alternating Bars | Horizontal alternating stripe background fill | FillPatternType.ALT_BARS |
+| SPARSE_DOTS | Sparse Dots | Sparse dotted background fill | FillPatternType.SPARSE_DOTS |
+| THICK_HORZ_BANDS | Thick Horizontal Bands | Thick horizontal stripe background fill | FillPatternType.THICK_HORZ_BANDS |
+| THICK_VERT_BANDS | Thick Vertical Bands | Thick vertical stripe background fill | FillPatternType.THICK_VERT_BANDS |
+| THICK_BACKWARD_DIAG | Thick Backward Diagonal | Thick diagonal (top-left to bottom-right) background fill | FillPatternType.THICK_BACKWARD_DIAG |
+| THICK_FORWARD_DIAG | Thick Forward Diagonal | Thick diagonal (top-right to bottom-left) background fill | FillPatternType.THICK_FORWARD_DIAG |
+| BIG_SPOTS | Big Spots | Large dotted background fill | FillPatternType.BIG_SPOTS |
+| BRICKS | Bricks | Brick texture background fill | FillPatternType.BRICKS |
+| THIN_HORZ_BANDS | Thin Horizontal Bands | Thin horizontal stripe background fill | FillPatternType.THIN_HORZ_BANDS |
+| THIN_VERT_BANDS | Thin Vertical Bands | Thin vertical stripe background fill | FillPatternType.THIN_VERT_BANDS |
+| THIN_BACKWARD_DIAG | Thin Backward Diagonal | Thin diagonal (top-left to bottom-right) background fill | FillPatternType.THIN_BACKWARD_DIAG |
+| THIN_FORWARD_DIAG | Thin Forward Diagonal | Thin diagonal (top-right to bottom-left) background fill | FillPatternType.THIN_FORWARD_DIAG |
+
+
+### 15、Font Type (ExcelTypefaceEnum)
+
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| SONG | Song | Song typeface (common Chinese body text font) |
+| REGULAR_SCRIPT | Regular Script | Regular script (handwriting-style font) |
+| BOLDFACE | Boldface | Boldface (bold sans-serif font) |
+| YAHEI | Microsoft YaHei | Microsoft YaHei (clear and readable sans-serif font) |
+
+
+### 16、Character Offset Type (ExcelTypeOffsetEnum)
+
+| **Value**   | **Display Name** | **Description** | **Corresponding POI Value** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| NORMAL | Normal | Display normally | Font.SS_NONE (0) |
+| SUPER | Superscript | Text displayed above the baseline | Font.SS_SUPER (1) |
+| SUB | Subscript | Text displayed below the baseline | Font.SS_SUB (2) |
+
+
+### 17、Underline Type (ExcelUnderlineEnum)
+
+| **Value**   | **Display Name** | **Description** | **Corresponding POI Value** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| NONE | None | No underline | Font.U_NONE (0) |
+| SINGLE | Single | Single solid underline | Font.U_SINGLE (1) |
+| DOUBLE | Double | Double solid underline | Font.U_DOUBLE (2) |
+| SINGLE_ACCOUNTING | Single Accounting | Single underline adapted for accounting reports (same width as cell) | Font.U_SINGLE_ACCOUNTING (3) |
+| DOUBLE_ACCOUNTING | Double Accounting | Double underline adapted for accounting reports (same width as cell) | Font.U_DOUBLE_ACCOUNTING (4) |
+
+
+### 18、Task Status (ExcelTaskStateEnum)
+
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| PROCESSING | Processing | Task is executing (performing data reading/writing or conversion) |
+| SUCCESS | Success | Task completed successfully (all data processed without errors) |
+| FAILURE | Failure | Task execution failed (terminated due to errors, requires checking logs or error files) |
+
+
+### 19、Export File Type (ExcelExportFileTypeEnum)
+
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| EXCEL | Excel Format | Export Excel format file (.xlsx) |
+| CSV | CSV Format | Export CSV format file (comma-separated values) |
+
+
+### 20、Export Method (ExcelExportMethodEnum)
+
+| **Value**   | **Display Name** | **Description** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TEMPLATE | Export by Template | Use predefined Excel template for data filling and export |
+| SELECT_TEMPLATE_FIELD | Export by Selected Template Fields | Export after filtering data based on selected fields from the template |
+| SELECT_FIELD | Export by Model Fields | Directly select fields from the data model to generate Excel export |
+
+
+### 21、Message Level (TaskMessageLevelEnum)
+
+| **Value**   | **Display Name** | **Description** | **Processing Logic** |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| TIP | Tip | Routine prompt information output to console | Only printed to console, not stored |
+| INFO | Info | Detailed task execution information | Stored in the info list for traceability |
+| WARNING | Warning | Non-blocking warning (does not affect task main process) | No rollback, requires manual attention |
+| ERROR | Error | Error information causing task failure | Triggers rollback and terminates task execution |

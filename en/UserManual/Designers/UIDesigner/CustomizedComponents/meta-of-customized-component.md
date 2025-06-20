@@ -1,5 +1,5 @@
 ---
-title: Custom Component - Element Information
+title: Meta of Customized Component
 index: true
 category:
   - User Manual

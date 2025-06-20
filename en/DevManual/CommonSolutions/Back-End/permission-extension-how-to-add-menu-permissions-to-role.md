@@ -1,17 +1,18 @@
 ---
-title: 权限扩展：如何给角色增加菜单权限
+title: Permission Extension：How to Add Menu Permissions to Roles
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 47
 ---
-# 一、概述
 
-在与第三方进行权限对接的过程中，第三方会传送菜单项至本平台。此时，需依据这些传过来的菜单项，在本平台开展授权操作。针对此需求，可采用代码实现的方式，为指定的菜单创建相应权限。
+# 1. Overview
 
-# 二、代码实现
+During permission docking with third parties, the third party will transmit menu items to this platform. In this case, authorization operations need to be carried out on this platform based on these transmitted menu items. To meet this requirement, code implementation can be used to create corresponding permissions for specified menus.
 
-代码示例：
+# 2. Code Implementation
+
+Code example:
 
 ```java
 public class demo {
@@ -33,12 +34,12 @@ public class demo {
                                                .eq(Menu::getName, "TopMenus_shoppMenu_Shop3Menu_ShopSayHello52eMenu")
                                                .eq(Menu::getModule, TopModule.MODULE_MODULE)));
 
-        //加载指定角色的全部资源权限项
+        // Load all resource permissions for the specified role
         ResourcePermissionNodeLoader loader = permissionNodeLoader.getManagementLoader();
         List<PermissionNode> nodes = loader.buildRootPermissions();
         List<AuthRbacResourcePermissionItem> authRbacRolePermissionProxies = new ArrayList<>();
 
-        //给指定角色创建权限，如果需要多个角色，可以批量执行authRbacRolePermissionService.update(authRbacRolePermissionProxy)
+        // Create permissions for the specified role. For multiple roles, batch execute authRbacRolePermissionService.update(authRbacRolePermissionProxy)
         AuthRole authRole = new AuthRole().queryOneByWrapper(Pops.<AuthRole>lambdaQuery()
                                                              .from(AuthRole.MODEL_MODEL)
                                                              .eq(AuthRole::getCode, "R003")
@@ -59,7 +60,7 @@ public class demo {
         if (node == null) {
             return;
         }
-        //按照指定菜单进行过滤，如果不是指定菜单，则设置菜单项不可访问，如果是指定菜单，则设置可访问
+        // Filter by specified menus: set menu items as inaccessible if not specified, accessible if specified
         Set<Long> menuIds = new HashSet<>();
         for (Menu menu : menus) {
             menuIds.add(menu.getId());
@@ -89,6 +90,5 @@ public class demo {
 }
 ```
 
-执行看效果
+Execution effect:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-11-14_10-10-46-20250530144822471.jpg)
-

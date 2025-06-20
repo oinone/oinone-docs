@@ -1,73 +1,73 @@
 ---
-title: 环境部署：后端无代码设计器Jar包启动方法
+title: Environment Deployment:Backend No-Code Designer Jar Package Startup Method
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 61
 ---
 
-# 一、下载Oinone专属启动器
+# I. Download Oinone Exclusive Starter
 [oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip)
 
-## （一） Mac OS平台启动
+## (一) Mac OS Platform Startup
 ```shell
-# 直接运行
+# Direct run
 ./darwin-boot java -jar ./pamirs-designer-boot-4.7.0.jar
 
-# nohup后台运行
+# nohup background run
 nohup ./darwin-boot java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>&1 &
 ```
 
-## （二）Mac OS（arm64架构）平台启动
+## (二) Mac OS (arm64 Architecture) Platform Startup
 ```shell
-# 直接运行
+# Direct run
 ./darwin-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar
 
-# nohup后台运行
+# nohup background run
 nohup ./darwin-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>&1 &
 ```
 
-## （三）Linux平台启动
+## (三) Linux Platform Startup
 ```shell
-# 直接运行
+# Direct run
 ./linux-boot java -jar ./pamirs-designer-boot-4.7.0.jar
 
-# nohup后台运行
+# nohup background run
 nohup ./linux-boot java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>&1 &
 ```
 
-## （四）Linux（arm64架构）平台启动
+## (四) Linux (arm64 Architecture) Platform Startup
 ```shell
-# 直接运行
+# Direct run
 ./linux-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar
 
-# nohup后台运行
+# nohup background run
 nohup ./linux-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>&1 &
 ```
 
-## （五）Windows平台启动
+## (五) Windows Platform Startup
 ```shell
 .\win-boot.exe java -jar .\pamirs-designer-boot-4.7.0.jar
 ```
 
-# 二、说明
-1. 上述命令使用的`java -jar`与常规使用方式完全相同。
-2. Oinone 无代码设计器不支持使用`javaagent`参数。
+# II. Instructions
+1. The `java -jar` command used above is exactly the same as the conventional usage.
+2. The Oinone no-code designer does not support the use of `javaagent` parameters.
 
-# 三、常用启动脚本
+# III. Common Startup Scripts
 ```shell
 #!/bin/bash
 
-# 脚本所在目录
+# Directory where the script is located
 home=$(cd "$(dirname "$0")" && pwd)
 
-# 启动jar路径
+# Startup jar path
 jarPath=$home/pamirs-designer-boot-4.7.0.jar
 
-# 配置路径
+# Configuration path
 applicationPath=$home/application.yml
 
-# 许可证信息
+# License information
 subject=
 licensePath=
 
@@ -83,24 +83,23 @@ sleep 1
 tail -200f $home/out.log
 ```
 
-# 四、出现`cannot execute binary file`异常该如何处理？
-## （一）问题原因
-`Oinone专属启动器`是通过`go语言`进行编译并执行，对于不同的操作系统架构需要分别编译。
+# IV. How to Handle the "cannot execute binary file" Exception?
+## (一) Problem Cause
+The `Oinone exclusive starter` is compiled and executed using `Go language`, which requires separate compilation for different operating system architectures.
 
-## （二）解决方案
-1. `物理机`安装`go语言`环境。
-2. 下载`boot.go`文件，放在`run`目录下。（需询问`Oinone客服`获取最新`boot.go`文件）
-3. 进入`run`目录，执行`go build -o "boot-starter" "boot.go"`命令。
-4. 在`startup.sh`命令中添加`-v $home/run/boot-starter:/opt/pamirs/run/boot-starter \`将文件挂载到容器。
-5. 删除 docker 容器后再执行`startup.sh`脚本重启镜像即可。
+## (二) Solution
+1. Install the `Go language` environment on the physical machine.
+2. Download the `boot.go` file and place it in the `run` directory. (You need to ask `Oinone customer service` for the latest `boot.go` file)
+3. Enter the `run` directory and execute the command `go build -o "boot-starter" "boot.go"`.
+4. Add `-v $home/run/boot-starter:/opt/pamirs/run/boot-starter \` to the `startup.sh` command to mount the file to the container.
+5. Delete the docker container and then execute the `startup.sh` script to restart the image.
 
-# 五、出现`failed to open elf at /lib64/ld-linux-x86-64.so.2`异常该如何处理？
-## （一）问题原因
-部分`arm64`架构的宿主机无法兼容`amd64`环境中编译的`linux-boot`启动器，需要将启动器换为`linux-boot-arm64`。
+# V. How to Handle the "failed to open elf at /lib64/ld-linux-x86-64.so.2" Exception?
+## (一) Problem Cause
+Some `arm64` architecture hosts cannot be compatible with the `linux-boot` starter compiled in the `amd64` environment, and the starter needs to be replaced with `linux-boot-arm64`.
 
-## （二）解决方案
-1. 下载[oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip)并解压，获取`linux-boot-arm64`启动器。
-2. 将启动器放在`run`目录下。
-3. 在`startup.sh`命令中添加`-v $home/run/linux-boot-arm64:/opt/pamirs/run/boot-starter`替换镜像中的启动器。
-4. 删除 docker 容器后再执行`startup.sh`脚本重启镜像即可。
-
+## (二) Solution
+1. Download [oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip) and unzip it to obtain the `linux-boot-arm64` starter.
+2. Place the starter in the `run` directory.
+3. Add `-v $home/run/linux-boot-arm64:/opt/pamirs/run/boot-starter` to the `startup.sh` command to replace the starter in the image.
+4. Delete the docker container and then execute the `startup.sh` script to restart the image.

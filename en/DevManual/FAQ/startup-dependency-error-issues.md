@@ -1,22 +1,20 @@
 ---
-title: 启动时：启动依赖错误的问题
+title: Startup:Issues with Startup Dependency Errors
 index: true
 category:
-  - 常见问题（faq）
+  - Frequently Asked Questions (FAQ)
 order: 2
 ---
-# 一、场景
-启动的时候可能会出现以下错误提示
+# I. Scenario
+The following error messages may appear during startup:
+- The startup module contains JAR packages or modules that do not exist in the database.
+- The startup module contains non-existent modules.
+- The startup module's mutually exclusive modules include installed modules.
 
-+ 启动模块中包含 jar 包或者数据库中不存在的模块
-+ 启动模块中包含不存在的模块
-+ 启动模块互斥模块中包含已安装模块
-
-# 二、排查项
-1. 确保启动工程的`application.yml`中的启动模块`pamirs.boot.modules`配置项内的模块在`pom.xml`内依赖了对应模块的jar包
-2. 确保出问题的模块的定义文件内的包扫描前缀`packagePrefix`方法内的路径定义正确，该路径可以是多个，但是一定要包含模块下所有子工程的路径，包括但不限于`api`子工程、`core`工程等，另外该路径也不能和其他模块的配置有重复、交集、包含关系（例如：a模块是 `aa.bb.cc`, b模块是`aa.bb`，这样b模块的路径就包含了a模块的）
+# II. Troubleshooting Items
+1. Ensure that the modules listed in the `pamirs.boot.modules` configuration item of the `application.yml` file for the startup project have their corresponding JAR packages depended on in the `pom.xml` file.
+2. Ensure that the path definitions in the `packagePrefix` method of the problematic module's definition file are correct. These paths can be multiple but must include all sub-project paths under the module, such as `api` sub-projects and `core` projects. Additionally, these paths should not overlap, intersect, or include paths from other modules (e.g., if module A uses `aa.bb.cc` and module B uses `aa.bb`, module B's path would include module A's).
    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/WX20240718-195049@2x-1024x632.png)
-3. 启动类里`spring`自带的`@ComponentScan.basePackages`注解项需要包含所有依赖模块的路径
+3. The `@ComponentScan.basePackages` annotation in the startup class (a Spring-built annotation) must include the paths of all dependent modules.
    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/WX20240718-195713@2x-1024x682.png)
-4. 无代码应用创建的时候，配置了依赖模块。但这个依赖没有被本地安装，该模块就会出问题，要么删除该依赖，要么在代码里添加该依赖。
-
+4. When creating a code-free application, if a dependent module is configured but not locally installed, the module will encounter issues. Resolve this by either removing the dependency or adding the dependency to the code.

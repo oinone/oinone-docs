@@ -1,57 +1,56 @@
 ---
-title: 按钮：跨页面传额外的参数
+title: Button:Passing Extra Parameters Across Pages
 index: true
 category:
-   - 前端
+   - Frontend
 order: 8
 ---
-# 一、上下文在字段和动作中的应用
-在业务场景中，常常需要在`打开弹窗`或`跳转到新页面`时携带当前页面数据。此时，我们需要配置相关「动作」中的上下文信息。
+# I. Application of Context in Fields and Actions
+In business scenarios, it is often necessary to carry current page data when **opening a pop-up window** or **navigating to a new page**. In such cases, we need to configure the context information in the relevant "actions".
 
-在 oinone 平台中，上下文主要分为以下三种：
+In the Oinone platform, the context is mainly divided into three types:
 
-1. `activeRecord`：当前视图数据
-2. `rootRecord`：主视图数据
-3. `openerRecord`：触发弹窗的对象
+1. `activeRecord`: Data of the current view
+2. `rootRecord`: Data of the main view
+3. `openerRecord`: The object that triggers the pop-up window
 
-`activeRecord` 表示当前视图的数据。例如，若动作配置在表单上，则指代当前表单的数据；若配置在 o2m、m2m 字段表格上，则指代选中的行数据。
+`activeRecord` represents the data of the current view. For example, if an action is configured on a form, it refers to the data of the current form; if configured on a table field of o2m or m2m, it refers to the selected row data.
 
-`rootRecord` 表示根视图的数据。若当前视图是表单页，则代表表单的数据；若为表格页，则代表表格的数据。
+`rootRecord` represents the data of the root view. If the current view is a form page, it represents the form data; if it is a table page, it represents the table data.
 
-`openerRecord` 表示触发弹窗的对象。例如，在弹窗内的字段或动作中，可通过 `openerRecord` 获取触发弹窗的信息。
+`openerRecord` represents the object that triggers the pop-up window. For example, in fields or actions within a pop-up window, information about the trigger can be obtained through `openerRecord`.
 
-这三者均为对象 (Object) 类型。
+All three are of the object (Object) type.
 
-# 二、视图介绍
-## （一）当前视图
-组件最近的父视图，如：弹窗内的字段组件，它的当前视图就是弹窗打开的视图
+# II. Introduction to Views
+## (一) Current View
+The nearest parent view of the component. For example, for a field component within a pop-up window, its current view is the view where the pop-up window is opened.
 
-当前视图在代码中的取值关键字为`activeRecord`，获取当前视图内数据的`id`则为`activeRecord.id`
+The keyword for retrieving values in the current view in the code is `activeRecord`, and to obtain the `id` of the data in the current view, it is `activeRecord.id`.
 
-## （二）主视图
-页面当前主模型（浏览器地址的 model 为主模型的模型编码）的视图，如：弹窗内的字段组件，它的主视图不是弹窗打开的视图，而是打开弹窗的动作所在的视图。
+## (二) Main View
+The view of the current main model of the page (the model code in the browser address is the main model). For example, for a field component within a pop-up window, its main view is not the view where the pop-up window is opened, but the view where the action to open the pop-up window is located.
 
-主视图在代码中的取值关键字为`rootRecord`，获取主视图内数据的`id`则为`rootRecord.id`
+The keyword for retrieving values in the main view in the code is `rootRecord`, and to obtain the `id` of the data in the main view, it is `rootRecord.id`.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240606-163748-1024x513.png)
 
-# 三、场景设置介绍
-## （一）服务端动作关闭弹窗后，刷新主视图的数据
+# III. Introduction to Scenario Settings
+## (一) After the server-side action closes the pop-up window, refresh the data of the main view
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240606-164436-1024x648.png)
 
-## （二）服务端动作关闭弹窗后，刷新打开该弹窗的表格行的数据
+## (二) After the server-side action closes the pop-up window, refresh the data of the table row that opened the pop-up window
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240606-164605-1024x688.png)
 
-# 二、界面设计器配置
-## （一）在 o2m、m2m 表格字段弹窗中携带当前视图数据
-假设我们设计了一个包含 `o2m`、`m2m` 表格字段的表单页面。打开相关弹窗时，需将表单中的 `code` 数据传递至弹窗中。
+# II. Configuration of Interface Designer
+## (一) Carrying current view data in the pop-up window of o2m and m2m table fields
+Suppose we design a form page containing table fields of `o2m` (one-to-many) and `m2m` (many-to-many). When opening the relevant pop-up window, the `code` data in the form needs to be passed to the pop-up window.
 
-1. 选择相应的「动作」，如创建或添加。在右侧属性面板底部找到「上下文」，添加格式为对象 {} 的上下文信息。
-2. 以键值对的格式添加上下文信息：`{code: rootRecord.code}`。
-3. 设计弹窗时，将 `code` 字段拖入弹窗中。
-4. 完成设计后保存并发布。
+1. Select the corresponding "action", such as Create or Add. Find "Context" at the bottom of the right property panel and add context information in the format of an object `{}`.
+2. Add context information in the format of key-value pairs: `{code: rootRecord.code}`.
+3. When designing the pop-up window, drag the `code` field into the pop-up window.
+4. Save and publish after completing the design.
 
-大家可以看到，在当前上下文中，`key` 为 `code`，而 `value` 则是 `rootRecord.code`。此处选用 `rootRecord` 而非 `activeRecord`，原因在于前文已阐述，若当前动作配置于 `o2m`（一对多）、`m2m`（多对多）的字段表格之上，此时 `activeRecord` 指的是表格中被选中的行。然而，我们当前的需求是获取表单上的 `code` 字段，所以必须使用 `rootRecord`。
+As can be seen, in the current context, the `key` is `code`, and the `value` is `rootRecord.code`. Here, `rootRecord` is used instead of `activeRecord` because, as explained earlier, if the current action is configured on the table field of `o2m` or `m2m`, `activeRecord` refers to the selected row in the table. However, our current requirement is to obtain the `code` field on the form, so `rootRecord` must be used.
 
-特别需要注意的是：`key` 必须是提交模型【前端视图】中实际存在的字段，如此方能进行传递操作。
-
+It is particularly important to note that the `key` must be a field that actually exists in the submission model [front-end view] to enable the transmission operation.

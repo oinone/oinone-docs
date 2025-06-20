@@ -1,5 +1,5 @@
 ---
-title: System Configuration
+title: Preferences
 index: true
 category:
   - User Manual

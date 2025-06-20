@@ -1,16 +1,16 @@
 ---
-title: 运行时：保存多值字段SQL执行报错
+title: Runtime:SQL Execution Error When Saving Multivalue Fields
 index: true
 category:
-  - 常见问题（faq）
+  - Frequently Asked Questions (FAQ)
 order: 13
 ---
-# 一、场景复现
-保存多值字段时报函数执行错误：
+# I. Scenario Reproduction
+An error occurs in function execution when saving multivalue fields:
 
 ```dart
-2025-05-24 17:41:10.315  WARN 5908 --- [      Deferred6] f.g.g.j.r.DefaultRequestExceptionHandler : Exception while fetching data (/pamirsDemoMutation/create) : 函数执行错误
-pro.shushi.pamirs.meta.common.exception.PamirsException: 函数执行错误
+2025-05-24 17:41:10.315  WARN 5908 --- [      Deferred6] f.g.g.j.r.DefaultRequestExceptionHandler : Exception while fetching data (/pamirsDemoMutation/create) : Function execution error
+pro.shushi.pamirs.meta.common.exception.PamirsException: Function execution error
 	at pro.shushi.pamirs.meta.common.exception.PamirsException$Builder.errThrow(PamirsException.java:203) ~[pamirs-meta-common-6.1.6.jar:6.1.6]
 	at pro.shushi.pamirs.framework.faas.fun.manage.ManagementAspect.proceed(ManagementAspect.java:182) ~[pamirs-framework-faas-6.1.9.jar:6.1.9]
 	at pro.shushi.pamirs.framework.faas.fun.manage.ManagementAspect.lambda$around$0(ManagementAspect.java:76) ~[pamirs-framework-faas-6.1.9.jar:6.1.9]
@@ -60,12 +60,11 @@ Caused by: java.sql.SQLException: Incorrect string value: '\xAC\xED\x00\x05sr...
 	... 174 common frames omitted
 ```
 
-# 二、解决方案
-定义多值类型`multi = true`时，字段类型应该设置为 `List<>` 类型。
+# II. Solution
+When defining a multivalue type with `multi = true`, the field type should be set to `List<>` type.
 
 ```java
 @Field.String
-@Field(displayName ="经费证明", multi = true, serialize = Field.serialize.JSON)
+@Field(displayName = "Funding Proof", multi = true, serialize = Field.serialize.JSON)
 private List<String> matchFund;
 ```
-

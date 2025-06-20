@@ -1,28 +1,28 @@
 ---
-title: 自定义主题
+title: Customize Themes
 index: true
 category:
-  - 研发手册
-  - 操作指南
-  - 自定义主题
+  - Development Manual
+  - Operation Guide
+  - Custom Themes
 dir:
   link: true
   order: 5
 next:
-  text: 组件默认主题变量
+  text: Default Theme Variables for Components
   link: /en/DevManual/OperationGuide/CustomizeThemes/default-themes.md
 ---
-在 Oinone 中的 `主题` 是通过 `CSS variable` 实现的，通过 `registerTheme` 注册主题，并使用 `VueOioProvider` 应用主题到系统中。
+The `theme` in Oinone is implemented through `CSS variables`. You can register themes using `registerTheme` and apply them to the system with `VueOioProvider`.
 
-:::warning 提示
+:::warning Tip
 
-更多关于 CSS variable 的内容请参考：[CSS variable](https://www.w3school.com.cn/css/css3_variables.asp)
+For more information on CSS variables, refer to: [CSS variable](https://www.w3school.com.cn/css/css3_variables.asp)
 
 :::
 
-# 一、通过 registerTheme 注册自定义主题变量
+# I. Register Custom Theme Variables via registerTheme
 
-我们先来注册一个 `customTheme` 主题吧，这个主题将 `Oinone` 页面的主色修改为 `黑色（blank）`：
+Let's start by registering a `customTheme` that changes the primary color of Oinone pages to `black`:
 
 ```typescript
 export const customThemeName = 'customTheme';
@@ -33,15 +33,15 @@ export const customThemeCssVars = {
 registerTheme(customThemeName, customThemeCssVars);
 ```
 
-:::warning 提示
+:::warning Tip
 
-通常我们将主题变量的定义和注册放在 `src/theme` 目录下。
+Generally, we place theme variable definitions and registrations in the `src/theme` directory.
 
 :::
 
-# 二、使主题生效
+# II. Activate the Theme
 
-让我们在 VueOioProvider 中指定 theme 参数，让主题变量生效：
+Let's specify the theme parameter in VueOioProvider to activate the theme variables:
 
 ```typescript
 VueOioProvider({
@@ -49,25 +49,25 @@ VueOioProvider({
 });
 ```
 
-现在，我们的页面就变成了这样：
+Now, our page should look like this:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/CustomTheme/theme.png)
 
-:::warning 提示
+:::warning Tip
 
-在上面我们看到了主题已经生效了，但这还没完，当我们把鼠标悬停在 “创建” 按钮上时，按钮变成了蓝色。这是因为主题变量中包含了 `鼠标悬停色（hover）` 的定义，我们还需要将其他相关的主题变量都进行定义，这样才可以较为完整的替换整个页面的主题。
+Although the theme is activated as shown above, when we hover over the "Create" button, it turns blue. This is because the theme variables include definitions for `hover color`. We need to define all related theme variables to completely replace the page theme.
 
 :::
 
-# 三、内置主题变量
+# III. Built-in Theme Variables
 
-对于调整 UI 页面的主题变量一般分为两类，`尺寸（size）` 和 `颜色（color）` 。对于一些特殊的组件，我们还可以使用 `JavaScript` 变量进行主题的设置。
+Theme variables for adjusting UI pages generally fall into two categories: `size` and `color`. For special components, we can also use `JavaScript` variables for theme settings.
 
-下面我们将按照这三个维度完整的列举目前系统中已有的主题变量供读者参考。
+Below, we list all existing system theme variables for reference, organized by these three dimensions.
 
-## （一）通用尺寸
+## (一) General Sizes
 
-### 1、大（large）
+### 1. Large
 
 ```typescript
 {
@@ -104,7 +104,7 @@ VueOioProvider({
 }
 ```
 
-### 2、中（<font style="color:#080808;background-color:#ffffff;">medium</font>）（默认尺寸）
+### 2. Medium (Default Size)
 
 ```typescript
 {
@@ -141,7 +141,7 @@ VueOioProvider({
 }
 ```
 
-### 3、小（small）
+### 3. Small
 
 ```typescript
 {
@@ -178,9 +178,9 @@ VueOioProvider({
 }
 ```
 
-## （二）通用颜色
+## (二) General Colors
 
-### 1、默认主题（default）
+### 1. Default Theme
 
 ```typescript
 {
@@ -268,7 +268,7 @@ VueOioProvider({
 }
 ```
 
-### 2、暗黑主题（dark）
+### 2. Dark Theme
 
 ```typescript
 {
@@ -354,4 +354,3 @@ VueOioProvider({
     "spin-background": "rgba(31,41,53,0.7)"
 }
 ```
-

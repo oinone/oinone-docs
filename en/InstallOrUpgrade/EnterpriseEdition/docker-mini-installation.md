@@ -1,5 +1,5 @@
 ---
-title: Installation via docker-mini Method
+title: Docker mini installation
 index: true
 category:
   - Installation and Upgrade

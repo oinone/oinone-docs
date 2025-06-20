@@ -1,5 +1,5 @@
 ---
-title: AI Configuration
+title: AI Workflow
 index: true
 category:
   - User Manual

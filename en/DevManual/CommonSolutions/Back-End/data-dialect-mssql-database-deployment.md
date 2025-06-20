@@ -1,13 +1,13 @@
 ---
-title: 数据方言：【MSSQL】后端部署使用MSSQL数据库（SQLServer）
+title: Data Dialect:[MSSQL] Backend Deployment with MSSQL Database (SQL Server)
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 39
 ---
 
-# 一、驱动配置
-## （一）Maven 配置（2017版本可用）
+# I. Driver Configuration
+## (一) Maven Configuration (Suitable for 2017 Version)
 ```xml
 <mssql.version>9.4.0.jre8</mssql.version>
 <dependency>
@@ -15,15 +15,14 @@ order: 39
   <artifactId>mssql-jdbc</artifactId>
   <version>${mssql.version}</version>
 </dependency>
-
 ```
 
-## （二）离线驱动下载
+## (二) Offline Driver Download
 [mssql-jdbc-7.4.1.jre8.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/mssql/mssql-jdbc-7.4.1.jre8.jar)
 [mssql-jdbc-9.4.0.jre8.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/mssql/mssql-jdbc-9.4.0.jre8.jar)
 [mssql-jdbc-12.2.0.jre8.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/mssql/mssql-jdbc-12.2.0.jre8.jar)
 
-# 二、JDBC连接配置
+# II. JDBC Connection Configuration
 ```yaml
 pamirs:
   datasource:
@@ -45,26 +44,24 @@ pamirs:
       asyncInit: true
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+**Note**: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## （一）连接url配置
-暂无官方资料
+## (一) Connection URL Configuration
+No official documentation available currently.
 
-## （二）url 格式
+## (二) URL Format
 ```plain
 jdbc:sqlserver://${host}:${port};DatabaseName=${database}
 ```
 
-:::danger 警告：
-
-在jdbc连接配置时，${database} 和 ${schema} 必须完整配置，不可缺省。
-
+:::danger Warning:
+When configuring the JDBC connection, both `${database}` and `${schema}` must be fully configured and cannot be omitted.
 :::
 
-其他连接参数如需配置，可自行查阅相关资料进行调优。
+For other connection parameters, you can refer to relevant materials for optimization as needed.
 
-# 三、方言配置
-## （一）pamirs 方言配置
+# III. Dialect Configuration
+## (一) pamirs Dialect Configuration
 ```yaml
 pamirs:
   dialect:
@@ -79,20 +76,17 @@ pamirs:
         major-version: 2017
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+**Note**: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-| 数据库版本 | type | version | majorVersion |
+| Database Version | type | version | majorVersion |
 | --- | --- | --- | --- |
 | 2017 | MSSQL | 2017 | 2017 |
 
-
-:::info 注意：
-
-由于方言开发环境为`2017`版本，其他类似版本原则上不会出现太大差异，如出现其他版本无法正常支持的，可在文档下方留言。
-
+:::info Note:
+Since the dialect development environment is the 2017 version, other similar versions generally will not have significant differences. If you encounter issues with unsupported versions, please leave a comment below the document.
 :::
 
-## （二）schedule方言配置
+## (二) Schedule Dialect Configuration
 ```yaml
 pamirs:
   event:
@@ -109,15 +103,12 @@ pamirs:
 | --- | --- | --- |
 | MSSQL | 2017 | 2017 |
 
-
-:::info 注意：
-
-由于`schedule`的方言在多个版本中并无明显差异，目前仅提供一种方言配置。
-
+:::info Note:
+As there are no obvious differences in the schedule dialect across multiple versions, only one dialect configuration is provided currently.
 :::
 
-# 四、其他配置
-## （一）逻辑删除的值配置
+# IV. Other Configurations
+## (一) Logical Deletion Value Configuration
 ```yaml
 pamirs:
   mapper:
@@ -126,7 +117,7 @@ pamirs:
         logic-delete-value: CAST(DATEDIFF(S, CAST('1970-01-01 00:00:00' AS DATETIME), GETUTCDATE()) AS BIGINT) * 1000000 + DATEPART(NS, SYSUTCDATETIME()) / 100
 ```
 
-## （二）MSSQL 数据库用户初始化及授权
+## (二) MSSQL Database User Initialization and Authorization
 ```sql
 -- init root user (user name can be modified by oneself)
 
@@ -135,4 +126,3 @@ CREATE LOGIN [root] WITH PASSWORD = 'password';
 -- if using mssql database, this authorization is required.
 ALTER SERVER ROLE [sysadmin] ADD MEMBER [root];
 ```
-

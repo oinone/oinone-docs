@@ -1,46 +1,46 @@
 ---
-title: 外部集成：钉钉集成OAuth2.0
+title: External Integration：DingTalk Integration with OAuth2.0
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 9
 ---
 
-# 一、引言
-在企业数字化办公场景中，将业务系统与钉钉（DingTalk）进行集成是实现统一身份认证、组织架构同步、消息推送和页面嵌入的关键手段。本文基于 Java 技术栈，使用官方提供的 [DingTalk Open Platform SDK](https://help.aliyun.com/document_detail/163984.html) 完成对接。
+# 1. Introduction
+In the scenario of enterprise digital office, integrating business systems with DingTalk is a key means to achieve unified identity authentication, organizational structure synchronization, message pushing, and page embedding. This article is based on the Java technology stack and uses the official [DingTalk Open Platform SDK](https://help.aliyun.com/document_detail/163984.html) to complete the docking.
 
-1. **统一登录与身份认证**
-员工可通过钉钉扫码或免密方式登录系统
-2. **组织架构自动同步**
-自动获取部门结构与员工信息，减少人工维护成本
-3. **消息通知即时推送**
-系统可向用户发送审批提醒、任务通知等关键信息
-4. **页面嵌入与 JS API 调用**
-将业务页面嵌入钉钉工作台，并调用拍照、定位等功能
+1. **Unified Login and Identity Authentication**
+Employees can log in to the system via DingTalk QR code scanning or password-free methods.
+2. **Automatic Organizational Structure Synchronization**
+Automatically obtain department structures and employee information, reducing manual maintenance costs.
+3. **Real-time Message Notification Pushing**
+The system can send critical information such as approval reminders and task notifications to users.
+4. **Page Embedding and JS API Calling**
+Embed business pages into the DingTalk workbench and call functions such as photo taking and positioning.
 
-:::info 说明：
+:::info Note:
 
-本篇文章主要讲解 Oinone 应用跟钉钉的 OAuth2 打通实现免登，包括用户信息的获取。其他接口如：组织架构、获取部门成员、发送钉钉通知等参考钉钉的对接文档，并推荐使用 Oinone 集成平台（EIP）的方式进行对接。
+This article mainly explains how Oinone applications connect with DingTalk's OAuth2 to achieve single sign-on, including user information acquisition. For other interfaces such as organizational structure, obtaining department members, and sending DingTalk notifications, refer to DingTalk's docking documentation, and it is recommended to use the Oinone Integration Platform (EIP) for docking.
 
 :::
 
-# 二、接入准备
-## （一）了解钉钉身份验证（免登）
-服务端API身份验证（免登）使用教程实现登录第三方网站：       [https://open.dingtalk.com/document/orgapp/tutorial-obtaining-user-personal-information](https://open.dingtalk.com/document/orgapp/tutorial-obtaining-user-personal-information)
+# 2. Access Preparation
+## (1) Understanding DingTalk Identity Authentication (Single Sign-On)
+Tutorial on using server-side API identity authentication (single sign-on) to implement logging in to third-party websites: [https://open.dingtalk.com/document/orgapp/tutorial-obtaining-user-personal-information](https://open.dingtalk.com/document/orgapp/tutorial-obtaining-user-personal-information)
 
-## （二）创建钉钉应用
- 1、登录 [钉钉开放平台](https://open-dev.dingtalk.com/fe/app?hash=%23%2Fcorp%2Fapp#/corp/app)
+## (2) Creating a DingTalk Application
+1. Log in to [DingTalk Open Platform](https://open-dev.dingtalk.com/fe/app?hash=%23%2Fcorp%2Fapp#/corp/app)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746684768497-0864e8f5-5f3f-4ee7-9904-9f426e0a45ee-20250530144829568.png)
 
- 2、进入“应用开发” → “企业内部开发” → 创建应用
+2. Go to "Application Development" → "Enterprise Internal Development" → Create Application.
 
- 3、记录以下参数：
+3. Record the following parameters:
 - `AppKey(Client ID)`
 - `AppSecret(Client Secret)`
-- `AgentId`（微应用ID）
+- `AgentId` (Micro Application ID)
 
-## （三）引入钉钉 SDK 依赖
+## (3) Introducing DingTalk SDK Dependencies
 ```xml
 <dependency>
     <groupId>com.aliyun</groupId>
@@ -49,30 +49,30 @@ order: 9
 </dependency>
 ```
 
-# 三、具体对接步骤
-## （一）项目中增加钉钉的配置
-1、项目中 application.yml 配置（本文示例采用）
+# 3. Specific Docking Steps
+## (1) Adding DingTalk Configuration to the Project
+1. Project application.yml configuration (example used in this article)
 
 ```yaml
 pamirs:
-  # 对接钉钉Auth（钉钉统一身份认证）
+  # DingTalk Auth docking (DingTalk unified identity authentication)
   dingtalk:
-    # 应用基础信息-应用信息的AppKey,请务必替换为开发应用AppKey
-    clientId: 你的AppKey
-    # 应用基础信息-应用信息的AppSecret，,请务必替换为开发应用AppSecret
-    clientSecret: 你的AppSecret
-    # 登录后跳转到本地应用的首页（根据实际情况修改）
+    # AppKey in Application Information - Application Basics, please replace with your development application AppKey
+    clientId: yourAppKey
+    # AppSecret in Application Information - Application Basics, please replace with your development application AppSecret
+    clientSecret: yourAppSecret
+    # Home page of the local application after login (modify according to actual situation)
     appUrl: http://2z98098t60.zicp.fun
 ```
 
-2、后端配置方式
+2. Backend configuration method
 
 ```java
 /**
- * 对接钉钉配置(页面可配置); 也可以改成yml文件配置的形式
+ * DingTalk docking configuration (configurable on the page); can also be changed to yml file configuration form
  */
 @Model.model(SimpleDingTalkConfig.MODEL_MODEL)
-@Model(displayName = "对接钉钉配置", summary = "对接钉钉配置")
+@Model(displayName = "DingTalk Docking Configuration", summary = "DingTalk Docking Configuration")
 public class SimpleDingTalkConfig extends IdModel implements SingletonModel<SimpleDingTalkConfig> {
 
     private static final long serialVersionUID = -8813811110743840983L;
@@ -80,18 +80,18 @@ public class SimpleDingTalkConfig extends IdModel implements SingletonModel<Simp
     public static final String MODEL_MODEL = "hr.dingtalk.SimpleDingTalkConfig";
 
     @Field.String
-    @Field(displayName = "应用的AppKey", required = true)
+    @Field(displayName = "Application AppKey", required = true)
     private String clientId;
 
     @Field.String
-    @Field(displayName = "应用密码", required = true)
+    @Field(displayName = "Application Password", required = true)
     private String clientSecret;
 
     @Field.String
-    @Field(required = true, displayName = "应用访问地址")
+    @Field(required = true, displayName = "Application Access Address")
     private String appUrl;
 
-    @Function(openLevel = FunctionOpenEnum.API, summary = "系统基础配置信息构造方法")
+    @Function(openLevel = FunctionOpenEnum.API, summary = "System basic configuration information construction method")
     @Function.Advanced(type = FunctionTypeEnum.QUERY)
     public SimpleDingTalkConfig construct(SimpleDingTalkConfig config) {
         SimpleDingTalkConfig config1 = config.singletonModel();
@@ -107,9 +107,9 @@ public class SimpleDingTalkConfig extends IdModel implements SingletonModel<Simp
 }
 ```
 
-+ 后端配置的方式需继承 SingletonModel,  具体单例且自动就有缓存功能；
-+ 给配置模型 SimpleDingTalkConfig 挂上菜单；
-+ 从配置 SimpleDingTalkConfig 类中获取属性值代码参考
++ The backend configuration method needs to inherit SingletonModel, which is a singleton with automatic caching functionality;
++ Attach a menu to the configuration model SimpleDingTalkConfig;
++ Code reference for obtaining attribute values from the configuration SimpleDingTalkConfig class
 
 ```java
 SimpleDingTalkConfig dingTalkConfig = new SimpleDingTalkConfig().singletonModel();
@@ -117,13 +117,13 @@ SimpleDingTalkConfig dingTalkConfig = new SimpleDingTalkConfig().singletonModel(
 dingTalkConfig.getAppUrl();
 ```
 
-## （二）初始化 DingTalk Client
-钉钉客户端类及功能，下面两个客户端是阿里云 SDK 提供的官方封装，分别对应不同的 API 能力模块
+## (2) Initializing the DingTalk Client
+DingTalk client classes and functions. The following two clients are official encapsulations provided by the Alibaba Cloud SDK, corresponding to different API capability modules:
 
-| **客户端类** | **功能** |
+| **Client Class** | **Function** |
 | --- | --- |
-| `com.aliyun.dingtalkoauth2_1_0.Client` | 用于 OAuth2 认证流程，获取用户 token |
-| `com.aliyun.dingtalkcontact_1_0.Client` | 用于调用联系人接口，获取用户详细信息 |
+| `com.aliyun.dingtalkoauth2_1_0.Client` | For OAuth2 authentication processes to obtain user tokens |
+| `com.aliyun.dingtalkcontact_1_0.Client` | For calling contact interfaces to obtain detailed user information |
 
 
 ```java
@@ -135,18 +135,18 @@ import pro.shushi.pamirs.meta.annotation.fun.extern.Slf4j;
 @Slf4j
 public class DingTalkHelper {
 
-    // 使用volatile关键字确保可见性
+    // Use volatile keyword to ensure visibility
     private static volatile com.aliyun.dingtalkoauth2_1_0.Client authClient = null;
     private static volatile com.aliyun.dingtalkcontact_1_0.Client contactClient = null;
 
-    // 私有构造函数，防止外部实例化
+    // Private constructor to prevent external instantiation
     private DingTalkHelper() {}
 
     private static Config createConfig() {
         Config config = new Config();
         config.protocol = "https";
         config.regionId = "central";
-        // 可以在这里添加更多配置项，如超时设置等
+        // More configurations such as timeout settings can be added here
         return config;
     }
 
@@ -186,11 +186,10 @@ public class DingTalkHelper {
     }
 
 }
-
 ```
 
-## （三）构建授权链接（跳转钉钉）
-oauth 方法负责生成钉钉 OAuth 授权链接，并重定向至该链接
+## (3) Building the Authorization Link (Jumping to DingTalk)
+The oauth method is responsible for generating the DingTalk OAuth authorization link and redirecting to it.
 
 ```java
 @RequestMapping(value = "/ddAuth/oauth", method = RequestMethod.GET)
@@ -198,25 +197,25 @@ public void oauth(HttpServletResponse response) throws IOException {
     String url = "https://login.dingtalk.com/oauth2/auth?" +
             "redirect_uri=" + appUrl + "/pamirs/ddAuth/oauth2url" +
             "&response_type=code" +
-            "&client_id=" + clientId +  //应用的AppKey
-            "&scope=openid" + //此处的openId保持不变
-            "&state=dd1" +    //跟随authCode原样返回。
+            "&client_id=" + clientId +  // Application AppKey
+            "&scope=openid" + // Keep openId unchanged here
+            "&state=dd1" +    // Returned as is with authCode.
             "&prompt=consent";
     response.sendRedirect(url);
 }
 ```
 
-+ 这里构造的是钉钉 OAuth2 的授权 URL；
-+ 用户点击后会跳转到钉钉的扫码页面；
-+ 授权成功后，钉钉会将用户重定向到 `/pamirs/ddAuth/oauth2url`，并附带 `authCode` 参数
++ This constructs the DingTalk OAuth2 authorization URL;
++ After clicking, the user will be redirected to DingTalk's QR code scanning page;
++ After successful authorization, DingTalk will redirect the user to `/pamirs/ddAuth/oauth2url` with an `authCode` parameter.
 
-## （四）处理钉钉回调，获取 authCode 并换取 accessToken
-+ `handleCallback` 方法处理钉钉回调请求，从请求参数中获取 `authCode`，然后通过 `authCode` 换取 `accessToken`，并调用 `getUserinfo` 方法进一步获取用户详细信息。
+## (4) Handling DingTalk Callback, Obtaining authCode and Exchanging for accessToken
++ The `handleCallback` method processes the DingTalk callback request, obtains the `authCode` from the request parameters, then exchanges the `authCode` for an `accessToken`, and calls the `getUserinfo` method to further obtain detailed user information.
 
 ```java
 @RequestMapping(value = "/ddAuth/oauth2url", method = RequestMethod.GET)
 public void handleCallback(@RequestParam(value = "authCode") String authCode, HttpServletResponse response) throws Exception {
-    // 获取 AccessToken
+    // Get AccessToken
     Client oauthClient = DingTalkHelper.authClient();
     GetUserTokenRequest getUserTokenRequest = new GetUserTokenRequest()
             .setClientId(clientId)
@@ -226,18 +225,18 @@ public void handleCallback(@RequestParam(value = "authCode") String authCode, Ht
     GetUserTokenResponse getUserTokenResponse = oauthClient.getUserToken(getUserTokenRequest);
     String accessToken = getUserTokenResponse.getBody().getAccessToken();
 
-    // 使用 AccessToken 获取用户信息
+    // Use AccessToken to get user information
     getUserinfo(accessToken);
 
-    // 重定向回应用首页
+    // Redirect back to the application home page
     response.sendRedirect(appUrl);
 }
 ```
 
-## （五）使用 accessToken 获取用户个人信息
+## (5) Using accessToken to Get User Personal Information
 ```java
 /**
- * 使用 accessToken 获取用户个人信息
+ * Use accessToken to get user personal information
  */
 public void getUserinfo(String accessToken) throws Exception {
     Client contactClient = DingTalkHelper.contactClient();
@@ -245,18 +244,18 @@ public void getUserinfo(String accessToken) throws Exception {
     getUserHeaders.xAcsDingtalkAccessToken = accessToken;
     GetUserResponseBody userResponseBody = contactClient.getUserWithOptions("me", getUserHeaders, new RuntimeOptions()).getBody();
 
-    // 处理用户信息并同步到本地数据库
+    // Process user information and synchronize to the local database
     handleUserInfoAndCookie(userResponseBody, accessToken);
-    log.debug("个人信息：{}", JSON.toJSONString(userResponseBody));
+    log.debug("Personal information：{}", JSON.toJSONString(userResponseBody));
 }
 ```
 
-## （六）处理用户信息并设置登录态（Session + Cookie）
-处理用户信息，包括创建或更新本地用户记录、初始化密码表、设置第三方登录记录以及设置用户的登录状态（Session 和 Cookie）。
+## (6) Processing User Information and Setting Login Status (Session + Cookie)
+Process user information, including creating or updating local user records, initializing the password table, setting third-party login records, and setting the user's login status (Session and Cookie).
 
 ```java
 /**
- * 第四步：处理用户信息并设置登录态（Session + Cookie）
+ * Step 4: Process user information and set login status (Session + Cookie)
  */
 public void handleUserInfoAndCookie(GetUserResponseBody userResponseBody, String accessToken) {
     if (userResponseBody == null) {
@@ -280,12 +279,12 @@ public void handleUserInfoAndCookie(GetUserResponseBody userResponseBody, String
     user.setUserType("dingtalk");
     user.createOrUpdate();
 
-    // 初始化密码表
+    // Initialize the password table
     if (needInitPwd) {
         passwordService.encodingCreate(user.getId(), "123456@Abc!");
     }
 
-    // 第三方用户三方登录表
+    // Third-party user third-party login table
     PamirsUserThirdParty userThirdParty = new PamirsUserThirdParty().setThirdPartyType(UserThirdPartyTypeEnum.DINGTALK)
     .setUnionId(userResponseBody.getUnionId()).queryOne();
     if (userThirdParty == null) {
@@ -297,7 +296,7 @@ public void handleUserInfoAndCookie(GetUserResponseBody userResponseBody, String
         thirdParty.createOrUpdate();
     }
 
-    // 用户信息更新后清空缓存
+    // Clear the cache after user information is updated
     UserInfoCache.clearUserById(user.getId());
 
     PamirsUserDTO pamirsUser = new PamirsUserDTO();
@@ -318,7 +317,7 @@ public void handleUserInfoAndCookie(GetUserResponseBody userResponseBody, String
     UserCache.putCache(cacheKey, pamirsUser);
     try {
         CookieUtil.set(httpServletResponse, UserConstant.USER_SESSION_ID, sessionId);
-        // 用户落库的情况下，可以不用设置ddtoken到Cookie中,也可以设置。
+        // When the user is stored in the database, ddtoken can be set to the Cookie or not.
         // CookieUtil.set(httpServletResponse, "ddtoken", accessToken);
     } catch (Exception e) {
         log.error("SSO Login Cookie Set Err", e);
@@ -326,35 +325,35 @@ public void handleUserInfoAndCookie(GetUserResponseBody userResponseBody, String
 }
 ```
 
-# 四、钉钉开放平台应用配置
-H5 应用配置信息，配置应用的首页地址和 PC 端首页地址。 下图地址中的URL：pamirs/ddAuth/oauth 对应业务代码中钉钉集成 Controller 类中的 RequestMapping 保持一致。
+# 4. DingTalk Open Platform Application Configuration
+H5 application configuration information, configure the application's home page address and PC home page address. The URL in the following figure: pamirs/ddAuth/oauth corresponds to the RequestMapping in the DingTalk integration Controller class in the business code.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746685835445-348bf42d-8025-494f-a1d7-cf77c6119f0d-20250530144829627.png)
 
-# 五、三方用户访问系统权限
-默认情况下，首次通过第三方免登录方式进入系统的用户，初始状态不具有任何应用的访问权限。为了确保用户能够通过钉钉工作台入口顺利访问应用，可以通过以下两种方式为用户赋予相应的访问权限。
+# 5. Access Permissions for Third-party Users
+By default, users who first enter the system through third-party single sign-on do not have access to any applications in their initial state. To ensure that users can successfully access applications through the DingTalk workbench entry, you can grant users corresponding access permissions through the following two methods.
 
-## （一）配置第三方用户角色
-1. 在系统中创建一个特定的角色，用于第三方用户的使用。该角色应具有明确的标识符，例如：`THIRD_PARTY_USER`。
-2. 根据业务需求，为上述角色分配相应的访问权限。
+## (1) Configuring Third-party User Roles
+1. Create a specific role in the system for third-party users, with a clear identifier, such as: `THIRD_PARTY_USER`.
+2. Assign corresponding access permissions to the above role according to business needs.
 
-## （二）在创建第三方用户时赋权
-在对接流程中的第六步：处理用户信息阶段，即根据第三方用户信息创建平台用户（如 `PamirsUser`）时，可通过调用系统接口，将上述定义好的角色直接分配给该用户，实现权限的静态绑定。
+## (2) Granting Permissions When Creating Third-party Users
+In the sixth step of the docking process: during the user information processing stage, that is, when creating platform users (such as `PamirsUser`) based on third-party user information, you can call system interfaces to directly assign the above-defined roles to the user, achieving static binding of permissions.
 
 ```java
 private void bindUserRole(PamirsUser pamirsUser) {
     AuthRole authRole = new AuthRole().setCode(THIRD_PARTY_USER_ROLE_CODE).queryOne();
     if (authRole != null) {
-        // 给用户绑定角色
+        // Bind the role to the user
         CommonApiFactory.getApi(UserService.class).bindUserRole(Collections.singletonList(pamirsUser), Collections.singletonList(authRole));
     }
 }
 ```
 
-## （三）运行时动态赋权
-若未在用户创建阶段完成角色分配，也可以通过运行时动态权限扩展机制，在用户首次访问系统时，动态地为其分配“第三方用户”角色。
+## (3) Runtime Dynamic Permission Granting
+If role assignment is not completed during user creation, you can also use the runtime dynamic permission extension mechanism to dynamically assign the "third-party user" role to users when they first access the system.
 
-本文示例采用的就是此方案，完整实现请参考附件中的代码文件：`ThirdPartyRoleCustom.java`
+This article's example uses this solution. For the complete implementation, please refer to the attached code file: `ThirdPartyRoleCustom.java`
 
 ```java
 @Override
@@ -372,10 +371,7 @@ public Set<Long> get() {
 }
 ```
 
-# 六、源代码下载
-+ 对接钉钉免登示例[DingTalkHelper.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746686113690-ffe1f79d-2293-483f-9979-74ff51f0f1b5.java)
-+ 初始化 DingTalk Client [DingTalkAuthController.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746686113489-e7f6518d-67f3-46e7-a9d2-700ceed6d610.java)
-+ 三方用户运行时动态赋权[ThirdPartyRoleCustom.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746687938679-869c1dbf-58c8-47e6-b28e-2b6daad3a428.java)
-
-
-
+# 6. Source Code Download
++ DingTalk single sign-on example [DingTalkHelper.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746686113690-ffe1f79d-2293-483f-9979-74ff51f0f1b5.java)
++ Initialize DingTalk Client [DingTalkAuthController.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746686113489-e7f6518d-67f3-46e7-a9d2-700ceed6d610.java)
++ Runtime dynamic permission granting for third-party users [ThirdPartyRoleCustom.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746687938679-869c1dbf-58c8-47e6-b28e-2b6daad3a428.java)

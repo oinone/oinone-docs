@@ -1,28 +1,28 @@
 ---
-title: 数据操作：多Sheet导入导出示例
+title: Data Operation:Multi-Sheet Import and Export Example
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 29
 ---
 
-# 一、场景描述
-准备工作：两个模型，物料 `Material` 和物料类别 `MaterialCategory`。
+# 一、Scenario Description
+Preparations: Two models, Material and MaterialCategory.
 
-:::info 目标：在本节结束时，在一个 Excel 模板中同时导入和导出两个模型的数据。
+:::info Target: By the end of this section, import and export data of two models in one Excel template.
 
 :::
 
-# 二、代码示例
-**示例仅供参考**
+# 二、Code Example
+**The example is for reference only**
 
-[点击下载代码示例](https://doc.oinone.top/wp-content/uploads/2024/04/2024042409482459.zip)
+[Click to download the code example](https://doc.oinone.top/wp-content/uploads/2024/04/2024042409482459.zip)
 
-# 三、Material 模型
+# 三、Material Model
 ```java
 @Model.model(Material.MODEL_MODEL)
 @Model.Advanced(unique = {"code"})
-@Model(displayName = "物料", labelFields = {"name"})
+@Model(displayName = "Material", labelFields = {"name"})
 public class Material extends IdModel {
 
     private static final long serialVersionUID = -2594216864389636135L;
@@ -30,20 +30,20 @@ public class Material extends IdModel {
     public static final String MODEL_MODEL = "maas.Material";
 
     @Field.String
-    @Field(displayName = "物料编码", required = true)
+    @Field(displayName = "Material Code", required = true)
     private String code;
 
     @Field.String
-    @Field(displayName = "物料名称", required = true)
+    @Field(displayName = "Material Name", required = true)
     private String name;
 }
 ```
 
-# 四、MaterialCategory模型
+# 四、MaterialCategory Model
 ```java
 @Model.model(MaterialCategory.MODEL_MODEL)
 @Model.Advanced(unique = {"code"})
-@Model(displayName = "物料类别", labelFields = {"name"})
+@Model(displayName = "Material Category", labelFields = {"name"})
 public class MaterialCategory extends IdModel {
 
     private static final long serialVersionUID = 6300896634558908349L;
@@ -51,17 +51,17 @@ public class MaterialCategory extends IdModel {
     public static final String MODEL_MODEL = "maas.MaterialCategory";
 
     @Field.String
-    @Field(displayName = "类别编码", required = true)
+    @Field(displayName = "Category Code", required = true)
     private String code;
 
     @Field.String
-    @Field(displayName = "类别名称", required = true)
+    @Field(displayName = "Category Name", required = true)
     private String name;
 }
 ```
 
-# 五、模板定义
-MaterialTemplate 模版定义
+# 五、Template Definition
+MaterialTemplate definition
 
 ```java
 @Component
@@ -72,8 +72,8 @@ public class MaterialTemplate implements ExcelTemplateInit {
     @Override
     public List<ExcelWorkbookDefinition> generator() {
         WorkbookDefinitionBuilder builder = WorkbookDefinitionBuilder.newInstance(Material.MODEL_MODEL, TEMPLATE_NAME)
-        .setDisplayName("物料和物料类别")
-        .setEachImport(Boolean.FALSE);//设置importData的入参为 (ExcelImportContext importContext, List<MaterialCategory> data)，如入参是单个对象，请删除setEachImport(Boolean.FALSE)
+        .setDisplayName("Material and Material Category")
+        .setEachImport(Boolean.FALSE);//Set the importData parameter to (ExcelImportContext importContext, List<MaterialCategory> data). If the parameter is a single object, delete setEachImport(Boolean.FALSE)
 
         createMaterialSheet(builder);
 
@@ -83,34 +83,34 @@ public class MaterialTemplate implements ExcelTemplateInit {
     }
 
     private static void createMaterialSheet(WorkbookDefinitionBuilder builder) {
-        builder.createSheet().setName("物料")
+        builder.createSheet().setName("Material")
         .createBlock(Material.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "A1:B2")
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle()).setIsConfig(Boolean.TRUE)
         .createCell().setField("code").setAutoSizeColumn(Boolean.TRUE).and()
         .createCell().setField("name").setAutoSizeColumn(Boolean.TRUE).and()
         .and()
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(Boolean.TRUE)).setHorizontalAlignment(ExcelHorizontalAlignmentEnum.CENTER))
-        .createCell().setValue("物料编码").and()
-        .createCell().setValue("物料名称");
+        .createCell().setValue("Material Code").and()
+        .createCell().setValue("Material Name");
     }
 
     private static void createMaterialCategorySheet(WorkbookDefinitionBuilder builder) {
-        builder.createSheet().setName("物料类别")
+        builder.createSheet().setName("Material Category")
         .createBlock(MaterialCategory.MODEL_MODEL, ExcelAnalysisTypeEnum.FIXED_HEADER, ExcelDirectionEnum.HORIZONTAL, "A1:B2")
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle()).setIsConfig(Boolean.TRUE)
         .createCell().setField("code").setAutoSizeColumn(Boolean.TRUE).and()
         .createCell().setField("name").setAutoSizeColumn(Boolean.TRUE).and()
         .and()
         .createHeader().setStyleBuilder(ExcelHelper.createDefaultStyle(v -> v.setBold(Boolean.TRUE)).setHorizontalAlignment(ExcelHorizontalAlignmentEnum.CENTER))
-        .createCell().setValue("物料类别编码").and()
-        .createCell().setValue("物料类别名称");
+        .createCell().setValue("Material Category Code").and()
+        .createCell().setValue("Material Category Name");
     }
 }
 ```
 
-上述模板定义了一个工作簿 (Workbook)，使用`createrSheet()`创建了两个工作表（Sheet），其名称分别为`物料`和`物料类别`
+The above template defines a Workbook, creating two Sheets using `createrSheet()`, named `Material` and `Material Category`.
 
-# 六、导入扩展点
+# 六、Import Extension Points
 ## （一）MaterialImportExtPoint
 ```java
 @Component
@@ -129,7 +129,7 @@ public class MaterialImportExtPoint implements ExcelImportDataExtPoint<List<Mate
 }
 ```
 
-上述示例使用了平台内置的批量创建或更新的方法，业务使用时可根据业务逻辑自行定义导入逻辑。
+The above example uses the platform's built-in batch creation or update method. Businesses can define import logic according to business requirements when using it.
 
 ## （二）MaterialCategoryImportExtPoint
 ```java
@@ -149,22 +149,22 @@ public class MaterialCategoryImportExtPoint implements ExcelImportDataExtPoint<L
 }
 ```
 
-上述示例使用了平台内置的批量创建或更新的方法，业务使用时可根据业务逻辑自行定义导入逻辑。
+The above example uses the platform's built-in batch creation or update method. Businesses can define import logic according to business requirements when using it.
 
-在定义导入扩展点时，我们通过`importContext.definitionContext.name`来确定导入扩展点对应的工作簿（Workbook），用`importContext.currentSheetNumber`来判断当前导入的是第几个工作表（Sheet）
+When defining import extension points, we determine the Workbook corresponding to the import extension point through `importContext.definitionContext.name` and judge which Sheet is currently imported using `importContext.currentSheetNumber`.
 
-综上，上述通过模板定义和导入扩展点实现了多Sheet导入的功能。
+In summary, the above realizes the function of multi-Sheet import through template definition and import extension points.
 
-# 七、导出模板
-在上述模板定义例子中，我们无需做任何修改即可在导出中使用。
+# 七、Export Template
+In the above template definition example, we can use it for export without any modification.
 
-特殊情况下，我们可以通过`setType`方法设置模板的使用范围。
+In special cases, we can set the usage scope of the template through the `setType` method.
 
-+ `ExcelTemplateTypeEnum#IMPORT`：仅导入使用
-+ `ExcelTemplateTypeEnum#EXPORT`：仅导出使用
-+ `ExcelTemplateTypeEnum#IMPORT_EXPORT`：导入和导入都可以使用
++ `ExcelTemplateTypeEnum#IMPORT`: For import only
++ `ExcelTemplateTypeEnum#EXPORT`: For export only
++ `ExcelTemplateTypeEnum#IMPORT_EXPORT`: For both import and export
 
-# 八、导出扩展点
+# 八、Export Extension Points
 ## （一）MaterialExportExtPoint
 ```java
 @Component
@@ -177,9 +177,9 @@ public class MaterialExportExtPoint extends ExcelExportSameQueryPageTemplate<Obj
     @ExtPoint.Implement(expression = "context.name==\"" + MaterialTemplate.TEMPLATE_NAME + "\"")
     @Override
     public List<Object> fetchExportData(ExcelExportTask exportTask, ExcelDefinitionContext context) {
-        // 第一个Sheet使用默认查询即可
+        // The first Sheet uses the default query
         List<Object> results = super.fetchExportData(exportTask, context);
-        // 自定义查询第二个Sheet的数据
+        // Custom query for the second Sheet data
         results.add(queryList(Pops.<MaterialCategory>lambdaQuery()
                               .from(MaterialCategory.MODEL_MODEL)
                               .ge(MaterialCategory::getId, 0L)));
@@ -227,5 +227,4 @@ public class MaterialExportExtPoint extends ExcelExportSameQueryPageTemplate<Obj
 }
 ```
 
-上述示例使用了平台内置的 HookApi 进行权限控制，导出时可自动根据当前用户的数据权限添加过滤条件。
-
+The above example uses the platform's built-in HookApi for permission control, which can automatically add filter conditions based on the current user's data permissions during export.

@@ -1,49 +1,49 @@
 ---
-title: 数据操作：如何使用位运算的数据字典
+title: Data Operation:How to Use Bitwise Operation Data Dictionary
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 31
 ---
 
-# 一、场景举例
-日常有很多项目，数据库中都有表示“多选状态标识”的字段。在这里用我们项目中的一个例子进行说明一下：
+# 一、Scenario Examples
+In many projects, there are fields in the database representing "multiple selection status identifiers." Take an example from our project to illustrate:
 
-+ 示例一：
-表示某个商家是否支持多种会员卡打折（如有金卡、银卡、其他卡等），项目中的以往的做法是：在每条商家记录中为每种会员卡建立一个标志位字段。如图：
++ Example 1:
+Indicating whether a merchant supports multiple membership card discounts (such as gold cards, silver cards, other cards, etc.). The previous approach in projects was to establish a flag field for each membership card in each merchant record. As shown in the figure:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024053011531540-20250530144830265.png)
 
-用多字段来表示“多选标识”存在一定的缺点：首先这种设置方式很明显不符合数据库设计第一范式，增加了数据冗余和存储空间。再者，当业务发生变化时，不利于灵活调整。比如，增加了一种新的会员卡类型时，需要在数据表中增加一个新的字段，以适应需求的变化。
+Using multiple fields to represent "multiple selection identifiers" has certain disadvantages: First, this setup clearly violates the first normal form of database design, increasing data redundancy and storage space. Furthermore, it is not conducive to flexible adjustment when business changes. For example, when a new membership card type is added, a new field needs to be added to the data table to adapt to the changing requirements.
 
-改进设计：标签位 flag 设计
-二进制的“位”本来就有表示状态的作用。可以用各个位来分别表示不同种类的会员卡打折支持：
- ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024053011561971-20250530144830324.png)
-这样，“MEMBERCARD”字段仍采用整型。当某个商家支持金卡打折时，则保存“1（0001）”，支持银卡时，则保存“2（0010）”，两种都支持，则保存“3（0011）”。其他类似。表结构如图：
+Improved design: Tag bit flag design
+Binary "bits" inherently serve to represent states. Each bit can be used to represent different types of membership card discount support:
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024053011561971-20250530144830324.png)
+In this way, the "MEMBERCARD" field still uses an integer type. When a merchant supports gold card discounts, it saves "1 (0001)"; when supporting silver cards, it saves "2 (0010)"; and when supporting both, it saves "3 (0011)". Others are similar. The table structure is as shown in the figure:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024053011590622-20250530144830382.png)
 
-我们在编写SQL语句时，只需要通过“位”的与运算，就能简单的查询出想要数据。通过这样的处理方式既节省存储空间，查询时又简单方便。
+When writing SQL statements, we can simply query the desired data through "bitwise" AND operations. This approach not only saves storage space but also simplifies query operations.
 
 ```sql
-//查询支持金卡打折的商家信息：
+// Query merchants supporting gold card discounts:
 select * from factory where MEMBERCARD & b'0001';
-// 或者：
+// Or:
 select * from factory where MEMBERCARD & 1;
 
-// 查询支持银卡打折的商家信息：
+// Query merchants supporting silver card discounts:
 select * from factory where MEMBERCARD & b'0010';
-// 或者：
+// Or:
 select * from factory where MEMBERCARD & 2;
 ```
 
-# 二、二进制(位运算)枚举
-可以通过 @Dict 注解设置数据字典的bit属性或者实现`BitEnum`接口来标识该枚举值为2的次幂。二进制枚举最大的区别在于值的序列化和反序列化方式是不一样的。
+# 二、Binary (Bitwise Operation) Enumeration
+You can set the bit attribute of the data dictionary through the @Dict annotation or implement the BitEnum interface to mark that the enumeration value is a power of 2. The biggest difference of binary enumerations lies in the different serialization and deserialization methods of values.
 
-## （一）位运算的枚举定义示例
+## （一）Example of Bitwise Operation Enumeration Definition
 ```java
 import pro.shushi.pamirs.meta.annotation.Dict;
 import pro.shushi.pamirs.meta.common.enmu.BitEnum;
 
-@Dict(dictionary = ClientTypeEnum.DICTIONARY, displayName = "客户端类型枚举", summary = "客户端类型枚举")
+@Dict(dictionary = ClientTypeEnum.DICTIONARY, displayName = "Client Type Enum", summary = "Client Type Enum")
 public enum ClientTypeEnum implements BitEnum {
 
     PC(1L, "PC端", "PC端"),
@@ -79,8 +79,8 @@ public enum ClientTypeEnum implements BitEnum {
 }
 ```
 
-## （二）使用方法示例
-+ API: addTo 和 removeFrom
+## （二）Example of Usage Methods
++ API: addTo and removeFrom
 
 ```java
 List<ClientTypeEnum> clientTypes = module.getClientTypes();
@@ -90,9 +90,8 @@ ClientTypeEnum.PC.addTo(clientTypes);
 ClientTypeEnum.PC.removeFrom(clientTypes);
 ```
 
-+ 在查询条件中的使用
++ Usage in Query Conditions
 
 ```java
 List<Menu> moduleMenus = new Menu().queryListByWrapper(menuPage, LoaderUtils.authQuery(wrapper).eq(Menu::getClientTypes, ClientTypeEnum.PC));
 ```
-

@@ -1,5 +1,5 @@
 ---
-title: Process Logs
+title: Workflow Logs
 index: true
 category:
   - User Manual

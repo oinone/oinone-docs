@@ -1,5 +1,5 @@
 ---
-title: Overview of Components and Models
+title: Widgets And Model Overview
 index: true
 category:
   - User Manual

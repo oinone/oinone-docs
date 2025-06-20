@@ -1,22 +1,22 @@
 ---
-title: 数据操作：IWrapper、QueryWrapper和LambdaQueryWrapper使用
+title: Data Operation:Usage of IWrapper, QueryWrapper, and LambdaQueryWrapper
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 24
 ---
 
-# 一、条件更新（updateByWrapper）
-通常我们在更新的时候 new 一个对象出来在去更新，减少更新的字段
+# 1. Conditional Update (updateByWrapper)
+Normally, when performing an update, we create a new object to reduce the number of fields being updated.
 
 ```java
 Integer update = new DemoUser().updateByWrapper(new DemoUser().setFirstLogin(Boolean.FALSE),
-                                                Pops.<DemoUser>lambdaUpdate().from(DemoUser.MODEL_MODEL).eq(IdModel::getId, userId)
+                                                Pops.<DemoUser>lambdaUpdate().from(DemoUser.MODEL_MODEL).eq(IdModel::getId, userId));
 ```
 
-使用基础模型的 updateById 方法更新指定字段的方法：
+Method to update specified fields using the `updateById` method of the base model:
 
-+ new 一下 update 对象出来，更新这个对象。
++ Create a new update object and update this object.
 
 ```java
 WorkflowUserTask userTaskUp = new WorkflowUserTask();
@@ -25,20 +25,20 @@ userTaskUp.setNodeContext(json);
 userTaskUp.updateById();
 ```
 
-# 二、条件删除（updateByWrapper）
+# 2. Conditional Deletion (updateByWrapper)
 ```java
 public List<T> delete(List<T> data) {
-    List<Long> petTypeIdList = new ArrayList();
-    for(T item:data){
+    List<Long> petTypeIdList = new ArrayList<>();
+    for (T item : data) {
         petTypeIdList.add(item.getId());
     }
-    Models.data().deleteByWrapper(Pops.<PetType>lambdaQuery().from(PetType.MODEL_MODEL).in(PetType::getId,petTypeIdList));
+    Models.data().deleteByWrapper(Pops.<PetType>lambdaQuery().from(PetType.MODEL_MODEL).in(PetType::getId, petTypeIdList));
     return data;
 }
 ```
 
-## 三、构造条件查询数据
-+ 示例1： LambdaQueryWrapper 拼接查询条件
+## 3. Construct Conditional Query Data
++ Example 1: LambdaQueryWrapper to concatenate query conditions
 
 ```java
 private void queryPetShops() {
@@ -51,24 +51,24 @@ private void queryPetShops() {
 }
 ```
 
-+ 示例2： IWrapper 拼接查询条件
++ Example 2: IWrapper to concatenate query conditions
 
 ```java
 private void queryPetShops() {
     IWrapper<PetShop> wrapper = Pops.<PetShop>lambdaQuery()
-    .from(PetShop.MODEL_MODEL).eq(PetShop::getId,1L);
+    .from(PetShop.MODEL_MODEL).eq(PetShop::getId, 1L);
     List<PetShop> petShops4 = new PetShop().queryList(wrapper);
     System.out.printf(petShops4.size() + "");
 }
 ```
 
-+ 示例3： QueryWrapper 拼接查询条件
++ Example 3: QueryWrapper to concatenate query conditions
 
 ```java
 private void queryPetShops() {
-    //使用Lambda获取字段名，防止后面改字段名漏改
+    // Use Lambda to get the field name to prevent missing changes when modifying the field name later
     String nameField = LambdaUtil.fetchFieldName(PetTalent::getName);
-    //使用Lambda获取Clumon名，防止后面改字段名漏改
+    // Use Lambda to get the column name to prevent missing changes when modifying the field name later
     String nameColumn = PStringUtils.fieldName2Column(nameField);
     QueryWrapper<PetShop> wrapper2 = new QueryWrapper<PetShop>().from(PetShop.MODEL_MODEL)
     .eq(nameColumn, "test");
@@ -77,14 +77,14 @@ private void queryPetShops() {
 }
 ```
 
-## IWrapper 转为 LambdaQueryWrapper
+## Convert IWrapper to LambdaQueryWrapper
 ```java
-@Function.Advanced(type= FunctionTypeEnum.QUERY)
+@Function.Advanced(type = FunctionTypeEnum.QUERY)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.API})
 public Pagination<PetShopProxy> queryPage(Pagination<PetShopProxy> page, IWrapper<PetShopProxy> queryWrapper) {
     LambdaQueryWrapper<PetShopProxy> wrapper = ((QueryWrapper<PetShopProxy>) queryWrapper).lambda();
-    // 非存储字段从QueryData中获取
+    // Get non-stored fields from QueryData
     Map<String, Object> queryData = queryWrapper.getQueryData();
     if (null != queryData && !queryData.isEmpty()) {
         String codes = (String) queryData.get("codes");
@@ -96,4 +96,3 @@ public Pagination<PetShopProxy> queryPage(Pagination<PetShopProxy> page, IWrappe
     return new PetShopProxy().queryPage(page, wrapper);
 }
 ```
-

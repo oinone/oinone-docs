@@ -1,169 +1,170 @@
 ---
-title: 网络请求：OioProvider详解（自定义请求错误拦截）
+title: Network Requests:Detailed Explanation of OioProvider (Custom Request Error Interception)
 index: true
 category:
-   - 前端
+   - Frontend
 order: 9
 ---
-## 一、OioProvider
-OioProvider 是平台的初始化入口。
 
-## （一）示例入口 `main.ts`
+## 一、OioProvider
+OioProvider serves as the initialization entry point of the platform.
+
+## (一) Example Entry `main.ts`
 ```typescript
 import { VueOioProvider } from '@kunlun/dependencies';
 
 VueOioProvider();
 ```
 
-# 二、网络请求/响应配置 `http`
-平台统一使用 apollo作为统一的 http 请求发起服务，并使用 GraphQL 协议作为前后端协议。
+# 二、Network Request/Response Configuration `http`
+The platform uniformly uses Apollo as the unified HTTP request initiation service and adopts the GraphQL protocol as the front-end to back-end protocol.
 
-参考文档：
+Reference documents:
 
 + [apollo-client](https://github.com/apollographql/apollo-client#readme)
 + [graphql](https://github.com/graphql/graphql-js#readme)
 
-## （一）配置方式
+## (一) Configuration Method
 ```typescript
 VueOioProvider({
   http?: OioHttpConfig
 });
 ```
 
-## （二）OioHttpConfig
+## (二) OioHttpConfig
 ```typescript
 /**
- * OioHttp配置
+ * OioHttp configuration
  */
 export interface OioHttpConfig {
   /**
-   * base url
+   * Base URL
    */
   url: string;
 
   /**
-   * 拦截器配置
+   * Interceptor configuration
    */
   interceptor?: Partial<InterceptorOptions>;
 
   /**
-   * 中间件配置（优先于拦截器）
+   * Middleware configuration (takes precedence over interceptors)
    */
   middleware?: NetworkMiddlewareHandler | NetworkMiddlewareHandler[];
 }
 ```
 
-## （三）内置拦截器可选项 `InterceptorOptions`
+## (三) Built-in Interceptor Options `InterceptorOptions`
 ```typescript
 /**
- * 拦截器可选项
+ * Interceptor options
  */
 export interface InterceptorOptions {
   /**
-   * 网络错误拦截器
+   * Network error interceptor
    */
   networkError: NetworkInterceptor;
 
   /**
-   * 请求成功拦截器 (success)
+   * Request success interceptor (success)
    */
   requestSuccess: NetworkInterceptor;
 
   /**
-   * 重定向拦截器 (success)
+   * Redirection interceptor (success)
    */
   actionRedirect: NetworkInterceptor;
 
   /**
-   * 登录重定向拦截器 (error)
+   * Login redirection interceptor (error)
    */
   loginRedirect: NetworkInterceptor;
 
   /**
-   * 请求错误拦截器 (error)
+   * Request error interceptor (error)
    */
   requestError: NetworkInterceptor;
 
   /**
-   * MessageHub拦截器 (success/error)
+   * MessageHub interceptor (success/error)
    */
   messageHub: NetworkInterceptor;
 
   /**
-   * 前置拦截器
+   * Pre-interceptors
    */
   beforeInterceptors: NetworkInterceptor | NetworkInterceptor[];
 
   /**
-   * 后置拦截器
+   * Post-interceptors
    */
   afterInterceptors: NetworkInterceptor | NetworkInterceptor[];
 }
 ```
 
-内置拦截器执行顺序:
+Execution order of built-in interceptors:
 
-+ beforeInterceptors：前置拦截器
-+ networkError：网络错误
-+ actionRedirect：重定向
-+ requestSuccess 请求成功
-+ loginRedirect：登录重定向
-+ requestError：请求错误
-+ messageHub：MessageHub
-+ afterInterceptors：后置拦截器
++ beforeInterceptors: Pre-interceptors
++ networkError: Network errors
++ actionRedirect: Redirection
++ requestSuccess: Request success
++ loginRedirect: Login redirection
++ requestError: Request errors
++ messageHub: MessageHub
++ afterInterceptors: Post-interceptors
 
-## （四）NetworkInterceptor
+## (四) NetworkInterceptor
 ```typescript
 /**
- * <h3>网络请求拦截器</h3>
+ * <h3>Network request interceptor</h3>
  * <ul>
- *   <li>拦截器将按照注册顺序依次执行</li>
- *   <li>当任何一个拦截器返回false时，将中断拦截器执行</li>
- *   <li>内置拦截器总是优先于自定义拦截器执行</li>
+ *   <li>Interceptors will execute sequentially in the registered order</li>
+ *   <li>When any interceptor returns false, interceptor execution will be interrupted</li>
+ *   <li>Built-in interceptors always execute before custom interceptors</li>
  * </ul>
  *
  */
 export interface NetworkInterceptor {
   /**
-   * 成功拦截
-   * @param response 响应结果
+   * Success interception
+   * @param response Response result
    */
   success?(response: IResponseResult): ReturnPromise<boolean>;
 
   /**
-   * 错误拦截
-   * @param response 响应结果
+   * Error interception
+   * @param response Response result
    */
   error?(response: IResponseErrorResult): ReturnPromise<boolean>;
 }
 ```
 
-# 三、自定义路由配置 `router`
-## （一）配置方式
+# 三、Custom Routing Configuration `router`
+## (一) Configuration Method
 ```typescript
 VueOioProvider({
   router?: RouterPath[]
 });
 ```
 
-## （二）RouterPath
+## (二) RouterPath
 ```typescript
 /**
- * 路由配置
+ * Routing configuration
  */
 export interface RouterPath {
   /**
-   * 访问路径
+   * Access path
    */
   path: string;
   /**
-   * 路由组件名称
+   * Routing component name
    */
   widget: string;
 }
 ```
 
-## （三）内置路由配置
+## (三) Built-in Routing Configuration
 ```typescript
 [
   {
@@ -181,12 +182,12 @@ export interface RouterPath {
 ]
 ```
 
-+ login：登录页路由
-+ forget：忘记密码页路由（非登录态）
-+ first：首次登录页路由
++ login: Login page route
++ forget: Forgot password page route (non-login state)
++ first: First login page route
 
-# 四、外观配置
-## （一）配置方式
+# 四、Appearance Configuration
+## (一) Configuration Method
 ```typescript
 VueOioProvider({
   copyrightStatus?: boolean;
@@ -196,104 +197,104 @@ VueOioProvider({
 });
 ```
 
-## （二）copyrightStatus
-是否显示 copyright 信息，默认显示(true)
+## (二) copyrightStatus
+Whether to display copyright information, default is display (true)
 
-## （三）OioLoginThemeConfig
+## (三) OioLoginThemeConfig
 ```typescript
 /**
- * 登录主题配置
+ * Login theme configuration
  */
 export interface OioLoginThemeConfig {
   /**
-   * 内置登录主题名称
+   * Name of built-in login theme
    */
   name?: OioLoginThemeName;
   /**
-   * 背景图片 url
+   * Background image URL
    */
   backgroundImage?: string;
   /**
-   * 背景色
+   * Background color
    */
   backgroundColor?: string;
   /**
-   * logo url
+   * Logo URL
    */
   logo?: string;
   /**
-   * 登录页logo显示位置
+   * Display position of login page logo
    */
   logoPosition?: OioLoginLogoPosition;
 }
 
 /**
- * 内置登录主题名称
+ * Names of built-in login themes
  */
 export enum OioLoginThemeName {
   /**
-   * 大背景居左登录
+   * Large background with login on left
    */
   LEFT_STICK = 'LEFT_STICK',
   /**
-   * 大背景居右登录
+   * Large background with login on right
    */
   RIGHT_STICK = 'RIGHT_STICK',
   /**
-   * 大背景居中登录
+   * Large background with login in center
    */
   CENTER_STICK = 'CENTER_STICK',
   /**
-   * 大背景居中登录,logo在登录页里面
+   * Large background with login in center, logo inside login page
    */
   CENTER_STICK_LOGO = 'CENTER_STICK_LOGO',
   /**
-   * 左侧登录
+   * Login on left
    */
   STAND_LEFT = 'STAND_LEFT',
   /**
-   * 右侧登录
+   * Login on right
    */
   STAND_RIGHT = 'STAND_RIGHT'
 }
 
 /**
- * 登录页logo显示位置
+ * Display positions of login page logo
  */
 export enum OioLoginLogoPosition {
   /**
-   * 左侧
+   * Left
    */
   LEFT = 'LEFT',
   /**
-   * 右侧
+   * Right
    */
   RIGHT = 'RIGHT',
   /**
-   * 中间
+   * Center
    */
   CENTER = 'CENTER'
 }
 ```
 
-## （四）OioProviderBrowserProps
+## (四) OioProviderBrowserProps
 ```typescript
 /**
- * 浏览器配置
+ * Browser configuration
  */
 export interface OioProviderBrowserProps {
   /**
-   * 浏览器选项卡图标
+   * Browser tab icon
    */
   favicon?: string;
   /**
-   * 浏览器默认标题（仅用于非主页面）
+   * Default browser title (only for non-home pages)
    */
   title?: string;
 }
 ```
 
-## （五）ThemeName
+## (五) ThemeName
 ```typescript
 type ThemeName =
   | 'default-large'
@@ -305,15 +306,15 @@ type ThemeName =
   | string;
 ```
 
-+ default-large：默认大号主题
-+ default-medium：默认中号主题（默认）
-+ default-small：默认小号主题
-+ dark-large：深色大号主题
-+ dark-medium：深色中号主题
-+ dark-small：深色小号主题
-+ 其他：自定义主题
++ default-large: Default large theme
++ default-medium: Default medium theme (default)
++ default-small: Default small theme
++ dark-large: Dark large theme
++ dark-medium: Dark medium theme
++ dark-small: Dark small theme
++ Others: Custom themes
 
-## （六）定义自定义主题
+## (六) Define Custom Theme
 ```typescript
 export const themeName = 'customTheme';
 
@@ -322,9 +323,9 @@ export const themeCssVars = {
 };
 ```
 
-主题变量参考文档：[OioThemeCssVars](缺少文档)
+Theme variable reference document: [OioThemeCssVars] (document missing)
 
-## （七）应用自定义主题
+## (七) Apply Custom Theme
 ```typescript
 import { registerTheme } from '@kunlun/dependencies';
 import { themeName, themeCssVars } from './theme';
@@ -336,38 +337,37 @@ VueOioProvider({
 });
 ```
 
-# 五、低无一体依赖配置 `dependencies`
-## （一）配置方式
+# 五、Low-Code Dependencies Configuration `dependencies`
+## (一) Configuration Method
 ```typescript
 VueOioProvider({
   dependencies?: PluginLoadDependencies
 });
 ```
 
-## （二）PluginLoadDependencies
+## (二) PluginLoadDependencies
 ```typescript
 /**
- * 插件加载依赖
+ * Plugin load dependencies
  */
 export type PluginLoadDependencies = Record<string, unknown> | PluginLoadDependency[];
 
 /**
- * 插件加载类型
+ * Plugin load type
  */
 export type PluginLoadType = 'esm' | 'cjs' | 'umd' | 'iife' | 'css';
 
 /**
- * 插件加载依赖
+ * Plugin load dependency
  */
 export type PluginLoadDependency = {
   /**
-   * 插件加载类型
+   * Plugin load type
    */
   type: PluginLoadType;
   /**
-   * 依赖项
+   * Dependencies
    */
   dependencies: Record<string, unknown>;
 };
 ```
-

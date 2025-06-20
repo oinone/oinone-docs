@@ -2,9 +2,9 @@
 title: Vue UI
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - Oio 组件
+  - Oio Components
 order: 3
 next:
   text: Metadata Service
@@ -12,17 +12,17 @@ next:
 ---
 # 一、Reference List
 
-## （一）数据展示
+## （一）Data Display
 
-### Table 表格
+### Table
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
   <oio-table :data="tableData">
-    <oio-column label="名称" field="name" />
-    <oio-column label="描述" field="description" />
+    <oio-column label="Name" field="name" />
+    <oio-column label="Description" field="description" />
   </oio-table>
 </template>
 <script lang="ts">
@@ -45,8 +45,8 @@ export default defineComponent({
 
     for (let i = 1; i <= 50; i++) {
       tableData.value.push({
-        name: `名称${i}`,
-        description: `这是一段描述 ${i}`
+        name: `Name ${i}`,
+        description: `This is a description ${i}`
       });
     }
 
@@ -58,28 +58,28 @@ export default defineComponent({
 </script>
 ```
 
-#### 固定表头
+#### Fixed Header
 
 ```vue
 <template>
   <oio-table :data="tableData" height="100%">
-    <oio-column label="名称" field="name" />
-    <oio-column label="描述" field="description" />
+    <oio-column label="Name" field="name" />
+    <oio-column label="Description" field="description" />
   </oio-table>
 </template>
 ```
 
-#### 分组表头
+#### Grouped Header
 
 ```vue
 <template>
   <oio-table :data="tableData" height="100%">
-    <oio-column label="名称" field="name" />
-    <oio-column label="描述" field="description" />
-    <oio-colgroup label="地址">
-      <oio-column label="省" field="address.province" />
-      <oio-column label="市" field="address.city" />
-      <oio-column label="区" field="address.district" />
+    <oio-column label="Name" field="name" />
+    <oio-column label="Description" field="description" />
+    <oio-colgroup label="Address">
+      <oio-column label="Province" field="address.province" />
+      <oio-column label="City" field="address.city" />
+      <oio-column label="District" field="address.district" />
     </oio-colgroup>
   </oio-table>
 </template>
@@ -109,12 +109,12 @@ export default defineComponent({
 
     for (let i = 1; i <= 50; i++) {
       tableData.value.push({
-        name: `名称${i}`,
-        description: `这是一段描述 ${i}`,
+        name: `Name ${i}`,
+        description: `This is a description ${i}`,
         address: {
-          province: '省',
-          city: '市',
-          district: '区'
+          province: 'Province',
+          city: 'City',
+          district: 'District'
         }
       });
     }
@@ -127,21 +127,21 @@ export default defineComponent({
 </script>
 ```
 
-#### 冻结操作列
+#### Frozen Action Column
 
 ```vue
 <template>
   <div style="width: 1000px; height: 800px">
     <oio-table :data="tableData" height="100%">
-      <oio-column label="名称" field="name" width="200px" />
-      <oio-column label="描述" field="description" min-width="300px" />
-      <oio-column label="性别" field="sex" min-width="300px" />
-      <oio-column label="年龄" field="age" min-width="300px" />
-      <oio-column label="操作" fixed="right" width="200px">
+      <oio-column label="Name" field="name" width="200px" />
+      <oio-column label="Description" field="description" min-width="300px" />
+      <oio-column label="Gender" field="sex" min-width="300px" />
+      <oio-column label="Age" field="age" min-width="300px" />
+      <oio-column label="Actions" fixed="right" width="200px">
         <template #default>
           <div style="display: flex; column-gap: 16px">
-            <oio-button type="link">操作1</oio-button>
-            <oio-button type="link">操作2</oio-button>
+            <oio-button type="link">Action 1</oio-button>
+            <oio-button type="link">Action 2</oio-button>
           </div>
         </template>
       </oio-column>
@@ -150,44 +150,44 @@ export default defineComponent({
 </template>
 ```
 
-#### 可调整列宽
+#### Resizable Columns
 
 ```vue
 <template>
   <oio-table :data="tableData" height="100%" resizable>
-    <oio-column label="名称" field="name" />
-    <oio-column label="描述" field="description" />
+    <oio-column label="Name" field="name" />
+    <oio-column label="Description" field="description" />
   </oio-table>
 </template>
 ```
 
-#### 全边框样式和斑马纹
+#### Full Border and Zebra Stripes
 
 ```vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
-    <oio-column label="名称" field="name" />
-    <oio-column label="描述" field="description" />
+    <oio-column label="Name" field="name" />
+    <oio-column label="Description" field="description" />
   </oio-table>
 </template>
 ```
 
-#### 筛选和排序
+#### Filter and Sort
 
 ```vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
-    <oio-column label="名称" field="name" />
-    <oio-column label="描述" field="description" />
+    <oio-column label="Name" field="name" />
+    <oio-column label="Description" field="description" />
     <oio-column
-      label="性别"
+      label="Gender"
       field="sex"
       :component-data="{
         filters: sexFilters,
         filterMultiple: false
       }"
     />
-    <oio-column label="年龄" field="age" sortable />
+    <oio-column label="Age" field="age" sortable />
   </oio-table>
 </template>
 <script lang="ts">
@@ -215,16 +215,16 @@ export default defineComponent({
 
     for (let i = 1; i <= 50; i++) {
       tableData.value.push({
-        name: `名称${i}`,
-        description: `这是一段描述 ${i}`,
+        name: `Name ${i}`,
+        description: `This is a description ${i}`,
         age: random(100),
         sex: i % 3 === 0 ? 'woman' : 'man'
       });
     }
 
     const sexFilters: VxeColumnPropTypes.Filters = [
-      { label: '男', value: 'man' },
-      { label: '女', value: 'woman' }
+      { label: 'Male', value: 'man' },
+      { label: 'Female', value: 'woman' }
     ];
 
     return {
@@ -236,22 +236,22 @@ export default defineComponent({
 </script>
 ```
 
-#### 格式化内容
+#### Content Formatting
 
 ```vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
-    <oio-column label="名称" field="name" />
-    <oio-column label="描述" field="description" />
+    <oio-column label="Name" field="name" />
+    <oio-column label="Description" field="description" />
     <oio-column
-      label="性别"
+      label="Gender"
       field="sex"
       :component-data="{
         formatter: sexFormatter
       }"
     />
     <oio-column
-      label="年龄"
+      label="Age"
       field="age"
       :component-data="{
         formatter: ageFormatter
@@ -284,8 +284,8 @@ export default defineComponent({
 
     for (let i = 1; i <= 50; i++) {
       tableData.value.push({
-        name: `名称${i}`,
-        description: `这是一段描述 ${i}`,
+        name: `Name ${i}`,
+        description: `This is a description ${i}`,
         age: random(100),
         sex: i % 3 === 0 ? 'Woman' : 'Man'
       });
@@ -293,16 +293,16 @@ export default defineComponent({
 
     const sexFormatter: VxeColumnPropTypes.Formatter<RowVO> = ({ cellValue }) => {
       if (cellValue === 'Man') {
-        return '男';
+        return 'Male';
       }
       if (cellValue === 'Woman') {
-        return '女';
+        return 'Female';
       }
       return cellValue;
     };
 
     const ageFormatter: VxeColumnPropTypes.Formatter<RowVO> = ({ cellValue }) => {
-      return `${cellValue}岁`;
+      return `${cellValue} years old`;
     };
 
     return {
@@ -315,7 +315,7 @@ export default defineComponent({
 </script>
 ```
 
-#### 复选框
+#### Checkbox
 
 ```vue
 <template>
@@ -328,10 +328,10 @@ export default defineComponent({
     @checked-change="onCheckedChange"
   >
     <oio-column type="checkbox" width="52" />
-    <oio-column label="名称" field="name" />
-    <oio-column label="描述" field="description" />
-    <oio-column label="性别" field="sex" />
-    <oio-column label="年龄" field="age" />
+    <oio-column label="Name" field="name" />
+    <oio-column label="Description" field="description" />
+    <oio-column label="Gender" field="sex" />
+    <oio-column label="Age" field="age" />
   </oio-table>
 </template>
 <script lang="ts">
@@ -358,8 +358,8 @@ export default defineComponent({
 
     for (let i = 1; i <= 50; i++) {
       tableData.value.push({
-        name: `名称${i}`,
-        description: `这是一段描述 ${i}`,
+        name: `Name ${i}`,
+        description: `This is a description ${i}`,
         age: random(100),
         sex: i % 3 === 0 ? 'Woman' : 'Man'
       });
@@ -383,17 +383,17 @@ export default defineComponent({
 </script>
 ```
 
-#### 前端分页表格
+#### Frontend Pagination Table
 
 ```vue
 <template>
   <div class="table-pagination-demo">
     <oio-table :data="showTableData" height="100%" :loading="loading">
       <oio-column type="checkbox" width="52" />
-      <oio-column label="名称" field="name" />
-      <oio-column label="描述" field="description" />
-      <oio-column label="性别" field="sex" />
-      <oio-column label="年龄" field="age" />
+      <oio-column label="Name" field="name" />
+      <oio-column label="Description" field="description" />
+      <oio-column label="Gender" field="sex" />
+      <oio-column label="Age" field="age" />
       <template #footer>
         <oio-pagination
           :total="total"
@@ -445,8 +445,8 @@ export default defineComponent({
 
     for (let i = 1; i <= total; i++) {
       allTableData.value.push({
-        name: `名称${i}`,
-        description: `这是一段描述 ${i}`,
+        name: `Name ${i}`,
+        description: `This is a description ${i}`,
         age: random(100),
         sex: i % 3 === 0 ? 'Woman' : 'Man'
       });
@@ -488,13 +488,13 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| size | string | `undefined`         | 表格尺寸，可选值为 `TableSize` 枚举值（如 `'large'`、`'middle'`、`'small'`） |
-| resizable | boolean | `undefined`         | 是否允许列宽调整 |
+| size | string | `undefined`         | Table size, optional values are `TableSize` enum values (e.g., `'large'`, `'middle'`, `'small'`) |
+| resizable | boolean | `undefined`         | Whether to allow column width adjustment |
 | height | string   | number                                                | `undefined`         |
 | border | boolean  | keyof typeof TableBorder                              | `undefined`         |
-| stripe | boolean | `undefined`         | 是否显示斑马纹 |
+| stripe | boolean | `undefined`         | Whether to show zebra stripes |
 | rowClassName | string   | (row: Record<string, unknown>, rowIndex: number) => string | `undefined`         |
 | cellClassName | string   | (row: Record<string, unknown>, column: ColumnInfo, rowIndex: number, columnIndex: number) => string | `undefined`         |
 | headerRowClassName | string   | (column: ColumnInfo, columnIndex: number) => string   | `undefined`         |
@@ -505,173 +505,172 @@ export default defineComponent({
 | headerRowStyle | Object   | Function                                              | `undefined`         |
 | cellStyle | Object   | (row: Record<string, unknown>, column: ColumnInfo, rowIndex: number, columnIndex: number) => Object | `undefined`         |
 | headerCellStyle | Object   | Function                                              | `undefined`         |
-| customConfig | Record<string, any> | `{}`                | 自定义配置 |
-| loading | boolean | `undefined`         | 是否显示加载状态 |
+| customConfig | Record<string, any> | `{}`                | Custom configuration |
+| loading | boolean | `undefined`         | Whether to show loading state |
 | wrapperClassName | string   | string[]                                              | `undefined`         |
-| data | Record<string, unknown>[] | `[]`                | 表格数据 |
+| data | Record<string, unknown>[] | `[]`                | Table data |
 | showOverflow | boolean  | keyof typeof TableOverflow                            | `undefined`         |
 | showHeaderOverflow | boolean  | keyof typeof TableOverflow                            | `undefined`         |
 | showFooterOverflow | boolean  | keyof typeof TableOverflow                            | `undefined`         |
-| emptyText | string | `''`                | 空数据提示文本 |
-| emptyImage | string | `undefined`         | 空数据提示图片 |
-| rowConfig | `VxeTablePropTypes.RowConfig` | `undefined`         | 行配置（如行高、选中样式等），类型为 `VxeTable`<br/> 行配置接口 |
-| columnConfig | `VxeTablePropTypes.ColumnConfig` | `undefined`         | 列配置（如对齐方式、排序等） |
-| sortConfig | `VxeTablePropTypes.SortConfig` | `undefined`         | 排序配置 |
-| radioConfig | `VxeTablePropTypes.SortConfig` | `undefined`         | 单选框配置 |
-| checkboxConfig | `VxeTablePropTypes.CheckboxConfig` | `undefined`         | 复选框配置 |
-| tooltipConfig | `VxeTablePropTypes.TooltipConfig` | `undefined`         | Tooltip 配置 |
-| expandConfig | `VxeTablePropTypes.ExpandConfig` | `undefined`         | 展开行配置 |
-| editConfig | `VxeTablePropTypes.EditConfig` | `undefined`         | 可编辑配置 |
-| treeConfig | `VxeTablePropTypes.TreeConfig` | `undefined`         | 树形表格配置 |
-| scrollX | `VxeTablePropTypes.ScrollX` | `undefined`         | 横向虚拟滚动配置 |
-| scrollY | `VxeTablePropTypes.ScrollY` | `undefined`         | 纵向虚拟滚动配置 |
-| showFooter | boolean | `undefined`         | 是否显示表尾 |
-| footerMethod | `VxeTablePropTypes.FooterMethod` | `undefined`         | 表尾计算方法 |
-| spanMethod | `VxeTablePropTypes.SpanMethod` | `undefined`         | 单元格合并方法 |
-| mergeCells | `VxeTablePropTypes.MergeCells` | `[]`                | 单元格合并配置 |
-| componentData | `Record<string, unknown>` | `undefined`         | 第三方扩展属性 |
+| emptyText | string | `''`                | Empty data prompt text |
+| emptyImage | string | `undefined`         | Empty data prompt image |
+| rowConfig | `VxeTablePropTypes.RowConfig` | `undefined`         | Row configuration (such as row height, selection style, etc.), type is `VxeTable`<br/> Row configuration interface |
+| columnConfig | `VxeTablePropTypes.ColumnConfig` | `undefined`         | Column configuration (such as alignment, sorting, etc.) |
+| sortConfig | `VxeTablePropTypes.SortConfig` | `undefined`         | Sorting configuration |
+| radioConfig | `VxeTablePropTypes.SortConfig` | `undefined`         | Radio button configuration |
+| checkboxConfig | `VxeTablePropTypes.CheckboxConfig` | `undefined`         | Checkbox configuration |
+| tooltipConfig | `VxeTablePropTypes.TooltipConfig` | `undefined`         | Tooltip configuration |
+| expandConfig | `VxeTablePropTypes.ExpandConfig` | `undefined`         | Expand row configuration |
+| editConfig | `VxeTablePropTypes.EditConfig` | `undefined`         | Editable configuration |
+| treeConfig | `VxeTablePropTypes.TreeConfig` | `undefined`         | Tree table configuration |
+| scrollX | `VxeTablePropTypes.ScrollX` | `undefined`         | Horizontal virtual scroll configuration |
+| scrollY | `VxeTablePropTypes.ScrollY` | `undefined`         | Vertical virtual scroll configuration |
+| showFooter | boolean | `undefined`         | Whether to show table footer |
+| footerMethod | `VxeTablePropTypes.FooterMethod` | `undefined`         | Footer calculation method |
+| spanMethod | `VxeTablePropTypes.SpanMethod` | `undefined`         | Cell merging method |
+| mergeCells | `VxeTablePropTypes.MergeCells` | `[]`                | Cell merging configuration |
+| componentData | `Record<string, unknown>` | `undefined`         | Third-party extension properties |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| sort-change | event: SortChangeEvent | 排序状态变化时触发，返回包含排序字段、方向及原始事件的对象 |
-| checked-change | event: CheckedChangeEvent | 复选框状态变化时触发（行级），返回包含选中状态、行数据及原始事件的对象 |
-| checked-all-change | event: CheckedChangeEvent | 全选复选框状态变化时触发，返回包含全选状态、行数据及原始事件的对象 |
-| radio-change | event: RadioChangeEvent | 单选框状态变化时触发，返回包含新旧行数据及原始事件的对象 |
-| cell-click | row: Record<string, unknown>, column: ColumnInfo, event: MouseEvent | 单元格点击事件，返回行数据、列信息及鼠标事件对象 |
-| cell-dblclick | row: Record<string, unknown>, column: ColumnInfo, event: MouseEvent | 单元格双击事件，返回行数据、列信息及鼠标事件对象 |
-| header-cell-click | column: ColumnInfo, event: MouseEvent | 表头单元格点击事件，返回列信息及鼠标事件对象 |
-| header-cell-dblclick | column: ColumnInfo, event: MouseEvent | 表头单元格双击事件，返回列信息及鼠标事件对象 |
-| toggle-row-expand | row: Record<string, unknown>, isExpand: boolean | 展开行状态切换时触发，返回行数据及展开状态 |
-| edit-actived | event: ActiveEditorContext | 单元格进入编辑状态时触发，返回编辑上下文对象 |
-| edit-closed | event: ActiveEditorContext | 单元格编辑结束时触发，返回编辑上下文对象 |
-| scroll | event: ScrollEvent | 表格滚动时触发，返回滚动事件对象 |
+| sort-change | event: SortChangeEvent | Fired when the sorting state changes, returns an object containing the sorting field, direction, and original event |
+| checked-change | event: CheckedChangeEvent | Fired when the checkbox state changes (row level), returns an object containing the selection state, row data, and original event |
+| checked-all-change | event: CheckedChangeEvent | Fired when the all-selection checkbox state changes, returns an object containing the all-selection state, row data, and original event |
+| radio-change | event: RadioChangeEvent | Fired when the radio button state changes, returns an object containing the old and new row data and the original event |
+| cell-click | row: Record<string, unknown>, column: ColumnInfo, event: MouseEvent | Cell click event, returns row data, column information, and mouse event object |
+| cell-dblclick | row: Record<string, unknown>, column: ColumnInfo, event: MouseEvent | Cell double-click event, returns row data, column information, and mouse event object |
+| header-cell-click | column: ColumnInfo, event: MouseEvent | Header cell click event, returns column information and mouse event object |
+| header-cell-dblclick | column: ColumnInfo, event: MouseEvent | Header cell double-click event, returns column information and mouse event object |
+| toggle-row-expand | row: Record<string, unknown>, isExpand: boolean | Fired when the expand row state is toggled, returns row data and expand state |
+| edit-actived | event: ActiveEditorContext | Fired when a cell enters edit state, returns the edit context object |
+| edit-closed | event: ActiveEditorContext | Fired when cell editing ends, returns the edit context object |
+| scroll | event: ScrollEvent | Fired when the table scrolls, returns the scroll event object |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 表格主体内容（列定义） |
-| header | 自定义表头内容 |
-| footer | 自定义表尾内容 |
+| default | Table body content (column definitions) |
+| header | Custom header content |
+| footer | Custom footer content |
 
 
 **Methods**
 
-| **方法名** | **参数** | **返回值** | **描述** |
+| **Method** | **Parameters** | **Return Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| getOrigin | - | VxeTableInstance | 获取底层 `VxeTable`<br/> 实例 |
-| setCurrentRow | row: Record<string, unknown> | void | 设置当前行（单选状态） |
-| clearCurrentRow | - | void | 清除当前行（单选状态） |
-| setCheckboxRow | rows: Record<string, unknown>[], checked?: boolean | void | 设置复选框选中行 |
-| clearCheckboxRow | - | void | 清除所有复选框选中行 |
-| resetCheckboxRow | rows: Record<string, unknown>[] | void | 重置复选框选中行（先清除再设置） |
-| setRadioRow | row: Record<string, unknown> | void | 设置单选框选中行 |
-| clearRadioRow | - | void | 清除单选框选中行 |
-| getAllColumns | - | ColumnInfo[] | 获取所有列配置 |
-| refreshColumn | - | void | 刷新列配置 |
-| updateFooter | - | void | 刷新表尾计算 |
-| loadColumns | columns: ColumnInfo[] | void | 加载列配置（追加模式） |
-| reloadColumns | columns: ColumnInfo[] | void | 重新加载列配置（覆盖模式） |
-| setEditRow | row: Record<string, unknown> | void | 设置可编辑行 |
+| getOrigin | - | VxeTableInstance | Get the underlying `VxeTable`<br/> instance |
+| setCurrentRow | row: Record<string, unknown> | void | Set the current row (radio state) |
+| clearCurrentRow | - | void | Clear the current row (radio state) |
+| setCheckboxRow | rows: Record<string, unknown>[], checked?: boolean | void | Set checkbox selected rows |
+| clearCheckboxRow | - | void | Clear all checkbox selected rows |
+| resetCheckboxRow | rows: Record<string, unknown>[] | void | Reset checkbox selected rows (clear then set) |
+| setRadioRow | row: Record<string, unknown> | void | Set radio selected row |
+| clearRadioRow | - | void | Clear radio selected row |
+| getAllColumns | - | ColumnInfo[] | Get all column configurations |
+| refreshColumn | - | void | Refresh column configurations |
+| updateFooter | - | void | Refresh footer calculation |
+| loadColumns | columns: ColumnInfo[] | void | Load column configurations (append mode) |
+| reloadColumns | columns: ColumnInfo[] | void | Reload column configurations (overwrite mode) |
+| setEditRow | row: Record<string, unknown> | void | Set editable row |
 | getActiveEditorRecord | - | RowContext | undefined                                             |
 | activeCellEditor | row: Record<string, unknown>, fieldOrColumn: string | ColumnInfo                                            | void |
-| clearEditor | - | void | 清除所有编辑状态 |
-| recalculate | refull?: boolean | void | 重新计算表格布局（可选强制刷新） |
-| allRowExpand | - | Promise<`any`> | 展开所有行（返回 Promise） |
-| clearAllRowExpand | - | Promise<`any`> | 收起所有行（返回 Promise） |
-| setRowExpand | row: Record<string, unknown>, isExpand: boolean | Promise<`any`> | 切换行展开状态（返回 Promise） |
-| sort | sortConfs: VxeTableDefines.SortConfs[] | Promise<`any`> | 手动触发排序（返回 Promise） |
+| clearEditor | - | void | Clear all edit states |
+| recalculate | refull?: boolean | void | Recalculate table layout (optional force refresh) |
+| allRowExpand | - | Promise<`any`> | Expand all rows (returns Promise) |
+| clearAllRowExpand | - | Promise<`any`> | Collapse all rows (returns Promise) |
+| setRowExpand | row: Record<string, unknown>, isExpand: boolean | Promise<`any`> | Toggle row expand state (returns Promise) |
+| sort | sortConfs: VxeTableDefines.SortConfs[] | Promise<`any`> | Manually trigger sorting (returns Promise) |
 
 
-更多使用方式，可参考：[vxe-table](https://vxetable.cn/v3/#/table/api)
+For more usage, please refer to: [vxe-table](https://vxetable.cn/v3/#/table/api)
 
 ##### oio-column
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | ------------------------------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | width | string   | number                                                | `undefined`         |
 | minWidth | string   | number                                                | `undefined`         |
-| label | string | `undefined`         | 列标题文本 |
+| label | string | `undefined`         | Column header text |
 | className | string   | ((context: RenderCellContext) => string)              | `undefined`         |
 | headerClassName | string   | ((context: RenderCellContext) => string)              | `undefined`         |
 | footerClassName | string   | ((context: RenderCellContext) => string)              | `undefined`         |
-| align | `ColumnAlignType`                                            | `'left'`            | 单元格内容对齐方式，可选值：`'left'`、`'center'`、`'right'` |
-| headerAlign | `ColumnAlignType`                                            | `'left'`            | 表头内容对齐方式 |
-| footerAlign | `ColumnAlignType`                                            | `'left'`            | 表尾内容对齐方式 |
-| fixed | `ColumnFixedType`                                            | `undefined`         | 列固定位置，可选值：`'left'`、`'right'` 或布尔值（固定左侧） |
-| invisible | boolean | `false`             | 是否隐藏列 |
-| resizable | boolean | `undefined`         | 是否允许调整列宽 |
-| treeNode | boolean | `undefined`         | 是否作为树形表格的节点列 |
-| editable | boolean | `false`             | 是否开启单元格编辑功能 |
+| align | `ColumnAlignType`                                            | `'left'`            | Cell content alignment, optional values: `'left'`, `'center'`, `'right'` |
+| headerAlign | `ColumnAlignType`                                            | `'left'`            | Header content alignment |
+| footerAlign | `ColumnAlignType`                                            | `'left'`            | Footer content alignment |
+| fixed | `ColumnFixedType`                                            | `undefined`         | Column fixed position, optional values: `'left'`, `'right'` or boolean (fixed left) |
+| invisible | boolean | `false`             | Whether to hide the column |
+| resizable | boolean | `undefined`         | Whether to allow column width adjustment |
+| treeNode | boolean | `undefined`         | Whether to use as a node column in a tree table |
+| editable | boolean | `false`             | Whether to enable cell editing |
 | cellEditable | boolean  | ((context: RowContext) => boolean)                    | `undefined`         |
-| editorTrigger | `TableEditorTrigger`                                         | `'manual'`          | 编辑触发方式，可选值：`'manual'`（手动）、`'click'`（点击） |
-| editorMode | `TableEditorMode`                                            | `'cell'`            | 编辑模式，可选值：`'cell'`（单元格内编辑）、`'row'`（行编辑） |
-| editorCloseTrigger | `TableEditorCloseTrigger`                                    | `'manual'`          | 编辑关闭触发方式，可选值：`'manual'`（手动）、`'blur'`（失焦） |
-| disableEditorRender | boolean | `false`             | 是否禁用编辑状态渲染 |
-| rowEditorClosedByEnter | ((context: RowContext) => ReturnPromise<`boolean`>) | `undefined`         | 按回车键关闭编辑时的回调函数（返回 `false` 可阻止关闭） |
-| rowEditorClosedByCancel | ((context: RowContext) => ReturnPromise<`boolean`>) | `undefined`         | 点击取消按钮关闭编辑时的回调函数 |
+| editorTrigger | `TableEditorTrigger`                                         | `'manual'`          | Editing trigger mode, optional values: `'manual'` (manual), `'click'` (click) |
+| editorMode | `TableEditorMode`                                            | `'cell'`            | Editing mode, optional values: `'cell'` (in-cell editing), `'row'` (row editing) |
+| editorCloseTrigger | `TableEditorCloseTrigger`                                    | `'manual'`          | Editing close trigger mode, optional values: `'manual'` (manual), `'blur'` (blur) |
+| disableEditorRender | boolean | `false`             | Whether to disable edit state rendering |
+| rowEditorClosedByEnter | ((context: RowContext) => ReturnPromise<`boolean`>) | `undefined`         | Callback function when closing editing by pressing Enter (return `false` to prevent closing) |
+| rowEditorClosedByCancel | ((context: RowContext) => ReturnPromise<`boolean`>) | `undefined`         | Callback function when closing editing by clicking cancel |
 | editorConfirm | string   | ((context: RowContext) => string)                     | `undefined`         |
 | editorConfirmPosition | PopconfirmPlacement | ((context: RowContext) => PopconfirmPlacement)        | `'top'`             |
 | editorCondition | ((context: RowContext) => ReturnPromise<boolean | undefined>)                                           | `undefined`         |
-| editorEnterText | string   | ((context: RowContext) => string)                     | `'确认'`            |
-| editorCancelText | string   | ((context: RowContext) => string)                     | `'取消'`            |
-| type | string | `undefined`         | 列类型（如 `'seq'` 表示序号列） |
-| field | string | `undefined`         | 数据字段名（对应行数据的键） |
+| editorEnterText | string   | ((context: RowContext) => string)                     | `'Confirm'`         |
+| editorCancelText | string   | ((context: RowContext) => string)                     | `'Cancel'`          |
+| type | string | `undefined`         | Column type (e.g., `'seq'` for sequence column) |
+| field | string | `undefined`         | Data field name (corresponds to the key in row data) |
 | invisibleContent | boolean  | ((context: RowContext) => boolean)                    | `undefined`         |
-| sortable | boolean | `undefined`         | 是否开启排序功能 |
-| renderDefaultSlot | `CellRenderFunction`                                         | `undefined`         | 自定义单元格内容渲染函数 |
-| renderEditSlot | `CellRenderFunction`                                         | `undefined`         | 自定义编辑状态下单元格渲染函数 |
-| renderContentSlot | `CellRenderFunction`                                         | `undefined`         | 自定义内容区域渲染函数（备用） |
-| renderHeaderSlot | `CellRenderFunction`                                         | `undefined`         | 自定义表头渲染函数 |
-| componentData | `Record<string, unknown>`                                    | `undefined`         | 第三方扩展属性 |
+| sortable | boolean | `undefined`         | Whether to enable sorting |
+| renderDefaultSlot | `CellRenderFunction`                                         | `undefined`         | Custom cell content rendering function |
+| renderEditSlot | `CellRenderFunction`                                         | `undefined`         | Custom cell rendering function in edit state |
+| renderContentSlot | `CellRenderFunction`                                         | `undefined`         | Custom content area rendering function (backup) |
+| renderHeaderSlot | `CellRenderFunction`                                         | `undefined`         | Custom header rendering function |
+| componentData | `Record<string, unknown>`                                    | `undefined`         | Third-party extension properties |
 
 
 **Slots**
 
-| **插槽名** | **类型** | **描述** |
+| **Slot** | **Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | `(context: RenderRowContext) => VNode[]` | 自定义单元格内容 |
-| edit | `(context: RenderRowContext) => VNode[]` | 自定义编辑状态单元格内容 |
-| header | `(context: RenderRowContext) => VNode[]` | 自定义表头内容 |
+| default | `(context: RenderRowContext) => VNode[]` | Custom cell content |
+| edit | `(context: RenderRowContext) => VNode[]` | Custom cell content in edit state |
+| header | `(context: RenderRowContext) => VNode[]` | Custom header content |
 
 
-更多使用方式，可参考：[vxe-column](https://vxetable.cn/v3/#/column/api)
+For more usage, please refer to: [vxe-column](https://vxetable.cn/v3/#/column/api)
 
 ##### oio-colgroup
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | ------------------------------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | width | string   | number                                                | `undefined`         |
 | minWidth | string   | number                                                | `undefined`         |
-| label | string | `undefined`         | 列组标题文本 |
+| label | string | `undefined`         | Column group header text |
 | className | string   | ((context: RenderCellContext) => string)              | `undefined`         |
 | headerClassName | string   | ((context: RenderCellContext) => string)              | `undefined`         |
 | footerClassName | string   | ((context: RenderCellContext) => string)              | `undefined`         |
-| align | `ColumnAlignType`                                            | `undefined`         | 列组单元格内容对齐方式，可选值：`'left'`、`'center'`、`'right'` |
-| headerAlign | `ColumnAlignType`                                            | `'center'`          | 列组表头内容对齐方式（默认居中） |
-| footerAlign | `ColumnAlignType`                                            | `undefined`         | 列组表尾内容对齐方式 |
-| fixed | `ColumnFixedType`                                            | `undefined`         | 列组固定位置，可选值：`'left'`、`'right'` 或布尔值（固定左侧） |
-| invisible | boolean | `false`             | 是否隐藏列组 |
-| resizable | boolean | `undefined`         | 是否允许调整列组宽度 |
-| treeNode | boolean | `undefined`         | 是否作为树形表格的节点列组 |
-| field | string | `undefined`         | 数据字段名（用于关联数据源） |
-| componentData | `Record<string, unknown>`                                    | `undefined`         | 第三方扩展属性 |
+| align | `ColumnAlignType`                                            | `undefined`         | Column group cell content alignment, optional values: `'left'`, `'center'`, `'right'` |
+| headerAlign | `ColumnAlignType`                                            | `'center'`          | Column group header content alignment (default center) |
+| footerAlign | `ColumnAlignType`                                            | `undefined`         | Column group footer content alignment |
+| fixed | `ColumnFixedType`                                            | `undefined`         | Column group fixed position, optional values: `'left'`, `'right'` or boolean (fixed left) |
+| invisible | boolean | `false`             | Whether to hide the column group |
+| resizable | boolean | `undefined`         | Whether to allow column group width adjustment |
+| treeNode | boolean | `undefined`         | Whether to use as a node column group in a tree table |
+| field | string | `undefined`         | Data field name (used to associate with data source) |
+| componentData | `Record<string, unknown>`                                    | `undefined`         | Third-party extension properties |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 列组包含的列定义 |
+| default | Column definitions contained in the column group |
 
 
-更多使用方式，可参考：[vxe-colgroup](https://vxetable.cn/v3/#/colgroup/api)
-
+For more usage, please refer to: [vxe-colgroup](https://vxetable.cn/v3/#/colgroup/api)

@@ -1,160 +1,156 @@
 ---
-title: 项目部署：Oinone离线部署设计器镜像
+title: Project Deployment:Oinone Offline Deployment of Designer Image
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 77
 ---
 
-# 一、概述
-Oinone 平台为合作伙伴提供了多种部署方式，这篇文章将介绍如何在私有云环境部署 Oinone 平台 Docker镜像。
+# I. Overview
+The Oinone platform provides partners with multiple deployment methods. This article introduces how to deploy Oinone platform Docker images in a private cloud environment.
 
-:::info 注意：
+:::info Note:
 
-本文以`5.2.20.1`为例进行介绍，使用`amd64`架构的`体验镜像`进行部署。具体版本号以数式提供的为准
-
-:::
-
-# 二、部署环境要求
-## （一）包含全部中间件及设计器服务的环境要求
-+ CPU：8 vCPU
-+ 内存（RAM）：16G以上
-+ 硬盘（HDD/SSD）：60G以上
-
-## （二）仅设计器服务的环境要求
-+ CPU：8 vCPU
-+ 内存（RAM）：8G以上
-+ 硬盘（HDD/SSD）：40G以上
-
-# 三、部署准备
-+ 一台安装了 Docker 环境的服务器（私有云环境）；以下简称`部署环境`；
-+ 一台安装了 Docker 环境的电脑（可访问公网）；以下简称`本地环境`；
-
-# 四、部署清单
-下面列举了文章中在本地环境操作结束后的全部文件：
-
-+ 设计器镜像：`oinone-designer-full-v5-5.2.20.1-amd64.tar`
-+ 离线部署结构包：`oinone-designer-full-standard-offline.zip`
-+ Oinone许可证：****-trial.lic（实际文件名以 Oinone 颁发的许可证为准）
-+ 第三方数据库驱动包（非 MySQL 数据库必须）
-
-:::info 注意：
-
-如需一次性拷贝所有部署文件到部署环境，可以将文档步骤在本地环境执行后，一次性将所有文件进行传输。
+This article uses `5.2.20.1` as an example and deploys with the `amd64` architecture `experience image`. The specific version number shall be subject to that provided by Shushi.
 
 :::
 
-# 五、在部署环境创建部署目录
+# II. Deployment Environment Requirements
+## (I) Environment Requirements for Including All Middleware and Designer Services
++ CPU: 8 vCPU
++ Memory (RAM): More than 16G
++ Hard Disk (HDD/SSD): More than 60G
+
+## (II) Environment Requirements for Designer Services Only
++ CPU: 8 vCPU
++ Memory (RAM): More than 8G
++ Hard Disk (HDD/SSD): More than 40G
+
+# III. Deployment Preparation
++ A server (private cloud environment) with Docker environment installed; hereinafter referred to as the `deployment environment`;
++ A computer (with public network access) with Docker environment installed; hereinafter referred to as the `local environment`;
+
+# IV. Deployment List
+The following lists all files after the local environment operations in the article:
+
++ Designer image: `oinone-designer-full-v5-5.2.20.1-amd64.tar`
++ Offline deployment structure package: `oinone-designer-full-standard-offline.zip`
++ Oinone license: ****-trial.lic (the actual file name is subject to the license issued by Oinone)
++ Third-party database driver package (required for non-MySQL databases)
+
+:::info Note:
+
+If you need to copy all deployment files to the deployment environment at one time, you can transfer all files at one time after executing the document steps in the local environment.
+
+:::
+
+# V. Create a Deployment Directory in the Deployment Environment
 ```shell
 mkdir -p /home/admin/oinone-designer-full
 mkdir -p /home/admin/oinone-designer-full/images
 ```
 
-# 六、检查部署环境服务器架构
-确认部署环境是`amd64`还是`arm64`架构，若本文提供的查看方式无法正确执行，可自行搜索相关内容进行查看。
+# VI. Check the Server Architecture of the Deployment Environment
+Confirm whether the deployment environment is of `amd64` or `arm64` architecture. If the viewing method provided in this article cannot be executed correctly, you can search for relevant content by yourself.
 
-## （一）使用 uname 命令查看
+## (I) Use the uname command to view
 ```shell
 uname -a
 ```
 
-:::info 注意：
+:::info Note:
 
-此步骤非常重要，如果部署环境的服务器架构与本地环境的服务器架构不一致，将导致镜像无法正确启动。
+This step is very important. If the server architecture of the deployment environment is inconsistent with that of the local environment, the image will not be able to start correctly.
 
 :::
 
-# 七、在本地环境准备镜像
-准备需要部署的镜像版本。
+# VII. Prepare the Image in the Local Environment
+Prepare the image version to be deployed.
 
-## （一）登录 Oinone 镜像仓库（若已登录，可忽略此步骤）
+## (I) Log in to the Oinone image repository (if already logged in, this step can be ignored)
 ```shell
 docker login https://harbor.oinone.top
 # input username
 # input password
 ```
 
-## （二）获取 Oinone 平台镜像
+## (II) Obtain the Oinone platform image
 ```shell
 docker pull harbor.oinone.top/oinone/oinone-designer-full-v5.2:5.2.20.1-amd64
 ```
 
-## （三）保存镜像到`.tar`文件
+## (III) Save the image to a .tar file
 ```shell
 docker save -o oinone-designer-full-v5-5.2.20.1-amd64.tar oinone-designer-full-v5.2:5.2.20.1-amd64
 
-若报错`Error response from daemon: reference does not exist`脚本改成下面这个：
+If an error "Error response from daemon: reference does not exist" is reported, change the script to the following:
 docker save -o oinone-designer-full-v5-5.2.20.1-amd64.tar harbor.oinone.top/oinone/oinone-designer-full-v5.2:5.2.20.1-amd64
 
 # docker save [OPTIONS] IMAGE [IMAGE...]
 ```
 
-## （四）上传`.tar`到部署环境
+## (IV) Upload the .tar to the deployment environment
 ```shell
 scp ./oinone-designer-full-v5-5.2.20.1-amd64.tar admin@127.0.0.1:/home/admin/oinone-full/images/
 ```
 
-:::warning 提示：
+:::warning Tip:
 
-若无法使用scp方式上传，可根据部署环境的具体情况将镜像文件上传至部署环境的部署目录。
+If the scp method cannot be used for uploading, the image file can be uploaded to the deployment directory of the deployment environment according to the specific situation of the deployment environment.
 
 :::
 
-# 八、在部署环境加载镜像
-## （一）加载镜像文件到Docker中
+# VIII. Load the Image in the Deployment Environment
+## (I) Load the image file into Docker
 ```shell
 cd /home/admin/oinone-full/images
 
 docker load -i oinone-designer-full-v5-5.2.20.1-amd64.tar
 ```
 
-## （二）查看镜像是否正确加载
+## (II) Check whether the image is loaded correctly
 ```shell
 docker images
 ```
 
-查看输出内容，对比`REPOSITORY`、`TAG`、`IMAGE ID`与本地环境完全一致即可。
+Check the output content and compare whether the `REPOSITORY`, `TAG`, and `IMAGE ID` are completely consistent with those in the local environment.
 
-# 九、设计器服务部署
-为了方便起见，服务器操作文件显得不太方便，因此，我们可以在本地环境将部署脚本准备妥善后，传输到部署环境进行部署
-结构包（oinone-designer-full-standard-offline.）需上传到要部署的服务器中，后面的操作均在这个目中进行
+# IX. Designer Service Deployment
+For convenience, it is not convenient to operate files on the server. Therefore, we can prepare the deployment script in the local environment and then transfer it to the deployment environment for deployment. The structure package (oinone-designer-full-standard-offline.) needs to be uploaded to the server to be deployed, and the subsequent operations are all carried out in this directory.
 
-## （一）下载离线部署结构包（以数式发出的为准）
+## (I) Download the offline deployment structure package (subject to that issued by Shushi)
 [oinone-designer-full-standard-offline.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/oinone-designer-deploy/oinone-designer-full-standard-offline.zip)
 
-## （二）将 Pamirs 许可证移动到`config`目录下，并重命名为`****-trial.lic`（实际文件名以 Oinone 颁发的许可证为准）
+## (II) Move the Pamirs license to the `config` directory and rename it to `****-trial.lic` (the actual file name is subject to the license issued by Oinone)
 ```shell
 mv ****-trial.lic config/****-trial.lic
 ```
 
-## （三）加载非 MySQL 数据库驱动（按需）
-将驱动`jar`文件移动到`lib`目录下即可。
+## (III) Load non-MySQL database drivers (as needed)
+Move the driver `jar` file to the `lib` directory.
 
-以KDB8数据库驱动`kingbase8-8.6.0.jar`为例
-
+Take the KDB8 database driver `kingbase8-8.6.0.jar` as an example:
 ```shell
 mv kingbase8-8.6.0.jar lib/
 ```
 
-:::warning 提示：
+:::warning Tip:
 
-`lib`目录为非设计器内置包的外部加载目录（外部库），可以添加任何`jar`包集成到设计器中。
+The `lib` directory is an external loading directory (external library) for non-designer built-in packages, and any `jar` package can be added to be integrated into the designer.
 
 :::
 
-## （四）修改脚本中的配置
-### 1、修改启动脚本`startup.sh`
-修改对应的镜像版本号，  将 IP 从 192.168.0.121 改成宿主机IP
-
+## (IV) Modify the configuration in the script
+### 1. Modify the startup script `startup.sh`
+Modify the corresponding image version number and change the IP from 192.168.0.121 to the host IP.
 ```nginx
 configDir=$(pwd)
 version=5.1.16
 IP=192.168.0.121
 ```
 
-### 2、修改 mq/broker.conf
-修改其中 brokerIP1 的 IP 从 192.168.0.121 改成宿主机 IP
-
+### 2. Modify mq/broker.conf
+Modify the brokerIP1 in it, changing the IP from 192.168.0.121 to the host IP.
 ```nginx
 brokerClusterName = DefaultCluster
 namesrvAddr=127.0.0.1:9876
@@ -168,19 +164,18 @@ flushDiskType = ASYNC_FLUSH
 autoCreateTopicEnable=true
 listenPort=10991
 transactionCheckInterval=1000
-#存储使用率阀值，当使用率超过阀值时，将拒绝发送消息请求
+# Storage usage threshold, when the usage exceeds the threshold, the message sending request will be rejected
 diskMaxUsedSpaceRatio=98
-#磁盘空间警戒阈值，超过这个值则停止接受消息，默认值90
+# Disk space warning threshold, stop accepting messages when exceeding this value, default value 90
 diskSpaceWarningLevelRatio=99
-#强制删除文件阈值，默认85
+# Forced file deletion threshold, default 85
 diskSpaceCleanForciblyRatio=97
 ```
 
-## （五）执行`startup.sh`脚本启动
+## (V) Execute the `startup.sh` script to start
 ```shell
 sh startup.sh
 ```
 
-# 十、访问服务
-使用`http://127.0.0.1:88`访问服务
-
+# X. Access the Service
+Use `http://127.0.0.1:88` to access the service.

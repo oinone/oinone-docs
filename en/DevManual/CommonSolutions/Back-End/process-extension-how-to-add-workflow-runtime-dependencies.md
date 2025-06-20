@@ -1,33 +1,36 @@
 ---
-title: 流程扩展：如何添加工作流运行时依赖
+title: Process Extension:How to Add Workflow Runtime Dependencies
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 51
 ---
 
-# 一、前端
-1. `package.json`中新增依赖 `@kunlun/workflow`,版本跟`@kunlun/dependencies`的填一样
-2. `src/main.ts`内导入依赖
+# I. Frontend
+1. Add the dependency `@kunlun/workflow` in `package.json`, and use the same version as `@kunlun/dependencies`.
+2. Import the dependency in `src/main.ts`.
 
 ```typescript
 import 'reflect-metadata';
 import { VueOioProvider } from '@kunlun/dependencies';
 
-// START 导入代码放在导入@kunlun/dependencies之后
+// START Import code after importing @kunlun/dependencies
 import '@kunlun/workflow/dist/kunlun-workflow.css';
 import '@kunlun/workflow';
-// END 导入代码放在VueOioProvider()方法执行前
+// END Import code before executing the VueOioProvider() method
 
 VueOioProvider({
     // TODO
 });
 ```
 
-# 二、后端
-## （一）父 pom 新增依赖，下面例子中的版本号仅供参考，请根据当前框架版本正确选择版本
+# II. Backend
+
+## (一) Add Dependencies to Parent pom
+The version numbers in the following example are for reference only. Please select the correct version according to the current framework version.
+
 ```xml
-<!-- 平台基础 -->
+<!-- Platform foundation -->
 <oinone.version>5.3.5</oinone.version>
 
 <dependencyManagement>
@@ -43,7 +46,8 @@ VueOioProvider({
 </dependencyManagement>
 ```
 
-## （二）boot启动工程的pom新增依赖
+## (二) Add Dependencies to the pom of the Boot Startup Project
+
 ```xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
@@ -93,10 +97,10 @@ VueOioProvider({
     <groupId>pro.shushi.pamirs.work.bench</groupId>
     <artifactId>pamirs-work-bench-view</artifactId>
 </dependency>
-
 ```
 
-## （三）application.yml配置新增依赖
+## (三) Add Dependencies to application.yml Configuration
+
 ```yaml
 pamirs:
   boot:
@@ -108,4 +112,3 @@ pamirs:
       - trigger
       - workflow
 ```
-

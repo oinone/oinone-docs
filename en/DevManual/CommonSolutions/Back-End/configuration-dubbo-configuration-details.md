@@ -1,28 +1,28 @@
 ---
-title: 配置说明：Dubbo配置详解（改）
+title: Configuration Instructions:Detailed Dubbo Configuration (Revised)
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 67
 ---
 
-# 一、概述
-Dubbo 作为一款具备高性能、轻量级特征的开源 Java RPC 框架，提供了三大核心功能：面向接口的远程方法调用、智能容错与负载均衡，以及服务自动注册与发现机制。
+# I. Overview
+Dubbo, as a high-performance and lightweight open-source Java RPC framework, provides three core functions: interface-oriented remote method invocation, intelligent fault tolerance and load balancing, as well as automatic service registration and discovery mechanisms.
 
-Oinone 平台默认采用`dubbo - v2.7.22`版本，本文将以该版本为基础展开阐述。
+The Oinone platform uses the `dubbo-v2.7.22` version by default, and this document will elaborate based on this version.
 
-# 二、基本概念
-Dubbo 在进行`provider/consumer`注册时，选用`Netty`作为 RPC 调用的核心服务，具备典型的`客户端/服务端（C/S）`架构特性。具体而言，`provider`承担`服务端`角色，`consumer`充当`客户端`角色。
+# II. Basic Concepts
+When Dubbo registers `provider/consumer`, it selects `Netty` as the core service for RPC calls, featuring a typical `Client/Server (C/S)` architecture. Specifically, the `provider` acts as the server, and the `consumer` acts as the client.
 
-当`客户端`经由`服务中心`发现存在可调用服务时，将借助`服务中心`提供的`服务端`调用信息，与`服务端`建立连接并发起请求，以此达成远程调用功能。
+When the client discovers callable services through the service center, it establishes a connection with the server and initiates requests using the server's call information provided by the service center, thus achieving remote invocation.
 
-## （一）服务注册（绑定Host/Port）
-JAVA程序启动时，需要将`provider`的信息注册到`服务中心`，并在当前环境为`Netty`服务开启`Host/Port`监听，以实现`服务注册`功能。
+## (一) Service Registration (Binding Host/Port)
+When a JAVA program starts, it needs to register the `provider` information with the `service center` and open `Host/Port` listening for the `Netty` service in the current environment to implement the `service registration` function.
 
-在下文中，我们通过`绑定Host/Port`表示`Netty`服务的访问地址，通过`注册Host/Port`表示客户端的访问地址。
+In the following text, `binding Host/Port` denotes the access address of the Netty service, and `registering Host/Port` denotes the client's access address.
 
-## （二）使用yaml配置`绑定Host/Port`
-:::info 注意：该配置可在多种环境中通用，改变部署方式无需修改此配置。
+## (二) Using YAML to Configure `Binding Host/Port`
+:::info Note: This configuration is universal across multiple environments, and changing the deployment method does not require modifying this configuration.
 
 :::
 
@@ -34,28 +34,28 @@ dubbo:
     port: -1
 ```
 
-假设当前环境可用 IP 为`192.168.1.100`，上述配置将使`Netty`服务默认绑定于`0.0.0.0:20880`地址，服务注册地址设定为`192.168.1.100:20880`。`客户端`将通过`192.168.1.100:20880`对服务端服务进行调用。
+Assuming the available IP in the current environment is `192.168.1.100`, the above configuration will bind the Netty service to `0.0.0.0:20880` by default, with the service registration address set to `192.168.1.100:20880`. The client will invoke the server's services via `192.168.1.100:20880`.
 
-若出现 20880 端口被占用的情况，系统将自动向后搜寻可用端口，如 20881、20882 等。若当前可用端口为 20881，则上述配置将致使`Netty`服务默认绑定于`0.0.0.0:20881`地址，服务注册地址变为`192.168.1.100:20881`。
+If port 20880 is occupied, the system will automatically search for the next available port, such as 20881, 20882, etc. If the current available port is 20881, the above configuration will bind the Netty service to `0.0.0.0:20881` by default, with the service registration address becoming `192.168.1.100:20881`.
 
-## （三）使用环境变量配置`注册Host/Port`
-当服务端处于容器环境时，鉴于容器环境内部网络配置相对于宿主机的独立性，为确保客户端能够正常调用服务端，需在容器内配置环境变量，以保障客户端可通过指定的`注册Host/Port`实现访问。
+## (三) Using Environment Variables to Configure `Registered Host/Port`
+When the server is in a container environment, due to the independence of the container's internal network configuration relative to the host, to ensure the client can normally invoke the server, environment variables need to be configured within the container to ensure the client can access via the specified `registered Host/Port`.
 
-以下示例针对无法使用 20880 端口的情形，将宿主机可访问端口由 20880 变更为 20881。
+The following example changes the host's accessible port from 20880 to 20881 when port 20880 cannot be used.
 
 ```shell
 DUBBO_IP_TO_REGISTRY=192.168.1.100
 DUBBO_PORT_TO_REGISTRY=20881
 ```
 
-假设当前宿主机环境的可用IP为`192.168.1.100`。
+Assume the available IP in the current host environment is `192.168.1.100`.
 
-以上配置将使得`Netty`服务默认绑定在`0.0.0.0:20881`地址，服务注册地址为`192.168.1.100:20881`。
+The above configuration will bind the Netty service to `0.0.0.0:20881` by default, with the service registration address being `192.168.1.100:20881`.
 
-`客户端`将通过`192.168.1.100:20881`调用服务端服务。
+The client will invoke the server's services via `192.168.1.100:20881`.
 
-## （四）使用docker/docker-compose启动
-需添加端口映射，将20881端口映射至宿主机20881端口。（此处容器内的端口发生变化，若需要了解具体原因，可参考题外话章节）
+## (四) Starting with Docker/Docker Compose
+Port mapping needs to be added to map port 20881 to port 20881 on the host. (The port inside the container changes here; for the specific reason, refer to the Digression section.)
 
 **docker-run**
 
@@ -80,11 +80,11 @@ services:
       DUBBO_IP_TO_REGISTRY: 192.168.1.100
       DUBBO_PORT_TO_REGISTRY: 20881
     ports:
-     - 20881:20881 # dubbo端口
+     - 20881:20881 # dubbo port
 ```
 
-## （五）使用kubernetes启动
-**工作负载（Deployment）**
+## (五) Starting with Kubernetes
+**Workload (Deployment)**
 
 ```yaml
 kind: Deployment
@@ -107,7 +107,7 @@ spec:
               value: "20881"
 ```
 
-**服务（Services）**
+**Service (Services)**
 
 ```yaml
 kind: Service
@@ -122,69 +122,69 @@ spec:
       nodePort: 20881
 ```
 
-:::info 注意：此处的`targetPort`为对应`Deployment#spec. template.spec.containers.ports.name`配置的端口名称。若未配置，可使用`20881`直接指定对应容器的端口号。
+:::info Note: The `targetPort` here corresponds to the port name configured in `Deployment#spec.template.spec.containers.ports.name`. If not configured, `20881` can be directly used to specify the corresponding container port number.
 
 :::
 
-## （六）使用kubernetes其他暴露服务方式
-在Kubernetes中部署服务，有多种配置方式均可用暴露服务。上述配置仅用于通过`Service/NodePort`将`20881`端口暴露至宿主机，其他服务可用通过任意Kubernetes节点IP进行调用。
+## (六) Other Service Exposure Methods in Kubernetes
+When deploying services in Kubernetes, multiple configuration methods can expose services. The above configuration only uses `Service/NodePort` to expose port `20881` to the host, and other services can be invoked via any Kubernetes node IP.
 
-若其他服务也在Kubernetes中进行部署，则可以通过`Service/Service`方式进行调用。将`DUBBO_IP_TO_REGISTRY`配置为`${serviceName}.${namespace}`即可。
+If other services are also deployed in Kubernetes, they can be invoked via the `Service/Service` method. Set `DUBBO_IP_TO_REGISTRY` to `${serviceName}.${namespace}`.
 
-若其他服务无法直接访问Kubernetes的master服务，则可以通过`Ingress/Service`方式进行调用。将`DUBBO_IP_TO_REGISTRY`配置为`Ingress`可解析域名即可。
+If other services cannot directly access the Kubernetes master service, they can be invoked via the `Ingress/Service` method. Set `DUBBO_IP_TO_REGISTRY` to a resolvable domain name for Ingress.
 
-# 三、Dubbo调用链路图解
-:::info 注意：`Consumer`的`绑定Host/Port`是其作为`Provider`使用的，下面所有图解仅演示单向的调用链路。
+# III. Dubbo Call Chain Diagram
+:::info Note: The `binding Host/Port` of the `Consumer` is used as a `Provider`, and all diagrams below only demonstrate unidirectional call chains.
 
 :::
 
-**名词解释**
+**Noun Explanation**
 
-+ Provider: 服务提供者（JVM）
-+ Physical Machine Provider: 服务提供者所在物理机
-+ Provider Container: 服务提供者所在容器
-+ Kubernetes Service: Kubernetes Service资源类型
-+ Consumer: 服务消费者（JVM）
-+ Registration Center: 注册中心；可以是`zookeeper`、`nacos`等。
-+ bind: 服务`绑定Host/Port`到指定`ip:port`。
-+ registry: 服务注册；`注册Host/Port`到注册中心的信息。
-+ discovery: 服务发现；`注册Host/Port`到消费者的信息。
-+ invoke: 服务调用；消费者通过注册中心提供的提供者信息向提供者发起服务调用。
-+ forward: 网络转发；通常在容器环境需要进行必要的网络转发，以使得服务调用可以到达服务提供者。
++ Provider: Service provider (JVM)
++ Physical Machine Provider: Physical machine where the service provider resides
++ Provider Container: Container where the service provider resides
++ Kubernetes Service: Kubernetes Service resource type
++ Consumer: Service consumer (JVM)
++ Registration Center: Registration center; can be `zookeeper`, `nacos`, etc.
++ bind: Bind the service `Host/Port` to the specified `ip:port`.
++ registry: Service registration; register `Host/Port` information with the registration center.
++ discovery: Service discovery; register `Host/Port` information with the consumer.
++ invoke: Service invocation; the consumer initiates service calls to the provider using the provider information provided by the registration center.
++ forward: Network forwarding; necessary network forwarding is usually required in container environments to ensure service calls reach the service provider.
 
-### `物理机/物理机`调用链路
+### `Physical Machine/Physical Machine` Call Chain
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/20250530145736.png)
 
-:::info 注意：此处虚线部分表示提供者部署在物理机上，并不存在真实的网络处理。
+:::info Note: The dashed line here indicates the provider is deployed on a physical machine, with no actual network processing involved.
 
 :::
 
-### `容器/物理机`调用链路
+### `Container/Physical Machine` Call Chain
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/20250530145806.png)
 
-:::info 注意：此处虚线部分表示提供者部署在容器中，并不存在真实的网络处理。
+:::info Note: The dashed line here indicates the provider is deployed in a container, with no actual network processing involved.
 
 :::
 
-### `Kubernetes/物理机`(Service/NodePort模式)调用链路
+### `Kubernetes/Physical Machine` (Service/NodePort Mode) Call Chain
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/20250530145830.png)
 
-:::info 注意：此处虚线部分表示提供者部署在容器中，并不存在真实的网络处理。
+:::info Note: The dashed line here indicates the provider is deployed in a container, with no actual network processing involved.
 
 :::
 
-# 四、题外话
-在`dubbo-v2.7.22`源码中，作者发现`Host/Port`的获取方式并不对等，这里目前不太清楚是`dubbo`设计如此还是作者对`dubbo`设计理解不足。
+# IV. Digression
+In the source code of `dubbo-v2.7.22`, the author found that the way `Host/Port` is obtained is not symmetrical, and it is currently unclear whether this is by design in Dubbo or due to the author's insufficient understanding of Dubbo's design.
 
-+ 现象：
-    - `DUBBO_IP_TO_REGISTRY`配置与`dubbo.protocol.host`无关。
-    - `DUBBO_PORT_TO_REGISTRY`配置优先级高于`dubbo.protocol.port`配置。
-+ 作者理解：
-    - 客户端向服务端发起请求时，应使用`注册Host/Port`进行调用，只要该访问地址可以与服务端连通，则远程调用就可以正常运行。
-    - `注册Host/Port`与`绑定Host/Port`应支持完全独立配置。当`注册Host/Port`与`绑定Host/Port`均被配置时，`注册Host`与`绑定Host`是独立生效的，但`绑定Port`却强制使用了`注册Port`。（这一点也是经常在容器环境中无法正常调用的主要原因）
++ Phenomena:
+    - The `DUBBO_IP_TO_REGISTRY` configuration is independent of `dubbo.protocol.host`.
+    - The `DUBBO_PORT_TO_REGISTRY` configuration takes precedence over the `dubbo.protocol.port` configuration.
++ Author's Understanding:
+    - When the client initiates a request to the server, it should use the `registered Host/Port` for invocation. As long as this access address can connect to the server, remote invocation can proceed normally.
+    - `Registered Host/Port` and `bound Host/Port` should support fully independent configuration. When both `registered Host/Port` and `bound Host/Port` are configured, `registered Host` and `bound Host` take effect independently, but `bound Port` forcibly uses `registered Port`. (This is also the main reason for failed invocations in container environments.)
 
-# 五、常用配置
-## （一）yaml配置
+# V. Common Configurations
+## (一) YAML Configuration
 ```yaml
 dubbo:
   application:
@@ -207,27 +207,27 @@ dubbo:
 
 ```
 
-+ dubbo.registry.address: 注册中心地址
-+ dubbo.registry.group: 全局 group 配置
-+ dubbo.registry.timeout: 全局超时时间配置
-+ dubbo.protocol.name: 协议名称
-+ dubbo.protocol.host: 绑定主机IP配置；默认：0.0.0.0
-+ dubbo.protocol.port: 绑定主机端口配置；-1表示自动获取可用端口；默认：20880
-+ dubbo.protocol.serialization: 序列化配置；Oinone平台必须使用`pamirs`作为序列化方式。
-+ dubbo.protocol.payload: RPC调用数据大小限制；单位：字节(byte)
-+ dubbo.scan.base-packages: provider/consumer 扫描包路径
-+ dubbo.cloud.subscribed-services: 多提供者配置；示例中该参数配置为空是为了避免启动时的警告日志，一般无需配置。
++ dubbo.registry.address: Registration center address
++ dubbo.registry.group: Global group configuration
++ dubbo.registry.timeout: Global timeout configuration
++ dubbo.protocol.name: Protocol name
++ dubbo.protocol.host: Bound host IP configuration; default: 0.0.0.0
++ dubbo.protocol.port: Bound host port configuration; -1 indicates automatically acquiring an available port; default: 20880
++ dubbo.protocol.serialization: Serialization configuration; The Oinone platform must use `pamirs` as the serialization method.
++ dubbo.protocol.payload: RPC call data size limit; unit: byte
++ dubbo.scan.base-packages: Provider/consumer scan package path
++ dubbo.cloud.subscribed-services: Multi-provider configuration; The parameter is configured as empty in the example to avoid warning logs during startup, and generally does not require configuration.
 
-## （二）环境变量配置
+## (二) Environment Variable Configuration
 ```shell
 DUBBO_IP_TO_REGISTRY=127.0.0.1
 DUBBO_PORT_TO_REGISTRY=20880
 ```
 
-+ DUBBO_IP_TO_REGISTRY：注册Host配置
-+ DUBBO_PORT_TO_REGISTRY：注册Port配置
++ DUBBO_IP_TO_REGISTRY: Registered host configuration
++ DUBBO_PORT_TO_REGISTRY: Registered port configuration
 
-# 六、源码参考
+# VI. Source Code Reference
 + `org.apache.dubbo.config.ServiceConfig#findConfigedHosts`
 
 ```java
@@ -345,4 +345,3 @@ public static String getSystemProperty(String key) {
     return value;
 }
 ```
-

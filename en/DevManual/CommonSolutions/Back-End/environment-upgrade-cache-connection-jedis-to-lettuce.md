@@ -1,20 +1,20 @@
 ---
-title: 环境升级：缓存连接由Jedis切换为Lettuce
+title: Environment Upgrade:Cache Connection Switched from Jedis to Lettuce
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 58
 ---
-# 一、Jedis 和 Lettuce 的区别
+# 一、Differences between Jedis and Lettuce
 
-+ Jedis 是同步的，不支持异步，Jedis 客户端实例不是线程安全的，需要每个线程一个 Jedis 实例，所以一般通过连接池来使用 Jedis；
-+ Lettuce 是基于 Netty 框架的事件驱动的 Redis 客户端，其方法调用是异步的，Lettuce 的 API 也是线程安全的，所以多个线程可以操作单个 Lettuce 连接来完成各种操作，同时 Lettuce 也支持连接池；
++ Jedis is synchronous and does not support asynchrony. The Jedis client instance is not thread-safe, so each thread needs a Jedis instance. Therefore, Jedis is generally used through a connection pool.
++ Lettuce is an event-driven Redis client based on the Netty framework. Its method calls are asynchronous. The Lettuce API is also thread-safe, so multiple threads can operate a single Lettuce connection to complete various operations. At the same time, Lettuce also supports connection pools.
 
-# 二、Jedis 切换 Lettuce
+# 二、Switching from Jedis to Lettuce
 
-## （一）依赖修改
+## （一）Dependency Modification
 
-boot 启动工程 pom.xml 改动
+Changes to the pom.xml of the boot startup project
 
 properties
 
@@ -48,9 +48,9 @@ dependencies
 </dependency>
 ```
 
-## （二）配置修改
+## （二）Configuration Modification
 
-application.yml 配置修改
+Modifications to the application.yml configuration
 
 ```yaml
 spring:
@@ -60,9 +60,9 @@ spring:
     port: 6379
     prefix: pamirs
     timeout: 2000
-    # 可选
+    # Optional
     password: xxxxx
-    # 可选
+    # Optional
     #  cluster:
     #    nodes:
     #      - 127.0.0.1:6379
@@ -76,4 +76,3 @@ spring:
         max-active: 16
         max-wait: 2000
 ```
-

@@ -1,66 +1,66 @@
 ---
-title: 数据操作：DsHint(指定数据源)和BatchSizeHint(指定批次数量)
+title: Data Operation:DsHint(Specify Data Source) and BatchSizeHint(Specify Batch Quantity)
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 21
 ---
 
-# 一、场景描述
-+ DsHintApi ，强制指定数据源，
-+ BatchSizeHintApi ，强制指定查询批量数量
+# 一、Scenario Description
++ DsHintApi, which forces the specification of the data source,
++ BatchSizeHintApi, which forces the specification of the query batch quantity
 
-# 二、API定义
-## （一）DsHintApi
+# 二、API Definition
+## (一) DsHintApi
 ```java
-public static DsHintApi model(String model/**模型编码*/) {
-    // 具体实现
+public static DsHintApi model(String model/**Model Code*/) {
+    // Specific implementation
 }
 
-public DsHintApi(Object dsKey/***数据源名称*/) {
-    // 具体实现
+public DsHintApi(Object dsKey/**Data Source Name*/) {
+    // Specific implementation
 }
 ```
 
-## （二）BatchSizeHintApi
+## (二) BatchSizeHintApi
 ```java
 public static BatchSizeHintApi use(Integer batchSize) {
-    // 具体实现
+    // Specific implementation
 }
 ```
 
-# 三、使用示例
+# 三、Usage Examples
 :::danger
-警告：
+Warning:
 
-代码中使用 try-with-resources 语法; 否则可能会出现数据源错乱
+The try-with-resources syntax is used in the code; otherwise, data source confusion may occur.
 
 :::
 
-+ DsHintApi 使用示例
-包裹在 try 里面的所有查询都会强制使用指定的数据源
++ DsHintApi Usage Example
+All queries wrapped inside the try block will be forced to use the specified data source.
 
 ```java
-  // 使用方式1：
+  // Usage Mode 1:
   try (DsHintApi dsHintApi = DsHintApi.model(PetItem.MODEL_MODEL)) {
        List<PetItem> items = demoItemDAO.customSqlDemoItem();
        PetShopProxy data2 = data.queryById();
        data2.fieldQuery(PetShopProxy::getPetTalents);
  }
 
-  // 使用方式2：
- try (DsHintApi dsHintApi = DsHintApi.use("数据源名称")) {
+  // Usage Mode 2:
+ try (DsHintApi dsHintApi = DsHintApi.use("Data Source Name")) {
         List<PetItem> items = demoItemDAO.customSqlDemoItem();
         PetShopProxy data2 = data.queryById();
         data2.fieldQuery(PetShopProxy::getPetTalents);
  }
 ```
 
-+ 3、BatchSizeHintApi 使用示例
-包裹在 try 里面的所有查询都会按照指定的 batchSize 进行查询
++ 3、BatchSizeHintApi Usage Example
+All queries wrapped inside the try block will be executed according to the specified batchSize.
 
 ```java
-// 查询指定每次查询500跳
+// Specify to query 500 records each time
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(500)) {
     PetShopProxy data2 = data.queryById();
     data2.fieldQuery(PetShopProxy::getPetTalents);
@@ -68,10 +68,9 @@ try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(500)) {
 ```
 
 ```java
-//  查询指定不分页(batchSize=-1)查询。 请注意，你必须在明确不需要分页查询的情况下使用；如果数据量超大不分页可能会卡死。默认不指定分页数的情况下下平台会进行分页查询
+// Specify no pagination (batchSize=-1) for the query. Please note that you must use this when it is clear that pagination is not needed; if the data volume is extremely large and no pagination is used, it may cause a freeze. By default, the platform will perform pagination queries when the number of pages is not specified.
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
     PetShopProxy data2 = data.queryById();
     data2.fieldQuery(PetShopProxy::getPetTalents);
 }
 ```
-

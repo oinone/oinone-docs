@@ -1,34 +1,34 @@
 ---
-title: 动作 API（Actions API）
+title: Actions API
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 后端API
+  - Backend API
 order: 4
 
 ---
-在 Oinone 平台中，**动作（Action）** 是构建交互逻辑的核心单元，通过标准化的定义方式，实现不同场景下的业务功能与数据交互。根据应用场景与功能特性，动作主要分为四大类型：视图动作、链接动作、客户端动作和服务器动作，各类型功能及适用场景如下：
+In the Oinone platform, **Actions** serve as the core units for constructing interactive logic. Through standardized definition methods, they enable business functions and data interaction in different scenarios. According to application scenarios and functional characteristics, actions are mainly divided into four types: View Actions, Link Actions, Client Actions, and Server Actions. The functions and applicable scenarios of each type are as follows:
 
-:::warning 提示
+:::warning Tip
 
-本文档可助您快速掌握核心概念与基础逻辑。除了利用`Ux`注解和`XML`配置以外，也推荐使用设计器辅助开发。设计器能够提供可视化操作界面，简化配置流程、降低编码复杂度，帮助您更高效、精准地完成开发任务 ，显著提升开发效率与质量。
+This document helps you quickly master core concepts and basic logic. In addition to using `Ux` annotations and `XML` configuration, we also recommend using the designer for auxiliary development. The designer provides a visual operation interface, simplifies the configuration process, reduces coding complexity, helps you complete development tasks more efficiently and accurately, and significantly improves development efficiency and quality.
 
 :::
 
-# 一、服务器动作 ServerAction
+# I. Server Action
 
-在 Oinone 系统中，服务器动作（ServerAction）是实现后端业务逻辑与数据交互的核心组件，是发起服务器请求与触发请求按钮的定义，通过注解配置与校验机制，可灵活定义请求处理规则和数据验证逻辑。以下为详细说明：
+In the Oinone system, Server Actions are core components for implementing backend business logic and data interaction. They define server requests and trigger button actions. Through annotation configuration and validation mechanisms, you can flexibly define request processing rules and data validation logic. The detailed description is as follows:
 
-## （一）服务器动作配置
+## (一) Server Action Configuration
 
-通过`@Action`注解可快速创建服务器动作，以下是配置示例：
+Server actions can be quickly created using the `@Action` annotation. Here is a configuration example:
 
 ```java
 @Model.model(TestModel.MODEL_MODEL)
 public class Demo {
     @Action(
-        displayName = "测试服务器动作",
+        displayName = "Test Server Action",
         contextType = ActionContextTypeEnum.CONTEXT_FREE,
         bindingType = {ViewTypeEnum.TABLE, ViewTypeEnum.CHART}
     )
@@ -38,37 +38,37 @@ public class Demo {
 }
 ```
 
-关键配置项解析
+Key configuration item analysis:
 
-+ `@Action`**注解**：核心标识，用于将方法定义为服务器动作。
-+ `contextType`**（动作上下文类型）**：
-  - `SINGLE`：适用于单行数据操作，常见于列表页每行的操作栏或表单页顶部操作区。
-  - `BATCH`：针对多行数据处理，通常展示在列表页表格上方的批量操作按钮区。
-  - `SINGLE_AND_BATCH`：支持单行与多行混合操作，用于列表页的综合操作场景。
-  - `CONTEXT_FREE`：无特定上下文限制，常用于列表页顶部通用操作按钮。
-+ `bindingType`**（按钮所在页面类型）**：
-  - `TABLE`：列表页，用于展示数据列表及对应操作按钮。
-  - `KANBAN`：看板。
-  - `FORM`：表单页，适用于数据提交或编辑操作。
-  - `DETAIL`：详情页，用于查看或修改单条数据详情。
-  - `CALENDAR`**：日历**
-  - `GALLERY`**：画廊**
-  - `TREE`**：树视图**
-  - `CUSTOM`：自定义页面，满足特定业务需求。
++ `@Action` **Annotation**: The core identifier used to define a method as a server action.
++ `contextType` **(Action Context Type)**:
+  - `SINGLE`: Suitable for single-row data operations, commonly used in the operation bar of each row in list pages or the top operation area of form pages.
+  - `BATCH`: For multi-row data processing, usually displayed in the batch operation button area above the table in list pages.
+  - `SINGLE_AND_BATCH`: Supports mixed single-row and multi-row operations, used in comprehensive operation scenarios of list pages.
+  - `CONTEXT_FREE`: No specific context restrictions, often used for general operation buttons at the top of list pages.
++ `bindingType` **(Page Type Where the Button Is Located)**:
+  - `TABLE`: List page, used to display data lists and corresponding operation buttons.
+  - `KANBAN`: Kanban.
+  - `FORM`: Form page, suitable for data submission or editing operations.
+  - `DETAIL`: Detail page, used to view or modify details of a single piece of data.
+  - `CALENDAR`: Calendar
+  - `GALLERY`: Gallery
+  - `TREE`: Tree view
+  - `CUSTOM`: Custom page to meet specific business needs.
 
-## （二）服务器动作校验
+## (二) Server Action Validation
 
-在 Oinone 中，数据校验不仅支持在模型或字段层面设置，服务器动作（ServerAction）同样可通过`@Validation`注解添加校验约束。例如：
+In Oinone, data validation can be set not only at the model or field level but also for Server Actions through the `@Validation` annotation. For example:
 
 ```java
 @Model.model(TestModel.MODEL_MODEL)
 public class Demo {
     @Validation(ruleWithTips = {
-        @Validation.Rule(value = "!IS_BLANK(data.name)", error = "名称为必填项"),
-        @Validation.Rule(value = "LEN(data.name) <= 128", error = "名称过长，不能超过128位")
+        @Validation.Rule(value = "!IS_BLANK(data.name)", error = "Name is required"),
+        @Validation.Rule(value = "LEN(data.name) <= 128", error = "Name is too long, cannot exceed 128 characters")
     })
     @Action(
-        displayName = "测试服务器动作",
+        displayName = "Test Server Action",
         contextType = ActionContextTypeEnum.SINGLE,
         bindingType = {ViewTypeEnum.FORM}
     )
@@ -78,97 +78,97 @@ public class Demo {
 }
 ```
 
-通过内置函数快速实现非空、长度等校验，未通过校验时将按预设提示反馈错误。
+Built-in functions are used to quickly implement validations such as non-null and length checks. If validation fails, an error is反馈 (fed back) with the预设 (predefined) prompt.
 
-## （三）注解配置
+## (三) Annotation Configuration
 
 @Action
 
-├── displayName 显示名称
+├── displayName Display name
 
-├── summary 摘要摘要
+├── summary Summary
 
-├── contextType 动作上下文，可选项详见ActionContextTypeEnum
+├── contextType Action context, optional values see ActionContextTypeEnum
 
-├── bindingType 所在页面类型，可选项详见ViewTypeEnum
+├── bindingType Page types where located, optional values see ViewTypeEnum
 
-├── Advanced 更多配置
+├── Advanced More configurations
 
-│   ├── name 技术名称，默认Java方法名
+│   ├── name Technical name, default is Java method name
 
-│   ├── args 参数，默认java参数
+│   ├── args Parameters, default is Java parameters
 
-│   ├── type 方法类型，默认UPDATE，可选项详见FunctionTypeEnum
+│   ├── type Method type, default is UPDATE, optional values see FunctionTypeEnum
 
-│   ├── language 方法实现语言，默认JAVA，可选项详见FunctionLanguageEnum
+│   ├── language Method implementation language, default is JAVA, optional values see FunctionLanguageEnum
 
-│   ├── check Validation校验，默认false
+│   ├── check Validation check, default is false
 
-│   ├── invisible 隐藏规则
+│   ├── invisible Hide rule
 
-│   ├── bindingView 绑定特定视图
+│   ├── bindingView Bind to specific view
 
-│   └── priority 展示顺序
+│   └── priority Display order
 
-# 二、窗口动作 ViewAction
+# II. View Action
 
-窗口动作在系统中承担着站内页面跳转的重要职责，其路由功能基于模型编码和动作名称来实现。
+View Actions play a crucial role in intra-system page navigation, and their routing function is achieved based on model codes and action names.
 
-窗口动作可通过按钮 `UxRouteButton` 或菜单 `UxMenu` 进行定义。
+View Actions can be defined through the button `UxRouteButton` or the menu `UxMenu`.
 
-## （一）通过按钮 `UxRouteButton` 定义
+## (一) Definition via Button `UxRouteButton`
 
-以下是使用 `UxRouteButton` 注解定义窗口动作的详细示例：
+Here is a detailed example of defining a View Action using the `UxRouteButton` annotation:
 
 ```java
 @UxRouteButton(
     value = @UxRoute(
-        model = TestButtonModel.MODEL_MODEL, // 目标模型，明确跳转的目标模型
-        viewType = ViewTypeEnum.TABLE, // 目标视图类型，默认为 TABLE
-        viewName = ViewConstants.Name.tableView, // 路由的目标视图，为空时则选择对应视图类型且优先级最高的视图
-        // 加载函数相关配置
-        load = "newQueryPage", // 可手工指定其他函数，如示例中的 newQueryPage
-        // domain 作为前端过滤条件，是默认的查询条件，用户可以根据需要去除
-        domain = "createDate =ge= '${ADD_DAY(NOW_STR(), -7)}' and createDate =lt= '${NOW_STR()}'", // 前端过滤条件，属于默认查询条件，用户可去除
-        // filter 作为后端过滤条件，是一定会加上的，用户无感知
+        model = TestButtonModel.MODEL_MODEL, // Target model, clarifies the target model for navigation
+        viewType = ViewTypeEnum.TABLE, // Target view type, default is TABLE
+        viewName = ViewConstants.Name.tableView, // Target view for routing, selects the view of the corresponding type with the highest priority when empty
+        // Load function-related configurations
+        load = "newQueryPage", // Can manually specify other functions, such as newQueryPage in the example
+        // domain as frontend filter condition, the default query condition, users can remove it as needed
+        domain = "createDate =ge= '${ADD_DAY(NOW_STR(), -7)}' and createDate =lt= '${NOW_STR()}'", // Frontend filter condition, belongs to the default query condition, users can remove it
+        // filter as backend filter condition, will definitely be added, invisible to users
         filter = "name =like= '老'",
-        // 上下文传递：数据映射
+        // Context passing: data mapping
         context = {},
         title = "test"
     ),
     action = @UxAction(
-        name = "customRedirectTablePage", // 名字必须唯一，否则会发生覆盖情况
-        label = "自定义跳转到表格页",
+        name = "customRedirectTablePage", // Name must be unique, otherwise overwriting occurs
+        label = "Custom Redirect to Table Page",
         contextType = ActionContextTypeEnum.SINGLE,
-        bindingType = ViewTypeEnum.FORM, // 按钮出现在哪些类型的视图上，默认为 TABLE
-        bindingView = ViewConstants.Name.formView, // 按钮出现在哪些视图中，为空则选择对应视图类型且优先级最高的视图
-        invisible = ExpConstants.idValueNotExist // 隐藏条件，!activeRecord.id 当 id 存在时，隐藏。例如新增页没有 id 隐藏，编辑页面有 id 则不隐藏
+        bindingType = ViewTypeEnum.FORM, // On which types of views the button appears, default is TABLE
+        bindingView = ViewConstants.Name.formView, // In which views the button appears, selects the view of the corresponding type with the highest priority when empty
+        invisible = ExpConstants.idValueNotExist // Hide condition, !activeRecord.id hides when id exists. For example, hides on the new page without id, does not hide on the edit page with id
     )
 )
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL = "test.TestButtonModel";
 
     @Function(openLevel = FunctionOpenEnum.API)
-    @Function.Advanced(displayName = "测试load函数",type = {FunctionTypeEnum.QUERY},category = FunctionCategoryEnum.QUERY_PAGE)
+    @Function.Advanced(displayName = "Test Load Function", type = {FunctionTypeEnum.QUERY}, category = FunctionCategoryEnum.QUERY_PAGE)
     public Pagination<TestButtonModel> newQueryPage(Pagination<TestButtonModel> page, IWrapper<TestButtonModel> queryWrapper) {
         if (null == page) {
             return null;
         }
-        System.out.println("测试load函数");
-        return new TestButtonModel().queryPage(page,queryWrapper);
+        System.out.println("Test Load Function");
+        return new TestButtonModel().queryPage(page, queryWrapper);
     }
 
 }
 ```
 
-## （二）通过菜单 `UxMenu` 定义
+## (二) Definition via Menu `UxMenu`
 
 ```java
 @UxMenus
 public class TestMenus implements ViewActionConstants {
-    @UxMenu("测试菜单")
+    @UxMenu("Test Menu")
     class TestMenu {
         @UxMenu("TestButtonModel")
         @UxRoute(TestButtonModel.MODEL_MODEL)
@@ -177,78 +177,78 @@ public class TestMenus implements ViewActionConstants {
 }
 ```
 
-## （三）加载函数
+## (三) Load Function
 
-加载函数在窗口动作中起着关键作用。当未配置字段映射 DSL 时，直接执行加载函数，其输入和输出参数均为目标模型。系统提供了默认的约定函数，具体如下：
+The load function plays a key role in View Actions. When field mapping DSL is not configured, the load function is executed directly, with both input and output parameters being the target model. The system provides default convention functions, specifically:
 
-+ 目标视图表单新增：调用 `construct` 接口加载数据，用于初始化新表单的数据。
-+ 目标视图表单更新：调用 `queryOne` 接口加载数据，以获取要更新的特定记录。
-+ 目标视图表单详情：调用 `queryOne` 接口加载数据，用于显示特定记录的详细信息。
-+ 目标视图表格查询：调用 `queryPage` 接口加载数据，可使用 `domain` 和 `limit` 属性设置查询条件和分页数，实现数据的分页查询。
++ Target view form new: Calls the `construct` interface to load data, used to initialize data for new forms.
++ Target view form update: Calls the `queryOne` interface to load data, used to obtain the specific record to be updated.
++ Target view form detail: Calls the `queryOne` interface to load data, used to display detailed information of a specific record.
++ Target view table query: Calls the `queryPage` interface to load data, and can use `domain` and `limit` attributes to set query conditions and pagination counts for paginated data queries.
 
-此外，开发者还可根据需求手工指定其他加载函数，以满足定制化的加载需求。例如，在上述示例中，将加载函数指定为 `newQueryPage`。
+In addition, developers can also manually specify other load functions as needed to meet customized loading requirements. For example, in the above example, the load function is specified as `newQueryPage`.
 
-## （四）数据过滤
+## (四) Data Filtering
 
-数据过滤分为前端过滤（`domain`）和后端过滤（`filter`）。
+Data filtering is divided into frontend filtering (`domain`) and backend filtering (`filter`).
 
-+ **前端过滤（**`domain`**）**：`domain` 作为前端过滤条件，是默认的查询条件，用户可以根据需要去除。
-+ **后端过滤（**`filter`**）**：`filter` 作为后端过滤条件，是一定会加上的，用户无感知。在上述示例中，`filter = "name =like= '老'"` 表示后端会对 `name` 字段进行模糊匹配过滤，且用户无法去除该过滤条件。
++ **Frontend Filtering (`domain`)**: `domain` serves as the frontend filter condition, the default query condition, which users can remove as needed.
++ **Backend Filtering (`filter`)**: `filter` serves as the backend filter condition, which will definitely be added and is invisible to users. In the above example, `filter = "name =like= '老'"` means the backend will perform fuzzy matching filtering on the `name` field, and users cannot remove this filter condition.
 
-:::danger 警告
+:::danger Warning
 
-前端过滤（`domain`）其操作符必须与页面搜索字段定义的操作符一致，否则配置无效。例如，对于 `name` 字符串字段搜索，默认操作符是 `=like=`，若配置成其他操作符则无法生效。
+The operator of frontend filtering (`domain`) must be consistent with the operator defined by the page search field; otherwise, the configuration is invalid. For example, for the `name` string field search, the default operator is `=like=`, and configuring it as another operator will not take effect.
 
 :::
 
-## （五）上下文传递
+## (五) Context Passing
 
-上下文传递通过数据映射 DSL 实现，主要用于以下两种常见场景：
+Context passing is achieved through data mapping DSL, mainly used in the following two common scenarios:
 
-+ **相同模型间跳转**：默认机制仅会将主键进行传递，若需要使用其他属性数据时，需配置数据映射上下文。
-+ **不同模型间跳转**：默认机制会尝试将主键进行传递，但如果主键属性名称不一致的情况下，将无法获取数据。此时，配置数据映射上下文不仅可以解决主键名称不一致的问题，还可以映射不同名称的其他属性进行值传递。
++ **Navigation Between the Same Model**: The default mechanism only passes the primary key. If other attribute data needs to be used, data mapping context needs to be configured.
++ **Navigation Between Different Models**: The default mechanism attempts to pass the primary key, but if the primary key attribute names are inconsistent, data cannot be obtained. In this case, configuring the data mapping context can not only solve the problem of inconsistent primary key names but also map other attributes with different names for value passing.
 
-在上述示例中，`context = {}` 表示当前未配置具体的数据映射规则，可根据实际需求进行相应的设置。
+In the above example, `context = {}` means no specific data mapping rules are currently configured and can be set according to actual needs.
 
-通过以上配置、加载函数、数据过滤和上下文传递的详细介绍，开发者可以灵活运用窗口动作实现站内页面的高效跳转和数据交互。
+Through the detailed introduction of the above configurations, load functions, data filtering, and context passing, developers can flexibly use View Actions to achieve efficient intra-system page navigation and data interaction.
 
-# 三、跳转动作 UrlAction
+# III. Url Action
 
-跳转动作专注于实现外链跳转功能，可引导用户访问外部网页、第三方系统或资源链接，为系统与外部资源的交互提供了便捷通道。跳转动作支持通过按钮`UxLinkButton`和菜单`UxMenu`两种方式定义。
+Url Actions focus on implementing external link navigation, guiding users to access external web pages, third-party systems, or resource links, providing a convenient channel for interaction between the system and external resources. Url Actions support definition through two methods: the button `UxLinkButton` and the menu `UxMenu`.
 
-## （一）通过按钮 `UxLinkButton` 定义
+## (一) Definition via Button `UxLinkButton`
 
-使用`UxLinkButton`注解可创建自定义外部链接按钮，示例如下：
+The `UxLinkButton` annotation can be used to create custom external link buttons. An example is as follows:
 
 ```java
 @UxLinkButton(
     value = @UxLink(
-        // URL支持表达式，可动态拼接参数
+        // URL supports expressions and can dynamically拼接 (concatenate) parameters
         value = "http://www.baidu.com?wd=${activeRecord.name}",
         openType = ActionTargetEnum.OPEN_WINDOW,
-        //在 Oinone 里，计算 URL 函数优先级高于value属性，有函数时优先以其返回值作为 URL
+        // In Oinone, the URL calculation function has a higher priority than the value attribute. When both exist, the return value of the function is preferred as the URL
         compute = "computeSearchUrl",
-        // 通过context 跟value配合则添加额外参数，跟compute配合，则做参数转化
+        // Using context with value adds additional parameters, and with compute, it performs parameter conversion
         context = {@Prop(name = "name", value = "activeRecord.name + 'aaa'")}
 
     ),
     action = @UxAction(
-        name = "testComputeSearchUrl", // 动作名称需唯一
-        label = "自定义外部链接",
+        name = "testComputeSearchUrl", // Action name must be unique
+        label = "Custom External Link",
         contextType = ActionContextTypeEnum.SINGLE,
-        bindingType = ViewTypeEnum.FORM, // 按钮出现在哪些类型的视图上，默认为 TABLE
-        bindingView = ViewConstants.Name.formView, // 按钮出现在哪些视图中，为空则选择对应视图类型且优先级最高的视图
-        invisible = ExpConstants.idValueNotExist // 隐藏条件，!activeRecord.id 当 id 存在时，隐藏。例如新增页没有 id 隐藏，编辑页面有 id 则不隐藏
+        bindingType = ViewTypeEnum.FORM, // On which types of views the button appears, default is TABLE
+        bindingView = ViewConstants.Name.formView, // In which views the button appears, selects the view of the corresponding type with the highest priority when empty
+        invisible = ExpConstants.idValueNotExist // Hide condition, !activeRecord.id hides when id exists. For example, hides on the new page without id, does not hide on the edit page with id
     )
 )
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL = "test.TestButtonModel";
 
-    // 自定义URL计算函数
+    // Custom URL calculation function
     @Function(openLevel = FunctionOpenEnum.API)
-    @Function.Advanced(displayName = "计算搜索Url", type = FunctionTypeEnum.QUERY)
+    @Function.Advanced(displayName = "Calculate Search Url", type = FunctionTypeEnum.QUERY)
     public String computeSearchUrl(TestButtonModel data) {
         System.out.println(data.getName());
         return "https://www.baidu.com/s?wd=" + data.getName();
@@ -256,77 +256,74 @@ public class TestButtonModel extends IdModel {
 }
 ```
 
-:::info 注意
+:::info Note
 
-在 Oinone 中，`compute`函数的优先级高于`value`属性。当同时配置两者时，系统将优先采用`compute`函数的返回值作为最终 URL，`value`属性的配置将被忽略。例如在相关示例中，即便定义了`value`属性值，只要存在`compute`函数，最终 URL 将由函数动态生成。
+In Oinone, the `compute` function has a higher priority than the `value` attribute. When both are configured, the system preferentially uses the return value of the `compute` function as the final URL, and the configuration of the `value` attribute is ignored. For example, in the related example, even if the `value` attribute value is defined, as long as the `compute` function exists, the final URL will be dynamically generated by the function.
 
 :::
 
-## （二）通过菜单 `UxMenu` 定义
+## (二) Definition via Menu `UxMenu`
 
-通过`UxMenu`注解可快速创建菜单链接，示例如下：
+Menu links can be quickly created through the `UxMenu` annotation. An example is as follows:
 
 ```java
 @UxMenus
 public class TestMenus implements ViewActionConstants {
-    // 定义名为"Oinone官网"的菜单链接
-    @UxMenu("Oinone官网")@UxLink(value = "http://www.oinone.top", openType = ActionTargetEnum.OPEN_WINDOW)
+    // Define a menu link named "Oinone Official Website"
+    @UxMenu("Oinone Official Website")@UxLink(value = "http://www.oinone.top", openType = ActionTargetEnum.OPEN_WINDOW)
     class SsLink{}
 }
 ```
 
-# 四、客户端动作 ClientAction
+# IV. Client Action
 
-客户端动作用于执行前端交互逻辑，可通过`UxClientButton`注解定义触发按钮，配置示例如下：
+Client Actions are used to execute frontend interaction logic and can define trigger buttons through the `UxClientButton` annotation. A configuration example is as follows:
 
-## （一）ClientAction的定义
+## (一) Definition of ClientAction
 
 ```java
 @UxClientButton(
-    // 关联具体的客户端函数
+    // Associate with specific client function
     value = @UxClient(ClientActionConstants.Import.fun),
     action = @UxAction(
-        name = ClientActionConstants.Import.name, // 动作唯一标识
-        label = ClientActionConstants.Import.label, // 按钮显示名称
-        contextType = ActionContextTypeEnum.CONTEXT_FREE // 无上下文依赖
+        name = ClientActionConstants.Import.name, // Unique action identifier
+        label = ClientActionConstants.Import.label, // Button display name
+        contextType = ActionContextTypeEnum.CONTEXT_FREE // No context dependency
     )
 )
 @Model.model(TestButtonModel.MODEL_MODEL)
-@Model(displayName = "TestButtonModel模型")
+@Model(displayName = "TestButtonModel Model")
 public class TestButtonModel extends IdModel {
     public static final String MODEL_MODEL = "test.TestButtonModel";
 }
 ```
 
-:::tip 举例：示例对应效果
+:::tip Example: Corresponding Effect of the Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/actions-API/1745918302734-37f54d42-f2b1-4390-9779-15325e5dd23b.gif)
 
 :::
 
-客户端动作以当前选中行数据作为方法入参和返回值，适用于页面元素动态渲染、表单验证、弹窗提示等场景，帮助开发者高效实现前端交互功能。
+Client Actions use the currently selected row data as method input and return values, suitable for scenarios such as dynamic rendering of page elements, form validation, and pop-up prompts, helping developers efficiently implement frontend interaction functions.
 
-## （二）客户端函数列表
+## (二) Client Function List
 
-| **函数标识（fun）**               | **功能描述（displayName）** | **界面显示标签（label）** | **详细说明**                       | **上下文类型（ActionContextTypeEnum）**  |
-| :-------------------------------- | :-------------------------- | :------------------------ | :--------------------------------- | :--------------------------------------- |
-| `$$internal_ValidateForm`         | 表单数据校验                | 校验                      | 用于验证表单输入数据的合法性       | `CONTEXT_FREE`<br/>（无特定上下文依赖）  |
-| `$$internal_GotoListTableRouter`  | 返回上一个页面              | 返回                      | 实现页面导航，返回至前一个页面     | `CONTEXT_FREE`                           |
-| `$$internal_ReloadData`           | 刷新数据                    | 刷新                      | 重新加载当前页面或表格中的数据     | `CONTEXT_FREE`                           |
-| `$$internal_GotoM2MListDialog`    | 打开 M2M 表格的创建弹窗     | 添加                      | 弹出用于创建多对多关系数据的窗口   | `CONTEXT_FREE`                           |
-| `$$internal_GotoO2MCreateDialog`  | 打开 O2M 表格的创建弹窗     | 创建                      | 弹出用于创建一对多关系数据的窗口   | `CONTEXT_FREE`                           |
-| `$$internal_GotoO2MEditDialog`    | 打开 O2M 表格的编辑弹窗     | 编辑                      | 弹出用于编辑一对多关系数据的窗口   | `SINGLE`<br/>（作用于单行数据）          |
-| `$$internal_DeleteOne`            | 删除绑定的表格的选中数据    | 删除                      | 删除表格中选中的单行或多行数据     | `SINGLE_AND_BATCH`<br/>（单 / 多行通用） |
-| `$$internal_DialogSubmit`         | 弹窗提交数据                | 确定                      | 提交弹窗内填写的数据并执行相关操作 | `SINGLE_AND_BATCH`                       |
-| `$$internal_DialogCancel`         | 关闭弹窗                    | 取消                      | 关闭当前打开的弹窗                 | `CONTEXT_FREE`                           |
-| `$$internal_GotoListImportDialog` | 打开导入弹窗                | 导入                      | 弹出用于数据导入操作的窗口         | `CONTEXT_FREE`                           |
-| `$$internal_GotoListExportDialog` | 打开导出弹窗                | 导出                      | 弹出用于数据导出操作的窗口         | `SINGLE_AND_BATCH`                       |
-| `$$internal_BatchUpdate`          | 批量更新                    | 确定                      | 对选中的多行数据进行批量修改       | `SINGLE`                                 |
-| `$$internal_AddOne`               | 添加一行数据                | 插入                      | 在表格或列表中新增一行数据         | `CONTEXT_FREE`                           |
-| `$$internal_CopyOne`              | 复制一行数据                | 复制                      | 复制当前选中的单行数据             | `SINGLE`                                 |
-
-
-**说明**：这些预定义函数适用于常见业务场景，`fun`作为函数唯一标识用于程序调用；`displayName`为功能描述，辅助开发者理解逻辑；`label`是用户界面显示的按钮 / 操作名称；`ActionContextTypeEnum`则明确了函数适用的数据操作范围（如单行、多行或无限制）。
+| **Function Identifier (fun)**               | **Function Description (displayName)** | **Interface Display Label (label)** | **Detailed Description**                       | **Context Type (ActionContextTypeEnum)**  |
+| :------------------------------------------ | :------------------------------ | :---------------------------- | :----------------------------------------- | :--------------------------------------- |
+| `$$internal_ValidateForm`         | Form Data Validation            | Validate                      | Validates the legitimacy of form input data       | `CONTEXT_FREE`<br/> (No specific context dependency)  |
+| `$$internal_GotoListTableRouter`  | Return to Previous Page          | Return                      | Implements page navigation to return to the previous page     | `CONTEXT_FREE`                           |
+| `$$internal_ReloadData`           | Refresh Data                    | Refresh                     | Reloads data in the current page or table     | `CONTEXT_FREE`                           |
+| `$$internal_GotoM2MListDialog`    | Open M2M Table Creation Pop-up   | Add                         | Pops up a window for creating many-to-many relationship data   | `CONTEXT_FREE`                           |
+| `$$internal_GotoO2MCreateDialog`  | Open O2M Table Creation Pop-up   | Create                      | Pops up a window for creating one-to-many relationship data   | `CONTEXT_FREE`                           |
+| `$$internal_GotoO2MEditDialog`    | Open O2M Table Edit Pop-up       | Edit                        | Pops up a window for editing one-to-many relationship data   | `SINGLE`<br/> (Acts on single-row data)          |
+| `$$internal_DeleteOne`            | Delete Selected Data in Bound Table    | Delete                      | Deletes selected single or multiple rows of data in the table     | `SINGLE_AND_BATCH`<br/> (Universal for single/multiple rows) |
+| `$$internal_DialogSubmit`         | Submit Data in Pop-up            | Confirm                     | Submits data filled in the pop-up and executes related operations | `SINGLE_AND_BATCH`                       |
+| `$$internal_DialogCancel`         | Close Pop-up                    | Cancel                      | Closes the currently opened pop-up window                 | `CONTEXT_FREE`                           |
+| `$$internal_GotoListImportDialog` | Open Import Pop-up              | Import                      | Pops up a window for data import operations         | `CONTEXT_FREE`                           |
+| `$$internal_GotoListExportDialog` | Open Export Pop-up              | Export                      | Pops up a window for data export operations         | `SINGLE_AND_BATCH`                       |
+| `$$internal_BatchUpdate`          | Batch Update                    | Confirm                     | Batch modifies selected multiple rows of data       | `SINGLE`                                 |
+| `$$internal_AddOne`               | Add a Row of Data               | Insert                      | Adds a new row of data in the table or list         | `CONTEXT_FREE`                           |
+| `$$internal_CopyOne`              | Copy a Row of Data              | Copy                        | Copies the currently selected single row of data             | `SINGLE`                                 |
 
 
-
+**Description**: These predefined functions are suitable for common business scenarios. `fun` serves as the unique identifier for program calls; `displayName` is the functional description to help developers understand the logic; `label` is the button/operation name displayed in the user interface; and `ActionContextTypeEnum` clarifies the applicable data operation scope of the function (e.g., single row, multiple rows, or no restriction).

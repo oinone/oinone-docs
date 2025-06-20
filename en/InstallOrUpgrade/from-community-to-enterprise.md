@@ -1,5 +1,5 @@
 ---
-title: Switching from Community Edition to Enterprise Edition
+title: From Community to Enterprise
 index: true
 category:
   - Installation and Upgrade

@@ -1,5 +1,5 @@
 ---
-title: Instructions for Using Expressions
+title: Expressions Guide
 index: true
 category:
   - User Manual

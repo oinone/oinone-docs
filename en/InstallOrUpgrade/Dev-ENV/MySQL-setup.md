@@ -1,5 +1,5 @@
 ---
-title: MySQL Installation and Precautions
+title: MySQL Setup
 index: true
 category:
   - Installation and Upgrade

@@ -1,77 +1,77 @@
 ---
-title: 开发规范：Function、Action函数使用规范
+title: Development Specifications：Function and Action Function Usage Specifications
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 12
 ---
 
-# 一、函数的定义规范
-Function 的定义需要严格遵循 Oinone 的规范：
+# 1. Function Definition Specifications
+The definition of Function must strictly follow Oinone's specifications:
 
-+ `@Action`是指页面上有按钮展示的方法，所有`@Action`注解的方法都是需要在权限处设置权限才能访问的。Action 背后都对应一个 Function。
-+ `@Function`是 Oinone 的可管理的执行逻辑，是无处不在的。
-+ 如果只是查询，不需要在页面有按钮，定义为`@Function`就可以了。
++ `@Action` refers to a method displayed as a button on the page, and all methods with the `@Action` annotation require permission settings to be accessible. Each Action corresponds to a Function.
++ `@Function` is a manageable execution logic in Oinone, which is ubiquitous.
++ If it is just a query and does not require a button on the page, define it as `@Function`.
 
-## （一）覆写常用默认数据管理器定义标准：
+## (1) Overwrite Common Default Data Manager Definition Standards:
 ```java
-@Action.Advanced(name = FunctionConstants.create, managed = true)//默认取的是方法名
-@Action(displayName = "确定", summary = "添加", bindingType = ViewTypeEnum.FORM)
+@Action.Advanced(name = FunctionConstants.create, managed = true)//The default is the method name
+@Action(displayName = "Confirm", summary = "Add", bindingType = ViewTypeEnum.FORM)
 public AuthRole create(AuthRole data) {}
 
 @Action.Advanced(type = FunctionTypeEnum.UPDATE, managed = true, invisible = ExpConstants.idValueNotExist)
-@Action(displayName = "更新", label = "确定", summary = "修改", bindingType = ViewTypeEnum.FORM)
+@Action(displayName = "Update", label = "Confirm", summary = "Modify", bindingType = ViewTypeEnum.FORM)
 public AuthRole update(AuthRole data) {}
 
 @Action.Advanced(type = FunctionTypeEnum.DELETE, managed = true)
-@Action(displayName = "删除", label = "删除", contextType = ActionContextTypeEnum.SINGLE_AND_BATCH)
+@Action(displayName = "Delete", label = "Delete", contextType = ActionContextTypeEnum.SINGLE_AND_BATCH)
 @Function.fun(FunctionConstant.deleteWithFieldBatch)
 public List<AuthRole> delete(List<AuthRoe> dataList) {}
 
-@Function.Advanced(displayName = "查询角色列表", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_PAGE, managed = true)
+@Function.Advanced(displayName = "Query Role List", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_PAGE, managed = true)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
 public Pagination<AuthRole> queryPage(Pagination<AuthRole> page, IWrapper<AuthRole> queryWrapper) {
-    //注意方法名和入参名称必须和平台保持一致
+    //Note that the method name and parameter name must be consistent with the platform
 }
 
-@Function.Advanced(displayName = "查询指定角色", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_ONE, managed = true)
+@Function.Advanced(displayName = "Query Specified Role", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_ONE, managed = true)
 @Function.fun(FunctionConstants.queryByEntity)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
 public AuthRole queryOne(AuthRole query) {
-    //注意方法名和入参名称必须和平台保持一致
+    //Note that the method name and parameter name must be consistent with the platform
 }
 ```
 
-## （二）自定义函数定义标准
+## (2) Custom Function Definition Standards
 ```java
-@Action(displayName = "启用")
+@Action(displayName = "Enable")
 @Action.Advanced(type = FunctionTypeEnum.UPDATE)
 public Teacher dataStatus(Teacher data) {}
 
-@Function(displayName = "构造", openLevel = FunctionOpenEnum.API)
+@Function(displayName = "Construct", openLevel = FunctionOpenEnum.API)
 @Function.Advanced(type = FunctionTypeEnum.QUERY)
 public Teacher constructAll(Teacher data) {}
 ```
 
-:::info 注意：
+:::info Note:
 
-1. 覆写常用默认数据管理器 Function 定义需要严格按照以上函数定义，包括出入参名字定义、注解定义。定义错误会导致 gql 请求报错或者找不到函数。
-2. 定义`@Action`或者`@Function`时，函数出入参必须是当前类注解定义的`@Model.model（）`的模型，或者被该模型字段全包含的的模型，比如它的父模型。
-3. 页面调用使用的`@Action`或者`@Function`方法，出入参必须是 oinone 的对象，且不能是基础的 java 类型，因为 oinone 的对象有元数据信息，这样才能完成前后端之间的自动交互
-4. `managed = true`定义当前函数为数据管理函数。它只有在重写平台默认数据管理器时需要使用。
-5. `@Function.fun()`代表定义函数编码，不可更改，默认与方法名称相同。同一个模型 Action 内不允许有两个相同的函数编码。
-6. 不要使用 set、get、unset 作为函数方法名的开头，不要使用 toString 作为函数方法名。
-7. 传输模型没有默认的数据管理器，所以不能定义数据管理函数。
+1. Overwriting the definition of common default data manager Function must strictly follow the above function definition, including the definition of input and output parameter names and annotation definitions. Incorrect definitions will cause GQL requests to report errors or fail to find functions.
+2. When defining `@Action` or `@Function`, the input and output parameters of the function must be the model annotated by `@Model.model()` of the current class, or a model fully containing the fields of the current model, such as its parent model.
+3. For `@Action` or `@Function` methods called by the page, the input and output parameters must be oinone objects, not basic Java types, because oinone objects have metadata information, which can complete the automatic interaction between the front end and the back end.
+4. `managed = true` defines the current function as a data management function. It is only used when overwriting the platform default data manager.
+5. `@Function.fun()` represents the definition of the function code, which cannot be changed and defaults to the same as the method name. Two functions with the same code are not allowed in the same model Action.
+6. Do not use set, get, or unset as the beginning of the function method name, and do not use toString as the function method name.
+7. The transmission model does not have a default data manager, so data management functions cannot be defined.
 
 :::
 
-# 二、@Action 和 @Function 注解使用约定
-+ 重写内置数据管理器动作和函数的，应与平台注册方式完全保持一致。以下属性可根据需要进行修改：（必须）
+# 2. @Action and @Function Annotation Usage Conventions
++ For overriding built-in data manager actions and functions, they should be completely consistent with the platform registration method. The following attributes can be modified as needed: (must)
     - `@Function.Advanced#displayName`
     - `@Function#openLevel`
-+ 自定义方法不要与内置数据管理器中定义的动作和函数重名。（必须）
-+ @Action和@Function注解不要混合使用。（自定义方法必须）
-+ 如无特殊必要，请不要使用如下属性修改函数定义：（自定义方法必须）
++ Custom methods should not have the same name as the actions and functions defined in the built-in data manager. (must)
++ Do not mix `@Action` and `@Function` annotations. (must for custom methods)
++ Unless necessary, do not use the following attributes to modify function definitions: (must for custom methods)
     - `@Function#name`
     - `@Function.fun#value`
     - `@Function.Advanced#managed`
@@ -82,19 +82,18 @@ public Teacher constructAll(Teacher data) {}
     - `@Action.Advanced#args`
     - `@Action.Advanced#managed`
     - `@Action.Advanced#language`
-+ 自定义方法在选择注册动作或函数时，应按照如下规则进行判断：（必须）
-    - 若该方法通过用户行为触发的，应注册为动作。
-    - 若该方法通过“入口”进行控制的，应注册为函数。
-+ 自定义方法若注册为动作时，应按照如下规则进行定义：
-    - 使用`@Action.Advanced#type`属性定义函数类型，默认为 UPDATE。混合操作的动作应明确列出所有类型。（必须）
-    - 使用`@Action#displayName`属性定义动作功能名称。如无特殊必要，同一模型下的所有动作名称不要重复。页面展示名称重复的，可使用`@Action#label`属性定义展示名称。（必须）
-    - 使用`@Action#summary`属性定义动作功能简要描述。
-    - 使用`@Action#contextType`属性定义动作上下文类型，默认为 SINGLE。（必须）
-    - 使用`@Action#bindingType`属性定义动作所在视图类型，默认为 TABLE。（必须）
-+ 自定义方法若注册为函数时，应按照如下规则进行定义：
-    - 使用`@Function.Advanced#type`属性定义函数类型，默认为 UPDATE。混合操作的函数应明确列出所有类型。（必须）
-    - 使用`@Function#openLevel`属性定义函数开放级别。（必须）
-    - 使用`@Function.Advanced#displayName`属性定义函数功能名称。如无特殊必要，同一命名空间下的所有函数名称不要重复。（必须）
-    - 使用`@Function#summary`属性定义函数功能简要描述。
-    - 使用`@Function.Advanced#category`属性定义函数分类。
-
++ When selecting to register actions or functions for custom methods, the following rules should be followed for judgment: (must)
+    - If the method is triggered by user behavior, it should be registered as an action.
+    - If the method is controlled by an "entry", it should be registered as a function.
++ When registering custom methods as actions, the following rules should be followed for definition:
+    - Use the `@Action.Advanced#type` attribute to define the function type, which defaults to UPDATE. Actions with mixed operations should clearly list all types. (must)
+    - Use the `@Action#displayName` attribute to define the action function name. Unless necessary, do not repeat the names of all actions under the same model. If the display names on the page are repeated, use the `@Action#label` attribute to define the display name. (must)
+    - Use the `@Action#summary` attribute to define a brief description of the action function.
+    - Use the `@Action#contextType` attribute to define the action context type, which defaults to SINGLE. (must)
+    - Use the `@Action#bindingType` attribute to define the view type where the action is located, which defaults to TABLE. (must)
++ When registering custom methods as functions, the following rules should be followed for definition:
+    - Use the `@Function.Advanced#type` attribute to define the function type, which defaults to UPDATE. Functions with mixed operations should clearly list all types. (must)
+    - Use the `@Function#openLevel` attribute to define the function open level. (must)
+    - Use the `@Function.Advanced#displayName` attribute to define the function function name. Unless necessary, do not repeat the names of all functions under the same namespace. (must)
+    - Use the `@Function#summary` attribute to define a brief description of the function function.
+    - Use the `@Function.Advanced#category` attribute to define the function category.

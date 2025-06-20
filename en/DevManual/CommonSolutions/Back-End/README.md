@@ -1,17 +1,17 @@
 ---
-title: 后端
+title: Backend
 index: false
 category:
-  - 研发手册
-  - 常见解决方案
-  - 后端
+  - Development Manual
+  - Common Solutions
+  - Backend
 dir:
   link: false
   order: 2
 prev:
-  text: 路由扩展：添加新路由，比如覆盖默认的登录页
+  text: Routing Extension:Add New Routes, Such as Overriding the Default Login Page
   link: /en/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
 next:
-  text: 依赖配置：如何添加数据可视化运行时依赖
+  text: Dependency Configuration:How to Add Data Visualization Runtime Dependencies
   link: /en/DevManual/CommonSolutions/Back-End/dependency-configuration-how-to-add-data-visualization-dependencies.md
 ---

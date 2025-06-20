@@ -2,27 +2,27 @@
 title: ES API
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 后端API
+  - Backend API
   - Advance API
 order: 9
 
 ---
-# 一、概述
+# 一、Overview
 
-`EnhanceModel` 是 Oinone 框架中实现 **读写分离** 的核心抽象基类，提供将数据写入数据库（DB）同时通过 Elasticsearch（ES）进行高效检索的能力。通过继承 `EnhanceModel`，业务模型可自动获得以下特性：
+`EnhanceModel` is the core abstract base class for implementing **read-write separation** in the Oinone framework, providing the capability to write data to the database (DB) while enabling efficient retrieval through Elasticsearch (ES). By inheriting from `EnhanceModel`, business models automatically gain the following features:
 
-+ **数据同步**：`synchronize()` 方法实现 DB 到 ES 的双向同步
-+ **搜索能力**：`search()` 方法提供基于 ES 的全文检索与复杂查询
-+ **逻辑删除**：内置 `isDeleted` 字段支持软删除模式
-+ **扩展性**：支持自定义数据同步逻辑和搜索算法
++ **Data Synchronization**: The `synchronize()` method implements two-way synchronization between DB and ES
++ **Search Capability**: The `search()` method provides full-text search and complex queries based on ES
++ **Logical Deletion**: Built-in `isDeleted` field supports soft deletion mode
++ **Extensibility**: Supports custom data synchronization logic and search algorithms
 
-# 二、EnhanceModel 使用指南
+# 二、EnhanceModel Usage Guide
 
-## （一）读写分离实现
+## (一) Read-Write Separation Implementation
 
-### 1、继承 EnhanceModel
+### 1. Inherit from EnhanceModel
 
 ```java
 @Model(displayName = "测试EnhanceModel")
@@ -32,31 +32,31 @@ order: 9
 public class TestModelEnhance extends TestModel {
     public static final String MODEL_MODEL="test.TestModelEnhance";
 
-    // 模型字段定义
+    // Model field definitions
     @Field(displayName = "nick")
     private String nick;
 
 }
 ```
 
-### 2、核心方法重写
+### 2. Override Core Methods
 
-| **方法**                                                    | **作用**                                                     | **重写场景**                                                 |
+| **Method**                                                    | **Function**                                                     | **Override Scenario**                                                 |
 | ----------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `synchronize()` | 数据同步逻辑（DB→ES） | 自定义数据转换逻辑 |
-| `search()`      | ES 查询逻辑      | 自定义搜索条件/高亮/排序 |
-| `queryPage()`   | 分页查询入口     | 增强模型需通过 Action 类重写 |
+| `synchronize()` | Data synchronization logic (DB→ES) | Custom data conversion logic |
+| `search()`      | ES query logic      | Custom search conditions/highlighting/sorting |
+| `queryPage()`   | Pagination query entry     | Enhanced models need to override through the Action class |
 
 
-### 3、@Enhance 注解详解
+### 3. @Enhance Annotation Details
 
 ```java
 @Enhance(
-    index = "custom_index",    // 自定义索引名
-    shards = "5",              // 分片数
-    replicas = "1",            // 副本数
-    increment = IncrementEnum.OPEN,  // 开启增量同步
-    reAlias = true,            // 全量同步后更新别名
+    index = "custom_index",    // Custom index name
+    shards = "5",              // Number of shards
+    replicas = "1",            // Number of replicas
+    increment = IncrementEnum.OPEN,  // Enable incremental synchronization
+    reAlias = true,            // Update alias after full synchronization
     analyzers = {
         @Analyzer(
             value = "content",
@@ -67,7 +67,7 @@ public class TestModelEnhance extends TestModel {
 )
 ```
 
-## （二）自定义同步逻辑
+## (二) Custom Synchronization Logic
 
 ```java
 @Override
@@ -81,7 +81,7 @@ public List<TestModelEnhance> synchronize(List<TestModelEnhance> data) {
 }
 ```
 
-## （三）自定义搜索逻辑
+## (三) Custom Search Logic
 
 ```java
 @Override
@@ -95,12 +95,12 @@ public List<TestModelEnhance> synchronize(List<TestModelEnhance> data) {
     managed = true
 )
 public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IWrapper<TestModelEnhance> wrapper) {
-    // 处理自行加工page、wrapper参数
+    // Process and customize page and wrapper parameters
     return ((ElasticSearchApi)CommonApiFactory.getApi(ElasticSearchApi.class)).search(page, queryWrapper);
 }
 ```
 
-## （四）使用原生elasticsearchClient
+## (四) Using Native elasticsearchClient
 
 ```java
     @Override
@@ -212,12 +212,12 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
     }
 ```
 
-# 三、基础配置
+# 三、Basic Configuration
 
-## （一）启动工程加入相关依赖包
+## (一) Add Relevant Dependencies to the Startup Project
 
-+ 启动工程需要指定ES客户端包版本，不指定版本会隐性依赖顶层spring-boot依赖管理指定的低版本
-+ 启动工程加入pamris-channel和pamirs-sql-record的工程依赖
++ The startup project needs to specify the version of the ES client package. Not specifying the version will implicitly depend on the lower version specified by the top-level spring-boot dependency management.
++ The startup project adds project dependencies of pamris-channel and pamirs-sql-record.
 
 ```java
 <dependency>
@@ -241,9 +241,9 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 </dependency>
 ```
 
-## （二）api工程加入相关依赖包
+## (二) Add Relevant Dependencies to the API Project
 
-在XXX-api中增加入pamirs-channel-api的依赖
+Add the dependency of pamirs-channel-api to XXX-api.
 
 ```xml
 <dependency>
@@ -252,53 +252,52 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 </dependency>
 ```
 
-## （三）YAML文件配置
+## (三) YAML File Configuration
 
-与此主题相关的文档可在 [增强模型配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#十二-增强模型配置-pamirs-channel)和[数据记录配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#十-数据记录配置-pamirs-record-sql) 中找到。
+Documentation related to this topic can be found in [Enhanced Model Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十二-增强模型配置-pamirs-channel) and [Data Record Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十-数据记录配置-pamirs-record-sql).
 
-在启动工程的application.yml文件中增加配置pamirs.boot.modules增加channel和sql_record，即在启动模块中增加channel和sql_record模块。同时注意es的配置，是否跟es的服务一致
+Add the configuration pamirs.boot.modules in the application.yml file of the startup project to include channel and sql_record, that is, add the channel and sql_record modules to the startup module. At the same time, pay attention to the ES configuration to ensure it matches the ES service.
 
 ```yaml
 pamirs:
   record:
     sql:
-      #改成自己本地路径(或服务器路径)
+      # Change to your local path (or server path)
       store: /Users/oinone/record
     boot:
       modules:
         - channel
-        ## 确保也安装了sql_record
+        ## Ensure sql_record is also installed
         - sql_record
   elastic:
     url: 127.0.0.1:9200
 ```
 
-## （四）项目的模块增加模块依赖
+## (四) Add Module Dependencies to the Project's Modules
 
-xxxModule的定义类增加对ChannelModule的依赖
+The definition class of xxxModule adds a dependency on ChannelModule.
 
 ```java
 @Module(dependencies = {ChannelModule.MODULE_MODULE})
 ```
 
-# 四、常见问题
+# 四、Common Issues
 
-引入Oinone的搜索（即Channel模块）后，因错误的配置、缺少配置或者少引入一些Jar包，会出现一些报错。
+After introducing Oinone's search (i.e., the Channel module), errors may occur due to incorrect configuration, missing configuration, or missing introduction of some Jar packages.
 
-## （一）启动报类JCTree找不到
+## (一) Class JCTree Not Found During Startup
 
-### 1、具体现象
+### 1. Specific Phenomenon
 
-启动过程可能会出现报错：
+An error may occur during startup:
 java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExpression
 
-### 2、产生原因
+### 2. Cause of Occurrence
 
-+ 引入Channel模块后，启动过程中会扫描Class包找寻Enhance的注解，Pamirs底层有使用到jdk的tools中的类，
-  com/sun/tools/javac/tree/JCTree$JCExpression
-+ 特定版本的jdk可能会缺少tools.jar导致启动失败
++ After introducing the Channel module, the startup process will scan the Class package to find Enhance annotations. The Pamirs底层 uses classes in jdk's tools, such as com/sun/tools/javac/tree/JCTree$JCExpression.
++ Specific versions of jdk may lack tools.jar, leading to startup failure.
 
-### 3、具体报错
+### 3. Specific Error
 
 ```powershell
 at org.springframework.boot.loader.Launcher.launch(Launcher.java:107) [pamirs-venus-boot.jar:na]
@@ -323,26 +322,26 @@ Caused by: java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExp
     at pro.shushi.pamirs.channel.core.init.ChannelSystemBootAfterInit.init(ChannelSystemBootAfterInit.java:31)
 ```
 
-### 4、解决办法
+### 4. Solution
 
-#### 方式一：配置channel的扫描路径【推荐】
+#### Method 1: Configure the Channel's Scanning Path [Recommended]
 
 ```yaml
 pamirs:
   channel:
     packages:
-      - com.xxx.xxx # 扫描增强模型 定义类在非pro.shushi.pamirs包下需要配置
+      - com.xxx.xxx # Configure if the enhanced model definition class is in a non-pro.shushi.pamirs package
 ```
 
-#### 方式二：使用Oracle版本的jdk
+#### Method 2: Use Oracle Version of JDK
 
-确保jdk的lib目录，tools.jar有com/sun/tools/javac/tree/JCTree对应的类
+Ensure that the jdk's lib directory and tools.jar have the corresponding classes for com/sun/tools/javac/tree/JCTree.
 
-## （二）启动报类JsonProvider找不到
+## (二) Class JsonProvider Not Found During Startup
 
-### 1、具体报错
+### 1. Specific Error
 
-如果启动报错信息如下：
+If the startup error message is as follows:
 
 ```powershell
 Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
@@ -352,11 +351,11 @@ Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
     at java.net.URLClassLoader.defineClass(URLClassLoader.java:467) ~[na:1.8.0_181]
 ```
 
-### 2、产生原因
+### 2. Cause of Occurrence
 
-项目中只引入了`pamirs-channel-core`，但未引入`elasticsearch`相关的包
+The project only introduces `pamirs-channel-core` but does not introduce `elasticsearch`-related packages.
 
-### 3、解决办法
+### 3. Solution
 
 ```xml
 <dependency>
@@ -370,4 +369,3 @@ Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
   <version>2.1.1</version>
 </dependency>
 ```
-

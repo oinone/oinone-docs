@@ -1,34 +1,35 @@
 ---
-title: 路由扩展：添加新路由，比如覆盖默认的登录页
+title: Route Extension:Adding New Routes, such as Overriding the Default Login Page
 index: true
 category:
-   - 前端
+   - Frontend
 order: 15
 next:
-  text: 依赖配置：如何添加数据可视化运行时依赖
+  text: Dependency Configuration:How to Add Data Visualization Runtime Dependencies
   link: /en/DevManual/CommonSolutions/Back-End/dependency-configuration-how-to-add-data-visualization-dependencies.md
 ---
-# 一、问题概述
-在 Oinone 平台内置路由中，默认了三种路由
+
+# I. Problem Overview
+The Oinone platform has three default routes built into its routing system:
 
 ```plain
-/login //默认登录页
-/page //默认主逻辑页
-/ //根页面，会自动发起查询优先级最高的应用，并跳转
+/login // Default login page
+/page // Default main logic page
+/ // Root page, which automatically initiates the highest-priority application query and redirects
 ```
 
-在实际的业务迭代中，我们通常有以下三种需求：
+During actual business iterations, we typically encounter three needs:
 
-1. 我要覆盖默认的登录页，页面我不喜欢，登录逻辑满足不了；
-2. 我要在平台上加个帮助中心；
-3. 这个路径不符合我司规范，我要自定义加前缀
+1. Override the default login page due to dissatisfaction with its design or login logic;
+2. Add a help center to the platform;
+3. Customize the path prefix to meet company specifications.
 
-接下来，我将在 Oinone 平台中满足以上场景
+Below, we will address these scenarios within the Oinone platform.
 
-# 二、覆盖默认路径
-以登录页为例
+# II. Overriding Default Paths
+Take the login page as an example.
 
-1. 在项目目录`src/main.ts`下，添加自定义 router
+1. Add a custom router in the project's `src/main.ts` file:
 
 ```typescript
 import 'ant-design-vue/dist/antd.css';
@@ -53,51 +54,50 @@ VueOioProvider(
       callback: interceptor
     },
     browser: {
-      title: 'Oinone - 构你想象!',
-      favicon: 'https://pamirs.oss-cn-hangzhou.aliyuncs.com/pamirs/image/default_favicon.ico&#039;
+      title: 'Oinone - Build Your Imagination!',
+      favicon: 'https://pamirs.oss-cn-hangzhou.aliyuncs.com/pamirs/image/default_favicon.ico'
     },
-    router: [{ path: '/login', widget: 'CustomLogin'}] // 用CustomLogin覆盖默认登录页
+    router: [{ path: '/login', widget: 'CustomLogin'}] // Override default login page with CustomLogin
   },
   []
 );
 ```
 
-2. 定义`CustomLogin`, 定义方式同书籍中的自定义表单和自定义表格类似，精简版的代码为：
+2. Define `CustomLogin` using the same approach as custom forms and tables in the documentation. The simplified code is as follows:
 
 ```typescript
 import { RouterWidget, SPI } from "@kunlun/dependencies";
 
 
-@SPI.ClassFactory(RouterWidget.Token({ widget: 'CustomLogin' })) // SPI注册，router得widget和此处的widgetshi对应的
+@SPI.ClassFactory(RouterWidget.Token({ widget: 'CustomLogin' })) // SPI registration: the router's widget must match this widget
   export class CustomLogin extends RouterWidget {
   public initialize(props) {
     super.initialize(props);
-    this.setComponent('定义的vue文件');
+    this.setComponent('Defined Vue file');
     return this;
   }
 }
 ```
 
-# 三、增加新的访问路径
-同覆盖登录页
+# III. Adding New Access Paths
+The process is similar to overriding the login page.
 
-1. 在`router`中增加路由
+1. Add routes to the `router` configuration:
 
 ```typescript
 router: [{ path: '/login', widget: 'CustomLogin'}, { path: '/help', widget: 'Help'}]
 ```
 
-2. 定义`Help`，同覆盖登录页
+2. Define the `Help` component, similar to overriding the login page.
 
-# 四、定义个性化路径
-需要再所有访问路径前统一加标识，比如添加 Oinone，在`项目目录下`新建`.env`文件(若存在，可以复用)，在 env 文件中添加：
+# IV. Defining Personalized Paths
+To add a unified identifier (e.g., "Oinone") to all access paths, create a `.env` file in the project directory (reuse if existing) and add:
 
 ```plain
 BASE_PATH=/Oinone
 ```
 
-修改后重启工程即可，访问`/Oinone/login`即可
+After modifying, restart the project. Access `\Oinone\login` to use the new path.
 
-# 五、结语
-以上就是 Oinone 平台路由的扩展能力，在 Oinone 平台中，通过自定义 Router 达到扩展路由的能力，并通过采用 env 等通用配置的能力，解决批量修改路由的目的。
-
+# V. Conclusion
+The above demonstrates the route extension capabilities of the Oinone platform. By customizing the Router and using common configurations like env, we can extend routes and efficiently modify path structures in batches.

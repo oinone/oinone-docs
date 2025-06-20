@@ -1,20 +1,21 @@
 ---
-title: 开发中：获取当前登录用户信息
+title: How to Obtain Current Logged-in User Information During Development
 index: true
 category:
-  - 常见问题（faq）
+  - FAQ (Frequently Asked Questions)
 order: 8
 ---
-# 一、从session中获取用户ID和用户名
+
+# I. Get User ID and User Name from Session
 `PamirsSession.getUserId()`
 
 `PamirsSession.getUserName()`
 
-# 二、如果需要获取更多的用户信息，则需要查表
+
+# II. If More User Information Is Needed, Query the Database
 ```java
-// 带缓存，30秒被动失效（建议使用）
+// With caching, passive expiration in 30 seconds (recommended)
 PamirsUser user = UserInfoCache.queryUserById(PamirsSession.getUserId());
-// 不带缓存，从DB中获取
+// Without caching, get from DB
 PamirsUser dbUser = new PamirsUser().queryById(PamirsSession.getUserId());
 ```
-

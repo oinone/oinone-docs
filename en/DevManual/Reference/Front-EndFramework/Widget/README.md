@@ -1,10 +1,10 @@
 ---
-title: 组件（Widget）
+title: Widget
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 前端API
+  - Front-End API
   - Widget
 dir:
   link: true
@@ -13,38 +13,38 @@ next:
   text: component-lifecycle
   link: /en/DevManual/Reference/Front-EndFramework/Widget/component-lifecycle.md
 ---
-Oinone Kunlun 框架使用自研的 Widget 框架。它是一个声明式组件系统，其设计大致受到 `Vue` 和 `React` 的启发。组件通过 `TypeScript Class` 定义，并通过 `SPI` 装饰器进行组件注册。Widget 具备完整的与 Vue 框架类似的 `组件生命周期`、`属性`、`响应式属性`、`计算属性`等等。
+The Oinone Kunlun framework uses a self-developed Widget framework. It is a declarative component system whose design is roughly inspired by `Vue` and `React`. Components are defined through `TypeScript Class` and registered via `SPI` decorators. Widgets feature a complete `component lifecycle`, `properties`, `reactive properties`, `computed properties`, etc., similar to the Vue framework.
 
-:::warning 提示：
+:::warning Note:
 
-值的注意的是，文章中有一部分使用了 `Widget` 作为组件，有一部分使用了 `Component` 作为组件。在 Widget 框架中，这两个概念是有明确区分的。
+It is important to note that part of the article uses `Widget` as the component, and part uses `Component` as the component. In the Widget framework, these two concepts are clearly distinguished.
 
-+ Widget 组件：指通过 `TypeScript Class` 定义的组件。
-+ Component 组件：与 `TypeScript Class` 绑定的实际渲染使用的组件。在使用 `Vue` 框架实现的组件中，通常指 `Vue` 组件。
++ Widget component: Refers to components defined through `TypeScript Class`.
++ Component component: The actual rendering component bound to `TypeScript Class`. In components implemented using the `Vue` framework, it usually refers to `Vue` components.
 
 :::
 
-# 一、在 DSL 中使用 Widget 组件
+# I. Using Widget Components in DSL
 
-你可以通过 Widget 框架提供的 `XML` 标签来使用 `Widget` 组件：
+You can use `Widget` components through the `XML` tags provided by the Widget framework:
 
 ```xml
 <field data="code" widget="Input" />
 ```
 
-此示例表明，Widget 组件只需通过 XML 模板进行定义并使用即可。
+This example shows that Widget components only need to be defined and used through XML templates.
 
-不仅如此，Widget 组件提供了一系列属性，这些属性仍然是通过 XML 模板进行定义并使用的：
+Moreover, Widget components provide a series of attributes, which are still defined and used through XML templates:
 
 ```xml
 <field data="code" widget="Input" maxLength="100" />
 ```
 
-此示例属性将限制输入框可输入的 `字符数` 在 `100` 位以内。
+This example attribute will limit the number of `characters` that can be entered in the input box to within `100`.
 
-# 二、组件注册
+# II. Component Registration
 
-以字段组件为例，我们可以通过 SPI 注册一个特殊的输入框，用它输入的内容将以红色字体展示：（这就是我们在 [Customize a field widget](/en/DevManual/OperationGuide/customize-a-field-widget.md#三、创建一个新的表单字段组件) 章节中的示例）
+Taking field components as an example, we can register a special input box via SPI, where the entered content will be displayed in red font: (This is the example in the [Customize a field widget](/en/DevManual/OperationGuide/customize-a-field-widget.md#三、创建一个新的表单字段组件) section)
 
 ```typescript
 @SPI.ClassFactory(
@@ -59,70 +59,70 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 }
 ```
 
-# 三、响应式变量
+# III. Reactive Variables
 
-我们可以在 Widget 组件中定义一个属性，并通过 `@Widget.Reactive` 装饰器修饰，以此来定义一个响应式变量：
+We can define a property in a Widget component and decorate it with the `@Widget.Reactive` decorator to define a reactive variable:
 
 ```typescript
 @Widget.Reactive()
 public title: string | undefined;
 ```
 
-这相当于 Vue 框架中使用 `ref` 方法定义变量：
+This is equivalent to defining a variable using the `ref` method in the Vue framework:
 
 ```typescript
 const title = ref<string | undefined>();
 ```
 
-也可以这样给变量赋予一个默认值：
+We can also assign a default value to the variable:
 
 ```typescript
 @Widget.Reactive()
-public title: string = '标题';
+public title: string = 'Title';
 ```
 
-这相当于 Vue 框架中使用 `ref` 方法定义变量并赋予默认值：
+This is equivalent to defining a variable with a default value using the `ref` method in the Vue framework:
 
 ```typescript
-const title = ref<string>('标题');
+const title = ref<string>('Title');
 ```
 
-# 四、计算属性
+# IV. Computed Properties
 
-我们可以在 Widget 组件中定义一个 `get` 方法属性，并通过 `@Widget.Reactive` 装饰器修饰，以此来定义一个计算属性：
+We can define a `get` method property in a Widget component and decorate it with the `@Widget.Reactive` decorator to define a computed property:
 
 ```typescript
 @Widget.Reactive()
 public get title() {
-  return this.getDsl().title || '标题';
+  return this.getDsl().title || 'Title';
 }
 ```
 
-这相当于 Vue 框架中使用 `computed` 方法定义计算属性：
+This is equivalent to defining a computed property using the `computed` method in the Vue framework:
 
 ```typescript
-const title = computed(() => this.getDsl().title || '标题');
+const title = computed(() => this.getDsl().title || 'Title');
 ```
 
-:::danger 警告
+:::danger Warning
 
-这段代码并不能在 Vue 组件中正常运行，它仅仅作为一个示例内容展示在这里。
-
-:::
-
-:::warning 提示
-
-Widget 框架目前还不支持同时定义 `set` 方法属性，计算属性在 Widget 框架中目前都是 `只读` 的。因为它们最终都通过 `props` 传递到 Vue 组件中进行使用，众所周知，Vue 组件的 `props` 是不允许被修改的。
+This code cannot run normally in a Vue component; it is only shown here as an example.
 
 :::
 
-# 五、方法
+:::warning Tip
 
-我们可以在 Widget 组件中定义一个方法，并通过 `@Widget.Method` 装饰器修饰，以此将其传入 Vue 组件的 `props` 进行使用：
+The Widget framework currently does not support defining `set` method properties at the same time. Computed properties in the Widget framework are currently all `read-only`. This is because they are ultimately passed to Vue components via `props`, and as is well known, `props` in Vue components are not allowed to be modified.
+
+:::
+
+# V. Methods
+
+We can define a method in a Widget component and decorate it with the `@Widget.Method` decorator to pass it into the `props` of a Vue component for use:
 
 ```typescript
 @Widget.Reactive()
-public title: string = '标题';
+public title: string = 'Title';
 
 @Widget.Method()
 public setTitle(title: string) {
@@ -130,13 +130,13 @@ public setTitle(title: string) {
 }
 ```
 
-# 六、Provide / Inject
+# VI. Provide / Inject
 
-我们可以在 Widget 组件使用 `@Widget.Provide` 和 `@Widget.Inject` 装饰器的组合，在父子组件之间进行属性和方法的传递。
+We can use a combination of the `@Widget.Provide` and `@Widget.Inject` decorators in Widget components to pass properties and methods between parent and child components.
 
-例如：对于最小宽度的属性设计，我们可以在父组件为每一个子组件配置最小宽度，也可以在子组件直接配置最小宽度，并且子组件的值优先于父组件的值。我们可以这样实现：
+For example, for the design of the minimum width property, we can configure the minimum width for each child component in the parent component, or directly configure the minimum width in the child component, with the child component's value taking precedence over the parent component's value. We can implement this as follows:
 
-**父组件**：
+**Parent Component**:
 
 ```typescript
 @Widget.Provide()
@@ -146,7 +146,7 @@ public get minWidth(): number | null | undefined {
 }
 ```
 
-**子组件**：
+**Child Component**:
 
 ```typescript
 @Widget.Inject('minWidth')
@@ -163,17 +163,17 @@ public get minWidth(): number | null | undefined {
 }
 ```
 
-:::warning 提示
+:::warning Tip
 
-Widget 组件使用的 Provide / Inject 是基于 Vue 实现的。它与 Vue 依赖注入的原理和运行结果是完全一样。
+The Provide / Inject used in Widget components is implemented based on Vue. It is exactly the same as Vue's dependency injection in terms of principles and operating results.
 
-更多 Provide / Inject 的内容请参考：[Vue 依赖注入](https://cn.vuejs.org/guide/components/provide-inject)
+For more content on Provide / Inject, please refer to: [Vue Dependency Injection](https://cn.vuejs.org/guide/components/provide-inject)
 
 :::
 
-# 七、Watch
+# VII. Watch
 
-我们可以在 Widget 组件中使用 `@Widget.Watch` 装饰器修饰方法，用于实现对响应式属性变化的监听。例如在表单中我们可以监听编码变化进行一些处理：
+We can use the `@Widget.Watch` decorator to modify methods in Widget components to implement listening for changes in reactive properties. For example, in a form, we can listen for changes in the code and perform some processing:
 
 ```typescript
 @Widget.Watch('formData.code')
@@ -182,7 +182,7 @@ protected watchCode(newVal: string | null | undefined, oldVal: string | null | u
 }
 ```
 
-与 Vue 的 watch 方法类似，@Widget.Watch 同样提供了 `deep` 和 `immediate` 属性支持。例如在表单中监听任意数据变化进行一些处理：
+Similar to Vue's watch method, `@Widget.Watch` also provides support for `deep` and `immediate` properties. For example, listening for any data changes in a form and performing some processing:
 
 ```typescript
 @Widget.Watch('formData', { deep: true, immediate: true })
@@ -191,25 +191,25 @@ protected watchFormData(newVal: ActiveRecord | undefined, oldVal: ActiveRecord |
 }
 ```
 
-:::warning 提示
+:::warning Tip
 
-@Widget.Watch 仅提供了基于响应式属性的监听，层级可通过 “.” 分隔深入到对象的某个属性。
+`@Widget.Watch` only provides listening based on reactive properties, and the hierarchy can be deepened to a certain property of an object through dot (.) separation.
 
-更多关于 Vue Watch 的内容请参考：[Vue Watch](https://cn.vuejs.org/api/reactivity-core.html#watch)
+For more information on Vue Watch, please refer to: [Vue Watch](https://cn.vuejs.org/api/reactivity-core.html#watch)
 
 :::
 
-# 八、SubContext / BehaviorSubContext
+# VIII. SubContext / BehaviorSubContext
 
-我们可以在 Widget 组件中方便的使用基于 `rxjs` 实现的 `发布/订阅` 机制。下面让我们来看一下 `发布/订阅` 机制在 Widget 组件中的使用方法。
+We can conveniently use the `publish/subscribe` mechanism implemented based on `rxjs` in Widget components. Let's take a look at how the `publish/subscribe` mechanism is used in Widget components.
 
-在 `stream.ts` 定义 `Symbol` 常量，用于声明可观测者对应的 `key`，它会分别在 “发布方” 和 “订阅方” 使用：
+Define a `Symbol` constant in `stream.ts` to declare the `key` corresponding to the observer, which will be used in both the "publisher" and "subscriber":
 
 ```typescript
 const subContextSymbol = Symbol('subContext');
 ```
 
-先定义一个 “订阅方” 组件（`Widget1.ts`）：
+First, define a "subscriber" component (`Widget1.ts`):
 
 ```typescript
 @Widget.(subContextSymbol)
@@ -222,7 +222,7 @@ protected doSubject() {
 }
 ```
 
-再定义一个 “发布方” 组件（`Widget2.ts`）：
+Then define a "publisher" component (`Widget2.ts`):
 
 ```typescript
 @Widget.SubContext(subContextSymbol)
@@ -233,25 +233,25 @@ protected doSomething() {
 }
 ```
 
-当我们在 `Widget2.ts` 组件中调用 `doSomething` 方法时，`Widget1.ts` 组件中对应的订阅方法就会执行，并且可以获取到最新的值。
+When we call the `doSomething` method in the `Widget2.ts` component, the corresponding subscription method in the `Widget1.ts` component will be executed, and the latest value can be obtained.
 
-`BehaviorSubContext` 与 `SubContext` 在使用方式上几乎完全一样，唯一的区别是，在首次订阅时，会触发一次 `订阅函数` 。这个特性类似于 `watch` 的 `immediate` 属性的功能。
+`BehaviorSubContext` is almost identical to `SubContext` in usage, with the only difference being that when subscribing for the first time, it will trigger a `subscription function`. This feature is similar to the functionality of the `immediate` property in `watch`.
 
-:::warning 提示：
+:::warning Tip:
 
-`发布/订阅` 机制是 Widget 组件提供的 `点对点（P2P）` 通信方式。它无需关心组件层级问题，只要 “发布方” 和 “订阅方” 在一个页面中同时存在，就可以实现两个组件之间的通信。
+The `publish/subscribe` mechanism is a `point-to-point (P2P)` communication method provided by Widget components. It does not need to care about component hierarchy issues. As long as the "publisher" and "subscriber" exist simultaneously on a page, communication between the two components can be achieved.
 
-更多关于 rxjs 的内容请参考：[RxJS](https://cn.rx.js.org/manual/index.html)
+For more information on rxjs, please refer to: [RxJS](https://cn.rx.js.org/manual/index.html)
 
 :::
 
-# 九、继承和多态
+# IX. Inheritance and Polymorphism
 
-Widget 框架使用 `TypeScript Class` 定义组件，天生具备 `面向对象` 的三大特性：封装、继承和多态。
+The Widget framework uses `TypeScript Class` to define components, inherently possessing the three major characteristics of `object-oriented programming`: encapsulation, inheritance, and polymorphism.
 
-通过 `继承` 可以获取 `父组件` 的全部属性、方法与功能，同时支持通过 `重载（Override）` 机制进行定制化开发。这正是 Widget 框架区别于其他前端框架的核心特性之一。
+Through `inheritance`, you can obtain all the properties, methods, and functions of the `parent component`, while supporting customized development through the `override` mechanism. This is one of the core features that distinguish the Widget framework from other front-end frameworks.
 
-以 `RedInput` 组件为例，若需调整输入内容的字体样式，而内置组件未提供此功能，可以通过 `继承` 父组件 `FormStringFieldSingleWidget` ，在保留原有功能的基础上，针对性地扩展字体样式定制逻辑。
+Taking the `RedInput` component as an example, if you need to adjust the font style of the input content and the built-in component does not provide this functionality, you can `inherit` from the parent component `FormStringFieldSingleWidget` to extend the font style customization logic while retaining the original functionality.
 
 ```typescript
 @SPI.ClassFactory(
@@ -266,13 +266,8 @@ export class FormStringRedInputWidget extends FormStringFieldSingleWidget {
 }
 ```
 
-:::warning 提示
+:::warning Tip
 
-令人遗憾的是，Vue 组件并不具备很好的继承机制，有时为了在内置组件上进行少量修改，我们不得不将内置的 Vue 组件全部复制到项目中加以修改。
+Regrettably, Vue components do not have a well-supported inheritance mechanism. Sometimes, to make minor modifications to built-in components, we have to copy the entire built-in Vue component into the project and modify it.
 
 :::
-
-
-
-
-

@@ -1,21 +1,21 @@
 ---
-title: 项目整合：Oinone项目引入Nacos作为注册中心
+title: Project Integration:Introducing Nacos as the Registration Center in Oinone Projects
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 74
 ---
 
-# 一、概述
-:::info 注意：
+# I. Overview
+:::info Note:
 
-+ Oinone 项目的默认 dubbo 注册中心为 zk, 实际项目中有可能要求用 Nacos 作注册中心。
-+ Oinone 默认引入的 nacos-client-1.4.1，低版本不支持认证配置；该客户端版本支持 Nacos 服务1.x的和2.x的版本
++ The default Dubbo registration center for Oinone projects is ZK, but in actual projects, Nacos may be required as the registration center.
++ Oinone defaults to introducing nacos-client-1.4.1. This low version does not support authentication configuration; this client version supports both Nacos service 1.x and 2.x versions.
 
 :::
 
-# 二、项目中增加依赖
-项目主 pom 引入依赖。
+# II. Adding Dependencies to the Project
+Introduce dependencies in the project's main pom.
 
 ```xml
 <dependency>
@@ -23,25 +23,23 @@ order: 74
     <artifactId>dubbo-registry-nacos</artifactId>
     <version>2.7.22</version>
 </dependency>
-
 ```
 
-项目的 boot 工程的 pom 引入依赖
+Introduce dependencies in the pom of the project's boot engineering.
 
 ```xml
 <dependency>
     <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-registry-nacos</artifactId>
 </dependency>
-
 ```
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/nacos-registry-1024x392-20250530144825300.png)
 
-# 三、配置修改
-修改 dubbo 服务注册到 nacos
+# III. Configuration Modification
+Modify Dubbo service registration to Nacos.
 
-bootstrap.yml 文件的配置，或者 application.yml 文件中修改 dubbo 的配置
+Configure in the bootstrap.yml file or modify Dubbo configuration in the application.yml file.
 
 ```yaml
 dubbo:
@@ -51,20 +49,20 @@ dubbo:
   registry:
     id: pamirs-demo-registry
     address: nacos://192.168.0.118:8848
-    username: nacos # 认证的用户名(根据情况自行修改)，未开启认证可以不需要配置username和password
-    password: nacos # 认证的密码(根据情况自行修改)，未开启认证可以不需要配置username和password
-    # dubbo使用nacos的注册中心往配置中心写入配置关闭配置
+    username: nacos # Username for authentication (modify according to the situation), no need to configure username and password if authentication is not enabled
+    password: nacos # Password for authentication (modify according to the situation), no need to configure username and password if authentication is not enabled
+    # Configuration to close writing Dubbo configuration to the configuration center when using Nacos registration center
     use-as-metadata-center: false
     use-as-config-center: false
   config-center:
     address: nacos://192.168.0.118:8848
-    username: nacos # 认证的用户名(根据情况自行修改)，未开启认证可以不需要配置username和password
-    password: nacos # 认证的密码(根据情况自行修改)，未开启认证可以不需要配置username和password
+    username: nacos # Username for authentication (modify according to the situation), no need to configure username and password if authentication is not enabled
+    password: nacos # Password for authentication (modify according to the situation), no need to configure username and password if authentication is not enabled
   metadata-report:
-    failfast: false # 关闭错误上报的功能
+    failfast: false # Turn off the error reporting function
     address: nacos://192.168.0.118:8848
-    username: nacos # 认证的用户名(根据情况自行修改)，未开启认证可以不需要配置username和password
-    password: nacos # 认证的密码(根据情况自行修改)，未开启认证可以不需要配置username和password
+    username: nacos # Username for authentication (modify according to the situation), no need to configure username and password if authentication is not enabled
+    password: nacos # Password for authentication (modify according to the situation), no need to configure username and password if authentication is not enabled
   protocol:
     name: dubbo
     port: -1
@@ -75,28 +73,28 @@ dubbo:
     subscribed-services:
 ```
 
-# 四、Oinone构建分布式项目一些注意点
-## （一）Oinone远程服务发布范围
-泛化服务范围，可选值：module、namespace
-module：按模块维度发布远程服务
-namespace：按 Fun 的 namespace 维度发布远程服务
-默认按 module 维度发布服务
+# IV. Notes on Building Distributed Projects with Oinone
+## (一) Service Publication Scope of Oinone Remote Services
+Generalized service scope, optional values: module, namespace
+module: Publish remote services by module dimension
+namespace: Publish remote services by Fun's namespace dimension
+By default, services are published by module dimension.
 
 ```yaml
 pamirs:
   distribution:
     service:
-     #serviceScope: 可选值namespace、module
+     #serviceScope: optional values namespace, module
      serviceScope: module
 ```
 
-## （二）关闭Dubbo服务注册元数据上报日志
+## (二) Turning Off Dubbo Service Registration Metadata Reporting Logs
 ```yaml
 logging:
  level:
    root: info
    pro.shushi.pamirs.framework.connectors.data.mapper.PamirsMapper: error
-   pro.shushi.pamirs.framework.connectors.data.mapper.GenericMapper: error # mybatis sql日志
+   pro.shushi.pamirs.framework.connectors.data.mapper.GenericMapper: error # mybatis sql logs
    RocketmqClient: error
    org.apache.dubbo.registry.zookeeper.ZookeeperRegistry: error
    org.apache.dubbo.registry.integration.RegistryDirectory: error
@@ -110,16 +108,16 @@ logging:
    org.apache.dubbo.metadata.store.nacos.NacosMetadataReport: off
 ```
 
-## （三）Naocs配置列表出现多余配置
-dubbo 集成 nacos 注册中心，会出现多余的配置，详细参考：
-配置列表会自动创建很多无关的配置: [https://github.com/apache/dubbo/issues/6645](https://github.com/apache/dubbo/issues/6645)
-配置列表出现多余的配置：[https://github.com/alibaba/nacos/issues/8843](https://github.com/alibaba/nacos/issues/8843)
+## (三) Redundant Configurations Appearing in the Nacos Configuration List
+When Dubbo integrates with the Nacos registration center, redundant configurations will appear. For detailed references:
+Many irrelevant configurations will be automatically created in the configuration list: [https://github.com/apache/dubbo/issues/6645](https://github.com/apache/dubbo/issues/6645)
+Redundant configurations appear in the configuration list: [https://github.com/alibaba/nacos/issues/8843](https://github.com/alibaba/nacos/issues/8843)
 
-按照下面的配置可以将其关闭
+They can be turned off according to the following configuration.
 
-:::info 注意：
+:::info Note:
 
-主要是这三项配置 use-as-config-center， use-as-metadata-center，metadata-report.failfast），已生成的配置需要手动删除掉。
+It is mainly these three configurations (use-as-config-center, use-as-metadata-center, metadata-report.failfast), and the generated configurations need to be manually deleted.
 
 :::
 
@@ -134,7 +132,7 @@ dubbo:
    address: nacos://192.168.0.129:8848
    username: nacos
    password: nacos
-   # dubbo使用nacos的注册中心往配置中心写入配置关闭配置
+   # Configuration to close writing Dubbo configuration to the configuration center when using Nacos registration center
    use-as-metadata-center: false
    use-as-config-center: false
  config-center:
@@ -142,7 +140,7 @@ dubbo:
    username: nacos
    password: nacos
  metadata-report:
-   failfast: false # 关闭错误上报的功能
+   failfast: false # Turn off the error reporting function
    address: nacos://192.168.0.129:8848
    username: nacos
    password: nacos
@@ -156,5 +154,4 @@ dubbo:
    subscribed-services:
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
-
+Note: For more YAML configurations, please go to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) for consultation.

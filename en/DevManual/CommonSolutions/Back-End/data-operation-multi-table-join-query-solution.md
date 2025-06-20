@@ -1,21 +1,21 @@
 ---
-title: 数据操作：多表关联查询方案
+title: Data Operation:Multi-table Join Query Solutions
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 30
 ---
 
-在部分业务场景中，我们需要同时查询两张表的数据，此时就必须借助联表查询。
+In some business scenarios, we need to query data from two tables simultaneously, which requires the use of join queries.
 
-:::info 目标：在本节结束时，应当能够进行多表关联查询
+:::info Objective: By the end of this section, you should be able to perform multi-table join queries
 
 :::
 
-# 一、场景描述
-场景：在 A 模型对应的页面上，其查询条件里涵盖了 B 模型的字段。
+# 1. Scenario Description
+Scenario: On the page corresponding to Model A, the query conditions include fields from Model B.
 
- A 模型
+Model A
 
 ```java
 @Model.model(YesOne.MODEL_MODEL)
@@ -29,14 +29,14 @@ public class YesOne extends IdModel {
     private Long yesId;
 
     @Field.String
-    @Field(displayName = "名字")
+    @Field(displayName = "Name")
     private String name;
 
     @Field.String
-    @Field(displayName = "科目名字")
+    @Field(displayName = "Subject Name")
     private String professionalName;
 
-    @Field(displayName = "关联YesTwo")
+    @Field(displayName = "Associated YesTwo")
     @Field.many2one
     @Field.Relation(relationFields = {"yesId"},referenceFields = {"id"})
     private YesTwo yesTwo;
@@ -44,7 +44,7 @@ public class YesOne extends IdModel {
 }
 ```
 
-B模型
+Model B
 
 ```java
 @Model.model(YesTwo.MODEL_MODEL)
@@ -54,21 +54,21 @@ public class YesTwo extends IdModel {
     public static final String MODEL_MODEL = "top.YesTwo";
 
     @Field.Integer
-    @Field(displayName = "科目id")
+    @Field(displayName = "Subject ID")
     private Long professionalId;
 
     @Field.String
-    @Field(displayName = "科目名字")
+    @Field(displayName = "Subject Name")
     private String professionalName;
 
 }
 ```
 
-# 二、使用 wrapper 的方式查询
-通过 B 模型的查询条件查询出符合条件的所有数据 ID，再根据这个 ID 去 A模型里面查询出所需的数据。
+# 2. Query Using Wrapper
+Query all data IDs that meet the conditions through the query conditions of Model B, then use these IDs to query the required data in Model A.
 
 ```java
-@Function.Advanced(displayName = "查询列表", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_PAGE, managed = true)
+@Function.Advanced(displayName = "Query List", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_PAGE, managed = true)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
 public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> queryWrapper) {
 
@@ -89,14 +89,14 @@ public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> qu
 }
 ```
 
-# 三、使用 mapper的方式查询
-利用 SQL 的方式去直接查询出结果。使用联表查询的方式查询
+# 3. Query Using Mapper
+Use SQL to directly query results, employing join query methods.
 
 ```java
 @Autowired
 private YesOneQueryMapper yesOneQueryMapper;
 
-@Function.Advanced(displayName = "查询列表", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_PAGE, managed = true)
+@Function.Advanced(displayName = "Query List", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_PAGE, managed = true)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
 public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> queryWrapper) {
 
@@ -122,7 +122,7 @@ public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> qu
 }
 ```
 
-接口
+Interface
 
 ```java
 package pro.shushi.pamirs.top.core.service;
@@ -165,6 +165,4 @@ public interface YesOneQueryMapper {
     Long queryTotal(@Param("yesOne") String yesOne, @Param("yesTwo") String yesTwo, @Param("whereConditions") String whereConditions);
 
 }
-
 ```
-

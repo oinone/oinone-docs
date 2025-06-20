@@ -1,5 +1,5 @@
 ---
-title: Git Installation and Precautions
+title: Git Setup
 index: true
 category:
   - Installation and Upgrade

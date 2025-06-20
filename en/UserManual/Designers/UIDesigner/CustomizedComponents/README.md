@@ -1,5 +1,5 @@
 ---
-title: Custom Components
+title: Customized Components
 index: true
 category:
   - User Manual

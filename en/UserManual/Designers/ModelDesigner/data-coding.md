@@ -1,5 +1,5 @@
 ---
-title: Data Encoding
+title: Data Coding
 index: true
 category:
   - User Manual

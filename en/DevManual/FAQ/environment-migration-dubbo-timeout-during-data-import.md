@@ -1,21 +1,21 @@
 ---
-title: 环境迁移：导入设计数据时dubbo超时导入失败
+title: Environment Migration:Dubbo Timeout Causes Import Failure When Importing Design Data
 index: true
 category:
-  - 常见问题（faq）
+  - Frequently Asked Questions (faq)
 order: 10
 ---
-# 一、问题描述
-在本地启动导入设计数据的工程时，会出现 dubbo 调用超时导致设计数据无法完整导入的问题。
+# 一、Problem Description
+When starting the project for importing design data locally, a Dubbo call timeout occurs, causing the design data to fail to import completely.
 
 ```plain
 org.apache.dubbo.remoting.TimeoutException
 ```
 
-# 二、产生原因
-pom 中的包依赖出现问题，导致没有使用正确的远程服务。
+# 二、Root Causes
+There is an issue with the package dependencies in the pom, leading to the incorrect remote service being used.
 
-本地可能出现的异常报错堆栈信息如下：
+The possible exception error stack information locally is as follows:
 
 ```dart
 Exception in thread "fixed-1-thread-10" PamirsException level: ERROR, code: 10100025, type: SYSTEM_ERROR, msg: 函数执行错误, extra:, extend: null
@@ -85,15 +85,15 @@ Caused by: org.apache.dubbo.remoting.TimeoutException: Waiting server-side respo
   ... 45 more
 ```
 
-# 三、正确情况
-导入设计数据时，应使用`pro.shushi.pamirs.metadata.manager.core.api.IUiDesignerInstaller`接口直接调用远程服务，不应涉及方法内部的远程调用逻辑。
+# 三、Expected Behavior
+When importing design data, the `pro.shushi.pamirs.metadata.manager.core.api.IUiDesignerInstaller` interface should be used to directly call the remote service, without involving remote call logic within the method.
 
-# 四、解决方案
-检查界面设计器相关依赖，是否仅使用了 api 包。
+# 四、Solutions
+Check whether the dependencies related to the UI designer only use the api package.
 
-:::danger 警告：
+:::danger Warning:
 
-注释表示必须移除的依赖项
+Comments indicate dependencies that must be removed
 
 :::
 
@@ -120,11 +120,11 @@ Caused by: org.apache.dubbo.remoting.TimeoutException: Waiting server-side respo
 <!-- </dependency>-->
 ```
 
-在yaml配置文件中，检查是否移除了ui_designer相关模块的启动配置。
+In the yaml configuration file, check whether the startup configurations of ui_designer-related modules have been removed.
 
-:::danger 警告：
+:::danger Warning:
 
-注释表示必须移除的依赖项
+Comments indicate dependencies that must be removed
 
 :::
 
@@ -136,4 +136,3 @@ pamirs:
       # - ui_designer_data_widget
       # - ui_designer_biz_widget
 ```
-

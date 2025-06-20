@@ -1,126 +1,126 @@
 ---
-title: 通用工具 API（Tools API）
+title: Tools API
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 后端API
+  - Backend API
   - Advance API
 order: 10
 next:
-  text: 框架概览（Framework Overview）
+  text: Framework Overview
   link: /en/DevManual/Reference/Front-EndFramework/framework-overview.md
 ---
-Oinone 业务常用工具类 API 文档指南
+Oinone Business Common Tool Class API Documentation Guide
 
-# 一、IdGenerator 接口（ID 生成器）
+# 一、IdGenerator Interface (ID Generator)
 
-## （一）类概述
+## (一) Class Overview
 
 ```java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface IdGenerator<T>
 ```
 
-+ **功能**：定义通用 ID 生成策略的 SPI 接口，支持不同类型 ID 的生成逻辑
-+ **泛型参数**：`T` 表示生成的 ID 类型
-+ **扩展机制**：通过`@SPI`注解支持服务发现，默认使用 Spring 服务加载工厂
++ **Function**: Defines an SPI interface for general ID generation strategies, supporting generation logic for different types of IDs
++ **Generic Parameter**: `T` represents the type of the generated ID
++ **Extension Mechanism**: Supports service discovery through the `@SPI` annotation, using the Spring service loading factory by default
 
-## （二）方法列表
+## (二) Method List
 
 ### 1、generate(String keyGenerator)
 
-+ **功能**：生成指定类型的 ID
-+ **参数**：
-  - `keyGenerator` - 生成 ID 的键（通常用于区分不同生成策略）
-+ **返回值**：`T` - 生成的 ID 对象
-+ **示例代码**：**java**
++ **Function**: Generates an ID of the specified type
++ **Parameters**:
+  - `keyGenerator` - The key for generating the ID (usually used to distinguish different generation strategies)
++ **Return Value**: `T` - The generated ID object
++ **Sample Code**: **java**
 
 ```java
-//根据模型生成id
+// Generate ID based on the model
 Long generate = (Long) Spider.getDefaultExtension(IdGenerator.class).generate(PamirsTableInfo.fetchKeyGenerator(TestModel.MODEL_MODEL));
 ```
 
-# 二、UidGenerator 接口（唯一 ID 生成器）
+# 二、UidGenerator Interface (Unique ID Generator)
 
-## （一）类概述
+## (一) Class Overview
 
 ```java
 @SPI
 public interface UidGenerator
 ```
 
-+ **功能**：生成 64 位唯一 ID，并支持解析 ID 的组成元素（如时间戳、工作节点、序列号等）
-+ **扩展点**：可通过 SPI 实现不同的唯一 ID 生成算法（如雪花算法变种）
++ **Function**: Generates 64-bit unique IDs and supports parsing the composition elements of the ID (such as timestamp, work node, sequence number, etc.)
++ **Extension Points**: Different unique ID generation algorithms (such as snowflake algorithm variants) can be implemented through SPI
 
-## （二）方法列表
+## (二) Method List
 
 ### 1、getUID()
 
-+ **功能**：获取唯一 ID
-+ **返回值**：`long` - 64 位唯一 ID
-+ **异常**：`UidGenerateException` - ID 生成失败时抛出
-+ **示例代码**：**java**
++ **Function**: Obtains a unique ID
++ **Return Value**: `long` - 64-bit unique ID
++ **Exception**: `UidGenerateException` - Thrown when ID generation fails
++ **Sample Code**: **java**
 
 ```java
-//生成id
+// Generate ID
 Long l = Long.valueOf(UidGeneratorFactory.getCachedUidGenerator().getUID());
 ```
 
 ### 2、parseUID(long uid)
 
-+ **功能**：解析 UID 的组成元素
-+ **参数**：
-  - `uid` - 待解析的唯一 ID
-+ **返回值**：`String` - 解析后的信息（如`timestamp=1683214567, workerId=1, sequence=123`）
-+ **示例代码**：**java**
++ **Function**: Parses the composition elements of the UID
++ **Parameters**:
+  - `uid` - The unique ID to be parsed
++ **Return Value**: `String` - Parsed information (such as `timestamp=1683214567, workerId=1, sequence=123`)
++ **Sample Code**: **java**
 
 ```java
 String parseResult = UidGeneratorFactory.getCachedUidGenerator().parseUID(1234567890L);
-System.out.println("UID解析结果: " + parseResult);
+System.out.println("UID Parsing Result: " + parseResult);
 ```
 
-# 三、SequenceGenerator 接口文档
+# 三、SequenceGenerator Interface Documentation
 
-## （一）类概述
+## (一) Class Overview
 
-`SequenceGenerator` 是一个用于生成各种类型序列的 SPI 接口，支持多种序列生成策略，包括自增流水号、日期流水号、UUID 等。该接口通过 SPI 机制实现可插拔，默认使用 Spring 服务加载工厂。
+`SequenceGenerator` is an SPI interface for generating various types of sequences, supporting multiple sequence generation strategies, including auto-incrementing serial numbers, date serial numbers, UUIDs, etc. The interface is pluggable through the SPI mechanism, using the Spring service loading factory by default.
 
-**包路径**：`pro.shushi.pamirs.meta.api.core.compute.systems.type.gen`
-**接口定义**：
+**Package Path**: `pro.shushi.pamirs.meta.api.core.compute.systems.type.gen`
+**Interface Definition**:
 
 ```java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface SequenceGenerator<T>
 ```
 
-**主要功能**：
+**Main Functions**:
 
-+ 支持多种序列生成算法
-+ 可配置的序列生成策略
-+ 生成不同类型的唯一标识符
-+ 提供强有序性保证（如`ORDERLY_SEQ`类型）
++ Supports multiple sequence generation algorithms
++ Configurable sequence generation strategies
++ Generates different types of unique identifiers
++ Provides strong order guarantees (such as `ORDERLY_SEQ` type)
 
-## （二）方法列表
+## (二) Method List
 
 ### 1、`generate(String sequence, String configCode)`
 
-+ **功能**：根据指定的序列生成器类型和配置编码生成序列值。
-+ **参数**：
-  - `sequence` - 序列生成器类型，对应 `SequenceEnum`中的值（如`ORDERLY_SEQ`）
-  - `configCode` - 序列生成配置编码，用于指定具体的生成规则（如`SAMPLE_ORDER_SEQ`）
-+ **返回值**：`T`（泛型，具体类型由实现类决定） - 生成的序列值，可能是字符串、数字或其他类型，取决于具体实现。
-+ **示例代码**：
++ **Function**: Generates a sequence value based on the specified sequence generator type and configuration code.
++ **Parameters**:
+  - `sequence` - Sequence generator type, corresponding to values in `SequenceEnum` (such as `ORDERLY_SEQ`)
+  - `configCode` - Sequence generation configuration code, used to specify specific generation rules (such as `SAMPLE_ORDER_SEQ`)
++ **Return Value**: `T` (generic, specific type determined by the implementation class) - The generated sequence value, which may be a string, number, or other type depending on the specific implementation.
++ **Sample Code**:
 
 ```java
-// 获取序列生成器实例
+// Get the sequence generator instance
 SequenceGenerator<Object> generator = CommonApiFactory.getSequenceGenerator();
 
 
-//在TestModel 模型上，定义编码规则
+// Define the encoding rule on the TestModel model
 @Model.Code(sequence = "DATE_ORDERLY_SEQ",prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
 public class TestModel extends CodeModel {}
-//手动生成code
+// Manually generate the code
 Object codeObj = CommonApiFactory.getSequenceGenerator().generate(SequenceEnum.SEQ,TestModel.MODEL_MODEL);
 String code = TypeUtils.stringValueOf(codeObj);
 
@@ -141,13 +141,13 @@ public class DemoMetadataEditor implements MetaDataEditor {
     }
 
     private void bizSequence(InitializationUtil util) {
-        // 根据自己的业务需求初始化SequenceConfig
-        util.createSequenceConfig("订单编码生成", SeqConstants.SAMPLE_ORDER_SEQ, SequenceEnum.ORDERLY_SEQ, 8)
+        // Initialize the SequenceConfig according to your business needs
+        util.createSequenceConfig("Order Code Generation", SeqConstants.SAMPLE_ORDER_SEQ, SequenceEnum.ORDERLY_SEQ, 8)
                 .setStep(1)
                 .setInitial(80000000L)
                 .setIsRandomStep(false);
-        // 根据自己的业务需求初始化SequenceConfig
-        util.createSequenceConfig("申请单编码生成", SeqConstants.SAMPLE_APPLY_SEQ, SequenceEnum.DATE_SEQ, 4)
+        // Initialize the SequenceConfig according to your business needs
+        util.createSequenceConfig("Application Form Code Generation", SeqConstants.SAMPLE_APPLY_SEQ, SequenceEnum.DATE_SEQ, 4)
                 .setStep(1)
                 .setPrefix("YP")
                 .setInitial(1000L)
@@ -157,52 +157,52 @@ public class DemoMetadataEditor implements MetaDataEditor {
 ```
 
 ```java
-// 生成订单流水号（自增强有序）
+// Generate an auto-incrementing strong ordered order serial number
 Object orderSequence =  CommonApiFactory.getSequenceGenerator().generate(SequenceEnum.ORDERLY_SEQ.value(), SeqConstants.SAMPLE_ORDER_SEQ);
 String orderCode = "ORD" + TypeUtils.stringValueOf(orderSequence);
 
-// 生成日期流水号
+// Generate a date serial number
 Object dateSequence = CommonApiFactory.getSequenceGenerator().generate(SequenceEnum.DATE_SEQ.value(), "CUSTOM_DATE_CONFIG");
 String dateCode = "DT" + TypeUtils.stringValueOf(dateSequence);
 ```
 
-## （三）关联枚举：`SequenceEnum`
+## (三) Associated Enum: `SequenceEnum`
 
-`SequenceEnum` 定义了支持的序列生成器类型，包含多种策略：
+`SequenceEnum` defines the supported sequence generator types, including multiple strategies:
 
 ```java
 public enum SequenceEnum implements IEnum<String> {
-    SEQ("SEQ", "SEQ", "自增流水号"),
-    ORDERLY_SEQ("ORDERLY_SEQ", "ORDERLY_SEQ", "自增强有序流水号"),
-    DATE_SEQ("DATE_SEQ", "DATE_SEQ", "日期流水号"),
-    DATE_ORDERLY_SEQ("DATE_ORDERLY_SEQ", "DATE_ORDERLY_SEQ", "日期强有序流水号"),
-    DATE("DATE", "DATE", "日期"),
+    SEQ("SEQ", "SEQ", "Auto-incrementing Serial Number"),
+    ORDERLY_SEQ("ORDERLY_SEQ", "ORDERLY_SEQ", "Auto-incrementing Strong Ordered Serial Number"),
+    DATE_SEQ("DATE_SEQ", "DATE_SEQ", "Date Serial Number"),
+    DATE_ORDERLY_SEQ("DATE_ORDERLY_SEQ", "DATE_ORDERLY_SEQ", "Date Strong Ordered Serial Number"),
+    DATE("DATE", "DATE", "Date"),
     UUID("UUID", "UUID", "UUID"),
-    DISTRIBUTION("DISTRIBUTION", "分布式ID", "分布式ID");
+    DISTRIBUTION("DISTRIBUTION", "Distributed ID", "Distributed ID");
 }
 ```
 
-# 四、RSQLHelper 类（RSQL 解析工具类）
+# 四、RSQLHelper Class (RSQL Parsing Utility Class)
 
-## （一）类概述
+## (一) Class Overview
 
 ```java
 @Slf4j
 public class RSQLHelper
 ```
 
-+ **功能**：提供 RSQL 表达式的解析、优化、计算及格式转换功能
-+ **特点**：
-  - 支持带模型（ModelConfig）和无模型两种解析模式
-  - 可将 RSQL 转换为 SQL 或其他目标格式
-  - 提供表达式计算功能（判断数据是否匹配 RSQL 条件）
-+ **构造方法**：**java**
++ **Function**: Provides parsing, optimization, calculation, and format conversion functions for RSQL expressions
++ **Features**:
+  - Supports two parsing modes: with model (ModelConfig) and without model
+  - Can convert RSQL to SQL or other target formats
+  - Provides expression calculation functions (judging whether data matches RSQL conditions)
++ **Constructor**: **java**
 
 ```java
-private RSQLHelper() {} // 私有构造，禁止实例化，所有方法均为静态方法
+private RSQLHelper() {} // Private constructor, prohibits instantiation, all methods are static methods
 ```
 
-## （二）核心方法列表
+## (二) Core Method List
 
 ### 1、getRsqlValues (String rsql, Getter<T, ?>... getters)
 
@@ -211,26 +211,26 @@ private RSQLHelper() {} // 私有构造，禁止实例化，所有方法均为�
 public static <T> Map<String, Object> getRsqlValues(String rsql, Getter<T, ?>... getters)
 ```
 
-+ **功能：**
-  - **通过 Lambda 表达式指定目标字段**，从 RSQL 表达式中提取对应字段的取值
-  - 内部使用`LambdaUtil.fetchFieldName`解析 Lambda 表达式，获取字段名
-+ **参数**
-  - `rsql` - RSQL 表达式字符串（如`"name==Alice;age>20"`）
-  - `getters` - 可变参数，Lambda 表达式数组，用于指定需要提取值的字段（如`User::getName`）
-+ 返回值
-  - **类型**：`Map<String, Object>`
-  - **说明**：字段名与对应值的映射，若字段未在 RSQL 中出现或解析失败则不包含该键
-+ **实现逻辑**
-  - 从`getters`中提取目标字段名，存入`HashSet`
-  - 调用无模型解析方式解析 RSQL 表达式，生成语法树根节点
-  - 遍历语法树节点，当节点字段匹配目标字段时，提取其参数值（仅取第一个参数，适用于简单比较场景）
-+ **示例代码：java**
++ **Function**:
+  - **Specifies target fields through Lambda expressions** and extracts the corresponding field values from the RSQL expression
+  - Internally uses `LambdaUtil.fetchFieldName` to parse Lambda expressions and obtain field names
++ **Parameters**:
+  - `rsql` - RSQL expression string (such as `"name==Alice;age>20"`)
+  - `getters` - Variable parameters, Lambda expression array, used to specify fields for which values need to be extracted (such as `User::getName`)
++ **Return Value**:
+  - **Type**: `Map<String, Object>`
+  - **Description**: Mapping of field names to corresponding values. If a field does not appear in the RSQL or parsing fails, the key is not included.
++ **Implementation Logic**:
+  - Extracts target field names from `getters` and stores them in a `HashSet`
+  - Calls the model-free parsing method to parse the RSQL expression and generate a syntax tree root node
+  - Traverses the syntax tree nodes, and when a node field matches the target field, extracts its parameter value (only takes the first parameter, suitable for simple comparison scenarios)
++ **Sample Code: java**
 
 ```java
-// 使用Lambda表达式指定字段
+// Use Lambda expressions to specify fields
 String rsql = "name==Alice;age>=18";
 Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, User::getName, User::getAge);
-// 输出：{name=Alice, age=18}
+// Output: {name=Alice, age=18}
 ```
 
 ### 2、getRsqlValues (String rsql, Set<`String`> fields)
@@ -239,73 +239,73 @@ Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, User::getName, User:
 public static Map<String, Object> getRsqlValues(String rsql, Set<`String`> fields)
 ```
 
-+ **功能：**
-  - **通过字段名集合指定目标字段**，从 RSQL 表达式中提取对应字段的取值
-  - 适用于字段名已知的场景，避免使用 Lambda 表达式的反射开销
-+ **参数**
-  - `rsql` - RSQL 表达式字符串（如`"name==Alice;age>20"`）
-  - `fields` - 需要提取值的字段名集合（如`{"name", "age"}`）
-+ **返回值**
-  - **类型**：`Map<String, Object>`
-  - **说明**：仅包含`fields`中存在且在 RSQL 中出现的字段，值为节点的第一个参数值
-+ **前置条件**
-  - `rsql`非空且格式正确，否则返回空 Map
-  - `fields`非空，否则直接返回空 Map
-+ **示例代码：java**
++ **Function**:
+  - **Specifies target fields through a set of field names** and extracts the corresponding field values from the RSQL expression
+  - Suitable for scenarios where field names are known, avoiding reflection overhead of Lambda expressions
++ **Parameters**:
+  - `rsql` - RSQL expression string (such as `"name==Alice;age>20"`)
+  - `fields` - Set of field names for which values need to be extracted (such as `{"name", "age"}`)
++ **Return Value**:
+  - **Type**: `Map<String, Object>`
+  - **Description**: Only includes fields that exist in `fields` and appear in the RSQL. The value is the first parameter value of the node.
++ **Preconditions**:
+  - `rsql` is non-null and in correct format; otherwise, an empty Map is returned.
+  - `fields` is non-null; otherwise, an empty Map is directly returned.
++ **Sample Code: java**
 
 ```java
 Set<`String`> targetFields = new HashSet<>(Arrays.asList("name", "age"));
 String rsql = "name==Bob;age==25";
 Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, targetFields);
-// 输出：{name=Bob, age=25}
+// Output: {name=Bob, age=25}
 ```
 
-# 五、RsqlParseHelper 类（RSQL 转 SQL 工具类）
+# 五、RsqlParseHelper Class (RSQL to SQL Utility Class)
 
-## （一）类概述
+## (一) Class Overview
 
 ```java
 public class RsqlParseHelper
 ```
 
-+ **功能**：将 RSQL 表达式转换为 SQL WHERE 子句
++ **Function**: Converts RSQL expressions into SQL WHERE clauses
 
-## （二）核心方法列表：
+## (二) Core Method List:
 
 ### 1、parseRsql2Sql(String model, String rsql)
 
-+ **参数**：
-  - `model` - 模型编码
-  - `rsql` - RSQL 表达式
-+ **返回值**：`String` - 对应的 SQL WHERE 子句（如`WHERE name = 'Adamancy' AND age > 18`）
-+ **示例代码**：**java**
++ **Parameters**:
+  - `model` - Model code
+  - `rsql` - RSQL expression
++ **Return Value**: `String` - Corresponding SQL WHERE clause (such as `WHERE name = 'Adamancy' AND age > 18`)
++ **Sample Code**: **java**
 
 ```java
 String sqlWhere = RsqlParseHelper.parseRsql2Sql(TestModel.MODEL_MODEL, "name==Adamancy;age>18");
 String sqlWhere = RsqlParseHelper.parseRsql2Sql(queryWrapper.getModel(), rsql);
 ```
 
-# 六、ObjectUtils 类（对象工具类）
+# 六、ObjectUtils Class (Object Utility Class)
 
-## （一）类概述
+## (一) Class Overview
 
 ```java
 public class ObjectUtils
 ```
 
-+ **功能**：提供对象操作通用工具方法，包括深克隆和值比较
-+ **构造方法**：无（静态工具类）
++ **Function**: Provides general utility methods for object operations, including deep cloning and value comparison
++ **Constructor**: None (static utility class)
 
-## （二）核心方法列表
+## (二) Core Method List
 
 ### 1、clone(T object)
 
-+ **功能**：通过序列化实现对象深克隆
-+ **参数**：
-  - `object` - 待克隆的可序列化对象（`Serializable`）
-+ **返回值**：`T` - 克隆后的新对象
-+ **泛型**：`T extends Serializable`
-+ **示例代码**：**java**
++ **Function**: Implements deep cloning of objects through serialization
++ **Parameters**:
+  - `object` - Serializable object to be cloned (`Serializable`)
++ **Return Value**: `T` - Cloned new object
++ **Generics**: `T extends Serializable`
++ **Sample Code**: **java**
 
 ```java
 User original = new User("Adamancy", 25);
@@ -314,42 +314,42 @@ User cloned = ObjectUtils.clone(original);
 
 ### 2、equals(Object a, Object b)
 
-+ **功能**：安全比较两个对象的值（支持枚举类型特殊处理）
-+ **参数**：
-  - `a`, `b` - 待比较的对象
-+ **返回值**：`Boolean` - 相等返回`true`，否则`false`
-+ **特殊处理**：若对象实现`IEnum`接口，比较其`value()`值
-+ **示例代码**：**java**
++ **Function**: Safely compares the values of two objects (supports special handling of enumeration types)
++ **Parameters**:
+  - `a`, `b` - Objects to be compared
++ **Return Value**: `Boolean` - `true` if equal, otherwise `false`
++ **Special Handling**: If the object implements the `IEnum` interface, compare its `value()` value
++ **Sample Code**: **java**
 
 ```java
 boolean isEqual = ObjectUtils.equals(EnumType.A, EnumType.A); // true
 ```
 
-# 七、PamirsJsonUtils 类（用于前端交互）
+# 七、PamirsJsonUtils Class (For Frontend Interaction)
 
-## （一）类概述
+## (一) Class Overview
 
-`PamirsJsonUtils` 是一个工具类，位于 `pro.shushi.pamirs.framework.orm.json` 包下，主要用于处理 JSON 数据的序列化和反序列化操作。该类基于阿里巴巴的 FastJSON 库，对其进行了封装和定制，提供了一系列便捷的方法，支持自定义解析和序列化配置、过滤器等。
+`PamirsJsonUtils` is a utility class located in the `pro.shushi.pamirs.framework.orm.json` package, mainly used for serialization and deserialization operations of JSON data. The class is based on Alibaba's FastJSON library, which is encapsulated and customized to provide a series of convenient methods, supporting custom parsing and serialization configurations, filters, etc.
 
-## （二）成员变量
+## (二) Member Variables
 
-| **变量名**        | **类型**            | **描述**                                                     |
-| :---------------- | :------------------ | :----------------------------------------------------------- |
-| `parserConfig`    | `ParserConfig`      | 自定义的解析配置，使用 `PamirsParserConfig`<br/> 并注册了 `EnumForNameDeserializer`<br/> 用于枚举类型的反序列化。 |
-| `serializeConfig` | `SerializeConfig`   | 自定义的序列化配置，使用 `PamirsSerializerConfig`<br/> 并注册了 `EnumForNameSerializer`<br/> 用于枚举类型的序列化。 |
-| `defaultFilters`  | `SerializeFilter[]` | 默认的序列化过滤器数组，包含 `BigDecimalSerializeFilter`<br/>、`PreNameSerializeFilter`<br/> 和 `DMapSerializeFilter`<br/>。 |
+| **Variable Name**        | **Type**            | **Description**                                                     |
+| :----------------------- | :------------------ | :----------------------------------------------------------- |
+| `parserConfig`           | `ParserConfig`      | Custom parsing configuration, using `PamirsParserConfig`<br/> and registering `EnumForNameDeserializer`<br/> for deserialization of enumeration types. |
+| `serializeConfig`        | `SerializeConfig`   | Custom serialization configuration, using `PamirsSerializerConfig`<br/> and registering `EnumForNameSerializer`<br/> for serialization of enumeration types. |
+| `defaultFilters`         | `SerializeFilter[]` | Array of default serialization filters, including `BigDecimalSerializeFilter`<br/>, `PreNameSerializeFilter`<br/> and `DMapSerializeFilter`<br/>. |
 
 
-## （三）核心方法列表
+## (三) Core Method List
 
 ### 1、`toJSONString(Object object, SerializerFeature... features)`
 
-  - **功能**：将对象序列化为 JSON 字符串，可指定额外的序列化特性。
-  - **参数**：
-    * `object`：要序列化的对象。
-    * `features`：可变参数，额外的序列化特性。
-  - **返回值**：序列化后的 JSON 字符串。
-  - **示例代码**：
+  - **Function**: Serializes an object into a JSON string, and additional serialization features can be specified.
+  - **Parameters**:
+    * `object`: The object to be serialized.
+    * `features`: Variable parameters, additional serialization features.
+  - **Return Value**: The serialized JSON string.
+  - **Sample Code**:
 
 ```java
 PamirsJsonUtils.toJSONString(nodes,
@@ -357,6 +357,3 @@ PamirsJsonUtils.toJSONString(nodes,
                              SerializerFeature.WriteDateUseDateFormat,
                              SerializerFeature.BrowserCompatible);
 ```
-
-
-

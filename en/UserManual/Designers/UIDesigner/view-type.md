@@ -1,5 +1,5 @@
 ---
-title: View Types
+title: View Type
 index: true
 category:
   - User Manual

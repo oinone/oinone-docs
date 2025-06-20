@@ -1,5 +1,5 @@
 ---
-title: JDK Installation and Precautions
+title: JDK Setup
 index: true
 category:
   - Installation and Upgrade

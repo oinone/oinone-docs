@@ -1,22 +1,22 @@
 ---
-title: 工作流（Workflow）
+title: Workflow
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 标准模块
+  - Standard Modules
 order: 3
 
 ---
-# 一、概述
+# I. Overview
 
-本文将介绍 Oinone 工作流相关 API，旨在增强工作流在运行时的灵活性与可配置性。
+This document introduces the Oinone workflow-related APIs, aiming to enhance the flexibility and configurability of workflows at runtime.
 
-# 二、依赖设置
+# II. Dependency Setup
 
- 工作流运行时需要依赖相关模块
+The workflow runtime requires dependencies on related modules.
 
-## （一）pom.xml依赖说明
+## (一) pom.xml Dependency Description
 
 ```xml
 <dependency>
@@ -45,12 +45,12 @@ order: 3
 </dependency>
 ```
 
-## （二）application.yml配置说明
+## (二) application.yml Configuration Description
 
 ```yaml
 spring:
   rocket-mq:
-  # enabled 为 false情况不用配置
+  # Do not configure when enabled is false
   namesrv-addr: 192.168.6.2:19876
 ...
 
@@ -59,7 +59,7 @@ pamirs:
 
   record:
     sql:
-      #改成自己路径
+      # Modify to your own path
       store: /opt/pamirs/logs
 ...
 
@@ -86,117 +86,117 @@ pamirs:
     enabled: true
     schedule:
       enabled: true
-      # ownSign区分不同应用
+      # ownSign differentiates different applications
       ownSign: demo
     trigger:
       auto-trigger: true
 ```
 
-# 三、工作流API介绍
+# III. Workflow API Introduction
 
-:::warning 提示
+:::warning Note
 
-以下API描述中皆为模型触发工作流，涉及模型为触发工作流模型。
+The following API descriptions all involve models triggering workflows, where the model is the workflow triggering business model.
 
 :::
 
-## （一）工作流人工触发
+## (一) Manual Workflow Triggering
 
-人工触发（手动触发）工作流，用于非自动触发的场景。
+Manually trigger workflows for scenarios that are not automatically triggered.
 
-### 1. 实现手动触发
+### 1. Implement Manual Triggering
 
 ```java
 /**
- * 手动触发
+ * Manual triggering
  * 
- * 代码中<触发模型>需替换为自己的流程触发业务模型
+ * Replace <TriggerModel> in the code with your own process triggering business model
  *
- * @param workflowD WorkflowD 工作流定义
- * @param modelData 用户触发工作流的业务数据
- * @return Boolean 状态
+ * @param workflowD WorkflowD workflow definition
+ * @param modelData Business data for user-triggered workflow
+ * @return Boolean status
  */
 public Boolean startWorkflow(WorkflowD workflowD, IdModel modelData) {
     WorkflowDefinition workflowDefinition = new WorkflowDefinition().queryOneByWrapper(
         Pops.<WorkflowDefinition>lambdaQuery()
         .from(WorkflowDefinition.MODEL_MODEL)
-        .eq(WorkflowD::getModel, <触发模型>.MODEL_MODEL));
-    .eq(WorkflowDefinition::getWorkflowCode, workflowD.getCode())
-    .eq(WorkflowDefinition::getActive, 1)
-    );
+        .eq(WorkflowD::getModel, <TriggerModel>.MODEL_MODEL)
+        .eq(WorkflowDefinition::getWorkflowCode, workflowD.getCode())
+        .eq(WorkflowDefinition::getActive, 1)
+        );
     if (null == workflowDefinition) {
-        // 流程没有运⾏实例
+        // No running instance of the process
         return Boolean.FALSE;
     }
     String model = Models.api().getModel(modelData);
 
-    //⼯作流上下⽂
+    // Workflow context
     WorkflowDataContext wdc = new WorkflowDataContext();
     wdc.setDataType(WorkflowVariationTypeEnum.ADD);
     wdc.setModel(model);
     wdc.setWorkflowDefinitionDefinition(workflowDefinition.parseContent());
     wdc.setWorkflowDefinition(workflowDefinition);
     wdc.setWorkflowDefinitionId(workflowDefinition.getId());
-    // 数据快照
+    // Data snapshot
     IdModel copyData = KryoUtils.get().copy(modelData);
-    // ⼿动触发创建的动作流,将操作⼈设置为当前⽤户,作为流程的发起⼈
+    // Manually triggered action flow, set the operator as the current user as the process initiator
     copyData.setCreateUid(PamirsSession.getUserId());
     copyData.setWriteUid(PamirsSession.getUserId());
     String jsonData = JsonUtils.toJSONString(copyData.get_d());
-    //触发⼯作流 新增时触发-onCreateManual 更新时触发-onUpdateManual
+    // Trigger workflow - onCreateManual for creation, onUpdateManual for update
     Fun.run(WorkflowModelTriggerFunction.FUN_NAMESPACE, "onCreateManual", wdc, "0", jsonData);
     return Boolean.TRUE;
 }
 ```
 
-### 2. 业务调用手动触发
+### 2. Business Invocation for Manual Triggering
 
-代码中根据业务相关性获取工作流定义，这里示例以工作流编码方式查找。
+Obtain the workflow definition based on business relevance in the code. The example below finds it by workflow code.
 
 ```java
-@Action(displayName = "触发工作流")
-public <触发模型> triggerWorkflow(<触发模型> data) {
-    // 示例以工作流编码查找工作流元数据
+@Action(displayName = "Trigger Workflow")
+public <TriggerModel> triggerWorkflow(<TriggerModel> data) {
+    // Example: Find workflow metadata by workflow code
     WorkflowD workflowD = new WorkflowD();
     workflowD.setCode("WF0000000000003000"); 
-    // 调用上文中手动触发工作流实现
+    // Invoke the manual trigger workflow implementation in the above context
     startWorkflow(workflowD, data);
     return data;
 }
 ```
 
-## （二）、自定义流程参与人
+## (二) Customize Process Participants
 
-通过配置函数自定义工作流审批人，实现流程参与人(包含: 转交、抄送、加签、填写、通知人)的运行时灵活配置。
+Customize workflow approvers through configuration functions to achieve flexible runtime configuration of process participants (including transfer, cc, add signature, fill, and notifier).
 
 ```java
 /*
- * 自定义流程参与人
- * @param nodePersonList 当前节点参与人
- * @param nodeModel 当前节点与模型相关元数据
- * @param workflowContext 流程上下文
+ * Customize process participants
+ * @param nodePersonList Current node participants
+ * @param nodeModel Current node and model-related metadata
+ * @param workflowContext Process context
  *
- * @return 自定义流程参与人列表
+ * @return Customized process participant list
  */
 @Function(openLevel = {FunctionOpenEnum.API})
 @Function.Advanced(
     type = FunctionTypeEnum.QUERY,
-    displayName = "自定义流程参与人",
-    // 必须设置函数分组为 CUSTOM_DESIGNER
+    displayName = "Customize Process Participants",
+    // Must set the function group to CUSTOM_DESIGNER
     category = FunctionCategoryEnum.CUSTOM_DESIGNER
 )
 public List<NodePerson> customPerson(List<NodePerson> nodePersonList, NodeModel nodeModel, WorkflowContext workflowContext) {
     List<NodePerson> newNodePersonList = new ArrayList<>();
     String nodeModelId = nodeModel.getId();
     Object nodeData = workflowContext.get(nodeModelId);
-    // 反序列化业务数据
+    // Deserialize business data
     BuissModel inputBuissModel = JsonUtils.parseObject(JsonUtils.toJSONString(nodeData), BUISSMODEL_TR);
-    // 反查业务数据
+    // Reverse query business data
     BuissModel buissModel = new BuissModel().setId(inputBuissModel.getId()).queryById();
     buissModel.fieldQuery(BuissModel::getZmEmployee);
     BxEmployee zmEmployee = buissModel.getZmEmployee();
     if (zmEmployee == null) {
-        log.error("报销单ID:{},名称:{}, 获取证明人为空", buissModel.getId(), buissModel.getName());
+        log.error("Reimbursement form ID:{}, Name:{}, Approver is empty", buissModel.getId(), buissModel.getName());
         return newNodePersonList;
     }
     NodePersonUser personUser = new NodePersonUser();
@@ -213,75 +213,73 @@ public List<NodePerson> customPerson(List<NodePerson> nodePersonList, NodeModel 
 }
 ```
 
+## (三) Custom Pre-Approval Execution Function
 
-
-## （三）、自定义审批前执行函数
-
-使用场景：在流程执行到审批节点任务初始化后，任务尚未开始，需要在初始化任务做一些自定义逻辑处理时，使用该扩展。  
-执行时间：执行节点是在审批待办任务初始化之后，审批执行之前，执行该扩展。
+Use Case: When custom logic processing is required after the approval node task is initialized but before the task starts, this extension is used.  
+Execution Time: This extension is executed after the approval to-do task is initialized and before the approval is executed.
 
 ```java
 /**
- * 审批节点初始化完成，执行前置函数
- * @param approvalNode 审批节点数据
- * @param context 工作流上下文
- * @param taskInstance 工作流待办实例
+ * After the approval node is initialized, execute the pre-function
+ * @param approvalNode Approval node data
+ * @param context Workflow context
+ * @param taskInstance Workflow to-do instance
  */
 @Function(name = "approvalCustomStartFun",openLevel = FunctionOpenEnum.API)
-@Function.Advanced(type= FunctionTypeEnum.QUERY,displayName = "审批执行前置处理",category = FunctionCategoryEnum.CUSTOM_DESIGNER )
+@Function.Advanced(type= FunctionTypeEnum.QUERY,displayName = "Pre-Approval Execution Processing",category = FunctionCategoryEnum.CUSTOM_DESIGNER )
 public void approvalCustomStartFun(ApprovalNode approvalNode, WorkflowContext context, WorkflowTaskInstance taskInstance) {
-    // TODO: 2024/2/23 可以根据结果自己处理业务逻辑
+    // TODO: 2024/2/23 You can process business logic according to the result
 }
 ```
 
-## （四）、自定义填写前执行函数
+## (四) Custom Pre-Fill Execution Function
 
-使用场景：在流程执行到填写节点任务初始化后，任务尚未开始，需要在初始化任务做一些自定义逻辑处理时，使用该扩展  
-执行时间：执行节点是在填写待办任务初始化之后，填写结果执行之前，执行该扩展
+Use Case: When custom logic processing is required after the fill node task is initialized but before the task starts, this extension is used.  
+Execution Time: This extension is executed after the fill to-do task is initialized and before the fill result is executed.
 
 ```java
 /**
- * 填写执行前置处理
+ * Pre-fill execution processing
  * 
- * @param taskInstance 工作流待办实例
- * @param writeNode 填写节点数据
- * @param context 工作流上下文
+ * @param taskInstance Workflow to-do instance
+ * @param writeNode Fill node data
+ * @param context Workflow context
  */
 @Function(name = "writeCustomStartFun", openLevel = FunctionOpenEnum.API)
-@Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "填写执行前置处理", category = FunctionCategoryEnum.CUSTOM_DESIGNER)
+@Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "Pre-Fill Execution Processing", category = FunctionCategoryEnum.CUSTOM_DESIGNER)
 public void writeCustomStartFun(WorkflowTaskInstance taskInstance, WriteNode writeNode, WorkflowContext context) {
-    System.out.println("填写执行前置处理");
+    System.out.println("Pre-fill execution processing");
 }
 ```
 
-## （五）、待办操作提交后执行函数
+## (五) Post-Todo Operation Submission Function
 
-使用场景：在审批或填写的待办任务在操作任务时，需要额外执行一些逻辑，比如当前人提交操作以后需要更新更当前人操作相关的数据库记录。  
-执行时间：执行节点是在保存待办任务之后，异步执行审批或填写结果之前，执行该扩展。
+Use Case: When additional logic needs to be executed during the operation of approval or fill to-do tasks, such as updating database records related to the current user's operation after submission.  
+Execution Time: This extension is executed after saving the to-do task and before asynchronously executing the approval or fill result.
 
 ```java
 /**
- * 转交操作后置函数,再流程设计器中审批和填写节点中 扩展设置-填写操作提交后执行函数选择
+ * Post-transfer operation function, selected in the process designer's approval and fill node extension settings - post-fill operation submission function
  *
- * @param userTask 用户待办记录
- * @return 用户待办
+ * @param userTask User to-do record
+ * @return User to-do
  */
 @Function(name = "transformEndFun",openLevel = FunctionOpenEnum.API)
-@Function.Advanced(type= FunctionTypeEnum.QUERY,displayName = "转交操作后置函数",category = FunctionCategoryEnum.CUSTOM_DESIGNER )
+@Function.Advanced(type= FunctionTypeEnum.QUERY,displayName = "Post-Transfer Operation Function",category = FunctionCategoryEnum.CUSTOM_DESIGNER )
 public WorkflowUserTask transformEndFun(WorkflowUserTask userTask) {
-    //可针对操作类型进行过滤
-    // 转交操作后
+    // Filter by operation type
+    // After transfer operation
     if (!WorkflowUserTaskOperateTypeEnum.APPROVE_TRANGER.equals(userTask.getOperateType())) {
         return userTask;
     }
-    // TODO: 2023/11/21 可自定义补充业务逻辑 userTask对应中数据为本次提交T的数据
+    // TODO: 2023/11/21 Customize supplementary business logic, userTask data is the submitted T data
 
-    // 审批同意的情况下
+    // In the case of approval agreement
     if (WorkflowUserTaskOperateTypeEnum.APPROVE_AGREE.equals(userTask.getOperateType())) {
         // TODO
     }
 
-    // 审批拒绝的情况下
+    // In the case of approval rejection
     if (WorkflowUserTaskOperateTypeEnum.APPROVE_REJUST.equals(userTask.getOperateType())) {
         // TODO
     }
@@ -290,168 +288,165 @@ public WorkflowUserTask transformEndFun(WorkflowUserTask userTask) {
 }
 ```
 
-## （六）、审批操作数据函数
+## (六) Approval Operation Data Function
 
-使用场景：在审批或填写执行过程中审批同意或则填写提交时，需要额外更改其他的业务数据逻辑，如审批同意后需要修改关联数据状态之类。  
-执行时间：在审批或填写执行过程中审批同意或则填写提交后执行完业务数据保存后，执行该扩展。
+Use Case: During approval or fill execution, when additional business data logic needs to be changed (e.g., modifying associated data status after approval), this extension is used.  
+Execution Time: This extension is executed after the business data is saved following approval agreement or fill submission during approval or fill execution.
 
 ```java
 /**
- * 审批后数据处理
- * @param approvalNode 审批节点
- * @param context 上下文
- * @param dataJson 审批提交数据
- * @param result 审批结果
+ * Post-approval data processing
+ * @param approvalNode Approval node
+ * @param context Context
+ * @param dataJson Submitted approval data
+ * @param result Approval result
  */
 @Function(name = "approvalDataProcessFun",openLevel = FunctionOpenEnum.API)
-@Function.Advanced(type= FunctionTypeEnum.QUERY,displayName = "审批后数据处理",category = FunctionCategoryEnum.CUSTOM_DESIGNER )
+@Function.Advanced(type= FunctionTypeEnum.QUERY,displayName = "Post-Approval Data Processing",category = FunctionCategoryEnum.CUSTOM_DESIGNER )
 public void approvalDataProcessFun(ApprovalNode approvalNode, WorkflowContext context, String dataJson, Boolean result) {
-    //审批数据提交数据内容
+    // Approval data submission content
     Map<String, Object> data = JsonUtils.parseMap(dataJson);
     Long id = ParamUtils.createLong(data.get("id"));
-    //可根据审批结果来处理自定义数据--通过
+    // Process custom data based on approval result - approved
     if(result != null && result){
-        // TODO: 2024/2/23 可以根据结果自己处理业务逻辑
+        // TODO: 2024/2/23 Process business logic according to the result
     }
 
-    //拒绝
+    // Rejected
     if(result != null && !result){
-        // TODO: 2024/2/23 可以根据结果自己处理业务逻辑
+        // TODO: 2024/2/23 Process business logic according to the result
     }
 }
 ```
 
-## （七）、【撤销】回调钩子
+## (七) [Recall] Callback Hook
 
-使用场景：当流程实例被撤销时, 需要额外更改其他的业务数据逻辑时可用该回调钩子。
+Use Case: When the process instance is recalled, this callback hook can be used to change other business data logic.
 
-:::info 注意
+:::info Note
 
-该函数的namespace需要设置为流程触发模型。
+The namespace of this function needs to be set to the process triggering model.
 
 :::
 
 ```java
 /**
- * 对应返回不影响流程上下文
- * @param data 入参为触发时的业务数据，数据的JsonString
- * @return 可选返回
+ * The corresponding return does not affect the process context
+ * @param data The input parameter is the business data at the time of triggering, as a JsonString
+ * @return Optional return
  */
 @Function
-public <替换为流程触发模型> recall(String data) {
-    // TODO: 根据实际的业务逻辑把data转换为业务对象
-    业务模型类 object = JsonUtils.parseObject(data, new TypeReference<业务模型类>(){});
-    // TODO: 增加自定义业务逻辑
-    return new <替换为流程触发模型>();
+public <ReplacedByProcessTriggerModel> recall(String data) {
+    // TODO: Convert data to a business object based on actual business logic
+    BusinessModel object = JsonUtils.parseObject(data, new TypeReference<BusinessModel>(){});
+    // TODO: Add custom business logic
+    return new <ReplacedByProcessTriggerModel>();
 }
 ```
 
-## （八）、【回退】回调钩子
+## (八) [Rollback] Callback Hook
 
-使用场景：流程待办进行回退操作时，需要额外更改其他的业务数据逻辑时可用该回调钩子。
+Use Case: When a rollback operation is performed on a workflow to-do, this callback hook can be used to change other business data logic.
 
-:::info 注意
+:::info Note
 
-该函数的namespace需要设置为流程触发模型。
+The namespace of this function needs to be set to the process triggering model.
 
 :::
 
 ```java
 /**
- * 对应返回不影响流程上下文
- * @param data 入参为触发时的业务数据，数据的JsonString
- * @return 可选返回
+ * The corresponding return does not affect the process context
+ * @param data The input parameter is the business data at the time of triggering, as a JsonString
+ * @return Optional return
  */
 @Function
-public <替换为流程触发模型> fallBack(String data) {
-    // TODO: 根据实际的业务逻辑把data转换为对象
-    业务模型类 object = JsonUtils.parseObject(data, new TypeReference<业务模型类>(){});
-    // TODO: 增加自定义业务逻辑
-    return new <替换为流程触发模型>();
+public <ReplacedByProcessTriggerModel> fallBack(String data) {
+    // TODO: Convert data to an object based on actual business logic
+    BusinessModel object = JsonUtils.parseObject(data, new TypeReference<BusinessModel>(){});
+    // TODO: Add custom business logic
+    return new <ReplacedByProcessTriggerModel>();
 }
 ```
 
-## （九）、【拒绝】回调钩子
+## (九) [Reject] Callback Hook
 
-使用场景：流程待办进行回退操作时，需要额外更改其他的业务数据逻辑时可用该回调钩子。
+Use Case: When a reject operation is performed on a workflow to-do, this callback hook can be used to change other business data logic.
 
-:::info 注意
+:::info Note
 
-该函数的namespace需要设置为流程触发模型。
+The namespace of this function needs to be set to the process triggering model.
 
 :::
 
 ```java
 /**
- * XXX为当前流程触发方式为模型触发时对应的触发模型
- * 回调钩子
+ * XXX is the triggering model when the current process triggering method is model triggering
+ * Callback hook
  *
- * @param data 入参为触发时的业务数据，数据的JsonString
- * @return 可选返回
+ * @param data The input parameter is the business data at the time of triggering, as a JsonString
+ * @return Optional return
  */
 @Function
-public <替换为流程触发模型> reject(String data) {
-    // TODO: 根据实际的业务逻辑把data转换为对象
-    业务模型类 object = JsonUtils.parseObject(data, new TypeReference<业务模型类>(){});
-    // TODO: 增加自定义业务逻辑
-    return new <替换为流程触发模型>();
+public <ReplacedByProcessTriggerModel> reject(String data) {
+    // TODO: Convert data to an object based on actual business logic
+    BusinessModel object = JsonUtils.parseObject(data, new TypeReference<BusinessModel>(){});
+    // TODO: Add custom business logic
+    return new <ReplacedByProcessTriggerModel>();
 }
 ```
 
-## （十）、自定义审批方式
+## (十) Custom Approval Method
 
-使用场景：代码方式设置流程运行时审批方式
+Use Case: Set the approval method at workflow runtime via code.
 
 ```java
-@Model.model(替换为流程触发模型.MODEL_MODEL)
+@Model.model(ReplacedByProcessTriggerModel.MODEL_MODEL)
 @Component
-public class 替换为流程触发模型Action {
+public class ReplacedByProcessTriggerModelAction {
 
     /**
-     * 自定义审批方式
-     * @param json json为业务数据，可用JsonUtils转换
-     * @return 返回参数：
-     * COUNTERSIGN_ONEAGREE_ONEREJUST 或签（一名审批人同意或拒绝即可）
-     * COUNTERSIGN_ALLAGREE_ONEREJUST 会签（需所有审批人同意才为同意，一名审批人拒绝即为拒绝）
-     * COUNTERSIGN_ONEAGREE_ALLREJUST 会签（一名审批人同意即为同意，需所有审批人拒绝才为拒绝）
-     * SINGLE 单人
+     * Custom approval method
+     * @param json Json is the business data, which can be converted using JsonUtils
+     * @return Return parameters:
+     * COUNTERSIGN_ONEAGREE_ONEREJUST (One approver's agreement or rejection is sufficient)
+     * COUNTERSIGN_ALLAGREE_ONEREJUST (All approvers must agree for approval, one rejection for rejection)
+     * COUNTERSIGN_ONEAGREE_ALLREJUST (One approver's agreement for approval, all rejections for rejection)
+     * SINGLE (Single person)
      */
     @Function
     @Function.Advanced(
         category = FunctionCategoryEnum.CUSTOM_DESIGNER, 
-        displayName = "测试自定义审批类型"
+        displayName = "Test Custom Approval Type"
     )
     public WorkflowSignTypeEnum signType(String json) {
-        // 传入json为业务数据，可用JsonUtils转换为业务模型数据，用于获取业务数据上下文
-        // 业务模型类 object = JsonUtils.parseObject(data, new TypeReference<业务模型类>(){});
-        // TODO: 增加自定义业务逻辑
+        // The incoming json is business data, which can be converted to business model data using JsonUtils to obtain business data context
+        // BusinessModel object = JsonUtils.parseObject(data, new TypeReference<BusinessModel>(){});
+        // TODO: Add custom business logic
         return WorkflowSignTypeEnum.COUNTERSIGN_ONEAGREE_ONEREJUST;
     }
 }
 ```
 
+## (十一) Custom Approval Node Name
 
-
-## （十一）、自定义审批节点名称
-
-使用场景：代码方式动态设置流程审批节点名称。
+Use Case: Dynamically set the workflow approval node name via code.
 
 ```java
-@Model.model(替换为流程触发模型.MODEL_MODEL)
+@Model.model(ReplacedByProcessTriggerModel.MODEL_MODEL)
 @Component
-public class 替换为流程触发模型Action {
+public class ReplacedByProcessTriggerModelAction {
     /**
-     * 自定义审批节点名称
+     * Custom approval node name
      * @return String
      */
     @Function
     @Function.Advanced(
         category = FunctionCategoryEnum.CUSTOM_DESIGNER, 
-        displayName = "测试自定义审批名称"
+        displayName = "Test Custom Approval Name"
     )
     public String customApprovalName() {
         return UUID.randomUUID().toString();
     }
 }
 ```
-

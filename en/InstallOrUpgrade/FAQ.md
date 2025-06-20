@@ -1,5 +1,5 @@
 ---
-title: Common Issues
+title: FAQ
 index: true
 category:
   - Installation and Upgrade

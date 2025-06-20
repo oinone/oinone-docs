@@ -1,5 +1,5 @@
 ---
-title: Redis Installation and Precautions
+title: Redis Setup
 index: true
 category:
   - Installation and Upgrade

@@ -1,5 +1,5 @@
 ---
-title: Custom Component Management
+title: Customized Component Management
 index: true
 category:
   - User Manual

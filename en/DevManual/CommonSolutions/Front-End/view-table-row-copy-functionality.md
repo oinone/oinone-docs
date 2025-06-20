@@ -1,140 +1,325 @@
 ---
-title: 视图：表格实现复制行
+title: Views:Table Column Merging
 index: true
 category:
-   - 前端
-order: 14
+   - Frontend
+order: 12
 ---
-# 一、场景概述
-新增按钮点击后表格出现空行，不带业务数据，需要有行内编辑
 
-# 二、解决方案
-## （一）在 layout 目录下新增 copyTable 组件，组件代码如下
-```javascript
-import { BaseElementWidget, SPI, TableWidget, Widget } from '@kunlun/dependencies';
-import { OioNotification } from '@kunlun/vue-ui-antd';
+# I. Scenario Overview
+This article explains how to implement table cell merging and header grouping through customization.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2025010912371117.png)
 
-@SPI.ClassFactory(BaseElementWidget.Token({ widget: 'copy-table-row' }))
-  export class CopyTableWidget extends TableWidget {
-    @Widget.BehaviorSubContext(Symbol("$$TABLE_COPY_CB"), {})
-    private tableCopySub;
+# II. Code Example
+[Click to download the corresponding code](https://doc.oinone.top/wp-content/uploads/2025/01/merg-table.zip)
 
-    @Widget.BehaviorSubContext(Symbol("$$TABLE_DELETE_CB"))
-    private tableDeleteSub;
+# III. Operation Steps
+## (一) Customize `widget`
+Create a custom `MergeTableWidget` to support cell merging and header grouping.
 
-    @Widget.Reactive()
-    @Widget.Provide()
-    protected get editorMode(): any {
-      return 'manual'
-    }
-
-    public async copyRowData(row,currentRow) {
-      // 获取vxetable 实例
-      const tableRef = this.getTableInstance()!.getOrigin();
-      if (tableRef) {
-        // 有复制未保存数据，如何处理?
-        const insertData = tableRef.getInsertRecords();
-        if(insertData.length > 0){
-          OioNotification.warning("警告","请检查未保存数据！")
-          return;
-        }
-
-        const { row: newRow } = await tableRef.insertAt(row,currentRow)
-        // 插入一条数据并触发校验, 其中字段名称可以替换
-        await tableRef.setEditCell(newRow, 'city')
-      }
-    }
-
-    public async deleteRowData(row) {
-      // 获取vxetable 实例
-      const tableRef = this.getTableInstance()!.getOrigin();
-      if (tableRef) {
-        // 有复制未保存数据，如何处理?
-        console.log(row, 'remove row')
-        tableRef.remove(row)
-        // 插入一条数据并触发校验
-      }
-    }
-
-    async mounted() {
-      super.mounted();
-      this.tableCopySub.subject.next({copyCb: (row,currentRow) => this.copyRowData(row,currentRow)})
-      this.tableDeleteSub.subject.next({deleteCb: (row) => this.deleteRowData(row)})
-    }
-  }
-```
-
-## （二）在 action 目录下覆盖新增按钮或者复制行按钮；代码如下
 ```typescript
-import {ActionWidget, ClickResult, ReturnPromise, SPI, Widget} from "@kunlun/dependencies";
+// MergeTableWidget.ts
+import { BaseElementWidget, SPI, ViewType, TableWidget, Widget, DslRender } from '@kunlun/dependencies';
+import MergeTable from './MergeTable.vue';
 
 @SPI.ClassFactory(
-  ActionWidget.Token({
-    model: 'resource.k2.Model0000001211', // 替换对应模型
-    name: 'uiView57c25f66fac9439089d590a4ac47f027' // 替换对应action的name
+  BaseElementWidget.Token({
+    viewType: ViewType.Table,
+    widget: 'MergeTableWidget'
   })
 )
-  export class CopyRow extends ActionWidget{
-    @Widget.BehaviorSubContext(Symbol("$$TABLE_COPY_CB"))
-    private tableCopySub;
-
-    private tableCopyCb;
-
-    @Widget.Method()
-    public clickAction(): ReturnPromise<ClickResult> {
-      // 按照某一条数据复制行， 按钮在行内
-      // let data = JSON.parse(JSON.stringify(this.activeRecords?.[0]));
-      // 复制行删除id
-      // if(data) {
-      //   delete data.id
-      //   delete  data['_X_ROW_KEY']
-      // }
-      // console.log(data, 'datatatatat')
-      // this.tableCopyCb(data,this.activeRecords?.[0])
-
-      // 全局新增，不带默认数据
-      this.tableCopyCb({},null)
-    }
-
-    mounted() {
-      super.mounted()
-      this.tableCopySub.subscribe((value) => {
-        if(value) {
-          // debugger
-          this.tableCopyCb = value.copyCb
-        }
-      })
-    }
+export class MergeTableWidget extends TableWidget {
+  public initialize(props) {
+    super.initialize(props);
+    this.setComponent(MergeTable);
+    return this;
   }
+
+  /**
+   * Table display fields
+   */
+  @Widget.Reactive()
+  public get currentModelFields() {
+    return this.metadataRuntimeContext.model.modelFields.filter((f) => !f.invisible);
+  }
+
+  /**
+   * Render in-row action VNodes
+   */
+  @Widget.Method()
+  protected renderRowActionVNodes() {
+    const table = this.metadataRuntimeContext.viewDsl!;
+
+    const rowAction = table?.widgets.find((w) => w.slot === 'rowActions');
+    if (rowAction) {
+      return rowAction.widgets.map((w) => DslRender.render(w));
+    }
+
+    return null;
+  }
+}
 ```
 
-## （三）替换对应的表格layout
-```typescript
-// 替换第二个入参的模型和动作
-const registerGlobalTableLayout = () => {
-  return registerLayout(`<view type="TABLE">
+## (二) Create Corresponding Vue Component
+Define a Vue component that supports cell merging and header grouping.
+
+```vue
+<!-- MergeTable.vue -->
+<template>
+  <vxe-table
+    border
+    height="500"
+    :column-config="{ resizable: true }"
+    :merge-cells="mergeCells"
+    :data="showDataSource"
+    @checkbox-change="checkboxChange"
+    @checkbox-all="checkedAllChange"
+    >
+    <vxe-column type="checkbox" width="50"></vxe-column>
+    <!-- Render fields configured in the interface designer -->
+    <vxe-column
+      v-for="field in currentModelFields"
+      :key="field.name"
+      :field="field.name"
+      :title="field.label"
+      ></vxe-column>
+    <!-- Header grouping  https://vxetable.cn/v4.6/#/table/base/group -->
+    <vxe-colgroup title="More Information">
+      <vxe-column field="role" title="Role"></vxe-column>
+      <vxe-colgroup title="Detailed Information">
+        <vxe-column field="sex" title="Sex"></vxe-column>
+        <vxe-column field="age" title="Age"></vxe-column>
+      </vxe-colgroup>
+    </vxe-colgroup>
+    <vxe-column title="Operations" width="120">
+      <template #default="{ row, $rowIndex }">
+        <!-- Render in-row actions configured in the interface designer -->
+        <row-action-render
+          :renderRowActionVNodes="renderRowActionVNodes"
+          :row="row"
+          :rowIndex="$rowIndex"
+          :parentHandle="currentHandle"
+          ></row-action-render>
+      </template>
+    </vxe-column>
+  </vxe-table>
+  <!-- Pagination -->
+  <oio-pagination
+    :pageSizeOptions="pageSizeOptions"
+    :currentPage="pagination.current"
+    :pageSize="pagination.pageSize"
+    :total="pagination.total"
+    show-total
+    :showJumper="paginationStyle != ListPaginationStyle.SIMPLE"
+    :showLastPage="paginationStyle != ListPaginationStyle.SIMPLE"
+    :onChange="onPaginationChange"
+    ></oio-pagination>
+</template>
+<script lang="ts">
+import { defineComponent, PropType, ref } from 'vue';
+import { CheckedChangeEvent } from '@kunlun/vue-ui';
+import { ActiveRecord, ActiveRecords, ManualWidget, Pagination, RuntimeModelField } from '@kunlun/dependencies';
+import { ListPaginationStyle, OioPagination, OioSpin, ReturnPromise } from '@kunlun/vue-ui-antd';
+import RowActionRender from './RowActionRender.vue';
+
+export default defineComponent({
+  mixins: [ManualWidget],
+  components: {
+    OioSpin,
+    OioPagination,
+    RowActionRender
+  },
+  inheritAttrs: false,
+  props: {
+    currentHandle: {
+      type: String,
+      required: true
+    },
+    // loading
+    loading: {
+      type: Boolean,
+      default: undefined
+    },
+    // Table display data
+    showDataSource: {
+      type: Array as PropType<ActiveRecord[]>
+    },
+
+    // Pagination
+    pagination: {
+      type: Object as PropType<Pagination>,
+      required: true
+    },
+
+    pageSizeOptions: {
+      type: Array as PropType<(number | string)[]>,
+      required: true
+    },
+
+    paginationStyle: {
+      type: String as PropType<ListPaginationStyle>
+    },
+
+    // Modify pagination
+    onPaginationChange: {
+      type: Function as PropType<(currentPage: number, pageSize: number) => ReturnPromise<void>>
+    },
+
+    // Table selection
+    onCheckedChange: {
+      type: Function as PropType<(data: ActiveRecords, event?: CheckedChangeEvent) => void>
+    },
+
+    // Table full selection
+    onCheckedAllChange: {
+      type: Function as PropType<(selected: boolean, data: ActiveRecord[], event?: CheckedChangeEvent) => void>
+    },
+
+    // Display fields
+    currentModelFields: {
+      type: Array as PropType<RuntimeModelField[]>
+    },
+
+    // Render in-row actions
+    renderRowActionVNodes: {
+      type: Function as PropType<(row: any) => any>,
+      required: true
+    }
+  },
+  setup(props, ctx) {
+    /**
+     * Cell merging
+     * https://vxetable.cn/v4.6/#/table/advanced/span
+     */
+    const mergeCells = ref([
+      { row: 1, col: 1, rowspan: 3, colspan: 3 },
+      { row: 5, col: 0, rowspan: 2, colspan: 2 }
+    ]);
+
+    // Single selection
+    const checkboxChange = (e) => {
+      const { checked, record, records } = e;
+      const event: CheckedChangeEvent = {
+        checked,
+        record,
+        records,
+        origin: e
+      };
+
+      props.onCheckedChange?.(records, event);
+    };
+
+    // Full selection
+    const checkedAllChange = (e) => {
+      const { checked, record, records } = e;
+      const event: CheckedChangeEvent = {
+        checked,
+        record,
+        records,
+        origin: e
+      };
+
+      props.onCheckedAllChange?.(checked, records, event);
+    };
+
+    return {
+      mergeCells,
+      ListPaginationStyle,
+      checkboxChange,
+      checkedAllChange
+    };
+  }
+});
+</script>
+<style lang="scss"></style>
+```
+
+## (三) Create In-Row Actions
+```vue
+<script lang="ts">
+import { ActionBar, RowActionBarWidget } from '@kunlun/dependencies';
+import { debounce } from 'lodash-es';
+import { createVNode, defineComponent } from 'vue';
+
+export default defineComponent({
+  inheritAttrs: false,
+  props: {
+    row: {
+      type: Object,
+      required: true
+    },
+    rowIndex: {
+      type: Number,
+      required: true
+    },
+    renderRowActionVNodes: {
+      type: Function,
+      required: true
+    },
+    parentHandle: {
+      type: String,
+      required: true
+    }
+  },
+  render() {
+    const vnode = this.renderRowActionVNodes();
+
+    return createVNode(
+      ActionBar,
+      {
+        widget: 'rowAction',
+        parentHandle: this.parentHandle,
+        inline: true,
+        activeRecords: this.row,
+        rowIndex: this.rowIndex,
+        key: this.rowIndex,
+        refreshWidgetRecord: debounce((widget?: RowActionBarWidget) => {
+          if (widget) {
+            widget.setCurrentActiveRecords(this.row);
+          }
+        })
+      },
+      {
+        default: () => vnode
+      }
+    );
+  }
+});
+</script>
+```
+
+## (四) Register Layout
+```javascript
+// registry.ts
+
+import { registerLayout, ViewType } from '@kunlun/dependencies';
+
+registerLayout(
+  `<view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
-            <element widget="search" slot="search" slotSupport="field" />
+            <element widget="search" slot="search" slotSupport="field">
+                <xslot name="searchFields" slotSupport="field" />
+            </element>
         </view>
     </pack>
-    <element widget="actionBar" slot="actionBar" slotSupport="action">
-        <xslot name="actions" slotSupport="action" />
-    </element>
     <pack widget="group" slot="tableGroup">
-        <element widget="copy-table-row" slot="table" slotSupport="field">
+        <element widget="actionBar" slot="actionBar" slotSupport="action">
+            <xslot name="actions" slotSupport="action" />
+        </element>
+        <element widget="MergeTableWidget" slot="table" slotSupport="field">
             <element widget="expandColumn" slot="expandRow" />
             <xslot name="fields" slotSupport="field" />
             <element widget="rowActions" slot="rowActions" slotSupport="action" />
         </element>
     </pack>
-</view>`, { viewType: ViewType.Table, model: 'resource.k2.Model0000001211' })
-}
-
-registerGlobalTableLayout()
+</view>`,
+  {
+    model: 'Model',
+    viewType: ViewType.Table,
+    actionName: 'Action Name'
+  }
+);
 ```
 
-## （四）补充
-1. 新增空行后的动作可以根据行内数据配置显隐，比如有无id配置是编辑还是保存
-2. 新增后怎么开启行内编辑？可以进入界面设计器选中表格字段，开启行内编辑，新增行后会默认有行内编辑
-
+Through the above steps, the custom table can achieve cell merging and header grouping functions, while supporting dynamic rendering of fields and actions configured in the interface designer.

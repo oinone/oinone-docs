@@ -1,29 +1,29 @@
 ---
-title: 文件客户端 API（FileClient API）
+title: FileClient API
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 后端API
+  - Backend API
   - Advance API
 order: 6
 
 ---
-# 一、概述
+# I. Overview
 
-`FileClient` 是一个抽象接口，用于统一不同对象存储服务（如阿里云OSS、华为云OBS、腾讯云COS、MinIO、又拍云等）的文件操作。通过工厂类 `FileClientFactory` 获取实例，支持多CDN配置。
+`FileClient` is an abstract interface used to unify file operations for different object storage services (such as Alibaba Cloud OSS, Huawei Cloud OBS, Tencent Cloud COS, MinIO, Upyun, etc.). Instances are obtained through the factory class `FileClientFactory`, supporting multi-CDN configurations.
 
-## （一）获取实例
+## (一) Obtaining Instances
 
 ```plain
-// 获取默认客户端
+// Get the default client
 FileClient fileClient = FileClientFactory.getClient();
 
-// 根据cdnKey获取特定客户端（多CDN配置时使用）
+// Get a specific client by cdnKey (used in multi-CDN configurations)
 FileClient fileClient = FileClientFactory.getClient("cdnKey");
 ```
 
-## （二）配置示例：以阿里云OSS为例
+## (二) Configuration Example: Taking Alibaba Cloud OSS as an Example
 
 ```yaml
 cdn:
@@ -36,39 +36,39 @@ cdn:
     accessKeyId: your-access-key-id
     accessKeySecret: your-access-key-secret
     mainDir: upload/
-    validTime: 3600000  # 签名有效期（毫秒）
-    timeout: 600000     # 请求超时时间
+    validTime: 3600000  # Signature validity period (milliseconds)
+    timeout: 600000     # Request timeout
     active: true
 ```
 
-更多配置参考：[文件存储配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#十四-文件存储配置-pamirs-file)
+For more configuration references: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十四-文件存储配置-pamirs-file)
 
-# 二、方法说明
+# II. Method Descriptions
 
-## （一）上传文件
+## (一) Uploading Files
 
 ### 1、`upload(String fileName, byte[] data)`
 
-+ **描述**: 上传字节数组到OSS。
-+ **参数**:
-  - `fileName`: 文件名（包含路径）
-  - `data`: 文件内容的字节数组
-+ **返回**: `CdnFile` 包含文件元数据和访问URL
-+ **示例**:
++ **Description**: Uploads a byte array to OSS.
++ **Parameters**:
+  - `fileName`: File name (including path)
+  - `data`: Byte array of file content
++ **Returns**: `CdnFile` containing file metadata and access URL
++ **Example**:
 
 ```java
-byte[] data = ...; // 文件内容
+byte[] data = ...; // File content
 CdnFile cdnFile = fileClient.upload("path/file.txt", data);
 ```
 
 ### 2、`upload(String fileName, InputStream inputStream)`
 
-+ **描述**: 通过输入流上传文件。
-+ **参数**:
-  - `fileName`: 文件名（包含路径）
-  - `inputStream`: 文件输入流
-+ **返回**: `CdnFile`
-+ **示例**:
++ **Description**: Uploads a file via an input stream.
++ **Parameters**:
+  - `fileName`: File name (including path)
+  - `inputStream`: File input stream
++ **Returns**: `CdnFile`
++ **Example**:
 
 ```java
 try (InputStream is = new FileInputStream("local.txt")) {
@@ -78,9 +78,9 @@ try (InputStream is = new FileInputStream("local.txt")) {
 
 ### 3、`uploadByFileName(String fileName, byte[] data)`
 
-+ **描述**: 上传文件并返回下载URL。
-+ **返回**: 文件下载URL（String）
-+ **示例**:
++ **Description**: Uploads a file and returns the download URL.
++ **Returns**: File download URL (String)
++ **Example**:
 
 ```java
 String url = fileClient.uploadByFileName("path/image.png", imageData);
@@ -88,33 +88,33 @@ String url = fileClient.uploadByFileName("path/image.png", imageData);
 
 ### 4、`uploadByFileName(String fileName, InputStream inputStream)`
 
-+ **描述**: 通过输入流上传文件并返回下载URL。
-+ **示例**:
++ **Description**: Uploads a file via an input stream and returns the download URL.
++ **Example**:
 
 ```java
 String url = fileClient.uploadByFileName("path/image.png", inputStream);
 ```
 
-## （二）获取下载URL
+## (二) Obtaining Download URLs
 
 ### 1、`getDownloadUrl(String fileName)`
 
-+ **描述**: 获取通过 `uploadByFileName` 上传的文件的下载URL。
-+ **参数**: `fileName` - 上传时使用的文件名
-+ **返回**: 完整的下载URL
-+ **示例**:
++ **Description**: Obtains the download URL of a file uploaded via `uploadByFileName`.
++ **Parameters**: `fileName` - File name used during upload
++ **Returns**: Complete download URL
++ **Example**:
 
 ```java
 String url = fileClient.getDownloadUrl("path/image.png");
 ```
 
-## （三）删除操作
+## (三) Delete Operations
 
 ### 1、`deleteByFolder(String folder)`
 
-+ **描述**: 删除指定文件夹下的所有文件。
-+ **参数**: `folder` - 文件夹路径
-+ **示例**:
++ **Description**: Deletes all files under the specified folder.
++ **Parameters**: `folder` - Folder path
++ **Example**:
 
 ```java
 fileClient.deleteByFolder("temp/");
@@ -122,41 +122,41 @@ fileClient.deleteByFolder("temp/");
 
 ### 2、`deleteByFilename(String filename)`
 
-+ **描述**: 删除指定文件。
-+ **参数**: `filename` - 完整文件名（含路径）
-+ **示例**:
++ **Description**: Deletes the specified file.
++ **Parameters**: `filename` - Complete file name (including path)
++ **Example**:
 
 ```java
 fileClient.deleteByFilename("path/file.txt");
 ```
 
-## （四）文件检查
+## (四) File Check
 
 ### 1、`isExistByFilename(String filename)`
 
-+ **描述**: 检查文件是否存在。
-+ **返回**: `true` 存在，`false` 不存在
-+ **示例**:
++ **Description**: Checks if a file exists.
++ **Returns**: `true` if exists, `false` if not
++ **Example**:
 
 ```java
 boolean exists = fileClient.isExistByFilename("path/file.txt");
 ```
 
-## （五）获取静态资源URL
+## (五) Obtaining Static Resource URLs
 
 ### 1、`getStaticUrl()`
 
-+ **描述**: 获取静态资源根URL，根据配置决定是否使用CDN。
-+ **返回**: URL字符串
-+ **示例**:
++ **Description**: Obtains the root URL for static resources, determining whether to use CDN based on configuration.
++ **Returns**: URL string
++ **Example**:
 
 ```java
 String staticUrl = fileClient.getStaticUrl();
 ```
 
-# 三、完整示例
+# III. Complete Example
 
-批量上传文件并获取URL
+Batch upload files and obtain URLs
 
 ```java
 private static Map<String, String> uploadFiles(File directory) {
@@ -178,29 +178,28 @@ private static Map<String, String> uploadFiles(File directory) {
 }
 ```
 
-# 四、数据结构 CdnFile
+# IV. Data Structure CdnFile
 
-| **字段**                                         | **类型**                                           | **描述**                                                     |
+| **Field**                                         | **Type**                                           | **Description**                                                     |
 | ------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------------ |
-| name | String | 文件名           |
-| size | Long   | 文件大小（字节） |
-| type | String | 文件类型         |
-| url  | String | 文件完整访问URL  |
+| name | String | File name           |
+| size | Long   | File size (bytes) |
+| type | String | File type         |
+| url  | String | Complete access URL for the file |
 
 
-# 五、注意事项
+# V. Notes
 
-1. **多CDN配置**: 使用 `FileClientFactory.getClient(String cdnKey)` 获取指定配置的客户端。
-2. **路径规范**: 文件名建议包含路径（如 `"images/avatar.jpg"`），避免直接使用根目录。
+1. **Multi-CDN Configuration**: Use `FileClientFactory.getClient(String cdnKey)` to obtain a client with specified configuration.
+2. **Path Specifications**: File names are recommended to include paths (e.g., `"images/avatar.jpg"`) to avoid using the root directory directly.
 
-# 六、支持的存储服务
+# VI. Supported Storage Services
 
-| **服务商**                                            | **类型标识**                                              | **实现类**                                                   |
+| **Service Provider**                                            | **Type Identifier**                                              | **Implementation Class**                                                   |
 | ----------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------ |
-| 阿里云OSS | `OSS`         | `AliyunOSSClient` |
-| 华为云OBS | `HUAWEI_OBS`  | `HuaweiOBSClient` |
-| 本地存储  | `LOCAL`       | `LocalFileClient` |
+| Alibaba Cloud OSS | `OSS`         | `AliyunOSSClient` |
+| Huawei Cloud OBS | `HUAWEI_OBS`  | `HuaweiOBSClient` |
+| Local Storage  | `LOCAL`       | `LocalFileClient` |
 | MinIO     | `MINIO`       | `MiniOssClient`  |
-| 又拍云    | `UPYUN`       | `UpyunOSSClient` |
-| 腾讯云COS | `TENCENT_COS` | `TencentCosClient` |
-
+| Upyun    | `UPYUN`       | `UpyunOSSClient` |
+| Tencent Cloud COS | `TENCENT_COS` | `TencentCosClient` |

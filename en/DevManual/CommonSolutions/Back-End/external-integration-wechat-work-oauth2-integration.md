@@ -1,38 +1,38 @@
 ---
-title: 外部集成：企微集成OAuth2.0
+title: External Integration:Enterprise WeChat OAuth2.0 Integration
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 8
 ---
 
-# 一、引言
-在企业数字化办公场景中，将业务系统与企业微信进行集成是实现统一身份认证、消息推送等的关键手段。本文基于 Java 技术栈，使用开源项目 `weixin-java-cp` 完成对接。
+# 一、Introduction
+In the scenario of enterprise digital office, integrating business systems with Enterprise WeChat is a key means to achieve unified identity authentication, message push, etc. This article is based on the Java technology stack and uses the open-source project `weixin-java-cp` to complete the docking.
 
-**核心功能**
+**Core Functions**
 
-+ **统一登录与身份认证**：员工可通过企业微信扫码或免密方式登录系统。
-+ **用户信息获取**：通过 OAuth2.0 协议，获取用户的基本信息，并同步到本地数据库。
++ **Unified Login and Identity Authentication**: Employees can log in to the system by scanning the code of Enterprise WeChat or without a password.
++ **User Information Acquisition**: Through the OAuth2.0 protocol, obtain the basic information of users and synchronize it to the local database.
 
-:::info 说明：
+:::info Note:
 
-本篇文档主要讲解如何使用 OAuth2.0 打通企业微信的免登流程，包括用户信息的获取。其他接口如发送通知等，请参考企业微信官方文档，并推荐使用 Oinone 集成平台（EIP）的方式进行对接。
+This document mainly explains how to use OAuth2.0 to打通 (open up) the password-free login process of Enterprise WeChat, including the acquisition of user information. For other interfaces such as sending notifications, please refer to the official documentation of Enterprise WeChat, and it is recommended to use the docking method of the Oinone Integration Platform (EIP).
 
 :::
 
-# 二、接入准备
-## （一）了解企业微信身份验证（免登）
-服务端 API 身份验证（免登）使用教程实现登录第三方网站：[企业微信OAuth2.0](https://work.weixin.qq.com/api/doc/90000/90135/91437)
+# 二、Access Preparation
+## （一）Understand Enterprise WeChat Identity Authentication (Password-Free Login)
+For the tutorial on using server-side API identity authentication (password-free login) to implement logging in to third-party websites: [Enterprise WeChat OAuth2.0](https://work.weixin.qq.com/api/doc/90000/90135/91437)
 
-## （二）创建企业微信应用
-1. 登录 [企业微信管理后台](https://work.weixin.qq.com/wework_admin/loginpage_wx)
-2. 进入“应用管理” --> “自建应用”，创建新的应用
-3. 记录以下参数：
-    - CorpID（企业ID）
-    - Secret（应用凭证密钥）
-    - AgentId（应用代理ID）
+## （二）Create an Enterprise WeChat Application
+1. Log in to the [Enterprise WeChat Management Console](https://work.weixin.qq.com/wework_admin/loginpage_wx)
+2. Go to "Application Management" --> "Self-Built Application" and create a new application
+3. Record the following parameters:
+    - CorpID (Enterprise ID)
+    - Secret (Application Credential Key)
+    - AgentId (Application Proxy ID)
 
-## （三）引入企业微信 SDK 依赖
+## （三）Introduce Enterprise WeChat SDK Dependencies
 ```xml
 <dependency>
   <groupId>com.github.binarywang</groupId>
@@ -41,23 +41,23 @@ order: 8
 </dependency>
 ```
 
-# 三、具体对接步骤
-## （一）项目中增加企业微信的配置
-1、项目中application.yml配置（本文示例采用）
+# 三、Specific Docking Steps
+## （一）Add Enterprise WeChat Configuration to the Project
+1. Application.yml configuration in the project (adopted in this example)
 
 ```yaml
 pamirs:
   wxcp:
-    corpId: 应用的corpId
-    agentId: 应用的agentId
-    agentKey: 应用的agentKey
-    # 登录后跳转到本地应用的首页（根据实际情况修改）
+    corpId: Application's corpId
+    agentId: Application's agentId
+    agentKey: Application's agentKey
+    # Redirect to the home page of the local application after login (modify according to actual situation)
     appUrl: https://2z98098t60.zicp.fun
 ```
 
-2、后端配置方式参考钉钉对接中的说明
+2. The backend configuration method refers to the instructions in the DingTalk docking.
 
-## （二）初始化企业微信客户端（WxCpService）
+## （二）Initialize the Enterprise WeChat Client (WxCpService)
 ```java
 @Slf4j
 @Service
@@ -68,7 +68,7 @@ public class WxBaseConfig {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    // 配置企业微信服务
+    // Configure the Enterprise WeChat service
     public WxCpService getWxCpService() {
         WxCpService wxCpService = new WxCpServiceImpl();
         WxCpDefaultConfigImpl config = new WxCpDefaultConfigImpl();
@@ -79,9 +79,9 @@ public class WxBaseConfig {
         return wxCpService;
     }
 
-    // 重置token
+    // Reset the token
     public void resetTokenAndJsApi(WxCpService wxCpService, WxCpDefaultConfigImpl wxCpDefaultConfig, int agentId) {
-        // 配置redis
+        // Configure Redis
         wxCpService.setWxCpConfigStorage(wxCpDefaultConfig);
         String wxAccessToken = "wx-config-info:" + agentId;
         String json = redisTemplate.opsForValue().get(wxAccessToken);
@@ -97,7 +97,7 @@ public class WxBaseConfig {
                 accessToken = wxCpService.getAccessToken(false);
                 wxCpDefaultConfig.setAccessToken(accessToken);
             } catch (WxErrorException e) {
-                log.error("===>> 获取企微AccessToken异常", e);
+                log.error("===>> Exception in obtaining Enterprise WeChat AccessToken", e);
                 e.printStackTrace();
             }
         }
@@ -107,7 +107,7 @@ public class WxBaseConfig {
                 jsApi = wxCpService.getJsapiTicket();
                 wxCpDefaultConfig.setJsapiTicket(jsApi);
             } catch (WxErrorException e) {
-                log.error("===>> 获取企微JsapiTicket异常", e);
+                log.error("===>> Exception in obtaining Enterprise WeChat JsapiTicket", e);
                 e.printStackTrace();
             }
         }
@@ -116,10 +116,10 @@ public class WxBaseConfig {
 }
 ```
 
-## （三）构建授权链接（跳转企业微信）
+## （三）Build the Authorization Link (Jump to Enterprise WeChat)
 ```java
 /**
- * 获取重定向url，让企业微信跳到oauth2url并带上code参数
+ * Get the redirect URL to make Enterprise WeChat jump to the oauth2url and bring the code parameter
  *
  * @param request
  * @return
@@ -132,9 +132,9 @@ public void oauth(HttpServletRequest request, HttpServletResponse response) {
         log.info("oauth redirect:{}", result);
         response.sendRedirect(result);
     } catch (IOException e) {
-        log.error("企业微信oauth异常", e);
+        log.error("Enterprise WeChat oauth exception", e);
         try {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "oauth重定向失败！");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "oauth redirection failed!");
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -142,32 +142,32 @@ public void oauth(HttpServletRequest request, HttpServletResponse response) {
 }
 ```
 
-## （四）处理企业微信回调
-获取 code 并换取用户 UserTicket；用 UserTicket 获取用户信息
+## （四）Handle the Enterprise WeChat Callback
+Obtain the code and exchange it for the user's UserTicket; use the UserTicket to obtain user information
 
 ```java
 /**
- * 根据企业微信的code获取用户信息
+ * Obtain user information based on the code of Enterprise WeChat
  *
  * @param code
  * @return
  */
 @GetMapping(value = "/wxCpAuth/oauth2url")
 public void oauth2url(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response) throws IOException {
-    log.info(" ===>>> WxCpApiController oauth2url code：【{}】<<<=== ", code);
+    log.info(" ===>>> WxCpApiController oauth2url code: [{}] <<<===", code);
     try {
         WxCpOauth2UserInfo userInfo = this.getWxCpOauth2UserInfoCache(code);
         if (userInfo == null) {
             try {
                 userInfo = tpWxCpOAuth2Service.getUserInfo(code);
-                log.info(" ===>>> getUserInfo【{}】<<<=== ", JSON.toJSONString(userInfo));
-                // getUserInfo【{"accessTokenInvalid":false,"errorCode":0,"errorMsg":"请求成功","json":"{\"userid\":\"OPENID\",\"errcode\":0,\"errmsg\":\"ok\",
-                // \"user_ticket\":\"ICprXqB0myY74-ouv2n_HvDdxGpJgjq5gj6rMgr5YgCnM_1DTZUvgZXwN6wTP5-rAMDGb4QVoUzA1jOYMI9_ZylZ1cLPJLnFmWSbdfHSims\",\"expires_in\":1800}","succeed":true}】
+                log.info(" ===>>> getUserInfo [{}] <<<===", JSON.toJSONString(userInfo));
+                // getUserInfo [{"accessTokenInvalid":false,"errorCode":0,"errorMsg":"request successful","json":"{\"userid\":\"OPENID\",\"errcode\":0,\"errmsg\":\"ok\",
+                // \"user_ticket\":\"ICprXqB0myY74-ouv2n_HvDdxGpJgjq5gj6rMgr5YgCnM_1DTZUvgZXwN6wTP5-rAMDGb4QVoUzA1jOYMI9_ZylZ1cLPJLnFmWSbdfHSims\",\"expires_in\":1800}","succeed":true}]
                 if (userInfo != null) {
                     this.petWxCpOauth2UserInfoCache(code, userInfo);
                 }
             } catch (WxErrorException e) {
-                log.error("获取企微用户异常", e);
+                log.error("Exception in obtaining Enterprise WeChat user", e);
                 throw PamirsException.construct(ThirdPartyExpEnum.WX_AUTH_GET_USER_ERROR).errThrow();
             }
         }
@@ -175,25 +175,25 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
         WxCpUserDetail userDetail = null;
         try {
             userDetail = tpWxCpOAuth2Service.getUserDetail(userInfo.getUserTicket());
-            log.info(" ===>>> getUserDetail【{}】<<<=== ", JSON.toJSONString(userDetail));
+            log.info(" ===>>> getUserDetail [{}] <<<===", JSON.toJSONString(userDetail));
         } catch (WxErrorException e) {
-            log.error("获取企微用户敏感信息异常", e);
-            // 允许失败
+            log.error("Exception in obtaining sensitive information of Enterprise WeChat user", e);
+            // Allow failure
         }
 
-        //获取用户信息
+        // Obtain user information
         PamirsUser pamirsUser = handleUserInfo(userInfo, userDetail, response);
         if (pamirsUser != null) {
             UserToken token = new UserToken(pamirsUser.getPhone(), pamirsUser.getCode(), "", "", System.currentTimeMillis());
             log.info("token:{}", token);
             String tokenStr = UserToken.token2String(token);
-            // token放在Cookie中(是否放置根据需求确定)
+            // Place the token in the Cookie (determine whether to place it according to requirements)
             CookieUtil.set(response, X_WECHAT_QY_TOKEN, tokenStr);
             log.info("AppUrl:{}", wxCpConfig.getAppUrl());
             response.sendRedirect(wxCpConfig.getAppUrl());
         } else {
-            log.error("错误！{}", "根据手机号获取用户信息失败");
-            response.sendRedirect(wxCpConfig.getAppUrl() + "/notice?msg=getProfile失败!" + "根据手机号获取用户信息失败");
+            log.error("Error! {}", "Failed to obtain user information based on the phone number");
+            response.sendRedirect(wxCpConfig.getAppUrl() + "/notice?msg=getProfile failed!" + "Failed to obtain user information based on the phone number");
         }
     } catch (Exception e) {
         log.error("auth error", e);
@@ -202,14 +202,14 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
 }
 ```
 
-## （五）处理用户信息并设置登录态（Session + Cookie）
+## （五）Process User Information and Set the Login State (Session + Cookie)
 ```java
     private PamirsUser handleUserInfo(WxCpOauth2UserInfo userInfo, WxCpUserDetail userDetail, HttpServletResponse response) {
         if (userDetail == null) {
             return null;
         }
 
-        // 用户表
+        // User table
         PamirsUser user = new PamirsUser().setLogin(userDetail.getUserId()).queryOne();
         boolean needInitPwd = false;
         if (user == null) {
@@ -237,12 +237,12 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
         user.setSignUpType(UserSignUpType.BACKSTAGE);
         user.setUserType("work_weixin");
         user.createOrUpdate();
-        // 初始化密码表
+        // Initialize the password table
         if (needInitPwd) {
             passwordService.encodingCreate(user.getId(), "123456@Abc!");
         }
 
-        // 第三方用户三方登录表
+        // Third-party user three-party login table
         PamirsUserThirdParty userThirdParty = new PamirsUserThirdParty().setThirdPartyType(UserThirdPartyTypeEnum.WORK_WEIXIN)
                 .setUnionId(userDetail.getUserId()).queryOne();
         if (userThirdParty == null) {
@@ -253,7 +253,7 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
             thirdParty.setThirdPartyType(UserThirdPartyTypeEnum.WORK_WEIXIN);
             thirdParty.createOrUpdate();
         }
-        // 用户信息更新后清空缓存
+        // Clear the cache after the user information is updated
         UserInfoCache.clearUserById(user.getId());
 
         PamirsUserDTO pamirsUser = new PamirsUserDTO();
@@ -281,33 +281,33 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
     }
 ```
 
-# 四、企微开放平台应用配置
-略
+# 四、Enterprise WeChat Open Platform Application Configuration
+Omitted
 
-# 五、三方用户访问系统权限
-默认情况下，首次通过第三方免登录方式进入系统的用户，初始状态不具有任何应用的访问权限。为了确保用户能够通过钉钉工作台入口顺利访问应用，可以通过以下两种方式为用户赋予相应的访问权限。
+# 五、Access Permissions for Third-Party Users to the System
+By default, users who first enter the system through third-party password-free login do not have any access permissions to applications in the initial state. To ensure that users can smoothly access applications through the DingTalk workbench entry, you can grant users the corresponding access permissions through the following two methods.
 
-## （一）配置第三方用户角色
-1. 在系统中创建一个特定的角色，用于第三方用户的使用。该角色应具有明确的标识符，例如：`THIRD_PARTY_USER`。
-2. 根据业务需求，为上述角色分配相应的访问权限。
+## （一）Configure Third-Party User Roles
+1. Create a specific role in the system for the use of third-party users. This role should have a clear identifier, such as: `THIRD_PARTY_USER`.
+2. Assign corresponding access permissions to the above role according to business needs.
 
-## （二）在创建第三方用户时赋权
-在对接流程中的第六步：处理用户信息阶段，即根据第三方用户信息创建平台用户（如 `PamirsUser`）时，可通过调用系统接口，将上述定义好的角色直接分配给该用户，实现权限的静态绑定。
+## （二）Grant Permissions When Creating Third-Party Users
+In the sixth step of the docking process: the user information processing stage, that is, when creating platform users (such as `PamirsUser`) based on third-party user information, you can directly assign the above-defined role to the user by calling the system interface to achieve static binding of permissions.
 
 ```java
 private void bindUserRole(PamirsUser pamirsUser) {
     AuthRole authRole = new AuthRole().setCode(THIRD_PARTY_USER_ROLE_CODE).queryOne();
     if (authRole != null) {
-        // 给用户绑定角色
+        // Bind the role to the user
         CommonApiFactory.getApi(UserService.class).bindUserRole(Collections.singletonList(pamirsUser), Collections.singletonList(authRole));
     }
 }
 ```
 
-## （三）运行时动态赋权
-若未在用户创建阶段完成角色分配，也可以通过运行时动态权限扩展机制，在用户首次访问系统时，动态地为其分配“第三方用户”角色。
+## （三）Dynamic Permission Granting at Runtime
+If role assignment is not completed during the user creation stage, you can also use the runtime dynamic permission extension mechanism to dynamically assign the "third-party user" role to users when they first access the system.
 
-本文示例采用的就是此方案，完整实现请参考附件中的代码文件：`ThirdPartyRoleCustom.java`
+This example uses this solution. For the complete implementation, please refer to the code file in the attachment: `ThirdPartyRoleCustom.java`
 
 ```java
 @Override
@@ -325,11 +325,6 @@ public Set<Long> get() {
 }
 ```
 
-# 六、源代码下载
-+ 企微对接示例代码包[企微微信对接示例.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/zip/751600/1746696522151-6afb014b-69d7-4bd4-927d-0486ef79c257.zip)
-+ 三方用户运行时动态赋权[ThirdPartyRoleCustom.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746696590436-5d7fe764-32b0-4708-8f91-b22f6684ed68.java)
-
-
-
-
-
+# 六、Source Code Download
++ Enterprise WeChat Docking Example Code Package [Enterprise WeChat Docking Example.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/zip/751600/1746696522151-6afb014b-69d7-4bd4-927d-0486ef79c257.zip)
++ Runtime Dynamic Permission Granting for Third-Party Users [ThirdPartyRoleCustom.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746696590436-5d7fe764-32b0-4708-8f91-b22f6684ed68.java)

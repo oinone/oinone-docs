@@ -1,15 +1,16 @@
 ---
-title: 开放接口：EIP开放接口使用MD5验签发起请求
+title: Open Interface：EIP Open Interface Request with MD5 Signature
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 19
 ---
-# 一、验签工具类
 
-:::warning 提示
+# 1. Signature Utility Class
 
-该验签方法仅在pamirs-core的5.0.16版本以上可正常使用
+:::warning Tip
+
+This signature method is only available in pamirs-core version 5.0.16 and above.
 
 :::
 
@@ -25,11 +26,11 @@ public class EipSignUtils {
     private static final String MESSAGE_DIGEST_MD5 = "MD5";
 
     public static String signTopRequest(Map<String, String> params, String secret, String signMethod) throws IOException {
-        // 第一步：检查参数是否已经排序
+        // Step 1: Check if parameters are sorted
         String[] keys = params.keySet().toArray(new String[0]);
         Arrays.sort(keys);
 
-        // 第二步：把所有参数名和参数值串在一起
+        // Step 2: Concatenate all parameter names and values
         StringBuilder query = new StringBuilder();
         if (SIGN_METHOD_MD5.equals(signMethod)) {
             query.append(secret);
@@ -41,7 +42,7 @@ public class EipSignUtils {
             }
         }
 
-        // 第三步：使用MD5/HMAC加密
+        // Step 3: Encrypt with MD5/HMAC
         byte[] bytes;
         if (SIGN_METHOD_HMAC.equals(signMethod)) {
             bytes = encryptHMAC(query.toString(), secret);
@@ -50,7 +51,7 @@ public class EipSignUtils {
             bytes = encryptMD5(query.toString());
         }
 
-        // 第四步：把二进制转化为大写的十六进制(正确签名应该为32大写字符串，此方法需要时使用)
+        // Step 4: Convert binary to uppercase hexadecimal (correct signature should be 32 uppercase characters, use this method when needed)
         return byte2hex(bytes);
     }
 
@@ -93,4 +94,3 @@ public class EipSignUtils {
     }
 }
 ```
-

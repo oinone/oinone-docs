@@ -2,12 +2,12 @@
 title: UI icons
 index: false
 category:
-  - 研发手册
+  - DevManual
   - Reference
   - User interface
 order: 3
 next:
-  text: 标准模块（Standard Modules）
+  text: Standard Modules
   link: /en/DevManual/Reference/StandardModule/README.md
 ---
 

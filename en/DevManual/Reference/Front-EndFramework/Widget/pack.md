@@ -2,67 +2,67 @@
 title: Pack
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 前端API
+  - Frontend API
   - Widget
 order: 8
 prev:
   text: Tree
   link: /en/DevManual/Reference/Front-EndFramework/Widget/View/tree.md
 ---
-通常我们将一些用来包裹其他组件的组件通过 Pack 组件进行注册，它们也被称为 `容器组件` 。在具备布局能力的视图中，这类组件通常是非常有意义的。
+Components used to wrap other components are typically registered through Pack components, also known as `container components`. These components are particularly meaningful in views with layout capabilities.
 
-# 一、Pack 组件图谱
+# I. Pack Component Map
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1748598541706-cbae0b31-5f6e-4ddb-adda-9ce3b47a481b.jpeg)
 
-# 二、Pack 组件的注册
+# II. Registration of Pack Components
 
-## （一）Pack 组件的注册可选项
+## (一) Registration Options for Pack Components
 
 ```typescript
 /**
- * Pack组件注册可选项
+ * Registration options for Pack components
  */
 export interface BasePackOptions extends SPIOptions {
   /**
-   * 指定视图类型
+   * Specify view type(s)
    */
   viewType?: ViewType | ViewType[];
   /**
-   * 指定组件名称或别称
+   * Specify component name or alias(es)
    */
   widget?: string | string[];
   /**
-   * 指定是否内敛组件
+   * Specify if the component is inline
    */
   inline?: boolean;
   /**
-   * 指定模型
+   * Specify model(s)
    */
   model?: string | string[];
   /**
-   * 指定视图名称
+   * Specify view name(s)
    */
   viewName?: string | string[];
 }
 ```
 
-从上述类型声明中不难发现，其分类维度涵盖以下多个方面：视图类型、组件名称、是否内联组件、模型编码以及视图名称。这些维度用于描述组件的使用位置。一般而言，位置描述得越“精确”，在相应位置进行渲染时，该组件所具备的优先级也就越高。在完全相同的位置描述的情况下，后注册的组件会覆盖先注册的组件。
+From the above type declaration, it's evident that the classification dimensions include view type, component name, inline status, model code, and view name. These dimensions describe the component's usage location. Generally, the more "precise" the location description, the higher the priority of the component when rendered in that location. Components registered later will overwrite those with identical location descriptions.
 
-## （二）注册组件
+## (二) Registering Components
 
-### 1、注册 Pack 默认组件
+### 1. Registering Default Pack Components
 
-在不指定 `widget` 属性时，该组件将注册为 Pack 默认组件。以 `DefaultGroupWidget` 为例：
+When the `widget` property is not specified, the component is registered as a default Pack component. Take `DefaultGroupWidget` as an example:
 
 ```typescript
 @SPI.ClassFactory(BasePackWidget.Token({}))
 export class DefaultGroupWidget extends BasePackWidget
 ```
 
-对于这个组件，在 DSL 中通过 pack 标签使用：
+For this component, use the pack tag in DSL:
 
 ```xml
 <pack>
@@ -70,9 +70,9 @@ export class DefaultGroupWidget extends BasePackWidget
 </pack>
 ```
 
-### 2、注册指定名称的组件
+### 2. Registering Components with Specified Names
 
-对于其他组件，我们通过 `widget` 来指定组件名称，这样就可以和其他组件进行区分。以 `DefaultBlockWidget` 组件为例：
+For other components, specify the component name via `widget` to distinguish them. Take the `DefaultBlockWidget` component as an example:
 
 ```typescript
 @SPI.ClassFactory(
@@ -83,7 +83,7 @@ export class DefaultGroupWidget extends BasePackWidget
 export class DefaultBlockWidget extends BasePackWidget
 ```
 
-对于这个组件，在 `DSL` 中通过 `pack` 标签使用，并指定 `widget` 属性：
+For this component, use the pack tag in DSL with the `widget` attribute specified:
 
 ```xml
 <pack widget="block">
@@ -91,15 +91,15 @@ export class DefaultBlockWidget extends BasePackWidget
 </pack>
 ```
 
-# 三、常见布局和容器组件的使用
+# III. Usage of Common Layout and Container Components
 
-## （一）栅格布局
+## (一) Grid Layout
 
-参考 [Antd Grid 栅格 For Vue](https://3x.antdv.com/components/grid-cn) ，Oinone 的栅格布局同样分为 `24` 栅格。下面我们来看一下栅格布局在 `DSL` 中的使用。
+Referencing [Antd Grid for Vue](https://3x.antdv.com/components/grid-cn), Oinone's grid layout also uses a `24-column` grid. Let's explore how grid layouts are used in DSL.
 
-与原生组件支持的栅格布局不同，Oinone 提供了 `cols` 和 `span` 组合来灵活的处理栅格数。通过 `cols` 属性定义一行的栅格数，通过 `span` 属性决定单个栅格的跨度，默认跨度与栅格数一致。
+Unlike native component-supported grid layouts, Oinone provides a combination of `cols` and `span` for flexible grid handling. The `cols` attribute defines the number of grid columns in a row, and the `span` attribute determines the span of a single grid, with the default span matching the number of columns.
 
-**一行三列（1:1:1）**
+**Three Columns in a Row (1:1:1)**
 
 ```xml
 <pack widget="row" cols="3">
@@ -109,7 +109,7 @@ export class DefaultBlockWidget extends BasePackWidget
 </pack>
 ```
 
-**1:3**
+**1:3 Ratio**
 
 ```xml
 <pack widget="row" cols="4">
@@ -118,25 +118,25 @@ export class DefaultBlockWidget extends BasePackWidget
 </pack>
 ```
 
-**两行（自动换行）**
+**Two Rows (Auto Wrap)**
 
 ```xml
 <pack widget="row" cols="3">
-    <!-- 第一行 -->
+    <!-- First row -->
     <pack widget="col" span="1"></pack>
     <pack widget="col" span="1"></pack>
     <pack widget="col" span="1"></pack>
-    <!-- 第二行 -->
+    <!-- Second row -->
     <pack widget="col" span="1"></pack>
     <pack widget="col" span="3"></pack>
 </pack>
 ```
 
-## （二）标签页组件
+## (二) Tab Components
 
-参考 [Antd Tabs 标签页 For Vue](https://3x.antdv.com/components/tabs-cn) ，对于 `父子组合` 类型的组件，其使用方式与原生组件支持的使用方式类似，父子组件需要相邻定义。
+Referencing [Antd Tabs for Vue](https://3x.antdv.com/components/tabs-cn), for `parent-child combined` components, the usage is similar to native components, requiring adjacent definition of parent and child components.
 
-**基本用法**
+**Basic Usage**
 
 ```xml
 <pack widget="tabs">
@@ -146,47 +146,47 @@ export class DefaultBlockWidget extends BasePackWidget
 </pack>
 ```
 
-## （三）内置栅格布局
+## (三) Built-in Grid Layout
 
-在 Oinone 中，有一部分组件内置使用了栅格布局，你不需要显式定义栅格布局组件就可以直接使用。
+In Oinone, some components natively use grid layouts, allowing direct usage without explicit grid layout component definitions.
 
-**分组中使用栅格布局**
+**Using Grid Layout in Groups**
 
 ```xml
-<pack title="基础信息" cols="3">
-    <field data="code" label="编码" span="1" />
-    <field data="name" label="名称" span="2" />
-    <field data="description" label="描述" span="3" />
+<pack title="Basic Information" cols="3">
+    <field data="code" label="Code" span="1" />
+    <field data="name" label="Name" span="2" />
+    <field data="description" label="Description" span="3" />
 </pack>
 ```
 
-上面的 `DSL` 与 下面的 `DSL` 是等价的：
+The above DSL is equivalent to:
 
 ```xml
-<pack title="基础信息">
+<pack title="Basic Information">
     <pack widget="row" cols="3">
         <pack widget="col" span="1">
-            <field data="code" label="编码" />
+            <field data="code" label="Code" />
         </pack>
         <pack widget="col" span="2">
-            <field data="name" label="名称" />
+            <field data="name" label="Name" />
         </pack>
         <pack widget="col" span="3">
-            <field data="description" label="描述" />
+            <field data="description" label="Description" />
         </pack>
     </pack>
 </pack>
 ```
 
-内置栅格布局是通过类似于 `组件混入` 的方式实现的，对于父组件来说，其混入了 `row` 组件的全部属性和功能，对于子组件来说，其混入了 `col` 组件的全部属性和功能，以此来简化 `DSL` 中对于栅格布局的使用。
+The built-in grid layout is implemented via a mechanism similar to `component mixing`, where the parent component mixes in all properties and functions of the `row` component, and child components mix in all properties and functions of the `col` component, simplifying grid layout usage in DSL.
 
-# 四、Reference List
+# IV. Reference List
 
-## （一）布局组件
+## (一) Layout Components
 
 ### 1、DefaultBlockWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -197,18 +197,18 @@ export class DefaultBlockWidget extends BasePackWidget
 export class DefaultBlockWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultGutter：默认间距。（`StandardGutterType`）
-+ flex：是否为弹性布局。（`boolean`）
-+ flexDirection：弹性布局方向。（`string | undefined`）
-+ gutter：间距。（`number[]`）
-+ inline：是否内联。（`boolean`）
-+ layout：布局方式。（`string | undefined`）
++ defaultGutter: Default spacing. (`StandardGutterType`)
++ flex: Whether to use flex layout. (`boolean`)
++ flexDirection: Flex layout direction. (`string | undefined`)
++ gutter: Spacing. (`number[]`)
++ inline: Whether to display inline. (`boolean`)
++ layout: Layout mode. (`string | undefined`)
 
 ### 2、DefaultRowWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -219,22 +219,22 @@ export class DefaultBlockWidget extends BasePackWidget
 export class DefaultRowWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ align：布局对齐方式。（`string`）
-+ containersGutter：布局容器的栅格间隔。（`number[]`）
-+ customDefaultGutter：自定义默认间距。（`StandardGutterType | undefined`）
-+ defaultGutter：默认间距。（`StandardGutterType`）
-+ flexDirection：弹性布局方向。（`string`）
-+ flexLayout：弹性布局类型。（`string`）
-+ gutter：栅格间隔。（`number[]`）
-+ isCard：是否为卡片布局。（`boolean | undefined`）
-+ justify：内容排列方式。（`string`）
-+ wrap：是否换行。（`boolean | undefined`）
++ align: Layout alignment. (`string`)
++ containersGutter: Grid spacing for layout containers. (`number[]`)
++ customDefaultGutter: Custom default spacing. (`StandardGutterType | undefined`)
++ defaultGutter: Default spacing. (`StandardGutterType`)
++ flexDirection: Flex layout direction. (`string`)
++ flexLayout: Flex layout type. (`string`)
++ gutter: Grid spacing. (`number[]`)
++ isCard: Whether to use card layout. (`boolean | undefined`)
++ justify: Content arrangement. (`string`)
++ wrap: Whether to wrap. (`boolean | undefined`)
 
 ### 3、DefaultColWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -245,18 +245,18 @@ export class DefaultRowWidget extends BasePackWidget
 export class DefaultColWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ maxWidth：最大宽度。（`any`）
-+ minWidth：最小宽度。（`any`）
-+ mode：布局模式。（`string | undefined`）
-+ offset：栅格偏移量。（`number`）
-+ span：栅格占位格数。（`number`）
-+ width：宽度。（`any`）
++ maxWidth: Maximum width. (`any`)
++ minWidth: Minimum width. (`any`)
++ mode: Layout mode. (`string | undefined`)
++ offset: Grid offset. (`number`)
++ span: Grid span. (`number`)
++ width: Width. (`any`)
 
 ### 4、DefaultContainersWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -267,35 +267,35 @@ export class DefaultColWidget extends BasePackWidget
 export class DefaultContainersWidget extends DefaultRowWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ border：是否显示边框。（`boolean`）
-+ borderTop：是否显示上边框。（`boolean`）
-+ borderBottom：是否显示下边框。（`boolean`）
-+ borderLeft：是否显示左边框。（`boolean`）
-+ borderRight：是否显示右边框。（`boolean`）
-+ borderColor：边框颜色。（`string | undefined`）
-+ borderSize：边框大小。（`string`）
-+ borderStyle：边框样式。（`string | undefined`）
-+ colGutter：列间距。（`string`）
-+ currentGutter：当前栅格间隔。（`number[]`）
-+ layout：布局方式。（`string | undefined`）
-+ margin：外间距。（`string`）
-+ marginBottom：底部外边距。（`string`）
-+ marginLeft：左侧外边距。（`string`）
-+ marginRight：右侧外边距。（`string`）
-+ marginTop：顶部外边距。（`string`）
-+ padding：内间距。（`string`）
-+ paddingBottom：底部内边距。（`string`）
-+ paddingLeft：左侧内边距。（`string`）
-+ paddingRight：右侧内边距。（`string`）
-+ paddingTop：顶部内边距。（`string`）
-+ rowGutter：行间距。（`string`）
-+ showInternalBorder：是否显示内部边框。（`boolean`）
++ border: Whether to show borders. (`boolean`)
++ borderTop: Whether to show top border. (`boolean`)
++ borderBottom: Whether to show bottom border. (`boolean`)
++ borderLeft: Whether to show left border. (`boolean`)
++ borderRight: Whether to show right border. (`boolean`)
++ borderColor: Border color. (`string | undefined`)
++ borderSize: Border size. (`string`)
++ borderStyle: Border style. (`string | undefined`)
++ colGutter: Column spacing. (`string`)
++ currentGutter: Current grid spacing. (`number[]`)
++ layout: Layout mode. (`string | undefined`)
++ margin: Margin. (`string`)
++ marginBottom: Bottom margin. (`string`)
++ marginLeft: Left margin. (`string`)
++ marginRight: Right margin. (`string`)
++ marginTop: Top margin. (`string`)
++ padding: Padding. (`string`)
++ paddingBottom: Bottom padding. (`string`)
++ paddingLeft: Left padding. (`string`)
++ paddingRight: Right padding. (`string`)
++ paddingTop: Top padding. (`string`)
++ rowGutter: Row spacing. (`string`)
++ showInternalBorder: Whether to show internal borders. (`boolean`)
 
 ### 5、DefaultContainerWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -306,39 +306,39 @@ export class DefaultContainersWidget extends DefaultRowWidget
 export class DefaultContainerWidget extends DefaultRowWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ allInvisible：是否全部不可见。（`boolean`）
-+ border：是否显示边框。（`boolean`）
-+ borderTop：是否显示上边框。（`boolean`）
-+ borderBottom：是否显示下边框。（`boolean`）
-+ borderLeft：是否显示左边框。（`boolean`）
-+ borderRight：是否显示右边框。（`boolean`）
-+ borderColor：边框颜色。（`string | undefined`）
-+ borderSize：边框大小。（`string`）
-+ borderStyle：边框样式。（`string | undefined`）
-+ colGutter：列间距。（`string`）
-+ currentGutter：当前栅格间隔。（`number[]`）
-+ layout：布局方式。（`string | undefined`）
-+ margin：外间距。（`string`）
-+ marginBottom：底部外边距。（`string`）
-+ marginLeft：左侧外边距。（`string`）
-+ marginRight：右侧外边距。（`string`）
-+ marginTop：顶部外边距。（`string`）
-+ padding：内间距。（`string`）
-+ paddingBottom：底部内边距。（`string`）
-+ paddingLeft：左侧内边距。（`string`）
-+ paddingRight：右侧内边距。（`string`）
-+ paddingTop：顶部内边距。（`string`）
-+ rowGutter：行间距。（`string`）
-+ showInternalBorder：是否显示内部边框。（`boolean`）
-+ style：组件样式。（`CSSStyleDeclaration`）
++ allInvisible: Whether all are invisible. (`boolean`)
++ border: Whether to show borders. (`boolean`)
++ borderTop: Whether to show top border. (`boolean`)
++ borderBottom: Whether to show bottom border. (`boolean`)
++ borderLeft: Whether to show left border. (`boolean`)
++ borderRight: Whether to show right border. (`boolean`)
++ borderColor: Border color. (`string | undefined`)
++ borderSize: Border size. (`string`)
++ borderStyle: Border style. (`string | undefined`)
++ colGutter: Column spacing. (`string`)
++ currentGutter: Current grid spacing. (`number[]`)
++ layout: Layout mode. (`string | undefined`)
++ margin: Margin. (`string`)
++ marginBottom: Bottom margin. (`string`)
++ marginLeft: Left margin. (`string`)
++ marginRight: Right margin. (`string`)
++ marginTop: Top margin. (`string`)
++ padding: Padding. (`string`)
++ paddingBottom: Bottom padding. (`string`)
++ paddingLeft: Left padding. (`string`)
++ paddingRight: Right padding. (`string`)
++ paddingTop: Top padding. (`string`)
++ rowGutter: Row spacing. (`string`)
++ showInternalBorder: Whether to show internal borders. (`boolean`)
++ style: Component styles. (`CSSStyleDeclaration`)
 
-## （二）容器组件
+## (二) Container Components
 
 ### 1、DefaultGroupWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -347,17 +347,17 @@ export class DefaultContainerWidget extends DefaultRowWidget
 export class DefaultGroupWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ border：是否显示边框。（`boolean`）
-+ description：描述文本。（`string`）
-+ help：帮助内容。（`any`）
-+ layout：布局方式。（`string | undefined`）
-+ title：分组标题。（`string`）
++ border: Whether to show borders. (`boolean`)
++ description: Description text. (`string`)
++ help: Help content. (`any`)
++ layout: Layout mode. (`string | undefined`)
++ title: Group title. (`string`)
 
 ### 2、DefaultTabsWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -368,59 +368,59 @@ export class DefaultGroupWidget extends BasePackWidget
 export class DefaultTabsWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultActiveIndex：默认激活的标签索引。（`number | undefined`）
-+ layout：布局方式。（`string | undefined`）
-+ parentMountedCallChaining：父级挂载链式调用实例。（`CallChaining | undefined`）
-+ tabAlign：标签对齐方式。（`string`）
-+ tabPosition：标签位置。（`string`）
++ defaultActiveIndex: Default active tab index. (`number | undefined`)
++ layout: Layout mode. (`string | undefined`)
++ parentMountedCallChaining: Parent mounted call chaining instance. (`CallChaining | undefined`)
++ tabAlign: Tab alignment. (`string`)
++ tabPosition: Tab position. (`string`)
 
-**方法**：
+**Methods**:
 
 #### computeDefaultActiveKey
 
-+ **功能描述**：计算默认激活的标签键（基于默认索引或报告的键）。
-+ **类型**：`() => string | undefined`
-+ **返回值**：默认激活的标签键。
++ **Function Description**: Computes the default active tab key (based on default index or reported key).
++ **Type**: `() => string | undefined`
++ **Return Value**: Default active tab key.
 
 #### findNextActiveIndex
 
-+ **功能描述**：根据不可见标志和当前索引，查找下一个可见的标签索引（优先前后搜索）。
-+ **类型**：`(invisibleFlags: boolean[], currentActiveIndex: number) => number`
-+ **参数**：
-  - `invisibleFlags`：子标签不可见状态数组。
-  - `currentActiveIndex`：当前激活的标签索引。
-+ **返回值**：下一个可见标签的索引，未找到则返回 `-1`。
++ **Function Description**: Finds the next visible tab index based on invisible flags and current index (searches forward/backward preferentially).
++ **Type**: `(invisibleFlags: boolean[], currentActiveIndex: number) => number`
++ **Parameters**:
+  - `invisibleFlags`: Array of child tab visibility states.
+  - `currentActiveIndex`: Current active tab index.
++ **Return Value**: Index of the next visible tab, or `-1` if not found.
 
 #### getActiveKey
 
-+ **功能描述**：获取当前激活的标签键。
-+ **类型**：`() => string | undefined`
-+ **返回值**：当前激活的标签键。
++ **Function Description**: Gets the current active tab key.
++ **Type**: `() => string | undefined`
++ **Return Value**: Current active tab key.
 
 #### onActiveKeyChange
 
-+ **功能描述**：处理标签激活状态变化，更新激活键。
-+ **类型**：`(key: string) => void`
-+ **参数**：
-  - `key`：新激活的标签键。
++ **Function Description**: Handles active tab key changes and updates the active key.
++ **Type**: `(key: string) => void`
++ **Parameters**:
+  - `key`: New active tab key.
 
 #### resetInvisible
 
-+ **功能描述**：重置标签可见性，自动切换到下一个可见标签（若当前标签不可见）。
-+ **类型**：`() => void`
++ **Function Description**: Resets tab visibility and automatically switches to the next visible tab if the current tab is invisible.
++ **Type**: `() => void`
 
 #### setActiveKey
 
-+ **功能描述**：设置当前激活的标签键。
-+ **类型**：`(key: string | undefined) => void`
-+ **参数**：
-  - `key`：待激活的标签键。
++ **Function Description**: Sets the current active tab key.
++ **Type**: `(key: string | undefined) => void`
++ **Parameters**:
+  - `key`: Tab key to activate.
 
 ### 3、DefaultTabWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -431,26 +431,26 @@ export class DefaultTabsWidget extends BasePackWidget
 export class DefaultTabWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ currentTabKey：当前标签键（基于当前句柄）。（`string`）
-+ disabled：是否禁用（支持表达式）。（`boolean`）
-+ forceRender：是否强制渲染。（`boolean`）
-+ layout：布局方式。（`string | undefined`）
-+ parentMountedCallChaining：父级挂载链式调用实例。（`CallChaining | undefined`）
-+ title：标签标题（支持表达式，默认值为 `DEFAULT_TAB_TITLE`）。（`string`）
++ currentTabKey: Current tab key (based on current handle). (`string`)
++ disabled: Whether disabled (supports expressions). (`boolean`)
++ forceRender: Whether to force rendering. (`boolean`)
++ layout: Layout mode. (`string | undefined`)
++ parentMountedCallChaining: Parent mounted call chaining instance. (`CallChaining | undefined`)
++ title: Tab title (supports expressions, default is `DEFAULT_TAB_TITLE`). (`string`)
 
-**方法**：
+**Methods**:
 
 #### isDefaultActive
 
-+ **功能描述**：判断是否为默认激活状态（基于 `dsl` 中的 `defaultActive` 配置）。
-+ **类型**：`() => boolean`
-+ **返回值**：返回是否默认激活状态。
++ **Function Description**: Determines if it is the default active state (based on `defaultActive` configuration in DSL).
++ **Type**: `() => boolean`
++ **Return Value**: Whether it is the default active state.
 
 ### 4、DefaultMultiViewTabsWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -461,24 +461,24 @@ export class DefaultTabWidget extends BasePackWidget
 export class DefaultMultiViewTabsWidget extends DefaultTabsWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ allInvisible：是否全部不可见。（`boolean | undefined`）
-+ invisible：是否不可见。（`boolean`）
-+ multiViewKeyCache：多视图键缓存实例。（`ReturnType<MultiViewKeyCache>`）
++ allInvisible: Whether all are invisible. (`boolean | undefined`)
++ invisible: Whether invisible. (`boolean`)
++ multiViewKeyCache: Multi-view key cache instance. (`ReturnType<MultiViewKeyCache>`)
 
-**方法**：
+**Methods**:
 
 #### onActiveKeyChange
 
-+ **功能描述**：处理激活键变化事件，更新多视图键缓存。
-+ **类型**：`(tabKey: string) => void`
-+ **参数**：
-  - `tabKey`：新激活的标签键。
++ **Function Description**: Handles active key change events and updates the multi-view key cache.
++ **Type**: `(tabKey: string) => void`
++ **Parameters**:
+  - `tabKey`: New active tab key.
 
 ### 5、DefaultMultiViewTabWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -489,63 +489,63 @@ export class DefaultMultiViewTabsWidget extends DefaultTabsWidget
 export class DefaultMultiViewTabWidget extends DefaultTabWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ activeRecords：当前激活记录。（`ActiveRecord[] | undefined`）
-+ allInvisible：是否全部不可见。（`boolean | undefined`）
-+ dataSource：数据源。（`ActiveRecord[] | undefined`）
-+ forceRender：是否强制渲染。（`boolean`）
-+ invisible：是否不可见。（`boolean`）
-+ metadataViewWidget：元数据视图组件实例。（`MetadataViewWidget | undefined`）
-+ runtimeView：运行时视图。（`RuntimeView | undefined`）
-+ runtimeViewContext：运行时视图上下文。（`RuntimeContext | undefined`）
-+ viewName：视图名称。（`string | undefined`）
-+ viewModel：视图模型名称。（`string | undefined`）
++ activeRecords: Current active records. (`ActiveRecord[] | undefined`)
++ allInvisible: Whether all are invisible. (`boolean | undefined`)
++ dataSource: Data source. (`ActiveRecord[] | undefined`)
++ forceRender: Whether to force rendering. (`boolean`)
++ invisible: Whether invisible. (`boolean`)
++ metadataViewWidget: Metadata view component instance. (`MetadataViewWidget | undefined`)
++ runtimeView: Runtime view. (`RuntimeView | undefined`)
++ runtimeViewContext: Runtime view context. (`RuntimeContext | undefined`)
++ viewName: View name. (`string | undefined`)
++ viewModel: View model name. (`string | undefined`)
 
-**方法**：
+**Methods**:
 
 #### createMetadataViewWidget
 
-+ **功能描述**：创建元数据视图组件实例（带唯一句柄和配置）。
-+ **类型**：`() => MetadataViewWidget`
-+ **返回值**：元数据视图组件实例。
++ **Function Description**: Creates a metadata view component instance (with a unique handle and configuration).
++ **Type**: `() => MetadataViewWidget`
++ **Return Value**: Metadata view component instance.
 
 #### initRuntimeContext
 
-+ **功能描述**：通过元数据子视图和运行时视图初始化上下文。
-+ **类型**：`(metadataSubviewWidget: MetadataViewWidget, view: RuntimeView) => RuntimeContext`
-+ **参数**：
-  - `metadataSubviewWidget`：元数据子视图组件。
-  - `view`：运行时视图实例。
-+ **返回值**：运行时上下文。
++ **Function Description**: Initializes the context using a metadata subview and runtime view.
++ **Type**: `(metadataSubviewWidget: MetadataViewWidget, view: RuntimeView) => RuntimeContext`
++ **Parameters**:
+  - `metadataSubviewWidget`: Metadata subview component.
+  - `view`: Runtime view instance.
++ **Return Value**: Runtime context.
 
 #### initView
 
-+ **功能描述**：异步加载运行时视图并初始化上下文和属性。
-+ **类型**：`async () => void`
++ **Function Description**: Asynchronously loads the runtime view and initializes context and properties.
++ **Type**: `async () => void`
 
 #### initViewAfterProperties
 
-+ **功能描述**：视图属性初始化后的钩子函数（空实现，供子类扩展）。
-+ **类型**：`() => void`
++ **Function Description**: Hook function after view property initialization (empty implementation for subclass extension).
++ **Type**: `() => void`
 
 #### reloadActiveRecords
 
-+ **功能描述**：重新加载激活记录并更新当前状态。
-+ **类型**：`(records: ActiveRecords | undefined) => void`
-+ **参数**：
-  - `records`：新的激活记录数据（可选）。
++ **Function Description**: Reloads active records and updates the current state.
++ **Type**: `(records: ActiveRecords | undefined) => void`
++ **Parameters**:
+  - `records`: New active record data (optional).
 
 #### reloadDataSource
 
-+ **功能描述**：重新加载数据源并更新当前状态。
-+ **类型**：`(records: ActiveRecords | undefined) => void`
-+ **参数**：
-  - `records`：新的数据源数据（可选）。
++ **Function Description**: Reloads the data source and updates the current state.
++ **Type**: `(records: ActiveRecords | undefined) => void`
++ **Parameters**:
+  - `records`: New data source data (optional).
 
 ### 6、DefaultCollapseWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -556,40 +556,40 @@ export class DefaultMultiViewTabWidget extends DefaultTabWidget
 export class DefaultCollapseWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ accordion：是否为手风琴模式。（`boolean | undefined`）
-+ collapseMethod：折叠方法。（`string`）
-+ expandAll：是否全部展开（默认 `true`）。（`boolean | undefined`）
-+ expandIconPosition：展开图标位置（默认 `right`）。（`string`）
-+ layout：布局方式。（`string | undefined`）
-+ type：折叠类型（默认 `bordered`）。（`string`）
++ accordion: Whether to use accordion mode. (`boolean | undefined`)
++ collapseMethod: Collapse method. (`string`)
++ expandAll: Whether to expand all (default `true`). (`boolean | undefined`)
++ expandIconPosition: Expand icon position (default `right`). (`string`)
++ layout: Layout mode. (`string | undefined`)
++ type: Collapse type (default `bordered`). (`string`)
 
-**方法**：
+**Methods**:
 
 #### getActiveKey
 
-+ **功能描述**：获取当前激活的键。
-+ **类型**：`() => string | string[] | undefined`
-+ **返回值**：当前激活键。
++ **Function Description**: Gets the current active key.
++ **Type**: `() => string | string[] | undefined`
++ **Return Value**: Current active key.
 
 #### onActiveKeyChange
 
-+ **功能描述**：处理激活键变化，更新激活状态。
-+ **类型**：`(key: string | string[]) => void`
-+ **参数**：
-  - `key`：新激活的键。
++ **Function Description**: Handles active key changes and updates the active state.
++ **Type**: `(key: string | string[]) => void`
++ **Parameters**:
+  - `key`: New active key.
 
 #### setActiveKey
 
-+ **功能描述**：设置当前激活的键。
-+ **类型**：`(key: string | string[] | undefined) => void`
-+ **参数**：
-  - `key`：待激活的键。
++ **Function Description**: Sets the current active key.
++ **Type**: `(key: string | string[] | undefined) => void`
++ **Parameters**:
+  - `key`: Key to activate.
 
 ### 7、DefaultCollapsePanelWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -600,19 +600,19 @@ export class DefaultCollapseWidget extends BasePackWidget
 export class DefaultCollapsePanelWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ currentTabKey：当前标签键。（`string`）
-+ disabled：是否禁用。（`boolean`）
-+ forceRender：是否强制渲染。（`boolean`）
-+ layout：布局方式。（`string | undefined`）
-+ title：标题。（`string`）
++ currentTabKey: Current tab key. (`string`)
++ disabled: Whether disabled. (`boolean`)
++ forceRender: Whether to force rendering. (`boolean`)
++ layout: Layout mode. (`string | undefined`)
++ title: Title. (`string`)
 
-## （三）其他组件
+## (三) Other Components
 
 ### 1、DefaultSpinWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -623,22 +623,21 @@ export class DefaultCollapsePanelWidget extends BasePackWidget
 export class DefaultSpinWidget extends BasePackWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ delay：延迟时间（毫秒）。（`number | undefined`）
-+ loadingIndicator：自定义加载指示器。（`VNode | undefined`）
-+ size：加载图标大小。（`string | undefined`）
-+ tip：加载提示文本。（`string | undefined`）
-+ wrapperClassName：外层容器类名。（`string | string[] | undefined`）
++ delay: Delay time (milliseconds). (`number | undefined`)
++ loadingIndicator: Custom loading indicator. (`VNode | undefined`)
++ size: Loading icon size. (`string | undefined`)
++ tip: Loading prompt text. (`string | undefined`)
++ wrapperClassName: Outer container class name. (`string | string[] | undefined`)
 
-**方法**：
+**Methods**:
 
 #### load
 
-+ **功能描述**：执行异步操作并显示加载状态。
-+ **类型**：`async <R>(fn: (...args: any[]) => R, ...args: any[]) => Promise<R>`
-+ **参数**：
-  - `fn`：要执行的异步函数。
-  - `...args`：传递给异步函数的参数。
-+ **返回值**：异步函数的返回结果。
-
++ **Function Description**: Executes an asynchronous operation and shows the loading state.
++ **Type**: `async <R>(fn: (...args: any[]) => R, ...args: any[]) => Promise<R>`
++ **Parameters**:
+  - `fn`: Asynchronous function to execute.
+  - `...args`: Parameters passed to the asynchronous function.
++ **Return Value**: Result of the asynchronous function.

@@ -1,54 +1,54 @@
 ---
-title: 网络请求：第一次登录强制修改密码
+title: Network Request:Forced Password Change on First Login
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 64
 ---
-# 一、场景概述
+# I. Scenario Overview
 
-在某些场景下，可能需要实现 `用户首次登录`强制修改密码的功能，或者存在修改平台默认密码等校验规则等需求；本文将讲解不改变平台代码的情况下，如何实现这些功能需求。
+In some scenarios, there may be a need to implement the function of forcing users to change their passwords on their first login, or to enforce validation rules such as modifying the platform's default password. This article will explain how to achieve these functional requirements without modifying the platform code.
 
-# 二、首次登录修改密码
+# II. Forced Password Change on First Login
 
-## （一）方案概述
+## (I) Solution Overview
 
-自定义 User 增加是否是第一次登录的属性，登录后执行一个扩展点。 判断是否是一次登录，如果是则返回对应的状态码，前端根据状态码重定向到修改密码的页面。修改完成则充值第一次登录的标识。
+Customize the User model to add an attribute indicating whether it is the first login, and execute an extension point after login. Check if it is the first login; if so, return the corresponding status code, and the frontend will redirect to the password change page based on the status code. After completion, reset the first login flag.
 
-:::warning 提示
+:::warning Tip
 
-首次登录的标识平台前端已默认实现
+The first login flag is already implemented by default in the platform frontend.
 
 :::
 
-## （二）扩展PamirsUser(例如：DemoUser)
+## (II) Extend PamirsUser (e.g., DemoUser)
 
 ```java
 /**
  * @author wangxian
  */
 @Model.model(DemoUser.MODEL_MODEL)
-@Model(displayName = "用户", labelFields = {"nickname"})
+@Model(displayName = "User", labelFields = {"nickname"})
 @Model.Advanced(index = {"companyId"})
 public class DemoUser extends PamirsUser {
     public static final String MODEL_MODEL = "demo.DemoUser";
 
     @Field.Integer
     @Field.Advanced(columnDefinition = "bigint DEFAULT '0'")
-    @Field(displayName = "公司ID", invisible = true)
+    @Field(displayName = "Company ID", invisible = true)
     private Long companyId;
 
     /**
-     * 默认true->1
+     * Default true->1
      */
     @Field.Boolean
     @Field.Advanced(columnDefinition = "tinyint(1) DEFAULT '1'")
-    @Field(displayName = "是否首次登录")
+    @Field(displayName = "First Login")
     private Boolean firstLogin;
 }
 ```
 
-## （三）编写扩展点(例如：DemoUserLoginExtPoint)
+## (III) Write Extension Point (e.g., DemoUserLoginExtPoint)
 
 ```java
 @Order(0)
@@ -64,7 +64,7 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
     }
 
     private PamirsUserTransient checkFirstLogin(PamirsUserTransient user) {
-        //首次登录需要修改密码
+        // Password change required for first login
         Long userId = PamirsSession.getUserId();
 
         if (userId == null) {
@@ -72,11 +72,11 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
         }
 
         DemoUser companyUser = new DemoUser().queryById(userId);
-        // 判断用户是否是第一次登录，如果是第一次登录，需要返回错误码，页面重新向登录
+        // Check if it is the first login, return error code for redirect if true
         Boolean isFirst = companyUser.getFirstLogin();
         if (isFirst) {
-            //如果是第一次登录，返回一个标识给前端。
-            // 首次登录的标识平台已默认实现
+            // Return flag to frontend for first login
+            // First login flag is implemented by the platform by default
             user.setBroken(Boolean.TRUE);
             user.setErrorCode(UserExpEnumerate.USER_FIRST_LOGIN_ERROR.code());
             return user;
@@ -101,7 +101,7 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
         if (userId == null) {
             return user;
         }
-        //修改密码后 将首次登录标识改为false
+        // Update first login flag to false after password change
         Integer update = new DemoUser().updateByWrapper(new DemoUser().setFirstLogin(Boolean.FALSE),
                                                         Pops.<DemoUser>lambdaUpdate()
                                                         .from(DemoUser.MODEL_MODEL)
@@ -121,21 +121,20 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
         return updateFirstLogin(user);
     }
 }
-
 ```
 
-# 三、修改平台密码规则
+# III. Modify Platform Password Rules
 
-## （一）密码规则平台内置 SPI
+## (I) Platform Built-in SPI for Password Rules
 
-平台已提供内置SPI：UserPatternCheckApi 支持用户自定义密码、用户 Nick、邮箱等指定以校验规则。内置 SPI 接口定义如下：
+The platform provides a built-in SPI: UserPatternCheckApi, which supports custom password, user Nick, email, and other validation rules. The built-in SPI interface is defined as follows:
 
 ```java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface UserPatternCheckApi {
 
     default Boolean userPatternCheck(PamirsUser pamirsUser) {
-        // 过滤掉系统用户（即系统用户的密码修改不受扩展点影响）8848:eip_system.; 10088L:workflow_system; 10086L:trigger_system
+        // Exclude system users (password changes for system users are not affected by extension points) 8848:eip_system.; 10088L:workflow_system; 10086L:trigger_system
         if (pamirsUser.getId()!=null && (8848L==pamirsUser.getId() || 10086L==pamirsUser.getId() || 10088L==pamirsUser.getId())) {
             return Boolean.TRUE;
         }
@@ -244,34 +243,33 @@ public interface UserPatternCheckApi {
         return Boolean.TRUE;
     }
 }
-
 ```
 
-## （二）项目上密码规则自定义示例
+## (II) Custom Password Rule Example in Projects
 
-下面的示例实现自定义校验：
-1、用户账号不检验格式，只检验登录 login 不为空；
-2、密码不检验格式，只校验长度是 3 到 8位；
+The following example implements custom validation:
+1. User accounts do not check format, only ensure login is not empty;
+2. Passwords do not check format, only ensure length is 3 to 8 characters;
 
 ```java
 @Slf4j
 @SPI.Service
-@Order(50) //默认优先级最低，业务配置需要配置成为优先级高
+@Order(50) // Default lowest priority, business configuration needs higher priority
 @Component
 public class DemoUserPatternCheckApi implements UserPatternCheckApi {
 
     /**
-     * 按需（无特殊逻辑无需实现），修改密码的校验规则
+     * Customize password validation rules as needed (no need to implement if no special logic)
      **/
     @Override
     public Boolean checkPassword(String password) {
-        //自定义校验逻辑
+        // Custom validation logic
         checkPasswordPattern(password);
         return Boolean.TRUE;
     }
 
     /**
-     * 按需（无特殊逻辑无需实现），修改Login的校验规则
+     * Customize login validation rules as needed (no need to implement if no special logic)
      **/
     @Override
     public Boolean checkLogin(String login) {
@@ -293,4 +291,3 @@ public class DemoUserPatternCheckApi implements UserPatternCheckApi {
     }
 }
 ```
-

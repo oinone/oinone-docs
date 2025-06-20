@@ -2,52 +2,52 @@
 title: DSL
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 前端API
+  - Front-End API
   - Widget
 order: 5
 
 ---
-在 Oinone Kunlun 中，DSL 是与 布局（Layout） 协同的重要部分，它通过定义一些布局中存在的 **插槽** 片段让布局中的内容有所变化。那么，DSL 与布局是如何协同工作的呢？在本章内容中，我们将对这一问题作出解答。
+In Oinone Kunlun, DSL is an important part that collaborates with **Layout**. It allows changes in layout content by defining **slot** fragments within the layout. How do DSL and layout work together? In this chapter, we will answer this question.
 
-# 一、Vue 插槽
+# I. Vue Slots
 
-在解释 DSL 之前，让我们先简单回想一下 Vue 中对于插槽的使用。
+Before explaining DSL, let's briefly recall the use of slots in Vue.
 
-## （一）默认插槽
+## (一) Default Slot
 
-（以下示例代码摘自 Vue 插槽官方文档）
+(The following example code is excerpted from the Vue slots official documentation)
 
-可以这样在 `FancyButton` 组件中定义一个插槽：
+A slot can be defined in the `FancyButton` component as follows:
 
 ```vue
 <button class="fancy-btn">
-  <slot /><!-- 插槽出口 -->
+  <slot /><!-- Slot outlet -->
 </button>
 ```
 
-对于 `FancyButton` 组件在任何地方使用的时候，我们可以这样定义按钮中的文本：
+When using the `FancyButton` component anywhere, we can define the text in the button like this:
 
 ```vue
 <FancyButton>
-  Click me! <!-- 插槽内容 -->
+  Click me! <!-- Slot content -->
 </FancyButton>
 ```
 
-最终渲染出的 DOM 是这样的：
+The最终 rendered DOM is as follows:
 
 ```html
 <button class="fancy-btn">Click me!</button>
 ```
 
-## （二）具名插槽
+## (二) Named Slots
 
-（以下示例代码摘自 Vue 插槽官方文档）
+(The following example code is excerpted from the Vue slots official documentation)
 
-当一个组件包含多个插槽时，具名插槽将指定内容插入到对应的插槽中。
+When a component contains multiple slots, named slots specify where to insert content into corresponding slots.
 
-可以这样在 `BaseLayout` 组件中定义这样三个插槽：
+Three slots can be defined in the `BaseLayout` component as follows:
 
 ```html
 <div class="container">
@@ -63,23 +63,23 @@ order: 5
 </div>
 ```
 
-当我们在使用 `BaseLayout` 组件时，可以通过指定插槽名称来决定哪一部分片段需要插入到哪个插槽中，就像这样：
+When using the `BaseLayout` component, we can determine which fragment inserts into which slot by specifying the slot name, just like this:
 
 ```html
 <BaseLayout>
   <template #default>
-    content <!-- 默认插槽的内容放这里 -->
+    content <!-- Content for the default slot goes here -->
   </template>
   <template #header>
-    header <!-- header 插槽的内容放这里 -->
+    header <!-- Content for the header slot goes here -->
   </template>
   <template #footer>
-    footer <!-- footer 插槽的内容放这里 -->
+    footer <!-- Content for the footer slot goes here -->
   </template>
 </BaseLayout>
 ```
 
-最终渲染出的 DOM 是这样的：
+The最终 rendered DOM is as follows:
 
 ```html
 <div class="container">
@@ -96,24 +96,24 @@ order: 5
 ```
 
 :::warning
-提示：
+Tip:
 
-更多关于 插槽 的内容请参考：[Vue 插槽](https://cn.vuejs.org/guide/components/slots.html)
+For more content about slots, please refer to: [Vue Slots](https://cn.vuejs.org/guide/components/slots.html)
 
 :::
 
-# 二、DSL 插槽
+# II. DSL Slots
 
-在 `布局（Layout）` 中可以使用两种方式定义插槽：
+In `Layout`, slots can be defined in two ways:
 
-+ 使用 xslot 标签声明插槽。
-+ 在任何 XML 标签上使用 slot 属性声明插槽。
++ Declare slots using the xslot tag.
++ Declare slots using the slot attribute on any XML tag.
 
-## （一）xslot 标签
+## (一) xslot Tag
 
-xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一下如何在布局以及DSL中使用，以及最终合并的结果。
+The xslot tag is the closest way to use Vue slots. Let's see how to use it in layouts and DSL, as well as the final merged result.
 
-在 `布局（Layout）` 中我们可以像下面这样来定义一个 `fields` 插槽：
+In `Layout`, we can define a `fields` slot as follows:
 
 ```xml
 <element widget="table">
@@ -121,7 +121,7 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 </element>
 ```
 
-在 `DSL` 中使用 `template` 标签为插槽提供具体的内容：
+In `DSL`, use the `template` tag to provide specific content for the slot:
 
 ```xml
 <template slot="fields">
@@ -132,7 +132,7 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 </template>
 ```
 
-最终合并得到的 `Template` 模板是这样的：
+The final merged `Template` is as follows:
 
 ```xml
 <element widget="table">
@@ -143,17 +143,17 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 </element>
 ```
 
-## （二）slot 属性
+## (二) slot Attribute
 
-由于 Widget 框架需要适应更多元化的页面配置，通常我们希望在 DSL 中可以对 布局（Layout） 中定义的组件添加一些属性，那么通过在 XML 标签上添加 slot 属性来定义插槽，这样就可以很容易实现 `属性合并` 这一功能。
+Since the Widget framework needs to adapt to more diversified page configurations, we usually want to add some attributes to components defined in the layout through DSL. Defining slots by adding the slot attribute to XML tags makes it easy to achieve `attribute merging`.
 
-在 `布局（Layout）` 中我们可以像下面这样来定义一个 `table` 插槽：
+In `Layout`, we can define a `table` slot as follows:
 
 ```xml
 <element widget="table" slot="table" />
 ```
 
-在 `DSL` 中使用 `template` 标签为插槽提供具体的内容：
+In `DSL`, use the `template` tag to provide specific content for the slot:
 
 ```xml
 <template slot="table" sortable="true">
@@ -164,7 +164,7 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 </template>
 ```
 
-最终合并得到的 `Template` 模板是这样的：
+The final merged `Template` is as follows:
 
 ```xml
 <element widget="table" sortable="true">
@@ -175,13 +175,13 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 </element>
 ```
 
-# 三、DSL 合并
+# III. DSL Merging
 
-DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为可顺序排列的小单元，用于控制页面元素的相对位置。但它并不像母版和布局那样直观的体现整个页面中元素的相对位置，它仅仅用于表示一个 **插槽** 区域内元素的相对位置。
+Like masks and layouts, DSL splits pages into orderable small units through XML tags to control the relative positions of page elements. However, it does not intuitively reflect the relative positions of elements in the entire page like masks and layouts, but only represents the relative positions of elements within a **slot** area.
 
-## （一）标准合并
+## (一) Standard Merging
 
-以 “资源-国家分组” 为例，一个可能的 `DSL` 模板应该是这样的：
+Taking "Resource - Country Group" as an example, a possible `DSL` template should be:
 
 ```xml
 <view type="TABLE" model="resource.ResourceCountryGroup" title="国家分组" name="国家分组table">
@@ -206,9 +206,9 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-在这个 `DSL` 模板中，`template` 标签上的 `slot` 属性类似于 Vue 的 `具名插槽`，它们会在视图渲染的时候通过一系列的规则合并到事先在布局中定义的插槽中。
+In this `DSL` template, the `slot` attribute on the `template` tag is similar to Vue's `named slots`, which will be merged into slots defined in the layout through a series of rules during view rendering.
 
-对于这个表格视图来说，它有一个对应的标准表格视图布局模板：
+For this table view, it has a corresponding standard table view layout template:
 
 ```xml
 <view type="TABLE">
@@ -233,15 +233,15 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 ```
 
 :::warning
-提示：
+Tip:
 
-任何一个视图对应的布局模板都可以通过 `ViewAction#load` 接口进行查看，如果不是通过接口返回的，那么在没有自定义注册的情况下，将使用默认布局模板进行渲染。
+The layout template corresponding to any view can be viewed through the `ViewAction#load` interface. If it is not returned by the interface, the default layout template will be used for rendering without custom registration.
 
-更多关于布局（Layout）的内容请参考：[Layout](/en/DevManual/Reference/Front-EndFramework/Widget/layout.md)
+For more content about Layout, please refer to: [Layout](/en/DevManual/Reference/Front-EndFramework/Widget/layout.md)
 
 :::
 
-按照插槽的合并规则，让我们尝试合并一下。将 `actions`、`searchFields`、`fields`、`rowActions` 分别合并到对应的包含 `slot` 属性和 `xslot` 标签的 XML 元素中：
+According to the slot merging rules, let's try to merge them. Merge `actions`, `searchFields`, `fields`, and `rowActions` into the corresponding XML elements containing the `slot` attribute and `xslot` tag:
 
 ```xml
 <view type="TABLE">
@@ -277,13 +277,13 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-这样，我们就得到了包含所有元素的一个完整页面。
+In this way, we obtain a complete page containing all elements.
 
-## （二）属性合并
+## (二) Attribute Merging
 
-在 `DSL` 合并到 `布局（Layout）` 时，我们不仅可以将 `子元素` 进行替换或插入，也可以将 `template` 标签上定义的属性合并到具有 `slot` 属性的标签上。
+When merging `DSL` into `Layout`, we can not only replace or insert `child elements` but also merge attributes defined on the `template` tag into tags with the `slot` attribute.
 
-以布局中的表格组件片段为例：
+Take the table component fragment in the layout as an example:
 
 ```xml
 <view type="TABLE">
@@ -295,7 +295,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-如果我们有这样一个 DSL 片段：
+If we have such a DSL fragment:
 
 ```xml
 <view type="TABLE">
@@ -312,7 +312,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-那么，最终合并的结果是这样的：
+Then, the final merged result is:
 
 ```xml
 <view type="TABLE">
@@ -325,19 +325,19 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-这样，我们就可以在表格组件上使用 `DSL` 中定义的 `sortable` 属性了。
+In this way, we can use the `sortable` attribute defined in DSL on the table component.
 
-但按照我们之前的标准合并规则，我们丢失了 `原布局` 中表格组件的所有子元素，只保留了 DSL 中的片段内容。显而易见的是，现在的表格已经将 `行内动作（rowActions）` 组件丢掉了，这一定不是我们想要的结果。
+However, according to our previous standard merging rules, we have lost all child elements of the table component in the `original layout`, retaining only the fragment content in DSL. Obviously, the current table has lost the `rowActions` component, which is definitely not the result we want.
 
-为了解决这个问题，我们提出了一个较为友好的解决方式——**反向合并**。
+To solve this problem, we propose a more friendly solution - **reverse merging**.
 
-## （三）逆向合并
+## (三) Reverse Merging
 
-**正向合并** 是指，通过 `布局` 控制所有元素相对位置，`DSL` 仅定义 `属性` 和 `子元素`，合并后所有元素的相对位置以 `布局` 为准不发生变化。
+**Forward merging** means that the layout controls the relative positions of all elements, and DSL only defines `attributes` and `child elements`. After merging, the relative positions of all elements remain unchanged based on the layout.
 
-**逆向合并** 是指，通过 `DSL` 控制 布局 中包含 `slot` 属性的元素位置 ，`DSL` 定义的 `属性` 和 `子元素` 优先于 `布局` 中定义的 `属性` 和 `子元素`。但无法改变布局中的 `标签（dslNodeType）` 和 `插槽名（slot）`。
+**Reverse merging** means that DSL controls the positions of elements containing the `slot` attribute in the layout, and the `attributes` and `child elements` defined by DSL take precedence over those defined in the layout. However, it cannot change the `tag (dslNodeType)` and `slot name (slot)` in the layout.
 
-以布局中的表格组件片段为例：
+Take the table component fragment in the layout as an example:
 
 ```xml
 <view type="TABLE">
@@ -349,7 +349,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-如果我们有这样一个 DSL 片段：
+If we have such a DSL fragment:
 
 ```xml
 <view type="TABLE">
@@ -366,7 +366,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-那么，最终合并的结果是这样的：
+Then, the final merged result is:
 
 ```xml
 <view type="TABLE">
@@ -383,13 +383,13 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-可以看出，在 `布局` 中定义的 `<element widget="rowActions">` 被合并到 `DSL` 定义的 `template` 标签位置，并且保留了 `DSL` 中的 `属性` 和 `子元素`。
+It can be seen that the `<element widget="rowActions">` defined in the `layout` is merged into the position of the `template` tag defined in DSL, preserving the `attributes` and `child elements` in DSL.
 
-## （四）属性插槽
+## (四) Attribute Slots
 
-如果我们仅需要为某个标签添加一些属性而不改变内部的子元素内容，我们可以在 DSL 中定义一个没有子元素的 template 标签来实现这个功能。
+If we only need to add some attributes to a tag without changing the content of internal child elements, we can define a `template` tag without child elements in DSL to achieve this.
 
-例如：
+For example:
 
 ```xml
 <view type="TABLE">
@@ -426,15 +426,15 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-对于 `<pack widget="group" title="标题">` 这个标签，我们成功将 `DSL` 中的 `title` 属性合并到布局中，并且没有修改任何内部子元素。
+For the tag `<pack widget="group" title="标题">`, we successfully merged the `title` attribute in DSL into the layout without modifying any internal child elements.
 
-# 四、组件插槽
+# IV. Component Slots
 
-在 Widget 框架中，插槽这一概念不仅仅用于 `布局（Layout）` 与 `DSL` 之间进行片段的替换。为了让组件可以根据 DSL 定义产生变化，针对每个组件，我们都可以使用插槽这一功能为组件提供具体内容。这一点与 Vue 插槽的概念非常相似。
+In the Widget framework, the concept of slots is not only used for fragment replacement between `Layout` and `DSL`. To enable components to change according to DSL definitions, each component can use slots to provide specific content. This is very similar to the concept of Vue slots.
 
-## （一）具名插槽
+## (一) Named Slots
 
-以卡片为例，我们希望可以分别定义顶部（header）、内容（content）以及底部（footer），在 Vue 组件中我们可以这样来定义 `Vue Template` 模板：
+Take a card as an example. We want to define the top (header), content (content), and bottom (footer) separately. In a Vue component, we can define the `Vue Template` as follows:
 
 ```vue
 <template>
@@ -452,7 +452,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </template>
 ```
 
-这个 Vue 组件被绑定在一个 `CardDemoWidget` 组件上，那么，我们在 `布局（Layout）` 中可以通过这样的方式使用这个卡片组件：
+This Vue component is bound to a `CardDemoWidget` component. Then, in `Layout`, we can use this card component in the following way:
 
 ```vue
 <element widget="CardDemo">
@@ -462,7 +462,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </element>
 ```
 
-在 `DSL` 中分别对这三部分内容进行声明：
+Declare these three parts in `DSL` respectively:
 
 ```vue
 <view>
@@ -480,7 +480,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-最终合并得到的 `Template` 模板是这样的：
+The final merged `Template` is as follows:
 
 ```vue
 <element widget="CardDemo">
@@ -498,11 +498,11 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </element>
 ```
 
-在这个合并过程中，将完全遵循 DSL 合并的规则，并最终保留 tempalte 标签为 Vue 组件插槽提供具体内容。
+In this merging process, it will fully follow the DSL merging rules and finally retain the `template` tag to provide specific content for Vue component slots.
 
-## （二）默认插槽
+## (二) Default Slot
 
-让我们将之前的 Vue Template 模板的 content 插槽名去掉，就像下面这样：
+Let's remove the content slot name from the previous Vue Template, as follows:
 
 ```vue
 <template>
@@ -520,9 +520,9 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </template>
 ```
 
-那么，对于这个没有名称的插槽，在 `布局（Layout）` 中应该如何使用呢？由于最终渲染的 Template 模板是通过 `布局（Layout）` 和 `DSL` 合并得到的，我们可以有两种方式使用默认插槽，这一点与 Vue 插槽的功能是完全一样的。
+So, how should we use this unnamed slot in `Layout`? Since the final rendered Template is merged from `Layout` and `DSL`, we can use the default slot in two ways, which is exactly the same as the function of Vue slots.
 
-### 1、使用 default 默认具名插槽
+### 1. Use the default named slot "default"
 
 ```vue
 <element widget="CardDemo">
@@ -534,7 +534,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </element>
 ```
 
-最终合并得到的 `Template` 模板是这样的：
+The final merged `Template` is as follows:
 
 ```vue
 <element widget="CardDemo">
@@ -552,7 +552,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </element>
 ```
 
-### 2、自动收集子元素到默认插槽
+### 2. Automatically collect child elements into the default slot
 
 ```vue
 <element widget="CardDemo">
@@ -562,7 +562,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </element>
 ```
 
-最终合并得到的 `Template` 模板是这样的：
+The final merged `Template` is as follows:
 
 ```vue
 <element widget="CardDemo">
@@ -578,5 +578,4 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </element>
 ```
 
-不论使用哪种方式，在 Vue 组件中获取到的插槽内容都是完全一样的。
-
+Regardless of the method used, the slot content obtained in the Vue component is exactly the same.

@@ -1,19 +1,19 @@
 ---
-title: 数据操作：自定义RSQL占位符(placeholder)及在权限中使用
+title: Data Operations:Custom RSQL Placeholders and Their Usage in Permissions
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 34
 ---
 
-# 一、自定义RSQL占位符常用场景
-+ 统一的数据权限配置
-+ 查询表达式的上下文变量扩展
+# I. Common Scenarios for Custom RSQL Placeholders
++ Unified data permission configuration
++ Context variable extension for query expressions
 
-# 二、自定义 RSQL 模板
+# II. Custom RSQL Template
 ```java
 /**
- * 演示Placeholder占位符基本定义
+ * Demonstrate the basic definition of Placeholder
  *
  * @author Adamancy Zhang at 13:53 on 2024-03-24
  */
@@ -23,7 +23,7 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
     private static final String PLACEHOLDER_KEY = "${thisPlaceholder}";
 
     /**
-     * 占位符
+     * Placeholder
      *
      * @return placeholder
      */
@@ -33,9 +33,9 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
     }
 
     /**
-     * 占位符替换值
+     * Placeholder replacement value
      *
-     * @return the placeholder replace to the value
+     * @return the value to replace the placeholder
      */
     @Override
     protected String value() {
@@ -43,9 +43,9 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
     }
 
     /**
-     * 优先级
+     * Priority
      *
-     * @return execution order of placeholders, ascending order.
+     * @return execution order of placeholders, in ascending order
      */
     @Override
     public Integer priority() {
@@ -53,9 +53,9 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
     }
 
     /**
-     * 是否激活
+     * Activation status
      *
-     * @return the placeholder is activated
+     * @return whether the placeholder is activated
      */
     @Override
     public Boolean active() {
@@ -64,16 +64,14 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
 }
 ```
 
-:::info 注意：
-
-+ 在一些旧版本中，`priority`和`active`可能不起作用，为保证升级时不受影响，请保证该属性配置正确。
-+ `PLACEHOLDER_KEY`变量表示自定义占位符使用的关键字，需按照所需业务场景的具体功能并根据上下文语义正确定义。
-+ 为保证占位符可以被正确替换并执行，所有占位符都不应该出现重复，尤其是不能与系统内置的重复。
-
+:::info Note:
++ In some older versions, `priority` and `active` may not function. To ensure compatibility during upgrades, please ensure these attributes are configured correctly.
++ The `PLACEHOLDER_KEY` variable represents the keyword used for the custom placeholder, which should be defined correctly based on the specific business scenario and contextual semantics.
++ To ensure placeholders can be correctly replaced and executed, all placeholders should be unique, especially not repeating system-built-in ones.
 :::
 
-# 三、占位符使用时的优先级问题
-多个占位符在进行替换时，会根据`优先级`按升序顺序执行，如需要指定替换顺序，可使用`Spring`的`Order`注解对其进行排序。
+# III. Priority Issues When Using Placeholders
+When replacing multiple placeholders, they will be executed in ascending order based on `priority`. To specify the replacement order, use Spring's `Order` annotation for sorting.
 
 ```java
 import org.springframework.core.annotation.Order;
@@ -81,24 +79,23 @@ import org.springframework.core.annotation.Order;
 @Order(0)
 ```
 
-# 四、`Oinone`平台内置的占位符
-| 占位符 | 数据类型 | 含义 | 备注 |
+# IV. Built-in Placeholders in Oinone Platform
+| Placeholder | Data Type | Meaning | Remarks |
 | --- | --- | --- | --- |
-| `${currentUser}` | `String` | 当前用户ID | 未登录时无法使用 |
-| `${currentRoles}` | `Set<String>` | 当前用户的角色ID集合 | 未登录时无法使用 |
+| `${currentUser}` | `String` | Current user ID | Unavailable when not logged in |
+| `${currentRoles}` | `Set<String>` | Set of current user role IDs | Unavailable when not logged in |
 
+# V. How to Override Built-in Placeholders?
+By specifying the placeholder's priority and defining the same `namespace`, you can prioritize replacement.
 
-# 五、如何覆盖平台内置的占位符？
-通过指定占位符的优先级，并定义相同的`namespace`可优先替换。
+# VI. How to Define Session-Level Context Variables?
+In the above template, we used the built-in context variables of the Oinone platform for demonstration. Usually, we need to add context variables based on actual business scenarios to achieve required functions.
 
-# 六、如何定义会话级别的上下文变量？
-在上述模板中，我们使用的是`Oinone`平台内置的上下文变量进行演示，通常情况下，我们需要根据实际业务场景增加上下文变量，以此来实现所需功能。
-
-下面，我们将根据`当前用户`获取`当前员工ID`定义该上下文变量进行演示。
+Below, we will demonstrate defining a context variable to get the `current employee ID` based on the `current user`.
 
 ```java
 /**
- * 员工Session
+ * Employee session
  *
  * @author Adamancy Zhang at 14:33 on 2024-03-24
  */
@@ -142,21 +139,19 @@ public class EmployeeSession implements HookBefore {
 }
 ```
 
-:::info 注意：
-
-+ 使用`HookBefore`在请求发起时向上下文中设置`employeeId`，使用`EmployeeSession.getEmployeeId()`获取即可。
-+ 将`HookBefore`的优先级设置为`priority = 1`，需要该`Hook`在平台内置的`UserHook`之后执行，以确保`PamirsSession.getUserId()`中的值已经被正确设置。
-+ `DemoEmployeeService`服务应使用平台`@Fun`及`@Function`注解进行实现，以确保该`Session`可在分布式环境中正确运行。
-+ `getEmployeeIdByCache`方法需自行实现，在运行时使用缓存可有效提高性能。
-
+:::info Note:
++ Use `HookBefore` to set `employeeId` in the context when a request is initiated, and use `EmployeeSession.getEmployeeId()` to retrieve it.
++ Set the `HookBefore` priority to `priority = 1`, ensuring this `Hook` executes after the platform's built-in `UserHook` to ensure the value in `PamirsSession.getUserId()` is correctly set.
++ The `DemoEmployeeService` should be implemented using the platform's `@Fun` and `@Function` annotations to ensure this `Session` works correctly in a distributed environment.
++ The `getEmployeeIdByCache` method needs to be implemented independently, and using caching at runtime can effectively improve performance.
 :::
 
-# 七、`员工Session`在`placeholder`中使用
-将`DemoPlaceHolder`改写，使用`${currentEmployeeId}`获取`员工Session`中保存的`employeeId`。
+# VII. Using Employee Session in Placeholder
+Modify `DemoPlaceHolder` to use `${currentEmployeeId}` to get the `employeeId` saved in the employee session.
 
 ```java
 /**
- * 演示Placeholder占位符使用员工Session
+ * Demonstrate using employee session in Placeholder
  *
  * @author Adamancy Zhang at 15:02 on 2024-03-24
  */
@@ -166,7 +161,7 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
     private static final String PLACEHOLDER_KEY = "${currentEmployeeId}";
 
     /**
-     * 占位符
+     * Placeholder
      *
      * @return placeholder
      */
@@ -176,9 +171,9 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
     }
 
     /**
-     * 占位符替换值
+     * Placeholder replacement value
      *
-     * @return the placeholder replace to the value
+     * @return the value to replace the placeholder
      */
     @Override
     protected String value() {
@@ -186,9 +181,9 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
     }
 
     /**
-     * 优先级
+     * Priority
      *
-     * @return execution order of placeholders, ascending order.
+     * @return execution order of placeholders, in ascending order
      */
     @Override
     public Integer priority() {
@@ -196,9 +191,9 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
     }
 
     /**
-     * 是否激活
+     * Activation status
      *
-     * @return the placeholder is activated
+     * @return whether the placeholder is activated
      */
     @Override
     public Boolean active() {
@@ -207,90 +202,89 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
 }
 ```
 
-至此，我们已完成了一个`员工ID`占位符。
+So far, we have completed an employee ID placeholder.
 
-# 八、在权限配置时使用该占位符作为过滤条件
-下面，我们将模拟一个简单业务场景，详细介绍该占位符如何在业务中使用。
+# VIII. Using This Placeholder as a Filter Condition in Permission Configuration
+Below, we will simulate a simple business scenario to detail how this placeholder is used in business.
 
-## （一）场景描述
-当前系统中包含`部门`和`员工`两个模型，模型的基本定义如下所示：
+## (一) Scenario Description
+The current system includes two models: `Department` and `Employee`, with basic definitions as follows:
 
-### 1、部门
+### 1. Department
 ```java
 /**
- * 演示部门
+ * Demo department
  *
  * @author Adamancy Zhang at 15:18 on 2024-03-24
  */
 @Model.model(DemoDepartment.MODEL_MODEL)
-@Model(displayName = "演示部门", labelFields = "name")
+@Model(displayName = "Demo Department", labelFields = "name")
 public class DemoDepartment extends IdModel {
 
     private static final long serialVersionUID = -300189841334506668L;
 
     public static final String MODEL_MODEL = "demo.DemoDepartment";
 
-    @Field(displayName = "部门名称")
+    @Field(displayName = "Department Name")
     private String name;
 
-    @Field(displayName = "管理员")
+    @Field(displayName = "Manager")
     private DemoEmployee manager;
 
 }
 ```
 
-### 2、员工
+### 2. Employee
 ```java
 /**
- * 演示员工
+ * Demo employee
  *
  * @author Adamancy Zhang at 15:17 on 2024-03-24
  */
 @Model.model(DemoEmployee.MODEL_MODEL)
 @Model.Advanced(unique = {"bindingUserId"})
-@Model(displayName = "演示员工", labelFields = "name")
+@Model(displayName = "Demo Employee", labelFields = "name")
 public class DemoEmployee extends IdModel {
 
     private static final long serialVersionUID = -6237083162460091500L;
 
     public static final String MODEL_MODEL = "demo.DemoEmployee";
 
-    @Field(displayName = "员工名称")
+    @Field(displayName = "Employee Name")
     private String name;
 
     @Field.Relation(relationFields = {"bindingUserId"}, referenceFields = {"id"})
-    @Field(displayName = "绑定用户")
+    @Field(displayName = "Bound User")
     private PamirsUser bindingUser;
 
-    @Field(displayName = "绑定用户ID")
+    @Field(displayName = "Bound User ID")
     private Long bindingUserId;
 
 }
 ```
 
-我们要求当前登录用户仅能查看其作为管理员的所在部门，因此，我们需要使用`managerId == ${currentEmployeeId}`这一过滤条件，在权限中进行配置并使其生效。
+We require that the currently logged-in user can only view departments where they serve as managers. Therefore, we need to use the filter condition `managerId == ${currentEmployeeId}` in permission configuration to make it effective.
 
-此处忽略数据准备过程，仅展示关键页面的配置及最终效果。
+The data preparation process is omitted here, only showing the configuration of key pages and final effects.
 
-## （二）权限项配置
-从应用中切换至`权限`模块，并选择`权限项列表`，创建一个数据权限项，并按照下图内容进行配置。
+## (二) Permission Item Configuration
+Switch to the `Permissions` module in the application, select `Permission Item List`, create a data permission item, and configure it as shown in the figure below.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032407371552-20250530144824939.png)
 
-## （三）角色权限配置
-选择`角色列表`，并选择角色表格中指定角色的`权限配置`按钮，进入`权限配置`页面，并按照下图内容进行配置。
+## (三) Role Permission Configuration
+Select `Role List`, click the `Permission Configuration` button for the specified role in the role table, enter the `Permission Configuration` page, and configure it as shown in the figure below.
 
-PS：这里省略了动作权限相关配置，配置的权限应保证该角色可以正确进入`演示部门`页面查看效果。
+PS: Action permission configuration is omitted here. Configured permissions should ensure the role can correctly access the `Demo Department` page to view the effect.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032407464515-20250530144825046.png)
 
-## （四）为用户绑定指定角色（如已绑定可忽略该步骤）
-从应用中切换至`用户中心`模块，选择指定用户，绑定指定角色。
+## (四) Bind the Specified Role to the User (Skip if Already Bound)
+Switch to the `User Center` module in the application, select the specified user, and bind the specified role.
 
-## （五）在`演示部门`页面查看权限配置效果
-### 1、未配置权限页面效果
+## (五) View Permission Configuration Effects on the `Demo Department` Page
+### 1. Page Effect Without Permission Configuration
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032408343797-20250530144825203.png)
 
-### 2、权限配置后页面效果
+### 2. Page Effect After Permission Configuration
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032408351540-20250530144825250.png)
-

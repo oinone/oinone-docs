@@ -1,77 +1,78 @@
 ---
-title: 流程扩展：工作流审核撤回-回退-拒绝钩子使用
+title: Process Extension:Workflow Audit Withdrawal, Rollback, and Rejection Hook Usage
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 52
 ---
-# 一、工作流【撤销】回调钩子
-使用方式：把该方法放置到 XXX 模型的 Action 下面，或`@Fun(XXX.MODEL_MODEL)`
-触发方式：当流程实例被撤销时
-调用入口：`pro.shushi.pamirs.workflow.app.core.service.impl.WorkflowInstanceServiceImpl#undoInstance`
+
+# I. Workflow [Undo] Callback Hook
+Usage: Place this method under the Action of the XXX model or use `@Fun(XXX.MODEL_MODEL)`
+Trigger Condition: When the process instance is undone
+Invocation Entry Point: `pro.shushi.pamirs.workflow.app.core.service.impl.WorkflowInstanceServiceImpl#undoInstance`
 
 ```java
 /**
- * XXX为当前流程触发方式为模型触发时对应的触发模型、
- * 对应返回不影响流程上下文
- * @param data 入参为触发时的业务数据，数据的JsonString
+ * XXX corresponds to the trigger model when the current workflow trigger method is model-triggered.
+ * The return value does not affect the process context.
+ * @param data The input parameter is the business data at the time of triggering, in JSON string format.
  * @return
  */
 @Function
 public XXX recall(String data) {
-    // TODO: 根据实际的业务逻辑把data转换为对象
+    // TODO: Convert the data into an object based on actual business logic
     WorkRecord workRecord = JsonUtils.parseObject(data, new TypeReference<WorkRecord>(){});
-    // TODO: 增加自定义业务逻辑
+    // TODO: Add custom business logic
     return new XXX();
 }
 ```
 
-# 二、撤销【回退】回调钩子
-使用方式：把该方法放置到 XXX 模型的 Action 下面，或`@Fun(XXX.MODEL_MODEL)`
-触发方式：流程待办进行回退操作时
-调用入口:`pro.shushi.pamirs.workflow.app.core.service.operator.ApprovalFallbackOperatorService`
+# II. Undo [Rollback] Callback Hook
+Usage: Place this method under the Action of the XXX model or use `@Fun(XXX.MODEL_MODEL)`
+Trigger Condition: When a workflow task is rolled back
+Invocation Entry Point: `pro.shushi.pamirs.workflow.app.core.service.operator.ApprovalFallbackOperatorService`
 
 ```java
 /**
- * XXX为当前流程触发方式为模型触发时对应的触发模型
- * 对应返回不影响流程上下文
- * @param data 入参为触发时的业务数据，数据的JsonString
+ * XXX corresponds to the trigger model when the current workflow trigger method is model-triggered.
+ * The return value does not affect the process context.
+ * @param data The input parameter is the business data at the time of triggering, in JSON string format.
  * @return
  */
 @Function
 public XXX fallBack(String data) {
-    // TODO: 根据实际的业务逻辑把data转换为对象
+    // TODO: Convert the data into an object based on actual business logic
     WorkRecord workRecord = JsonUtils.parseObject(data, new TypeReference<WorkRecord>(){});
-    // TODO: 增加自定义业务逻辑
+    // TODO: Add custom business logic
     return new XXX();
 }
 ```
 
-# 三、工作流【拒绝】回调钩子
-使用方式：把该方法放置到 XXX 模型的 Action 下面，或`@Fun(XXX.MODEL_MODEL)
-`触发方式：流程待办进行拒绝操作时
-调用入口:`pro.shushi.pamirs.workflow.app.core.service.operator.ApprovalFallbackOperatorService`
+# III. Workflow [Reject] Callback Hook
+Usage: Place this method under the Action of the XXX model or use `@Fun(XXX.MODEL_MODEL)`
+Trigger Condition: When a workflow task is rejected
+Invocation Entry Point: `pro.shushi.pamirs.workflow.app.core.service.operator.ApprovalFallbackOperatorService`
 
 ```java
 /**
- * XXX为当前流程触发方式为模型触发时对应的触发模型
- * 对应返回不影响流程上下文
- * @param data 入参为触发时的业务数据，数据的JsonString
+ * XXX corresponds to the trigger model when the current workflow trigger method is model-triggered.
+ * The return value does not affect the process context.
+ * @param data The input parameter is the business data at the time of triggering, in JSON string format.
  * @return
  */
 @Function
 public XXX reject(String data) {
-    // TODO: 根据实际的业务逻辑把data转换为对象
+    // TODO: Convert the data into an object based on actual business logic
     WorkRecord workRecord = JsonUtils.parseObject(data, new TypeReference<WorkRecord>(){});
-    // TODO: 增加自定义业务逻辑
+    // TODO: Add custom business logic
     return new XXX();
 }
 ```
 
-# 四、回调钩子在业务系统中的调用示例
+# IV. Example of Callback Hook Invocation in Business System
 ```java
-@Function(summary = "发起的流程撤销时会自动调用此方法")
-@Function.Advanced(displayName = "撤销流程")
+@Function(summary = "This method is automatically called when the initiated workflow is undone.")
+@Function.Advanced(displayName = "Undo Workflow")
 public PurchaseProjectProxy recall(String data) {
     Object tempObj = BeanDefinitionUtils.findFirst(ClientDataConverter.class).out(PurchaseProjectProxy.MODEL_MODEL, JsonUtils.parseMap(data));
     PurchaseProjectProxy proxy = BeanDefinitionUtils.getBean(ClientDataConverter.class)
@@ -82,40 +83,38 @@ public PurchaseProjectProxy recall(String data) {
 }
 ```
 
-# 五、自定义审批方式、自定义审批节点名称
-流程自定义函数需指定：`category = FunctionCategoryEnum.CUSTOM_DESIGNER`
+# V. Custom Approval Methods and Custom Approval Node Names
+Custom workflow functions must specify: `category = FunctionCategoryEnum.CUSTOM_DESIGNER`
 
 ```java
-@Model.model(审批模型.MODEL_MODEL)
+@Model.model(ApprovalModel.MODEL_MODEL)
 @Component
-public class 审批模型Action {
+public class ApprovalModelAction {
 
     /**
-     * 自定义审批方式
-     * @param json json为业务数据，可用JsonUtils转换
-     * @return 返回参数：
-     * COUNTERSIGN_ONEAGREE_ONEREJUST 或签（一名审批人同意或拒绝即可）
-     * COUNTERSIGN_ALLAGREE_ONEREJUST 会签（需所有审批人同意才为同意，一名审批人拒绝即为拒绝）
-     * COUNTERSIGN_ONEAGREE_ALLREJUST 会签（一名审批人同意即为同意，需所有审批人拒绝才为拒绝）
-     * SINGLE 单人
+     * Custom approval method
+     * @param json The business data in JSON format, which can be converted using JsonUtils
+     * @return Return parameters:
+     * COUNTERSIGN_ONEAGREE_ONEREJUST Parallel approval (one approver's approval or rejection takes effect)
+     * COUNTERSIGN_ALLAGREE_ONEREJUST Concurrent approval (all approvers must approve; one rejection leads to rejection)
+     * COUNTERSIGN_ONEAGREE_ALLREJUST Concurrent approval (one approval leads to approval; all rejections lead to rejection)
+     * SINGLE Single approver
      */
     @Function
-    @Function.Advanced(category = FunctionCategoryEnum.CUSTOM_DESIGNER, displayName = "测试自定义审批类型")
+    @Function.Advanced(category = FunctionCategoryEnum.CUSTOM_DESIGNER, displayName = "Test Custom Approval Type")
     public WorkflowSignTypeEnum signType(String json) {
-        // TODO: 增加自定义业务逻辑
+        // TODO: Add custom business logic
         return WorkflowSignTypeEnum.COUNTERSIGN_ONEAGREE_ONEREJUST;
     }
 
     /**
-     * 自定义审批节点名称
+     * Custom approval node name
      * @return
      */
     @Function
-    @Function.Advanced(category = FunctionCategoryEnum.CUSTOM_DESIGNER, displayName = "测试自定义审批名称")
+    @Function.Advanced(category = FunctionCategoryEnum.CUSTOM_DESIGNER, displayName = "Test Custom Approval Name")
     public String customApprovalName() {
         return UUID.randomUUID().toString();
     }
 }
 ```
-
-

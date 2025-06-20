@@ -1,24 +1,24 @@
 ---
-title: 数据操作：分库分表与自定义分表规则
+title: Data Operation:Database and Table Sharding with Custom Sharding Rules
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 26
 ---
 
-# 一、场景描述
-+ Oinone 的分库分表方案，乃是基于与 Sharding - JDBC 的整合方案 。在此之前，相关人员需预先掌握一定的 Sharding - JDBC 知识 。[Sharding - JDBC](https://shardingsphere.apache.org/document/current/cn/overview/)
-+ 在实施分库分表操作前，务必明确一个关键要点，即分表字段（亦称均衡字段）的合理选择。此环节至关重要，与具体业务场景紧密相关。在确定分库分表字段之后，甚至可能需要在功能层面做出某些让步。例如，在查询管理中，分库分表字段作为查询条件是不可或缺的，否则将导致查询效率显著降低 。
-+ 分表字段严禁进行更新操作。因此，在代码层面，需将更新策略设置类设定为永不更新，并在页面修改设置中将其设为 readonly 。
+# 一、Scenario Description
++ Oinone's database and table sharding solution is based on integration with Sharding-JDBC. Relevant personnel should first master certain Sharding-JDBC knowledge beforehand. [Sharding-JDBC](https://shardingsphere.apache.org/document/current/cn/overview/)
++ Before implementing database and table sharding, it is crucial to clarify the rational selection of the sharding field (also known as the balancing field). This link is of vital importance and is closely related to specific business scenarios. After determining the database and table sharding field, concessions may even need to be made at the functional level. For example, in query management, the sharding field is indispensable as a query condition; otherwise, query efficiency will significantly decrease.
++ Sharding fields are strictly prohibited from being updated. Therefore, at the code level, the update strategy setting class should be set to never update, and it should be set as readonly in the page modification settings.
 
-# 二、配置分表策略
-+ 对 ShardingModel 模型进行配置，使其采用分库分表的数据源 pamirsSharding 。
-+ 针对 pamirsSharding 完成数据源以及 sharding 规则的配置 ：
-    - pamirs.sharding.define 应用于 oinone 数据库表的创建工作 。
-    - pamirs.sharding.rule 用于执行分表规则的配置任务 。
-+ 为 pamirsSharding 妥善配置数据源以及 sharding 规则 。
+# 二、Configuring Sharding Strategies
++ Configure the ShardingModel to use the sharded data source pamirsSharding.
++ Complete the configuration of data sources and sharding rules for pamirsSharding:
+    - pamirs.sharding.define is used for creating Oinone database tables.
+    - pamirs.sharding.rule is used to configure sharding rules.
++ Properly configure data sources and sharding rules for pamirsSharding.
 
-##  （一）指定模型对应数据源
+## （一）Specify Data Source for Model
 ```yaml
 pamirs:
   framework:
@@ -31,17 +31,17 @@ pamirs:
       ds-map:
         base: base
       modelDsMap:
-        "[demo.ShardingModel]": pamirsSharding  #配置模型对应的库
+        "[demo.ShardingModel]": pamirsSharding  # Configure the library corresponding to the model
 ```
 
-## （二）分库分表规则配置
+## （二）Sharding Rule Configuration
 ```yaml
 pamirs:
   sharding:
     define:
       data-sources:
         ds: pamirs
-        pamirsSharding: pamirs #申明pamirsSharding库对应的pamirs数据源
+        pamirsSharding: pamirs # Declare that the pamirsSharding library corresponds to the pamirs data source
       models:
         "[trigger.PamirsSchedule]":
           tables: 0..13
@@ -49,13 +49,13 @@ pamirs:
           tables: 0..7
           table-separator: _
     rule:
-      pamirsSharding: #配置pamirsSharding库的分库分表规则
+      pamirsSharding: # Configure sharding rules for the pamirsSharding library
         actual-ds:
-          - pamirs  #申明pamirsSharding库对应的pamirs数据源
+          - pamirs  # Declare that the pamirsSharding library corresponds to the pamirs data source
         sharding-rules:
-          # Configure sharding rule ，以下配置跟sharding-jdbc配置一致
+          # Configure sharding rules, the following configuration is consistent with Sharding-JDBC configuration
           - tables:
-              demo_core_sharding_model: #demo_core_sharding_model表规则配置
+              demo_core_sharding_model: # Configuration for demo_core_sharding_model table rules
                 actualDataNodes: pamirs.demo_core_sharding_model_${0..7}
                 tableStrategy:
                   standard:
@@ -70,14 +70,14 @@ pamirs:
           sql.show: true
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-# 三、自定义规则
-+ 默认规则，即普遍适用的分库分表策略，常见方式包括依据数据量、采用哈希算法等实施分库分表操作。在一般情形下，默认规则足以满足业务需求。
-+ 然而，在部分复杂的业务场景中，默认规则可能难以契合实际需求，此时需依据具体情况进行自定义设置。例如，某些业务可能存在特定的数据分布模式，或具有独特的查询特点，这就要求定制化的分库分表规则，以优化数据访问性能或满足特定业务需求。在此类情况下，运用自定义规则能够更有效地适配业务要求。
+# 三、Custom Rules
++ Default rules refer to the commonly used database and table sharding strategies, such as sharding by data volume or hash algorithm. In general cases, default rules are sufficient to meet business needs.
++ However, in some complex business scenarios, default rules may fail to meet actual requirements, and custom settings are required based on specific circumstances. For example, some businesses may have specific data distribution patterns or unique query characteristics, which require customized sharding rules to optimize data access performance or meet specific business needs. In such cases, using custom rules can more effectively adapt to business requirements.
 
-## （一）自定义分表规则示例
-### 1、按月份分表（DATE_MONTH ）
+## （一）Custom Sharding Rule Examples
+### 1、Table Sharding by Month (DATE_MONTH)
 ```java
 package pro.shushi.pamirs.demo.core.sharding;
 
@@ -111,7 +111,7 @@ public class DateMonthShardingAlgorithm implements StandardShardingAlgorithm<Dat
                 return tableName;
             }
         }
-        throw new IllegalArgumentException("未找到匹配的数据表");
+        throw new IllegalArgumentException("No matching data table found");
     }
 
     @Override
@@ -165,7 +165,7 @@ public class DateMonthShardingAlgorithm implements StandardShardingAlgorithm<Dat
 }
 ```
 
-### 2、按特定字段截取去取模分表
+### 2、Table Sharding by Modulo Based on Specific Field Extraction
 ```java
 package pro.shushi.pamirs.demo.core.sharding;
 
@@ -198,7 +198,7 @@ public class AppUserCodeShardingAlgorithm implements StandardShardingAlgorithm<S
                 return tableName;
             }
         }
-        throw new IllegalArgumentException("未找到匹配的数据表");
+        throw new IllegalArgumentException("No matching data table found");
     }
 
     @Override
@@ -228,8 +228,8 @@ public class AppUserCodeShardingAlgorithm implements StandardShardingAlgorithm<S
 }
 ```
 
-# 四、使用自定义分表策略
-## （一）指定模型对应数据源
+# 四、Using Custom Sharding Strategies
+## （一）Specify Data Source for Model
 ```yaml
 pamirs:
   framework:
@@ -246,7 +246,7 @@ pamirs:
         "[demo.record.MsgRecode]": pamirsSharding
 ```
 
-## （二）分库分表规则配置
+## （二）Sharding Rule Configuration
 ```yaml
 pamirs:
   sharding:
@@ -277,15 +277,14 @@ pamirs:
                 type: APP_USER_CODE_TYPE
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## （三）配置自定义规则SPI
+## （三）Configure Custom Rule SPI
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024051104035339-1024x314-20250530144830015.png)
 
-在 `resources/META - INF/services` 路径下，对 `org.apache.shardingsphere.sharding.spi.ShardingAlgorithm` 进行配置 。
+Configure `org.apache.shardingsphere.sharding.spi.ShardingAlgorithm` under the `resources/META-INF/services` path.
 
 ```java
 pro.shushi.pamirs.demo.core.sharding.AppUserCodeShardingAlgorithm
 pro.shushi.pamirs.demo.core.sharding.DateMonthShardingAlgorithm
 ```
-

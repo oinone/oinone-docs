@@ -1,15 +1,16 @@
 ---
-title: 网络请求：请求加密
+title: Network Requests:Request Encryption
 index: true
 category:
-   - 前端
+   - Frontend
 order: 10
 ---
-# 一、介绍
-在一些对安全等级要求比较高的场景，`oinone`提供了扩展前端加密请求内容，后端解密请求内容的能力，该方案要求前后端的加解密方案统一。
 
-# 二、后端
-## （一）继承平台的`RequestController`新增一个请求类，在里面处理加密逻辑
+# I. Introduction
+In scenarios with high security requirements, Oinone provides the capability to extend frontend encryption for request content and backend decryption, requiring that the encryption and decryption schemes of the frontend and backend are unified.
+
+# II. Backend
+## (一) Inherit the platform's `RequestController` and add a new request class to handle encryption logic
 ```java
 package pro.shushi.pamirs.demo.core.controller;
 
@@ -65,7 +66,7 @@ public class DemoRequestController extends RequestController {
         String encodeStr = (String) variables.get(GQL_VAR);
         if (StringUtils.isNotBlank(encodeStr)) {
             variables.put(GQL_VAR, null);
-            // TODO 此处的加密方法可以换为其他算法
+            // TODO This encryption method can be replaced with other algorithms
             String gqlQuery = AES256Utils.decrypt(encodeStr);
             gql.setQuery(gqlQuery);
         }
@@ -73,11 +74,11 @@ public class DemoRequestController extends RequestController {
 }
 ```
 
-## （二）boot工程的启动类排除掉平台默认的`RequestController`类
+## (二) The boot project's startup class excludes the platform's default `RequestController` class
 ```java
 @ComponentScan(
         excludeFilters = {
-                // 该注解排除平台的RequestController类
+                // This annotation excludes the platform's RequestController class
                 @ComponentScan.Filter(
                         type = FilterType.REGEX,
                         pattern = "pro.shushi.pamirs.framework.gateways.graph.java.RequestController"
@@ -87,7 +88,7 @@ public class DemoApplication {
 }
 ```
 
-## （三）以下为实际项目中的启动类示例
+## (三) The following is an example of a startup class in an actual project
 ```java
 package pro.shushi.pamirs.demo.boot;
 
@@ -126,7 +127,7 @@ import java.io.IOException;
                         type = FilterType.ASSIGNABLE_TYPE,
                         value = {RedisAutoConfiguration.class, RedisRepositoriesAutoConfiguration.class, RedisClusterConfig.class}
                 ),
-                // 该注解排除平台的RequestController类
+                // This annotation excludes the platform's RequestController class
                 @ComponentScan.Filter(type = FilterType.REGEX,
                         pattern = "pro.shushi.pamirs.framework.gateways.graph.java.RequestController")
         })
@@ -156,32 +157,31 @@ public class DemoApplication {
 }
 ```
 
-# 二、前端
-## （一）新增工具类`EncryptRequestUtil.ts`
+# III. Frontend
+## (一) Add a utility class `EncryptRequestUtil.ts`
 ```typescript
 import { encrypt, NetworkMiddlewareHandler } from '@kunlun/dependencies';
 
 export const encryptMiddleWare: NetworkMiddlewareHandler = (operation, forward) => {
-  // 下面一行代码为默认的加密方法，可以替换为自己的算法
+  // The following line of code is the default encryption method and can be replaced with your own algorithm
   const encryptedGqlString = encrypt(operation!.query!.loc!.source.body);
-  operation!.query = null as any; // 清空原始 query
-  operation.variables = { ...operation.variables, gql: encryptedGqlString }; // 加密后的字符串作为 variables 的一部分
+  operation!.query = null as any; // Clear the original query
+  operation.variables = { ...operation.variables, gql: encryptedGqlString }; // The encrypted string is part of the variables
   return forward(operation).subscribe({})
 };
 ```
 
-## （二）`main.ts`注册加密的拦截器
-在`main.ts`的`VueOioProvider`方法内注册，以下代码仅演示了加密的关键配置，其他配置请按原有代码来
+## (二) Register the encryption interceptor in `main.ts`
+Register within the `VueOioProvider` method of `main.ts`. The following code only demonstrates the key configuration for encryption; other configurations should follow the original code.
 
 ```typescript
 VueOioProvider(
   {
     http: {
       url: location.origin + (process.env.BASE_PATH ? `/${process.env.BASE_PATH}` : ''),
-      // 此处注册加密的拦截器
+      // Register the encryption interceptor here
       middleware: [ encryptMiddleWare ]
     }
   }
 );
 ```
-

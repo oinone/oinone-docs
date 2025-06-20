@@ -1,34 +1,34 @@
 ---
-title: 数据操作：Oinone连接外部数据源方案
+title: Data Operation:Oinone External Data Source Connection Solution
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 25
 ---
 
-# 一、场景描述
-在实际业务场景中，有是有这样的需求：链接外部数据进行数据的获取；通常的做法：
+# 一、Scenario Description
+In practical business scenarios, there is often a need to connect to external data sources for data acquisition. Common approaches include:  
+1. **Recommended**: Use the platform's data connector to connect to external data sources for data operations.  
+2. Connect to data sources in project code, i.e., operate external data source data through programming.  
 
-1. 【推荐】通过集成平台的数据连接器，链接外部数据源进行数据操作；
-2. 项目代码中链接数据源，即通过程序代码操作外部数据源的数据；
+This article focuses on the approach of operating external data sources via programming.
 
-本篇文章只介绍通过程序代码操作外部数据源的方式.
+# 二、Overall Solution
+- Oinone manages external data sources by configuring them in yml.  
+- The backend performs data operations (CRUD) through Mapper.  
+- When calling Mapper interfaces, specify the external data source.  
 
-# 二、整体方案
-+ Oinone 管理外部数据源，即 yml 中配置外部数据源；
-+ 后端通过 Mapper 的方式进行数据操作(增/删/查/改)；
-+ 调用 Mapper 接口的时候，指定到外部数据源；
-
-# 三、详细步骤
-## （一）数据源配置(application.yml), 与正常的数据源配置一样
+# 三、Detailed Steps
+## （一）Data Source Configuration (application.yml)
+The configuration is similar to normal data sources:  
 ```yaml
-out_ds_name(外部数据源别名):
+out_ds_name(alias_for_external_ds):
   driverClassName: com.mysql.cj.jdbc.Driver
   type: com.alibaba.druid.pool.DruidDataSource
-  # local环境配置调整
-  url: jdbc:mysql://ip(host):端口/数据库Schema?useSSL=false&allowPublicKeyRetrieval=true&useServerPrepStmts=true&cachePrepStmts=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true
-  username: 用户名
-  password: 命名
+  # Local environment configuration
+  url: jdbc:mysql://ip(host):port/database_schema?useSSL=false&allowPublicKeyRetrieval=true&useServerPrepStmts=true&cachePrepStmts=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true
+  username: username
+  password: password
   initialSize: 5
   maxActive: 200
   minIdle: 5
@@ -39,33 +39,30 @@ out_ds_name(外部数据源别名):
   testOnReturn: false
   poolPreparedStatements: true
   asyncInit: true
-
 ```
 
-## （二）外部数据源其他配置
-外部数据源限制创建表结构的执行，可以通过配置指定【不创建DB，不创建数据表】
-
+## （二）Additional Configurations for External Data Sources
+To restrict table structure creation for external data sources, configure:  
 ```yaml
 persistence:
   global:
     auto-create-database: true
     auto-create-table: true
   ds:
-    out_ds_name(外部数据源别名):
-      # 不创建DB
+    out_ds_name(alias_for_external_ds):
+      # Disable database creation
       auto-create-database: false
-      # 不创建数据表
+      # Disable table creation
       auto-create-table: false
 ```
 
-## （三）后端写 Mapper
-+ SQL Mapper 跟使用原生 mybaits/mybaits-plus 写法一样，无特殊限制；
-+ Mapper 和 SQL 写到一起，或者分开两个文件都可以
+## （三）Backend Mapper Development
+- SQL Mapper follows the same syntax as native MyBatis/MyBatis-Plus with no special restrictions.  
+- Mapper and SQL can be written in the same file or separated into two files.  
 
-## （四）Mapper 被 Service 或者 Action 调用
-+ 启动的 Application 中 @MapperScan 需要扫描到对应的包。
-+ 用是与普通 bean 一样（即调用方式跟传统的方式样），唯一的区别就是加上 DsHintApi，即指定 Mapper 所使用的数据源。
-
+## （四）Calling Mapper in Service/Action
+- The startup Application's `@MapperScan` must scan the corresponding package.  
+- Invoke the Mapper like a normal bean, with the only difference being using `DsHintApi` to specify the data source:  
 ```java
 @Autowired
 private ScheduleItemMapper scheduleItemMapper;
@@ -73,10 +70,9 @@ private ScheduleItemMapper scheduleItemMapper;
 public saveData(Object data) {
     ScheduleQuery scheduleQuery = new ScheduleQuery();
     //scheduleQuery.setActionName();
-    try (DsHintApi dsHint = DsHintApi.use(“外部数据源名称”)) {
+    try (DsHintApi dsHint = DsHintApi.use("external_ds_name")) {
         List<ScheduleItem> scheduleItems = scheduleItemMapper.selectListForSerial(scheduleQuery);
-        // 具体业务逻辑
+        // Business logic
     }
 }
 ```
-

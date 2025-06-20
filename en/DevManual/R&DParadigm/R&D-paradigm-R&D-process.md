@@ -1,68 +1,67 @@
 ---
-title: 研发范式：研发流程
+title: R&D Paradigm:R&D Process
 index: true
 category:
-  - 研发手册
-  - 最佳范式
+  - Development Manual
+  - Best Paradigms
 order: 1
 prev:
-  text: 平台错误码（Error Codes）
+  text: Platform Error Codes (Error Codes)
   link: /en/DevManual/Reference/Error-codes.md
 ---
-# 一、前后端分离架构
+# I. Frontend-Backend Separation Architecture
 
-在软件开发中，前后端分离架构是一种高效的模式，将用户界面（前端）与业务逻辑、数据处理（后端）明确分开，使它们能独立开发、测试与部署。
+In software development, the frontend-backend separation architecture is an efficient model that clearly separates the user interface (frontend) from business logic and data processing (backend), enabling independent development, testing, and deployment.
 
-前端负责与用户交互，呈现及接收输入，由 HTML、CSS、JavaScript 构成，复杂项目还会用 React、Vue.js 等框架提升开发效率。后端专注业务逻辑、数据存储，通过 Python（搭配 Django 等）、Java（如 Spring Boot）、Node.js（结合 Express）等语言及框架实现。后端与 MySQL、PostgreSQL 等数据库交互，以 API 形式为前端提供数据，API 多遵循 RESTful 或 GraphQL 规范。
+The frontend is responsible for user interaction, presentation, and input reception, composed of HTML, CSS, and JavaScript. Complex projects often use frameworks like React or Vue.js to improve development efficiency. The backend focuses on business logic and data storage, implemented using languages and frameworks such as Python (with Django), Java (e.g., Spring Boot), or Node.js (with Express). The backend interacts with databases like MySQL or PostgreSQL and provides data to the frontend via APIs, typically following RESTful or GraphQL specifications.
 
-此架构优势显著。开发团队可依专长分工，提高效率与代码质量。前后端能独立部署更新，降低维护成本与风险，且利于跨平台开发。电商平台就是典型应用，前端展示商品、购物车等，后端处理库存、订单等逻辑。
+This architecture offers significant advantages. Development teams can divide tasks based on expertise, improving efficiency and code quality. Frontend and backend can be deployed and updated independently, reducing maintenance costs and risks, and facilitating cross-platform development. E-commerce platforms are typical applications, where the frontend displays products and shopping carts, and the backend handles inventory and order logic.
 
-总之，前后端分离架构凭借清晰职责划分、高效开发及良好维护性，成为现代软件构建的重要模式。
+In summary, the frontend-backend separation architecture, with its clear responsibility division, efficient development, and good maintainability, has become an important model for modern software construction.
 
-数式Oinone的前端采用Vue.js，后端采用 Java 技术体系，API 遵循 GraphQL 规范。
+Shushi Oinone's frontend uses Vue.js, the backend adopts a Java technology stack, and APIs follow GraphQL specifications.
 
-# 二、研发流程变革
+# II. Evolution of Development Process
 
-:::warning 提示：数式Oinone框架让前后端分离的开发模式更进一步
+:::warning Tip: The Shushi Oinone framework takes the frontend-backend separation development model a step further
 
-前端只有在组件不满足需求或者特色业务组件开发的时候，进行前端专业开发工作。这样既保留前后端分离架构带来的好处，同时减少了因为业务开发过程中前后端不必要的沟通工作，极大地提升了效率。
+Frontend development work is only carried out when components fail to meet requirements or when developing specialized business components. This not only retains the benefits of the frontend-backend separation architecture but also reduces unnecessary communication between frontend and backend during business development, greatly improving efficiency.
 
 :::
 
-:::tip 举例：利用Oinone改进您的前后研发分工（**建议可选**）
+:::tip Example: Improving Your Frontend-Backend Development Division with Oinone (**Optional Recommendation**)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/1742453325707-0f03fa53-d02e-4110-a413-efeb3c0f5abb.gif)
 
 :::
 
-数式 Oinone 框架优化前后端分离开发模式。前端仅在组件不满足需求或开发特色组件时介入，减少前后端沟通成本，提升整体效率。
+The Shushi Oinone framework optimizes the frontend-backend separation development model. The frontend only intervenes when components are insufficient or when developing specialized business components, reducing communication costs and improving overall efficiency.
 
-+ **传统模式问题**：流程繁琐，沟通成本高，重复工作多，研发关注点分散，各阶段质量影响系统交付。
-+ **Oinone 新模式优势**：基于低代码框架，后端专注业务研发和设计，前端专注交互组件沉淀，前端与特定项目解耦，成为公共组织。
++ **Problems with Traditional Models**: Tedious processes, high communication costs, excessive repetitive work, scattered R&D focus, and quality issues at each stage affecting system delivery.
++ **Advantages of Oinone's New Model**: Based on a low-code framework, the backend focuses on business R&D and design, and the frontend focuses on interactive component precipitation. The frontend is decoupled from specific projects, becoming a public organization.
 
-建议流程如下：
+The recommended process is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/image-20250529164329735.png)
 
 
 
-# 三、研发提效对比
+# III. R&D Efficiency Comparison
 
-## （一）原有研发方式
+## (一) Original R&D Approach
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/1746538046698-7e60b3f7-0fab-4f86-9547-1a4249507494.png)
 
-+ **重复代码问题**：前端、后端分别都有大量的重复性代码工作。
-+ **联调负担重**：前后端联调工作量与页面数量呈线性增长关系。一旦出现 bug 或需要进行功能调整，就不得不反复进行联调。
-+ **基础代码隐患**：基础工作代码量庞大，这使得基础 bug 频繁出现。研发人员和测试人员需要不断地协同处理这些问题。
-+ **规范执行障碍**：虽然制定了编码规范，但往往仅停留在纸面上，难以真正落地实施。这导致前后端编码规范不一致，技术沉淀难以实现，阻碍了团队技术能力的提升和项目的长期发展。
++ **Repetitive Code Issues**: Both frontend and backend have significant repetitive coding work.
++ **Heavy Debugging Burden**: The workload of frontend-backend debugging increases linearly with the number of pages. In case of bugs or functional adjustments, repeated debugging is inevitable.
++ **Basic Code Risks**: The large volume of basic work code leads to frequent basic bugs, requiring continuous collaboration between R&D and testing personnel.
++ **Implementation Barriers for Specifications**: Although coding specifications are formulated, they often remain on paper, making it difficult to implement. This results in inconsistent frontend-backend coding specifications, hindering technical precipitation and team capability improvement.
 
-## （二）Oinone的研发方式
+## (二) Oinone's R&D Approach
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/1746538137122-b137845b-b50a-410e-97a2-9e92134131f0.png)
 
-+ **后端高效研发**：通过深入的业务分析设计数据模型，并为模型添加必要的操作，借助默认页面即可完成业务逻辑自测，无需前端提前介入，有效提升了后端开发的独立性和效率。
-+ **前端精准开发**：前端仅在组件无法满足需求或进行特色业务组件开发时才开展专业工作。对于通用组件，将其沉淀到平台，以供所有项目复用，减少了前端开发的重复性工作，提高了组件的通用性和开发效率。
-+ **测试效率提升**：基础工作代码量大大减少，提升测试效率
-+ **规范落地与能力提升**：研发规范通过平台固化下来，随着前端组件、后端行业模型持续沉淀，效率比原有方式提升 40% ~ 300%；中级研发人员可以发挥高级研发的价值，高级研发持续沉淀行业能力。
-
++ **Efficient Backend R&D**: Through in-depth business analysis to design data models and add necessary operations, self-testing of business logic can be completed with default pages, without requiring frontend intervention in advance, effectively enhancing backend development independence and efficiency.
++ **Targeted Frontend Development**: The frontend only engages in professional work when components are insufficient or when developing specialized business components. General components are precipitated to the platform for reuse across all projects, reducing repetitive frontend work and improving component versatility.
++ **Improved Testing Efficiency**: The significant reduction in basic work code enhances testing efficiency.
++ **Specification Implementation and Capability Enhancement**: R&D specifications are solidified through the platform. With continuous precipitation of frontend components and backend industry models, efficiency increases by 40% to 300% compared to the original approach. Intermediate R&D personnel can发挥 (play) the value of senior R&D, while senior R&D continues to precipitate industry capabilities.

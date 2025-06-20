@@ -1,22 +1,22 @@
 ---
-title: 校验定制：如何自定义表达式实现特殊需求？扩展内置函数表达式
+title: Validation Customization:How to Implement Special Requirements with Custom Expressions? Extending Built-in Function Expressions
 index: true
 category:
-  - 常见解决方案
+  - Common Solution Approaches
 order: 50
 ---
 
-平台提供了很多的表达式，如果这些表达式不满足场景？那我们应该如何新增表达式去满足项目的需求？
+Does the platform provide many expressions, but they don't meet your scenario needs? How should we add new expressions to satisfy project requirements?
 
-# 一、扩展表达式的场景
-若需针对入参中 List 类型字段内的某一参数执行 NULL 校验，且发现平台的内置函数无法支持此场景的配置时，可借助平台的相关机制，对内置函数予以扩展 。
+# I. Scenarios for Extending Expressions
+When needing to perform NULL validation on a specific parameter within a List-type field of input parameters, and finding that the platform's built-in functions cannot support configuration for this scenario, you can leverage the platform's relevant mechanisms to extend built-in functions.
 
-常见的一些代码场景，如下：
+Common code scenarios are as follows:
 
 ```java
 package pro.shushi.pamirs.demo.core.action;
 
-……引用类
+......Imported classes
 
 @Model.model(PetShopProxy.MODEL_MODEL)
 @Component
@@ -27,10 +27,10 @@ public class PetShopProxyAction extends DataStatusBehavior<PetShopProxy> {
         return data.queryById();
     }
     @Validation(ruleWithTips = {
-        @Validation.Rule(value = "!IS_BLANK(data.code)", error = "编码为必填项"),
-        @Validation.Rule(value = "LEN(data.name) < 128", error = "名称过长，不能超过128位"),
+        @Validation.Rule(value = "!IS_BLANK(data.code)", error = "Encoding is a required field"),
+        @Validation.Rule(value = "LEN(data.name) < 128", error = "Name is too long, cannot exceed 128 characters"),
     })
-    @Action(displayName = "启用")
+    @Action(displayName = "Enable")
     @Action.Advanced(invisible="!(activeRecord.code !== undefined && !IS_BLANK(activeRecord.code))")
     public PetShopProxy dataStatusEnable(PetShopProxy data){
         data = super.dataStatusEnable(data);
@@ -38,17 +38,17 @@ public class PetShopProxyAction extends DataStatusBehavior<PetShopProxy> {
         return data;
     }
 
-    ……其他代码
+    ......Other code
 
 }
 ```
 
-# 二、新建一个自定义表达式的函数
-用于校验入参的函数 。当入参为一个集合对象时，若集合中单个对象的某个特定字段为空，则该函数返回 false 。
+# II. Creating a Custom Expression Function
+A function for validating input parameters. When the input is a collection object, if a specific field of any single object in the collection is null, the function returns false.
 
-:::tip 举例：
+:::tip Example:
 
-新建一个 `CustomCollectionFunctions` 类
+Create a `CustomCollectionFunctions` class
 
 :::
 
@@ -70,26 +70,26 @@ import static pro.shushi.pamirs.meta.enmu.FunctionOpenEnum.LOCAL;
 import static pro.shushi.pamirs.meta.enmu.FunctionSceneEnum.EXPRESSION;
 
 /**
- * 自定义内置函数
+ * Custom built-in functions
  */
 @Fun(NamespaceConstants.expression)
 @Component
 public class CustomCollectionFunctions {
 
     /**
-     * LIST_FIELD_NULL 就是我们自定义的表达式，不能与已经存在的表达式重复！！！
+     * LIST_FIELD_NULL is our custom expression, which must not repeat existing expressions!!!
      *
      * @param list
      * @param field
      * @return
      */
     @Function.Advanced(
-        displayName = "校验集成的参数是否为null", language = JAVA,
+        displayName = "Verify if the integrated parameter is null", language = JAVA,
         builtin = true, category = COLLECTION
     )
     @Function.fun("LIST_FIELD_NULL")
     @Function(name = "LIST_FIELD_NULL", scene = {EXPRESSION}, openLevel = LOCAL,
-              summary = "函数示例: LIST_FIELD_NULL(list,field)，函数说明: 传入一个对象集合，校验集合的字段是否为空"
+              summary = "Function example: LIST_FIELD_NULL(list,field). Function description: Pass an object collection to verify if the collection's field is null"
              )
     public Boolean listFieldNull(List list, String field) {
         if (null == list) {
@@ -108,13 +108,12 @@ public class CustomCollectionFunctions {
     }
 
 }
-
 ```
 
-# 三、将自定义的表达式类，注册到平台的白名单
-:::tip 举例：
+# III. Registering the Custom Expression Class to the Platform's Whitelist
+:::tip Example:
 
-新建`CustomFaasScriptAllowListApi`类，`@Order`优先级要高于平台默认的优先级才会生效。
+Create the `CustomFaasScriptAllowListApi` class, where the `@Order` priority must be higher than the platform's default priority to take effect.
 
 :::
 
@@ -132,17 +131,17 @@ import pro.shushi.pamirs.meta.common.spi.SPI;
 import java.util.Set;
 
 /**
- * 自定义：支持表达式调用的函数白名单与黑名单SPI实现
+ * Custom implementation of SPI for function whitelist and blacklist allowing expression calls
  */
-@Order(1) //此处把自定义的类优先级调高
+@Order(1) // Increase the priority of the custom class here
 @Component
 @SPI.Service
 public class CustomFaasScriptAllowListApi implements FaasScriptAllowListApi {
 
-    //白名单
+    // Whitelist
     public static final Set<String> DEFAULT_SET = SetUtils.hashSet(
 
-        //白名单，直接复制默认实现，pro.shushi.pamirs.framework.faas.spi.service.DefaultFaasScriptAllowListApi
+        // Whitelist, directly replicate the default implementation: pro.shushi.pamirs.framework.faas.spi.service.DefaultFaasScriptAllowListApi
         CollectionFunctions.class.getName(),
         ContextFunctions.class.getName(),
         DateFunctions.class.getName(),
@@ -153,7 +152,7 @@ public class CustomFaasScriptAllowListApi implements FaasScriptAllowListApi {
         RegexFunctions.class.getName(),
         TextFunctions.class.getName(),
 
-        //下面添加自己的白名单类
+        // Add your own whitelist classes below
         CustomCollectionFunctions.class.getName()
 
     );
@@ -171,26 +170,26 @@ public class CustomFaasScriptAllowListApi implements FaasScriptAllowListApi {
 }
 ```
 
-# 四、使用自定义的表达式
-:::tip 举例：
+# IV. Using Custom Expressions
+:::tip Example:
 
-使用场景demo：
+Demo usage scenario:
 
 :::
 
 ```java
 /**
-     * 注意点：自定义函数的 [field]字段是个文本，一定要加个引号代表参数是文本，不然无法解析到数据，其他场景类似
+     * Note: The [field] parameter of the custom function is a text, so quotes must be added to indicate the parameter is text; otherwise, data cannot be parsed. The same applies to other scenarios.
      *
      * @param data
      * @return
      */
 @Action.Advanced(name = FunctionConstants.create, managed = true)
-@Action(displayName = "确定", summary = "创建", bindingType = ViewTypeEnum.FORM)
+@Action(displayName = "Confirm", summary = "Create", bindingType = ViewTypeEnum.FORM)
 @Function(name = FunctionConstants.create)
 @Function.fun(FunctionConstants.create)
 @Validation(ruleWithTips = {
-    @Validation.Rule(value = "LIST_FIELD_NULL(data.itemAttributes,'itemId')", error = "字段不能为空"),
+    @Validation.Rule(value = "LIST_FIELD_NULL(data.itemAttributes,'itemId')", error = "Field cannot be empty"),
 })
 public DemoItem create(DemoItem data) {
 return demoItemService.create(data);
@@ -199,5 +198,4 @@ return demoItemService.create(data);
 
 ---
 
-结语：可以通过平台的机制，去沉淀一套满足自己场景需求的表达式。
-
+Conclusion: You can leverage the platform's mechanisms to establish a set of expressions tailored to your specific scenario requirements.

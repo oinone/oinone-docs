@@ -1,968 +1,934 @@
----
-title: Search Field
-index: true
-category:
-  - 研发手册
-  - Reference
-  - 前端API
-  - Widget
-  - Field
-order: 2
-
----
-# 一、Reference List
-
-## （一）文本（String）
-
-### 1、FormStringInputFieldWidget
-
-**引用**：表单（Form）- 文本（String）- [FormStringInputFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#2、formstringinputfieldwidget)
-
-### 2、SearchStringSearchInputFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.String,
-    widget: 'SearchInput'
-  })
-)
-export class SearchStringSearchInputFieldWidget extends FormStringInputFieldWidget
-```
-
-**方法**：
-
-#### **onSearch**
-
-+ **功能描述**：搜索事件处理函数，通过注入获取。
-+ **类型**：`(() => void) | undefined`
-
-### 3、SearchStringEmailFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.String,
-    widget: 'Email'
-  })
-)
-export class SearchStringEmailFieldWidget extends SearchEmailFieldWidget
-```
+---  
+title: Search Field  
+index: true  
+category:  
+  - R&D Manual  
+  - Reference  
+  - Front-end API  
+  - Widget  
+  - Field  
+order: 2  
+
+---  
+
+# I. Reference List  
+
+## (一) Text (String)  
+
+### 1、FormStringInputFieldWidget  
+**Reference**: Form - Text (String) - [FormStringInputFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#2、formstringinputfieldwidget)  
+
+### 2、SearchStringSearchInputFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.String,  
+    widget: 'SearchInput'  
+  })  
+)  
+export class SearchStringSearchInputFieldWidget extends FormStringInputFieldWidget  
+```  
+
+**Methods**:  
+
+#### **onSearch**  
+- **Function Description**: Search event handler, obtained via injection.  
+- **Type**: `(() => void) | undefined`  
+
+
+### 3、SearchStringEmailFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.String,  
+    widget: 'Email'  
+  })  
+)  
+export class SearchStringEmailFieldWidget extends SearchEmailFieldWidget  
+```  
+
+
+### 4、SearchStringPhoneFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.String,  
+    widget: 'Phone'  
+  })  
+)  
+export class SearchStringPhoneFieldWidget extends SearchPhoneFieldWidget  
+```  
+
+
+### 5、SearchStringTagFieldWidget{#quote1}  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  BaseFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: [  
+      ModelFieldType.String,  
+      ModelFieldType.Text,  
+      ModelFieldType.HTML,  
+      ModelFieldType.Phone,  
+      ModelFieldType.Email  
+    ],  
+    widget: 'Tag'  
+  })  
+)  
+export class SearchStringTagFieldWidget extends FormStringMultiTagFieldWidget  
+```  
+
+
+## (二) Multi-line Text (Text)  
 
-### 4、SearchStringPhoneFieldWidget
+### 1、SearchTextFieldWidget  
+**Type Declaration**:  
 
-**类型声明**：
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Text  
+  })  
+)  
+export class SearchTextFieldWidget extends FormStringFieldWidget  
+```  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.String,
-    widget: 'Phone'
-  })
-)
-export class SearchStringPhoneFieldWidget extends SearchPhoneFieldWidget
-```
 
-### 5、SearchStringTagFieldWidget{#quote1}
+### 2、SearchStringTagFieldWidget  
+**Reference**: Text (String) - [SearchStringTagFieldWidget](#quote1)  
 
-**类型声明**：
 
-```typescript
-@SPI.ClassFactory(
-  BaseFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: [
-      ModelFieldType.String,
-      ModelFieldType.Text,
-      ModelFieldType.HTML,
-      ModelFieldType.Phone,
-      ModelFieldType.Email
-    ],
-    widget: 'Tag'
-  })
-)
-export class SearchStringTagFieldWidget extends FormStringMultiTagFieldWidget
-```
+## (三) Rich Text (Html)  
 
-## （二）多行文本（Text）
+### 1、SearchHtmlFieldWidget  
+**Type Declaration**:  
 
-### 1、SearchTextFieldWidget
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.HTML  
+  })  
+)  
+export class SearchHtmlFieldWidget extends FormStringFieldWidget  
+```  
 
-**类型声明**：
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Text
-  })
-)
-export class SearchTextFieldWidget extends FormStringFieldWidget
-```
+### 2、SearchStringTagFieldWidget  
+**Reference**: Text (String) - [SearchStringTagFieldWidget](#quote1)  
 
-### 2、SearchStringTagFieldWidget
 
-**引用**：文本（String）- [SearchStringTagFieldWidget](#quote1)
+## (四) Phone  
 
-## （三）富文本（Html）
+### 1、SearchPhoneFieldWidget  
+**Type Declaration**:  
 
-### 1、SearchHtmlFieldWidget
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Phone  
+  })  
+)  
+export class SearchPhoneFieldWidget extends FormStringFieldWidget  
+```  
 
-**类型声明**：
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.HTML
-  })
-)
-export class SearchHtmlFieldWidget extends FormStringFieldWidget
-```
+### 2、SearchStringTagFieldWidget  
+**Reference**: Text (String) - [SearchStringTagFieldWidget](#quote1)  
 
-### 2、SearchStringTagFieldWidget
 
-**引用**：文本（String）- [SearchStringTagFieldWidget](#quote1)
+## (五) Email  
 
-## （四）手机（Phone）
+### 1、SearchEmailFieldWidget  
+**Type Declaration**:  
 
-### 1、SearchPhoneFieldWidget
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Email  
+  })  
+)  
+export class SearchEmailFieldWidget extends FormStringFieldWidget  
+```  
 
-**类型声明**：
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Phone
-  })
-)
-export class SearchPhoneFieldWidget extends FormStringFieldWidget
-```
+### 2、SearchStringTagFieldWidget  
+**Reference**: Text (String) - [SearchStringTagFieldWidget](#quote1)  
 
-### 2、SearchStringTagFieldWidget
 
-**引用**：文本（String）- [SearchStringTagFieldWidget](#quote1)
+## (六) Integer  
 
-## （五）邮箱（Email）
+### 1、FormIntegerFieldWidget  
+**Reference**: Form - Integer - [FormIntegerFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formintegerfieldwidget)  
 
-### 1、SearchEmailFieldWidget
 
-**类型声明**：
+### 2、SearchIntegerTagFieldWidget  
+**Type Declaration**:  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Email
-  })
-)
-export class SearchEmailFieldWidget extends FormStringFieldWidget
-```
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Integer,  
+    widget: 'Tag'  
+  })  
+)  
+export class SearchIntegerTagFieldWidget extends FormIntegerMultiFieldWidget  
+```  
 
-### 2、SearchStringTagFieldWidget
 
-**引用**：文本（String）- [SearchStringTagFieldWidget](#quote1)
+### 3、SearchIntegerInputRangeFieldWidget  
+**Type Declaration**:  
 
-## （六）整数（Integer）
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Integer,  
+    widget: 'InputRange'  
+  })  
+)  
+export class SearchIntegerInputRangeFieldWidget extends SearchNumberRangeFieldWidget  
+```  
 
-### 1、FormIntegerFieldWidget
+**Attributes**:  
+- precision: Precision, fixed at `0` (integers do not retain decimals). (`number | null | undefined`)  
 
-**引用**：表单（Form）- 整数（Integer）- [FormIntegerFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formintegerfieldwidget)
 
-### 2、SearchIntegerTagFieldWidget
+## (七) Float  
 
-**类型声明**：
+### 1、FormFloatFieldWidget  
+**Reference**: Form - Float - [FormFloatFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formfloatfieldwidget)  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Integer,
-    widget: 'Tag'
-  })
-)
-export class SearchIntegerTagFieldWidget extends FormIntegerMultiFieldWidget
-```
 
-### 3、SearchIntegerInputRangeFieldWidget
+### 2、SearchFloatTagFieldWidget  
+**Type Declaration**:  
 
-**类型声明**：
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Float,  
+    widget: 'Tag'  
+  })  
+)  
+export class SearchFloatTagFieldWidget extends FormIntegerMultiFieldWidget  
+```  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Integer,
-    widget: 'InputRange'
-  })
-)
-export class SearchIntegerInputRangeFieldWidget extends SearchNumberRangeFieldWidget
-```
 
-**属性**：
+### 3、SearchFloatInputRangeFieldWidget  
+**Type Declaration**:  
 
-+ precision：精度，固定为 `0`（整数不保留小数）。（`number | null | undefined`）
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Float,  
+    widget: 'InputRange'  
+  })  
+)  
+export class SearchFloatInputRangeFieldWidget extends SearchNumberRangeFieldWidget  
+```  
 
-## （七）浮点数（Float）
 
-### 1、FormFloatFieldWidget
+## (八) Money  
 
-**引用**：表单（Form）- 浮点数（Float）- [FormFloatFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formfloatfieldwidget)
+### 1、FormMoneyFieldWidget  
+**Reference**: Form - Money - [FormMoneyFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formmoneyfieldwidget)  
 
-### 2、SearchFloatTagFieldWidget
 
-**类型声明**：
+### 2、SearchCurrencyTagFieldWidget  
+**Type Declaration**:  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Float,
-    widget: 'Tag'
-  })
-)
-export class SearchFloatTagFieldWidget extends FormIntegerMultiFieldWidget
-```
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Currency,  
+    widget: 'Tag'  
+  })  
+)  
+export class SearchCurrencyTagFieldWidget extends FormIntegerMultiFieldWidget  
+```  
 
-### 3、SearchFloatInputRangeFieldWidget
 
-**类型声明**：
+### 3、SearchCurrencyInputRangeFieldWidget  
+**Type Declaration**:  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Float,
-    widget: 'InputRange'
-  })
-)
-export class SearchFloatInputRangeFieldWidget extends SearchNumberRangeFieldWidget
-```
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Currency,  
+    widget: 'InputRange'  
+  })  
+)  
+export class SearchCurrencyInputRangeFieldWidget extends SearchFloatInputRangeFieldWidget  
+```  
 
-## （八）金额（Money）
 
-### 1、FormMoneyFieldWidget
+## (九) Boolean  
 
-**引用**：表单（Form）- 金额（Money）- [FormMoneyFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formmoneyfieldwidget)
+### 1、SearchBooleanSelectFieldWidget  
+**Type Declaration**:  
 
-### 2、SearchCurrencyTagFieldWidget
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Boolean  
+  })  
+)  
+export class SearchBooleanSelectFieldWidget extends FormFieldWidget  
+```  
 
-**类型声明**：
+**Attributes**:  
+- options: Option list for boolean selection, including `true` and `false` with translated labels. (`{ value: boolean; label: string }[]`)  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Currency,
-    widget: 'Tag'
-  })
-)
-export class SearchCurrencyTagFieldWidget extends FormIntegerMultiFieldWidget
-```
 
-### 3、SearchCurrencyInputRangeFieldWidget
+### 2、FormBooleanCheckboxFieldWidget  
+**Reference**: Form - Boolean - [FormBooleanCheckboxFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#2、formbooleancheckboxfieldwidget)  
 
-**类型声明**：
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Currency,
-    widget: 'InputRange'
-  })
-)
-export class SearchCurrencyInputRangeFieldWidget extends SearchFloatInputRangeFieldWidget
-```
+## (十) Enum (Data Dictionary)  
 
-## （九）布尔（Boolean）
+### 1、FormEnumFieldWidget  
+**Reference**: Form - Enum - [FormEnumFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formenumfieldwidget)  
 
-### 1、SearchBooleanSelectFieldWidget
 
-**类型声明**：
+### 2、FormEnumMultiSelectFieldWidget  
+**Reference**: Form - Enum - [FormEnumMultiSelectFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#3、formenummultiselectfieldwidget)  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Boolean
-  })
-)
-export class SearchBooleanSelectFieldWidget extends FormFieldWidget
-```
 
-**属性**：
+### 3、SearchEnumCheckboxFieldWidget  
+**Type Declaration**:  
 
-+ options：布尔选择框的选项列表，包含 `true` 和 `false` 及其翻译后的标签。（`{ value: boolean; label: string }[]`）
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Enum,  
+    widget: 'Checkbox'  
+  })  
+)  
+export class SearchEnumCheckboxFieldWidget extends FormEnumMultiCheckboxFieldWidget  
+```  
 
-### 2、FormBooleanCheckboxFieldWidget
 
-**引用**：表单（Form）- 布尔（Boolean）- [FormBooleanCheckboxFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#2、formbooleancheckboxfieldwidget)
+### 4、SearchEnumMultiSelectFieldWidget  
+**Type Declaration**:  
 
-## （十）数据字典（Enum）
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Enum,  
+    widget: 'MultiSelect'  
+  })  
+)  
+export class SearchEnumMultiSelectFieldWidget extends FormEnumMultiSelectFieldWidget  
+```  
 
-### 1、FormEnumFieldWidget
 
-**引用**：表单（Form）- 数据字典（Enum）- [FormEnumFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formenumfieldwidget)
+### 5、SearchEnumTabSelectFieldWidget  
+**Type Declaration**:  
 
-### 2、FormEnumMultiSelectFieldWidget
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Enum,  
+    widget: 'TabSelect'  
+  })  
+)  
+export class SearchEnumTabSelectFieldWidget extends FormEnumFieldWidget  
+```  
 
-**引用**：表单（Form）- 数据字典（Enum）- [FormEnumMultiSelectFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#3、formenummultiselectfieldwidget)
+**Methods**:  
 
-### 3、SearchEnumCheckboxFieldWidget
+#### **change**  
+- **Function Description**: Called when the value changes, triggers parent class change logic and executes search.  
+- **Type**: `(value: any) => void`  
+- **Parameters**:  
+  - `value`: The new value after the change.  
 
-**类型声明**：
+#### **onSearch**  
+- **Function Description**: Search event handler, obtained via injection.  
+- **Type**: `(() => void) | undefined`  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Enum,
-    widget: 'Checkbox'
-  })
-)
-export class SearchEnumCheckboxFieldWidget extends FormEnumMultiCheckboxFieldWidget
-```
 
-### 4、SearchEnumMultiSelectFieldWidget
+### 6、SearchEnumTagSelectFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Enum,  
+    widget: 'TagSelect'  
+  })  
+)  
+export class SearchEnumTagSelectFieldWidget extends FormEnumFieldWidget  
+```  
+
+**Methods**:  
+
+#### **change**  
+- **Function Description**: Called when the value changes, triggers parent class change logic and executes search.  
+- **Type**: `(value: any) => void`  
+- **Parameters**:  
+  - `value`: The new value after the change.  
 
-**类型声明**：
+#### **onSearch**  
+- **Function Description**: Search event handler, obtained via injection.  
+- **Type**: `(() => void) | undefined`  
+
+
+## (十一) Datetime  
+
+### 1、SearchDateTimeRangeFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.DateTime  
+  })  
+)  
+export class SearchDateTimeRangeFieldWidget extends SearchRangeFieldWidget<  
+  string | [string, string],  
+  RuntimeSearchField  
+>  
+```  
+
+**Attributes**:  
+- dateFormat: Date format, supports expressions and resource mapping. (`string | undefined`)  
+- format: Datetime display format. (`string | undefined`)  
+- isSingle: Whether it is in single-value mode (non-range). (`boolean`)  
+- mountedCallChaining: Mounting call chain, obtained via injection. (`CallChaining | undefined`)  
+- placeholder: Placeholder text, returns the first placeholder in single-value mode. (`string | string[]`)  
+- resourceDateTimeFormat: Datetime format resource. (`IResourceDateTimeFormat`)  
+- value: Gets the current value, returns the first value in single-value mode. (`string | [string, string]`)  
+- valueFormat: Value format. (`string | undefined`)  
+- timeFormat: Time format, supports expressions and resource mapping. (`string | undefined`)  
+
+**Methods**:  
+
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: Initialized component instance.  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Enum,
-    widget: 'MultiSelect'
-  })
-)
-export class SearchEnumMultiSelectFieldWidget extends FormEnumMultiSelectFieldWidget
-```
+#### **mountedProcess**  
+- **Function Description**: Initializes the default value of form data.  
+- **Type**: `() => void`  
 
-### 5、SearchEnumTabSelectFieldWidget
 
-**类型声明**：
+### 2、SearchDateTimeDateRangeFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.DateTime,  
+    widget: 'DatePicker'  
+  })  
+)  
+export class SearchDateTimeDateRangeFieldWidget extends SearchDateRangeFieldWidget  
+```  
+
+
+### 3、SearchDateTimeRangeElementWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Search,  
+    widget: 'DateTimeRangePicker'  
+  })  
+)  
+export class SearchDateTimeRangeElementWidget extends FormRangeFieldsWidget<[string, string], RuntimeSearchField>  
+```  
+
+**Attributes**:  
+- allowClear: Whether to allow clearing the value, default is `true`. (`boolean`)  
+- dateFormat: Date format, supports expressions and resource mapping. (`string | undefined`)  
+- defaultValidateTrigger: Default validation trigger, default is `CHANGE`. (`ValidateTrigger[]`)  
+- endPlaceholder: Placeholder text for the end time. (`string | undefined`)  
+- format: Datetime display format. (`string | undefined`)  
+- operator: Operator, inherited from field configuration. (`string | undefined`)  
+- resourceDateTimeFormat: Datetime format resource. (`IResourceDateTimeFormat`)  
+- showTimeDefaultValue: Default value for the time picker. (`[Moment, Moment]`)  
+- startPlaceholder: Placeholder text for the start time. (`string | undefined`)  
+- timeFormat: Time format, supports expressions and resource mapping. (`string | undefined`)  
 
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Enum,
-    widget: 'TabSelect'
-  })
-)
-export class SearchEnumTabSelectFieldWidget extends FormEnumFieldWidget
-```
+**Methods**:  
 
-**方法**：
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: Initialized component instance.  
+
+
+## (十二) Date  
+
+### 1、SearchDateRangeFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Date  
+  })  
+)  
+export class SearchDateRangeFieldWidget extends SearchDateTimeRangeFieldWidget  
+```  
 
-#### **change**
+**Methods**:  
+
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized date range picker component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: `DefaultDateRangePicker` component instance.  
+
+
+### 2、SearchDateRangeElementWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Search,  
+    widget: 'DateRangePicker'  
+  })  
+)  
+export class SearchDateRangeElementWidget extends SearchDateTimeRangeElementWidget  
+```  
 
-+ **功能描述**：值变更时调用，触发父类变更逻辑并执行搜索。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的值。
+**Methods**:  
 
-#### **onSearch**
-
-+ **功能描述**：搜索事件处理函数，通过注入获取。
-+ **类型**：`(() => void) | undefined`
-
-### 6、SearchEnumTagSelectFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Enum,
-    widget: 'TagSelect'
-  })
-)
-export class SearchEnumTagSelectFieldWidget extends FormEnumFieldWidget
-```
-
-**方法**：
-
-#### **change**
-
-+ **功能描述**：值变更时调用，触发父类变更逻辑并执行搜索。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的值。
-
-#### **onSearch**
-
-+ **功能描述**：搜索事件处理函数，通过注入获取。
-+ **类型**：`(() => void) | undefined`
-
-## （十一）时间日期（Datetime）
-
-### 1、SearchDateTimeRangeFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.DateTime
-  })
-)
-export class SearchDateTimeRangeFieldWidget extends SearchRangeFieldWidget<
-  string | [string, string],
-  RuntimeSearchField
->
-```
-
-**属性**：
-
-+ dateFormat：日期部分格式，支持表达式和资源映射。（`string | undefined`）
-+ format：日期时间显示格式。（`string | undefined`）
-+ isSingle：是否为单值模式（非范围）。（`boolean`）
-+ mountedCallChaining：挂载调用链，通过注入获取。（`CallChaining | undefined`）
-+ placeholder：占位文本，单值模式下返回第一个占位符。（`string | string[]`）
-+ resourceDateTimeFormat：日期时间格式资源。（`IResourceDateTimeFormat`）
-+ value：获取当前值，单值模式下返回第一个值。（`string | [string, string]`）
-+ valueFormat：值格式。（`string | undefined`）
-+ timeFormat：时间部分格式，支持表达式和资源映射。（`string | undefined`）
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：初始化的组件实例。
-
-#### **mountedProcess**
-
-+ **功能描述**：初始化表单数据的默认值。
-+ **类型**：`() => void`
-
-### 2、SearchDateTimeDateRangeFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.DateTime,
-    widget: 'DatePicker'
-  })
-)
-export class SearchDateTimeDateRangeFieldWidget extends SearchDateRangeFieldWidget
-```
-
-### 3、SearchDateTimeRangeElementWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Search,
-    widget: 'DateTimeRangePicker'
-  })
-)
-export class SearchDateTimeRangeElementWidget extends FormRangeFieldsWidget<[string, string], RuntimeSearchField>
-```
-
-**属性**：
-
-+ allowClear：是否允许清空值，默认为 `true`。（`boolean`）
-+ dateFormat：日期部分格式，支持表达式和资源映射。（`string | undefined`）
-+ defaultValidateTrigger：默认的验证触发方式，默认为 `CHANGE`。（`ValidateTrigger[]`）
-+ endPlaceholder：结束时间的占位文本。（`string | undefined`）
-+ format：日期时间显示格式。（`string | undefined`）
-+ operator：操作符，默认为 `>=,<`。（`string | undefined`）
-+ resourceDateTimeFormat：日期时间格式资源。（`IResourceDateTimeFormat`）
-+ showTimeDefaultValue：时间选择器的默认值。（`[Moment, Moment]`）
-+ startPlaceholder：开始时间的占位文本。（`string | undefined`）
-+ timeFormat：时间部分格式，支持表达式和资源映射。（`string | undefined`）
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：初始化的组件实例。
-
-## （十二）日期（Date）
-
-### 1、SearchDateRangeFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Date
-  })
-)
-export class SearchDateRangeFieldWidget extends SearchDateTimeRangeFieldWidget
-```
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的日期范围选择组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：`DefaultDateRangePicker` 组件实例。
-
-### 2、SearchDateRangeElementWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Search,
-    widget: 'DateRangePicker'
-  })
-)
-export class SearchDateRangeElementWidget extends SearchDateTimeRangeElementWidget
-```
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的日期范围选择组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：`DefaultDateRangePicker` 组件实例。
-
-## （十三）时间（Time）
-
-### 1、SearchTimeRangeFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Time
-  })
-)
-export class SearchTimeRangeFieldWidget extends SearchDateTimeRangeFieldWidget
-```
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的时间范围选择组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：`DefaultTimeRangePicker` 组件实例。
-
-### 2、SearchTimeRangeElementWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Search,
-    widget: 'TimeRangePicker'
-  })
-)
-export class SearchTimeRangeElementWidget extends SearchDateTimeRangeElementWidget
-```
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的时间范围选择组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：`DefaultTimeRangePicker` 组件实例。
-
-## （十四）年份（Year）
-
-### 1、SearchYearRangeFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.Year
-  })
-)
-export class SearchYearRangeFieldWidget extends SearchDateTimeRangeFieldWidget
-```
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的年份范围选择组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：`DefaultYearRangePicker` 组件实例。
-
-### 2、SearchYearRangeElementWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Search,
-    widget: 'YearRangePicker'
-  })
-)
-export class SearchYearRangeElementWidget extends SearchDateTimeRangeElementWidget
-```
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的年份范围选择组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：`DefaultYearRangePicker` 组件实例。
-
-## （十五）多对一（M2O）
-
-### 1、SearchM2OSelectFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToOne
-  })
-)
-export class SearchM2OSelectFieldWidget extends FormM2OSelectFieldWidget
-```
-
-**属性**：
-
-+ defaultSearchTrigger：默认的搜索触发方式，默认为 `MANUAL`。（`SearchTrigger[]`）
-+ searchTrigger：搜索触发方式，支持配置多个触发方式。（`SearchTrigger[]`）
-
-**方法**：
-
-#### **change**
-
-+ **功能描述**：值变更时调用，触发父类变更逻辑，并根据配置决定是否触发搜索。
-+ **类型**：`(value: any) => void`
-+ **参数**：
-  - `value`：变更后的值。
-
-#### **onSearch**
-
-+ **功能描述**：搜索事件处理函数，通过注入获取。
-+ **类型**：`(() => void) | undefined`
-
-### 2、SearchM2OMultiSelectFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToOne,
-    widget: 'MultiSelect'
-  })
-)
-export class SearchM2OMultiSelectFieldWidget extends FormM2MFieldSelectWidget
-```
-
-**方法**：
-
-#### **submit**
-
-+ **功能描述**：提交表单值，处理多对一场景的数据提交。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：处理后的提交结果。
-
-### 3、SearchM2OTreeSelectFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToOne,
-    widget: 'TreeSelect'
-  })
-)
-export class SearchM2OTreeSelectFieldWidget extends FormTreeSelectFieldWidget<
-  ActiveRecord | ActiveRecord[],
-  RuntimeM2OField & RuntimeSearchField
->
-```
-
-**属性**：
-
-+ multipleCheckedStrategy：多选时的选中节点显示策略，默认为 `SHOW_ALL`。（`TreeSelectCheckedStrategy`）
-+ operator：操作符，继承自字段配置。（`string | undefined`）
-+ selectMode：选择模式，根据操作符自动判断为单选或多选。（`SelectMode`）
-+ treeCheckStrictly：父子节点是否关联，默认为 `false`。（`boolean`）
-
-**方法**：
-
-#### **submit**
-
-+ **功能描述**：根据选择模式处理多对一场景的数据提交。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：处理后的提交结果。
-
-### 4、SearchM2OCascaderFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToOne,
-    widget: 'Cascader'
-  })
-)
-export class SearchM2OCascaderFieldWidget extends FormCascaderFieldWidget<
-  ActiveRecord | ActiveRecord[],
-  RuntimeM2OField & RuntimeSearchField
->
-```
-
-**属性**：
-
-+ multipleCheckedStrategy：多选时的选中节点显示策略，默认为 `SHOW_ALL`。（`CascaderCheckedStrategy`）
-+ operator：操作符，继承自字段配置。（`string | undefined`）
-+ selectMode：选择模式，根据操作符自动判断为单选或多选。（`SelectMode`）
-
-**方法**：
-
-#### **submit**
-
-+ **功能描述**：根据选择模式处理多对一场景的数据提交。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：处理后的提交结果。
-
-### 5、SearchM2OCheckboxFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToOne,
-    widget: 'Checkbox'
-  })
-)
-export class SearchM2OCheckboxFieldWidget extends FormM2MCheckboxFieldWidget
-```
-
-**方法**：
-
-#### **submit**
-
-+ **功能描述**：处理多对一场景下的复选框表单提交。
-+ **类型**：`(submitValue: SubmitValue) => Promise<any>`
-+ **参数**：
-  - `submitValue`：待提交的值。
-+ **返回值**：处理后的提交结果。
-
-### 6、SearchM2OAddressFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToOne,
-    widget: 'Address'
-  })
-)
-export class SearchM2OAddressFieldWidget extends FormM2OAddressFieldWidget
-```
-
-**属性**：
-
-+ changeOnSelect：选择时是否触发变更，默认为 `true`。（`boolean`）
-
-## （十六）一对多（O2M）
-
-### 1、FormO2MSelectFieldWidget
-
-**引用**：表单（Form）- 一对多（O2M）- [FormO2MSelectFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formo2mselectfieldwidget)
-
-### 2、SearchO2MTreeSelectFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.OneToMany,
-    widget: 'TreeSelect'
-  })
-)
-export class SearchO2MTreeSelectFieldWidget extends FormO2MTreeSelectFieldWidget
-```
-
-### 3、SearchO2MCascaderFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.OneToMany,
-    widget: 'Cascader'
-  })
-)
-export class SearchO2MCascaderFieldWidget extends FormO2MCascaderFieldWidget
-```
-
-### 4、SearchO2MCheckboxFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.OneToMany,
-    widget: 'Checkbox'
-  })
-)
-export class SearchO2MCheckboxFieldWidget extends FormO2MCheckboxFieldWidget
-```
-
-## （十七）多对多（M2M）
-
-### 1、FormM2MFieldSelectWidget
-
-**引用**：表单（Form）- 一对多（O2M）- [FormM2MFieldSelectWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formm2mfieldselectwidget)
-
-### 2、SearchM2MTreeSelectFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToMany,
-    widget: 'TreeSelect'
-  })
-)
-export class SearchM2MTreeSelectFieldWidget extends FormM2MTreeSelectFieldWidget
-```
-
-### 3、SearchM2MCascaderFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToMany,
-    widget: 'Cascader'
-  })
-)
-export class SearchM2MCascaderFieldWidget extends FormM2MCascaderFieldWidget
-```
-
-### 4、SearchM2MCheckboxFieldWidget
-
-**类型声明**：
-
-```typescript
-@SPI.ClassFactory(
-  FormFieldWidget.Token({
-    viewType: ViewType.Search,
-    ttype: ModelFieldType.ManyToMany,
-    widget: 'Checkbox'
-  })
-)
-export class SearchM2MCheckboxFieldWidget extends FormM2MCheckboxFieldWidget
-```
-
-### 5、FormM2MCompanyFieldWidget
-
-**引用**：表单（Form）- 一对多（O2M）- [FormM2MCompanyFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#9、formm2mcompanyfieldwidget)
-
-### 6、FormM2MDepartmentFieldWidget
-
-**引用**：表单（Form）- 一对多（O2M）- [FormM2MDepartmentFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#10、formm2mdepartmentfieldwidget)
-
-### 7、FormM2MEmployeeFieldWidget
-
-**引用**：表单（Form）- 一对多（O2M）- [FormM2MEmployeeFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#11、formm2memployeefieldwidget)
-
-## （十八）抽象基类
-
-### 1、SearchRangeFieldWidget
-
-**继承**：FormFieldWidget
-
-**属性**：
-
-+ allowClear：是否允许清空值，默认为 `true`。（`boolean`）
-+ endDefaultValue：结束值的默认值。（`any`）
-+ endPlaceholder：结束输入框的占位文本。（`string | undefined`）
-+ operator：操作符，继承自字段配置。（`string | undefined`）
-+ startDefaultValue：开始值的默认值。（`any`）
-+ startPlaceholder：开始输入框的占位文本。（`string | undefined`）
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的组件实例。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：初始化的组件实例。
-
-### 2、SearchNumberRangeFieldWidget
-
-**继承**：SearchRangeFieldWidget
-
-**属性**：
-
-+ maxSafeInteger：JavaScript 中的最大安全整数。（`number`）
-+ minSafeInteger：JavaScript 中的最小安全整数。（`number`）
-+ precision：数值精度，可通过 DSL 配置或继承字段配置。（`number | null | undefined`）
-+ showThousandth：是否显示千分位分隔符，默认为 `false`。（`boolean`）
-
-**方法**：
-
-#### **getInitializeComponent**
-
-+ **功能描述**：获取初始化的数值范围输入组件。
-+ **类型**：`() => WidgetComponent`
-+ **返回值**：默认返回 `DefaultNumberInputRange` 组件。
-
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized date range picker component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: `DefaultDateRangePicker` component instance.  
+
+
+## (十三) Time  
+
+### 1、SearchTimeRangeFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Time  
+  })  
+)  
+export class SearchTimeRangeFieldWidget extends SearchDateTimeRangeFieldWidget  
+```  
+
+**Methods**:  
+
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized time range picker component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: `DefaultTimeRangePicker` component instance.  
+
+
+### 2、SearchTimeRangeElementWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Search,  
+    widget: 'TimeRangePicker'  
+  })  
+)  
+export class SearchTimeRangeElementWidget extends SearchDateTimeRangeElementWidget  
+```  
+
+**Methods**:  
+
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized time range picker component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: `DefaultTimeRangePicker` component instance.  
+
+
+## (十四) Year  
+
+### 1、SearchYearRangeFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.Year  
+  })  
+)  
+export class SearchYearRangeFieldWidget extends SearchDateTimeRangeFieldWidget  
+```  
+
+**Methods**:  
+
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized year range picker component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: `DefaultYearRangePicker` component instance.  
+
+
+### 2、SearchYearRangeElementWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  BaseElementWidget.Token({  
+    viewType: ViewType.Search,  
+    widget: 'YearRangePicker'  
+  })  
+)  
+export class SearchYearRangeElementWidget extends SearchDateTimeRangeElementWidget  
+```  
+
+**Methods**:  
+
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized year range picker component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: `DefaultYearRangePicker` component instance.  
+
+
+## (十五) Many-to-One (M2O)  
+
+### 1、SearchM2OSelectFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToOne  
+  })  
+)  
+export class SearchM2OSelectFieldWidget extends FormM2OSelectFieldWidget  
+```  
+
+**Attributes**:  
+- defaultSearchTrigger: Default search trigger, default is `MANUAL`. (`SearchTrigger[]`)  
+- searchTrigger: Search triggers, supports configuring multiple triggers. (`SearchTrigger[]`)  
+
+**Methods**:  
+
+#### **change**  
+- **Function Description**: Called when the value changes, triggers parent class change logic and decides whether to trigger search based on configuration.  
+- **Type**: `(value: any) => void`  
+- **Parameters**:  
+  - `value`: The new value after the change.  
+
+#### **onSearch**  
+- **Function Description**: Search event handler, obtained via injection.  
+- **Type**: `(() => void) | undefined`  
+
+
+### 2、SearchM2OMultiSelectFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToOne,  
+    widget: 'MultiSelect'  
+  })  
+)  
+export class SearchM2OMultiSelectFieldWidget extends FormM2MFieldSelectWidget  
+```  
+
+**Methods**:  
+
+#### **submit**  
+- **Function Description**: Submits form values, handles data submission in many-to-one scenarios.  
+- **Type**: `(submitValue: SubmitValue) => Promise<any>`  
+- **Parameters**:  
+  - `submitValue`: Value to be submitted.  
+- **Return Value**: Processed submission result.  
+
+
+### 3、SearchM2OTreeSelectFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToOne,  
+    widget: 'TreeSelect'  
+  })  
+)  
+export class SearchM2OTreeSelectFieldWidget extends FormTreeSelectFieldWidget<  
+  ActiveRecord | ActiveRecord[],  
+  RuntimeM2OField & RuntimeSearchField  
+>  
+```  
+
+**Attributes**:  
+- multipleCheckedStrategy: Display strategy for selected nodes in multi-select mode, default is `SHOW_ALL`. (`TreeSelectCheckedStrategy`)  
+- operator: Operator, inherited from field configuration. (`string | undefined`)  
+- selectMode: Selection mode, automatically determined as single or multi-select based on the operator. (`SelectMode`)  
+- treeCheckStrictly: Whether parent and child nodes are associated, default is `false`. (`boolean`)  
+
+**Methods**:  
+
+#### **submit**  
+- **Function Description**: Handles data submission in many-to-one scenarios based on the selection mode.  
+- **Type**: `(submitValue: SubmitValue) => Promise<any>`  
+- **Parameters**:  
+  - `submitValue`: Value to be submitted.  
+- **Return Value**: Processed submission result.  
+
+
+### 4、SearchM2OCascaderFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToOne,  
+    widget: 'Cascader'  
+  })  
+)  
+export class SearchM2OCascaderFieldWidget extends FormCascaderFieldWidget<  
+  ActiveRecord | ActiveRecord[],  
+  RuntimeM2OField & RuntimeSearchField  
+>  
+```  
+
+**Attributes**:  
+- multipleCheckedStrategy: Display strategy for selected nodes in multi-select mode, default is `SHOW_ALL`. (`CascaderCheckedStrategy`)  
+- operator: Operator, inherited from field configuration. (`string | undefined`)  
+- selectMode: Selection mode, automatically determined as single or multi-select based on the operator. (`SelectMode`)  
+
+**Methods**:  
+
+#### **submit**  
+- **Function Description**: Handles data submission in many-to-one scenarios based on the selection mode.  
+- **Type**: `(submitValue: SubmitValue) => Promise<any>`  
+- **Parameters**:  
+  - `submitValue`: Value to be submitted.  
+- **Return Value**: Processed submission result.  
+
+
+### 5、SearchM2OCheckboxFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToOne,  
+    widget: 'Checkbox'  
+  })  
+)  
+export class SearchM2OCheckboxFieldWidget extends FormM2MCheckboxFieldWidget  
+```  
+
+**Methods**:  
+
+#### **submit**  
+- **Function Description**: Handles checkbox form submission in many-to-one scenarios.  
+- **Type**: `(submitValue: SubmitValue) => Promise<any>`  
+- **Parameters**:  
+  - `submitValue`: Value to be submitted.  
+- **Return Value**: Processed submission result.  
+
+
+### 6、SearchM2OAddressFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToOne,  
+    widget: 'Address'  
+  })  
+)  
+export class SearchM2OAddressFieldWidget extends FormM2OAddressFieldWidget  
+```  
+
+**Attributes**:  
+- changeOnSelect: Whether to trigger changes when selecting, default is `true`. (`boolean`)  
+
+
+## (十六) One-to-Many (O2M)  
+
+### 1、FormO2MSelectFieldWidget  
+**Reference**: Form - One-to-Many (O2M) - [FormO2MSelectFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formo2mselectfieldwidget)  
+
+
+### 2、SearchO2MTreeSelectFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.OneToMany,  
+    widget: 'TreeSelect'  
+  })  
+)  
+export class SearchO2MTreeSelectFieldWidget extends FormO2MTreeSelectFieldWidget  
+```  
+
+
+### 3、SearchO2MCascaderFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.OneToMany,  
+    widget: 'Cascader'  
+  })  
+)  
+export class SearchO2MCascaderFieldWidget extends FormO2MCascaderFieldWidget  
+```  
+
+
+### 4、SearchO2MCheckboxFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.OneToMany,  
+    widget: 'Checkbox'  
+  })  
+)  
+export class SearchO2MCheckboxFieldWidget extends FormO2MCheckboxFieldWidget  
+```  
+
+
+## (十七) Many-to-Many (M2M)  
+
+### 1、FormM2MFieldSelectWidget  
+**Reference**: Form - One-to-Many (O2M) - [FormM2MFieldSelectWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#1、formm2mfieldselectwidget)  
+
+
+### 2、SearchM2MTreeSelectFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToMany,  
+    widget: 'TreeSelect'  
+  })  
+)  
+export class SearchM2MTreeSelectFieldWidget extends FormM2MTreeSelectFieldWidget  
+```  
+
+
+### 3、SearchM2MCascaderFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToMany,  
+    widget: 'Cascader'  
+  })  
+)  
+export class SearchM2MCascaderFieldWidget extends FormM2MCascaderFieldWidget  
+```  
+
+
+### 4、SearchM2MCheckboxFieldWidget  
+**Type Declaration**:  
+
+```typescript  
+@SPI.ClassFactory(  
+  FormFieldWidget.Token({  
+    viewType: ViewType.Search,  
+    ttype: ModelFieldType.ManyToMany,  
+    widget: 'Checkbox'  
+  })  
+)  
+export class SearchM2MCheckboxFieldWidget extends FormM2MCheckboxFieldWidget  
+```  
+
+
+### 5、FormM2MCompanyFieldWidget  
+**Reference**: Form - One-to-Many (O2M) - [FormM2MCompanyFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#9、formm2mcompanyfieldwidget)  
+
+
+### 6、FormM2MDepartmentFieldWidget  
+**Reference**: Form - One-to-Many (O2M) - [FormM2MDepartmentFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#10、formm2mdepartmentfieldwidget)  
+
+
+### 7、FormM2MEmployeeFieldWidget  
+**Reference**: Form - One-to-Many (O2M) - [FormM2MEmployeeFieldWidget](/en/DevManual/Reference/Front-EndFramework/Widget/Field/form-field.md#11、formm2memployeefieldwidget)  
+
+
+## (十八) Abstract Base Classes  
+
+### 1、SearchRangeFieldWidget  
+**Inheritance**: FormFieldWidget  
+
+**Attributes**:  
+- allowClear: Whether to allow clearing the value, default is `true`. (`boolean`)  
+- endDefaultValue: Default value for the end value. (`any`)  
+- endPlaceholder: Placeholder text for the end input. (`string | undefined`)  
+- operator: Operator, inherited from field configuration. (`string | undefined`)  
+- startDefaultValue: Default value for the start value. (`any`)  
+- startPlaceholder: Placeholder text for the start input. (`string | undefined`)  
+
+**Methods**:  
+
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized component instance.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: Initialized component instance.  
+
+
+### 2、SearchNumberRangeFieldWidget  
+**Inheritance**: SearchRangeFieldWidget  
+
+**Attributes**:  
+- maxSafeInteger: The maximum safe integer in JavaScript. (`number`)  
+- minSafeInteger: The minimum safe integer in JavaScript. (`number`)  
+- precision: Numeric precision, configurable via DSL or inherited from field configuration. (`number | null | undefined`)  
+- showThousandth: Whether to display thousandth separators, default is `false`. (`boolean`)  
+
+**Methods**:  
+
+#### **getInitializeComponent**  
+- **Function Description**: Gets the initialized numeric range input component.  
+- **Type**: `() => WidgetComponent`  
+- **Return Value**: By default, returns the `DefaultNumberInputRange` component.

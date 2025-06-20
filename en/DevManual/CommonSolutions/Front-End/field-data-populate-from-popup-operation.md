@@ -1,88 +1,85 @@
 ---
-title: 字段：打开的弹窗操作产生的数据回填给字段
+title: Field:Data Pop-Back from Popup Operations to Fields
 index: true
 category:
-   - 前端
+   - Frontend
 order: 4
 ---
-# 一、阅读之前
-你应该：
+# I. Before Reading
+You should:
 
-+ 熟悉模型的增删改查相关内容。
++ Be familiar with CRUD (Create, Read, Update, Delete) operations related to models.
 
-# 二、概述
-他表字段是一种可以从关联关系字段中取出对应字段，并平铺在当前模型中的特殊字段。本质上是具有固定【计算公式】的字段。
+# II. Overview
+A related table field is a special field that extracts corresponding fields from relational fields and flattens them in the current model. In essence, it is a field with a fixed [calculation formula].
 
-其主要用于解决`GQL`在获取关联关系字段时层级过深的问题（非存储的他表字段），也可以用于解决字段冗余的数据同步问题（存储的他表字段）。
+It is mainly used to solve the problem of excessively deep hierarchy when GQL retrieves relational fields (non-stored related table fields), and can also address data synchronization issues for redundant fields (stored related table fields).
 
-这里需要注意的一点是，他表字段的数据同步能力是在`客户端`进行处理的。无法完全保证数据同步的一致性。
+It should be noted that the data synchronization capability of related table fields is processed on the *client side*, and full consistency of data synchronization cannot be completely guaranteed.
 
-# 三、场景描述
-为了方便接下来的描述，我们需要先构建一个基本的业务场景，这个场景中包含【商品】、【商品订单】以及【商品订单明细】三个模型。
+# III. Scenario Description
+To facilitate the following description, we need to first construct a basic business scenario involving three models: [Item], [Item Order], and [Item Order Detail].
 
-创建/编辑【商品订单明细】时使用【商品】，【商品】下拉选项中使用`【商品编码】 - 【商品名称】`格式展示。
+When creating/editing [Item Order Detail], [Item] is used, and the [Item] drop-down options are displayed in the format of `[Item Code] - [Item Name]`.
 
-在【商品订单明细】展开的`表格`中展示【商品编码】和【商品名称】，而不是使用【商品】。
+In the expanded [table] of [Item Order Detail], [Item Code] and [Item Name] are displayed instead of [Item].
 
-其模型定义如下：
+The model definitions are as follows:
 
-## （一）商品（Item）
-| 名称 | API名称 | 业务类型 | 是否多值 | 长度(单值长度) | 关联模型 | 关联字段 |
+## (一) Item
+| Name | API Name | Business Type | Multi-Value | Length (Single Value) | Related Model | Related Field |
 | --- | --- | --- | --- | --- | --- | --- |
-| ID | id | 整数 | 否 | - | - | - |
-| 编码 | code | 文本 | 否 | 128 | - | - |
-| 名称 | name | 文本 | 否 | 128 | - | - |
+| ID | id | Integer | No | - | - | - |
+| Code | code | Text | No | 128 | - | - |
+| Name | name | Text | No | 128 | - | - |
 
+## (二) Item Order
+| Name | API Name | Business Type | Multi-Value | Length (Single Value) | Related Model | Related Field |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ID | id | Integer | No | 128 | - | - |
+| Code | code | Text | No | 128 | - | - |
+| Order Details | details | One-to-Many | Yes | - | Item Order Detail (ItemOrderDetail) | id - orderId |
 
-## （二）商品订单（ItemOrder）
-| 名称 | API名称 | 业务类型 | 是否多值 | 长度(单值长度) | 关联模型 | 关联字段 |
-| --- | --- | --- | --- | --- | --- | --- |
-| ID | id | 整数 | 否 | 128 | - | - |
-| 编码 | code | 文本 | 否 | 128 | - | - |
-| 订单明细 | details | 一对多 | 是 | - | 商品订单明细（ItemOrderDetail） | id - orderId |
+## (三) Item Order Detail
+| Name | API Name | Business Type | Multi-Value | Length (Single Value) | Related Model | Related Field |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ID | id | Integer | No | 128 | - | - |
+| Order | order | Many-to-One | No | - | Item Order (ItemOrder) | orderId - id |
+| Order ID | orderId | Integer | No | - | - | - |
+| Item | item | Many-to-One | No | - | Item (Item) | itemId - id |
+| Item ID | itemId | Integer | No | - | - | - |
+| Quantity | count | Integer | No | - | - | - |
 
+# IV. Preparation
+Based on the model definitions, we need to create basic CRUD operations for [Item] and [Item Order] to proceed with the following steps.
 
-## （三）商品订单明细（ItemOrderDetail）
-| 名称 | API名称 | 业务类型 | 是否多值 | 长度(单值长度) | 关联模型 | 关联字段 |
-| --- | --- | --- | --- | --- | --- | --- |
-| ID | id | 整数 | 否 | 128 | - | - |
-| 订单 | order | 多对一 | 否 | - | 商品订单（ItemOrder） | orderId - id |
-| 订单ID | orderId | 整数 | 否 | - | - | - |
-| 商品 | item | 多对一 | 否 | - | 商品（Item） | itemId - id |
-| 商品ID | itemId | 整数 | 否 | - | - | - |
-| 数量 | count | 整数 | 否 | - | - | - |
+(Only some special pages are shown below; other pages are no different from basic CRUD pages)
 
+## (一) Designing the [Form] View for Item Order
+Drag and drop the order details onto the page, and use the [Component Switch] function to switch the current [Drop-down Multiple Selection] component to a [Table] component.
 
-# 四、准备工作
-根据模型定义，我们要为【商品】和【商品订单】创建基本的增删改查操作，以此来进行我们接下来的步骤。
+Design the [embedded table] expanded from the order details. Place the [Item] and [Quantity] fields in the table.
 
-（下面仅展示了一些特殊页面，其他页面与基础的增删改查页面没有明显差别）
+Design the popup views for creation and editing. (Both buttons need to be designed)
 
-## （一）设计商品订单【表单】视图
-将订单明细拖放至页面中，并使用【组件切换】功能将当前的【下拉多选】组件切换至【表格】组件。
+**Tips**:
 
-对订单明细所展开的【内嵌表格】进行设计。将【商品】和【数量】两个字段放入表格中。
++ Click the `X` in the upper right corner of the popup to close the popup design page.
++ When selecting fields within the [Order Details] field or their internal fields/actions, the [Current Model] displayed in [Component Library] - [Model] on the left will change to the [Item Order Detail] related model. To continue designing the [Item Order] model, you need to select any component not within the scope of the [Order Details] field. In the current view, selecting the [Code] field can switch to the [Item Order] model.
++ Designing multi-model views always requires paying attention to the information of [Current Model].
 
-设计创建和编辑使用的弹窗视图。（两个按钮都需要设计）
+# V. Creating Related Table Fields
+Currently, related table fields can only be created through the `Related Table Field` component in the interface designer, and defined using `Related` in low-code.
 
-小贴士：
+Drag in a related table field to create the [Item Code] field.
 
-+ 点击弹窗右上角的`X`可关闭弹窗设计页面。
-+ 左侧【组件库】-【模型】中展示的【当前模型】在选中【订单明细】字段以及它内部的字段或动作时会变为【商品订单明细】关联模型。要想继续设计【商品订单】模型，需要选中任意一个不在【订单明细】字段范围内的组件。在当前视图中可以选中【编码】字段切换至【商品订单】模型。
-+ 多模型视图的设计总是需要关注【当前模型】这一信息的。
+Drag in a related table field to create the [Item Name] field.
 
-# 五、创建他表字段
-目前仅能在界面设计器中通过`他表字段`组件创建他表字段，在低代码中使用`Related`定义他表字段。
+Hide the [Item] field in the table.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/20250530101854.png)
 
-拖入他表字段，创建【商品编码】字段
+Since related table fields essentially obtain values from objects by reference, the field cannot be directly removed here but needs to be hidden.
 
-拖入他表字段，创建【商品名称】字段
+Add related table fields in the create/edit popup and hide them.
 
-隐藏表格中的【商品】字段![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/20250530101854.png)
-
-由于他表字段本质上是通过引用的方式取得对象中的值，所以此处不能将该字段直接移除，而是需要隐藏。
-
-在创建/编辑弹窗中添加他表字段并隐藏
-
-内嵌表格的创建/编辑功能同样会根据元数据进行裁剪，因此要想保证【商品编码】和【商品名称】被正确回填到表格中，这一步骤是必须的。并且为了避免由于使用不同字段导致无法回填的问题，你需要从【组件库】-【模型】中重复使用字段，而不是从【组件】拖入。这并非是他表字段的特性，而是所有内嵌表格都只能通过这种方式进行数据回填。
-
+The create/edit functions of the embedded table will also be pruned according to metadata. Therefore, to ensure that [Item Code] and [Item Name] are correctly popped back into the table, this step is necessary. To avoid issues where data cannot be popped back due to using different fields, you need to reuse fields from [Component Library] - [Model] instead of dragging them from [Components]. This is not a feature of related table fields but a requirement for data pop-back in all embedded tables.

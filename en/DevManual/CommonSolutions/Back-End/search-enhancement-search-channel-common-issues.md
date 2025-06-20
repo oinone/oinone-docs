@@ -1,25 +1,25 @@
 ---
-title: 搜索增强：引入搜索(增强模型Channel)常见问题解决办法
+title: Search Enhancement:Common Problem Solutions for Introducing Search Enhancement Model Channel
 index: true
 category:
-  - 常见解决方案
+  - Common Solution Approaches
 order: 21
 ---
 
-# 一、总体描述
-引入 Oinone 的搜索（即 Channel 模块）后，因错误的配置、缺少配置或者少引入一些Jar包，会出现一些报错。
+# I. Overall Description
+After introducing Oinone's search (i.e., the Channel module), errors may occur due to incorrect configurations, missing configurations, or missing JAR package introductions.
 
-# 二、启动报类JCTree找不到
-## （一）具体现象
-启动过程可能会出现报错：
+# II. Class JCTree Not Found During Startup
+## (一) Specific Phenomenon
+An error may occur during startup:
 `java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExpression`
 
-## （二）产生原因
-在引入 Channel 模块后，系统启动流程将执行对 Class 包的扫描操作，旨在查找带有 Enhance 注解的相关内容。值得注意的是，Pamirs 底层架构在运行过程中会调用 JDK 的 tools 包中的类，具体涉及到 `com/sun/tools/javac/tree/JCTree$JCExpression` 类。
+## (二) Root Cause
+After introducing the Channel module, the system startup process will execute a scan operation on the Class package to find content with the Enhance annotation. It is important to note that the Pamirs underlying architecture will call classes in the JDK's tools package during operation, specifically involving the `com/sun/tools/javac/tree/JCTree$JCExpression` class.
 
-需着重指出的是，特定版本的 JDK 或许会出现缺少 tools.jar 文件的情况，这种缺失极有可能导致系统启动失败。
+It should be emphasized that specific versions of the JDK may lack the tools.jar file, and this absence is highly likely to cause system startup failure.
 
-## （三）具体报错
+## (三) Specific Error Log
 ```java
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:107) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:58) [pamirs-venus-boot.jar:na]
@@ -43,9 +43,8 @@ Caused by: java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExp
     at pro.shushi.pamirs.channel.core.init.ChannelSystemBootAfterInit.init(ChannelSystemBootAfterInit.java:31)
 ```
 
-## （四）解决办法
-+ 方式一【推荐】、配置 channel 的扫描路径
-
+## (四) Solutions
++ **Method 1 [Recommended]**: Configure the Channel scanning path
 ```yaml
 pamirs:
   channel:
@@ -53,12 +52,11 @@ pamirs:
       - com.pamirs.ic
 ```
 
-+ 方式二、使用 Oracle 版本的 jdk，确保 jdk 的 lib 目录，tools.jar 有`com/sun/tools/javac/tree/JCTree`对应的类
++ **Method 2**: Use the Oracle JDK version and ensure that the tools.jar in the JDK's lib directory contains the corresponding class `com/sun/tools/javac/tree/JCTree`.
 
-# 三、启动报类 JsonProvider 找不到
-## （一）具体报错
-如果启动报错信息如下：
-
+# III. Class JsonProvider Not Found During Startup
+## (一) Specific Error Log
+If the startup error message is as follows:
 ```java
 Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
     at java.lang.ClassLoader.defineClass1(Native Method) ~[na:1.8.0_181]
@@ -67,10 +65,10 @@ Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
     at java.net.URLClassLoader.defineClass(URLClassLoader.java:467) ~[na:1.8.0_181]
 ```
 
-## （二）产生原因
-项目中只引入了`pamirs-channel-core`，但未引入`elasticsearch`相关的包
+## (二) Root Cause
+The project only introduces `pamirs-channel-core` but does not introduce `elasticsearch`-related packages.
 
-## （三）解决办法
+## (三) Solutions
 ```xml
 <dependency>
   <groupId>org.elasticsearch.client</groupId>
@@ -82,6 +80,4 @@ Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
   <artifactId>jakarta.json-api</artifactId>
   <version>2.1.1</version>
 </dependency>
-
 ```
-

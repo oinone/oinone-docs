@@ -1,55 +1,50 @@
 ---
-title: 发布：前端发布流程
+title: Release:Frontend Release Process
 index: true
 category:
-   - 前端
+   - Frontend
 order: 2
 ---
-## 一、应用部署
-## （一）中间件及资源要求
- 用 Oinone 开发的业务工程后端本质是一个 Springboot 工程，其部署方式与其他 Springboot 工程类似；
+## I. Application Deployment
+### (一) Middleware and Resource Requirements
+The backend of a business project developed with Oinone is essentially a Springboot project, and its deployment method is similar to other Springboot projects.
 
-### 1、 中间件及版本
-+ Oinone 启动最小集 包括：Java, MySQL、zk，redis 和 nginx (或其他 httpserver)
+#### 1. Middleware and Versions
+The minimum set for Oinone startup includes: Java, MySQL, zk, redis, and nginx (or other httpservers).
 
-| **中间件** | **版本** | **说明** |
+| **Middleware** | **Version** | **Description** |
 | :---: | --- | --- |
-| Java(jdk) | 1.8 | 1.8_221+，低于这个版本需要覆盖JCE |
-| Reids | 4.x、5.x |  |
-| Nginx | 版本无特殊要求 |  |
-| MySQL | 5.7.x,  8.0.x |  |
-| zk | 3.4.x,  3.5.x |  |
-| RocketMQ | 4.x，推荐4.7+ | 按需安装 |
+| Java (JDK) | 1.8 | 1.8_221+, JCE needs to be overridden for versions below this |
+| Redis | 4.x, 5.x |  |
+| Nginx | No special version requirement |  |
+| MySQL | 5.7.x, 8.0.x |  |
+| zk | 3.4.x, 3.5.x |  |
+| RocketMQ | 4.x, recommended 4.7+ | Install as needed |
 
+#### 2. Hardware Resource Recommendations
+> **The resource list listed here is only a recommended value; the actual situation needs to be comprehensively evaluated based on business data volume and user traffic.**
 
-### 2、硬件资源建议
-> **这里列出的资源列表仅是建议值；实际情况需根据业务数据量和用户访问量进行综合评估。**
->
+- Overall description: For online deployment, the database is strongly recommended to use cloud resources or public resources provided by the company, and a complete data backup strategy should be configured.
+- Recommended indicators: Consider system margin (memory usage <=85%, hard disk usage <=80%).
+- The middleware required for Oinone business application deployment is not much different from that of a standard SpringBoot project (with slightly higher performance requirements for Redis; other middleware can refer to the resources of project deployment). The resources listed below are estimated values, and actual projects can be adjusted accordingly based on traffic, etc.
 
-+ 总体说明：线上部署时数据库强烈建议使用云资源 或者 公司提供的公共资源，并配置完整的数据备份策略
-+ 推荐指标：考虑系统余量(内存使用率<=85%，硬盘使用量<=80%)
-+ Oinone 业务应用部署，所需要的中间件与用标准的 SpringBoot 工程相比，并无多大的区别（对Redis 性能要求稍等高点，其他的中间件参考项目部署的资源就可以）。下面列举出来的资源是预估值，实际项目可以根据访问量等做对应的调整。
-
-| 组件 | CPU核数 | 内存 | 硬盘 | 实例数 | 说明 |
+| Component | CPU Cores | Memory | Hard Disk | Instances | Description |
 | :---: | :---: | :---: | :---: | :---: | --- |
-| Nginx | - | - | 5G | 2 | 静态资源 |
-| zk | 2c | 1.5G+ | 20G | 3 | 集群版安装 |
-| Redis | 2c | 8G+ | 20G | 1 | 可以使用云上资源 |
-| MySQL | 4c | 8G+ | 300G+ | 1 | 使用已有资源/云资源， 建议使用云资源 |
-| OSS | 2c | 4G | - | 1. | 使用云上资源或搭建MINIO |
-| Oinone业务应用 | 4c | 8G | 50G | 部署包数 * 2+ |  |
+| Nginx | - | - | 5G | 2 | Static resources |
+| zk | 2c | 1.5G+ | 20G | 3 | Cluster installation |
+| Redis | 2c | 8G+ | 20G | 1 | Can use cloud resources |
+| MySQL | 4c | 8G+ | 300G+ | 1 | Use existing resources/cloud resources, recommended to use cloud resources |
+| OSS | 2c | 4G | - | 1 | Use cloud resources or build MINIO |
+| Oinone Business Application | 4c | 8G | 50G | Deployment package count * 2+ |  |
 
+### (二) Backend Deployment
+#### 1. Designer Page Data Export
+> If the interface designer is not used to design pages in the project, ignore this step.
 
-## （二）后端部署
-### 1、设计器页面数据导出
-> 若项目中没有用到界面设计器设计器页面，则忽略该步骤。
->
+If the interface designer is used to design pages in the project, the design pages need to be exported first.
 
-项目中有用到界面设计器设计器页面，首先需要把设计页面导出
-
-1. 通过接口的方式执行导出, 并把调用页面导出的结果JSON数据保存下来；
-+ 先执行登录
-
+1. Export through the interface method, and save the result JSON data of the called page export.
+   - First perform login:
 ```graphql
 mutation {
     pamirsUserTransientMutation {
@@ -63,9 +58,7 @@ mutation {
     }
 }
 ```
-
-+ 执行界面数据导出，请求示例：
-
+   - Execute interface data export, request example:
 ```graphql
 mutation {
     uiDesignerExportReqMutation {
@@ -77,22 +70,20 @@ mutation {
     }
 }
 ```
-
-+ 更多导出方式(如：按菜单导出、按页面导出)，参考：[界面设计器的导入导出](/en/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md)
-2. 在应用中心执行导出
+   - For more export methods (such as exporting by menu or by page), refer to: [Import and Export of Interface Designer](/en/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md)
+2. Execute export in the application center:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/2025031808420511-1024x433.png)
 
-导出成功后，在`应用环境`的设计导出中找到导入记录，把到处结果的 JSON 文件保存下来；
+After the export is successful, find the import record in the design export of the `application environment`, and save the exported JSON file.
 
-### 2、目标环境有设计器
-数据数据在应用中心可视化的方式进行设计数据的导入和导出
+#### 2. Designer Exists in the Target Environment
+Data can be imported and exported visually through the application center for design data.
 
-### 3、业务工程中导入设计页面数据
-后端工程中把界面设计器的页面数据导入，若无通过界面设计器设计页面时忽略
+#### 3. Import Design Page Data into the Business Project
+Import the page data of the interface designer into the backend project, and ignore it if no pages are designed through the interface designer.
 
-+ 把上面导出的页面数据(JSON文件)放入到 resources 目录下，如防止的位置：`resources/install/hr_demo_ui.json`
-+ 业务工程中导入示例代码
-
+- Put the exported page data (JSON file) into the resources directory, such as the location: `resources/install/hr_demo_ui.json`
+- Example code for import in the business project:
 ```java
 package pro.shushi.pamirs.hr.core.init;
 
@@ -120,23 +111,23 @@ public class DemoAppMetaInstall implements MetaDataEditor {
 
     @Override
     public void edit(AppLifecycleCommand command, Map<String, Meta> metaMap) {
-        //关闭导入
+        // Close import
         if (!doImport()) {
             return;
         }
-        log.info("[设计器业务元数据导⼊]");
+        log.info("[Designer business metadata import]");
         InitializationUtil bizInitializationUtil = InitializationUtil.get(metaMap, HrSimpleModule.MODULE_MODULE/***改成⾃⼰的Module*/,
                                                                           HrSimpleModule.MODULE_NAME/***改成⾃⼰的Module*/);
         DesignerInstallHelper.mateInitialization(bizInitializationUtil, "install/hr_demo_ui.json");
-        log.info("[⾃定义组件元数据导⼊]");
-        // 写法1: 将组件元数据导⼊到⻚⾯设计器. 只有在安装设计器的服务中执⾏才有效果
+        log.info("[Custom component metadata import]");
+        // Writing 1: Import component metadata into the page designer. Only effective when executed in the service installing the designer
         WidgetInstallHelper.mateInitialization(metaMap, "install/hr_demo_ui.json");
     }
 
     private boolean doImport() {
-        // ⾃定义导⼊判断. 避免⽤于设计的开发环境执⾏导⼊逻辑
-        // 开发环境即设计器页面的源环境不要安装
-        // 开发环境即设计器页面的源环境不要安装
+        // Custom import judgment. Avoid executing import logic in the development environment used for design
+        // The development environment, i.e., the source environment of the designer page, should not be installed
+        // The development environment, i.e., the source environment of the designer page, should not be installed
         /**
         String[] envs = applicationContext.getEnvironment().getActiveProfiles();
         List<String> envList = Lists.newArrayList(envs);
@@ -147,68 +138,63 @@ public class DemoAppMetaInstall implements MetaDataEditor {
 }
 ```
 
-## （三）后端打包部署
-1. 后端工程是标准的Springboot工程，部署方式也是类似
-2. 部署方式
-+ 可通过 `java -jar` 的方式部署
-+ 可通过 `Docker`方式部署
-+ 可打成 `war包`部署在tomcat或者国产化的 TongWeb 上
-3. 后端工程也接入到自动化部署工具中，如 Jenkins 中；
+### (三) Backend Packaging and Deployment
+1. The backend project is a standard Springboot project, and the deployment method is similar.
+2. Deployment methods:
+   - Can be deployed via `java -jar`.
+   - Can be deployed via `Docker`.
+   - Can be packaged into a `war package` and deployed on tomcat or domestic TongWeb.
+3. The backend project is also connected to an automated deployment tool, such as Jenkins.
 
-## （四）前端部署
-前端本质上就是一个 VUE 工程，对应的部署方式跟通用的用 VUE 写的前端工程类似。部署的步骤：
+### (四) Frontend Deployment
+The frontend is essentially a VUE project, and the corresponding deployment method is similar to that of a general frontend project written in VUE. Deployment steps:
 
-1. 打包，在前端 boot 工程下(如：ss-boot)执行打包命令：pnpm run build
-2. 将打包好的 dist 包上传到服务器上，用 nginx 启动即可
-3. 用 nginx 启动情况下，nginx 的配置如下：
-
+1. Packaging: Execute the packaging command in the frontend boot project (e.g., ss-boot): `pnpm run build`
+2. Upload the packaged dist package to the server and start it with nginx.
+3. When starting with nginx, the nginx configuration is as follows:
 ```nginx
 server {
-  # 根据实际详情修改
+  # Modify according to actual details
   listen 8090;
-  # 根据实际详情修改
+  # Modify according to actual details
   server_name 127.0.0.1;
 
   location / {
-    # 根据实际详情修改(前端dist文件对应的路径)
+    # Modify according to actual details (path corresponding to frontend dist file)
     root /Users/wangxian/nginx/html/mis/v3/dist;
     try_files $uri $uri/ /index.html;
     index  index.html index.htm;
   }
 
   location /pamirs {
-    # 根据实际详情修改(后端接口地址)
+    # Modify according to actual details (backend interface address)
     proxy_pass http://127.0.0.1:8191;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
   }
 }
 ```
+4. After modifying and saving the configuration, execute startup or restart to take effect.
 
-4. 配置修改保存后，执行启动或者重启生效
-
-# 二、应用升级
-## （一）后端升级
-1. 获取对应的版本信息；更新日志中的`后端版本包信息` 获取后端版本信息；通常只用关注oinone-bom的版本号
-
+# II. Application Upgrade
+## (一) Backend Upgrade
+1. Obtain the corresponding version information; get the backend version information from the `backend version package information` in the update log. Usually, only the version number of oinone-bom needs to be concerned.
 ```xml
-<!-- 平台基础 -->
+<!-- Platform foundation -->
 <oinone.version>5.7.4.6</oinone.version>
 ```
+2. Modify the `oinone.version` in the main `POM` of the backend project, and re-execute the `maven` update after modification.
 
-2. 后端工程修改主`POM`中的`oinone.version`，修改后重新执行`maven`的更新即可
+## (二) Frontend Upgrade
+1. Obtain the corresponding version information; get the frontend version information from the `frontend version package information` in the update log.
+2. Upgrade steps:
+   Modify the version number of the `oinone` dependency in `package.json` and reinstall it.
+   1. Modify the version of packages prefixed with `@kunlun` in `package.json` of `ss-admin-widget`, `ss-boot`, `ss-oinone`, `ss-project` (or more custom extended projects) to the version to be upgraded.
+3. Finally, in the outermost package `ss-front-modules`, execute `pnpm run clean` to clear dependencies, and `pnpm install` to reinstall dependencies.
 
-## （二）前端升级
-1. 获取对应的版本信息。更新日志中的`前端版本包信息` 获取前端版本信息；
-2. 升级步骤
-修改`package.json`中依赖`oinone`的包的版本号，并重新安装。
-    1. 将`ss-admin-widget`、`ss-boot`、`ss-oinone`、`ss-project`(或者更多自定义扩展的工程)中的`package.json`中`@kunlun`前缀的包，修改为要升级的版本。
-3. 最后在最外层的包`ss-front-modules`执行`pnpm run clean`清除依赖,`pnpm install`重新安装依赖
-
-# 三、设计器升级
-1. 获取对应的版本信息。更新日志中的`镜像说明`和 `镜像拉取` 获取镜像信息；
-2. 在服务器找到 Docker 启动的结构包，通常是`oinone-op-ds-all-full`或者 `oinone-op-ds-all-mini`,修改`startup.sh`中的镜像版号，示例代码如下：
-
+# III. Designer Upgrade
+1. Obtain the corresponding version information; get the image information from the `image description` and `image pull` in the update log.
+2. Find the Docker startup package on the server, usually `oinone-op-ds-all-full` or `oinone-op-ds-all-mini`, and modify the image version number in `startup.sh`. Example code is as follows:
 ```bash
 #!/bin/bash
 configDir=$(pwd)
@@ -226,9 +212,7 @@ docker run -d --name designer-allinone \
 -v $configDir/logs:/opt/pamirs/logs \
 -v $configDir/lib:/opt/pamirs/outlib harbor.oinone.top/oinone/oinone-designer-mini-v5.2:$version
 ```
-
-3. 设计器的 yml 文件，结构包中的 `config/application.yml`; 绝大多数情况升级不需要修改`application.yml`；只有在极少的情况下可能需要改`application.yml`，比如：新增加了模块。此时在设计器的版本更新日志中会有明确说明；
-4. 实际项目中，设计器所链接的中间件都要求外置到容器外部，即部署`oinone-op-ds-all-mini`版本；
-5. 如果包镜像名已经存在，还需要删除掉老版本的镜像;
-6. 执行`startup.sh`
-
+3. The yml file of the designer is `config/application.yml` in the package. In most cases, upgrading does not require modifying `application.yml`; only in very few cases may it be necessary to modify `application.yml`, such as when a new module is added. In this case, the designer's version update log will have a clear description.
+4. In actual projects, the middleware linked by the designer is required to be外置 (externalized) to the outside of the container, that is, deploy the `oinone-op-ds-all-mini` version.
+5. If the package image name already exists, the old version of the image also needs to be deleted.
+6. Execute `startup.sh`.

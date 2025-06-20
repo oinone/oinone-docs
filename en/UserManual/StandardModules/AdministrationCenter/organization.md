@@ -1,5 +1,5 @@
 ---
-title: Organizational Structure
+title: Organization
 index: true
 category:
   - User Manual

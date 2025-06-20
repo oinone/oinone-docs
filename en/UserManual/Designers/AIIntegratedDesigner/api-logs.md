@@ -1,5 +1,5 @@
 ---
-title: Interface Logs
+title: Api Logs
 index: true
 category:
   - User Manual

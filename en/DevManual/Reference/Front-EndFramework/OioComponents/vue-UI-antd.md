@@ -2,9 +2,9 @@
 title: Vue UI Antd
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - Oio 组件
+  - Oio Components
 order: 1
 prev:
   text: Gallery Field
@@ -12,55 +12,55 @@ prev:
 ---
 # 一、Reference List
 
-## （一）通用
+## （一）General
 
-### Button 按钮
+### Button
 
-#### 基础用法
+#### Basic Usage
 
 
 ```vue
 <template>
-  <oio-button>默认按钮</oio-button>
-  <oio-button type="primary">主按钮</oio-button>
-  <oio-button type="ghost">幽灵按钮</oio-button>
-  <oio-button type="link">链接按钮</oio-button>
-  <oio-button type="text">文字按钮</oio-button>
+  <oio-button>Default Button</oio-button>
+  <oio-button type="primary">Primary Button</oio-button>
+  <oio-button type="ghost">Ghost Button</oio-button>
+  <oio-button type="link">Link Button</oio-button>
+  <oio-button type="text">Text Button</oio-button>
 </template>
 ```
 
-#### 带图标按钮
+#### Button with Icon
 
 ```vue
 <template>
-  <oio-button icon="oinone-sousuo" icon-placement="before">搜索</oio-button>
-  <oio-button icon="oinone-xiazai2" icon-placement="after">下载</oio-button>
-  <oio-button icon="oinone-bianji4" type="primary">编辑</oio-button>
+  <oio-button icon="oinone-sousuo" icon-placement="before">Search</oio-button>
+  <oio-button icon="oinone-xiazai2" icon-placement="after">Download</oio-button>
+  <oio-button icon="oinone-bianji4" type="primary">Edit</oio-button>
 </template>
 ```
 
-#### 业务场景按钮
+#### Business Scene Button
 
 ```vue
 <template>
-  <oio-button biz-style="success">成功按钮</oio-button>
-  <oio-button biz-style="warning">警告按钮</oio-button>
-  <oio-button biz-style="danger">危险按钮</oio-button>
-  <oio-button biz-style="info">信息按钮</oio-button>
+  <oio-button biz-style="success">Success Button</oio-button>
+  <oio-button biz-style="warning">Warning Button</oio-button>
+  <oio-button biz-style="danger">Danger Button</oio-button>
+  <oio-button biz-style="info">Info Button</oio-button>
 
-  <oio-button type="primary" biz-style="success">成功按钮</oio-button>
-  <oio-button type="primary" biz-style="warning">警告按钮</oio-button>
-  <oio-button type="primary" biz-style="danger">危险按钮</oio-button>
-  <oio-button type="primary" biz-style="info">信息按钮</oio-button>
+  <oio-button type="primary" biz-style="success">Success Button</oio-button>
+  <oio-button type="primary" biz-style="warning">Warning Button</oio-button>
+  <oio-button type="primary" biz-style="danger">Danger Button</oio-button>
+  <oio-button type="primary" biz-style="info">Info Button</oio-button>
 </template>
 ```
 
-#### 加载状态与选中状态
+#### Loading State and Selected State
 
 ```vue
 <template>
-  <oio-button async @click="onSubmit1">内置加载状态</oio-button>
-  <oio-button :loading="loading" @click="onSubmit2">带loading参数控制加载状态</oio-button>
+  <oio-button async @click="onSubmit1">Built-in Loading State</oio-button>
+  <oio-button :loading="loading" @click="onSubmit2">Control Loading State with loading Parameter</oio-button>
 </template>
 <script lang="ts">
 import { OioButton } from '@kunlun/vue-ui-antd';
@@ -103,76 +103,76 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| type | `ButtonType`（`default`/`primary`/`ghost`/`link`/`text`） | `default`           | 按钮类型 |
-| bizStyle | `ButtonBizStyle`（`default`/`success`/`warning`/`danger`/`info`） | `default`           | 业务场景样式 |
-| htmlType | string | `button`            | 原生 HTML 类型（如 `submit`/`reset`） |
-| size | `ButtonSize`（`large`/`middle`/`small`） | `middle`            | 按钮尺寸 |
-| block | boolean | `false`             | 是否为块级按钮（占满父容器宽度） |
-| ghost | boolean | `false`             | 是否为幽灵按钮（透明背景） |
-| danger | boolean | `false`             | 是否为危险按钮（红色警示） |
-| href | string | - | 链接地址（转为 `<a>` 标签，优先级高于 `onClick`） |
-| target | string | `_self`             | 链接打开方式（如 `_blank`/`_parent`） |
-| async | boolean | `false`             | 是否开启异步模式（自动处理加载状态） |
-| loading | boolean | `undefined`         | 加载状态（`true` 显示加载图标，`undefined` 时使用内部状态） |
-| disabled | boolean | `undefined`         | 禁用状态 |
-| icon | string | - | 图标名称（如 `search`/`download`，需配合 `OioIcon` 组件） |
-| iconPlacement | `IconPlacement`（`before`/`after`） | `before`            | 图标位置（前置 / 后置） |
-| selected | boolean | `undefined`         | 选中状态（仅 `type="link"` 时有效） |
+| type | `ButtonType`（`default`/`primary`/`ghost`/`link`/`text`） | `default`           | Button type |
+| bizStyle | `ButtonBizStyle`（`default`/`success`/`warning`/`danger`/`info`） | `default`           | Business scene style |
+| htmlType | string | `button`            | Native HTML type (e.g., `submit`/`reset`) |
+| size | `ButtonSize`（`large`/`middle`/`small`） | `middle`            | Button size |
+| block | boolean | `false`             | Whether to be a block-level button (occupy full parent width) |
+| ghost | boolean | `false`             | Whether to be a ghost button (transparent background) |
+| danger | boolean | `false`             | Whether to be a danger button (red warning) |
+| href | string | - | Link address (converted to `<a>` tag, higher priority than `onClick`) |
+| target | string | `_self`             | Link opening method (e.g., `_blank`/`_parent`) |
+| async | boolean | `false`             | Whether to enable async mode (automatically handle loading state) |
+| loading | boolean | `undefined`         | Loading state (`true` to show loading icon, `undefined` to use internal state) |
+| disabled | boolean | `undefined`         | Disabled state |
+| icon | string | - | Icon name (e.g., `search`/`download`, requires `OioIcon` component) |
+| iconPlacement | `IconPlacement`（`before`/`after`） | `before`            | Icon position (before / after) |
+| selected | boolean | `undefined`         | Selected state (only valid for `type="link"`) |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:loading | loading: boolean | 加载状态变化时触发（双向绑定用） |
-| update:selected | selected: boolean | 选中状态变化时触发（双向绑定用） |
-| click | event: MouseEvent | 点击事件（`async` 模式下异步操作完成后自动关闭加载状态） |
+| update:loading | loading: boolean | Fired when loading state changes (for two-way binding) |
+| update:selected | selected: boolean | Fired when selected state changes (for two-way binding) |
+| click | event: MouseEvent | Click event (async mode automatically closes loading state after async operation completes) |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 按钮主体内容 |
-| icon | 自定义图标（优先级高于 `icon`<br/> prop） |
+| default | Button main content |
+| icon | Custom icon (higher priority than `icon`<br/> prop) |
 
 
-## （二）布局
+## （二）Layout
 
-### Divider 分割线
+### Divider
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <!-- 水平分割线 -->
+  <!-- Horizontal Divider -->
   <oio-divider />
-  <!-- 带文字的水平分割线（居中） -->
-  <oio-divider>主要内容</oio-divider>
+  <!-- Horizontal Divider with Text (Centered) -->
+  <oio-divider>Main Content</oio-divider>
 </template>
 ```
 
-#### 虚线分割线
+#### Dashed Divider
 
 ```vue
 <template>
   <oio-divider dashed />
-  <oio-divider dashed>虚线样式</oio-divider>
+  <oio-divider dashed>Dashed Style</oio-divider>
 </template>
 ```
 
-#### 文字居左 / 居右分割线
+#### Divider with Text Aligned Left/Right
 
 ```vue
 <template>
-  <oio-divider orientation="left">左侧标题</oio-divider>
-  <oio-divider orientation="right">右侧说明</oio-divider>
+  <oio-divider orientation="left">Left Title</oio-divider>
+  <oio-divider orientation="right">Right Description</oio-divider>
 </template>
 ```
 
-#### 垂直分割线
+#### Vertical Divider
 
 ```vue
 <template>
@@ -190,24 +190,24 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | type | `DividerType`（`horizontal` | `vertical`） | `horizontal`        |
-| dashed | boolean | `false`             | 是否为虚线样式 |
-| plain | boolean | `false`             | 是否为简洁样式（文字无背景） |
+| dashed | boolean | `false`             | Whether to use dashed style |
+| plain | boolean | `false`             | Whether to use plain style (text without background) |
 | orientation | `DividerOrientation`（`center` | `left` | `right`） |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 分割线中间的文字或自定义内容（如图标、组件等） |
+| default | Text or custom content in the middle of the divider (such as icons, components, etc.) |
 
 
-### Grid 栅格
+### Grid
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -219,7 +219,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 带间距的布局
+#### Layout with Gutter
 
 ```vue
 <template>
@@ -231,7 +231,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 换行布局
+#### Wrap Layout
 
 ```vue
 <template>
@@ -247,62 +247,62 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | gutter | `CommonGutterType`（number | string                                                       | array                                                        |
-| align | `FlexRowAlign`（`top`/`middle`/`bottom`/`baseline`/`stretch`） | - | 侧轴对齐方式（垂直方向） |
-| justify | `FlexRowJustify`（`start`/`end`/`center`/`space-between`/`space-around`） | - | 主轴对齐方式（水平方向） |
-| wrap | boolean | false | 是否允许列换行 |
+| align | `FlexRowAlign`（`top`/`middle`/`bottom`/`baseline`/`stretch`） | - | Cross-axis alignment (vertical direction) |
+| justify | `FlexRowJustify`（`start`/`end`/`center`/`space-between`/`space-around`） | - | Main-axis alignment (horizontal direction) |
+| wrap | boolean | false | Whether to allow column wrapping |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 行内容，包含栅格列组件 |
+| default | Row content, including grid column components |
 
 
 ##### oio-col
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | flex | string   | number                                                | - |
-| offset | number | - | 列偏移的栅格数 |
-| order | number | - | 列的排序顺序 |
-| pull | number | - | 列向左拉动的栅格数 |
-| push | number | - | 列向右推动的栅格数 |
-| span | number | - | 列占据的栅格数（1-24） |
+| offset | number | - | Number of grid columns to offset |
+| order | number | - | Column sorting order |
+| pull | number | - | Number of grid columns to pull left |
+| push | number | - | Number of grid columns to push right |
+| span | number | - | Number of grid columns occupied (1-24) |
 | xs | number   | object                                                | - |
 | sm | number   | object                                                | - |
 | md | number   | object                                                | - |
 | lg | number   | object                                                | - |
 | xl | number   | object                                                | - |
 | xxl | number   | object                                                | - |
-| fixed | boolean | false | 是否为固定列，添加特殊样式类 |
+| fixed | boolean | false | Whether to be a fixed column, adding special style class |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 列内容 |
+| default | Column content |
 
 
-### Block 块级元素
+### Block
 
-#### 基础布局
+#### Basic Layout
 
 ```vue
 <template>
   <oio-block>
-    <div>这是一段内容</div>
+    <div>This is a piece of content</div>
   </oio-block>
 </template>
 ```
 
-#### 行内布局
+#### Inline Layout
 
 ```vue
 <template>
@@ -313,7 +313,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 弹性布局（行方向）
+#### Flex Layout (Row Direction)
 
 ```vue
 <template>
@@ -324,7 +324,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 弹性布局（列方向）
+#### Flex Layout (Column Direction)
 
 ```vue
 <template>
@@ -335,7 +335,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 带间距的弹性布局
+#### Flex Layout with Gutter
 
 ```vue
 <template>
@@ -350,38 +350,38 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| inline | boolean | false | 是否为行内元素（`inline-block` 或 `inline-flex`） |
-| flex | boolean | false | 是否开启弹性布局（`display: flex`） |
-| flexDirection | `FlexDirection`（`Row`/`RowReverse`/`Column`/`ColumnReverse`） | `FlexDirection.Row` | 弹性容器的主轴方向 |
+| inline | boolean | false | Whether to be an inline element (`inline-block` or `inline-flex`) |
+| flex | boolean | false | Whether to enable flex layout (`display: flex`) |
+| flexDirection | `FlexDirection`（`Row`/`RowReverse`/`Column`/`ColumnReverse`） | `FlexDirection.Row` | Main axis direction of the flex container |
 | gutter | string   | number                                                       | `StandardGutterType`（`[number, number]`） |
 
 
-## （三）导航
+## （三）Navigation
 
-### Breadcrumb 面包屑
+### Breadcrumb
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
   <oio-breadcrumb>
-    <oio-breadcrumb-item>首页</oio-breadcrumb-item>
-    <oio-breadcrumb-item>分类</oio-breadcrumb-item>
-    <oio-breadcrumb-item>商品详情</oio-breadcrumb-item>
+    <oio-breadcrumb-item>Home</oio-breadcrumb-item>
+    <oio-breadcrumb-item>Category</oio-breadcrumb-item>
+    <oio-breadcrumb-item>Product Details</oio-breadcrumb-item>
   </oio-breadcrumb>
 </template>
 ```
 
-#### 自定义分隔符
+#### Custom Separator
 
 ```vue
 <template>
   <oio-breadcrumb separator=">">
-    <oio-breadcrumb-item>首页</oio-breadcrumb-item>
-    <oio-breadcrumb-item>分类</oio-breadcrumb-item>
-    <oio-breadcrumb-item>商品详情</oio-breadcrumb-item>
+    <oio-breadcrumb-item>Home</oio-breadcrumb-item>
+    <oio-breadcrumb-item>Category</oio-breadcrumb-item>
+    <oio-breadcrumb-item>Product Details</oio-breadcrumb-item>
   </oio-breadcrumb>
 </template>
 ```
@@ -392,43 +392,43 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| separator | string | '/' | 全局分隔符 |
+| separator | string | '/' | Global separator |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 面包屑导航内容 |
-| separator | 自定义分隔符（优先级高于 props） |
-| itemRender | 自定义列表项渲染 |
+| default | Breadcrumb navigation content |
+| separator | Custom separator (higher priority than props) |
+| itemRender | Custom list item rendering |
 
 
 ##### oio-breadcrumb-item
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| separator | string | '/' | 单个列表项分隔符（优先级高于父组件） |
+| separator | string | '/' | Individual list item separator (higher priority than parent component) |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 列表项内容 |
-| separator | 自定义当前项分隔符 |
-| overlay | 列表项额外内容（如悬浮层） |
+| default | List item content |
+| separator | Custom separator for the current item |
+| overlay | Additional content for the list item (such as a hover layer) |
 
 
-### Dropdown 下拉菜单
+### Dropdown
 
-使用示例及 `API` 请参考：[Antd Dropdown 下拉菜单 For Vue](https://www.antdv.com/components/dropdown-cn)
+For usage examples and `API`, please refer to: [Antd Dropdown for Vue](https://www.antdv.com/components/dropdown-cn)
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -436,9 +436,9 @@ export default defineComponent({
 </template>
 ```
 
-### Pagination 分页
+### Pagination
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -449,7 +449,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 自定义每页数量
+#### Customize Items per Page
 
 ```vue
 <template>
@@ -462,7 +462,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 显示总数与快速跳转
+#### Show Total and Quick Jump
 
 ```vue
 <template>
@@ -479,46 +479,46 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| currentPage | number | - | 当前页码（受控模式） |
-| defaultCurrentPage | number | 1 | 默认页码（非受控模式） |
-| pageSize | number | - | 每页显示条数（受控模式） |
-| defaultPageSize | number | 15 | 默认每页显示条数（非受控模式） |
+| currentPage | number | - | Current page number (controlled mode) |
+| defaultCurrentPage | number | 1 | Default page number (uncontrolled mode) |
+| pageSize | number | - | Items per page (controlled mode) |
+| defaultPageSize | number | 15 | Default items per page (uncontrolled mode) |
 | pageSizeOptions | (number  | string)[]                                             | [10, 15, 30, 50, 100, 200] |
-| total | number | 0 | 数据总数 |
-| showSizeChanger | boolean | true | 是否显示每页条数选择器 |
+| total | number | 0 | Total number of data |
+| showSizeChanger | boolean | true | Whether to show items per page selector |
 | showTotal | boolean  | ((total: number, range) => string)                    | false |
-| showJumper | boolean | false | 是否显示快速跳转 |
-| disabled | boolean | false | 是否禁用分页 |
-| showLastPage | boolean | true | 是否显示完整分页（否则显示简化版） |
+| showJumper | boolean | false | Whether to show quick jump |
+| disabled | boolean | false | Whether to disable pagination |
+| showLastPage | boolean | true | Whether to show complete pagination (otherwise show simplified version) |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:current-page | currentPage: number | 当前页码变化时触发 |
-| update:page-size | pageSize: number | 每页显示条数变化时触发 |
-| change | currentPage: number, pageSize: number | 页码或每页显示条数变化时触发 |
+| update:current-page | currentPage: number | Fired when current page changes |
+| update:page-size | pageSize: number | Fired when items per page changes |
+| change | currentPage: number, pageSize: number | Fired when page number or items per page changes |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| pageSizeOption | { value: string } | 自定义每页条数选择器的显示内容 |
+| pageSizeOption | { value: string } | Custom display content for items per page selector |
 
 
-## （四）数据录入
+## （四）Data Entry
 
-### Cascader 级联选择
+### Cascader
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-cascader v-model:value="selected" :options="options" placeholder="请选择级联项" />
+  <oio-cascader v-model:value="selected" :options="options" placeholder="Please select cascade items" />
 </template>
 <script lang="ts">
 import { OioCascader } from '@kunlun/vue-ui-antd';
@@ -578,11 +578,11 @@ export default defineComponent({
 </script>
 ```
 
-#### 异步加载级联数据
+#### Asynchronous Loading of Cascade Data
 
 ```vue
 <template>
-  <oio-cascader v-model:value="selected" :options="options" placeholder="请选择级联项" :load-data="loadData" />
+  <oio-cascader v-model:value="selected" :options="options" placeholder="Please select cascade items" :load-data="loadData" />
 </template>
 <script lang="ts">
 import { CascaderItem, OioCascader } from '@kunlun/vue-ui-antd';
@@ -652,14 +652,14 @@ export default defineComponent({
 </script>
 ```
 
-#### 自定义显示内容
+#### Custom Display Content
 
 ```vue
 <template>
   <oio-cascader
     v-model:value="selected"
     :options="options"
-    placeholder="请选择级联项"
+    placeholder="Please select cascade items"
     :display-render="displayRender"
   />
 </template>
@@ -730,69 +730,69 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| mode | `SelectMode`（`single`/`multiple`） | `single`            | 选择模式（单选 / 多选） |
+| mode | `SelectMode`（`single`/`multiple`） | `single`            | Selection mode (single / multiple) |
 | value | `string[]`| string[][]                                            | `undefined`         |
-| options | `CascaderItem[]`    | `[]`                | 级联数据选项 |
-| filterOption | `(inputValue, option) => boolean` | `undefined`         | 搜索过滤函数 |
-| properties | `CascaderProperties` | `{}`                | 级联数据属性映射（如 `childrenProp`<br/>/`isLeafProp`<br/>） |
-| customFillProperties | `(option: CascaderItem<T>, index: number) => CascaderItem<T>` | `undefined`         | 自定义数据填充函数 |
-| labelsSeparator | string | `' / '`             | 级联标签分隔符 |
-| displayRender | `CascaderDisplayRenderFunction` | 自动拼接标签 | 自定义显示内容渲染函数 |
-| tagRender | `Function`          | `undefined`         | 多选模式下标签渲染函数 |
+| options | `CascaderItem[]`    | `[]`                | Cascade data options |
+| filterOption | `(inputValue, option) => boolean` | `undefined`         | Search filter function |
+| properties | `CascaderProperties` | `{}`                | Cascade data property mapping (such as `childrenProp`<br/>/`isLeafProp`<br/>) |
+| customFillProperties | `(option: CascaderItem<T>, index: number) => CascaderItem<T>` | `undefined`         | Custom data filling function |
+| labelsSeparator | string | `' / '`             | Cascade label separator |
+| displayRender | `CascaderDisplayRenderFunction` | Auto-splice labels | Custom display content rendering function |
+| tagRender | `Function`          | `undefined`         | Tag rendering function in multiple selection mode |
 | maxTagCount | number   |  `'responsive'` | `'responsive'`      |
-| maxTagPlaceholder | string   |  `Function` | `'更多标签'`        |
-| multipleCheckedStrategy | `CascaderCheckedStrategy`（`SHOW_ALL`/`SHOW_CHILD`/`SHOW_PARENT`） | `SHOW_CHILD`        | 多选时的选中策略 |
-| loading | boolean | `undefined`         | 加载状态 |
-| loadData | `(selectedOptions: CascaderItem[]) => void` | `undefined`         | 异步加载数据函数 |
-| autofocus | boolean | `false`             | 是否自动聚焦 |
-| placeholder | string | `'请选择'`          | 占位文本 |
-| allowClear | boolean | `false`             | 是否显示清除按钮 |
-| readonly | boolean | `false`             | 是否为只读状态 |
-| disabled | boolean | `undefined`         | 是否禁用 |
-| searchValue | string | `undefined`         | 搜索输入值 |
-| enableSearch | boolean | `undefined`         | 是否启用搜索功能 |
+| maxTagPlaceholder | string   |  `Function` | `'More tags'`        |
+| multipleCheckedStrategy | `CascaderCheckedStrategy`（`SHOW_ALL`/`SHOW_CHILD`/`SHOW_PARENT`） | `SHOW_CHILD`        | Selection strategy in multiple selection mode |
+| loading | boolean | `undefined`         | Loading state |
+| loadData | `(selectedOptions: CascaderItem[]) => void` | `undefined`         | Asynchronous data loading function |
+| autofocus | boolean | `false`             | Whether to autofocus |
+| placeholder | string | `'Please select'`          | Placeholder text |
+| allowClear | boolean | `false`             | Whether to show clear button |
+| readonly | boolean | `false`             | Whether to be in read-only state |
+| disabled | boolean | `undefined`         | Whether to disable |
+| searchValue | string | `undefined`         | Search input value |
+| enableSearch | boolean | `undefined`         | Whether to enable search function |
 | dropdownClassName | string   | `string[]`                                             | `undefined`         |
-| getTriggerContainer | `(triggerNode: Node | HTMLElement) => Node | HTMLElement` | `() => document.body` | 触发容器挂载节点 |
-| changeOnSelect | boolean | `false`             | 单选模式下选择子项时是否立即触发 change 事件 |
+| getTriggerContainer | `(triggerNode: Node | HTMLElement) => Node | HTMLElement` | `() => document.body` | Trigger container mounting node |
+| changeOnSelect | boolean | `false`             | Whether to immediately trigger change event when selecting a child item in single selection mode |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | update:value | values: `string[]`| string[][]                                            |
 | change | values: `string[]`| string[][], selectedOptions: CascaderItem[][]         |
-| search | searchValue: string | 搜索输入变化时触发 |
+| search | searchValue: string | Fired when search input changes |
 
 
-### Checkbox 多选框
+### Checkbox
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-checkbox v-model:checked="checked">同意</oio-checkbox>
+  <oio-checkbox v-model:checked="checked">Agree</oio-checkbox>
 </template>
 ```
 
-#### 中间状态
+#### Intermediate State
 
 ```vue
 <template>
-  <oio-checkbox indeterminate>部分选中</oio-checkbox>
+  <oio-checkbox indeterminate>Partially Selected</oio-checkbox>
 </template>
 ```
 
-#### 只读与禁用状态
+#### Readonly and Disabled States
 
 ```vue
 <template>
-  <oio-checkbox checked readonly>只读状态(勾选)</oio-checkbox>
-  <oio-checkbox readonly>只读状态(非勾选)</oio-checkbox>
-  <oio-checkbox checked disabled>禁用状态(勾选)</oio-checkbox>
-  <oio-checkbox disabled>禁用状态(非勾选)</oio-checkbox>
+  <oio-checkbox checked readonly>Readonly State (Checked)</oio-checkbox>
+  <oio-checkbox readonly>Readonly State (Unchecked)</oio-checkbox>
+  <oio-checkbox checked disabled>Disabled State (Checked)</oio-checkbox>
+  <oio-checkbox disabled>Disabled State (Unchecked)</oio-checkbox>
 </template>
 ```
 
@@ -800,26 +800,26 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| autofocus | boolean | false | 是否自动聚焦 |
-| indeterminate | boolean | undefined | 半选状态（中间态） |
-| checked | boolean | undefined | 选中状态（双向绑定） |
-| readonly | boolean | false | 是否为只读状态 |
-| disabled | boolean | false | 是否禁用 |
+| autofocus | boolean | false | Whether to autofocus |
+| indeterminate | boolean | undefined | Half-selected state (intermediate state) |
+| checked | boolean | undefined | Selected state (two-way binding) |
+| readonly | boolean | false | Whether to be in read-only state |
+| disabled | boolean | false | Whether to disable |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:checked | checked: boolean | 选中状态变化时触发（双向绑定用） |
-| change | checked: boolean | 选中状态变化时触发 |
+| update:checked | checked: boolean | Fired when selected state changes (for two-way binding) |
+| change | checked: boolean | Fired when selected state changes |
 
 
-### DatePicker 日期选择框
+### DatePicker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -827,7 +827,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -839,51 +839,51 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd DatePicker 日期选择框 For Vue](https://www.antdv.com/components/date-picker-cn)
+For more usage, please refer to: [Antd DatePicker for Vue](https://www.antdv.com/components/date-picker-cn)
 
 #### API
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| placeholder | string | 模式相关默认文案 | 输入框占位文本 |
-| readonly | boolean | false | 是否为只读模式（不可点击） |
-| disabled | boolean | false | 是否禁用选择器 |
-| format | string | - | 显示格式（如 `YYYY-MM-DD`） |
-| valueFormat | string | `YYYY-MM-DD`        | 值格式（用于双向绑定） |
-| allowClear | boolean | true | 是否显示清除按钮 |
-| open | boolean | undefined | 控制弹出层显示（受控模式） |
-| changeOpenValue | function | - | 弹出层显示状态变化时的回调 |
-| locale | object | - | 国际化配置（如星期、月份名称） |
+| placeholder | string | Mode-related default copy | Input box placeholder text |
+| readonly | boolean | false | Whether to be in read-only mode (non-clickable) |
+| disabled | boolean | false | Whether to disable the picker |
+| format | string | - | Display format (e.g., `YYYY-MM-DD`) |
+| valueFormat | string | `YYYY-MM-DD`        | Value format (for two-way binding) |
+| allowClear | boolean | true | Whether to show clear button |
+| open | boolean | undefined | Control pop-up display (controlled mode) |
+| changeOpenValue | function | - | Callback when pop-up display state changes |
+| locale | object | - | Internationalization configuration (e.g., week, month names) |
 | dropdownClassName | string   | `string[]`                                             | - |
-| openPanelChange | function | - | 弹出层打开时的回调 |
-| closePanelChange | function | - | 弹出层关闭时的回调 |
-| getTriggerContainer | function | `() => document.body` | 弹出层挂载的父节点 |
-| showToday | boolean | true | 是否显示 “今天” 按钮 |
+| openPanelChange | function | - | Callback when pop-up opens |
+| closePanelChange | function | - | Callback when pop-up closes |
+| getTriggerContainer | function | `() => document.body` | Pop-up mounting parent node |
+| showToday | boolean | true | Whether to show "Today" button |
 | value | Date     | string                                                | - |
 | defaultValue | Date     | string                                                | - |
-| disabledDate | (date) => boolean | - | 禁用日期的判断函数 |
+| disabledDate | (date) => boolean | - | Disabled date judgment function |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:value | value: string | 选中值变化时触发（双向绑定） |
+| update:value | value: string | Fired when selected value changes (two-way binding) |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| dateRender | { date } | 自定义日期单元格内容 |
-| renderExtraFooter | - | 自定义弹出层底部内容 |
+| dateRender | { date } | Custom date cell content |
+| renderExtraFooter | - | Custom pop-up footer content |
 
 
-### DateRangePicker 日期范围选择框
+### DateRangePicker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -891,7 +891,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -903,39 +903,39 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd DatePicker 日期选择框 For Vue](https://www.antdv.com/components/date-picker-cn)
+For more usage, please refer to: [Antd DatePicker for Vue](https://www.antdv.com/components/date-picker-cn)
 
 #### API
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| placeholder                                                  | [string, string]                                             | 模式相关默认文案                                             | 输入框占位文本（开始和结束）                                 |
-| readonly                                                     | boolean                                                      | false                                                        | 是否为只读模式（不可点击）                                   |
-| disabled                                                     | boolean                                                      | false                                                        | 是否禁用选择器                                               |
-| format                                                       | string                                                       | -                                                            | 显示格式（如 `YYYY-MM-DD`）                                  |
-| valueFormat                                                  | string                                                       | `YYYY-MM-DD`                                                 | 值格式（用于双向绑定）                                       |
-| allowClear                                                   | boolean                                                      | true                                                         | 是否显示清除按钮                                             |
+| placeholder                                                  | [string, string]                                             | Mode-related default copy                                     | Input box placeholder text (start and end)                   |
+| readonly                                                     | boolean                                                      | false                                                        | Whether to be in read-only mode (non-clickable)               |
+| disabled                                                     | boolean                                                      | false                                                        | Whether to disable the picker                                 |
+| format                                                       | string                                                       | -                                                            | Display format (e.g., `YYYY-MM-DD`)                          |
+| valueFormat                                                  | string                                                       | `YYYY-MM-DD`                                                 | Value format (for two-way binding)                            |
+| allowClear                                                   | boolean                                                      | true                                                         | Whether to show clear button                                  |
 | dropdownClassName                                            | string                                                       | `string[]`                                                    | -                                                            |
-| separator                                                    | string                                                       | `~`                                                          | 开始和结束值之间的分隔符                                     |
-| openPanelChange                                              | function                                                     | -                                                            | 弹出层打开时的回调                                           |
-| closePanelChange                                             | function                                                     | -                                                            | 弹出层关闭时的回调                                           |
-| getTriggerContainer                                          | function                                                     | `() => document.body`                                        | 弹出层挂载的父节点                                           |
+| separator                                                    | string                                                       | `~`                                                          | Separator between start and end values                        |
+| openPanelChange                                              | function                                                     | -                                                            | Callback when pop-up opens                                    |
+| closePanelChange                                             | function                                                     | -                                                            | Callback when pop-up closes                                   |
+| getTriggerContainer                                          | function                                                     | `() => document.body`                                        | Pop-up mounting parent node                                   |
 | value | [Date    | string                                                       | undefined, Date                                              |
 | defaultValue | [Date    | string                                                       | undefined, Date                                              |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:value | [start: string, end: string] | 选中值变化时触发（双向绑定） |
+| update:value | [start: string, end: string] | Fired when selected value changes (two-way binding) |
 
 
-### DateTimePicker 日期时间选择框
+### DateTimePicker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -943,7 +943,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -956,52 +956,52 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd DatePicker 日期选择框 For Vue](https://www.antdv.com/components/date-picker-cn)
+For more usage, please refer to: [Antd DatePicker for Vue](https://www.antdv.com/components/date-picker-cn)
 
 #### API
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
-| :----------------------------------------------------------- | ------------------------------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| placeholder | string | 模式相关默认文案 | 输入框占位文本 |
-| readonly | boolean | false | 是否为只读模式（不可点击） |
-| disabled | boolean | false | 是否禁用选择器 |
-| format | string | - | 显示格式（如 `YYYY-MM-DD HH:mm:ss`） |
-| valueFormat | string | `YYYY-MM-DD HH:mm:ss` | 值格式 |
-| allowClear | boolean | true | 是否显示清除按钮 |
-| open | boolean | undefined | 控制弹出层显示（受控模式） |
-| changeOpenValue | function | - | 弹出层显示状态变化时的回调 |
-| locale | object | - | 国际化配置（如星期、月份名称） |
+| **Property** | **Type** | **Default** | **Description** |
+| :----------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| placeholder | string | Mode-related default copy | Input box placeholder text |
+| readonly | boolean | false | Whether to be in read-only mode (non-clickable) |
+| disabled | boolean | false | Whether to disable the picker |
+| format | string | - | Display format (e.g., `YYYY-MM-DD HH:mm:ss`)|
+| valueFormat | string | `YYYY-MM-DD HH:mm:ss` | Value format |
+| allowClear | boolean | true | Whether to show clear button |
+| open | boolean | undefined | Control pop-up display (controlled mode) |
+| changeOpenValue | function | - | Callback when pop-up display state changes |
+| locale | object | - | Internationalization configuration (e.g., week, month names) |
 | dropdownClassName | string   | `string[]`                                             | - |
-| openPanelChange | function | - | 弹出层打开时的回调 |
-| closePanelChange | function | - | 弹出层关闭时的回调 |
-| getTriggerContainer | function | `() => document.body` | 弹出层挂载的父节点 |
-| showToday | boolean | true | 是否显示 “今天” 按钮 |
+| openPanelChange | function | - | Callback when pop-up opens |
+| closePanelChange | function | - | Callback when pop-up closes |
+| getTriggerContainer | function | `() => document.body` | Pop-up mounting parent node |
+| showToday | boolean | true | Whether to show "Today" button |
 | value | Date     | string                                                | - |
 | defaultValue | Date     | string                                                | - |
-| disabledDate | (date) => boolean | - | 禁用日期的判断函数 |
-| disabledTime | `(date) => { disabledHours: number[]; disabledMinutes: number[]; disabledSeconds: number[] }` | - | 禁用时间的配置（函数或对象） |
+| disabledDate | (date) => boolean | - | Disabled date judgment function |
+| disabledTime | `(date) => { disabledHours: number[]; disabledMinutes: number[]; disabledSeconds: number[] }` | - | Disabled time configuration (function or object) |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:value | value: string | 选中值变化时触发（双向绑定） |
+| update:value | value: string | Fired when selected value changes (two-way binding) |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| dateRender | { date } | 自定义日期单元格内容 |
-| renderExtraFooter | - | 自定义弹出层底部内容 |
+| dateRender | { date } | Custom date cell content |
+| renderExtraFooter | - | Custom pop-up footer content |
 
 
-### DateTimeRangePicker 日期时间范围选择框
+### DateTimeRangePicker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -1009,7 +1009,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -1022,47 +1022,47 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd DatePicker 日期选择框 For Vue](https://www.antdv.com/components/date-picker-cn)
+For more usage, please refer to: [Antd DatePicker for Vue](https://www.antdv.com/components/date-picker-cn)
 
 #### API
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| placeholder                                                  | [string, string]                                             | 模式相关默认文案                                             | 输入框占位文本（开始和结束）                                 |
-| readonly                                                     | boolean                                                      | false                                                        | 是否为只读模式（不可点击）                                   |
-| disabled                                                     | boolean                                                      | false                                                        | 是否禁用选择器                                               |
-| format                                                       | string                                                       | -                                                            | 显示格式（如 `YYYY-MM-DD HH:mm:ss`）                         |
-| valueFormat                                                  | string                                                       | `YYYY-MM-DD HH:mm:ss`                                        | 值格式（用于双向绑定）                                       |
-| allowClear                                                   | boolean                                                      | true                                                         | 是否显示清除按钮                                             |
+| placeholder                                                  | [string, string]                                             | Mode-related default copy                                     | Input box placeholder text (start and end)                   |
+| readonly                                                     | boolean                                                      | false                                                        | Whether to be in read-only mode (non-clickable)               |
+| disabled                                                     | boolean                                                      | false                                                        | Whether to disable the picker                                 |
+| format                                                       | string                                                       | -                                                            | Display format (e.g., `YYYY-MM-DD HH:mm:ss`)|
+| valueFormat                                                  | string                                                       | `YYYY-MM-DD HH:mm:ss`                                        | Value format (for two-way binding)                            |
+| allowClear                                                   | boolean                                                      | true                                                         | Whether to show clear button                                  |
 | dropdownClassName                                            | string                                                       | `string[]`                                                    | -                                                            |
-| separator                                                    | string                                                       | `~`                                                          | 开始和结束值之间的分隔符                                     |
-| openPanelChange                                              | function                                                     | -                                                            | 弹出层打开时的回调                                           |
-| closePanelChange                                             | function                                                     | -                                                            | 弹出层关闭时的回调                                           |
-| getTriggerContainer                                          | function                                                     | `() => document.body`                                        | 弹出层挂载的父节点                                           |
+| separator                                                    | string                                                       | `~`                                                          | Separator between start and end values                        |
+| openPanelChange                                              | function                                                     | -                                                            | Callback when pop-up opens                                    |
+| closePanelChange                                             | function                                                     | -                                                            | Callback when pop-up closes                                   |
+| getTriggerContainer                                          | function                                                     | `() => document.body`                                        | Pop-up mounting parent node                                   |
 | value | [Date    | string                                                       | undefined, Date                                              |
 | defaultValue | [Date    | string                                                       | undefined, Date                                              |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:value | [start: string, end: string] | 选中值变化时触发（双向绑定） |
+| update:value | [start: string, end: string] | Fired when selected value changes (two-way binding) |
 
 
-### Form 表单
+### Form
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
   <oio-form :data="data" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }" autocomplete="off">
-    <oio-form-item label="用户名" name="username" :rules="[{ required: true, message: '请输入用户名' }]">
+    <oio-form-item label="Username" name="username" :rules="[{ required: true, message: 'Please enter username' }]">
       <oio-input v-model:value="data.username" />
     </oio-form-item>
-    <oio-form-item label="密码" name="password" :rules="[{ required: true, message: '请输入密码' }]">
+    <oio-form-item label="Password" name="password" :rules="[{ required: true, message: 'Please enter password' }]">
       <oio-input-password v-model:value="data.password" />
     </oio-form-item>
   </oio-form>
@@ -1094,14 +1094,14 @@ export default defineComponent({
 
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
   <a-form class="oio-form" :model="data" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }" autocomplete="off">
     <a-form-item
       class="oio-form-item oio-form-item-horizontal"
-      label="用户名"
+      label="Username"
       name="username"
       :rules="[{ required: true, message: 'Please input your username!' }]"
     >
@@ -1109,7 +1109,7 @@ export default defineComponent({
     </a-form-item>
     <a-form-item
       class="oio-form-item oio-form-item-horizontal"
-      label="密码"
+      label="Password"
       name="password"
       :rules="[{ required: true, message: 'Please input your password!' }]"
     >
@@ -1119,7 +1119,7 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd Form 表单 For Vue](https://www.antdv.com/components/form-cn)
+For more usage, please refer to: [Antd Form for Vue](https://www.antdv.com/components/form-cn)
 
 #### API
 
@@ -1127,133 +1127,133 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| name | string | - | 表单名称 |
-| rules | `Record<string, FormItemRule[]>` | - | 表单验证规则 |
+| name | string | - | Form name |
+| rules | `Record<string, FormItemRule[]>` | - | Form validation rules |
 | layout | `FormLayout`（`horizontal` | `vertical` | `inline`） |
-| labelCol | `OioColModel`       | - | 标签列栅格配置（水平布局专用） |
-| wrapperCol | `OioColModel`       | - | 内容列栅格配置（水平布局专用） |
+| labelCol | `OioColModel`       | - | Label column grid configuration (for horizontal layout only) |
+| wrapperCol | `OioColModel`       | - | Content column grid configuration (for horizontal layout only) |
 | labelAlign | `FormLabelAlign`（`left` | `right`） | `left`              |
-| colon | boolean | false | 是否显示标签冒号 |
+| colon | boolean | false | Whether to show label colon |
 | validateTrigger | `ValidateTrigger` | `ValidateTrigger[]` | `['change', 'blur']` |
-| validateOnRuleChange | boolean | true | 规则变化时是否触发验证 |
-| loading | boolean | undefined | 是否显示加载状态（继承自 `OioSpin`） |
-| loadingIndicator | `VNode`             | - | 自定义加载图标 |
+| validateOnRuleChange | boolean | true | Whether to trigger validation when rules change |
+| loading | boolean | undefined | Whether to show loading state (inherited from `OioSpin`) |
+| loadingIndicator | `VNode`             | - | Custom loading icon |
 | wrapperClassName | string   | `string[]`                                             | - |
-| data | object | - | 表单数据模型 |
+| data | object | - | Form data model |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| submit | `Event`             | 表单提交事件（通过 `<form>` 标签触发） |
+| submit | `Event`             | Form submission event (triggered via `<form>` tag) |
 
 
 **Methods**
 
-| **方法名** | **参数** | **描述** |
+| **Method** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| validate | `names?: NamePath`  | 验证指定字段，返回 Promise |
-| validateFields | `names?: NamePath`  | 验证所有字段，返回 Promise |
-| resetFields | `names?: NamePath`  | 重置指定字段值及验证状态 |
-| clearValidate | `names?: NamePath`  | 清除指定字段的验证状态 |
-| scrollToField | `names?: NamePath`  | 滚动到指定字段位置 |
+| validate | `names?: NamePath`  | Validate specified fields, return Promise |
+| validateFields | `names?: NamePath`  | Validate all fields, return Promise |
+| resetFields | `names?: NamePath`  | Reset specified field values and validation status |
+| clearValidate | `names?: NamePath`  | Clear validation status of specified fields |
+| scrollToField | `names?: NamePath`  | Scroll to specified field position |
 
 
 ##### oio-form-item
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| name | string | - | 字段名（用于表单验证和数据绑定） |
+| name | string | - | Field name (for form validation and data binding) |
 | rules | `FormItemRule[]` | `FormItemRule` | - |
-| autoLink | boolean | true | 是否自动关联 `label` 和 `input` 的 `for` 属性 |
-| colon | boolean | false | 是否显示标签冒号（优先级高于表单级配置） |
-| htmlFor | string | - | 标签关联的 `input` 的 `id` |
-| labelCol | `OioColModel`       | - | 标签列栅格配置（仅水平布局有效） |
-| wrapperCol | `OioColModel`       | - | 内容列栅格配置（仅水平布局有效） |
+| autoLink | boolean | true | Whether to automatically associate `label` and `input`'s `for` attribute |
+| colon | boolean | false | Whether to show label colon (higher priority than form-level configuration) |
+| htmlFor | string | - | `id` of the `input` associated with the label |
+| labelCol | `OioColModel`       | - | Label column grid configuration (only valid for horizontal layout) |
+| wrapperCol | `OioColModel`       | - | Content column grid configuration (only valid for horizontal layout) |
 | labelAlign | `FormLabelAlign`（`left` | `right`） | - |
-| label | string | - | 标签文本 |
-| extra | string | - | 字段额外说明文本 |
-| help | string | - | 字段帮助文本 |
-| required | boolean | - | 是否必填（会自动生成星号） |
-| disabled | boolean | - | 是否禁用字段 |
-| validateStatus | string | - | 验证状态（`success`/`warning`/`error`/`validating`） |
-| validateFirst | boolean | - | 是否优先验证第一个错误规则 |
-| validateTrigger | `(string | ValidateTrigger)[]` | `['change', 'blur']` | 字段级验证触发时机 |
+| label | string | - | Label text |
+| extra | string | - | Field extra description text |
+| help | string | - | Field help text |
+| required | boolean | - | Whether to be required (automatically generates asterisk) |
+| disabled | boolean | - | Whether to disable the field |
+| validateStatus | string | - | Validation status (`success`/`warning`/`error`/`validating`) |
+| validateFirst | boolean | - | Whether to validate the first error rule first |
+| validateTrigger | `(string | ValidateTrigger)[]` | `['change', 'blur']` | Field-level validation trigger timing |
 | layout | `FormLayout`（`horizontal` | `vertical` | `inline`） |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | - | 字段内容（如输入框、选择器等） |
-| label | - | 自定义标签内容 |
-| extra | - | 自定义额外说明内容 |
-| help | - | 自定义帮助文本 |
+| default | - | Field content (such as input boxes, selectors, etc.) |
+| label | - | Custom label content |
+| extra | - | Custom extra description content |
+| help | - | Custom help text |
 
 
-### Input 输入框
+### Input
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-input v-model:value="value" placeholder="请输入" />
+  <oio-input v-model:value="value" placeholder="Please enter" />
 </template>
 ```
 
-#### 带移除图标
+#### With Clear Icon
 
 ```vue
 <template>
-  <oio-input v-model:value="value" placeholder="请输入" allow-clear />
+  <oio-input v-model:value="value" placeholder="Please enter" allow-clear />
 </template>
 ```
 
-#### 前缀和后缀
+#### Prefix and Suffix
 
 ```vue
 <template>
-  <oio-input v-model:value="value" placeholder="请输入">
+  <oio-input v-model:value="value" placeholder="Please enter">
     <template #prefix>
       <oio-icon icon="oinone-a-zhanghaodenglu4x" />
     </template>
     <template #suffix>
-      <oio-tooltip title="扩展信息">
+      <oio-tooltip title="Extended Information">
         <oio-icon icon="oinone-wenhao1" />
       </oio-tooltip>
     </template>
   </oio-input>
-  <oio-input v-model:value="value" placeholder="请输入" prefix="¥" suffix="RMB" />
+  <oio-input v-model:value="value" placeholder="Please enter" prefix="¥" suffix="RMB" />
 </template>
 ```
 
-#### 数字输入框
+#### Number Input
 
 ```vue
 <template>
-  <oio-input-number v-model:value="value" placeholder="请输入" />
+  <oio-input-number v-model:value="value" placeholder="Please enter" />
 </template>
 ```
 
-#### 密码输入框
+#### Password Input
 
 ```vue
 <template>
-  <oio-input-password v-model:value="value" placeholder="请输入" />
+  <oio-input-password v-model:value="value" placeholder="Please enter" />
 </template>
 ```
 
-#### 搜索输入框
+#### Search Input
 
 ```vue
 <template>
-  <oio-input-search v-model:value="value" placeholder="请输入" @search="onSearch" />
+  <oio-input-search v-model:value="value" placeholder="Please enter" @search="onSearch" />
 </template>
 <script lang="ts">
 import { InputSearchEvent, OioInputSearch } from '@kunlun/vue-ui-antd';
@@ -1280,7 +1280,7 @@ export default defineComponent({
 </script>
 ```
 
-#### 输入框组合
+#### Input Group
 
 ```vue
 <template>
@@ -1298,22 +1298,22 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
-  <!-- 基础用法 -->
-  <a-input class="oio-input" v-model:value="value" placeholder="请输入" />
-  <!-- 带移除图标 -->
-  <a-input class="oio-input oio-input-allow-clear" v-model:value="value" placeholder="请输入" allow-clear />
-  <!-- 数字输入框 -->
-  <a-input-number class="oio-input-number" v-model:value="value" placeholder="请输入" />
-  <!-- 密码输入框 -->
-  <a-input-password class="oio-input oio-input-password" v-model:value="value" placeholder="请输入" />
+  <!-- Basic Usage -->
+  <a-input class="oio-input" v-model:value="value" placeholder="Please enter" />
+  <!-- With Clear Icon -->
+  <a-input class="oio-input oio-input-allow-clear" v-model:value="value" placeholder="Please enter" allow-clear />
+  <!-- Number Input -->
+  <a-input-number class="oio-input-number" v-model:value="value" placeholder="Please enter" />
+  <!-- Password Input -->
+  <a-input-password class="oio-input oio-input-password" v-model:value="value" placeholder="Please enter" />
 </template>
 ```
 
-更多使用方式，可参考：[Antd Input 输入框 For Vue](https://3x.antdv.com/components/input-cn)
+For more usage, please refer to: [Antd Input for Vue](https://3x.antdv.com/components/input-cn)
 
 #### API
 
@@ -1321,194 +1321,193 @@ export default defineComponent({
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| value | string | - | 输入框的值（双向绑定） |
-| defaultValue | string | - | 输入框的默认值 |
-| placeholder | string | - | 占位文本 |
-| disabled | boolean | false | 是否禁用输入框 |
-| allowClear | boolean | false | 是否显示清除按钮 |
-| maxlength | number | - | 最大输入长度 |
+| value | string | - | Input box value (two-way binding) |
+| defaultValue | string | - | Default value of the input box |
+| placeholder | string | - | Placeholder text |
+| disabled | boolean | false | Whether to disable the input box |
+| allowClear | boolean | false | Whether to show clear button |
+| maxlength | number | - | Maximum input length |
 | autocomplete | boolean  | string                                                | undefined |
-| showCount | boolean | false | 是否显示字数统计，需要配合 maxlength 使用 |
-| readonly | boolean | false | 是否为只读状态 |
-| minlength | number | - | 最小输入长度 |
-| autofocus | boolean | undefined | 是否自动聚焦，组件挂载后生效 |
+| showCount | boolean | false | Whether to show character count, requires配合 maxlength use |
+| readonly | boolean | false | Whether to be in read-only state |
+| minlength | number | - | Minimum input length |
+| autofocus | boolean | undefined | Whether to autofocus, takes effect after component mounting |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | update:value | value: string | undefined                                             |
-| press-enter | event: KeyboardEvent | 按下回车键时触发 |
+| press-enter | event: KeyboardEvent | Fired when Enter key is pressed |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| prepend | 输入框前置内容，显示在输入框前 |
-| append | 输入框后置内容，显示在输入框后 |
-| prefix | 输入框前缀图标 / 内容，显示在输入框内部左侧 |
-| suffix | 输入框后缀图标 / 内容，显示在输入框内部右侧 |
+| prepend | Input box prefix content, displayed before the input box |
+| append | Input box suffix content, displayed after the input box |
+| prefix | Input box prefix icon/content, displayed inside the input box on the left |
+| suffix | Input box suffix icon/content, displayed inside the input box on the right |
 
 
 **Methods**
 
-| **方法名** | **参数** | **描述** |
+| **Method** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| focus | options?: FocusOptions | 聚焦输入框，可传入聚焦选项（如 preventScroll） |
-| blur | - | 取消输入框聚焦 |
+| focus | options?: FocusOptions | Focus the input box, can pass focus options (such as preventScroll) |
+| blur | - | Remove focus from the input box |
 
 
 ##### oio-input-number
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | value | number   | string                                                | - |
 | defaultValue | number   | string                                                | - |
-| placeholder | string | - | 输入框占位文本 |
-| readonly | boolean | false | 是否为只读模式（不可编辑） |
-| disabled | boolean | false | 是否禁用输入框 |
-| formatter | `(value: string) => string` | - | 格式化显示值（优先于 `showThousandth`） |
-| parser | `(value: string) => string` | - | 解析输入值（处理格式化后的值） |
+| placeholder | string | - | Input box placeholder text |
+| readonly | boolean | false | Whether to be in read-only mode (non-editable) |
+| disabled | boolean | false | Whether to disable the input box |
+| formatter | `(value: string) => string` | - | Format display value (prior to `showThousandth`) |
+| parser | `(value: string) => string` | - | Parse input value (process formatted value) |
 | min | number   | string                                                | - |
 | max | number   | string                                                | - |
 | step | number   | string                                                | `1`                 |
 | addStep | number   | string                                                | `step`              |
 | reduceStep | number   | string                                                | `step`              |
-| precision | number | - | 保留小数位数（自动四舍五入，如 `2` 表示保留两位小数） |
-| unit | string | - | 输入框后缀单位（如 `"元"` `"%"` ） |
-| hiddenStepHandle | boolean | false | 是否隐藏上下箭头按钮 |
-| showThousandth | boolean | false | 是否显示千分位分隔符（如 `1,000.5` ） |
-| autocorrection | boolean | false | 失焦时是否自动修正值（修正到 `min/max` 范围内） |
+| precision | number | - | Number of decimal places to retain (automatically rounded, e.g., `2` for two decimal places) |
+| unit | string | - | Input box suffix unit (e.g., `"Yuan"` `"%"` ) |
+| hiddenStepHandle | boolean | false | Whether to hide up/down arrow buttons |
+| showThousandth | boolean | false | Whether to show thousandth separators (e.g., `1,000.5` ) |
+| autocorrection | boolean | false | Whether to automatically correct the value when blurring (correct to within `min/max` range) |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:value | value: string | 值变化时触发（双向绑定） |
-| focus | `event: FocusEvent` | 输入框获得焦点时触发 |
-| blur | `event: FocusEvent` | 输入框失去焦点时触发 |
+| update:value | value: string | Fired when value changes (two-way binding) |
+| focus | `event: FocusEvent` | Fired when input box gains focus |
+| blur | `event: FocusEvent` | Fired when input box loses focus |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| prepend | - | 输入框前置内容（如图标） |
-| append | - | 输入框后置内容（如单位） |
-| prefix | - | 输入框前缀（在输入框内左侧） |
-| suffix | - | 输入框后缀（在输入框内右侧） |
+| prepend | - | Input box prefix content (such as icons) |
+| append | - | Input box suffix content (such as units) |
+| prefix | - | Input box prefix (inside the input box on the left) |
+| suffix | - | Input box suffix (inside the input box on the right) |
 
 
 **Methods**
 
-| **方法名** | **参数** | **描述** |
+| **Method** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| getRealValue | - | 获取内部真实值（`BigNumber`<br/> 类型） |
+| getRealValue | - | Get internal real value (`BigNumber`<br/> type) |
 | setValue | val: number | string                                                |
-| autocorrection | - | 手动触发自动修正（返回修正后的值） |
+| autocorrection | - | Manually trigger auto-correction (return corrected value) |
 
 
 ##### oio-input-password
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| value | string | - | 输入框的值（双向绑定） |
-| defaultValue | string | - | 输入框的默认值 |
-| placeholder | string | - | 占位文本 |
-| disabled | boolean | false | 是否禁用输入框 |
-| allowClear | boolean | false | 是否显示清除按钮 |
-| maxlength | number | - | 最大输入长度 |
+| value | string | - | Input box value (two-way binding) |
+| defaultValue | string | - | Default value of the input box |
+| placeholder | string | - | Placeholder text |
+| disabled | boolean | false | Whether to disable the input box |
+| allowClear | boolean | false | Whether to show clear button |
+| maxlength | number | - | Maximum input length |
 | autocomplete | boolean  | string                                                | 'new-password' |
-| showCount | boolean | false | 是否显示字数统计 |
-| readonly | boolean | false | 是否为只读状态 |
-| minlength | number | - | 最小输入长度 |
-| autofocus | boolean | - | 组件挂载后是否自动聚焦 |
-| showPassword | boolean | true | 是否显示切换密码可见性的按钮 |
+| showCount | boolean | false | Whether to show character count |
+| readonly | boolean | false | Whether to be in read-only state |
+| minlength | number | - | Minimum input length |
+| autofocus | boolean | - | Whether to autofocus after component mounting |
+| showPassword | boolean | true | Whether to show button to toggle password visibility |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | update:value | string   | undefined                                             |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| prepend | 输入框前置内容 |
-| append | 输入框后置内容 |
-| prefix | 输入框前缀内容 |
+| prepend | Input box prefix content |
+| append | Input box suffix content |
+| prefix | Input box prefix content |
 
 
 ##### oio-input-search
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| type | InputType | InputType.TEXT | 输入框类型，可选值：TEXT, PASSWORD |
-| value | string | - | 输入框的值（双向绑定） |
-| defaultValue | string | - | 输入框的默认值 |
-| placeholder | string | - | 占位文本 |
-| disabled | boolean | false | 是否禁用输入框 |
-| allowClear | boolean | false | 是否显示清除按钮 |
-| maxlength | number | - | 最大输入长度 |
+| type | InputType | InputType.TEXT | Input box type, optional values: TEXT, PASSWORD |
+| value | string | - | Input box value (two-way binding) |
+| defaultValue | string | - | Default value of the input box |
+| placeholder | string | - | Placeholder text |
+| disabled | boolean | false | Whether to disable the input box |
+| allowClear | boolean | false | Whether to show clear button |
+| maxlength | number | - | Maximum input length |
 | autocomplete | boolean  | string                                                | 'new-password' |
-| showCount | boolean | false | 是否显示字数统计 |
-| readonly | boolean | false | 是否为只读状态 |
-| minlength | number | - | 最小输入长度 |
-| autofocus | boolean | - | 组件挂载后是否自动聚焦 |
+| showCount | boolean | false | Whether to show character count |
+| readonly | boolean | false | Whether to be in read-only state |
+| minlength | number | - | Minimum input length |
+| autofocus | boolean | - | Whether to autofocus after component mounting |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | update:value | string   | undefined                                             |
-| search | InputSearchEvent                                             | 点击搜索按钮或按下回车键时触发 |
+| search | InputSearchEvent                                             | Fired when search button is clicked or Enter key is pressed |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| prepend | 输入框前置内容（左侧） |
-| append | 输入框后置内容（右侧） |
-| prefix | 输入框前缀图标 / 内容 |
-| suffix | 输入框后缀图标 / 内容 |
-| enter | 自定义搜索按钮内容 |
+| prepend | Input box prefix content (left side) |
+| append | Input box suffix content (right side) |
+| prefix | Input box prefix icon/content |
+| suffix | Input box suffix icon/content |
+| enter | Custom search button content |
 
 
 ##### oio-input-group
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Property** | **Type** | **Default** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| compact | boolean | true | 是否使用紧凑模式显示输入框组 |
-
+| compact | boolean | true | Whether to use compact mode for the input group |
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 用于放置输入框组件 |
+| default | Used to place the input box component |
 
 
-### Select 选择框
+### Select Selection Box
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -1516,11 +1515,11 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd Select 选择框 For Vue](https://www.antdv.com/components/select-cn)
+For more usage methods, please refer to: [Antd Select Selection Box For Vue](https://www.antdv.com/components/select-cn)
 
-### Slider 滑动输入条
+### Slider Slider Input
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -1528,7 +1527,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 垂直
+#### Vertical
 
 ```vue
 <template>
@@ -1538,55 +1537,55 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
-  <!-- 基础用法 -->
+  <!-- Basic Usage -->
   <a-slider class="oio-slider" v-model:value="value" :min="0" :max="100" :step="1" />
-  <!-- 垂直 -->
+  <!-- Vertical -->
   <div style="height: 300px">
     <a-slider class="oio-slider" v-model:value="value" :min="0" :max="100" :step="1" vertical />
   </div>
 </template>
 ```
 
-更多使用方式，可参考：[Antd Slider 滑动输入条 For Vue](https://www.antdv.com/components/slider-cn)
+For more usage methods, please refer to: [Antd Slider Slider Input For Vue](https://www.antdv.com/components/slider-cn)
 
 #### API
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | value | number   | number[]                                              | - |
 | defaultValue | number   | number[]                                              | - |
-| readonly | boolean | false | 是否为只读状态 |
-| disabled | boolean | false | 是否禁用滑动条 |
-| min | number | `0`                 | 最小值 |
-| max | number | `100`               | 最大值 |
-| step | number | `1`                 | 步长（取值必须为 `(max - min)` 的因数） |
+| readonly | boolean | false | Whether it is in read-only state |
+| disabled | boolean | false | Whether to disable the slider |
+| min | number | `0`                 | Minimum value |
+| max | number | `100`               | Maximum value |
+| step | number | `1`                 | Step size (the value must be a factor of `(max - min)`) |
 | direction | `SliderDirection` | `'horizontal'` | `'vertical'` |
 | marks | { [key: number]: string | VNode                                                        | { style?: CSSStyleDeclaration; label: string                 |
-| dots | boolean | false | 是否显示刻度点 |
-| reverse | boolean | false | 是否反向滑动 |
-| range | boolean | false | 是否开启范围选择模式 |
-| tooltipVisible | boolean | `undefined`         | 是否显示提示框（默认跟随交互状态） |
-| tooltipPlacement | `OioTooltipPlacement` | -                                                            | 提示框位置，可选值见枚举 `OioTooltipPlacement` |
-| tooltipFormatter | `(value: number) => string` | - | 提示框内容格式化函数 |
-| getTooltipTriggerContainer | `(triggerNode: Node | HTMLElement) => Node | HTMLElement` | - | 提示框容器挂载点（默认挂载到 `body`） |
+| dots | boolean | false | Whether to display scale points |
+| reverse | boolean | false | Whether to slide in reverse |
+| range | boolean | false | Whether to enable range selection mode |
+| tooltipVisible | boolean | `undefined`         | Whether to display the tooltip (default follows interaction status) |
+| tooltipPlacement | `OioTooltipPlacement` | -                                                            | Tooltip position, optional values see enum `OioTooltipPlacement` |
+| tooltipFormatter | `(value: number) => string` | - | Tooltip content formatting function |
+| getTooltipTriggerContainer | `(triggerNode: Node | HTMLElement) => Node | HTMLElement` | - | Tooltip container mounting point (default mounted to `body`) |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | update:value | number   | number[]                                              |
 
 
-### Switch 开关
+### Switch Toggle
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -1594,19 +1593,19 @@ export default defineComponent({
 </template>
 ```
 
-#### 带文字的开关
+#### Toggle with Text
 
 ```vue
 <template>
-  <oio-switch v-model:checked="value" checked-children="开" unchecked-children="关" />
+  <oio-switch v-model:checked="value" checked-children="On" unchecked-children="Off" />
   <oio-switch v-model:checked="value">
-    <template #checkedChildren>开</template>
-    <template #uncheckedChildren>关</template>
+    <template #checkedChildren>On</template>
+    <template #uncheckedChildren>Off</template>
   </oio-switch>
 </template>
 ```
 
-#### 自定义开关值
+#### Custom Toggle Values
 
 ```vue
 <template>
@@ -1614,7 +1613,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -1622,92 +1621,92 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd Switch 开关 For Vue](https://www.antdv.com/components/switch-cn)
+For more usage methods, please refer to: [Antd Switch Toggle For Vue](https://www.antdv.com/components/switch-cn)
 
 #### **API**
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| autofocus | boolean | false | 组件挂载后是否自动聚焦 |
+| autofocus | boolean | false | Whether to automatically focus after component mounting |
 | checked | boolean  | string                                                       | number                                                |
-| loading | boolean | false | 是否显示加载状态 |
-| size | SwitchSize | 'default' | 开关尺寸，可选值：'default', 'small' |
-| disabled | boolean | false | 是否禁用开关 |
+| loading | boolean | false | Whether to display the loading state |
+| size | SwitchSize | 'default' | Toggle size, optional values: 'default', 'small' |
+| disabled | boolean | false | Whether to disable the toggle |
 | checkedValue | boolean  | string                                                       | number                                                |
 | uncheckedValue | boolean  | string                                                       | number                                                |
-| readonly | boolean | false | 是否为只读状态 |
+| readonly | boolean | false | Whether it is in read-only state |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:checked | boolean | 开关状态变化时触发（双向绑定） |
-| change | boolean | 开关状态变化时触发 |
+| update:checked | boolean | Triggered when the toggle state changes (two-way binding) |
+| change | boolean | Triggered when the toggle state changes |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| checkedChildren | 开关打开时显示的内容 |
-| uncheckedChildren | 开关关闭时显示的内容 |
+| checkedChildren | Content displayed when the toggle is on |
+| uncheckedChildren | Content displayed when the toggle is off |
 
 
-### Textarea 多行输入框
+### Textarea Multiline Input
 
-#### 基础用法
-
-```vue
-<template>
-  <oio-textarea v-model:value="value" placeholder="请输入" />
-</template>
-```
-
-#### 带移除图标
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-textarea v-model:value="value" placeholder="请输入" allow-clear />
+  <oio-textarea v-model:value="value" placeholder="Please enter" />
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### With Remove Icon
 
 ```vue
 <template>
-  <!-- 基础用法 -->
-  <a-textarea v-model:value="value" placeholder="请输入" />
-  <!-- 带移除图标 -->
-  <a-textarea class="oio-textarea oio-textarea-allow-clear" v-model:value="value" placeholder="请输入" allow-clear />
+  <oio-textarea v-model:value="value" placeholder="Please enter" allow-clear />
 </template>
 ```
 
-更多使用方式，可参考：[Antd Input 输入框 For Vue](https://www.antdv.com/components/input-cn)
+#### Only Apply Oinone Theme Style
+
+```vue
+<template>
+  <!-- Basic Usage -->
+  <a-textarea v-model:value="value" placeholder="Please enter" />
+  <!-- With Remove Icon -->
+  <a-textarea class="oio-textarea oio-textarea-allow-clear" v-model:value="value" placeholder="Please enter" allow-clear />
+</template>
+```
+
+For more usage methods, please refer to: [Antd Input Input Box For Vue](https://www.antdv.com/components/input-cn)
 
 #### **API**
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| value | string | - | 文本域当前值（双向绑定） |
-| defaultValue | string | - | 初始值 |
-| placeholder | string | - | 占位文本 |
-| disabled | boolean | false | 是否禁用文本域 |
-| allowClear | boolean | false | 是否显示清除按钮 |
-| maxlength | number | - | 最大输入字符数 |
+| value | string | - | Current value of the textarea (two-way binding) |
+| defaultValue | string | - | Initial value |
+| placeholder | string | - | Placeholder text |
+| disabled | boolean | false | Whether to disable the textarea |
+| allowClear | boolean | false | Whether to display the clear button |
+| maxlength | number | - | Maximum number of input characters |
 | autoSize | boolean  | TextareaSize                                          | false |
-| showCount | boolean | false | 是否显示字数统计 |
-| readonly | boolean | false | 是否为只读状态 |
-| minlength | number | - | 最小输入字符数 |
+| showCount | boolean | false | Whether to display the character count |
+| readonly | boolean | false | Whether it is in read-only state |
+| minlength | number | - | Minimum number of input characters |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | update:value | string   | undefined                                             |
 | change | string   | undefined                                             |
@@ -1715,15 +1714,15 @@ export default defineComponent({
 
 **Methods**
 
-| **方法名** | **参数** | **描述** |
+| **Method Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| focus | - | 使文本域聚焦 |
-| blur | - | 使文本域失焦 |
+| focus | - | Make the textarea gain focus |
+| blur | - | Make the textarea lose focus |
 
 
-### TimePicker 时间选择框
+### TimePicker Time Picker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -1731,7 +1730,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -1743,35 +1742,35 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd TimePicker 时间选择框 For Vue](https://www.antdv.com/components/time-picker-cn)
+For more usage methods, please refer to: [Antd TimePicker Time Picker For Vue](https://www.antdv.com/components/time-picker-cn)
 
 #### API
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Attribute Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | ------------------------------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| placeholder | string | 模式相关默认文案 | 输入框占位文本 |
-| readonly | boolean | false | 是否为只读模式（不可点击） |
-| disabled | boolean | false | 是否禁用选择器 |
-| format | string | - | 显示格式（如 `HH:mm:ss`） |
-| valueFormat | string | `HH:mm:ss`          | 值格式 |
-| allowClear | boolean | true | 是否显示清除按钮 |
-| open | boolean | undefined | 控制弹出层显示（受控模式） |
-| changeOpenValue | function | - | 弹出层显示状态变化时的回调 |
-| locale | object | - | 国际化配置（如星期、月份名称） |
+| placeholder | string | Default copy related to the mode | Input box placeholder text |
+| readonly | boolean | false | Whether it is in read-only mode (non-clickable) |
+| disabled | boolean | false | Whether to disable the picker |
+| format | string | - | Display format (such as `HH:mm:ss`) |
+| valueFormat | string | `HH:mm:ss`          | Value format |
+| allowClear | boolean | true | Whether to display the clear button |
+| open | boolean | undefined | Control the pop-up layer display (controlled mode) |
+| changeOpenValue | function | - | Callback when the pop-up layer display status changes |
+| locale | object | - | Internationalization configuration (such as week, month names) |
 | dropdownClassName | string   | `string[]`                                             | - |
-| openPanelChange | function | - | 弹出层打开时的回调 |
-| closePanelChange | function | - | 弹出层关闭时的回调 |
-| getTriggerContainer | function | `() => document.body` | 弹出层挂载的父节点 |
+| openPanelChange | function | - | Callback when the pop-up layer opens |
+| closePanelChange | function | - | Callback when the pop-up layer closes |
+| getTriggerContainer | function | `() => document.body` | Parent node where the pop-up layer is mounted |
 | value | Date     | string                                                | - |
 | defaultValue | Date     | string                                                | - |
-| disabledTime | `(date) => { disabledHours: number[]; disabledMinutes: number[]; disabledSeconds: number[] }` | - | 禁用时间的配置（函数或对象） |
+| disabledTime | `(date) => { disabledHours: number[]; disabledMinutes: number[]; disabledSeconds: number[] }` | - | Disabled time configuration (function or object) |
 
 
-### TimeRangePicker 时间范围选择框
+### TimeRangePicker Time Range Picker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -1779,7 +1778,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -1791,39 +1790,39 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd TimePicker 时间选择框 For Vue](https://www.antdv.com/components/time-picker-cn)
+For more usage methods, please refer to: [Antd TimePicker Time Picker For Vue](https://www.antdv.com/components/time-picker-cn)
 
 #### API
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Attribute Name** | **Type** | **Default Value** | **Description** |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| placeholder                                                  | [string, string]                                             | 模式相关默认文案                                             | 输入框占位文本（开始和结束）                                 |
-| readonly                                                     | boolean                                                      | false                                                        | 是否为只读模式（不可点击）                                   |
-| disabled                                                     | boolean                                                      | false                                                        | 是否禁用选择器                                               |
-| format                                                       | string                                                       | -                                                            | 显示格式（如 `YYYY-MM-DD HH:mm:ss`）                         |
-| valueFormat                                                  | string                                                       | `YYYY-MM-DD HH:mm:ss`                                        | 值格式（用于双向绑定）                                       |
-| allowClear                                                   | boolean                                                      | true                                                         | 是否显示清除按钮                                             |
+| placeholder                                                  | [string, string]                                             | Default copy related to the mode                             | Input box placeholder text (start and end)                   |
+| readonly                                                     | boolean                                                      | false                                                        | Whether it is in read-only mode (non-clickable)               |
+| disabled                                                     | boolean                                                      | false                                                        | Whether to disable the picker                                |
+| format                                                       | string                                                       | -                                                            | Display format (such as `YYYY-MM-DD HH:mm:ss`)               |
+| valueFormat                                                  | string                                                       | `YYYY-MM-DD HH:mm:ss`                                        | Value format (used for two-way binding)                       |
+| allowClear                                                   | boolean                                                      | true                                                         | Whether to display the clear button                          |
 | dropdownClassName                                            | string                                                       | `string[]`                                                    | -                                                            |
-| separator                                                    | string                                                       | `~`                                                          | 开始和结束值之间的分隔符                                     |
-| openPanelChange                                              | function                                                     | -                                                            | 弹出层打开时的回调                                           |
-| closePanelChange                                             | function                                                     | -                                                            | 弹出层关闭时的回调                                           |
-| getTriggerContainer                                          | function                                                     | `() => document.body`                                        | 弹出层挂载的父节点                                           |
+| separator                                                    | string                                                       | `~`                                                          | Separator between start and end values                        |
+| openPanelChange                                              | function                                                     | -                                                            | Callback when the pop-up layer opens                          |
+| closePanelChange                                             | function                                                     | -                                                            | Callback when the pop-up layer closes                         |
+| getTriggerContainer                                          | function                                                     | `() => document.body`                                        | Parent node where the pop-up layer is mounted                 |
 | value | [Date    | string                                                       | undefined, Date                                              |
 | defaultValue | [Date    | string                                                       | undefined, Date                                              |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:value | [start: string, end: string] | 选中值变化时触发（双向绑定） |
+| update:value | [start: string, end: string] | Triggered when the selected value changes (two-way binding) |
 
 
-### TreeSelect 树选择
+### TreeSelect Tree Selection
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -1834,16 +1833,16 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd Tree Select 树选择 For Vue](https://3x.antdv.com/components/tree-select-cn)
+For more usage methods, please refer to: [Antd Tree Select Tree Selection For Vue](https://3x.antdv.com/components/tree-select-cn)
 
-### Upload 上传
+### Upload Upload
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
   <oio-upload :upload-list="fileList" @success="onSuccess" @failure="onFailure">
-    <oio-button>点击上传</oio-button>
+    <oio-button>Click to Upload</oio-button>
   </oio-upload>
 </template>
 <script lang="ts">
@@ -1877,7 +1876,7 @@ export default defineComponent({
 </script>
 ```
 
-#### 上传图片
+#### Upload Image
 
 ```vue
 <template>
@@ -1892,7 +1891,7 @@ export default defineComponent({
     <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
     <div v-else>
       <upload-outlined />
-      <div>点击上传</div>
+      <div>Click to Upload</div>
     </div>
   </oio-upload>
 </template>
@@ -1935,53 +1934,53 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| multiple | boolean | `true`              | 是否支持多文件上传 |
-| limit | number | `-1`                | 最大上传文件数量（`-1` 表示无限制） |
-| limitSize | number | `-1`                | 单个文件大小限制（单位：MB，`-1` 表示无限制） |
-| listType | string | `'text'`            | 文件列表展示类型（`'text'`/`'picture'`/`'picture-card'`） |
+| multiple | boolean | `true`              | Whether to support multi-file upload |
+| limit | number | `-1`                | Maximum number of upload files (`-1` means no limit) |
+| limitSize | number | `-1`                | Single file size limit (unit: MB, `-1` means no limit) |
+| listType | string | `'text'`            | File list display type (`'text'`/`'picture'`/`'picture-card'`) |
 | showUploadList | boolean  | `{ showPreviewIcon?: boolean; showRemoveIcon?: boolean }` | `undefined`         |
-| disabled | boolean | `false`             | 是否禁用上传功能 |
+| disabled | boolean | `false`             | Whether to disable the upload function |
 | beforeUpload | (file: FileItem, fileList: FileItem[]) => boolean | Promise<`boolean`>                                      | - |
-| progress | Record<string, unknown> | - | 上传进度样式配置 |
-| onReject | (file: FileItem, fileList: FileItem[]) => void | - | 文件格式或大小校验失败时的回调 |
-| onDrop | (file: FileItem, event: Event) => void | - | 文件拖拽上传时的回调 |
-| customRequest | ({ file, onSuccess, onError, onProgress }) => void | - | 自定义上传请求函数（覆盖默认请求逻辑） |
-| removeCallback | (file: FileItem) => Promise<`boolean`> | - | 删除文件时的回调（返回 `false` 可阻止删除） |
-| readonly | boolean | `false`             | 是否为只读模式（隐藏上传按钮和删除图标） |
-| partSize | number | - | 分片上传时每个分片的大小（单位：MB） |
-| chunkUploadThreshold | number | - | 开启分片上传的文件大小阈值（单位：MB，文件大于此值时启用分片） |
-| parallel | number | - | 分片上传的并发数量 |
+| progress | Record<string, unknown> | - | Upload progress style configuration |
+| onReject | (file: FileItem, fileList: FileItem[]) => void | - | Callback when file format or size validation fails |
+| onDrop | (file: FileItem, event: Event) => void | - | Callback when file is dragged and dropped |
+| customRequest | ({ file, onSuccess, onError, onProgress }) => void | - | Custom upload request function (overrides default request logic) |
+| removeCallback | (file: FileItem) => Promise<`boolean`> | - | Callback when deleting a file (return `false` to prevent deletion) |
+| readonly | boolean | `false`             | Whether it is in read-only mode (hides upload button and delete icon) |
+| partSize | number | - | Size of each fragment for fragment upload (unit: MB) |
+| chunkUploadThreshold | number | - | File size threshold for enabling fragment upload (unit: MB, fragment upload is enabled when the file is larger than this value) |
+| parallel | number | - | Number of concurrent fragment uploads |
 | accept | string   | `string[]`                                              | - |
-| uploadList | FileModel[] | `[]`                | 上传文件列表（支持双向绑定） |
-| managed | boolean | `false`             | 是否启用文件管理模式（配合后台管理文件状态） |
-| manual | boolean | `false`             | 是否手动触发上传（关闭自动上传，需调用 `handleUpload` 方法） |
-| cdnKey | string | - | CDN 上传时的资源键（用于生成上传地址） |
-| contentType | string | `''`                | 上传请求的 Content-Type 类型 |
+| uploadList | FileModel[] | `[]`                | Upload file list (supports two-way binding) |
+| managed | boolean | `false`             | Whether to enable file management mode (cooperates with the background to manage file status) |
+| manual | boolean | `false`             | Whether to trigger upload manually (turns off auto-upload, requires calling the `handleUpload` method) |
+| cdnKey | string | - | Resource key for CDN upload (used to generate upload address) |
+| contentType | string | `''`                | Content-Type type of the upload request |
 
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| success | `(file: FileModel) => void` | 文件上传成功时触发 |
-| failure | `(error: Error, file: FileModel) => void` | 文件上传失败时触发 |
+| success | `(file: FileModel) => void` | Triggered when file upload is successful |
+| failure | `(error: Error, file: FileModel) => void` | Triggered when file upload fails |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | - | 自定义上传触发区域 |
-| itemRender | `{ file: FileItem, onPreview, onRemove }` | 自定义文件列表项 |
-| previewIcon | `{ file: FileItem, continuedUpload }` | 自定义预览图标 |
-| removeIcon | `{ file: FileItem, continuedUpload }` | 自定义删除图标 |
+| default | - | Custom upload trigger area |
+| itemRender | `{ file: FileItem, onPreview, onRemove }` | Custom file list item |
+| previewIcon | `{ file: FileItem, continuedUpload }` | Custom preview icon |
+| removeIcon | `{ file: FileItem, continuedUpload }` | Custom delete icon |
 
 
-### YearPicker 年份选择框
+### YearPicker Year Picker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -1989,7 +1988,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -2002,37 +2001,37 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd DatePicker 日期选择框 For Vue](https://www.antdv.com/components/date-picker-cn)
+For more usage methods, please refer to: [Antd DatePicker Date Picker For Vue](https://www.antdv.com/components/date-picker-cn)
 
 #### API
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Attribute Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | ------------------------------------------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| placeholder | string | 模式相关默认文案 | 输入框占位文本 |
-| readonly | boolean | false | 是否为只读模式（不可点击） |
-| disabled | boolean | false | 是否禁用选择器 |
-| format | string | - | 显示格式（如 `YYYY`） |
-| valueFormat | string | `YYYY`              | 值格式 |
-| allowClear | boolean | true | 是否显示清除按钮 |
-| open | boolean | undefined | 控制弹出层显示（受控模式） |
-| changeOpenValue | function | - | 弹出层显示状态变化时的回调 |
-| locale | object | - | 国际化配置（如星期、月份名称） |
+| placeholder | string | Default copy related to the mode | Input box placeholder text |
+| readonly | boolean | false | Whether it is in read-only mode (non-clickable) |
+| disabled | boolean | false | Whether to disable the picker |
+| format | string | - | Display format (such as `YYYY`) |
+| valueFormat | string | `YYYY`              | Value format |
+| allowClear | boolean | true | Whether to display the clear button |
+| open | boolean | undefined | Control the pop-up layer display (controlled mode) |
+| changeOpenValue | function | - | Callback when the pop-up layer display status changes |
+| locale | object | - | Internationalization configuration (such as week, month names) |
 | dropdownClassName | string   | `string[]`                                             | - |
-| openPanelChange | function | - | 弹出层打开时的回调 |
-| closePanelChange | function | - | 弹出层关闭时的回调 |
-| getTriggerContainer | function | `() => document.body` | 弹出层挂载的父节点 |
-| showToday | boolean | true | 是否显示 “今天” 按钮 |
+| openPanelChange | function | - | Callback when the pop-up layer opens |
+| closePanelChange | function | - | Callback when the pop-up layer closes |
+| getTriggerContainer | function | `() => document.body` | Parent node where the pop-up layer is mounted |
+| showToday | boolean | true | Whether to display the "Today" button |
 | value | Date     | string                                                | - |
 | defaultValue | Date     | string                                                | - |
-| disabledDate | (date) => boolean | - | 禁用日期的判断函数 |
-| disabledTime | `(date) => { disabledHours: number[]; disabledMinutes: number[]; disabledSeconds: number[] }` | - | 禁用时间的配置（函数或对象） |
+| disabledDate | (date) => boolean | - | Disabled date judgment function |
+| disabledTime | `(date) => { disabledHours: number[]; disabledMinutes: number[]; disabledSeconds: number[] }` | - | Disabled time configuration (function or object) |
 
 
-### YearRangePicker 年份范围选择框
+### YearRangePicker Year Range Picker
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -2040,7 +2039,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -2053,63 +2052,63 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd DatePicker 日期选择框 For Vue](https://www.antdv.com/components/date-picker-cn)
+For more usage methods, please refer to: [Antd DatePicker Date Picker For Vue](https://www.antdv.com/components/date-picker-cn)
 
 #### API
 
 **Props**
 
-| **属性名** | **类型** | **默认值** | **描述** |
+| **Attribute Name** | **Type** | **Default Value** | **Description** |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| placeholder                                                  | [string, string]                                             | 模式相关默认文案                                             | 输入框占位文本（开始和结束）                                 |
-| readonly                                                     | boolean                                                      | false                                                        | 是否为只读模式（不可点击）                                   |
-| disabled                                                     | boolean                                                      | false                                                        | 是否禁用选择器                                               |
-| format                                                       | string                                                       | -                                                            | 显示格式（如 `YYYY`）                                        |
-| valueFormat                                                  | string                                                       | `YYYY`                                                       | 值格式（用于双向绑定）                                       |
-| allowClear                                                   | boolean                                                      | true                                                         | 是否显示清除按钮                                             |
+| placeholder                                                  | [string, string]                                             | Default copy related to the mode                             | Input box placeholder text (start and end)                   |
+| readonly                                                     | boolean                                                      | false                                                        | Whether it is in read-only mode (non-clickable)               |
+| disabled                                                     | boolean                                                      | false                                                        | Whether to disable the picker                                |
+| format                                                       | string                                                       | -                                                            | Display format (such as `YYYY`)                            |
+| valueFormat                                                  | string                                                       | `YYYY`                                                       | Value format (used for two-way binding)                       |
+| allowClear                                                   | boolean                                                      | true                                                         | Whether to display the clear button                          |
 | dropdownClassName                                            | string                                                       | `string[]`                                                    | -                                                            |
-| separator                                                    | string                                                       | `~`                                                          | 开始和结束值之间的分隔符                                     |
-| openPanelChange                                              | function                                                     | -                                                            | 弹出层打开时的回调                                           |
-| closePanelChange                                             | function                                                     | -                                                            | 弹出层关闭时的回调                                           |
-| getTriggerContainer                                          | function                                                     | `() => document.body`                                        | 弹出层挂载的父节点                                           |
+| separator                                                    | string                                                       | `~`                                                          | Separator between start and end values                        |
+| openPanelChange                                              | function                                                     | -                                                            | Callback when the pop-up layer opens                          |
+| closePanelChange                                             | function                                                     | -                                                            | Callback when the pop-up layer closes                         |
+| getTriggerContainer                                          | function                                                     | `() => document.body`                                        | Parent node where the pop-up layer is mounted                 |
 | value | [Date    | string                                                       | undefined, Date                                              |
 | defaultValue | [Date    | string                                                       | undefined, Date                                              |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:value | [start: string, end: string] | 选中值变化时触发（双向绑定） |
+| update:value | [start: string, end: string] | Triggered when the selected value changes (two-way binding) |
 
 
-## （五）数据展示
+## (V) Data Display
 
-### Card 卡片
+### Card Card
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-card title="标题">
-    <p>这是一段内容</p>
+  <oio-card title="Title">
+    <p>This is a paragraph of content</p>
   </oio-card>
 </template>
 ```
 
-#### 带操作按钮的卡片
+#### Card with Action Buttons
 
 ```vue
 <template>
-  <oio-card title="标题">
-    <p>这是一段内容</p>
+  <oio-card title="Title">
+    <p>This is a paragraph of content</p>
     <template #titleToolbar>
-      <oio-button>标题栏按钮</oio-button>
+      <oio-button>Title Bar Button</oio-button>
     </template>
     <template #toolbar>
-      <oio-button type="link">操作栏按钮1</oio-button>
-      <oio-button type="link">操作栏按钮2</oio-button>
-      <oio-button type="link">操作栏按钮3</oio-button>
+      <oio-button type="link">Action Button 1</oio-button>
+      <oio-button type="link">Action Button 2</oio-button>
+      <oio-button type="link">Action Button 3</oio-button>
     </template>
   </oio-card>
 </template>
@@ -2119,116 +2118,116 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| title | string | - | 卡片标题文本 |
+| title | string | - | Card title text |
 
 
 **Slots**
 
-| **插槽名** | **描述** | **参数** |
+| **Slot Name** | **Description** | **Parameters** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 卡片内容区域 | - |
-| title | 自定义标题内容 | - |
-| titleToolbar | 标题行右侧工具栏 | - |
-| toolbar | 卡片底部工具栏（自动添加分隔符） | - |
+| default | Card content area | - |
+| title | Custom title content | - |
+| titleToolbar | Right toolbar of the title row | - |
+| toolbar | Bottom toolbar of the card (automatically adds a separator) | - |
 
 
 **Events**
 
-| **事件名** | **参数** | **描述** |
+| **Event Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| click | MouseEvent | 卡片被点击时触发 |
+| click | MouseEvent | Triggered when the card is clicked |
 
 
-### Collapse 折叠面板
+### Collapse Collapsible Panel
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
   <oio-collapse v-model:activeKey="activeKey">
-    <oio-collapse-panel key="1" header="面板1">
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="1" header="Panel 1">
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
-    <oio-collapse-panel key="2" header="面板2">
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="2" header="Panel 2">
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
-    <oio-collapse-panel key="3" header="面板3" disabled>
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="3" header="Panel 3" disabled>
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
   </oio-collapse>
 </template>
 ```
 
-#### 手风琴模式
+#### Accordion Mode
 
 ```vue
 <template>
   <oio-collapse v-model:activeKey="activeKey" accordion>
-    <oio-collapse-panel key="1" header="面板1">
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="1" header="Panel 1">
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
-    <oio-collapse-panel key="2" header="面板2">
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="2" header="Panel 2">
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
-    <oio-collapse-panel key="3" header="面板3">
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="3" header="Panel 3">
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
   </oio-collapse>
 </template>
 ```
 
-#### 斑马纹风格
+#### Zebra Striped Style
 
 ```vue
 <template>
   <oio-collapse v-model:activeKey="activeKey" type="stripe">
-    <oio-collapse-panel key="1" header="面板1">
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="1" header="Panel 1">
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
-    <oio-collapse-panel key="2" header="面板2">
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="2" header="Panel 2">
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
-    <oio-collapse-panel key="3" header="面板3">
-      <p>这是一段文本</p>
+    <oio-collapse-panel key="3" header="Panel 3">
+      <p>This is a paragraph of text</p>
     </oio-collapse-panel>
   </oio-collapse>
 </template>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
-  <!-- 基础用法 -->
+  <!-- Basic Usage -->
   <a-collapse class="oio-collapse" v-model:activeKey="activeKey">
-    <a-collapse-panel class="oio-collapse-panel" key="1" header="面板1">
-      <p>这是一段文本</p>
+    <a-collapse-panel class="oio-collapse-panel" key="1" header="Panel 1">
+      <p>This is a paragraph of text</p>
     </a-collapse-panel>
-    <a-collapse-panel class="oio-collapse-panel" key="2" header="面板2">
-      <p>这是一段文本</p>
+    <a-collapse-panel class="oio-collapse-panel" key="2" header="Panel 2">
+      <p>This is a paragraph of text</p>
     </a-collapse-panel>
-    <a-collapse-panel class="oio-collapse-panel" key="3" header="面板3">
-      <p>这是一段文本</p>
+    <a-collapse-panel class="oio-collapse-panel" key="3" header="Panel 3">
+      <p>This is a paragraph of text</p>
     </a-collapse-panel>
   </a-collapse>
-  <!-- 斑马纹风格 -->
+  <!-- Zebra Striped Style -->
   <a-collapse class="oio-collapse oio-collapse-stripe" v-model:activeKey="activeKey">
-    <a-collapse-panel class="oio-collapse-panel" key="1" header="面板1">
-      <p>这是一段文本</p>
+    <a-collapse-panel class="oio-collapse-panel" key="1" header="Panel 1">
+      <p>This is a paragraph of text</p>
     </a-collapse-panel>
-    <a-collapse-panel class="oio-collapse-panel" key="2" header="面板2">
-      <p>这是一段文本</p>
+    <a-collapse-panel class="oio-collapse-panel" key="2" header="Panel 2">
+      <p>This is a paragraph of text</p>
     </a-collapse-panel>
-    <a-collapse-panel class="oio-collapse-panel" key="3" header="面板3">
-      <p>这是一段文本</p>
+    <a-collapse-panel class="oio-collapse-panel" key="3" header="Panel 3">
+      <p>This is a paragraph of text</p>
     </a-collapse-panel>
   </a-collapse>
 </template>
 ```
 
-更多使用方式，可参考：[Antd Collapse 折叠面板 For Vue](https://www.antdv.com/components/collapse-cn)
+For more usage methods, please refer to: [Antd Collapse Collapsible Panel For Vue](https://www.antdv.com/components/collapse-cn)
 
 #### **API**
 
@@ -2236,70 +2235,70 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | activeKey | string   | `string[]`                                             | - |
-| type | `OioCollapseType`   | `'bordered'`        | 折叠面板类型，可选值：`bordered`、`stripe`、`simple`、`ghost` |
-| collapseMethod | `OioCollapseMethod` | `'default'`         | 折叠触发方式，可选值：`default`（点击头部）、`header`（点击标题）、`icon`（点击图标） |
-| accordion | boolean | false | 是否开启手风琴模式（每次仅激活一个面板） |
-| expandIconPosition | `OioCollapseExpandIconPosition` | `'right'`           | 展开图标位置，可选值：`right`（右侧）、`left`（左侧）、`hidden`（隐藏） |
-| destroyInactivePanel | boolean | false | 是否销毁未激活面板的 DOM 节点 |
-| layout | `FormLayout`        | - | 表单布局 |
-| invisible | boolean | - | 是否隐藏组件 |
-| disabled | boolean | - | 是否禁用所有面板 |
-| componentData | Record<string, unknown> | - | 第三方扩展属性 |
+| type | `OioCollapseType`   | `'bordered'`        | Collapsible panel type, optional values: `bordered`, `stripe`, `simple`, `ghost` |
+| collapseMethod | `OioCollapseMethod` | `'default'`         | Collapse trigger method, optional values: `default` (click header), `header` (click title), `icon` (click icon) |
+| accordion | boolean | false | Whether to enable accordion mode (only one panel is active at a time) |
+| expandIconPosition | `OioCollapseExpandIconPosition` | `'right'`           | Expand icon position, optional values: `right` (right), `left` (left), `hidden` (hidden) |
+| destroyInactivePanel | boolean | false | Whether to destroy the DOM nodes of inactive panels |
+| layout | `FormLayout`        | - | Form layout |
+| invisible | boolean | - | Whether to hide the component |
+| disabled | boolean | - | Whether to disable all panels |
+| componentData | Record<string, unknown> | - | Third-party extension attributes |
 
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | update:active-key | string   | `string[]`                                             |
 
 
 ** Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 面板内容容器 |
+| default | Panel content container |
 
 
 **Methods**
 
-| **方法名** | **参数** | **描述** |
+| **Method Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| getPanelKeys | - | 获取所有面板的键 |
+| getPanelKeys | - | Get the keys of all panels |
 
 
 ##### oio-collapse-panel
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| key | string | - | 面板唯一标识（必填） |
-| forceRender | boolean | - | 是否强制渲染面板（即使未激活） |
-| collapseMethod | `OioCollapseMethod` | 继承自父组件 | 单个面板的折叠触发方式（优先级高于父组件） |
-| header | string   | VNode                                                 | `'折叠面板项'`      |
-| showArrow | boolean | 继承自父组件 | 是否显示展开图标（若父组件 `expandIconPosition` 为 `hidden`，则无效） |
-| layout | `FormLayout`        | - | 表单布局 |
-| invisible | boolean | - | 是否隐藏当前面板 |
-| disabled | boolean | - | 是否禁用当前面板 |
-| componentData | Record<string, unknown> | - | 第三方扩展属性 |
+| key | string | - | Unique panel identifier (required) |
+| forceRender | boolean | - | Whether to force render the panel (even if inactive) |
+| collapseMethod | `OioCollapseMethod` | Inherited from parent component | Collapse trigger method for a single panel (priority over parent component) |
+| header | string   | VNode                                                 | `'Collapsible Panel Item'`      |
+| showArrow | boolean | Inherited from parent component | Whether to display the expand icon (invalid if parent component `expandIconPosition` is `hidden`) |
+| layout | `FormLayout`        | - | Form layout |
+| invisible | boolean | - | Whether to hide the current panel |
+| disabled | boolean | - | Whether to disable the current panel |
+| componentData | Record<string, unknown> | - | Third-party extension attributes |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 面板内容 |
-| header | 自定义标题内容 |
-| extra | 标题右侧附加内容 |
+| default | Panel content |
+| header | Custom title content |
+| extra | Additional content on the right side of the title |
 
 
-### Empty 空状态
+### Empty Empty State
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -2307,14 +2306,14 @@ export default defineComponent({
 </template>
 ```
 
-#### 自定义描述
+#### Custom Description
 
 ```vue
 <template>
-  <oio-empty-data description="空描述" />
+  <oio-empty-data description="Empty Description" />
   <oio-empty-data>
     <template #description>
-      <span>空描述</span>
+      <span>Empty Description</span>
     </template>
   </oio-empty-data>
 </template>
@@ -2324,26 +2323,26 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| loading | boolean | `undefined`         | 是否显示加载状态（`true` 显示加载动画，`false` 显示空状态） |
-| loadingIndicator | VNode | - | 自定义加载图标 |
+| loading | boolean | `undefined`         | Whether to display the loading state (`true` displays loading animation, `false` displays empty state) |
+| loadingIndicator | VNode | - | Custom loading icon |
 | wrapperClassName | string   | `string[]`                                             | - |
-| image | string | - | 空状态图片的 URL 或路径 |
-| description | string | `'暂无数据'`<br/>（通过 `$translate`<br/> 获取） | 空状态描述文本（若未传入且无 `description`<br/> 插槽，默认显示国际化文本） |
+| image | string | - | URL or path of the empty state image |
+| description | string | `'No Data'`<br/>（obtained through `$translate`<br/>） | Empty state description text (if not passed and there is no `description`<br/> slot, the internationalized text is displayed by default) |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| image | 自定义空状态图片内容 |
-| description | 自定义空状态描述文本 |
+| image | Custom empty state image content |
+| description | Custom empty state description text |
 
 
-### Gallery 画廊
+### Gallery Gallery
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -2378,7 +2377,7 @@ export default defineComponent({
       list.value.push({
         key: `${i}`,
         name: `Item ${i}`,
-        description: `这是一段描述${i}`
+        description: `This is a description${i}`
       });
     }
 
@@ -2390,7 +2389,7 @@ export default defineComponent({
 </script>
 ```
 
-#### 自定义列数和间距
+#### Custom Number of Columns and Spacing
 
 ```vue
 <template>
@@ -2408,58 +2407,58 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| loading | boolean | `undefined`         | 是否显示加载状态（`true`<br/> 显示加载动画，`false`<br/> 隐藏） |
-| loadingIndicator | VNode | - | 自定义加载图标 |
+| loading | boolean | `undefined`         | Whether to display the loading state (`true`<br/> displays loading animation, `false`<br/> hides) |
+| loadingIndicator | VNode | - | Custom loading icon |
 | wrapperClassName | string   | `string[]`                                             | - |
-| list | Record<string, unknown>[] | `required`          | 数据列表（每个对象需包含唯一标识字段） |
-| itemKey | string | `'id'`              | 数据项唯一标识字段名 |
-| cols | number | `4`                 | 列数（每行显示的项目数） |
-| gutter | CommonGutterType | - | 网格间距（支持数值、数组或对象，如 `16`<br/>、`[16, 24]`<br/>） |
+| list | Record<string, unknown>[] | `required`          | Data list (each object needs to contain a unique identifier field) |
+| itemKey | string | `'id'`              | Data item unique identifier field name |
+| cols | number | `4`                 | Number of columns (number of items displayed per row) |
+| gutter | CommonGutterType | - | Grid spacing (supports numeric, array, or object, such as `16`<br/>, `[16, 24]`<br/>) |
 | itemClassName | string   | `string[]`                                             | - |
-| itemStyle | CSSStyle | - | 数据项容器的样式 |
+| itemStyle | CSSStyle | - | Data item container style |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | `{ key: string, data: Record<string, unknown>, index: number }` | 数据项内容 |
-| header | - | 头部内容 |
-| footer | - | 底部内容 |
+| default | `{ key: string, data: Record<string, unknown>, index: number }` | Data item content |
+| header | - | Header content |
+| footer | - | Footer content |
 
 
-### Group 分组
+### Group Group
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-group title="标题">
-    <p>这是一段内容</p>
+  <oio-group title="Title">
+    <p>This is a paragraph of content</p>
   </oio-group>
 </template>
 ```
 
-#### 带描述和帮助提示的分组
+#### Group with Description and Help Prompt
 
 ```vue
 <template>
-  <oio-group title="标题" description="这是分组的详细描述" help="这是帮助提示内容">
-    <p>这是一段内容</p>
+  <oio-group title="Title" description="This is the detailed description of the group" help="This is the help prompt content">
+    <p>This is a paragraph of content</p>
   </oio-group>
 </template>
 ```
 
-#### 带工具栏的分组
+#### Group with Toolbar
 
 ```vue
 <template>
-  <oio-group title="标题">
-    <p>这是一段内容</p>
+  <oio-group title="Title">
+    <p>This is a paragraph of content</p>
     <template #titleToolbar>
-      <oio-button>操作按钮</oio-button>
+      <oio-button>Action Button</oio-button>
     </template>
   </oio-group>
 </template>
@@ -2469,103 +2468,103 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | title | string   | boolean                                               | undefined |
-| description | string | - | 分组描述信息 |
-| border | boolean | true | 是否显示边框 |
+| description | string | - | Group description information |
+| border | boolean | true | Whether to display a border |
 | wrapperClassName | string   | `string[]`                                             | - |
 | wrapperStyle | string   | CSSStyle                                              | - |
 | toolbarClassName | string   | `string[]`                                             | - |
 | toolbarStyle | string   | CSSStyle                                              | - |
-| help | string | '' | 帮助提示内容 |
-| helpAdjustOverflow | boolean | true | 帮助提示是否自动调整位置避免溢出 |
-| helpBgColor | string | - | 帮助提示的背景色 |
-| helpPlacement | string | 'top' | 帮助提示的位置，可选值：'top', 'bottom', 'left', 'right' 等 |
-| helpIcon | string | 'oinone-wenhao' | 帮助图标的类名 |
-| helpIconColor | string | 'var(--oio-primary-color)' | 帮助图标的颜色 |
-| helpIconSize | string | 'var(--oio-font-size)' | 帮助图标的大小 |
+| help | string | '' | Help prompt content |
+| helpAdjustOverflow | boolean | true | Whether the help prompt automatically adjusts the position to avoid overflow |
+| helpBgColor | string | - | Background color of the help prompt |
+| helpPlacement | string | 'top' | Position of the help prompt, optional values: 'top', 'bottom', 'left', 'right', etc. |
+| helpIcon | string | 'oinone-wenhao' | Class name of the help icon |
+| helpIconColor | string | 'var(--oio-primary-color)' | Color of the help icon |
+| helpIconSize | string | 'var(--oio-font-size)' | Size of the help icon |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 分组内容区域 |
-| title | 自定义标题内容 |
-| titleToolbar | 标题右侧工具栏内容 |
+| default | Group content area |
+| title | Custom title content |
+| titleToolbar | Toolbar content on the right side of the title |
 
 
-### Tabs 标签页
+### Tabs Tabs
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
   <oio-tabs v-model:active-key="activeKey">
-    <oio-tab key="1" tab="标签1">内容1</oio-tab>
-    <oio-tab key="2" tab="标签2">内容2</oio-tab>
-    <oio-tab key="3" tab="标签3" force-render>内容3</oio-tab>
-    <oio-tab key="4" tab="标签4" disabled>内容4</oio-tab>
+    <oio-tab key="1" tab="Tab 1">Content 1</oio-tab>
+    <oio-tab key="2" tab="Tab 2">Content 2</oio-tab>
+    <oio-tab key="3" tab="Tab 3" force-render>Content 3</oio-tab>
+    <oio-tab key="4" tab="Tab 4" disabled>Content 4</oio-tab>
   </oio-tabs>
 </template>
 ```
 
-#### 居中
+#### Centered
 
 ```vue
 <template>
   <oio-tabs v-model:active-key="activeKey" :component-data="{ centered: true }">
-    <oio-tab key="1" tab="标签1">内容1</oio-tab>
-    <oio-tab key="2" tab="标签2">内容2</oio-tab>
-    <oio-tab key="3" tab="标签3">内容3</oio-tab>
+    <oio-tab key="1" tab="Tab 1">Content 1</oio-tab>
+    <oio-tab key="2" tab="Tab 2">Content 2</oio-tab>
+    <oio-tab key="3" tab="Tab 3">Content 3</oio-tab>
   </oio-tabs>
 </template>
 ```
 
-#### 页签左右附加操作按钮
+#### Tabs with Left and Right Action Buttons
 
 ```vue
 <template>
   <oio-tabs v-model:active-key="activeKey">
-    <oio-tab key="1" tab="标签1">内容1</oio-tab>
-    <oio-tab key="2" tab="标签2">内容2</oio-tab>
-    <oio-tab key="3" tab="标签3">内容3</oio-tab>
+    <oio-tab key="1" tab="Tab 1">Content 1</oio-tab>
+    <oio-tab key="2" tab="Tab 2">Content 2</oio-tab>
+    <oio-tab key="3" tab="Tab 3">Content 3</oio-tab>
     <template #tabBarLeftExtraContent>
-      <oio-button style="margin-right: 16px">左侧操作按钮</oio-button>
+      <oio-button style="margin-right: 16px">Left Action Button</oio-button>
     </template>
     <template #tabBarExtraContent>
-      <oio-button>右侧操作按钮</oio-button>
+      <oio-button>Right Action Button</oio-button>
     </template>
   </oio-tabs>
 </template>
 ```
 
-#### 左侧页签
+#### Left Tabs
 
 ```vue
 <template>
   <oio-tabs v-model:active-key="activeKey" tab-position="left">
-    <oio-tab key="1" tab="标签1">内容1</oio-tab>
-    <oio-tab key="2" tab="标签2">内容2</oio-tab>
-    <oio-tab key="3" tab="标签3">内容3</oio-tab>
+    <oio-tab key="1" tab="Tab 1">Content 1</oio-tab>
+    <oio-tab key="2" tab="Tab 2">Content 2</oio-tab>
+    <oio-tab key="3" tab="Tab 3">Content 3</oio-tab>
   </oio-tabs>
 </template>
 ```
 
-#### 卡片式页签
+#### Card-style Tabs
 
 ```vue
 <template>
   <oio-tabs v-model:active-key="activeKey" type="card">
-    <oio-tab key="1" tab="标签1">内容1</oio-tab>
-    <oio-tab key="2" tab="标签2">内容2</oio-tab>
-    <oio-tab key="3" tab="标签3">内容3</oio-tab>
+    <oio-tab key="1" tab="Tab 1">Content 1</oio-tab>
+    <oio-tab key="2" tab="Tab 2">Content 2</oio-tab>
+    <oio-tab key="3" tab="Tab 3">Content 3</oio-tab>
   </oio-tabs>
 </template>
 ```
 
-#### 可编辑页签
+#### Editable Tabs
 
 ```vue
 <template>
@@ -2589,16 +2588,16 @@ export default defineComponent({
     const activeKey = ref();
 
     const panes = ref<{ title: string; content: string; key: string; closable?: boolean }[]>([
-      { title: '标签1', content: '内容1', key: '1' },
-      { title: '标签2', content: '内容2', key: '2' },
-      { title: '标签3', content: '内容3', key: '3', closable: false }
+      { title: 'Tab 1', content: 'Content 1', key: '1' },
+      { title: 'Tab 2', content: 'Content 2', key: '2' },
+      { title: 'Tab 3', content: 'Content 3', key: '3', closable: false }
     ]);
 
     const newTabIndex = ref(0);
 
     const add = () => {
       activeKey.value = `newTab${++newTabIndex.value}`;
-      panes.value.push({ title: '新页签', content: '新页签内容', key: activeKey.value });
+      panes.value.push({ title: 'New Tab', content: 'New Tab Content', key: activeKey.value });
     };
 
     const remove = (targetKey: string) => {
@@ -2642,81 +2641,81 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | activeKey | string   | number                                                | - |
-| tabPosition | `OioTabPosition`    | `'top'`             | 标签位置，可选值：`top`（顶部）、`bottom`（底部）、`left`（左侧）、`right`（右侧） |
+| tabPosition | `OioTabPosition`    | `'top'`             | Tab position, optional values: `top` (top), `bottom` (bottom), `left` (left), `right` (right) |
 | verticalHeight | number   | string                                                | - |
-| destroyInactiveTabPane | boolean | false | 是否销毁未激活面板的 DOM 节点 |
-| type | `OioTabsType` | - | 标签页类型，可选值：`line`（默认）、`card`（卡片式页签）、`editable-card`（可编辑页签） |
-| layout | `FormLayout`        | - | 表单布局配置 |
-| invisible | boolean | - | 是否隐藏整个标签页容器 |
-| disabled | boolean | false | 是否禁用所有标签（禁用后无法点击切换） |
-| componentData | Record<string, unknown> | - | 第三方扩展属性（透传给底层组件） |
+| destroyInactiveTabPane | boolean | false | Whether to destroy the DOM nodes of inactive panes |
+| type | `OioTabsType` | - | Tab type, optional values: `line` (default), `card` (card-style tabs), `editable-card` (editable tabs) |
+| layout | `FormLayout`        | - | Form layout configuration |
+| invisible | boolean | - | Whether to hide the entire tab container |
+| disabled | boolean | false | Whether to disable all tabs (cannot be clicked to switch when disabled) |
+| componentData | Record<string, unknown> | - | Third-party extension attributes (passed through to the underlying component) |
 
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | update:active-key | string   | number                                                |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 标签面板内容（包含 `OioTab` 子组件） |
-| tabBarLeftExtraContent                                       | 标签栏左侧附加内容（如操作按钮） |
-| tabBarExtraContent | 标签栏右侧附加内容（如操作按钮） |
+| default | Tab panel content (contains `OioTab` child components) |
+| tabBarLeftExtraContent                                       | Additional content on the left side of the tab bar (such as action buttons) |
+| tabBarExtraContent | Additional content on the right side of the tab bar (such as action buttons) |
 
 
 ##### oio-tab
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| key | string | `required`          | 面板唯一标识（必填，需与父组件 `OioTabs`<br/> 的面板键对应） |
+| key | string | `required`          | Unique panel identifier (required, needs to correspond to the panel key of the parent component `OioTabs`<br/>) |
 | tab | string   | VNode                                                 | - |
-| forceRender | boolean | - | 是否强制渲染面板（即使未激活） |
-| layout | `FormLayout`        | - | 表单布局配置 |
-| invisible | boolean | - | 是否隐藏面板（配合父组件 `OioTabs` 的隐藏逻辑） |
-| disabled | boolean | - | 是否禁用面板（禁用后标签不可点击，内容不可交互） |
-| componentData | Record<string, unknown> | - | 第三方扩展属性（透传给底层组件） |
+| forceRender | boolean | - | Whether to force render the panel (even if inactive) |
+| layout | `FormLayout`        | - | Form layout configuration |
+| invisible | boolean | - | Whether to hide the panel (cooperates with the hide logic of the parent component `OioTabs`) |
+| disabled | boolean | - | Whether to disable the panel (disabled tabs cannot be clicked, and content cannot be interacted with) |
+| componentData | Record<string, unknown> | - | Third-party extension attributes (passed through to the underlying component) |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 面板内容 |
-| tab | 自定义标签内容 |
+| default | Panel content |
+| tab | Custom tab content |
 
 
-### Tooltip 文字提示
+### Tooltip Tooltip
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-tooltip title="这是提示内容">hover trigger</oio-tooltip>
+  <oio-tooltip title="This is the tooltip content">hover trigger</oio-tooltip>
 </template>
 ```
 
-#### 点击触发
+#### Click Trigger
 
 ```vue
 <template>
-  <oio-tooltip title="这是提示内容" trigger="click">click trigger</oio-tooltip>
+  <oio-tooltip title="This is the tooltip content" trigger="click">click trigger</oio-tooltip>
 </template>
 ```
 
-#### 提示在右侧
+#### Tooltip on the Right
 
 ```vue
 <template>
-  <oio-tooltip title="这是提示内容" placement="rm">hover trigger</oio-tooltip>
+  <oio-tooltip title="This is the tooltip content" placement="rm">hover trigger</oio-tooltip>
 </template>
 ```
 
@@ -2724,37 +2723,37 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| visible | boolean | `undefined`         | 是否显示提示框（双向绑定，`disabled` 为 `true` 时无效） |
-| title | string | - | 提示内容（支持字符串，或通过 `title`<br/> 插槽自定义） |
-| trigger | `PopperTrigger`     | `'hover'`           | 触发方式，可选值：`hover`（悬停）、`click`（点击）、`focus`（聚焦）、`manual`（手动）、`contextmenu`（右键） |
-| placement | `OioTooltipPlacement` | `'bm'`（底部中间） | 提示框位置，可选值见枚举 `OioTooltipPlacement` |
-| destroyOnHide | boolean | `true`              | 隐藏时是否销毁提示框 DOM 节点 |
-| disabled | boolean | `false`             | 是否禁用提示框（禁用后无法触发显示） |
-| overlayClassName | string | - | 提示框浮层的类名 |
+| visible | boolean | `undefined`         | Whether to display the tooltip (two-way binding, invalid when `disabled` is `true`) |
+| title | string | - | Tooltip content (supports strings, or custom through the `title`<br/> slot) |
+| trigger | `PopperTrigger`     | `'hover'`           | Trigger method, optional values: `hover` (hover), `click` (click), `focus` (focus), `manual` (manual), `contextmenu` (right-click) |
+| placement | `OioTooltipPlacement` | `'bm'` (bottom middle) | Tooltip position, optional values see enum `OioTooltipPlacement` |
+| destroyOnHide | boolean | `true`              | Whether to destroy the tooltip DOM node when hidden |
+| disabled | boolean | `false`             | Whether to disable the tooltip (cannot be triggered to display when disabled) |
+| overlayClassName | string | - | Class name of the tooltip overlay |
 | overlayStyle | string   | CSSStyle                                              | - |
-| getTriggerContainer | (triggerNode: HTMLElement) => HTMLElement | - | 提示框容器挂载点（默认挂载到 `body`<br/>，可指定父级容器） |
+| getTriggerContainer | (triggerNode: HTMLElement) => HTMLElement | - | Tooltip container mounting point (default mounted to `body`<br/>, can specify a parent container) |
 
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:visible | boolean | 显示状态变化时触发（双向绑定） |
+| update:visible | boolean | Triggered when the display status changes (two-way binding) |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 触发提示的内容（如按钮） |
-| title | 自定义提示内容（支持 HTML） |
+| default | Content that triggers the tooltip (such as a button) |
+| title | Custom tooltip content (supports HTML) |
 
 
-### Tree 树形控件
+### Tree Tree Control
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -2819,7 +2818,7 @@ export default defineComponent({
 </script>
 ```
 
-#### 仅应用 Oinone 主题样式
+#### Only Apply Oinone Theme Style
 
 ```vue
 <template>
@@ -2827,65 +2826,65 @@ export default defineComponent({
 </template>
 ```
 
-更多使用方式，可参考：[Antd Tree 树形控件 For Vue](https://3x.antdv.com/components/tree-cn)
+For more usage methods, please refer to: [Antd Tree Tree Control For Vue](https://3x.antdv.com/components/tree-cn)
 
 #### API
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| loading | boolean | `undefined`         | 是否显示加载状态（`true` 显示加载动画） |
+| loading | boolean | `undefined`         | Whether to display the loading state (`true` displays loading animation) |
 | wrapperClassName | string   | `string[]`                                             | - |
-| data | OioTreeNode[] | - | 树结构数据 |
-| loadData | (node: OioTreeNode) => Promise<`void`> | - | 懒加载数据函数（动态数据，与 `data`<br/> 二选一） |
-| loadedKeys | `string[]`| - | 已加载节点的键（内部维护，支持双向绑定） |
-| selectable | boolean | `undefined`         | 是否允许节点选择 |
-| selectedKeys | `string[]`| - | 选中节点的键（支持双向绑定） |
-| expandedKeys | `string[]`| - | 展开节点的键（支持双向绑定） |
-| checkable | boolean | `undefined`         | 是否启用勾选功能 |
+| data | OioTreeNode[] | - | Tree structure data |
+| loadData | (node: OioTreeNode) => Promise<`void`> | - | Lazy loading data function (dynamic data, choose one with `data`<br/>) |
+| loadedKeys | `string[]`| - | Keys of loaded nodes (maintained internally, supports two-way binding) |
+| selectable | boolean | `undefined`         | Whether to allow node selection |
+| selectedKeys | `string[]`| - | Keys of selected nodes (supports two-way binding) |
+| expandedKeys | `string[]`| - | Keys of expanded nodes (supports two-way binding) |
+| checkable | boolean | `undefined`         | Whether to enable the check function |
 | checkedKeys | `string[]`| { checked: string[]; halfChecked: `string[]`}          | - |
-| checkStrictly | boolean | `undefined`         | 是否严格遵循父子节点关联（取消勾选父节点时是否自动取消子节点） |
-| blockNode | boolean | `undefined`         | 是否以块级节点展示（占据整行） |
-| showIcon | boolean | `undefined`         | 是否显示节点图标 |
-| showLine | boolean | `undefined`         | 是否显示节点连接线 |
+| checkStrictly | boolean | `undefined`         | Whether to strictly follow the parent-child node association (whether to automatically uncheck child nodes when unchecking a parent node) |
+| blockNode | boolean | `undefined`         | Whether to display as a block-level node (occupies the entire line) |
+| showIcon | boolean | `undefined`         | Whether to display node icons |
+| showLine | boolean | `undefined`         | Whether to display node connection lines |
 
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:expandedKeys | `string[]`| 展开节点变化时触发（双向绑定） |
-| update:selectedKeys | `string[]`| 选中节点变化时触发（双向绑定） |
+| update:expandedKeys | `string[]`| Triggered when expanded nodes change (two-way binding) |
+| update:selectedKeys | `string[]`| Triggered when selected nodes change (two-way binding) |
 | update:checkedKeys | `string[]`| { checked: string[]; halfChecked: `string[]`}          |
-| update:loadedKeys | `string[]`| 已加载节点变化时触发（内部使用） |
-| selected | `TreeNodeSelectedEvent`                                      | 节点选中 / 取消选中时触发 |
-| expanded | `TreeNodeExpandedEvent`                                      | 节点展开 / 收起时触发 |
-| checked | `TreeNodeCheckedEvent`                                       | 节点勾选状态变化时触发 |
+| update:loadedKeys | `string[]`| Triggered when loaded nodes change (internal use) |
+| selected | `TreeNodeSelectedEvent`                                      | Triggered when a node is selected / deselected |
+| expanded | `TreeNodeExpandedEvent`                                      | Triggered when a node is expanded / collapsed |
+| checked | `TreeNodeCheckedEvent`                                       | Triggered when a node's check status changes |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| title | `{ node: OioTreeNode }` | 自定义节点标题 |
-| icon | `{ node: OioTreeNode }` | 自定义节点图标 |
-| switcherIcon | `{ node: OioTreeNode }` | 自定义展开 / 收起图标 |
+| title | `{ node: OioTreeNode }` | Custom node title |
+| icon | `{ node: OioTreeNode }` | Custom node icon |
+| switcherIcon | `{ node: OioTreeNode }` | Custom expand / collapse icon |
 
 
-## （六）反馈
+## (VI) Feedback
 
-### Drawer 抽屉
+### Drawer Drawer
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-button @click="showDrawer">打开抽屉</oio-button>
-  <oio-drawer v-model:visible="visible" title="基础用法">
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
+  <oio-button @click="showDrawer">Open Drawer</oio-button>
+  <oio-drawer v-model:visible="visible" title="Basic Usage">
+    <p>This is some content...</p>
+    <p>This is some content...</p>
+    <p>This is some content...</p>
   </oio-drawer>
 </template>
 <script lang="ts">
@@ -2914,45 +2913,45 @@ export default defineComponent({
 </script>
 ```
 
-#### 添加帮助文案
+#### Add Help Copy
 
 ```vue
 <template>
-  <oio-button @click="showDrawer">打开抽屉</oio-button>
-  <oio-drawer v-model:visible="visible" title="基础用法" help="这是最简单的抽屉">
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
+  <oio-button @click="showDrawer">Open Drawer</oio-button>
+  <oio-drawer v-model:visible="visible" title="Basic Usage" help="This is the simplest drawer">
+    <p>This is some content...</p>
+    <p>This is some content...</p>
+    <p>This is some content...</p>
   </oio-drawer>
 </template>
 ```
 
-#### 添加一些操作按钮
+#### Add Some Action Buttons
 
 ```vue
 <template>
-  <oio-button @click="showDrawer">打开抽屉</oio-button>
-  <oio-drawer v-model:visible="visible" title="基础用法">
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
+  <oio-button @click="showDrawer">Open Drawer</oio-button>
+  <oio-drawer v-model:visible="visible" title="Basic Usage">
+    <p>This is some content...</p>
+    <p>This is some content...</p>
+    <p>This is some content...</p>
     <template #footer>
-      <oio-button type="primary">确定</oio-button>
-      <oio-button>取消</oio-button>
+      <oio-button type="primary">Confirm</oio-button>
+      <oio-button>Cancel</oio-button>
     </template>
   </oio-drawer>
 </template>
 ```
 
-#### 关闭抽屉回调
+#### Drawer Close Callback
 
 ```vue
 <template>
-  <oio-button @click="showDrawer">打开抽屉</oio-button>
-  <oio-drawer v-model:visible="visible" title="关闭回调" :cancel-callback="cancelCallback">
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
+  <oio-button @click="showDrawer">Open Drawer</oio-button>
+  <oio-drawer v-model:visible="visible" title="Close Callback" :cancel-callback="cancelCallback">
+    <p>This is some content...</p>
+    <p>This is some content...</p>
+    <p>This is some content...</p>
   </oio-drawer>
 </template>
 <script lang="ts">
@@ -2974,7 +2973,7 @@ export default defineComponent({
 
     const cancelCallback = (): boolean => {
       console.log('drawer closed.');
-      // 返回 true 则关闭抽屉，否则不关闭
+      // Return true to close the drawer, otherwise do not close
       return true;
     };
 
@@ -2992,54 +2991,53 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| zIndex | number | `1000`              | 抽屉层叠顺序（CSS z-index） |
+| zIndex | number | `1000`              | Drawer stacking order (CSS z-index) |
 | wrapperClassName | string   | `string[]`                                             | - |
-| wrapperProps | object | - | 外层容器属性（透传给 DOM 节点） |
-| mask | boolean | `undefined`         | 是否显示遮罩层 |
-| maskClosable | boolean | `undefined`         | 点击遮罩是否可关闭抽屉 |
-| title | string | `'抽屉'`            | 抽屉标题 |
-| help | string | - | 标题右侧帮助提示内容 |
+| wrapperProps | object | - | Outer container attributes (passed through to DOM nodes) |
+| mask | boolean | `undefined`         | Whether to display the mask layer |
+| maskClosable | boolean | `undefined`         | Whether clicking the mask can close the drawer |
+| title | string | `'Drawer'`            | Drawer title |
+| help | string | - | Help prompt content on the right side of the title |
 | placement | `DrawerPlacement`<br/>  | keyof typeof DrawerPlacement                          | `'right'`           |
 | width | number   | string                                                       |  `DrawerWidth` |
 | height | number   | string                                                       |  `DrawerHeight` |
-| headerInvisible | boolean | `undefined`         | 是否隐藏头部区域 |
-| footerInvisible | boolean | `undefined`         | 是否隐藏底部区域 |
-| visible | boolean | `undefined`         | 是否显示抽屉（双向绑定） |
-| closable | boolean | `undefined`         | 是否显示关闭图标 |
-| keyboard | boolean | `undefined`         | 是否支持键盘 ESC 关闭 |
-| destroyOnClose | boolean | `true`              | 关闭时是否销毁内部元素 |
+| headerInvisible | boolean | `undefined`         | Whether to hide the header area |
+| footerInvisible | boolean | `undefined`         | Whether to hide the footer area |
+| visible | boolean | `undefined`         | Whether to display the drawer (two-way binding) |
+| closable | boolean | `undefined`         | Whether to display the close icon |
+| keyboard | boolean | `undefined`         | Whether to support closing with the ESC key |
+| destroyOnClose | boolean | `true`              | Whether to destroy internal elements when closing |
 | getTriggerContainer | (triggerNode: Node | HTMLElement) => Node                                         | HTMLElement                                           |
 | cancelCallback | (event: PointerEvent, data: object) => Promise<boolean | void>                                                 | - |
-| loading | boolean | `false`             | 是否显示全局加载状态 |
-
+| loading | boolean | `false`             | Whether to display the global loading state |
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:visible | boolean | 显示状态变化时触发（双向绑定） |
+| update:visible | boolean | Triggered when the visibility status changes (two-way binding) |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | `{ data: object }`  | 抽屉内容区域 |
-| title | - | 自定义标题内容 |
-| header | - | 自定义头部区域（优先级高于 `title` 插槽） |
-| footer | - | 自定义底部区域 |
-| closeIcon | - | 自定义关闭图标 |
+| default | `{ data: object }`  | Drawer content area |
+| title | - | Custom title content |
+| header | - | Custom header area (higher priority than the `title` slot) |
+| footer | - | Custom footer area |
+| closeIcon | - | Custom close icon |
 
 
-### Message 全局提示
+### Message Global Prompt
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-button @click="openMessage">打开消息提示</oio-button>
+  <oio-button @click="openMessage">Open Message Prompt</oio-button>
 </template>
 <script lang="ts">
 import { OioButton, OioMessage } from '@kunlun/vue-ui-antd';
@@ -3052,7 +3050,7 @@ export default defineComponent({
   props: {},
   setup(props) {
     const openMessage = () => {
-      OioMessage.info('这是消息提示内容', {
+      OioMessage.info('This is the message prompt content', {
         onClose: () => {
           console.log('Message closed.');
         }
@@ -3067,41 +3065,41 @@ export default defineComponent({
 </script>
 ```
 
-更多使用方式，可参考：[Antd Message 全局提示 For Vue](https://3x.antdv.com/components/message-cn)
+For more usage methods, please refer to: [Antd Message Global Prompt For Vue](https://3x.antdv.com/components/message-cn)
 
 #### API
 
 ##### OioMessage
 
-| **方法名** | **参数列表** | **描述** |
+| **Method Name** | **Parameter List** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| open | `(type: NotificationType, message: string, options?: OioNotificationOptions) => void` | 通用打开方法，根据类型显示对应消息 |
-| info | `(message: string, options?: OioNotificationOptions) => void` | 显示提示类型消息 |
-| success | `(message: string, options?: OioNotificationOptions) => void` | 显示成功类型消息 |
-| warning | `(message: string, options?: OioNotificationOptions) => void` | 显示警告类型消息 |
-| error | `(message: string, options?: OioNotificationOptions) => void` | 显示错误类型消息 |
+| open | `(type: NotificationType, message: string, options?: OioNotificationOptions) => void` | General opening method, displays corresponding messages according to types |
+| info | `(message: string, options?: OioNotificationOptions) => void` | Displays prompt-type messages |
+| success | `(message: string, options?: OioNotificationOptions) => void` | Displays success-type messages |
+| warning | `(message: string, options?: OioNotificationOptions) => void` | Displays warning-type messages |
+| error | `(message: string, options?: OioNotificationOptions) => void` | Displays error-type messages |
 
 
 ##### OioNotificationOptions
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| duration | number | `3`                 | 通知显示时长（秒），`0`<br/> 为永久显示 |
-| class | string | - | 自定义通知类名（会自动添加基础类名） |
-| ... | ... | ... | 其他第三方参数 |
+| duration | number | `3`                 | Notification display duration (seconds), `0` <br/> for permanent display |
+| class | string | - | Custom notification class name (base class name will be added automatically) |
+| ... | ... | ... | Other third-party parameters |
 
 
-### Modal 对话框
+### Modal Dialog Box
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-button @click="showModal">打开弹窗</oio-button>
-  <oio-modal v-model:visible="visible" title="基础用法">
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
+  <oio-button @click="showModal">Open Popup</oio-button>
+  <oio-modal v-model:visible="visible" title="Basic Usage">
+    <p>This is some content...</p>
+    <p>This is some content...</p>
+    <p>This is some content...</p>
   </oio-modal>
 </template>
 <script lang="ts">
@@ -3130,33 +3128,33 @@ export default defineComponent({
 </script>
 ```
 
-#### 添加帮助文案
+#### Adding Help Copy
 
 ```vue
 <template>
-  <oio-button @click="showModal">打开弹窗</oio-button>
-  <oio-modal v-model:visible="visible" title="基础用法" help="这是最简单的弹窗">
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
+  <oio-button @click="showModal">Open Popup</oio-button>
+  <oio-modal v-model:visible="visible" title="Basic Usage" help="This is the simplest popup">
+    <p>This is some content...</p>
+    <p>This is some content...</p>
+    <p>This is some content...</p>
   </oio-modal>
 </template>
 ```
 
-#### 关闭弹窗回调
+#### Popup Close Callback
 
 ```vue
 <template>
-  <oio-button @click="showModal">打开弹窗</oio-button>
+  <oio-button @click="showModal">Open Popup</oio-button>
   <oio-modal
     v-model:visible="visible"
-    title="关闭回调"
+    title="Close Callback"
     :enter-callback="enterCallback"
     :cancel-callback="cancelCallback"
   >
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
-    <p>这是一些内容...</p>
+    <p>This is some content...</p>
+    <p>This is some content...</p>
+    <p>This is some content...</p>
   </oio-modal>
 </template>
 <script lang="ts">
@@ -3178,13 +3176,13 @@ export default defineComponent({
 
     const enterCallback = (): boolean => {
       console.log('modal closed by enter button.');
-      // 返回 true 则关闭弹窗，否则不关闭
+      // Return true to close the popup, otherwise do not close
       return true;
     };
 
     const cancelCallback = (): boolean => {
       console.log('modal closed by cancel button.');
-      // 返回 true 则关闭弹窗，否则不关闭
+      // Return true to close the popup, otherwise do not close
       return true;
     };
 
@@ -3199,24 +3197,24 @@ export default defineComponent({
 </script>
 ```
 
-#### 渲染表单及数据回填
+#### Rendering Forms and Data回填 (Data回填 should be "Data Backfill")
 
 ```vue
 <template>
-  <oio-button @click="showModal">打开弹窗</oio-button>
+  <oio-button @click="showModal">Open Popup</oio-button>
   <oio-modal
     v-model:visible="visible"
-    title="渲染表单"
+    title="Render Form"
     :data="formData"
     :enter-callback="enterCallback"
     :cancel-callback="cancelCallback"
   >
     <template #default="{ data }">
       <oio-form :data="data" layout="vertical">
-        <oio-form-item label="名称">
+        <oio-form-item label="Name">
           <oio-input v-model:value="data.name" />
         </oio-form-item>
-        <oio-form-item label="描述">
+        <oio-form-item label="Description">
           <oio-textarea v-model:value="data.description" />
         </oio-form-item>
       </oio-form>
@@ -3250,21 +3248,21 @@ export default defineComponent({
     };
 
     const formData = ref<DataType>({
-      name: '名称',
+      name: 'Name',
       description: ''
     });
 
     const enterCallback = (e: PointerEvent, data: DataType): boolean => {
-      // 保存当前表单数据
+      // Save the current form data
       formData.value = data;
       console.log('modal closed by enter button.', data);
-      // 返回 true 则关闭弹窗，否则不关闭
+      // Return true to close the popup, otherwise do not close
       return true;
     };
 
     const cancelCallback = (e: PointerEvent, data: DataType): boolean => {
       console.log('modal closed by cancel button.', data);
-      // 返回 true 则关闭弹窗，否则不关闭
+      // Return true to close the popup, otherwise do not close
       return true;
     };
 
@@ -3280,65 +3278,65 @@ export default defineComponent({
 </script>
 ```
 
-#### **API 定义**
+#### **API Definition**
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| zIndex | number | `1000`              | 模态框层叠顺序（CSS z-index） |
+| zIndex | number | `1000`              | Modal dialog stacking order (CSS z-index) |
 | wrapperClassName | string   | `string[]`                                             | - |
-| wrapperProps | object | - | 外层容器属性（透传给 DOM 节点） |
-| mask | boolean | `undefined`         | 是否显示遮罩层 |
-| maskClosable | boolean | `undefined`         | 点击遮罩是否可关闭模态框 |
-| title | string | `'对话框'`          | 模态框标题 |
-| help | string | - | 标题右侧帮助提示内容 |
+| wrapperProps | object | - | Outer container properties (passed through to DOM nodes) |
+| mask | boolean | `undefined`         | Whether to display the mask layer |
+| maskClosable | boolean | `undefined`         | Whether clicking the mask can close the modal dialog |
+| title | string | `'Dialog Box'`          | Modal dialog title |
+| help | string | - | Help prompt content on the right side of the title |
 | width | number   | string                                                       |  `ModalWidthType` |
 | height | number   | string                                                       |  `ModalWidthType` |
-| headerInvisible | boolean | `undefined`         | 是否隐藏头部区域 |
-| footerInvisible | boolean | `undefined`         | 是否隐藏底部区域 |
-| visible | boolean | `undefined`         | 是否显示模态框（双向绑定） |
-| closable | boolean | `undefined`         | 是否显示关闭图标 |
-| keyboard | boolean | `undefined`         | 是否支持键盘 ESC 关闭 |
-| destroyOnClose | boolean | `undefined`         | 关闭时是否销毁内部元素 |
+| headerInvisible | boolean | `undefined`         | Whether to hide the header area |
+| footerInvisible | boolean | `undefined`         | Whether to hide the footer area |
+| visible | boolean | `undefined`         | Whether to display the modal dialog (two-way binding) |
+| closable | boolean | `undefined`         | Whether to display the close icon |
+| keyboard | boolean | `undefined`         | Whether to support closing with the ESC key |
+| destroyOnClose | boolean | `undefined`         | Whether to destroy internal elements when closing |
 | getTriggerContainer | (triggerNode: Node | HTMLElement) => Node                                         | HTMLElement                                           |
 | enterCallback | (event: PointerEvent, data: object) => Promise<boolean | void>                                                 | - |
 | cancelCallback | (event: PointerEvent, data: object) => Promise<boolean | void>                                                 | - |
-| loading | boolean | `undefined`         | 是否显示全局加载状态 |
-| confirmLoading | boolean | `undefined`         | 确认按钮加载状态 |
-| draggable | boolean | `false`             | 是否支持拖拽模态框 |
-| enterText | string | `'确定'`            | 确认按钮文本 |
-| cancelText | string | `'取消'`            | 取消按钮文本 |
-| data | object | `{}`                | 传递给插槽的自定义数据 |
-| copy | boolean | `true`              | 是否深度复制数据（`deep` 为 `true` 时生效） |
-| deep | boolean | `false`             | 是否深度监听数据变化 |
+| loading | boolean | `undefined`         | Whether to display the global loading state |
+| confirmLoading | boolean | `undefined`         | Confirm button loading state |
+| draggable | boolean | `false`             | Whether to support dragging the modal dialog |
+| enterText | string | `'Confirm'`            | Confirm button text |
+| cancelText | string | `'Cancel'`            | Cancel button text |
+| data | object | `{}`                | Custom data passed to the slot |
+| copy | boolean | `true`              | Whether to deeply copy data (takes effect when `deep` is `true`) |
+| deep | boolean | `false`             | Whether to deeply listen for data changes |
 
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:visible | boolean | 显示状态变化时触发（双向绑定） |
+| update:visible | boolean | Triggered when the visibility status changes (two-way binding) |
 
 
 **Slots**
 
-| **插槽名** | **参数** | **描述** |
+| **Slot Name** | **Parameters** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | `{ data: object }`  | 模态框内容区域 |
-| title | - | 自定义标题内容 |
-| header | - | 自定义头部区域（优先级高于 `title` 插槽） |
-| footer | - | 自定义底部区域 |
-| closeIcon | - | 自定义关闭图标 |
+| default | `{ data: object }`  | Modal dialog content area |
+| title | - | Custom title content |
+| header | - | Custom header area (higher priority than the `title` slot) |
+| footer | - | Custom footer area |
+| closeIcon | - | Custom close icon |
 
 
-### Notification 通知提醒框
+### Notification Reminder Box
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-button @click="openNotification">打开通知</oio-button>
+  <oio-button @click="openNotification">Open Notification</oio-button>
 </template>
 <script lang="ts">
 import { OioButton, OioNotification } from '@kunlun/vue-ui-antd';
@@ -3351,7 +3349,7 @@ export default defineComponent({
   props: {},
   setup(props) {
     const openNotification = () => {
-      OioNotification.info('标题', '这是通知消息内容', {
+      OioNotification.info('Title', 'This is the notification message content', {
         onClick: () => {
           console.log('Notification clicked.');
         },
@@ -3369,38 +3367,38 @@ export default defineComponent({
 </script>
 ```
 
-更多使用方式，可参考：[Antd Notification 通知提醒框 For Vue](https://3x.antdv.com/components/notification-cn)
+For more usage methods, please refer to: [Antd Notification Reminder Box For Vue](https://3x.antdv.com/components/notification-cn)
 
 #### API
 
 ##### OioNotification
 
-| **方法名** | **参数列表** | **描述** |
+| **Method Name** | **Parameter List** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| open | `(type: NotificationType, title: string, message?: string, options?: OioNotificationOptions) => void` | 通用打开方法，显示带标题的通知 |
-| info | `(title: string, message?: string, options?: OioNotificationOptions) => void` | 显示提示类型通知 |
-| success | `(title: string, message?: string, options?: OioNotificationOptions) => void` | 显示成功类型通知 |
-| warning | `(title: string, message?: string, options?: OioNotificationOptions) => void` | 显示警告类型通知 |
-| error | `(title: string, message?: string, options?: OioNotificationOptions) => void` | 显示错误类型通知 |
+| open | `(type: NotificationType, title: string, message?: string, options?: OioNotificationOptions) => void` | General opening method, displays notifications with titles |
+| info | `(title: string, message?: string, options?: OioNotificationOptions) => void` | Displays prompt-type notifications |
+| success | `(title: string, message?: string, options?: OioNotificationOptions) => void` | Displays success-type notifications |
+| warning | `(title: string, message?: string, options?: OioNotificationOptions) => void` | Displays warning-type notifications |
+| error | `(title: string, message?: string, options?: OioNotificationOptions) => void` | Displays error-type notifications |
 
 
 ##### OioNotificationOptions
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| duration | number | `3`                 | 通知显示时长（秒），`0`<br/> 为永久显示 |
-| class | string | - | 自定义通知类名（会自动添加基础类名） |
-| ... | ... | ... | 其他第三方参数 |
+| duration | number | `3`                 | Notification display duration (seconds), `0` <br/> for permanent display |
+| class | string | - | Custom notification class name (base class name will be added automatically) |
+| ... | ... | ... | Other third-party parameters |
 
 
-### Popconfirm 气泡确认框
+### Popconfirm Bubble Confirmation Box
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
-  <oio-popconfirm text="你确认要删除吗？" :confirm-callback="confirmCallback" :cancel-callback="cancelCallback">
-    <oio-button type="primary" biz-style="danger">删除</oio-button>
+  <oio-popconfirm text="Are you sure you want to delete this?" :confirm-callback="confirmCallback" :cancel-callback="cancelCallback">
+    <oio-button type="primary" biz-style="danger">Delete</oio-button>
   </oio-popconfirm>
 </template>
 <script lang="ts">
@@ -3431,17 +3429,17 @@ export default defineComponent({
 </script>
 ```
 
-#### 条件触发
+#### Conditional Triggering
 
 ```vue
 <template>
   <oio-popconfirm
-    text="你确认要删除吗？"
+    text="Are you sure you want to delete this?"
     :condition="condition"
     :confirm-callback="confirmCallback"
     :cancel-callback="cancelCallback"
   >
-    <oio-button type="primary" biz-style="danger">删除</oio-button>
+    <oio-button type="primary" biz-style="danger">Delete</oio-button>
   </oio-popconfirm>
 </template>
 <script lang="ts">
@@ -3488,42 +3486,42 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| visible | boolean | `undefined`         | 是否显示弹出框（双向绑定，`manual` 为 `true` 时需手动控制） |
-| manual | boolean | `false`             | 是否开启手动控制模式（`true` 时 `visible` 变化不会自动显示 / 隐藏） |
-| destroyOnClose | boolean | `undefined`         | 关闭时是否销毁弹出框 DOM 节点 |
-| title | string | `'警告'`            | 弹出框标题 |
-| text | string | `'确定是否执行此操作?'` | 弹出框提示文本 |
-| overlayClassName | string | - | 弹出框浮层的类名 |
-| placement | `PopconfirmPlacement` | `'tm'`                                                       | 弹出框位置（枚举值见上方说明，默认顶部中间） |
-| enterText | string | `'确定'`            | 确认按钮文本 |
-| cancelText | string | `'取消'`            | 取消按钮文本 |
+| visible | boolean | `undefined`         | Whether to display the popup (two-way binding, needs manual control when `manual` is `true`) |
+| manual | boolean | `false`             | Whether to enable manual control mode (`true` means `visible` changes will not automatically show/hide) |
+| destroyOnClose | boolean | `undefined`         | Whether to destroy the popup DOM node when closing |
+| title | string | `'Warning'`            | Popup title |
+| text | string | `'Are you sure you want to perform this operation?'` | Popup prompt text |
+| overlayClassName | string | - | Class name of the popup overlay |
+| placement | `PopconfirmPlacement` | `'tm'`                                                       | Popup position (enumeration values see above description, default top middle) |
+| enterText | string | `'Confirm'`            | Confirm button text |
+| cancelText | string | `'Cancel'`            | Cancel button text |
 | condition | boolean  | () => boolean                                                | Promise<`boolean`>                                      |
-| confirmCallback | () => void | - | 确认按钮点击回调 |
-| cancelCallback | () => void | - | 取消按钮点击回调 |
+| confirmCallback | () => void | - | Confirm button click callback |
+| cancelCallback | () => void | - | Cancel button click callback |
 | getTriggerContainer | (triggerNode: Node | HTMLElement) => Node                                         | HTMLElement                                           |
 
 
 **Events**
 
-| **事件名** | **参数类型** | **描述** |
+| **Event Name** | **Parameter Type** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| update:visible | boolean | 显示状态变化时触发（双向绑定） |
+| update:visible | boolean | Triggered when the visibility status changes (two-way binding) |
 
 
 **Slots**
 
-| **插槽名** | **描述** |
+| **Slot Name** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 触发弹出框的内容（如按钮） |
-| title | 自定义标题内容 |
-| icon | 自定义标题左侧图标 |
+| default | Content that triggers the popup (such as a button) |
+| title | Custom title content |
+| icon | Custom icon on the left side of the title |
 
 
-### Spin 加载中
+### Spin Loading
 
-#### 基础用法
+#### Basic Usage
 
 ```vue
 <template>
@@ -3531,20 +3529,20 @@ export default defineComponent({
 </template>
 ```
 
-#### 遮罩任意元素
+#### Masking Any Element
 
 ```vue
 <template>
   <oio-spin>
     <div style="width: 300px; height: 300px">
-      <h4>标题</h4>
-      <p>这是一段内容</p>
+      <h4>Title</h4>
+      <p>This is a paragraph of content</p>
     </div>
   </oio-spin>
 </template>
 ```
 
-#### 各种大小
+#### Various Sizes
 
 ```vue
 <template>
@@ -3554,7 +3552,7 @@ export default defineComponent({
 </template>
 ```
 
-#### 放入容器中
+#### Placing in a Container
 
 ```vue
 <template>
@@ -3564,18 +3562,18 @@ export default defineComponent({
 </template>
 ```
 
-#### 手动控制加载状态
+#### Manually Controlling the Loading State
 
 ```vue
 <template>
   <div>
-    <span>加载状态:</span>
+    <span>Loading status:</span>
     <oio-switch v-model:checked="loading" />
   </div>
   <oio-spin :loading="loading">
     <div style="width: 300px; height: 300px">
-      <h4>标题</h4>
-      <p>这是一段内容</p>
+      <h4>Title</h4>
+      <p>This is a paragraph of content</p>
     </div>
   </oio-spin>
 </template>
@@ -3585,20 +3583,19 @@ export default defineComponent({
 
 **Props**
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| loading | boolean | `undefined`         | 是否显示加载状态（`undefined`<br/> 时默认显示） |
-| loadingIndicator | VNode | - | 自定义加载图标（需传入虚拟节点，如 `<LoadingOutlined />`<br/>） |
+| loading | boolean | `undefined`         | Whether to display the loading state (`undefined` <br/> means display by default) |
+| loadingIndicator | VNode | - | Custom loading icon (needs to pass a virtual node, such as `<LoadingOutlined />` <br/>) |
 | wrapperClassName | string   | `string[]`                                             | - |
 | size | `SpinSize`<br/>  | keyof typeof SpinSize                                        | number                                                |
-| delay | number | - | 延迟显示时间（毫秒，`loading`<br/> 为 `true`<br/> 后延迟指定时间显示加载图标） |
+| delay | number | - | Delay display time (milliseconds, displays the loading icon after `loading` <br/> is `true` <br/> for the specified time) |
 | tip | string   | Slot                                                  | - |
 
 
 **Slots**
 
-| **插槽名** | **描述** | **参数** |
+| **Slot Name** | **Description** | **Parameters** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| default | 自定义加载内容 | - |
-| tip | 自定义提示文本内容 | - |
-
+| default | Custom loading content | - |
+| tip | Custom prompt text content | - |

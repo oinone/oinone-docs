@@ -1,42 +1,42 @@
 ---
-title: 数据操作：Excel批量导入
+title: Data Operation:Batch Excel Import
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 23
 ---
 
-# 一、场景描述
-在有些场景，需要获取 Excel 导入的整体数据，进行批量的操作或者校验，可以通过实现导入扩展点的方式实现，入参 data 是导入 Excel 的数据列表；业务可以根据实际情况进行数据校验
+# 一、Scenario Description
+In some scenarios, it is necessary to obtain the overall data imported from Excel for batch operations or validation. This can be achieved by implementing import extension points, where the input parameter `data` is the list of data imported from Excel. Businesses can perform data validation based on actual conditions.
 
-## （一）Excel模板定义，需要设置`setEachImport(false)`
+## （一）Excel Template Definition, Requiring `setEachImport(false)`
 ```java
 @Component
 public class PetTalentExportTemplate implements ExcelTemplateInit {
-    public static final String TEMPLATE_NAME = "宠物达人导出";
+    public static final String TEMPLATE_NAME = "Pet Talent Export";
 
     @Override
     public List<ExcelWorkbookDefinition> generator() {
-        //可以返回多个模版，导出的时候页面上由用户选择导出模版
+        // Multiple templates can be returned for users to choose during export
         return Collections.singletonList(
             ExcelHelper.fixedHeader(PetShop.MODEL_MODEL, TEMPLATE_NAME)
             .createBlock(TEMPLATE_NAME, PetShop.MODEL_MODEL)
             .setEachImport(Boolean.FALSE)
             .setType(ExcelTemplateTypeEnum.EXPORT)
-            .addColumn(LambdaUtil.fetchFieldName(PetShop::getShopName), "店铺名称")
-            .addColumn(LambdaUtil.fetchFieldName(PetShop::getYesOrNo), "员工枚举")
-            .addColumn(LambdaUtil.fetchFieldName(PetShop::getId), "店铺id")
+            .addColumn(LambdaUtil.fetchFieldName(PetShop::getShopName), "Shop Name")
+            .addColumn(LambdaUtil.fetchFieldName(PetShop::getYesOrNo), "Employee Enum")
+            .addColumn(LambdaUtil.fetchFieldName(PetShop::getId), "Shop ID")
             .build());
     }
 }
 ```
 
-## （二）导入扩展点API定义
+## （二）Import Extension Point API Definition
 ```java
 pro.shushi.pamirs.file.api.extpoint.ExcelImportDataExtPoint#importData
 ```
 
-## （三）示例代码参考：
+## （三）Sample Code Reference:
 `pro.shushi.pamirs.translate.extpoint.ResourceTranslationImportExtPoint#importData`
 
 ```java
@@ -47,10 +47,10 @@ public class ResourceTranslationImportExtPoint extends AbstractExcelImportDataEx
 
 
     @Override
-    //TODO 表达式，可以自定义，比如可以支持1个模型的多个【导入名称】的不同模板
+    // TODO Expression can be customized, such as supporting different templates for multiple [import names] of one model
     @ExtPoint.Implement(expression = "importContext.definitionContext.model==\"" + ResourceTranslation.MODEL_MODEL + "\"")
     public Boolean importData(ExcelImportContext importContext, List<ResourceTranslationItem> dataList) {
-        //TODO dataList就是excel导入那个sheet的所有内容
+        // TODO dataList contains all contents of the imported Excel sheet
 
 
         return true;
@@ -59,34 +59,34 @@ public class ResourceTranslationImportExtPoint extends AbstractExcelImportDataEx
 }
 ```
 
-# 二、逐行导入的时候做事务控制
-在模板中定义中增加事务的定义，并设置异常后回滚。参加示例代码：
+# 二、Transaction Control During Row-by-Row Import
+Add transaction definitions to the template and set rollback on exception. Refer to the sample code:
 
-## （一）excel模板定义
+## （一）Excel Template Definition
 ```java
 @Component
 public class DemoItemImportTemplate implements ExcelTemplateInit {
 
-    public static final String TEMPLATE_NAME = "商品导入模板";
+    public static final String TEMPLATE_NAME = "Product Import Template";
 
     @Override
     public List<ExcelWorkbookDefinition> generator() {
-        //定义事务(导入处理中，只操作单个表的不需要事务定义。)
-        //是否定义事务根据实际业务逻辑确定。比如：有些场景在导入前需要删除数据后在进行导入就需要定义事务
+        // Define transactions (transactions are not needed for operations on a single table during import.)
+        // Whether to define transactions depends on actual business logic. For example, scenarios requiring data deletion before import need transaction definitions.
         InitializationUtil.addTxConfig(DemoItem.MODEL_MODEL, ExcelDefinitionContext.EXCEL_TX_CONFIG_PREFIX + TEMPLATE_NAME);
 
         return Collections.singletonList(
             ExcelHelper.fixedHeader(DemoItem.MODEL_MODEL, TEMPLATE_NAME)
             .setType(ExcelTemplateTypeEnum.IMPORT)
-            .createSheet("商品导入-sheet1")
+            .createSheet("Product Import-sheet1")
             .createBlock(DemoItem.MODEL_MODEL)
             .addUnique(DemoItem.MODEL_MODEL,"name")
-            .addColumn("name","名称")
-            .addColumn("description","描述")
-            .addColumn("itemPrice","单价")
-            .addColumn("inventoryQuantity","库存")
+            .addColumn("name","Name")
+            .addColumn("description","Description")
+            .addColumn("itemPrice","Unit Price")
+            .addColumn("inventoryQuantity","Inventory")
             .build().setEachImport(true)
-            //TODO 设置异常后回滚的标识，这个地方会回滚事务
+            // TODO Set the flag for rollback on exception, which will roll back the transaction
             .setHasErrorRollback(true)
             .setExcelImportMode(ExcelImportModeEnum.SINGLE_MODEL)
         );
@@ -95,7 +95,7 @@ public class DemoItemImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-## （二）导入逻辑处理
+## （二）Import Logic Processing
 ```java
 @Slf4j
 @Component
@@ -117,12 +117,11 @@ public class DemoItemImportExtPoint extends AbstractExcelImportDataExtPointImpl<
 
             demoItemService.create(data);
         } catch(PamirsException e) {
-            log.error("导入异常", e);
+            log.error("Import exception", e);
         } catch (Exception e) {
-            log.error("导入异常", e);
+            log.error("Import exception", e);
         }
         return Boolean.TRUE;
     }
 }
 ```
-

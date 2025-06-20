@@ -1,5 +1,5 @@
 ---
-title: Integration Interfaces
+title: Integration App
 index: true
 category:
   - User Manual

@@ -1,107 +1,107 @@
 ---
-title: 开发辅助：低代码中实现页面数据联动
+title: Development Aid:Implementing Page Data Linkage in Low-Code
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 15
 ---
 
-在项目开发中，通常有页面数据联动的需求。常见场景包括：
+In project development, there is often a need for page data linkage. Common scenarios include:
 
-1. **级联选择**：如选择公司后，部门下拉框仅显示该公司下属部门；
-2. **输入计算**：如根据库存和单价自动计算总价；
-3. **动态计算与更新**：用户输入变化后，前端可调用后端逻辑进行计算或校验，并将结果反馈到页面。
+1. **Cascading Selection**: For example, after selecting a company, the department drop-down list only displays departments under that company;
+2. **Input Calculation**: For example, automatically calculating the total price based on inventory and unit price;
+3. **Dynamic Calculation and Update**: After user input changes, the front-end can call back-end logic for calculation or validation and feedback the result to the page.
 
-这些联动机制通过前后端协同，实现数据的动态响应与一致性，增强交互效率与准确性。
+These linkage mechanisms achieve dynamic response and consistency of data through front-end and back-end collaboration, enhancing interaction efficiency and accuracy.
 
-# 一、实现方式
-## （一）配置 domain 表达式
-下面示例中，页面交互中部门`department`下拉列表中的数据，是所选择公司下的部门列表
+# 一、Implementation Methods
+## （一）Configuring domain Expressions
+In the following example, the data in the department `department` drop-down list during page interaction is the list of departments under the selected company.
 
 ```java
 @Field.many2one
 @Field.Relation(relationFields = {"corporationCode"}, referenceFields = {"code"})
-@Field(displayName = "公司", required = true)
+@Field(displayName = "Company", required = true)
 private Corporation corporation;
 
 @Field.String
-@Field(displayName = "公司编码", invisible = true)
+@Field(displayName = "Company Code", invisible = true)
 private String corporationCode;
 
 @Field.many2one
 @Field.Relation(relationFields = {"departmentCode"}, referenceFields = {"code"}, domain = "corporationCode==${activeRecord.corporation.code}")
-@Field(displayName = "部门", required = true)
+@Field(displayName = "Department", required = true)
 private Department department;
 
 @Field.String
-@Field(displayName = "部门编码", invisible = true)
+@Field(displayName = "Department Code", invisible = true)
 private String departmentCode;
 ```
 
-:::info 说明：
+:::info Explanation:
 
-+ 配置了 domain 属性的字段，该字段对应的模型在数据加载时候会拼接 domain 到数据的查询条件中；可在界面设计器中进行可视化配置,界面设计器表单->选择字段->「查询条件」
-+ domain 表达式是 rsql 语法
+- For fields configured with the domain attribute, the model corresponding to the field will append the domain to the data query conditions when loading data; it can be visually configured in the UI designer, UI Designer Form -> Select Field -> "Query Conditions"
+- The domain expression uses rsql syntax
 
 :::
 
-## （二）配置 compute 属性
-示例1： 总成本 = 库存数 * 单价 计算得出；
+## （二）Configuring the compute Attribute
+Example 1: Total cost = stock quantity * unit price;
 
-总成本`totalCost`配置 compute 属性，`value = MULTIPLY(activeRecord.stock, activeRecord.unitPrice)`
+The total cost `totalCost` is configured with the compute attribute, `value = MULTIPLY(activeRecord.stock, activeRecord.unitPrice)`
 
 ```java
 @Field.Integer
-@Field(displayName = "采购数量",required = true)
+@Field(displayName = "Purchase Quantity", required = true)
 private Integer stock;
 
 @Field.Money(D = 4)
-@Field(displayName = "单价(元)",required = true)
+@Field(displayName = "Unit Price (Yuan)", required = true)
 private BigDecimal unitPrice;
 
-// 库存数 * 单价 计算得出
+// Calculated as stock quantity * unit price
 @Field.Money(D = 4)
-@UxForm.FieldWidget(@UxWidget(readonly = "true",hint = "库存数 * 单价 计算得出",
+@UxForm.FieldWidget(@UxWidget(readonly = "true", hint = "Calculated as stock quantity * unit price",
         config = {@Prop(name = "compute", value = "MULTIPLY(activeRecord.stock, activeRecord.unitPrice)")}))
-@Field(displayName = "总成本(元)",required = true)
+@Field(displayName = "Total Cost (Yuan)", required = true)
 private BigDecimal totalCost;
 ```
 
-示例2： 单价 = 总成本 / 库存数量 计算得出；单价`unitPrice`配置compute属性，
+Example 2: Unit price = total cost / stock quantity; the unit price `unitPrice` is configured with the compute attribute,
 
-`value = "IF((activeRecord.stock=='0' || IS_NULL(activeRecord.stock)), 0, DIVIDE(activeRecord.totalCost, activeRecord.stock))"`，计算逻辑中考虑到了库存为0的特殊情况
+`value = "IF((activeRecord.stock=='0' || IS_NULL(activeRecord.stock)), 0, DIVIDE(activeRecord.totalCost, activeRecord.stock))", and the calculation logic considers the special case where stock is 0.
 
 ```java
 @Field.Integer
-@Field(displayName = "库存数量",required = true)
+@Field(displayName = "Stock Quantity", required = true)
 private Integer stock;
 
 @Field.Money(D = 4)
-@Field(displayName = "总成本(元)",required = true)
+@Field(displayName = "Total Cost (Yuan)", required = true)
 private BigDecimal totalCost;
 
-// 总成本 / 库存数量 计算得出，保留4位小数
-@UxForm.FieldWidget(@UxWidget(readonly = "true",hint = "总成本 / 库存数量 计算得出",
+// Calculated as total cost / stock quantity,保留4位小数 (retaining 4 decimal places)
+@UxForm.FieldWidget(@UxWidget(readonly = "true", hint = "Calculated as total cost / stock quantity",
         config = {@Prop(name = "compute", value = "IF((activeRecord.stock=='0' || IS_NULL(activeRecord.stock)), 0, DIVIDE(activeRecord.totalCost, activeRecord.stock))")}))
 @Field.Money(D = 4)
-@Field(displayName = "单价(元)",required = true)
+@Field(displayName = "Unit Price (Yuan)", required = true)
 private BigDecimal unitPrice;
 ```
 
-:::info 说明：
+:::info Explanation:
 
-配置了 Prop(compute) 属性的字段，前端会自动执行表达式计算出该字段对应的 value；
+For fields configured with the Prop(compute) attribute, the front-end will automatically execute the expression to calculate the corresponding value of the field;
 
-可在界面设计器中进行可视化配置,界面设计器表单->选择字段->「计算公式」
+It can be visually configured in the UI designer, UI Designer Form -> Select Field -> "Calculation Formula"
 
 :::
 
-## （三）调用后端联动函数
-下面示例中，根据身份证号`idCard`计算生日和性别； 为字段身份证号`idCard`配置了联动函数`constructIdCardChange`，通过调用后端函数的方式实现数据联动
+## （三）Calling Back-end Linkage Functions
+In the following example, the birthday and gender are calculated based on the ID card number `idCard`; the linkage function `constructIdCardChange` is configured for the ID card number `idCard` field, and data linkage is achieved by calling the back-end function.
 
 ```java
 @Model.model(Employee.MODEL_MODEL)
-@Model(displayName = "标品-员工", labelFields = "name")
+@Model(displayName = "Standard Product - Employee", labelFields = "name")
 @Model.Advanced(index = {"code", "departmentCode"})
 public class Employee extends AbstractCopyModel {
 
@@ -109,62 +109,62 @@ public class Employee extends AbstractCopyModel {
 
     @UxTableSearch.FieldWidget(@UxWidget())
     @Field.String
-    @Field(displayName = "姓名", required = true)
+    @Field(displayName = "Name", required = true)
     private String name;
 
     @UxTableSearch.FieldWidget(@UxWidget())
     @Field.String
-    @Field(displayName = "工号", required = true)
+    @Field(displayName = "Employee Number", required = true)
     private String code;
 
     @Field.many2one
     @Field.Relation(relationFields = {"corporationCode"}, referenceFields = {"code"})
-    @Field(displayName = "公司", required = true)
+    @Field(displayName = "Company", required = true)
     private Corporation corporation;
 
     @Field.String
-    @Field(displayName = "公司编码", invisible = true)
+    @Field(displayName = "Company Code", invisible = true)
     private String corporationCode;
 
     @Field.many2one
     @Field.Relation(relationFields = {"departmentCode"}, referenceFields = {"code"}, domain = "corporationCode==${activeRecord.corporation.code}")
-    @Field(displayName = "部门", required = true)
+    @Field(displayName = "Department", required = true)
     private Department department;
 
     @Field.String
-    @Field(displayName = "部门编码", invisible = true)
+    @Field(displayName = "Department Code", invisible = true)
     private String departmentCode;
 
     @Field.Enum
-    @Field(displayName = "枚举职级", required = true)
+    @Field(displayName = "Enumerated Job Level", required = true)
     private EmployeeLevelEnum level;
 
     @Field.many2one
     @Field.Relation(relationFields = "positionCode", referenceFields = "code", domain = "departmentCode==${activeRecord.department.code}")
-    @Field(displayName = "主岗位", summary = "主岗位从当前部门下的岗位列表中选择", required = true)
+    @Field(displayName = "Main Position", summary = "The main position is selected from the list of positions in the current department", required = true)
     private Position position;
 
     @Field.String
-    @Field(displayName = "主岗位编码", invisible = true)
+    @Field(displayName = "Main Position Code", invisible = true)
     private String positionCode;
 
-    // 根据身份证号计算生日和性别
+    // Calculate birthday and gender based on ID card number
     @UxTableSearch.FieldWidget(@UxWidget())
     @Field.String
-    @Field(displayName = "身份证号", required = true)
+    @Field(displayName = "ID Card Number", required = true)
     @UxForm.FieldWidget(@UxWidget(config = {@Prop(name = "constructData", value = "true"), @Prop(name = "constructSubmitType", value = "CURRENT"),
             @Prop(name = "constructFun", value = "constructIdCardChange")}))
     private String idCard;
 
     @Field.Enum
-    @Field(displayName = "性别", required = true)
+    @Field(displayName = "Gender", required = true)
     private SimpleGenderEnum gender;
 
     @Field.Date(type = DateTypeEnum.DATE, format = DateFormatEnum.DATE)
-    @Field(displayName = "生日", required = true)
+    @Field(displayName = "Birthday", required = true)
     private Date birthday;
 
-    // 其他属性
+    // Other attributes
 
 }
 ```
@@ -175,10 +175,10 @@ public class Employee extends AbstractCopyModel {
 @Model.model(Employee.MODEL_MODEL)
 public class EmployeeAction {
 
-    @Function(openLevel = FunctionOpenEnum.API, summary = "身份证输入联动")
-    @Function.Advanced(displayName = "身份证输入联动", type = FunctionTypeEnum.QUERY)
+    @Function(openLevel = FunctionOpenEnum.API, summary = "ID Card Input Linkage")
+    @Function.Advanced(displayName = "ID Card Input Linkage", type = FunctionTypeEnum.QUERY)
     public Employee constructIdCardChange(Employee data) {
-        // 根据身份证计算出生日期、性别、年龄
+        // Calculate birth date, gender, and age based on ID card
         computeIdCard(data);
         return data;
     }
@@ -191,7 +191,7 @@ public class EmployeeAction {
             data.setGender(null);
             // setAge(null);
         } else {
-            // 校验身份证格式
+            // Validate ID card format
             if (!IDCardHelper.isValidIdCard(idCard)) {
                 throw PamirsException.construct(HrSimpleExpEnum.IDCARD_VALID_ERROR).errThrow();
             }
@@ -199,7 +199,7 @@ public class EmployeeAction {
             Map<String, Object> map = IDCardHelper.parseIDCard(idCard);
             if (map != null) {
                 // setAge(Integer.parseInt(map.get("age").toString()));
-                // 将 LocalDate 转换为 java.util.Date
+                // Convert LocalDate to java.util.Date
                 Object birthDateObj = map.get("birthDate");
                 if (birthDateObj instanceof LocalDate) {
                     LocalDate birthDate = (LocalDate) birthDateObj;
@@ -217,9 +217,8 @@ public class EmployeeAction {
 }
 ```
 
-:::info 说明：
+:::info Explanation:
 
-配置了联动函数的字段，该字段变更时前端会自动发起联动函数的调用；可在界面设计器中进行可视化配置,界面设计器表单->选择字段->字段变更联动->「提交数据」
+For fields configured with linkage functions, the front-end will automatically initiate a call to the linkage function when the field changes; it can be visually configured in the UI designer, UI Designer Form -> Select Field -> Field Change Linkage -> "Submit Data"
 
 :::
-

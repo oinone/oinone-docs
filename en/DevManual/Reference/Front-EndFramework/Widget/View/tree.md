@@ -2,9 +2,9 @@
 title: Tree
 index: false
 category:
-  - 研发手册
+  - DevManual
   - Reference
-  - 前端API
+  - Front-EndFramework
   - Widget
   - View
 order: 5

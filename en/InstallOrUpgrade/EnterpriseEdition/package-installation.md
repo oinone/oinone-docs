@@ -1,5 +1,5 @@
 ---
-title: Installation via Running Package
+title: Package installation
 index: true
 category:
   - Installation and Upgrade

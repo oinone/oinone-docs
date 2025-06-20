@@ -1,5 +1,5 @@
 ---
-title: Custom Views
+title: Customize a view widget
 index: true
 category:
   - Development Manual

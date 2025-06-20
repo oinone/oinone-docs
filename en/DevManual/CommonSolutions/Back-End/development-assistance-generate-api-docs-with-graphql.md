@@ -1,65 +1,60 @@
 ---
-title: 开发辅助：使用GraphQL生成API文档
+title: Development Aid:Generating API Documentation with GraphQL
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 17
 ---
 
-:::info 目标：在本节结束时，应当能够使用GraphQL生成API文档
+:::info Objective: By the end of this section, you should be able to use GraphQL to generate API documentation.
 
 :::
 
-# 一、后端接口实现逻辑解析
+# 一、Backend Interface Implementation Logic Analysis
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746610185735-035eda30-69a0-4d3a-99a5-28e61dfe8bb2-20250530144823111.png)
 
-# 二、使用GraphQL生成API文档
-GraphiQL 作为一款极为流行的交互式开发环境（IDE），专为浏览、编写以及测试 GraphQL 查询而设计。它不仅能够辅助您对 API 进行查询操作，还具备自动生成文档的能力。以下详细阐述使用 GraphiQL 的具体步骤：
+# 二、Generating API Documentation with GraphQL
+GraphiQL, a highly popular interactive development environment (IDE) designed for browsing, writing, and testing GraphQL queries, not only assists in querying APIs but also has the capability to generate documentation automatically. The following details the specific steps for using GraphiQL:
 
-仓库地址：[https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options](https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options)
+Repository address: [https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options](https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options)
 
-## （一）使用GraphiQL 工具生成API文档。
-### 1、**GraphiQL 安装与配置**
-方式 ： 本地或全局安装 GraphiQL
+## （一）Using GraphiQL Tool to Generate API Documentation
+### 1、**Installation and Configuration of GraphiQL**
+Methods: Install GraphiQL locally or globally.
 
-如果你的 GraphQL API 服务器没有内置 GraphiQL，你可以使用独立的 GraphiQL 框架或包。
+If your GraphQL API server does not have built-in GraphiQL, you can use a standalone GraphiQL framework or package.
 
-+ **全局安装 GraphiQL**
-如果你想在本地环境使用 GraphiQL，你可以通过 `npm` 或 `yarn` 安装：
-如果下载不成功可以使用淘宝镜像源
-
++ **Global Installation of GraphiQL**  
+If you want to use GraphiQL in a local environment, you can install it via `npm` or `yarn`:  
+(Use Taobao mirror source if download fails)
 ```bash
 npm install -g graphiql
 ```
 
-+ **通过 npm 或 Yarn 安装为开发依赖**
-你也可以将 `GraphiQL` 作为开发依赖安装到项目中：
-
++ **Installation as a Development Dependency via npm or Yarn**  
+You can also install `GraphiQL` as a development dependency in your project:
 ```bash
 npm install graphiql
 ```
 
-+ **生成您的文档！**
-
++ **Generate Your Documentation!**
 ```bash
 npx spectaql config.yml
 ```
-
-运行此命令你需要一份`config.yml`文件。具体使用参考[https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options](https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options)
-
+Running this command requires a `config.yml` file. For specific usage, refer to [https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options](https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options)
 
 
-### 2、**使用JSON格式生成文档**
-生成或导出 schema 文件
+### 2、**Generating Documentation in JSON Format**
+Generate or export the schema file.
 
-+ **自动生成 schema**
-如果你使用的是 Java 类和注解方式定义的 GraphQL API（使用 `@GraphQLQuery` 等注解），GraphQL schema 通常在运行时生成。你可以使用 Spring Boot 启动后访问 GraphQL endpoint 来手动导出 schema。
++ **Automatic Schema Generation**  
+If you use Java classes and annotations to define your GraphQL API (using `@GraphQLQuery` and other annotations), the GraphQL schema is typically generated at runtime. You can export the schema manually by accessing the GraphQL endpoint after starting Spring Boot.
 
-下面是一个 introspection 查询的示例，它可以帮助你获取 schema：这个查询可根据文档需要动态调整。查询`http://127.0.0.1:8091/pamirs/base`，注意保证工程yml配置文件`pamirs.framework.gateway.show-doc: true`为开启状态。
+The following is an example of an introspection query to help you obtain the schema: This query can be dynamically adjusted based on documentation needs. Query `http://127.0.0.1:8091/pamirs/base`, ensuring that `pamirs.framework.gateway.show-doc: true` is enabled in the project yml configuration file.
 
-:::info 注意：
+:::info Note:
 
-pamirs/base是请求 base 模块下的接口，可以更换为业务模块返回业务模块的接口
+`pamirs/base` is the interface under the base module and can be replaced with a business module to return its interfaces.
 
 :::
 
@@ -149,11 +144,11 @@ fragment TypeRef on __Type {
 }
 ```
 
-你可以将这个查询放在 GraphiQL（开发工具）或者 Postman 等工具中，发送请求到 `/base`，这样可以获得完整的 schema。
+You can place this query in GraphiQL (development tool) or tools like Postman and send the request to `/base` to obtain the complete schema.
 
-    - **访问 GraphQL Endpoint**：在应用运行时，GraphQL API 通常暴露在 `/base` 路径下。你可以通过 `introspection` 查询导出完整的 GraphQL schema。
+- **Access GraphQL Endpoint**: When the application is running, the GraphQL API is typically exposed at the `/base` path. You can export the full GraphQL schema via an `introspection` query.
 
-将请求的响应保存为JSON文件，在`config.yml`中配置。配置参考：[https://github.com/anvilco/spectaql/blob/main/config-example.yml](https://github.com/anvilco/spectaql/blob/main/config-example.yml)
+Save the request response as a JSON file and configure it in `config.yml`. Configuration reference: [https://github.com/anvilco/spectaql/blob/main/config-example.yml](https://github.com/anvilco/spectaql/blob/main/config-example.yml)
 
 ```yaml
 spectaql:
@@ -191,33 +186,30 @@ servers:
   - url: http://127.0.0.1:8091/pamirs/base
 ```
 
-运行命令`npx spectaql config.yml`就可以得到一份html的API文档啦！
+Run the command `npx spectaql config.yml` to get an HTML API document!
 
-:::info 注意：
-这行命令生成文档的执行时间和文件大小息息相关。平台接口执行时间大概1-2小时，只要没报错请耐心等待！
+:::info Note:
+The execution time of this command to generate documentation is closely related to the file size. The platform interface execution takes approximately 1-2 hours—please be patient if there are no errors!
 
 :::
 
-## （二）利用 schema.json 文件解析生成文档。
-若第一种方式执行未能成功，可采用下述方案：借助第一步通过 GQL 请求所生成的 JSON 文件，手动解析该 JSON 文件以生成文档。在此，为您提供一个运用 Java 代码解析 JSON 文件的示例，您可依据实际需求对生成格式进行自主修改。
+## （二）Generating Documentation by Parsing the schema.json File
+If the first method fails, use the following solution: Manually parse the JSON file generated by the GQL request in the first step to generate documentation. Here is a Java code example for parsing the JSON file, which you can modify according to actual needs for the generated format.
 
 ---
 
-示例代码：
-[gql-schema-api](https://doc.oinone.top/wp-content/uploads/2024/09/gql-schema-api-1.zip)
+Sample code: [gql-schema-api](https://doc.oinone.top/wp-content/uploads/2024/09/gql-schema-api-1.zip)
 
-> 规则说明：
+> Rule Description:
 >
-> 1. **数据提取范围**：主要提取 “__schema” 下 “types” 中的内容。
-> 2. **接口区域数据判定与提取**：当某类型的 “kind” 为 “OBJECT”，且其 “fields” 下的 “args” 存在值时，该部分数据属于接口区域数据。接口名称由 “name” 与 “fields” 中的 “name” 通过 “/” 连接构成。接口描述则截取 “fields” 中的 “description”。从 “args” 下 “type” 中，若 “kind” 为 “INPUT_OBJECT”，提取其 “name” 值作为请求参数名称；从 “fields” 的 “type” 中，若 “kind” 为 “OBJECT”，提取其 “name” 值作为返回参数名称。
-> 3. **接口区域数据记录格式**：以表格形式展示接口地址、接口方式、请求参数名称以及返回参数名称。
-> 4. **请求参数区域数据判定与提取**：当 “kind” 为 “INPUT_OBJECT” 时，此部分为请求参数区域。提取 “name” 值作为请求参数名称，针对 “inputFields”，以 “name” 作为字段名称，截取 “description” 作为显示名称。若 “inputFields” 的 “type” 下 “kind” 为 “SCALAR”，提取 “name” 作为字段类型。
-> 5. **请求参数区域数据记录格式**：以表格形式展示请求参数名称，以及对应的（字段名，字段类型、显示名称、备注），其中备注为空。
-> 6. **返回参数区域数据判定与提取**：当 “kind” 为 “OBJECT” 且 “fields” 下 “args” 无值时，此部分为返回参数区域。提取 “fields”，以 “name” 作为字段名称，截取 “description” 作为显示名称。若 “fields” 的 “type” 下 “kind” 为 “SCALAR”，提取 “name” 作为字段类型。
-> 7. **返回参数区域数据记录格式**：以表格形式展示返回参数名称，以及对应的（字段名，字段类型、显示名称、备注），其中备注为空。
-> 8. **接口名称排除项**：接口名称中不需要包含 “construct”、“queryByPk”、“queryListByEntity”、“queryOneByWrapper” 这些名称。
-> 9. **整体处理流程**：对接口列表、请求参数数据区域以及返回参数数据区域分别进行上述处理。
-> 10. **请求参数关联展示**：在处理后的接口列表中，依据请求参数名称，在请求参数数据区域查询对应的参数信息，并将（字段名，字段类型、显示名称、备注）以表格形式展示在对应接口信息之后。
-> 11. **返回参数关联展示**：在处理后的接口列表中，依据返回参数名称，在返回参数数据区域查询对应的参数信息，并将（字段名，字段类型、显示名称、备注）以表格形式展示在对应接口信息下方的请求参数之后。
->
-
+> 1. **Data Extraction Scope**: Mainly extract content under "types" in "__schema".
+> 2. **Interface Area Data Determination and Extraction**: When the "kind" of a type is "OBJECT" and the "args" under its "fields" have values, this part belongs to interface area data. The interface name is formed by connecting "name" and "fields" "name" with "/". The interface description intercepts "description" from "fields". From "type" under "args", if "kind" is "INPUT_OBJECT", extract its "name" as the request parameter name; from "type" of "fields", if "kind" is "OBJECT", extract its "name" as the return parameter name.
+> 3. **Interface Area Data Record Format**: Display interface address, interface method, request parameter name, and return parameter name in a table.
+> 4. **Request Parameter Area Data Determination and Extraction**: When "kind" is "INPUT_OBJECT", this part is the request parameter area. Extract "name" as the request parameter name, and for "inputFields", use "name" as the field name and intercept "description" as the display name. If the "kind" under "type" of "inputFields" is "SCALAR", extract "name" as the field type.
+> 5. **Request Parameter Area Data Record Format**: Display request parameter names and corresponding (field name, field type, display name, remarks) in a table, with remarks empty.
+> 6. **Return Parameter Area Data Determination and Extraction**: When "kind" is "OBJECT" and "args" under "fields" have no values, this part is the return parameter area. Extract "fields", use "name" as the field name, and intercept "description" as the display name. If the "kind" under "type" of "fields" is "SCALAR", extract "name" as the field type.
+> 7. **Return Parameter Area Data Record Format**: Display return parameter names and corresponding (field name, field type, display name, remarks) in a table, with remarks empty.
+> 8. **Interface Name Exclusions**: Interface names should not include "construct", "queryByPk", "queryListByEntity", "queryOneByWrapper".
+> 9. **Overall Processing Flow**: Process the interface list, request parameter data area, and return parameter data area separately as described above.
+> 10. **Request Parameter Association Display**: In the processed interface list, query corresponding parameter information in the request parameter data area based on the request parameter name, and display (field name, field type, display name, remarks) in a table after the corresponding interface information.
+> 11. **Return Parameter Association Display**: In the processed interface list, query corresponding parameter information in the return parameter data area based on the return parameter name, and display (field name, field type, display name, remarks) in a table below the request parameters of the corresponding interface.

@@ -1,25 +1,26 @@
 ---
-title: 视图：实现多个视图切换
+title: Views:Implementing Multiple View Switching
 index: true
 category:
-   - 前端
+   - Frontend
 order: 11
 ---
-在日常项目开发中，我们可能会遇到当前视图是个表格，通过某个操作按钮将它变成卡片的形式.
+
+In daily project development, we may encounter scenarios where the current view is a table, and clicking an action button transforms it into a card layout.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024101608054182.png)
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024101608053728.png)
 
-本文将引领大家实现该项功能。从上述两张图片不难看出，无论是表格还是卡片，均处于当前视图范围之内。因此，我们需要一个视图容器来对表格与卡片进行封装。鉴于表格可采用平台默认的表格渲染方式，我们仅需针对卡片进行自定义设置。 我们以资源模块下的国家菜单为例来实现此功能，对应的 URL 如下：
+This article guides you through implementing this feature. As shown in the images, both the table and card views are contained within the current view scope. Therefore, we need a view container to encapsulate both the table and card. Since the table can use the platform's default rendering, we only need to customize the card view. We'll use the country menu in the resource module as an example, with the corresponding URL:
 
 ```plain
 http://localhost:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountry;action=resource%23%E5%9B%BD%E5%AE%B6;scene=resource%23%E5%9B%BD%E5%AE%B6;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
-# 一、源码下载
+# I. Source Code Download
 [views](https://doc.oinone.top/wp-content/uploads/2024/10/views.zip)
 
-# 二、创建外层的视图容器
-刚刚我们讲过，不管是`表格`还是`卡片`，它都在当前的视图里面，所以我们需要写一个视图容器来包裹它们，并且对应的容器里面允许拆入`表格`跟`卡片`，我们先创建`TableWithCardViewWidget.ts`
+# II. Creating an Outer View Container
+As mentioned, both the table and card views reside within the current view, so we need a view container to wrap them, allowing the container to include both table and card components. First, create `TableWithCardViewWidget.ts`:
 
 ```typescript
 // TableWithCardViewWidget.ts
@@ -38,7 +39,7 @@ enum ListViewType {
 )
   export class TableWithCardViewWidget extends BaseElementWidget {
     @Widget.Reactive()
-    private listViewType: ListViewType = ListViewType.TABLE; // 当前视图展示的类型，是展示卡片还是表格
+    private listViewType: ListViewType = ListViewType.TABLE; // Current view type (table or card)
 
     public initialize(props) {
       if (!props.slotNames) {
@@ -52,16 +53,16 @@ enum ListViewType {
   }
 ```
 
-在`TableWithCardViewWidget`中的`initialize`函数中，我们定义了两个插槽: `tableWidget`、`cardWidget`，所以需要在对应的 vue 文件里面里接收这两个插槽
+In the `initialize` function of `TableWithCardViewWidget`, we define two slots: `tableWidget` and `cardWidget`, which need to be received in the corresponding Vue file:
 
 ```vue
 <template>
   <div class="list-view-wrapper">
-    <!-- 表格插槽 -->
+    <!-- Table slot -->
     <div style="height: 100%" v-if="listViewType === 'table'">
       <slot name="tableWidget" />
     </div>
-    <!-- 卡片插槽 -->
+    <!-- Card slot -->
     <div v-if="listViewType === 'card'">
       <slot name="cardWidget"></slot>
     </div>
@@ -80,12 +81,11 @@ enum ListViewType {
     }
   });
 </script>
-
 ```
 
-这样一来，我们就定义好了视图容器，接下来就是通过自定义 layout 的方式注册该容器
+With the view container defined, we now register it via a custom layout.
 
-# 三、layout注册
+# III. Layout Registration
 ```javascript
 import { registerLayout, ViewType } from '@kunlun/dependencies';
 
@@ -121,10 +121,9 @@ registerLayout(
     viewType: ViewType.Table
   }
 );
-
 ```
 
-这个 layout 是基于平台默认的 table layout 改造的，大家可以看到
+This layout is adapted from the platform's default table layout. Notice:
 
 ```xml
 <element widget="TableWithCardViewWidget">
@@ -137,7 +136,7 @@ registerLayout(
 </element>
 ```
 
-这段模版是将自定义的视图容器`TableWithCardViewWidget`注册进去，并且有两个 template, 每个template 里面的 slot 属性其实就是在`TableWithCardViewWidget`中的`initialize`函数定义的两个插槽: tableWidget、cardWidget，这两个名字要对应上。
+This template registers the custom view container `TableWithCardViewWidget` with two templates. The `slot` attributes in each template correspond to the `tableWidget` and `cardWidget` slots defined in the `initialize` function of `TableWithCardViewWidget`:
 
 ```xml
 <template slot="tableWidget">
@@ -149,9 +148,7 @@ registerLayout(
 </template>
 ```
 
-第一个 slot 是 tableWidget，内部是默认的表格 layout，所以在运行时的时候，会渲染平台默认的表格组件
-
-
+The first slot `tableWidget` contains the default table layout, which will render the platform's default table component at runtime.
 
 ```xml
 <template slot="cardWidget">
@@ -159,9 +156,9 @@ registerLayout(
 </template>
 ```
 
-第二个 slot 是 cardWidget，里面渲染的是 `CardListViewWidget`, 所以这个时候我们需要按照自定义视图的方式自定义`CardListViewWidget`即可。
+The second slot `cardWidget` renders `CardListViewWidget`, which we need to customize as a custom view.
 
-# 四、自定义卡片
+# IV. Customizing the Card View
 ```typescript
 // CardListViewWidget.ts
 
@@ -276,26 +273,25 @@ import cardList from './card-list.vue';
     }
   });
 </script>
-
 ```
 
-当卡片对应的 widget 写完后，我们还需要一个切换卡片跟表格的功能。
+After completing the card widget, we need a function to switch between card and table views.
 
-# 五、视图类型切换
-我们只需要在`TableWithCardViewWidget`对应的 vue 里面添加切换视图类型的功能就行了。
+# V. View Type Switching
+Add the view switching function to the Vue file corresponding to `TableWithCardViewWidget`:
 
 ```vue
 <template>
   <div class="list-view-wrapper">
-    <!-- 切换视图类型 -->
+    <!-- View type switch button -->
     <button @click="onChangeViewType(listViewType === 'table' ? 'card' : 'table')">
       {{ listViewType === 'table' ? '切换成卡片' : '切换成表格' }}
     </button>
-    <!-- 表格插槽 -->
+    <!-- Table slot -->
     <div style="height: 100%" v-if="listViewType === 'table'">
       <slot name="tableWidget" />
     </div>
-    <!-- 卡片插槽 -->
+    <!-- Card slot -->
     <div v-if="listViewType === 'card'">
       <slot name="cardWidget"></slot>
     </div>
@@ -314,10 +310,9 @@ import cardList from './card-list.vue';
     }
   });
 </script>
-
 ```
 
-最后在`TableWithCardViewWidget.ts`里面写对应的`onChangeViewType`方法即可。
+Finally, implement the `onChangeViewType` method in `TableWithCardViewWidget.ts`:
 
 ```javascript
 public resetSearch() {
@@ -340,7 +335,7 @@ public resetSearch() {
     this.listViewType = viewType;
     this.reloadDataSource(undefined);
     this.reloadActiveRecords(undefined);
-    // 重置搜索，如果有需要就放开
+    // Uncomment to reset search if needed
     // this.resetSearch();
     if (!init) {
       const tableWidget = this.dslSlots?.tableWidget?.widgets?.[0];
@@ -355,5 +350,4 @@ public resetSearch() {
   }
 ```
 
-这样一来，我们就完成了所有的功能。
-
+This completes all the functionality for switching between multiple views.

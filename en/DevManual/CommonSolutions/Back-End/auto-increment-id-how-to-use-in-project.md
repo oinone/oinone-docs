@@ -1,46 +1,46 @@
 ---
-title: 自增ID：如何在项目中使用自增ID
+title: Auto-increment ID:How to Use Auto-increment IDs in Projects
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 65
 ---
-Oinone 所有的模型都会继承自 IdModel（包括直接或间接继承），主键默认生成规则是分布式 ID； 平台内部实现接口：`pro.shushi.pamirs.meta.api.core.compute.systems.type.gen.IdGenerator`， 基于雪花算法。
+All models in Oinone inherit from IdModel (including direct or indirect inheritance), and the default primary key generation rule is a distributed ID; The platform internally implements the interface: `pro.shushi.pamirs.meta.api.core.compute.systems.type.gen.IdGenerator`, based on the Snowflake algorithm.
 
-在某些场景下，需把主键设置为自增，本文讲讲解怎么把 id 的生成规则改为自增的方式。 自增的方式可以是针对单个模型，也可以是全局的（针对数据源）
+In some scenarios, the primary key needs to be set as auto-increment. This article explains how to change the ID generation rule to the auto-increment method. The auto-increment method can be applied to a single model or globally (for data sources).
 
-# 一、模型设置自增主键
+# 一、Setting Auto-increment Primary Key for Models
 
-字段指定 PrimaryKey 的规则，`@Field.PrimaryKey(keyGenerator = KeyGeneratorEnum.AUTO_INCREMENT)`
+Specify the PrimaryKey rule for the field with `@Field.PrimaryKey(keyGenerator = KeyGeneratorEnum.AUTO_INCREMENT)`.
 
 ```java
 @Model.model(ProjectInfo.MODEL_MODEL)
-@Model(displayName = "项目信息", labelFields = "projectName")
+@Model(displayName = "Project Information", labelFields = "projectName")
 @Model.Advanced(unique = {"projectCode"})
 public class ProjectInfo extends IdModel {
 
     public static final String MODEL_MODEL = "hr.simple.ProjectInfo";
 
-    // 主键字段，设置主键为自增
+    // Primary key field, set as auto-increment
     @Field.Integer
     @Field.PrimaryKey(keyGenerator = KeyGeneratorEnum.AUTO_INCREMENT)
     @Field.Advanced(batchStrategy = FieldStrategyEnum.NEVER)
-    @Field(displayName = "id", summary = "Id字段，⾃增")
+    @Field(displayName = "id", summary = "Id field, auto-increment")
     private Long id;
 
-    @Field(displayName = "项目编码", required = true)
+    @Field(displayName = "Project Code", required = true)
     public String projectCode;
 
-    @Field(displayName = "项目名称", required = true)
+    @Field(displayName = "Project Name", required = true)
     public String projectName;
 
     //……
 }
 ```
 
-# 二、全局设置自增主键
+# 二、Global Setting for Auto-increment Primary Key
 
-通过在`application.yml`中指定数据库的id生成规则（可全局配置，也可单个数据源配置）。 在 yml中查找关键字`key-generator`，默认为`DISTRIBUTION`(即分布式 id )，可修改为 `AUTO_INCREMENT`(自增 id )；若数据源下某些存储模型单独配置，则优先去模型上的规则。
+Specify the database ID generation rule in `application.yml` (can be configured globally or for a single data source). In the yml file, find the keyword `key-generator`, which defaults to `DISTRIBUTION` (i.e., distributed ID), and change it to `AUTO_INCREMENT` (auto-increment ID); if certain storage models under the data source are configured separately, the model-level rules take precedence.
 
 ```yaml
 pamirs:
@@ -54,7 +54,7 @@ pamirs:
       "[base.Function]":
         read: 500
         write: 2000
-    global: # 全局配置
+    global: # Global configuration
       table-info:
         logic-delete: true
         logic-delete-column: is_deleted
@@ -65,51 +65,39 @@ pamirs:
         key-generator: DISTRIBUTION
       table-pattern: '${moduleAbbr}_%s'
     ds:
-      biz: # 单个数据源配置，优先级高
+      biz: # Single data source configuration, higher priority
         table-info:
-          # 跟全局一样的配置可以不用重复配置
+          # Skip repeating configurations same as global
           logic-delete: true
           logic-delete-column: is_deleted
           logic-delete-value: REPLACE(unix_timestamp(NOW(6)),'.','')
           optimistic-locker: false
           optimistic-locker-column: opt_version
-          # ID生成方式：1、DISTRIBUTION：分布式ID；2、AUTO_INCREMENT：自增ID
+          # ID generation methods: 1、DISTRIBUTION: Distributed ID; 2、AUTO_INCREMENT: Auto-increment ID
           key-generator: AUTO_INCREMENT
         table-pattern: '${moduleAbbr}_%s'
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-# 三、手动方式获取 ID
+# 三、Manual Way to Obtain IDs
 
 ```java
 /**
-* 在特定场景下需要手动获取Id
+* Manually obtain IDs in specific scenarios
 */
 public void manualSetIdCode(){
     DemoItem demoItem = new DemoItem();
-    //手动获取ID
+    // Manually obtain ID
     Object idObj =  Spider.getDefaultExtension(IdGenerator.class).generate(PamirsTableInfo.fetchKeyGenerator(DemoItem.MODEL_MODEL));
     demoItem.setId(TypeUtils.createLong(idObj));
     //……
 }
 ```
 
-# 四、最佳实践
+# 四、Best Practices
 
-若项目中存在修改id的规则或者手动获取 ID，你应该明确为什么要这么做^_^； 通常情况：
+If there is a need to modify the ID generation rule or manually obtain IDs in the project, you should clarify the rationale behind such changes^_^; Typically:
 
-1、无需修改 id 的生成规则，使用默认的即可；
-
-2、无需手动获取 id，模型对象在执行创建 (create) 时，若 id 字段的值为空则会自动根据规则进行填充
-
-
-
-
-
-
-
-
-
-
-
+1. There is no need to modify the ID generation rule—use the default one.
+2. There is no need to manually obtain IDs. When creating a model object (via create), if the ID field is empty, it will be automatically populated according to the rule.

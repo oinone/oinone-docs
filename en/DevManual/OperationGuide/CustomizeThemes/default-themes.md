@@ -1,16 +1,16 @@
 ---
-title: 组件默认主题变量
+title: Default Themes
 index: true
 category:
-  - 研发手册
-  - 操作指南
-  - 自定义主题
+ - Development Manual
+ - Operation Guide
+ - Custom Themes
 order: 1
 prev:
-  text: 自定义主题
-  link: /en/DevManual/OperationGuide/CustomizeThemes/README.md
+    text: Custom Themes
+    link: /en/DevManual/OperationGuide/CustomizeThemes/README.md 
 ---
-### 1、应用切换组件（app-switch）
+### 1、app-switch
 
 ```typescript
 {
@@ -25,7 +25,7 @@ prev:
 }
 ```
 
-### 2、按钮（button）
+### 2、button
 
 ```typescript
 {
@@ -632,7 +632,7 @@ prev:
 }
 ```
 
-### 3、多选框（Checkbox）
+### 3、Checkbox
 
 ```typescript
 {
@@ -643,7 +643,7 @@ prev:
 }
 ```
 
-### 4、日期时间选择器（datetime）
+### 4、datetime
 
 ```typescript
 {
@@ -651,7 +651,7 @@ prev:
 }
 ```
 
-### 5、抽屉（drawer）
+### 5、drawer
 
 ```typescript
 {
@@ -664,7 +664,7 @@ prev:
 }
 ```
 
-### 6、下拉菜单（dropdown）
+### 6、dropdown
 
 ```typescript
 {
@@ -680,7 +680,7 @@ prev:
 }
 ```
 
-### 7、表单项（form-item）
+### 7、form-item
 
 ```typescript
 {
@@ -691,7 +691,7 @@ prev:
 }
 ```
 
-### 8、顶部栏（header）
+### 8、header
 
 ```typescript
 {
@@ -700,7 +700,7 @@ prev:
 }
 ```
 
-### 9、输入框（input）
+### 9、input
 
 ```typescript
 {
@@ -744,9 +744,9 @@ prev:
 }
 ```
 
-### 10、菜单（menu）
+### 10、menu
 
-#### 大（large）
+#### large
 
 ```typescript
 {
@@ -804,7 +804,7 @@ prev:
 }
 ```
 
-#### 中（medium）
+#### medium
 
 ```typescript
 {
@@ -862,7 +862,7 @@ prev:
 }
 ```
 
-#### 小（small）
+#### small
 
 ```typescript
 {
@@ -920,7 +920,7 @@ prev:
 }
 ```
 
-### 11、弹出框（modal）
+### 11、modal
 
 ```typescript
 {
@@ -934,7 +934,7 @@ prev:
 }
 ```
 
-### 12、选项卡（multi-tab）
+### 12、multi-tab
 
 ```typescript
 {
@@ -971,22 +971,9 @@ prev:
 }
 ```
 
-### 13、分页器（pagination）
+### 13、pagination
 
-#### 大（large）
-
-```typescript
-{
-    "pagination-background": "var(--oio-background)",
-    "pagination-border-color": "var(--oio-border-color)",
-    "pagination-text-color": "var(--oio-text-color-secondary)",
-    "pagination-height": "32px",
-    "pagination-item-height": "30px",
-    "pagination-item-width": "32px"
-}
-```
-
-#### 中（medium）
+#### large
 
 ```typescript
 {
@@ -999,7 +986,20 @@ prev:
 }
 ```
 
-#### 小（small）
+#### medium
+
+```typescript
+{
+    "pagination-background": "var(--oio-background)",
+    "pagination-border-color": "var(--oio-border-color)",
+    "pagination-text-color": "var(--oio-text-color-secondary)",
+    "pagination-height": "32px",
+    "pagination-item-height": "30px",
+    "pagination-item-width": "32px"
+}
+```
+
+#### small
 
 ```typescript
 {
@@ -1012,7 +1012,7 @@ prev:
 }
 ```
 
-### 14、气泡确认框（popconfirm）
+### 14、popconfirm
 
 ```typescript
 {
@@ -1023,7 +1023,7 @@ prev:
 }
 ```
 
-### 15、富文本（rich-text）
+### 15、rich-text
 
 ```typescript
 {
@@ -1049,7 +1049,7 @@ prev:
 }
 ```
 
-### 16、滚动条（scrollbar）
+### 16、scrollbar
 
 ```typescript
 {
@@ -1058,53 +1058,9 @@ prev:
 }
 ```
 
-### 17、下拉选择（select）
+### 17、select
 
-#### 大（large）
-
-```typescript
-{
-    "select-background": "#ffffff",
-    "select-border-width": "var(--oio-border-width)",
-    "select-border-style": "var(--oio-border-style)",
-    "select-border-color": "var(--oio-border-color)",
-    "select-border-radius": "var(--oio-border-radius)",
-    "select-outline": "none",
-    "select-shadow": "none",
-    "select-text-color": "var(--oio-text-color)",
-    "select-counter-background": "#ffffff",
-    "select-counter-color": "rgba(0, 0, 0, 0.25)",
-    "select-counter-font-size": "var(--oio-font-size-sm)",
-    "select-background-hover": "var(--oio-select-background)",
-    "select-border-width-hover": "var(--oio-select-border-width)",
-    "select-border-style-hover": "var(--oio-select-border-style)",
-    "select-border-color-hover": "var(--oio-primary-color-hover)",
-    "select-border-radius-hover": "var(--oio-select-border-radius)",
-    "select-outline-hover": "var(--oio-select-outline)",
-    "select-shadow-hover": "var(--oio-select-shadow)",
-    "select-text-color-hover": "var(--oio-select-text-color)",
-    "select-background-focus": "var(--oio-select-background)",
-    "select-border-width-focus": "var(--oio-select-border-width)",
-    "select-border-style-focus": "var(--oio-select-border-style)",
-    "select-border-color-focus": "var(--oio-primary-color-hover)",
-    "select-border-radius-focus": "var(--oio-select-border-radius)",
-    "select-outline-focus": "var(--oio-select-outline)",
-    "select-shadow-focus": "0px 0px 0px 2px rgba(3,93,255,0.1);",
-    "select-text-color-focus": "var(--oio-select-text-color)",
-    "select-readonly-border-color": "var(--oio-readonly-border-color)",
-    "select-item-readonly-bg": "var(--oio-primary-color-rgb)",
-    "select-item-readonly-color": "var(--oio-primary-color)",
-    "select-item-readonly-radius": "var(--oio-border-radius)",
-    "select-dropdown-background": "#fff",
-    "select-dropdown-selected-color": "var(--oio-primary-color)",
-    "select-dropdown-color": "var(--oio-text-color-secondary)",
-    "select-dropdown-selected": "rgba(var(--oio-primary-color-rgb), 0.1)",
-    "select-dropdown-box-shadow": "0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),0 9px 28px 8px rgba(0, 0, 0, 0.05)",
-    "select-line-height": "22px"
-}
-```
-
-#### 中（medium）
+#### large
 
 ```typescript
 {
@@ -1148,7 +1104,51 @@ prev:
 }
 ```
 
-#### 小（small）
+#### medium
+
+```typescript
+{
+    "select-background": "#ffffff",
+    "select-border-width": "var(--oio-border-width)",
+    "select-border-style": "var(--oio-border-style)",
+    "select-border-color": "var(--oio-border-color)",
+    "select-border-radius": "var(--oio-border-radius)",
+    "select-outline": "none",
+    "select-shadow": "none",
+    "select-text-color": "var(--oio-text-color)",
+    "select-counter-background": "#ffffff",
+    "select-counter-color": "rgba(0, 0, 0, 0.25)",
+    "select-counter-font-size": "var(--oio-font-size-sm)",
+    "select-background-hover": "var(--oio-select-background)",
+    "select-border-width-hover": "var(--oio-select-border-width)",
+    "select-border-style-hover": "var(--oio-select-border-style)",
+    "select-border-color-hover": "var(--oio-primary-color-hover)",
+    "select-border-radius-hover": "var(--oio-select-border-radius)",
+    "select-outline-hover": "var(--oio-select-outline)",
+    "select-shadow-hover": "var(--oio-select-shadow)",
+    "select-text-color-hover": "var(--oio-select-text-color)",
+    "select-background-focus": "var(--oio-select-background)",
+    "select-border-width-focus": "var(--oio-select-border-width)",
+    "select-border-style-focus": "var(--oio-select-border-style)",
+    "select-border-color-focus": "var(--oio-primary-color-hover)",
+    "select-border-radius-focus": "var(--oio-select-border-radius)",
+    "select-outline-focus": "var(--oio-select-outline)",
+    "select-shadow-focus": "0px 0px 0px 2px rgba(3,93,255,0.1);",
+    "select-text-color-focus": "var(--oio-select-text-color)",
+    "select-readonly-border-color": "var(--oio-readonly-border-color)",
+    "select-item-readonly-bg": "var(--oio-primary-color-rgb)",
+    "select-item-readonly-color": "var(--oio-primary-color)",
+    "select-item-readonly-radius": "var(--oio-border-radius)",
+    "select-dropdown-background": "#fff",
+    "select-dropdown-selected-color": "var(--oio-primary-color)",
+    "select-dropdown-color": "var(--oio-text-color-secondary)",
+    "select-dropdown-selected": "rgba(var(--oio-primary-color-rgb), 0.1)",
+    "select-dropdown-box-shadow": "0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),0 9px 28px 8px rgba(0, 0, 0, 0.05)",
+    "select-line-height": "22px"
+}
+```
+
+#### small
 
 ```typescript
 {
@@ -1192,7 +1192,7 @@ prev:
 }
 ```
 
-### 18、开关（switch）
+### 18、switch
 
 ```typescript
 {
@@ -1200,9 +1200,9 @@ prev:
 }
 ```
 
-### 19、表格（table）
+### 19、table
 
-#### 大（large）
+#### large
 
 ```typescript
 {
@@ -1230,7 +1230,7 @@ prev:
 }
 ```
 
-#### 中（medium）
+#### medium
 
 ```typescript
 {
@@ -1258,7 +1258,7 @@ prev:
 }
 ```
 
-#### 小（small）
+#### small
 
 ```typescript
 {
@@ -1286,9 +1286,9 @@ prev:
 }
 ```
 
-### 20、选项卡（tabs）
+### tabs
 
-#### 大（large）
+#### large
 
 ```typescript
 {
@@ -1296,7 +1296,7 @@ prev:
 }
 ```
 
-#### 中（medium）
+#### medium
 
 ```typescript
 {
@@ -1304,7 +1304,7 @@ prev:
 }
 ```
 
-#### 小（small）
+#### small
 
 ```typescript
 {
@@ -1312,7 +1312,7 @@ prev:
 }
 ```
 
-### 21、多行文本（textarea）
+### 21、textarea
 
 ```typescript
 {
@@ -1343,7 +1343,7 @@ prev:
 }
 ```
 
-### 22、穿梭框（transfer）
+### 22、transfer
 
 ```typescript
 {
@@ -1352,18 +1352,9 @@ prev:
 }
 ```
 
-### 23、树选择（tree-select）
+### 23、tree-select
 
-#### 大（large）
-
-```typescript
-{
-    "tree-select-selection-height": "24px",
-    "tree-select-selection-line-height": "22px"
-}
-```
-
-#### 中（medium）
+#### large
 
 ```typescript
 {
@@ -1372,7 +1363,16 @@ prev:
 }
 ```
 
-#### 小（small）
+#### medium
+
+```typescript
+{
+    "tree-select-selection-height": "24px",
+    "tree-select-selection-line-height": "22px"
+}
+```
+
+#### small
 
 ```typescript
 {
@@ -1381,7 +1381,7 @@ prev:
 }
 ```
 
-### 24、上传（upload）
+### 24、upload
 
 ```typescript
 {

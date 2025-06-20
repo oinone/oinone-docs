@@ -1,21 +1,21 @@
 ---
-title: 配置说明：函数之触发与定时配置和示例
+title: Configuration Guide:Function Trigger and Scheduling Configuration with Examples
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 68
 ---
 
-# 一、异步任务总体介绍
-在众多应用场景中，函数的触发与定时机制具有至关重要的作用，同时，这也是 Oinone 平台所具备的一项基础且核心的能力。以 Oinone 的流程产品为例，当用户在定义流程触发条件时，系统会为其提供选择，可选择基于模型触发，亦或是基于时间触发。这种设计方式充分借助了函数的触发与定时能力，能够满足不同业务流程对于触发条件多样化的需求，从而使用户可以根据实际业务场景，灵活且精准地设定流程启动的时机，进一步提升了产品在流程管理方面的灵活性与适应性。
+# 一、Overall Introduction to Asynchronous Tasks
+In numerous application scenarios, the trigger and scheduling mechanisms of functions play a crucial role, and this is also a fundamental and core capability of the Oinone platform. Taking Oinone's process products as an example, when users define process trigger conditions, the system provides options to choose between model-based triggering or time-based triggering. This design fully leverages the triggering and scheduling capabilities of functions to meet the diverse needs of different business processes for trigger conditions, enabling users to flexibly and accurately set the timing for process initiation according to actual business scenarios, thereby enhancing the flexibility and adaptability of the product in process management.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1235-1024x651-20250530144823048.png)
 
-# 二、触发任务TriggerTaskAction
-+ **触发任务的创建流程**：借助 sql - record 模块对 mysql 的 binlog 事件予以监听。一旦监听到相关事件，便通过 rocketmq 发送包含变更数据的消息。当接收到此 MQ 消息后，系统会随即创建 TriggerAutoTask。这一过程实现了从数据库操作日志监听，到消息传递，再到任务创建的一系列自动化流程，确保触发任务能够依据数据库变更及时生成。
-+ **触发任务的执行流程**：运用 TBSchedule 工具拉取已创建的触发任务。在成功拉取任务后，系统将执行与之对应的函数，从而完成整个触发任务从创建到执行的完整闭环操作，实现业务逻辑的自动化处理。
+# 二、Trigger Task (TriggerTaskAction)
++ **Creation Process of Trigger Task**: The sql-record module is used to monitor binlog events of MySQL. Once related events are detected, a message containing changed data is sent via RocketMQ. Upon receiving this MQ message, the system immediately creates a TriggerAutoTask. This process realizes a series of automated workflows from database operation log monitoring, message transmission, to task creation, ensuring that trigger tasks can be generated in a timely manner based on database changes.
++ **Execution Process of Trigger Task**: The TBSchedule tool is used to pull the created trigger tasks. After successfully pulling the tasks, the system executes the corresponding functions, completing the full closed-loop operation from task creation to execution of the trigger task, realizing automated processing of business logic.
 
-## （一）项目中引入依赖
-1、项目的 API 工程引入依赖 pamirs-core-trigger 模块
+## (一) Introducing Dependencies in the Project
+1. The project's API engineering introduces the pamirs-core-trigger module dependency.
 
 ```xml
 <dependency>
@@ -24,13 +24,13 @@ order: 68
 </dependency>
 ```
 
-2、DemoModule 在模块依赖定义中增加 `@Module(dependencies={TriggerModule.MODULE_MODULE})`
+2. DemoModule adds `@Module(dependencies={TriggerModule.MODULE_MODULE})` in the module dependency definition.
 
 ```java
 @Component
 @Module(
     name = DemoModule.MODULE_NAME,
-    displayName = "oinoneDemo工程",
+    displayName = "oinoneDemo Engineering",
     version = "1.0.0",
     dependencies = {ModuleConstants.MODULE_BASE, CommonModule.MODULE_MODULE, UserModule.MODULE_MODULE, TriggerModule.MODULE_MODULE}
 )
@@ -38,11 +38,11 @@ order: 68
 @Module.Advanced(selfBuilt = true, application = true)
 @UxHomepage(PetShopProxy.MODEL_MODEL)
 public class DemoModule implements PamirsModule {
-    ……其他代码
+    ……Other codes
 }
 ```
 
-3、项目的 boot 工程引入依赖
+3. The project's boot engineering introduces dependencies.
 
 ```xml
 <dependency>
@@ -57,18 +57,17 @@ public class DemoModule implements PamirsModule {
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-sql-record-core</artifactId>
 </dependency>
-
 ```
 
-## （二）yml文件修改（applcation-xxx.yml）
-+ 将配置参数 `pamris.event.enabled` 与 `pamris.event.schedule.enabled` 的值调整为 true。
-+ 在 `pamirs_boot_modules` 中添加以下启动模块：trigger、sql_record。
+## (二) Modifying the yml File (application-xxx.yml)
++ Adjust the values of configuration parameters `pamris.event.enabled` and `pamris.event.schedule.enabled` to true.
++ Add the following startup modules in `pamirs_boot_modules`: trigger, sql_record.
 
 ```yaml
 pamirs:
   record:
     sql:
-      #改成自己路径
+      # Modify to your own path
       store: /opt/pamirs/logs
 ...
 event:
@@ -88,10 +87,10 @@ boot:
     -……
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## （三）新建触发任务
-创建名为 `PetTalentTrigger` 的类。该类被设定为，当 `PetTalent` 模型中的数据记录完成新建操作之后，系统将自动触发并执行一系列相关事务。
+## (三) Creating a New Trigger Task
+Create a class named `PetTalentTrigger`. This class is designed such that when a new data record is completed in the `PetTalent` model, the system will automatically trigger and execute a series of related transactions.
 
 ```java
   package pro.shushi.pamirs.demo.core.trigger;
@@ -107,22 +106,22 @@ import pro.shushi.pamirs.trigger.enmu.TriggerConditionEnum;
 @Slf4j
 public class PetTalentTrigger {
     @Function
-    @Trigger(displayName = "PetTalent创建时触发",name = "PetTalent#Trigger#onCreate",condition = TriggerConditionEnum.ON_CREATE)
-    public PetTalent onCreate(PetTalent data){
-        log.info(data.getName() + "，被创建");
-        //可以增加逻辑
+    @Trigger(displayName = "Trigger when PetTalent is created", name = "PetTalent#Trigger#onCreate", condition = TriggerConditionEnum.ON_CREATE)
+    public PetTalent onCreate(PetTalent data) {
+        log.info(data.getName() + " has been created");
+        // Additional logic can be added here
         return data;
     }
 }
 ```
 
-# 三、定时任务
-定时任务是一种非常常见的模式，这里就不介绍概念了，直接进入示例环节
+# 三、Scheduled Tasks
+Scheduled tasks are a very common pattern, so we won't introduce the concept here and directly jump into the example.
 
-## （一）新建 PetTalentAutoTask 实现 ScheduleAction
-+ `getInterfaceName()` 的设定需与 `taskAction.setExecuteNamespace` 的定义保持一致，二者均为函数的命名空间。
-+ `taskAction.setExecuteFun("execute")` 需与执行函数名 `execute` 保持一致。
-+ `TaskType` 应配置为 `CYCLE_SCHEDULE_NO_TRANSACTION_TASK`，如此可将定时任务的 `schedule` 线程分离。否则，若存在一个执行时间较长的任务，将会致使普通异步任务或触发任务全部出现延时情况。
+## (一) Creating PetTalentAutoTask to Implement ScheduleAction
++ The setting of `getInterfaceName()` needs to be consistent with the definition of `taskAction.setExecuteNamespace`, both being the namespace of the function.
++ `taskAction.setExecuteFun("execute")` needs to be consistent with the execution function name `execute`.
++ `TaskType` should be configured as `CYCLE_SCHEDULE_NO_TRANSACTION_TASK`, which can separate the `schedule` thread of the scheduled task. Otherwise, if there is a task with a long execution time, it will cause delays in all ordinary asynchronous tasks or trigger tasks.
 
 ```java
 package pro.shushi.pamirs.demo.core.task;
@@ -151,42 +150,44 @@ public class PetTalentAutoTask implements ScheduleAction {
     @Autowired
     private ScheduleTaskActionService scheduleTaskActionService;
 
-    public void initTask(){
+    public void initTask() {
         ScheduleTaskAction taskAction = new ScheduleTaskAction();
-        taskAction.setDisplayName("定时任务测试"); //定时任务描述
-        taskAction.setDescription("定时任务测试");
-        taskAction.setTechnicalName(PetTalent.MODEL_MODEL+"#"+PetTalentAutoTask.class.getSimpleName()+"#"+"testAutoTask");       //设置定时任务技术名
-        taskAction.setLimitExecuteNumber(-1);   //设置执行次数
-        taskAction.setPeriodTimeValue(1);       //设置执行周期规则
+        taskAction.setDisplayName("Scheduled Task Test"); // Description of the scheduled task
+        taskAction.setDescription("Scheduled Task Test");
+        taskAction.setTechnicalName(PetTalent.MODEL_MODEL + "#" + PetTalentAutoTask.class.getSimpleName() + "#" + "testAutoTask");       // Set the technical name of the scheduled task
+        taskAction.setLimitExecuteNumber(-1);   // Set the number of executions
+        taskAction.setPeriodTimeValue(1);       // Set the execution period rule
         taskAction.setPeriodTimeUnit(TimeUnitEnum.MINUTE);
         taskAction.setPeriodTimeAnchor(TriggerTimeAnchorEnum.START);
-        taskAction.setLimitRetryNumber(1);      //设置失败重试规则
+        taskAction.setLimitRetryNumber(1);      // Set the failure retry rule
         taskAction.setNextRetryTimeValue(1);
         taskAction.setNextRetryTimeUnit(TimeUnitEnum.MINUTE);
         taskAction.setExecuteNamespace(PetTalent.MODEL_MODEL);
         taskAction.setExecuteFun("execute");
         taskAction.setExecuteFunction(new FunctionDefinition().setTimeout(5000));
-        taskAction.setTaskType(TaskType.CYCLE_SCHEDULE_NO_TRANSACTION_TASK.getValue()); //设置定时任务，执行任务类型
-        taskAction.setContext(null);            //用户传递上下文参数
-        taskAction.setActive(true);             //定时任务是否生效
+        taskAction.setTaskType(TaskType.CYCLE_SCHEDULE_NO_TRANSACTION_TASK.getValue()); // Set the scheduled task execution type
+        taskAction.setContext(null);            // User-defined context parameters
+        taskAction.setActive(true);             // Whether the scheduled task is active
         taskAction.setFirstExecuteTime(System.currentTimeMillis());
-        scheduleTaskActionService.submit(taskAction);//初始化任务,幂等可重复执行
+        scheduleTaskActionService.submit(taskAction); // Initialize the task, idempotent and repeatable
     }
 
     @Override
-    public String getInterfaceName() {return PetTalent.MODEL_MODEL;}
+    public String getInterfaceName() {
+        return PetTalent.MODEL_MODEL;
+    }
 
     @Override
     @Function
     public Result<Void> execute(ScheduleItem item) {
-        log.info("testAutoTask,上次执行时间"+item.getLastExecuteTime());
+        log.info("testAutoTask, last execution time " + item.getLastExecuteTime());
         return new Result<>();
     }
 }
 ```
 
-## （二）修改 DemoModuleBizInit，进行定时任务初始化
-在模块进行更新操作时，调用 `petTalentAutoTask.initTask()` 方法。鉴于 `initTask` 自身具备幂等性，因而多次调用亦无妨。在《模块之生命周期》一文中，对 `InstallDataInit`、`UpgradeDataInit` 以及 `ReloadDataInit` 均有相关介绍。
+## (二) Modifying DemoModuleBizInit for Scheduled Task Initialization
+When the module is updated, call the `petTalentAutoTask.initTask()` method. Since `initTask` itself is idempotent, multiple calls are harmless. The "Module Lifecycle" article introduces `InstallDataInit`, `UpgradeDataInit`, and `ReloadDataInit`.
 
 ```java
 package pro.shushi.pamirs.demo.core.init;
@@ -214,21 +215,21 @@ UpgradeDataInit, ReloadDataInit {
 
     @Override
     public boolean init(AppLifecycleCommand command, String version) {
-        //安装指令执行逻辑
+        // Logic for installation command execution
         initTask();
         return Boolean.TRUE;
     }
 
     @Override
     public boolean reload(AppLifecycleCommand command, String version) {
-        //重启指令执行逻辑
+        // Logic for reload command execution
         initTask();
         return Boolean.TRUE;
     }
 
     @Override
     public boolean upgrade(AppLifecycleCommand command, String version, String existVersion) {
-        //升级指令执行逻辑
+        // Logic for upgrade command execution
         initTask();
         return Boolean.TRUE;
     }
@@ -239,11 +240,12 @@ UpgradeDataInit, ReloadDataInit {
     }
 
     @Override
-    public int priority() {return 0;}
+    public int priority() {
+        return 0;
+    }
 
     private void initTask() {
-        petTalentAutoTask.initTask(); //初始化petTalent的定时任务
+        petTalentAutoTask.initTask(); // Initialize the scheduled task for petTalent
     }
 }
 ```
-

@@ -2,29 +2,29 @@
 title: Mask
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 前端API
+  - Front-End API
   - Widget
 order: 3
 
 ---
-在 Oinone 客户端中的大多数界面都使用一种常见的布局：顶部是一个带有一些功能的控制组件，紧接着的下方区域分成了两部分，左侧是一个可以切换页面的菜单，右侧是一个主要内容区域。这是通过使用 `Mask` 渲染框架来实现的。
+Most interfaces in the Oinone client use a common layout: a control component with some functions at the top, followed by a lower area divided into two parts, a menu on the left for switching pages, and a main content area on the right. This is achieved using the `Mask` rendering framework.
 
-该框架提供两类内置母版：**默认母版**和 **多选项卡内联母版**。默认母版结构包括顶部栏（含应用切换、消息通知、语言切换、用户信息等组件）、侧边栏菜单、内容区的面包屑导航和主视图区域；多选项卡内联母版则将选项卡内联显示在内容区上方，其余布局与默认母版类似。
+The framework provides two types of built-in masters: **Default Master** and **Multi-Tab Inline Master**. The default master structure includes a top bar (with application switching, message notifications, language switching, user information, etc.), a sidebar menu, a breadcrumb navigation in the content area, and a main view area; the multi-tab inline master displays tabs inline above the content area, with the rest of the layout similar to the default master.
 
-框架内的组件分为六类：
+Components in the framework are divided into six categories:
 
-+ **导航组件**：包括面包屑、菜单、多选项卡，用于页面切换和路径导航；
-+ **顶部栏组件**：包含应用切换、消息通知、语言切换、用户信息，提供界面顶层功能控制；
-+ **布局组件**：如块级元素、容器、内容区、侧边栏等，负责界面结构划分；
-+ **其他组件**：例如分割线，用于界面元素分隔；
+- **Navigation Components**: Including breadcrumbs, menus, and multi-tabs, used for page switching and path navigation;
+- **Top Bar Components**: Including application switching, message notifications, language switching, and user information, providing top-level functional control for the interface;
+- **Layout Components**: Such as block elements, containers, content areas, sidebars, etc., responsible for interface structure division;
+- **Other Components**: Such as dividers, used for separating interface elements;
 
-此外，文档还列出了部分组件的类名、属性和方法（如公共组件的重新加载逻辑、导航组件的菜单处理等），为开发者调用和扩展组件功能提供了具体参考。
+In addition, the document lists the class names, attributes, and methods of some components (such as the reload logic of public components, menu processing of navigation components, etc.), providing specific references for developers to call and extend component functions.
 
-# 一、内置母版（Mask）
+# I. Built-in Masks (Mask)
 
-## （一）默认母版
+## (一) Default Mask
 
 ```xml
 <mask>
@@ -53,7 +53,7 @@ order: 3
 </mask>
 ```
 
-## （二）多选项卡内联母版
+## (二) Inline Multi-Tab Mask
 
 ```xml
 <mask>
@@ -84,78 +84,78 @@ order: 3
 </mask>
 ```
 
-# 二、母版组件
+# II. Mask Components
 
-在母版中使用的组件我们称为 **母版组件**，按照功能和位置，我们将其分为导航组件、顶部栏组件、布局组件以及其他组件。下面我们列出来目前平台中已有的所有母版组件，并在本章的最后提供了 API 文档供读者查阅。
+Components used in masks are called **Mask Components**. According to their functions and positions, they are divided into navigation components, top bar components, layout components, and other components. Below we list all existing mask components in the platform, and provide API documentation at the end of this chapter for readers to refer to.
 
-## （一）导航组件
+## (一) Navigation Components
 
-| **组件名称** | **类名**         | **用法**                       |
+| **Component Name** | **ClassName**         | **Usage**                       |
 | ------------ | ---------------- | ------------------------------ |
-| 面包屑       | BreadcrumbWidget | `<breadcrumb />`               |
-| 菜单         | MenuWidget       | `<widget widget="nav-menu" />` |
-| 多选项卡     | MultiTabsWidget  | `<multi-tabs />`               |
+| Breadcrumb       | BreadcrumbWidget | `<breadcrumb />`               |
+| Menu         | MenuWidget       | `<widget widget="nav-menu" />` |
+| Multi-Tab     | MultiTabsWidget  | `<multi-tabs />`               |
 
 
-## （二）顶部栏组件
+## (二) Top Bar Components
 
-| **组件名称** | **类名**           | **用法**                           |
+| **Component Name** | **ClassName**           | **Usage**                           |
 | ------------ | ------------------ | ---------------------------------- |
-| 应用切换     | AppSwitcherWidget  | `<widget widget="app-switcher" />` |
-| 消息通知     | NotificationWidget | `<widget widget="notification" />` |
-| 语言切换     | LanguageWidget     | `<widget widget="language" />`     |
-| 用户信息     | UserWidget         | `<widget widget="user" />`         |
+| App Switcher     | AppSwitcherWidget  | `<widget widget="app-switcher" />` |
+| Notification     | NotificationWidget | `<widget widget="notification" />` |
+| Language Switcher     | LanguageWidget     | `<widget widget="language" />`     |
+| User Info     | UserWidget         | `<widget widget="user" />`         |
 
 
-## （三）布局组件
+## (三) Layout Components
 
-| **组件名称** | **类名**            | **用法**                  |
+| **Component Name** | **ClassName**            | **Usage**                  |
 | ------------ | ------------------- | ------------------------- |
-| 块级元素     | MaskBlockWidget     | `<block></block>`         |
-| 容器组件     | MaskContainerWidget | `<container></container>` |
-| 内容布局     | MsakContentWidget   | `<content></content>`     |
-| 顶部布局     | MaskHeaderWidget    | `<header></header>`       |
-| 根组件       | MaskRootWidget      | `<mask></mask>`           |
-| 侧边栏       | MaskSidebarWidget   | `<sidebar></sidebar>`     |
+| Block Element     | MaskBlockWidget     | `<block></block>`         |
+| Container     | MaskContainerWidget | `<container></container>` |
+| Content Layout     | MsakContentWidget   | `<content></content>`     |
+| Top Layout     | MaskHeaderWidget    | `<header></header>`       |
+| Root Component     | MaskRootWidget      | `<mask></mask>`           |
+| Sidebar     | MaskSidebarWidget   | `<sidebar></sidebar>`     |
 
 
-## （四）其他组件
+## (四) Other Components
 
-| **组件名称** | **类名**      | **用法**                      |
+| **Component Name** | **ClassName**      | **Usage**                      |
 | ------------ | ------------- | ----------------------------- |
-| 分割线       | DividerWidget | `<widget widget="divider" />` |
+| Divider       | DividerWidget | `<widget widget="divider" />` |
 
 
-# 六、母版组件的注册
+# VI. Registration of Mask Components
 
-## （一）母版组件的注册可选项
+## (一) Registration Options for Mask Components
 
 ```xml
 /**
- * Mask组件注册可选项
+ * Mask component registration options
  */
 export interface BaseMaskOptions extends SPIOptions {
   /**
-   * 指定XML标签
+   * Specify the XML tag
    */
   dslNodeType?: string;
   /**
-   * 指定组件名称
+   * Specify the component name
    */
   widget?: string | string[];
 }
 ```
 
-从上述类型声明中不难发现，母版组件的注册仅包含两个属性：`dslNodeType` 和 `widget` 。使用不同属性会产生不同的表现，我们需要根据实际需要进行选择。
+It is not difficult to find from the above type declaration that the registration of mask components only includes two attributes: `dslNodeType` and `widget`. Using different attributes will produce different performances, and we need to choose according to actual needs.
 
-+ dslNodeType：对应 XML 标签，直接渲染指定组件。
-+ widget：通过 `MaskCommonWidget` 渲染指定组件。
+- dslNodeType: Corresponding to the XML tag, directly rendering the specified component.
+- widget: Render the specified component through `MaskCommonWidget`.
 
-下面，我们分别对这两个属性注册的组件进行介绍。
+Below, we introduce the components registered with these two attributes respectively.
 
-## （二）使用 dslNodeType 注册
+## (二) Registration Using dslNodeType
 
-以 `MaskBlockWidget` 为例：
+Take `MaskBlockWidget` as an example:
 
 ```typescript
 @SPI.ClassFactory(
@@ -166,7 +166,7 @@ export interface BaseMaskOptions extends SPIOptions {
 export class MaskBlockWidget extends BaseMaskLayoutWidget
 ```
 
-对于这个组件，在 `mask` 中通过 `block` 标签使用：
+For this component, use the `block` tag in `mask`:
 
 ```xml
 <block>
@@ -174,7 +174,7 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 </block>
 ```
 
-在浏览器中对应的 `DOM` 结构与 `Vue` 组件完全一致：
+The corresponding `DOM` structure in the browser is completely consistent with the `Vue` component:
 
 ```xml
 <div class="k-layout-block">
@@ -182,9 +182,9 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 </div>
 ```
 
-## （三）使用 widget 注册
+## (三) Registration Using widget
 
-以 `AppSwitcherWidget` 为例：
+Take `AppSwitcherWidget` as an example:
 
 ```typescript
 @SPI.ClassFactory(
@@ -195,13 +195,13 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 export class AppSwitcherWidget extends MaskWidget
 ```
 
-对于这个组件，在 `mask` 中使用 `XML` 标签：
+For this component, use the `XML` tag in `mask`:
 
 ```xml
 <widget widget="app-switcher" />
 ```
 
-在浏览器中对应的 `DOM` 结构会在 `Vue` 组件外侧包裹一个 `div` 标签，并且会声明 `class="k-layout-widget"` ：
+The corresponding `DOM` structure in the browser will wrap a `div` tag outside the `Vue` component and declare `class="k-layout-widget"`:
 
 ```xml
 <div class="k-layout-widget">
@@ -211,60 +211,60 @@ export class AppSwitcherWidget extends MaskWidget
 </div>
 ```
 
-## （四）最佳实践
+## (四) Best Practices
 
-### 1、使用 dslNodeType 注册
+### 1. Registration Using dslNodeType
 
-+ 容器类组件。如：header、block、container、sidebar 等。
-+ 不希望框架对组件产生副作用的独立组件。如：multi-tabs、breadcrumb 等。
+- Container components, such as: header, block, container, sidebar, etc.
+- Independent components that do not want the framework to have side effects, such as: multi-tabs, breadcrumb, etc.
 
-### 2、使用 widget 注册
+### 2. Registration Using widget
 
-+ 在带有布局的容器组件中定义的子组件。如：notification、divider、language 等。
+- Sub-components defined in container components with layouts, such as: notification, divider, language, etc.
 
-# 七、注册母版
+# VII. Registering Masks
 
-与注册组件类似，母版可以通过注册的方式替换或者修改。
+Similar to component registration, masks can be replaced or modified through registration.
 
-## （一）母版的注册可选项
+## (一) Registration Options for Masks
 
 ```typescript
 /**
- * 布局注册可选项
+ * Layout registration options
  */
 export interface LayoutRegisterOptions extends SPIOptions {
   // region view
 
   /**
-   * 视图类型
+   * View type
    */
   viewType: ViewType;
   /**
-   * 视图模型所在模块编码，一般是驼峰风格的英文 designerCommon
+   * The module code where the view model is located, generally camel-case English designerCommon
    */
   module?: string;
   /**
-   * 视图模型所在模块名称，一般是下划线风格的英文 designer_common
+   * The module name where the view model is located, generally underscore-style English designer_common
    */
   moduleName?: string;
   /**
-   * 布局名称，对应viewActionQuery.load.resView.baseLayoutName
+   * Layout name, corresponding to viewActionQuery.load.resView.baseLayoutName
    */
   layoutName?: string;
   /**
-   * 视图的模型编码
+   * The model code of the view
    */
   model?: string;
   /**
-   * 视图的模型名称
+   * The model name of the view
    */
   modelName?: string;
   /**
-   * 视图的名称
+   * The name of the view
    */
   viewName?: string;
   /**
-   * 是否为内嵌视图(子视图特有)，表单页内有个o2m的子表格，该表格的inline为true
+   * Whether it is an inline view (unique to sub-views). There is a sub-table of o2m in the form page, and the inline of this table is true
    */
   inline?: boolean;
 
@@ -273,15 +273,15 @@ export interface LayoutRegisterOptions extends SPIOptions {
   // region field
 
   /**
-   * 模型字段类型(子视图特有)
+   * Model field type (unique to sub-views)
    */
   ttype?: ModelFieldType;
   /**
-   * 关联模型字段类型(子视图特有)
+   * Associated model field type (unique to sub-views)
    */
   relatedTtype?: ModelFieldType;
   /**
-   * 字段(子视图特有)
+   * Field (unique to sub-views)
    */
   field?: string;
 
@@ -290,11 +290,11 @@ export interface LayoutRegisterOptions extends SPIOptions {
   // region action
 
   /**
-   * 动作名称
+   * Action name
    */
   actionName?: string;
   /**
-   * 动作使用的组件名称
+   * The component name used by the action
    */
   actionWidget?: string;
 
@@ -302,11 +302,11 @@ export interface LayoutRegisterOptions extends SPIOptions {
 }
 ```
 
-从上述类型声明中不难发现，其主要分为：视图（view）、字段（field）以及动作（action）三类，针对不同的元素，我们都提供了不同的参数用于描述母版的使用范围。与任何一个组件注册类似，使用范围描述的越 “精确”，在对应位置使用的母版优先级也就越高。
+It can be seen from the above type declaration that it is mainly divided into three categories: view, field, and action. For different elements, we provide different parameters to describe the usage scope of the mask. Similar to any component registration, the more "precise" the description of the usage scope, the higher the priority of the mask used in the corresponding position.
 
-## （二）使用 registerMask 注册母版
+## (二) Registering a Mask Using registerMask
 
-下面是我们在 “[探索前端框架 - Build a dashboard](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)” 中注册的母版：
+Below is the mask we registered in "[Explore the Front-end Framework - Build a dashboard](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)":
 
 ```typescript
 import { registerMask, ViewType } from '@kunlun/dependencies';
@@ -339,31 +339,31 @@ registerMask(
 );
 ```
 
-按照之前内容的要求，我们移除了部分组件，并且给出了注册条件：
+According to the requirements of the previous content, we removed some components and gave registration conditions:
 
-1. 保留顶部栏所有功能，移除左侧的导航菜单组件。
-2. 移除面包屑组件，让我们的主内容分发区看起来更大一些。
-3. 将这个母版应用于“国家分组”这个菜单项对应的页面上。
+1. Retain all top bar functions and remove the navigation menu component on the left.
+2. Remove the breadcrumb component to make our main content distribution area look larger.
+3. Apply this mask to the page corresponding to the "Country Group" menu item.
 
-## （三）通过 MaskEditor 编辑母版
+## (三) Editing Masks via MaskEditor
 
-对于某些特定功能来说，使用不同的配置项，母版需要作出相应的变化。对于这样的需求，我们通过 `registerMask` 注册静态母版是没办法实现的。那么，有没有什么办法可以在页面运行时对母版进行编辑呢？答案是肯定的。
+For certain specific functions, the mask needs to change accordingly using different configuration items. For such requirements, it is impossible to achieve by registering a static mask through `registerMask`. So, is there a way to edit the mask at runtime? The answer is yes.
 
-让我们来看一个实际业务中可能遇到的场景：当 `运行时配置` 中开启了 “组织切换” 功能时，需要在母版的顶部栏添加 `组织切换` 组件。
+Let's look at a scenario that may be encountered in actual business: when the "Organization Switch" function is enabled in the `runtime configuration`, the `Organization Switch` component needs to be added to the top bar of the mask.
 
-### 1、定义组织切换的运行时配置
+### 1. Define the Runtime Configuration for Organization Switch
 
-让我们先通过 运行时配置 定义这样一个可以获取是否开启的运行时配置管理器：
+Let's first define a runtime configuration manager that can obtain whether it is enabled through the runtime configuration:
 
-（建议遵循 [Environment - 自定义运行时配置](/en/DevManual/Reference/Front-EndFramework/environment.md#三、自定义运行时配置) 章节中介绍的最佳实践进行定义）
+(It is recommended to follow the best practices introduced in the [Environment - Custom Runtime Configuration](/en/DevManual/Reference/Front-EndFramework/environment.md#三、自定义运行时配置) section for definition)
 
 ```typescript
 /**
- * 组织切换配置
+ * Organization switch configuration
  */
 export interface OrganizationSwitcherConfig extends RuntimeConfigOptions, EnabledConfig {
   /**
-   * 是否启用
+   * Whether to enable
    */
   enabled?: boolean;
 }
@@ -387,9 +387,9 @@ export class OrganizationSwitcherConfigManager {
 }
 ```
 
-### 2、通过 SPI 注册一个 MaskEditor 编辑器
+### 2. Register a MaskEditor via SPI
 
-一个可能的实现可以是这样的：
+A possible implementation could be:
 
 ```typescript
 @SPI.Service(MaskEditorToken, { priority: 100 })
@@ -413,46 +413,46 @@ export class OrganizationSwitcherMaskEditor implements MaskEditor {
 }
 ```
 
-+ 优先级 priority：决定了 `MaskEditor` 的执行顺序，通常我们建议使用 `100-999` 之间的值，其他值在内置编辑器中可能会被使用。
-+ MaskEditService：定义了一些常用的编辑母版的方法和查找方法，通过 `SPI.Autowired` 注入即可。
-+ findTopBarWidgets：只能查找 **内置母版** 的顶部栏组件列表，自定义模板需要根据数据结构自行查找。
-+ generatorWidget：只能生成使用 `widget` 注册的组件，使用 `dslNodeType` 注册的组件需使用 `generatorWidgetByDslNodeType` 方法。
+- Priority priority: Determines the execution order of `MaskEditor`. It is generally recommended to use values between `100-999`, as other values may be used in built-in editors.
+- MaskEditService: Defines some common methods for editing and finding masks, which can be injected via `SPI.Autowired`.
+- findTopBarWidgets: Can only find the top bar component list of the **built-in mask**. Custom templates need to be found according to the data structure.
+- generatorWidget: Can only generate components registered with `widget`. Components registered with `dslNodeType` need to use the `generatorWidgetByDslNodeType` method.
 
-# 八、Reference List
+# VIII. Reference List
 
-## （一）公共组件
+## (一) Public Components
 
-### 1、MaskWidget
+### 1. MaskWidget
 
-**继承**：BaseMaskWidget
+**Inheritance**: BaseMaskWidget
 
-**属性**：
+**Attributes**:
 
-+ path：当前路径。（`string`）
-+ reloadMaskCallChaining：重新加载遮罩的链式调用。（`CallChaining | undefined`）
-+ reloadMainViewCallChaining：重新加载主视图的链式调用。（`CallChaining | undefined`）
+- path: Current path. (`string`)
+- reloadMaskCallChaining: Chained call for reloading the mask. (`CallChaining | undefined`)
+- reloadMainViewCallChaining: Chained call for reloading the main view. (`CallChaining | undefined`)
 
-**抽象方法**：
+**Abstract Methods**:
 
 #### reloadMaskProcess
 
-+ **功能描述**：重新加载遮罩的处理函数。
-+ **类型**：`(reloadParameters: ReloadMaskCallChainingParameters) => ReturnPromise<void>`
-+ **参数**：
-  - `reloadParameters`：重新加载遮罩的参数。
-+ **返回值**：异步操作结果。
+- **Function Description**: Processing function for reloading the mask.
+- **Type**: `(reloadParameters: ReloadMaskCallChainingParameters) => ReturnPromise<void>`
+- **Parameters**:
+  - `reloadParameters`: Parameters for reloading the mask.
+- **Return Value**: Asynchronous operation result.
 
 #### reloadMainViewProcess
 
-+ **功能描述**：重新加载主视图的处理函数。
-+ **类型**：`(reloadParameters: ReloadMainViewCallChainingParameters) => ReturnPromise<void>`
-+ **参数**：
-  - `reloadParameters`：重新加载主视图的参数。
-+ **返回值**：异步操作结果。
+- **Function Description**: Processing function for reloading the main view.
+- **Type**: `(reloadParameters: ReloadMainViewCallChainingParameters) => ReturnPromise<void>`
+- **Parameters**:
+  - `reloadParameters`: Parameters for reloading the main view.
+- **Return Value**: Asynchronous operation result.
 
-### 2、MaskCommonWidget
+### 2. MaskCommonWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -463,24 +463,24 @@ export class OrganizationSwitcherMaskEditor implements MaskEditor {
 export class MaskCommonWidget extends BaseMaskLayoutWidget<MaskCommonWidgetProps>
 ```
 
-**属性**：
+**Attributes**:
 
-+ classNames：组件类名（自动拼接 `k-layout-widget`）。（`string[] | undefined`）
+- classNames: Component class names (automatically concatenated with `k-layout-widget`). (`string[] | undefined`)
 
-**方法**：
+**Methods**:
 
 #### createOrUpdateWidget
 
-+ **功能描述**：创建或更新子组件实例（根据 `widget` 属性匹配 `BaseMaskWidget` 或 `ViewWidget`）。
-+ **类型**：`(props: Record<string, unknown>) => void`
-+ **参数**：
-  - `props`：组件配置参数。
+- **Function Description**: Create or update a sub-component instance (match `BaseMaskWidget` or `ViewWidget` based on the `widget` attribute).
+- **Type**: `(props: Record<string, unknown>) => void`
+- **Parameters**:
+  - `props`: Component configuration parameters.
 
-## （二）导航组件
+## (二) Navigation Components
 
-### 1、BreadcrumbWidget
+### 1. BreadcrumbWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -491,62 +491,62 @@ export class MaskCommonWidget extends BaseMaskLayoutWidget<MaskCommonWidgetProps
 export class BreadcrumbWidget extends MaskWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ currentViewTitle：当前视图标题。(`string | undefined`)
-+ enabledHomepage：是否启用首页。(`boolean`)
-+ items：面包屑项目列表。(`RuntimeMenu[]`)
-+ menuNodes：菜单节点树。(`TreeNode<RuntimeMenu>[]`)
-+ moduleName：当前模块名称。(`string | undefined`)
+- currentViewTitle: Current view title. (`string | undefined`)
+- enabledHomepage: Whether to enable the homepage. (`boolean`)
+- items: Breadcrumb item list. (`RuntimeMenu[]`)
+- menuNodes: Menu node tree. (`TreeNode<RuntimeMenu>[]`)
+- moduleName: Current module name. (`string | undefined`)
 
-**方法**：
+**Methods**:
 
-#### **executeAction**
+#### executeAction
 
-+ **功能描述**：执行视图动作。
-+ **类型**：`(action: RuntimeViewAction) => void`
-+ **参数**：
-  - `action`：运行时视图动作。
+- **Function Description**: Execute a view action.
+- **Type**: `(action: RuntimeViewAction) => void`
+- **Parameters**:
+  - `action`: Runtime view action.
 
-#### **onHomepage**
+#### onHomepage
 
-+ **功能描述**：导航到首页。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Navigate to the homepage.
+- **Type**: `() => Promise<void>`
 
-#### **onModuleChange**
+#### onModuleChange
 
-+ **功能描述**：在模块发生改变时调用。
-+ **类型**：`(moduleName: string) => Promise<void>`
-+ **参数**：
-  - `moduleName`：模块名称。
+- **Function Description**: Called when the module changes.
+- **Type**: `(moduleName: string) => Promise<void>`
+- **Parameters**:
+  - `moduleName`: Module name.
 
-#### **refreshItems**
+#### refreshItems
 
-+ **功能描述**：刷新面包屑项目列表。
-+ **类型**：`(model: string, action: string, parameters: MenuUrlParameters | undefined) => Promise<void>`
-+ **参数**：
-  - `model`：模型名称。
-  - `action`：动作名称。
-  - `parameters`：菜单 URL 参数（可选）。
+- **Function Description**: Refresh the breadcrumb item list.
+- **Type**: `(model: string, action: string, parameters: MenuUrlParameters | undefined) => Promise<void>`
+- **Parameters**:
+  - `model`: Model name.
+  - `action`: Action name.
+  - `parameters`: Menu URL parameters (optional).
 
-#### **refreshViewTitle**
+#### refreshViewTitle
 
-+ **功能描述**：刷新视图标题。
-+ **类型**：`(model: string, action: string) => Promise<void>`
-+ **参数**：
-  - `model`：模型名称。
-  - `action`：动作名称。
+- **Function Description**: Refresh the view title.
+- **Type**: `(model: string, action: string) => Promise<void>`
+- **Parameters**:
+  - `model`: Model name.
+  - `action`: Action name.
 
-#### **reloadMaskProcess**
+#### reloadMaskProcess
 
-+ **功能描述**：重新加载遮罩层处理。
-+ **类型**：`(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
-+ **参数**：
-  - `reloadParameters`：重新加载参数。
+- **Function Description**: Reload mask layer processing.
+- **Type**: `(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
+- **Parameters**:
+  - `reloadParameters`: Reload parameters.
 
-### 2、MenuWidget
+### 2. MenuWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -557,107 +557,107 @@ export class BreadcrumbWidget extends MaskWidget
 export class MenuWidget extends MaskWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ collapsed：菜单折叠状态。（`boolean`）
-+ collapsed$：菜单折叠状态的行为订阅。（`WidgetBehaviorSubjection<boolean>`）
-+ menuTheme：当前菜单主题。（`SideBarTheme`）
-+ menuThemeClass：当前菜单主题对应的类名。（`string`）
-+ mode：菜单模式（水平或垂直）。（`'horizontal' | 'inline'`）
-+ moduleName：当前模块名称。（`string | undefined`）
-+ openKeys：展开的菜单键。（`string[] | undefined`）
-+ router：路由实例。（`Router`）
-+ selectedKeys：选中的菜单键。（`string[] | undefined`）
-+ treeNodes：菜单树节点。（`TreeNode<RuntimeMenu>[]`）
-+ $systemMajorConfig：系统配置订阅。（`Subscription`）
+- collapsed: Menu collapse status. (`boolean`)
+- collapsed$: Behavior subscription for menu collapse status. (`WidgetBehaviorSubjection<boolean>`)
+- menuTheme: Current menu theme. (`SideBarTheme`)
+- menuThemeClass: Class name corresponding to the current menu theme. (`string`)
+- mode: Menu mode (horizontal or vertical). (`'horizontal' | 'inline'`)
+- moduleName: Current module name. (`string | undefined`)
+- openKeys: Expanded menu keys. (`string[] | undefined`)
+- router: Routing instance. (`Router`)
+- selectedKeys: Selected menu keys. (`string[] | undefined`)
+- treeNodes: Menu tree nodes. (`TreeNode<RuntimeMenu>[]`)
+- $systemMajorConfig: System configuration subscription. (`Subscription`)
 
-**方法**：
+**Methods**:
 
 #### executeServerAction
 
-+ **功能描述**：执行服务器动作。
-+ **类型**：`(menu: RuntimeMenu, serverAction: IServerAction) => Promise<void>`
-+ **参数**：
-  - `menu`：菜单项。
-  - `serverAction`：服务器动作。
+- **Function Description**: Execute a server action.
+- **Type**: `(menu: RuntimeMenu, serverAction: IServerAction) => Promise<void>`
+- **Parameters**:
+  - `menu`: Menu item.
+  - `serverAction`: Server action.
 
 #### executeUrlAction
 
-+ **功能描述**：执行 URL 动作。
-+ **类型**：`(menu: RuntimeMenu, urlAction: IURLAction) => void`
-+ **参数**：
-  - `menu`：菜单项。
-  - `urlAction`：URL 动作。
+- **Function Description**: Execute a URL action.
+- **Type**: `(menu: RuntimeMenu, urlAction: IURLAction) => void`
+- **Parameters**:
+  - `menu`: Menu item.
+  - `urlAction`: URL action.
 
 #### executeViewAction
 
-+ **功能描述**：执行视图动作。
-+ **类型**：`(menu: RuntimeMenu, viewAction: IViewAction) => void`
-+ **参数**：
-  - `menu`：菜单项。
-  - `viewAction`：视图动作。
+- **Function Description**: Execute a view action.
+- **Type**: `(menu: RuntimeMenu, viewAction: IViewAction) => void`
+- **Parameters**:
+  - `menu`: Menu item.
+  - `viewAction`: View action.
 
 #### handleMenuMapping
 
-+ **功能描述**：处理菜单映射。
-+ **类型**：`(mapping: Record<string, unknown>) => Record<string, unknown>`
-+ **参数**：
-  - `mapping`：映射对象。
-+ **返回值**：处理后的映射对象。
+- **Function Description**: Process menu mapping.
+- **Type**: `(mapping: Record<string, unknown>) => Record<string, unknown>`
+- **Parameters**:
+  - `mapping`: Mapping object.
+- **Return Value**: Processed mapping object.
 
 #### onCollapsedChange
 
-+ **功能描述**：处理菜单折叠状态变化。
-+ **类型**：`(collapsed: boolean) => void`
-+ **参数**：
-  - `collapsed`：折叠状态。
+- **Function Description**: Handle menu collapse status change.
+- **Type**: `(collapsed: boolean) => void`
+- **Parameters**:
+  - `collapsed`: Collapse status.
 
 #### onClick
 
-+ **功能描述**：处理菜单项点击事件。
-+ **类型**：`(node: TreeNode<RuntimeMenu>) => Promise<void>`
-+ **参数**：
-  - `node`：树节点。
+- **Function Description**: Handle menu item click event.
+- **Type**: `(node: TreeNode<RuntimeMenu>) => Promise<void>`
+- **Parameters**:
+  - `node`: Tree node.
 
 #### onModuleChange
 
-+ **功能描述**：处理模块变更事件。
-+ **类型**：`(moduleName: string) => Promise<void>`
-+ **参数**：
-  - `moduleName`：模块名称。
+- **Function Description**: Handle module change event.
+- **Type**: `(moduleName: string) => Promise<void>`
+- **Parameters**:
+  - `moduleName`: Module name.
 
 #### onOpenChange
 
-+ **功能描述**：处理菜单展开状态变化。
-+ **类型**：`(openKeys: string[]) => void`
-+ **参数**：
-  - `openKeys`：展开的菜单键。
+- **Function Description**: Handle menu expansion status change.
+- **Type**: `(openKeys: string[]) => void`
+- **Parameters**:
+  - `openKeys`: Expanded menu keys.
 
 #### onSelect
 
-+ **功能描述**：处理菜单项选择事件。
-+ **类型**：`(node: TreeNode<RuntimeMenu>) => Promise<void>`
-+ **参数**：
-  - `node`：树节点。
+- **Function Description**: Handle menu item selection event.
+- **Type**: `(node: TreeNode<RuntimeMenu>) => Promise<void>`
+- **Parameters**:
+  - `node`: Tree node.
 
 #### refreshMenuUrlParameters
 
-+ **功能描述**：刷新菜单 URL 参数。
-+ **类型**：`(model: string, action: string) => void`
-+ **参数**：
-  - `model`：模型名称。
-  - `action`：动作名称。
+- **Function Description**: Refresh menu URL parameters.
+- **Type**: `(model: string, action: string) => void`
+- **Parameters**:
+  - `model`: Model name.
+  - `action`: Action name.
 
 #### reloadMaskProcess
 
-+ **功能描述**：重新加载遮罩处理函数。
-+ **类型**：`(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
-+ **参数**：
-  - `reloadParameters`：重新加载参数。
+- **Function Description**: Reload mask processing function.
+- **Type**: `(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
+- **Parameters**:
+  - `reloadParameters`: Reload parameters.
 
-### 3、MultiTabsWidget
+### 3. MultiTabsWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -668,146 +668,146 @@ export class MenuWidget extends MaskWidget
 export class MultiTabsWidget extends MaskWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ activeKey：当前激活标签页的键。（`string | undefined`）
-+ draggable：标签页是否可拖拽。（`boolean`）
-+ homepageTab：首页标签页。（`MultiTabItem | null | undefined`）
-+ homepageType：首页类型。（`MultiTabType | undefined`）
-+ inline：标签页是否内联显示。（`boolean`）
-+ invisible：标签页是否不可见。（`boolean`）
-+ isEnabledHomepage：是否启用首页。（`boolean | undefined`）
-+ isEnabledModuleHomepage：是否启用模块首页。（`boolean`）
-+ matched：路由匹配信息。（`Matched`）
-+ multiTabConfig：多标签页配置。（`MultiTabConfig`）
-+ router：路由实例。（`Router`）
-+ showModuleLogo：是否显示模块图标。（`boolean`）
-+ tabThemeClass：当前标签页的主题类名。（`string`）
-+ tabs：标签页列表。（`MultiTabItem[]`）
-+ $systemMajorConfig：系统主要配置的订阅。（`Subscription`）
+- activeKey: Key of the currently active tab. (`string | undefined`)
+- draggable: Whether tabs are draggable. (`boolean`)
+- homepageTab: Homepage tab. (`MultiTabItem | null | undefined`)
+- homepageType: Homepage type. (`MultiTabType | undefined`)
+- inline: Whether tabs are displayed inline. (`boolean`)
+- invisible: Whether tabs are invisible. (`boolean`)
+- isEnabledHomepage: Whether to enable the homepage. (`boolean | undefined`)
+- isEnabledModuleHomepage: Whether to enable the module homepage. (`boolean`)
+- matched: Routing matching information. (`Matched`)
+- multiTabConfig: Multi-tab configuration. (`MultiTabConfig`)
+- router: Routing instance. (`Router`)
+- showModuleLogo: Whether to display the module icon. (`boolean`)
+- tabThemeClass: Theme class name of the current tab. (`string`)
+- tabs: Tab list. (`MultiTabItem[]`)
+- $systemMajorConfig: Subscription to system main configuration. (`Subscription`)
 
-**方法**：
+**Methods**:
 
 #### closable
 
-+ **功能描述**：判断标签页是否可关闭。
-+ **类型**：`(tabs: MultiTabItem[], tab: MultiTabItem, index: number) => boolean`
-+ **参数**：
-  - `tabs`：标签页数组。
-  - `tab`：当前标签页。
-  - `index`：当前标签页在数组中的索引。
-+ **返回值**：当前标签页是否可关闭。
+- **Function Description**: Determine if a tab is closable.
+- **Type**: `(tabs: MultiTabItem[], tab: MultiTabItem, index: number) => boolean`
+- **Parameters**:
+  - `tabs`: Tab array.
+  - `tab`: Current tab.
+  - `index`: Index of the current tab in the array.
+- **Return Value**: Whether the current tab is closable.
 
 #### findNextActiveTab
 
-+ **功能描述**：查找下一个激活的标签页。
-+ **类型**：`(tabs: MultiTabItem[], currentActiveIndex: number) => MultiTabItem`
-+ **参数**：
-  - `tabs`：标签页数组。
-  - `currentActiveIndex`：当前激活标签页的索引。
-+ **返回值**：下一个激活的标签页。
+- **Function Description**: Find the next active tab.
+- **Type**: `(tabs: MultiTabItem[], currentActiveIndex: number) => MultiTabItem`
+- **Parameters**:
+  - `tabs`: Tab array.
+  - `currentActiveIndex`: Index of the current active tab.
+- **Return Value**: Next active tab.
 
 #### getTabs
 
-+ **功能描述**：获取标签页列表。
-+ **类型**：`() => MultiTabItem[]`
-+ **返回值**：标签页列表。
+- **Function Description**: Get the tab list.
+- **Type**: `() => MultiTabItem[]`
+- **Return Value**: Tab list.
 
 #### isEnabled
 
-+ **功能描述**：判断模块是否启用多标签页功能。
-+ **类型**：`(module?: string) => boolean`
-+ **参数**：
-  - `module`：模块名称（可选）。
-+ **返回值**：模块是否启用多标签页功能。
+- **Function Description**: Determine if the module enables the multi-tab function.
+- **Type**: `(module?: string) => boolean`
+- **Parameters**:
+  - `module`: Module name (optional).
+- **Return Value**: Whether the module enables the multi-tab function.
 
 #### onClickTab
 
-+ **功能描述**：处理标签页点击事件。
-+ **类型**：`(tab: MultiTabItem) => void`
-+ **参数**：
-  - `tab`：被点击的标签页。
+- **Function Description**: Handle tab click event.
+- **Type**: `(tab: MultiTabItem) => void`
+- **Parameters**:
+  - `tab`: Clicked tab.
 
 #### onCloseLeftTabs
 
-+ **功能描述**：处理关闭左侧标签页的操作。
-+ **类型**：`(tab: MultiTabItem) => void`
-+ **参数**：
-  - `tab`：当前标签页。
+- **Function Description**: Handle the operation of closing left tabs.
+- **Type**: `(tab: MultiTabItem) => void`
+- **Parameters**:
+  - `tab`: Current tab.
 
 #### onCloseOtherTabs
 
-+ **功能描述**：处理关闭其他标签页的操作。
-+ **类型**：`(tab: MultiTabItem) => void`
-+ **参数**：
-  - `tab`：当前标签页。
+- **Function Description**: Handle the operation of closing other tabs.
+- **Type**: `(tab: MultiTabItem) => void`
+- **Parameters**:
+  - `tab`: Current tab.
 
 #### onCloseRightTabs
 
-+ **功能描述**：处理关闭右侧标签页的操作。
-+ **类型**：`(tab: MultiTabItem) => void`
-+ **参数**：
-  - `tab`：当前标签页。
+- **Function Description**: Handle the operation of closing right tabs.
+- **Type**: `(tab: MultiTabItem) => void`
+- **Parameters**:
+  - `tab`: Current tab.
 
 #### onCloseTab
 
-+ **功能描述**：处理关闭标签页的操作。
-+ **类型**：`(tab: MultiTabItem) => void`
-+ **参数**：
-  - `tab`：要关闭的标签页。
+- **Function Description**: Handle the operation of closing a tab.
+- **Type**: `(tab: MultiTabItem) => void`
+- **Parameters**:
+  - `tab`: Tab to be closed.
 
 #### onMovedCallback
 
-+ **功能描述**：处理标签页移动后的回调操作。
-+ **类型**：`(tab: MultiTabItem) => void`
-+ **参数**：
-  - `tab`：移动后的标签页。
+- **Function Description**: Handle the callback operation after a tab is moved.
+- **Type**: `(tab: MultiTabItem) => void`
+- **Parameters**:
+  - `tab`: Moved tab.
 
 #### onMoveToSelfCallback
 
-+ **功能描述**：处理标签页移动到自身的回调操作。
-+ **类型**：`(dragTab: MultiTabItem, targetTab: MultiTabItem) => boolean`
-+ **参数**：
-  - `dragTab`：拖拽的标签页。
-  - `targetTab`：目标标签页。
-+ **返回值**：是否允许标签页移动到自身。
+- **Function Description**: Handle the callback operation when a tab is moved to itself.
+- **Type**: `(dragTab: MultiTabItem, targetTab: MultiTabItem) => boolean`
+- **Parameters**:
+  - `dragTab`: Dragged tab.
+  - `targetTab`: Target tab.
+- **Return Value**: Whether to allow the tab to move to itself.
 
 #### onOpenNewWindow
 
-+ **功能描述**：在新窗口中打开标签页。
-+ **类型**：`(tab: MultiTabItem) => Promise<void>`
-+ **参数**：
-  - `tab`：要在新窗口中打开的标签页。
+- **Function Description**: Open the tab in a new window.
+- **Type**: `(tab: MultiTabItem) => Promise<void>`
+- **Parameters**:
+  - `tab`: Tab to be opened in a new window.
 
 #### onRefreshTab
 
-+ **功能描述**：刷新标签页。
-+ **类型**：`(tab: MultiTabItem) => void`
-+ **参数**：
-  - `tab`：要刷新的标签页。
+- **Function Description**: Refresh the tab.
+- **Type**: `(tab: MultiTabItem) => void`
+- **Parameters**:
+  - `tab`: Tab to be refreshed.
 
 #### reloadActiveTab
 
-+ **功能描述**：重新加载当前激活的标签页。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Reload the currently active tab.
+- **Type**: `() => Promise<void>`
 
 #### reloadMainViewProcess
 
-+ **功能描述**：重新加载主视图的处理过程。
-+ **类型**：`(reloadParameters: ReloadMainViewCallChainingParameters) => Promise<void>`
-+ **参数**：
-  - `reloadParameters`：包含重新加载主视图所需参数的对象。
+- **Function Description**: Processing process for reloading the main view.
+- **Type**: `(reloadParameters: ReloadMainViewCallChainingParameters) => Promise<void>`
+- **Parameters**:
+  - `reloadParameters`: Object containing parameters required to reload the main view.
 
 #### reloadTabs
 
-+ **功能描述**：重新加载所有标签页。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Reload all tabs.
+- **Type**: `() => Promise<void>`
 
-## （三）顶部栏组件
+## (三) Top Bar Components
 
-### 1、AppSwitcherWidget
+### 1. AppSwitcherWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -818,58 +818,58 @@ export class MultiTabsWidget extends MaskWidget
 export class AppSwitcherWidget extends MaskWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ apps：当前应用列表。（`IModule[] | undefined`）
-+ collapsed：折叠状态。（`boolean`）
-+ collapsed$：折叠状态的订阅。（`WidgetSubjection<boolean>`）
-+ collapsedLogo：折叠时的 logo。（`string`）
-+ currentPageUrl：当前页面 URL 参数。（`Record<string, any>`）
-+ likeApp：收藏的应用列表。（`IModule[]`）
-+ logo：应用 logo。（`string`）
-+ majorConfig：主要配置。（`MajorConfig`）
-+ module：当前模块。（`IModule | undefined`）
-+ router：路由实例。（`Router`）
+- apps: Current application list. (`IModule[] | undefined`)
+- collapsed: Collapsed status. (`boolean`)
+- collapsed$: Subscription to collapsed status. (`WidgetSubjection<boolean>`)
+- collapsedLogo: Logo when collapsed. (`string`)
+- currentPageUrl: Current page URL parameters. (`Record<string, any>`)
+- likeApp: List of favorite applications. (`IModule[]`)
+- logo: Application logo. (`string`)
+- majorConfig: Main configuration. (`MajorConfig`)
+- module: Current module. (`IModule | undefined`)
+- router: Routing instance. (`Router`)
 
-**方法**：
+**Methods**:
 
 #### initApps
 
-+ **功能描述**：初始化应用列表。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Initialize the application list.
+- **Type**: `() => Promise<void>`
 
 #### initCurrentModule
 
-+ **功能描述**：初始化当前模块。
-+ **类型**：`(moduleName: string) => Promise<boolean>`
-+ **参数**：
-  - `moduleName`：模块名称。
-+ **返回值**：是否成功初始化。
+- **Function Description**: Initialize the current module.
+- **Type**: `(moduleName: string) => Promise<boolean>`
+- **Parameters**:
+  - `moduleName`: Module name.
+- **Return Value**: Whether initialization was successful.
 
 #### onCollectionClick
 
-+ **功能描述**：处理收藏应用点击事件。
-+ **类型**：`(item: any) => Promise<void>`
-+ **参数**：
-  - `item`：点击的应用项。
+- **Function Description**: Handle favorite application click event.
+- **Type**: `(item: any) => Promise<void>`
+- **Parameters**:
+  - `item`: Clicked application item.
 
 #### onSwitchApp
 
-+ **功能描述**：处理切换应用事件。
-+ **类型**：`(app: IModule) => Promise<void>`
-+ **参数**：
-  - `app`：要切换到的应用。
+- **Function Description**: Handle application switching event.
+- **Type**: `(app: IModule) => Promise<void>`
+- **Parameters**:
+  - `app`: Application to switch to.
 
 #### reloadMaskProcess
 
-+ **功能描述**：重新加载遮罩处理。
-+ **类型**：`(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
-+ **参数**：
-  - `reloadParameters`：重新加载参数。
+- **Function Description**: Reload mask processing.
+- **Type**: `(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
+- **Parameters**:
+  - `reloadParameters`: Reload parameters.
 
-### 2、NotificationWidget
+### 2. NotificationWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -880,84 +880,84 @@ export class AppSwitcherWidget extends MaskWidget
 export class NotificationWidget extends MaskWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ beforeClickMap：点击前的回调函数映射。
-+ confirmModalTitle：确认模态框标题。（`string`）
-+ currentMessage：当前消息。（`any`）
-+ currentMessageId：当前消息 ID。（`string`）
-+ isShowConfirmModal：是否显示确认模态框。（`boolean`）
-+ messageInfo：当前消息类型的信息。
-+ messageList：消息列表。（`PamirsMessage[]`）
-+ messageTextMap：消息类型文本映射。
-+ messageType：当前消息类型。（`NotificationTypeEnum`）
-+ msgDelay：轮询间隔时间（秒）。（`number`）
-+ msgTotal：未读消息总数。（`number`）
-+ resourceDateTimeFormat：资源日期时间格式。（`IResourceDateTimeFormat`）
+- beforeClickMap: Callback function mapping before clicking.
+- confirmModalTitle: Confirm modal title. (`string`)
+- currentMessage: Current message. (`any`)
+- currentMessageId: Current message ID. (`string`)
+- isShowConfirmModal: Whether to show the confirm modal. (`boolean`)
+- messageInfo: Information of the current message type.
+- messageList: Message list. (`PamirsMessage[]`)
+- messageTextMap: Message type text mapping.
+- messageType: Current message type. (`NotificationTypeEnum`)
+- msgDelay: Polling interval (seconds). (`number`)
+- msgTotal: Total number of unread messages. (`number`)
+- resourceDateTimeFormat: Resource date-time format. (`IResourceDateTimeFormat`)
 
-**方法**：
+**Methods**:
 
 #### beforeClick
 
-+ **功能描述**：设置点击前的回调函数。
-+ **类型**：`(args: BeforeClickMapKey | Partial<Record<BeforeClickMapKey, ReturnBeforeClick>>, cb?: ReturnBeforeClick) => Promise<void>`
-+ **参数**：
-  - `args`：点击前的回调函数名称或回调函数映射。
-  - `cb`：回调函数（可选）。
+- **Function Description**: Set the callback function before clicking.
+- **Type**: `(args: BeforeClickMapKey | Partial<Record<BeforeClickMapKey, ReturnBeforeClick>>, cb?: ReturnBeforeClick) => Promise<void>`
+- **Parameters**:
+  - `args`: Callback function name before clicking or callback function mapping.
+  - `cb`: Callback function (optional).
 
 #### changeMessageType
 
-+ **功能描述**：更改消息类型。
-+ **类型**：`(type: NotificationTypeEnum) => void`
-+ **参数**：
-  - `type`：新的消息类型。
+- **Function Description**: Change the message type.
+- **Type**: `(type: NotificationTypeEnum) => void`
+- **Parameters**:
+  - `type`: New message type.
 
 #### formatDateTime
 
-+ **功能描述**：格式化日期时间。
-+ **类型**：`(value: string) => string`
-+ **参数**：
-  - `value`：要格式化的日期时间字符串。
-+ **返回值**：格式化后的日期时间字符串。
+- **Function Description**: Format the date-time.
+- **Type**: `(value: string) => string`
+- **Parameters**:
+  - `value`: Date-time string to be formatted.
+- **Return Value**: Formatted date-time string.
 
 #### getMessageInfo
 
-+ **功能描述**：获取消息信息。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Get message information.
+- **Type**: `() => Promise<void>`
 
 #### getMsgTotal
 
-+ **功能描述**：获取未读消息总数。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Get the total number of unread messages.
+- **Type**: `() => Promise<void>`
 
 #### onDetail
 
-+ **功能描述**：处理消息详情点击事件。
-+ **类型**：`(message: any, messageInfo: any) => Promise<void>`
-+ **参数**：
-  - `message`：消息对象。
-  - `messageInfo`：消息信息对象。
+- **Function Description**: Handle message detail click event.
+- **Type**: `(message: any, messageInfo: any) => Promise<void>`
+- **Parameters**:
+  - `message`: Message object.
+  - `messageInfo`: Message information object.
 
 #### onWorkflowUserTask
 
-+ **功能描述**：处理工作流用户任务点击事件。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Handle workflow user task click event.
+- **Type**: `() => Promise<void>`
 
 #### readMessage
 
-+ **功能描述**：读取消息。
-+ **类型**：`(msgId: string) => Promise<void>`
-+ **参数**：
-  - `msgId`：消息 ID。
+- **Function Description**: Read a message.
+- **Type**: `(msgId: string) => Promise<void>`
+- **Parameters**:
+  - `msgId`: Message ID.
 
 #### toggleDialog
 
-+ **功能描述**：切换确认模态框的显示状态。
-+ **类型**：`() => void`
+- **Function Description**: Toggle the display status of the confirm modal.
+- **Type**: `() => void`
 
-### 3、LanguageWidget
+### 3. LanguageWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -968,44 +968,44 @@ export class NotificationWidget extends MaskWidget
 export class LanguageWidget extends MaskWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ currentLanguage：当前语言配置。（`RuntimeLanguage | undefined`）
-+ languages：语言列表。（`RuntimeLanguage[] | undefined`）
-+ matched：路由匹配信息。（`Matched`）
-+ router：路由实例。（`Router`）
+- currentLanguage: Current language configuration. (`RuntimeLanguage | undefined`)
+- languages: Language list. (`RuntimeLanguage[] | undefined`)
+- matched: Routing matching information. (`Matched`)
+- router: Routing instance. (`Router`)
 
-**方法**：
+**Methods**:
 
 #### initCurrentLanguage
 
-+ **功能描述**：初始化当前语言配置。
-+ **类型**：`(code: string) => void`
-+ **参数**：
-  - `code`：语言代码（如 `zh-CN`、`en-US`）。
+- **Function Description**: Initialize the current language configuration.
+- **Type**: `(code: string) => void`
+- **Parameters**:
+  - `code`: Language code (e.g., `zh-CN`, `en-US`).
 
 #### initLanguages
 
-+ **功能描述**：加载语言列表并补充图标配置（默认英文 / 中文图标）。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Load the language list and supplement icon configuration (default English/Chinese icons).
+- **Type**: `() => Promise<void>`
 
 #### onChange
 
-+ **功能描述**：切换语言时触发，更新当前语言并刷新页面。
-+ **类型**：`(value: RuntimeLanguage) => void`
-+ **参数**：
-  - `value`：选中的语言对象。
+- **Function Description**: Triggered when switching languages, updates the current language and refreshes the page.
+- **Type**: `(value: RuntimeLanguage) => void`
+- **Parameters**:
+  - `value`: Selected language object.
 
 #### reloadMaskProcess
 
-+ **功能描述**：重新加载语言组件逻辑，初始化语言列表和当前语言。
-+ **类型**：`(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
-+ **参数**：
-  - `reloadParameters`：重新加载参数。
+- **Function Description**: Reload language component logic, initialize the language list and current language.
+- **Type**: `(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
+- **Parameters**:
+  - `reloadParameters`: Reload parameters.
 
-### 4、UserWidget
+### 4. UserWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1016,50 +1016,50 @@ export class LanguageWidget extends MaskWidget
 export class UserWidget extends MaskWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ matched：路由匹配信息。（`Matched`）
-+ pamirsUser$：用户信息订阅对象。（`WidgetSubjection<PamirsUser>`）
-+ router：路由实例。（`Router`）
-+ userInfo：用户信息（包含基础信息和用户信息）。（`UserInfo | undefined`）
+- matched: Routing matching information. (`Matched`)
+- pamirsUser$: User information subscription object. (`WidgetSubjection<PamirsUser>`)
+- router: Routing instance. (`Router`)
+- userInfo: User information (including basic information and user details). (`UserInfo | undefined`)
 
-**方法**：
+**Methods**:
 
 #### executeAction
 
-+ **功能描述**：执行用户相关操作（视图动作、服务器动作、URL 动作、客户端动作）。
-+ **类型**：`(action: RuntimeAction) => Promise<void>`
-+ **参数**：
-  - `action`：运行时动作对象，包含动作类型、模型、名称等信息。
+- **Function Description**: Execute user-related operations (view actions, server actions, URL actions, client actions).
+- **Type**: `(action: RuntimeAction) => Promise<void>`
+- **Parameters**:
+  - `action`: Runtime action object, including action type, model, name, etc.
 
 #### fetchUserInfo
 
-+ **功能描述**：获取用户基础信息。
-+ **类型**：`() => Promise<UserInfo>`
-+ **返回值**：用户信息 Promise 对象。
+- **Function Description**: Get user basic information.
+- **Type**: `() => Promise<UserInfo>`
+- **Return Value**: User information Promise object.
 
 #### initUserInfo
 
-+ **功能描述**：初始化用户信息，若未加载则从服务端获取。
-+ **类型**：`() => Promise<void>`
+- **Function Description**: Initialize user information, fetch from the server if not loaded.
+- **Type**: `() => Promise<void>`
 
 #### logout
 
-+ **功能描述**：用户登出操作。
-+ **类型**：`() => void`
+- **Function Description**: User logout operation.
+- **Type**: `() => void`
 
 #### reloadMaskProcess
 
-+ **功能描述**：重新加载用户组件逻辑，初始化用户信息。
-+ **类型**：`(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
-+ **参数**：
-  - `reloadParameters`：重新加载参数。
+- **Function Description**: Reload user component logic, initialize user information.
+- **Type**: `(reloadParameters: ReloadMaskCallChainingParameters) => Promise<void>`
+- **Parameters**:
+  - `reloadParameters`: Reload parameters.
 
-## （四）布局组件
+## (四) Layout Components
 
-### 1、MaskBlockWidget
+### 1. MaskBlockWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1070,13 +1070,13 @@ export class UserWidget extends MaskWidget
 export class MaskBlockWidget extends BaseMaskLayoutWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ classNames：组件的类名数组，继承自父类并追加 `['k-layout-block']`。（`string[] | undefined`）
+- classNames: Class name array of the component, inherited from the parent class and appended with `['k-layout-block']`. (`string[] | undefined`)
 
-### 2、MaskContainerWidget
+### 2. MaskContainerWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1087,13 +1087,13 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 export class MaskContainerWidget extends BaseMaskLayoutWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ classNames：组件的类名数组，继承自父类并追加 `['k-layout-container', 'oio-scrollbar']`。（`string[] | undefined`）
+- classNames: Class name array of the component, inherited from the parent class and appended with `['k-layout-container', 'oio-scrollbar']`. (`string[] | undefined`)
 
-### 3、MaskContentWidget
+### 3. MaskContentWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1104,13 +1104,13 @@ export class MaskContainerWidget extends BaseMaskLayoutWidget
 export class MaskContentWidget extends BaseMaskLayoutWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ classNames：组件的类名数组，继承自父类并追加 `['k-layout-content oio-scrollbar']`。（`string[] | undefined`）
+- classNames: Class name array of the component, inherited from the parent class and appended with `['k-layout-content oio-scrollbar']`. (`string[] | undefined`)
 
-### 4、MaskHeaderWidget
+### 4. MaskHeaderWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1121,13 +1121,13 @@ export class MaskContentWidget extends BaseMaskLayoutWidget
 export class MaskHeaderWidget extends BaseMaskLayoutWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ classNames：组件的类名数组，继承自父类并追加 `['k-layout-header']`。（`string[] | undefined`）
+- classNames: Class name array of the component, inherited from the parent class and appended with `['k-layout-header']`. (`string[] | undefined`)
 
-### 5、MaskRootWidget
+### 5. MaskRootWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1138,13 +1138,13 @@ export class MaskHeaderWidget extends BaseMaskLayoutWidget
 export class MaskRootWidget extends BaseMaskLayoutWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ classNames：组件的类名数组，继承自父类并追加 `['k-layout-mask']`。（`string[] | undefined`）
+- classNames: Class name array of the component, inherited from the parent class and appended with `['k-layout-mask']`. (`string[] | undefined`)
 
-### 6、MaskSidebarWidget
+### 6. MaskSidebarWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1155,16 +1155,16 @@ export class MaskRootWidget extends BaseMaskLayoutWidget
 export class MaskSidebarWidget extends BaseMaskLayoutWidget
 ```
 
-**属性**：
+**Attributes**:
 
-+ classNames：组件的类名数组，继承自父类并追加 `['k-layout-sidebar']`，当 `mode` 为 `horizontal` 时，再追加 `['k-layout-sidebar-horizontal']` 。（`string[] | undefined`）
-+ mode：侧边栏显示模式，可选：`horizontal`、`inline`。默认： `inline` 。（`horizontal | inline`）
+- classNames: Class name array of the component, inherited from the parent class and appended with `['k-layout-sidebar']`, and when `mode` is `horizontal`, append `['k-layout-sidebar-horizontal']`. (`string[] | undefined`)
+- mode: Sidebar display mode, optional: `horizontal`, `inline`. Default: `inline`. (`horizontal | inline`)
 
-## （五）其他组件
+## (五) Other Components
 
-### 1、DividerWidget
+### 1. DividerWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -1174,6 +1174,3 @@ export class MaskSidebarWidget extends BaseMaskLayoutWidget
 )
 export class DividerWidget extends BaseMaskWidget
 ```
-
-
-

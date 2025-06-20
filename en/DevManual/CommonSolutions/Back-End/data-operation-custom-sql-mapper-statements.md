@@ -1,23 +1,21 @@
 ---
-title: 数据操作：自定义SQL（Mapper）语句
+title: Data Operations:Custom SQL (Mapper) Statements
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 35
 ---
 
-# 一、场景描述
-在实际的业务场景里，常常会遭遇复杂 SQL 的情形，其具体体现如下：
+# I. Scenario Description
+In real-world business scenarios, complex SQL situations often arise, including:
++ When single-table SQL cannot meet business requirements.
++ Involving complex JOIN relationships or subqueries.
++ When implementing complex SQL logic through programmatic means is too difficult or costly.
 
-+ 当单表单 SQL 无法满足业务需求时；
-+ 涉及复杂的 Join 关系，或者存在子查询时；
-+ 若通过程序逻辑去实现复杂 SQL 的逻辑，难度较大或者实现成本过高时。
+In such cases, we can leverage native MyBatis/MyBatis-Plus and use custom Mappers to achieve business functionality.
 
-面对这些状况，我们可以借助原生的 MyBatis/MyBatis-Plus，采用自定义 Mapper 的方式来达成业务功能。
-
-# 二、编写所需的Mapper
-> SQL Mapper 的撰写方式并无限制，用法与原生的 MyBatis/MyBatis-Plus 一致。Mapper（也就是 DAO）和 SQL 既可以整合在一个文件内书写，也能够分开，分别置于两个文件里撰写。
->
+# II. Writing the Required Mapper
+> There are no restrictions on how to write SQL Mappers. The usage is the same as native MyBatis/MyBatis-Plus. Mappers (i.e., DAOs) and SQL can be written in a single file or separated into two files.
 
 ```java
 package pro.shushi.pamirs.demo.core.map;
@@ -34,11 +32,10 @@ public interface DemoItemMapper {
     @Select("<script>select sum(item_price) as itemPrice,sum(inventory_quantity) as inventoryQuantity,categoryId from ${demoItemTable}  as core_demo_item ${where}  group by category_id</script>")
     List<Map<String, Object>> groupByCategoryId(@Param("demoItemTable") String pamirsUserTable, @Param("where") String where);
 }
-
 ```
 
-# 三、调用mapper
-## （一）调用Mapper代码示例
+# III. Invoking the Mapper
+## (一) Example Code for Invoking the Mapper
 ```java
 package pro.shushi.pamirs.demo.core.map;
 
@@ -70,17 +67,16 @@ public class DemoItemDAO {
 }
 ```
 
-## （二）调用Mapper一些说明
-+ 启动类需要配置扫描包MapperScan
-
+## (二) Notes on Invoking the Mapper
++ The startup class needs to configure the Mapper scan package.
 ```java
 @MapperScan(value = "pro.shushi", annotationClass = Mapper.class)
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, FreeMarkerAutoConfiguration.class})
 public class DemoApplication {
 ```
 
-+ 在调用 Mapper 接口时，必须指定数据源。就像上述示例代码中的 `DsHintApi dsHint = DsHintApi.model(DemoItem.MODEL_MODEL)` 那样，在实际编写代码时，要采用 try - with - resources 语法。
-+ 从 Mapper 返回的结果里提取数据：
-    - 若 SQL Mapper 中已预先定义了 resultMap，那么调用 Mapper（即 DAO）后返回的即为 Java 对象。
-    - 要是 Mapper 返回的是 `Map<String, Object>`，则需借助 `DataConverter.out` 来进行转化，具体可参照上述示例。
++ When invoking the Mapper interface, you must specify the data source. As shown in the example code `DsHintApi dsHint = DsHintApi.model(DemoItem.MODEL_MODEL)`, use the try-with-resources syntax in your code.
 
++ Extracting data from the Mapper return results:
+  - If the SQL Mapper already defines a resultMap, the return type after invoking the Mapper (i.e., DAO) will be a Java object.
+  - If the Mapper returns `Map<String, Object>`, use `DataConverter.out` for conversion, as shown in the example above.

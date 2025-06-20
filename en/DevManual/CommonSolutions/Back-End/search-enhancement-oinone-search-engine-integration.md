@@ -1,25 +1,25 @@
 ---
-title: 搜索增强：Oinone引入搜索引擎(增强模型)
+title: Search Enhancement:Oinone Introduces Search Engine (Enhanced Model)
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 20
 ---
 
-# 一、场景描述
-当面临大数据量且有全文检索需求的场景时，在分布式架构体系中，通常会将架设 ElasticSearch 作为一种常规的解决方案。在 Oinone 体系里，增强模型正是为应对此类场景而设计，其底层实际上整合了 ElasticSearch 。
+# I. Scenario Description
+When facing scenarios with large data volumes and full-text search requirements, in a distributed architecture system, setting up ElasticSearch is usually considered a conventional solution. In the Oinone system, the enhanced model is specifically designed to address such scenarios, with its underlying layer actually integrating ElasticSearch.
 
-# 二、背景介绍
-+ 对 ElasticSearch 展开全面了解，所涉内容包括但不限于：Index（索引）、分词、Node（节点）、Document（文档）、Shards（分片）以及 Replicas（副本）。详细信息可参考官方网站：[https://www.elastic.co/cn/](https://www.elastic.co/cn/) 。
-+ 确保拥有一个可用的 ElasticSearch 环境，该环境需满足本地项目能够对其进行引用的要求。
+# II. Background Introduction
++ Gain a comprehensive understanding of ElasticSearch, covering content including but not limited to: Index, tokenization, Node, Document, Shards, and Replicas. For detailed information, refer to the official website: [https://www.elastic.co/cn/](https://www.elastic.co/cn/).
++ Ensure there is a usable ElasticSearch environment that meets the requirement for local projects to reference it.
 
-# 三、前置约束
-增强模型增量依赖数据变更实时消息，因此确保项目的 event 是开启的，mq 配置正确。
+# III. Precondition Constraints
+The enhanced model incrementally depends on real-time data change messages, so ensure the project's event is enabled and the mq configuration is correct.
 
-# 四、项目引入搜索步骤
-## （一）boot 工程加入相关依赖包
-+ boot 工程需要指定 ES 客户端包版本，不指定版本会隐性依赖顶层 spring-boot 依赖管理指定的低版本
-+ boot 工程加入 pamris-channel 的工程依赖
+# IV. Steps to Introduce Search in the Project
+## (I) Adding Relevant Dependencies to the Boot Project
++ The boot project needs to specify the ES client package version; not specifying the version will implicitly depend on the lower version specified by the top-level spring-boot dependency management.
++ Add the project dependency of pamris-channel to the boot project.
 
 ```xml
 <dependency>
@@ -43,8 +43,8 @@ order: 20
 
 ```
 
-## （二）api工程加入相关依赖包
-在 XXX-api 中增加入 pamirs-channel-api 的依赖
+## (II) Adding Relevant Dependencies to the API Project
+Add the dependency on pamirs-channel-api in XXX-api.
 
 ```xml
 <dependency>
@@ -54,34 +54,34 @@ order: 20
 
 ```
 
-## （三）yml文件配置
-在 pamirs-demo-boot 的 application-dev.yml 文件中增加配置 pamirs.boot.modules 增加 channel，即在启动模块中增加 channel 模块。同时注意 es 的配置，是否跟 es 的服务一致
+## (III) YML File Configuration
+Add the configuration in the application-dev.yml file of pamirs-demo-boot: add channel to pamirs.boot.modules, that is, add the channel module to the startup modules. Meanwhile, pay attention to the ES configuration to ensure it matches the ES service.
 
 ```yaml
 pamirs:
   record:
     sql:
-      #改成自己本地路径(或服务器路径)
+      # Change to your local path (or server path)
       store: /Users/wangxian/record
     boot:
       modules:
         - channel
-        ## 确保也安装了sql_record
+        ## Ensure sql_record is also installed
         - sql_record
   elastic:
     url: 127.0.0.1:9200
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## （四）项目的模块增加模块依赖
-XXXModule 增加对 ChannelModule 的依赖
+## (IV) Adding Module Dependencies to the Project's Modules
+XXXModule adds a dependency on ChannelModule.
 
 ```java
 @Module(dependencies = {ChannelModule.MODULE_MODULE})
 ```
 
-## （五）增加增强模型(举例)
+## (V) Adding an Enhanced Model (Example)
 ```java
 package pro.shushi.pamirs.demo.api.enhance;
 
@@ -92,26 +92,26 @@ import pro.shushi.pamirs.demo.api.model.ShardingModel;
 import pro.shushi.pamirs.meta.annotation.Model;
 import pro.shushi.pamirs.meta.enmu.ModelTypeEnum;
 
-@Model(displayName = "测试EnhanceModel")
+@Model(displayName = "Test EnhanceModel")
 @Model.model(ShardingModelEnhance.MODEL_MODEL)
 @Model.Advanced(type = ModelTypeEnum.PROXY, inherited = {EnhanceModel.MODEL_MODEL})
-@Enhance(shards = "3", replicas = "1", reAlias = true,increment= IncrementEnum.OPEN)
+@Enhance(shards = "3", replicas = "1", reAlias = true, increment = IncrementEnum.OPEN)
 public class ShardingModelEnhance extends ShardingModel {
-    public static final String MODEL_MODEL="demo.ShardingModelEnhance";
+    public static final String MODEL_MODEL = "demo.ShardingModelEnhance";
 }
 ```
 
-## （六）重启系统看效果
-+ 进入【传输增强模型】应用，访问增强模型列表我们会发现一条记录，并点击【全量同步】初始化ES，并全量 dump 数据
+## (VI) Restarting the System to See the Effect
++ Enter the [Transport Enhanced Model] application, visit the enhanced model list, and you will find a record. Click [Full Synchronization] to initialize ES and perform a full dump of data.
  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-9-1024x263-20250530144822179.png)
-+ 再次回到 Demo 应用，进入增强模型页面，可以正常访问并进增删改查操作
++ Return to the Demo application again, enter the enhanced model page, and you can normally access and perform CRUD operations.
  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2-1024x431-20250530144822231.webp)
 
-# 五、个性化 dump 逻辑
-通常 dump 逻辑是有个性化需求，那么我们可以重写模型的 synchronize 方法，函数重写特性在“面向对象-继承与多态”部分中已经有详细介绍。
+# V. Personalized Dump Logic
+Generally, dump logic has personalized requirements, so we can override the synchronize method of the model. The function overriding feature has been described in detail in the "Object-Oriented - Inheritance and Polymorphism" section.
 
-## （一）重写 ShardingModelEnhance 模型的 synchronize 方法
-重写后，如果针对老数据记录需要把新增的字段都自动填充，可以进入【传输增强模型】应用，访问增强模型列表，找到对应的记录并点击【全量同步】
+## (I) Overriding the synchronize Method of the ShardingModelEnhance Model
+After overriding, if old data records need to automatically fill in new fields, you can enter the [Transport Enhanced Model] application, visit the enhanced model list, find the corresponding record, and click [Full Synchronization].
 
 ```java
 package pro.shushi.pamirs.demo.api.enhance;
@@ -128,20 +128,20 @@ import pro.shushi.pamirs.meta.enmu.ModelTypeEnum;
 
 import java.util.List;
 
-@Model(displayName = "测试EnhanceModel")
+@Model(displayName = "Test EnhanceModel")
 @Model.model(ShardingModelEnhance.MODEL_MODEL)
 @Model.Advanced(type = ModelTypeEnum.PROXY, inherited = {EnhanceModel.MODEL_MODEL})
-@Enhance(shards = "3", replicas = "1", reAlias = true,increment= IncrementEnum.OPEN)
+@Enhance(shards = "3", replicas = "1", reAlias = true, increment = IncrementEnum.OPEN)
 public class ShardingModelEnhance extends ShardingModel {
-    public static final String MODEL_MODEL="demo.ShardingModelEnhance";
+    public static final String MODEL_MODEL = "demo.ShardingModelEnhance";
 
     @Field(displayName = "nick")
     private String nick;
 
-    @Function.Advanced(displayName = "同步数据", type = FunctionTypeEnum.UPDATE)
-    @Function(summary = "数据同步函数")
+    @Function.Advanced(displayName = "Synchronize Data", type = FunctionTypeEnum.UPDATE)
+    @Function(summary = "Data Synchronization Function")
     public List<ShardingModelEnhance> synchronize(List<ShardingModelEnhance> data) {
-        for(ShardingModelEnhance shardingModelEnhance:data){
+        for (ShardingModelEnhance shardingModelEnhance : data) {
             shardingModelEnhance.setNick(shardingModelEnhance.getName());
         }
         return data;
@@ -149,13 +149,13 @@ public class ShardingModelEnhance extends ShardingModel {
 }
 ```
 
-## （二）给搜索增加个性化逻辑
-通常情况下，dump 逻辑往往存在个性化需求。在此情形下，我们可对模型的 synchronize 方法进行重写。关于函数重写这一特性，在 “面向对象 - 继承与多态” 章节已有详尽阐述。
+## (II) Adding Personalized Logic to Search
+In general, dump logic often has personalized requirements. In this case, we can override the synchronize method of the model. The function overriding feature has been described in detail in the "Object-Oriented - Inheritance and Polymorphism" section.
 
-# 六、个性化 search 函数
+# VI. Personalized Search Function
 ```java
 @Function(
-    summary = "搜索函数",
+    summary = "Search Function",
     openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API}
 )
 @pro.shushi.pamirs.meta.annotation.Function.Advanced(
@@ -163,13 +163,13 @@ public class ShardingModelEnhance extends ShardingModel {
     category = FunctionCategoryEnum.QUERY_PAGE,
     managed = true
 )
-public  Pagination<ShardingModelEnhance> search(Pagination<ShardingModelEnhance> page, IWrapper<ShardingModelEnhance> queryWrapper) {
-    System.out.println("您的个性化搜索逻辑");
+public Pagination<ShardingModelEnhance> search(Pagination<ShardingModelEnhance> page, IWrapper<ShardingModelEnhance> queryWrapper) {
+    System.out.println("Your personalized search logic");
     return ((IElasticRetrieve) CommonApiFactory.getApi(IElasticRetrieve.class)).search(page, queryWrapper);
 }
 ```
 
-# 七、个性化 search 函数示例
+# VII. Example of Personalized Search Function
 ```java
 @Override
 @SuppressWarnings({"rawtypes"})
@@ -232,21 +232,21 @@ public <T> Pagination<T> search(Pagination<T> page, IWrapper<T> queryWrapper) {
 
     SearchResponse<HashMap> response = null;
     try {
-        log.info("ES搜索请求参数：{}", request.toString());
+        log.info("ES search request parameters: {}", request.toString());
         response = elasticsearchClient.search(request, HashMap.class);
     } catch (ElasticsearchException e) {
-        log.error("索引异常", e);
+        log.error("Index exception", e);
         PamirsSession.getMessageHub()
         .msg(Message.init()
              .setLevel(InformationLevelEnum.WARN)
-             .msg("索引异常"));
+             .msg("Index exception"));
         return page;
     } catch (IOException e) {
-        log.error("ElasticSearch运行状态异常", e);
+        log.error("ElasticSearch runtime status exception", e);
         PamirsSession.getMessageHub()
         .msg(Message.init()
              .setLevel(InformationLevelEnum.WARN)
-             .msg("ElasticSearch运行状态异常"));
+             .msg("ElasticSearch runtime status exception"));
         return page;
     }
 
@@ -264,11 +264,11 @@ public <T> Pagination<T> search(Pagination<T> page, IWrapper<T> queryWrapper) {
 
     List<HashMap> dataMapList = Optional.of(hits)
     .map(HitsMetadata<HashMap>::hits)
-    .map(hitsMap ->{
+    .map(hitsMap -> {
         hitsMap.stream().forEach(highlightForEach -> {
             highlightForEach.highlight().forEach((key, value) -> {
-                if(highlightForEach.source().containsKey(key)){
-                    highlightForEach.source().put(key,value.get(0));
+                if (highlightForEach.source().containsKey(key)) {
+                    highlightForEach.source().put(key, value.get(0));
                 }
             });
 
@@ -285,8 +285,7 @@ public <T> Pagination<T> search(Pagination<T> page, IWrapper<T> queryWrapper) {
     page.setSize(size);
     page.setTotalElements(total);
     page.setContent(context);
-    log.info("ES搜索请求参数返回total,{}", total);
+    log.info("ES search request parameter return total,{}", total);
     return page;
 }
 ```
-

@@ -1,62 +1,60 @@
 ---
-title: 环境保护：Oinone环境保护（v5.2.3以上）
+title: Environmental Protection:Oinone Environmental Protection (above v5.2.3)
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 57
 ---
 
-# 一、概述
-Oinone 平台为合作伙伴提供了环境保护功能，以确保在`一套环境`可以在较为安全前提下修改配置文件，启动多个 JVM 等部署操作。
+# 1. Overview
+The Oinone platform provides partners with an environmental protection function to ensure that deployment operations such as modifying configuration files and starting multiple JVMs can be carried out under relatively safe conditions in **a single environment**.
 
-本章内容主要介绍与环境保护功能相关的启动参数。
+This chapter mainly introduces the startup parameters related to the environmental protection function.
 
-# 二、名词解释
-+ 本地开发环境：开发人员在本地启动业务工程的环境
-+ 公共环境：包含设计器镜像和业务工程的环境
+# 2. Nomenclature
+- **Local development environment**: The environment where developers start the business project locally.
+- **Public environment**: The environment including the designer image and business project.
 
-# 三、环境保护参数介绍
-## `（一）-PenvProtected=${value}`
-是否启用环境保护，默认为`true`。
+# 3. Introduction to Environmental Protection Parameters
+## (1) `-PenvProtected=${value}`
+Whether to enable environmental protection, with the default being `true`.
 
-环境保护是通过与最近一次保存在数据库的`base_platform_environment`表中数据进行比对，并根据每个参数的配置特性进行判断，在启动时将有错误的内容打印在启动日志中，以便于开发者进行问题排查。
+Environmental protection works by comparing with the data recently saved in the `base_platform_environment` table of the database and judging according to the configuration characteristics of each parameter. Errors will be printed in the startup log to help developers troubleshoot problems.
 
-除此之外，环境保护功能还提供了一些生产配置的优化建议，开发者可以在启动时关注这些日志，从而对生产环境的配置进行调优。
+Additionally, the environmental protection function provides some optimization suggestions for production configurations. Developers can pay attention to these logs during startup to optimize the configurations of the production environment.
 
-## `（二）-PsaveEnvironments=${value}`
-是否将此次启动的环境参数保存到数据库，默认为`true`。
+## (2) `-PsaveEnvironments=${value}`
+Whether to save the environmental parameters of this startup to the database, with the default being `true`.
 
-在某些特殊情况下，为了避免公共环境中的保护参数发生不必要的变化，我们可以选择不保存此次启动时的配置参数到数据库中，这样就不会影响其他JVM启动时发生校验失败而无法启动的问题。
+In some special cases, to avoid unnecessary changes to the protection parameters in the public environment, we can choose not to save the configuration parameters of this startup to the database, so as not to affect the startup of other JVMs due to failed validation.
 
-## `（三）-PstrictProtected=${value}`
-是否使用严格校验模式，默认为`false`
+## (3) `-PstrictProtected=${value}`
+Whether to use the strict validation mode, with the default being `false`.
 
-通常我们建议在公共环境启用严格校验模式，这样可以最大程度的保护公共环境的元数据不受其他环境干扰。
+It is generally recommended to enable the strict validation mode in the public environment to maximize the protection of the public environment's metadata from interference by other environments.
 
-:::info 注意：
+:::info Note:
 
-在启用严格校验模式时，需避免内外网使用不同连接地址的场景。如无法避免，则无法启用严格校验模式。
-
-:::
-
-# 四、常见问题
-## （一）需要迁移数据库，并更换了数据库连接地址该如何操作？
-1. 将原有数据库迁移到新数据库。
-2. 修改配置文件中数据库的连接地址。
-3. 在启动脚本中增加`-PenvProtected=false`关闭环境保护。
-4. 启动JVM服务可以看到有错误的日志提示，但不会中断本次启动。
-5. 移除启动脚本中的`-PenvProtected=false`或将值改为`true`，下次启动时将继续进行环境保护检查。
-6. 可查看数据库中`base_platform_environment`表中对应数据库连接配置已发生修改，此时若其他JVM在启动前未正确修改，则无法启动。
-
-## （二）本地开发时需要修改Redis连接地址到本地，但希望不影响公共环境的使用该如何操作？
-:::info 注意：
-
-由于Redis中的元数据缓存是根据数据库差量进行同步的，此操作会导致公共环境在启动时无法正确刷新Redis中的元数据缓存，需要配合`pamirs.distribution.session.allMetaRefresh`参数进行操作。如无特殊必要，我们不建议使用该形式进行协同开发，多次修改配置会导致出错的概率增加。
+When enabling the strict validation mode, avoid scenarios where different connection addresses are used for internal and external networks. If this cannot be avoided, the strict validation mode cannot be enabled.
 
 :::
 
-1. 本地环境首次启动时，除了修改 Redis 相关配置外，还需要配置`pamirs.distribution.session.allMetaRefresh=true`，将本地新连接的Redis进行初始化。
-2. 在本地启动时，增加`-PenvProtected=false -PsaveEnvironments=false`启动参数，以确保本地启动不会修改公共环境的配置，并且可以正常通过环境保护检测。
-3. 本地环境成功启动并正常开发功能后，需要发布到公共环境进行测试时，需要先修改公共环境中业务工程配置`pamirs.distribution.session.allMetaRefresh=true`后，再启动业务工程。
-4. 启动一次业务工程后，将配置还原为`pamirs.distribution.session.allMetaRefresh=false`。
+# 4. Common Issues
+## (1) How to migrate the database and change the database connection address?
+1. Migrate the original database to the new database.
+2. Modify the database connection address in the configuration file.
+3. Add `-PenvProtected=false` to the startup script to disable environmental protection.
+4. Start the JVM service. Error logs will be prompted, but the current startup will not be interrupted.
+5. Remove `-PenvProtected=false` from the startup script or change the value to `true`. Environmental protection checks will continue at the next startup.
+6. Check that the corresponding database connection configuration in the `base_platform_environment` table has been modified. If other JVMs do not modify it correctly before startup, they will fail to start.
 
+## (2) How to modify the Redis connection address to the local one during local development without affecting the public environment?
+:::info Note:
+
+Since the metadata cache in Redis is synchronized based on database deltas, this operation will cause the public environment to fail to correctly refresh the metadata cache in Redis during startup. It needs to be operated with the `pamirs.distribution.session.allMetaRefresh` parameter. Unless necessary, we do not recommend using this form for collaborative development, as multiple configuration modifications will increase the probability of errors.
+
+:::
+1. When starting the local environment for the first time, in addition to modifying the Redis-related configurations, also configure `pamirs.distribution.session.allMetaRefresh=true` to initialize the locally connected Redis.
+2. When starting locally, add the startup parameters `-PenvProtected=false -PsaveEnvironments=false` to ensure that the local startup does not modify the public environment's configurations and can pass the environmental protection check normally.
+3. After the local environment is successfully started and the function is developed normally, when publishing to the public environment for testing, first modify the `pamirs.distribution.session.allMetaRefresh=true` configuration in the public environment's business project, and then start the business project.
+4. After starting the business project once, restore the configuration to `pamirs.distribution.session.allMetaRefresh=false`.

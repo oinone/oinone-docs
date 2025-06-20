@@ -1,46 +1,46 @@
 ---
-title: 消息中心 API（Message Hub API）
+title: Message Hub API
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 后端API
+  - Backend API
   - Advance API
 order: 5
 
 ---
-# 一、类概述
+# 一、Class Overview
 
-**MessageHub** 是消息处理核心类，用于管理应用中的消息传递与状态控制。支持不同级别的消息（调试、信息、成功、警告、错误），并根据消息级别和配置决定前端展示形式及业务流程控制（如是否中断操作）。通过 `PamirsSession.getMessageHub()` 获取实例。
+**MessageHub** is the core class for message processing, used to manage message transmission and status control in applications. It supports different levels of messages (debug, info, success, warning, error) and determines the front-end display form and business process control (such as whether to interrupt operations) based on the message level and configuration. Obtain the instance through `PamirsSession.getMessageHub()`.
 
-# 二、成员变量
+# 二、Member Variables
 
-| **变量名**       | **类型**              | **描述**                                                     |
+| **Variable Name**       | **Type**              | **Description**                                                     |
 | :--------------- | :-------------------- | :----------------------------------------------------------- |
-| `success`        | boolean               | 是否成功（不包含 ERROR 级别的消息），默认 `true`<br/>。当存在 ERROR 消息时自动设为 `false`<br/>。 |
-| `exception`      | boolean               | 是否为异常状态（未在代码中明确使用，可能预留扩展）。         |
-| `dataExtension`  | `DataExtension`       | 存储非错误消息（INFO、SUCCESS、WARN 等）及扩展数据。         |
-| `errorExtension` | `ErrorExtension`      | 存储错误消息（ERROR 级别）及错误详情（代码、类型等）。       |
-| `path`           | `ClientExecutionPath` | 消息关联的执行路径，用于定位前端展示位置（如字段级错误）。   |
+| `success`        | boolean               | Whether successful (does not include ERROR-level messages), default `true`<br/>. Automatically set to `false` when ERROR messages exist.<br/>. |
+| `exception`      | boolean               | Whether it is an exception state (not explicitly used in the code, possibly reserved for extension).         |
+| `dataExtension`  | `DataExtension`       | Stores non-error messages (INFO, SUCCESS, WARN, etc.) and extended data.         |
+| `errorExtension` | `ErrorExtension`      | Stores error messages (ERROR level) and error details (code, type, etc.).       |
+| `path`           | `ClientExecutionPath` | The execution path associated with the message, used to locate the front-end display position (such as field-level errors).   |
 
 
-# 三、构造方法
+# 三、Constructor
 
-## （一）`MessageHub()`
+## (一) `MessageHub()`
 
-+ **描述**：默认构造方法，初始化 `success` 为 `true`。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Default constructor, initializes `success` to `true`.
++ **Return Value**: `MessageHub` instance.
 
-# 四、核心方法
+# 四、Core Methods
 
-## （一）消息添加方法
+## (一) Message Addition Methods
 
-### 1、`msg(Message message)`
+### 1. `msg(Message message)`
 
-+ **描述**：添加单条消息。根据消息级别（`InformationLevelEnum`）决定存储到 `dataExtension`（非 ERROR）或 `errorExtension`（ERROR）。
-+ **参数**：`message` - `Message` 实例，需设置 `level` 和 `message`。
-+ **返回值**：`MessageHub` 实例（支持链式调用）。
-+ **示例**：**java**
++ **Description**: Adds a single message. Determines whether to store it in `dataExtension` (non-ERROR) or `errorExtension` (ERROR) based on the message level (`InformationLevelEnum`).
++ **Parameter**: `message` - `Message` instance, which needs to set `level` and `message`.
++ **Return Value**: `MessageHub` instance (supports chaining).
++ **Example**: **java**
 
 ```java
 PamirsSession.getMessageHub()
@@ -50,122 +50,122 @@ PamirsSession.getMessageHub()
         .setMessage("名称为必填项"));
 ```
 
-### 2、`msg(List<Message> messages)`
+### 2. `msg(List<Message> messages)`
 
-+ **描述**：批量添加消息，逐条调用 `msg()` 处理。
-+ **参数**：`messages` - `Message` 列表。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Adds messages in batches, processing each by calling `msg()`.
++ **Parameter**: `messages` - `Message` list.
++ **Return Value**: `MessageHub` instance.
 
-### 3、快捷级别方法（`info`, `warn`, `success`, `error`）
+### 3. Quick Level Methods (`info`, `warn`, `success`, `error`)
 
-| **方法名**            | **描述**                                      | **参数**              | **返回值**   |
+| **Method Name**            | **Description**                                      | **Parameter**              | **Return Value**   |
 | :-------------------- | :-------------------------------------------- | :-------------------- | :----------- |
-| `info(String msg)`    | 添加 INFO 级别消息                            | `msg`<br/> - 消息内容 | `MessageHub` |
-| `warn(String msg)`    | 添加 WARN 级别消息                            | `msg`<br/> - 消息内容 | `MessageHub` |
-| `success(String msg)` | 添加 SUCCESS 级别消息                         | `msg`<br/> - 消息内容 | `MessageHub` |
-| `error(String msg)`   | 添加 ERROR 级别消息，自动设置 `success=false` | `msg`<br/> - 消息内容 | `MessageHub` |
+| `info(String msg)`    | Adds an INFO-level message                            | `msg`<br/> - Message content | `MessageHub` |
+| `warn(String msg)`    | Adds a WARN-level message                            | `msg`<br/> - Message content | `MessageHub` |
+| `success(String msg)` | Adds a SUCCESS-level message                         | `msg`<br/> - Message content | `MessageHub` |
+| `error(String msg)`   | Adds an ERROR-level message and automatically sets `success=false` | `msg`<br/> - Message content | `MessageHub` |
 
 
-**示例**：
+**Example**:
 
 ```java
-// 快速添加警告消息
+// Quickly add a warning message
 messageHub.warn("连接即将超时");
 ```
 
-## （二）扩展数据与指令
+## (二) Extended Data and Directives
 
-### 1、`extensions(Map<Object, Object> extensions)`
+### 1. `extensions(Map<Object, Object> extensions)`
 
-+ **描述**：批量添加扩展数据，存储到 `dataExtension.extensions`。
-+ **参数**：`extensions` - 键值对扩展数据。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Adds extended data in batches and stores it in `dataExtension.extensions`.
++ **Parameter**: `extensions` - Key-value extended data.
++ **Return Value**: `MessageHub` instance.
 
-### 2、`extensions(Object key, Object value)`
+### 2. `extensions(Object key, Object value)`
 
-+ **描述**：添加单个扩展数据。
-+ **参数**：`key` - 键，`value` - 值。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Adds a single piece of extended data.
++ **Parameter**: `key` - Key, `value` - Value.
++ **Return Value**: `MessageHub` instance.
 
-### 3、`directives(Set<String> directives)` / `directives(String directive)`
+### 3. `directives(Set<String> directives)` / `directives(String directive)`
 
-+ **描述**：添加前端指令（如页面跳转、刷新等），存储到 `dataExtension.directives`。
-+ **参数**：`directives` - 指令集合或单个指令。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Adds front-end directives (such as page navigation, refresh, etc.) and stores them in `dataExtension.directives`.
++ **Parameter**: `directives` - Directive set or single directive.
++ **Return Value**: `MessageHub` instance.
 
-## （三）错误处理
+## (三) Error Handling
 
-### 1、`error(ExpBaseEnum error)`
+### 1. `error(ExpBaseEnum error)`
 
-+ **描述**：根据枚举添加错误消息，包含错误码、类型和消息。
-+ **参数**：`error` - 实现 `ExpBaseEnum` 的枚举实例（需提供 `msg()`, `code()`, `type()`）。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Adds an error message based on the enum, including the error code, type, and message.
++ **Parameter**: `error` - An enum instance implementing `ExpBaseEnum` (needs to provide `msg()`, `code()`, `type()`).
++ **Return Value**: `MessageHub` instance.
 
-### 2、`fill(boolean success, ErrorExtension errorExtension)`
+### 2. `fill(boolean success, ErrorExtension errorExtension)`
 
-+ **描述**：填充错误状态和详情，自动处理消息和状态标记。
-+ **参数**：`success` - 是否成功，`errorExtension` - 错误扩展信息。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Fills the error status and details, automatically handling message and status marking.
++ **Parameter**: `success` - Whether successful, `errorExtension` - Error extension information.
++ **Return Value**: `MessageHub` instance.
 
-## （四）执行路径
+## (四) Execution Path
 
-### 1、`appendPath(String segment)` / `appendPath(Integer segment)`
+### 1. `appendPath(String segment)` / `appendPath(Integer segment)`
 
-+ **描述**：添加执行路径段（字符串或整数，用于字段定位，如 `name` 或数组索引）。
-+ **参数**：`segment` - 路径段。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Adds an execution path segment (string or integer, used for field positioning, such as `name` or array index).
++ **Parameter**: `segment` - Path segment.
++ **Return Value**: `MessageHub` instance.
 
-**示例**：
+**Example**:
 
 ```java
-// 设置字段 "name" 的错误路径
+// Set the error path for the field "name"
 messageHub.appendPath("name");
 ```
 
-## （五）状态控制
+## (五) Status Control
 
-### 1、`error()`
+### 1. `error()`
 
-+ **描述**：标记为错误状态（`success=false`），不添加具体消息。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Marks the error status (`success=false`), without adding specific messages.
++ **Return Value**: `MessageHub` instance.
 
-### 2、`clear()`
+### 2. `clear()`
 
-+ **描述**：清除所有消息和状态，重置 `success=true`。
-+ **返回值**：`MessageHub` 实例。
++ **Description**: Clears all messages and statuses, resetting `success=true`.
++ **Return Value**: `MessageHub` instance.
 
-## （六）数据获取
+## (六) Data Acquisition
 
-### 1、`getAllMessages()`
+### 1. `getAllMessages()`
 
-+ **描述**：获取所有消息（包括数据消息和错误消息）。
-+ **返回值**：`List<Message>`。
++ **Description**: Gets all messages (including data messages and error messages).
++ **Return Value**: `List<Message>`.
 
-### 2、`getDataMessages()` / `getErrorMessages()`
+### 2. `getDataMessages()` / `getErrorMessages()`
 
-+ **描述**：分别获取非错误消息和错误消息列表。
-+ **返回值**：`List<Message>`（可能为 `null`）。
++ **Description**: Gets the non-error message and error message lists, respectively.
++ **Return Value**: `List<Message>` (may be `null`).
 
-# 五、消息级别（`InformationLevelEnum`）
+# 五、Message Levels (`InformationLevelEnum`)
 
-| **级别**  | **描述** | **前端展示特性**                                   |
+| **Level**  | **Description** | **Front-end Display Characteristics**                                   |
 | :-------- | :------- | :------------------------------------------------- |
-| `DEBUG`   | 调试信息 | 通常隐藏或浅色展示（依赖前端配置）。               |
-| `INFO`    | 普通信息 | 提示性 Toast 或横幅。                              |
-| `SUCCESS` | 成功通知 | 绿色高亮，可能伴随操作反馈。                       |
-| `WARN`    | 警告     | 黄色高亮，提示潜在问题。                           |
-| `ERROR`   | 错误     | 红色高亮，可中断流程（根据 `success`<br/> 判断）。 |
+| `DEBUG`   | Debug information | Usually hidden or displayed in light color (depends on front-end configuration).               |
+| `INFO`    | General information | Prompt Toast or banner.                              |
+| `SUCCESS` | Success notification | Green highlight, possibly with operation feedback.                       |
+| `WARN`    | Warning     | Yellow highlight, prompting potential problems.                           |
+| `ERROR`   | Error     | Red highlight, can interrupt the process (judged based on `success`<br/>). |
 
 
-**前端展示规则**：
+**Front-end Display Rules**:
 
-+ 未设置 `field` 的消息：通过 Toast 等全局方式展示。
-+ 设置 `field` 的消息：在对应字段下方展示（如表单验证错误）。
-+ 错误消息中断逻辑：若 `success=false`，仅展示消息不跳转；否则展示后跳转。
++ Messages without `field`: Displayed globally via Toast, etc.
++ Messages with `field`: Displayed below the corresponding field (such as form validation errors).
++ Error message interruption logic: If `success=false`, only display the message without navigation; otherwise, display and navigate.
 
-# 六、示例代码
+# 六、Example Code
 
-## （一）表单验证场景
+## (一) Form Validation Scenario
 
 ```java
 @Function
@@ -192,22 +192,22 @@ public Boolean checkData(TestConstraintsModel data) {
 }
 ```
 
-+ **说明**：验证 `name` 字段，添加字段级错误消息，自动标记 `success=false`，前端在 `name` 字段下方展示错误。
++ **Explanation**: Validates the `name` field, adds field-level error messages, automatically marks `success=false`, and the front end displays errors below the `name` field.
 
-## （二）快速添加成功消息
+## (二) Quickly Add a Success Message
 
 ```java
 messageHub.success("操作成功！")
-          .directives("redirectToHome"); // 添加前端跳转指令
+          .directives("redirectToHome"); // Add front-end navigation directive
 ```
 
-# 七、注意事项
+# 七、Notes
 
-1. **消息级别优先级**：`ERROR` 级别消息会强制标记 `success=false`，其他级别不影响 `success`（除非显式调用 `error()`）。
-2. **字段定位**：通过 `setField()` 或 `appendPath()` 设置字段路径，确保前端正确定位展示位置。
-3. **性能**：`closure(Supplier<T>)` 方法用于在代码块前后自动清除消息中心，避免跨请求消息污染。
+1. **Message Level Priority**: `ERROR`-level messages will force `success=false`, and other levels do not affect `success` (unless `error()` is called explicitly).
+2. **Field Positioning**: Set the field path through `setField()` or `appendPath()` to ensure the front end correctly locates the display position.
+3. **Performance**: The `closure(Supplier<T>)` method is used to automatically clear the message center before and after code blocks to avoid cross-request message pollution.
 
-# 八、类图（简略）
+# 八、Class Diagram (Simplified)
 
 ```plain
 MessageHub
@@ -221,5 +221,4 @@ MessageHub
 └─ clear(): MessageHub
 ```
 
-通过以上文档，开发者可清晰了解 `MessageHub` 的消息管理机制、各级别消息的处理逻辑及前端展示规则，快速实现业务中的消息传递与状态控制。
-
+Through the above documentation, developers can clearly understand the message management mechanism of `MessageHub`, the processing logic of each level of messages, and the front-end display rules, and quickly implement message transmission and status control in business.

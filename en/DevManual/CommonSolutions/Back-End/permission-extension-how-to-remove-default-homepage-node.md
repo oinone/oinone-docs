@@ -1,26 +1,26 @@
 ---
-title: 权限扩展：如何删除系统权限中默认的首页节点
+title: Permission Extension:How to Delete the Default Homepage Node in System Permissions
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 45
 ---
-# 一、场景概述
+# I. Scenario Overview
 
-并没有设置过首页的配置，为什么在系统权限这里的配置菜单中却有首页的配置。而且显示当前资源未完成初始化设置，无法配置。这个文章将帮助你删除这个节点。
+You may wonder why there is a homepage configuration in the system permission menu even though you haven't set it up. It also displays that the current resource is not initialized and cannot be configured. This article will help you delete this node.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-12-31_10-36-45-20250530144822756.jpg)
 
 ---
 
-:::info 注意
+:::info Note
 
-如果添加了以下代码，后续如果需要使用首页的配置，则需要删除该代码。
+If you add the following code, you will need to remove it later if you need to use the homepage configuration.
 
 :::
 
-# 二、扩展权限加载节点：
+# II. Extend Permission Loading Nodes:
 
-遍历权限加载的节点，找到需要删除的模块首页节点。删除节点。
+Traverse the loaded permission nodes, find the homepage node of the module to be deleted, and remove it.
 
 ```java
 @Component
@@ -30,10 +30,10 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
 
     @Override
     public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadContext, List<PermissionNode> nodes) {
-        //删除 TopModule.MODULE_MODULE 的首页节点。
+        // Delete the homepage node of TopModule.MODULE_MODULE.
         String homepage = TranslateUtils.translateValues(PermissionNodeLoaderConstants.HOMEPAGE_DISPLAY_VALUE);
         for (PermissionNode node : nodes) {
-            //如果需要删除多个模块的首页，在这里多加一个逻辑与条件即可。
+            // If you need to delete homepages of multiple modules, add more logical AND conditions here.
             if (!(node instanceof ModulePermissionNode) || !TopModule.MODULE_MODULE.equals(((ModulePermissionNode) node).getModule())) {
                 continue;
             }
@@ -44,7 +44,7 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
                 if (ResourcePermissionSubtypeEnum.HOMEPAGE.equals(permissionNode.getNodeType())
                     && homepage.equals(permissionNode.getDisplayValue())) {
                     iterator.remove();
-                    //如果是删除多个模块首页，这里的return改为break；
+                    // If deleting homepages of multiple modules, change 'return' to 'break' here;
                     return nodes;
                 }
             }
@@ -56,6 +56,5 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
 
 ---
 
-看效果：首页节点成功删除。
+Effect: The homepage node is successfully deleted.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2024-12-31_11-01-32-20250530144822847.jpg)
-

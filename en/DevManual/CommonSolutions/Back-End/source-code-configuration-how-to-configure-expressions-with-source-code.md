@@ -1,38 +1,38 @@
 ---
-title: 源码配置：如何使用源码的方式配置表达式
+title: Source Code Configuration:How to Configure Expressions Using Source Code
 index: true
 category:
-  - 常见解决方案
+  - Common Solution Approaches
 order: 56
 ---
-# 一、自定义占位符定义表达式
 
-1. 数据权限定义表达式： `${thisTeacherName}`
+# I. Custom Placeholder Definition Expressions
+
+1. Data permission definition expression: `${thisTeacherName}`
    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2025-03-13_14-36-51-20250530144829824.jpg)
-2. 界面设计器查询条件定义：`$#{thisTeacherName}`需要加上#号
+2. Query condition definition in the interface designer: `$#{thisTeacherName}` (needs to add a # symbol)
    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/Snipaste_2025-03-14_10-04-07-20250530144829883.jpg)
-   以上配置都可以通过查看`queryWrapper`里面的`originRsql`查看占位符是否被正确替换。
+   The above configurations can be checked by viewing the `originRsql` in the `queryWrapper` to see if the placeholders are correctly replaced.
 
-# 二、显隐、过滤条件表达式定义
+# II. Visibility and Filter Condition Expression Definitions
 
-显隐、过滤都可以加载字段注解里以及`xml`定义里
+Visibility and filtering can both be defined in field annotations and `xml` definitions.
 
-1. 显隐:
+1. Visibility:
    `invisible="$!{activeRecord.deadline}" / invisible = true`
 
 ```java
     @Field.String
-    @Field(displayName = "视图/页面", invisible = true)
+    @Field(displayName = "View/Page", invisible = true)
     private String viewName;
 ```
 
-2. 过滤。
+2. Filtering:
    `domain = " code == ${activeRecord.id} " / domain = "code == '111' "`
 
 ```java
     @Field.one2many
-    @Field(displayName = "子订单列表", summary = "子订单列表")
+    @Field(displayName = "Child Order List", summary = "Child Order List")
     @Field.Relation(relationFields = {"code"}, referenceFields = {"code"}, domain = "code != '1234'")
     private List<ChildOrder> orderList;
 ```
-

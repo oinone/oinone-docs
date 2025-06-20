@@ -1,5 +1,5 @@
 ---
-title: Data Dictionary
+title: Application Menu
 index: true
 category:
   - User Manual

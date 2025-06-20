@@ -1,20 +1,21 @@
 ---
-title: 视图：表格列合并
+title: Views:Table Column Merging
 index: true
 category:
-   - 前端
+   - Frontend
 order: 12
 ---
-# 一、场景概述
-本文将讲解如何通过自定义实现表格支持单元格合并和表头分组。
+
+# I. Scenario Overview
+This article explains how to implement table cell merging and header grouping through customization.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2025010912371117.png)
 
-# 二、代码示例
-[点击下载对应的代码](https://doc.oinone.top/wp-content/uploads/2025/01/merg-table.zip)
+# II. Code Example
+[Click to download the corresponding code](https://doc.oinone.top/wp-content/uploads/2025/01/merg-table.zip)
 
-# 三、操作步骤
-## （一）自定义 `widget`
-创建自定义的 `MergeTableWidget`，用于支持合并单元格和表头分组。
+# III. Operation Steps
+## (一) Customize `widget`
+Create a custom `MergeTableWidget` to support cell merging and header grouping.
 
 ```typescript
 // MergeTableWidget.ts
@@ -35,7 +36,7 @@ import MergeTable from './MergeTable.vue';
     }
 
     /**
-   * 表格展示字段
+   * Table display fields
    */
     @Widget.Reactive()
     public get currentModelFields() {
@@ -43,7 +44,7 @@ import MergeTable from './MergeTable.vue';
     }
 
     /**
-   * 渲染行内动作VNode
+   * Render in-row action VNodes
    */
     @Widget.Method()
     protected renderRowActionVNodes() {
@@ -57,11 +58,10 @@ import MergeTable from './MergeTable.vue';
       return null;
     }
   }
-
 ```
 
-## （二）创建对应的 Vue 组件
-定义一个支持合并单元格与表头分组的 Vue 组件。
+## (二) Create Corresponding Vue Component
+Define a Vue component that supports cell merging and header grouping.
 
 ```vue
 <!-- MergeTable.vue -->
@@ -76,14 +76,14 @@ import MergeTable from './MergeTable.vue';
     @checkbox-all="checkedAllChange"
     >
     <vxe-column type="checkbox" width="50"></vxe-column>
-    <!-- 渲染界面设计器配置的字段 -->
+    <!-- Render fields configured in the interface designer -->
     <vxe-column
       v-for="field in currentModelFields"
       :key="field.name"
       :field="field.name"
       :title="field.label"
       ></vxe-column>
-    <!-- 表头分组  https://vxetable.cn/v4.6/#/table/base/group -->
+    <!-- Header grouping  https://vxetable.cn/v4.6/#/table/base/group -->
     <vxe-colgroup title="更多信息">
       <vxe-column field="role" title="Role"></vxe-column>
       <vxe-colgroup title="详细信息">
@@ -93,7 +93,7 @@ import MergeTable from './MergeTable.vue';
     </vxe-colgroup>
     <vxe-column title="操作" width="120">
       <template #default="{ row, $rowIndex }">
-        <!-- 渲染界面设计器配置的行内动作 -->
+        <!-- Render in-row actions configured in the interface designer -->
         <row-action-render
           :renderRowActionVNodes="renderRowActionVNodes"
           :row="row"
@@ -103,7 +103,7 @@ import MergeTable from './MergeTable.vue';
       </template>
     </vxe-column>
   </vxe-table>
-  <!-- 分页 -->
+  <!-- Pagination -->
   <oio-pagination
     :pageSizeOptions="pageSizeOptions"
     :currentPage="pagination.current"
@@ -140,12 +140,12 @@ import MergeTable from './MergeTable.vue';
         type: Boolean,
         default: undefined
       },
-      // 表格展示的数据
+      // Table display data
       showDataSource: {
         type: Array as PropType<ActiveRecord[]>
           },
 
-      // 分页
+      // Pagination
       pagination: {
         type: Object as PropType<Pagination>,
         required: true
@@ -160,27 +160,27 @@ import MergeTable from './MergeTable.vue';
         type: String as PropType<ListPaginationStyle>
           },
 
-      // 修改分页
+      // Modify pagination
       onPaginationChange: {
         type: Function as PropType<(currentPage: number, pageSize: number) => ReturnPromise<void>>
           },
 
-          // 表格选中
+          // Table selection
           onCheckedChange: {
             type: Function as PropType<(data: ActiveRecords, event?: CheckedChangeEvent) => void>
               },
 
-              // 表格全选
+              // Table full selection
               onCheckedAllChange: {
                 type: Function as PropType<(selected: boolean, data: ActiveRecord[], event?: CheckedChangeEvent) => void>
                   },
 
-                  // 展示字段
+                  // Display fields
                   currentModelFields: {
                     type: Array as PropType<RuntimeModelField[]>
                   },
 
-                  // 渲染行内动作
+                  // Render in-row actions
                   renderRowActionVNodes: {
                     type: Function as PropType<(row: any) => any>,
         required: true
@@ -188,7 +188,7 @@ import MergeTable from './MergeTable.vue';
     },
     setup(props, ctx) {
       /**
-     * 单元格合并
+     * Cell merging
      * https://vxetable.cn/v4.6/#/table/advanced/span
      */
       const mergeCells = ref([
@@ -196,7 +196,7 @@ import MergeTable from './MergeTable.vue';
         { row: 5, col: 0, rowspan: 2, colspan: 2 }
       ]);
 
-      // 单选
+      // Single selection
       const checkboxChange = (e) => {
         const { checked, record, records } = e;
         const event: CheckedChangeEvent = {
@@ -209,7 +209,7 @@ import MergeTable from './MergeTable.vue';
         props.onCheckedChange?.(records, event);
       };
 
-      // 全选
+      // Full selection
       const checkedAllChange = (e) => {
         const { checked, record, records } = e;
         const event: CheckedChangeEvent = {
@@ -232,10 +232,9 @@ import MergeTable from './MergeTable.vue';
   });
 </script>
 <style lang="scss"></style>
-
 ```
 
-## （三）创建行内动作
+## (三) Create In-Row Actions
 ```vue
 <script lang="ts">
   import { ActionBar, RowActionBarWidget } from '@kunlun/dependencies';
@@ -287,10 +286,9 @@ import MergeTable from './MergeTable.vue';
     }
   });
 </script>
-
 ```
 
-## （四）注册布局
+## (四) Register Layout
 ```javascript
 // registry.ts
 
@@ -322,8 +320,6 @@ registerLayout(
     actionName: '动作名称'
   }
 );
-
 ```
 
-通过上述步骤，自定义表格可以实现单元格合并和表头分组功能，同时支持动态渲染界面设计器配置的字段和动作。
-
+Through the above steps, the custom table can achieve cell merging and header grouping functions, while supporting dynamic rendering of fields and actions configured in the interface designer.

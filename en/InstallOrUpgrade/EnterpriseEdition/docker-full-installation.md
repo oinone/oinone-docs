@@ -1,5 +1,5 @@
 ---
-title: Quick Experience:Installation via docker-full Method
+title: Docker full installation
 index: true
 category:
   - Installation and Upgrade

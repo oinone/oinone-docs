@@ -2,20 +2,20 @@
 title: Layout
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 前端API
+  - Frontend API
   - Widget
 order: 4
 
 ---
-在 Oinone Kunlun 中，`布局（Layout）` 是在 `母版（Mask）` 的 `主要内容区域` 中进行 `二次布局` 。其主要功能与母版类似，都是通过 `XML` 标签将<font style="color:rgba(0, 0, 0, 0.85);">页面拆分为可顺序排列的小单元（如容器、元素、插槽等），用于控制页面元素的相对位置。</font>
+In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area` of the `Mask`. Its main function is similar to that of the mask, splitting the page into orderable small units (such as containers, elements, slots, etc.) through `XML` tags to control the relative positions of page elements.
 
-# <font style="color:rgba(0, 0, 0, 0.85);">一、内置布局</font>
+# I. Built-in Layouts
 
-## （一）表格视图布局
+## (一) Table View Layouts
 
-### 1、标准表格
+### 1. Standard Table
 
 ```xml
 <view type="TABLE">
@@ -39,7 +39,7 @@ order: 4
 </view>
 ```
 
-### 2、内联表格（子表格视图）
+### 2. Inline Table (Sub-table View)
 
 ```xml
 <view type="TABLE">
@@ -59,7 +59,7 @@ order: 4
 </view>
 ```
 
-### 3、左树右表
+### 3. Tree on Left, Table on Right
 
 ```xml
 <view type="TABLE">
@@ -91,7 +91,7 @@ order: 4
 </view>
 ```
 
-### 4、左级联右表格
+### 4. Cascader on Left, Table on Right
 
 ```xml
 <view type="table">
@@ -119,9 +119,9 @@ order: 4
 </view>
 ```
 
-## （二）表单视图布局
+## (二) Form View Layouts
 
-### 1、标准表单
+### 1. Standard Form
 
 ```xml
 <view type="FORM">
@@ -134,7 +134,7 @@ order: 4
 </view>
 ```
 
-### 2、内联表单（子表单视图）
+### 2. Inline Form (Sub-form View)
 
 ```xml
 <view type="FORM">
@@ -144,9 +144,9 @@ order: 4
 </view>
 ```
 
-## （三）详情视图布局
+## (三) Detail View Layouts
 
-### 1、标准详情
+### 1. Standard Detail
 
 ```xml
 <view type="DETAIL">
@@ -159,7 +159,7 @@ order: 4
 </view>
 ```
 
-### 2、内联详情（子详情视图）
+### 2. Inline Detail (Sub-detail View)
 
 ```xml
 <view type="DETAIL">
@@ -169,9 +169,9 @@ order: 4
 </view>
 ```
 
-## （四）画廊视图布局
+## (四) Gallery View Layout
 
-### 1、标准画廊视图
+### 1. Standard Gallery View
 
 ```xml
 <view type="gallery">
@@ -189,9 +189,9 @@ order: 4
 </view>
 ```
 
-## （五）树视图布局
+## (五) Tree View Layout
 
-### 1、标准树视图
+### 1. Standard Tree View
 
 ```xml
 <view type="tree">
@@ -202,65 +202,65 @@ order: 4
 </view>
 ```
 
-# 二、布局组件
+# II. Layout Components
 
-一般而言，在布局中我们主要使用 `View`、`Layout`、`Pack` 这三类组件进行定义，通常不会使用任何与元数据相关的 `Action` 和 `Field` 这两类组件。
+Generally, in layouts, we mainly use three types of components for definition: `View`, `Layout`, and `Pack`, and typically do not use `Action` or `Field` components related to metadata.
 
-关于 **布局组件** 相关的 API 请参考：
+For API documentation on **layout components**, please refer to:
 
 + [View](/en/DevManual/Reference/Front-EndFramework/Widget/View/README.md)
 + [Element](/en/DevManual/Reference/Front-EndFramework/Widget/element.md)
 + [Pack](/en/DevManual/Reference/Front-EndFramework/Widget/pack.md)
 
-# 三、插槽
+# III. Slots
 
-在布局中通过定义 `slot` 属性以及 `xslot` 标签可以将 `DSL` 中定义的元数据片段插入到相应的位置，这也称为 **插槽** 。
+In layouts, metadata fragments defined in `DSL` can be inserted into corresponding positions by defining the `slot` attribute and `xslot` tags, which is also known as **slots**.
 
-关于 **插槽** 相关介绍请参考：[DSL](/en/DevManual/Reference/Front-EndFramework/Widget/DSL.md)
+For information on **slots**, please refer to: [DSL](/en/DevManual/Reference/Front-EndFramework/Widget/DSL.md)
 
-# 四、注册布局
+# IV. Registering Layouts
 
-与注册组件类似，布局也可以通过注册的方式替换。
+Similar to component registration, layouts can also be replaced through registration.
 
-## （一）布局的注册可选项
+## (一) Layout Registration Options
 
 ```typescript
 /**
- * 布局注册可选项
+ * Layout registration options
  */
 export interface LayoutRegisterOptions extends SPIOptions {
   // region view
 
   /**
-   * 视图类型
+   * View type
    */
   viewType: ViewType;
   /**
-   * 视图模型所在模块编码，一般是驼峰风格的英文 designerCommon
+   * Module code where the view model is located, typically camel-case English designerCommon
    */
   module?: string;
   /**
-   * 视图模型所在模块名称，一般是下划线风格的英文 designer_common
+   * Module name where the view model is located, typically underscore-case English designer_common
    */
   moduleName?: string;
   /**
-   * 布局名称，对应viewActionQuery.load.resView.baseLayoutName
+   * Layout name, corresponding to viewActionQuery.load.resView.baseLayoutName
    */
   layoutName?: string;
   /**
-   * 视图的模型编码
+   * Model code of the view
    */
   model?: string;
   /**
-   * 视图的模型名称
+   * Model name of the view
    */
   modelName?: string;
   /**
-   * 视图的名称
+   * View name
    */
   viewName?: string;
   /**
-   * 是否为内嵌视图(子视图特有)，表单页内有个o2m的子表格，该表格的inline为true
+   * Whether it is an inline view (specific to sub-views), such as an o2m sub-table in a form page with inline set to true
    */
   inline?: boolean;
 
@@ -269,15 +269,15 @@ export interface LayoutRegisterOptions extends SPIOptions {
   // region field
 
   /**
-   * 模型字段类型(子视图特有)
+   * Model field type (specific to sub-views)
    */
   ttype?: ModelFieldType;
   /**
-   * 关联模型字段类型(子视图特有)
+   * Related model field type (specific to sub-views)
    */
   relatedTtype?: ModelFieldType;
   /**
-   * 字段(子视图特有)
+   * Field (specific to sub-views)
    */
   field?: string;
 
@@ -286,11 +286,11 @@ export interface LayoutRegisterOptions extends SPIOptions {
   // region action
 
   /**
-   * 动作名称
+   * Action name
    */
   actionName?: string;
   /**
-   * 动作使用的组件名称
+   * Component name used by the action
    */
   actionWidget?: string;
 
@@ -298,11 +298,11 @@ export interface LayoutRegisterOptions extends SPIOptions {
 }
 ```
 
-从上述类型声明中不难发现，其主要分为：视图（view）、字段（field）以及动作（action）三类，针对不同的元素，我们都提供了不同的参数用于描述布局的使用范围。与任何一个组件注册类似，使用范围描述的越 “精确”，在对应位置使用的布局优先级也就越高。
+From the above type declaration, it can be seen that it is mainly divided into three categories: view, field, and action. For different elements, we provide different parameters to describe the usage scope of the layout. Similar to any component registration, the more "precise" the description of the usage scope, the higher the priority of the layout in the corresponding position.
 
-## （二）使用 registerLayout 注册布局
+## (二) Registering Layouts with registerLayout
 
-下面是我们在 “[探索前端框架 - 组件](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)” 中注册的布局：
+Below is the layout registered in "[Exploring the Frontend Framework - Components](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)":
 
 ```typescript
 import { registerLayout, ViewType } from '@kunlun/dependencies';
@@ -335,5 +335,4 @@ registerLayout(
 );
 ```
 
-按照之前内容的要求，我们在搜索区域和表格区域中间增加了一个计数器组件。
-
+As required in the previous content, a counter component is added between the search area and the table area.

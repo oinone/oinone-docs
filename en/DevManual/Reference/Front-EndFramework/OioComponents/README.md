@@ -1,11 +1,11 @@
 ---
-title: Oio 组件（Oio Components）
+title: Oio Components
 index: false
 category:
-  - 研发手册
+  - DevManual
   - Reference
-  - 前端API
-  - Oio 组件
+  - Front-EndFramework
+  - Oio Components
 dir:
   link: false
   order: 5

@@ -1,64 +1,64 @@
 ---
-title: 请求上下文 API（Request Context API）
+title: Request Context API
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 后端API
+  - Backend API
   - Advance API
 order: 2
 
 ---
-# 一、`PamirsSession`
+# 1. `PamirsSession`
 
-PamirsSession 是用于管理 Oinone 请求会话的类，继承自 PamirsRequestSession。它提供了一系列方法来获取和设置会话相关的信息，如环境变量、用户信息、请求变量等。同时，还提供了会话清理等功能。
+PamirsSession is a class used to manage Oinone request sessions, inheriting from PamirsRequestSession. It provides a series of methods to obtain and set session-related information, such as environment variables, user information, request variables, etc. Meanwhile, it also offers functions like session cleanup.
 
-## （一）类概述
+## (1) Class Overview
 
-**全路径**：`pro.shushi.pamirs.meta.api.session.PamirsSession`
-**继承关系**：继承自 `PamirsRequestSession`
-**作用**：管理 Oinone 框架的会话上下文，提供全局静态方法用于获取和设置会话属性（如环境、用户信息、请求变量等），并通过 `RequestContext` 管理业务相关的配置和缓存数据。
-**线程安全**：所有方法均为静态方法，基于线程隔离的会话上下文实现线程安全。
+**Full Path**: `pro.shushi.pamirs.meta.api.session.PamirsSession`
+**Inheritance Relationship**: Inherits from `PamirsRequestSession`
+**Function**: Manages the session context of the Oinone framework, provides global static methods to get and set session attributes (such as environment, user information, request variables, etc.), and manages business-related configurations and cached data through `RequestContext`.
+**Thread Safety**: All methods are static methods, and thread safety is achieved through a session context based on thread isolation.
 
-## （二）成员变量
+## (2) Member Variables
 
-### 1、会话属性常量
+### 1. Session Attribute Constants
 
-| **名称**            | **类型** | **描述**                                    |
+| **Name**            | **Type** | **Description**                                    |
 | :------------------ | :------- | :------------------------------------------ |
-| `SESSION_PRODUCT`   | String   | 会话所属产品标识                            |
-| `SESSION_ID`        | String   | 会话唯一 ID                                 |
-| `SESSION_SERV_APP`  | String   | 服务应用名称                                |
-| `SESSION_ENV`       | String   | 环境（如 `product`<br/>、`preview`<br/>）   |
-| `SESSION_LANG`      | String   | 语言标识                                    |
-| `SESSION_COUNTRY`   | String   | 国家 / 地区标识                             |
-| `SESSION_USER_ID`   | Object   | 用户 ID（可序列化）                         |
-| `SESSION_USER_CODE` | String   | 用户代码                                    |
-| `SESSION_USER_NAME` | String   | 用户名称                                    |
-| `SESSION_ADMIN_TAG` | Boolean  | 管理员标签（已废弃，改用 `isAdmin()`<br/>） |
+| `SESSION_PRODUCT`   | String   | Product identifier to which the session belongs                            |
+| `SESSION_ID`        | String   | Unique session ID                                 |
+| `SESSION_SERV_APP`  | String   | Service application name                                |
+| `SESSION_ENV`       | String   | Environment (such as `product`<br/>、`preview`<br/>）   |
+| `SESSION_LANG`      | String   | Language identifier                                    |
+| `SESSION_COUNTRY`   | String   | Country/region identifier                             |
+| `SESSION_USER_ID`   | Object   | User ID (serializable)                         |
+| `SESSION_USER_CODE` | String   | User code                                    |
+| `SESSION_USER_NAME` | String   | User name                                    |
+| `SESSION_ADMIN_TAG` | Boolean  | Admin tag (deprecated, use `isAdmin()`<br/> instead） |
 
 
-### 2、内部持有器
+### 2. Internal Holders
 
-| **名称**             | **类型**                          | **描述**                                   |
+| **Name**             | **Type**                          | **Description**                                   |
 | :------------------- | :-------------------------------- | :----------------------------------------- |
-| `holder`             | `HoldKeeper<SessionApi>`          | 持有 `SessionApi`<br/> 实例，通过 SPI 加载 |
-| `clearServiceHolder` | `HoldKeeper<SessionClearService>` | 持有会话清除服务实例                       |
+| `holder`             | `HoldKeeper<SessionApi>`          | Holds `SessionApi`<br/> instances, loaded via SPI |
+| `clearServiceHolder` | `HoldKeeper<SessionClearService>` | Holds session cleanup service instances                       |
 
 
-## （三）构造方法
+## (3) Constructor
 
-**无显式构造方法**：所有方法均为静态方法，通过 SPI 机制加载底层实现（如 `SessionApi`）。默认实现：`PamirsSessionHolder`
+**No Explicit Constructor**: All methods are static methods, and underlying implementations (such as `SessionApi`) are loaded through the SPI mechanism. Default implementation: `PamirsSessionHolder`
 
-## （四）核心方法
+## (4) Core Methods
 
-### 1、会话属性操作
+### 1. Session Attribute Operations
 
 #### `getEnv()`
 
-+ **功能**：获取当前环境（默认返回 `product`）。
-+ **返回值**：`String` 环境标识（如 `product`、`preview`）。
-+ **示例**：**java**
++ **Function**: Gets the current environment (defaults to returning `product`).
++ **Return Value**: `String` environment identifier (such as `product`, `preview`).
++ **Example**: **java**
 
 ```java
 String env = PamirsSession.getEnv();
@@ -66,19 +66,19 @@ String env = PamirsSession.getEnv();
 
 #### `setEnv(String env)`
 
-+ **功能**：设置当前环境。
-+ **参数**：`env` - 环境标识（`product` 或 `preview`）。
-+ **示例**：**java**
++ **Function**: Sets the current environment.
++ **Parameter**: `env` - Environment identifier (`product` or `preview`).
++ **Example**: **java**
 
 ```java
-PamirsSession.setEnv(EnvEnum.preview.toString()); // 设置为预览环境
+PamirsSession.setEnv(EnvEnum.preview.toString()); // Set to preview environment
 ```
 
 #### `getSessionId()`
 
-+ **功能**：获取会话 ID（从 Cookie 或请求头中获取）。
-+ **返回值**：`String` 会话 ID。
-+ **示例**：**java**
++ **Function**: Gets the session ID (obtained from Cookie or request header).
++ **Return Value**: `String` session ID.
++ **Example**: **java**
 
 ```java
 String sessionId = PamirsSession.getSessionId();
@@ -86,293 +86,293 @@ String sessionId = PamirsSession.getSessionId();
 
 #### `getUserId()`
 
-+ **功能**：获取用户 ID（可序列化类型）。
-+ **返回值**：`<T extends Serializable> T` 用户 ID。
-+ **示例**：**java**
++ **Function**: Gets the user ID (serializable type).
++ **Return Value**: `<T extends Serializable> T` user ID.
++ **Example**: **java**
 
 ```java
-Long userId = PamirsSession.getUserId(); // 假设用户 ID 为 Long 类型
+Long userId = PamirsSession.getUserId(); // Assume the user ID is of Long type
 ```
 
 #### `isAdmin()`
 
-+ **功能**：判断是否为管理员用户。
-+ **返回值**：`Boolean` 是否为管理员。
-+ **示例**：**java**
++ **Function**: Determines whether the user is an admin.
++ **Return Value**: `Boolean` whether it is an admin.
++ **Example**: **java**
 
 ```java
 if (PamirsSession.isAdmin()) {
-    // 执行管理员操作
+    // Execute admin operations
 }
 ```
 
-### 2、请求上下文操作
+### 2. Request Context Operations
 
 #### `getContext()`
 
-+ **功能**：获取当前请求上下文（继承自 `PamirsRequestSession`）。
-+ **返回值**：`RequestContext` 上下文实例。
-+ **示例**：**java**
++ **Function**: Gets the current request context (inherits from `PamirsRequestSession`).
++ **Return Value**: `RequestContext` context instance.
++ **Example**: **java**
 
 ```java
 RequestContext context = PamirsSession.getContext();
-ModelConfig modelConfig = context.getModelConfig(TestModel.MODEL_MODEL); // 获取模型配置
+ModelConfig modelConfig = context.getModelConfig(TestModel.MODEL_MODEL); // Get model configuration
 ```
 
 #### `setContext(RequestContext context)`
 
-+ **功能**：设置当前请求上下文（继承自 `PamirsRequestSession`）。
-+ **参数**：`context` - 请求上下文实例。
++ **Function**: Sets the current request context (inherits from `PamirsRequestSession`).
++ **Parameter**: `context` - Request context instance.
 
-### 3、高级操作
+### 3. Advanced Operations
 
 #### `clear()`
 
-+ **功能**：清除会话数据（包括缓存和属性）。
-+ **示例**：**java**
++ **Function**: Clears session data (including cache and attributes).
++ **Example**: **java**
 
 ```java
-PamirsSession.clear(); // 清除当前会话所有数据,在请求结束时自动调用
+PamirsSession.clear(); // Clear all data of the current session, automatically called at the end of the request
 ```
 
 #### `getRequestVariables()`
 
-+ **功能**：获取请求变量（如 URL、参数、头部信息）。
-+ **返回值**：`PamirsRequestVariables` 请求变量实例。
-+ **示例**：**java**
++ **Function**: Gets request variables (such as URL, parameters, header information).
++ **Return Value**: `PamirsRequestVariables` request variables instance.
++ **Example**: **java**
 
 ```java
 PamirsRequestVariables variables = PamirsSession.getRequestVariables();
-String requestUrl = variables.getRequestUrl(); // 获取请求 URL
+String requestUrl = variables.getRequestUrl(); // Get the request URL
 ```
 
-## （五）注意事项
+## (5) Notes
 
-+ **线程安全**：`PamirsSession` 方法均为静态线程安全，内部使用 `TransmittableThreadLocal` 存储上下文，支持子线程数据传递。
-+ **扩展点**：通过 `Spider.getDefaultExtension` 获取扩展接口（如 `SessionApi`），支持自定义实现。
-+ SessionClearApi：只要实现了SessionClearApi接口，在请求结束时会自动调用clear方法
++ **Thread Safety**: `PamirsSession` methods are all static and thread-safe, using `TransmittableThreadLocal` internally to store context, supporting sub-thread data transmission.
++ **Extension Points**: Obtain extension interfaces (such as `SessionApi`) through `Spider.getDefaultExtension`, supporting custom implementations.
++ SessionClearApi: As long as the SessionClearApi interface is implemented, the clear method will be automatically called at the end of the request.
 
-# 二、RequestContext
+# 2. RequestContext
 
-## （一）类概述
+## (1) Class Overview
 
-**全路径**：`pro.shushi.pamirs.meta.api.session.RequestContext`
-**作用**：存储请求级别的业务上下文数据，包括模型配置、函数定义、缓存数据等，支持高效的配置查询和缓存操作。
+**Full Path**: `pro.shushi.pamirs.meta.api.session.RequestContext`
+**Function**: Stores request-level business context data, including model configurations, function definitions, cached data, etc., supporting efficient configuration query and cache operations.
 
-## （二）成员变量
+## (2) Member Variables
 
-| **名称**         | **类型**                  | **描述**     |
+| **Name**         | **Type**                  | **Description**     |
 | :--------------- | :------------------------ | :----------- |
-| `moduleCache`    | `ModuleCacheApi`          | 模块配置缓存 |
-| `modelCache`     | `ModelCacheApi`           | 模型配置缓存 |
-| `functionCache`  | `Cache<String, Function>` | 函数定义缓存 |
-| `extendCacheMap` | `Map<String, Object>`     | 扩展缓存     |
+| `moduleCache`    | `ModuleCacheApi`          | Module configuration cache |
+| `modelCache`     | `ModelCacheApi`           | Model configuration cache |
+| `functionCache`  | `Cache<String, Function>` | Function definition cache |
+| `extendCacheMap` | `Map<String, Object>`     | Extended cache     |
 
 
-## （三）核心方法
+## (3) Core Methods
 
-### 1、`getModelConfig(String model)`
+### 1. `getModelConfig(String model)`
 
-+ **功能**：获取模型配置（优先从缓存中获取，不存在则从静态容器加载）。
-+ **参数**：`model` - 模型名称。
-+ **返回值**：`ModelConfig` 模型配置实例。
-+ **异常**：若模型不存在，抛出 `PamirsException`。
-+ **示例**：**java**
++ **Function**: Gets the model configuration (first obtained from the cache, and if not exists, loaded from the static container).
++ **Parameter**: `model` - Model name.
++ **Return Value**: `ModelConfig` model configuration instance.
++ **Exception**: If the model does not exist, throws `PamirsException`.
++ **Example**: **java**
 
 ```java
 ModelConfig testModelConfig = context.getModelConfig("test.TestModel");
 ```
 
-### 2、`getFunction(String namespace, String fun)`
+### 2. `getFunction(String namespace, String fun)`
 
-+ **功能**：获取命名空间下的函数定义。
-+ **参数**：
-  - `namespace` - 命名空间（如 `pamirs`）
-  - `fun` - 函数名
-+ **返回值**：`Function` 函数实例。
-+ **异常**：若函数不存在，抛出 `PamirsException`。
-+ **示例**：**java**
++ **Function**: Gets the function definition under the namespace.
++ **Parameters**:
+  - `namespace` - Namespace (such as `pamirs`)
+  - `fun` - Function name
++ **Return Value**: `Function` function instance.
++ **Exception**: If the function does not exist, throws `PamirsException`.
++ **Example**: **java**
 
 ```java
 Function userFunction = context.getFunction("pamirs", "getUserInfo");
 ```
 
-### 3、`init(SessionCacheFactoryApi sessionCacheFactoryApi)`
+### 3. `init(SessionCacheFactoryApi sessionCacheFactoryApi)`
 
-+ **功能**：初始化上下文缓存（内部使用，外部无需调用）。
-+ **参数**：`sessionCacheFactoryApi` - 缓存工厂实例。
++ **Function**: Initializes the context cache (used internally, no need to call externally).
++ **Parameter**: `sessionCacheFactoryApi` - Cache factory instance.
 
-# 三、会话构建流程（HTTP 请求处理）
+# 3. Session Construction Process (HTTP Request Handling)
 
-## （一）请求初始化：
+## (1) Request Initialization:
 
-通过 `SessionPrepareTemplate` 解析 HTTP 请求，提取会话属性（如 Header、Cookie），并创建 `PamirsRequestVariables`。
+Parses the HTTP request through `SessionPrepareTemplate`, extracts session attributes (such as Header, Cookie), and creates `PamirsRequestVariables`.
 
 ```java
-// 框架内部调用示例（用户无需手动调用）
+// Example of internal framework call (users do not need to call manually)
 SessionPrepareTemplate.prepare(request, moduleName, requestParam);
 ```
 
-## （二）Session初始化扩展
+## (2) Session Initialization Extension
 
-### 1、通过 SessionInitApi 扩展
+### 1. Extension via SessionInitApi
 
-### 方法说明
+### Method Description
 
 `init(HttpServletRequest request, String moduleName, PamirsRequestParam requestParam)`
 
-+ **功能描述**：该方法在会话初始化时被调用，允许开发者根据传入的 HTTP 请求、模块名称和请求参数执行自定义的初始化逻辑。
-+ **参数**：
-  - `request`：类型为 `HttpServletRequest`，表示当前的 HTTP 请求对象，可从中获取请求的相关信息，如请求头、请求参数等。
-  - `moduleName`：类型为 `String`，代表当前请求所涉及的模块名称。
-  - `requestParam`：类型为 `PamirsRequestParam`，是自定义的请求参数对象，包含了请求的具体参数信息。
-+ **返回值**：无返回值（`void`）。
-+ **异常情况**：方法未声明抛出异常，但实现类在执行初始化逻辑时可能会抛出异常，调用者需要根据实际情况进行处理。
++ **Function Description**: This method is called during session initialization, allowing developers to execute custom initialization logic based on the incoming HTTP request, module name, and request parameters.
++ **Parameters**:
+  - `request`: Type `HttpServletRequest`, representing the current HTTP request object, from which request-related information such as request headers and parameters can be obtained.
+  - `moduleName`: Type `String`, representing the module name involved in the current request.
+  - `requestParam`: Type `PamirsRequestParam`, a custom request parameter object containing specific parameter information of the request.
++ **Return Value**: No return value (`void`).
++ **Exception Cases**: The method does not declare throwing exceptions, but the implementation class may throw exceptions when executing initialization logic, and the caller needs to handle them according to the actual situation.
 
-#### 使用示例
+#### Usage Example
 
-以下是一个简单的 `SessionInitApi` 实现类示例：
+The following is a simple example of a `SessionInitApi` implementation class:
 
 ```java
 @Component
 public class CustomSessionInitApi implements SessionInitApi {
     @Override
     public void init(HttpServletRequest request, String moduleName, PamirsRequestParam requestParam) {
-        // 自定义初始化逻辑
+        // Custom initialization logic
         System.out.println("Custom session initialization for module: " + moduleName);
-        // 可以根据 request 和 requestParam 进行更多操作
+        // More operations can be performed based on request and requestParam
     }
 }
 ```
 
-在使用时，Oinone 会通过自动发现并加载 `CustomSessionInitApi` 类，并在会话初始化时调用其 `init` 方法。
+When in use, Oinone will automatically discover and load the `CustomSessionInitApi` class, and call its `init` method during session initialization.
 
-### 2、通过函数的Hook进行扩展
+### 2. Extension via Function Hook
 
-参考 [Hook 拦截器文档](/en/DevManual/Reference/Back-EndFramework/functions-API.md#三、hook-拦截器)，可参考示例代码 `pro.shushi.pamirs.user.api.hook.UserHook`。在该示例中，借助 `UserHook` 可判断用户是否登录。若用户已登录，会自动设置与用户相关的信息，如此一来，后续使用 `PamirsSession.getUserId()` 方法就能顺利获取用户 ID 值。
+Refer to the [Hook Interceptor Document](/en/DevManual/Reference/Back-EndFramework/functions-API.md#三、hook-拦截器), and refer to the example code `pro.shushi.pamirs.user.api.hook.UserHook`. In this example, with the help of `UserHook`, it can be determined whether the user is logged in. If the user is logged in, user-related information will be automatically set, so that the `PamirsSession.getUserId()` method can successfully obtain the user ID value in the follow-up.
 
-## （三）上下文：
+## (3) Context:
 
-通过 `PamirsSession.getContext()` 获取 `RequestContext`，通过它来获取元数据相关信息，会自动使用到模型、模块、函数的一级、二级缓存。
+Obtain `RequestContext` through `PamirsSession.getContext()`, and use it to obtain metadata-related information, which will automatically use the first-level and second-level caches of models, modules, and functions.
 
-## （四）会话清除：
+## (4) Session Cleanup:
 
-请求处理完成后，调用 `PamirsSession.clear()` 清除当前会话数据，释放资源。
+After the request processing is completed, call `PamirsSession.clear()` to clear the current session data and release resources.
 
-# 四、示例代码
+# 4. Example Code
 
-## （一）常见使用场景
+## (1) Common Usage Scenarios
 
 ```java
-// 获取当前会话用户 ID
+// Get the user ID of the current session
 Long userId = PamirsSession.getUserId();
 
-// 获取请求上下文模型配置
+// Get the model configuration of the request context
 RequestContext context = PamirsSession.getContext();
 ModelConfig testModel = context.getModelConfig(TestModel.MODEL_MODEL);
 
-// 获取命名空间为 "pamirs" 的函数
+// Get the function with the namespace "pamirs"
 Function userFunction = context.getFunction("pamirs", "userLogin");
 ```
 
-## （二）扩展PamirsSession
+## (2) Extending PamirsSession
 
-### 1、扩展场景说明
+### 1. Extension Scenario Description
 
-不同应用场景下，需为会话（Session）添加专属业务数据（如用户信息、租户标识、请求链路追踪等）。通过扩展 `PamirsSession`，可实现：
+In different application scenarios, it is necessary to add exclusive business data (such as user information, tenant identification, request link tracking, etc.) to the session (Session). By extending `PamirsSession`, the following can be achieved:
 
-+ **业务数据隔离**：在会话中存储自定义数据结构
-+ **线程安全存储**：利用线程本地化技术（ThreadLocal）避免并发问题
-+ **生命周期管理**：通过框架钩子（Hook）自动初始化和清理数据
++ **Business Data Isolation**: Storing custom data structures in the session
++ **Thread-Safe Storage**: Using thread-local technology (ThreadLocal) to avoid concurrency issues
++ **Lifecycle Management**: Automatically initializing and cleaning up data through framework hooks (Hook)
 
-### 2、扩展实现步骤
+### 2. Extension Implementation Steps
 
-#### 步骤 1：定义业务专属数据结构（XSessionData）
+#### Step 1: Define Business-Exclusive Data Structure (XSessionData)
 
-创建承载自定义数据的 POJO，使用 Oinone 平台提供的 `@Data` 注解（支持数据绑定与序列化）。
-**示例：存储登录用户信息**
+Create a POJO to carry custom data, using the `@Data` annotation provided by the Oinone platform (supporting data binding and serialization).
+**Example: Storing logged-in user information**
 
 ```java
 @Data
 public class DemoSessionData {
-    private PamirsUser user; // 业务专属字段：当前登录用户
+    private PamirsUser user; // Business-exclusive field: current logged-in user
 }
 ```
 
-#### 步骤 2：线程级缓存封装（XSessionCache）
+#### Step 2: Thread-Level Cache Encapsulation (XSessionCache)
 
-通过 `ThreadLocal` 实现数据的线程本地化存储，确保线程间数据隔离。
-**核心功能**：
+Implement thread-local storage of data through `ThreadLocal` to ensure data isolation between threads.
+**Core Functions**:
 
-+ **初始化**：从基础会话（如 `PamirsSession`）获取原始数据并加载业务数据
-+ **读取**：提供线程安全的获取接口
-+ **清理**：在请求结束时清除线程本地数据
++ **Initialization**: Obtain original data from the basic session (such as `PamirsSession`) and load business data
++ **Reading**: Provide thread-safe acquisition interfaces
++ **Cleanup**: Clear thread-local data at the end of the request
 
 ```java
 public class DemoSessionCache {
     private static final ThreadLocal<DemoSessionData> BIZ_DATA_THREAD_LOCAL = new ThreadLocal<>();
 
-    // 获取业务数据
+    // Get business data
     public static PamirsUser getUser() {
         return BIZ_DATA_THREAD_LOCAL.get() == null ? null : BIZ_DATA_THREAD_LOCAL.get().getUser();
     }
 
-    // 初始化业务数据（基于基础会话用户ID加载用户详情）
+    // Initialize business data (load user details based on the user ID of the basic session)
     public static void init() {
-        if (getUser() != null) return; // 已初始化则跳过
+        if (getUser() != null) return; // Skip if already initialized
 
-        Long userId = PamirsSession.getUserId(); // 从基础会话获取用户ID
+        Long userId = PamirsSession.getUserId(); // Get the user ID from the basic session
         if (userId == null) return;
 
         UserService userService = CommonApiFactory.getApi(UserService.class);
-        PamirsUser user = userService.queryById(userId); // 加载业务数据
+        PamirsUser user = userService.queryById(userId); // Load business data
         if (user != null) {
             DemoSessionData data = new DemoSessionData();
             data.setUser(user);
-            BIZ_DATA_THREAD_LOCAL.set(data); // 存入线程本地缓存
+            BIZ_DATA_THREAD_LOCAL.set(data); // Store in thread-local cache
         }
     }
 
-    // 清理线程本地数据（请求结束时调用）
+    // Clean up thread-local data (called at the end of the request)
     public static void clear() {
         BIZ_DATA_THREAD_LOCAL.remove();
     }
 }
 ```
 
-#### 步骤 3：通过 Hook 机制初始化数据
+#### Step 3: Initialize Data through the Hook Mechanism
 
-利用框架的钩子（Hook）在请求处理前自动初始化业务数据，支持模块级过滤（仅对特定模块生效）。
-**实现 **`HookBefore`** 接口并添加 **`@Hook`** 注解**：
+Use the framework's hooks (Hook) to automatically initialize business data before request processing, supporting module-level filtering (only effective for specific modules).
+**Implement the `HookBefore` interface and add the `@Hook` annotation**:
 
 ```java
 @Component
 public class DemoSessionHook implements HookBefore {
     @Override
-    @Hook(priority = 1, module = DemoModule.MODULE_MODULE) // 仅对DemoModule模块生效
+    @Hook(priority = 1, module = DemoModule.MODULE_MODULE) // Only effective for the DemoModule module
     public Object run(Function function, Object... args) {
-        DemoSessionCache.init(); // 触发业务数据初始化
-        return function; // 继续执行后续流程
+        DemoSessionCache.init(); // Trigger business data initialization
+        return function; // Continue to execute the subsequent process
     }
 }
 ```
 
-#### 步骤 4：定义自定义 Session API（XSessionApi）
+#### Step 4: Define Custom Session API (XSessionApi)
 
-通过接口规范业务数据的访问方式，实现与基础会话的解耦。
+Standardize the access method of business data through the interface to achieve decoupling from the basic session.
 
 ```java
 public interface DemoSessionApi extends CommonApi {
-    PamirsUser getUser(); // 定义业务专属接口：获取登录用户
+    PamirsUser getUser(); // Define business-exclusive interface: get logged-in user
 }
 ```
 
-#### 步骤 5：实现接口并管理生命周期
+#### Step 5: Implement the Interface and Manage the Lifecycle
 
-**实现 **`XSessionApi`** 和 **`SessionClearApi`
+**Implement `XSessionApi` and `SessionClearApi`**
 
-+ `XSessionApi`：提供业务数据访问入口
-+ `SessionClearApi`：定义数据清理逻辑（框架自动调用）
++ `XSessionApi`: Provide an entry for business data access
++ `SessionClearApi`: Define data cleanup logic (automatically called by the framework)
 
 ```java
 package pro.shushi.pamirs.demo.core.session;
@@ -385,19 +385,19 @@ import pro.shushi.pamirs.user.api.model.PamirsUser;
 public class DemoSessionHolder implements DemoSessionApi, SessionClearApi {
     @Override
     public PamirsUser getUser() {
-        return DemoSessionCache.getUser(); // 委托给线程缓存获取数据
+        return DemoSessionCache.getUser(); // Delegate to thread cache to get data
     }
 
     @Override
     public void clear() {
-        DemoSessionCache.clear(); // 清理线程本地数据
+        DemoSessionCache.clear(); // Clean up thread-local data
     }
 }
 ```
 
-#### 步骤 6：继承并扩展 PamirsSession（XSession）
+#### Step 6: Inherit and Extend PamirsSession (XSession)
 
-通过静态方法封装自定义接口，简化业务调用。
+Encapsulate custom interfaces through static methods to simplify business calls.
 
 ```java
 package pro.shushi.pamirs.demo.core.session;
@@ -407,81 +407,78 @@ import pro.shushi.pamirs.meta.api.session.PamirsSession;
 import pro.shushi.pamirs.user.api.model.PamirsUser;
 
 public class DemoSession extends PamirsSession {
-    // 提供便捷访问入口：通过自定义API获取业务数据
+    // Provide a convenient access entry: get business data through the custom API
     public static PamirsUser getUser() {
         return CommonApiFactory.getApi(DemoSessionApi.class).getUser();
     }
 }
 ```
 
-#### 步骤 7：业务场景应用
+#### Step 7: Business Scenario Application
 
-在需要使用自定义数据的场景（如占位符解析、业务逻辑层）直接调用扩展后的 Session 接口。
-**示例：**
+Directly call the extended Session interface in scenarios where custom data is needed (such as placeholder parsing, business logic layer).
+**Example**:
 
 ```java
-return DemoSession.getUser().getId().toString(); // 使用扩展Session获取用户ID
+return DemoSession.getUser().getId().toString(); // Use the extended Session to get the user ID
 ```
 
-### 3、经典扩展设计图
+### 3. Classic Extension Design Diagram
 
 ```plain
                           +-------------------+
-                          |   PamirsSession    |  基础会话（提供通用能力）
+                          |   PamirsSession    |  Basic session (providing general capabilities)
                           +-------------------+
                                   ▲
-                                  |  继承
+                                  |  Inheritance
                                   ▼
                           +-------------------+
-                          |     DemoSession     |  扩展会话（提供自定义接口）
+                          |     DemoSession     |  Extended session (providing custom interfaces)
                           +-------------------+
                                   ▲
-                                  |  委托
+                                  |  Delegation
                                   ▼
                           +-------------------+
-                          |   DemoSessionApi    |  业务接口（定义专属能力）
+                          |   DemoSessionApi    |  Business interface (defining exclusive capabilities)
                           +-------------------+
                                   ▲
-                                  |  实现
+                                  |  Implementation
                                   ▼
                           +-------------------+
-                          |  DemoSessionHolder  |  能力实现（对接线程缓存）
+                          |  DemoSessionHolder  |  Capability implementation (docking thread cache)
                           +-------------------+
                                   ▲
-                                  |  操作
+                                  |  Operation
                                   ▼
                           +-------------------+
-                          |   DemoSessionCache  |  线程缓存（ThreadLocal存储）
+                          |   DemoSessionCache  |  Thread cache (ThreadLocal storage)
                           +-------------------+
                                   ▲
-                                  |  承载
+                                  |  Carrying
                                   ▼
                           +-------------------+
-                          |  DemoSessionData    |  业务数据（自定义字段）
+                          |  DemoSessionData    |  Business data (custom fields)
                           +-------------------+
 ```
 
-### 4、关键技术点说明
+### 4. Key Technical Points Description
 
-#### 线程安全保障
+#### Thread Safety Guarantee
 
-+ **ThreadLocal 存储**：每个线程独立持有 `DemoSessionData` 实例，避免并发访问冲突
-+ **Hook 初始化**：在请求处理链前端（如 `HookBefore`）触发初始化，确保数据在业务逻辑前准备完毕
++ **ThreadLocal Storage**: Each thread independently holds an instance of `DemoSessionData` to avoid concurrency access conflicts
++ **Hook Initialization**: Trigger initialization at the front end of the request processing chain (such as `HookBefore`) to ensure that data is prepared before business logic
 
-####  生命周期管理
+#### Lifecycle Management
 
-+ **自动清理**：实现 `SessionClearApi` 的 `clear()` 方法，由框架在请求结束时统一调用，释放线程本地资源
-+ **模块过滤**：通过 `@Hook(module = ...)` 限制钩子作用范围，避免无关模块性能损耗
++ **Automatic Cleanup**: Implement the `clear()` method of `SessionClearApi`, which is uniformly called by the framework at the end of the request to release thread-local resources
++ **Module Filtering**: Limit the scope of hooks through `@Hook(module = ...)` to avoid performance loss of irrelevant modules
 
-#### 接口扩展规范
+#### Interface Extension Specifications
 
-+ **继承`CommonApi`**：确保自定义 API 兼容框架扩展机制（如通过 `CommonApiFactory` 获取实例）
-+ **静态方法封装**：在扩展 Session 类中提供静态访问入口，简化业务代码调用
++ **Inherit `CommonApi`**: Ensure that custom APIs are compatible with the framework extension mechanism (such as obtaining instances through `CommonApiFactory`)
++ **Static Method Encapsulation**: Provide static access entries in the extended Session class to simplify business code calls
 
-### 5、最佳实践
+### 5. Best Practices
 
-+ **数据最小化原则**：仅在会话中存储必要的业务数据，避免内存浪费
-+ **钩子优先级控制**：通过 `@Hook(priority = ...)` 确保初始化钩子在依赖数据的逻辑之前执行
-
-
-
++ **Principle of Data Minimization**: Only store necessary business data in the session to avoid memory waste
++ **Hook Priority Control**: Ensure that initialization hooks are executed before dependent data logic through `@Hook(priority = ...)`

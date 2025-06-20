@@ -1,70 +1,70 @@
 ---
-title: 开发模式：协同开发（改）
+title: Development Mode:Collaborative Development (Revised)
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 11
 ---
 
-Oinone平台为开发人员提供了`本地环境 - 测试环境`之间的协同开发模式，可以使得开发人员在`本地环境`中设计的模型、函数等元数据实时被`测试环境`使用并设计。开发人员开发完成对应页面和功能后，可以部署至`测试环境`直接进行测试。
+The Oinone platform provides developers with a collaborative development mode between the `local environment` and `testing environment`, enabling metadata such as models and functions designed in the local environment to be used and designed in real-time within the testing environment. After completing the development of corresponding pages and functions, developers can deploy them to the testing environment for direct testing.
 
-本篇文章将详细介绍协同开发模式在实际开发中的应用及相关内容。
+This article will detail the application of the collaborative development mode in practical development and related content.
 
-:::info 目标：在本节结束时：
+:::info Objective: By the end of this section:
 
-你应该可以熟练掌握`本地环境 - 测试环境`之间的协同开发模式，做到多个开发人员之前协同开发。
+You should master the collaborative development mode between the `local environment` and `testing environment` and enable collaboration among multiple developers.
 
 :::
 
-名词解释：
+Noun Explanations:
 
-| 名词 | 描述 |
+| Noun | Description |
 | :--- | :--- |
-| 本地环境 | 开发人员的本地启动环境 |
-| 测试环境 | 在测试服务器上部署的业务测试环境，`业务工程服务`和`设计器服务`共用中间件 |
-| 业务工程服务 | 在测试服务器上部署的业务工程 |
-| 设计器服务 | 在测试服务器上部署的设计器镜像 |
-| 一套环境 | 以`测试环境`为例，`业务工程服务`和`设计器服务`共同组成`一套环境` |
-| 生产环境 | 在生产服务器上部署的业务生产环境 |
+| Local Environment | The local startup environment for developers |
+| Testing Environment | The business testing environment deployed on the testing server, where `business engineering services` and `designer services` share middleware |
+| Business Engineering Services | Business engineering deployed on the testing server |
+| Designer Services | Designer images deployed on the testing server |
+| Set of Environments | Taking the testing environment as an example, business engineering services and designer services together form a `set of environments` |
+| Production Environment | The business production environment deployed on the production server |
 
 
-# 一、环境准备
-+ 部署了一个可用的`设计器服务`，并能正常访问。（需参照下文`启动设计器环境`内容进行相应修改）。
-+ 准备一个用于开发的java工程。
-+ 准备一个用于部署测试环境的服务器。
+# I. Environment Preparation
++ A deployable `designer service` that can be accessed normally (requires corresponding modifications referring to the `Start Designer Environment` content below).
++ A Java project prepared for development.
++ A server prepared for deploying the testing environment.
 
-# 二、协同参数介绍
-## （一）用于`测试环境`的参数
+# II. Introduction to Collaborative Parameters
+## (一) Parameters for the Testing Environment
 `-PmetaProtected=${value}`
 
-启用元数据保护，只有配置相同启动参数的服务才允许对元数据进行更新。通常该命令用于`设计器服务`和`业务工程服务`，并且两个环境需使用相同的`元数据保护标记（value）`进行启动。`本地环境`不使用该命令，以防止本地环境在协同开发时意外修改测试环境元数据，导致元数据混乱。
+Enables metadata protection, allowing only services with the same startup parameter to update metadata. This command is typically used for designer services and business engineering services, which must be started with the same `metadata protection marker (value)`. The local environment does not use this command to prevent accidental modification of testing environment metadata during collaborative development, which could cause metadata confusion.
 
 ```java
 java -jar boot.jar -PmetaProtected=pamirs
 ```
 
-## （二）用于`本地环境`的参数
-### 1、使用命令配置ownSign（推荐）
+## (二) Parameters for the Local Environment
+### 1. Configure ownSign Using Commands (Recommended)
 ```java
 java -jar boot.jar --pamirs.distribution.session.ownSign=demo
 ```
 
-### 2、使用yaml配置ownSign
+### 2. Configure ownSign Using YAML
 ```yaml
 pamirs:
   distribution:
     session:
-      allMetaRefresh: false # 启用元数据全量刷新（备用配置，如遇元数据错误或混乱，启用该配置可进行恢复，使用一次后关闭即可）
-      ownSign: demo # 协同开发元数据隔离标记，用于区分不同开发人员的本地环境，其他环境不允许使用
+      allMetaRefresh: false # Enables full metadata refresh (backup configuration; use to recover from metadata errors or confusion, then disable)
+      ownSign: demo # Collaborative development metadata isolation marker to distinguish between different developers' local environments; not allowed in other environments
 ```
 
-# 三、启动设计器环境
-## （一）docker-run启动
+# III. Start Designer Environment
+## (一) Start with docker-run
 ```java
 -e PROGRAM_ARGS=-PmetaProtected=pamirs
 ```
 
-## （二）docker-compose启动
+## (二) Start with docker-compose
 ```yaml
 services:
   backend:
@@ -72,30 +72,30 @@ services:
     image: harbor.oinone.top/oinone/designer-backend-v5.0
     restart: always
     environment:
-      # 指定spring.profiles.active
+      # Specify spring.profiles.active
       ARG_ENV: dev
-      # 指定-Plifecycle
+      # Specify -Plifecycle
       ARG_LIFECYCLE: INSTALL
-      # jvm参数
+      # JVM parameters
       JVM_OPTIONS: ""
-      # 程序参数
+      # Program parameters
       PROGRAM_ARGS: "-PmetaProtected=pamirs"
 ```
 
-:::info 注意：
+:::info Note:
 java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 
 :::
 
-# 四、开发流程示例图
+# IV. Development Process Example Diagram
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746513506595-f26f0ef6-76b7-45a2-946c-b5e9b691054c-20250530144829686.png)
 
-# 五、协同开发支持
-## （一）版本支持
-4.7.x版本 已经包含分布式支持。
+# V. Collaborative Development Support
+## (一) Version Support
+Version 4.7.x already includes distributed support.
 
-## （二）使用步骤
-### 1、业务后端boot工程引入协同开发包
+## (二) Usage Steps
+### 1. Introduce the Collaborative Development Package into the Business Backend Boot Project
 ```java
 <dependency>
     <groupId>pro.shushi.pamirs.distribution</groupId>
@@ -103,7 +103,7 @@ java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 </dependency>
 ```
 
-### 2、yml文件配置ownSign
+### 2. Configure ownSign in the YML File
 ```yaml
 pamirs:
   distribution:
@@ -112,33 +112,30 @@ pamirs:
       ownSign: demo
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-配置说明：
+Configuration Instructions:
 
-allMetaRefresh，全量刷新 Redis 中的元数据，绝大多数情况下都不需要配置；
+allMetaRefresh, full refresh of metadata in Redis, which is rarely needed in most cases;
 
-+ 第一次启动或者 Redis 的缓存被清空后，会自动进行全量。
-+ 配置为 true 表示强制进行全量，一般都不需要配置。
-+ 【推荐】默认增量的方式(即 allMetaRefresh: false)写入 Redis 的数据更少，相应的启动速度也更快。
-+ 【强制】ownSign 是环境隔离的设置，同一个项目组不同的开发人员之间，ownSign 配置成不同的（即各自配置成各自的，达到互不干扰）。
++ Full refresh occurs automatically on the first startup or after Redis cache is cleared.
++ Configuring to true forces a full refresh, generally unnecessary.
++ 【Recommended】The default incremental mode (allMetaRefresh: false) writes less data to Redis, resulting in faster startup.
++ 【Mandatory】ownSign is an environment isolation setting; different developers in the same project team must configure different ownSign values (each configures their own to avoid interference).
 
-### 3、业务系统DB和缓存的约束
-+ 【强制要求】业务库与设计器须共用 Redis，其中 Redis 的前缀、租户以及系统隔离键均需保持一致（这三个值会对 RedisKey 的拼接产生影响）。
-+ 【强制规定】base 库的业务系统与设计器应实现共用。
-+ 【强制要求】公共库即 pamirs（包含资源 - resource、用户 - user、权限 - auth、文件 - file 等方面）需实现共用。
-+ 【强制约束】「业务库」数据源的别名必须统一，每位开发人员都应将其配置到本地，或者为远程库添加后缀以作区分。
+### 3. Constraints on Business System DB and Cache
++ 【Mandatory Requirement】The business database and designer must share Redis, with consistent Redis prefix, tenant, and system isolation keys (these three values affect RedisKey concatenation).
++ 【Mandatory Provision】The base database's business system and designer should share the same database.
++ 【Mandatory Requirement】The public database, i.e., pamirs (including resources, users, permissions, files, etc.), must be shared.
++ 【Mandatory Constraint】The alias of the "business database" data source must be unified; each developer should configure it locally or add suffixes to remote databases for differentiation.
 
-### 4、如何使用协同
-开发人员在各自访问设计器时，于 URL 末尾添加 “;ownSign=yexiu”，随后回车确认。此时，ownSign 相关信息将被存储至浏览器缓存内。在后续访问其他 URL 时，无需重复输入该内容。若开发人员希望移除 ownSign 的值，仅需直接删除界面上的悬浮窗即可。
+### 4. How to Use Collaboration
+When accessing the designer, developers add ";ownSign=yexiu" to the end of the URL and press Enter. OwnSign-related information will then be stored in the browser cache. For subsequent URL visits, this content does not need to be re-entered. To remove the ownSign value, simply delete the floating window on the interface.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746514437967-d2e85798-ab22-4a43-af60-c4b9bc9528e2-20250530144829753.png)
 
-:::info 注意：
+:::info Note:
 
-访问设计 URL 上增加的 ownSign 需要与开发各自本地项目 yml 文件中 ownSign 的值相同。（每个开发人员各自用各自的 ownSign）
+The ownSign added to the designer URL must match the ownSign value in the developer's local project YML file. (Each developer uses their own unique ownSign.)
 
 :::
-
-
-

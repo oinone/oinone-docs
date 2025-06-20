@@ -2,21 +2,21 @@
 title: Detail Field
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 前端API
+  - Frontend API
   - Widget
   - Field
 order: 4
 
 ---
-# 一、Reference List
+# Reference List
 
-## （一）文本（String）
+## (一) String
 
 ### 1、DetailStringFieldWidget{#quote2}
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -28,14 +28,14 @@ order: 4
 export class DetailStringFieldWidget extends FormInputAbstractFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ currentValue：当前值，密码类型会进行加密处理。（`string | undefined`）
-+ emptyStyle：空值样式配置。（`string | undefined`）
++ currentValue: Current value, encrypted for password types.（`string | undefined`）
++ emptyStyle: Empty value style configuration.（`string | undefined`）
 
 ### 2、DetailStringColorPickerFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -48,13 +48,13 @@ export class DetailStringFieldWidget extends FormInputAbstractFieldWidget
 export class DetailStringColorPickerFieldWidget extends FormFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ justifyContent：内容水平对齐方式配置。（`string | undefined`）
++ justifyContent: Content horizontal alignment configuration.（`string | undefined`）
 
 ### 3、DetailStringDownloadFieldWidget{#quote1}
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -69,7 +69,7 @@ export class DetailStringDownloadFieldWidget extends FormStringDownloadFieldWidg
 
 ### 4、DetailStringHyperlinksFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -82,14 +82,14 @@ export class DetailStringDownloadFieldWidget extends FormStringDownloadFieldWidg
 export class DetailStringHyperlinksFieldWidget extends FormFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ target：链接打开方式，支持路由跳转或新窗口打开，默认值为 `RedirectTargetEnum.BLANK`。（`RedirectTargetEnum`）
-+ text：超链接显示文本。（`string | undefined`）
++ target: Link opening mode, supporting route redirection or new window opening, default value is `RedirectTargetEnum.BLANK`.（`RedirectTargetEnum`）
++ text: Hyperlink display text.（`string | undefined`）
 
 ### 5、DetailStringIframeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -104,7 +104,7 @@ export class DetailStringIframeFieldWidget extends FormStringFieldWidget
 
 ### 6、DetailStringMediaPlayerFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -119,7 +119,7 @@ export class DetailStringMediaPlayerFieldWidget extends FormStringFieldWidget
 
 ### 7、DetailStringSignatureFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -132,14 +132,14 @@ export class DetailStringMediaPlayerFieldWidget extends FormStringFieldWidget
 export class DetailStringSignatureFieldWidget extends FormStringSignatureFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ showClearButton：是否展示清除按钮，默认为 `false`。（`boolean`）
-+ showSaveButton：是否展示保存按钮，默认为 `false`。（`boolean`）
++ showClearButton: Whether to display the clear button, default is `false`.（`boolean`）
++ showSaveButton: Whether to display the save button, default is `false`.（`boolean`）
 
 ### 8、DetailStringTagFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -152,15 +152,15 @@ export class DetailStringSignatureFieldWidget extends FormStringSignatureFieldWi
 export class DetailStringTagFieldWidget extends FormFieldWidget<string[], RuntimeStringField | RuntimeNumberField>
 ```
 
-**属性**：
+**Properties**:
 
-+ displayNameList：显示的标签列表，默认为空数组。（`string[] | { label: string }[]`）
-+ optionColor：是否启用彩色标签样式，由 `optionColorStyle` 决定。（`boolean`）
-+ optionColorStyle：标签颜色样式，默认值为 `OptionColorStyle.COLORFUL`。（`OptionColorStyle`）
++ displayNameList: Displayed tag list, default is an empty array.（`string[] | { label: string }[]`）
++ optionColor: Whether to enable colorful tag styles, determined by `optionColorStyle`.（`boolean`）
++ optionColorStyle: Tag color style, default value is `OptionColorStyle.COLORFUL`.（`OptionColorStyle`）
 
 ### 9、DetailStringUploadFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -173,14 +173,14 @@ export class DetailStringTagFieldWidget extends FormFieldWidget<string[], Runtim
 export class DetailStringUploadFieldWidget extends FormFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ cdnKey：CDN 密钥（处理后的值）。（`string | undefined`）
-+ privateLink：是否为私有链接。（`boolean`）
++ cdnKey: CDN key (processed value).（`string | undefined`）
++ privateLink: Whether it is a private link.（`boolean`）
 
 ### 10、DetailStringUploadImgFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -193,11 +193,11 @@ export class DetailStringUploadFieldWidget extends FormFieldWidget
 export class DetailStringUploadImgFieldWidget extends FormFieldWidget
 ```
 
-## （二）多行文本（Text）
+## (二) Text
 
 ### 1、DetailCommonFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -211,13 +211,13 @@ export class DetailCommonFieldWidget extends FormFieldWidget
 
 ### 2、DetailStringDownloadFieldWidget
 
-**引用**：文本（String）- [DetailStringDownloadFieldWidget](#quote1)
+**Reference**: String - [DetailStringDownloadFieldWidget](#quote1)
 
-## （三）富文本（Html）
+## (三) Html
 
 ### 1、DetailHtmlFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -229,27 +229,27 @@ export class DetailCommonFieldWidget extends FormFieldWidget
 export class DetailHtmlFieldWidget extends FormFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ encode：是否对 HTML 内容进行编码，默认值为 `false`。（`boolean`）
++ encode: Whether to encode HTML content, default value is `false`.（`boolean`）
 
-## （四）手机（Phone）
-
-### 1、DetailStringFieldWidget
-
-**引用**：文本（String）- [DetailStringFieldWidget](#quote2)
-
-## （五）邮箱（Email）
+## (四) Phone
 
 ### 1、DetailStringFieldWidget
 
-**引用**：文本（String）- [DetailStringFieldWidget](#quote2)
+**Reference**: String - [DetailStringFieldWidget](#quote2)
 
-## （六）整数（Integer）
+## (五) Email
+
+### 1、DetailStringFieldWidget
+
+**Reference**: String - [DetailStringFieldWidget](#quote2)
+
+## (六) Integer
 
 ### 1、DetailNumberWidget{#quote3}
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -261,27 +261,27 @@ export class DetailHtmlFieldWidget extends FormFieldWidget
 export class DetailNumberWidget extends FormNumberAbstractFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ currentValue：当前值（处理后），支持零填充和千分位格式化。（`string | undefined`）
++ currentValue: Current value (processed), supporting zero padding and thousands formatting.（`string | undefined`）
 
-## （七）浮点数（Float）
-
-### 1、DetailNumberWidget
-
-**引用**：整数（Integer）- [DetailNumberWidget](#quote3)
-
-## （八）金额（Money）
+## (七) Float
 
 ### 1、DetailNumberWidget
 
-**引用**：整数（Integer）- [DetailNumberWidget](#quote3)
+**Reference**: Integer - [DetailNumberWidget](#quote3)
 
-## （九）布尔（Boolean）
+## (八) Money
+
+### 1、DetailNumberWidget
+
+**Reference**: Integer - [DetailNumberWidget](#quote3)
+
+## (九) Boolean
 
 ### 1、DetailBooleanFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -295,7 +295,7 @@ export class DetailBooleanFieldWidget extends FormFieldWidget
 
 ### 2、DetailBooleanSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -308,18 +308,18 @@ export class DetailBooleanFieldWidget extends FormFieldWidget
 export class DetailBooleanSelectFieldWidget extends FormBooleanSelectFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ displayNameList：根据当前值获取的选项显示名称列表。（`{ label: string; value: any }[] | undefined`）
-+ displayNameListStr：选项显示名称列表的字符串形式，用逗号分隔。（`string | undefined`）
-+ optionColor：是否启用彩色选项样式，由 `optionColorStyle` 决定。（`boolean`）
-+ optionColorStyle：选项颜色样式，默认值为 `OptionColorStyle.COLORFUL`。（`OptionColorStyle`）
++ displayNameList: Option display name list obtained based on the current value.（`{ label: string; value: any }[] | undefined`）
++ displayNameListStr: String form of the option display name list, separated by commas.（`string | undefined`）
++ optionColor: Whether to enable colorful option styles, determined by `optionColorStyle`.（`boolean`）
++ optionColorStyle: Option color style, default value is `OptionColorStyle.COLORFUL`.（`OptionColorStyle`）
 
-## （十）数据字典（Enum）
+## (十) Enum
 
 ### 1、DetailEnumFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -331,14 +331,14 @@ export class DetailBooleanSelectFieldWidget extends FormBooleanSelectFieldWidget
 export class DetailEnumFieldWidget extends FormEnumFieldAbstractWidget<EnumerationValue>
 ```
 
-**属性**：
+**Properties**:
 
-+ displayNameList：根据当前值获取的枚举选项显示名称列表。（`{ label: string; value: any }[] | undefined`）
-+ displayNameListStr：枚举选项显示名称列表的字符串形式，用逗号分隔。（`string | undefined`）
++ displayNameList: Enumeration option display name list obtained based on the current value.（`{ label: string; value: any }[] | undefined`）
++ displayNameListStr: String form of the enumeration option display name list, separated by commas.（`string | undefined`）
 
 ### 2、DetailEnumMultiFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -351,16 +351,16 @@ export class DetailEnumFieldWidget extends FormEnumFieldAbstractWidget<Enumerati
 export class DetailEnumMultiFieldWidget extends FormEnumFieldAbstractWidget<EnumerationValue[]>
 ```
 
-**属性**：
+**Properties**:
 
-+ displayNameList：根据当前值获取的枚举选项显示名称列表（多选模式）。（`{ label: string; value: any }[] | undefined`）
-+ displayNameListStr：枚举选项显示名称列表的字符串形式，用逗号分隔。（`string | undefined`）
++ displayNameList: Enumeration option display name list (multiple selection mode) obtained based on the current value.（`{ label: string; value: any }[] | undefined`）
++ displayNameListStr: String form of the enumeration option display name list, separated by commas.（`string | undefined`）
 
-## （十一）时间日期（Datetime）
+## (十一) Datetime
 
 ### 1、DetailDateTimeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -372,46 +372,46 @@ export class DetailEnumMultiFieldWidget extends FormEnumFieldAbstractWidget<Enum
 export class DetailDateTimeFieldWidget extends FormFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ dateFormat：日期格式，支持表达式解析，默认使用资源配置。（`string | undefined`）
-+ format：原始格式配置。（`string | undefined`）
-+ hasDateFormat：是否包含日期格式，默认值为 `true`。（`boolean`）
-+ hasTimeFormat：是否包含时间格式，默认值为 `true`。（`boolean`）
-+ justifyContent：内容对齐方式。（`string | undefined`）
-+ resourceDateTimeFormat：日期时间格式资源对象。（`IResourceDateTimeFormat`）
-+ timeFormat：时间格式，支持表达式解析，默认使用资源配置。（`string | undefined`）
-+ valueFormat：值格式。（`string | undefined`）
++ dateFormat: Date format, supporting expression parsing, default uses resource configuration.（`string | undefined`）
++ format: Original format configuration.（`string | undefined`）
++ hasDateFormat: Whether it contains a date format, default value is `true`.（`boolean`）
++ hasTimeFormat: Whether it contains a time format, default value is `true`.（`boolean`）
++ justifyContent: Content alignment.（`string | undefined`）
++ resourceDateTimeFormat: Date and time format resource object.（`IResourceDateTimeFormat`）
++ timeFormat: Time format, supporting expression parsing, default uses resource configuration.（`string | undefined`）
++ valueFormat: Value format.（`string | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **convertDateFormat**
 
-+ **功能描述**：转换日期格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的日期格式。
-+ **返回值**：转换后的日期格式或 `undefined`。
++ **Function Description**: Convert the date format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: Date format to be converted.
++ **Return Value**: Converted date format or `undefined`.
 
 #### **convertFormat**
 
-+ **功能描述**：转换通用格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的通用格式。
-+ **返回值**：转换后的格式或 `undefined`。
++ **Function Description**: Convert the general format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: General format to be converted.
++ **Return Value**: Converted format or `undefined`.
 
 #### **convertTimeFormat**
 
-+ **功能描述**：转换时间格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的时间格式。
-+ **返回值**：转换后的时间格式或 `undefined`。
++ **Function Description**: Convert the time format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: Time format to be converted.
++ **Return Value**: Converted time format or `undefined`.
 
 ### 2、DetailDateTimeRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -423,48 +423,48 @@ export class DetailDateTimeFieldWidget extends FormFieldWidget
 export class DetailDateTimeRangeFieldWidget extends FormRangeFieldsWidget<StandardString>
 ```
 
-**属性**：
+**Properties**:
 
-+ dateFormat：日期格式，支持表达式解析。（`string | undefined`）
-+ defaultFormat：默认格式。（`string`）
-+ emptyStyle：空值时的样式配置。（`unknown`）
-+ format：原始格式配置。（`string | undefined`）
-+ hasDateFormat：是否包含日期格式，默认值为 `true`。（`boolean`）
-+ hasTimeFormat：是否包含时间格式，默认值为 `true`。（`boolean`）
-+ timeFormat：时间格式，支持表达式解析。（`string | undefined`）
-+ valueFormat：值格式，默认为 `defaultFormat`。（`string`）
++ dateFormat: Date format, supporting expression parsing.（`string | undefined`）
++ defaultFormat: Default format.（`string`）
++ emptyStyle: Style configuration when empty.（`unknown`）
++ format: Original format configuration.（`string | undefined`）
++ hasDateFormat: Whether it contains a date format, default value is `true`.（`boolean`）
++ hasTimeFormat: Whether it contains a time format, default value is `true`.（`boolean`）
++ timeFormat: Time format, supporting expression parsing.（`string | undefined`）
++ valueFormat: Value format, default is `defaultFormat`.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **convertDateFormat**
 
-+ **功能描述**：转换日期格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的日期格式。
-+ **返回值**：转换后的日期格式或 `undefined`。
++ **Function Description**: Convert the date format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: Date format to be converted.
++ **Return Value**: Converted date format or `undefined`.
 
 #### **convertFormat**
 
-+ **功能描述**：转换通用格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的通用格式。
-+ **返回值**：转换后的格式或 `undefined`。
++ **Function Description**: Convert the general format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: General format to be converted.
++ **Return Value**: Converted format or `undefined`.
 
 #### **convertTimeFormat**
 
-+ **功能描述**：转换时间格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的时间格式。
-+ **返回值**：转换后的时间格式或 `undefined`。
++ **Function Description**: Convert the time format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: Time format to be converted.
++ **Return Value**: Converted time format or `undefined`.
 
-## （十二）日期（Date）
+## (十二) Date
 
 ### 1、DetailDateFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -476,25 +476,25 @@ export class DetailDateTimeRangeFieldWidget extends FormRangeFieldsWidget<Standa
 export class DetailDateFieldWidget extends DetailDateTimeFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultFormat：默认日期格式。（`string`）
-+ hasTimeFormat：是否包含时间格式，默认值为 `false`。（`boolean`）
-+ valueFormat：值格式，默认为 `defaultDateFormat`。（`string`）
++ defaultFormat: Default date format.（`string`）
++ hasTimeFormat: Whether it contains a time format, default value is `false`.（`boolean`）
++ valueFormat: Value format, default is `defaultDateFormat`.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **convertFormat**
 
-+ **功能描述**：转换日期格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的日期格式。
-+ **返回值**：转换后的日期或 `undefined`。
++ **Function Description**: Convert the date format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: Date format to be converted.
++ **Return Value**: Converted date or `undefined`.
 
 ### 2、DetailDateRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -506,27 +506,27 @@ export class DetailDateFieldWidget extends DetailDateTimeFieldWidget
 export class DetailDateRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultFormat：默认日期格式。（`string`）
-+ hasTimeFormat：是否包含时间格式，默认值为 `false`。（`boolean`）
-+ valueFormat：值格式，默认为 `defaultDateFormat`。（`string`）
++ defaultFormat: Default date format.（`string`）
++ hasTimeFormat: Whether it contains a time format, default value is `false`.（`boolean`）
++ valueFormat: Value format, default is `defaultDateFormat`.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **convertFormat**
 
-+ **功能描述**：转换日期格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的日期格式。
-+ **返回值**：转换后的日期或 `undefined`。
++ **Function Description**: Convert the date format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: Date format to be converted.
++ **Return Value**: Converted date or `undefined`.
 
-## （十三）时间（Time）
+## (十三) Time
 
 ### 1、DetailTimeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -538,25 +538,25 @@ export class DetailDateRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 export class DetailTimeFieldWidget extends DetailDateTimeFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultFormat：默认时间格式。（`string`）
-+ hasDateFormat：是否包含日期格式，默认值为 `false`。（`boolean`）
-+ valueFormat：值格式，默认为 `defaultTimeFormat`。（`string`）
++ defaultFormat: Default time format.（`string`）
++ hasDateFormat: Whether it contains a date format, default value is `false`.（`boolean`）
++ valueFormat: Value format, default is `defaultTimeFormat`.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **convertFormat**
 
-+ **功能描述**：转换时间格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的时间格式。
-+ **返回值**：转换后的时间或 `undefined`。
++ **Function Description**: Convert the time format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: Time format to be converted.
++ **Return Value**: Converted time or `undefined`.
 
 ### 2、DetailTimeRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -568,27 +568,27 @@ export class DetailTimeFieldWidget extends DetailDateTimeFieldWidget
 export class DetailTimeRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultFormat：默认时间格式。（`string`）
-+ hasDateFormat：是否包含日期格式，默认值为 `false`。（`boolean`）
-+ valueFormat：值格式，默认为 `defaultTimeFormat`。（`string`）
++ defaultFormat: Default time format.（`string`）
++ hasDateFormat: Whether it contains a date format, default value is `false`.（`boolean`）
++ valueFormat: Value format, default is `defaultTimeFormat`.（`string`）
 
-**方法**：
+**Methods**:
 
 #### **convertFormat**
 
-+ **功能描述**：转换时间格式为标准格式。
-+ **类型**：`(format: string) => string | undefined`
-+ **参数**：
-  - `format`：待转换的时间格式。
-+ **返回值**：转换后的时间或 `undefined`。
++ **Function Description**: Convert the time format to a standard format.
++ **Type**: `(format: string) => string | undefined`
++ **Parameters**:
+  - `format`: Time format to be converted.
++ **Return Value**: Converted time or `undefined`.
 
-## （十四）年份（Year）
+## (十四) Year
 
 ### 1、DetailYearFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -600,17 +600,17 @@ export class DetailTimeRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 export class DetailYearFieldWidget extends DetailDateTimeFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultFormat：默认年份格式。（`string`）
-+ format：格式配置，取自 DSL 或默认格式。（`string | undefined`）
-+ hasDateFormat：是否包含日期格式，默认值为 `false`。（`boolean`）
-+ hasTimeFormat：是否包含时间格式，默认值为 `false`。（`boolean`）
-+ valueFormat：值格式，默认为 `defaultYearValueFormat`。（`string`）
++ defaultFormat: Default year format.（`string`）
++ format: Format configuration, taken from DSL or default format.（`string | undefined`）
++ hasDateFormat: Whether it contains a date format, default value is `false`.（`boolean`）
++ hasTimeFormat: Whether it contains a time format, default value is `false`.（`boolean`）
++ valueFormat: Value format, default is `defaultYearValueFormat`.（`string`）
 
 ### 2、DetailYearRangeFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -622,19 +622,19 @@ export class DetailYearFieldWidget extends DetailDateTimeFieldWidget
 export class DetailYearRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ defaultFormat：默认年份格式。（`string`）
-+ format：格式配置，取自 DSL 或默认格式。（`string | undefined`）
-+ hasDateFormat：是否包含日期格式，默认值为 `false`。（`boolean`）
-+ hasTimeFormat：是否包含时间格式，默认值为 `false`。（`boolean`）
-+ valueFormat：值格式，默认为 `defaultYearValueFormat`。（`string`）
++ defaultFormat: Default year format.（`string`）
++ format: Format configuration, taken from DSL or default format.（`string | undefined`）
++ hasDateFormat: Whether it contains a date format, default value is `false`.（`boolean`）
++ hasTimeFormat: Whether it contains a time format, default value is `false`.（`boolean`）
++ valueFormat: Value format, default is `defaultYearValueFormat`.（`string`）
 
-## （十五）键值对（Map）
+## (十五) Map
 
 ### 1、DetailMapFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -646,11 +646,11 @@ export class DetailYearRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 export class DetailMapFieldWidget extends FormMapFieldWidget
 ```
 
-## （十六）多对一（M2O）
+## (十六) M2O
 
 ### 1、DetailM2OSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -664,7 +664,7 @@ export class DetailM2OSelectFieldWidget extends DetailRelationSelectFieldWidget
 
 ### 2、DetailM2OUploadWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -677,16 +677,16 @@ export class DetailM2OSelectFieldWidget extends DetailRelationSelectFieldWidget
 export class DetailM2OUploadWidget extends DetailRelationSelectFieldWidget
 ```
 
-**属性**：
+**Properties**:
 
-+ cdnKey：CDN 密钥。（`string | undefined`）
-+ privateLink：是否使用私有链接。（`boolean`）
++ cdnKey: CDN key.（`string | undefined`）
++ privateLink: Whether to use a private link.（`boolean`）
 
-## （十七）一对多（O2M）
+## (十七) O2M
 
 ### 1、DetailO2MSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -699,13 +699,13 @@ export class DetailM2OUploadWidget extends DetailRelationSelectFieldWidget
 export class DetailO2MSelectFieldWidget extends DetailRelationSelectFieldWidget<ActiveRecord[], RuntimeO2MField>
 ```
 
-**属性**：
+**Properties**:
 
-+ currentValue：当前值，对原始值进行标签处理后返回数组。（`any[]`）
++ currentValue: Current value, an array returned after label processing of the original value.（`any[]`）
 
 ### 2、DetailO2MTableFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -717,23 +717,23 @@ export class DetailO2MSelectFieldWidget extends DetailRelationSelectFieldWidget<
 export class DetailO2MTableFieldWidget extends FormSubviewListFieldWidget<RuntimeO2MField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **initSubviewData**
 
-+ **功能描述**：初始化子视图数据，根据关联查询条件生成过滤条件并设置数据源。
-+ **类型**：`() => ReturnPromise<void>`
++ **Function Description**: Initialize subview data, generate filter conditions based on associated query conditions and set the data source.
++ **Type**: `() => ReturnPromise<void>`
 
 #### **refreshValueProcess**
 
-+ **功能描述**：刷新值处理，仅在数据源提供者模式下调用父类方法。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Refresh value processing, only call the parent class method in data source provider mode.
++ **Type**: `() => Promise<void>`
 
-## （十八）多对多（M2M）
+## (十八) M2M
 
 ### 1、DetailM2MSelectFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -748,7 +748,7 @@ export class DetailM2MSelectFieldWidget extends DetailO2MSelectFieldWidget
 
 ### 2、DetailM2MTableFieldWidget
 
-**类型声明**：
+**Type Declaration**:
 
 ```typescript
 @SPI.ClassFactory(
@@ -760,36 +760,35 @@ export class DetailM2MSelectFieldWidget extends DetailO2MSelectFieldWidget
 export class DetailM2MTableFieldWidget extends FormSubviewListFieldWidget<RuntimeM2MField>
 ```
 
-**方法**：
+**Methods**:
 
 #### **initSubviewData**
 
-+ **功能描述**：初始化子视图数据，根据多对多关联关系生成查询数据并设置数据源。
-+ **类型**：`() => ReturnPromise<void>`
++ **Function Description**: Initialize subview data, generate query data based on many-to-many association and set the data source.
++ **Type**: `() => ReturnPromise<void>`
 
 #### **refreshValueProcess**
 
-+ **功能描述**：刷新值处理，仅在数据源提供者模式下调用父类方法。
-+ **类型**：`() => Promise<void>`
++ **Function Description**: Refresh value processing, only call the parent class method in data source provider mode.
++ **Type**: `() => Promise<void>`
 
-## (十九）抽象基类
+## (十九) Abstract Base Class
 
 ### 1、DetailRelationSelectFieldWidget
 
-**继承**：BaseSelectFieldWidget
+**Inheritance**: BaseSelectFieldWidget
 
-**属性**：
+**Properties**:
 
-+ currentValue：当前值，通过 `handleTableLabel` 处理后的展示值。（`unknown`）
-+ relationFieldKey：关联字段键，取自参考模型的主键或通过 `getRelationFieldKey` 生成。（`string | string[] | undefined`）
++ currentValue: Current value, display value processed by `handleTableLabel`.（`unknown`）
++ relationFieldKey: Associated field key, taken from the primary key of the reference model or generated by `getRelationFieldKey`.（`string | string[] | undefined`）
 
-**方法**：
+**Methods**:
 
 #### **handleTableLabel**
 
-+ **功能描述**：处理表格标签，根据配置生成展示值。
-+ **类型**：`(dataEntity: unknown) => unknown`
-+ **参数**：
-  - `dataEntity`：数据实体。
-+ **返回值**：处理后的展示值。
-
++ **Function Description**: Process table labels and generate display values according to configuration.
++ **Type**: `(dataEntity: unknown) => unknown`
++ **Parameters**:
+  - `dataEntity`: Data entity.
++ **Return Value**: Processed display value.

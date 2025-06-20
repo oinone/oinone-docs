@@ -1,21 +1,21 @@
 ---
-title: 项目整合：Oinone如何支持构建分布式项目
+title: Project Integration:How Oinone Supports Building Distributed Projects
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 73
 ---
 
-# 一、分布式调用下的[强制]约束
-1. **强制性要求 - 分布式调用中的库使用**：在分布式调用场景下，base 库与 redis 必须共同使用，以确保系统数据交互与存储的一致性和高效性。
-2. **强制性要求 - 设计器环境下的库一致性**：若环境中存在设计器，设计器所使用的 base 库与 redis 不仅要相互保持一致，还需与项目中其他部分所使用的 base 库和 redis 保持一致，从而保障整个系统数据环境的统一性。
-3. **强制性要求 - 相同 base 库下数据源的一致性**：在同一个 base 库环境下，不同应用中相同模块的数据源务必保持一致，这对于维护数据的准确性与稳定性，以及不同应用间数据交互的顺畅性至关重要。
-4. **强制性要求 - 项目中的分布式缓存包引入**：项目中必须引入分布式缓存包。具体可参考下文所提及的分布式包依赖内容，以满足系统在分布式架构下对缓存管理的需求。
+# I. Mandatory Constraints for Distributed Invocation
+1. **Mandatory Requirement - Library Usage in Distributed Invocation**: In distributed invocation scenarios, the base library and Redis must be used together to ensure consistency and efficiency in system data interaction and storage.
+2. **Mandatory Requirement - Library Consistency in Designer Environment**: If a designer exists in the environment, the base library and Redis used by the designer must not only be consistent with each other but also match the base library and Redis used in other parts of the project to ensure uniformity of the entire system data environment.
+3. **Mandatory Requirement - Data Source Consistency Under the Same Base Library**: In the same base library environment, data sources of the same module in different applications must be consistent, which is crucial for maintaining data accuracy and stability and ensuring smooth data interaction between different applications.
+4. **Mandatory Requirement - Introduction of Distributed Cache Package in Projects**: Distributed cache packages must be introduced in the project. Specifically, refer to the distributed package dependencies mentioned below to meet the system's cache management needs under the distributed architecture.
 
-# 二、分布式支持
-## （一）分布式包依赖
-+ 父pom的依赖管理中先加入 pamirs-distribution 的依赖
+# II. Distributed Support
 
+## (一) Distributed Package Dependencies
+- Add dependencies of pamirs-distribution in the dependency management of the parent pom:
 ```xml
 <dependency>
     <groupId>pro.shushi.pamirs</groupId>
@@ -26,15 +26,14 @@ order: 73
 </dependency>
 ```
 
-+ 启动的 boot 工程中增加 pamirs-distribution 相关包
-
+- Add pamirs-distribution related packages in the boot project:
 ```xml
-<!-- 分布式服务发布 -->
+<!-- Distributed service publication -->
 <dependency>
     <groupId>pro.shushi.pamirs.distribution</groupId>
     <artifactId>pamirs-distribution-faas</artifactId>
 </dependency>
-<!-- 分布式元数据缓存 -->
+<!-- Distributed metadata cache -->
 <dependency>
     <groupId>pro.shushi.pamirs.distribution</groupId>
     <artifactId>pamirs-distribution-session</artifactId>
@@ -45,8 +44,7 @@ order: 73
 </dependency>
 ```
 
-+ 启动工程的 Application 中增加类注解 @EnableDubbo
-
+- Add the class annotation @EnableDubbo in the Application of the startup project:
 ```java
 @EnableDubbo
 public class XXXStdApplication {
@@ -60,11 +58,10 @@ public class XXXStdApplication {
 }
 ```
 
-## （二）修改 bootstrap.yml 文件
-注意序列化方式：serialization: pamirs
+## (二) Modify the bootstrap.yml File
+Note the serialization method: `serialization: pamirs`
 
- 以下只是一个示例（ zk 为注册中心），注册中心支持 zk 和 Nacos；
-
+The following is just an example (with zk as the registry), and the registry supports both zk and Nacos:
 ```yaml
 spring:
   profiles:
@@ -122,9 +119,9 @@ dubbo:
     disabled: true
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## （三）模块启动的最⼩集
+## (三) Minimum Set for Module Startup
 ```yaml
 pamirs:
   boot:
@@ -132,16 +129,15 @@ pamirs:
    sync: true
    modules:
      - base
-     - 业务工程的Module
+     - Business project's Module
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## **（四）业务模型间的依赖关系**
-+ **服务调用方（Client 端）在启动 yml 配置方面**：服务调用方（即 Client 端）在启动 yml 文件的 `modules` 配置中，不应安装服务提供方的 Module。此操作旨在确保 Client 端启动配置的简洁性与针对性，避免引入不必要的模块，从而提高启动效率与系统稳定性。
-+ **服务调用方（Client 端）在项目 pom 配置方面**：服务调用方（即 Client 端）的项目 pom 文件中，仅应依赖服务提供方的 API，也就是仅依赖服务提供方所定义的模型以及 API 接口。通过这种方式，Client 端能够明确界定依赖范围，专注于与服务提供方进行交互所需的核心接口部分，减少不必要的依赖带来的潜在风险，增强项目的可维护性与可扩展性。
-+ **服务调用方（Client 端）在项目模块定义方面**：服务调用方（即 Client 端）在进行项目模块定义（即模型 Module 定义）时，需在 `dependencies` 配置中增添服务提供方的 Module。例如，如同下面示例代码中的 `FileModule`。这一操作能够使 Client 端在自身模块体系内，合理整合服务提供方相关功能模块，确保项目功能的完整性与连贯性，以实现与服务提供方的有效对接与协同工作。
-
+## (四) Dependency Relationships Between Business Models
+- **Service Caller (Client) in Startup YML Configuration**: The service caller (Client) should not install the service provider's Module in the `modules` configuration of the startup yml file. This operation ensures the simplicity and pertinence of the Client's startup configuration, avoiding the introduction of unnecessary modules and improving startup efficiency and system stability.
+- **Service Caller (Client) in Project pom Configuration**: The project pom file of the service caller (Client) should only depend on the service provider's API, that is, only depend on the models and API interfaces defined by the service provider. In this way, the Client can clearly define the dependency scope, focus on the core interface part required for interaction with the service provider, reduce potential risks caused by unnecessary dependencies, and enhance the project's maintainability and scalability.
+- **Service Caller (Client) in Project Module Definition**: When the service caller (Client) defines the project module (i.e., model Module definition), the service provider's Module should be added to the `dependencies` configuration. For example, the `FileModule` in the sample code below. This operation enables the Client to reasonably integrate the relevant function modules of the service provider within its own module system, ensuring the integrity and consistency of project functions to achieve effective docking and collaborative work with the service provider.
 ```java
 @Module(
     name = DemoModule.MODULE_NAME,
@@ -153,8 +149,7 @@ pamirs:
 )
 ```
 
-+ **服务调用方（Client 端）在启动类方面**，启动类的`ComponentScan`需要配置服务提供方API定义所在的包. 如下面示例中的：pro.shushi.pamirs.second
-
+- **Service Caller (Client) in Startup Class**: The `ComponentScan` of the startup class needs to configure the package where the service provider's API definition is located. For example, `pro.shushi.pamirs.second` in the sample code below:
 ```java
 @ComponentScan(
     basePackages = {"pro.shushi.pamirs.meta",
@@ -179,20 +174,18 @@ pamirs:
 public class DemoApplication {
 ```
 
-## **（五）模块启动顺序**
-服务提供方的模块需先启动。原因：模块在启动过程中，会校验依赖模块是否存在。
+## (五) Module Startup Sequence
+The service provider's modules need to start first. Reason: During the startup process, modules will verify whether dependent modules exist.
 
-## **（六）Dubbo日志相关**
-关闭 Dubbo 元数据上报
-
+## (六) Dubbo Logging Related
+Turn off Dubbo metadata reporting:
 ```yaml
 dubbo:
   metadata-report:
     disabled: true
 ```
 
-关闭元数据上报，还有错误日志打印出来的话，可以在 log 中配置
-
+If error logs still appear after turning off metadata reporting, configure in log:
 ```yaml
 logging:
   level:
@@ -208,37 +201,34 @@ logging:
     org.apache.dubbo.metadata.store.nacos.NacosMetadataReport: off
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-# 三、分布式支持-事务相关
-## **（一）分布式事务解决方案**
-完成某一个业务功能可能需要横跨多个服务，操作多个数据库。这就涉及到到了分布式事务，分布式事务就是为了保证不同资源服务器的数据一致性。典型的分布式事务场景：
+# III. Distributed Support - Transaction Related
 
-+ 跨库事务， 补充具体场景 ；
-+ 微服务拆分带来的跨内部服务；
-+ 微服务拆分带来的跨外部服务；
+## (一) Distributed Transaction Solutions
+Completing a certain business function may require spanning multiple services and operating multiple databases, which involves distributed transactions. Distributed transactions aim to ensure data consistency across different resource servers. Typical distributed transaction scenarios include:
+- Cross-database transactions, supplement specific scenarios;
+- Cross-internal services brought by microservice splitting;
+- Cross-external services brought by microservice splitting;
 
-## **（二）事务策略**
-采用微服务架构，需考虑分布式事务问题(即平台各子系统之间的数据一致性)。
+## (二) Transaction Strategies
+Adopting a microservice architecture requires considering distributed transaction issues (i.e., data consistency between platform subsystems):
+- For individual systems/modules, such as the inventory center and account center, use strong transaction methods. For example, when deducting inventory, changes in inventory logs and inventory quantities are included in one transaction to ensure that data in both tables is successfully updated or failed simultaneously. Strong transaction management uses a coding approach, and Oinone transaction management is compatible with Spring's transaction management methods.
+- **To improve system availability, scalability, and performance, in addition to using strong consistency for certain key businesses and scenarios with particularly high data consistency requirements, it is recommended to adopt a final consistency solution for other scenarios**; for distributed transactions, adopt final data consistency, which is achieved through reliable messages, Jobs, and other means.
 
-+ 对于单个系统/模型内部, 比如：库存中心、账户中心等，采用强事务的方式。比如：在扣减库存的时候，库存日志和库存数列的变化在一个事务中，保证两个表的数据同时成功或者失败。 强事务管理采用编码式，Oinone 事务管理兼容 Spring 的事务管理方式；
-+ **为了提高系统的可用性、可扩展性和性能，对于某些关键业务和数据一致性要求特别高的场景，采用强一致性外，其他的场景建议采用最终一致性的方案；** 对于分布式事务采用最终数据一致性，借助可靠消息和 Job 等方式来实现。
-
-### **1、基于MQ的事务消息**
+### 1. Transaction Messages Based on MQ
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746616805917-f685efa8-893b-46e9-82c0-9e3873ce12ea-20250530144823403.webp)
 
-采用最终一致性方案，基于 MQ 的事务消息的方式。 事务消息的逻辑由发送端 Producer 进行保证(消费端无需考虑)。基于 MQ 事务消息的实现步骤：
+Adopt a final consistency solution based on MQ transaction messages. The logic of transaction messages is guaranteed by the sender (Producer) (the consumer does not need to consider it). The implementation steps based on MQ transaction messages are as follows:
+- First, send a transaction message, and MQ marks the message status as Prepared. Note that consumers cannot consume this message at this time.
+- Then, execute the business code logic, which may be a local database transaction operation.
+- Confirm the sent message. At this time, MQ marks the message status as consumable, and consumers can truly ensure the consumption of this data.
 
-+ 首先，发送一个事务消息，MQ 将消息状态标记为 Prepared，注意此时这条消息消费者是无法消费到的。
-+ 接着，执行业务代码逻辑，可能是一个本地数据库事务操作 。
-+ 确认发送消息，这个时候，MQ 将消息状态标记为可消费，这个时候消费者，才能真正的保证消费到这条数据。
+### 2. Compensation Based on JOB
+Regular verification: The passive party of the business activity queries the active party of the business activity according to the timing strategy (the active party provides a query interface) to restore lost business messages.
 
-### **2、基于JOB的补偿**
-定期校对：业务活动的被动方，根据定时策略，向业务活动主动方查询(主动方提供查询接口)，恢复丢失的业务消息。
-
-### **3、数据一致性**
-+ 对 RPC 超时和重试机制设计的检查，是否会带来重复数据
-+ 对数据幂等、去重机制的设计是否有考虑到
-+ 对事务、数据(最终)一致性设计是否有考虑到
-+ 数据缓存时，当数据发生变化时，是否有相应的机制保证缓存数据的一致性和有效性
-
+### 3. Data Consistency
+- Check the design of RPC timeout and retry mechanisms for potential duplicate data issues.
+- Consider the design of data idempotency and deduplication mechanisms.
+- Consider the design of transaction and data (eventual) consistency.
+- When caching data, ensure corresponding mechanisms are in place to maintain the consistency and validity of cached data when underlying data changes.

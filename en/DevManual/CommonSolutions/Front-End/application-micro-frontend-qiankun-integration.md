@@ -1,17 +1,17 @@
 ---
-title: 应用：引入微前端qiankun
+title: Application:Introducing Qiankun Micro-Frontend
 index: true
 category:
-   - 前端
+   - Frontend
 order: 6
 ---
-在软件开发进程中，针对一个业已存在的系统实施全量的技术栈升级或重构，往往面临诸多挑战而难以推进。在此情形下，引入微前端架构作为一种渐进式重构的策略与手段，便成为颇具可行性的选择。
+In the software development process, implementing a full-scale technology stack upgrade or refactoring for an existing system often faces numerous challenges that make it difficult to proceed. In such cases, introducing a micro-frontend architecture as a strategy and means for progressive refactoring becomes a feasible choice.
 
-为实现将 Oinone 无缝集成至现有项目，并满足诸如在现有项目与 Oinone 之间实现路由跳转、界面嵌套以及数据通信等多样化需求，经过系统性的整理与开发，现已形成一套 Oinone 接入乾坤的模板工程。该工程旨在为开发人员提供一套标准化、可复用的解决方案，助力其高效完成相关集成任务。——[工程压缩包地址](https://doc.oinone.top/wp-content/uploads/2025/03/ss-front-micro-modules.zip)
+To seamlessly integrate Oinone into existing projects and meet diverse requirements such as route navigation, interface nesting, and data communication between the existing project and Oinone, a template project for Oinone's integration with Qiankun has been systematically organized and developed. This project aims to provide developers with a standardized and reusable solution to efficiently complete relevant integration tasks. ——[Engineering Compressed Package Address](https://doc.oinone.top/wp-content/uploads/2025/03/ss-front-micro-modules.zip)
 
-# 一、模版工程启动
-## （一）工程结构目录介绍
-最外层`micro-front-end`用`pnpm`工作区来管理多工程仓库，维护统一的安装、运行、清除、构建等的脚本。`micro-main`是主应用，`micro-son`是子应用，模拟重构工作量巨大的老应用，`ss-front-modules`是`Oinone`应用。
+# I. Template Project Startup
+## (一) Introduction to Project Structure Directory
+The outermost `micro-front-end` uses a `pnpm` workspace to manage multi-project repositories, maintaining unified scripts for installation, running, cleaning, building, etc. `micro-main` is the main application, `micro-son` is the sub-application simulating a legacy application with huge refactoring workload, and `ss-front-modules` is the Oinone application.
 ```text
 micro-front-end/
 ├── packages/
@@ -29,58 +29,58 @@ micro-front-end/
 └── package.json
 ```
 
-## （二）模版工程安装、运行
-### 1、安装
-在`micro-front-end`目录下 `pnpm install`
+## (二) Installation and Running of Template Project
+### 1. Installation
+In the `micro-front-end` directory, execute `pnpm install`.
 
-### 2、运行
-在`micro-front-end`目录下 `pnpm run dev`，这里应当能看到启动了三个服务（端口8888～8890），其中`http://localhost:8888/`是主应用。
+### 2. Running
+In the `micro-front-end` directory, execute `pnpm run dev`. You should see three services started (ports 8888～8890), where `http://localhost:8888/` is the main application.
 
-### 3、效果
-进入 `http://localhost:8888/`主应用 ，可以路由到`Oinone`应用看效果
+### 3. Effect
+Access the main application at `http://localhost:8888/`, and you can route to the Oinone application to view the effect.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/CF76E5EF-CEBE-4EC4-B764-B531CD8B65E9.png)
 
-# 二、接入步骤分析
-## （一）主应用搭建
-### 1、微应用注册配置
-配置了一个`oinone`的子应用，`name`是`ss-boot`。
+# II. Analysis of Access Steps
+## (一) Main Application Construction
+### 1. Micro-Application Registration Configuration
+A sub-application named `oinone` is configured with the `name` as `ss-boot`.
 
 ```typescript
 export const SUB_APP_CONFIG = {
   subApps: [
     {
-      name: 'micro-son', // 子应用名称，跟package.json一致
-      entry: '//localhost:8889', // 子应用入口，本地环境下指定端口
-      container: '#micro-son', // 挂载子应用的dom
-      activeRule: '/app/micro-son', // 路由匹配规则
-      props: {}, // 主应用与子应用通信传值
+      name: 'micro-son', // Sub-application name, consistent with package.json
+      entry: '//localhost:8889', // Sub-application entry, specifying the port in the local environment
+      container: '#micro-son', // DOM for mounting the sub-application
+      activeRule: '/app/micro-son', // Route matching rule
+      props: {}, // Data communication between the main and sub-applications
       sandbox: {
-        strictStyleIsolation: false, // 关闭严格样式隔离
-        experimentalStyleIsolation: false // 关闭实验性样式隔离
+        strictStyleIsolation: false, // Disable strict style isolation
+        experimentalStyleIsolation: false // Disable experimental style isolation
       }
     },
     {
-      name: 'ss-boot', // 子应用名称，跟package.json一致
-      entry: '//localhost:8890', // 子应用入口，本地环境下指定端口
-      container: '#app-oinone', // 挂载子应用的dom
-      activeRule: '/app/ss-boot', // 路由匹配规则
-      props: {}, // 主应用与子应用通信传值
+      name: 'ss-boot', // Sub-application name, consistent with package.json
+      entry: '//localhost:8890', // Sub-application entry, specifying the port in the local environment
+      container: '#app-oinone', // DOM for mounting the sub-application
+      activeRule: '/app/ss-boot', // Route matching rule
+      props: {}, // Data communication between the main and sub-applications
       sandbox: {
-        strictStyleIsolation: false, // 关闭严格样式隔离
-        experimentalStyleIsolation: false // 关闭实验性样式隔离
+        strictStyleIsolation: false, // Disable strict style isolation
+        experimentalStyleIsolation: false // Disable experimental style isolation
       }
     }
   ]
 };
 ```
 
-### 2、`main.ts` 执行注册逻辑
+### 2. `main.ts` Executing Registration Logic
 ```javascript
 import { registerMicroApps } from "qiankun";
 
 function registerApps() {
   try {
-    // 调用乾坤注册微应用方法，subApps 就是上面的配置
+    // Call the Qiankun method to register micro-applications, where subApps is the configuration above
     registerMicroApps(subApps, {
       beforeLoad: [
         (app) => {
@@ -107,12 +107,12 @@ function registerApps() {
 }
 
 registerApps();
-// 可以看到这里 mount 的是micro-main，所以需要把 index.html 里的 id="app" 改成 id="micro-main"
+// Note that here micro-main is mounted, so the id="app" in index.html needs to be changed to id="micro-main"
 createApp(App).use(router).mount("#micro-main");
 ```
 
-### 3、主应用路由配置
-以`vue-router`举例，将所有 `/app/ss-boot` 路由全部重定向到使用 `Oinone` 微应用的组件
+### 3. Main Application Routing Configuration
+Taking `vue-router` as an example, all routes under `/app/ss-boot` are redirected to components using the Oinone micro-application.
 
 ```javascript
 import { createWebHistory, createRouter } from "vue-router";
@@ -121,7 +121,7 @@ const routes = [
   {
     path: "",
     redirect: { name: "micro-son" },
-    meta: { title: "首页" },
+    meta: { title: "Home" },
     children: [
       {
         path: "/home",
@@ -133,7 +133,7 @@ const routes = [
         name: "micro-son",
         component: () => import("../components/MicroSon.vue"),
       },
-      // 这个前缀可以自定义，跟 Oinone 应用的 BASE_PATH 对应起来即可
+      // This prefix can be customized and should correspond to the BASE_PATH of the Oinone application
       {
         path: "/app/ss-boot/:pathMatch(.*)*",
         name: "ss-boot",
@@ -147,15 +147,14 @@ export const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
 ```
 
-### 4、主应用的某个组件使用`Oinone`微应用
-在挂载点 dom 生成之后启动乾坤
+### 4. A Component of the Main Application Using the Oinone Micro-Application
+Start Qiankun after the mounting point DOM is generated.
 
 ```javascript
 <template>
-  <!-- 微应用挂载点，与注册配置里的container对应 -->
+  <!-- Micro-application mounting point, corresponding to the container in the registration configuration -->
   <div id="app-oinone"></div>
 </template>
 <script lang="ts">
@@ -177,11 +176,10 @@ export default defineComponent({
   height: 100%;
 }
 </style>
-
 ```
 
-### 5、`dev`服务器配置
-这里以`vite`举例，如此启动后主应用就配置好了
+### 5. `dev` Server Configuration
+Taking `vite` as an example, the main application is configured as follows after startup.
 
 ```javascript
 import { defineConfig } from "vite";
@@ -193,24 +191,23 @@ export default defineConfig({
   server: {
     port: 8888,
     proxy: {
-      // 将 /pamirs 开头的请求重定向到 oinone 后端
+      // Redirect requests starting with /pamirs to the Oinone backend
       "/pamirs": {
-        // 支持跨域
+        // Support cross-origin requests
         changeOrigin: true,
         target: "https://one.oinone.top/",
       },
     },
   },
 });
-
 ```
 
-## （二）`Oinone`应用搭建
-### 1、配置 `ss-boot`的环境变量
+## (二) Construction of Oinone Application
+### 1. Configuring Environment Variables for `ss-boot`
 `BASE_PATH=/app/ss-boot`
-BASE_PATH 的作用是给 Oinone 应用的路由添加公共前缀，适配主应用的路由
+The role of BASE_PATH is to add a public prefix to the routes of the Oinone application to adapt to the routes of the main application.
 
-### 2、`ss-boot`目录下`main.ts`暴露乾坤所需的生命周期
+### 2. `main.ts` in the `ss-boot` Directory Exposing the Lifecycle Required by Qiankun
 ```javascript
 if (window.__POWERED_BY_QIANKUN__) {
   __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
@@ -219,13 +216,13 @@ if (window.__POWERED_BY_QIANKUN__) {
 export const bootstrap = async () => {};
 
 export const mount = async () => {
-  // 挂载
+  // Mounting
   return new Promise(async (resolve, reject) => {
     try {
       await VueOioProvider(
         {
           browser: {
-            title: 'Oinone - 构你想象!',
+            title: 'Oinone - Build Your Imagination!',
             favicon: 'https://pamirs.oss-cn-hangzhou.aliyuncs.com/pamirs/image/default_favicon.ico'
           },
           dependencies: {
@@ -250,19 +247,18 @@ export const mount = async () => {
 };
 
 export const update = async () => {
-  // 更新
+  // Updating
 };
 
 export const unmount = async () => {
-  // 取消挂载
+  // Unmounting
 };
 
-// 正常启动
+// Normal startup
 if (!window.__POWERED_BY_QIANKUN__) {
   mount();
 }
 ```
 
-# 三、访问
-主子应用都要`pnpm run dev`启动，访问主应用。当路由匹配到微应用的`activeRule`后，会自动加载微应用并挂载。
-
+# III. Access
+Both the main and sub-applications need to be started with `pnpm run dev` to access the main application. When the route matches the micro-application's `activeRule`, the micro-application will be automatically loaded and mounted.

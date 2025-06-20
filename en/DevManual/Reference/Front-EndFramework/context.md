@@ -1,198 +1,196 @@
 ---
-title: 上下文（Context）
+title: Context
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 前端API
+  - Frontend API
 order: 3
 
 ---
-在 Oinone Kunlun 中，“上下文”（context）是一个重要概念：它为组件提供了渲染、配置、以及元数据等信息，以便系统的任何组件都能对于这些信息做出适当的行为。从某种意义上说，它就像一个传播到各处的信息包。这在某些场景中非常有用。例如让输入框可以在表单和详情中表现的有所区别，或在组件中激活 / 禁用某些功能。
+In Oinone Kunlun, "context" is a crucial concept: it provides components with rendering, configuration, metadata, and other information, enabling any system component to behave appropriately based on this information. In a sense, it is like an information package propagated everywhere, proving useful in scenarios where, for example, input fields need to behave differently in forms and details, or certain functions need to be activated/deactivated in components.
 
-Web 客户端中存在两种不同的上下文：运行时上下文（RuntimeContext）和某些组件配置上下文（context）。因此，我们在使用 “上下文” 一词时需要谨慎——根据具体场景，它可能指代不同的含义。
+There are two different contexts in the Web client: Runtime Context (RuntimeContext) and configuration contexts for certain components (context). Therefore, caution is needed when using the term "context"—it may refer to different meanings depending on the specific scenario.
 
-我们在这里提到的 “上下文” 特指 “运行时上下文”（RuntimeContext）。
+The "context" mentioned here specifically refers to the "Runtime Context" (RuntimeContext).
 
-# 一、运行时上下文（RuntimeContext）
+# I. Runtime Context (RuntimeContext)
 
-运行时上下文是与视图一一对应的，它所表现的结构和视图在页面上递归时表现的结构完全相同。即树形结构。
+The runtime context corresponds to views one-to-one, and its structure is identical to the recursive structure of views on the page, i.e., a tree structure.
 
-在运行时上下文中，有两类运行时上下文，它们是通过不同的方式进行创建的：
+In the runtime context, there are two types of runtime contexts created through different means:
 
-+ metadataHandle：元数据运行时上下文唯一键，它可能通过 `页面入口（ViewAction）` 提供，也可能通过 `字段（field）` 或 `动作（action）` 提供。
-+ rootHandle：视图运行时上下文唯一键，它仅可能通过 `视图（view）` 提供。
++ metadataHandle: The unique key of the metadata runtime context, which may be provided by the `ViewAction` (page entry) or by `fields` or `actions`.
++ rootHandle: The unique key of the view runtime context, which can only be provided by the `view`.
 
-下面让我们来分别看一下表格和表单视图中可能的 `RuntimeContext` 结构：
+Let's examine the possible `RuntimeContext` structures in table and form views:
 
-**表格视图 RuntimeContext 结构**
+**Table View RuntimeContext Structure**
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1747620774862-2997bce5-56eb-485f-93ff-dbc0c20c6e6e.jpeg)
 
-**表单视图 RuntimeContext 结构**
+**Form View RuntimeContext Structure**
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1747619635229-193ea5c3-43c3-477b-b62a-71461c9e30cf.jpeg)
 
-`ROOT` 是所有运行时上下文的根节点，它包含了 `Vue` 框架实例 `App` 对象。
+`ROOT` is the root node of all runtime contexts, containing the `App` object of the Vue framework instance.
 
-当我们从菜单进入页面时，菜单对应的 `ViewAction` 则创建一个名为 `metadataHandle-1` 的运行时上下文，从这里作为起点开始渲染视图。
+When entering a page from a menu, the `ViewAction` corresponding to the menu creates a runtime context named `metadataHandle-1`, serving as the starting point for view rendering.
 
-当渲染到 `视图（View）` 时，将生成对应的 `rootHandle`，当渲染到 `字段（Field）` 或 `动作（Action）` 时，将生成对应的 `metadataHandle`。
+When rendering a `view`, the corresponding `rootHandle` is generated; when rendering `fields` or `actions`, the corresponding `metadataHandle` is generated. This results in the `tree structure` shown in the figures above.
 
-由此将产生如上图所示的 `树形结构` 。
+# II. Reference List
 
-# 二、Reference List
+## (一) RuntimeContext<`Framework`>
 
-## （一）RuntimeContext<`Framework`>
-
-### 1、属性定义
+### 1. Attribute Definitions
 
 #### frameworkInstance
 
-+ **描述**：当前上下文关联的框架实例（如前端框架的根组件实例）。
-+ **类型**：`Framework`（泛型参数，具体类型由实现方定义）。
++ **Description**: The framework instance associated with the current context (e.g., the root component instance of the frontend framework).
++ **Type**: `Framework` (generic parameter, specific type defined by the implementer).
 
 #### routers
 
-+ **描述**：当前上下文的路由路径数组，用于导航和路径匹配。
-+ **类型**：`RouterPath[]`（`RouterPath`需根据业务定义，通常包含路径字符串和参数）。
++ **Description**: The array of routing paths for the current context, used for navigation and path matching.
++ **Type**: `RouterPath[]` ( `RouterPath` should be defined based on business needs, typically including path strings and parameters).
 
 #### viewAction
 
-+ **描述**：通过跳转动作创建的上下文携带的视图动作（如页面跳转、弹窗打开等）。
-+ **类型**：`RuntimeViewAction`（可选，视图动作相关接口需额外定义）。
++ **Description**: The view action carried by the context created through navigation actions (e.g., page navigation, pop-up opening).
++ **Type**: `RuntimeViewAction` (optional, interface for view action-related definitions).
 
 #### field
 
-+ **描述**：通过字段创建的上下文携带的具体模型字段信息。
-+ **类型**：`RuntimeModelField`（可选，字段元数据接口）。
++ **Description**: The specific model field information carried by the context created through fields.
++ **Type**: `RuntimeModelField` (optional, interface for field metadata).
 
 #### module
 
-+ **描述**：当前上下文所属的运行时模块（如业务模块、功能模块）。
-+ **类型**：`RuntimeModule`（模块元数据接口，包含模块编码、名称等）。
++ **Description**: The runtime module to which the current context belongs (e.g., business module, functional module).
++ **Type**: `RuntimeModule` (interface for module metadata, including module code, name, etc.).
 
 #### model
 
-+ **描述**：当前上下文关联的运行时模型（如数据模型、业务对象）。
-+ **类型**：`RuntimeModel`（模型元数据接口，包含字段、关系等定义）。
++ **Description**: The runtime model associated with the current context (e.g., data model, business object).
++ **Type**: `RuntimeModel` (interface for model metadata, including field and relationship definitions).
 
 #### virtualModels
 
-+ **描述**：运行时虚拟模型集合（非持久化模型，用于临时数据处理）。
-+ **类型**：`Record<string, VirtualModel>`（可选，键为模型标识，值为虚拟模型实例）。
++ **Description**: Collection of runtime virtual models (non-persistent models for temporary data processing).
++ **Type**: `Record<string, VirtualModel>` (optional, key is the model identifier, value is the virtual model instance).
 
 #### view
 
-+ **描述**：当前上下文关联的运行时视图（如页面、弹窗、卡片等）。
-+ **类型**：`RuntimeView`（视图元数据接口，包含布局、模板、交互定义）。
++ **Description**: The runtime view associated with the current context (e.g., page, pop-up, card, etc.).
++ **Type**: `RuntimeView` (interface for view metadata, including layout, template, and interaction definitions).
 
 #### viewLayout
 
-+ **描述**：从运行时视图解析出的布局 DSL（Domain Specific Language），用于定义视图结构。
-+ **类型**：`DslDefinition | undefined`（可选，具体 DSL 结构由视图系统定义）。
++ **Description**: The layout DSL (Domain Specific Language) parsed from the runtime view, used to define the view structure.
++ **Type**: `DslDefinition | undefined` (optional, specific DSL structure defined by the view system).
 
 #### viewDsl
 
-+ **描述**：从运行时视图解析出的模板 DSL，用于定义视图内容和逻辑。
-+ **类型**：`DslDefinition | undefined`（可选）。
++ **Description**: The template DSL parsed from the runtime view, used to define view content and logic.
++ **Type**: `DslDefinition | undefined` (optional).
 
 #### viewTemplate
 
-+ **描述**：最终执行的视图模板 DSL，由布局和模板合并生成。
-+ **类型**：`DslDefinition`（必填，确保视图渲染时有完整的 DSL 定义）。
++ **Description**: The final executed view template DSL, generated by merging layout and template.
++ **Type**: `DslDefinition` (required, ensures a complete DSL definition for view rendering).
 
 #### extendData
 
-+ **描述**：扩展数据存储，用于存放上下文相关的额外信息（如临时状态、计算结果）。
-+ **类型**：`Record<string, unknown>`（键值对形式，类型灵活）。
++ **Description**: Extended data storage for holding additional context-related information (e.g., temporary states, calculation results).
++ **Type**: `Record<string, unknown>` (key-value form, flexible type).
 
 #### defaultValueCache
 
-+ **描述**：默认值缓存，存储字段或模型的默认值，避免重复计算。
-+ **类型**：`Record<string, unknown>`（可选，键为字段 / 模型标识，值为默认值）。
++ **Description**: Default value cache, storing default values for fields or models to avoid repeated calculations.
++ **Type**: `Record<string, unknown>` (optional, key is field/model identifier, value is the default value).
 
 #### initialValueCache
 
-+ **描述**：初始值缓存，存储字段或模型的初始值（如表单初始化时的值）。
-+ **类型**：`Record<string, unknown>`（可选）。
++ **Description**: Initial value cache, storing initial values for fields or models (e.g., values during form initialization).
++ **Type**: `Record<string, unknown>` (optional).
 
-### 2、方法定义
+### 2. Method Definitions
 
 #### getModel
 
-+ **方法签名**：`getModel(model: string, isBelong?: boolean): GetModelResult | undefined`
-+ **描述**：根据模型编码获取模型及其所在上下文。
-+ **参数**：
-  - `model: string`：目标模型的编码（唯一标识）。
-  - `isBelong?: boolean`：是否仅查找当前上下文及子上下文的模型（默认值：`false`）。
-+ **返回值**：
-  - `GetModelResult`：包含模型实例、运行时上下文和是否为其他上下文标志的对象。
-  - `undefined`：若模型未找到。
++ **Method Signature**: `getModel(model: string, isBelong?: boolean): GetModelResult | undefined`
++ **Description**: Retrieves the model and its context based on the model code.
++ **Parameters**:
+  - `model: string`: The code (unique identifier) of the target model.
+  - `isBelong?: boolean`: Whether to only search for the model in the current context and child contexts (default: `false`).
++ **Return Value**:
+  - `GetModelResult`: An object containing the model instance, runtime context, and a flag indicating if it belongs to another context.
+  - `undefined`: If the model is not found.
 
 #### getModelField
 
-+ **方法签名**：`getModelField(data: string, isBelong?: boolean): GetModelFieldResult | undefined`
-+ **描述**：根据字段名称获取模型字段及其所在上下文。
-+ **参数**：
-  - `data: string`：目标字段的名称（在模型中的唯一标识）。
-  - `isBelong?: boolean`：是否仅查找当前上下文及子上下文的字段（默认值：`false`）。
-+ **返回值**：
-  - `GetModelFieldResult`：包含字段实例、运行时上下文和是否为其他上下文标志的对象。
-  - `undefined`：若字段未找到。
++ **Method Signature**: `getModelField(data: string, isBelong?: boolean): GetModelFieldResult | undefined`
++ **Description**: Retrieves the model field and its context based on the field name.
++ **Parameters**:
+  - `data: string`: The name (unique identifier in the model) of the target field.
+  - `isBelong?: boolean`: Whether to only search for the field in the current context and child contexts (default: `false`).
++ **Return Value**:
+  - `GetModelFieldResult`: An object containing the field instance, runtime context, and a flag indicating if it belongs to another context.
+  - `undefined`: If the field is not found.
 
 #### createFieldRuntimeContext
 
-+ **方法签名**：`createFieldRuntimeContext(field: RuntimeModelField): RuntimeContext`
-+ **描述**：基于指定字段创建新的运行时上下文（通常用于字段级操作场景）。
-+ **参数**：
-  - `field: RuntimeModelField`：需创建上下文的模型字段实例。
-+ **返回值**：
-  - `RuntimeContext`：新创建的字段上下文，携带该字段信息。
++ **Method Signature**: `createFieldRuntimeContext(field: RuntimeModelField): RuntimeContext`
++ **Description**: Creates a new runtime context based on the specified field (typically used in field-level operation scenarios).
++ **Parameters**:
+  - `field: RuntimeModelField`: The model field instance for which to create the context.
++ **Return Value**:
+  - `RuntimeContext`: The newly created field context carrying the field information.
 
 #### deepResolve
 
-+ **方法签名**：`deepResolve(): void`
-+ **描述**：深度解析视图模板，递归创建所有必要的子运行时上下文（如嵌套字段、关联模型）。
-+ **参数**：无。
-+ **返回值**：`void`。
++ **Method Signature**: `deepResolve(): void`
++ **Description**: Deeply parses the view template, recursively creating all necessary child runtime contexts (e.g., nested fields, associated models).
++ **Parameters**: None.
++ **Return Value**: `void`.
 
 #### transfer
 
-+ **方法签名**：`transfer(runtimeContext: RuntimeContext, clone?: boolean)`
-+ **描述**：将当前上下文的参数传输到目标运行时上下文。
-+ **参数**：
-  - `runtimeContext: RuntimeContext`：目标上下文实例。
-  - `clone?: boolean`：是否克隆参数（默认值：`true`，避免引用共享问题）。
-+ **返回值**：`void`。
++ **Method Signature**: `transfer(runtimeContext: RuntimeContext, clone?: boolean)`
++ **Description**: Transfers parameters from the current context to the target runtime context.
++ **Parameters**:
+  - `runtimeContext: RuntimeContext`: The target context instance.
+  - `clone?: boolean`: Whether to clone parameters (default: `true` to avoid reference sharing issues).
++ **Return Value**: `void`.
 
 #### getRequestModelFields
 
-+ **方法签名**：`getRequestModelFields(options?: GetRequestModelFieldsOptions): RequestModelField[]`
-+ **描述**：获取用于请求的模型字段列表（替代已废弃的`getRequestFields`）。
-+ **参数**：
-  - `options?: GetRequestModelFieldsOptions`：筛选条件，包括视图类型、模式、提交类型等。
-+ **返回值**：
-  - `RequestModelField[]`：符合条件的字段数组，包含字段本身及关联字段。
++ **Method Signature**: `getRequestModelFields(options?: GetRequestModelFieldsOptions): RequestModelField[]`
++ **Description**: Retrieves the list of model fields for requests (replaces the deprecated `getRequestFields`).
++ **Parameters**:
+  - `options?: GetRequestModelFieldsOptions`: Filter conditions, including view type, mode, submission type, etc.
++ **Return Value**:
+  - `RequestModelField[]`: Array of fields meeting the conditions, including the fields themselves and associated fields.
 
 #### generatorVariables
 
-+ **方法签名**：`generatorVariables(variables?: QueryVariables): QueryVariables`
-+ **描述**：生成请求所需的 Variables 参数。
-+ **参数**：
-  - `variables?: QueryVariables`：额外传入的 Variables 参数（将与上下文默认值合并）。
-+ **返回值**：
-  - `QueryVariables`：最终的 Variables 参数对象。
++ **Method Signature**: `generatorVariables(variables?: QueryVariables): QueryVariables`
++ **Description**: Generates the Variables parameter required for requests.
++ **Parameters**:
+  - `variables?: QueryVariables`: Additional Variables parameters (will be merged with context defaults).
++ **Return Value**:
+  - `QueryVariables`: The final Variables parameter object.
 
 #### getDefaultValue
 
-+ **方法签名**：`getDefaultValue(): Promise<Record<string, unknown>>`
-+ **描述**：异步获取字段或模型的默认值（从 DSL 中获取）。
-+ **参数**：无。
-+ **返回值**：
-  - `Promise<Record<string, unknown>>`：包含默认值的键值对对象。
++ **Method Signature**: `getDefaultValue(): Promise<Record<string, unknown>>`
++ **Description**: Asynchronously retrieves default values for fields or models (from DSL).
++ **Parameters**: None.
++ **Return Value**:
+  - `Promise<Record<string, unknown>>`: A key-value object containing default values.
 
-### 3、涉及类型说明
+### 3. Related Type Descriptions
 
 ### GetModelResult
 
@@ -255,12 +253,3 @@ export interface QueryVariables extends Record<string, unknown> {
   metadata?: Record<string, VirtualModel>;
 }
 ```
-
-
-
-
-
-
-
-
-

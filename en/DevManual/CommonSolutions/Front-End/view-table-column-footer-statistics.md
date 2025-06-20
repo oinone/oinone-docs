@@ -1,14 +1,15 @@
 ---
-title: 视图：表格列尾统计
+title: Views:Table Column Footer Statistics
 index: true
 category:
-   - 前端
+   - Frontend
 order: 13
 ---
-# 一、概述
-可以通过扩展`TableWidget.ts`实现
 
-# 二、示例代码
+# I. Overview
+This feature can be implemented by extending `TableWidget.ts`.
+
+# II. Example Code
 ```typescript
 import {
   BaseElementWidget,
@@ -40,7 +41,7 @@ import {
       return this;
     }
 
-    // 需要表尾做合并的字段名称
+    // Fields requiring footer statistics
     public statisticsFieldList = ['fansNum'];
 
     @Widget.Reactive()
@@ -50,6 +51,5 @@ import {
   }
 ```
 
-# 三、效果预览
+# III. Effect Preview
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240914-195826@2x-1024x633.png)
-

@@ -1,5 +1,5 @@
 ---
-title: Development Manual
+title: Dev Manual
 index: false
 category:
   - Development Manual

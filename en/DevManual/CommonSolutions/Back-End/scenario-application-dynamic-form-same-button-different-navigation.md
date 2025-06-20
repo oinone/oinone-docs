@@ -1,26 +1,26 @@
 ---
-title: 场景应用：动态表单（相同的按钮跳转到不同的页面）
+title: Scenario Application:Dynamic Forms (Same Button Jumps to Different Pages)
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 7
 ---
 
-# 一、场景概述
-实际项目中，存在这样的场景：同一列表中的数据是泛化的数据集合，即数据来源于不同的模型；行操作需要根据来源去向不同的目标页。 如下图，「提报」操作需根据「报表类型」去向不同的表单。
+# I. Scenario Overview
+In practical projects, there is a scenario where data in the same list is a generalized data collection, meaning the data comes from different models; row operations need to go to different target pages based on the source. As shown below, the "Submission" operation needs to go to different forms according to the "Report Type".
 
-并支持目标弹窗标题和弹框大小的配置。
+It also supports configuration of the target pop-up window title and size.
 
-# 二、解决方案
-每行记录需要跳转到不同的模型不同视图，增加一个配置页面用于维护源模型和目标模型的调整动作关系； 返回数据的时候，同时返回自定义的动作。
+# II. Solution
+Each row of records needs to jump to different model views. Add a configuration page to maintain the adjustment action relationship between the source model and the target model; when returning data, also return custom actions.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250218170109190-20250530144823648.png)
 
-前端自定义实现如上面图例中的「填报」，从返回数据中获取 ViewAction 并做对应的跳转。
+The frontend custom implementation, such as the "Filling" in the above legend, obtains the ViewAction from the returned data and makes the corresponding jump.
 
-# 三、具体步骤
-## （一）[后端] 建立模型和视图的关系设置的模型
-### 1、创建模型和视图的关系设置的模型，用于配置列表模型和各记录即目标模型的视图关系
+# III. Specific Steps
+## (I) [Backend] Establishing the Model for Model-View Relationship Settings
+### 1. Creating a Model for Model-View Relationship Settings to Configure the View Relationship Between the List Model and Each Record (Target Model)
 ```java
 import pro.shushi.oinone.examples.simple.api.proxy.system.SimpleModel;
 import pro.shushi.oinone.examples.simple.api.proxy.system.SimpleModule;
@@ -32,83 +32,82 @@ import pro.shushi.pamirs.meta.base.IdModel;
 import pro.shushi.pamirs.meta.enmu.ViewTypeEnum;
 
 /**
- * 模型和视图的关系设置
+ * Model and View Relationship Setting
  * ModelRelViewSetting
  */
 @Model.model(ModelRelViewSetting.MODEL_MODEL)
-@Model(displayName = "模型和视图的关系设置", summary = "模型和视图的关系设置")
+@Model(displayName = "Model and View Relationship Setting", summary = "Model and View Relationship Setting")
 @Model.Advanced(unique = {"oModel,model,target,viewType,viewName"})
 public class ModelRelViewSetting extends IdModel {
 
     public static final String MODEL_MODEL = "examples.custom.ModelRelViewSetting";
 
     @Field.many2one
-    @Field(displayName = "模块")
+    @Field(displayName = "Module")
     @Field.Relation(relationFields = {"module"}, referenceFields = {"module"})
     private SimpleModule moduleDef;
 
     @Field.String
-    @Field(displayName = "模块编码", invisible = true)
+    @Field(displayName = "Module Code", invisible = true)
     private String module;
 
     @Field.many2one
-    @Field(displayName = "源模型")
+    @Field(displayName = "Source Model")
     @Field.Relation(relationFields = {"oModel"}, referenceFields = {"model"})
     private SimpleModel originModel;
 
     @Field.String
-    @Field(displayName = "源模型编码", invisible = true)
+    @Field(displayName = "Source Model Code", invisible = true)
     private String oModel;
 
     @Field.many2one
-    @Field(displayName = "目标模型")
+    @Field(displayName = "Target Model")
     @Field.Relation(relationFields = {"model"}, referenceFields = {"model"})
     private SimpleModel targetModel;
 
     @Field.String
-    @Field(displayName = "目标模型编码", invisible = true)
+    @Field(displayName = "Target Model Code", invisible = true)
     private String model;
 
     @Field.Enum
-    @Field(displayName = "视图类型")
+    @Field(displayName = "View Type")
     private ViewTypeEnum viewType;
 
     @Field.Enum
-    @Field(displayName = "打开方式", required = true)
+    @Field(displayName = "Opening Method", required = true)
     private ActionTargetEnum target;
 
     @Field.String
-    @Field(displayName = "动作名称", invisible = true)
+    @Field(displayName = "Action Name", invisible = true)
     private String name;
 
     @Field.many2one
     @Field.Relation(relationFields = {"model", "viewName"}, referenceFields = {"model", "name"}, domain = "systemSource=='UI'")
-    @Field(displayName = "绑定页面", summary = "绑定页面")
+    @Field(displayName = "Bound Page", summary = "Bound Page")
     private View view;
 
     @Field.String
-    @Field(displayName = "视图/页面", invisible = true)
+    @Field(displayName = "View/Page", invisible = true)
     private String viewName;
 
     @Field.String
-    @Field(displayName = "页面标题")
+    @Field(displayName = "Page Title")
     private String title;
 
     @Field.String
-    @Field(displayName = "显示名称")
+    @Field(displayName = "Display Name")
     private String displayName;
 
 }
-
 ```
 
-:::info 注意：
+:::info Note:
 
-未避免对系统模块和模型的影响 ModelRelViewSetting.java 中引用的模块和模型使用项目中代理处理的对象。
+To avoid affecting system modules and models, the modules and models referenced in ModelRelViewSetting.java use proxied objects from the project.
 
 :::
 
-1. 示例中心模型SimpleModel
+1. Example Central Model SimpleModel
 
 ```java
 import pro.shushi.pamirs.meta.annotation.Model;
@@ -117,7 +116,7 @@ import pro.shushi.pamirs.meta.enmu.ModelTypeEnum;
 
 @Base
 @Model.model(SimpleModel.MODEL_MODEL)
-@Model(displayName = "示例中心模型", labelFields = "displayName")
+@Model(displayName = "Example Central Model", labelFields = "displayName")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
 public class SimpleModel extends ModelDefinition {
 
@@ -126,7 +125,7 @@ public class SimpleModel extends ModelDefinition {
 }
 ```
 
-2. 示例中心模块SimpleModule
+2. Example Central Module SimpleModule
 
 ```java
 import pro.shushi.pamirs.meta.annotation.Model;
@@ -136,7 +135,7 @@ import pro.shushi.pamirs.meta.enmu.ModelTypeEnum;
 
 @Base
 @Model.model(SimpleModule.MODEL_MODEL)
-@Model(displayName = "示例中心模块", labelFields = "displayName")
+@Model(displayName = "Example Central Module", labelFields = "displayName")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
 public class SimpleModule extends ModuleDefinition {
 
@@ -145,20 +144,20 @@ public class SimpleModule extends ModuleDefinition {
 }
 ```
 
-3. 动态页面菜单
+3. Dynamic Page Menu
 
 ```java
 @UxMenus
 public class DemoMenus implements ViewActionConstants {
 
-    @UxMenu("动态页面配置")
+    @UxMenu("Dynamic Page Configuration")
     @UxRoute(ModelRelViewSetting.MODEL_MODEL)
     class ModelRelViewSettingMenu {
     }
 }
 ```
 
-### 2、模型和视图的关系设置动作重新，创建按钮元数据等
+### 2. Overriding Actions for Model-View Relationship Settings, Creating Button Metadata, etc.
 ```java
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
@@ -194,7 +193,7 @@ public class ModelRelViewSettingAction {
 
     @Transactional
     @Action.Advanced(name = FunctionConstants.create, managed = true, invisible = "!IS_BLANK(activeRecord.id)")
-    @Action(displayName = "确定", summary = "创建", bindingType = ViewTypeEnum.FORM)
+    @Action(displayName = "Confirm", summary = "Create", bindingType = ViewTypeEnum.FORM)
     @Function(name = FunctionConstants.create)
     @Function.fun(FunctionConstants.create)
     public ModelRelViewSetting create(ModelRelViewSetting data) {
@@ -206,7 +205,7 @@ public class ModelRelViewSettingAction {
         data.setName(viewAction.getName());
         data.create();
 
-        //写入modelData/刷新缓存 等
+        // Write to modelData/refresh cache, etc.
         actionMetaAddHandler(viewAction);
 
         return data;
@@ -214,7 +213,7 @@ public class ModelRelViewSettingAction {
 
     @Transactional
     @Action.Advanced(name = FunctionConstants.update, managed = true, invisible = "IS_BLANK(activeRecord.id)")
-    @Action(displayName = "更新", summary = "修改", bindingType = ViewTypeEnum.FORM)
+    @Action(displayName = "Update", summary = "Modify", bindingType = ViewTypeEnum.FORM)
     @Function(name = FunctionConstants.update)
     @Function.fun(FunctionConstants.update)
     public ModelRelViewSetting update(ModelRelViewSetting data) {
@@ -223,7 +222,7 @@ public class ModelRelViewSettingAction {
         viewAction.updateById();
         data.updateById();
 
-        //写入modelData/刷新缓存 等
+        // Write to modelData/refresh cache, etc.
         actionMetaAddHandler(viewAction);
 
         return data;
@@ -232,7 +231,7 @@ public class ModelRelViewSettingAction {
     @Function.Advanced(type = FunctionTypeEnum.DELETE)
     @Function.fun(FunctionConstants.deleteWithFieldBatch)
     @Function(name = FunctionConstants.delete)
-    @Action(displayName = "删除", contextType = ActionContextTypeEnum.SINGLE_AND_BATCH)
+    @Action(displayName = "Delete", contextType = ActionContextTypeEnum.SINGLE_AND_BATCH)
     public List<ModelRelViewSetting> delete(List<ModelRelViewSetting> dataList) {
         dataList.forEach(data -> {
             data.deleteById();
@@ -288,13 +287,13 @@ public class ModelRelViewSettingAction {
     }
 
     public void actionMetaAddHandler(pro.shushi.pamirs.boot.base.model.Action action) {
-        //处理元数据注册
+        // Process metadata registration
         ModelData modelData = ModelDataHelper.convert(action);
         modelData.construct();
         modelData.createOrUpdate();
 
         if (log.isInfoEnabled()) {
-            log.info("开始写入动作缓存,id:{},model:{},name:{}", action.getId(), action.getModel(), action.getName());
+            log.info("Start writing action cache, id:{}, model:{}, name:{}", action.getId(), action.getModel(), action.getName());
         }
 
         pro.shushi.pamirs.boot.base.model.Action finalAction = action;
@@ -304,7 +303,7 @@ public class ModelRelViewSettingAction {
 
         PamirsSession.getContext().putExtendCacheEntity(ModelActionsCacheApi.class, (cacheApi) -> {
             String model = finalAction.getModel();
-            //新建一个列表,全部处理完毕后再覆盖
+            // Create a new list and overwrite after all processing is complete
             List<pro.shushi.pamirs.boot.base.model.Action> cacheActions = cacheApi.get(model);
             List<pro.shushi.pamirs.boot.base.model.Action> modelActions = new ArrayList<>();
             if (CollectionUtils.isNotEmpty(cacheActions)) {
@@ -318,12 +317,12 @@ public class ModelRelViewSettingAction {
     }
 
     public void actionMetaDelHandler(pro.shushi.pamirs.boot.base.model.Action action) {
-        //处理元数据注册
+        // Process metadata registration
         ModelData modelData = ModelDataHelper.convert(action);
         modelData.deleteByUnique();
 
         if (log.isInfoEnabled()) {
-            log.info("开始删除动作缓存,id:{},model:{},name:{}", action.getId(), action.getModel(), action.getName());
+            log.info("Start deleting action cache, id:{}, model:{}, name:{}", action.getId(), action.getModel(), action.getName());
         }
 
         pro.shushi.pamirs.boot.base.model.Action finalAction = action;
@@ -333,7 +332,7 @@ public class ModelRelViewSettingAction {
 
         PamirsSession.getContext().putExtendCacheEntity(ModelActionsCacheApi.class, (cacheApi) -> {
             String model = finalAction.getModel();
-            //新建一个列表,全部处理完毕后再覆盖
+            // Create a new list and overwrite after all processing is complete
             List<pro.shushi.pamirs.boot.base.model.Action> cacheActions = cacheApi.get(model);
             List<pro.shushi.pamirs.boot.base.model.Action> modelActions = new ArrayList<>();
             if (CollectionUtils.isNotEmpty(cacheActions)) {
@@ -349,15 +348,15 @@ public class ModelRelViewSettingAction {
 }
 ```
 
-至此，已经写好模型跳转另一个模型的配置逻辑了。下面使用可视化的方式绑定
+So far, the configuration logic for the model to jump to another model has been written. The following uses a visual way to bind.
 
-## （二）模型和视图的关系设置的模型数据操作
-点击创建，添加源模型跳转目标模型的逻辑
+## (II) Model Data Operation for Model-View Relationship Settings
+Click Create to add the logic for the source model to jump to the target model.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250218170518116-20250530144823769.png)
 
-## （三）[后端] 行操作对应的模型增强
-### 1、行操作对应的模型增加目标模型和上下文扩展
+## (III) [Backend] Model Enhancement for Row Operations
+### 1. Adding Target Model and Context Extension to the Model Corresponding to Row Operations
 ```java
 import pro.shushi.oinone.examples.simple.api.model.custom.config.ModelRelViewSetting;
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -372,28 +371,28 @@ import java.util.List;
  * @Description:
  */
 @Model.model(CustomTaskCenter.MODEL_MODEL)
-@Model(displayName = "任务中心")
+@Model(displayName = "Task Center")
 public class CustomTaskCenter extends IdModel {
 
     public static final String MODEL_MODEL = "examples.biz.CustomTaskCenter";
 
-    // 其他业务字段（忽略）
+    // Other business fields (ignored)
 
     //////////////////////////////////////////////////////
-    // 页面自定义跳转使用
+    // For custom page jumps
     @Field.String(size = 50)
-    @Field(displayName = "目标模型", summary = "自定义动作的目标模型")
+    @Field(displayName = "Target Model", summary = "Target model for custom actions")
     private String targetModel;
 
     @Field.one2many
     @Field.Relation(store = false)
-    @Field(displayName = "上下文扩展字段", store = NullableBoolEnum.FALSE, invisible = true)
+    @Field(displayName = "Context Extension Fields", store = NullableBoolEnum.FALSE, invisible = true)
     private List<ModelRelViewSetting> customViewAction;
 
 }
 ```
 
-### 2、行操作对应的模型重写queryPage，获取行记录的上下文扩展
+### 2. Overriding queryPage for the Model Corresponding to Row Operations to Obtain Context Extensions of Row Records
 ```java
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
@@ -450,23 +449,23 @@ public class CustomTaskCenterAction {
 }
 ```
 
-## （四）[界面设计器] 行操作对应列表配置
-1. 业务数据的列表增加「上下文扩展字段」，并设置隐藏和配置透出字段，参考下面的截图
+## (IV) [Interface Designer] Configuration for Row Operation Corresponding List
+1. Add "Context Extension Fields" to the list of business data, and set hidden and configured透出 fields, refer to the screenshots below.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219151302564-20250530144823874.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219151319818-20250530144823958.png)
 
-2. 配置操作按钮，根据业务情况拖跳转动作如「详情」或者「填报」等，拖拽跳转动作时，开启「保留动作」这样可以填写API名称。
+2. Configure operation buttons, drag jump actions such as "Details" or "Filling" according to business conditions. When dragging jump actions, enable "Retain Action" so that the API name can be filled in.
 
-:::info 注意：
+:::info Note:
 
-设计器跳转动作(需动态路由的)配置的「页面打开方式」 和 模型视图列表中的「页面打开方式」必须一致，否则会报错：未配置弹窗视图
+The "Page Opening Method" configured for the designer jump action (needing dynamic routing) must be consistent with the "Page Opening Method" in the model view list, otherwise an error will be reported: Popup view not configured.
 
 :::
 
-## （五）[权限] 自定义动作权限扩展和配置
-1. 权限扩展，自定义动作的权限解析到权限树上
+## (V) [Permission] Custom Action Permission Extension and Configuration
+1. Permission extension, parsing custom action permissions to the permission tree.
 
 ```java
 import org.apache.commons.collections4.CollectionUtils;
@@ -487,7 +486,7 @@ import pro.shushi.pamirs.meta.common.spi.SPI;
 import java.util.List;
 
 /**
- * 自定义动作 加载扩展
+ * Custom Action Loading Extension
  *
  * @author shushi
  */
@@ -527,7 +526,7 @@ public class CustomViewActionPermissionNodeLoadExtend implements PermissionNodeL
     }
 
     private PermissionNode createTopBarNode() {
-        return AuthNodeHelper.createNode("ExamplesCustomViewAction", TranslateUtils.translateValues("XX动作权限"));
+        return AuthNodeHelper.createNode("ExamplesCustomViewAction", TranslateUtils.translateValues("XX Action Permission"));
     }
 
     private ActionPermissionNode createActionNode(Action action, PermissionNode parentNode, ViewAction viewAction) {
@@ -549,17 +548,17 @@ public class CustomViewActionPermissionNodeLoadExtend implements PermissionNodeL
 }
 ```
 
-2. 上面的权限扩展后自动会将自定义的动作加载到权限树中，后面可以安装正常的权限配置进行
+2. After the above permission extension, custom actions will be automatically loaded into the permission tree, and normal permission configuration can be performed later.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250218171137362-20250530144824036.png)
 
-使用步骤
+Usage Steps
 
-1. 添加模型和视图的关系![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219152421792-20250530144824099.png)
-2. 添加一条业务数据，绑定目标模型编码![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219152703749-20250530144824181.png)
-3. 查看页面可以看到上下文参数已经有数据了，查看接口返回可以看到具体的viewAction数据。再配合前端代码实现跳转。![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219152825868-20250530144824237.png)
+1. Add model and view relationships![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219152421792-20250530144824099.png)
+2. Add a piece of business data and bind the target model code![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219152703749-20250530144824181.png)
+3. On the view page, you can see that the context parameters already have data. Checking the interface return will show specific viewAction data. Then, cooperate with frontend code to implement the jump.![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219152825868-20250530144824237.png)
 
-## （六）[前端] 前端根据列表模型和API名称自定义动作
+## (VI) [Frontend] Frontend Custom Actions Based on List Model and API Name
 ```javascript
 import {
   ActionContextType,
@@ -577,20 +576,20 @@ import CustomViewActionVue from './CustomViewAction.vue';
 
 @SPI.ClassFactory(
   ActionWidget.Token({
-    model: 'demo.CooperationCenter', // 需要更换为对应页面model
-    name: 'uiViewaee878c066d4490195246f62add8ffff' // 从页面debug中找同名name按钮
+    model: 'demo.CooperationCenter', // Need to replace with the corresponding page model
+    name: 'uiViewaee878c066d4490195246f62add8ffff' // Find the button with the same name in the page debug
   })
 )
   export class VieDynamicActionWidget extends RouterViewActionWidget {
   /**
-     * 重写按钮的点击事件
+     * Override the button's click event
      */
   protected clickAction(): Promise<void> {
     const activeRecord = this.activeRecords?.[0] || {};
-    // 构建上下文
+    // Build the context
     const context = this.buildContext(activeRecord);
 
-    // 执行当前动作
+    // Execute the current action
     executeViewAction(
       {
         ...this.action,
@@ -606,7 +605,7 @@ import CustomViewActionVue from './CustomViewAction.vue';
   @Widget.Reactive()
   public get action() {
     // console.log('---1',this.activeRecords?.[0].customViewAction);
-    // customViewAction 约定的数据名称
+    // customViewAction is the agreed data name
     const list = (this.activeRecords?.[0].customViewAction || []) as RuntimeViewAction[];
     const item =
       list.find((item) => {
@@ -620,7 +619,6 @@ import CustomViewActionVue from './CustomViewAction.vue';
       context: { id: this.activeRecords?.[0].id }
     };
   }
-  // 注： 目标页面的加载函数需配置为 queryOne queryOne
+  // Note: The loading function of the target page needs to be configured as queryOne queryOne
 }
 ```
-

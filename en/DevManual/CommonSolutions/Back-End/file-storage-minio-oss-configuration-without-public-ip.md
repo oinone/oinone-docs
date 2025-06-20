@@ -1,33 +1,33 @@
 ---
-title: 文件存储：MINIO无公网访问地址下OSS的配置
+title: File Storage：OSS Configuration for MINIO Without Public Network Access
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 42
 ---
 
-在实际项目里，时常会出现 MINIO 外网无法访问的状况，必须通过应用的域名（或 IP）进行转发，方可实现访问。这篇文章主要就是针对解决此类场景问题而作。
+In practical projects, there are often situations where MINIO cannot be accessed from the public network, and access can only be achieved through the application's domain name (or IP) forwarding. This article is mainly written to solve such scenario problems.
 
-:::warning  提示：
+:::warning Tip:
 
-若 MINIO 外网能够直接访问，正常对 MINIO 进行 OSS 配置即可。
+If MINIO can be directly accessed from the public network, you can normally configure OSS for MINIO.
 
 :::
 
-# 一、阅读之前
-+ 需了解 MINIO 对于 endpoint（端点）存在特定限制， `As per S3 specification, path in the endpoint is not supported.`  也就是说，MINIO 的请求地址不能包含路径。
+# 1. Before Reading
++ It should be noted that MINIO has specific restrictions on the endpoint, `As per S3 specification, path in the endpoint is not supported.` That is to say, the MINIO request address cannot contain a path.
 
-详细参考：  
+For detailed reference:  
 [https://github.com/minio/minio-java/issues/1476](https://github.com/minio/minio-java/issues/1476)
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/minIo-1024x667-20250530144824786.png)
 
-# 二、解决办法
-+  在项目中，需为 MINIO 配置一个可访问的外网地址。同时，于网络层（NGINX）进行设置，将此外网地址映射至 MINIO 的内网地址。
-+ 鉴于 MINIO 对 endpoint 的限制，其仅支持 “IP + 端口” 的形式，既不允许包含路径（path），亦无法通过配置路径的方式实现转发。因此，必须提供一个以 “IP（或域名） + 端口” 形式呈现的外部地址。
+# 2. Solution
++ In the project, a accessible public network address needs to be configured for MINIO. At the same time, set up in the network layer (NGINX) to map this public network address to the internal network address of MINIO.
++ Due to MINIO's restrictions on the endpoint, it only supports the form of "IP + port", neither allowing the inclusion of a path (path) nor achieving forwarding through path configuration. Therefore, an external address in the form of "IP (or domain name) + port" must be provided.
 
-# 三、详细配置步骤
-## （一）项目中OSS的配置
-将 uploadUrl 与 downloadUrl 配置设定为外网可访问的地址，此地址并非 MINIO 的实际地址。也就是说，针对 MINIO 的访问操作，需借助一个能够从外部进行访问的地址来实现转换。
+# 3. Detailed Configuration Steps
+## (1) OSS Configuration in the Project
+Configure the uploadUrl and downloadUrl as public network accessible addresses, which are not the actual addresses of MINIO. That is to say, for MINIO access operations, a externally accessible address needs to be used for conversion.
 
 ```yaml
 cdn:
@@ -35,7 +35,7 @@ cdn:
     name: MINIO
     type: MINIO
     bucket: pamirs
-    # uploadUrl 和 downloadUrl配置为外网可访问的地址，非实际的MINIO地址
+    # uploadUrl and downloadUrl are configured as public network accessible addresses, not the actual MINIO addresses
     uploadUrl: http://127.0.0.1:8083
     downloadUrl: http://127.0.0.1:8083
     accessKeyId: xxx
@@ -48,11 +48,11 @@ cdn:
     localFolderUrl:
 ```
 
-## （二）NGINX配置（MINIO配置）
+## (2) NGINX Configuration (MINIO Configuration)
 
 ```nginx
 upstream minio {
-  #真实的MINIO的地址
+  # Real MINIO address
   server xxx.xxx.xxx.xxx:9000 weight=100 max_fails=2 fail_timeout=30s;
 }
 
@@ -73,4 +73,3 @@ server {
   }
 }
 ```
-

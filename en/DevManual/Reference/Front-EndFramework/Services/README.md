@@ -1,10 +1,10 @@
 ---
-title: 服务（Services）
+title: Services
 index: false
 category:
-  - 研发手册
+  - DevManual
   - Reference
-  - 前端API
+  - Front-EndFramework
   - Services
 dir:
   link: false

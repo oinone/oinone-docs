@@ -1,5 +1,5 @@
 ---
-title: Low-code and No-code Integration
+title: Low-Code No-Code Integration
 index: true
 category:
   - User Manual

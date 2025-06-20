@@ -1,18 +1,18 @@
 ---
-title: 环境（Environment）
+title: Environment
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 前端API
+  - Frontend API
 order: 2
 
 ---
-# 一、编译时环境配置
+# I. Compile-time Environment Configuration
 
-## （一）使用 .env 配置
+## (一) Using .env Configuration
 
-在 `启动工程` 创建 `.env` 文件可进行环境配置，例如：
+Create a `.env` file in the `startup project` for environment configuration, for example:
 
 ```shell
 kunlun-boot
@@ -26,20 +26,19 @@ kunlun-boot
 └── README.MD
 ```
 
-尝试在 `.env` 文件中配置 `BASE_PATH` 属性：
+Try configuring the `BASE_PATH` property in the `.env` file:
 
 ```plain
 BASE_PATH=/test
 ```
 
-使配置生效
+To make the configuration effective:
++ Use `npm run dev` to restart the service during development.
++ Use `npm run build` for production to complete the build and release.
 
-+ 开发时使用 `npm run dev` 重启服务即可。
-+ 生产时使用 `npm run build` 完成构建并发布即可。
+## (二) Custom .env Configuration
 
-## （二）自定义 .env 配置
-
-你可以在任何地方使用这样的方式获取 `.env` 配置：
+You can retrieve `.env` configurations anywhere using:
 
 ```typescript
 protected doSomething() {
@@ -47,25 +46,25 @@ protected doSomething() {
 }
 ```
 
-在 .env 文件中配置 `CUSTOM_PROPERTY` 属性：
+Configure the `CUSTOM_PROPERTY` property in the .env file:
 
 ```typescript
 CUSTOM_PROPERTY=test
 ```
 
-在执行 `doSomething` 函数时，你将在控制台看到输出 `test` 文本。
+When executing the `doSomething` function, you will see `test` printed in the console.
 
-:::warning 提示
+:::warning Note
 
-更多关于 `.env` 配置的使用请参考：[dotenv-webpack](https://github.com/mrsteele/dotenv-webpack)
+For more on `.env` configuration usage, refer to: [dotenv-webpack](https://github.com/mrsteele/dotenv-webpack)
 
 :::
 
-# 二、运行时环境配置
+# II. Runtime Environment Configuration
 
-## （一）开发时使用运行时配置
+## (一) Using Runtime Configuration in Development
 
-在 `启动工程` 创建 `manifest.js` 文件可进行运行时环境配置，例如：
+Create a `manifest.js` file in the `startup project` for runtime environment configuration, for example:
 
 ```shell
 kunlun-boot
@@ -79,7 +78,7 @@ kunlun-boot
 └── README.MD
 ```
 
-尝试在 `manifest.js` 文件中配置 `multiTabs.inline` 为 `true` ，将 `多选项卡` 从整个页面的顶部移动到主内容分发区的上方：
+Try configuring `multiTabs.inline` as `true` in the `manifest.js` file to move the `multi-tab` from the top of the entire page to above the main content distribution area:
 
 ```javascript
 runtimeConfigResolve({
@@ -89,9 +88,9 @@ runtimeConfigResolve({
 });
 ```
 
-## （二）生产环境使用运行时配置
+## (二) Using Runtime Configuration in Production Environment
 
-正常情况下，在 `启动工程` 的 `public` 目录下创建的 `manifest.js` 会在 `构建时` 自动放置在 `dist` 目录下，但有时我们不会把开发时的配置文件放在生产环境中使用。这时就需要我们在生产环境的 `dist` 目录下手动创建 `manifest.js` 文件进行一些生产环境的配置。例如：
+Normally, the `manifest.js` created in the `public` directory of the `startup project` is automatically placed in the `dist` directory during `build-time`. However, sometimes development configuration files are not used in the production environment. In such cases, manually create a `manifest.js` file in the production `dist` directory for production-specific configurations, for example:
 
 ```shell
 dist
@@ -102,38 +101,38 @@ dist
 └── index.html
 ```
 
-:::warning 提示
+:::warning Note
 
-运行时配置的路径和文件名可以通过 `.env` 配置中 `RUNTIME_CONFIG_FILENAME` 和 `RUNTIME_CONFIG_FILENAME` 属性进行修改，实际的路径和文件名需要结合 `.env` 配置进行确定。
+The path and file name of runtime configuration can be modified via the `RUNTIME_CONFIG_FILENAME` and `RUNTIME_CONFIG_FILENAME` properties in `.env` configuration. The actual path and file name should be determined based on `.env` configuration.
 
 :::
 
-# 三、自定义运行时配置
+# III. Custom Runtime Configuration
 
-下面的步骤展示了一个运行时配置的声明和使用过程，它通常是在项目中的 “最佳实践”，我们建议任何一个运行时配置都按照这样的格式进行声明和使用。
+The following steps demonstrate the declaration and usage process of a runtime configuration, which is typically a "best practice" in projects. We recommend declaring and using any runtime configuration in this format.
 
-不仅如此，你应该将所有可能的配置独立的放在 `src/config` 目录下或者 `对应功能` 的目录下。
+Additionally, all possible configurations should be independently placed in the `src/config` directory or the `corresponding function` directory.
 
-## （一）定义配置类型
+## (一) Define Configuration Type
 
 ```typescript
 /**
- * 演示运行时配置类型定义
+ * Demo runtime configuration type definition
  */
 export interface DemoConfig extends RuntimeConfigOptions, EnabledConfig {
   /**
-   * 是否启用
+   * Whether to enable
    */
   enabled?: boolean;
 
-  // 添加其他可能的配置项
+  // Add other possible configuration items
 }
 ```
 
-+ RuntimeConfigOptions：定义了任何可以配置在 `manifest.js` 中可以被使用的类型。
-+ EnabledConfig：定义了一个标准的启用禁用配置格式。
++ RuntimeConfigOptions: Defines types that can be configured in `manifest.js` and used.
++ EnabledConfig: Defines a standard enable/disable configuration format.
 
-## （二）定义运行时配置管理器
+## (二) Define Runtime Configuration Manager
 
 ```typescript
 export class DemoConfigManager {
@@ -153,13 +152,13 @@ export class DemoConfigManager {
     return enabled;
   }
 
-  // 添加其他可能的配置项获取方法
+  // Add methods to get other possible configuration items
 }
 ```
 
-## （三）在运行时配置中定义参数
+## (三) Define Parameters in Runtime Configuration
 
-### 1、启用和禁用的简单配置
+### 1. Simple Enable/Disable Configuration
 
 ```typescript
 runtimeConfigResolve({
@@ -167,122 +166,122 @@ runtimeConfigResolve({
 });
 ```
 
-:::warning 提示：
+:::warning Note:
 
-在 `ConfigHelper#getConfig` 方法中，会将 `boolean` 值转换为 `DemoConfig` 对象，并且将它放在 `enabled` 属性中。
+In the `ConfigHelper#getConfig` method, the `boolean` value is converted to a `DemoConfig` object and placed in the `enabled` property.
 
 :::
 
-### 2、完整配置
+### 2. Complete Configuration
 
 ```typescript
 runtimeConfigResolve({
   demo: {
     enabled: true
-    // 其他可能的配置项
+    // Other possible configuration items
   }
 });
 ```
 
-:::warning 提示：
+:::warning Note:
 
-此处 `demo` 键值与 `DemoConfigManager#getConfig` 方法定义的参数一致。
+Here, the `demo` key matches the parameter defined in the `DemoConfigManager#getConfig` method.
 
 :::
 
-## （四）在组件中使用配置方法
+## (四) Use Configuration Methods in Components
 
 ```typescript
 DemoConfigManager.isEnabled()
 ```
 
-# 四、Reference List
+# IV. Reference List
 
-## （一）.env
+## (一) .env
 
-### 1、BASE_PATH
+### 1. BASE_PATH
 
-类型：string
+Type: string
 
-描述：统一配置 URL 请求路径前缀
+Description: Uniform configuration for URL request path prefix
 
-示例：
+Example:
 
 ```plain
 BASE_PATH=/test
 ```
 
-### 2、STATIC_IMG
+### 2. STATIC_IMG
 
-类型：string
+Type: string
 
-描述：静态资源路径
+Description: Static resource path
 
-示例：
+Example:
 
 ```plain
 STATIC_IMG=/static/images
 ```
 
-### 3、MESSAGE_LEVEL
+### 3. MESSAGE_LEVEL
 
-类型：enum
+Type: enum
 
-可选项：DEBUG、SUCCESS、INFO、WARN、ERROR
+Options: DEBUG, SUCCESS, INFO, WARN, ERROR
 
-描述：MessageHub 消息级别
+Description: MessageHub message level
 
-示例：
+Example:
 
 ```plain
 MESSAGE_LEVEL=INFO
 ```
 
-### 4、RUNTIME_CONFIG_BASE_URL
+### 4. RUNTIME_CONFIG_BASE_URL
 
-类型：string
+Type: string
 
-描述：运行时配置文件URL请求路径前缀
+Description: Runtime configuration file URL request path prefix
 
-示例：
+Example:
 
 ```plain
 RUNTIME_CONFIG_BASE_URL=/test
 ```
 
-### 5、RUNTIME_CONFIG_FILENAME
+### 5. RUNTIME_CONFIG_FILENAME
 
-类型：string
+Type: string
 
-描述：运行时配置文件名
+Description: Runtime configuration file name
 
-示例：
+Example:
 
 ```plain
 RUNTIME_CONFIG_FILENAME=test
 ```
 
-### 6、I18N_OSS_URL
+### 6. I18N_OSS_URL
 
-类型：string
+Type: string
 
-描述：翻译文件 OSS 目录
+Description: OSS directory for translation files
 
-示例：
+Example:
 
 ```plain
 I18N_OSS_URL=/upload/test
 ```
 
-## （二）RuntimeConfig
+## (二) RuntimeConfig
 
-### 1、I18N_OSS_URL
+### 1. I18N_OSS_URL
 
-类型：string
+Type: string
 
-描述：翻译文件 OSS 目录
+Description: OSS directory for translation files
 
-示例：
+Example:
 
 ```typescript
 runtimeConfigResolve({
@@ -290,61 +289,61 @@ runtimeConfigResolve({
 });
 ```
 
-### 2、登录页配置（LoginConfig）
+### 2. Login Page Configuration (LoginConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `loginLabel`        | string | 登录 | 登录按钮文本 |
-| `forgetPassword`    | boolean | false | 是否显示忘记密码按钮 |
-| `forgetPasswordLabel` | string | 忘记密码 | 忘记密码按钮文本 |
-| `register`          | boolean | false | 是否显示注册按钮 |
-| `registerLabel`     | string | 去注册 | 注册按钮文本 |
-| `codeLogin`         | boolean | true | 是否显示验证码登录 Tab |
-| `accountLoginLabel` | string | 账号登录 | 账号登录 Tab 文本 |
-| `codeLoginLabel`    | string | 验证码登录 | 验证码登录 Tab 文本 |
-| `accountPlaceholder` | string | 请输入您的账号 | 账号输入框占位符 |
-| `passwordPlaceholder` | string | 请输入您的密码 | 密码输入框占位符 |
-| `phonePlaceholder`  | string | 请输入您的手机号 | 手机号输入框占位符 |
-| `codePlaceholder`   | string | 请输入收到的验证码 | 验证码输入框占位符 |
-| `email`             | boolean | false | 是否开启邮箱登录模式 |
-| `emailLoginLabel`   | string | 邮箱登录 | 邮箱登录 Tab 文本 |
-| `emailPlaceholder`  | string | 请输入您的邮箱 | 邮箱输入框占位符 |
-| `emailCodePlaceholder` | string | 请输入收到的验证码 | 邮箱验证码输入框占位符 |
+| `loginLabel`        | string | Login | Login button text |
+| `forgetPassword`    | boolean | false | Whether to show the forgot password button |
+| `forgetPasswordLabel` | string | Forgot Password | Forgot password button text |
+| `register`          | boolean | false | Whether to show the register button |
+| `registerLabel`     | string | Register | Register button text |
+| `codeLogin`         | boolean | true | Whether to show the verification code login Tab |
+| `accountLoginLabel` | string | Account Login | Account login Tab text |
+| `codeLoginLabel`    | string | Verification Code Login | Verification code login Tab text |
+| `accountPlaceholder` | string | Please enter your account | Account input placeholder |
+| `passwordPlaceholder` | string | Please enter your password | Password input placeholder |
+| `phonePlaceholder`  | string | Please enter your phone number | Phone number input placeholder |
+| `codePlaceholder`   | string | Please enter the received verification code | Verification code input placeholder |
+| `email`             | boolean | false | Whether to enable email login mode |
+| `emailLoginLabel`   | string | Email Login | Email login Tab text |
+| `emailPlaceholder`  | string | Please enter your email | Email input placeholder |
+| `emailCodePlaceholder` | string | Please enter the received verification code | Email verification code input placeholder |
 
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 runtimeConfigResolve({
   login: {
-    loginLabel: "登录",
+    loginLabel: "Login",
     forgetPassword: false,
-    forgetPasswordLabel: "忘记密码",
+    forgetPasswordLabel: "Forgot Password",
     register: false,
-    registerLabel: "去注册",
+    registerLabel: "Go to Register",
     codeLogin: true,
-    codeLoginLabel: "验证码登录",
-    accountLoginLabel: "账号登录",
-    accountPlaceholder: "请输入用户名",
-    passwordPlaceholder: "请输入您的密码",
-    phonePlaceholder: "请输入您的手机号",
-    codePlaceholder: "请输入收到的验证码",
+    codeLoginLabel: "Verification Code Login",
+    accountLoginLabel: "Account Login",
+    accountPlaceholder: "Please enter username",
+    passwordPlaceholder: "Please enter your password",
+    phonePlaceholder: "Please enter your phone number",
+    codePlaceholder: "Please enter the received verification code",
     email: false,
-    emailLoginLabel: "邮箱登录",
-    emailPlaceholder: "请输入邮箱",
-    emailCodePlaceholder: "请输入收到的验证码"
+    emailLoginLabel: "Email Login",
+    emailPlaceholder: "Please enter email",
+    emailCodePlaceholder: "Please enter the received verification code"
   }
 });
 ```
 
-### 3、插件加载配置（PluginsLoaderConfig）
+### 3. Plugin Loading Configuration (PluginsLoaderConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `usingRemote`       | boolean | false | 使用低无一体组件；默认为 false |
+| `usingRemote`       | boolean | false | Use low-code integrated components; default is false |
 
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 runtimeConfigResolve({
@@ -354,40 +353,40 @@ runtimeConfigResolve({
 });
 ```
 
-### 4、多标签页配置（MultiTabsConfig）
+### 4. Multi-Tab Configuration (MultiTabsConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `enabled`           | boolean | true | 是否启用多标签页功能，启用时需配合 mask 渲染管理组件 |
-| `inline`            | boolean | - | 是否使用内联多标签页（仅默认 mask 生效） |
-| `showModuleLogo`    | boolean | true | 是否显示模块 Logo |
-| `maxCount`          | number | - | 页面中最多显示的标签页数量，超过时自动关闭最早打开的标签页 |
-| `maxCacheCount`     | number | 10 | 最多缓存标签页数量，超过时清理最早缓存（不关闭标签页，重新激活时重载） |
-| `draggable`         | boolean | true | 是否启用标签页拖拽排序功能 |
+| `enabled`           | boolean | true | Whether to enable multi-tab functionality; requires配合 mask rendering management component when enabled |
+| `inline`            | boolean | - | Whether to use inline multi-tabs (only effective for the default mask) |
+| `showModuleLogo`    | boolean | true | Whether to show the module logo |
+| `maxCount`          | number | - | Maximum number of tabs displayed in the page; automatically closes the oldest tab when exceeded |
+| `maxCacheCount`     | number | 10 | Maximum number of cached tabs; clears the oldest cache when exceeded (does not close tabs, reloads when reactivated) |
+| `draggable`         | boolean | true | Whether to enable tab dragging and sorting |
 | `homepage`          | boolean  | MultiTabsApplicationHomepageConfig                    | - |
 | `moduleHomepage`    | boolean  | MultiTabsModuleHomepageConfig                         | - |
-| `filter`            | string[] | - | 模块过滤列表，指定允许显示的模块标识符 |
-| `theme`             | string | - | 多标签页主题（可选值：`theme1`<br/>/`theme2`<br/>/`theme3`<br/>/`theme4`<br/>） |
+| `filter`            | string[] | - | Module filter list, specifying allowed module identifiers |
+| `theme`             | string | - | Multi-tab theme (optional values: `theme1`<br/>/`theme2`<br/>/`theme3`<br/>/`theme4`<br/>) |
 
 
-#### 应用首页配置（MultiTabsApplicationHomepageConfig）
+#### Application Homepage Configuration (MultiTabsApplicationHomepageConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `enabled`           | boolean | true | 是否启用应用首页特殊标记（固定显示于标签页首位） |
-| `auto`              | boolean | true | 是否自动获取应用首页 |
-| `autoInvisible`     | boolean | 非内联时 true | 当前激活页为首页时是否自动隐藏（未启用模块首页时生效） |
+| `enabled`           | boolean | true | Whether to enable the application homepage special marker (fixed at the first position in tabs) |
+| `auto`              | boolean | true | Whether to automatically obtain the application homepage |
+| `autoInvisible`     | boolean | true when not inline | Whether to automatically hide when the current active page is the homepage (effective when module homepage is not enabled) |
 
 
-#### 模块首页配置（MultiTabsModuleHomepageConfig）
+#### Module Homepage Configuration (MultiTabsModuleHomepageConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `enabled`           | boolean | false | 是否启用模块首页（切换模块时初始化） |
-| `auto`              | boolean | true | 是否自动获取模块首页 |
+| `enabled`           | boolean | false | Whether to enable the module homepage (initialized when switching modules) |
+| `auto`              | boolean | true | Whether to automatically obtain the module homepage |
 
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 runtimeConfigResolve({
@@ -413,23 +412,23 @@ runtimeConfigResolve({
 });
 ```
 
-### 5、面包屑配置（BreadcrumbConfig）
+### 5. Breadcrumb Configuration (BreadcrumbConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `enabled`           | boolean | true | 是否启用面包屑功能，启用时需配合 mask 渲染面包屑组件 |
+| `enabled`           | boolean | true | Whether to enable breadcrumb functionality; requires配合 mask to render the breadcrumb component when enabled |
 | `homepage`          | boolean  | BreadcrumbHomepageConfig                              | - |
 
 
-#### 首页配置（BreadcrumbHomepageConfig）
+#### Homepage Configuration (BreadcrumbHomepageConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `enabled`           | boolean | true | 首项是否显示首页（固定显示于面包屑首位） |
+| `enabled`           | boolean | true | Whether the first item shows the homepage (fixed at the first position in breadcrumbs) |
 | `type`              | 'application' | 'module'                                              | 'application' |
 
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 runtimeConfigResolve({
@@ -443,16 +442,16 @@ runtimeConfigResolve({
 });
 ```
 
-### 6、表格配置（TableConfig）
+### 6. Table Configuration (TableConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `lineHeight`        | number | - | 行高 |
-| `minLineHeight`     | number | - | 最小行高 |
-| `autoLineHeight`    | boolean | - | 自动行高 |
+| `lineHeight`        | number | - | Row height |
+| `minLineHeight`     | number | - | Minimum row height |
+| `autoLineHeight`    | boolean | - | Auto row height |
 
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 runtimeConfigResolve({
@@ -464,14 +463,14 @@ runtimeConfigResolve({
 });
 ```
 
-### 7、实验性配置（ExperimentalConfig）
+### 7. Experimental Configuration (ExperimentalConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `buildQueryCondition` | string | - | buildQueryCondition 方法版本；目前仅有 next 和非 next 两个版本 |
+| `buildQueryCondition` | string | - | buildQueryCondition method version; currently has next and non-next versions |
 
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 runtimeConfigResolve({
@@ -481,14 +480,14 @@ runtimeConfigResolve({
 });
 ```
 
-### 8、调试配置（DebugConfig）
+### 8. Debug Configuration (DebugConfig)
 
-| **参数名** | **类型** | **默认值** | **描述** |
+| **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `enabled`           | boolean | - | 是否启用调试模式 |
+| `enabled`           | boolean | - | Whether to enable debug mode |
 
 
-**使用示例**
+**Usage Example**
 
 ```typescript
 runtimeConfigResolve({
@@ -497,4 +496,3 @@ runtimeConfigResolve({
   }
 });
 ```
-

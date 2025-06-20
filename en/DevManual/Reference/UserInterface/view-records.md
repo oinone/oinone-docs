@@ -2,7 +2,7 @@
 title: View records
 index: false
 category:
-  - 研发手册
+  - DevManual
   - Reference
   - User interface
 order: 1

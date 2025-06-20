@@ -1,132 +1,131 @@
 ---
-title: 通用扩展点与平台SPI清单（Common Extension Points And SPI List）
+title: Common Extension Points And SPI List
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
 order: 5
 prev:
-  text: 集成接口 API（EIP API）
+  text: EIP API
   link: /en/DevManual/Reference/StandardModule/EIP-API.md
 ---
-# 一、SPI 机制
+# I. SPI Mechanism
 
-## （一）Pamirs SPI 框架
+## (一) Pamirs SPI Framework
 
-整合三种服务发现机制，支持组件动态扩展：
+Integrates three service discovery mechanisms to support dynamic component extension:
 
-+ **注解规则**：
-  - 接口通过`@SPI`指定默认扩展名（默认为 "pamirs"）和加载工厂
-  - 实现类通过`@SPI.Service`设置扩展名（Spring SPI 默认 Bean 名称，Java SPI 为全类名）
-  - `@Order`/`@Priority`定义扩展优先级
++ **Annotation Rules**:
+  - Interfaces specify default extension names (default is "pamirs") and loading factories via `@SPI`
+  - Implementation classes set extension names via `@SPI.Service` (Spring SPI uses default Bean names, Java SPI uses full class names)
+  - `@Order`/`@Priority` defines extension priority
 
-## （二）配置方式
+## (二) Configuration Methods
 
-### 1、Java SPI
+### 1. Java SPI
 
-  - 接口：`public interface DemoApi { List<String> demo(); }`
-  - 实现类：`@Order(10) public class DemoApiImpl implements DemoApi { ... }`
-  - 配置文件：`META-INF/services/接口全类名` 写入实现类全路径
+  - Interface: `public interface DemoApi { List<String> demo(); }`
+  - Implementation: `@Order(10) public class DemoApiImpl implements DemoApi { ... }`
+  - Configuration file: Write implementation class full path in `META-INF/services/interface full class name`
 
-### 2、Annotation SPI
+### 2. Annotation SPI
 
-  - 接口：`@SPI("ext1") public interface DemoApi { ... }`
-  - 实现类：`@SPI.Service("ext1") @Order(10) public class DemoApiImpl implements DemoApi { ... }`
+  - Interface: `@SPI("ext1") public interface DemoApi { ... }`
+  - Implementation: `@SPI.Service("ext1") @Order(10) public class DemoApiImpl implements DemoApi { ... }`
 
-### 3、Spring SPI
+### 3. Spring SPI
 
-  - 实现类：`@Component("ext1") @Order(10) public class DemoApiImpl implements DemoApi { ... }`
+  - Implementation: `@Component("ext1") @Order(10) public class DemoApiImpl implements DemoApi { ... }`
 
-### 4、调用方式
+### 4. Invocation Methods
 
 ```java
-// 指定扩展名调用
+// Invoke by specifying extension name
 DemoApi ext = ExtensionServiceLoader.getExtension(DemoApi.class, "ext1");
 
-// 按优先级获取列表
+// Get ordered list by priority
 List<DemoApi> spis = ExtensionServiceLoader.getExtensionLoader(DemoApi.class).getOrderedExtensions();
 
-// 快捷方式（Spider工具类）
+// Shortcut (Spider utility class)
 DemoApi ext = Spider.getExtension(DemoApi.class, "ext1");
 ```
 
-# 二、系统扩展点
+# II. System Extension Points
 
-## （一）框架层
+## (一) Framework Layer
 
-| 扩展点           | 实现位置 | SPI  | 接口                                      |
-| ---------------- | -------------------------------------------- | ---- | ----------------------------------------- |
-| Spring类型转换器 | *                                            | 否   | SpringTypeConverterRegister<br/>#register |
-| SPI加载器工厂    | *                                            | 是   | ServiceLoaderFactory                      |
-| SPI路径设置      | *                                            | 是   | SpiClassPathApi                           |
-
-
-## （二）元数据扫描
-
-| 扩展点                               | 实现位置 | SPI  | 接口                                                         |
-| ------------------------------------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| 元数据注解转换器                     | *                                            | 否   | ModelConverter                                               |
-| 元数据模型签名器                     | *                                            | 否   | ModelSigner                                                  |
-| 元数据注解转换器白名单               | yaml:pamirs.configure.converter.annotation   | 否   | ModelConverter接口实现类名                                   |
-| 元数据模型签名器白名单               | yaml:pamirs.configure.signer                 | 否   | ModelSigner接口实现类名                                      |
-| 注解转化器处理的元模型的扫描路径配置 | yaml:pamirs.meta.meta-packages               | 否   | 默认：<br/>**pro.shushi.pamirs.meta.domain**<br/>**pro.shushi.pamirs.boot.base.model** |
+| Extension Point        | Implementation Location                      | SPI  | Interface                                      |
+| ---------------------- | -------------------------------------------- | ---- | --------------------------------------------- |
+| Spring Type Converter  | *                                            | No   | SpringTypeConverterRegister<br/>#register      |
+| SPI Loader Factory     | *                                            | Yes  | ServiceLoaderFactory                          |
+| SPI Path Setting       | *                                            | Yes  | SpiClassPathApi                               |
 
 
-## （三）元数据计算
+## (二) Metadata Scanning
 
-| 扩展点             | 实现位置 | SPI  | 接口                     |
-| ------------------ | -------------------------------------------- | ---- | ------------------------ |
-| 模型编码接口       | *                                            | 是   | ModelModelApi            |
-| 模型运算接口       | *                                            | 是   | ModelComputeApi          |
-| 模型校验接口       | *                                            | 是   | ModelCheckApi            |
-| 模型指令接口       | *                                            | 是   | ModelDirectiveBatchApi   |
-| ORM转换接口        | *                                            | 是   | OrmApi                   |
-| 类型系统接口       | *                                            | 是   | TypeProcessor            |
-| 继承处理扩展逻辑   | *                                            | 是   | InheritedExtendProcessor |
-| 模型计算扩展逻辑   | *                                            | 是   | ModelExtendComputer      |
-| 字段计算扩展逻辑   | *                                            | 是   | FieldExtendComputer      |
-| 元数据计算扩展逻辑 | *                                            | 是   | MetaDataExtendComputer   |
+| Extension Point                 | Implementation Location                      | SPI  | Interface                                                      |
+| ------------------------------- | -------------------------------------------- | ---- | -------------------------------------------------------------- |
+| Metadata Annotation Converter   | *                                            | No   | ModelConverter                                                 |
+| Metadata Model Signer           | *                                            | No   | ModelSigner                                                    |
+| Metadata Annotation Converter Whitelist | yaml:pamirs.configure.converter.annotation   | No   | ModelConverter interface implementation class name              |
+| Metadata Model Signer Whitelist | yaml:pamirs.configure.signer                 | No   | ModelSigner interface implementation class name                 |
+| Scan path configuration for meta models processed by annotation converters | yaml:pamirs.meta.meta-packages               | No   | Default:<br/>**pro.shushi.pamirs.meta.domain**<br/>**pro.shushi.pamirs.boot.base.model** |
 
 
-## （四）API层
+## (三) Metadata Calculation
 
-| 扩展点               | 实现位置 | SPI  | 接口                  |
-| -------------------- | -------------------------------------------- | ---- | --------------------- |
-| 请求上下文扩展点     | *                                            | 是   | SessionPrepareApi     |
-| 拦截器构建扩展点     | *                                            | 是   | InstrumentationApi    |
-| 动作绑定扩展点       | *                                            | 是   | ActionBinderApi       |
-| 数据加载器注册扩展点 | *                                            | 是   | DataLoaderRegistryApi |
-
-
-## （五）FaaS层
-
-| 扩展点                   | 实现位置 | SPI  | 接口                   |
-| ------------------------ | -------------------------------------------- | ---- | ---------------------- |
-| 组装表达式上下文         | *                                            | 是   | SessionContextApi      |
-| 商业函数扩展点           | *                                            | 是   | BusinessFunctionsApi   |
-| 上下文函数扩展点         | *                                            | 是   | ContextFunctionsApi    |
-| 表达式可执行函数黑白名单 | *                                            | 是   | FaasScriptAllowListApi |
+| Extension Point          | Implementation Location                      | SPI  | Interface                  |
+| ------------------------ | -------------------------------------------- | ---- | -------------------------- |
+| Model Encoding Interface | *                                            | Yes  | ModelModelApi              |
+| Model Calculation Interface | *                                            | Yes  | ModelComputeApi            |
+| Model Validation Interface | *                                            | Yes  | ModelCheckApi              |
+| Model Directive Interface | *                                            | Yes  | ModelDirectiveBatchApi     |
+| ORM Conversion Interface | *                                            | Yes  | OrmApi                     |
+| Type System Interface    | *                                            | Yes  | TypeProcessor              |
+| Inheritance Processing Extension Logic | *                                            | Yes  | InheritedExtendProcessor   |
+| Model Calculation Extension Logic | *                                            | Yes  | ModelExtendComputer        |
+| Field Calculation Extension Logic | *                                            | Yes  | FieldExtendComputer        |
+| Metadata Calculation Extension Logic | *                                            | Yes  | MetaDataExtendComputer     |
 
 
-## （六）ORM层
+## (四) API Layer
 
-| 扩展点               | 实现位置 | SPI  | 接口                         |
-| -------------------- | -------------------------------------------- | ---- | ---------------------------- |
-| 前端字段处理扩展逻辑 | *                                            | 是   | FrontEndFieldExtendConverter |
-| 前端字段计算         | *                                            | 否   | FieldValueComputer           |
-| 后端字段处理扩展逻辑 | *                                            | 是   | BackEndFieldExtendConverter  |
-| 字段序列化api        | *                                            | 否   | Serializer                   |
+| Extension Point            | Implementation Location                      | SPI  | Interface               |
+| -------------------------- | -------------------------------------------- | ---- | ----------------------- |
+| Request Context Extension  | *                                            | Yes  | SessionPrepareApi       |
+| Interceptor Construction Extension | *                                            | Yes  | InstrumentationApi      |
+| Action Binding Extension   | *                                            | Yes  | ActionBinderApi         |
+| Data Loader Registration Extension | *                                            | Yes  | DataLoaderRegistryApi   |
 
 
-## （七）持久层
+## (五) FaaS Layer
 
-| 扩展点                    | 实现位置                                                     | SPI  | 接口                                                |
-| ------------------------- | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
-| 数据源路由                | pamirs-boot-*<br/>**yaml:pamirs.mapper.data-source-route-service** | 是   | DataSourceRouteService#route                        |
-| 数据框架的统一key前缀服务 | *                                                            | 是   | DataApiKeyService                                   |
-| 动态数据源路由自定义参数  | pamirs-boot-*<br/>**yaml:pamirs.mapper.dynamic-ds-key-computer** | 是   | DynamicDsKeyComputer                                |
-| 数据表名计算自定义参数    | pamirs-boot-*<br/>**yaml:pamirs.mapper.table-name-computer** | 是   | TableNameComputer#context                           |
-| 获取逻辑字段定义          | pamirs-connectors-data-*<br/>**yaml:pamirs.mapper.****logic-column-fetcher** | 是   | LogicColumnFetcher<br/>#fetchLogicColumnDefinitions |
-| 获取逻辑字段              | pamirs-connectors-data-*<br/>**yaml:pamirs.mapper.****logic-column-fetcher** | 是   | LogicColumnFetcher<br/>#fetchLogicColumns           |
-| 通用mapper                | *                                                            | 否   | PamirsMapper                                        |
+| Extension Point              | Implementation Location                      | SPI  | Interface                 |
+| ---------------------------- | -------------------------------------------- | ---- | ------------------------- |
+| Assemble Expression Context  | *                                            | Yes  | SessionContextApi         |
+| Business Function Extension  | *                                            | Yes  | BusinessFunctionsApi      |
+| Context Function Extension   | *                                            | Yes  | ContextFunctionsApi       |
+| Allowed/Blocked List for Executable Functions in Expressions | *                                            | Yes  | FaasScriptAllowListApi    |
 
+
+## (六) ORM Layer
+
+| Extension Point            | Implementation Location                      | SPI  | Interface                      |
+| -------------------------- | -------------------------------------------- | ---- | ------------------------------ |
+| Front-end Field Processing Extension Logic | *                                            | Yes  | FrontEndFieldExtendConverter   |
+| Front-end Field Calculation  | *                                            | No   | FieldValueComputer             |
+| Back-end Field Processing Extension Logic | *                                            | Yes  | BackEndFieldExtendConverter    |
+| Field Serialization API    | *                                            | No   | Serializer                     |
+
+
+## (七) Persistence Layer
+
+| Extension Point               | Implementation Location                                                     | SPI  | Interface                                           |
+| ----------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------- |
+| Data Source Routing           | pamirs-boot-*<br/>**yaml:pamirs.mapper.data-source-route-service** | Yes  | DataSourceRouteService#route                      |
+| Unified Key Prefix Service for Data Frameworks | *                                                            | Yes  | DataApiKeyService                                 |
+| Custom Parameters for Dynamic Data Source Routing | pamirs-boot-*<br/>**yaml:pamirs.mapper.dynamic-ds-key-computer** | Yes  | DynamicDsKeyComputer                              |
+| Custom Parameters for Data Table Name Calculation | pamirs-boot-*<br/>**yaml:pamirs.mapper.table-name-computer** | Yes  | TableNameComputer#context                         |
+| Fetch Logic Field Definitions | pamirs-connectors-data-*<br/>**yaml:pamirs.mapper.****logic-column-fetcher** | Yes  | LogicColumnFetcher<br/>#fetchLogicColumnDefinitions |
+| Fetch Logic Fields            | pamirs-connectors-data-*<br/>**yaml:pamirs.mapper.****logic-column-fetcher** | Yes  | LogicColumnFetcher<br/>#fetchLogicColumns         |
+| Universal Mapper              | *                                                            | No   | PamirsMapper                                      |

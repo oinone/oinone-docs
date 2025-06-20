@@ -2,9 +2,9 @@
 title: Detail
 index: false
 category:
-  - 研发手册
+  - DevManual
   - Reference
-  - 前端API
+  - Front-EndFramework
   - Widget
   - Element
 order: 3

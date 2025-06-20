@@ -1,13 +1,13 @@
 ---
-title: 数据方言：【PostgreSQL】后端部署使用PostgreSQL数据库
+title: Data Dialect:[PostgreSQL] Backend Deployment with PostgreSQL Database
 index: true
 category:
-  - 常见解决方案
+  - Common Solutions
 order: 41
 ---
 
-# 一、驱动配置
-## （一）Maven配置（14.3版本可用）
+# I. Driver Configuration
+## (一) Maven Configuration (Suitable for Version 14.3)
 ```xml
 <postgresql.version>42.6.0</postgresql.version>
 <dependency>
@@ -15,15 +15,14 @@ order: 41
   <artifactId>postgresql</artifactId>
   <version>${postgresql.version}</version>
 </dependency>
-
 ```
 
-## （二）离线驱动下载
+## (二) Offline Driver Download
 [postgresql-42.2.18.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/pgsql/postgresql-42.2.18.jar)
 [postgresql-42.6.0.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/pgsql/postgresql-42.6.0.jar)
 [postgresql-42.7.3.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/pgsql/postgresql-42.7.3.jar)
 
-# 二、JDBC连接配置
+# II. JDBC Connection Configuration
 ```yaml
 pamirs:
   datasource:
@@ -45,26 +44,24 @@ pamirs:
       asyncInit: true
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+**Note**: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## （一）连接url配置
-暂无官方资料
+## (一) Connection URL Configuration
+No official documentation available currently.
 
-## （二）url格式
+## (二) URL Format
 ```plain
 jdbc:postgresql://${host}:${port}/${database}?currentSchema=${schema}
 ```
 
-:::danger 警告：
-
-在jdbc连接配置时，${database} 和 ${schema} 必须完整配置，不可缺省。
-
+:::danger Warning:
+When configuring the JDBC connection, both `${database}` and `${schema}` must be fully configured and cannot be omitted.
 :::
 
-其他连接参数如需配置，可自行查阅相关资料进行调优。
+For other connection parameters, you can refer to relevant materials for optimization as needed.
 
-# 三、方言配置
-## （一）pamirs方言配置
+# III. Dialect Configuration
+## (一) pamirs Dialect Configuration
 ```yaml
 pamirs:
   dialect:
@@ -79,20 +76,17 @@ pamirs:
         major-version: 14.3
 ```
 
-注：更多 YAML 配置请前往 [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
+**Note**: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-| 数据库版本 | type | version | majorVersion |
+| Database Version | type | version | majorVersion |
 | --- | --- | --- | --- |
 | 14.x | PostgreSQL | 14 | 14.3 |
 
-
-:::info 注意：
-
-由于方言开发环境为`14.3`版本，其他类似版本（14.x）原则上不会出现太大差异，如出现其他版本无法正常支持的，可在文档下方留言。
-
+:::info Note:
+Since the dialect development environment is Version 14.3, other similar versions (14.x) generally will not have significant differences. If you encounter issues with unsupported versions, please leave a comment below the document.
 :::
 
-## （二）schedule方言配置
+## (二) Schedule Dialect Configuration
 ```yaml
 pamirs:
   event:
@@ -109,15 +103,12 @@ pamirs:
 | --- | --- | --- |
 | PostgreSQL | 14 | 14.3 |
 
-
-:::info 注意：
-
-由于`schedule`的方言在多个版本中并无明显差异，目前仅提供一种方言配置。
-
+:::info Note:
+As there are no obvious differences in the schedule dialect across multiple versions, only one dialect configuration is provided currently.
 :::
 
-# 四、其他配置
-## （一）逻辑删除的值配置
+# IV. Other Configurations
+## (一) Logical Deletion Value Configuration
 ```yaml
 pamirs:
   mapper:
@@ -126,7 +117,7 @@ pamirs:
         logic-delete-value: (EXTRACT(epoch FROM CURRENT_TIMESTAMP) * 1000000 + EXTRACT(MICROSECONDS FROM CURRENT_TIMESTAMP))::bigint
 ```
 
-## （二）PostgreSQL 数据库用户初始化及授权
+## (二) PostgreSQL Database User Initialization and Authorization
 ```sql
 -- init root user (user name can be modified by oneself)
 
@@ -140,4 +131,3 @@ SELECT * FROM pg_roles;
 -- if using postgres database, this authorization is required.
 GRANT CREATE ON DATABASE postgres TO root;
 ```
-

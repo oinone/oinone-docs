@@ -1,127 +1,127 @@
 ---
-title: 安全机制（Security in Oinone）
+title: Security in Oinone
 index: true
 category:
-  - 研发手册
+  - R&D Manual
   - Reference
-  - 后端API
+  - Backend API
 order: 6
 next:
-  text: 网关协议 API（Protocol API）
+  text: Gateway Protocol API (Protocol API)
   link: /en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md
 ---
-在学习这篇文章之前，你首先需要对 Oinone 安全相关内容进行一个初步了解，以便于理解本文所介绍的自定义相关内容。参考：[后端框架 - 安全简介](/en/DevManual/Tutorials/Back-endFramework/chapter4-a-brief-introduction-to-security.md)
+Before learning this article, you first need a preliminary understanding of Oinone's security-related content to facilitate understanding the customizations introduced in this article. Reference: [Backend Framework - Security Introduction](/en/DevManual/Tutorials/Back-endFramework/chapter4-a-brief-introduction-to-security.md)
 
-在 Oinone 中，采用 `RBAC` 标准权限控制体系，这在大多数管理信息系统中是较为通用的权限体系。不仅如此，除了对资源的访问控制外，Oinone 还提供了基于角色的数据访问控制。
+Oinone adopts the standard RBAC (Role-Based Access Control) permission control system, which is a common permission system in most management information systems. Beyond access control for resources, Oinone also provides role-based data access control.
 
-对于管理后台来说，使用内置的权限操作页面进行权限管理是足够了的，但在一些特殊场景中，我们不得不对权限进行一些改造，以此来满足我们的实际业务需求，例如：
+For administrative backends, using built-in permission operation pages for permission management is sufficient. However, in some special scenarios, we must modify permissions to meet actual business needs, such as:
 
-+ To C 移动端的权限控制
-+ 使用内置 “白名单” 来控制部分页面的权限
-+ 动态构建权限树进行授权
++ Permission control for To C mobile applications
++ Using built-in "whitelists" to control permissions for specific pages
++ Dynamically constructing permission trees for authorization
 
-总的来说，权限扩展只有两个接口：`权限节点扩展（PermissionNodeLoadExtendApi）` 和 `权限过滤（AuthFilterService）`。
+In summary, there are only two interfaces for permission extension: `Permission Node Extension (PermissionNodeLoadExtendApi)` and `Permission Filter (AuthFilterService)`.
 
-# 一、概念介绍
+# I. Concept Introduction
 
-## （一）RBAC 权限控制体系
+## (一) RBAC Permission Control System
 
-基于角色的访问控制（RBAC）是较为通用的权限体系，其包括用户、角色、资源项三个实体模型和用户和角色关系、角色和资源项关系两个实体关系模型（M2M）。如下图所示：
+Role-Based Access Control (RBAC) is a common permission system including three entity models: users, roles, and resource items, as well as two entity relationship models (M2M): user-role relationships and role-resource item relationships. As shown below:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/SecurityInOinone/1748924950380-13d299d7-8247-417e-8f9e-61188b9bd4f3.jpeg)
 
-## （二）资源与权限项
+## (二) Resources and Permission Items
 
-在 Oinone 中，以下这些元数据称为资源，每个资源都有与之对应的权限项对其进行标准化描述：
+In Oinone, the following metadata are called resources, and each resource has corresponding permission items for standardized description:
 
-+ 资源权限项（AuthResourcePermission）
-  - 应用（module）
-  - 菜单（menu）
-  - 动作（action）
-  - 函数（function）
-+ 模型权限项（AuthModelPermission）
-  - 模型（model）
-+ 字段权限项（AuthFieldPermission）
-  - 字段（field）
-+ 行权限项（AuthRowPermission）
++ Resource Permission Items (AuthResourcePermission)
+  - Application (module)
+  - Menu (menu)
+  - Action (action)
+  - Function (function)
++ Model Permission Items (AuthModelPermission)
+  - Model (model)
++ Field Permission Items (AuthFieldPermission)
+  - Field (field)
++ Row Permission Items (AuthRowPermission)
 
-## （三）权限树及资源访问路径
+## (三) Permission Tree and Resource Access Path
 
-我们在之前的教程中可以看到，不论是 “系统权限” 页面还是 “角色管理 - 权限配置” 页面，都有一个从应用开始的 “权限树” 进行权限配置。这就是根据页面元数据的拓扑结构生成的资源权限项，每一个权限项都有其对应的资源访问路径，只有符合规则的访问路径才可以进行鉴权。
+As seen in previous tutorials, both the "System Permissions" page and the "Role Management - Permission Configuration" page use a "permission tree" starting from the application for permission configuration. This tree generates resource permission items based on the topological structure of page metadata, and each permission item has a corresponding resource access path. Only access paths conforming to the rules can be authenticated.
 
-### 1、权限树
+### 1. Permission Tree
 
-在 “系统权限” 页面，树的层级由以下元数据构成：
+On the "System Permissions" page, the tree hierarchy is composed of the following metadata:
 
-+ 应用：顶级树节点
-+ 首页/菜单：第二级树节点（自关联）
-+ 权限组 - 动作权限：页面上的所有动作，递归解析所有跳转动作形成子节点。
++ Application: Top-level tree node
++ Homepage/Menu: Second-level tree node (self-associated)
++ Permission Group - Action Permissions: All actions on the page, recursively parsing all navigation actions to form child nodes.
 
-在 “角色管理 - 权限配置” 页面，树的层级由以下元数据构成：
+On the "Role Management - Permission Configuration" page, the tree hierarchy is composed of the following metadata:
 
-+ 应用：顶级树节点
-+ 首页/菜单：第二级树节点（自关联）
-+ 动作：第三级树节点并递归解析所有跳转动作形成子节点。
++ Application: Top-level tree node
++ Homepage/Menu: Second-level tree node (self-associated)
++ Actions: Third-level tree nodes, recursively parsing all navigation actions to form child nodes.
 
-### 2、资源访问路径
+### 2. Resource Access Path
 
-让我们来看一个 “国家分组 - 创建动作” 的访问路径，如下图所示：
+Let's look at the access path for a "Country Group - Create Action," as shown below:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/SecurityInOinone/1748938838174-dbaba116-409e-44a4-b513-ae5826e480b1.png)
 
-通过 `ViewAction#load` 接口获取的 `DSL` 中 的 `sessionPath` 属性：
+The `sessionPath` attribute in the DSL obtained through the `ViewAction#load` interface:
 
 ```shell
 /resource/国家分组/ACTION#resource.ResourceCountryGroup#redirectCreatePage/ACTION#$$#create
 ```
 
-通过 “/” 分隔，我们可以看到一个清晰的 “资源访问路径” 结构：
+Delimited by "/", we see a clear "resource access path" structure:
 
-+ resource：资源模块编码。
-+ 国家分组：菜单名称。
-+ ACTION#resource.ResourceCountryGroup#redirectCreatePage：表格页面的 “创建” 跳转动作。
-+ ACTION#$$#create：创建页面的 “创建” 提交动作。
++ resource: Resource module code.
++ 国家分组: Menu name.
++ ACTION#resource.ResourceCountryGroup#redirectCreatePage: "Create" navigation action on the table page.
++ ACTION#$$#create: "Create" submission action on the create page.
 
-PS：“$$” 是指模型编码与上一级模型编码相同，由于路径过长会对存储及请求产生性能影响，我们在这里进行了简化处理。
+PS: "$$" means the model code is the same as the previous level. Due to performance impacts of long paths on storage and requests, we simplify here.
 
-### 3、注意事项
+### 3. Notes
 
-由于资源权限是基于资源访问路径进行授权和鉴权的，有一些事项需要在开发或迭代过程中需要特别注意的：
+Since resource permissions are authorized and authenticated based on resource access paths, note the following during development or iteration:
 
-+ 当动作的相对路径发生变化导致资源访问路径发生变化时，对应动作需要重新进行授权才可以正常访问。
-+ 当设计器在页面上添加新的动作时，需要授权才可以正常访问。
++ When the relative path of an action changes, altering the resource access path, the corresponding action requires reauthorization for normal access.
++ When the designer adds new actions to a page, authorization is needed for normal access.
 
-# 二、模块过滤
+# II. Module Filtering
 
-以移动端模块不需要鉴权这个场景为例，让我们来看一下如何通过模块编码将整个模块的访问设置为不需要鉴权。
+Take the scenario where a mobile module does not require authentication. Let's see how to set the entire module's access to be unauthenticated via the module code.
 
-:::info 目标：在本节结束时，你应该成功过滤了移动端整个模块的权限，并学会如何使用 AccessResourceInfo 对象**
-
-:::
-
-## （一）准备工作
-
-### 1、创建移动端应用
-
-基于 Oinone 对于模块的定义，我们需要将移动端应用作为一个独立应用进行定义。这样我们对于一个模块的权限过滤才不会意外的过滤那些需要权限控制的模块。
-
-让我们先通过之前的教程内容创建一个 `移动端应用（mobile_demo）`。参考：[后端框架 - 新建一个应用](/en/DevManual/Tutorials/Back-endFramework/chapter2-a-new-application.md)
-
-:::warning 提示：
-
-关于模块化设计的相关内容可参考：[研发范式：模块化设计](/en/DevManual/R&DParadigm/R&D-paradigm-modular-design.md)
+:::info Goal: By the end of this section, you should have successfully filtered permissions for the entire mobile module and learned how to use the AccessResourceInfo object.
 
 :::
 
-### 2、创建用户和对应角色
+## (一) Preparation
 
-为了便于我们接下来自定义权限时可以看到具体效果，我们需要创建一个独立的用户和一个独立的角色，并且这个角色我们不给它授予任何权限。
+### 1. Create a Mobile Application
 
-通过页面登录这个用户时会出现 “未找到入口应用或无权限访问” 的异常提示。
+Based on Oinone's module definition, we need to define the mobile application as a standalone application. This ensures that permission filtering for one module does not accidentally affect modules requiring permission control.
 
-## （二）通过模块编码进行过滤
+First, create a `mobile_demo` application through previous tutorial content. Reference: [Backend Framework - Creating a New Application](/en/DevManual/Tutorials/Back-endFramework/chapter2-a-new-application.md)
 
-将自定义的权限过滤服务注册为 `Spring Bean` ，并重写 `所有资源访问控制` 方法即可完成模块过滤。例如：
+:::warning Tip:
+
+For modular design-related content, refer to: [R&D Paradigm: Modular Design](/en/DevManual/R&DParadigm/R&D-paradigm-modular-design.md)
+
+:::
+
+### 2. Create a User and Corresponding Role
+
+To see specific effects when customizing permissions, create a standalone user and role without granting any permissions to this role.
+
+Logging in with this user will trigger an exception: "Entry application not found or no permission to access."
+
+## (二) Filter by Module Code
+
+Register the custom permission filter service as a `Spring Bean` and override the `All Resource Access Control` method to complete module filtering. For example:
 
 ```java
 @Order(88)
@@ -166,17 +166,17 @@ public class CustomAuthFilterService implements AuthFilterService {
 }
 ```
 
-**返回值说明**
+**Return Value Description**
 
-+ 当 返回 true 时，表示权限验证通过，将不再验证其他资源访问权限。
-+ 当 返回 false 时，表示权限验证不通过，用户无法访问该模块下的任何资源。
-+ 当 返回 null 时，表示交由其他权限过滤服务继续判断。
++ Returning `true` means permission verification passes, and other resource access permissions are no longer verified.
++ Returning `false` means permission verification fails, and the user cannot access any resources under this module.
++ Returning `null` means passing to other permission filter services for continued judgment.
 
-## （三）验证用户是否登录
+## (三) Verify User Login
 
-用上面提供的 `模块过滤` 时，我们发现这个模块中所有接口都可以进行访问，且无需用户登录。显然这是非常不安全的一种操作。
+Using the above `module filtering`, we find all interfaces in this module can be accessed without user login, which is clearly insecure.
 
-让我们在之前的示例代码基础之上，要求这个模块的所有接口都需要通过登录才能访问。可以这样处理一下：
+Based on the previous example, require all interfaces in this module to require login:
 
 ```java
 @Override
@@ -189,35 +189,35 @@ public Boolean isAccessModule(String module) {
 }
 ```
 
-`AuthVerificationHelper#checkLogin` 方法会在用户未登录的情况下抛出前后端约定的异常信息，前端收到这样的异常信息之后，会自动跳转至登录页面要求用户登录。
+The `AuthVerificationHelper#checkLogin` method throws an exception with front-end-backend约定 (agreed) information when the user is not logged in. Upon receiving this exception, the front end automatically redirects to the login page.
 
-## （四）AccessResourceInfo
+## (四) AccessResourceInfo
 
-你几乎可以在任何地方使用下面的方法获得访问资源信息：
+You can obtain access resource information using the following method almost anywhere:
 
 ```java
 AccessResourceInfoSession.getInfo()
 ```
 
-在访问资源信息中，对于当前任何一个请求，都有一些较为关键的元数据信息可以对权限进行判断。下面列出了一些常用属性：
+In access resource information, for any current request, several key metadata items help judge permissions. Below are commonly used attributes:
 
-+ module：模块编码，当前请求访问的模块编码。
-+ model：模型编码。
-+ homepage：首页动作名称。同 `ViewAction#name` 属性。
-+ actionName：动作/函数名称。当前请求接口的名称。
-+ originPath：请求传入的 `variables#path` 参数。
++ module: Module code of the current request.
++ model: Model code.
++ homepage: Homepage action name, same as the `ViewAction#name` attribute.
++ actionName: Action/function name of the current request interface.
++ originPath: `variables#path` parameter passed in the request.
 
-# 三、动作/函数过滤
+# III. Action/Function Filtering
 
-当我们需要对某些动作/函数不需要鉴权时，我们可以通过 `yaml` 配置对一些动作/函数进行过滤，我们将这些 “白名单” 动作/函数分为两类，一类是不需要登录就能访问，另一类是需要登录才能访问。
+When certain actions/functions do not require authentication, we can filter them via `yaml` configuration. We divide these "whitelist" actions/functions into two categories: those accessible without login and those requiring login.
 
-:::info 目标：在本节结束时，你应该成功配置了权限过滤指定的动作/函数，并学会如何使用自定义配置对权限功能进行扩展**
+:::info Goal: By the end of this section, you should have successfully configured permission filtering for specified actions/functions and learned how to use custom configurations to extend permission functions.
 
 :::
 
-## （一）不需要登录进行访问
+## (一) Access Without Login
 
-在 `yaml` 中配置 `pamirs.auth.fun-filter` 属性让 “国家分组 - 创建” 动作可以在没有登录的情况下直接访问：
+Configure the `pamirs.auth.fun-filter` attribute in `yaml` to allow the "Country Group - Create" action to be accessed directly without login:
 
 ```yaml
 pamirs:
@@ -227,9 +227,9 @@ pamirs:
        fun: create
 ```
 
-## （二）需要登录进行访问
+## (二) Access Requiring Login
 
-在 `yaml` 中配置 `pamirs.auth.fun-filter-only-login` 属性让 “国家分组 - 创建” 动作可以在登录后直接访问而不关心是否配置相应的权限：
+Configure the `pamirs.auth.fun-filter-only-login` attribute in `yaml` to allow the "Country Group - Create" action to be accessed after login without worrying about corresponding permission configuration:
 
 ```yaml
 pamirs:
@@ -239,13 +239,13 @@ pamirs:
        fun: create
 ```
 
-## （三）自定义 “黑名单”
+## (三) Custom "Blacklist"
 
-内置的白名单配置有时并不能覆盖大多数业务场景，或者说配置起来不是那么方便。比如，在使用 `模块过滤` 时，对该模块的指定动作/函数要求使用权限控制呢？
+Built-in whitelist configurations may not cover most business scenarios or may not be convenient to configure. For example, when using `module filtering`, how to require permission control for specified actions/functions in that module?
 
-### 1、使用 yaml 配置黑名单动作或函数
+### 1. Use yaml to Configure Blacklist Actions or Functions
 
-使用 `Spring Configuration` 为 `yaml` 增加配置项：（通常我们建议这样管理配置项，也可以使用其他方式）
+Use `Spring Configuration` to add configuration items to `yaml`: (We typically recommend managing configuration items this way, but other methods are also possible)
 
 ```java
 @Configuration
@@ -264,14 +264,14 @@ public class AuthBlacklistConfiguration {
 }
 ```
 
-### 2、在 AuthFilterService 中使用配置
+### 2. Use Configurations in AuthFilterService
 
-让我们尝试实现一下以下内容：
+Let's try to implement the following:
 
-1. 当访问模块为 `mobile_demo` 时，使用黑名单进行过滤。
-2. 在黑名单列表中的动作需要在页面上配置权限并进行权限验证。
+1. When the access module is `mobile_demo`, use the blacklist for filtering.
+2. Actions in the blacklist require permission configuration and verification on the page.
 
-下面是重写了上面部分方法的过滤服务后的一种实现方式：
+Below is an implementation of the filter service overriding some previous methods:
 
 ```java
 @Order(88)
@@ -300,10 +300,10 @@ public class CustomAuthFilterService implements AuthFilterService {
             if (authBlacklistConfiguration.getFunFilter()
                     .stream()
                     .anyMatch(v -> model.equals(v.getNamespace()) && name.equals(v.getFun()))) {
-                // 交由其他权限过滤服务继续判断
+                // Pass to other permission filter services for continued judgment
                 return null;
             }
-            // 可访问指定动作
+            // Allow access to specified actions
             return true;
         }
         return null;
@@ -311,27 +311,27 @@ public class CustomAuthFilterService implements AuthFilterService {
 }
 ```
 
-# 四、自定义权限树并通过页面授权
+# IV. Custom Permission Tree and Authorization via Pages
 
-当我们在移动端模块没有通过代码或设计器添加任何菜单或动作的情况下，我们如何对一些服务端API进行鉴权呢？
+When the mobile module has no menus or actions added through code or the designer, how do we authenticate some server-side APIs?
 
-一般我们有两个方案可以正常实施：（其他方案可自行联想）
+We generally have two implementable solutions: (Other solutions can be imagined independently)
 
-方案一：通过设计器将移动端需要的页面和动作都通过菜单暴露在系统中，以便于在管理后台进行授权。在发起请求时携带对应的资源访问路径就可以顺利通过鉴权。
+Solution 1: Expose required pages and actions for the mobile end through menus via the designer to enable authorization in the admin backend. Carrying the corresponding resource access path in requests allows smooth authentication.
 
-方案二：通过扩展权限树进行指定动作的授权。
+Solution 2: Extend the permission tree for specified action authorization.
 
-## （一）方案一：使用内置授权和鉴权
+## (一) Solution 1: Use Built-in Authorization and Authentication
 
-当我们使用 “方案一” 时，后端无需做任何特殊处理和改造，只需要前端携带对应的资源访问路径即可，这也就是我们通常使用的 “权限埋点” 方案。这种方案较为简单，我们就不在这里展开描述了。
+When using "Solution 1," the backend requires no special processing or modification. The frontend only needs to carry the corresponding resource access path, which is the commonly used "permission埋点 (permission instrumentation)" solution. This simple solution is not elaborated here.
 
-## （二）方案二：扩展权限树
+## (二) Solution 2: Extend the Permission Tree
 
-让我们先来看一下 `PermissionNodeLoadExtendApi` 的部分定义：
+First, let's look at part of the `PermissionNodeLoadExtendApi` definition:
 
 ```java
 /**
- * 权限节点扩展API
+ * Permission Node Extension API
  *
  * @author Adamancy Zhang at 09:21 on 2024-02-28
  */
@@ -339,34 +339,34 @@ public class CustomAuthFilterService implements AuthFilterService {
 public interface PermissionNodeLoadExtendApi {
 
     /**
-     * 加载全部权限项扩展
+     * Load all permission item extensions
      *
-     * @param loadContext 加载上下文
-     * @param nodes       已加载节点集合
-     * @param roleIds     角色ID集合
-     * @return 新加入的节点集合
+     * @param loadContext Load context
+     * @param nodes       Loaded node collection
+     * @param roleIds     Role ID collection
+     * @return Newly added node collection
      */
     default List<PermissionNode> buildAllPermissions(PermissionLoadContext loadContext, List<PermissionNode> nodes, Set<Long> roleIds) {
         return buildRootPermissions(loadContext, nodes);
     }
 
     /**
-     * 加载根权限项扩展
+     * Load root permission item extensions
      *
-     * @param loadContext 加载上下文
-     * @param nodes       已加载节点集合
-     * @return 新加入的节点集合
+     * @param loadContext Load context
+     * @param nodes       Loaded node collection
+     * @return Newly added node collection
      */
     default List<PermissionNode> buildRootPermissions(PermissionLoadContext loadContext, List<PermissionNode> nodes) {
         return null;
     }
 
     /**
-     * 加载下级权限项扩展
+     * Load next-level permission item extensions
      *
-     * @param selected 当前选中节点
-     * @param nodes    已加载节点集合
-     * @return 新加入的节点集合
+     * @param selected Selected node
+     * @param nodes    Loaded node collection
+     * @return Newly added node collection
      */
     default List<PermissionNode> buildNextPermissions(PermissionNode selected, List<PermissionNode> nodes) {
         return null;
@@ -374,15 +374,15 @@ public interface PermissionNodeLoadExtendApi {
 }
 ```
 
-+ buildAllPermissions：构建完整权限树，用于 “角色管理 - 权限配置” 权限树的构建。
-+ buildRootPermissions：构建 “应用-菜单” 权限树，用于 “系统权限” 权限树的构建。
-+ buildNextPermissions：构建菜单对应的动作权限项，用于 “权限组 - 动作权限” 权限树的构建。
++ buildAllPermissions: Build a complete permission tree for constructing the permission tree in "Role Management - Permission Configuration."
++ buildRootPermissions: Build the "Application-Menu" permission tree for constructing the permission tree in "System Permissions."
++ buildNextPermissions: Build action permission items corresponding to menus for constructing the permission tree in "Permission Group - Action Permissions."
 
-我们需要根据实际场景的需求选择合适的方法进行重写。
+We need to override appropriate methods based on actual scenario requirements.
 
-### 1、在应用下展示指定的提交动作
+### 1. Display Specified Submission Actions Under the Application
 
-以 `mobile_demo` 应用为例，如果需要将对应的提交动作添加在这个应用下，我们可以这样处理：
+Take the `mobile_demo` application as an example. To add corresponding submission actions under this application, process as follows:
 
 ```java
 @Order(88)
@@ -405,7 +405,7 @@ public class CustomPermissionNodeLoadExtend implements PermissionNodeLoadExtendA
 
         for (ServerAction serverAction : serverActions) {
             PermissionNode node = AuthNodeHelper.createServerActionNode(module, serverAction, mobileDemoModuleNode);
-            // 默认动作名称是确定，这里需要稍加修改
+            // The default action name is determined, but needs slight modification here
             node.setDisplayValue("国家分组 - 创建");
             AuthNodeHelper.addNode(newNodes, mobileDemoModuleNode, node);
         }
@@ -426,26 +426,26 @@ public class CustomPermissionNodeLoadExtend implements PermissionNodeLoadExtendA
 }
 ```
 
-对于上述代码添加的 “国家分组 - 创建” 提交动作，对应的资源访问路径是：
+For the "Country Group - Create" submission action added by the above code, the corresponding resource access path is:
 
 ```plain
 /resource.ResourceCountryGroup/create
 ```
 
-通过 “/” 分隔，我们可以看到一个只有两级的 “资源访问路径” 结构：
+Delimited by "/", we see a two-level "resource access path" structure:
 
-+ resource.ResourceCountryGroup：模型编码
-+ create：动作名称
++ resource.ResourceCountryGroup: Model code
++ create: Action name
 
-前端在发起请求时，variables 不需要传递任何 path 参数即可完成权限鉴权。
+When the frontend initiates a request, the variables do not need to pass any path parameters to complete permission authentication.
 
-为了模拟前端请求，我们可以通过 GQL 可视化工具发起这个请求，这与实际前端发起的请求完全一致：
+To simulate a frontend request, initiate this request via the GQL visualization tool, identical to an actual frontend request:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/SecurityInOinone/1748945472640-6921656f-cb44-4f22-badd-0c854db8bb58.png)
 
-### 2、在应用下展示指定的跳转动作
+### 2. Display Specified Navigation Actions Under the Application
 
-与提交动作的添加类似，我们只需要将动作的名称换成跳转动作对应的名称即可，让我们将 “国家分组 - 创建” 跳转动作加入到节点中进行授权，看看资源访问路径有什么不同。
+Similar to adding submission actions, we only need to change the action name to the corresponding navigation action name. Let's add the "Country Group - Create" navigation action to the node for authorization and see the difference in the resource access path.
 
 ```java
 @Override
@@ -458,14 +458,14 @@ public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadConte
         return newNodes;
     }
 
-    // 注意这里的动作类型和动作名称的变化
+    // Note the change in action type and name here
     QueryActions<ViewAction> viewActionQuery = new QueryActions<>(ActionTypeEnum.VIEW);
     viewActionQuery.add(ResourceCountryGroup.MODEL_MODEL, "redirectCreatePage");
     List<ViewAction> viewActions = viewActionQuery.query();
 
     for (ViewAction viewAction : viewActions) {
         PermissionNode node = AuthNodeHelper.createViewActionNode(module, viewAction, mobileDemoModuleNode);
-        // 默认动作名称是创建，这里需要稍加修改
+        // The default action name is "Create," which needs slight modification here
         node.setDisplayValue("国家分组 - 创建");
         AuthNodeHelper.addNode(newNodes, mobileDemoModuleNode, node);
     }
@@ -474,63 +474,63 @@ public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadConte
 }
 ```
 
-对于上述代码添加的 “国家分组 - 创建” 跳转动作，对应的资源访问路径是：
+For the "Country Group - Create" navigation action added by the above code, the corresponding resource access path is:
 
 ```plain
 /resource.ResourceCountryGroup/redirectCreatePage
 ```
 
-按照我们的路径规则，创建 提交动作，对应的资源访问路径是：
+According to our path rules, the resource access path for the create submission action is:
 
 ```plain
 /resource.ResourceCountryGroup/redirectCreatePage/ACTION#resource.ResourceCountryGroup#create
 ```
 
-通过 “/” 分隔，我们可以看到一个三级的 “资源访问路径” 结构：
+Delimited by "/", we see a three-level "resource access path" structure:
 
-+ resource.ResourceCountryGroup：模型编码。
-+ redirectCreatePage：表格页面的 “创建” 跳转动作名称。
-+ ACTION#resource.ResourceCountryGroup#create：创建页面的 “创建” 提交动作。
++ resource.ResourceCountryGroup: Model code.
++ redirectCreatePage: "Create" navigation action name on the table page.
++ ACTION#resource.ResourceCountryGroup#create: "Create" submission action on the create page.
 
-让我们通过 GQL 可视化工具发起这个请求：
+Let's initiate this request via the GQL visualization tool:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/SecurityInOinone/1748946255303-be8d1287-6068-4276-b875-c66304ac6505.png)
 
-:::warning 提示：
+:::warning Tip:
 
-这里有三个问题需要注意：
+Note three issues here:
 
-+ 当我们测试鉴权是否通过时，需要将之前小节中的自定义逻辑稍加修改，只需要对应用、首页和菜单进行过滤，移除动作和函数的自定义逻辑，否则你可能无法看到 “无权限进行该操作” 的异常信息，也就无法测试权限授权是否生效。
-+ 当展示指定的动作发生变化时，原有权限的授权不会自动取消，用户仍然可以通过之前的授权进行访问。
-+ 之前通过接口创建的数据不会主动删除，连续调用编码相同的创建接口时，需要手动删除之前已经创建的数据，否则会出现 “数据重复，业务处理失败” 的异常信息，但这并不影响我们的鉴权测试。
++ When testing whether authentication passes, slightly modify the custom logic from previous sections to only filter applications, homepages, and menus, removing custom logic for actions and functions. Otherwise, you may not see the "No permission to perform this operation" exception, making it impossible to test if permission authorization is effective.
++ When specified displayed actions change,原有 (original) permission authorizations are not automatically revoked, and users can still access via previous authorizations.
++ Data created via interfaces is not automatically deleted. When continuously calling create interfaces with the same code, manually delete previously created data to avoid "Data duplication, business processing failed" exceptions, though this does not affect authentication testing.
 
 :::
 
-### 3、缺省最末级动作名称
+### 3. Omit the Last-Level Action Name
 
-在上一节我们使用了完整的资源访问路径对请求进行访问，权限在鉴权时首先会对资源访问路径进行有效性的校验：
+In the previous section, we used the complete resource access path for requests. During authentication, the permission first validates the resource access path:
 
-+ 最末级动作名称与当前访问动作名称必须完全一致
-+ 如果最末级动作名称不一致，则强制追加当前访问动作名称到路径中进行校验。
++ The last-level action name must exactly match the current access action name.
++ If the last-level action name does not match, the current access action name is forcibly appended to the path for validation.
 
-那么，类似的请求可以是：
+Thus, a similar request could be:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/SecurityInOinone/1748947059482-0dbf229b-f69d-4233-a2fc-2c410e9ffa34.png)
 
-我们可以看到，虽然我们使用了这样的路径，但鉴权还是通过的：
+We can see that although we used this path, authentication still passes:
 
 ```shell
 /resource.ResourceCountryGroup/redirectCreatePage
 ```
 
-# 五、自定义数据过滤
+# V. Custom Data Filtering
 
-与 动作/函数过滤类似，数据过滤仍然通过 AuthFilterService 进行实现。让我们尝试实现一下下面这些需求：
+Similar to action/function filtering, data filtering is still implemented via AuthFilterService. Let's try to implement the following requirements:
 
-+ 对 “国家分组” 通过创建人进行过滤
-+ 用户只能看到自己创建的数据
++ Filter "Country Groups" by creator
++ Users can only see data they created
 
-下面是一种实现逻辑仅供参考：
+Below is an implementation logic for reference:
 
 ```java
 @Order(88)
@@ -542,17 +542,17 @@ public class CustomAuthFilterService implements AuthFilterService {
 
     @Override
     public AuthResult<String> fetchModelFilterForRead(String model) {
-        // 检查用户是否登录，并获取用户ID
+        // Check if the user is logged in and get the user ID
         Long userId = PamirsSession.getUserId();
         if (userId == null) {
             return null;
         }
         if (ResourceCountryGroup.MODEL_MODEL.equals(model)) {
-            // 获取模型已配置的过滤条件
+            // Get the configured filter conditions for the model
             AuthResult<String> result = defaultAuthFilterService.fetchModelFilterForRead(model);
             if (result.isFetch()) {
                 String rsql = result.getData();
-                // 追加过滤条件
+                // Append filter conditions
                 if (StringUtils.isBlank(rsql)) {
                     rsql = "createUid == " + userId;
                 } else {
@@ -567,8 +567,6 @@ public class CustomAuthFilterService implements AuthFilterService {
 }
 ```
 
-# 六、结束语
+# VI. Conclusion
 
-到了这里，我们关于自定义权限的所有内容就介绍完了。在 Oinone 权限体系中，无疑只有授权和鉴权两个概念，且都是围绕着基于角色的权限控制（RBAC）体系进行设计的。我们只需要对两个接口（`权限节点扩展（PermissionNodeLoadExtendApi）` 和 `权限过滤（AuthFilterService）`）灵活使用，就可以完成几乎任何业务形式的权限管理方案。
-
-
+Here, we conclude the introduction to custom permissions. In Oinone's permission system, there are undoubtedly only two concepts: authorization and authentication, both designed around the Role-Based Access Control (RBAC) system. By flexibly using the two interfaces (`Permission Node Extension (PermissionNodeLoadExtendApi)` and `Permission Filter (AuthFilterService)`), we can implement almost any business-form permission management solution.

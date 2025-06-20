@@ -1,28 +1,28 @@
 ---
-title: 消息队列 API（MQ API）
+title: MQ API
 index: true
 category:
-  - 研发手册
+  - Development Manual
   - Reference
-  - 后端API
+  - Backend API
   - Advance API
 order: 7
 
 ---
-# 一、概述
+# I. Overview
 
-Oinone 消息队列模块提供统一的 API 接口支持 RocketMQ/Kafka/RabbitMQ 三种消息中间件，通过 `NotifyProducer` 和 `NotifyConsumer` 实现生产消费解耦。主要特性：
+The Oinone Message Queue module provides unified API interfaces supporting three message middleware: RocketMQ/Kafka/RabbitMQ, decoupling production and consumption through `NotifyProducer` and `NotifyConsumer`. Key features:
 
-+ **一致性 API**：一套接口适配三种消息中间件
-+ **灵活配置**：通过 YAML 配置动态切换消息队列类型
-+ **消息类型**：支持普通/顺序/事务消息
-+ **可扩展性**：提供发送/消费拦截器机制
++ **Consistent API**: One set of interfaces adapts to three message middleware
++ **Flexible Configuration**: Dynamically switch message queue types via YAML configuration
++ **Message Types**: Supports normal/ordered/transactional messages
++ **Extensibility**: Provides send/consume interceptor mechanisms
 
-# 二、依赖与YAML配置
+# II. Dependencies and YAML Configuration
 
-## （一）Maven 依赖
+## (一) Maven Dependencies
 
-根据实际业务中所使用的消息队列，按需添加对应的依赖项。
+Add corresponding dependencies as needed based on the message queue used in the actual business.
 
 ```xml
 <!-- RocketMQ -->
@@ -44,11 +44,11 @@ Oinone 消息队列模块提供统一的 API 接口支持 RocketMQ/Kafka/RabbitM
 </dependency>
 ```
 
-## （二）YAML配置
+## (二) YAML Configuration
 
-与此主题相关的文档可在 [事件配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#九-事件配置-pamirs-event) 中找到。
+Documentation related to this topic can be found in [Event Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#九-事件配置-pamirs-event).
 
-### 1、基础配置
+### 1. Basic Configuration
 
 ```yaml
 pamirs:
@@ -56,12 +56,12 @@ pamirs:
     enabled: true
     topic-prefix: oinone
     notify-map:
-      system: ROCKETMQ  # 系统消息类型
-      biz: KAFKA       # 业务消息类型
-      logger: RABBITMQ # 日志消息类型
+      system: ROCKETMQ  # System message type
+      biz: KAFKA       # Business message type
+      logger: RABBITMQ # Log message type
 ```
 
-### 2、中间件配置
+### 2. Middleware Configuration
 
 ```yaml
 # RocketMQ
@@ -87,45 +87,45 @@ spring:
     password: oinone
 ```
 
-# 三、核心接口
+# III. Core Interfaces
 
-## （一）NotifyProducer 接口
+## (一) NotifyProducer Interface
 
 ```java
 public interface NotifyProducer<TEMPLATE> {
 
-    // 发送普通消息
+    // Send normal message
     <T> NotifySendResult send(String topic, String tag, T msg);
 
-    // 发送事务消息（RocketMQ 特有）
+    // Send transactional message (RocketMQ specific)
     <T> NotifySendResult sendTx(String topic, String tag, String txGroup, T msg, Object extArg);
 
-    // 发送顺序消息
+    // Send ordered message
     <T> NotifySendResult sendOrderly(String topic, String tag, T msg, String hashKey);
 }
 ```
 
-参数说明：
+Parameter Description:
 
-| **参数**                                            | **类型**                                           | **必填**                                                 | **说明**                                                     |
+| **Parameter**                                            | **Type**                                           | **Required**                                                 | **Description**                                                     |
 | --------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
-| topic   | String | 是           | 消息主题         |
-| tag     | String | 否           | 消息标签         |
-| msg     | Object | 是           | 消息体（需实现 Serializable） |
-| hashKey | String | 顺序消息必填 | 分区键           |
+| topic   | String | Yes           | Message topic         |
+| tag     | String | No           | Message tag         |
+| msg     | Object | Yes           | Message body (needs to implement Serializable) |
+| hashKey | String | Required for ordered messages | Partition key           |
 
 
-返回值 `NotifySendResult` 结构：
+Return value `NotifySendResult` structure:
 
 ```java
 public class NotifySendResult {
-    private boolean success;   // 发送状态
-    private Object notifyResult;  // 消息发送结果
-    private Throwable error;   // 异常信息
+    private boolean success;   // Sending status
+    private Object notifyResult;  // Message sending result
+    private Throwable error;   // Exception information
 }
 ```
 
-## （二）NotifyConsumer 接口
+## (二) NotifyConsumer Interface
 
 ```java
 @FunctionalInterface
@@ -134,13 +134,13 @@ public interface NotifyConsumer<T extends Serializable> {
 }
 ```
 
-# 四、使用示例
+# IV. Usage Examples
 
-## （一）生产者示例
+## (一) Producer Examples
 
-### 1、Producer 获取方式
+### 1. Producer Acquisition Methods
 
-#### 原始实现（硬编码方式）
+#### Original Implementation (Hardcoding Approach)
 
 ```java
 @Autowired
@@ -152,9 +152,9 @@ private KafkaNotifyProducer kafkaNotifyProducer;
 
 public void sendNormalMessage() {
     OrderMessage msg = new OrderMessage("ORDER_001");
-    //方式一：
-    // 问题：消息队列类型硬编码在代码中，耦合度高且缺乏扩展性
-    // 直接使用具体实现类，更换消息中间件需修改代码逻辑
+    // Method 1:
+    // Problem: The message queue type is hardcoded in the code, resulting in high coupling and lack of extensibility
+    // Directly using specific implementation classes requires modifying code logic when changing message middleware
     //NotifySendResult result = rocketMQNotifyProducer.send("oinone-trade", "CREATE", msg);
     //NotifySendResult result = rabbitMQNotifyProducer.send("oinone-trade", "CREATE", msg);
     NotifySendResult result = kafkaNotifyProducer.send("oinone-trade", "CREATE", msg);
@@ -163,40 +163,40 @@ public void sendNormalMessage() {
 
 ```
 
-:::warning 提示：该方式存在问题
+:::warning Note: This approach has issues
 
-1. **强耦合**：消息队列实现类（RocketMQ/RabbitMQ/Kafka）直接注入到业务代码，与具体中间件绑定
-2. **硬编码**：消息队列类型通过变量名或注释写死，无法动态切换
-3. **扩展性差**：新增消息中间件需修改注入代码和发送逻辑，不符合开闭原则
+1. **Strong Coupling**: Message queue implementation classes (RocketMQ/RabbitMQ/Kafka) are directly injected into business code, binding to specific middleware
+2. **Hardcoding**: Message queue types are hardcoded through variable names or comments, unable to switch dynamically
+3. **Poor Extensibility**: Adding new message middleware requires modifying injection code and sending logic, violating the open-closed principle
 
 :::
 
-#### 优化实现（解耦动态化方案）
+#### Optimized Implementation (Decoupled Dynamic Solution)
 
 ```java
 public void sendNormalMessage() {
-    // 方式二：通过业务类型动态获取对应生产者（推荐）
-    // 根据EventConstants中定义的业务键获取适配的生产者实例
+    // Method 2: Dynamically obtain the corresponding producer based on business type (recommended)
+    // Obtain the adapted producer instance based on the business key defined in EventConstants
     NotifySendResult result = EventEngine.get(EventConstants.EVENT_SYS_BIZ_KEY).send("oinone-trade", "CREATE", msg);
-    // 方式三：通过业务上下文获取通用生产者
-    // 适用于需要灵活指定业务类型的场景
+    // Method 3: Obtain a universal producer through the business context
+    // Suitable for scenarios requiring flexible specification of business types
     NotifySendResult result = EventEngine.bizNotifyProducer().send("oinone-trade", "CREATE", msg);
 }
 ```
 
-**核心优势：**
+**Core Advantages:**
 
-+ **解耦中间件**：
-  - 消除对具体`RocketMQNotifyProducer`/`RabbitMQNotifyProducer`的直接依赖
-  - 通过`EventEngine`统一管理生产者实例，业务代码与中间件解耦
-+ **动态适配**：
-  - 支持通过`EventConstants.EVENT_SYS_BIZ_KEY`等业务标识动态匹配生产者
-  - 新增中间件时只需扩展`EventEngine`配置，无需修改业务逻辑
-+ **统一接口**：
-  - 提供`send(String topic, String event, T message)`统一发送接口
-  - 屏蔽不同中间件的 API 差异，降低学习成本
++ **Middleware Decoupling**:
+  - Eliminates direct dependency on specific `RocketMQNotifyProducer`/`RabbitMQNotifyProducer`
+  - Manages producer instances uniformly through `EventEngine`, decoupling business code from middleware
++ **Dynamic Adaptation**:
+  - Supports dynamic matching of producers through business identifiers like `EventConstants.EVENT_SYS_BIZ_KEY`
+  - When adding new middleware, only need to extend `EventEngine` configuration without modifying business logic
++ **Unified Interface**:
+  - Provides a unified sending interface `send(String topic, String event, T message)`
+  - Hides API differences of different middleware, reducing learning costs
 
-### 2、顺序消息发送
+### 2. Ordered Message Sending
 
 ```java
 public void sendOrderlyMessage() {
@@ -205,7 +205,7 @@ public void sendOrderlyMessage() {
 }
 ```
 
-### 3、事务消息发送（RocketMQ）
+### 3. Transactional Message Sending (RocketMQ)
 
 ```java
 @TransactionListener("txGroup")
@@ -213,12 +213,12 @@ public class TransactionListenerImpl implements NotifyTransactionListener {
 
     @Override
     public void executeLocalTransaction(Message msg, Object arg) {
-        // 本地事务执行
+        // Local transaction execution
     }
 
     @Override
     public boolean checkLocalTransaction(MessageExt msg) {
-        // 事务状态检查
+        // Transaction status check
     }
 }
 
@@ -229,53 +229,53 @@ public void sendTransactionMessage() {
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/AdvanceAPI/1d86268e9a59c80224a5277866c89498.svg)
 
-### 4、@Notify 注解发送
+### 4. Sending with @Notify Annotation
 
-#### 注解定义
+#### Annotation Definition
 
 ```java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Notify {
-    String notifyBizType() default "biz";  // 业务类型
-    String topic();                        // 消息主题
-    String tags() default "";              // 消息标签
-    Class<? extends NotifySendCallback> sendCallback() default NotifySendCallback.class; // 发送回调
-    Class<? extends NotifyQueueSelector> querySelector() default NotifyQueueSelector.class; // 队列选择器
-    Class<? extends NotifyTagsGenerator> tagsGenerator() default NotifyTagsGenerator.class; // 标签生成器
+    String notifyBizType() default "biz";  // Business type
+    String topic();                        // Message topic
+    String tags() default "";              // Message tags
+    Class<? extends NotifySendCallback> sendCallback() default NotifySendCallback.class; // Sending callback
+    Class<? extends NotifyQueueSelector> querySelector() default NotifyQueueSelector.class; // Queue selector
+    Class<? extends NotifyTagsGenerator> tagsGenerator() default NotifyTagsGenerator.class; // Tag generator
 }
 ```
 
-| **属性**                                                  | **类型**                                           | **必填**                                       | **默认值**                                                   | **说明**                                                     |
+| **Attribute**                                                  | **Type**                                           | **Required**                                       | **Default Value**                                                   | **Description**                                                     |
 | --------------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| notifyBizType | String | 否 | biz              | 消息业务类型（system/biz/logger） |
-| topic         | String | 是 | -                | 消息主题名称     |
-| tags          | String | 否 | ""               | 静态消息标签     |
-| sendCallback  | Class  | 否 | NotifySendCallback.class | 发送结果回调类   |
-| querySelector | Class  | 否 | NotifyQueueSelector.class | 顺序消息队列选择器 |
-| tagsGenerator | Class  | 否 | NotifyTagsGenerator.class | 动态标签生成器   |
+| notifyBizType | String | No | biz              | Message business type (system/biz/logger) |
+| topic         | String | Yes | -                | Message topic name     |
+| tags          | String | No | ""               | Static message tags     |
+| sendCallback  | Class  | No | NotifySendCallback.class | Sending result callback class   |
+| querySelector | Class  | No | NotifyQueueSelector.class | Ordered message queue selector |
+| tagsGenerator | Class  | No | NotifyTagsGenerator.class | Dynamic tag generator   |
 
 
-#### 普通消息发送
+#### Normal Message Sending
 
 ```java
-//普通用法
+// Normal usage
 @Notify(
     topic = "order_created",
     tags = "PAYMENT",
     notifyBizType = "biz"
 )
 public Order createOrder(OrderRequest request) {
-    // 创建订单业务逻辑
+    // Order creation business logic
     return orderService.create(request);
 }
 ```
 
-#### 动态标签生成
+#### Dynamic Tag Generation
 
 ```java
-// 自定义标签生成器
+// Custom tag generator
 public class OrderTagGenerator implements NotifyTagsGenerator {
     @Override
     public String tagsGenerator(Object result) {
@@ -286,20 +286,20 @@ public class OrderTagGenerator implements NotifyTagsGenerator {
     }
 }
 
-// 使用示例
+// Usage example
 @Notify(
     topic = "order_status_update",
     tagsGenerator = OrderTagGenerator.class
 )
 public void updateOrderStatus(String orderId, OrderStatus status) {
-    // 状态更新逻辑
+    // Status update logic
 }
 ```
 
-#### 顺序消息发送
+#### Ordered Message Sending
 
 ```java
-// 自定义队列选择器
+// Custom queue selector
 public class OrderQueueSelector implements NotifyQueueSelector {
     @Override
     public String hashing(Object result) {
@@ -310,41 +310,41 @@ public class OrderQueueSelector implements NotifyQueueSelector {
     }
 }
 
-// 使用示例
+// Usage example
 @Notify(
     topic = "order_sequence",
     querySelector = OrderQueueSelector.class
 )
 public void processOrderSequence(Order order) {
-// 顺序处理逻辑
+// Ordered processing logic
 }
 ```
 
-## （二）消费者示例
+## (二) Consumer Examples
 
-### 1、@NotifyListener 注解定义
+### 1. @NotifyListener Annotation Definition
 
 ```java
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface NotifyListener {
-    String topic();                          // 必填，监听主题
-    String tags() default "*";               // 消息标签过滤
-    String group() default "";               // 消费者组
-    ConsumerType consumerType() default ConsumerType.CONCURRENTLY; // 消费模式
+    String topic();                          // Required, listening topic
+    String tags() default "*";               // Message tag filtering
+    String group() default "";               // Consumer group
+    ConsumerType consumerType() default ConsumerType.CONCURRENTLY; // Consumption mode
 }
 ```
 
-| **参数**                                                     | **类型**                                           | **默认值**                                               | **说明**                                                     |
+| **Parameter**                                                     | **Type**                                           | **Default Value**                                               | **Description**                                                     |
 | ------------------------------------------------------------ | -------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
-| **topic**        | String | -            | 监听的 Topic 名称（支持通配符） |
-| **tags**         | String | *            | 标签过滤表达式（RocketMQ 特有） |
-| **group**        | String | -            | 消费者组 ID（Kafka 强制要求） |
-| **consumerType** | enum   | CONCURRENTLY | 消费模式：   - `CONCURRENTLY`<br/>: 并发消费   - `ORDERLY`<br/>: 顺序消费 |
+| **topic**        | String | -            | Listened Topic name (supports wildcards) |
+| **tags**         | String | *            | Tag filtering expression (RocketMQ specific) |
+| **group**        | String | -            | Consumer group ID (Kafka mandatory) |
+| **consumerType** | enum   | CONCURRENTLY | Consumption mode:   - `CONCURRENTLY`<br/>: Concurrent consumption   - `ORDERLY`<br/>: Ordered consumption |
 
 
-### 2、普通消费示例
+### 2. Normal Consumption Example
 
 ```java
 @Bean
@@ -356,12 +356,12 @@ public @interface NotifyListener {
 public NotifyConsumer<OrderMessage> orderCreateConsumer() {
     return message -> {
         OrderMessage order = message.getPayload();
-        // 处理订单创建逻辑
+        // Process order creation logic
     };
 }
 ```
 
-### 3、消费幂等处理示例
+### 3. Idempotent Consumption Handling Example
 
 ```java
 @Bean
@@ -370,22 +370,22 @@ public NotifyConsumer<OrderMessage> orderCreateConsumer() {
     return message -> {
         String msgId = message.getHeaders().getId().toString();
         if (redis.exists(msgId)) {
-            return; // 已处理
+            return; // Already processed
         }
-        // 业务处理
+        // Business processing
         redis.setex(msgId, 3600);
         OrderMessage order = message.getPayload();
-        // 处理订单创建逻辑
+        // Process order creation logic
     };
 }
 ```
 
-# 五、高级特性
+# V. Advanced Features
 
-## （一）消息拦截器
+## (一) Message Interceptors
 
 ```java
-// 发送前置处理
+// Pre-sending processing
 @Component
 public class AuthCheckSendBefore implements NotifySendBefore {
     @Override
@@ -395,7 +395,7 @@ public class AuthCheckSendBefore implements NotifySendBefore {
     }
 }
 
-// 消费后置处理
+// Post-consumption processing
 @Component
 public class MetricsCollector implements NotifyConsumeAfter {
     @Override
@@ -405,26 +405,23 @@ public class MetricsCollector implements NotifyConsumeAfter {
 }
 ```
 
-# 六、不同中间件差异处理
+# VI. Differences Handling Among Different Middleware
 
-| **特性**                                             | **RocketMQ**                                         | **Kafka**                                            | **RabbitMQ**                                         |
+| **Feature**                                             | **RocketMQ**                                         | **Kafka**                                            | **RabbitMQ**                                         |
 | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| 事务消息 | 支持     | 不支持   | 不支持   |
-| 顺序消息 | 严格顺序 | 分区顺序 | 队列顺序 |
-| 消息回溯 | 支持     | 时间偏移 | 不支持   |
-| 性能     | 高吞吐   | 极高吞吐 | 中等     |
+| Transactional Message | Supported     | Not supported   | Not supported   |
+| Ordered Message | Strict order | Partition order | Queue order |
+| Message Backtracking | Supported     | Time offset | Not supported   |
+| Performance     | High throughput   | Extremely high throughput | Medium     |
 
 
-# 七、常见问题
+# VII. Common Questions
 
-**Q：如何切换消息中间件？**
-A：修改 `pamirs.event.notify-map` 配置并更换对应依赖即可，无需修改业务代码
+**Q: How to switch message middleware?**  
+A: Modify the `pamirs.event.notify-map` configuration and replace the corresponding dependencies, no need to modify business code.
 
-**Q：顺序消息如何保证？**
-A：使用 `sendOrderly` 方法，相同 hashKey 的消息会路由到同一队列
+**Q: How to ensure ordered messages?**  
+A: Use the `sendOrderly` method, messages with the same hashKey will be routed to the same queue.
 
-**Q：事务消息实现原理？**
-A：RocketMQ 采用两阶段提交，先发送预备消息，本地事务执行成功后提交
-
-
-
+**Q: What is the principle of transactional message implementation?**  
+A: RocketMQ uses two-phase commit, first sending a prepared message, and committing after the local transaction executes successfully.

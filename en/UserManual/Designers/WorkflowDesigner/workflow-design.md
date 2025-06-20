@@ -1,5 +1,5 @@
 ---
-title: Process Design
+title: Workflow Design
 index: true
 category:
   - User Manual
