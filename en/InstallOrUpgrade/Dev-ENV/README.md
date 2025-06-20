@@ -1,20 +1,20 @@
 ---
-title: 环境准备
+title: Environment Preparation
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - Installation and Upgrade
+  - Environment Preparation
 dir:
   link: true
   order: 1
 prev:
-  text: 安装与升级
+  text: Installation and Upgrade
   link: /en/InstallOrUpgrade/README.md
 next:
-  text: JDK安装与注意事项
+  text: JDK Installation and Precautions
   link: /en/InstallOrUpgrade/Dev-ENV/JDK-setup.md
 ---
-# 一、运行环境
+# I. Runtime Environment
 
 <div style="display: flex; gap: 20px; margin: 20px 0;">
 
@@ -22,36 +22,36 @@ next:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/jdk.png)
 
-**JDK**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">1.8 221+</span>
+**JDK**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">1.8 221+</span>
 
-Java基础运行环境。用于编译、启动设计器与业务应用。
+Java basic runtime environment. Used for compiling and starting the designer and business applications.
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/JDK-setup.md)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/JDK-setup.md)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/mysql.png)
 
-**MySQL**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">8.0.26+</span>
+**MySQL**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">8.0.26+</span>
 
-用于存储模型相关元数据与业务数据。
+Used to store model-related metadata and business data.
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/rocketMQ.png)
 
-**RocketMQ**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">4.7.1+</span>
+**RocketMQ**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">4.7.1+</span>
 
-Apache出品的一款具有高吞吐、低延迟的分布式消息队列中间件。用于异步解耦，事件驱动等场景。
+A high-throughput, low-latency distributed message queue middleware developed by Apache. Used for scenarios such as asynchronous decoupling and event-driven.
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/RocketMQ-setup.md)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/RocketMQ-setup.md)
   </div>
 </div>
 
@@ -61,34 +61,34 @@ Apache出品的一款具有高吞吐、低延迟的分布式消息队列中间�
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/redis.png?x-oss-process=image/resize,h_196)
 
-**Redis**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">5.0.2</span>
+**Redis**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">5.0.2</span>
 
-高性能内存数据库，用于缓存热点元数据、业务数据，还可用于分布式锁。
+High-performance in-memory database, used for caching hot metadata and business data, and can also be used for distributed locks.
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/Redis-setup.md)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Redis-setup.md)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/zookeeper.png?x-oss-process=image/resize,h_196)
 
-**Zookeeper**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">3.5.8+ </span>
+**Zookeeper**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">3.5.8+ </span>
 
-分布式协调服务。用于注册分发远程服务、分布式锁、事件监听等场景。
+Distributed coordination service. Used for scenarios such as registering and distributing remote services, distributed locks, and event listening.
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/Zookeeper-setup.md)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Zookeeper-setup.md)
   </div>
 
 </div>
 
 
 
-# 二、研发环境
-如果基于数式Oinone以代码形式开发系统，在运行环境基础上，额外安装研发涉及环境
+# II. Development Environment
+If developing a system in code form based on Oinone, based on the runtime environment, additionally install the environment involved in development.
 
-## （一）后端基础环境
+## (I) Backend Basic Environment
 
 <div style="display: flex; gap: 20px; margin: 20px 0;">
 
@@ -96,32 +96,32 @@ Apache出品的一款具有高吞吐、低延迟的分布式消息队列中间�
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/idea.png)
 
-**IDEA**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">推荐2020.3+</span>
+**IDEA**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">Recommended 2020.3+</span>
 
-Java集成开发环境, 可选用Ultimate或者Community版本。
+Java integrated development environment, which can choose Ultimate or Community version.
 
-:::info 注意
+:::info Note
 
-1.禁用Lombok插件
+1. Disable the Lombok plugin
 
-2.安装oinone插件
+2. Install the oinone plugin
 
 :::
 
-[安装与注意事项](/en/DevManual/Tutorials/setup-guide.md#三、后端额外工具)
+[Installation and Precautions](/en/DevManual/Tutorials/setup-guide.md#III. Additional Backend Tools)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/git.png)
 
-**Git**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">推荐2020.3+</span>
+**Git**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">Recommended 2020.3+</span>
 
-源码版本管理工具
+Source code version management tool
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/Git-setup.md)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Git-setup.md)
 
   </div>
 
@@ -129,12 +129,12 @@ Java集成开发环境, 可选用Ultimate或者Community版本。
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/maven.png)
 
-**Maven**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">推荐3.6+</span>
+**Maven**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">Recommended 3.6+</span>
 
-工程、构建、依赖管理工具
+Project, build, and dependency management tool
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/Maven-setup.md)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Maven-setup.md)
 
   </div>
 
@@ -146,9 +146,9 @@ Java集成开发环境, 可选用Ultimate或者Community版本。
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/mysql.png?x-oss-process=image/resize,h_196)
 
-**DB GUI工具**<span style="background-color:#e2e3e5; color:#383d41; padding:2px 6px; border-radius:4px;">可选</span>
+**DB GUI Tool**<span style="background-color:#e2e3e5; color:#383d41; padding:2px 6px; border-radius:4px;">Optional</span>
 
-Datagrip、MySQL Workbench、DBeaver或者其他支持发起SQL查询的工具。
+Datagrip, MySQL Workbench, DBeaver, or other tools that support发起SQL queries.
 
   </div>
 
@@ -156,9 +156,9 @@ Datagrip、MySQL Workbench、DBeaver或者其他支持发起SQL查询的工具�
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/graphQL.png?x-oss-process=image/resize,h_196)
 
-**GraphQL测试工具**<span style="background-color:#e2e3e5; color:#383d41; padding:2px 6px; border-radius:4px;">可选</span>
+**GraphQL Testing Tool**<span style="background-color:#e2e3e5; color:#383d41; padding:2px 6px; border-radius:4px;">Optional</span>
 
-Insomnia、Postman或者其他支持发起GQL请求的工具。
+Insomnia, Postman, or other tools that support发起GQL requests.
 
   </div>
 
@@ -166,7 +166,7 @@ Insomnia、Postman或者其他支持发起GQL请求的工具。
 
 
 
-## （二）前端基础环境
+## (II) Frontend Basic Environment
 
 <div style="display: flex; gap: 20px; margin: 20px 0;">
 
@@ -174,12 +174,12 @@ Insomnia、Postman或者其他支持发起GQL请求的工具。
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/node.png)
 
-**Node.js**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
-**版本**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">12.12.0+</span>
+**Node.js**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
+**Version**<span style="background-color:#d4edda; color:#155724; padding:2px 6px; border-radius:4px;">12.12.0+</span>
 
-一个基于 Chrome V8 引擎的高性能 JavaScript 运行时，支持非阻塞 I/O，广泛用于构建高并发的后端服务和微服务架构。
+A high-performance JavaScript runtime based on the Chrome V8 engine, supporting non-blocking I/O, widely used to build highly concurrent backend services and microservice architectures.
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md)
 
   </div>
 
@@ -187,13 +187,13 @@ Insomnia、Postman或者其他支持发起GQL请求的工具。
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/vue-cli.png)
 
-**vue-cli**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">必须</span>
+**vue-cli**<span style="background-color:#f8d7da; color:#721c24; padding:2px 6px; border-radius:4px;">Mandatory</span>
 
-vue脚手架工具
+Vue scaffolding tool
 
-Vue.js 官方提供的脚手架工具，支持项目快速初始化、配置管理和插件扩展，简化 Vue 项目的开发与构建流程
+The official scaffolding tool provided by Vue.js, which supports rapid project initialization, configuration management, and plugin extension, simplifying the development and construction process of Vue projects.
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#三、进阶)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#III. Advanced)
 
   </div>
 
@@ -201,38 +201,30 @@ Vue.js 官方提供的脚手架工具，支持项目快速初始化、配置管�
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/nvm.png)
 
-**nvm**<span style="background-color:#e2e3e5; color:#383d41; padding:2px 6px; border-radius:4px;">可选</span>
+**nvm**<span style="background-color:#e2e3e5; color:#383d41; padding:2px 6px; border-radius:4px;">Optional</span>
 
-方便Node.js版本管理
+Convenient Node.js version management
 
-Node.js 版本管理工具，支持在同一设备上安装、切换和管理多个 Node.js 版本。
+Node.js version management tool, which supports installing, switching, and managing multiple Node.js versions on the same device.
 
-[安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#三、进阶)
+[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#III. Advanced)
 
   </div>
 
 </div>
 
-:::info 注意
+:::info Note
 
-社区版mvn的settings文件，见数式Oinone开源社区群公告
+For the settings file of the community version mvn, please refer to the announcement in the Oinone open source community group.
 
-企业版mvn的settings，请找数式Oinone的员工
-
-:::
-
-:::info 注意
-
-社区版npm的源配置，见数式Oinone开源社区群公告
-
-企业版npm的源配置，请找数式Oinone的员工
+For the settings of the enterprise version mvn, please contact Oinone staff.
 
 :::
 
+:::info Note
 
+For the source configuration of the community version npm, please refer to the announcement in the Oinone open source community group.
 
-##
+For the source configuration of the enterprise version npm, please contact Oinone staff.
 
-
-
-
+:::

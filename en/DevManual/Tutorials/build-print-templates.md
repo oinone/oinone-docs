@@ -1,11 +1,11 @@
 ---
-title: 打印模版（Build Print Templates）
+title: Build Print Templates
 index: false
 category:
-  - 研发手册
-  - 教程
+  - Development Manual
+  - Tutorials
 order: 8
 
 ---
 
-The document is currently in preparation, please stay tuned ...
+This document is currently under preparation. Please stay tuned...

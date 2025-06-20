@@ -1,12 +1,12 @@
 ---
-title: 贡献手册
+title: Contribution Manual
 index: false
 category:
-  - 贡献手册
+  - Contribution Manual
 dir:
   link: false
   order: 5
 next:
-  text: 贡献者许可协议模板
+  text: Contributor License Agreement Template
   link: /en/Contribute/cla.md
 ---

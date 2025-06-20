@@ -1,67 +1,66 @@
 ---
-title: 组织架构
+title: Organizational Structure
 index: true
 category:
-  - 用户手册
+  - User Manual
 order: 3
 ---
-# 一、部门
-### 1.功能介绍
-支持部门的创建和管理，方便对公司内部组织架构进行划分。
+# I. Departments
+### 1. Function Introduction
+Supports the creation and management of departments, facilitating the division of the company's internal organizational structure.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对部门进行筛选。
-+ 新增：点击「创建」，输入所需的配置信息并保存，即可成功创建新的部门。
-+ 编辑：点击「编辑」，即可对部门的相关信息进行更新或修改。
+### 2. Operation Methods
++ Filtering: Enter or select the corresponding filtering conditions according to the actual scenario requirements to filter the departments.
++ New Creation: Click "Create", enter the required configuration information and save it to successfully create a new department.
++ Editing: Click "Edit" to update or modify the relevant information of the department.
 
-:::warning 提示
+:::warning Notice
 
-在新增或编辑部门时，可为该部门设置所包含的岗位。岗位的具体相关信息，需在“组织架构-岗位”模块中进行维护和管理。
+When creating or editing a department, you can set the positions included in the department. The specific relevant information of positions needs to be maintained and managed in the "Organizational Structure - Positions" module.
 
 :::
 
-+ 删除：选中某一部门后，点击「删除」，即可将该部门删除。
-+ 导入：支持利用文件导入部门信息，可下载导入模板，当信息填写完整后上传文件完成导入
-+ 导出：支持导出部门，可以选择使用预设的导出模板，也可以根据实际需求自定义导出字段
-+ 详情：点击「详情」，可查看所选部门的详细信息。
++ Deletion: Select a department and click "Delete" to remove the department.
++ Import: Supports importing department information using a file. You can download the import template, fill in the information completely, and then upload the file to complete the import.
++ Export: Supports exporting departments. You can choose to use the preset export template or customize the export fields according to actual needs.
++ Details: Click "Details" to view the detailed information of the selected department.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/organizational%20structure/1.png)
 
-# 二、岗位
-### 1.功能介绍
-支持各部门岗位的创建和管理，用于定义员工在公司中的职责和职位。
+# II. Positions
+### 1. Function Introduction
+Supports the creation and management of positions in each department, used to define employees' responsibilities and positions in the company.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对岗位进行筛选。
-+ 新增：点击「创建」，输入所需的配置信息并保存，即可成功创建新的岗位。
-+ 编辑：点击「编辑」，即可对岗位的相关信息进行更新或修改。
-+ 删除：选中某一岗位后，点击「删除」，即可将该岗位删除。
-+ 导入：支持利用文件导入岗位信息，可下载导入模板，当信息填写完整后上传文件完成导入
-+ 导出：支持导出岗位，可以选择使用预设的导出模板，也可以根据实际需求自定义导出字段
-+ 详情：点击「详情」，可查看所选岗位的详细信息。
+### 2. Operation Methods
++ Filtering: Enter or select the corresponding filtering conditions according to the actual scenario requirements to filter the positions.
++ New Creation: Click "Create", enter the required configuration information and save it to successfully create a new position.
++ Editing: Click "Edit" to update or modify the relevant information of the position.
++ Deletion: Select a position and click "Delete" to remove the position.
++ Import: Supports importing position information using a file. You can download the import template, fill in the information completely, and then upload the file to complete the import.
++ Export: Supports exporting positions. You can choose to use the preset export template or customize the export fields according to actual needs.
++ Details: Click "Details" to view the detailed information of the selected position.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/organizational%20structure/2.png)
 
-# 三、员工
-### 1.功能介绍
-支持员工的创建和管理，包括员工的基本信息、所属部门、岗位等。
+# III. Employees
+### 1. Function Introduction
+Supports the creation and management of employees, including employees' basic information, affiliated departments, positions, etc.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对员工进行筛选。
-+ 新增：点击「创建」，输入所需的配置信息并保存，即可成功创建新的员工。
-+ 编辑：点击「编辑」，即可对员工的相关信息进行更新或修改。
+### 2. Operation Methods
++ Filtering: Enter or select the corresponding filtering conditions according to the actual scenario requirements to filter the employees.
++ New Creation: Click "Create", enter the required configuration information and save it to successfully create a new employee.
++ Editing: Click "Edit" to update or modify the relevant information of the employee.
 
-:::warning 提示
+:::warning Notice
 
-+ 在新增或编辑员工时，可为其指定所属的部门与岗位。部门的相关信息需在「组织架构-部门」中维护，岗位的相关信息则需在「组织架构-岗位」中维护。
-+ 员工可绑定至已有的用户账户，或为其创建一个新的用户账户。用户的相关信息可在「管理中心-用户」中进行维护与管理。
++ When creating or editing an employee, you can assign the affiliated department and position to the employee. The relevant information of departments needs to be maintained in "Organizational Structure - Departments", and the relevant information of positions needs to be maintained in "Organizational Structure - Positions".
++ An employee can be bound to an existing user account or a new user account can be created for the employee. The relevant information of users can be maintained and managed in "Management Center - Users".
 
 :::
 
-+ 删除：选中某一员工后，点击「删除」，即可将该员工删除。
-+ 导入：支持利用文件导入员工信息，可下载导入模板，当信息填写完整后上传文件完成导入
-+ 导出：支持导出员工，可以选择使用预设的导出模板，也可以根据实际需求自定义导出字段
-+ 详情：点击「详情」，可查看所选员工的详细信息。
++ Deletion: Select an employee and click "Delete" to remove the employee.
++ Import: Supports importing employee information using a file. You can download the import template, fill in the information completely, and then upload the file to complete the import.
++ Export: Supports exporting employees. You can choose to use the preset export template or customize the export fields according to actual needs.
++ Details: Click "Details" to view the detailed information of the selected employee.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/organizational%20structure/3.png)
-

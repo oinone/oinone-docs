@@ -1,766 +1,763 @@
 ---
-title: 节点动作
+title: Node Actions
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 3
 next:
-  text: 数据可视化(Data Visualization)
-  link: /en/UserManual/Designers/DataVisualization/README.md
+  text: Data Visualization
+  link: /en-us/UserManual/Designers/DataVisualization/README.md
 ---
-# 一、触发节点
-新增的流程设计页面默认包含两个核心节点：一个是流程的触发节点，用于明确流程启动的条件；另一个是流程的结束节点，用于标识流程的终止。
+# I. Trigger Nodes
+The newly added process design page by default includes two core nodes: one is the process trigger node, used to define the conditions for starting the process; the other is the process end node, used to mark the termination of the process.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/cf.png)
 
 :::
 
-流程的触发方式共有三种，分别是：模型触发、定时触发以及日期触发，以满足不同场景的需求。
+There are three ways to trigger a process, namely: model trigger, scheduled trigger, and date trigger, to meet the needs of different scenarios.
 
-:::info 注意
+:::info Note
 
-+ 若未设置流程触发节点，将无法继续添加其他后续节点，并且流程也无法发布。
-+ 当触发节点配置完毕后，必须确保触发节点与结束节点之间至少存在一个节点动作，否则流程同样无法发布。
-
-:::
-
-+ 模型触发：适用于当模型中的数据字段发生变化时，自动触发流程的场景，例如员工请假审批流程。
-    - 选择应用：可以选择流程所要触发的模型所属的应用。
-    - 选择模型：可选择所选应用下含有的模型。
-    - 触发场景：可选择当模型中的数据发生增加、删除或修改时触发流程。
-    - 选择更新字段：当触发包括更新数据时显示该属性。当设置的字段更新时才会触发流程
-    - 筛选条件：可以设置数据的具体条件，只有当数据更新满足这些条件时，流程才会被触发。
-    - 开启代码手动触发：开启后，可允许利用代码手动触发流程。
-:::warning 提示
-
-有关筛选条件中自定义表达式的填写，可以查看「自定义表达式」文档。
++ If the process trigger node is not set, you cannot continue to add other subsequent nodes, and the process cannot be published.
++ After the trigger node is configured, there must be at least one node action between the trigger node and the end node; otherwise, the process cannot be published.
 
 :::
 
-:::info 注意
++ Model Trigger: Suitable for scenarios where the process is automatically triggered when the data fields in a model change, such as an employee leave approval process.
+    - Select Application: You can choose the application to which the model that the process is triggered by belongs.
+    - Select Model: You can choose the models contained in the selected application.
+    - Trigger Scenario: You can choose to trigger the process when data in the model is added, deleted, or modified.
+    - Select Updated Fields: This property is displayed when the trigger includes data updates. The process will only be triggered when the set fields are updated.
+    - Filter Conditions: You can set specific conditions for the data. The process will only be triggered when the data updates meet these conditions.
+    - Enable Manual Code Trigger: After enabling, you can use code to manually trigger the process.
+:::warning Tip
 
-若不选择更新字段或筛选条件，则模型中任意字段发生设置场景变化时都会触发流程。
+For the filling of custom expressions in the filter conditions, you can refer to the "Custom Expressions" document.
 
 :::
 
-:::tip 举例
+:::info Note
 
-选择流程触发方式为模型触发，当在模型中新增数据时触发工作流的运行
+If you do not select updated fields or filter conditions, the process will be triggered when any field in the model changes according to the set scenario.
+
+:::
+
+:::tip Example
+
+Select the model trigger as the process trigger method, and trigger the workflow when new data is added to the model.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/mxcf.gif)
 
 :::
 
-+ 定时触发：适用于周期性调用流程的场景，如仓库周期性盘点流程。
-    - 选择开始时间：可设置流程第一次执行的时间。
-    - 循环周期间隔：可自定义循环周期的间隔，需输入数字
-    - 选择循环周期：可选择周期，包括分钟、小时、天、周、月、年
++ Scheduled Trigger: Suitable for scenarios where the process is called periodically, such as a warehouse periodic inventory process.
+    - Select Start Time: You can set the time when the process is executed for the first time.
+    - Cycle Interval: You can customize the interval of the cycle. You need to enter a number.
+    - Select Cycle Period: You can choose the period, including minutes, hours, days, weeks, months, and years.
 
-:::info 注意
+:::info Note
 
-当选择周期为周时，当前周选中的日期也会执行流程。
+When the period is set to weeks, the process will also be executed on the selected days of the current week.
 
-如：
+For example:
 
-+ 开始时间：2022-01-14（周四）
-+ 循环周期间隔：1周，且自定义设置为周一到周五
++ Start Time: January 14, 2022 (Thursday)
++ Cycle Interval: 1 week, and custom settings are from Monday to Friday.
 
-则2022-01-15（本周五）也会执行流程操作。
+Then the process operation will also be executed on January 15, 2022 (this Friday).
 
 :::
 
-:::tip 举例
+:::tip Example
 
-选择流程触发方式为定时触发，每月15日定时触发
+Select the scheduled trigger as the process trigger method, and trigger it on the 15th of each month.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/dscf.gif)
 
 :::
 
-+ 日期触发：适用于利用模型中的日期时间字段触发流程的场景，如给员工发生日祝福流程。
-    - 选择应用：可以选择流程所要触发的模型所属的应用。
-    - 选择模型：可选择所选应用下含有的模型。
-    - 指定日期时间字段：可选择所选模型下包含的日期类型字段或日期时间类型字段。
-    - 指定时刻：可指定触发的时刻。
-    - 选择开始时间：可选择准时以指定时刻立即触发流程或提前/延时触发流程
-        * 时间偏移值：可设置偏移值
-        * 时间偏移单位：可设置偏移值的单位，包括分钟、小时、天
-    - 循环周期：可选择周期，包括不循环、每年、每月
-    - 筛选条件：可以设置数据变化的具体条件，只有当数据更新满足这些条件时，流程才会被触发。
++ Date Trigger: Suitable for scenarios where the process is triggered by using the date and time fields in a model, such as a process of sending birthday wishes to employees.
+    - Select Application: You can choose the application to which the model that the process is triggered by belongs.
+    - Select Model: You can choose the models contained in the selected application.
+    - Specify Date and Time Field: You can choose the date-type or date-time-type fields contained in the selected model.
+    - Specify Time: You can specify the trigger time.
+    - Select Start Time: You can choose to trigger the process immediately at the specified time or trigger it in advance or delay it.
+        * Time Offset Value: You can set the offset value.
+        * Time Offset Unit: You can set the unit of the offset value, including minutes, hours, and days.
+    - Cycle Period: You can choose the period, including no cycle, annually, and monthly.
+    - Filter Conditions: You can set specific conditions for the data changes. The process will only be triggered when the data updates meet these conditions.
 
-:::warning 提示
+:::warning Tip
 
-有关筛选条件中自定义表达式的填写，可以查看「自定义表达式」文档。
+For the filling of custom expressions in the filter conditions, you can refer to the "Custom Expressions" document.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-选择流程触发方式为日期触发，利用“销售数据”模型的日期字段进行每月循环执行
+Select the date trigger as the process trigger method, and use the date field of the "Sales Data" model to execute the process monthly.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/rqcf.gif)
 
 :::
 
-# 二、流程节点
-## （一）审批
-若当前流程需要审批时，可在流程中加入审批节点。
+# II. Process Nodes
+## (I) Approval
+If the current process requires approval, you can add an approval node to the process.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/sp1.gif)
 
+:::
 
+:::info Note
+
+The approval node can only be placed on the process link where there is data to be approved; otherwise, the configuration will not succeed.
 
 :::
 
-:::info 注意
+The following are the attributes included in the approval node. You can view them by clicking on the node:
 
-审批节点只能放置在有数据可审批的流程链路上，否则无法配置成功
++ Dynamic Form: If you enable the dynamic form, it will match the corresponding task node with the same name as the node, and then jump to the corresponding form.
 
-:::
+    :::warning Tip
 
-以下为审批节点所包含的属性，点击节点即可显示：
-
-+ 动态表单：若开启动态表单，将会去匹配与节点名称一致的对应任务节点，从而跳转至对应表单
-
-    :::warning 提示
-
-    有关动态表单的详细信息和查看「工作流」文档
+    For detailed information about the dynamic form, refer to the "Workflow" document.
 
     :::
 
-    - 数据来源：开启动态表单时显示该属性。数据来源包括在审批节点之前所有能获取到的数据。
+    - Data Source: This attribute is displayed when the dynamic form is enabled. The data source includes all the data that can be obtained before the approval node.
 
-    :::info 注意
+    :::info Note
 
-    当数据来源模型与动态表单函数所属模型不一致时，当前节点作为数据源。
+    When the data source model is inconsistent with the model to which the dynamic form function belongs, the current node serves as the data source.
 
     :::
 
-    - 动态表单函数：开启动态表单时显示该属性。即获取动态表单时执行的函数。
-    - 审批模型：关闭动态表单时显示该属性。可以选择审批节点之前所有可获取数据的对应模型。
-    - 选择视图：关闭动态表单时显示该属性。可以在审批模型下选择视图类型为表单的页面。
-+ 数据保存方式：可以设置节点数据的保存方式，包括节点执行完毕后立即保存、不保存数据，以及整个流程执行完毕后再保存数据。
+    - Dynamic Form Function: This attribute is displayed when the dynamic form is enabled. It is the function executed when obtaining the dynamic form.
+    - Approval Model: This attribute is displayed when the dynamic form is disabled. You can choose the corresponding model of all the data that can be obtained before the approval node.
+    - Select View: This attribute is displayed when the dynamic form is disabled. You can choose a page with a form view type under the approval model.
++ Data Saving Method: You can set the method of saving the node data, including saving immediately after the node is executed, not saving the data, and saving the data after the entire process is executed.
 
-:::tip 举例
+:::tip Example
 
-选择工作流触发时的模型为审批模型，并选择该模型下的审批视图（已在界面设计器中设计完毕），且当该节点执行完毕后就保存数据
+Select the model at the time of workflow trigger as the approval model, select the approval view under this model (which has been designed in the interface designer), and save the data after the node is executed.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/sp2.gif)
 
 :::
 
-+ 添加审批人：可以在个人、部门、角色和模型相关的字段中选择，允许多选。
-    - 自定义审批人：当系统可选审批人无法满足要求时，可通过代码的方式自定义添加审批人
-        * 审批人数据节点：包括在审批节点之前所有能获取到的数据。
-        * 选择自定义函数：即通过代码方式自定义审批人的函数。
-+ 多人审批时的审批方式：当存在审批人显示该属性。包含或签与会签两种方式。
-    - 或签：只需一名审批人同意或拒绝，即可决定审批结果。当审批结束后其他审批人无法进入审批操作，但是会弹出消息提示审批结果。
-    - 会签：包括两种方式，一种是“所有人同意才为同意，一人拒绝即为拒绝”，另一种是“一人同意即为同意，所有人拒绝才为拒绝”。
-    - 自定义审批方式：当系统可选审批方式无法满足要求时，可通过代码的方式自定义添加审批方式
-        * 审批方式数据节点：包括在审批节点之前所有能获取到的数据。
-        * 选择自定义函数：即通过代码方式自定义审批方式的函数。
++ Add Approvers: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed.
+    - Custom Approvers: When the system's available approvers cannot meet your requirements, you can customize the addition of approvers through code.
+        * Approver Data Node: It includes all the data that can be obtained before the approval node.
+        * Select Custom Function: It is the function to customize approvers through code.
++ Approval Method for Multiple Approvers: This attribute is displayed when there are approvers. It includes two methods: any-sign and all-sign.
+    - Any-Sign: Only one approver's approval or rejection is needed to determine the approval result. After the approval is completed, other approvers cannot enter the approval operation, but they will receive a message prompt about the approval result.
+    - All-Sign: It includes two methods. One is "approval is only valid when all approvers agree, and rejection is valid when one approver rejects"; the other is "approval is valid when one approver agrees, and rejection is only valid when all approvers reject".
+    - Custom Approval Method: When the system's available approval methods cannot meet your requirements, you can customize the addition of an approval method through code.
+        * Approval Method Data Node: It includes all the data that can be obtained before the approval node.
+        * Select Custom Function: It is the function to customize the approval method through code.
 
-:::info 注意
+:::info Note
 
-+ 当某人在不同类型人员在选择时被重复选中，只会收到一次审批的待办。
-+ 若为多人审批，审批时同步进行的
++ If a person is selected repeatedly among different types of personnel, they will only receive one approval pending task.
++ In the case of multiple approvers, the approvals are carried out synchronously.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-添加两名审批人，角色为“FL-Role”与“领导”，并将多人审批时的审批方式设置为会签（所有人同意才为同意，一人拒绝即为拒绝）
+Add two approvers with the roles of "FL-Role" and "Leader", and set the approval method for multiple approvers to all-sign (approval is only valid when all approvers agree, and rejection is valid when one approver rejects).
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/sp3.gif)
 
 :::
 
-+ 审批截止：可以为当前审批节点设置截止规则，以确保审批流程的及时进行。
-    - 截止规则：截止规则有三种选择，包括指定日期时间、限制时长、指定字段值。
-        * 当选择指定日期时间时，需要设置具体的截止日期。
-        * 当选择限制时长时，可以设定时间长度及其单位。
-        * 选择指定字段值时，可以选择日期或日期时间两种类型的字段。当选择日期字段时，需指定触发的时刻
-    - 截止前提醒：可以选择是否在审批截止前提醒审批人，以确保审批人能够及时处理。
-        * 截止提醒时间与单位：可可以设置截止时间前提醒的具体时间与单位。
-        * 截止提醒内容：提醒内容支持自定义，以满足不同场景的需求。
++ Approval Deadline: You can set a deadline rule for the current approval node to ensure the timely progress of the approval process.
+    - Deadline Rule: There are three options for the deadline rule, including specifying a date and time, limiting the duration, and specifying a field value.
+        * When specifying a date and time, you need to set the specific deadline.
+        * When limiting the duration, you can set the time length and its unit.
+        * When specifying a field value, you can choose a field of date or date-time type. When choosing a date field, you need to specify the trigger time.
+    - Reminder Before Deadline: You can choose whether to remind the approver before the approval deadline to ensure that the approver can handle it in time.
+        * Deadline Reminder Time and Unit: You can set the specific time and unit of the reminder before the deadline.
+        * Deadline Reminder Content: The reminder content supports customization to meet the needs of different scenarios.
 
-:::tip 举例
+:::tip Example
 
-为审批流程设置5天的限制时长，并配置相应的提醒时间及提醒内容。
+Set a 5-day duration limit for the approval process, and configure the corresponding reminder time and reminder content.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/sp4.gif)
 
 :::
 
-+ 添加抄送人：可以在个人、部门、角色和模型相关的字段中选择，允许多选。抄送人可查看审批信息，但无法对其进行操作。
-    - 自定义抄送人：当系统可选抄送人无法满足要求时，可通过代码的方式自定义添加抄送人
-        * 抄送人数据节点：包括在审批节点之前所有能获取到的数据。
-        * 选择自定义函数：即通过代码方式自定义抄送人的函数。
-+ 已读确认：若开启此功能，在抄送人查看审批进展时会展示“已读”按钮
-+ 时序：抄送内容发送的时机，包括在节点开始时、节点结束时，审批同意时与审批拒绝时。
++ Add Copy Recipients: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed. Copy recipients can view the approval information but cannot operate on it.
+    - Custom Copy Recipients: When the system's available copy recipients cannot meet your requirements, you can customize the addition of copy recipients through code.
+        * Copy Recipient Data Node: It includes all the data that can be obtained before the approval node.
+        * Select Custom Function: It is the function to customize copy recipients through code.
++ Read Confirmation: If you enable this function, a "Read" button will be displayed when the copy recipient views the approval progress.
++ Timing: The timing of sending the copied content includes at the start of the node, at the end of the node, when the approval is approved, and when the approval is rejected.
 
-:::tip 举例
+:::tip Example
 
-添加员工“研发员工1”为抄送人，并启用已读确认按钮，并将抄送时序设置为审批同意时发送
+Add the employee "R & D Employee 1" as a copy recipient, enable the read confirmation button, and set the timing of sending the copied content to be when the approval is approved.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/sp5.gif)
 
 :::
 
-+ 允许转交：可选择是否允许将当前审批转交给其他人。添加的转交人为转交时的候选名单。
-    - 添加转交人：可以在个人、部门、角色和模型相关的字段中选择，允许多选。转交人与审批人有同等权利。
-    - 自定义转交人：当系统可选转交人无法满足要求时，可通过代码的方式自定义添加转交人
-        * 转交人数据节点：包括在审批节点之前所有能获取到的数据。
-        * 选择自定义函数：即通过代码方式自定义转交人的函数。
-+ 允许加签：可选择在审批时临时添加其他审批人。添加的加签人为加签时的候选名单。
-    - 添加加签人：可以在个人、部门、角色和模型相关的字段中选择，允许多选。
-    - 自定义加签人：当系统可选加签人无法满足要求时，可通过代码的方式自定义添加加签人
-        * 加签人数据节点：包括在审批节点之前所有能获取到的数据。
-        * 选择自定义函数：即通过代码方式自定义加签人的函数。
-    - 参与审批：开启后加签人可参与审批
++ Allow Reassignment: You can choose whether to allow the current approval to be reassigned to others. The added reassignees are the candidate list for reassignment.
+    - Add Reassignees: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed. Reassignees have the same rights as approvers.
+    - Custom Reassignees: When the system's available reassignees cannot meet your requirements, you can customize the addition of reassignees through code.
+        * Reassignee Data Node: It includes all the data that can be obtained before the approval node.
+        * Select Custom Function: It is the function to customize reassignees through code.
++ Allow Additional Signing: You can choose to temporarily add other approvers during the approval process. The added additional signers are the candidate list for additional signing.
+    - Add Additional Signers: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed.
+    - Custom Additional Signers: When the system's available additional signers cannot meet your requirements, you can customize the addition of additional signers through code.
+        * Additional Signer Data Node: It includes all the data that can be obtained before the approval node.
+        * Select Custom Function: It is the function to customize additional signers through code.
+    - Participate in Approval: After enabling, additional signers can participate in the approval.
 
-:::info 注意
+:::info Note
 
-当允许转交或允许加签功能被开启，并且相关配置完整无误后，审批页面中将会出现转交与加签的按钮。若这两个功能未被开启，则审批页面中不会显示对应的按钮。
+When the functions of allowing reassignment or allowing additional signing are enabled and the relevant configurations are correct, the reassignment and additional signing buttons will appear on the approval page. If these two functions are not enabled, the corresponding buttons will not be displayed on the approval page.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-开启允许转交与允许加签功能，并为其添加转交人与加签人。
+Enable the functions of allowing reassignment and allowing additional signing, and add reassignees and additional signers for them.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/sp6.gif)
 
-效果预览：
+Effect preview:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/sp7.gif)
 
 :::
 
-+ 拒绝原因必填：启用此功能后，审批人在拒绝审批时必须填写拒绝原因。
-+ 允许退回：启用此功能后，可以选择退回到该审批节点之前任意可达的审批或填写节点。
++ Rejection Reason Required: After enabling this function, the approver must fill in the rejection reason when rejecting the approval.
++ Allow Return: After enabling this function, you can choose to return to any reachable approval or filling node before this approval node.
 
-:::info 注意
+:::info Note
 
-当多人审批，且审批方式为“一人同意即为同意，所有人拒绝才为拒绝”的会签时，不允许退回。
-
-:::
-
-+ 截止自动转交：在设置审批截止规则后显示，可自定义转交人。当到达截止时间时，系统将自动将该审批事项转交给指定人员。
-:::info 注意
-
-自动转交人至少需要包含一位当前操作人之外的用户，否则截止规则设置失效。
+In the case of multiple approvers and the approval method is all-sign (approval is valid when one approver agrees, and rejection is only valid when all approvers reject), returning is not allowed.
 
 :::
-+ 截止自动同意：在设置审批截止规则后显示。当到达截止时间后，系统将自动同意该审批。
 
-+ 数据权限：选择视图后自动显示该视图下的数据字段，可选择的权限为查看、编辑和隐藏数据字段。默认可查看全部字段。
-:::info 注意
++ Automatic Reassignment at Deadline: This is displayed after setting the approval deadline rule. You can customize the reassignee. When the deadline is reached, the system will automatically reassign the approval matter to the specified person.
+:::info Note
 
-若当前节点选择的视图中存在子表时，可在数据权限中控制子表中字段的权限
-+ 若子表字段设置为“查看”时，仅可设置子表中的字段可见性
-+ 若子表字段设置为“编辑”时，可设置子表中的字段与动作权限
+The automatic reassignees must include at least one user other than the current operator; otherwise, the deadline rule setting will be invalid.
 
 :::
-+ 参与人重复：可以选择提供的重复场景，当审批流程满足所选场景时，系统将自动审批通过。
-+ 审批开始前执行函数：启用此功能后，可在审批开始前执行选定的自定义函数。
-+ 待办操作提交后执行函数：启用此功能后，可在待办提交后执行选定的自定义函数。
-+ 审批操作数据函数：启用此功能后，可在审批过程中执行选定的自定义函数。
++ Automatic Approval at Deadline: This is displayed after setting the approval deadline rule. When the deadline is reached, the system will automatically approve the approval.
 
-## （二）填写
-当流程需要某些人提交数据才能继续时，可以使用填写节点。
++ Data Permissions: After selecting a view, the data fields under this view will be automatically displayed. You can choose the permissions of viewing, editing, and hiding data fields. By default, all fields can be viewed.
+:::info Note
 
-:::tip 举例
+If there is a sub-table in the view selected by the current node, you can control the permissions of the fields in the sub-table in the data permissions.
++ If a sub-table field is set to "View", only the visibility of the fields in the sub-table can be set.
++ If a sub-table field is set to "Edit", the permissions of the fields and actions in the sub-table can be set.
+
+:::
++ Duplicate Participants: You can select the provided duplicate scenarios. When the approval process meets the selected scenario, the system will automatically approve the process.
++ Execute Function Before Approval Starts: After enabling this function, you can execute the selected custom function before the approval starts.
++ Execute Function After Pending Operation Submission: After enabling this function, you can execute the selected custom function after the pending task is submitted.
++ Approval Operation Data Function: After enabling this function, you can execute the selected custom function during the approval process.
+
+## (II) Filling
+When the process requires some people to submit data to continue, you can use the filling node.
+
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/tx1.gif)
 
 :::
 
-:::info 注意
+:::info Note
 
-+ 填写节点只能修改当前触发模型中关联的视图表单
-+ 数据类节点中的更新数据可以修改其他模型的数据
-
-:::
-
-填写的属性与审批属性大致相同（详情可查看审批），区别在于：
-
-+ 添加填写人：可以在个人、部门、角色和模型相关的字段中选择，允许多选。
-    - 自定义填写人：当系统可选填写人无法满足要求时，可通过代码的方式自定义添加填写人
-        * 填写人数据节点：包括在填写节点之前所有能获取到的数据。
-        * 选择自定义函数：即通过代码方式自定义填写人的函数。
-+ 数据权限：选择视图后自动显示该视图下的数据字段，可选择的权限为查看、编辑和隐藏数据字段。默认可查看全部字段。填写节点的数据权限中至少存在一个字段可以被编辑。
-:::info 注意
-
-若当前节点选择的视图中存在子表时，可在数据权限中控制子表中字段的权限
-+ 若子表字段设置为“查看”时，仅可设置子表中的字段可见性
-+ 若子表字段设置为“编辑”时，可设置子表中的字段与动作权限
++ The filling node can only modify the view form associated with the current trigger model.
++ The data update in the data-type nodes can modify the data of other models.
 
 :::
 
-:::tip 举例
+The attributes of the filling node are roughly the same as those of the approval node (for details, see the approval section). The differences are as follows:
 
-为“销售数据”模型设置填写节点，指定员工填写销售量信息
++ Add Fillers: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed.
+    - Custom Fillers: When the system's available fillers cannot meet your requirements, you can customize the addition of fillers through code.
+        * Filler Data Node: It includes all the data that can be obtained before the filling node.
+        * Select Custom Function: It is the function to customize fillers through code.
++ Data Permissions: After selecting a view, the data fields under this view will be automatically displayed. You can choose the permissions of viewing, editing, and hiding data fields. By default, all fields can be viewed. There must be at least one field that can be edited in the data permissions of the filling node.
+:::info Note
+
+If there is a sub-table in the view selected by the current node, you can control the permissions of the fields in the sub-table in the data permissions.
++ If a sub-table field is set to "View", only the visibility of the fields in the sub-table can be set.
++ If a sub-table field is set to "Edit", the permissions of the fields and actions in the sub-table can be set.
+
+:::
+
+:::tip Example
+
+Set a filling node for the "Sales Data" model, and specify employees to fill in the sales volume information.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/tx2.gif)
 
 :::
 
-# 三、数据节点
-## （一）新增数据
-新增数据节点可以为任意模型通过表达式新增数据。
+# III. Data Nodes
+## (I) Add Data
+The add data node can add data to any model through expressions.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/xz1.gif)
 
 :::
 
-以下为新增数据节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the add data node. You can view them by clicking on the node:
 
-+ 选择应用：可选择任意应用。
-+ 模型：在选择的应用下，可以选择任意模型。
-+ 是否批量新增：可选择是否批量新增数据，启用此功能后可选择批量数据源。数据源为当前节点之前所有能获取到的数据。
-+ 数据保存方式：可选择当前节点数据保存方式，包括节点执行完保存、不保存、整个流程执行完保存。
++ Select Application: You can choose any application.
++ Model: Under the selected application, you can choose any model.
++ Whether to Add Data in Bulk: You can choose whether to add data in bulk. After enabling this function, you can choose the bulk data source. The data source includes all the data that can be obtained before the current node.
++ Data Saving Method: You can choose the current node's data saving method, including saving after the node is executed, not saving, and saving after the entire process is executed.
 
-:::info 注意
+:::info Note
 
-若选择不保存或整个流程执行完保存时，将会清空应用该数据源的设置。因为不保存或整个流程执行完保存会导致对该数据源的引用或设置都可能是临时的。
-
-:::
-
-+ 新增数据列表：点击“创建”按钮后，可以为所选模型下的字段设置表达式，当数据符合这些表达式时，即可触发新增数据的操作。此外，还可以设置自定义函数，当自定义函数的条件得到满足时新增数据。
-
-:::warning 提示
-
-有关自定义表达式的填写，可以查看「自定义表达式」文档。
+If you choose not to save or save after the entire process is executed, the settings of applying this data source will be cleared. Because not saving or saving after the entire process is executed may make the reference or settings of this data source temporary.
 
 :::
 
-+ 开启更新数据触发流程：启用此功能后，可以在更新数据时触发流程。
++ Add Data List: After clicking the "Create" button, you can set expressions for the fields under the selected model. When the data meets these expressions, the operation of adding data will be triggered. In addition, you can also set a custom function. Data will be added when the conditions of the custom function are met.
 
-:::tip 举例
+:::warning Tip
 
-当从“销售数据”模型中获取数据后，将数据新增至“销售与广告数据”模型中
+For the filling of custom expressions, you can refer to the "Custom Expressions" document.
+
+:::
+
++ Enable Process Trigger on Data Update: After enabling this function, you can trigger the process when the data is updated.
+
+:::tip Example
+
+After obtaining data from the "Sales Data" model, add the data to the "Sales and Advertising Data" model.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/xz2.gif)
 
 :::
 
-## （二）更新数据
-更新数据节点可以为任意模型通过表达式更新数据。
+## (II) Update Data
+The update data node can update data in any model through expressions.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/gx1.gif)
 
 :::
 
-以下为更新数据节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the update data node. You can view them by clicking on the node:
 
-+ 更新模型：可以选择更新节点之前所有可获取数据的对应模型。
-+ 数据保存方式：可选择当前节点数据保存方式，包括节点执行完保存、不保存、整个流程执行完保存。
-+ 更新数据列表：点击“创建”按钮后，可以为所选模型下的字段设置表达式，当数据符合这些表达式时，即可触发更新数据的操作。此外，还可以设置自定义函数，当自定义函数的条件得到满足时更新数据。
++ Update Model: You can choose the corresponding model of all the data that can be obtained before the update node.
++ Data Saving Method: You can choose the current node's data saving method, including saving after the node is executed, not saving, and saving after the entire process is executed.
++ Update Data List: After clicking the "Create" button, you can set expressions for the fields under the selected model. When the data meets these expressions, the operation of updating data will be triggered. In addition, you can also set a custom function. Data will be updated when the conditions of the custom function are met.
 
-:::warning 提示
+:::warning Tip
 
-有关自定义表达式的填写，可以查看「自定义表达式」文档。
+For the filling of custom expressions, you can refer to the "Custom Expressions" document.
 
 :::
 
-+ 开启更新数据触发流程：启用此功能后，可以在更新数据时触发流程。
++ Enable Process Trigger on Data Update: After enabling this function, you can trigger the process when the data is updated.
 
-:::tip 举例
+:::tip Example
 
-更新“销售与广告数据”模型的销售额为原来的1.5倍
+Update the sales amount in the "Sales and Advertising Data" model to 1.5 times the original.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/gx2.gif)
 
 :::
 
-## （三）获取数据
-获取数据节点可以为流程获取触发模型之外的模型中的数据。
+## (III) Get Data
+The get data node can obtain data from models other than the trigger model for the process.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/hq1.gif)
 
 :::
 
-以下为获取数据节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the get data node. You can view them by clicking on the node:
 
-+ 获取类型：可选择获取单条数据还是多条数据。
-+ 选择应用：可选择任意应用。
-+ 模型：在选择的应用下，可以选择任意模型。
-+ 过滤条件：可以设置数据的具体条件，只有当数据更新满足这些条件时才会被获取。
++ Get Type: You can choose to get single data or multiple data.
++ Select Application: You can choose any application.
++ Model: Under the selected application, you can choose any model.
++ Filter Conditions: You can set specific conditions for the data. Only when the data updates meet these conditions will the data be obtained.
 
-:::warning 提示
+:::warning Tip
 
-有关过滤条件中自定义表达式的填写，可以查看「自定义表达式」文档。
+For the filling of custom expressions in the filter conditions, you can refer to the "Custom Expressions" document.
 
 :::
 
-+ 排序字段：当设置了过滤条件或获取多条字段时，可以设置排序字段来对获取到的字段排序。
-+ 未获取数据时处理：可选择未获取到数据的执行方式
-    - 继续执行：跳过本次数据获取，继续执行流程。
-    - 向模型中新增数据后继续执行：新增数据来供后续节点使用，新增数据的同时存入数据库中。
-    - 终止流程：结束该流程，无论该节点之后是否还存在其他节点。
++ Sorting Field: When filter conditions are set or multiple fields are obtained, you can set the sorting field to sort the obtained fields.
++ Handling When No Data is Obtained: You can choose the execution method when no data is obtained.
+    - Continue Execution: Skip this data acquisition and continue to execute the process.
+    - Add Data to the Model and Then Continue Execution: Add data for subsequent nodes to use, and save the added data to the database at the same time.
+    - Terminate the Process: End the process, regardless of whether there are other nodes after this node.
 
-:::tip 举例
+:::tip Example
 
-获取“销售数据”模型内的数据
+Get the data in the "Sales Data" model.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/hq2.gif)
 
 :::
 
-## （四）删除数据
-删除数据节点可以将流程节点上面的模型数据从数据库中删除。
+## (IV) Delete Data
+The delete data node can delete the model data on the process node from the database.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/sc1.gif)
 
 :::
 
-以下为删除数据节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the delete data node. You can view them by clicking on the node:
 
-+ 删除模型：可以选择删除节点之前所有可获取数据的对应模型。
-+ 数据保存方式：可选择当前节点数据保存方式，包括节点执行完保存、不保存、整个流程执行完保存。
++ Delete Model: You can choose the corresponding model of all the data that can be obtained before the delete node.
++ Data Saving Method: You can choose the current node's data saving method, including saving after the node is executed, not saving, and saving after the entire process is executed.
 
-:::tip 举例
+:::tip Example
 
-删除“用户行为”模型中的数据（现有一条数据）
+Delete the data in the "User Behavior" model (there is currently one piece of data).
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/sc2.gif)
 
-流程执行后“用户行为”中本条数据被删除
+After the process is executed, this piece of data in the "User Behavior" model is deleted.
 
 :::
 
-## （五）更新流程参数
-可以将「流程配置」中的「流程参数」进行修改。
+## (V) Update Process Parameters
+You can modify the "Process Parameters" in the "Process Configuration".
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/gxcs1.gif)
 
 :::
 
-:::info 注意
+:::info Note
 
-仅有更新过的流程参数才能在其他节点被使用。
+Only the updated process parameters can be used in other nodes.
 
 :::
 
-以下为更新流程参数节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the update process parameters node. You can view them by clicking on the node:
 
-+ 已设参数：可以选择在流程配置中已创建的流程参数，并将该节点之前所有可获取的、与参数类型相一致的数据设为该参数的值。
++ Set Parameters: You can choose the process parameters created in the process configuration, and set the data that is consistent with the parameter type and can be obtained before this node as the value of the parameter.
 
-:::tip 举例
+:::tip Example
 
-已在流程配置中添加了一个流程参数tid，现将该流程参数设置为“销售数据”模型的名称
+A process parameter tid has been added in the process configuration. Now set this process parameter to the name of the "Sales Data" model.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/sjjd/gxcs2.gif)
 
 :::
 
-# 四、通知节点
-## （一）站内信
-站内信可以向用户发送消息。
+# IV. Notification Nodes
+## (I) In-App Message
+The in-app message node can send messages to users.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/tzjd/znx1.gif)
 
 :::
 
-以下为站内信节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the in-app message node. You can view them by clicking on the node:
 
-+ 添加接收人：可以在个人、部门、角色和模型相关的字段中选择，允许多选。
-+ 自定义通知人：当系统可选通知人无法满足要求时，可通过代码的方式自定义添加通知人
-    - 通知人数据节点：包括在站内信节点之前所有能获取到的数据。
-    - 选择自定义函数：即通过代码方式自定义通知人的函数。
-+ 通知标题：可为发送的消息设置标题。
-+ 通知内容：提供内置文本编辑器，方便编写和编辑发送的消息内容。
++ Add Recipients: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed.
++ Custom Notification Recipients: When the system's available notification recipients cannot meet your requirements, you can customize the addition of notification recipients through code.
+    - Notification Recipient Data Node: It includes all the data that can be obtained before the in-app message node.
+    - Select Custom Function: It is the function to customize notification recipients through code.
++ Notification Title: You can set a title for the sent message.
++ Notification Content: A built-in text editor is provided to facilitate writing and editing the content of the sent message.
 
-:::info 注意
+:::info Note
 
-节点触发后发送的站内信可以在工作台-站内信中查看。
+The in-app messages sent after the node is triggered can be viewed in the Workbench - In-App Messages.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-为员工定时发送提醒消息
+Send reminder messages to employees regularly.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/tzjd/znx22.gif)
 
 :::
 
-## （二）邮件
-邮箱节点可以向指定邮箱发送邮件。
+## (II) Email
+The email node can send emails to specified email addresses.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/tzjd/yj1.gif)
 
 :::
 
-以下为邮件节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the email node. You can view them by clicking on the node:
 
-+ 接收人：可直接输入邮箱号、或可以在个人、部门、角色和模型相关的字段中选择，允许多选。也可以通过代码的方式自定义接收人。
-+ 主题：可自定义邮件的主题。
-+ 正文：可自定义邮件的正文。
++ Recipients: You can directly enter email addresses, or select from individuals, departments, roles, and model-related fields. Multiple selections are allowed. You can also customize the recipients through code.
++ Subject: You can customize the subject of the email.
++ Body: You can customize the body of the email.
 
-    :::info 注意
+    :::info Note
 
-    在邮件正文中，支持运用表达式来灵活表示各类变量，使得邮件内容具备更高的动态性和可定制性。
+    In the email body, expressions are supported to flexibly represent various variables, making the email content more dynamic and customizable.
 
     ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/yjzwbds.png)
     ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/yjzwbds-sl.gif)
 
     :::
 
-+ 发送人：可设置发送人名称。
-+ 回复邮箱：可填写回复邮箱地址。
++ Sender: You can set the name of the sender.
++ Reply Email: You can fill in the reply email address.
 
-:::tip 举例
+:::tip Example
 
-为员工发送邮件
+Send an email to employees.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/tzjd/yj2.gif)
 
 :::
 
-## （三）短信
-短信节点可以向指定接收人发送短信。
+## (III) SMS
+The SMS node can send SMS messages to specified recipients.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/tzjd/dx1.gif)
 
 :::
 
-以下为短信节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the SMS node. You can view them by clicking on the node:
 
-+ 接收人：可直接输入手机号、或可以在个人、部门、角色和模型相关的字段中选择，允许多选。也可以通过代码的方式自定义接收人。
-+ 选择短信模板：短信模板可在「工作流」-「系统设置」-「短信模板」中进行设置，审核通过后即可使用。
-+ 短信内容：已在选择的短信模板中预设完毕。
-+ 设置短信内容变量：可以为短信的中的变量设置表达式。
++ Recipients: You can directly enter mobile phone numbers, or select from individuals, departments, roles, and model-related fields. Multiple selections are allowed. You can also customize the recipients through code.
++ Select SMS Template: SMS templates can be set in "Workflow" - "System Settings" - "SMS Templates". They can be used after being approved.
++ SMS Content: It has been preset in the selected SMS template.
++ Set SMS Content Variables: You can set expressions for the variables in the SMS.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/tzjd/dx2.gif)
 
 :::
 
-# 五、构建节点
-## （一）延时
-延时节点能够使下一个节点的动作延迟一段时间后再执行。
+# V. Construction Nodes
+## (I) Delay
+The delay node can delay the action of the next node for a period of time before execution.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/ys1.gif)
 
 :::
 
-以下为延时节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the delay node. You can view them by clicking on the node:
 
-延时节点包含两种延时方式，分别为延至指定日期与延时一段时间。
+The delay node includes two delay methods, namely delaying until a specified date and delaying for a period of time.
 
-+ 延至指定日期：可以选择时间选择类型为延至模型字段的时间或自定义时间
-    - 指定模型：时间类型为延至模型字段时，显示该属性。可以选择延时节点之前所有可获取数据的对应模型。
-    - 指定模型字段：时间类型为延至模型字段时，显示该属性。可以选择指定模型中的日期字段或日期时间字段。
-    - 指定日期：时间类型为自定义时间时，显示该属性。可以自定义具体日期。
-    - 触发时机：可选择准时以指定日期立即触发流程或提前/延时触发流程
-        * 天：当选择提前或延时指定日期时，可设置以天为单位的偏移值
-    - 指定时辰：如果自定义时间或模型字段为日期字段，必须设置指定时辰。
-+ 延时一段时间：可以自定义“天、小时、分钟”中至少一项。
++ Delay Until a Specified Date: You can choose the time selection type to be delaying until the time of a model field or a custom time.
+    - Specify Model: This attribute is displayed when the time type is delaying until a model field. You can choose the corresponding model of all the data that can be obtained before the delay node.
+    - Specify Model Field: This attribute is displayed when the time type is delaying until a model field. You can choose a date field or a date-time field in the specified model.
+    - Specify Date: This attribute is displayed when the time type is a custom time. You can customize the specific date.
+    - Trigger Timing: You can choose to trigger the process immediately at the specified date or trigger it in advance or delay it.
+        * Days: When choosing to advance or delay the specified date, you can set the offset value in days.
+    - Specify Time: If the custom time or model field is a date field, you must set the specified time.
++ Delay for a Period of Time: You can customize at least one of "days, hours, minutes".
 
-:::tip 举例
+:::tip Example
 
-为流程延至到5日之后进行
+Delay the process until 5 days later.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/ys2.gif)
 
 :::
 
-## （二）条件分支
-条件分支节点可以使不同条件的数据执行不同的分支流程。
+## (II) Conditional Branch
+The conditional branch node can make data under different conditions execute different branch processes.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/tjfz1.gif)
 
 :::
 
-:::info 注意
+:::info Note
 
-+ 可以增加或删除条件分支，当只有两个分支时删除任一分支会删除整个条件分支。
-+ 删除分支时，同时会删除该分支下所有节点。
-
-:::
-
-以下为条件分支节点所包含的属性，点击节点即可显示：
-
-+ 分支条件：可自定义节点规则表达式，配置分支的不同条件。
-
-:::info 注意
-
-分支条件表达式不允许为空，否则流程无法正常执行。
++ You can add or delete conditional branches. When there are only two branches, deleting any branch will delete the entire conditional branch.
++ When deleting a branch, all nodes under this branch will also be deleted.
 
 :::
 
-:::tip 举例
+The following are the attributes included in the conditional branch node. You can view them by clicking on the node:
 
-以“导购邀请下单”中的下单金额为分支条件，为工作流创建条件分支，满足在不同金额的情况下完成不同的流程
++ Branch Conditions: You can customize the node rule expressions to configure different conditions for the branches.
+
+:::info Note
+
+The branch condition expressions cannot be empty; otherwise, the process cannot be executed normally.
+
+:::
+
+:::tip Example
+
+Take the order amount in the "Guide Invitation to Place an Order" as the branch condition, create a conditional branch for the workflow, and complete different processes under different amounts.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/tjfz2.gif)
 
 :::
 
-## （三）并行
-并行节点可以使满足条件的分支同时执行。
+## (III) Parallel
+The parallel node can make the branches that meet the conditions execute simultaneously.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/bx1.gif)
 
 :::
 
-:::info 注意
+:::info Note
 
-+ 可以增加或删除并行分支，当只有两个分支时不允许删除。
-+ 删除分支时，同时会删除该分支下所有节点。
++ You can add or delete parallel branches. When there are only two branches, deletion is not allowed.
++ When deleting a branch, all nodes under this branch will also be deleted.
 
 :::
 
-以下为并行节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the parallel node. You can view them by clicking on the node:
 
-+ 分支条件：可自定义并行规则表达式，配置分支的不同条件。
++ Branch Conditions: You can customize the parallel rule expressions to configure different conditions for the branches.
 
-:::tip 举例
+:::tip Example
 
-将“导购邀请下单”模型中的下单金额小于或等于50的数据分支汇聚为一支进行后续流程操作
+Converge the data branches with an order amount less than or equal to 50 in the "Guide Invitation to Place an Order" model into one branch for subsequent process operations.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/bx2.gif)
 
 :::
 
-## （四）审批分支
-审批分支是一种特殊的条件分支，只能添加在审批节点下方。审批分支只存在通过与拒绝两种条件，无法添加其他条件。
+## (IV) Approval Branch
+The approval branch is a special conditional branch and can only be added below the approval node. The approval branch only has two conditions: approval and rejection, and no other conditions can be added.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/spfz.gif)
 
 :::
 
-:::info 注意
+:::info Note
 
-+ 若删除审批节点，审批分支节点也会同时删除。
-+ 删除任一分支时会同时删除整个审批分支。
++ If the approval node is deleted, the approval branch node will also be deleted at the same time.
++ Deleting any branch will delete the entire approval branch at the same time.
 
 :::
 
-## （五）子流程
-一些高度重复的流程节点可以创建成子流程，在主流程中引用子流程节点，可以减少流程的重复配置。
+## (V) Sub-process
+Some highly repetitive process nodes can be created as sub-processes. By referencing the sub-process node in the main process, you can reduce the repeated configuration of the process.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/zlc1.gif)
 
 :::
 
-:::info 注意
+:::info Note
 
-+ 子流程与普通流程不同，不包含触发方式。普通流程进行到子流程节点即为子流程的触发条件。
-+ 对于单条数据，系统仅会发起一个对应的子流程；而当处理多条数据时，系统会相应地发起多个子流程。
++ Sub-processes are different from ordinary processes and do not include a trigger method. When an ordinary process reaches the sub-process node, it is the trigger condition for the sub-process.
++ For single data, the system will only initiate one corresponding sub-process; when processing multiple data, the system will initiate multiple sub-processes accordingly.
 
 :::
 
-以下为子流程节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the sub-process node. You can view them by clicking on the node:
 
-+ 选择模型：可以选择子流程节点之前所有可获取数据的对应模型。
-+ 选择子流程：包括创建新的子流程与选择已有子流程两种方式。
-    - 创建新的子流程：输入子流程名称后保存即会创建子流程。
-    - 选择已有子流程：可以选择当前流程中有用到的模型下的子流程
-+ 子流程执行方式：可以选择“子流程和后续节点同时执行”或“子流程执行完毕后，再开始下一节点”。
-+ 参数配置：如果选择的子流程中存在创建好的流程参数，可以在此为参数设置数据。
++ Select Model: You can choose the corresponding model of all the data that can be obtained before the sub-process node.
++ Select Sub-process: It includes two ways: creating a new sub-process and selecting an existing sub-process.
+    - Create a New Sub-process: After entering the sub-process name and saving, a sub-process will be created.
+    - Select an Existing Sub-process: You can choose the sub-processes under the models used in the current process.
++ Sub-process Execution Method: You can choose "execute the sub-process and subsequent nodes simultaneously" or "start the next node after the sub-process is executed".
++ Parameter Configuration: If there are created process parameters in the selected sub-process, you can set data for the parameters here.
 
-:::tip 举例
+:::tip Example
 
-为当前流程创建一个子流程
+Create a sub-process for the current process.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/zlc2.gif)
 
 :::
 
-# 六、开发者节点
-## （一）WebHook
-WebHook节点可以向第三方系统发送请求，也可以从其他系统中获取数据
+# VI. Developer Nodes
+## (I) WebHook
+The WebHook node can send requests to third-party systems and also obtain data from other systems.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/kfzjd/web1.gif)
 
 :::
 
-以下为WebHook节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the WebHook node. You can view them by clicking on the node:
 
-+ 钉钉机器人通知
-    - WebHook URL：复制需要通知的时间或群聊机器人的URL地址。
++ DingTalk Robot Notification
+    - WebHook URL: Copy the URL address of the time or group chat robot that needs to be notified.
 
-    :::tip 举例
+    :::tip Example
 
-    钉钉可在钉钉群设置中的机器人管理处添加机器人，复制对应的Webhook地址。
+    For DingTalk, you can add a robot in the robot management of the DingTalk group settings and copy the corresponding Webhook address.
 
     :::
 
-    - 加签秘钥：钉钉群机器人管理中勾选加签，复制对应的秘钥。
-    - 通知内容：可自定义通知内容。
-+ 企业微信机器人通知
-    - WebHook URL：复制需要通知的时间或群聊机器人的URL地址。
-    - 通知内容：可自定义通知内容。
-+ 其他
-    - 请求方式：支持GET、POST两种请求方式
-    - WebHook URL：填写发送请求的HTTP地址。
-    - Headers：即请求头，可创建或编辑key与value，value支持通过表达式配置。
-    - 通知内容：即请求体，当请求方式为POST时，可自定义通知内容。
+    - Signature Secret Key: Check the signature in the DingTalk group robot management and copy the corresponding secret key.
+    - Notification Content: You can customize the notification content.
++ Enterprise WeChat Robot Notification
+    - WebHook URL: Copy the URL address of the time or group chat robot that needs to be notified.
+    - Notification Content: You can customize the notification content.
++ Others
+    - Request Method: Supports GET and POST request methods.
+    - WebHook URL: Fill in the HTTP address to send the request.
+    - Headers: That is, the request headers. You can create or edit keys and values. The values support configuration through expressions.
+    - Notification Content: That is, the request body. When the request method is POST, you can customize the notification content.
 
-:::tip 举例
+:::tip Example
 
-设置一个钉钉机器人，机器人通知“欢迎入群👏🏻”
+Set up a DingTalk robot, and the robot notifies "Welcome to the group 👏🏻".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/kfzjd/web2.gif)
 
 :::
 
-## （二）调用函数
-当已有节点动作无法满足业务需求时，可使用调用函数节点，调用自定义的函数。
+## (II) Call Function
+When the existing node actions cannot meet the business requirements, you can use the call function node to call a custom function.
 
-:::tip 举例
+:::tip Example
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/kfzjd/dy1.gif)
 
 :::
 
-以下为调用函数节点所包含的属性，点击节点即可显示：
+The following are the attributes included in the call function node. You can view them by clicking on the node:
 
-+ 数据节点：可以选择调用函数节点之前所有可获取数据。
-+ 选择函数：可选择自定义函数。
++ Data Node: You can choose all the data that can be obtained before the call function node.
++ Select Function: You can choose a custom function.
 
-:::tip 举例
+:::tip Example
 
-为流程中“获取数据”节点增加根据主键更新记录的功能
+Add the function of updating records according to the primary key to the "Get Data" node in the process.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/kfzjd/dy2.gif)
 
 :::
-

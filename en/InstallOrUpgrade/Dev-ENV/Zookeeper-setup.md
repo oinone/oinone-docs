@@ -1,44 +1,44 @@
 ---
-title: Zookeeper安装与注意事项
+title: Zookeeper Installation and Precautions
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - Installation and Upgrade
+  - Environment Preparation
 order: 6
 
 ---
-# 一、下载安装包
-下载地址 [https://zookeeper.apache.org/releases.html](https://zookeeper.apache.org/releases.html)
+# I. Download Installation Package
+Download address: [https://zookeeper.apache.org/releases.html](https://zookeeper.apache.org/releases.html)
 
-历史版本下载地址 [https://archive.apache.org/dist/zookeeper/](https://archive.apache.org/dist/zookeeper/)
+Historical version download address: [https://archive.apache.org/dist/zookeeper/](https://archive.apache.org/dist/zookeeper/)
 
-推荐选择`3.5.8`及以上版本, 以下使用`3.8.4`版本进行安装。
+It is recommended to select versions 3.5.8 and above. The 3.8.4 version is used for installation below.
 
-:::info 注意
+:::info Note
 
-以下命令均需在 Zookeeper 的安装目录中执行。你可以通过命令 `cd <Zookeeper安装目录>` 进入该目录。
-在 Linux/macOS 系统中，请使用默认终端；在 Windows 系统中，请使用 PowerShell。
+The following commands need to be executed in the Zookeeper installation directory. You can enter the directory by the command `cd <Zookeeper installation directory>`.
+On Linux/macOS systems, use the default terminal; on Windows systems, use PowerShell.
 
 :::
 
-# 二、安装
-## （一）解压
-可视化工具或者使用如下命令解压
+# II. Installation
+## (I) Unzip
+Use visualization tools or the following commands to unzip:
 
 ```shell
 # Linux/macOS
-tar zxvf apache-zookeeper-3.8.4-bin.tar.gz -C <Zookeeper安装目录>
+tar zxvf apache-zookeeper-3.8.4-bin.tar.gz -C <Zookeeper installation directory>
 ```
 
-Windows可以尝试使用以上命令，如果没有tar命令可使用Windows`资源管理器`进行解压缩
+Windows can try the above command. If there is no tar command, use Windows Explorer to unzip.
 
-:::warning 提示
+:::warning Prompt
 
-为了方便后续操作，可以为 Zookeeper 安装目录创建软链接。
+For the convenience of subsequent operations, a soft link can be created for the Zookeeper installation directory.
 
 :::
 
-建立软链(可选)
+Create a soft link (optional):
 
 ```shell
 # Linux/macOS
@@ -50,15 +50,15 @@ ln -s apache-zookeeper-3.8.4-bin zookeeper
 New-Item -Path .\zookeeper\ -ItemType SymbolicLink -Target .\apache-zookeeper-3.8.4-bin
 ```
 
-## （二）配置
-创建数据存储目录
+## (II) Configuration
+Create a data storage directory:
 
 ```powershell
 # Linux/macOS/Windows
 mkdir data
 ```
 
-修改Zookeeper配置
+Modify the Zookeeper configuration:
 
 ```shell
 # Linux/macOS
@@ -92,7 +92,7 @@ Set-Content -Path ./conf/zoo.cfg -Value @(
 )
 ```
 
-# 三、运行
+# III. Run
 ```shell
 # Linux/macOS
 ./bin/zkServer.sh start
@@ -103,7 +103,7 @@ Set-Content -Path ./conf/zoo.cfg -Value @(
 .\bin\zkServer.cmd
 ```
 
-# 四、停止
+# IV. Stop
 ```shell
 # Linux/macOS
 ./bin/zkServer.sh stop
@@ -111,8 +111,5 @@ Set-Content -Path ./conf/zoo.cfg -Value @(
 
 ```powershell
 # Windows
-关闭运行的终端
+Close the running terminal
 ```
-
-
-

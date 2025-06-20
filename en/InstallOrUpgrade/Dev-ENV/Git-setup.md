@@ -1,59 +1,48 @@
 ---
-title: Git安装与注意事项
+title: Git Installation and Precautions
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - Installation and Upgrade
+  - Environment Preparation
 order: 4
 
 ---
-## 一、macOS安装Git
-命令行中输入一下命令
+## I. Install Git on macOS
+Enter the following command in the command line:
 
 ```shell
 xcode-select --install
 ```
 
-:::warning 提示
+:::warning Prompt
 
-输入命令后，系统将弹出提示框。请根据提示完成安装操作。
-
-:::
-
-## 二、Linux安装Git
-
-
-<table>
-  <tr>
-    <td>yum包管理器</td>
-    <td>yum install -y git</td>
-    <td>例如 CentOS系统</td>
-  </tr>
-  <tr>
-    <td>apt包管理器</td>
-    <td>apt-get install -y git</td>
-    <td>例如 Debian、Ubuntu系统</td>
-  </tr>
-</table>
-
-
-
-:::warning 提示
-
-如果你使用的是其他 Linux 发行版或包管理器，请根据所使用的系统和包管理器的方式安装 Git。
+After entering the command, the system will pop up a prompt box. Please complete the installation operation according to the prompt.
 
 :::
 
-## 三、Windows安装Git
-下载地址: [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)
+## II. Install Git on Linux
 
-:::warning 提示
 
-下载时请注意选择与当前设备 CPU 指令集架构（如 x64、arm64）相对应的安装包。
-下载完成后，按照安装包提供的指引完成安装即可。
+| yum Package Manager | yum install -y git | For example, CentOS system |
+|---------------------|-------------------|---------------------------|
+| apt Package Manager | apt-get install -y git | For example, Debian, Ubuntu systems |
+
+
+:::warning Prompt
+
+If you are using other Linux distributions or package managers, please install Git according to the system and package manager you are using.
 
 :::
 
-## 四、扩展
-可以利用其他可视化工具，让`Git`使用更方便。例如 [SourceTree](https://www.sourcetreeapp.com/)
+## III. Install Git on Windows
+Download address: [https://git-scm.com/downloads/win](https://git-scm.com/downloads/win)
 
+:::warning Prompt
+
+When downloading, please pay attention to selecting the installation package corresponding to the CPU instruction set architecture (such as x64, arm64) of the current device.
+After the download is complete, follow the instructions provided by the installation package to complete the installation.
+
+:::
+
+## IV. Extension
+You can use other visualization tools to make Git more convenient to use. For example, [SourceTree](https://www.sourcetreeapp.com/)

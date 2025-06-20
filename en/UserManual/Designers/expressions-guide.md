@@ -1,253 +1,232 @@
 ---
-title: 表达式的使用说明
+title: Instructions for Using Expressions
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 8
 prev:
-  text: 接口日志
-  link: /en/UserManual/Designers/AIIntegratedDesigner/api-logs.md
+  text: Interface Logs
+  link: /zh-cn/UserManual/Designers/AIIntegratedDesigner/api-logs.md
 next:
-  text: 标准模块
-  link: /en/UserManual/StandardModules/README.md
+  text: Standard Modules
+  link: /zh-cn/UserManual/StandardModules/README.md
 ---
-为了更好地满足用户在实际场景中的多样化配置需求，Oinone平台在多处提供了自定义表达式的功能。当用户发现平台的默认设置无法满足其特定需求时，可以利用这些自定义表达式进行灵活调整，以实现更贴合自身业务逻辑的配置。
+To better meet the diverse configuration needs of users in real-world scenarios, the Oinone platform provides custom expression functionality in multiple places. When users find that the platform's default settings cannot meet their specific requirements, they can use these custom expressions for flexible adjustments to achieve configurations that better fit their business logic.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/1.png)
 
-自定义表达式为用户提供了三种模式供选择：快捷、高级以及源码
+Custom expressions offer users three modes to choose from: Quick, Advanced, and Source Code.
 
-+ 快捷模式：适用于进行一些简单的变量配置，操作便捷，快速满足基本需求。
-+ 高级模式：提供更多高级配置选项，满足用户复杂的业务逻辑需求。
-+ 源码模式：允许用户直接编辑表达式源码，实现最高级别的自定义和灵活性。
++ Quick Mode: Suitable for simple variable configurations, with convenient operations to quickly meet basic needs.
++ Advanced Mode: Provides more advanced configuration options to meet users' complex business logic requirements.
++ Source Code Mode: Allows users to directly edit the expression source code, achieving the highest level of customization and flexibility.
 
-自定义表达式在平台中发挥着广泛而重要的作用。如在界面设计器中，组件属性的计算公式、数据校验等环节均支持使用自定义表达式，以实现更灵活、更精准的配置。或在流程设计器中，一些节点所需的表达式也可以通过自定义方式来满足不同的业务逻辑需求。自定义表达式的广泛应用，极大地提升了平台的灵活性和可扩展性。
+Custom expressions play a wide and important role in the platform. For example, in the interface designer, calculation formulas for component properties, data validation, and other aspects support the use of custom expressions to achieve more flexible and precise configurations. Or in the process designer, some expressions required by nodes can also be customized to meet different business logic needs. The extensive application of custom expressions greatly enhances the platform's flexibility and scalability.
 
-# 一、 快捷模式
-快捷模式适用于进行一些简单的变量配置，能够快速满足基本需求。 在快捷模式中，可以选择当前能够获取到的数据变量，并为其添加各种函数或表达式。
+# I. Quick Mode
+Quick mode is suitable for simple variable configurations and can quickly meet basic needs. In quick mode, you can select currently available data variables and add various functions or expressions to them.
 
-+ 函数：平台内置了丰富的函数库，涵盖了数学函数、文本处理函数、正则表达式函数、时间日期函数等九大类型，为用户提供了强大的数据处理和操作能力。
-+ 表达式：支持自定义数据或使用当前系统中能够获取到的数据变量
++ Functions: The platform has a rich built-in function library, covering nine types such as mathematical functions, text processing functions, regular expression functions, and time and date functions, providing users with powerful data processing and operation capabilities.
++ Expressions: Support custom data or the use of data variables available in the current system.
 
-此外，系统还支持在函数或表达式之间配置多种计算效果，包括加减乘除等十余种运算方式，充分满足用户在不同场景下的计算需求。
+In addition, the system also supports configuring various calculation effects between functions or expressions, including more than ten operation methods such as addition, subtraction, multiplication, and division, fully meeting users' calculation needs in different scenarios.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/kj1.png)
 
-:::tip 举例
-
-以界面设计器中计算公式为例，当前页面中利润=销售额-广告投入，所以选中“利润”字段，为其配置计算公式
+:::tip Example
+Taking the calculation formula in the interface designer as an example, on the current page, profit = sales - advertising investment. So select the "Profit" field and configure the calculation formula for it.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/kj2.gif)
 
-发布当前页面后查看效果
+View the effect after publishing the current page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/kj3.gif)
-
 :::
 
-# 二、 高级模式
-高级模式在快捷模式的基础上，提供了更多高级配置选项，满足用户复杂的业务逻辑需求。提供两种配置模式：代码模式与文字模式
+# II. Advanced Mode
+Advanced mode builds on quick mode and provides more advanced configuration options to meet users' complex business logic requirements. It offers two configuration modes: Code Mode and Text Mode.
 
-+ 代码模式：展示函数或表达式的代码字段名称
-+ 文字模式：展示函数或表达式的文字名称，同快捷模式
++ Code Mode: Displays the code field names of functions or expressions.
++ Text Mode: Displays the text names of functions or expressions, similar to quick mode.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/gj1.gif)
 
-:::info 注意
-
-高级模式提供了生效行的选择功能，用户可以选择需要生效的配置所在行。若某行配置未被选中，则即使进行了配置，也不会实际生效。用户能够更灵活地控制配置的应用范围，满足复杂的业务需求。
-
+:::info Note
+Advanced mode provides a function to select effective rows. Users can choose the rows where the configurations they need to take effect are located. If a row of configuration is not selected, even if it is configured, it will not actually take effect. Users can more flexibly control the application scope of configurations to meet complex business needs.
 :::
 
-:::tip 举例
-
-以界面设计器中计算公式为例，当前页面中预估市场利润=（销售额-广告投入）÷市场份额，所以选中“预估市场利润”字段，为其配置计算公式
+:::tip Example
+Taking the calculation formula in the interface designer as an example, on the current page, estimated market profit = (sales - advertising investment) ÷ market share. So select the "Estimated Market Profit" field and configure the calculation formula for it.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/gj2.gif)
 
-发布当前页面后查看效果
+View the effect after publishing the current page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/gj3.gif)
-
 :::
 
-# 三、 源码模式
-源码模式允许用户直接编辑表达式源码，实现最高级别的自定义和灵活性。
+# III. Source Code Mode
+Source code mode allows users to directly edit the expression source code, achieving the highest level of customization and flexibility.
 
-:::warning 提示
-
-字段编码可在模型设计器中进行查看
-
+:::warning Tip
+Field codes can be viewed in the model designer.
 :::
 
-:::tip 举例
-
-
-以界面设计器中计算公式为例，当前页面中利润=销售额-广告投入，在源码中进行代码编写
+:::tip Example
+Taking the calculation formula in the interface designer as an example, on the current page, profit = sales - advertising investment. Write the code in the source code.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/ym1.gif)
 
-发布当前页面后查看效果
+View the effect after publishing the current page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Instructions%20for%20using%20expressions/ym2.gif)
-
 :::
 
-# 四、 函数介绍
-自定义表达式中提供了九大类型的函数，分别为数学函数、文本函数、正则函数、时间函数、集合函数、键值对函数、对象函数、上下文函数、逻辑函数
+# IV. Function Introduction
+Custom expressions provide nine types of functions, namely mathematical functions, text functions, regular functions, time functions, collection functions, key-value pair functions, object functions, context functions, and logical functions.
 
-## （一）数学函数
-| 函数 | 说明 |
+## (I) Mathematical Functions
+| Function | Description |
 | :---: | --- |
-| <div style="width:100px;">相减差非负</div> | <div style="width:600px;">函数示例：NNZ_SUBTRACT(A,B)<br/>函数说明：A与B相减的绝对值</div> |
-| 向上取整 | 函数示例: CEIL(number)<br/>函数说明: 对number向上取整 |
-| 向下取整 | 函数示例: FLOOR(number)<br/>函数说明: 对number向下取整 |
-| 取平均值 | 函数示例: AVG(collection)<br/>函数说明: 返回集合的平均值，参数collection为集合或数组 |
-| 乘积 | 函数示例: MULTIPLY(A,B)<br/>函数说明: A与B相乘 |
-| 相加 | 函数示例: ADD(A,B)<br/>函数说明: A与B相加 |
-| 绝对值 | 函数示例: ABS(number)<br/>函数说明: 获取number的绝对值 |
-| 四舍五入 | 函数示例: ROUND(number)<br/>函数说明: 对number四舍五入 |
-| 相减 | 函数示例: SUBTRACT(A,B)<br/>函数说明: A与B相减 |
-| 大写金额 | 函数示例: UPPER_MONEY(number)<br/>函数说明: 返回金额的大写，参数number为数值或数值类型的字符串 |
-| 余弦 | 函数示例: COS(number)<br/>函数说明: 对number取余弦 |
-| 圆周率 | 函数示例: PI() <br/>函数说明: 圆周率 |
-| 计数 | 函数示例: COUNT(collection)<br/>函数说明: 返回集合的总数，参数collection为集合或数组 |
-| 取余 | 函数示例: MOD(A,B)<br/>函数说明: A对B取余 |
-| 取最大值 | 函数示例: MAX(collection) <br/>函数说明: 返回集合中的最大值，参数collection为集合或数组 |
-| 取最小值 | 函数示例: MIN(collection) <br/>函数说明: 返回集合中的最小值，参数collection为集合或数组 |
-| 相除 | 函数示例: DIVIDE(A,B)<br/>函数说明: A与B相除 |
-| 平方根 | 函数示例: SQRT(number) <br/>函数说明: 对number平方根 |
-| 正弦 | 函数示例: SIN(number)<br/>函数说明: 对number取正弦 |
-| 求和 | 函数示例: SUM(collection)<br/>函数说明: 返回对集合的求和，参数collection为集合或数组 |
+| <div style="width:100px;">Non-negative Difference of Subtraction</div> | <div style="width:600px;">Function example: NNZ_SUBTRACT(A,B)<br/>Function description: The absolute value of the subtraction of B from A</div> |
+| Ceiling | Function example: CEIL(number)<br/>Function description: Round the number up |
+| Floor | Function example: FLOOR(number)<br/>Function description: Round the number down |
+| Average | Function example: AVG(collection)<br/>Function description: Return the average of the collection. The parameter collection is a collection or an array. |
+| Multiplication | Function example: MULTIPLY(A,B)<br/>Function description: Multiply A by B |
+| Addition | Function example: ADD(A,B)<br/>Function description: Add A and B |
+| Absolute Value | Function example: ABS(number)<br/>Function description: Get the absolute value of the number |
+| Round | Function example: ROUND(number)<br/>Function description: Round the number to the nearest integer |
+| Subtraction | Function example: SUBTRACT(A,B)<br/>Function description: Subtract B from A |
+| Uppercase Amount | Function example: UPPER_MONEY(number)<br/>Function description: Return the uppercase form of the amount. The parameter number is a numeric value or a numeric string. |
+| Cosine | Function example: COS(number)<br/>Function description: Calculate the cosine of the number |
+| Pi | Function example: PI() <br/>Function description: The value of pi |
+| Count | Function example: COUNT(collection)<br/>Function description: Return the total number of elements in the collection. The parameter collection is a collection or an array. |
+| Modulo | Function example: MOD(A,B)<br/>Function description: Calculate the remainder of A divided by B |
+| Maximum | Function example: MAX(collection) <br/>Function description: Return the maximum value in the collection. The parameter collection is a collection or an array. |
+| Minimum | Function example: MIN(collection) <br/>Function description: Return the minimum value in the collection. The parameter collection is a collection or an array. |
+| Division | Function example: DIVIDE(A,B)<br/>Function description: Divide A by B |
+| Square Root | Function example: SQRT(number) <br/>Function description: Calculate the square root of the number |
+| Sine | Function example: SIN(number)<br/>Function description: Calculate the sine of the number |
+| Sum | Function example: SUM(collection)<br/>Function description: Return the sum of the elements in the collection. The parameter collection is a collection or an array. |
 
-
-## （二）文本函数
-| 函数 | 说明 |
+## (II) Text Functions
+| Function | Description |
 | :---: | --- |
-| 反序列化JSON字符串 | 函数示例: PARSE(text)<br/>函数说明: 将JSON文本字符串text反序列化为集合或者map |
-| 替换字符串 | 函数示例: REPLACE(text,oldtext,newtext)<br/>函数说明: 使用文本字符串newtext替换文本字符串text中的文本字符串oldtext |
-| 小写 | 函数示例: LOWER(text)<br/>函数说明: 小写文本字符串text，文本为空时，按照空字符串处理 |
-| 包含 | 函数示例: CONTAINS(text,subtext)<br/>函数说明: 判断文本字符串text是否包含文本字符串subtext，文本text为空时，按照空字符串处理 |
-| 大写 | 函数示例: UPPER(text)<br/>函数说明: 大写文本字符串text，文本为空时，按照空字符串处理 |
-| 是否以指定字符串结束 | 函数示例: ENDS_WITH(text,start)<br/>函数说明: 判断文本字符串text是否以文本字符串end结束，文本为空时，按照空字符串处理 |
-| 获取字符串长度 | 函数示例: LEN(text)<br/>函数说明: 获取文本字符串text的长度，文本为空时，按照空字符串处理 |
-| 连接字符串 | 函数示例: JOIN(text,join)<br/>函数说明: 将文本字符串text连接文本字符串join，文本为空时，按照空字符串处理 |
-| 是否以指定字符串开始 | 函数示例: STARTS_WITH(text,start)<br/>函数说明: 判断文本字符串text是否以文本字符串start开始，文本为空时，按照空字符串处理 |
-| 是否为空字符串 | 函数示例: IS_BLANK(text)<br/>函数说明: 判断文本字符串text是否为空 |
-| 将记录序列化为JSON字符串 | 函数示例: JSON(object)<br/>函数说明: 将记录object序列化为JSON字符串 |
-| 过滤首尾空格 | 函数示例: TRIM(text)<br/>函数说明: 去掉文本字符串text中的首尾空格，文本为空时，返回空字符串 |
+| Parse JSON String | Function example: PARSE(text)<br/>Function description: Deserialize the JSON text string text into a collection or a map |
+| Replace String | Function example: REPLACE(text,oldtext,newtext)<br/>Function description: Replace the text string oldtext in the text string text with the text string newtext |
+| Lowercase | Function example: LOWER(text)<br/>Function description: Convert the text string text to lowercase. If the text is empty, treat it as an empty string. |
+| Contains | Function example: CONTAINS(text,subtext)<br/>Function description: Check if the text string text contains the text string subtext. If the text text is empty, treat it as an empty string. |
+| Uppercase | Function example: UPPER(text)<br/>Function description: Convert the text string text to uppercase. If the text is empty, treat it as an empty string. |
+| Ends With | Function example: ENDS_WITH(text,end)<br/>Function description: Check if the text string text ends with the text string end. If the text is empty, treat it as an empty string. |
+| String Length | Function example: LEN(text)<br/>Function description: Get the length of the text string text. If the text is empty, treat it as an empty string. |
+| Join Strings | Function example: JOIN(text,join)<br/>Function description: Concatenate the text string text with the text string join. If the text is empty, treat it as an empty string. |
+| Starts With | Function example: STARTS_WITH(text,start)<br/>Function description: Check if the text string text starts with the text string start. If the text is empty, treat it as an empty string. |
+| Is Blank | Function example: IS_BLANK(text)<br/>Function description: Check if the text string text is empty |
+| Serialize to JSON String | Function example: JSON(object)<br/>Function description: Serialize the record object into a JSON string |
+| Trim | Function example: TRIM(text)<br/>Function description: Remove the leading and trailing spaces from the text string text. If the text is empty, return an empty string. |
 
-
-## （三）正则函数
-| 函数 | 说明 |
+## (III) Regular Functions
+| Function | Description |
 | :---: | --- |
-| 验证是否是中文格式 | 函数示例: CHECK_CHINESE(text)<br/>函数说明: 校验是否为中文文本 |
-| 验证是否是两位小数 | 函数示例: CHECK_TWO_DIG(text)<br/>函数说明: 校验是否两位小数 |
-| 强密码校验 | 函数示例: CHECK_PWD(text)<br/>函数说明: 判断密码是否满足强弱校验 |
-| 校验用户名 | 函数示例: CHECK_USER_NAME(text)<br/>函数说明: 校验用户名是否正确 |
-| 校验URL格式 | 函数示例: CHECK_URL(text)<br/>函数说明: 校验URL是否正确 |
-| 校验邮箱的格式 | 函数示例: CHECK_EMAIL(text)<br/>函数说明: 校验邮箱是否正确 |
-| 校验字符范围 | 函数示例：CHECK_SIZE_RANGE(text, min,max)<br/>函数说明：校验长度范围 |
-| 校验手机号 | 函数示例: CHECK_PHONE(text)<br/>函数说明: 校验手机号是否正确 |
-| 校验字符范围 | 函数示例: CHECK_SIZE(text, length)<br/>函数说明: 校验长度 |
-| IP地址校验 | 函数示例: CHECK_IP(text)<br/>函数说明: 校验IP地址是否正确 |
-| 校验字符范围 | 函数示例: CHECK_MIN_SIZE(text,n)<br/>函数说明: 至少输入n个字符 |
-| 校验中国身份证格式 | 函数示例: CHECK_ID_CARD(text)<br/>函数说明: 校验身份证是否正确 |
-| 校验数字格式 | 函数示例: CHECK_NUMBER(text)<br/>函数说明: 校验是否为纯数字 |
-| 校验格式 | 函数示例: CHECK_ENG_NUM(text)<br/>函数说明: 只能包含英文和数字 |
-| 正则匹配 | 函数示例: MATCHES(text,regex)<br/>函数说明: 校验字符串是否满足正则匹配，例如regex为[a-zA-Z][a-zA-Z0-9]*$，来校验text是否匹配 |
-| 是否包含中文校验 | 函数示例: CHECK_CONTAINS_CHINESE(text)<br/>函数说明: 校验是否包含中文 |
-| 校验编码 | 函数示例: CHECK_CODE(text)<br/>函数说明: 只能由英文、数字、下划线组成 |
-| 校验整数格式 | 函数示例: CHECK_INTEGER(text)<br/>函数说明: 校验是否为整数 |
-| 校验字符范围 | 函数示例: CHECK_MAX_SIZE(text,n)<br/>函数说明: 只能输入n个字符 |
+| Check Chinese Format | Function example: CHECK_CHINESE(text)<br/>Function description: Check if the text is in Chinese |
+| Check Two Decimal Places | Function example: CHECK_TWO_DIG(text)<br/>Function description: Check if the text is a number with two decimal places |
+| Strong Password Check | Function example: CHECK_PWD(text)<br/>Function description: Check if the password meets the strength requirements |
+| Check User Name | Function example: CHECK_USER_NAME(text)<br/>Function description: Check if the user name is valid |
+| Check URL Format | Function example: CHECK_URL(text)<br/>Function description: Check if the URL is valid |
+| Check Email Format | Function example: CHECK_EMAIL(text)<br/>Function description: Check if the email is valid |
+| Check Character Range | Function example: CHECK_SIZE_RANGE(text, min,max)<br/>Function description: Check if the length of the text is within the specified range |
+| Check Phone Number | Function example: CHECK_PHONE(text)<br/>Function description: Check if the phone number is valid |
+| Check Character Range | Function example: CHECK_SIZE(text, length)<br/>Function description: Check if the length of the text is equal to the specified length |
+| IP Address Check | Function example: CHECK_IP(text)<br/>Function description: Check if the IP address is valid |
+| Check Character Range | Function example: CHECK_MIN_SIZE(text,n)<br/>Function description: Check if the text has at least n characters |
+| Check Chinese ID Card Format | Function example: CHECK_ID_CARD(text)<br/>Function description: Check if the ID card number is valid |
+| Check Number Format | Function example: CHECK_NUMBER(text)<br/>Function description: Check if the text is a pure number |
+| Check Format | Function example: CHECK_ENG_NUM(text)<br/>Function description: Check if the text contains only English letters and numbers |
+| Regular Match | Function example: MATCHES(text,regex)<br/>Function description: Check if the string matches the regular expression. For example, regex can be [a-zA-Z][a-zA-Z0-9]*$ to check if text matches. |
+| Check if Contains Chinese | Function example: CHECK_CONTAINS_CHINESE(text)<br/>Function description: Check if the text contains Chinese characters |
+| Check Code | Function example: CHECK_CODE(text)<br/>Function description: Check if the text consists only of English letters, numbers, and underscores |
+| Check Integer Format | Function example: CHECK_INTEGER(text)<br/>Function description: Check if the text is an integer |
+| Check Character Range | Function example: CHECK_MAX_SIZE(text,n)<br/>Function description: Check if the text has at most n characters |
 
-
-## （四）时间函数
-| 函数 | 说明 |
+## (IV) Time Functions
+| Function | Description |
 | :---: | --- |
-| 时间相减（得到秒） | 函数示例：SUB_DATETIME_TO_SECOND(datetime1,datetime2)<br/>函数说明：两个时间相减，结果以秒表示 |
-| 时间相减（得到：DD天HH时MM分SS秒） | 函数示例：SUB_DATETIME_TO_DDHHMMSS(datetime1,datetime2)<br/>函数说明：两个时间相减，结果以DD天HH时MM分SS秒表示 |
-| 日期相隔天数 | 函数示例：COUNT_DAY（date1,date2）<br/>函数说明：返回两个日期相隔的天数 |
-| 工作日加减天数（跳过周末） | 函数示例: ADD_WORK_DAY(date,days)<br/>函数说明: 将指定工作日加/减指定天数(跳过周末)，date为指定日期，days为指定天数，当为负数时在date上减去此天数 |
-| 小于等于 | 函数示例：LESS_EQUA(datetime1,datetime2)<br/>函数说明：判断datetime1是否小于等于datetime2，返回布尔值 |
-| 大于等于 | 函数示例：GREATER_EQUAL(datetime1,datetime2)<br/>函数说明：判断datetime1是否大于等于datetime2，返回布尔值 |
-| 转换为时间 | 函数示例: TO_DATE(date,pattern)<br/>函数说明: 将date字符串按格式转换为时间 |
-| 加减指定月数 | 函数示例: ADD_MONTH(date,months)<br/>函数说明: 将指定日期加/减指定月数，date为指定日期，months为指定月数，当为负数时在此date上减去此月数 |
-| 加减指定年数 | 函数示例: ADD_YEAR(date,years)<br/>函数说明: 将指定日期加/减指定年数，date为指定日期，years为指定年数，当为负数时在此date上减去此年数 |
-| 返回今天的日期字符串 | 函数示例: TODAY_STR()<br/>函数说明: 返回今天的日期字符串，精确到天，格式为yyyy-MM-dd |
-| 等于 | 函数示例：DATE_EQUALS(datetime1,datetime2)<br/>函数说明：判断datetime1是否等于datetime2，返回布尔值 |
-| 小于 | 函数示例：LESS_THAN(datetime1,datetime2)<br/>函数说明：判断datetime1是否小于datetime2，返回布尔值 |
-| 返回当前时间 | 函数示例: NOW()<br/>函数说明: 返回当前时间 |
-| 大于 | 函数示例：GREATER_THAN(datetime1,datetime2)<br/>函数说明：判断datetime1是否大于datetime2，返回布尔值 |
-| 加减指定天数 | 函数示例: ADD_DAY(date,days)<br/>函数说明: 将指定日期加/减指定天数，date为指定日期，days为指定天数，当为负数时在date上减去此天数 |
-| 返回当前时间字符串 | 函数示例: NOW_STR()<br/>函数说明: 返回当前时间字符串，精确到时分秒，格式为yyyy-MM-dd hh:mm:ss |
+| Subtract Times (Get Seconds) | Function example: SUB_DATETIME_TO_SECOND(datetime1,datetime2)<br/>Function description: Subtract two times and return the result in seconds |
+| Subtract Times (Get: DD Days HH Hours MM Minutes SS Seconds) | Function example: SUB_DATETIME_TO_DDHHMMSS(datetime1,datetime2)<br/>Function description: Subtract two times and return the result in the format of DD days HH hours MM minutes SS seconds |
+| Count Days Between Dates | Function example: COUNT_DAY(date1,date2)<br/>Function description: Return the number of days between two dates |
+| Add/Subtract Working Days (Skip Weekends) | Function example: ADD_WORK_DAY(date,days)<br/>Function description: Add or subtract the specified number of working days (skipping weekends) to/from the specified date. date is the specified date, and days is the specified number of days. If days is negative, subtract this number of days from date. |
+| Less Than or Equal To | Function example: LESS_EQUA(datetime1,datetime2)<br/>Function description: Check if datetime1 is less than or equal to datetime2 and return a boolean value |
+| Greater Than or Equal To | Function example: GREATER_EQUAL(datetime1,datetime2)<br/>Function description: Check if datetime1 is greater than or equal to datetime2 and return a boolean value |
+| Convert to Date | Function example: TO_DATE(date,pattern)<br/>Function description: Convert the date string to a date according to the specified format |
+| Add/Subtract Months | Function example: ADD_MONTH(date,months)<br/>Function description: Add or subtract the specified number of months to/from the specified date. date is the specified date, and months is the specified number of months. If months is negative, subtract this number of months from date. |
+| Add/Subtract Years | Function example: ADD_YEAR(date,years)<br/>Function description: Add or subtract the specified number of years to/from the specified date. date is the specified date, and years is the specified number of years. If years is negative, subtract this number of years from date. |
+| Today's Date String | Function example: TODAY_STR()<br/>Function description: Return today's date string, accurate to the day, in the format of yyyy-MM-dd |
+| Equal To | Function example: DATE_EQUALS(datetime1,datetime2)<br/>Function description: Check if datetime1 is equal to datetime2 and return a boolean value |
+| Less Than | Function example: LESS_THAN(datetime1,datetime2)<br/>Function description: Check if datetime1 is less than datetime2 and return a boolean value |
+| Current Time | Function example: NOW()<br/>Function description: Return the current time |
+| Greater Than | Function example: GREATER_THAN(datetime1,datetime2)<br/>Function description: Check if datetime1 is greater than datetime2 and return a boolean value |
+| Add/Subtract Days | Function example: ADD_DAY(date,days)<br/>Function description: Add or subtract the specified number of days to/from the specified date. date is the specified date, and days is the specified number of days. If days is negative, subtract this number of days from date. |
+| Current Time String | Function example: NOW_STR()<br/>Function description: Return the current time string, accurate to hours, minutes, and seconds, in the format of yyyy-MM-dd hh:mm:ss |
 
-
-## （五）集合函数
-| 函数 | 说明 |
+## (V) Collection Functions
+| Function | Description |
 | :---: | --- |
-| 移除集合（或数组中的元素） | 函数示例: LIST_REMOVE(list,item)<br/>函数说明: 从集合list中移除元素item |
-| 将一个布尔集合进行逻辑或运算 | 函数示例: LIST_OR(list)<br/>函数说明: 将一个布尔集合进行逻辑或运算，返回布尔值 |
-| 将元素添加到集合（或数组） | 函数示例: LIST_ADD(list,item)<br/>函数说明: 将元素item添加到集合list |
-| 判断集合（或数组是否包含元素） | 函数示例: LIST_CONTAINS(list,item)<br/>函数说明: 判断集合list是否包含元素item |
-| 判断对象集合（或数组中属性值是否不在指定集合（或数组）中） | 函数示例: LIST_FIELD_NOT_IN(list,model,field,list)<br/>函数说明: 判断对象集合(或数组)中属性值是否不在指定集合(或数组)中，返回布尔集合 |
-| 获取集合（或数组元素数量） | 函数示例: LIST_COUNT(list)<br/>函数说明: 传入一个对象集合，获取集合元素数量 |
-| 获取集合中的所有id | 函数示例: LIST_IDS(list)<br/>函数说明: 传入一个对象集合，获取集合中的所有id组成的列表 |
-| 获取集合（或数组元素） | 函数示例: LIST_GET(list,index)<br/>函数说明: 获取集合list中索引为数字index的元素 |
-| 将一个布尔集合进行逻辑与运算 | 函数示例: LIST_AND(list)<br/>函数说明: 将一个布尔集合进行逻辑与运算，返回布尔值 |
-| 将对象集合转化为属性集合 | 函数示例: LIST_FIELD_VALUES(list,model,field)<br/>函数说明: 传入一个对象集合，该对象的模型和属性字段，返回属性值集合 |
-| 判断对象集合（或数组中属性值匹配情况） | 函数示例: LIST_FIELD_EQUALS(list,model,field,value)<br/>函数说明: 判断对象集合(或数组)中属性值匹配情况，返回布尔集合 |
-| 将元素添加到集合（或数组的指定位置） | 函数示例: LIST_ADD_BY_INDEX(list,index,item)<br/>函数说明: 将元素item添加到集合list的索引index处 |
-| 判断对象集合（或数组中属性值不匹配情况） | 函数示例: LIST_FIELD_NOT_EQUALS(list,model,field,value)<br/>函数说明: 判断对象集合(或数组)中属性值不匹配情况，返回布尔集合 |
-| 判断对象集合（或数组中属性值是否在指定集合（或数组）中） | 函数示例: LIST_FIELD_IN(list,model,field,list)<br/>函数说明: 判断对象集合(或数组)中属性值是否在指定集合(或数组)中，返回布尔集合 |
-| 判断集合（或数组是否为空） | 函数示例: LIST_IS_EMPTY(list)<br/>函数说明: 传入一个对象集合，判断是否为空 |
+| Remove Element from Collection (or Array) | Function example: LIST_REMOVE(list,item)<br/>Function description: Remove the element item from the collection list |
+| Logical OR of Boolean Collection | Function example: LIST_OR(list)<br/>Function description: Perform a logical OR operation on a boolean collection and return a boolean value |
+| Add Element to Collection (or Array) | Function example: LIST_ADD(list,item)<br/>Function description: Add the element item to the collection list |
+| Check if Collection (or Array) Contains Element | Function example: LIST_CONTAINS(list,item)<br/>Function description: Check if the collection list contains the element item |
+| Check if Attribute Value in Object Collection (or Array) is Not in Specified Collection (or Array) | Function example: LIST_FIELD_NOT_IN(list,model,field,list)<br/>Function description: Check if the attribute value in the object collection (or array) is not in the specified collection (or array) and return a boolean collection |
+| Get Collection (or Array) Element Count | Function example: LIST_COUNT(list)<br/>Function description: Pass in an object collection and get the number of elements in the collection |
+| Get All IDs in Collection | Function example: LIST_IDS(list)<br/>Function description: Pass in an object collection and get a list of all IDs in the collection |
+| Get Collection (or Array) Element | Function example: LIST_GET(list,index)<br/>Function description: Get the element at the specified index in the collection list |
+| Logical AND of Boolean Collection | Function example: LIST_AND(list)<br/>Function description: Perform a logical AND operation on a boolean collection and return a boolean value |
+| Convert Object Collection to Attribute Collection | Function example: LIST_FIELD_VALUES(list,model,field)<br/>Function description: Pass in an object collection, the model of the object, and the attribute field, and return a collection of attribute values |
+| Check Attribute Value Matching in Object Collection (or Array) | Function example: LIST_FIELD_EQUALS(list,model,field,value)<br/>Function description: Check the matching situation of the attribute value in the object collection (or array) and return a boolean collection |
+| Add Element to Collection (or Array) at Specified Position | Function example: LIST_ADD_BY_INDEX(list,index,item)<br/>Function description: Add the element item to the collection list at the specified index |
+| Check Attribute Value Mismatch in Object Collection (or Array) | Function example: LIST_FIELD_NOT_EQUALS(list,model,field,value)<br/>Function description: Check the mismatch situation of the attribute value in the object collection (or array) and return a boolean collection |
+| Check if Attribute Value in Object Collection (or Array) is in Specified Collection (or Array) | Function example: LIST_FIELD_IN(list,model,field,list)<br/>Function description: Check if the attribute value in the object collection (or array) is in the specified collection (or array) and return a boolean collection |
+| Check if Collection (or Array) is Empty | Function example: LIST_IS_EMPTY(list)<br/>Function description: Pass in an object collection and check if it is empty |
 
-
-## （六）键值对函数
-| 函数 | 说明 |
+## (VI) Key-Value Pair Functions
+| Function | Description |
 | :---: | --- |
-| <div style="width:180px;">从键值对中获取指定键的值</div> | <div style="width:500px;">函数示例: MAP_GET(map,key)<br/>函数说明: 从键值对中获取键为key的值</div> |
-| 移除键值对中的元素 | 函数示例: MAP_REMOVE(map,key)<br/>函数说明: 从键值对map中移除键key |
-| 判断键值对是否为空 | 函数示例: MAP_IS_EMPTY(map)<br/>函数说明: 判断键值对map是否为空 |
-| 判断键值对中是否包含键 | 函数示例：MAP_CONTAINS_KEY（map,key）<br/>函数说明：判断键值对中是否包含key |
-| 获取键值数量 | 函数示例: MAP_COUNT(map)<br/>函数说明: 获取键值对map的键值数量 |
-| 向键值对中添加键值 | 函数示例: MAP_PUT(map,key,value)<br/>函数说明: 将键为key的值为value添加到键值对map中 |
+| <div style="width:180px;">Get Value by Key from Key-Value Pair</div> | <div style="width:500px;">Function example: MAP_GET(map,key)<br/>Function description: Get the value corresponding to the key from the key-value pair</div> |
+| Remove Element from Key-Value Pair | Function example: MAP_REMOVE(map,key)<br/>Function description: Remove the key from the key-value pair map |
+| Check if Key-Value Pair is Empty | Function example: MAP_IS_EMPTY(map)<br/>Function description: Check if the key-value pair map is empty |
+| Check if Key-Value Pair Contains Key | Function example: MAP_CONTAINS_KEY(map,key)<br/>Function description: Check if the key-value pair contains the key |
+| Get Key-Value Count | Function example: MAP_COUNT(map)<br/>Function description: Get the number of key-value pairs in the key-value pair map |
+| Add Key-Value to Key-Value Pair | Function example: MAP_PUT(map,key,value)<br/>Function description: Add the key-value pair to the key-value pair map |
 
-
-## （七）对象函数
-| 函数 | 说明 |
+## (VII) Object Functions
+| Function | Description |
 | :---: | --- |
-| 获取对象属性值 | 函数示例: GET(object, path)<br/>函数说明: 根据指定字段路径获取值 |
-| 根据字段编码获取对象属性 | 函数示例：FIELD_GET(object, model, path)<br/>函数说明：根据指定字段路径获取值 |
-| 判断是否为空 | 函数示例: IS_NULL(文本或控件)<br/>函数说明: 判断对象是否为空，为空则返回true，不为空则返回false，可用于判断具体值或者控件 |
-| 判断是否相等 | 函数示例: EQUALS(A,B)<br/>函数说明: 判断A和B是否相等 |
+| Get Object Attribute Value | Function example: GET(object, path)<br/>Function description: Get the value according to the specified field path |
+| Get Object Attribute by Field Code | Function example: FIELD_GET(object, model, path)<br/>Function description: Get the value according to the specified field path |
+| Check if Null | Function example: IS_NULL(text or control)<br/>Function description: Check if the object is null. If it is null, return true; otherwise, return false. Can be used to check specific values or controls. |
+| Check if Equal | Function example: EQUALS(A,B)<br/>Function description: Check if A and B are equal |
 
-
-## （八）上下文函数
-| 函数 | 说明 |
+## (VIII) Context Functions
+| Function | Description |
 | :---: | --- |
-| <div style="width:180px;">获取当前用户的部门</div> | <div style="width:500px;">函数示例：CURRENT_DEPARTMENT()<br/>函数说明：获取当前用户的部门</div> |
-| 获取当前用户部门编码 | 函数示例：CURRENT_DEPARTMENT_CODE()<br/>函数说明：获取当前用户部门编码 |
-| 获取当前用户的合作伙伴id | 函数示例: CURRENT_PARTNER_ID()<br/>函数说明: 获取当前用户的合作伙伴id |
-| 获取当前用户的公司id | 函数示例: CURRENT_CORP_ID()<br/>函数说明: 获取当前用户的公司id |
-| 获取当前用户的公司 | 函数示例: CURRENT_CORP()<br/>函数说明: 获取当前用户的公司 |
-| 获取当前用户名 | 函数示例: CURRENT_USER_NAME()<br/>函数说明: 获取当前用户的用户名 |
-| 获取当前用户id | 函数示例: CURRENT_UID()<br/>函数说明: 获取当前用户id |
-| 获取当前用户的店铺 | 函数示例: CURRENT_SHOP()<br/>函数说明: 获取当前用户的店铺 |
-| 获取当前用户的角色id列表 | 函数示例: CURRENT_ROLE_IDS()<br/>函数说明: 获取当前用户的角色id列表 |
-| 获取当前用户的店铺id | 函数示例: CURRENT_SHOP_ID()<br/>函数说明: 获取当前用户的店铺id |
-| 获取当前用户的角色列表 | 函数示例: CURRENT_ROLES()<br/>函数说明: 获取当前用户的角色列表 |
-| 获取当前用户 | 函数示例: CURRENT_USER()<br/>函数说明: 获取当前用户 |
-| 获取当前用户的合作伙伴 | 函数示例: CURRENT_PARTNER()<br/>函数说明: 获取当前用户的合作伙伴 |
+| <div style="width:180px;">Get Current User's Department</div> | <div style="width:500px;">Function example: CURRENT_DEPARTMENT()<br/>Function description: Get the current user's department</div> |
+| Get Current User's Department Code | Function example: CURRENT_DEPARTMENT_CODE()<br/>Function description: Get the current user's department code |
+| Get Current User's Partner ID | Function example: CURRENT_PARTNER_ID()<br/>Function description: Get the current user's partner ID |
+| Get Current User's Company ID | Function example: CURRENT_CORP_ID()<br/>Function description: Get the current user's company ID |
+| Get Current User's Company | Function example: CURRENT_CORP()<br/>Function description: Get the current user's company |
+| Get Current User's Name | Function example: CURRENT_USER_NAME()<br/>Function description: Get the current user's name |
+| Get Current User's ID | Function example: CURRENT_UID()<br/>Function description: Get the current user's ID |
+| Get Current User's Shop | Function example: CURRENT_SHOP()<br/>Function description: Get the current user's shop |
+| Get Current User's Role ID List | Function example: CURRENT_ROLE_IDS()<br/>Function description: Get the current user's role ID list |
+| Get Current User's Shop ID | Function example: CURRENT_SHOP_ID()<br/>Function description: Get the current user's shop ID |
+| Get Current User's Role List | Function example: CURRENT_ROLES()<br/>Function description: Get the current user's role list |
+| Get Current User | Function example: CURRENT_USER()<br/>Function description: Get the current user |
+| Get Current User's Partner | Function example: CURRENT_PARTNER()<br/>Function description: Get the current user's partner |
 
-
-## （九）逻辑函数
-| 函数 | 说明 |
+## (IX) Logical Functions
+| Function | Description |
 | :---: | --- |
-| <div style="width:100px;">逻辑与</div> | <div style="width:600px;">函数示例: AND(A,B)<br/>函数说明: 返回 条件A 逻辑与 条件B 的值</div> |
-| 条件函数 | 函数示例: IF(A,B,C)<br/>函数说明: 如果F满足条件A，则返回B，否则返回C，支持多层嵌套IF函数 |
-| 逻辑或 | 函数示例: OR(A,B)<br/>函数说明: 返回 条件A 逻辑或 条件B 的值 |
-| 逻辑非 | 函数示例: NOT(A)<br/>函数说明: 返回 逻辑非 条件A 的值 |
-
-
+| <div style="width:100px;">Logical AND</div> | <div style="width:600px;">Function example: AND(A,B)<br/>Function description: Return the result of the logical AND operation between condition A and condition B</div> |
+| Conditional Function | Function example: IF(A,B,C)<br/>Function description: If condition A is met, return B; otherwise, return C. Supports nested IF functions. |
+| Logical OR | Function example: OR(A,B)<br/>Function description: Return the result of the logical OR operation between condition A and condition B |
+| Logical NOT | Function example: NOT(A)<br/>Function description: Return the logical negation of condition A |

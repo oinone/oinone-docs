@@ -1,16 +1,16 @@
 ---
-title: 操作指南
+title: Operation Guide
 index: false
 category:
-  - 研发手册
-  - 操作指南
+  - Development Manual
+  - Operation Guide
 dir:
   link: false
   order: 2
 prev:
-  text: 调试工具
+  text: Debug Tools
   link: /en/DevManual/Tutorials/debug-tools.md
 next:
-  text: 自定义字段
+  text: Customize a Field Widget
   link: /en/DevManual/OperationGuide/customize-a-field-widget.md
 ---

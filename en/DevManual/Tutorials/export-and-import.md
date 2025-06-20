@@ -1,48 +1,48 @@
 ---
-title: 文件导入导出（Export and Import）
+title: Export and Import
 index: true
 category:
-  - 研发手册
-  - 教程
+  - Development Manual
+  - Tutorials
 order: 7
 
 ---
-:::warning 提示
+:::warning Tip
 
-本教程是 “后端框架教程” 的延伸。请确保你已完成该教程，并以你构建的 “费用管理（expenses）” 模块作为本教程练习的基础。
+This tutorial extends the "Back-end Framework Tutorial". Please ensure you have completed that tutorial and use the "Expense Management (expenses)" module you built as the basis for this tutorial's exercises.
 
 :::
 
-在大多数管理信息系统中，数据的导入和导出功能是必不可少的。Oinone 内置的导入/导出模板会根据表格视图和表单视图的字段自动生成，有时这些 `导入/导出模板` 或者 `导入/导出默认逻辑` 并不能很好的满足所有业务场景。比如：
+In most management information systems, data import and export functions are essential. Oinone's built-in import/export templates are automatically generated based on the fields of table views and form views. However, these `import/export templates` or `default import/export logic` may not fully meet all business scenarios. For example:
 
-+ 导入项目信息时，如果发现项目类型的名称不存在，则自动创建
-+ 导出项目信息时，需要导出对应的报销单信息
++ When importing project information, if the project type name does not exist, it should be automatically created.
++ When exporting project information, the corresponding reimbursement form information should be included.
 
-参考：与此主题相关的文档可在 “[标准模块 - 文件导入导出](/en/DevManual/Reference/StandardModule/import-export.md)” 中找到。
+Reference: Documentation related to this topic can be found in "[Standard Module - Export and Import](/en/DevManual/Reference/StandardModule/import-export.md)".
 
-# 一、为 “项目信息” 创建导入模板
+# I. Create an Import Template for "Project Information"
 
-:::info 目标：在本节结束时：
+:::info Objectives: By the end of this section:
 
-1. 通过 “基础数据 - 项目管理” 页面的导入按钮弹窗，选中 “项目信息导入” 模板并下载。
+1. Through the import button pop-up on the `Basic Data - Project Management` page, select the "Project Information Import" template and download it.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExportAndImport/1749044957098-fdc08973-2ace-417b-83db-d89cfb3c3fc3-20250607112131028.gif)
 
-2. 打开 Excel 文件后可以看到如下所示内容：
+2. After opening the Excel file, the following content should be visible:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExportAndImport/1749044693429-30c45e96-a1b3-4286-a835-2ec3b748726a.png)
 
-3. 尝试填写一些项目信息数据：
+3. Attempt to fill in some project information data:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExportAndImport/1749045224201-0e5f6125-59fd-401f-b5cf-834ba50a5d09.png)
 
-4. 通过页面导入 Excel 文件，分别查看项目信息和项目类型是否正常保存：
+4. Import the Excel file through the page and check whether project information and project types are saved correctly:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExportAndImport/1749046255378-bf6d6c9f-da5a-4b95-bc3f-09308abc0f49.gif)
 
 :::
 
-如需要对 `文件模块` 进行一些自定义，按照 `JAVA` 特性需要引入对应依赖：
+To customize the `file module`, the corresponding dependency needs to be introduced according to `JAVA` characteristics:
 
 ```xml
 <dependency>
@@ -51,7 +51,7 @@ order: 7
 </dependency>
 ```
 
-在 Oinone 中，除了对应依赖的引入外，还需要在 `当前模块` 定义中声明对应的模块依赖：
+In Oinone, in addition to introducing the corresponding dependency, the corresponding module dependency also needs to be declared in the `current module` definition:
 
 ```java
 ……
@@ -72,9 +72,9 @@ public class ExpensesModule implements PamirsModule {
 }
 ```
 
-`Excel` 导入模板的初始化是通过实现 `ExcelTemplateInit` 接口并注册为 `Spring Bean` 自动收集并创建的。Oinone 提供了 `ExcelHelper` 工具类可以很方便的创建一个简单的 “固定表头” 类型的导入模板。
+The initialization of the `Excel` import template is automatically collected and created by implementing the `ExcelTemplateInit` interface and registering it as a `Spring Bean`. Oinone provides the `ExcelHelper` utility class to easily create a simple "fixed header" type import template.
 
-:::tip 举例：以 TestModel 为例创建一个 Excel 导入模板：
+:::tip Example: Create an Excel import template for TestModel:
 
 :::
 
@@ -98,16 +98,16 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 }
 ```
 
-+ 声明模板名称常量 `TEMPLATE_NAME` ，变量会用在导入扩展点的表达式中。
-+ ExcelHelper.fixedHeader：创建 `固定表头` 格式的 Excel 模板。
-+ setDisplayName：设置下载模板的显示名称，页面选择模板也是使用这个名称展示。
-+ setType：设置模板类型，用于选择 `仅导入`、`仅导出`以及 `导入导出` 三种类型。
-+ createBlock：创建 `sheet` 和 `block`，`sheet` 名称为 `测试模型`，`block` 对应的模型同导入模型。
-+ addColumn：添加一列，`code` 字段，表头标题为 `编码` 。
++ Declare the template name constant `TEMPLATE_NAME`, which will be used in the import extension point expression.
++ ExcelHelper.fixedHeader: Create a `fixed header` format Excel template.
++ setDisplayName: Set the display name of the downloaded template, which is also used for displaying the template selection in the page.
++ setType: Set the template type for selecting among three types: `import only`, `export only`, and `import-export`.
++ createBlock: Create a `sheet` and `block`, with the `sheet` name as `测试模型` and the `block` corresponding to the import model.
++ addColumn: Add a column with the `code` field and the header title `编码`.
 
-有了 `Excel` 导入模板，我们要通过自定义导入逻辑来满足实际业务的需要。默认的导入逻辑是 “创建或更新” ，但对于 “用户” 数据的操作并不只是将其保存至数据库这么简单的，通常我们对 “用户” 的创建或更新需要使用对应的 “服务” 才能保证其正常运行。这些都要求我们需要对 “导入逻辑” 进行自定义。
+With the `Excel` import template, we need to customize the import logic to meet actual business needs. The default import logic is "create or update", but operations on "user" data are not just about saving to the database. Usually, creating or updating "users" requires using corresponding "services" to ensure normal operation, which requires us to customize the "import logic".
 
-:::tip 举例：以 TestModelImportExtPoint 为例自定义导入逻辑：
+:::tip Example: Customize import logic for TestModelImportExtPoint:
 
 :::
 
@@ -122,60 +122,59 @@ public class TestModelImportExtPoint implements ExcelImportDataExtPoint<TestMode
         String userLogin = Optional.ofNullable(data.getUser()).map(PamirsUser::getLogin).orElse(null);
         PamirsUser user = null;
         if (StringUtils.isNotBlank(userLogin)) {
-            // 用户账号不空，则执行用户创建或更新逻辑
-            // 并且给 user 赋值
+            // If user login is not empty, execute user creation or update logic
+            // and assign a value to user
         } else {
-            // 用户账号为空，进行一些处理逻辑
-            // 并且给 user 赋值
+            // If user login is empty, perform some processing logic
+            // and assign a value to user
         }
         if (user != null) {
-            // 设置用户对象，在保存时将自动保存关联关系字段
+            // Set the user object, and the associated relationship field will be automatically saved when saving
             data.setUser(user);
         } else {
             data.unsetUser();
         }
-        // 创建并更新主模型数据
+        // Create and update main model data
         data.createOrUpdate();
         return true;
     }
 }
-
 ```
 
-+ 扩展点需要使用表达式来限定这个扩展点仅用于指定的导入模板，在这里我们是通过之前我们定义的模板名称 `TEMPLATE_NAME` 进行判定的。
-+ 导入扩展点的范型可以直接设置为指定的模型对象，但不能声明为列表或其他类型。每次导入扩展点执行时都会将收集好的一个对象的数据传入并进行处理。
++ The extension point needs to use an expression to limit that this extension point is only used for the specified import template. Here, we determine it by the previously defined template name `TEMPLATE_NAME`.
++ The generic type of the import extension point can be directly set to the specified model object but cannot be declared as a list or other types. Each time the import extension point is executed, the collected data of one object is passed in for processing.
 
-:::warning 提示：
+:::warning Tip:
 
-模板中的 `user.login` 字段会将 Excel 填写的 “用户账号” 数据放在 `TestModel#user` 对象的 `login` 字段中进行传递，这对于 `多对一（M2O）` 字段来说是非常有用的一种写法。
+The `user.login` field in the template will pass the "user account" data filled in Excel to the `login` field of the `TestModel#user` object, which is a very useful notation for `many-to-one (M2O)` fields.
 
 :::
 
-> 练习（Exercise）
+> Exercise
 >
-> 1. 为 “项目信息” 创建导入模板（projectInfoImportTemplate）。
-> 2. 模板中包含四个字段：项目编码、项目名称、项目类型以及状态。
-> 3. 创建导入扩展点（ProjectInfoImportExtPoint），在保存项目信息之前，对项目类型进行处理：如果输入的项目类型名称重复，则获取首个项目类型；如果输入的项目类型名称不存在，则创建对应名称的项目类型。
+> 1. Create an import template for "Project Information" (projectInfoImportTemplate).
+> 2. The template should include four fields: Project Code, Project Name, Project Type, and Status.
+> 3. Create an import extension point (ProjectInfoImportExtPoint) to process the project type before saving project information: if the input project type name is duplicated, get the first project type; if the input project type name does not exist, create the corresponding project type.
 
-# 二、为 “项目信息” 创建导出模板
+# II. Create an Export Template for "Project Information"
 
-:::info 目标：在本节结束时：
+:::info Objectives: By the end of this section:
 
-1. 通过 “基础数据 - 项目管理” 页面的导出按钮弹窗，选中 “项目信息导出” 模板导出当前所有项目信息数据，最后跳转至 “文件 - 导出任务” 页面下载导出的文件。
+1. Through the export button pop-up on the `Basic Data - Project Management` page, select the "Project Information Export" template to export all current project information data, and finally jump to the `Files - Export Tasks` page to download the exported file.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExportAndImport/1749096844922-0fffc051-3cda-400c-aeb3-37beba3c036f.gif)
 
-2. 打开 Excel 文件后可以看到如下所示内容：
+2. After opening the Excel file, the following content should be visible:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExportAndImport/1749097295267-5992da74-1fad-4bbb-ad58-c06d9483fff2.png)
 
 :::
 
-`Excel` 导出模板也是通过实现 `ExcelTemplateInit` 接口并注册为 `Spring Bean` 自动收集并创建的。与导入模板的定义方式完全相同，我们只需要将 `setType` 中对应的模板类型改为 “仅导出” 即可作为导出模板进行使用。
+The `Excel` export template is also automatically collected and created by implementing the `ExcelTemplateInit` interface and registering it as a `Spring Bean`. The definition method is exactly the same as the import template; we only need to change the corresponding template type in `setType` to "export only" to use it as an export template.
 
-在导入模板中我们对 多对一（M2O） 类型的字段可以通过 “.” 分隔的形式定义对应的字段值，那么，对于 一对多（O2M） 或 多对多（M2M） 来说，应该如何定义呢？
+In the import template, we can define the field values of `many-to-one (M2O)` type fields in the form of ".". How should we define `one-to-many (O2M)` or `many-to-many (M2M)` fields?
 
-:::tip 举例：以 TestModel 为例创建一个 Excel 导出模板：
+:::tip Example: Create an Excel export template for TestModel:
 
 :::
 
@@ -200,13 +199,13 @@ public class TestModelExportTemplate implements ExcelTemplateInit {
 }
 ```
 
-+ 使用 `[*]` 表示列表类型字段
-+ `ExcelCellDefinition` 是 Excel 单元格定义 模型，可以用来设置除了 “表头标题” 之外的其他属性，比如 `setAutoSizeColumn` 可以设置是否启用 “自动列宽” 功能。
-+ `computeName` 字段的值是通过计算表达式得到的，默认的导出逻辑并不支持这样的计算逻辑，这个需要在 “自定义导出逻辑” 对数据进行处理。
++ Use `[*]` to represent list-type fields.
++ `ExcelCellDefinition` is an Excel cell definition model, which can be used to set attributes other than the "header title", such as `setAutoSizeColumn` to enable the "auto column width" function.
++ The value of the `computeName` field is obtained through a calculation expression. The default export logic does not support such calculation logic, which requires processing the data in the "custom export logic".
 
-虽然导出模板已经正常定义了，但对于一些字段来说，需要一些特殊的计算逻辑才能正常处理。与 “自定义导入逻辑” 类似，自定义导出时同样也是通过 “扩展点” 来实现的。
+Although the export template is normally defined, some fields require special calculation logic for proper processing. Similar to "custom import logic", custom export is also implemented through "extension points".
 
-:::tip 举例：以 TestModelExportExtPoint 为例自定义导出逻辑：
+:::tip Example: Customize export logic for TestModelExportExtPoint:
 
 :::
 
@@ -220,25 +219,24 @@ public class TestModelExportExtPoint extends ExcelExportSameQueryPageTemplate im
     @Override
     public List<Object> fetchExportData(ExcelExportTask exportTask, ExcelDefinitionContext context) {
         List<Object> dataList = super.fetchExportData(exportTask, context);
-        // 取出第一个 block 中的数据，强制转换为对应模型类型
+        // Retrieve data from the first block and cast it to the corresponding model type
         List<TestModel> list = (List<TestModel>) dataList.get(0);
         for (TestModel item : list) {
-            // 计算逻辑
+            // Calculation logic
         }
         return dataList;
     }
 }
 ```
 
-> 练习（Exercise）
+> Exercise
 >
-> 1. 为 “项目信息” 创建导出模板（projectInfoExportTemplate）。
-> 2. 模板中包含以下字段：项目编码、项目名称、项目类型、状态、项目预算、报销单号、费用项、事由、报销金额、报销人以及附件（电子发票）。
-> 3. 创建导出扩展点（ProjectInfoExportExtPoint），在获取到数据之后，通过计算公式（项目预算 = 人均预算 * 人员投入规模）得到项目预算的值。
+> 1. Create an export template for "Project Information" (projectInfoExportTemplate).
+> 2. The template should include the following fields: Project Code, Project Name, Project Type, Status, Project Budget, Reimbursement Form Number, Expense Item, Reason, Reimbursement Amount, Reporter, and Attachment (Electronic Invoice).
+> 3. Create an export extension point (ProjectInfoExportExtPoint) to calculate the project budget value using the formula (Project Budget = Budget per Person * Personnel Input Scale) after obtaining the data.
 
-:::warning 提示：
+:::warning Tip:
 
-之前在 “项目信息” 模型中，项目预算被定义为存储字段，会保存在数据库中。在进行这个练习之前，你可以将这个字段改为 “非存储字段” 以方便查看自定义扩展点的计算效果。
+Previously, in the "Project Information" model, the project budget was defined as a stored field and saved in the database. Before performing this exercise, you can change this field to a "non-stored field" to facilitate viewing the calculation effect of the custom extension point.
 
 :::
-

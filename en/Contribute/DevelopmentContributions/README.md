@@ -1,8 +1,8 @@
 ---
-title: 研发贡献
+title: R&D Contribution
 index: false
 category:
-  - 贡献手册
+  - Contribution Manual
 dir:
   link: false
   order: 2

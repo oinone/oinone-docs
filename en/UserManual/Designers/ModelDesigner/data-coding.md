@@ -1,173 +1,171 @@
 ---
-title: 数据编码
+title: Data Encoding
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 3
 next:
-  text: 界面设计器（UI Designer）
-  link: /en/UserManual/Designers/UIDesigner/README.md
+  text: UI Designer
+  link: /en-us/UserManual/Designers/UIDesigner/README.md
 ---
-当数据字段需要遵循特定编码规则时，可以在模型设计器中设计模型或字段的编码，设置完成后，编码将实时展示，方便随时查看与调整。
+When data fields need to follow specific encoding rules, you can design the encoding of models or fields in the Model Designer. After the settings are completed, the encoding will be displayed in real-time for easy viewing and adjustment at any time.
 
-# 一、筛选
-### 1.功能介绍
-根据实际需求，选择应用/模块、数据编码类型或输入名称进行筛选条件的定制，以便对数据编码进行精准筛选，支持一键清除所有筛选条件。
+# I. Filtering
+### 1. Function Introduction
+According to actual needs, select the application/module, data encoding type, or enter the name to customize the filtering conditions for precise filtering of data encoding. It supports clearing all filtering conditions with one click.
 
-:::info 注意
+:::info Note
 
-在下拉选择应用/模块筛选项中，仅是对平台上的应用或模块进行了初步筛选。在实际筛选操作时，仍需进一步选择具体的应用或模块以完成配置。同理，只有当所有的筛选项都配置正确，才能筛选出正确的数据编码。
+In the drop-down selection of application/module filtering options, only a preliminary filtering of applications or modules on the platform is performed. In actual filtering operations, you still need to further select specific applications or modules to complete the configuration. Similarly, only when all filtering options are correctly configured can the correct data encoding be filtered out.
 
 :::
 
-### 2.操作方法
-+ 在筛选区选择或输入条件，完成对数据编码的筛选
-+ 点击「重置筛选」，清空所有已有筛选条件
+### 2. Operation Method
++ Select or enter conditions in the filtering area to filter the data encoding.
++ Click "Reset Filter" to clear all existing filtering conditions.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/shaixuan.png)
 
-# 二、导入数据编码
-### 1.功能介绍
-导入数据编码是添加数据编码的一种高效方式。可以下载平台提供的导入模板，按照既定规则填写相关信息后，将文件导入系统，即可快速完成数据编码的添加。
+# II. Import Data Encoding
+### 1. Function Introduction
+Importing data encoding is an efficient way to add data encoding. You can download the import template provided by the platform, fill in the relevant information according to the established rules, and then import the file into the system to quickly complete the addition of data encoding.
 
-+ 导入模板：平台提供模型的导入模板，不同的操作模式下提供的模板不同，可切换操作模式
-:::info 注意
++ Import Template: The platform provides import templates for models. Different templates are provided under different operation modes, and you can switch the operation modes.
+:::info Note
 
-无代码模式与专家模式下提供的导入模板不同：
+The import templates provided in the no-code mode and the expert mode are different:
 
-+ 在无代码模式下，模板仅提供基础的模型信息，数量较少，易于填写
-+ 在专家模式下，模板提供丰富的模型信息，内容详尽，信息更具专业性
-
-:::
-
-+ 导入说明：详细阐述了导入模板中各项内容的含义及填写规则，可以帮助用户准确无误地填写导入文件。根据不同的操作模式，提供了相应的导入说明，以确保用户能够顺利完成导入过程。
-+ 上传文件：仅支持上传扩展名为.xlsx、.xls、.xlsm的文件
-
-:::info 注意
-
-在上传文件时，应上传与当前操作模式对应的文件。
++ In the no-code mode, the template only provides basic model information, with a small amount and is easy to fill in.
++ In the expert mode, the template provides rich model information, with detailed content and more professional information.
 
 :::
 
-### 2.操作方法
-+ 点击「导入数据编码」，选择所属应用
++ Import Instructions: It elaborates on the meaning and filling rules of each item in the import template, which can help users fill in the import file accurately. Corresponding import instructions are provided according to different operation modes to ensure that users can successfully complete the import process.
++ Upload File: Only files with the extensions .xlsx, .xls, and .xlsm are supported for upload.
+
+:::info Note
+
+When uploading a file, you should upload the file corresponding to the current operation mode.
+
+:::
+
+### 2. Operation Method
++ Click "Import Data Encoding" and select the affiliated application.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/daoru1.png)
 
-+ 点击「当前模式」按钮，即可切换操作模式
-+ 点击「点击下载导入数据编码模板」，即可下载对应模式下的导入模板
-+ 点击「导入说明」，即可查看对应模式下的导入说明
-+ 点击「点击上传」或拖拽文件至指定位置，即可上传文件
++ Click the "Current Mode" button to switch the operation mode.
++ Click "Click to download the import data encoding template" to download the import template corresponding to the mode.
++ Click "Import Instructions" to view the import instructions corresponding to the mode.
++ Click "Click to upload" or drag the file to the specified location to upload the file.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/daoru2.png)
 
-# 三、添加数据编码
-### 1.功能介绍
-可通过模型设计器创建无代码编码，在创建时可编辑编码名称、代码名称（仅专家模式下）、编码前缀/后缀、格式化日期格式、编码序列等信息
+# III. Add Data Encoding
+### 1. Function Introduction
+You can create no-code encoding through the Model Designer. When creating, you can edit information such as the encoding name, code name (only in the expert mode), encoding prefix/suffix, formatted date format, and encoding sequence.
 
-:::warning 提示
+:::warning Tip
 
-也可在模型中，对模型或字段进行编辑时自定义添加数据编码
-
-:::
-
-+ 编码前/后缀：必须以字母开头，且仅支持数字或字母，最多8个字符
-+ 格式化日期：默认关闭，即数据编码中不包含日期。开关打开后：
-    - 日期格式默认为“年年年年月月日日”，也可以切换成“年年月月日日、年年月月、年年年年、年年”。
-    - 序列归零周期：与格式化日期选择有关，数据编码序列将依据所设置的周期进行归零处理。
-
-:::info 注意
-
-若选择“年年年年月月日日”格式，则可选项包括“年”、“月”、“日”；若选择“年年年年”格式，则仅可选“年”。
+You can also customize and add data encoding when editing a model or field in the model.
 
 :::
 
-+ 编码序列：可选择连续序列或非连续序列，非连续序列需设置序列长度、序列起始值、步长类型、步长；连续序列只需设置序列长度和序列起始值
-    - 序列长度：序列包含多少位数字，可以设置1-18之间的整数。
-    - 序列起始值：数据编码序列的起始值，默认值为3。
-    - 步长类型：默认值为“自定义步长”，也可以设置成“1-10之间随机步长”。
-    - 步长：当选择“自定义步长”时，设置的步长即为真实步长。当选择“1-10之间随机步长”时，实际步长为1-设置值之间的随机整数。
++ Encoding Prefix/Suffix: It must start with a letter and only support numbers or letters, with a maximum of 8 characters.
++ Formatted Date: It is turned off by default, which means the data encoding does not include the date. After the switch is turned on:
+    - The default date format is "YYYYMMDD", and it can also be switched to "YYMMDD, YYMM, YYYY, YY".
+    - Sequence Reset Cycle: It is related to the selection of the formatted date. The data encoding sequence will be reset according to the set cycle.
+
+:::info Note
+
+If you choose the "YYYYMMDD" format, the available options include "Year", "Month", and "Day"; if you choose the "YYYY" format, only "Year" can be selected.
+
+:::
+
++ Encoding Sequence: You can choose a continuous sequence or a non-continuous sequence. For a non-continuous sequence, you need to set the sequence length, sequence start value, step type, and step; for a continuous sequence, you only need to set the sequence length and sequence start value.
+    - Sequence Length: The number of digits included in the sequence, which can be set to an integer between 1 and 18.
+    - Sequence Start Value: The start value of the data encoding sequence, with a default value of 3.
+    - Step Type: The default value is "Custom Step", and it can also be set to "Random Step between 1 and 10".
+    - Step: When "Custom Step" is selected, the set step is the actual step. When "Random Step between 1 and 10" is selected, the actual step is a random integer between 1 and the set value.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/tianjia1.png)
 
-### 2.操作方法
-点击「添加数据编码」，选择所属应用/模块进行添加，点击「添加」后展示弹窗，填写完毕后点击「确定」即可成功创建数据编码。
+### 2. Operation Method
+Click "Add Data Encoding", select the affiliated application/module to add. After clicking "Add", a pop-up window will appear. After filling in the information, click "OK" to successfully create the data encoding.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/tianjia2.png)
 
-# 四、修改数据编码
-### 1.功能介绍
-成功创建的数据编码可以进行修改
+# IV. Modify Data Encoding
+### 1. Function Introduction
+The successfully created data encoding can be modified.
 
-:::info 注意
+:::info Note
 
-+ 仅部分信息支持修改，部分信息在创建时即已固定，因此创建时需谨慎填写。
++ Only partial information supports modification, and some information is fixed at the time of creation. Therefore, you need to fill in the information carefully when creating.
 
 :::
 
-### 2.操作方法
-点击「修改」图标，即可对数据编码进行修改
+### 2. Operation Method
+Click the "Modify" icon to modify the data encoding.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/xiugai.png)
 
-# 五、查看引用关系
-### 1.功能介绍
-通过此功能，可以查看到与该数据编码存在引用关系的各类元素，包括其他模型、字段。每种关系通过列表展示，列表项为链接，可链接到对应的设计页面；内容为对应内容
+# V. View Reference Relationships
+### 1. Function Introduction
+Through this function, you can view various elements that have reference relationships with the data encoding, including other models and fields. Each relationship is displayed in a list, and the list items are links that can lead to the corresponding design pages; the content is the corresponding content.
 
-:::tip 举例
+:::tip Example
 
-存在引用关系的字段的列表项显示的是字段的名称，列表项链接到对应字段的设计页面。
+The list item of a field with a reference relationship displays the name of the field, and the list item links to the design page of the corresponding field.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/yinyong1.png)
 
 :::
 
-### 2.操作方法
-点击「查看被引用的信息」图标，即可查看引用关系
+### 2. Operation Method
+Click the "View Referenced Information" icon to view the reference relationships.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/yinyong2.png)
 
-# 六、废弃/可用数据编码
-### 1.功能介绍
-对于当前暂不使用的数据编码，可以执行废弃操作。若日后需要，只需将废弃的数据编码设置为可用状态，即可重新投入使用。此外，废弃后的数据编码仍支持对其进行编辑等操作
+# VI. Disable/Enable Data Encoding
+### 1. Function Introduction
+For data encoding that is not currently in use, you can perform the disable operation. If needed in the future, you only need to set the disabled data encoding to the enabled state to put it back into use. In addition, the disabled data encoding still supports operations such as editing.
 
-:::info 注意
+:::info Note
 
-废弃后的数据编码，在被其他设计器中引用时，将不再显示在可选列表中。
+The disabled data encoding will no longer be displayed in the optional list when referenced in other designers.
 
 :::
 
-### 2.操作方法
-点击「废弃」，数据编码设置为废弃状态，按钮变为「设为可用」；再次点击，数据编码设置为可用状态
+### 2. Operation Method
+Click "Disable", the data encoding will be set to the disabled state, and the button will change to "Set to Enabled"; click again, and the data encoding will be set to the enabled state.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/feiqi.png)
 
-# 七、删除数据编码
-### 1.功能介绍
-当数据编码不再使用时，可以选择将其删除。低代码编码不允许删除。
+# VII. Delete Data Encoding
+### 1. Function Introduction
+When the data encoding is no longer in use, you can choose to delete it. Low-code encoding is not allowed to be deleted.
 
-:::info 注意
+:::info Note
 
-在删除前，需确保该数据编码未被其他设计器引用，否则删除操作将无法进行。
-
-:::
-
-:::danger 警告
-
-删除后的数据编码将不再出现在编码列表中，且此操作不可恢复，请务必谨慎执行！
+Before deletion, you need to ensure that the data encoding is not referenced by other designers; otherwise, the deletion operation cannot be performed.
 
 :::
 
-### 2.操作方法
-点击「删除」，即可删除数据编码。
+:::danger Warning
+
+The deleted data encoding will no longer appear in the encoding list, and this operation cannot be undone. Please execute it with caution!
+
+:::
+
+### 2. Operation Method
+Click "Delete" to delete the data encoding.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/shanchu.png)
 
-# 八、附件：名词解释
-| 名词 | 描述 |
+# VIII. Attachment: Glossary
+| Term | Description |
 | --- | --- |
-| 无代码编码 | 通过无代码设计器（如模型设计器、界面设计器）设计的编码称之为无代码编码|
-| 低代码编码 | 通过低代码研发框架编写代码或无代码设计时系统自动生成的编码称之为低代码编码 |
-
-
+| No-code Encoding | Encoding designed through no-code designers (such as the Model Designer and UI Designer) is called no-code encoding. |
+| Low-code Encoding | Encoding written through the low-code development framework or automatically generated by the system during no-code design is called low-code encoding. |

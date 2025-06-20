@@ -1,30 +1,28 @@
 ---
-title: 精通前端框架（Master the Front-End framework）
+title: Master the Front-End Framework
 index: true
 category:
-  - 研发手册
-  - 教程
-  - 精通前端框架
+  - Development Manual
+  - Tutorials
+  - Master the Front-End Framework
 dir:
   link: true
   order: 4
 prev:
-  text: 章节 2：构建仪表盘（Build a dashboard）
+  text: Chapter 2：Build a Dashboard
   link: /en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md
 next:
-  text: 章节 1：前端框架概览（Front-End Overview）
+  text: Chapter 1：Front-End Overview
   link: /en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md
 ---
-本教程是为那些已经完成了 “探索前端框架” 教程，并且希望深入了解该前端框架的人而设计的。它由两个独立的项目组成，每个项目都专注于 `Oinone` 框架的不同功能。
+This tutorial is designed for those who have completed the "Explore the Front-End Framework" tutorial and wish to gain an in-depth understanding of the front-end framework. It consists of two independent projects, each focusing on different functions of the `Oinone` framework.
 
-:::info 注意
+:::info Note
 
-这些章节中的每一个都可以独立完成，且顺序任意。另外，请注意，由于一些章节涵盖了大量内容，所以篇幅可能会相当长。
+Each of these chapters can be completed independently and in any order. Additionally, please note that due to the extensive content covered in some chapters, the length may be considerably long.
 
 :::
 
-第一个项目将通过结合现有视图创建一个甘特图页面。看看如何利用现有代码并对其进行修改以满足我们的需求是很有意思的。此外，这个项目是一个很现实的项目，它将包含在处理自定义任何一类新视图时的方法论。学会并掌握这一技能可以在未来使用 Oinone 进行开发的过程中有更好的理解。
+The first project will create a Gantt chart page by combining existing views. It is interesting to see how to leverage existing code and modify it to meet our needs. Furthermore, this project is highly practical and will incorporate methodologies for handling the customization of any new type of view. Learning and mastering this skill can lead to a better understanding of Oinone development in the future.
 
-第二个项目是针对画廊视图的改造。当我们使用画廊视图来满足我们的业务场景时，仅仅使用 DSL 定义一个卡片，可能无法达到我们想要的展示效果。这个时候对一类卡片进行自定义是非常有必要的。
-
-
+The second project focuses on the transformation of the gallery view. When using the gallery view to meet our business scenarios, simply defining a card using DSL may not achieve the desired display effect. In such cases, customizing a type of card becomes essential.

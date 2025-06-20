@@ -1,30 +1,30 @@
 ---
-title: Maven安装与注意事项
+title: Maven Installation and Precautions
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - Installation and Upgrade
+  - Environment Preparation
 order: 8
 next:
-  text: 源码安装
+  text: Source Code Installation
   link: /en/InstallOrUpgrade/CommunityEdition/source-code-installation.md
 ---
-# 一、下载安装包
-下载地址 [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
+# I. Download Installation Package
+Download address: [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
 
-历史版本下载地址 [https://maven.apache.org/docs/history.html](https://maven.apache.org/docs/history.html)
+Historical version download address: [https://maven.apache.org/docs/history.html](https://maven.apache.org/docs/history.html)
 
-推荐选择`3.8.x`、`3.9.x`系列版本进行安装。
+It is recommended to select versions from the `3.8.x` or `3.9.x` series for installation.
 
-:::info 注意
+:::info Note
 
-+ 安装过程中使用3.9.9版本作为示例
-+ 在 Linux/macOS 系统中，请使用默认终端；在 Windows 系统中，请使用 PowerShell。
++ The 3.9.9 version is used as an example during the installation process.
++ On Linux/macOS systems, use the default terminal; on Windows systems, use PowerShell.
 
 :::
 
-# 二、安装
-## （一）下载
+# II. Installation
+## (I) Download
 ```shell
 # Linux/macOS
 curl -L https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz -o apache-maven-3.9.9-bin.tar.gz
@@ -35,20 +35,20 @@ curl -L https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9
 Invoke-WebRequest -Uri "https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip" -OutFile "apache-maven-3.9.9-bin.zip"
 ```
 
-## （二）解压
-可视化工具或者使用如下命令解压
+## (II) Unzip
+Use visualization tools or the following commands to unzip:
 
 ```shell
 # Linux/macOS
-tar zxvf apache-maven-3.9.9-bin.tar.gz -C <Maven安装目录>
+tar zxvf apache-maven-3.9.9-bin.tar.gz -C <Maven installation directory>
 ```
 
 ```shell
 # Windows
-Expand-Archive apache-maven-3.9.9-bin.zip <Maven安装目录>
+Expand-Archive apache-maven-3.9.9-bin.zip <Maven installation directory>
 ```
 
-建立软链(可选)
+Create a soft link (optional):
 
 ```shell
 # Linux/macOS
@@ -60,69 +60,67 @@ ln -s apache-maven-3.9.9 maven
 New-Item -Path .\maven\ -ItemType SymbolicLink -Target .\apache-maven-3.9.9
 ```
 
-## （三）配置环境变量
-### 1、Linux/macOS配置环境变量
-:::info 注意
+## (III) Configure Environment Variables
+### 1. Configure Environment Variables on Linux/macOS
+:::info Note
 
-在配置环境变量时，脚本中的配置路径需替换为对应 Shell 的 profile 文件路径：
+When configuring environment variables, the configuration path in the script needs to be replaced with the corresponding Shell profile file path:
 
-+ 对于 Zsh，请使用 `${HOME}/.zshrc`
-+ 对于 Bash，请使用 `${HOME}/.bashrc`
++ For Zsh, use `${HOME}/.zshrc`
++ For Bash, use `${HOME}/.bashrc`
 
 :::
 
 ```shell
 # Linux/macOS
-cat >> 替换具体Shell配置文件 << EOF
-export M2_HOME="<Maven安装目录>"
+cat >> Replace with specific Shell configuration file << EOF
+export M2_HOME="<Maven installation directory>"
 export PATH=\$M2_HOME/bin:\$PATH
 EOF
 ```
 
-以下提供两种配置环境变量的方式：可视化界面配置和命令行配置。任选其中一种方式进行配置即可，无需同时使用。
+The following provides two ways to configure environment variables: visual interface configuration and command-line configuration. Choose either way for configuration, no need to use both.
 
-### 2、Windows配置环境变量
-+ 可视化界面方式设置用户级别环境变量
+### 2. Configure Environment Variables on Windows
++ Set user-level environment variables via visual interface
 
-键盘触发 `Win + R`出现以下界面
+Trigger with keyboard `Win + R` to display the following interface:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/maven/1.png)
 
-输入以下代码之后点击`确定`
+Enter the following code and click `OK`:
 
 ```shell
-# 呼出环境变量配置界面
+# Launch environment variable configuration interface
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
 
-设置`M2_HOME`为`C:\Users\yakir\Developer\apache-maven-3.9.9\`
+Set `M2_HOME` to `C:\Users\yakir\Developer\apache-maven-3.9.9\`
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/maven/2.png)
 
-追加`Path` `;%M2_HOME%\bin`
+Append to `Path`: `;%M2_HOME%\bin`
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/maven/3.png)
 
++ Set user-level environment variables via command line_**<u>(Optional)</u>**_
 
-
-+ 命令行方式设置用户级别环境变量_**<u>(可选)</u>**_
-
-运行CMD或者Powershell或者Terminal
+Run CMD, PowerShell, or Terminal:
 
 ```powershell
-# 设置M2_HOME
-# 设置M2_HOME为默认安装目录绝对路径或者自定义目录绝对路径
-setx "M2_HOME" "<Maven安装目录>"
-# 例如 setx "M2_HOME" C:\Users\yakir\Developer\apache-maven-3.9.9\
+# Set M2_HOME
+# Set M2_HOME to the absolute path of the default installation directory or a custom directory
+setx "M2_HOME" "<Maven installation directory>"
+# For example: setx "M2_HOME" C:\Users\yakir\Developer\apache-maven-3.9.9\
 ```
 
 ```powershell
-# 追加PATH
+# Append to PATH
 setx "Path" "%Path%;%M2_HOME%\bin"
 ```
 
-# 三、验证
-命令行输入
+# III. Verification
+Enter in the command line:
 
 `mvn --version`
 
@@ -144,5 +142,4 @@ Default locale: zh_CN, platform encoding: GBK
 OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
 ```
 
-出现类似输出表示Maven安装成功
-
+Output similar to the above indicates that Maven is successfully installed.

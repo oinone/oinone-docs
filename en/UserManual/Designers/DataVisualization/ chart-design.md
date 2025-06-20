@@ -1,296 +1,250 @@
 ---
-title: 图表设计
+title: Chart Design
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 3
 ---
-本界面主要分为四个区域：操作栏、数据配置区、图表预览区、样式栏
+This interface is mainly divided into four areas: the operation bar, the data configuration area, the chart preview area, and the style bar.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1.png)
 
-# 一、操作栏
-## （一）保存
-### 1.功能介绍
-支持对图表设计进行存档保存。即使图表设计尚未完整，也可选择保存当前设计进度。下次进入图表设计页面时，系统将自动加载并显示之前保存的设计页面，方便继续完善图表。
+# I. Operation Bar
+## (I) Save
+### 1. Function Introduction
+It supports archiving and saving the chart design. Even if the chart design is not yet complete, you can choose to save the current design progress. When you enter the chart design page next time, the system will automatically load and display the previously saved design page, facilitating the continuation of chart improvement.
 
-:::warning 提示
-
-当图表设计已完成但尚未发布时，可以在报表或数据大屏中直接引用。此引用操作不会对图表的后续发布产生任何影响。
-
+:::warning Prompt
+When the chart design is completed but not yet published, it can be directly referenced in reports or data dashboards. This reference operation will not have any impact on the subsequent publication of the chart.
 :::
 
-### 2.操作方法
-点击「保存」，即可将当前设计进度存档保存。
+### 2. Operation Method
+Click "Save" to archive and save the current design progress.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/bc.png)
 
-# 二、数据配置区
-## （一）图表编辑——数据来源类型
-### 1.功能介绍
-在数据配置区，支持编辑图表的数据来源类型。
+# II. Data Configuration Area
+## (I) Chart Editing - Data Source Type
+### 1. Function Introduction
+In the data configuration area, you can edit the data source type of the chart.
 
-+ 当数据来源类型为模型字段时，可更改模型与方法。除此之外，在高级设置中还可设置查询条件、数据分组、数据计算
++ When the data source type is a model field, you can change the model and method. In addition, you can set query conditions, data grouping, and data calculation in the advanced settings.
 
-  :::info 注意
-
-  若已配置了数据分组与数据计算，那么在设置维度与数值时，仅限于选择在数据分组和数据计算过程中已选中的字段。
-
+  :::info Note
+  If data grouping and data calculation have been configured, when setting dimensions and values, you can only select the fields that have been selected during the data grouping and data calculation process.
   :::
 
-    - 查询条件：以配置的查询条件展示数据。
-    - 数据分组：仅允许选择维度字段进行分组。当选择多个维度字段进行分组时，会产生一个多维度的分组结果。
-    - 数据计算：仅允许选择数值字段进行计算。可以选择聚合方式，包括无处理、最小值、最大值、平均值、求和、计数。
+    - Query conditions: Display data based on the configured query conditions.
+    - Data grouping: Only dimension fields are allowed to be selected for grouping. When multiple dimension fields are selected for grouping, a multi-dimensional grouping result will be generated.
+    - Data calculation: Only numeric fields are allowed to be selected for calculation. You can choose the aggregation method, including no processing, minimum value, maximum value, average value, sum, and count.
 
-:::info 注意
-
-当上述条件被设定后，系统会根据数据分组字段执行分组查询操作，同时依据数据计算字段对各个分组内的数值进行聚合统计，并确保结果满足查询条件中所设定的各项要求。
-
+:::info Note
+After the above conditions are set, the system will perform a grouped query operation based on the data grouping fields, and at the same time perform aggregate statistics on the numerical values within each group based on the data calculation fields, ensuring that the results meet all the requirements set in the query conditions.
 :::
 
-+ 当数据来源类型为集成应用时，可更改应用、API与API参数（详见集成设计器）
-+ 当数据来源类型为数据库时，可更改数据库、API与API参数（详见集成设计器）
++ When the data source type is an integrated application, you can change the application, API, and API parameters (see the integrated designer for details).
++ When the data source type is a database, you can change the database, API, and API parameters (see the integrated designer for details).
 
-:::info 注意
-
-当修改数据来源类型后，图表信息会清空。
-
+:::info Note
+When you modify the data source type, the chart information will be cleared.
 :::
 
-### 2.操作方法
-点击「设置」图标，在弹窗中编辑信息后点击「确定」，即可成功编辑。
+### 2. Operation Method
+Click the "Settings" icon, edit the information in the pop-up window, and then click "OK" to successfully edit.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/tbbj.png)
 
-## （二）数据配置
-### 1.功能介绍
-支持配置维度、数值、筛选、排序、对比、拆分、图内筛选项。
+## (II) Data Configuration
+### 1. Function Introduction
+It supports configuring dimensions, values, filters, sorting, comparison, splitting, and in-chart filters.
 
-:::info 注意
-
-此处的数据配置仅针对于系统提供的标准图表类型的通用数据配置，一些图表的特殊数据配置请查阅图表类型文档。
-
+:::info Note
+The data configuration here only applies to the general data configuration of standard chart types provided by the system. For the special data configuration of some charts, please refer to the chart type documentation.
 :::
 
-+ 维度：在图表中，维度是用于描述数据所属类别或特征的属性，帮助用户区分和分类数据。
-+ 数值：图表中的数值是通过设定的聚合方式计算得出的具体数据结果，用于展示量化信息。
-+ 筛选：可选择维度字段或数值字段进行筛选，数量不限。选择后，可为每个字段指定要展示或排除的值。
++ Dimension: In a chart, a dimension is an attribute used to describe the category or characteristics of data, helping users distinguish and classify data.
++ Value: The values in a chart are the specific data results calculated through the set aggregation method, used to display quantitative information.
++ Filter: You can select dimension fields or value fields for filtering, with no limit on the quantity. After selection, you can specify the values to be displayed or excluded for each field.
 
-:::tip 举例
-
-原图表为不同商品的下单金额。
+:::tip Example
+The original chart shows the order amounts of different products.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz1.png)
 
-设置排除商品3
+Set to exclude Product 3.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz2.png)
-
 :::
 
-+ 排序：可选择一个维度字段或数值字段进行排序，并根据该字段选择相应的排序规则。同时，支持自定义排序以满足特定需求。
++ Sorting: You can select a dimension field or a value field for sorting and choose the corresponding sorting rule based on this field. At the same time, custom sorting is supported to meet specific requirements.
 
-:::tip 举例
-
-原图表为不同商品的下单金额，暂无排序规则
+:::tip Example
+The original chart shows the order amounts of different products, with no sorting rule.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz3.png)
 
-设置以“购买商品”升序排序
+Set to sort in ascending order by "Purchased Product".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz4.png)
-
 :::
 
-+ 对比：仅支持选择一个维度字段。选择后，系统将依据该字段对数据进行对比展示。
++ Comparison: Only one dimension field can be selected. After selection, the system will display the data in comparison based on this field.
 
-:::tip 举例
-
-原图表为不同商品的下单金额。
+:::tip Example
+The original chart shows the order amounts of different products.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz5.png)
 
-将下单编码拖入对比字段，则会按照不同的商品，查看每个商品下不同订单的下单金额情况。
+Drag the order code into the comparison field, and you can view the order amounts of different orders for each product.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz6.png)
-
 :::
 
-:::warning 提示
-
-建议拖入的对比字段其字段值个数不超过10个。若超出此限制，每个维度值将仅取前10条对比数据进行展示。
-
+:::warning Prompt
+It is recommended that the number of field values of the dragged comparison field does not exceed 10. If this limit is exceeded, only the top 10 comparison data for each dimension value will be displayed.
 :::
 
-+ 拆分：仅支持选择一个维度字段进行拆分，选择后，原图表将依据该字段被拆分为多个子图表。
++ Splitting: Only one dimension field can be selected for splitting. After selection, the original chart will be split into multiple sub-charts based on this field.
 
-:::tip 举例
-
-原图表为不同商品的下单金额。
+:::tip Example
+The original chart shows the order amounts of different products.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz7.png)
 
-将下单编码拖入拆分字段后，会根据不同的下单编码，将原图表拆分成与编码数量相等的多个图表。每个拆分后的图表将展示一个订单下的商品下单金额情况。
+After dragging the order code into the splitting field, the original chart will be split into multiple charts equal to the number of codes according to different order codes. Each split chart will show the order amounts of products under one order.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz8.png)
-
 :::
 
-+ 图内筛选项：仅限选择维度字段，且最多可选择六个。通过选定的筛选项，可以对数据进行过滤，图表将仅展示过滤后的数据分析结果。
++ In-chart filters: Only dimension fields can be selected, and a maximum of six can be selected. Through the selected filters, you can filter the data, and the chart will only display the analysis results of the filtered data.
 
-:::tip 举例
-
-图表为不同商品的下单金额。设置图内筛选项为“购买商品”与“编码”，即可在图表中对图表信息进行筛选
+:::tip Example
+The chart shows the order amounts of different products. Set the in-chart filters to "Purchased Product" and "Code", and you can filter the chart information in the chart.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz9.png)
-
 :::
 
-:::info 注意
-
-不同类型的图表所支持的数据配置可能存在差异。
-
+:::info Note
+The data configuration supported by different types of charts may vary.
 :::
 
-### 2.操作方法
-+ 添加：点击「添加」图标，在弹框中点选或将字段拖入。
+### 2. Operation Method
++ Add: Click the "Add" icon, and click or drag the fields into the pop-up window.
 
-:::info 注意
-
-+ 不同图表支持的字段个数不同，当字段个数达到上限后不可再添加；此时若添加新字段，新字段会代替旧字段进行数据分析，且会保留相同的样式。
-+ 当数值中允许添加多个字段时，字段类型必须保持一致，即全部为时间类型字段或全部为非时间类型字段。
-+ 饼图、漏斗图与仪表盘不可以在数值中添加时间类型字段
-
+:::info Note
++ Different charts support different numbers of fields. When the number of fields reaches the upper limit, no more can be added. At this time, if you add a new field, the new field will replace the old field for data analysis, and the same style will be retained.
++ When multiple fields can be added to the values, the field types must be consistent, that is, all time-type fields or all non-time-type fields.
++ Pie charts, funnel charts, and dashboards cannot have time-type fields added to the values.
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz10.png)
 
-+ 修改：点击「设置」图标，可依据不同功能对字段进行修改和调整。
++ Modify: Click the "Settings" icon to modify and adjust the fields according to different functions.
 
   ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz11.png)
 
-    - 维度：可修改展示名称
-    - 数值：可修改展示名称、聚合方式与数据格式
-        * 聚合方式：包括无处理、最小值、最大值、平均值、求和与计数
-        * 数据格式：可为数据选择类型，包括默认、数值、货币、百分比。依据不同的类型可配置不同格式
-            + 默认：可以为数据设置单位，以满足基本展示需求。
-            + 数值：除了单位，还可以为数据设置精度，以确保数据展示的准确性。
-            + 货币：可以为数据选择货币类型，并设置精度和单位，使数据以货币格式呈现。
+    - Dimension: You can modify the display name.
+    - Value: You can modify the display name, aggregation method, and data format.
+        * Aggregation method: Including no processing, minimum value, maximum value, average value, sum, and count.
+        * Data format: You can select a type for the data, including default, numeric, currency, and percentage. Different formats can be configured according to different types.
+            + Default: You can set a unit for the data to meet basic display requirements.
+            + Numeric: In addition to the unit, you can also set the precision for the data to ensure the accuracy of data display.
+            + Currency: You can select a currency type for the data and set the precision and unit to present the data in currency format.
 
-              :::warning 提示
-
-              此处货币类型，可在「资源」-「货币」中进行设置
-
+              :::warning Prompt
+              The currency types here can be set in "Resources" - "Currencies".
               :::
 
-            + 百分比：可以为数据设置精度和单位，数据将以百分比形式展示，直观反映数据比例。
-    - 筛选：可修改展示或排除选中字段中所包含数据
-    - 图内筛选项：可修改展示名称
-+ 删除：点击「删除」图标，即可将选中字段删除
+            + Percentage: You can set the precision and unit for the data, and the data will be displayed in percentage form, intuitively reflecting the data ratio.
+    - Filter: You can modify the data included in the selected fields to be displayed or excluded.
+    - In-chart filters: You can modify the display name.
++ Delete: Click the "Delete" icon to delete the selected field.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/sjpz12.png)
 
-# 三、图表预览区
-## （一）切换图表类型
-### 1.功能介绍
-在图表预览区，会依据选定的图表类型，结合数据配置区和样式栏中的设置信息，动态展示相应的图表。此外，还可以在图表预览区域的上方切换不同的图表类型，以满足不同的数据展示需求。
+# III. Chart Preview Area
+## (I) Switch Chart Type
+### 1. Function Introduction
+In the chart preview area, the corresponding chart will be dynamically displayed based on the selected chart type, combined with the settings in the data configuration area and the style bar. In addition, you can switch between different chart types above the chart preview area to meet different data display needs.
 
-:::info 注意
-
-不同类型的图表可能存在数据配置和样式设置上差异。（详见图表类型文档）
-
+:::info Note
+There may be differences in data configuration and style settings for different types of charts. (See the chart type documentation for details.)
 :::
 
-:::warning 提示
-
-若系统提供的图表类型暂无法满足实际需求，可前往图表模板自定义图表类型。
-
+:::warning Prompt
+If the chart types provided by the system cannot meet your actual needs, you can go to the chart template to customize the chart type.
 :::
 
-### 2.操作方法
+### 2. Operation Method
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/qhtblx.png)
 
-## （二）图表编辑——标题与描述
-### 1.功能介绍
-在图表预览区，可编辑图表的标题、副标题与描述
+## (II) Chart Editing - Title and Description
+### 1. Function Introduction
+In the chart preview area, you can edit the title, subtitle, and description of the chart.
 
-:::info 注意
-
-若未显示标题、副标题、描述，可在设计图表的样式栏中查看是否关闭展示，若关闭则无法展示，同理无法编辑。
-
+:::info Note
+If the title, subtitle, or description is not displayed, check if the display is turned off in the style bar of the designed chart. If it is turned off, it cannot be displayed, and similarly, it cannot be edited.
 :::
 
-### 2.操作方法
-点击标题区域、副标题区域、描述区域或「编辑」图标，输入信息后即可成功编辑
+### 2. Operation Method
+Click on the title area, subtitle area, description area, or the "Edit" icon, enter the information, and then you can successfully edit.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/bjbt.png)
 
-# 四、样式栏
-### 1.功能介绍
-支持为图表配置样式，包括图表标题、坐标轴、标签、图例、辅助线、显示设置、下钻。此外，还可启用图表的标准样式
+# IV. Style Bar
+### 1. Function Introduction
+It supports configuring styles for the chart, including the chart title, axes, labels, legends, auxiliary lines, display settings, and drill-down. In addition, you can enable the standard style of the chart.
 
-:::info 注意
-
-当切换为图表的标准样式后，若修改了某个样式，图表的标准样式会自动取消。
-
+:::info Note
+When you switch to the standard style of the chart, if you modify a certain style, the standard style of the chart will be automatically cancelled.
 :::
 
-:::info 注意
-
-此处的样式设置仅针对于系统提供的标准图表类型的通用样式，一些图表的特殊样式请查阅图表类型文档。对于自定义图表中包含的特殊样式，本部分不进行详细解释。
-
+:::info Note
+The style settings here only apply to the general styles of standard chart types provided by the system. For the special styles of some charts, please refer to the chart type documentation. For the special styles included in custom charts, this part will not be explained in detail.
 :::
 
-+ 图表标题：可自定义标题、副标题与描述的展示状态、位置、字号大小及字体颜色，以满足个性化需求。
-+ 坐标轴：可选择是否展示坐标轴的轴线、轴标题及网格线，并可为坐标轴设置合适的字号大小和字体颜色，以提升图表的可读性。
-+ 标签：可灵活选择是否展示标签，以及标签中展示的字段内容，同时可为标签设置字号大小和字体颜色，使数据信息更加清晰。
-+ 图例：可选择是否展示图例，并根据需要设置图例的位置、字号大小及字体颜色，以便更好地解释图表中的数据系列。
-+ 辅助线：可为图表添加辅助线，支持设置固定值或选择图表中的数值（如平均值、最小值、最大值）作为辅助线的位置，以便更好地分析数据。
-+ 显示设置：可选择是否展示拖动条，以便自由调整视图；同时可设置一屏展示的维度值个数及展示维度值的总数，以优化图表的展示效果。
++ Chart title: You can customize the display status, position, font size, and font color of the title, subtitle, and description to meet personalized needs.
++ Axes: You can choose whether to display the axis lines, axis titles, and gridlines of the axes, and set appropriate font sizes and font colors for the axes to improve the readability of the chart.
++ Labels: You can flexibly choose whether to display labels and the field content to be displayed in the labels. At the same time, you can set the font size and font color for the labels to make the data information clearer.
++ Legends: You can choose whether to display legends and set the position, font size, and font color of the legends as needed to better explain the data series in the chart.
++ Auxiliary lines: You can add auxiliary lines to the chart and support setting a fixed value or selecting a value from the chart (such as the average value, minimum value, or maximum value) as the position of the auxiliary line to better analyze the data.
++ Display settings: You can choose whether to display the drag bar to freely adjust the view. At the same time, you can set the number of dimension values to be displayed on one screen and the total number of dimension values to be displayed to optimize the display effect of the chart.
 
-:::warning 提示
-
-当启用展示拖动条功能，并设定了一屏展示的维度值个数后，可以通过在图表中拉长或缩短拖动条的长度，来调整一屏内展示的维度值个数，实现增加或减少的效果。
-
+:::warning Prompt
+When the display drag bar function is enabled and the number of dimension values to be displayed on one screen is set, you can adjust the number of dimension values displayed on one screen by lengthening or shortening the length of the drag bar in the chart, achieving an increase or decrease effect.
 :::
 
-+ 下钻：可为图表维度字段值设置下钻链接。当选择下钻类型为图表下钻时，可为维度字段值选择下钻图表；当选择下钻类型为自由下钻时，可为维度字段值选择跳转URL。
++ Drill-down: You can set drill-down links for the dimension field values of the chart. When the drill-down type is selected as chart drill-down, you can select a drill-down chart for the dimension field values. When the drill-down type is selected as free drill-down, you can select a jump URL for the dimension field values.
 
-:::info 注意
-
-维度字段值仅支持一次下钻操作。
-
+:::info Note
+The dimension field values only support one drill-down operation.
 :::
 
-:::info 注意
-
-不同类型的图表所支持的样式可能存在差异。
-
+:::info Note
+The styles supported by different types of charts may vary.
 :::
 
-### 2.操作方法
-+ 在样式栏中自定义样式，样式即时生效，在图表中实时展示。
+### 2. Operation Method
++ Customize the style in the style bar, and the style will take effect immediately and be displayed in real-time in the chart.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/ys1.png)
 
-+ 切换标准样式：开启「切换为标准模式」按钮，即可切换将当前图表为标准样式
++ Switch to the standard style: Click the "Switch to Standard Mode" button to switch the current chart to the standard style.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/ys2.png)
 
-# 五、附件：名词解释
-| 名词 | 描述 |
+# V. Attachment: Glossary
+| Term | Description |
 | :---: | --- |
-| 维度 | 用于描述数据所属类别或特征的属性 |
-| 数值 | 用于展示量化信息 |
-| 筛选 | 对来源数据进行过滤，仅采用过滤后的数据进行有效分析 |
-| 排序 | 对已形成的分析图表，调整维度值的排列顺序，以优化展示效果 |
-| 对比 | 用于将不同维度进行对比分析 |
-| 拆分 | 将数据按特定维度进行拆分，以更细致地展示数据 |
-| 图内筛选项 | <div style="width:600px;">对已形成的分析图表，提供更小范围的查询功能，以便精准定位数据</div> |
-| 标签 | 每个维度值与每个数值的切点，用于标注图表中的数据点或维度信息 |
-| 图例 | 通过数值名称及其在图表上的对应颜色来便于区分和识别 |
-| 辅助线 | 添加辅助线后，将图表的分析结果与该条辅助线进行比对 |
-| 下钻 | 可深入探索数据更深层次的信息 |
-
-
+| Dimension | An attribute used to describe the category or characteristics of data |
+| Value | Used to display quantitative information |
+| Filter | Filter the source data and only use the filtered data for effective analysis |
+| Sorting | Adjust the arrangement order of dimension values in the formed analysis chart to optimize the display effect |
+| Comparison | Used to compare and analyze different dimensions |
+| Splitting | Split the data according to a specific dimension to display the data in more detail |
+| In-chart filters | <div style="width:600px;">Provide a smaller range of query functions for the formed analysis chart to accurately locate data</div> |
+| Label | The intersection point of each dimension value and each value, used to mark data points or dimension information in the chart |
+| Legend | Facilitate differentiation and identification through the value names and their corresponding colors on the chart |
+| Auxiliary line | After adding an auxiliary line, compare the analysis results of the chart with this auxiliary line |
+| Drill-down | Explore deeper information in the data |

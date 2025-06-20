@@ -1,79 +1,79 @@
 ---
-title: 运行程序包方式安装
+title: Installation via Running Package
 index: true
 category:
-  - 安装与升级
+  - Installation and Upgrade
 order: 4
 next:
-  text: 从社区版转向企业版
+  text: Switching from Community Edition to Enterprise Edition
   link: /en/InstallOrUpgrade/from-community-to-enterprise.md
 ---
-# 一、概述
-:::info 注意
+# I. Overview
+:::info Note
 
-此模式仅企业版提供，开源社区版可以通过其他几种模式进行安装
-
-:::
-
-基础是准备一台4核16G的Linux服务器，操作系统推荐CentOS 7.6 64位。其中安装了数式Oinone所有必需的依赖项以及常见的有用包。
-
-它适用于正式、研发和测试环境下使用数式Oinone，经过额外的部署和维护工作后，可长期使用。在实际使用过程中，中间件如redis、zookeeper、rockerMq可以独立服务器部署。部署结构示意如下：
-
-![部署结构](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Install-by-running-the-package/bsjg.jpeg)
-
-:::info 注意：如有其他环境配合体验，网络需互通
-
-
-+ 本地开发ip   能否调通   服务器ip
-在本地执行命令：ping 192.168.0.121(替换成自己的服务器ip)
-
-+ 部署docker的宿主机ip 能否调通 本地开发ip
-进入服务器执行命令：ping 192.168.0.60(替换成自己的本地ip)
+This mode is only available for the Enterprise Edition. The open-source Community Edition can be installed through other modes.
 
 :::
 
-# 二、安装MySQL数据库
-如果没有现成的数据库，可自行到官网下载安装：[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)。
+The foundation is to prepare a Linux server with 4 cores and 16GB of memory. CentOS 7.6 64-bit is recommended for the operating system, which has all the necessary dependencies for Oinone and common useful packages installed.
 
-参考[MySQL安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+It is suitable for using Oinone in formal, R&D, and testing environments. After additional deployment and maintenance work, it can be used long-term. In practical use, middleware such as Redis, Zookeeper, and RocketMQ can be deployed on independent servers. The deployment structure is illustrated as follows:
 
-# 三、其他中间件部署
-| RocketMQ | 必须 | 4.7.1以上 |
+![Deployment Structure](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Install-by-running-the-package/bsjg.jpeg)
+
+:::info Note: If experiencing with other environments, networks need to be interoperable
+
+
++ Can the local development IP communicate with the server IP?
+Execute the command locally: ping 192.168.0.121 (replace with your own server IP)
+
++ Can the host IP where Docker is deployed communicate with the local development IP?
+Enter the server and execute the command: ping 192.168.0.60 (replace with your own local IP)
+
+:::
+
+# II. Install MySQL Database
+If there is no existing database, you can download and install it from the official website: [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/).
+
+Refer to [MySQL Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+
+# III. Deploy Other Middleware
+| RocketMQ | Mandatory | 4.7.1+ |
 | --- | --- | --- |
-| Redis | 必须 | 5.0.2以上 |
-| Zookeeper | 必须 | 3.5.8以上 |
+| Redis | Mandatory | 5.0.2+ |
+| Zookeeper | Mandatory | 3.5.8+ |
 
 
-# 四、下载数式Oinone的运行包
-浏览数式Oinone官方社区（doc.oinone.top），查看对应版本的发布记录，并且下载：独立部署所有设计器JAR文件（后端服务，包含所有设计器），如：pamirs-designer-boot-v5.3-5.3.8.4.jar。
+# IV. Download Oinone Running Package
+Browse the official Oinone community (doc.oinone.top), check the release notes of the corresponding version, and download the JAR file for independent deployment of all designers (backend services, including all designers), such as: pamirs-designer-boot-v5.3-5.3.8.4.jar.
 
-# 五、运行数式Oinone标准后端应用
-## （一）下载Oinone专属启动器
-运行包经过加密后，需要用到Oinone的专属启动器，在下载[oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip)后
+# V. Run Oinone Standard Backend Application
+## (I) Download Oinone Exclusive Launcher
+After the running package is encrypted, Oinone's exclusive launcher is required. After downloading [oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip)
 
-## （二）启动脚本
-:::tip 举例：
+## (II) Startup Script
+:::tip Example:
 
-这里以linux平台为例
+Take the Linux platform as an example
 
-1、解压Oinone的专属启动器压缩包oinone-boot-starter.zip，复制linux的启动器 `linux-boot`到用户home目录下
+1. Unzip the Oinone exclusive launcher zip file oinone-boot-starter.zip, and copy the Linux launcher `linux-boot` to the user's home directory.
 
-2、在用户home目录下，新建startup.sh文件和oinone目录
+2. In the user's home directory, create a startup.sh file and an oinone directory.
 
-3、在startup.sh文件中找到如下代码，修改`subject`、`licensePath`以及`jarPath`等配置项
+3. Find the following code in the startup.sh file and modify configuration items such as `subject`, `licensePath`, and `jarPath`.
 
 :::
 
 ```plain
 #startup.sh
 #!/bin/bash
-# 脚本所在目录
+# Directory where the script is located
 home=$(cd "$(dirname "$0")" && pwd)
-# 启动jar路径
+# Path to the startup JAR
 jarPath=$home/oinone/pamirs-designer-boot-v5.3-5.3.8.4.jar
-# 配置路径
+# Configuration path
 applicationPath=$home/oinone/config/application.yml
-# 许可证信息
+# License information
 subject=
 licensePath=
 nohup $home/linux-boot java -Duser.timezone=GMT+08:00 -Dhttps.protocols=TLSv1.2 -Dfile.encoding=UTF-8 \
@@ -86,35 +86,35 @@ sleep 1
 tail -200f $home/out.log
 ```
 
-:::info 注意：其他平台支持
+:::info Note: Other Platform Support
 
-Linux（arm64架构）启动器切换为：linux-boot-arm64。
+The Linux (arm64 architecture) launcher is switched to: linux-boot-arm64.
 
-Mac OS 启动器切换为：darwin-boot
+The Mac OS launcher is switched to: darwin-boot
 
-Mac OS（arm64架构）启动器切换为：darwin-boot-arm64
+The Mac OS (arm64 architecture) launcher is switched to: darwin-boot-arm64
 
-Windows平台启动器切换为：win-boot.exe
-
-:::
-
-:::warning 提示
-
-1. 上述命令使用的`java -jar`与常规使用方式完全相同。
-2. Oinone无代码设计器不支持使用`javaagent`参数。
+The Windows platform launcher is switched to: win-boot.exe
 
 :::
 
-## （三）修改配置文件 config目录下的application.yml文件
-下载[application.yml](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/yml/317547/1741586195436-500e2115-7920-4b7a-9404-a24d85a7ff8a.yml)文件到指定位置如：$home/oinone/config/目录下，并做对应修改。
+:::warning Tip
 
-如果Mysql、Zookeeper、Redis、RocketMQ不在一个宿主机中，在文件中找到如下代码，修改IP、端口、用户名以及密码等配置项
+1. The `java -jar` command used above is exactly the same as the conventional usage.
+2. The Oinone no-code designer does not support the use of the `javaagent` parameter.
+
+:::
+
+## (III) Modify the application.yml File in the config Directory
+Download the [application.yml](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/yml/317547/1741586195436-500e2115-7920-4b7a-9404-a24d85a7ff8a.yml) file to the specified location, such as the $home/oinone/config/ directory, and make corresponding modifications.
+
+If Mysql, Zookeeper, Redis, and RocketMQ are not on the same host, find the following code in the file and modify the IP, port, username, password, and other configuration items.
 
 + Mysql
 
 ```yaml
-# application.yml文件
-# 改成mysql所在服务器的ip、端口(端口号默认3306，使用服务器上mysql的端口一致)、username、password
+# application.yml file
+# Change to the IP, port (default port 3306, consistent with the port of MySQL on the server), username, password of the MySQL server
 pamirs:
   datasource:
     pamirs:
@@ -135,7 +135,7 @@ pamirs:
 + Zookeeper
 
 ```yaml
-# application.yml文件
+# application.yml file
 dubbo:
   application:
     name: pamirs-designer
@@ -164,7 +164,7 @@ pamirs:
 + Redis
 
 ```yaml
-# application.yml文件
+# application.yml file
 spring:
   redis:
     database: 0
@@ -174,26 +174,26 @@ spring:
     password: Abc@1234
     jedis:
       pool:
-        # 连接池中的最大空闲连接 默认8
+        # Maximum idle connections in the connection pool, default 8
         max-idle: 16
-        # 连接池中的最小空闲连接 默认0
+        # Minimum idle connections in the connection pool, default 0
         min-idle: 0
-        # 连接池最大连接数 默认8 ，负数表示没有限制
+        # Maximum number of connections in the connection pool, default 8, negative value means no limit
         max-active: 16
-        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认-1
+        # Maximum blocking wait time for the connection pool (using negative value to indicate no limit), default -1
         max-wait: 3000
 ```
 
 + RocketMQ
 
 ```yaml
-# application.yml文件
+# application.yml file
 spring:
   rocketmq:
     name-server: 127.0.0.1:9876
 ```
 
-+ 文件存储oss
++ File storage OSS
 
 ```yaml
 cdn:
@@ -213,39 +213,33 @@ cdn:
     localFolderUrl: 
 ```
 
-:::danger 警告
+:::danger Warning
 
-体验企业版时数式会提默认配置，但需要注意，cdn正式环境需要替换成自己的服务器，而不是用数式科技提供测试服务器，该服务器会定时清理，导致文件丢失。
+When experiencing the Enterprise Edition, Oinone will provide default configurations, but note that the CDN in the formal environment needs to be replaced with your own server instead of using the test server provided by Oinone Technology. This server is cleaned regularly, leading to file loss.
 
 :::
 
-更多oss配置请参考：[文件存储配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#十四-文件存储配置-pamirs-file)
+For more OSS configurations, please refer to: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#XIV-File-Storage-Configuration-pamirs-file)
 
-# 六、运行数式Oinone标准前端应用
-# 七、常见问题
-## （一）出现`cannot execute binary file`异常该如何处理？
-### 问题原因
-`Oinone专属启动器`是通过`go语言`进行编译并执行，对于不同的操作系统架构需要分别编译。
+# VI. Run Oinone Standard Frontend Application
+# VII. Common Issues
+## (I) How to handle the `cannot execute binary file` exception?
+### Problem Cause
+The `Oinone exclusive launcher` is compiled and executed using `Go language`, and needs to be compiled separately for different operating system architectures.
 
-### 解决方案
-1. `物理机`安装`go语言`环境。
-2. 下载`boot.go`文件，放在`run`目录下。（需询问`Oinone客服`获取最新`boot.go`文件）
-3. 进入`run`目录，执行`go build -o "boot-starter" "boot.go"`命令。
-4. 在`startup.sh`命令中添加`-v $home/run/boot-starter:/opt/pamirs/run/boot-starter \`将文件挂载到容器。
-5. 删除docker容器后再执行`startup.sh`脚本重启镜像即可。
+### Solution
+1. Install the `Go language` environment on the `physical machine`.
+2. Download the `boot.go` file and place it in the `run` directory. (Need to ask `Oinone customer service` for the latest `boot.go` file)
+3. Enter the `run` directory and execute the command `go build -o "boot-starter" "boot.go"`.
+4. Add `-v $home/run/boot-starter:/opt/pamirs/run/boot-starter \` in the `startup.sh` command to mount the file to the container.
+5. Delete the Docker container and then execute the `startup.sh` script to restart the image.
 
-## （二）出现`failed to open elf at /lib64/ld-linux-x86-64.so.2`异常该如何处理？
-### 问题原因
-部分`arm64`架构的宿主机无法兼容`amd64`环境中编译的`linux-boot`启动器，需要将启动器换为`linux-boot-arm64`。
+## (II) How to handle the `failed to open elf at /lib64/ld-linux-x86-64.so.2` exception?
+### Problem Cause
+The host with some `arm64` architecture cannot be compatible with the `linux-boot` launcher compiled in the `amd64` environment, and the launcher needs to be replaced with `linux-boot-arm64`.
 
-### 解决方案
-1. 下载[oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip)并解压，获取`linux-boot-arm64`启动器。
-2. 将启动器放在`run`目录下。
-3. 在`startup.sh`命令中添加`-v $home/run/linux-boot-arm64:/opt/pamirs/run/boot-starter`替换镜像中的启动器。
-4. 删除docker容器后再执行`startup.sh`脚本重启镜像即可。
-
-
-
-
-
-
+### Solution
+1. Download [oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip) and unzip it to obtain the `linux-boot-arm64` launcher.
+2. Place the launcher in the `run` directory.
+3. Add `-v $home/run/linux-boot-arm64:/opt/pamirs/run/boot-starter` in the `startup.sh` command to replace the launcher in the image.
+4. Delete the Docker container and then execute the `startup.sh` script to restart the image.

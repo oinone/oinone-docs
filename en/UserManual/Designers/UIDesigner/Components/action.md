@@ -1,407 +1,405 @@
 ---
-title: 动作
+title: Actions
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 4
 next:
-  text: 自定义组件
-  link: /en/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
+  text: Customized Components
+  link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
 ---
-# 一、通用属性
-+ 动作名称/按钮文字：组件在当前页面的展示名称。
-+ 保留动作：开启此选项后，若删除该动作组件，它将会被保留在左侧工具区的模型动作列表中，便于后续继续使用。
-+ 图标：支持为动作组件添加图标，以增强其可视化和识别度。
-+ 是否隐藏：设为隐藏，在实际页面中，组件不可见，也不可编辑。若设置为条件隐藏，则在符合条件时隐藏。在设计页面时，设为隐藏的组件仍会展示。
-+ 是否禁用：设为禁用，在实际页面中，组件可见，但不可编辑。若设置为条件禁用，则在符合条件时禁用。
-+ 按钮样式：提供主要按钮和次要按钮两种选择。主要按钮设有底色，更加醒目突出；次要按钮则无底色设计。
-+ 按钮类型：可为按钮设定不同类型，各类型按钮的底色各异，包括默认、成功、警告、危险、提示五种选项。
-+ 显示设备：支持PC端、移动端与PAD端。
-+ 快捷键：提供键盘自定义快捷键功能，可快速执行指定动作。
-+ 触发范围：可为快捷键设定触发范围，包括当前视图与全局两种模式。选择当前视图时，快捷键仅在当前视图中有效；选择全局时，快捷键在整个平台中均可使用。
-+ 二次确认：开启此功能后，在执行某一动作前，将弹出确认框进行二次确认。
-    - 提示类型：指弹框的展示类型，包括气泡提示和对话框提示两种。
-    - 提示方向：当提示类型为气泡提示时，显示该属性。可设置气泡的展示位置，选项包括按钮的上方、下方、左侧和右侧。
+# I. General Attributes
++ Action Name/Button Text: The display name of the component on the current page.
++ Retain Action: After enabling this option, if the action component is deleted, it will be retained in the model action list in the left tool area for subsequent reuse.
++ Icon: Supports adding icons to action components to enhance their visualization and recognition.
++ Hidden: If set to hidden, the component will be invisible and uneditable on the actual page. If set to conditionally hidden, it will be hidden when the conditions are met. In the design page, hidden components will still be displayed.
++ Disabled: If set to disabled, the component will be visible but uneditable on the actual page. If set to conditionally disabled, it will be disabled when the conditions are met.
++ Button Style: Two options are available: primary button and secondary button. The primary button has a background color and is more prominent; the secondary button has no background color.
++ Button Type: Different types of buttons can be set, and each type has a different background color, including default, success, warning, danger, and prompt.
++ Display Device: Supports PC, mobile, and PAD.
++ Shortcut Key: Provides a keyboard shortcut customization function to quickly execute specified actions.
++ Trigger Scope: The trigger scope of the shortcut key can be set, including the current view and the global mode. When the current view is selected, the shortcut key is only valid in the current view; when the global mode is selected, the shortcut key can be used throughout the platform.
++ Secondary Confirmation: After enabling this function, a confirmation box will pop up for secondary confirmation before performing an action.
+    - Prompt Type: Refers to the display type of the pop-up box, including bubble prompt and dialog prompt.
+    - Prompt Direction: When the prompt type is a bubble prompt, this attribute is displayed. The display position of the bubble can be set, including above, below, left, and right of the button.
 
-    :::info 注意
+    :::info Note
 
-    若选择的方向页面位置不足，提示位置将自适应。
+    If there is insufficient space in the selected direction on the page, the prompt position will be adjusted automatically.
 
     :::
 
-    - 提示文字：即确认框中显示的主体文字内容。
-    - 确定按钮文字：支持自定义确定按钮的展示文字。
-    - 取消按钮文字：支持自定义取消按钮的展示文字。
+    - Prompt Text: The main text content displayed in the confirmation box.
+    - Confirm Button Text: Supports customizing the display text of the confirm button.
+    - Cancel Button Text: Supports customizing the display text of the cancel button.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/ty1.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/ty2.png)
 
-# 二、特有属性
-## （一）提交动作
-配置不同的服务器函数，可以执行不同的操作，适用于查询、删除、创建等多种场景。
+# II. Specific Attributes
+## (1) Submit Action
+By configuring different server functions, different operations can be performed, which is suitable for various scenarios such as querying, deleting, and creating.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/tj1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/tj2.gif)
 
 :::
 
-提交动作特有属性：
+Specific attributes of the submit action:
 
-+ 数据控制类型：即执行动作时控制的数据。包括处理单条数据、处理多条数据、处理单条或多条数据、不进行数据处理四种类型。
-+ 服务器函数：即动作执行的函数，提供了多种函数，可根据实际需求选择。
-+ 校验数据：开启此选项，在动作执行前会进行校验数据。
-+ 返回上一页面：开启此选项，在动作执行后会直接返回上一页面。
-+ 刷新主视图：开启此选项，在动作执行后会刷新主视图。
-+ 刷新当前视图：开启此选项，在动作执行后会刷新当前视图。
-+ 上下文：当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置上下文来实现数据的映射。
++ Data Control Type: The data controlled when performing the action. It includes four types: processing single data, processing multiple data, processing single or multiple data, and no data processing.
++ Server Function: The function executed by the action. Multiple functions are provided and can be selected according to actual needs.
++ Validate Data: After enabling this option, data will be validated before the action is executed.
++ Return to Previous Page: After enabling this option, it will directly return to the previous page after the action is executed.
++ Refresh Main View: After enabling this option, the main view will be refreshed after the action is executed.
++ Refresh Current View: After enabling this option, the current view will be refreshed after the action is executed.
++ Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-:::tip 举例
+:::tip Example
 
-用户系统与销售系统：
+User System and Sales System:
 
-+ 在用户系统中，用户的唯一标识可能被称为“用户ID”。
-+ 在销售系统中，同一个用户的唯一标识可能被称为“客户ID”。
++ In the user system, the unique identifier of a user may be called "User ID".
++ In the sales system, the unique identifier of the same user may be called "Customer ID".
 
-通过上下文配置，可以将这两个不同系统中的名称映射为同一个实际数据，即用户ID和客户ID指向的是同一数据。
+Through context configuration, the names in these two different systems can be mapped to the same actual data, that is, the User ID and Customer ID refer to the same data.
 
 :::
 
-## （二）跳转动作
-支持跳转至某页面，适用于页面导航、提交确认等场景。
+## (2) Jump Action
+Supports jumping to a certain page, which is suitable for scenarios such as page navigation and submission confirmation.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/tz1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/tz2.gif)
 
 :::
 
-跳转动作特有属性：
+Specific attributes of the jump action:
 
-+ 数据控制类型：即执行动作时控制的数据。包括处理单条数据、处理多条数据、处理单条或多条数据、不进行数据处理四种类型。
-+ 打开方式：设置跳转页面的打开方式，包括当前窗口打开、新窗口打开、弹窗打开、抽屉打开四种方式。
-  :::warning 提示
++ Data Control Type: The data controlled when performing the action. It includes four types: processing single data, processing multiple data, processing single or multiple data, and no data processing.
++ Open Mode: Sets the open mode of the jumped page, including opening in the current window, opening in a new window, opening in a pop-up window, and opening in a drawer.
+  :::warning Prompt
 
-    当设置跳转页面为弹窗或抽屉时，可以配置其页面属性：
+    When setting the jumped page to a pop-up window or a drawer, its page attributes can be configured:
 
-  + 弹窗
-    - 标题：可输入用于显示在弹窗页面上的标题
-    - 开启动态标题：开启时，可按设定规则动态展示标题；关闭则固定显示默认标题。
-    - 弹窗高度/弹窗宽度：可选择不同尺寸规格。
-    - 标题排列方式：可设置弹窗标题的排列样式，包括横向与纵向。
-    - 允许拖拽：开启后可自由拖拽弹窗位置。
-    - 添加显示遮罩：可选择是否显示遮罩，用于在弹窗弹出时，使背景内容虚化，突出弹窗内容。
-    - 允许关闭：可设置是否显示关闭按钮。
-    - 点击遮罩关闭：可设置当用户点击遮罩区域时，弹窗是否关闭。
-  + 抽屉
-    - 标题：可输入用于显示在抽屉页面上的标题
-    - 开启动态标题：开启时，可按设定规则动态展示标题；关闭则固定显示默认标题。
-    - 抽屉位置：用于设置抽屉在界面中弹出的方位 。
-    - 抽屉大小：可选择不同尺寸规格。
-    - 标题排列方式：可设置抽屉标题的排列样式，包括横向与纵向。
-    - 添加显示遮罩：可选择是否显示遮罩，用于在抽屉弹出时，使背景内容虚化，突出抽屉内容。
-    - 允许关闭：可设置是否显示关闭抽屉按钮。
-    - 点击遮罩关闭：可设置当用户点击遮罩区域时，抽屉是否关闭。
+  + Pop-up Window
+    - Title: You can enter the title to be displayed on the pop-up window page.
+    - Enable Dynamic Title: When enabled, the title can be dynamically displayed according to the set rules; when disabled, the default title will be displayed statically.
+    - Pop-up Window Height/Pop-up Window Width: Different size specifications can be selected.
+    - Title Arrangement: The arrangement style of the pop-up window title can be set, including horizontal and vertical.
+    - Allow Dragging: After enabling, the pop-up window can be freely dragged.
+    - Add Display Mask: You can choose whether to display a mask to blur the background content when the pop-up window appears, highlighting the content of the pop-up window.
+    - Allow Closing: You can set whether to display the close button.
+    - Close on Mask Click: You can set whether the pop-up window closes when the user clicks on the mask area.
+  + Drawer
+    - Title: You can enter the title to be displayed on the drawer page.
+    - Enable Dynamic Title: When enabled, the title can be dynamically displayed according to the set rules; when disabled, the default title will be displayed statically.
+    - Drawer Position: Used to set the position where the drawer pops up on the interface.
+    - Drawer Size: Different size specifications can be selected.
+    - Title Arrangement: The arrangement style of the drawer title can be set, including horizontal and vertical.
+    - Add Display Mask: You can choose whether to display a mask to blur the background content when the drawer appears, highlighting the content of the drawer.
+    - Allow Closing: You can set whether to display the close drawer button.
+    - Close on Mask Click: You can set whether the drawer closes when the user clicks on the mask area.
 
   :::
-+ 页面内容：指定跳转的页面内容，既可以选择绑定已有的页面，也可以创建新的页面。当选择创建新页面时，当前组件属性栏中将新增新建页面的相关属性，便于快速创建并设置新页面。
-+ 绑定页面：当选择绑定已有的页面时，显示此属性。可选择在界面设计器中已发布的页面。
-+ 禁用数据加载：开启此选项后，将不执行数据加载函数。
-+ 加载函数：若开启禁用数据加载，不显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
++ Page Content: Specifies the content of the jumped page. You can either choose to bind an existing page or create a new page. When choosing to create a new page, relevant attributes for creating a new page will be added to the current component property bar, facilitating the quick creation and setting of a new page.
++ Bind Page: When choosing to bind an existing page, this attribute is displayed. You can select a published page in the interface designer.
++ Disable Data Loading: After enabling this option, the data loading function will not be executed.
++ Loading Function: If "Disable Data Loading" is enabled, this attribute will not be displayed. When a certain option value is selected on the actual page, this function will be executed to load data.
 
-:::info 注意
+:::info Note
 
-当指定加载函数时，将不再自动识别加载函数。
-
-:::
-
-+ 强制刷新标签页：开启此选项，每次切换到此标签页时页面内容会自动刷新。
-+ 上下文：当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置上下文来实现数据的映射。
-
-:::tip 举例
-
-用户系统与销售系统：
-
-+ 在用户系统中，用户的唯一标识可能被称为“用户ID”。
-+ 在销售系统中，同一个用户的唯一标识可能被称为“客户ID”。
-
-通过上下文配置，可以将这两个不同系统中的名称映射为同一个实际数据，即用户ID和客户ID指向的是同一数据。
+When a specific loading function is specified, the loading function will no longer be automatically recognized.
 
 :::
++ Force Refresh Tab: After enabling this option, the page content will be automatically refreshed every time you switch to this tab.
++ Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-+ 设计跳转页面：提供快捷方式，方便用户快速设计跳转页面。
+:::tip Example
 
-## （三）链接动作
-支持链接到其他网页中，适用于快速导航到相关页面等场景。
+User System and Sales System:
 
-:::tip 举例
++ In the user system, the unique identifier of a user may be called "User ID".
++ In the sales system, the unique identifier of the same user may be called "Customer ID".
 
-设计示例：
+Through context configuration, the names in these two different systems can be mapped to the same actual data, that is, the User ID and Customer ID refer to the same data.
+
+:::
++ Design Jump Page: Provides a shortcut for users to quickly design the jumped page.
+
+## (3) Link Action
+Supports linking to other web pages, which is suitable for scenarios such as quickly navigating to relevant pages.
+
+:::tip Example
+
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/lj1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/lj2.gif)
 
 :::
 
-链接动作特有属性：
+Specific attributes of the link action:
 
-+ 数据控制类型：即执行动作时控制的数据。包括处理单条数据、处理多条数据、处理单条或多条数据、不进行数据处理四种类型。
-+ 链接到URL：指定跳转的目标链接URL。
-:::info 注意
++ Data Control Type: The data controlled when performing the action. It includes four types: processing single data, processing multiple data, processing single or multiple data, and no data processing.
++ Link to URL: Specifies the target link URL to jump to.
+:::info Note
 
-支持动态URL配置机制，允许用户根据需求自定义链接中的动态参数，实现基于不同数据的灵活链接跳转。
-
-:::
-+ 计算函数：即动作执行的函数，可依据实际需求自定义函数。
-:::info 注意
-
-计算函数：即动作执行的函数，可依据实际需求自定义函数
+It supports a dynamic URL configuration mechanism, allowing users to customize dynamic parameters in the link according to their needs, achieving flexible link jumps based on different data.
 
 :::
-+ 打开方式：设置链接页面的打开方式。
++ Calculation Function: The function executed by the action, which can be customized according to actual needs.
+:::info Note
 
-## （四）客户端动作
-依据不同的客户端行为，可以执行不同的操作，适用于返回、刷新、更新数据等场景。
+Calculation Function: The function executed by the action, which can be customized according to actual needs
 
-:::tip 举例
+:::
++ Open Mode: Sets the open mode of the linked page.
 
-设计示例：
+## (4) Client Action
+According to different client behaviors, different operations can be performed, which is suitable for scenarios such as returning, refreshing, and updating data.
+
+:::tip Example
+
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/khd1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/khd2.gif)
 
 :::
 
-客户端特有属性：
+Specific attributes of the client action:
 
-+ 客户端行为：根据客户端的行为配置动作。
-  + 返回上一个页面：若页面存在上一页面时，可返回至上一页面
-  + 刷新数据：可刷新该页面所展示的数据信息
-  + 批量更新：需与批量动作结合使用，用于在批量跳转的页面中更新多条数据
-  + 删除数据：选中所需删除的数据后，即可执行删除操作
-  + 添加一行数据：无需跳转页面，即可在表格直接添加一行数据
-  + 复制一行数据：选中任意一条数据后，即可快速复制该数据。
++ Client Behavior: Configures actions according to client behaviors.
+  + Return to Previous Page: If there is a previous page, it can return to the previous page.
+  + Refresh Data: Can refresh the data information displayed on the page.
+  + Batch Update: Needs to be used in conjunction with the batch action to update multiple pieces of data on the batch jump page.
+  + Delete Data: After selecting the data to be deleted, the deletion operation can be performed.
+  + Add a Row of Data: You can directly add a row of data to the table without jumping to a page.
+  + Copy a Row of Data: After selecting any piece of data, you can quickly copy the data.
 
-## （五）批量动作
-跳转动作处理多条数据的快捷方式，可对选中数据集内的数据进行批量修改的行为。
+## (5) Batch Action
+A shortcut for the jump action to process multiple pieces of data, which can perform batch modification operations on the data in the selected data set.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/pl1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/pl2gif)
 
 :::
 
-批量动作特有属性：
+Specific attributes of the batch action:
 
-+ 打开方式：设置批量动作的打开方式，包括弹窗打开、抽屉打开两种方式。
-+ 页面模型：即执行批量动作时所跳转页面所绑定的模型
-+ 设计弹窗/抽屉：可设计批量动作所跳转的页面。
++ Open Mode: Sets the open mode of the batch action, including opening in a pop-up window and opening in a drawer.
++ Page Model: The model bound to the page jumped to when performing the batch action.
++ Design Pop-up Window/Drawer: Can design the page jumped to by the batch action.
 
-:::info 注意
+:::info Note
 
-为批量动作设置弹窗/抽屉页面时，需使用“客户端动作-批量更新”动作来提交相关数据
-
-:::
-
-## （六）工作流
-支持手动触发工作流。
-
-:::info 注意
-
-工作流动作需要在页面所属应用下依赖“工作流”应用后，才会在组件库中显示。
+When setting a pop-up window/drawer page for the batch action, the "Client Action - Batch Update" action needs to be used to submit relevant data.
 
 :::
 
-:::tip 举例
+## (6) Workflow
+Supports manually triggering the workflow.
 
-设计示例：
+:::info Note
 
-本示例选取工作流：触发流程后将发送一个站内信，内容为“这是由工作流动作触发的流程”
+The workflow action will only be displayed in the component library after the "Workflow" application is dependent on under the application to which the page belongs.
+
+:::
+
+:::tip Example
+
+Design Example:
+
+In this example, the workflow is selected: after triggering the process, an in-app message will be sent with the content "This is a process triggered by the workflow action".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/gzl1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/gzl2.gif)
 
 :::
 
-工作流特有属性：
+Specific attributes of the workflow:
 
-+ 执行函数：执行动作时调用的函数。
-+ 工作流：可选定当前页面所属模型下包含的需模型触发的流程。
-+ 校验数据：开启此选项，在动作执行前会进行校验数据。
-+ 返回上一页面：开启此选项，在动作执行后会直接返回上一页面。
-+ 刷新主视图：开启此选项，在动作执行后会刷新主视图。
-+ 刷新当前视图：开启此选项，在动作执行后会刷新当前视图。
-+ 提交数据：若开启此选项，可配置参数映射。即当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置参数映射来实现。
-+ 上下文：当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置上下文来实现数据的映射。
++ Execution Function: The function called when performing the action.
++ Workflow: You can select the processes that need to be triggered by the model included in the model to which the current page belongs.
++ Validate Data: After enabling this option, data will be validated before the action is executed.
++ Return to Previous Page: After enabling this option, it will directly return to the previous page after the action is executed.
++ Refresh Main View: After enabling this option, the main view will be refreshed after the action is executed.
++ Refresh Current View: After enabling this option, the current view will be refreshed after the action is executed.
++ Submit Data: If this option is enabled, parameter mapping can be configured. That is, when the data has different names in different locations but actually refers to the same data, it can be achieved by configuring parameter mapping.
++ Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-## （七）微流
-支持手动触发微流。
+## (7) Microflow
+Supports manually triggering the microflow.
 
-:::info 注意
+:::info Note
 
-微流动作需要在页面所属应用下依赖“工作流”应用后，才会在组件库中显示。
+The microflow action will only be displayed in the component library after the "Workflow" application is dependent on under the application to which the page belongs.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
-本示例选取微流：触发流程后将发送一个站内信，内容为“这是由微流动作触发的微流”
+In this example, the microflow is selected: after triggering the process, an in-app message will be sent with the content "This is a microflow triggered by the microflow action".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/wl1.png)
 
-展示示例：
+Display Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/wl2.gif)
 
 :::
 
-微流特有属性：
+Specific attributes of the microflow:
 
-+ 执行函数：执行动作时调用的函数。
-+ 工作流：可选定当前页面所属模型下包含的需模型触发的流程。
-+ 校验数据：开启此选项，在动作执行前会进行校验数据。
-+ 返回上一页面：开启此选项，在动作执行后会直接返回上一页面。
-+ 刷新主视图：开启此选项，在动作执行后会刷新主视图。
-+ 刷新当前视图：开启此选项，在动作执行后会刷新当前视图。
-+ 提交数据：若开启此选项，可配置参数映射。即当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置参数映射来实现。
-+ 上下文：当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置上下文来实现数据的映射。
++ Execution Function: The function called when performing the action.
++ Workflow: You can select the processes that need to be triggered by the model included in the model to which the current page belongs.
++ Validate Data: After enabling this option, data will be validated before the action is executed.
++ Return to Previous Page: After enabling this option, it will directly return to the previous page after the action is executed.
++ Refresh Main View: After enabling this option, the main view will be refreshed after the action is executed.
++ Refresh Current View: After enabling this option, the current view will be refreshed after the action is executed.
++ Submit Data: If this option is enabled, parameter mapping can be configured. That is, when the data has different names in different locations but actually refers to the same data, it can be achieved by configuring parameter mapping.
++ Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-## （八）集成连接器
-支持手动对其他应用或数据库发起集成连接。
+## (8) Integration Connector
+Supports manually initiating an integration connection to other applications or databases.
 
-:::info 注意
+:::info Note
 
-集成连接器动作需要在页面所属应用下依赖“集成接口”应用后，才会在组件库中显示。
+The integration connector action will only be displayed in the component library after the "Integration Interface" application is dependent on under the application to which the page belongs.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
-本示例选取连接器：触发集成连接后将执行接口（接口日志可在「集成设计器」-「接口日志」中查看）
+In this example, the connector is selected: after triggering the integration connection, the interface will be executed (the interface log can be viewed in "Integration Designer" - "Interface Log").
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/jc1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/jc2.gif)
 
 :::
 
-集成连接器特有属性：
+Specific attributes of the integration connector:
 
-+ 执行函数：执行动作时调用的函数。
-+ 连接器类型：可选择连接器的类型，包括应用或数据库两种。
-+ 应用/数据库：可从集成设计器中已存在的应用或数据库中进行选择。
-+ Api资源：展示所选应用或数据库中包含的API资源。
-+ 校验数据：开启此选项，在动作执行前会进行校验数据
-+ 返回上一页面：开启此选项，在动作执行后会直接返回上一页面。
-+ 刷新主视图：开启此选项，在动作执行后会刷新主视图。
-+ 刷新当前视图：开启此选项，在动作执行后会刷新当前视图。
-+ 提交数据：若开启此选项，可配置参数映射。即当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置参数映射来实现。
-+ 上下文：当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置上下文来实现数据的映射。
++ Execution Function: The function called when performing the action.
++ Connector Type: You can select the type of the connector, including application or database.
++ Application/Database: You can select from existing applications or databases in the integration designer.
++ Api Resource: Displays the API resources included in the selected application or database.
++ Validate Data: After enabling this option, data will be validated before the action is executed.
++ Return to Previous Page: After enabling this option, it will directly return to the previous page after the action is executed.
++ Refresh Main View: After enabling this option, the main view will be refreshed after the action is executed.
++ Refresh Current View: After enabling this option, the current view will be refreshed after the action is executed.
++ Submit Data: If this option is enabled, parameter mapping can be configured. That is, when the data has different names in different locations but actually refers to the same data, it can be achieved by configuring parameter mapping.
++ Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-## （九）数据流程
-支持手动触发数据流程。
+## (9) Data Flow
+Supports manually triggering the data flow.
 
-:::info 注意
+:::info Note
 
-数据流程动作需要在页面所属应用下依赖“集成接口”应用后，才会在组件库中显示。
+The data flow action will only be displayed in the component library after the "Integration Interface" application is dependent on under the application to which the page belongs.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
-本示例选取数据流程：触发流程后将发送一个站内信，内容为“流程已执行完毕”
+In this example, the data flow is selected: after triggering the process, an in-app message will be sent with the content "The process has been executed."
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/sjlc1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/sjlc2.gif)
 
 :::
 
-数据流程特有属性：
+Specific attributes of the data flow:
 
-+ 执行函数：执行动作时调用的函数。
-+ 数据流程：可选定当前页面所属模型下包含的需模型触发的数据流程。
-+ 校验数据：开启此选项，在动作执行前会进行校验数据。
-+ 返回上一页面：开启此选项，在动作执行后会直接返回上一页面。
-+ 刷新主视图：开启此选项，在动作执行后会刷新主视图。
-+ 刷新当前视图：开启此选项，在动作执行后会刷新当前视图。
-+ 提交数据：若开启此选项，可配置参数映射。即当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置参数映射来实现。
-+ 上下文：当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置上下文来实现数据的映射。
++ Execution Function: The function called when performing the action.
++ Data Flow: You can select the data flow that needs to be triggered by the model included in the model to which the current page belongs.
++ Validate Data: After enabling this option, data will be validated before the action is executed.
++ Return to Previous Page: After enabling this option, it will directly return to the previous page after the action is executed.
++ Refresh Main View: After enabling this option, the main view will be refreshed after the action is executed.
++ Refresh Current View: After enabling this option, the current view will be refreshed after the action is executed.
++ Submit Data: If this option is enabled, parameter mapping can be configured. That is, when the data has different names in different locations but actually refers to the same data, it can be achieved by configuring parameter mapping.
++ Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-:::warning 提示
+:::warning Prompt
 
-模型中的动作是上述动作的快捷操作方式，其具体属性可直接参照上述动作的属性进行查看。
-
-:::
-
-## （十）AI
-支持将已完成配置的 AI 连接器与当前页面的各类字段进行绑定与关联，通过数据映射快速构建定制化的 AI 产品解决方案。
-
-:::info 注意
-
-AI动作需要在页面所属应用下依赖“AI”应用后，才会在组件库中显示。
+The actions in the model are shortcut operation methods for the above actions. Their specific attributes can be directly referred to the attributes of the above actions for viewing.
 
 :::
 
-:::tip 举例
+## (10) AI
+Supports binding and associating the configured AI connector with various fields on the current page, and quickly building customized AI product solutions through data mapping.
 
-设计示例：
+:::info Note
 
-通过用户输入的文本，生成对应的图片
+The AI action will only be displayed in the component library after the "AI" application is dependent on under the application to which the page belongs.
+
+:::
+
+:::tip Example
+
+Design Example:
+
+Generate corresponding pictures based on the text entered by the user.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/AI1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/AI2.gif)
 
 :::
 
-AI特有属性：
-+ AI连接器：可选择已成功发布的AI连接器，系统将依据选择的连接器配置的字段与大模型顺序完成数据的交互。
-+ Body参数映射：指将当前页面的字段与AI连接器的输入字段建立关系。
-+ 响应参数映射：指将当前页面的字段与AI连接器的输出字段建立关系。
-+ 返回上一页面：开启此选项，在动作执行后会直接返回上一页面。
-+ 刷新主视图：开启此选项，在动作执行后会刷新主视图。
-+ 刷新当前视图：开启此选项，在动作执行后会刷新当前视图。
-+ 提交数据：若开启此选项，可配置参数映射。即当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置参数映射来实现。
-+ 上下文：当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置上下文来实现数据的映射。
+Specific attributes of AI:
++ AI Connector: You can select a successfully published AI connector, and the system will complete data interaction according to the fields configured in the selected connector and the order of the large model.
++ Body Parameter Mapping: Refers to establishing a relationship between the fields on the current page and the input fields of the AI connector.
++ Response Parameter Mapping: Refers to establishing a relationship between the fields on the current page and the output fields of the AI connector.
++ Return to Previous Page: After enabling this option, it will directly return to the previous page after the action is executed.
++ Refresh Main View: After enabling this option, the main view will be refreshed after the action is executed.
++ Refresh Current View: After enabling this option, the current view will be refreshed after the action is executed.
++ Submit Data: If this option is enabled, parameter mapping can be configured. That is, when the data has different names in different locations but actually refers to the same data, it can be achieved by configuring parameter mapping.
++ Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.

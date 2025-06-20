@@ -1,196 +1,200 @@
 ---
-title: JDK安装与注意事项
+title: JDK Installation and Precautions
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - Installation and Upgrade
+  - Environment Setup
 order: 1
 prev:
-  text: 环境准备
+  text: Environment Preparation
   link: /en/InstallOrUpgrade/Dev-ENV/README.md
 ---
-# 一、下载安装包
-:::warning 提示
 
-你可以选择使用 Oracle、OpenJDK 或其他 JDK 发行版，版本需为 1.8_221 或更高。推荐使用 Oracle 或 OpenJDK 发行版。
-下载时请注意选择与当前设备 CPU 指令集架构（如 x64、arm64）相匹配的版本。
+# 1. Download the Installer
+
+:::warning Tip
+
+You may choose Oracle, OpenJDK, or other JDK distributions. The required version is 1.8_221 or higher. It is recommended to use Oracle or OpenJDK distributions.
+
+Please ensure that the version you download matches your device's CPU architecture (e.g., x64, arm64).
 
 :::
 
-Oracle JDK下载链接：
+Oracle JDK Download Links:
 
-|  | 下载链接 |
+| Platform | Download Link |
 | --- | --- |
 | Linux | [https://www.oracle.com/java/technologies/downloads/#java8-linux](https://www.oracle.com/java/technologies/downloads/#java8-linux) |
 | macOS | [https://www.oracle.com/java/technologies/downloads/#java8-mac](https://www.oracle.com/java/technologies/downloads/#java8-mac) |
 | Windows | [https://www.oracle.com/java/technologies/downloads/#java8-windows](https://www.oracle.com/java/technologies/downloads/#java8-windows) |
-| 历史版本 | [https://www.oracle.com/java/technologies/downloads/archive/](https://www.oracle.com/java/technologies/downloads/archive/) |
+| Archive | [https://www.oracle.com/java/technologies/downloads/archive/](https://www.oracle.com/java/technologies/downloads/archive/) |
 
+:::warning Tip
 
-:::warning 提示
-
-下载Oracle JDK可能需要验证Oracle帐号。
-
-:::
-
-
-
-:::info 注意
-
-在配置环境变量时，脚本中的配置路径需替换为对应 Shell 的 profile 文件路径：
-
-+ 对于 Zsh，请使用 `${HOME}/.zshrc`
-+ 对于 Bash，请使用 `${HOME}/.bashrc`
+Downloading the Oracle JDK may require logging in to an Oracle account.
 
 :::
 
-# 二、安装
-## （一）macOS安装JDK
-### 1、配置环境变量
-dmg包全局安装目录: `/Library/Java/JavaVirtualMachines/jdk-1.8.jdk`
+:::info Note
 
-dmg包用户安装目录: `~/Library/Java/JavaVirtualMachines/jdk-1.8.jdk`
+When configuring environment variables, make sure to update the profile path according to your shell:
 
-tar.gz解压安装: 自定义目录
++ For Zsh, use `${HOME}/.zshrc`
++ For Bash, use `${HOME}/.bashrc`
 
- 配置环境变量:
+:::
+
+# 2. Installation
+
+## (1) Install JDK on macOS
+
+### 1. Configure Environment Variables
+
+- Global installation directory for `.dmg`: `/Library/Java/JavaVirtualMachines/jdk-1.8.jdk`
+- User-level installation directory for `.dmg`: `~/Library/Java/JavaVirtualMachines/jdk-1.8.jdk`
+- Custom installation for `.tar.gz`: user-defined directory
+
+Set environment variables:
 
 ```shell
-cat >> 替换具体Shell配置文件 << EOF
+cat >> REPLACE_WITH_SHELL_PROFILE_FILE << EOF
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home"
 export PATH=\$JAVA_HOME/bin:\$PATH
 EOF
 ```
 
-### 2、验证
+### 2. Verify Installation
+
 ```shell
-#验证Java安装
+# Verify Java installation
 /usr/libexec/java_home -V
 ```
 
 ```shell
-#验证Java安装验证结果示例
+# Sample verification output
 1.8.0_451 (arm64) "Oracle Corporation" - "Java SE 8" /Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home
 ```
 
 ```shell
-#环境变量验证结果示例
+# Verify environment variable setup
 java -version
 ```
 
 ```shell
-#验证环境变量
+# Sample environment variable output
 % java -version
 java version "1.8.0_451"
 Java(TM) SE Runtime Environment (build 1.8.0_451-b10)
 Java HotSpot(TM) 64-Bit Server VM (build 25.451-b10, mixed mode)
 ```
 
-## （二）Windows安装JDK
-exe默认安装目录:  `C:\Program Files\Java\jdk-1.8\`
+## (2) Install JDK on Windows
 
-exe自定义安装目录: 自定义目录
+- Default install directory for `.exe`: `C:\Program Files\Java\jdk-1.8\`
+- Custom install directory: user-defined
+- Extracted from `.zip`: user-defined directory
 
-zip解压安装:  自定义目录
+### 1. Configure Environment Variables
 
-### 1、配置环境变量
-以下提供两种配置环境变量的方式：可视化界面配置和命令行配置。任选其中一种方式进行配置即可，无需同时使用。
+You can choose one of the two methods below (visual or CLI). Only one is needed.
 
-#### 1.1 可视化界面方式设置用户级别环境变量
-键盘触发 `Win + R`出现以下界面
+#### 1.1 Visual Method (User-Level Environment Variables)
+
+Press `Win + R` to open the dialog shown below:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/JDK/1.png)
 
-输入以下代码之后点击`确定`
+Then enter:
 
 ```shell
-#呼出环境变量配置界面
+# Open environment variables settings window
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
 
-设置`JAVA_HOME`为`C:\Program Files\Java\jdk-1.8`
+Set `JAVA_HOME` to:
+
+```
+C:\Program Files\Java\jdk-1.8
+```
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/JDK/image%20(2).png)
 
-追加`Path` `;%JAVA_HOME%\bin`
+Append the following to `Path`: `;%JAVA_HOME%\bin`
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/JDK/image%20(3).png)
 
-#### 1.2 命令行方式设置用户级别环境变量
-运行CMD或者Powershell或者Terminal
+#### 1.2 CLI Method (User-Level Environment Variables)
+
+Open CMD, PowerShell, or Terminal:
 
 ```powershell
-# 设置JAVA_HOME
-# 设置JAVA_HOME为默认安装目录绝对路径或者自定义目录绝对路径
+# Set JAVA_HOME
 setx "JAVA_HOME" "C:\Program Files\Java\jdk-1.8"
 ```
 
 ```powershell
-# 追加PATH
+# Append to PATH
 setx "Path" "%Path%;%JAVA_HOME%\bin"
 ```
 
-### 2、验证
-打开命令行输入以下代码
+### 2. Verify Installation
+
+Open the terminal and run:
 
 ```shell
-# 验证环境变量
+# Verify environment variable setup
 java -version
 ```
 
 ```shell
-# 环境变量验证结果示例
+# Sample output
 java version "1.8.0_441"
 Java(TM) SE Runtime Environment (build 1.8.0_441-b07)
 Java HotSpot(TM) 64-Bit Server VM (build 25.441-b07, mixed mode)
 ```
 
-输出类似以下代码即为成功安装JDK。
+If the output is similar, the JDK is installed successfully.
 
-## （三）Linux安装JDK
-在Linux环境下，Oracle提供了`rpm`与`tar.gz`两种形式安装包。
+## (3) Install JDK on Linux
 
-### 1、支持RPM<font style="color:rgb(51, 51, 51);">（Red Hat Package Manager）</font>包格式的Linux发行版安装
+Oracle provides `.rpm` and `.tar.gz` formats for Linux.
+
+### 1. Install via RPM (Red Hat Package Manager)
+
 ```shell
-# rpm包安装
-rpm -ivh jdk-8u441-linux-aarch64.rpm # 具体文件名会有编码
+# RPM package installation
+rpm -ivh jdk-8u441-linux-aarch64.rpm  # Actual filename may vary
 ```
 
-### 2、tar.gz包格式安装
+### 2. Install via tar.gz
+
 ```shell
-# tar.gz包安装
-tar zxvf jdk-8u441-linux-aarch64.tar.gz -C "目标安装目录"  # 具体文件名会有编码
+# Extract tar.gz to target directory
+tar zxvf jdk-8u441-linux-aarch64.tar.gz -C "target-install-dir"
 ```
 
-### 3、配置环境变量
+### 3. Configure Environment Variables
+
 ```shell
-# tar.gz包安装
-cat >> 替换具体Shell配置文件 << EOF
-export JAVA_HOME="JDK具体安装目录"
+# Set JAVA_HOME and update PATH
+cat >> REPLACE_WITH_SHELL_PROFILE_FILE << EOF
+export JAVA_HOME="ACTUAL_JDK_INSTALL_DIR"
 export PATH=\$JAVA_HOME/bin:\$PATH
 EOF
 ```
 
-### 4、验证
-打开命令行输入以下代码
+### 4. Verify Installation
 
 ```shell
-# 验证环境变量
+# Check Java version
 java -version
 ```
 
 ```shell
-# 环境变量验证结果示例
+# Sample output
 java version "1.8.0_441"
 Java(TM) SE Runtime Environment (build 1.8.0_441-b07)
 Java HotSpot(TM) 64-Bit Server VM (build 25.441-b07, mixed mode)
 ```
 
-输出类似以下代码即为成功安装JDK。
-
-
-
-
-
-
-
+If the output is similar, the JDK has been successfully installed.

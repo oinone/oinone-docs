@@ -1,14 +1,13 @@
 ---
-title: 组件介绍
+title: Component Introduction
 index: false
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 dir:
    link: false
    order: 5
 next:
-  text: 布局
-  link: /en/UserManual/Designers/UIDesigner/Components/layout.md
+  text: Layout
+  link: /zh-cn/UserManual/Designers/UIDesigner/Components/layout.md
 ---
-

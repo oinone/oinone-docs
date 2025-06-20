@@ -1,52 +1,52 @@
 ---
-title: 应用环境
+title: Application Environment
 index: true
 category:
-  - 用户手册
+  - User Manual
 order: 4
 ---
-在应用环境中，可灵活配置部署环境，支持查看应用导入/导出和部署的日志。如果在导入/导出应用或部署环境的过程中出现问题，日志可以提供详细的错误信息，帮助用户快速定位问题原因，进行故障排查和修复，更好地管理应用的生命周期，确保应用的顺利运行和高效维护。
+In the application environment, you can flexibly configure the deployment environment and support viewing the logs of application import/export and deployment. If there are issues during the process of importing/exporting applications or deploying the environment, the logs can provide detailed error information, helping users quickly locate the cause of the problem, conduct troubleshooting, and perform repairs, thus better managing the application lifecycle and ensuring the smooth operation and efficient maintenance of applications.
 
-# 一、部署环境配置
-### 1.功能介绍
-在部署环境配置中，可方便的管理各种环境，包括创建新环境、编辑现有环境、删除环境等功能。这些配置好的部署环境，可以在应用中心进行同步部署时使用。
+# I. Deployment Environment Configuration
+### 1. Function Introduction
+In the deployment environment configuration, you can conveniently manage various environments, including creating new environments, editing existing environments, deleting environments, and other functions. These configured deployment environments can be used during synchronous deployment in the application center.
 
-:::info 注意
+:::info Note
 
-+ 同步部署功能实现不同环境设计数据一键同步的目标，即将A环境设计完成的模型、界面、等设计数据一键部署至B环境。
-+ 在进行多个环境同步部署设计数据时，必须正确配置发起环境、目标环境。
-
-:::
-
-### 2.操作方法
-+ 创建：点击「创建」，填写环境信息后确定，即可成功创建
-
-:::info 注意
-
-+ 若启用，则可在应用中心中同步部署中选择该部署环境；若不启用则无法选择
-+ 若开启为当前部署环境，则此部署环境即为当前平台使用的部署环境
++ The synchronous deployment function aims to achieve one-click synchronization of design data across different environments, that is, one-click deployment of design data such as models and interfaces designed in Environment A to Environment B.
++ When performing synchronous deployment of design data across multiple environments, you must correctly configure the initiating environment and the target environment.
 
 :::
 
-+ 编辑：点击「编辑」，可修改部署环境信息
-+ 详情：点击「详情」，可查看部署环境的详细信息
-+ 删除：选定需删除的部署环境后点击「删除」，即可成功删除，支持批量删除
+### 2. Operation Method
++ Create: Click "Create", fill in the environment information, and click "OK" to successfully create the environment.
 
-:::danger 警告
+:::info Note
 
-环境删除后无法恢复，请谨慎操作！
++ If enabled, this deployment environment can be selected during synchronous deployment in the application center; if not enabled, it cannot be selected.
++ If set as the current deployment environment, this deployment environment will be the one currently used by the platform.
+
+:::
+
++ Edit: Click "Edit" to modify the deployment environment information.
++ Details: Click "Details" to view the detailed information of the deployment environment.
++ Delete: Select the deployment environment to be deleted and click "Delete" to successfully delete it. Batch deletion is supported.
+
+:::danger Warning
+
+Once an environment is deleted, it cannot be restored. Please operate with caution!
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png)
 
-:::tip 举例
+:::tip Example
 
-配置部署环境
+Configuring the deployment environment
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E4%B8%BE%E4%BE%8B1.png)
 
-关于获取配置环境中的API Key与API Secret，可以前往「集成接口-开放管理-应用」页面，在搜索框中输入“元数据”进行搜索。搜索结果中会列出相关数据，查看数据的密钥部分，即可获取所需的API Key与API Secret。
+To obtain the API Key and API Secret in the configuration environment, go to the "Integration Interface - Open Management - Applications" page, enter "Metadata" in the search box, and perform a search. The search results will list the relevant data. View the key section of the data to obtain the required API Key and API Secret.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E4%B8%BE%E4%BE%8B2.png)
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E4%B8%BE%E4%BE%8B3.png)
@@ -54,21 +54,20 @@ order: 4
 
 :::
 
-# 二、设计导入/导出
-### 1.功能介绍
-展示应用中心中设计导入/导出日志。通过日志，可以实时追踪应用的导入/导出进度，确保应用导入/导出能够顺利进行。如果导入/导出过程中出现问题，日志可以提供详细的错误信息，可以快速定位问题原因，进行故障排查。
+# II. Design Import/Export
+### 1. Function Introduction
+Displays the design import/export logs in the application center. Through the logs, you can track the progress of application import/export in real-time, ensuring the smooth execution of application import/export. If there are issues during the import/export process, the logs can provide detailed error information, allowing you to quickly locate the cause of the problem and conduct troubleshooting.
 
-### 2.操作方法
-点击「详情」，可查看导入/导出详细信息
+### 2. Operation Method
+Click "Details" to view the detailed information of import/export.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E8%AE%BE%E8%AE%A1%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA.png)
 
-# 三、部署任务
-### 1.功能介绍
-展示应用中心中同步部署日志。可以通过查看日志，实时监控部署状态，确保部署过程的顺利进行。如果部署过程中出现问题，日志可以提供详细的错误信息，可以快速定位问题原因，进行故障排查和修复。
+# III. Deployment Tasks
+### 1. Function Introduction
+Displays the synchronous deployment logs in the application center. By viewing the logs, you can monitor the deployment status in real-time, ensuring the smooth progress of the deployment process. If there are issues during the deployment process, the logs can provide detailed error information, allowing you to quickly locate the cause of the problem, conduct troubleshooting, and perform repairs.
 
-### 2.操作方法
-点击「详情」，可查看部署任务详细信息
+### 2. Operation Method
+Click "Details" to view the detailed information of the deployment task.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%83%A8%E7%BD%B2%E4%BB%BB%E5%8A%A1.png)
-

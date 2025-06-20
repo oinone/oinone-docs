@@ -1,9 +1,9 @@
 ---
-title: 企业版
+title: Enterprise Edition
 index: false
 category:
-  - 安装与升级
-  - 企业版
+  - Installation and Upgrade
+  - Enterprise Edition
 dir:
   link: false
   order: 3

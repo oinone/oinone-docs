@@ -1,8 +1,8 @@
 ---
-title: 文档贡献
+title: Documentation Contribution
 index: false
 category:
-  - 贡献手册
+  - Contribution Manual
 dir:
   link: false
   order: 3

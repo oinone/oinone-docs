@@ -1,234 +1,215 @@
 ---
-title: 图表类型
+title: Chart Types
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 2
 ---
-# 一、柱状图
-## （一）单柱状图
-单柱状图是用一个柱形表示一个数据点的图表类型。适用于展示单一类别的数据对比，如不同月份的销售额对比。
+# I. Bar Chart
+## (1) Single Bar Chart
+A single bar chart is a type of chart that uses a single bar to represent a data point. It is suitable for displaying data comparisons of a single category, such as the comparison of sales amounts in different months.
 
-:::tip 举例
-
-不同产品的销售额对比
+:::tip Example
+Comparison of sales amounts of different products
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/danzzt.png)
 
 :::
 
-## （二）多柱状图
-多柱状图是在同一个图表中用多个柱形表示不同类别的数据点。适用于展示多个类别之间的数据对比，如不同产品在不同月份的销售额对比。
+## (2) Multiple Bar Chart
+A multiple bar chart uses multiple bars to represent data points of different categories in the same chart. It is suitable for displaying data comparisons between multiple categories, such as the comparison of sales amounts of different products in different months.
 
-:::tip 举例
-
-不同产品的销售额与销售量的对比
+:::tip Example
+Comparison of sales amounts and sales volumes of different products
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/duozzt.png)
 
 :::
 
-# 二、折线图
-## （一）单折线图
-单折线图是用一条折线连接各个数据点，展示数据的变化趋势。 适用于展示单一数据系列随时间或其他连续变量的变化趋势。
+# II. Line Chart
+## (1) Single Line Chart
+A single line chart connects data points with a single line to show the changing trend of data. It is suitable for displaying the changing trend of a single data series over time or other continuous variables.
 
-:::tip 举例
-
-销售额随时间的变化趋势
+:::tip Example
+Changing trend of sales amount over time
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/danzxt.png)
 
 :::
 
-## （二）多折线图
-多折线图是在同一个图表中用多条折线表示不同数据系列的变化趋势。 适用于对比多个数据系列随时间或其他连续变量的变化趋势。
+## (2) Multiple Line Chart
+A multiple line chart uses multiple lines to represent the changing trends of different data series in the same chart. It is suitable for comparing the changing trends of multiple data series over time or other continuous variables.
 
-:::tip 举例
-
-销售额与销售量随时间的变化趋势
+:::tip Example
+Changing trends of sales amount and sales volume over time
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/duozxt.png)
 
 :::
 
-## （三）双Y轴折线图
-双Y轴折线图是在同一个图表中使用两个Y轴，分别表示不同数据系列的变化趋势。适用于当两个数据系列的数值范围差异较大时，需要在一个图表中同时展示它们的变化趋势。
+## (3) Dual Y-Axis Line Chart
+A dual Y-axis line chart uses two Y-axes in the same chart to represent the changing trends of different data series respectively. It is suitable for situations where the value ranges of two data series differ greatly and their changing trends need to be displayed in one chart simultaneously.
 
-:::tip 举例
-
-销售额与销售量随时间的变化趋势
+:::tip Example
+Changing trends of sales amount and sales volume over time
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/syzzxt.png)
 
 :::
 
-# 三、面积图
-## （一）面积图
-面积图是用折线连接各个数据点，并用填充颜色表示折线下方的面积。 用途：适用于展示数据系列随时间或其他连续变量的变化趋势，并强调数据之间的总量对比。
+# III. Area Chart
+## (1) Area Chart
+An area chart connects data points with a line and fills the area below the line with color. Purpose: It is suitable for displaying the changing trend of a data series over time or other continuous variables and emphasizing the total amount comparison between data.
 
-:::tip 举例
-
-销售额随时间的变化趋势
+:::tip Example
+Changing trend of sales amount over time
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/mjt.png)
 
 :::
 
-# 四、饼图
-## （一）饼图
-饼图是用圆形表示整体，用扇形表示各部分所占比例的图表类型。 适用于展示各部分在整体中的比例关系，如不同产品类别的销售额占比。
+# IV. Pie Chart
+## (1) Pie Chart
+A pie chart uses a circle to represent the whole and sectors to represent the proportions of each part. It is suitable for displaying the proportional relationship of each part in the whole, such as the proportion of sales amounts of different product categories.
 
-:::tip 举例
-
-不同产品的销售额占比
+:::tip Example
+Proportion of sales amounts of different products
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/bt.png)
 
 :::
 
-## （二）环形图
-环形图是在饼图的基础上，将圆心留空形成的图表类型。 与饼图相似留空部分可以放置标签或其他信息。
+## (2) Doughnut Chart
+A doughnut chart is a type of chart formed by leaving the center of a pie chart empty. Similar to a pie chart, the empty part can be used to place labels or other information.
 
-:::tip 举例
-
-不同产品的销售额占比
+:::tip Example
+Proportion of sales amounts of different products
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/hxt.png)
 
 :::
 
-# 五、漏斗图
-## （一）漏斗图
-漏斗图是用梯形或三角形表示数据流转过程的图表类型，通常用于展示转化率或流失率。适用于分析业务流程中的转化情况，如用户注册、购买等流程的转化率分析。
+# V. Funnel Chart
+## (1) Funnel Chart
+A funnel chart is a type of chart that uses trapezoids or triangles to represent the data flow process, usually used to display conversion rates or churn rates. It is suitable for analyzing the conversion situation in business processes, such as the conversion rate analysis of user registration, purchase and other processes.
 
-:::tip 举例
-
-用户行为转化率（浏览->加入购物车->下单->支付）
+:::tip Example
+User behavior conversion rate (browsing -> adding to cart -> placing an order -> payment)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/ldt.png)
 
 :::
 
-# 六、散点图
-## （一）散点图
-散点图是用点表示各个数据点的位置，通过点的分布展示数据之间的关系。适用于展示两个变量之间的关系，如销售额与广告投入的关系。
+# VI. Scatter Plot
+## (1) Scatter Plot
+A scatter plot uses points to represent the positions of data points and shows the relationship between data through the distribution of points. It is suitable for displaying the relationship between two variables, such as the relationship between sales amount and advertising investment.
 
-:::tip 举例
-
-销售额与广告投入之间的关系。
+:::tip Example
+Relationship between sales amount and advertising investment.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/sdt.png)
 
 :::
 
-## （二）气泡图
-气泡图是在散点图的基础上，通过X轴、Y轴、气泡的大小与颜色表示四个变量的值。 适用于展示变量之间的关系，如展示销售额、成本、利润率以及市场份额等多个维度数据之间的关联情况。
+## (2) Bubble Chart
+A bubble chart is based on a scatter plot and uses the X-axis, Y-axis, size and color of bubbles to represent the values of four variables. It is suitable for displaying the relationship between variables, such as showing the correlation between multiple dimensions of data such as sales amount, cost, profit margin and market share.
 
-+ 数据配置——气泡大小：仅限选择数值，表示该数值的大小
-+ 数据配置——气泡颜色：仅限选择维度，表示区分不同类别
++ Data configuration - Bubble size: Only numerical values can be selected, indicating the size of the value.
++ Data configuration - Bubble color: Only dimensions can be selected, indicating the differentiation of different categories.
 
-:::tip 举例
-
-销售额、广告投入和市场份额之间的关系。
+:::tip Example
+Relationship between sales amount, advertising investment and market share.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/qpt.png)
 
 :::
 
-## （三）动态气泡图
-动态气泡图是气泡图的一种变体，可以动态展示数据点的变化。 适用于展示数据随时间或其他变量的动态变化过程。
+## (3) Dynamic Bubble Chart
+A dynamic bubble chart is a variant of the bubble chart that can dynamically display the changes of data points. It is suitable for displaying the dynamic change process of data over time or other variables.
 
-+ 数据配置——气泡大小：仅限选择数值，表示该数值的大小
-+ 数据配置——气泡颜色：仅限选择维度，表示区分不同类别
-+ 数据配置——动态值：可选择维度或数值，依据该值动态展示数据
++ Data configuration - Bubble size: Only numerical values can be selected, indicating the size of the value.
++ Data configuration - Bubble color: Only dimensions can be selected, indicating the differentiation of different categories.
++ Data configuration - Dynamic value: Dimensions or numerical values can be selected, and the data will be dynamically displayed based on this value.
 
-:::tip 举例
-
-产品销售额、广告投入和市场份额随时间的变化过程。
+:::tip Example
+Change process of product sales amount, advertising investment and market share over time.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/dtqpt.gif)
 
 :::
 
-# 七、条形图
-## （一）基础条形图
-基础条形图是用条形表示数据点的图表类型，与柱状图相似但方向不同。适用于展示各类别的数据对比，如不同产品的销售量对比。
+# VII. Bar Graph
+## (1) Basic Bar Graph
+A basic bar graph is a type of chart that uses bars to represent data points. It is similar to a bar chart but in a different direction. It is suitable for displaying data comparisons of various categories, such as the comparison of sales volumes of different products.
 
-:::tip 举例
-
-不同产品的销售额对比
+:::tip Example
+Comparison of sales amounts of different products
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/txt.png)
 
 :::
 
-## （二）多条形图
-多条形图是在同一个图表中用多个条形表示不同类别的数据点。适用于展示多个类别之间的数据对比，且每个类别包含多个数据点，如不同产品在不同地区的销售量对比。
+## (2) Multiple Bar Graph
+A multiple bar graph uses multiple bars to represent data points of different categories in the same chart. It is suitable for displaying data comparisons between multiple categories, and each category contains multiple data points, such as the comparison of sales volumes of different products in different regions.
 
-:::tip 举例
-
-不同产品的销售额与销售量的对比
+:::tip Example
+Comparison of sales amounts and sales volumes of different products
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/dtxt.png)
 
 :::
 
-# 八、仪表盘
-## （一）仪表盘
-仪表盘是一种模拟汽车仪表盘的图表类型，用于展示关键指标或目标完成情况。 适用于实时监控和展示关键业务指标，如销售额、客户满意度等。
+# VIII. Dashboard
+## (1) Dashboard
+A dashboard is a type of chart that mimics a car dashboard and is used to display key indicators or the completion status of goals. It is suitable for real-time monitoring and displaying key business indicators, such as sales amount, customer satisfaction, etc.
 
-+ 数据配置——当前数值：可选择数值字段，即当前指标中已达到的数据情况
-+ 数据配置——目标数值：可选择数值西段，即当前指标期望达到的数据情况
-+ 样式——颜色设置：可为仪表盘的当前数值和目标数值自定义颜色。
-+ 样式——角度设置：可为仪表盘的目标数值的起始值与结束值设置角度。
++ Data configuration - Current value: A numerical field can be selected, which represents the achieved data situation in the current indicator.
++ Data configuration - Target value: A numerical field can be selected, which represents the expected data situation in the current indicator.
++ Style - Color setting: Custom colors can be set for the current value and target value of the dashboard.
++ Style - Angle setting: Angles can be set for the start and end values of the target value of the dashboard.
 
-:::tip 举例
-
-月度销售额目标完成情况。
+:::tip Example
+Completion status of the monthly sales amount target.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/ybp.png)
 
 :::
 
-# 九、表格
-## （一）表格
-表格是用行和列表示数据的图表类型，是最基础的数据展示方式。 适用于展示详细数据或进行数据分析，如销售数据表、客户信息表等。
+# IX. Table
+## (1) Table
+A table is a type of chart that uses rows and columns to represent data and is the most basic way of data display. It is suitable for displaying detailed data or conducting data analysis, such as sales data tables, customer information tables, etc.
 
-+ 样式——基本格式：可为表头与表体设置对其方式、行高、字号大小、字体颜色与背景颜色
-+ 样式——小计：可选择是否展示小计，可设置小计的对其方式、行高、字号大小、字体颜色与背景颜色
++ Style - Basic format: Alignment methods, row heights, font sizes, font colors and background colors can be set for the table header and table body.
++ Style - Subtotal: Whether to display the subtotal can be selected, and the alignment method, row height, font size, font color and background color of the subtotal can be set.
 
-:::tip 举例
-
-产品销售数据
+:::tip Example
+Product sales data
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/bg.png)
 
 :::
 
-# 十、地图
-## （一）中国地图
-中国地图是用地图形式展示中国各地区数据的图表类型。 适用于展示中国各地区的数据分布情况，如各省的销售额、人口数量等。
+# X. Map
+## (1) China Map
+A China map is a type of chart that uses a map to display data of different regions in China. It is suitable for displaying the data distribution situation of different regions in China, such as the sales amount and population of each province.
 
-+ 数据配置——更多展示字段：可选择维度字段与数值字段，选定后可在图表中显示字段数据
++ Data configuration - More display fields: Dimension fields and numerical fields can be selected, and the field data can be displayed in the chart after selection.
 
-:::tip 举例
-
-每一地区的销售额
+:::tip Example
+Sales amount of each region
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/zgdt.png)
 
 :::
 
-# 十一、其他
-## （一）指标统计图
-指标统计图是一种综合展示多个关键指标的图表类型。适用于同时展示和监控多个关键业务指标，以便全面了解业务状况。
+# XI. Others
+## (1) Indicator Statistical Chart
+An indicator statistical chart is a type of chart that comprehensively displays multiple key indicators. It is suitable for simultaneously displaying and monitoring multiple key business indicators to comprehensively understand the business situation.
 
-:::tip 举例
-
-综合展示销售量与销售额
+:::tip Example
+Comprehensive display of sales volume and sales amount
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/zbtjt.png)
 
 :::
-

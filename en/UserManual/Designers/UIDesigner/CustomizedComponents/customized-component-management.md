@@ -1,193 +1,189 @@
 ---
-title: 自定义组件管理
+title: Custom Component Management
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 1
 prev:
-  text: 自定义组件
-  link: /en/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
+  text: Customized Components
+  link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
 ---
-在页面设计器中，默认以卡片形式呈现组件列表。组件卡片上可预览到组件的基本信息，包括组件名称、组件图标以及组件描述。
+In the page designer, the component list is presented in the form of cards by default. You can preview the basic information of the components on the component cards, including the component name, component icon, and component description.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/1.png)
 
-# 一、筛选
-### 1.功能介绍
-根据实际业务需求，可以定制组件筛选条件，包括是否隐藏、组件名称、组件分类，分组设置，以便对组件进行精确筛选，在设定好的筛选条件下，将展示相应的组件列表，方便对不同组件进行查看和编辑操作。
+# I. Filtering
+### 1. Function Introduction
+According to actual business requirements, you can customize component filtering conditions, including whether to hide, component name, component classification, and grouping settings, to accurately filter components. Under the set filtering conditions, the corresponding component list will be displayed, which facilitates viewing and editing operations on different components.
 
-### 2.操作方法
-在筛选区选择或输入条件，完成对组件的筛选。
+### 2. Operation Method
+Select or enter conditions in the filtering area to complete the filtering of components.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/sx.png)
 
-# 二、分组管理
-### 1.功能介绍
-可以利用分组功能对组件进行归类管理（包括添加与删除），不限制分组数量。
+# II. Group Management
+### 1. Function Introduction
+You can use the grouping function to classify and manage components (including adding and deleting), and there is no limit to the number of groups.
 
-### 2.操作方法
-+ 管理分组：点击「管理分组」，在弹窗中对分组进行管理操作。
+### 2. Operation Method
++ Manage groups: Click "Manage Groups", and perform management operations on groups in the pop-up window.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/fz1.png)
 
-+ 添加分组：点击「添加分组」，输入分组名称后回车即可添加成功。
++ Add a group: Click "Add Group", enter the group name, and press Enter to add it successfully.
 
-:::info 注意
+:::info Note
 
-分组名称只允许输入中文或英文字符。
+The group name only allows Chinese or English characters to be entered.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/fz2.png)
 
-+ 删除分组：点击分组后的「删除」图标，即可删除分组
++ Delete a group: Click the "Delete" icon after the group to delete the group.
 
-:::info 注意
+:::info Note
 
-当分组下存在组件时不允许删除。
+A group cannot be deleted when there are components under it.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/fz3.png)
 
-# 三、排序
-### 1.功能介绍
-可以对组件及其分组进行排序，排序后的结果将在页面设计时的组件库中展示出来，方便用户按需选择和使用。
+# III. Sorting
+### 1. Function Introduction
+You can sort components and their groups. The sorted results will be displayed in the component library during page design, which is convenient for users to select and use as needed.
 
-### 2.操作方法
-+ 点击「排序」进入排序页面
+### 2. Operation Method
++ Click "Sort" to enter the sorting page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/px1.png)
 
-+ 拖拽分组前「拖拽」按钮，可对分组进行排序
-+ 拖拽「组件」按钮，可对组件进行排序，支持跨分组排序
++ Drag the "Drag" button in front of the group to sort the groups.
++ Drag the "Component" button to sort the components, and cross-group sorting is supported.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/px2.png)
 
-+ 点击「编辑」图标，可修改分组名称
-+ 点击「删除」图标，可删除分组
++ Click the "Edit" icon to modify the group name.
++ Click the "Delete" icon to delete the group.
 
-:::info 注意
+:::info Note
 
-仅允许删除自定义分组。此外，若分组下存在组件不允许删除。
+Only custom groups are allowed to be deleted. In addition, a group cannot be deleted if there are components under it.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/px3.png)
 
-# 四、添加组件
-### 1.功能介绍
-利用界面设计器创建组件，在创建过程中可以编辑组件信息。创建完成的组件可在组件库中被使用。
+# IV. Add Component
+### 1. Function Introduction
+Create components using the interface designer, and you can edit component information during the creation process. The created components can be used in the component library.
 
-### 2.操作方法
-点击「添加组件」，在弹窗页面中正确填写信息后，点击「确定」即可成功创建。
+### 2. Operation Method
+Click "Add Component", fill in the information correctly on the pop-up page, and click "OK" to create successfully.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/tj1.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/tj2.png)
 
-# 五、隐藏/可见组件
-### 1.功能介绍
-对于当前暂不使用的组件，可以执行隐藏操作。若日后需要，只需将隐藏的组件设置为可见状态，即可重新投入使用。
+# V. Hide/Show Components
+### 1. Function Introduction
+For components that are not currently in use, you can perform a hide operation. If needed in the future, simply set the hidden components to the visible state to put them back into use.
 
-### 2.操作方法
-点击「隐藏」，组件设置为隐藏状态，按钮变为「显示」；再次点击，组件设置为可见状态。
+### 2. Operation Method
+Click "Hide" to set the component to the hidden state, and the button changes to "Show"; click again to set the component to the visible state.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/yc1.png)
 
-:::warning 提示
+:::warning Tip
 
-若需要对隐藏的组件进行操作，但是在列表未查找到某个隐藏的组件时，切换「是否可见」筛选项，切换为“全部”或“隐藏”，即可找到隐藏的组件。
+If you need to operate on a hidden component but cannot find a certain hidden component in the list, switch the "Visibility" filter option to "All" or "Hidden" to find the hidden component.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/yc2.png)
 
 :::
 
+**The following functions are only applicable to custom components.**
 
+# VI. Edit Component
+### 1. Function Introduction
+Successfully created components can be edited.
 
-**以下功能仅针对自定义组件。**
+:::info Note
 
-# 六、编辑组件
-### 1.功能介绍
-成功创建的组件可对其进行编辑。
-
-:::info 注意
-
-仅部分信息支持修改，部分信息在创建时即已固定，因此创建时需谨慎填写。
+Only some information can be modified, and some information is fixed at the time of creation, so please fill it in carefully when creating.
 
 :::
 
-### 2.操作方法
-点击「编辑」，即可在弹出的编辑页面中进行编辑。
+### 2. Operation Method
+Click "Edit" to edit on the pop-up editing page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/bj.png)
 
-# 七、查看引用信息
-### 1.功能介绍
-通过此功能，可以查看到与该组件存在引用关系的页面。关系通过列表展示，列表项为链接，可链接到对应的设计页面，内容为对应内容。
+# VII. View Reference Information
+### 1. Function Introduction
+Through this function, you can view the pages that have a reference relationship with the component. The relationships are displayed in a list, and the list items are links that can be linked to the corresponding design pages, and the content is the corresponding content.
 
-### 2.操作方法
-点击「查看引用信息」图标，即可查看引用信息。
+### 2. Operation Method
+Click the "View Reference Information" icon to view the reference information.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/yy.png)
 
-# 八、管理元件
-### 1.功能介绍
-一个组件中可包含多个元件，为确保组件的功能和性能达到设计要求，需要对这些元件进行全面而细致的管理。具体管理操作包括元件的创建、编辑以及删除等，以确保组件的构成合理、功能完善。（详情见元件信息文档）
+# VIII. Manage Elements
+### 1. Function Introduction
+A component can contain multiple elements. To ensure that the function and performance of the component meet the design requirements, these elements need to be comprehensively and meticulously managed. Specific management operations include creating, editing, and deleting elements to ensure that the component is reasonably structured and fully functional. (See the element information document for details.)
 
-### 2.操作方法
-点击组件卡片主体部分，或点击「管理元件」图标，进入元件管理页面。
+### 2. Operation Method
+Click the main part of the component card or the "Manage Elements" icon to enter the element management page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/glyj.png)
 
-# 九、删除组件
-### 1.功能介绍
-当组件不再使用时，可以选择将其删除。若不确定组件是否需要删除，可以先将其隐藏。
+# IX. Delete Component
+### 1. Function Introduction
+When a component is no longer needed, you can choose to delete it. If you are not sure whether to delete a component, you can hide it first.
 
-:::info 注意
+:::info Note
 
-在删除前，需确保该组件未被其他页面引用，否则删除操作将无法进行。
-
-:::
-
-:::danger 警告
-
-页面删除后无法恢复，请谨慎操作！
+Before deletion, ensure that the component is not referenced by other pages; otherwise, the deletion operation cannot be performed.
 
 :::
 
-### 2.操作方法
-点击「删除」图标，确定删除后即可删除
+:::danger Warning
+
+Once a page is deleted, it cannot be restored. Please operate with caution!
+
+:::
+
+### 2. Operation Method
+Click the "Delete" icon, and confirm the deletion to delete the component.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/sc.png)
 
-# 十、低无一体
-### 1.功能介绍
-Oinone平台支持将低代码开发与无代码开发有机融合，当无代码开发模式难以满足某些特殊场景的开发需求或无法完善相关功能时，用户可以使用低无一体功能，通过编写代码来对工程进行进一步完善和优化。
+# X. Low-Code/No-Code Integration
+### 1. Function Introduction
+The Oinone platform supports the organic integration of low-code development and no-code development. When the no-code development mode cannot meet the development requirements of some special scenarios or cannot perfect relevant functions, users can use the low-code/no-code integration function to further improve and optimize the project by writing code.
 
-:::warning 提示
+:::warning Tip
 
-系统支持所有自定义组件均具备低无一体功能。为便于代码管理并减少网络请求量，建议将低代码开发文件集中在一个组件中进行统一上传。统一上传与逐个上传在效果上并无差异，但统一上传能更高效地管理代码，并有效避免文件过多导致的网络请求负担。
+The system supports all custom components to have the low-code/no-code integration function. To facilitate code management and reduce network requests, it is recommended to upload low-code development files centrally in one component. There is no difference in effect between unified uploading and individual uploading, but unified uploading can manage code more efficiently and effectively avoid the network request burden caused by too many files.
 
 :::
 
-### 2.操作方法
-+ 点击「低无一体」，进入弹窗
+### 2. Operation Method
++ Click "Low-Code/No-Code Integration" to enter the pop-up window.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/dwyt1.png)
 
-+ 若是首次进入该组件设计或组件中的元件发生了变更，点击「生成SDK」，生成该组件的SDK。
-+ 每次生成SDK后，点击「下载模板工程」，下载对应的模板工程，在其中进行开发
-+ 点击「上传JS文件」或「上传CSS文件」，上传开发好的文件
++ If you are entering the component design for the first time or the elements in the component have changed, click "Generate SDK" to generate the SDK for the component.
++ After generating the SDK each time, click "Download Template Project" to download the corresponding template project and develop in it.
++ Click "Upload JS File" or "Upload CSS File" to upload the developed files.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Custom%20Components/Custom%20Component%20Management/dwyt2.png)
 
-# 十一、附件：名词解释
-| 名词 | 描述 |
+# XI. Attachment: Glossary
+| Term | Description |
 | :---: | --- |
-| 组件 | 页面设计的基本单元，如按钮、文本框、图片等。 |
-| 元件 | 依据不同的字段业务类型而设计的属性页面。 |
-| 低无一体 | 反向生成API代码，生成对应的扩展工程与API依赖包，通过专业研发人员开发后上传至平台。 |
-
-
+| Component | The basic unit of page design, such as buttons, text boxes, and pictures. |
+| Element | The attribute page designed according to different field business types. |
+| Low-Code/No-Code Integration | Reverse-generate API code, generate the corresponding extension project and API dependency package, and upload them to the platform after development by professional R & D personnel. |

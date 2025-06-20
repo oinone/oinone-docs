@@ -1,19 +1,19 @@
 ---
-title: 章节 3：模型与基础字段（Models And Basic Fields）
+title: Chapter 3:Models And Basic Fields
 index: true
 category:
-  - 研发手册
-  - 教程
-  - 后端框架
+  - Development Manual
+  - Tutorials
+  - Back-end Framework
 order: 3
 
 ---
-在上一章结尾，我们成功创建了一个 Oinone 模块。但此时它仍是个空壳，无法存储任何数据。在我们的费用模块中，我们希望将与费用相关的项目信息（名称、描述、项目类型、所属部门等）存储到数据库里。Oinone 框架提供了便于数据库交互的工具。
+At the end of the previous chapter, we successfully created an Oinone module. But it's still an empty shell, unable to store any data. In our expense module, we want to store project information related to expenses (name, description, project type, department, etc.) in the database. The Oinone framework provides tools for convenient database interaction.
 
-# 一、对象关系映射（Object-Relational Mapping）
-参考：与此主题相关的文档可在 “[模型 API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#一、模型-model)” 中找到。
+# I. Object-Relational Mapping
+Reference: Documentation related to this topic can be found in "[Model API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#一、模型-model)".
 
-:::info 目标：在本节结束时，应创建 `expenses_project_info`表：
+:::info Objective: By the end of this section, the `expenses_project_info` table should be created:
 
 :::
 
@@ -32,13 +32,13 @@ mysql> select count(*) from expenses_project_info;
 1 row in set (0.00 sec)
 ```
 
-Oinone 的一个关键组件是对象关系映射（ORM）层。该层避免了手动编写大部分 SQL 语句，还提供了可扩展性和安全服务。
+A key component of Oinone is the Object-Relational Mapping (ORM) layer. This layer avoids manual writing of most SQL statements and provides extensibility and security services.
 
-业务对象被声明为继承自 `Oinone模型基类` 的 JAVA 类，这样就能将它们集成到自动持久化系统中。
+Business objects are declared as Java classes inheriting from the `Oinone model base class`, enabling their integration into the automatic persistence system.
 
-可以通过在模型定义中设置属性来配置模型。最重要的属性是 `model`，它是必需的，用于在 Oinone 系统中定义模型的唯一编码。
+Models can be configured by setting attributes in the model definition. The most important attribute is `model`, which is required to define the unique code of the model in the Oinone system.
 
-:::tip 举例：以下是一个模型的最小定义示例：
+:::tip Example: Here is a minimal definition example of a model:
 
 :::
 
@@ -54,22 +54,22 @@ public class TestModel extends IdModel {
 }
 ```
 
-这个定义足以让 ORM 生成一个名为 `expenses_test_model` 的数据库表。按照惯例，所有模型都位于模块的 `model` 包路径中如： `pro.shushi.oinone.trutorials.expenses.api.model`，并且每个模型都在各自的 JAVA 文件中定义。
+This definition is sufficient for the ORM to generate a database table named `expenses_test_model`. By convention, all models are located in the module's `model` package path, such as `pro.shushi.oinone.trutorials.expenses.api.model`, and each model is defined in its own Java file.
 
-:::warning 提示：表名生成默认规则
+:::warning Tip: Default table name generation rules
 
-1. 模块编码`expenses`，驼峰转`.`分割转化成`_`连接（这里`expenses`本身就是符合规则的，无需额外转换 ）。
-2. 模型的`model`属性`expenses.TestModel`，按`.`分割取最后一个单词`TestModel`，把驼峰转化成`_`连接，得到`test_model` 。
-3. 最终生成的表名就是`expenses_test_model`。
+1. Module code `expenses`, camel case is split by `.` and converted to `_` connection (here `expenses` itself conforms to the rules and does not require additional conversion).
+2. The model's `model` attribute `expenses.TestModel`, split by `.` to take the last word `TestModel`, convert camel case to `_` connection, resulting in `test_model`.
+3. The finally generated table name is `expenses_test_model`.
 
 :::
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> **定义项目信息模型**：根据TestModel示例，为`expenses_project_info`表创建合适的文件和文件夹。文件创建完成后，为`expenses.ProjectInfo`项目信息模型添加一个基本定义。对 JAVA 文件的任何修改都需要重启 Oinone 服务器。
+> **Define the project information model**: Create appropriate files and folders for the `expenses_project_info` table based on the TestModel example. After completing the file creation, add a basic definition for the `expenses.ProjectInfo` project information model. Any modifications to the Java file require restarting the Oinone server.
 >
 
-在启动过程中，你应该会看到以下信息：
+During startup, you should see the following information:
 
 ```bash
 CREATE TABLE IF NOT EXISTS `expenses_project_info`(
@@ -85,16 +85,16 @@ CREATE TABLE IF NOT EXISTS `expenses_project_info`(
 CREATE INDEX `expenses_project_info_create_date` ON `expenses_project_info`(`create_date`)
 ```
 
-如果出现这种情况，那么你做得应该是正确的！为确保无误，请按照 “目标” 部分中展示的那样，使用`mysql`工具进行再次检查。
+If this occurs, you should be doing it correctly! To ensure accuracy, use the `mysql` tool to check again as shown in the "Objective" section.
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> **添加描述：**@Model(displayName = "项目信息")
+> **Add a description**: @Model(displayName = "项目信息")
 >
 
-# 二、模型字段（Model fields）
-参考：与此主题相关的文档可在 “[字段 API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#二、字段-field)” 中找到。
-字段用于定义模型可以存储什么以及存储位置。字段在模型类中被定义为属性：
+# II. Model fields
+Reference: Documentation related to this topic can be found in "[Field API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#二、字段-field)".
+Fields define what a model can store and where. Fields are defined as attributes in the model class:
 
 ```java
 package pro.shushi.oinone.trutorials.expenses.api.model;
@@ -114,7 +114,7 @@ public class TestModel extends IdModel {
 }
 ```
 
-`name` 字段是一个 `STRING` 类型，在JAVA中表示为 Unicode 字符串，在SQL中表示为 `VARCHAR`。
+The `name` field is of `STRING` type, represented as a Unicode string in Java and as `VARCHAR` in SQL.
 
 ```java
 package pro.shushi.oinone.trutorials.expenses.api.enums;
@@ -163,21 +163,21 @@ public enum TestEnum implements IEnum<String> {
     private Date date;
 ```
 
-`testEnum` 字段是一个 `ENUM` 类型，在JAVA中与枚举指定基本类型一致，在SQL中表示为 `VARCHAR`。
+The `testEnum` field is of `ENUM` type, consistent with the basic type specified by the enumeration in Java, and represented as `VARCHAR` in SQL.
 
-`date` 字段是一个 `DATE` 类型，在JAVA中表示为日期，在SQL中表示为 `DATE`。
+The `date` field is of `DATE` type, represented as a date in Java and as `DATE` in SQL.
 
-:::warning 提示：DateTypeEnum有四种类型选择
+:::warning Tip: DateTypeEnum has four type options
 
-1. DATETIME：日期时间
-2. YEAR：年份
-3. DATE：日期
-4. TIME：时间
+1. DATETIME: Date and time
+2. YEAR: Year
+3. DATE: Date
+4. TIME: Time
 
 :::
 
-## （一）类型（Types）
-:::info 目标：在本节结束时，应向 `expenses_project_info` 表添加几个基本字段：
+## (一) Types
+:::info Objective: By the end of this section, several basic fields should be added to the `expenses_project_info` table:
 
 :::
 
@@ -206,72 +206,71 @@ mysql> desc expenses_project_info;
 15 rows in set (0.01 sec)
 ```
 
-字段主要分为两大类：“简单” 字段，即直接存储在模型表中的原子值；“关系” 字段，用于关联（相同或不同模型的）记录。
+Fields are mainly divided into two categories: "simple" fields, which are atomic values stored directly in the model table; and "relationship" fields, which are used to associate records (of the same or different models).
 
-简单字段的示例包括 `BOOLEAN`、`INTEGER`、`FLOAT`、`STRING`、`TEXT`、`DATE` 、`YEAR` 和 `ENUM`。
+Examples of simple fields include `BOOLEAN`, `INTEGER`, `FLOAT`, `STRING`, `TEXT`, `DATE`, `YEAR`, and `ENUM`.
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 向项目信息表添加基本字段。
+> Add basic fields to the project information table.
 >
-> 向表中添加以下基本字段：
+> Add the following basic fields to the table:
 >
 
-| 字段（Field） | 字段显示名 | 类型（Type） | JAVA类型 |
+| Field | Display Name | Type | Java Type |
 | --- | --- | --- | --- |
-| code | 项目编码 | `STRING` | String |
-| name | 项目名称 | `STRING` | String |
-| remark | 项目描述 | `TEXT` | String |
-| budgetAmount | 项目预算 | `FLOAT` | BigDecimal、Float、Double |
-| startDate | 开始时间 | `DATE` | java.util.Date |
-| projectYear | 所属年份 | `YEAR` | java.util.Date |
-| staffSize | 人员投入规模 | `INTEGER` | Integer、Short、Long、BigInteger |
-| projectVisibility | 项目可见性 | `ENUM` | Enum、与数据字典指定基本类型一致<br/>枚举项：公开项目(public)、私有项目(private) |
-| isKeyProject | 是否为重点项目 | `BOOLEAN` | Boolean |
+| code | Project Code | `STRING` | String |
+| name | Project Name | `STRING` | String |
+| remark | Project Description | `TEXT` | String |
+| budgetAmount | Project Budget | `FLOAT` | BigDecimal、Float、Double |
+| startDate | Start Time | `DATE` | java.util.Date |
+| projectYear | Belonging Year | `YEAR` | java.util.Date |
+| staffSize | Personnel Input Scale | `INTEGER` | Integer、Short、Long、BigInteger |
+| projectVisibility | Project Visibility | `ENUM` | Enum、Consistent with the basic type specified in the data dictionary<br/>Enumeration items: public project (public), private project (private) |
+| isKeyProject | Is Key Project | `BOOLEAN` | Boolean |
 
 
-## （二）常用属性（Common Attributes）
-和模型本身一样，字段可以通过传递配置属性作为参数来进行配置：
+## (二) Common Attributes
+Like the model itself, fields can be configured by passing configuration attributes as parameters:
 
 ```python
 @Field(displayName = "名称", required = true)
 private String name;
 ```
 
-可以使用@Field注解中的以下属性来配置前端的默认视觉与交互规则，也可以在前端设置覆盖以下配置。
+The following attributes in the @Field annotation can be used to configure the default visual and interaction rules of the frontend, and the following configurations can also be overridden in the frontend settings.
 
-+ @Field(required)，是否必填，不会影响数据库字段的定义，只做业务交互的逻辑判断
-+ @Field(invisible)，是否不可见
-+ @Field(priority)，字段优先级，列表的列使用该属性进行排序
++ @Field(required), whether it is required, which does not affect the definition of the database field, only the logical judgment of business interaction
++ @Field(invisible), whether it is invisible
++ @Field(priority), field priority, and the columns of the list are sorted using this attribute
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 为现有字段设置属性。
+> Set attributes for existing fields.
 >
-> 为项目信息的字段添加以下属性：
+> Add the following attributes to the fields of project information:
 >
-> name、projectYear 添加required属性为true
+> name、projectYear add required attribute as true
 >
 
-## （三）继承字段（Inheritance Fields）
-参考：与此主题相关的文档可在 “[模型的继承](/en/DevManual/Reference/Back-EndFramework/ORM-API.md)” 中找到。
+## (三) Inheritance Fields
+Reference: Documentation related to this topic can be found in "[Model Inheritance](/en/DevManual/Reference/Back-EndFramework/ORM-API.md)".
 
-你可能已经注意到，你的模型中有几个你从未定义过的字段。Oinone 会在所有模型中创建几个字段。这些字段由本模型继承自父类模型 ：
+You may have noticed that there are several fields in your model that you never defined. Oinone creates several fields in all models. These fields are inherited by this model from the parent model:
 
-+ `id`（`INTEGER`）：模型记录的唯一标识符。
-+ `create_date`（`DATETIME`）：记录的创建日期。
-+ `create_uid`（`INTEGER`）：创建记录的用户。
-+ `write_date`（`DATETIME`）：记录的最后修改日期。
-+ `write_uid`（`INTEGER`）：最后修改记录的用户。
-+ `is_deleted`（`INTEGER`）：逻辑删除字段。由系统创建
++ `id` (`INTEGER`): The unique identifier of the model record.
++ `create_date` (`DATETIME`): The creation date of the record.
++ `create_uid` (`INTEGER`): The user who created the record.
++ `write_date` (`DATETIME`): The last modification date of the record.
++ `write_uid` (`INTEGER`): The user who last modified the record.
++ `is_deleted` (`INTEGER`): Logical deletion field. Created by the system
 
-:::warning 提示：
+:::warning Tip:
 
-数式Oinone提供了多个快速继承的父类模型，以及自己也可以定义抽象模型作为其他模型的父模型
+Shushi Oinone provides multiple parent models for quick inheritance, and you can also define abstract models as parent models for other models
 
 :::
 
 
 
-现在我们已经创建了第一个模型，接下来添加一些安全设置！
-
+Now that we have created the first model, the next step is to add some security settings!

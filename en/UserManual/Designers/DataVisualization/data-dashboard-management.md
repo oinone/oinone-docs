@@ -1,42 +1,42 @@
 ---
-title: 数据大屏管理
+title: Data Dashboard Management
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 5
 ---
-数据大屏能够实时地以图形化的形式，为企业呈现出直观、清晰的数据分析结果。通过数据大屏，企业可以即时掌握各项关键指标的动态变化，迅速洞察数据背后的业务逻辑和趋势，从而为决策提供有力的数据支撑，助力企业实现数据驱动的精细化管理。
+Data dashboards can present intuitive and clear data analysis results for enterprises in a graphical form in real-time. Through data dashboards, enterprises can instantly grasp the dynamic changes of various key indicators, quickly understand the business logic and trends behind the data, and thus provide strong data support for decision-making, helping enterprises achieve data-driven fine-grained management.
 
-进入数据可视化后的「数据大屏」页面可对数据大屏进行管理，该页面主要包含三个部分：筛选区、列表区与数据大屏预览区
+Enter the "Data Dashboards" page after entering data visualization to manage data dashboards. This page mainly consists of three parts: the filtering area, the list area, and the data dashboard preview area.
 
-+ 筛选区：提供数据大屏筛选功能，便于用户快速查找出所需数据大屏项。
-+ 列表区：展示数据大屏与其分组的列表，清晰呈现数据大屏结构。
-+ 数据大屏预览区：展示已设计的数据大屏表，可在此进行编辑、发布、导出等操作。
++ Filtering area: Provides a data dashboard filtering function to facilitate users to quickly find the required data dashboard items.
++ List area: Displays a list of data dashboards and their groups, clearly presenting the data dashboard structure.
++ Data dashboard preview area: Displays the designed data dashboards, where users can perform operations such as editing, publishing, and exporting.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/1.png)
 
-# 一、筛选
-### 1.功能介绍
-根据业务实际需求，可定制数据大屏筛选条件。输入数据大屏或分组名称后，能精确筛选出所需项，便于后续操作。
+# I. Filtering
+### 1. Function Introduction
+Customize data dashboard filtering conditions according to actual business needs. After entering the name of the data dashboard or group, you can precisely filter out the required items for subsequent operations.
 
-### 2.操作方法
-在筛选区中输入条件，完成对数据大屏或分组的筛选。
+### 2. Operation Method
+Enter conditions in the filtering area to filter data dashboards or groups.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/sx.png)
 
-# 二、分组管理
-### 1.功能介绍
-利用分组功能可以对数据大屏进行归类处理。
+# II. Group Management
+### 1. Function Introduction
+Use the grouping function to classify data dashboards.
 
-### 2.操作方法
-+ 创建分组：首先，点击“创建一级分组”按钮并输入一级分组名称，即可完成一级分组的创建。接着，在一级分组下方，点击“创建”图标并输入二级分组名称，即可成功创建二级分组。至此，分组创建完成。
+### 2. Operation Method
++ Create a group: First, click the "Create First-Level Group" button and enter the first-level group name to complete the creation of the first-level group. Then, below the first-level group, click the "Create" icon and enter the second-level group name to successfully create the second-level group. At this point, the group creation is completed.
 
-:::info 注意
+:::info Note
 
-+ 一级分组名称之间不允许重复，一级分组名称与二级分组名称不允许重复
-+ 同个一级分组下的二级分组名称不允许重复
-+ 不同一级分组下的二级分组名称允许重复
++ First-level group names are not allowed to be repeated, and first-level group names and second-level group names are not allowed to be repeated.
++ Second-level group names under the same first-level group are not allowed to be repeated.
++ Second-level group names under different first-level groups are allowed to be repeated.
 
 :::
 
@@ -44,188 +44,187 @@ order: 5
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/fz2.png)
 
-+ 编辑分组名称：鼠标移至需要修改的分组上，点击「编辑」图标后即可修改分组的名称。
++ Edit the group name: Move the mouse over the group to be modified, click the "Edit" icon, and then you can modify the group name.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/fz3.png)
 
-+ 修改分组位置：拖拽分组即可改变其位置。
++ Modify the group position: Drag the group to change its position.
 
-:::info 注意
+:::info Note
 
-+ 只能拖动同级分组，不可以将一级分组变为二级分组或将二级分组变为一级分组，同理，创建好的数据大屏不允许变为分组。
-+ 可以将二级分组移至其他一级分组下。
++ Only drag groups at the same level. You cannot change a first-level group into a second-level group or a second-level group into a first-level group. Similarly, created data dashboards are not allowed to become groups.
++ You can move a second-level group under another first-level group.
 
 :::
 
-+ 删除分组：鼠标移至需要删除的分组上，点击「删除」图标，即可删除该分组。
++ Delete a group: Move the mouse over the group to be deleted, click the "Delete" icon, and then you can delete the group.
 
-:::info 注意
+:::info Note
 
-+ 删除一级分组时，其包含的二级分组也会被删除。
-+ 当分组下存在图表时，无法成功删除。
++ When deleting a first-level group, the second-level groups it contains will also be deleted.
++ When there are charts under the group, the group cannot be successfully deleted.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/fz4.png)
 
-# 三、添加数据大屏
-### 1.功能介绍
-在二级分组下可添加数据大屏，在添加过程中需编辑数据大屏标题
+# III. Add a Data Dashboard
+### 1. Function Introduction
+You can add a data dashboard under a second-level group. During the addition process, you need to edit the title of the data dashboard.
 
-### 2.操作方法
-在二级分组点击「添加数据大屏」图标，输入标题后即可成功创建。
+### 2. Operation Method
+Click the "Add Data Dashboard" icon under the second-level group, enter the title, and then you can successfully create the data dashboard.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/tj.png)
 
-# 四、编辑数据大屏
-### 1.功能介绍
-支持编辑未发布或已发布但未隐藏的图表，提供两个编辑情况：
+# IV. Edit a Data Dashboard
+### 1. Function Introduction
+Supports editing charts that are not published or have been published but not hidden, providing two editing scenarios:
 
-+ 在列表区编辑，可编辑标题
-+ 在数据大屏预览区编辑，可编辑标题
++ Edit in the list area, where you can edit the title.
++ Edit in the data dashboard preview area, where you can edit the title.
 
-### 2.操作方法
-点击「编辑」图标，输入信息后即可成功编辑
+### 2. Operation Method
+Click the "Edit" icon, enter the information, and then you can successfully edit the data dashboard.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/bj.png)
 
-# 五、设计数据大屏
-### 1.功能介绍
-数据大屏创建完成后，可进入数据大屏设计界面中，对数据大屏进行个性化的设计布局，包括选择不同的图表与组件，以满足多样化的需求和风格。（详见数据大屏设计文档）
+# V. Design a Data Dashboard
+### 1. Function Introduction
+After creating a data dashboard, you can enter the data dashboard design interface to perform personalized design and layout on the data dashboard, including selecting different charts and components to meet diverse needs and styles. (See the data dashboard design documentation for details.)
 
-:::info 注意
+:::info Note
 
-当数据大屏发布后隐藏，无法进入数据大屏设计界面
+When a data dashboard is published and then hidden, you cannot enter the data dashboard design interface.
 
 :::
 
-### 2.操作方法
-点击「编辑」，进入数据大屏设计界面。
+### 2. Operation Method
+Click "Edit" to enter the data dashboard design interface.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/sj.png)
 
-# 六、查看引用信息
-### 1.功能介绍
-可查看与该数据大屏存在引用关系的各类元素。
+# VI. View Reference Information
+### 1. Function Introduction
+You can view various elements that have a reference relationship with the data dashboard.
 
-:::info 注意
+:::info Note
 
-+ 对于已发布数据大屏，可提供引用链接，可以直接复制引用链接在别处使用。
-+ 对于未发布数据大屏，不提供引用链接
++ For published data dashboards, a reference link can be provided, which can be directly copied and used elsewhere.
++ For unpublished data dashboards, no reference link is provided.
 
 :::
 
-### 2.操作方法
-点击「查看引用」，即可查看引用信息。
+### 2. Operation Method
+Click "View Reference" to view the reference information.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/yy.png)
 
-# 七、复制数据大屏
-### 1.功能介绍
-提供数据大屏复制功能，该功能会在原图所在的分组最底层生成一个副本，该副本的标题为“copy of 原图名称”。
+# VII. Copy a Data Dashboard
+### 1. Function Introduction
+Provides a data dashboard copying function. This function will generate a copy at the bottom of the group where the original chart is located. The title of the copy will be "copy of [original chart name]".
 
-### 2.操作方法
-点击「复制」，即可成功复制
+### 2. Operation Method
+Click "Copy" to successfully copy the data dashboard.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/copy.png)
 
-# 八、发布数据大屏
-### 1.功能介绍
-数据大屏设计完成后，用户可以选择发布数据大屏。发布后的数据大屏可在其他设计器中被引用，同时展示最近发布时间。若数据大屏发布后有内容更新，原本的“发布”按钮将变为“更新发布”。
+# VIII. Publish a Data Dashboard
+### 1. Function Introduction
+After designing a data dashboard, users can choose to publish it. The published data dashboard can be referenced in other designers, and the latest publishing time will be displayed. If the content of the data dashboard is updated after publication, the original "Publish" button will become "Update and Publish".
 
-:::info 注意
+:::info Note
 
-若内容发生更新但尚未进行重新发布，那么引用该数据大屏的地方仍继续展示旧版本的内容。
-
-:::
-
-:::info 注意
-
-当数据大屏隐藏后，无法发布该数据大屏。
+If the content is updated but not republished, the places where the data dashboard is referenced will still display the old version of the content.
 
 :::
 
-:::info 注意
+:::info Note
 
-发布数据大屏，需确保大屏中至少包含一个图表或组件，以满足发布的基本要求。
+When a data dashboard is hidden, it cannot be published.
 
 :::
 
-### 2.操作方法
-点击「发布/更新发布」，即可成功发布
+:::info Note
+
+To publish a data dashboard, ensure that the dashboard contains at least one chart or component to meet the basic requirements for publication.
+
+:::
+
+### 2. Operation Method
+Click "Publish/Update and Publish" to successfully publish the data dashboard.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/fb.png)
 
-# 九、查看最近一次发布版本
-### 1.功能介绍
-当数据大屏发布后有更新，会在数据大屏预览区左上方区域展示最近发布时间，可查看其最近一次发布的版本
+# IX. View the Latest Published Version
+### 1. Function Introduction
+When a data dashboard is updated after publication, the latest publishing time will be displayed in the upper-left area of the data dashboard preview area. You can view the latest published version.
 
-### 2.操作方法
-点击「查看」，数据大屏预览区会展示最近一次发布版本
+### 2. Operation Method
+Click "View", and the data dashboard preview area will display the latest published version.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/ckzj.png)
 
-# 十、隐藏/可见数据大屏
-### 1.功能介绍
-对于当前暂不使用的数据大屏，可以执行隐藏操作。若日后需要，只需将隐藏的数据大屏设置为可见状态即可重新投入使用。隐藏后的数据大屏不可以被引用，但是不影响已经被引用的数据。
+# X. Hide/Show a Data Dashboard
+### 1. Function Introduction
+For data dashboards that are not currently in use, you can perform a hiding operation. If needed in the future, simply set the hidden data dashboard to the visible state to put it back into use. Hidden data dashboards cannot be referenced, but it does not affect the already referenced data.
 
-:::info 注意
+:::info Note
 
-+ 对于已发布的数据大屏，隐藏后不可编辑
-+ 对于未发布的数据大屏，隐藏后允许编辑
++ For published data dashboards, they cannot be edited after being hidden.
++ For unpublished data dashboards, they can be edited after being hidden.
 
 :::
 
-### 2.操作方法
-点击「隐藏」，数据大屏设置为隐藏状态；再次点击，数据大屏恢复为可见状态。
+### 2. Operation Method
+Click "Hide" to set the data dashboard to the hidden state; click again to restore the data dashboard to the visible state.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/yc.png)
 
-# 十一、导出Excel
-### 1.功能介绍
-可以将数据大屏数据内容导出为标准化的Excel文件格式。
+# XI. Export to Excel
+### 1. Function Introduction
+You can export the data content of the data dashboard to a standardized Excel file format.
 
-### 2.操作方法
-点击「导出excel」，即可将当前图表中数据以Excel形式导出。
+### 2. Operation Method
+Click "Export to Excel" to export the data in the current chart in Excel format.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/dc.png)
 
-# 十二、允许别人编辑
-### 1.功能介绍
-支持自定义编辑权限，当关闭编辑权限后，非创建者即使登录也无法对该内容进行编辑。
+# XII. Allow Others to Edit
+### 1. Function Introduction
+Supports customizing editing permissions. When the editing permission is turned off, non-creators cannot edit the content even if they log in.
 
-### 2.操作方法
-点击开关，即可改变该功能状态。
+### 2. Operation Method
+Click the switch to change the status of this function.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/yxbrbj.png)
 
-# 十三、全屏
-### 1.功能介绍
-支持全屏展示数据大屏，数据大屏将占据整个屏幕空间，图表和组件的展示效果将更加突出和清晰。
+# XIII. Full Screen
+### 1. Function Introduction
+Supports full-screen display of data dashboards. The data dashboard will occupy the entire screen space, and the display effect of charts and components will be more prominent and clear.
 
-### 2.操作方法
-点击「全屏」，即可全屏展示数据大屏
+### 2. Operation Method
+Click "Full Screen" to display the data dashboard in full screen.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/qp.png)
 
-# 十四、删除数据
-### 1.功能介绍
-当数据大屏不再使用时，可以选择将其删除。若不确定数据大屏是否需要删除，可以先将其隐藏。
+# XIV. Delete Data
+### 1. Function Introduction
+When a data dashboard is no longer needed, you can choose to delete it. If you are not sure whether to delete the data dashboard, you can hide it first.
 
-:::info 注意
+:::info Note
 
-在删除前，需确保该数据大屏未被其他设计器引用，否则删除操作将无法进行。
-
-:::
-
-:::danger 警告
-
-数据大屏删除后无法恢复，请谨慎操作！
+Before deletion, ensure that the data dashboard is not referenced by other designers; otherwise, the deletion operation will not be allowed.
 
 :::
 
-### 2.操作方法
-点击「删除」图标，确定删除后即可删除
+:::danger Warning
+
+Once a data dashboard is deleted, it cannot be restored. Please operate with caution!
+
+:::
+
+### 2. Operation Method
+Click the "Delete" icon, confirm the deletion, and then you can delete the data dashboard.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Data%20big%20screen%20management/sc.png)
-

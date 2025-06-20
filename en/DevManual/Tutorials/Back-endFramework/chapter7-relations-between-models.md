@@ -1,43 +1,43 @@
 ---
-title: 章节 7：模型间关系（Relations Between Models）
+title: Chapter 7:Relations Between Models
 index: true
 category:
-  - 研发手册
-  - 教程
-  - 后端框架
+  - Development Manual
+  - Tutorials
+  - Back-end Framework
 order: 7
 
 ---
-上一章介绍了如何为包含基本字段的模型创建自定义视图。然而，在任何实际的业务场景中，我们需要的模型不止一个。此外，模型之间的关联也是必不可少的。很容易想象，一个模型可以包含客户信息，另一个模型包含用户列表。在任何现有的业务模型中，你可能都需要引用客户或用户。
+The previous chapter introduced how to create custom views for models with basic fields. However, in any real-world business scenario, we need more than one model. Additionally, associations between models are essential. It's easy to imagine one model containing customer information and another containing a list of users. In any existing business model, you will likely need to reference customers or users.
 
-在我们的费用管理模块中，对于一个项目信息，我们还需要以下信息：
+In our expense management module, for a project information model, we also need the following information:
 
-+ 项目类型
-+ 项目发起人
-+ 外部关联方
-+ 收到的报销列表
++ Project type
++ Project sponsor
++ External partners
++ Received expense list
 
-# 一、多对一关系（many2one）
+# I. Many-to-One Relationship (many2one)
 
-参考：与此主题相关的文档可在 “[多对一关系](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#多对一关系many2one)” 中找到。
+Reference: Documentation related to this topic can be found in "[Many-to-One Relationship](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#多对一关系many2one)".
 
-:::info 目标：在本节结束时：
+:::info Objective: By the end of this section:
 
-1. 应创建一个新的 `expenses.ProjectType` 模型，并添加相应的菜单、操作和视图。
+1. A new `expenses.ProjectType` model should be created, along with corresponding menus, actions, and views.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-7/m2o-1.png)
 
-2. 应向 `expenses.ProjectInfo` 模型添加两个多对一（many2one）字段：项目发起人和项目类型。
+2. Two many-to-one (many2one) fields should be added to the `expenses.ProjectInfo` model: project sponsor and project type.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-7/m2o-2.png)
 
 :::
 
-在我们的费用管理模块中，我们想要定义项目类型的概念。例如，项目类型可以是采购类、研发类，以及内部行政类。根据项目类型对其进行分类是一种常见的业务需求，特别是为了更精确地进行筛选。
+In our expense management module, we want to define the concept of project types. For example, project types can be procurement, R&D, and internal administration. Categorizing projects by type is a common business need, especially for more precise filtering.
 
-一个项目可以有一种类型，但同一种类型可以被分配给多个项目。这就是多对一（many2one）概念所支持的关系。
+One project can have one type, but the same type can be assigned to multiple projects. This is the relationship supported by the many-to-one (many2one) concept.
 
-多对一关系是指向另一个对象的简单链接。例如，为了在我们的测试模型中定义与 `user.PamirsUser` 的链接，我们可以有以下两种这样写：
+A many-to-one relationship is a simple link to another object. For example, to define a link to `user.PamirsUser` in our test model, we can write it in two ways:
 
 ```java
 @Field.many2one
@@ -56,14 +56,14 @@ private PamirsUser user;
 private Long userId;
 ```
 
-在未配置 `@Field.Relation` 的情况下，多对一（many2one）字段会在当前模型中默认创建一个以 `Id`（例如 `userId`）结尾的字段，该字段用于与目标模型的 `id` 建立关联。然后可以通过以下方式轻松访问关联对象（用户）的数据：
+Without configuring `@Field.Relation`, a many-to-one (many2one) field will default to creating a field ending with `Id` (e.g., `userId`) in the current model, which is used to associate with the `id` of the target model. You can then easily access data of the associated object (user) as follows:
 
 ```java
 PamirsUser user =testModel.fieldQuery(TestModel::getUser).getUser();
 user.getName();
 ```
 
-:::danger 警告：如果要引用其他模块的模型，JAVA特性需引入对应依赖
+:::danger Warning: If referencing models from other modules, JAVA features require introducing corresponding dependencies
 
 :::
 
@@ -78,7 +78,7 @@ user.getName();
 </dependency>
 ```
 
-:::danger 警告：如果要引用其他模块的模型，Oinone特性需申明模块依赖
+:::danger Warning: If referencing models from other modules, Oinone features require declaring module dependencies
 
 :::
 
@@ -97,59 +97,57 @@ public class ExpensesModule implements PamirsModule {
 }
 ```
 
-在实际应用中，在表单视图里，多对一关系可以看作是一个下拉列表。
+In practical applications, in form views, a many-to-one relationship can be seen as a drop-down list.
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 添加项目类型表。
+> Add a project type table.
 >
-> 创建 `expenses.ProjectType` 模型，并添加以下字段：
+> Create the `expenses.ProjectType` model and add the following fields:
 
-| 字段（Field） | 字段显示名 | 类型（Type） | 属性                                                         |
-| ------------- | ---------- | ------------ | ------------------------------------------------------------ |
-| name          | 名称       | `STRING`     | required（必填） |
+| Field         | Display Name | Type     | Attributes       |
+| ------------- | ------------ | -------- | ---------------- |
+| name          | 名称         | `STRING` | required         |
 
 
-> 这个练习很好地复习了前面几章的内容：你需要创建一个模型，设置该模型，添加一个操作和一个菜单，以及创建一个视图。
+> This exercise well reviews content from previous chapters: you need to create a model, set up the model, add an action and a menu, and create a view.
 >
-> **提示**：[不要忘记添加访问权限](/en/DevManual/Tutorials/Back-endFramework/chapter4-a-brief-introduction-to-security.md)。
+> **Tip**: [Don't forget to add access permissions](/en/DevManual/Tutorials/Back-endFramework/chapter4-a-brief-introduction-to-security.md).
 
-再次重启服务器并刷新以查看结果！
+Restart the server again and refresh to see the results!
 
-在费用管理模块中，关于一个项目，我们还缺少三条信息：项目类型、项目发起人和外部关联方
+In the expense management module, we still lack three pieces of information about a project: project type, project sponsor, and external partners. External partners can be anyone, but on the other hand, the project sponsor is an employee of the company (i.e., an Oinone user).
 
-。外部关联方可以是任何人，但另一方面，项目发起人是公司的员工（即 Oinone 用户）。
+In Oinone, we commonly use two models:
 
-在 Oinone 中，我们常用到两个模型：
++ `business.PamirsPartner`: A partner is an entity or legal entity, which can be a company or an individual.
++ `user.PamirsUser`: System users. Users can be "internal users" who can access Oinone's backend, or "portal users" who cannot access the backend but can only access the frontend (e.g., view their previous orders in e-commerce).
 
-+ `business.PamirsPartner`：合作伙伴是一个实体或法人实体。它可以是一家公司、一个个人。
-+ `user.PamirsUser`：系统用户。用户可以是 “内部用户”，即他们可以访问 Oinone 的后端。或者他们可以是 “门户用户”，即他们无法访问后端，只能访问前端（例如，在电子商务中查看他们之前的订单）。
-
-> **练习（Exercise）**
+> **Exercise**
 >
-> 添加项目类型和项目发起人。
+> Add project type and project sponsor.
 >
-> 使用上述常用模型中的 `user.PamirsUser`，向 `expenses.ProjectInfo` 模型添加项目发起人字段。
+> Using `user.PamirsUser` from the commonly used models above, add a project sponsor field to the `expenses.ProjectInfo` model.
 >
-> 使用模型 `expenses.ProjectType`，向 `expenses.ProjectInfo` 模型添加项目类型字段。
+> Using the model `expenses.ProjectType`, add a project type field to the `expenses.ProjectInfo` model.
 >
-> 它们应该添加到表单视图的一个新选项卡中，如本节目标中所示。
+> They should be added to a new tab in the form view, as shown in the objectives of this section.
 
-:::warning 提示：
+:::warning Tip:
 
-表格视图中自动出现的导入导出操作，我们暂且忽略，后续章节会对此进行详细介绍。
+We will temporarily ignore the import/export operations that automatically appear in the table view, which will be covered in detail in subsequent chapters.
 
 :::
 
-现在让我们来看看其他类型的关联。
+Now let's look at other types of associations.
 
-# 二、多对多关系（many2many）
+# II. Many-to-Many Relationship (many2many)
 
-参考：与此主题相关的文档可在 “[多对多关系](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#多对多关系many2many)” 中找到。
+Reference: Documentation related to this topic can be found in "[Many-to-Many Relationship](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#多对多关系many2many)".
 
-:::info 目标：在本节结束时：
+:::info Objective: By the end of this section:
 
-应创建 `expenses_project_info_rel_partner` 表，并添加几个字段：
+The `expenses_project_info_rel_partner` table should be created and several fields added:
 
 :::
 
@@ -169,19 +167,19 @@ mysql> desc expenses_project_info_rel_partner;
 7 rows in set (0.01 sec)
 ```
 
-:::info 向 `expenses.ProjectInfo` 模型添加“外部关联方”字段
+:::info Add an "external partners" field to the `expenses.ProjectInfo` model
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-7/m2m-1.png)
 
 :::
 
-在我们的费用管理模块中，想要定义项目外部关联方的概念。例如，“X设备供应商”或“X实施供应商”。
+In our expense management module, we want to define the concept of project external partners, such as "X equipment supplier" or "X implementation supplier".
 
-一个项目可以有多个外部关联方，并且一个外部关联方可以被分配给多个项目。这就是多对多（many2many）概念所支持的关系。
+One project can have multiple external partners, and one external partner can be assigned to multiple projects. This is the relationship supported by the many-to-many (many2many) concept.
 
-多对多关系是一种双向的多重关系：任何一方的记录都可以与另一方的任意数量的记录相关联。例如，为了在我们的 `expenses.TestModel` 模型中定义与 `business.PamirsPartner` 的链接，我们可以有以下两种这样写：
+A many-to-many relationship is a two-way multiple relationship: any record on one side can be associated with any number of records on the other side. For example, to define a link to `business.PamirsPartner` in our `expenses.TestModel` model, we can write it in two ways:
 
-## （一）中间表使用系统默认生成的
+## (一) Intermediate table using system default generation
 
 ```java
 @Field.many2many
@@ -189,13 +187,13 @@ mysql> desc expenses_project_info_rel_partner;
 private List<PamirsPartner> partners;
 ```
 
-默认生成规则如下：中间表会存放在字段定义所在模型对应的数据库中，表名按照关联模型名称的字母顺序排列，使用 `_rel_` 进行拼接。
+Default generation rules are as follows: The intermediate table will be stored in the database corresponding to the model where the field is defined, and the table name is spliced with `_rel_` in alphabetical order of the associated model names.
 
-示例中间表名为： `expenses_pamirs_partner_rel_test_model`
+The sample intermediate table name is: `expenses_pamirs_partner_rel_test_model`
 
-此中间表会包含两个字段，分别是 pamirs_partner_id 与 test_model_id，它们各自对应  `business.PamirsPartner` 模型 和  `expenses.TestModel`模型 的 id 。
+This intermediate table will contain two fields, `pamirs_partner_id` and `test_model_id`, corresponding to the ids of the `business.PamirsPartner` model and the `expenses.TestModel` model, respectively.
 
-这意味着可以向我们的测试模型中添加多个合作伙伴。它的行为类似于记录列表，这意味着访问数据时必须使用循环：
+This means multiple partners can be added to our test model. It behaves like a list of records, meaning you must use a loop when accessing data:
 
 ```java
 testModel.fieldQuery(TestModel::getPartners);
@@ -204,7 +202,7 @@ for(PamirsPartner partner: testModel.getPartners()){
 }
 ```
 
-## （二）中间表使用特定的模型
+## (二) Intermediate table using a specific model
 
 ```java
 package pro.shushi.oinone.trutorials.expenses.api.model;
@@ -233,54 +231,54 @@ public class TestModelRelPartner extends BaseRelation {
 private List<PamirsPartner> partners;
 ```
 
-我们指定使用 `TestModelRelPartner` 模型来定义中间表。在这个中间表中，`test_model_id` 字段对应 `expenses.TestModel` 模型的 ID，而 `partner_id` 字段则对应 `business.PamirsPartner` 模型的 ID。
+We specify using the `TestModelRelPartner` model to define the intermediate table. In this intermediate table, the `test_model_id` field corresponds to the ID of the `expenses.TestModel` model, and the `partner_id` field corresponds to the ID of the `business.PamirsPartner` model.
 
-:::warning 提示：合作伙伴数据准备
+:::warning Tip: Partner data preparation
 
-合作伙伴可在「管理中心-合作伙伴-公司|个人」中进行管理与维护。新增一个“数式Oinone”公司和“陈小友”个人用于测试。
+Partners can be managed and maintained in [Management Center - Partners - Company|Individual]. Add a "Shushi Oinone" company and "Chen Xiaoyou" individual for testing.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-7/partner.gif)
 
 :::
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 添加项目与合作伙伴关联表。
+> Add a project and partner association table.
 >
-> 创建 `expenses.ProjectInfoRelPartner` 模型，并添加以下字段：
+> Create the `expenses.ProjectInfoRelPartner` model and add the following fields:
 
-| 字段（Field）                                                | 字段显示名                                                 | 类型（Type） | JAVA类型 |
-| ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
-| projectInfoId | 项目信息Id | `INTEGER`                                                    | Long     |
-| partnerId    | 合作伙伴Id | `INTEGER`                                                    | Long     |
+| Field         | Display Name       | Type    | Java Type |
+| ------------- | ------------------ | ------- | --------- |
+| projectInfoId | 项目信息Id         | `INTEGER` | Long      |
+| partnerId     | 合作伙伴Id         | `INTEGER` | Long      |
 
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 添加外部关联方。
+> Add external partners.
 >
-> 使用上述常用模型中的 `user.PamirsPartner`，向 `expenses.ProjectInfo` 模型添加外部关联方字段（partners）。
+> Using `user.PamirsPartner` from the commonly used models above, add an external partners field (`partners`) to the `expenses.ProjectInfo` model.
 >
-> 将 `partners` 字段添加到你的 `expenses.ProjectInfo` 模型及其表单视图和列表视图中。
+> Add the `partners` field to your `expenses.ProjectInfo` model and its form and list views.
 >
-> **提示**：在视图中，按照此处展示的方式使用 `widget="Checkbox" optionLabel="activeRecord.name"` 属性。在后续的培训章节中会详细解释 `widget` 属性。现在，你可以尝试添加和移除该属性，看看效果。
+> **Tip**: In the view, use the `widget="Checkbox" optionLabel="activeRecord.name"` attribute as shown here. The `widget` attribute will be explained in detail in subsequent training chapters. Now, you can try adding and removing this attribute to see the effect.
 
-# 三、一对多关系（one2many）
+# III. One-to-Many Relationship (one2many)
 
-:::info 目标：在本节结束时：
+:::info Objective: By the end of this section:
 
-1. 应创建一个新的 `expenses.ExpenseBill` 模型。
-2. 应向 `expenses.ProjectInfo` 模型添加报销字段
+1. A new `expenses.ExpenseBill` model should be created.
+2. An expense field should be added to the `expenses.ProjectInfo` model.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-7/o2m.gif)
 
 :::
 
-在我们的费用管理模块中，我们想要定义报销单的概念。报销单是对项目预算使用提供的一个记录。
+In our expense management module, we want to define the concept of expense bills. An expense bill is a record of a project's budget usage.
 
-一个报销单对应一个项目，但同一项目可以有多个报销单。这里又出现了多对一（many2one）的概念。然而，在这种情况下，我们想要显示给定项目的报销单列表，所以我们将使用一对多（One2many）的概念。
+One expense bill corresponds to one project, but the same project can have multiple expense bills. Here, the concept of many-to-one (many2one) appears again. However, in this case, we want to display a list of expense bills for a given project, so we will use the concept of one-to-many (one2many).
 
-一对多关系是多对一关系的反向关系。例如，我们在测试模型中通过 `userId` 字段定义了与 `user.PamirsUser` 模型的链接。我们可以定义反向关系，即与我们的用户相关联的测试模型列表：
+A one-to-many relationship is the reverse of a many-to-one relationship. For example, we defined a link to the `user.PamirsUser` model through the `userId` field in the test model. We can define the reverse relationship, i.e., the list of test models associated with our user:
 
 ```java
 @Field(displayName = "测试模型列表")
@@ -290,13 +288,13 @@ private List<TestModel> testModels;
 
 ```
 
-:::warning 提示：
+:::warning Tip:
 
-因为一对多（one2many）关系是一种虚拟关系，所以本质是在关联模型中定义一个多对一（many2one），如示例中，referenceFields 定义了userId，即在TestModel中增加了一个userId字段。
+Because a one-to-many (one2many) relationship is a virtual relationship, it essentially defines a many-to-one (many2one) in the associated model. As in the example, referenceFields defines userId, i.e., adding a userId field in TestModel.
 
 :::
 
-按照惯例，一对多（One2many）字段通常是集合类型 `List` 。它们的行为类似于记录列表，这意味着访问数据时必须使用循环：
+According to convention, one-to-many (one2many) fields are typically of the collection type `List`. They behave like a list of records, meaning you must use a loop when accessing data:
 
 ```java
 user.fieldQuery(PamirsUser::getTestModels);
@@ -305,37 +303,36 @@ for(TestModel testModel: user.getTestModels()){
 }
 ```
 
-:::danger 警告：
+:::danger Warning:
 
-实际上user模块并不依赖费用管理模块，所以在`user.PamirsUser` 模型中无法定义示例中的一对多关系字段的，这里仅为了示意代码写法。
+In reality, the user module does not depend on the expense management module, so the one-to-many relationship field in the example cannot be defined in the `user.PamirsUser` model; this is only for demonstrating the code writing.
 
 :::
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 添加报销单表。
+> Add an expense bill table.
 >
-> 创建 `expenses.ExpenseBill` 模型，并添加以下字段：
+> Create the `expenses.ExpenseBill` model and add the following fields:
 
-| 字段（Field）                                                | 字段显示名                                                   | 类型（Type） | JAVA类型 | 属性         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------ |
-| code         | 报销单号     | `STRING`                                                     | String                                                   | invisible（不显示）<br>编码自动按规则生成 |
-| item         | 费用项       | `STRING`                                                     | String                                                   | required（必填） |
-| reason       | 事由         | `STRING`                                                     | String                                                   | required（必填） |
-| amount       | 报销金额     | `MONEY`                                                      | BigDecimal                                               | required（必填） |
-| attachment   | 附件（电子发票） | `TEXT`                  |  `List<String>`   | 字段属性：<br>serialize = Field.serialize.COMMA<br>（序列化以","分割）<br>store = NullableBoolEnum.TRUE（存储）<br>multi = true（多值）<br>required = true（必填）<br>UX属性：<br>@UxForm.FieldWidget(@UxWidget(widget = "Upload"))<br>@UxTable.FieldWidget(@UxWidget(widget = "Upload"))<br>@UxDetail.FieldWidget(@UxWidget(widget = "Upload")) |
-| projectInfoId | 项目Id       | `INTEGER`                                                    | Long                                                     | invisible（不显示） |
+| Field         | Display Name               | Type    | Java Type    | Attributes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ------------- | -------------------------- | ------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code          | 报销单号                   | `STRING` | String       | invisible (not displayed)<br>Code is automatically generated according to rules                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| item          | 费用项                     | `STRING` | String       | required                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| reason        | 事由                       | `STRING` | String       | required                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| amount        | 报销金额                   | `MONEY`  | BigDecimal   | required                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| attachment    | 附件（电子发票）           | `TEXT`   | `List<String>` | Field attributes:<br>serialize = Field.serialize.COMMA<br>(Serialized and split by ",")<br>store = NullableBoolEnum.TRUE (stored)<br>multi = true (multivalue)<br>required = true (required)<br>UX attributes:<br>@UxForm.FieldWidget(@UxWidget(widget = "Upload"))<br>@UxTable.FieldWidget(@UxWidget(widget = "Upload"))<br>@UxDetail.FieldWidget(@UxWidget(widget = "Upload"))                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| projectInfoId | 项目Id                     | `INTEGER` | Long         | invisible (not displayed)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 
 
-> 按照本节目标中所示，将 `expenseBills` 字段添加到你的 `expenses.ProjectInfo` 模型及其表单视图中。
+> Add the `expenseBills` field to your `expenses.ProjectInfo` model and its form view as shown in the objectives of this section.
 >
-> 这个练习很好地复习了前面几章的内容：如何借鉴默认视图的内容将 `expenseBills` 字段添加你的自定义表单视图中。在默认表单视图中该字段是一个内联的one2many的表格视图，在后续的培训章节中会详细解释内联视图。现在，你可以尝试学习以默认视图为例来自定义视图，看看效果。
+> This exercise well reviews content from previous chapters: how to add the `expenseBills` field to your custom form view by referring to the default view. In the default form view, this field is an inline one2many table view, which will be explained in detail in subsequent training chapters. Now, you can try to learn from the default view to customize the view and see the effect.
 
-这里有几个重要的点需要注意。首先，并非所有模型都需要操作或菜单。有些模型旨在仅通过另一个模型进行访问。我们的练习中就是这种情况：报销单总是通过项目信息来访问。
+Here are several important points to note. First, not all models need actions or menus. Some models are designed to be accessed only through another model. This is the case in our exercise: expense bills are always accessed through project information.
 
-其次，尽管 `projectInfoId` 字段是不显示的，但我们在视图中为其添值。Oinone 是如何知道我们的报销单与哪处项目相关联的呢？这就是使用 Oinone 框架的奇妙之处：有时某些内容是隐式定义的。当我们通过一对多（one2many）字段创建一条记录时，为了方便起见，相应的多对一（many2one）字段会自动填充。
+Second, although the `projectInfoId` field is not displayed, we add values to it in the view. How does Oinone know which project our expense bill is associated with? This is the beauty of using the Oinone framework: sometimes certain things are defined implicitly. When we create a record through a one-to-many (one2many) field, the corresponding many-to-one (many2one) field is automatically filled for convenience.
 
-再次重启服务器并刷新以查看结果！
+Restart the server again and refresh to see the results!
 
-还跟得上吗？这一章绝对不是最容易的。它引入了几个新的概念，同时还依赖于之前介绍的所有内容。别担心，下一章会轻松一些 ;-)
-
+Are you still with us? This chapter is definitely not the easiest. It introduces several new concepts while relying on all previously covered content. Don't worry, the next chapter will be easier ;-)

@@ -1,59 +1,56 @@
 ---
-title: 用户
+title: Users
 index: true
 category:
-  - 用户手册
+  - User Manual
 order: 1
 prev:
-  text: 系统配置
-  link: /en/UserManual/StandardModules/preferences.md
+  text: System Configuration
+  link: /zh-cn/UserManual/StandardModules/preferences.md
 ---
-### 1.功能介绍
-支持创建系统用户，方便对系统进行访问和管理。
+### 1. Feature Introduction
+Supports creating system users, facilitating system access and management.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对用户进行筛选。
-+ 新增：点击「创建」，输入所需的配置信息并保存，即可成功创建新的用户。
-+ 删除：选中某一用户后，点击「删除」，即可将该用户删除。
-+ 绑定角色：支持为用户添加系统角色，获得指定权限
+### 2. Operation Methods
++ Filtering: According to the requirements of the actual scenario, input or select the corresponding filtering conditions to filter users.
++ Adding: Click "Create", enter the required configuration information and save it to successfully create a new user.
++ Deleting: After selecting a user, click "Delete" to delete the user.
++ Binding Roles: Supports adding system roles to users to obtain specified permissions.
 
-:::info 注意
+:::info Note
 
-为用户选择角色时，角色中至少需要包含一个可访问的应用或模块。
+When selecting a role for a user, the role must contain at least one accessible application or module.
 
 :::
 
-:::warning 提示
+:::warning Prompt
 
-为用户绑定角色的三种方式：
+Three ways to bind roles to users:
 
-+ 创建用户时为其单个或批量绑定角色
++ Bind roles to a user individually or in batches when creating the user.
 
-在创建用户页面进行添加绑定的角色，勾选完成后点击「确定」，即可完成角色的添加
+Add and bind roles on the user creation page. After checking the roles, click "OK" to complete the role addition.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/user/1.png)
 
-+ 修改用户时为其单个或批量绑定角色
++ Bind roles to a user individually or in batches when modifying the user.
 
-在修改用户页面进行添加绑定的角色，勾选完成后点击「确定」，即可完成角色的添加
+Add and bind roles on the user modification page. After checking the roles, click "OK" to complete the role addition.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/user/2.png)
 
-+ 选择指定用户为其单个或批量绑定角色
++ Select a specified user to bind roles to it individually or in batches.
 
-指定用户后点击「绑定角色」，选择角色后点击「确认」，即可完成角色的添加
+After specifying a user, click "Bind Roles", select the roles and click "Confirm" to complete the role addition.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/user/3.png)
 
 :::
 
-+ 导入：支持利用文件导入用户信息，可下载导入模板，当信息填写完整后上传文件完成导入
-+ 导出：支持导出用户，可以选择使用预设的导出模板，也可以根据实际需求自定义导出字段
-+ 冻结：当用户不再需要使用账户时，可点击「冻结」，将该用户账户进行冻结处理。若未来需要重新使用账户，点击「激活」，即可快速恢复其使用权限。
-+ 修改：点击「修改」，即可对用户的相关信息进行更新或修改。
-+ 重置密码：若遗忘密码，可点击「重置密码」，重置后将随机生成新密码
++ Importing: Supports importing user information using a file. You can download the import template. After filling in the information completely, upload the file to complete the import.
++ Exporting: Supports exporting users. You can choose to use the preset export template or customize the export fields according to actual needs.
++ Freezing: When a user no longer needs to use the account, click "Freeze" to freeze the user account. If you need to use the account again in the future, click "Activate" to quickly restore its usage permissions.
++ Modifying: Click "Modify" to update or modify the user's relevant information.
++ Resetting Password: If you forget the password, click "Reset Password". After resetting, a new password will be randomly generated.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/user/4.png)
-
-
-

@@ -1,144 +1,125 @@
 ---
-title: 集成接口
+title: Integration Interfaces
 index: true
 category:
-  - 用户手册
+  - User Manual
 order: 11
 next:
-  text: 应用中心
-  link: /en/UserManual/apps-hub.md
+  text: Application Center
+  link: /zh-cn/UserManual/apps-hub.md
 ---
-# 一、集成管理
-## （一）集成接口
-### 1.功能介绍
-集成接口全面展示了集成设计器中连接器所包含的所有API，包括接口信息与调用情况，提供了便捷的管理方式，实现对所有接口的统一管理
+# I. Integration Management
+## (I) Integration Interfaces
+### 1. Function Introduction
+The integration interfaces comprehensively display all the APIs included in the connectors in the integration designer, including interface information and call status. It provides a convenient management method to achieve unified management of all interfaces.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对集成接口进行筛选。
-+ 启用：通过控制开关的状态，即可改变接口的启用状态。
-+ 忽略日志频率配置：通过控制开关的状态，即可改变接口的日志频率。
+### 2. Operation Methods
++ Filtering: Input or select the corresponding filtering conditions according to the actual scenario requirements to filter the integration interfaces.
++ Enabling: Change the enabling status of the interface by controlling the state of the switch.
++ Ignoring Log Frequency Configuration: Change the log frequency of the interface by controlling the state of the switch.
 
-:::info 注意
-
-若“忽略日志频率配置”开关未开启，系统将仅记录部分日志内容。在正常运行情况下，可关闭此配置以节省资源。若运行过程中出现问题，则可开启此配置，系统将完整记录接口日志的请求与响应详细信息，便于排查和查看。
-
+:::info Note
+If the "Ignore Log Frequency Configuration" switch is not enabled, the system will only record partial log content. Under normal operating conditions, this configuration can be turned off to save resources. If a problem occurs during operation, this configuration can be enabled, and the system will fully record the detailed request and response information of the interface logs, facilitating troubleshooting and viewing.
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/jc.png)
 
-## （二）熔断配置
-### 1.功能介绍
-支持熔断规则配置功能，当特定接口的错误率突破预设阈值或响应延迟超出临界值时，系统将自动触发熔断机制，暂时阻断对该接口的调用。此机制可有效地为系统稳定性提供动态保护屏障。
+## (II) Circuit Breaker Configuration
+### 1. Function Introduction
+It supports the configuration function of circuit breaker rules. When the error rate of a specific interface exceeds the preset threshold or the response delay exceeds the critical value, the system will automatically trigger the circuit breaker mechanism to temporarily block calls to this interface. This mechanism can effectively provide a dynamic protection barrier for system stability.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对熔断规则进行筛选。
-+ 创建：点击「创建」，输入所需的配置信息并保存，即可成功创建一条熔断规则。
+### 2. Operation Methods
++ Filtering: Input or select the corresponding filtering conditions according to the actual scenario requirements to filter the circuit breaker rules.
++ Creation: Click "Create", input the required configuration information and save it to successfully create a circuit breaker rule.
 
-:::info 提示
-
-支持两种熔断类型：慢调用熔断与异常熔断
-
-+ 慢调用熔断：是一种针对接口响应延迟过高的熔断机制，通过监控接口调用的响应时间，当慢调用（即响应时间超过预设阈值的调用）的比达到触发条件时，暂时阻断对该接口的调用
-+ 异常熔断：针对接口调用中异常（错误）比例过高的熔断机制，通过监控接口调用的错误率，当异常比例超过阈值时，暂时阻断对该接口的调用
-
+:::info Tip
+Two types of circuit breakers are supported: slow call circuit breaker and exception circuit breaker.
++ Slow Call Circuit Breaker: It is a circuit breaker mechanism for interfaces with excessively high response delays. By monitoring the response time of interface calls, when the ratio of slow calls (i.e., calls with a response time exceeding the preset threshold) reaches the trigger condition, calls to this interface will be temporarily blocked.
++ Exception Circuit Breaker: It is a circuit breaker mechanism for interfaces with an excessively high proportion of exceptions (errors) in calls. By monitoring the error rate of interface calls, when the exception proportion exceeds the threshold, calls to this interface will be temporarily blocked.
 :::
 
-+ 编辑：点击「编辑」可修改已有规则配置。
++ Editing: Click "Edit" to modify the existing rule configuration.
 
-:::info 提示
-
-当熔断规则被更新后，已经处于熔断状态的接口将会被重置为可用状态
-
+:::info Tip
+When the circuit breaker rule is updated, the interfaces that are already in the circuit breaker state will be reset to the available state.
 :::
 
-+ 删除：点击「删除」，可删除已有熔断规则
++ Deletion: Click "Delete" to delete the existing circuit breaker rule.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/rdpz.png)
 
-## （三）熔断记录
-### 1.功能介绍
-熔断记录用于详细记载接口的熔断事件信息。当接口调用触发预设的熔断规则时，系统将自动生成熔断记录，支持通过该记录实时追溯对应接口的熔断时间等详情，为故障分析与策略优化提供数据支撑。
+## (III) Circuit Breaker Records
+### 1. Function Introduction
+Circuit breaker records are used to detail the information of interface circuit breaker events. When an interface call triggers the preset circuit breaker rule, the system will automatically generate a circuit breaker record. It supports real - time tracing of details such as the circuit breaker time of the corresponding interface through this record, providing data support for fault analysis and strategy optimization.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对熔断记录进行筛选。
+### 2. Operation Methods
++ Filtering: Input or select the corresponding filtering conditions according to the actual scenario requirements to filter the circuit breaker records.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/rdjl.png)
 
+# II. Open Management
+## (I) Open Interfaces
+### 1. Function Introduction
+It supports opening the system's capabilities externally, specifically including but not limited to key business interfaces such as product information query interfaces and shipping order query interfaces. It facilitates the unified management and maintenance of open interfaces.
 
-# 二、开放管理
-## （一）开放接口
-### 1.功能介绍
-支持将系统的能力对外进行开放，具体包括但不限于商品信息查询接口、发货单查询接口等关键业务接口。便于对开放接口的统一管理与维护。
-
-:::warning 提示
-
-有关开放接口的更多介绍，可查阅「集成设计器-开放平台」文档
-
+:::warning Tip
+For more information about open interfaces, please refer to the "Integration Designer - Open Platform" document.
 :::
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对开放接口进行筛选。
-+ 启用：通过控制开关的状态，即可改变接口的启用状态。
-+ 忽略日志频率配置：通过控制开关的状态，即可改变接口的日志频率。
+### 2. Operation Methods
++ Filtering: Input or select the corresponding filtering conditions according to the actual scenario requirements to filter the open interfaces.
++ Enabling: Change the enabling status of the interface by controlling the state of the switch.
++ Ignoring Log Frequency Configuration: Change the log frequency of the interface by controlling the state of the switch.
 
-:::info 注意
-
-若“忽略日志频率配置”开关未开启，系统将仅记录部分日志内容。在正常运行情况下，可关闭此配置以节省资源。若运行过程中出现问题，则可开启此配置，系统将完整记录接口日志的请求与响应详细信息，便于排查和查看。
-
+:::info Note
+If the "Ignore Log Frequency Configuration" switch is not enabled, the system will only record partial log content. Under normal operating conditions, this configuration can be turned off to save resources. If a problem occurs during operation, this configuration can be enabled, and the system will fully record the detailed request and response information of the interface logs, facilitating troubleshooting and viewing.
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/kfjk.png)
 
-## （二）应用
-### 1.功能介绍
-支持将系统的能力对外进行开放，允许将多个接口整合至一个应用中对外开放，为用户提供了便捷、高效的开放途径。
+## (II) Applications
+### 1. Function Introduction
+It supports opening the system's capabilities externally, allowing multiple interfaces to be integrated into an application for external access, providing users with a convenient and efficient way to open up.
 
-:::warning 提示
-
-有关应用的更多介绍，可查阅「集成设计器-开放平台」文档
-
+:::warning Tip
+For more information about applications, please refer to the "Integration Designer - Open Platform" document.
 :::
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对应用进行筛选。
-+ 新增：点击「新增应用」，输入所需的配置信息并保存，即可成功创建新的应用。
-+ 启用：通过控制开关的状态，即可改变应用的启用状态。
-+ 查看密钥：点击「查看密钥」，即可查看该应用的密钥
-+ 授权调整：点击「授权调整」，即可对应用中允许开放的接口范围做出调整
+### 2. Operation Methods
++ Filtering: Input or select the corresponding filtering conditions according to the actual scenario requirements to filter the applications.
++ Adding: Click "New Application", input the required configuration information and save it to successfully create a new application.
++ Enabling: Change the enabling status of the application by controlling the state of the switch.
++ Viewing Keys: Click "View Key" to view the key of this application.
++ Authorization Adjustment: Click "Authorization Adjustment" to adjust the scope of interfaces allowed to be opened in the application.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/yy.png)
 
-# 三、接口日志
-### （一）功能介绍
-接口日志用于记录接口调用情况。在连接集成资源并使用接口时，可以在接口日志中查看该接口是否成功被调用，并根据接口的执行情况做出相应的调整和优化。
+# III. Interface Logs
+### (I) Function Introduction
+Interface logs are used to record interface call status. When connecting to integration resources and using interfaces, you can check whether the interface is successfully called in the interface logs and make corresponding adjustments and optimizations according to the execution status of the interface.
 
-:::warning 提示
-
-有关接口日志的更多介绍，可查阅「集成设计器-接口日志」文档
-
+:::warning Tip
+For more information about interface logs, please refer to the "Integration Designer - Interface Logs" document.
 :::
 
-### （二）操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对接口日志进行筛选。
-+ 详情：点击「详情」，可查看所选应用日志的详细信息，包括基础信息、执行信息与参数信息。
+### (II) Operation Methods
++ Filtering: Input or select the corresponding filtering conditions according to the actual scenario requirements to filter the interface logs.
++ Details: Click "Details" to view the detailed information of the selected application log, including basic information, execution information, and parameter information.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/rz.png)
 
-# 四、基础数据
-## （一）业务域
-### 1.功能介绍
-可按照业务域对集成应用与开放接口进行系统的归类和管理，以提升管理的效率和准确性。
+# IV. Basic Data
+## (I) Business Domains
+### 1. Function Introduction
+It can systematically classify and manage integrated applications and open interfaces according to business domains to improve the efficiency and accuracy of management.
 
-:::warning 提示
-
-有关业务域的更多介绍，可查阅「集成设计器-业务域」文档
-
+:::warning Tip
+For more information about business domains, please refer to the "Integration Designer - Business Domains" document.
 :::
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对业务域进行筛选。
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的业务域。
-+ 删除：选中某一业务域后，点击「删除」，即可将该业务域则删除。
+### 2. Operation Methods
++ Filtering: Input or select the corresponding filtering conditions according to the actual scenario requirements to filter the business domains.
++ Adding: Click "Create", input the required configuration information and save it to successfully create a new business domain.
++ Deletion: After selecting a business domain, click "Delete" to delete this business domain.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/ywy.png)
-

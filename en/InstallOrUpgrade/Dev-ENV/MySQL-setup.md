@@ -1,27 +1,28 @@
 ---
-title: MySQL安装与注意事项
+title: MySQL Installation and Precautions
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - Installation and Upgrade
+  - Environment Setup
 order: 7
-
 ---
-# 安装MySQL数据库
-如果没有现成的数据库，可自行到官网下载安装：[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
 
-:::warning 提示
+# Install MySQL Database
 
-+ 以下示例展示的是手动安装的操作流程。
-+ 下载时请注意选择与你的操作系统及 CPU 指令集架构（如 x64、arm64）相匹配的版本。
-以下安装过程以版本号为 8.0.42、架构为 arm64 的版本为例进行说明。
-+ 在 Linux/macOS 系统中，请使用默认终端；在 Windows 系统中，请使用 PowerShell(_**除非特殊指明使用CMD**_)。
+If there is no existing database, you can download and install it from the official website: [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
+
+:::warning Tip
+
++ The following examples demonstrate the manual installation process.
++ When downloading, make sure to select a version that matches your operating system and CPU architecture (e.g., x64, arm64).
+  This guide uses version 8.0.42 for the arm64 architecture as an example.
++ On Linux/macOS, use the default terminal; on Windows, use PowerShell (**unless CMD is explicitly specified**).
 
 :::
 
-# 一、版本选择
-## （一）macOS
+# 1. Version Selection
 
+## (1) macOS
 
 <table>
   <tr>
@@ -34,143 +35,138 @@ order: 7
   </tr>
 </table>
 
+## (2) Linux
 
-## （二）Linux
-### 1、获取glibc版本
+### 1. Check glibc Version
 
-
-```properties
+```bash
 ldd --version
 ```
 
-输出类似信息
+Sample output:
 
-```properties
+```bash
 ldd (Debian GLIBC 2.36-9+deb12u10) 2.36
-Copyright (C) 2022 自由软件基金会。这是一个自由软件；请见源代码的授权条款。本软件不含任何没有担保；甚至不保证适销性或者适合某些特殊目的。由 Roland McGrath 和 Ulrich Drepper 编写。
+Copyright (C) 2022 Free Software Foundation. This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Written by Roland McGrath and Ulrich Drepper.
 ```
 
- 选择与系统安装`glibc`相近的版本。
- ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/MySQL/3.png)
+Choose the MySQL version compatible with the installed `glibc` version.
 
-### 2、安装依赖
-安装`libaio`依赖
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/MySQL/3.png)
 
-| 包管理器 | 运行命令 |
+### 2. Install Dependencies
+
+Install the `libaio` package:
+
+| Package Manager | Command |
 | --- | --- |
-| apt | _apt-cache__ search libaio1 & __apt-get__ install libaio1_ |
-| yum | _yum__ search libaio & __yum__ install libaio_ |
+| apt | `apt-cache search libaio1` & `apt-get install libaio1` |
+| yum | `yum search libaio` & `yum install libaio` |
 
+## (3) Windows
 
-## （三）Windows
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/MySQL/4.png)
 
-# 二、安装
-## （一）解压
-解压到当前目录，为了方便操作可选择性建立软链
+# 2. Installation
 
-```shell
+## (1) Extract Files
+
+```bash
 # macOS
 tar zxvf mysql-8.0.42-macos15-arm64.tar.gz -C ./
-# 建立软链
+# Create symbolic link
 ln -s mysql-8.0.42-macos15-arm64 mysql
 ```
 
-```shell
+```bash
 # Linux
 tar Jxvf mysql-8.0.42-linux-glibc2.28-aarch64.tar.xz -C ./
-# 建立软链
+# Create symbolic link
 ln -s mysql-8.0.42-linux-glibc2.28-aarch64 mysql
 ```
 
 ```powershell
 # Windows
 Expand-Archive .\mysql-8.0.42-winx64.zip .\
-# 建立软链
+# Create symbolic link
 New-Item -Path .\mysql\ -ItemType SymbolicLink -Target .\mysql-8.0.42-winx64\
 ```
 
-## （二）配置
-macOS/Linux
+## (2) Configuration
 
-```sql
+macOS/Linux:
+
+```ini
 # my.cnf
 [mysqld]
-# 表名存储与大小写敏感
+# Case sensitivity for table names
 lower-case-table-names      = 1
-# 默认时区
+# Default time zone
 default-time-zone           = '+08:00'
 ```
 
-Windows
+Windows:
 
-```sql
+```ini
 # my.ini
 [mysqld]
-# 表名存储与大小写敏感
+# Case sensitivity for table names
 lower-case-table-names      = 1
-# 默认时区
+# Default time zone
 default-time-zone           = '+08:00'
 ```
 
-## （三）安装
-```shell
+## (3) Install MySQL
+
+```bash
 # macOS
-# 修改二进制文件运行权限
+# Remove quarantine attribute
 xattr -r -d com.apple.quarantine mysql-8.0.42-macos15-arm64
-# 命令行进入mysql安装目录
+# Navigate to MySQL directory
 cd mysql-8.0.42-macos15-arm64
-# 初始化mysql服务
+# Initialize MySQL
 ./bin/mysqld --defaults-file=my.cnf --initialize
 ```
 
-```shell
+```bash
 # Linux
-# 添加系统用户组
 groupadd mysql
-# 添加系统用户
 useradd -r -g mysql -s /bin/false mysql
-# 命令行进入mysql安装目录
 cd mysql-8.0.42-linux-glibc2.28-aarch64
-# 创建mysql支持文件目录并授权
 mkdir mysql-files
 chown mysql:mysql mysql-files
 chmod 750 mysql-files
-# 初始化mysql服务
 ./bin/mysqld --defaults-file=my.cnf --initialize --user=mysql
 ```
 
 ```powershell
 # Windows
-# 命令行进入mysql安装目录
 cd mysql-8.0.42-winx64
-# 初始化mysql服务
 .\bin\mysqld.exe --defaults-file=my.ini --initialize --console
 ```
 
-## （四）修改root密码
-### 1、默认密码
-在命令中运行初始化mysql服务命令之后会输出类似信息。
+## (4) Change Root Password
 
-```shell
-2025-04-27T03:17:38.853843Z 0 [System] [MY-013169] [Server] /Volumes/sm/build/mysql-8.0.42-macos15-arm64/bin/mysqld (mysqld 8.0.42) initializing of server in progress as process 9742
-2025-04-27T03:17:38.855773Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /Volumes/sm/build/mysql-8.0.42-macos15-arm64/data/ is case insensitive
-2025-04-27T03:17:38.859938Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
-2025-04-27T03:17:39.099986Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
-2025-04-27T03:17:40.096072Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: .u_p9JUy53Aj
-2025-04-27T03:17:40.466111Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.42).
+### 1. Get Default Password
+
+After executing the initialization command, the log will contain output like:
+
+```text
+...
+A temporary password is generated for root@localhost: .u_p9JUy53Aj
+...
 ```
 
-在输出信息中包含了默认生成的 root 密码。
-请注意，在信息中 `A temporary password is generated for root@localhost:` 后面的内容即为默认的 root 密码。
+The temporary root password is the value shown after `A temporary password is generated for root@localhost:`.
 
-### 2、启动MySQL服务
-```properties
+### 2. Start MySQL Service
+
+```bash
 # macOS
 nohup ./bin/mysqld --defaults-file=my.cnf >> mysql.nohup 2>&1 &
 ```
 
-```properties
+```bash
 # Linux
 nohup ./bin/mysqld --defaults-file=my.cnf --user=mysql >> mysql.nohup 2>&1 &
 ```
@@ -180,8 +176,9 @@ nohup ./bin/mysqld --defaults-file=my.cnf --user=mysql >> mysql.nohup 2>&1 &
 .\bin\mysqld.exe --defaults-file=my.ini
 ```
 
-### 3、登录命令行客户端
-```properties
+### 3. Login to MySQL CLI
+
+```bash
 # macOS/Linux
 ./bin/mysql -uroot -p
 ```
@@ -191,14 +188,15 @@ nohup ./bin/mysqld --defaults-file=my.cnf --user=mysql >> mysql.nohup 2>&1 &
 .\bin\mysql.exe -uroot -p
 ```
 
-输入上文日志中输出的密码进行登录
+Then enter the temporary password to login.
 
-### 4、修改密码
-修改密码为`shushi@2019`
+### 4. Set New Password
 
-:::info 注意
+Change the password to `shushi@2019` (or your own):
 
-此为示例密码，可随个人习惯修改密码。
+:::info Note
+
+This is an example password; you can change it to your preferred password.
 
 :::
 
@@ -206,16 +204,17 @@ nohup ./bin/mysqld --defaults-file=my.cnf --user=mysql >> mysql.nohup 2>&1 &
 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'shushi@2019';
 ```
 
-至此MySQL服务安装成功。
+At this point, MySQL installation is complete.
 
-# 三、停止
-:::info 注意
+# 3. Stop MySQL
 
-命令中为示例密码，可替换为个人修改的密码。
+:::info Note
+
+The password shown is an example and should be replaced with your own if changed.
 
 :::
 
-```shell
+```bash
 # macOS/Linux
 ./bin/mysqladmin shutdown -uroot -pshushi@2019
 ```
@@ -225,37 +224,41 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'shushi@2
 .\bin\mysqladmin.exe shutdown -uroot -pshushi@2019
 ```
 
+# 4. Common Database Configuration Issues
 
+## (1) Enable Remote Access
 
-# 四、数据库配置常见问题
-## （一）允许远程连接
 ```sql
-# 打开远程连接
-use mysql;
-update user set host='%' where user='root';
-flush privileges;
-quit;
+-- Enable remote access for root
+USE mysql;
+UPDATE user SET host='%' WHERE user='root';
+FLUSH PRIVILEGES;
+QUIT;
 ```
 
-:::info 注意：如有其他环境配合体验，网络需互通
+:::info Note
 
-安装成功，大家可以使用自己的工具去测试一下看能不能连上，如果连不上看下是不是开了防火墙。
+Make sure the network is accessible if integrating with other environments.
+
+After installation, use your preferred tools to test the connection. If it fails, check if the firewall is enabled.
 
 :::
 
-## （二）时区问题
-```plsql
-# 修改：my.cnf (macOS ) / my.ini (windows)
+## (2) Time Zone Issues
+
+```ini
+# Add in my.cnf (macOS) or my.ini (Windows)
 default-time-zone= '+08:00'
 ```
 
-:::info 注意：如果出现时区问题会报以下错误
+:::info Note
 
-error creating bean with name 'dataSourceAutoRefreshManager': Invocation of init method failed; nested exception is PamirsException level: ERROR, code: 10150008, type: SYSTEM_ERROR, msg: 创建数据库错误, extra:, extend: null
+If time zone configuration is incorrect, you may encounter the following error:
 
-Caused by: java.sql.SQLException: The server time zone value 'й ʱ' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+```
+error creating bean with name 'dataSourceAutoRefreshManager': Invocation of init method failed; nested exception is PamirsException level: ERROR, code: 10150008, type: SYSTEM_ERROR, msg: Database creation error...
+
+Caused by: java.sql.SQLException: The server time zone value 'й ʱ' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specific time zone value if you want to utilize time zone support.
+```
 
 :::
-
-
-

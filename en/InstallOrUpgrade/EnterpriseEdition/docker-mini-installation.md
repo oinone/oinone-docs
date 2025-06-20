@@ -1,113 +1,113 @@
 ---
-title: docker-mini方式安装
+title: Installation via docker-mini Method
 index: true
 category:
-  - 安装与升级
+  - Installation and Upgrade
 order: 2
 
 ---
-# 一、概述
-每个构建版本都隔离在其自己的容器（Linux 命名空间容器）中。
+# I. Overview
+Each build version is isolated in its own container (Linux namespace container).
 
-基础是准备一台4核16G的Linux服务器，操作系统推荐CentOS 7.6 64位。其中安装了数式Oinone所有必需的依赖项以及常见的有用包。
+The foundation is to prepare a Linux server with 4 cores and 16GB of memory. CentOS 7.6 64-bit is recommended for the operating system, which has all the necessary dependencies for Oinone and common useful packages installed.
 
-它适用于正式、研发和测试环境下使用数式Oinone，经过额外的部署和维护工作后，可长期使用。它相对docker-full来说镜像只包括数式Oinone的前后端应用，需要额外部署中间件。在实际使用过程中，中间件如redis、zookeeper、rockerMq可以独立服务器部署。部署结构示意如下：
+It is suitable for using Oinone in formal, R&D, and testing environments. After additional deployment and maintenance work, it can be used long-term. Compared with docker-full, this image only includes Oinone's front-end and back-end applications, requiring additional deployment of middleware. In practical use, middleware such as Redis, Zookeeper, and RocketMQ can be deployed on independent servers. The deployment structure is illustrated as follows:
 
-![部署结构](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Docker-mini-installation-method/bushujiegou.jpeg)
+![Deployment Structure](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Docker-mini-installation-method/bushujiegou.jpeg)
 
-:::info 注意：如有其他环境配合体验，网络需互通
+:::info Note: If experiencing with other environments, networks need to be interoperable
 
-+ 本地开发ip   能否调通   服务器ip
-在本地执行命令：ping 192.168.0.121(替换成自己的服务器ip)
++ Can the local development IP communicate with the server IP?
+Execute the command locally: ping 192.168.0.121 (replace with your own server IP)
 
-+ 部署docker的宿主机ip 能否调通 本地开发ip
-进入服务器执行命令：ping 192.168.0.60(替换成自己的本地ip)
++ Can the host IP where Docker is deployed communicate with the local development IP?
+Enter the server and execute the command: ping 192.168.0.60 (replace with your own local IP)
 
 :::
 
-# 二、安装MySQL数据库
-如果没有现成的数据库，可自行到官网下载安装：[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)。
+# II. Install MySQL Database
+If there is no existing database, you can download and install it from the official website: [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/).
 
-参考[MySQL安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+Refer to [MySQL Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
 
-# 三、其他中间件部署
-| RocketMQ | 必须 | 4.7.1以上 |
+# III. Deploy Other Middleware
+| RocketMQ | Mandatory | 4.7.1+ |
 | --- | --- | --- |
-| Redis | 必须 | 5.0.2以上 |
-| Zookeeper | 必须 | 3.5.8以上 |
+| Redis | Mandatory | 5.0.2+ |
+| Zookeeper | Mandatory | 3.5.8+ |
 
 
-# 四、安装docker
-如果没有Docker的话，请自行到官网下载安装：[https://www.docker.com/get-started/](https://www.docker.com/get-started/)
+# IV. Install Docker
+If Docker is not installed, please download and install it from the official website: [https://www.docker.com/get-started/](https://www.docker.com/get-started/)
 
-:::warning 提示
+:::warning Tip
 
-在中国境内安装如果 `<code>docker</code>` 源异常，可以把官方源改成阿里云的源:
-从 https://download.docker.com/linux/centos/docker-ce.repo 换成 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-命令：yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+When installing within China, if the `<code>docker</code>` repository is abnormal, you can change the official repository to Alibaba Cloud's repository:
+Change from https://download.docker.com/linux/centos/docker-ce.repo to http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+Command: yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 :::
 
-# 五、下载镜像
-## （一）确认系统架构
-**查看当前系统架构:**
-使用 `arch(推荐使用) `或者`uname -a` 命令
+# V. Download Image
+## (I) Confirm System Architecture
+**Check the current system architecture:**
+Use the `arch (recommended)` or `uname -a` command
 
-+ x86_64：表示支持 AMD64 架构。
-+ aarch64：表示支持 ARM64 架构
++ x86_64: Indicates support for AMD64 architecture.
++ aarch64: Indicates support for ARM64 architecture
 
-:::info 注意：镜像支持
+:::info Note: Image support
 
-本平台所有镜像均使用docker manifest支持amd64和arm64架构！(如果有其他架构请先联系数式人员确定能否使用)
+All images on this platform use docker manifest to support amd64 and arm64 architectures! (If there are other architectures, please contact Oinone personnel first to confirm usability)
 
 :::
 
-## （二）拉取镜像
-### 社区版
-暂未提供，请使用源码方式安装
+## (II) Pull Image
+### Community Edition
+Not currently provided, please use the source code installation method
 
-### 企业版
+### Enterprise Edition
 ```shell
-##oinone-designer-mini-v大版本.中版本:全版本
+##oinone-designer-mini-vMajorVersion.MediumVersion:FullVersion
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1
 ```
 
-如镜像拉取过慢，可在对应镜像Tag添加`-amd64`、`-arm64`后缀获取单一架构镜像。
+If the image pull is too slow, you can add `-amd64` or `-arm64` suffix to the corresponding image Tag to obtain a single-architecture image.
 
 ```shell
-##oinone-designer-mini-v大版本.中版本:全版本-架构Tag
+##oinone-designer-mini-vMajorVersion.MediumVersion:FullVersion-ArchitectureTag
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-amd64
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-arm64
 ```
 
-# 六、运行数式Oinone
-## （一）下载结构包
-+ 先在服务器上建一个文件夹（推荐建在主目录下，方便查找），然后进入文件夹里。
+# VI. Run Oinone
+## (I) Download Structure Package
++ First, create a folder on the server (it is recommended to create it in the home directory for easy searching), then enter the folder.
 
 ```plain
-#服务器上建好目录
-#进入主目录
+# Create directory on server
+# Go to home directory
 cd ~
-#建文件夹
+# Create folder
 mkdir oinone
-#进入文件夹
+# Enter folder
 cd oinone
 ```
 
-+ 本地下载结构包[oinone-op-ds-all-mini.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/zip/324864/1749714397061-53fc8e46-f7b3-4ba6-9d7d-b1ba71df95a7.zip)，解压后从本地电脑上传结构包到服务器
++ Download the structure package [oinone-op-ds-all-mini.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/zip/324864/1749714397061-53fc8e46-f7b3-4ba6-9d7d-b1ba71df95a7.zip) locally, unzip it, and upload the structure package from the local computer to the server
 
 ```plain
-#本地电脑上传结构包
-scp home/user/myfolder(替换成本地电脑解压后的实际地址) username@ip_address:/home/oinone(替换成想要上传在服务器上的具体地址)
+# Upload structure package from local computer
+scp home/user/myfolder(Replace with actual local unzip path) username@ip_address:/home/oinone(Replace with specific server path)
 ```
 
-## （二）目录结构介绍
-以下数式Oinone镜像相关目录结构，与宿主机的数据卷（Volume）挂载
+## (II) Introduction to Directory Structure
+The following Oinone image-related directory structure and data volume (Volume) mounting with the host
 <div style="display: flex; gap: 20px; margin: 20px 0;">
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
 ```shell
-#结构包目录
+# Structure package directory
 |____config
 | |____logback.xml
 | |____application.yml
@@ -126,7 +126,7 @@ scp home/user/myfolder(替换成本地电脑解压后的实际地址) username@i
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
 ```shell
-#镜像目录结构都在/opt目录下
+# Image directory structure is all under /opt
 ├── jdk
 ├── nginx-1.15.5
 ├── nginx.conf
@@ -156,7 +156,7 @@ scp home/user/myfolder(替换成本地电脑解压后的实际地址) username@i
 
 
 ```shell
-#startup.sh文件内容
+# startup.sh file content
 #!/bin/bash
 configDir=$(pwd)
 majorVersion=6.2
@@ -174,25 +174,25 @@ docker run -d --name designer-allinone \
 -v $configDir/lib:/opt/pamirs/outlib harbor.oinone.top/oinone/oinone-designer-mini-v$majorVersion:$version
 ```
 
-## （三）运行startup.sh
-### 1.修改startup.sh文件
-在文件中找到如下代码，修改`majorVersion`、`version`以及对应的IP为docker宿主机IP(即服务器ip)等配置项
+## (III) Run startup.sh
+### 1. Modify startup.sh File
+Find the following code in the file and modify `majorVersion`, `version`, and the corresponding IP to the Docker host IP (i.e., server IP) and other configuration items
 
 ```plain
 configDir=$(pwd)
-majorVersion=6.2  # 根据数式Oinone镜像的实际版本进行修改
-version=6.2.1     # 根据数式Oinone镜像的实际版本进行修改
-IP=192.168.0.121  # 改为服务器 IP
+majorVersion=6.2  # Modify according to the actual version of the Oinone image
+version=6.2.1     # Modify according to the actual version of the Oinone image
+IP=192.168.0.121  # Change to server IP
 ```
 
-### 2.修改配置文件 config目录下的application.yml文件
-如果Mysql、Zookeeper、Redis、RocketMQ不在一个宿主机中，在文件中找到如下代码，修改IP、端口、用户名以及密码等配置项
+### 2. Modify application.yml File in config Directory
+If Mysql, Zookeeper, Redis, and RocketMQ are not on the same host, find the following code in the file and modify the IP, port, username, password, and other configuration items
 
 + Mysql
 
 ```yaml
-# application.yml文件
-# 改成mysql所在服务器的ip、端口(端口号默认3306，使用服务器上mysql的端口一致)、username、password
+# application.yml file
+# Change to the IP, port (default port 3306, consistent with the port of MySQL on the server), username, password of the MySQL server
 pamirs:
   datasource:
     pamirs:
@@ -213,7 +213,7 @@ pamirs:
 + Zookeeper
 
 ```yaml
-# application.yml文件
+# application.yml file
 dubbo:
   application:
     name: pamirs-designer
@@ -242,7 +242,7 @@ pamirs:
 + Redis
 
 ```yaml
-# application.yml文件
+# application.yml file
 spring:
   redis:
     database: 0
@@ -265,13 +265,13 @@ spring:
 + RocketMQ
 
 ```yaml
-# application.yml文件
+# application.yml file
 spring:
   rocketmq:
     name-server: 127.0.0.1:9876
 ```
 
-+ 文件存储oss
++ File storage OSS
 
 ```yaml
 cdn:
@@ -291,35 +291,35 @@ cdn:
     localFolderUrl: 
 ```
 
-:::danger 警告
+:::danger Warning
 
-体验企业版时数式会提默认配置，但需要注意，cdn正式环境需要替换成自己的服务器，而不是用数式科技提供测试服务器，该服务器会定时清理，导致文件丢失。
+When experiencing the enterprise edition, Oinone will provide default configurations, but note that the CDN in the formal environment needs to be replaced with your own server instead of using the test server provided by Oinone Technology. This server is cleaned regularly, leading to file loss.
 
 :::
 
-更多oss配置请参考：[文件存储配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#十四-文件存储配置-pamirs-file)
+For more OSS configurations, please refer to: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#XIV-File-Storage-Configuration-pamirs-file)
 
-### 3.执行 `startup.sh` 并查看日志
+### 3. Execute `startup.sh` and View Logs
 ```plain
 sh startup.sh
 ```
 
-查看日志：先进入logs文件夹下，看是否产生了日志？
+View logs: First enter the logs folder and check if logs are generated?
 
 ```plain
-cd logs   # 进入logs文件夹
+cd logs   # Enter logs folder
 ```
 
 ```plain
-# 如果生成了！可以执行命令：
-tail -200f 2024.9.0.log(改成当天的日志文件名)
-# 第一次启动时间会相对长一些，等看到日志文件中输出" 启动成功"等字样，代表启动成功
+# If logs are generated! You can execute the command:
+tail -200f 2024.9.0.log(Change to the current day's log file name)
+# The first startup will take relatively longer. Wait until you see the words "Startup successful" in the log file, which means the startup is successful
 ```
 
 ```plain
-# 如果没有生成，请先执行以下命令
+# If logs are not generated, please first execute the following command
 docker logs
-# 执行完了之后看看到底启动没有，如果出错了，实在解决不了，请把所有错误信息导出发到群里。
+# After execution, check whether it has started. If there is an error and you can't solve it, please export all error messages and send them to the group.
 ```
 
-启动成功之后可以通过浏览器访问 `http://服务器ip:88/`，账号密码为`admin/admin`
+After a successful startup, you can access `http://ServerIP:88/` through a browser, with the account and password being `admin/admin`

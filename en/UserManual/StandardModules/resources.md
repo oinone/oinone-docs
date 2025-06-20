@@ -1,105 +1,104 @@
 ---
-title: 资源
+title: Resources
 index: true
 category:
-  - 用户手册
+  - User Manual
 order: 9
 ---
-# 一、地址库
-:::warning 提示
+# I. Address Library
+:::warning Note
 
-可在地址字段中使用地址库中的信息，以提高数据录入的准确性和效率。
+You can use the information in the address library in the address field to improve the accuracy and efficiency of data entry.
 
 :::
 
-## （一）地区
-### 1.功能介绍
-地区中全面且详细地展示了国家、省、市、区以及街道之间的层级关系，当地区信息发生变更时，系统支持通过高德地图进行同步更新，确保信息的准确性和时效性。
+## (1) Regions
+### 1. Function Introduction
+The regions comprehensively and detailedly display the hierarchical relationships among countries, provinces, cities, districts, and streets. When the regional information changes, the system supports synchronization and update through Amap to ensure the accuracy and timeliness of the information.
 
-### 2.操作方法
-点击「高德地址同步」，即可更新当前地区信息
+### 2. Operation Method
+Click "Synchronize Amap Address" to update the current regional information.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/dq.png)
 
-## （二）国家分组
-### 1.功能介绍
-系统支持用户自定义国家分组，并允许在设置好的国家分组中添加相应的国家成员，满足多样化的管理需求。
+## (2) Country Groups
+### 1. Function Introduction
+The system supports users to customize country groups and allows adding corresponding country members to the set country groups to meet diverse management needs.
 
-### 2.操作方法
-+ 添加：点击「创建」，输入所需的基本信息与国家列表并保存，即可成功创建新的国家分组。
+### 2. Operation Method
++ Add: Click "Create", enter the required basic information and country list, and save to successfully create a new country group.
 
-:::warning 提示
+:::warning Note
 
-国家的相关信息需在「地址库-国家」中进行维护
+The relevant information of countries needs to be maintained in "Address Library - Countries".
 
 :::
 
-+ 编辑：点击「编辑」，即可对国家分组的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选国家分组的详细信息，包括基本信息与国家列表等。
-+ 删除：选中某一国家分组后，点击「删除」，即可将该国家分组删除。
++ Edit: Click "Edit" to update or modify the relevant information of the country group.
++ Details: Click "Details" to view the detailed information of the selected country group, including basic information and country list.
++ Delete: Select a country group and click "Delete" to delete the country group.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/gjfz.png)
 
-## （一）国家、省、市、区、街道
-### 1.功能介绍
-（以国家为例，其他层级类似）国家是地区设置中的基础单元，系统提供了完善的国家信息管理功能，支持用户查看、添加、编辑和删除国家信息。
+## (1) Countries, Provinces, Cities, Districts, and Streets
+### 1. Function Introduction
+(Taking countries as an example, the other levels are similar) A country is the basic unit in the regional settings. The system provides a comprehensive country information management function, supporting users to view, add, edit, and delete country information.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对国家进行筛选。
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的国家。
-+ 编辑：点击「编辑」，即可对国家的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选国家的详细信息，包括基本信息、省市列表等。
-+ 关键字设置：点击「关键字设置」，可以根据实际需求为该国家添加相应的关键字，以便更有效地对其进行管理和分类。
-+ 删除：选中某一国家后，点击「删除」，即可将该国家删除。
+### 2. Operation Method
++ Filter: Enter or select the corresponding filter conditions according to the actual scenario requirements to filter countries.
++ Add: Click "Create", enter the required configuration information, and save to successfully create a new country.
++ Edit: Click "Edit" to update or modify the relevant information of the country.
++ Details: Click "Details" to view the detailed information of the selected country, including basic information and list of provinces and cities.
++ Keyword Settings: Click "Keyword Settings" to add corresponding keywords to the country according to actual needs for more effective management and classification.
++ Delete: Select a country and click "Delete" to delete the country.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/gj.png)
 
-# 二、语言
-### 1.功能介绍
-系统支持多语言设置，满足用户在不同语言环境下的使用需求，提升用户体验。
+# II. Languages
+### 1. Function Introduction
+The system supports multi - language settings to meet users' usage needs in different language environments and enhance the user experience.
 
-:::warning 提示
+:::warning Note
 
-在此处设置的语言，可用于翻译功能
+The languages set here can be used for the translation function.
 
 :::
 
-### 2.操作方法
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的语言。
-+ 编辑：点击「编辑」，即可对语言的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选语言的详细信息。
+### 2. Operation Method
++ Add: Click "Create", enter the required configuration information, and save to successfully create a new language.
++ Edit: Click "Edit" to update or modify the relevant information of the language.
++ Details: Click "Details" to view the detailed information of the selected language.
 
-:::info 注意
+:::info Attention
 
-+ 在添加或编辑语言时，用户可以根据该语言的习惯，自定义日期与时间的显示格式。一旦设置完成，这些格式将在切换至对应语言时，全局应用于系统的各个部分，确保日期和时间的显示符合用户期望的语言习惯。
++ When adding or editing a language, users can customize the display format of dates and times according to the language's customs. Once set, these formats will be globally applied to all parts of the system when switching to the corresponding language, ensuring that the display of dates and times conforms to the users' expected language customs.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/yy.png)
 
-+ 界面设计器中的日期与时间组件，会根据当前平台所设置的语言环境，自动展示相应格式的日期与时间信息。
++ The date and time components in the interface designer will automatically display the date and time information in the corresponding format according to the language environment set on the current platform.
 
-如日语环境下的日期格式为：
+For example, the date format in the Japanese environment is:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/yy2.png)
 
-组件中可选的日期格式为：
+The selectable date formats in the component are:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/yy3.png)
 
 :::
 
-+ 删除：选中某一语言后，点击「删除」，即可将该语言删除。
++ Delete: Select a language and click "Delete" to delete the language.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/yy4.png)
 
-:::tip 举例
+:::tip Example
 
-为语言资源增加“日语”：
+Add "Japanese" to the language resources:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/yy5.png)
 
-保存后即可在以后的使用中切换语言环境
+After saving, you can switch the language environment in future use.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/yy6.png)
 
 :::
-

@@ -1,210 +1,129 @@
 ---
-title: 流程设计
+title: Process Design
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 2
 ---
-在流程设计页面中，可以进行全面的流程设计与流程配置。
-
-流程设计主要分为四个功能区域，分别为：操作栏、工具栏、流程设计区、属性面板
-
-+ 操作栏：提供一系列常用的操作按钮与菜单选项，可以进行修改流程名称、保存、发布等操作。
-+ 工具栏：提供了一系列流程常用节点动作。
-+ 流程设计区：流程设计的主要区域，可以通过拖拽或在流程中直接添加节点动作来完善流程。
-+ 属性面板：当点击某一节点动作时显示。可以在此面板中调整节点的相关属性。
-
+In the process design page, comprehensive process design and process configuration can be carried out.
+Process design is mainly divided into four functional areas, namely: Operation Bar, Toolbar, Process Design Area, and Property Panel
++ Operation Bar: Provides a series of common operation buttons and menu options, allowing operations such as modifying the process name, saving, and publishing.
++ Toolbar: Provides a series of common node actions for the process.
++ Process Design Area: The main area for process design, where node actions can be added to improve the process by dragging and dropping or directly adding them in the process.
++ Property Panel: Displays when a node action is clicked. Relevant attributes of the node can be adjusted in this panel.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1.png)
-
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/2.png)
-
-流程配置主要分为两个功能区域，操作栏与流程配置区
-
-+ 操作栏：与流程设计的操作栏保持一致。
-+ 流程配置区：可以在此配置流程参数作为临时字段，或更改流程所属应用。
-
+Process configuration is mainly divided into two functional areas, the Operation Bar and the Process Configuration Area
++ Operation Bar: Consistent with the operation bar of process design.
++ Process Configuration Area: Here, process parameters can be configured as temporary fields, or the application to which the process belongs can be changed.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/3.png)
-
-# 一、流程设计
-## （一）操作栏
-### 1.编辑流程名称与说明
-#### 一、功能介绍
-可以在操作栏的左侧编辑流程的名称与说明。修改后的名称与说明会在流程的列表或卡片中展示。
-
-:::info 注意
-
-编辑完名称或说明后需暂存或发布，否则无法保存
-
+# I. Process Design
+## (一) Operation Bar
+### 1. Edit Process Name and Description
+#### I. Function Introduction
+The name and description of the process can be edited on the left side of the operation bar. The modified name and description will be displayed in the process list or card.
+:::info Note
+After editing the name or description, it needs to be saved temporarily or published; otherwise, the changes cannot be saved.
 :::
-
-#### 二、操作方法
-+ 编辑名称：点击「编辑」图标，在输入框中输入名称后，点击除输入框外其他位置即可编辑成功。
-
+#### II. Operation Method
++ Edit Name: Click the "Edit" icon, enter the name in the input box, and click anywhere outside the input box to complete the editing.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/bj1.png)
-
-+ 编辑说明：点击名称下的说明区域，在弹窗中输入说明后，点击「确定」即可编辑成功。
-
++ Edit Description: Click the description area under the name, enter the description in the pop-up window, and click "OK" to complete the editing.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/bj2.png)
-
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/bj3.png)
-
-### 2.切换菜单
-#### 一、功能介绍
-当在设计流程时，若需要临时参数或修改流程所属应用时，可在操作栏中切换菜单完成操作。
-
-#### 二、操作方法
-点击操作栏中菜单区域，即可在流程设计和流程配置之间切换
-
+### 2. Switch Menus
+#### I. Function Introduction
+When designing a process, if temporary parameters or changes to the application to which the process belongs are required, the menu can be switched in the operation bar to complete the operation.
+#### II. Operation Method
+Click the menu area in the operation bar to switch between process design and process configuration.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/qh.png)
-
-### 3.暂存
-#### 一、功能介绍
-支持对流程设计进行存档保存。即便流程设计尚未完整，也可以选择暂存当前设计进度。下次进入流程设计页面时，系统将自动加载并显示之前暂存的设计页面，方便继续完善流程。
-
-:::warning 提示
-
-当流程设计已完成但尚未发布时，可以选择直接启用流程。启用操作将自动触发当前版本的发布流程，使设计立即生效并投入使用。
-
+### 3. Save Draft
+#### I. Function Introduction
+Supports archiving and saving the process design. Even if the process design is not complete, you can choose to save the current design progress temporarily. When entering the process design page next time, the system will automatically load and display the previously saved design page, facilitating the continuation of the process improvement.
+:::warning Tip
+When the process design is complete but not yet published, you can choose to enable the process directly. The enable operation will automatically trigger the release process of the current version, making the design take effect immediately and put into use.
 :::
-
-#### 二、操作方法
-点击「暂存」，即可将当前设计进度存档保存。
-
+#### II. Operation Method
+Click "Save Draft" to archive and save the current design progress.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/zc.png)
-
-### 4.发布/更新发布
-#### 一、功能介绍
-流程设计完成后，可以选择将其发布，以使流程正式生效并投入使用。对于尚未发布过的流程，发布按钮上会显示“发布”字样。而对于已经发布过的流程，发布按钮则会变为“更新发布”字样。
-
-:::info 注意
-
-对已发布并启用的流程进行修改后，在更新发布之前，这些修改将不会对当前正在使用的流程版本产生任何影响。
-
-+ 在平铺模式下，流程卡片上会提示“有未发布变更”
-+ 在列表模式下，更新状态则会显示为“未更新”
-
-只有完成所有修改，并进行更新发布后，新的流程版本才会正式生效，并替代之前的版本。
-
+### 4. Publish/Update Publish
+#### I. Function Introduction
+After the process design is completed, it can be published to make the process officially take effect and put into use. For processes that have not been published before, the publish button will display the word "Publish". For processes that have been published, the publish button will change to "Update Publish".
+:::info Note
+After modifying a published and enabled process, before updating and publishing, these modifications will not affect the currently used process version.
++ In tile mode, the process card will prompt "There are unpublished changes".
++ In list mode, the update status will show "Not updated".
+Only after completing all modifications and performing an update publish will the new process version officially take effect and replace the previous version.
 :::
-
-:::info 注意
-
-在发布流程时，必须确保在触发节点与结束节点之间至少存在一个有效节点，并且所有节点均已完成配置。若不满足这些条件，流程将无法发布。
-
+:::info Note
+When publishing a process, it is necessary to ensure that there is at least one valid node between the trigger node and the end node, and all nodes have been configured. If these conditions are not met, the process cannot be published.
 :::
-
-#### 二、操作方法
-点击「发布/更新发布」按钮，即可将当前流程设计发布。
-
+#### II. Operation Method
+Click the "Publish/Update Publish" button to publish the current process design.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/fb.png)
-
-## （二）工具栏
-### 1.功能介绍
-工具栏中集成了流程设计所需的各类节点动作，可以将工具栏中的节点动作放至流程的指定位置。
-
-### 2.操作方法
-可以通过拖拽工具栏中的节点动作，或者点击流程中节点之间的“+”号，将节点放置到指定的位置。
-
+## (二) Toolbar
+### 1. Function Introduction
+The toolbar integrates various node actions required for process design, and the node actions in the toolbar can be placed at the specified position of the process.
+### 2. Operation Method
+Node actions in the toolbar can be dragged, or the "+" sign between nodes in the process can be clicked to place the nodes at the specified positions.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/gjl.png)
-
-## （三）流程设计区
-### 1.功能介绍
-节点添加到流程后，可修改其名称、编辑说明以及删除不需要的节点，以便更好地进行流程设计。
-
-:::danger 警告
-
-节点删除后无法恢复，请谨慎操作！
-
+## (三) Process Design Area
+### 1. Function Introduction
+After adding nodes to the process, their names can be modified, descriptions can be edited, and unnecessary nodes can be deleted to better carry out process design.
+:::danger Warning
+Once a node is deleted, it cannot be recovered. Please operate with caution!
 :::
-
-### 2.操作方法
-+ 点击「节点名称」，可在输入框中修改名称
-
+### 2. Operation Method
++ Click the "Node Name" to modify the name in the input box.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj1.png)
-
-+ 点击「节点说明」图标，在弹窗中输入节点说明后点击「确定」即可成功编辑节点说明
-
++ Click the "Node Description" icon, enter the node description in the pop-up window, and click "OK" to successfully edit the node description.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj2.png)
-
-+ 点击「删除」图标后，在弹窗中点击「确定」，即可删除节点
-
++ Click the "Delete" icon, and in the pop-up window, click "OK" to delete the node.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj3.png)
-
-## （四）属性面板
-### 1.功能介绍
-在属性面板中，可以为节点动作配置各种属性。
-
-### 2.操作方法
-点击节点主体位置，在右侧弹窗中根据业务需求配置属性后，点击「保存」。
-
-:::info 注意
-
-需将属性中必填信息填写完成，否则无法保存。
-
+## (四) Property Panel
+### 1. Function Introduction
+In the property panel, various attributes can be configured for node actions.
+### 2. Operation Method
+Click the main body of the node, configure the attributes in the pop-up window on the right according to business requirements, and click "Save".
+:::info Note
+Required information in the attributes must be filled in; otherwise, saving will not be possible.
 :::
-
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sxmb.png)
-
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sxmb2.png)
-
-# 二、流程配置
-## （一）参数配置
-### 1.功能介绍
-在流程设计中，流程参数可以作为一个临时字段来存放某个字段值、计算结果或接受其他流程传过来的值。临时参数支持文本、数值、日期、布尔四种数据类型，以满足不同场景的需求。
-
-:::info 注意
-
-一旦流程参数在流程中被引用，将无法对其进行修改或删除操作
-
+# II. Process Configuration
+## (一) Parameter Configuration
+### 1. Function Introduction
+In process design, process parameters can be used as a temporary field to store a field value, calculation result, or accept values passed from other processes. Temporary parameters support four data types: text, number, date, and boolean to meet the needs of different scenarios.
+:::info Note
+Once a process parameter is referenced in the process, it cannot be modified or deleted.
 :::
-
-:::warning 提示
-
-在流程中可以使用“更新流程参数”来使用配置好的参数来存放数据。
-
+:::warning Tip
+In the process, "Update Process Parameters" can be used to store data using the configured parameters.
 :::
-
-### 2.操作方法
-在参数配置下，点击「添加新参数」，选择参数类型并输入参数名后点击「保存」，即可成功添加参数。
-
-:::info 注意
-
-参数名称规则：参数名称必须以字母开头，支持输入数字与下划线，不支持输入汉字。
-
+### 2. Operation Method
+Under parameter configuration, click "Add New Parameter", select the parameter type, enter the parameter name, and click "Save" to successfully add the parameter.
+:::info Note
+Parameter name rules: The parameter name must start with a letter, support numbers and underscores, and does not support Chinese characters.
 :::
-
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/cs.png)
-
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/cs2.png)
-
-## （二）流程配置
-### 1.功能介绍
-在流程配置中，支持更改流程所属应用与流程异常时的回滚类型
-
-+ 在创建流程时已选择了所属应用。若发现应用选择错误或需要更改所属应用，可以在此处进行编辑操作。
-
-:::info 注意
-
-在“工作流”-“流程运行记录”中查看流程实例时：
-
-+ 若在应用变更之前已经生成了流程实例，那么这些实例将继续保存在变更前的应用中。
-+ 而应用变更之后新生成的实例，则将保存在变更后的应用中。
-
+## (二) Process Configuration
+### 1. Function Introduction
+In process configuration, it is supported to change the application to which the process belongs and the rollback type when the process has an exception.
++ The application to which it belongs has been selected when creating the process. If the application selection is found to be incorrect or needs to be changed, editing operations can be performed here.
+:::info Note
+When viewing process instances in "Workflow" - "Process Operation Records":
++ If process instances have been generated before the application change, these instances will continue to be stored in the pre-change application.
++ New instances generated after the application change will be stored in the post-change application.
 :::
-
-+ 可设置异常类型为“节点异常终止”或“节点异常回滚”
-    - 节点异常终止：当节点出现异常时，将终止该流程
-    - 节点异常回滚：当节点出现异常时，将回滚该节点状态至未执行时
-
-:::info 注意
-
-该异常处理机制仅适用于人工节点
-
++ The exception type can be set to "Node Exception Termination" or "Node Exception Rollback"
+    - Node Exception Termination: When a node has an exception, the process will be terminated.
+    - Node Exception Rollback: When a node has an exception, the node status will be rolled back to the unexecuted state.
+:::info Note
+This exception handling mechanism is only applicable to manual nodes.
 :::
-
-### 2.操作方法
-+ 在流程配置下，选择应用后，点击「保存」，即可成功修改应用。
-+ 在流程配置下，可下拉选异常回滚类型，包括节点异常终止与节点异常回滚
-
+### 2. Operation Method
++ Under process configuration, select the application and click "Save" to successfully modify the application.
++ Under process configuration, the exception rollback type can be selected from the drop-down menu, including Node Exception Termination and Node Exception Rollback.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/ychglx.png)

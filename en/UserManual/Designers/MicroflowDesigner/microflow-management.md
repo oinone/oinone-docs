@@ -1,56 +1,56 @@
 ---
-title: 微流管理
+title: Microflow Management
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 1
 prev:
-  text: 微流设计器(Microflow Designer)
-  link: /en/UserManual/Designers/MicroflowDesigner/README.md
+  text: Microflow Designer
+  link: /zh-cn/UserManual/Designers/MicroflowDesigner/README.md
 ---
-微流设计器支持对流程进行新增、编辑、删除等一系列便捷操作，以满足多种管理需求。
+The microflow designer supports a series of convenient operations such as adding, editing, and deleting processes to meet various management needs.
 
-:::warning 提示
+:::warning Tip
 
-微流成功启用后，将根据设定的触发条件自动执行。如需查看微流的执行情况，可进入“工作流”-“微流运行记录”页面，该页面将详细展示微流的运行状态。若微流出现异常，可在此页面查看异常信息，并根据异常信息对微流进行完善和优化。
-
-:::
-
-# 一、筛选
-### 1.功能介绍
-根据实际业务需求，可以定制微流筛选条件，包括所属应用、微流名称、触发方式、启用状态、更新状态。在当前的筛选条件下，将展示相应的微流列表，方便对不同的微流进行设计操作。
-
-:::warning 提示
-
-对于常用的筛选项组合，可以将其收藏进筛选方案，之后可直接在筛选方案中一键选择对流程进行筛选。
+After a microflow is successfully enabled, it will be automatically executed according to the set trigger conditions. To view the execution status of a microflow, you can go to the "Workflow" - "Microflow Execution Records" page, which will display the detailed running status of the microflow. If an exception occurs in the microflow, you can view the exception information on this page and improve and optimize the microflow based on the exception information.
 
 :::
 
-### 2.操作方法
-+ 筛选：在筛选区选择或输入条件后点击「搜索」，即可对微流进行筛选。
-+ 一键清除：点击「清除」图标，可一键清除当前筛选区中所有条件
+# I. Filtering
+### 1. Function Introduction
+According to actual business requirements, you can customize microflow filtering conditions, including the associated application, microflow name, trigger method, enabled status, and update status. Under the current filtering conditions, the corresponding microflow list will be displayed, facilitating design operations on different microflows.
+
+:::warning Tip
+
+For commonly used filter option combinations, you can add them to the filter schemes. Then, you can directly select a scheme in the filter schemes to filter the processes with one click.
+
+:::
+
+### 2. Operation Method
++ Filter: After selecting or entering conditions in the filter area, click the "Search" button to filter the microflows.
++ Clear All: Click the "Clear" icon to clear all conditions in the current filter area with one click.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microflow%20Management/sx1.png)
 
-+ 管理筛选方案：鼠标移动至「筛选方案」图标，即可管理筛选方案
-    - 添加：在筛选区中选择或输入筛选条件后，点击「收藏当前条件」，在弹窗中输入方案名称，即可将当前筛选条件组合添加到筛选方案中
-    - 查找：在输入框中输入方案名称
-    - 修改：点击「筛选方案管理」后在弹窗中选择某项方案，点击方案名称，即可修改方案名称
-    - 删除：在方案列表中选择某项方案，点击「删除」图标，即可删除该筛选方案
++ Manage Filter Schemes: Move the mouse over the "Filter Schemes" icon to manage the filter schemes.
+    - Add: After selecting or entering filter conditions in the filter area, click the "Save Current Conditions" button. Enter the scheme name in the pop-up window to add the current filter condition combination to the filter schemes.
+    - Search: Enter the scheme name in the input box.
+    - Modify: Click the "Manage Filter Schemes" button. In the pop-up window, select a scheme and click the scheme name to modify it.
+    - Delete: Select a scheme in the scheme list and click the "Delete" icon to delete the filter scheme.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microflow%20Management/sx2.png)
 
-# 二、创建微流
-### 1.功能介绍
-支持创建微流，创建完成的微流在被触发后将自动执行。
+# II. Create a Microflow
+### 1. Function Introduction
+It supports creating microflows. Once created, the microflow will be automatically executed after being triggered.
 
-### 2.操作方法
-点击「创建微流」，选择所属应用后点击「创建」，跳转至设计微流页面，点击暂存或发布即可成功创建
+### 2. Operation Method
+Click the "Create Microflow" button. After selecting the associated application, click the "Create" button. You will be redirected to the microflow design page. Click the "Save Draft" or "Publish" button to successfully create the microflow.
 
-:::info 注意
+:::info Note
 
-若未点击暂存或发布按钮，则此次创建的流程将不会被保存。
+If you do not click the "Save Draft" or "Publish" button, the created process will not be saved.
 
 :::
 
@@ -58,88 +58,87 @@ prev:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microflow%20Management/cj2.png)
 
-# 三、设计微流
-### 1.功能介绍
-在设计微流时，可以运用各种节点动作对流程进行布局，满足在不同实际业务下的流程需求。
+# III. Design a Microflow
+### 1. Function Introduction
+When designing a microflow, you can use various node actions to layout the process to meet the process requirements in different actual business scenarios.
 
-### 2.操作方法
-点击「编辑」，即可进入设计微流界面。（详情见微流设计文档）
+### 2. Operation Method
+Click the "Edit" button to enter the microflow design interface. (For details, see the microflow design documentation.)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microflow%20Management/sj.png)
 
-# 四、停用/启用微流
-### 1.功能介绍
-当微流需要更新或暂时不用时，可以停用微流。停用微流后将不再执行微流，正在执行的微流不受停用影响，会正常执行直到微流结束。
+# IV. Disable/Enable a Microflow
+### 1. Function Introduction
+When a microflow needs to be updated or is temporarily not in use, you can disable it. After disabling a microflow, it will no longer be executed. Microflows that are currently being executed will not be affected by the disable operation and will continue to run until completion.
 
-当需要执行微流时，可以启用微流。启用微流后，可依据触发方式自动执行。此外，也可在页面设计器中使用微流动作组件中选择已启用的微流，手动触发微流。
+When you need to execute a microflow, you can enable it. After enabling a microflow, it can be automatically executed according to the trigger method. In addition, you can also select an enabled microflow in the microflow action component in the page designer to manually trigger the microflow.
 
-:::info 注意
+:::info Note
 
-+ 初次发布的微流自动启用。
-+ 当微流中存在节点未配置完整时不允许启用。
++ Newly published microflows are automatically enabled.
++ A microflow cannot be enabled if there are nodes that are not fully configured.
 
 :::
 
-### 2.操作方法
-点击「停用/启用」，即可改变微流状态。
+### 2. Operation Method
+Click the "Disable/Enable" button to change the status of the microflow.
 
-:::warning 提示
+:::warning Tip
 
-微流停用后，删除操作将会显现。如需启用已停用的微流，请在“更多”选项中查找启用按钮。
+After a microflow is disabled, the delete operation will be available. If you need to enable a disabled microflow, find the enable button in the "More" option.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microflow%20Management/ty.png)
 
-# 五、发布微流
-### 1.功能介绍
-仅针对已创建但未发布过的微流，可在微流管理页面将其发布
+# V. Publish a Microflow
+### 1. Function Introduction
+Only for microflows that have been created but not published, you can publish them on the microflow management page.
 
-### 2.操作方法
-点击「发布流程」，即可将当前微流成功发布
+### 2. Operation Method
+Click the "Publish Process" button to successfully publish the current microflow.
 
-:::info 注意
+:::info Note
 
-当微流中存在节点配置不完整的情况时，无法成功发布。
+A microflow cannot be successfully published if there are nodes that are not fully configured.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microflow%20Management/fb.png)
 
-# 六、复制微流
-### 1.功能介绍
-当遇到微流中节点动作相似度较高的情况时，可使用复制功能，将生成一个“原流程名-复制”的流程，并自动进入新微流的微流设计界面。同创建微流相同，需点击暂存或发布按钮方可成功生成复制微流。
+# VI. Copy a Microflow
+### 1. Function Introduction
+When there are high similarities in the node actions of microflows, you can use the copy function. A new process named "Original Process Name - Copy" will be generated, and you will automatically enter the microflow design interface of the new microflow. Similar to creating a microflow, you need to click the "Save Draft" or "Publish" button to successfully generate the copied microflow.
 
-### 2.操作方法
-点击「复制」，跳转至设计微流页面，点击暂存或发布即可成功复制。
+### 2. Operation Method
+Click the "Copy" button. You will be redirected to the microflow design page. Click the "Save Draft" or "Publish" button to successfully copy the microflow.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microflow%20Management/fz.png)
 
-# 七、删除微流
-### 1.功能介绍
-当微流不再使用时，可以选择将其删除。若不确定微流是否需要删除，可以先将其停用。
+# VII. Delete a Microflow
+### 1. Function Introduction
+When a microflow is no longer needed, you can choose to delete it. If you are not sure whether a microflow needs to be deleted, you can disable it first.
 
-:::info 注意
+:::info Note
 
-+ 若该微流未停用，处于启用状态，则该微流无法被删除。
-+ 在删除前，若该微流已执行过且生成了实例，则该微流无法被删除。
-
-:::
-
-:::danger 警告
-
-微流删除后无法恢复，请谨慎操作！
++ A microflow cannot be deleted if it is in the enabled state and has not been disabled.
++ A microflow cannot be deleted if it has been executed and instances have been generated before deletion.
 
 :::
 
-### 2.操作方法
-点击「删除」，即可删除流程
+:::danger Warning
 
-:::info 注意
+Once a microflow is deleted, it cannot be recovered. Please operate with caution!
 
-对于发布过的微流，需先停用微流后方显示「删除」。
+:::
+
+### 2. Operation Method
+Click the "Delete" button to delete the process.
+
+:::info Note
+
+For published microflows, the "Delete" button will be displayed only after the microflow is disabled.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microflow%20Management/sc.png)
-

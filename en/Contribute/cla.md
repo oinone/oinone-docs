@@ -1,39 +1,39 @@
 ---
-title: 贡献者许可协议模板
+title: Contributor License Agreement Template
 index: true
 category:
-  - 贡献手册
+  - Contribution Manual
 order: 1
 prev:
-  text: 贡献手册
+  text: Contribution Manual
   link: /en/Contribute/README.md
 next:
-  text: Git guidelines
+  text: Git Guidelines
   link: /en/Contribute/DevelopmentContributions/git-guidelines.md
 ---
-# Oinone 贡献者许可协议
+# Oinone Contributor License Agreement
 
-生效日期：2025年6月10日
+Effective Date: June 10, 2025
 
-1. 定义
-  * 贡献：您提交的代码、文档、设计等任何形式的成果。
-  * 项目：Oinone开源项目（GitHub/Gitee仓库）。
+1. Definitions
+   * Contribution: Any form of work you submit, including code, documentation, designs, etc.
+   * Project: The Oinone open-source project (GitHub/Gitee repository).
 
-2. 版权授予
-  * 您保留对贡献的版权，但授予Oinone项目及其关联方全球性、非独占、免费、不可撤销的使用权，包括但不限于：
-    * 修改、复制、分发、商业化使用您的贡献。
-    * 以任意许可协议（如Apache 2.0、商业许可）二次授权。
+2. Copyright Grant
+   * You retain the copyright to your contribution but grant Oinone project and its affiliates a global, non-exclusive, free, and irrevocable right to use, including but not limited to:
+     * Modifying, copying, distributing, and commercially using your contribution.
+     * Sublicensing under any license agreement (such as Apache 2.0, commercial license).
 
-3. 专利许可
-  * 若您的贡献涉及专利，您将授予Oinone项目免版税的永久专利使用权，且不得对使用该专利的第三方发起诉讼。
+3. Patent License
+   * If your contribution involves patents, you grant the Oinone project a royalty-free, permanent patent license and shall not sue third parties using such patents.
 
-4. 贡献者声明
-  * 您保证贡献为原创或已获得合法授权，且不侵犯第三方知识产权。
-  * 您知晓贡献将公开并可能被永久保留，且Oinone无义务采用您的贡献。
+4. Contributor Representations
+   * You warrant that the contribution is original or lawfully authorized and does not infringe on third-party intellectual property rights.
+   * You acknowledge that contributions will be public and may be permanently retained, and Oinone has no obligation to adopt your contribution.
 
-5. 适用法律
-  * 本协议受中华人民共和国法律管辖，争议提交上海仲裁委员会解决。
+5. Governing Law
+   * This agreement is governed by the laws of the People's Republic of China, and disputes shall be submitted to the Shanghai Arbitration Commission for resolution.
 
-签署方式：
+Signing Method:
 
-在首次提交Pull Request时，评论"I have read the CLA and agree to it."即视为生效。
+By commenting "I have read the CLA and agree to it." in your first Pull Request, you confirm your acceptance of this agreement.

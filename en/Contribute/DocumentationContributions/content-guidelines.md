@@ -1,121 +1,118 @@
 ---
-title: Content guidelines
+title: Content Guidelines
 index: true
 category:
-  - 贡献手册
-  - 文档贡献
+  - Contribution Manual
+  - Documentation Contribution
 order: 1
 prev:
-  text: 文档贡献
+  text: Documentation Contribution
   link: /en/Contribute/DocumentationContributions/README.md
 next:
-  text: 软件使用许可和合约
+  text: Software Licenses and Agreements
   link: /en/software-licenses.md
 ---
-#### **一、文档类型与对应模板**
 
-##### **1. 用户指南（面向终端用户）**
+#### **一、Documentation Types and Corresponding Templates**
 
-**模板示例**（Markdown格式）：
+##### **1. User Guides (for End Users)**
+
+**Template Example** (Markdown format):
 
 ```markdown
-# [功能名称] 使用指南
-## 概述
-- **功能定位**：一句话说明用途（如“用于实现跨部门审批流程配置”）。
-- **适用场景**：列举典型使用场景（如“财务报销、采购申请”）。
+# [Feature Name] User Guide
+## Overview
+- **Function Positioning**: One-sentence description of purpose (e.g., "Used to implement cross-department approval process configuration").
+- **Application Scenarios**: List typical usage scenarios (e.g., "Financial reimbursement, procurement applications").
 
-## 快速开始
-### 前置条件
-- Oinone版本 ≥ v6.0.0
-- 已安装 [依赖模块]
+## Quick Start
+### Prerequisites
+- Oinone version ≥ v6.0.0
+- Installed [Dependent Module]
 
-### 操作步骤
-1. **步骤1**：进入功能入口
-   - 路径：`控制台 > 流程管理 > 新建流程`
-2. **步骤2**：配置流程规则
+### Operation Steps
+1. **Step 1**: Access the feature entry
+   - Path: `Console > Process Management > New Process`
+2. **Step 2**: Configure process rules
    ```yaml
-   # 示例配置
+   # Example configuration
    nodes:
      - type: approval
        role: finance
-3. **步骤3**：保存并发布
+3. **Step 3**: Save and publish
 ```
 
-##### **2. 技术白皮书（面向开发者/架构师）**
+##### **2. Technical White Papers (for Developers/Architects)**
 
-##### **3. API文档（面向集成开发者）**
+##### **3. API Documentation (for Integration Developers)**
 
-#### 二、文档贡献流程
+#### **二、Documentation Contribution Process**
 
-##### **1. 贡献流程图**
+##### **1. Contribution Flowchart**
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/fbb9cab2c5882cefa4327414b952426d.svg)
 
-##### **2. 分步流程说明**
+##### **2. Step-by-Step Process Description**
 
-**步骤1：创建Issue**
+**Step 1: Create an Issue**
 
-+ **模板选择**：在Gitee/GitHub仓库的Issue页面选择“文档改进”模板。
-+ **填写规范**：
++ **Template Selection**: Choose the "Documentation Improvement" template on the Issue page of the Gitee/GitHub repository.
++ **Filling Specifications**:
 
 ```markdown
-## 文档类型
-[用户指南/技术白皮书/API文档]
+## Documentation Type
+[User Guide/Technical White Paper/API Documentation]
 
-## 修改范围
-- 新增：[新增文档标题]
-- 修订：[原文档路径]
+## Modification Scope
+- New: [Title of the new document]
+- Revision: [Original document path]
 
-## 需求背景
-[如“用户反馈现有审批流程文档缺少截图说明”]
+## Requirement Background
+[E.g., "Users feedback that the existing approval process documentation lacks screenshot instructions"]
 ```
 
-**步骤2：认领任务**
+**Step 2: Claim the Task**
 
-+ 社区维护者将Issue标记为`待认领`，贡献者在评论区回复“/assign”认领。
-+ 认领后Issue状态变更为`进行中`，超48小时未提交PR则自动释放。
++ Community maintainers mark the Issue as `To be Claimed`, and contributors reply "/assign" in the comments to claim it.
++ After claiming, the Issue status changes to `In Progress`, and it will be automatically released if no PR is submitted within 48 hours.
 
-**步骤3：编写文档**
+**Step 3: Write Documentation**
 
-+ **分支规则**：从`main`分支拉取新分支，命名格式 `docs/[Issue编号]-[简述]`（如 `docs/#45-auth-guide`）。
-+ **本地校验**：
-  - 使用Markdown校验工具（如Markdownlint）确保格式合规。
-  - 运行文档站点生成器预览效果（如VuePress）。
++ **Branch Rules**: Pull a new branch from the `main` branch, named `docs/[Issue Number]-[Brief Description]` (e.g., `docs/#45-auth-guide`).
++ **Local Validation**:
+  - Use Markdown validation tools (such as Markdownlint) to ensure format compliance.
+  - Run the documentation site generator for preview (such as VuePress).
 
-**步骤4：提交PR**
+**Step 4: Submit a PR**
 
-+ **标题格式**：`docs: [类型] [简述]`（如 `docs: 用户指南 新增审批流程配置说明`）。
-+ **关联Issue**：在PR描述中标注 `Fixes #45`。
++ **Title Format**: `docs: [Type] [Brief Description]` (e.g., `docs: User Guide Add Approval Process Configuration Instructions`).
++ **Associate Issue**: Mark `Fixes #45` in the PR description.
 
-**步骤5：审核与合并**
+**Step 5: Review and Merge**
 
-+ **初审（24小时内）**：
-  - **格式检查**：表格对齐、代码块语法、无死链。
-  - **内容检查**：技术准确性、术语一致性（如统一使用“模块”而非“组件”）。
-+ **终审（48小时内）**：
-  - 核心维护者验证技术细节，必要时要求补充示意图或测试用例。
-+ **合并规则**：
-  - 至少1名维护者批准（大型文档需2人）。
-  - 自动触发CI检查（拼写校验、链接有效性）。
++ **Initial Review (within 24 hours)**:
+  - **Format Check**: Table alignment, code block syntax, no broken links.
+  - **Content Check**: Technical accuracy, term consistency (e.g., consistently use "module" instead of "component").
++ **Final Review (within 48 hours)**:
+  - Core maintainers verify technical details and may require supplementary diagrams or test cases if necessary.
++ **Merge Rules**:
+  - At least 1 maintainer approval (2 for large documents).
+  - Automatically trigger CI checks (spelling verification, link validity).
 
-#### **三、审核标准与工具**
+#### **三、Review Standards and Tools**
 
-##### **1. 审核Checklist**
+##### **1. Review Checklist**
 
-| **类别**                                               | **标准**                                                     |
+| **Category**                                               | **Standard**                                                     |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
-| **准确性** | 所有技术描述与代码行为一致，无歧义表述 |
-| **完整性** | 用户指南需覆盖“前置条件-操作步骤-示例-FAQ”完整链路 |
-| **可读性** | 段落长度≤5行，复杂流程配流程图（PlantUML/Mermaid） |
-| **国际化** | 中文文档需提供术语表（中英对照），便于未来翻译 |
+| **Accuracy** | All technical descriptions are consistent with code behavior, without ambiguous expressions. |
+| **Completeness** | User guides should cover the complete chain of "prerequisites-operation steps-examples-FAQ". |
+| **Readability** | Paragraph length ≤ 5 lines, complex processes with flowcharts (PlantUML/Mermaid). |
+| **Internationalization** | Chinese documents need to provide a glossary (Chinese-English comparison) for future translation. |
 
 
-##### **2. 推荐工具**
+##### **2. Recommended Tools**
 
-+ **Markdown校验**：VS Code插件 `Markdown All in One` + `markdownlint`。
-+ **绘图工具**：PlantUML（流程图）、Draw.io（架构图）。
-+ **本地预览**：VuePress本地服务器实时渲染。
-
-
-
-
++ **Markdown Validation**: VS Code plugins `Markdown All in One` + `markdownlint`.
++ **Drawing Tools**: PlantUML (flowcharts), Draw.io (architecture diagrams).
++ **Local Preview**: VuePress local server for real-time rendering.

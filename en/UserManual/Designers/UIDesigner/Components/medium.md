@@ -1,157 +1,157 @@
 ---
-title: 媒体
+title: Media
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 3
 ---
-# 一、通用属性
-+ 标题：组件在当前页面的展示名称。
-+ 隐藏标题：开启此选项后，组件的标题将被隐藏
-+ 宽度：即组件占所在行的大小。
-+ 显示设备：包括PC端、移动端与PAD端。
+# I. General Attributes
++ Title: The display name of the component on the current page.
++ Hide Title: When this option is enabled, the title of the component will be hidden.
++ Width: The size of the component in the current row.
++ Display Device: Includes PC, Mobile, and PAD.
 
-:::tip 举例
+:::tip Example
 
-在设计PC端页面时，若组件的显示设备设置为仅移动端而未包含PC端，则在实际页面展示中，该分组组件及其所包含的其他组件均不会显示在PC端页面中。
+When designing a PC page, if the display device of a component is set to Mobile only and does not include PC, then in the actual page display, this grouped component and other components it contains will not be shown on the PC page.
 
 :::
 
-# 二、特有属性
-## （一）多媒体播放器
-支持在页面中嵌入多媒体播放器，适用于查看图片、视频等场景。
+# II. Specific Attributes
+## (1) Multimedia Player
+Supports embedding a multimedia player on the page, suitable for scenarios such as viewing pictures and videos.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/dmt1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/dmt2.gif)
 
 :::
 
-多媒体播放器特有属性：
+Specific attributes of the multimedia player:
 
-+ 组件类型：包含动态与静态两种类型。动态组件在表单中为输入态，静态组件在表单中为只读态。
++ Component Type: Includes two types, dynamic and static. Dynamic components are in the input state in the form, while static components are in the read-only state in the form.
 
-:::info 注意
+:::info Note
 
-+ 组件类型为动态时，有两种输入方式，分别为文件上传与链接输入
-    - 文件上传：支持用户手动上传文件，可设置最大上传文件体积与限制上传文件类型。
-    - 链接输入：支持用户手动输入链接，可设置可选前缀。
-+ 组件类型为静态时，输入多媒体链接，即可在实际页面中展示。
-
-:::
-
-+ 默认值：在实际页面展示时，该字段将默认展示设定的值。若删除或更改链接，原默认值不会回填。
-+ 计算公式：所计算值涉及变量，当变量变更时，计算值同步变化。
-
-:::info 注意
-
-若同时设置了默认值和计算公式，在实际页面中，默认值会先填入，后续值会根据计算函数变更。
++ When the component type is dynamic, there are two input methods: file upload and link input.
+    - File Upload: Allows users to manually upload files. You can set the maximum upload file size and restrict the upload file types.
+    - Link Input: Allows users to manually enter links. You can set optional prefixes.
++ When the component type is static, enter the multimedia link to display it on the actual page.
 
 :::
 
-:::warning 提示
++ Default Value: When the actual page is displayed, this field will show the set value by default. If the link is deleted or changed, the original default value will not be filled back.
++ Calculation Formula: The calculated value involves variables. When the variables change, the calculated value changes synchronously.
 
-有关计算公式中自定义表达式的填写，可以查看「自定义表达式」文档。
+:::info Note
 
-:::
-
-+ 占位提示：在输入框未填写内容时，显示的浅色提示文字，用于引导用户输入，但不会影响输入的实际值
-+ 描述说明：提供组件的描述信息，常用于阐述组件的作用、注意事项等。在组件下方展示。
-+ 是否只读：设为只读，在实际页面中，组件可见，但不可编辑。若设置为条件只读，则在符合条件时只读。
-+ 是否禁用：设为禁用，在实际页面中，组件可见，但不可编辑。若设置为条件禁用，则在符合条件时禁用。
-+ 是否隐藏：设为隐藏，在实际页面中，组件不可见，也不可编辑。若设置为条件隐藏，则在符合条件时隐藏。在设计页面时，设为隐藏的组件仍会展示。
-+ 是否必填：可以控制组件在当前页面是否必填，若设置为必填则会在标题前以*作为标识。若设置为条件必填，则在符合条件时必填。
-+ 数据校验：支持自定义校验规则，用于检验输入的数据是否符合设定的要求。
-
-:::warning 提示
-
-有关数据校验中自定义表达式的填写，可以查看「自定义表达式」文档。
+If both the default value and the calculation formula are set, the default value will be filled in first on the actual page, and the subsequent value will change according to the calculation function.
 
 :::
 
-+ 校验未通过提示：当输入的数据未通过校验时，显示相应的提示信息。
-+ 提交数据：开启此选项后，若当前内容变更，则会根据提交函数，对提交方式所涵盖的数据范围进行变更。
-+ 清除数据：开启此选项后，若当前内容变更，会清除所选字段范围。
-+ 标题排列方式：即标题与其内容的排列，分为横向与纵向两种。
-+ 最大上传文件体积：限制单个上传文件的大小。
-+ 限制上传文件类型：限制文件的上传格式，支持图片与视频。
+:::warning Hint
 
-## （二）地图
-支持在页面中嵌入地图，适用于展示地理位置、地点定位等场景。
+For the filling of custom expressions in the calculation formula, you can refer to the "Custom Expressions" document.
 
-:::tip 举例
+:::
 
-设计示例：
++ Placeholder Hint: When the input box has no content, it shows light-colored prompt text to guide users to input, but it does not affect the actual input value.
++ Description: Provides a description of the component, often used to explain the component's function, precautions, etc. It is displayed below the component.
++ Read-only: When set to read-only, the component is visible but not editable on the actual page. If set to conditional read-only, it will be read-only when the conditions are met.
++ Disabled: When set to disabled, the component is visible but not editable on the actual page. If set to conditional disabled, it will be disabled when the conditions are met.
++ Hidden: When set to hidden, the component is neither visible nor editable on the actual page. If set to conditional hidden, it will be hidden when the conditions are met. On the design page, hidden components are still displayed.
++ Required: Controls whether the component is required on the current page. If set to required, an asterisk (*) will be shown before the title. If set to conditional required, it will be required when the conditions are met.
++ Data Validation: Supports custom validation rules to check whether the input data meets the set requirements.
+
+:::warning Hint
+
+For the filling of custom expressions in data validation, you can refer to the "Custom Expressions" document.
+
+:::
+
++ Validation Failed Prompt: When the input data fails the validation, corresponding prompt information will be displayed.
++ Submit Data: When this option is enabled, if the current content changes, the data scope covered by the submission method will change according to the submission function.
++ Clear Data: When this option is enabled, if the current content changes, the selected field scope will be cleared.
++ Title Arrangement: The arrangement of the title and its content, divided into horizontal and vertical.
++ Maximum Upload File Size: Limits the size of a single uploaded file.
++ Restrict Upload File Types: Limits the upload file formats, supporting pictures and videos.
+
+## (2) Map
+Supports embedding a map on the page, suitable for scenarios such as displaying geographical locations and location positioning.
+
+:::tip Example
+
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/dt1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/dt2.png)
 
 :::
 
-## （三）图表
-支持在页面中展示设计好的图表。
+## (3) Chart
+Supports displaying a designed chart on the page.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/tb1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/tb2.png)
 
 :::
 
-图标特有属性：
+Specific attributes of the chart:
 
-+ 选择图表：可选择在数据可视化中已发布的图表。
-+ 查询条件：在实际页面展示中，会按照配置的查询条件展示数据。
++ Select Chart: You can select a published chart in the data visualization.
++ Query Conditions: On the actual page display, data will be shown according to the configured query conditions.
 
-## （四）报表
-支持在页面中展示设计好的报表。
+## (4) Report
+Supports displaying a designed report on the page.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/bb1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/bb2.png)
 
 :::
 
-报表特有属性：
+Specific attributes of the report:
 
-+ 选择报表：可选择在数据可视化中已发布的报表。
++ Select Report: You can select a published report in the data visualization.
 
-## （五）数据大屏
-支持在页面中展示设计好的数据大屏。
+## (5) Data Dashboard
+Supports displaying a designed data dashboard on the page.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/sjdp1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/sjdp2.png)
 
 :::
 
-数据大屏特有属性：
+Specific attributes of the data dashboard:
 
-+ 选择数据大屏：可选择在数据可视化中已发布的数据大屏。
++ Select Data Dashboard: You can select a published data dashboard in the data visualization.

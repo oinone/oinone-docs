@@ -1,23 +1,24 @@
 ---
-title: 章节 4：安全简介（A Brief Introduction To Security）
+title: Chapter 4:A Brief Introduction To Security
 index: true
 category:
-  - 研发手册
-  - 教程
-  - 后端框架
+  - Development Manual
+  - Tutorials
+  - Back-end Framework
 order: 4
 
 ---
-在上一章中，我们创建了第一个用于存储业务数据的表。在像 Oinone 这样的业务应用程序中，首先要考虑的问题之一是谁（1）可以访问这些数据。Oinone 提供了一种安全机制，以允许特定用户组访问数据。
+In the previous chapter, we created our first table for storing business data. In a business application like Oinone, one of the first considerations is who (1) can access this data. Oinone provides a security mechanism to allow specific user groups to access data.
 
-关于安全的主题在 “[限制数据访问](/en/DevManual/Tutorials/restrict-access-to-data.md)” 中有更详细的介绍。本章旨在涵盖我们新模块所需的最基本安全知识。
+The topic of security is covered in more detail in "[Restrict Access to Data](/en/DevManual/Tutorials/restrict-access-to-data.md)". This chapter aims to cover the most basic security knowledge required for our new module.
 
-# 一、菜单入口
-:::info 目标：在本节结束时，项目信息的增、删、改、查的基础功能有对应的菜单入口
+
+# I. Menu Entry
+:::info Objectives: By the end of this section, the basic functions of creating, deleting, modifying, and querying project information will have corresponding menu entries.
 
 :::
 
-为了方便介绍安全控制中资源权限和数据权限，先把项目信息的管理入口，通过菜单配置先放出来。
+To facilitate the introduction of resource permissions and data permissions in security control, first release the management entry for project information through menu configuration.
 
 ```java
 package pro.shushi.oinone.trutorials.expenses.core.init;
@@ -29,51 +30,53 @@ import pro.shushi.pamirs.boot.base.ux.annotation.navigator.UxMenu;
 import pro.shushi.pamirs.boot.base.ux.annotation.navigator.UxMenus;
 
 @UxMenus public class ExpensesMenus implements ViewActionConstants {
-    @UxMenu("基础数据")
+    @UxMenu("Basic Data")
     class ExpensesBaseMenu {
-        @UxMenu("测试菜单") @UxRoute(TestModel.MODEL_MODEL) class TestModelMenu { }
+        @UxMenu("Test Menu") @UxRoute(TestModel.MODEL_MODEL) class TestModelMenu { }
     }
 }
 ```
 
-这个定义足以让 Oinone 生成一个名为“测试菜单”的菜单入口。按照惯例，用@UxMenus声明ExpensesMenus为菜单初始化入口，初始化类ExpensesMenus都位于模块的配置包扫描路径中如： `pro.shushi.oinone.trutorials.expenses.core.init`。那么通过ExpensesMenus初始化的菜单都挂在expenses这个模块上。
+This definition is sufficient for Oinone to generate a menu entry named "Test Menu". As a convention, use @UxMenus to declare ExpensesMenus as the menu initialization entry. The initialization class ExpensesMenus is located in the module's configuration package scan path, such as `pro.shushi.oinone.trutorials.expenses.core.init`. Then, menus initialized through ExpensesMenus are attached to the `expenses` module.
 
-:::warning 提示：菜单初始化
+:::warning Tip: Menu Initialization
 
-1. @UxMenu来申明菜单，值为菜单名称。菜单可以嵌套，如“测试菜单”在“基础数据”菜单下作为子菜单。
-2. 通过@UxRoute，值为模型的编码，表明该菜单会跳转到哪个模型的视图页面。会自动生成一个ViewAction记录作为菜单与视图之间的桥梁
-3. 如果没有指定特定视图，则会跳转到该模型的表格视图，相同类型的视图按优先级选择，数值越低优先级越高，其中系统默认生成的视图优先级数值统一为88。
-4. 为模型配置了菜单入口，或者其他任何可以跳转到该模型的入口，Oinone系统会为该模型生成对应的默认视图。
+1. Use @UxMenu to declare the menu, with the value being the menu name. Menus can be nested, such as "Test Menu" as a submenu under "Basic Data".
+2. Use @UxRoute with the value as the model's code to indicate which model's view page the menu will navigate to. A ViewAction record will be automatically generated as a bridge between the menu and the view.
+3. If no specific view is specified, it will navigate to the model's table view. For the same view type, selection is based on priority (lower values have higher priority). The system-generated views all have a priority of 88.
+4. Configuring a menu entry for a model, or any other entry that can navigate to the model, will generate default views for the model in the Oinone system.
 
 :::
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> **为项目信息模型初始化菜单**：根据TestModel示例，为`ProjectInfo`模型创建菜单“项目管理”，也挂在“基础数据”菜单下作为子菜单。
+> **Initialize the menu for the ProjectInfo model**: Create a menu "Project Management" for the `ProjectInfo` model under "Basic Data" as a submenu, following the TestModel example.
 >
 
-# 二、用户与角色
-角色可在「管理中心-角色与权限-角色管理」中进行管理与维护。新增一个“test”角色用于测试
+
+# II. Users and Roles
+Roles can be managed and maintained in [Management Center - Roles and Permissions - Role Management]. Add a new "test" role for testing.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/user1.png)
 
-用户可在「管理中心-用户」中进行管理与维护。新增一个用户“test”并绑定“test”角色用于测试
+Users can be managed and maintained in [Management Center - Users]. Add a new user "test" and bind the "test" role for testing.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/user2.png)
 
-# 二、访问权限配置
-:::info 目标：在本节结束时，test用户登陆后可以访问「费用管理-基础数据-项目管理」，并且操作数据的增删改查。
+
+# III. Access Permission Configuration
+:::info Objectives: By the end of this section, the test user can log in and access [Expense Management - Basic Data - Project Management], and perform create, delete, modify, and query operations on the data.
 
 :::
 
-我们可以为「费用管理-基础数据-项目管理」设置权限组并绑定角色。在「管理中心-角色与权限-系统权限」中进行管理与维护。
+We can set permission groups for [Expense Management - Basic Data - Project Management] and bind roles. This is managed and maintained in [Management Center - Roles and Permissions - System Permissions].
 
-## （一）资源权限
-资源权限包括：应用权限、菜单权限、操作权限等，需要挨个设置。
+## (I) Resource Permissions
+Resource permissions include application permissions, menu permissions, operation permissions, etc., which need to be set one by one.
 
-:::tip 举例：为“test”角色赋予“费用管理”应用访问权限示例：
+:::tip Example: Granting the "test" role access to the "Expense Management" application:
 
-在系统权限页面选中费用管理，并通过点击“添加角色”按钮，在弹出框中选择“test”角色，确定保存
+In the system permissions page, select Expense Management, click the "Add Role" button, select the "test" role in the pop-up, and confirm to save.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip1-1.png)
 
@@ -81,9 +84,9 @@ import pro.shushi.pamirs.boot.base.ux.annotation.navigator.UxMenus;
 
 :::
 
-:::tip 举例：为“test”角色赋予费用管理应用下“测试菜单”的访问权限示例：
+:::tip Example: Granting the "test" role access to the "Test Menu" under the Expense Management application:
 
-1、在系统权限页面选中「费用管理-基础数据-测试菜单」，并通过点击“添加权限组”按钮，在弹出框中配置权限组权限，确定保存
+1. In the system permissions page, select [Expense Management - Basic Data - Test Menu], click the "Add Permission Group" button, configure the permission group permissions in the pop-up, and confirm to save.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip2-1-1.png)
 
@@ -91,41 +94,40 @@ import pro.shushi.pamirs.boot.base.ux.annotation.navigator.UxMenus;
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip2-1-3.png)
 
-2、为test权限组绑定角色，这里我们绑定角色“test”。
+2. Bind the test permission group to the "test" role.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip2-2-1.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip2-2-2.png)
 
-3、test用户登陆，只能访问“费用管理”和其下的“测试菜单”
+3. When the test user logs in, they can only access "Expense Management" and its "Test Menu".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip2-3.png)
 
 :::
 
-:::warning 提示
+:::warning Tips
 
-1、配置权限时使用admin账户登陆
-
-2、test登陆时的密码为创建用户时表单填入的初始化密码，在示例中为：test1234@
-
-:::
-
-> **练习（Exercise）**
->
-> **项目管理菜单资源权限设置**：根据菜单“测试菜单”示例，为“test”角色赋予「费用管理-基础数据-项目管理」菜单对应访问权限与操作权限。
->
-
-## （二）数据权限
-Oinone对数据访问权限控制可以分别设置：行级与列级。
-
-:::info 目标：在本节结束时，test用户登陆后可以访问「费用管理-基础数据-项目管理」，但只能访问名称中包含“test”字符的数据
+1. Log in with the admin account when configuring permissions.
+2. The password for test login is the initial password filled in the form when creating the user, which is "test1234@" in the example.
 
 :::
 
-:::tip 举例：为“test”角色赋予费用管理应用下“测试菜单”的访问权限示例：
+> **Exercise**
+>
+> **Resource permission settings for the Project Management menu**: Grant the "test" role the corresponding access and operation permissions for the [Expense Management - Basic Data - Project Management] menu, following the "Test Menu" example.
+>
 
-1、在系统权限页面选中「费用管理-基础数据-测试菜单」，并通过点击“test权限组”对应的“编辑”按钮，在弹出框中配置权限组的字段权限与数据权限，确定保存
+## (II) Data Permissions
+Oinone's data access permission control can be set separately for: row-level and column-level.
+
+:::info Objectives: By the end of this section, the test user can log in and access [Expense Management - Basic Data - Project Management], but can only access data whose name contains the character "test".
+
+:::
+
+:::tip Example: Granting the "test" role data permissions for the "Test Menu" under the Expense Management application:
+
+1. In the system permissions page, select [Expense Management - Basic Data - Test Menu], click the "Edit" button corresponding to the "test permission group", configure the field permissions and data permissions in the pop-up, and confirm to save.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip3-1-1.png)
 
@@ -133,24 +135,22 @@ Oinone对数据访问权限控制可以分别设置：行级与列级。
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip3-1-3.png)
 
-2、test重新登陆，再次访问的“测试菜单”，列表中“创建时间”和“更改时间”字段为不可见。新增数据name如果不包含“test”字符串则数据行不可见
+2. After the test user logs in again, the "Creation Time" and "Modification Time" fields are invisible in the "Test Menu" list. If the newly added data name does not contain the "test" string, the data row will be invisible.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-4/tip3-2.png)
 
 :::
 
-:::warning 提示：字段权限配置
+:::warning Tip: Field Permission Configuration
 
-在配置字段权限时，一定要取消全部字段“可见”、“可编辑”的选项，否则字段权限不生效
+When configuring field permissions, be sure to uncheck the "Visible" and "Editable" options for all fields; otherwise, the field permissions will not take effect.
 
 :::
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> **项目管理的数据权限设置**：根据菜单“测试菜单”示例，为“test”角色赋予「费用管理-基础数据-项目管理」菜单对应模型项目信息的数据行权限，即只能查看“项目名称”字段值包含“test”字符串的数据。
+> **Data permission settings for Project Management**: Grant the "test" role row-level data permissions for the Project Information model corresponding to the [Expense Management - Basic Data - Project Management] menu, i.e., only view data where the "Project Name" field value contains the "test" string, following the "Test Menu" example.
 >
 
 
-
-现在终于可以与用户界面进行交互了！
-
+Now we can finally interact with the user interface!

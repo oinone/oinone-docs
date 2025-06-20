@@ -1,220 +1,148 @@
 ---
-title: 组件与模型总览
+title: Overview of Components and Models
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 4
 next:
-  text: 布局
-  link: /en/UserManual/Designers/UIDesigner/Components/layout.md
+  text: Layout
+  link: /zh-cn/UserManual/Designers/UIDesigner/Components/layout.md
 ---
-在设计页面时，组件库包含为组件与模型两个部分。在组件中，包含系统组件与自定义组件，系统组件主要分为四类，分别是布局、字段、媒体、动作；在模型中，包含页面所在模型下所有字段及系统默认动作。
-
-# 一、组件
-## （一）布局
-布局类组件主要用于页面的样式排版，它们相当于一个容器，可以容纳多个其他组件。同时，布局类组件之间支持互相嵌套，以便用户更灵活地构建页面结构和布局。
-
-+ 分组：可以将业务含义相近的组件归入同一个分组中，以实现页面组件的分类管理和清晰展示。
-+ 布局容器：类似于表格结构，用户可以灵活地增添或删除某一行或某一列，同时可以对其中的某个容器进行个性化设置。
-+ 选项卡：每个选项卡内可以添加多个选项页，用户可以为每个选项页配置不同的组件，以满足多样化的展示需求。
-+ 折叠面板：面板中可以配置各种组件，用户可以根据需要展开或折叠面板，以优化页面布局和用户体验。
-
-## （二）字段
-字段类组件是组件中最常用，也是用于支撑页面的主要组件类别，每个字段类组件都对应一个模型字段
-
-:::info 注意
-
-配置字段类组件时，若模型中已经存在，绑定原字段并展示组件为当前组件。如果不存在则为模型新增字段并与当前组件绑定
-
+When designing pages, the component library consists of two parts: components and models. Components include system components and custom components. System components are mainly divided into four categories: layout, fields, media, and actions. Models include all fields under the page's model and system default actions.
+# I. Components
+## (一) Layout
+Layout components are mainly used for page styling and typesetting. They act as containers that can hold multiple other components. Meanwhile, layout components support nesting with each other, allowing users to build page structures and layouts more flexibly.
+- Group: Components with similar business meanings can be grouped into the same category to achieve categorized management and clear display of page components.
+- Layout Container: Similar to a table structure, users can flexibly add or delete rows or columns, and perform personalized settings on a specific container.
+- Tab: Multiple tab pages can be added to each tab, and users can configure different components for each tab page to meet diversified display needs.
+- Collapsible Panel: Various components can be configured in the panel, and users can expand or collapse the panel as needed to optimize page layout and user experience.
+## (二) Fields
+Field components are the most commonly used in components and are the main component category supporting pages. Each field component corresponds to a model field.
+:::info Note
+When configuring field components, if the field already exists in the model, bind the original field and display the component as the current component. If it does not exist, add a new field to the model and bind it to the current component.
 :::
-
-+ 单行文本：单行文本框，适用于记录名称、编码等简短文字内容。
-+ 多行文本：多行文本框，适用于记录意见、备注等较长文字内容。
-+ 富文本：一种可内嵌于浏览器的所见即所得文本编辑器，功能类似Word，适用于编辑篇幅较长的说明性文字，支持改变字体样式、插入图片等操作。
-+ 整数：仅允许输入整数，适用于输入天数、数量等整数型数据。
-+ 小数：仅允许输入小数，适用于输入金额、温度等小数型数据。
-+ 下拉单选：可从多个选项中下拉选择一个数据值，选项为可关联模型数据、数据字典或布尔型数据，适用于单一选择场景。
-+ 下拉多选：可从多个选项中下拉选择多个数据值，选项为可关联模型数据、数据字典或布尔型数据，适用于多重选择场景。
-+ 单选框：在直接展示的选项中只能选择一个值，适用于如性别选择等单一选项场景。
-+ 复选框：在直接展示的选项中可选择多个值，适用于如课程选择等多重选项场景。
-+ 开关：常用于在是/否两种对立选项中进行选择。
-+ 年份：提供年份选择器功能，适用于选择出生年份等需要指定年份的场景。
-+ 日期：提供年-月-日的选择器，适用于需要精确到日期的字段，如入职日期、出生日期等。
-+ 日期时间：提供年-月-日、时-分-秒的全面选择器，适用于需要精确到具体时间的字段，如下单时间、发货时间等。
-+ 时间：提供时-分-秒的选择器，适用于仅涉及时间而不涉及日期的字段，如提交时间、上班时间等。
-+ 颜色选择器：提供自定义颜色功能，适用于设置标签颜色、进行主题定制时选择所需色彩等场景。
-+ 文件上传：支持上传多种格式的文件，包括文档、图片、视频等，适用于上传附件。
-+ 图片上传：支持上传图片文件，适用于上传示意图、照片、头像等场景。
-+ 标签：允许输入并保存多个值，适用于保存标记用户的标签。
-+ 级联选择：通过逐级选择来筛选和定位所需的数据，适用于地区选择、分类筛选等场景。
-+ 树选择：通过逐级选择来筛选和定位所需的数据，适用于地区选择、分类筛选等场景。
-
-:::tip 举例
-
-级联选择与树选择实际上针对业务场景，作用一样，但是他们具有不同的交互体验
-
-+ 级联选择：在选择框中选择一个选项时，组件会在其右侧动态地展开该选项的子级选项。
-+ 树选择：在选择框中选择一个选项时，组件会在其下方动态地展开该选项的子级选项。
-
+- Single-line Text: A single-line text box suitable for recording short text contents such as names and codes.
+- Multi-line Text: A multi-line text box suitable for recording longer text contents such as opinions and remarks.
+- Rich Text: A WYSIWYG text editor embedded in the browser, similar to Word in functionality. It is suitable for editing long explanatory texts, supporting operations such as changing font styles and inserting pictures.
+- Integer: Only integers are allowed, suitable for inputting integer-type data such as days and quantities.
+- Decimal: Only decimals are allowed, suitable for inputting decimal-type data such as amounts and temperatures.
+- Dropdown Single Selection: Allows dropping down to select one data value from multiple options. Options can be associated with model data, data dictionaries, or boolean data, suitable for single-selection scenarios.
+- Dropdown Multiple Selection: Allows dropping down to select multiple data values from multiple options. Options can be associated with model data, data dictionaries, or boolean data, suitable for multiple-selection scenarios.
+- Radio Button: Only one value can be selected from directly displayed options, suitable for single-option scenarios such as gender selection.
+- Checkbox: Multiple values can be selected from directly displayed options, suitable for multiple-option scenarios such as course selection.
+- Switch: Commonly used for choosing between two opposite options like yes/no.
+- Year: Provides a year selector function, suitable for scenarios requiring specifying a year such as birth year.
+- Date: Provides a year-month-day selector, suitable for fields requiring precision to the date, such as employment date and birth date.
+- Date and Time: Provides a comprehensive selector for year-month-day and hour-minute-second, suitable for fields requiring precision to the specific time, such as order time and delivery time.
+- Time: Provides an hour-minute-second selector, suitable for fields only involving time without date, such as submission time and work time.
+- Color Picker: Provides a custom color function, suitable for scenarios such as setting label colors and selecting colors for theme customization.
+- File Upload: Supports uploading multiple formats of files, including documents, pictures, videos, etc., suitable for uploading attachments.
+- Image Upload: Supports uploading image files, suitable for scenarios such as uploading schematics, photos, and avatars.
+- Tag: Allows inputting and saving multiple values, suitable for saving tags marking users.
+- Cascader Selection: Filters and locates required data through逐级 selection (cascading selection), suitable for scenarios such as region selection and classification filtering.
+- Tree Selection: Filters and locates required data through逐级 selection (tree selection), suitable for scenarios such as region selection and classification filtering.
+:::tip Example
+Cascader Selection and Tree Selection actually have the same function for business scenarios but have different interaction experiences.
+- Cascader Selection: When selecting an option in the selection box, the component dynamically expands the sub-options of that option to its right.
+- Tree Selection: When selecting an option in the selection box, the component dynamically expands the sub-options of that option below it.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/jilian.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/shu.png)
-
 :::
-
-+ 键值对：以清晰直观的方式展示结构化信息，非常适用于产品详情展示、用户配置选项设置等场景。
-+ 范围：支持为时间指定一段范围，便于在时间区间提示等场景中灵活应用。
-+ 手机：专用于存储或展示手机号码类型的数据，严格限制为11位整数格式。
-+ 货币：用于存储或展示金额类型的数据，允许输入整数或小数，小数位数需精确到两位以内。
-+ 邮箱：用于存储或展示符合邮箱格式（xx@xx.xx）的数据，方便用户进行信息交流和管理。
-+ 他表字段：可以从关联关系字段中取出对应字段，并平铺在当前模型中的特殊字段。适用于生成复杂报表时引用相关表中数据信息。
-+ 段落：允许在页面中展示一段完整的文字内容，适用于对产品进行详细解释、说明或阐述等场景。
-+ 嵌入网页：支持在页面中嵌入指定的网页，使用户在设计页面中即可直接访问和浏览其他网页内容。
-+ 超链接：支持在页面中展示超链接，用户只需点击超链接即可轻松跳转至对应的页面，实现页面间的便捷导航。
-+ 穿梭框：穿梭框是一个左右分栏的选择框，左侧显示可选字段，右侧显示已选字段。可以通过穿梭框选择或取消字段，适用于选择展示字段等场景。
-+ 地址：提供地址选择器功能，适用于选择家庭住址等场景。
-+ 公司：提供快捷方式，可直接选择在系统已录入的公司。
-+ 部门：提供快捷方式，可直接选择在系统已录入的部门。
-+ 员工：提供快捷方式，可直接选择在系统已录入的员工。
-+ 表单：支持在页面中内嵌表单，适用于设计复杂页面，满足页面多样化需求。
-+ 表格：支持在页面中内嵌表格，适用于展示列表或数据的场景。
-+ 文件下载：支持将数据封装为一个文件进行下载，适用于批量获取数据进行后续分析。
-+ 拖拽上传：用于把文件拖入指定区域完成上传，同样支持点击上传。
-+ 手写签名：支持在网页上实现手写签名，适用于在线合同签署、电子表格签名等
-
-## （三）媒体
-+ 多媒体播放器：支持在页面中嵌入多媒体播放器，适用于查看图片、视频等场景。
-+ 地图：支持在页面中嵌入地图，适用于展示地理位置、地点定位等场景。
-+ 图表：支持在页面中展示设计好的图表。
-+ 报表：支持在页面中展示设计好的报表。
-+ 数据大屏：支持在页面中展示设计好的数据大屏。
-
-:::info 注意
-
-图表、报表与数据大屏，需要在平台提供的「数据可视化」设计器中进行设计，并完成发布方可使用
-
+- Key-Value Pair: Displays structured information in a clear and intuitive way, very suitable for scenarios such as product detail display and user configuration option settings.
+- Range: Supports specifying a range for time, facilitating flexible application in scenarios such as time interval prompts.
+- Mobile Phone: Specifically used for storing or displaying mobile phone number-type data, strictly limited to an 11-digit integer format.
+- Currency: Used for storing or displaying amount-type data, allowing input of integers or decimals, with the number of decimal places needing to be accurate to within two.
+- Email: Used for storing or displaying data conforming to the email format (xx@xx.xx), facilitating users' information exchange and management.
+- Other Table Field: A special field that can extract corresponding fields from related relationship fields and tile them in the current model. Suitable for引用 (referencing) data information in related tables when generating complex reports.
+- Paragraph: Allows displaying a complete paragraph of text content on the page, suitable for scenarios such as detailed product explanations, descriptions, or elaborations.
+- Embed Web Page: Supports embedding specified web pages in the page, enabling users to directly access and browse other web page contents in the design page.
+- Hyperlink: Supports displaying hyperlinks on the page. Users can easily jump to the corresponding page by clicking the hyperlink, achieving convenient navigation between pages.
+- Shuttle Box: A shuttle box is a left-right divided selection box, with the left side displaying selectable fields and the right side displaying selected fields. Fields can be selected or deselected through the shuttle box, suitable for scenarios such as selecting display fields.
+- Address: Provides an address selector function, suitable for scenarios such as selecting a home address.
+- Company: Provides a shortcut to directly select a company recorded in the system.
+- Department: Provides a shortcut to directly select a department recorded in the system.
+- Employee: Provides a shortcut to directly select an employee recorded in the system.
+- Form: Supports embedding forms in the page, suitable for designing complex pages to meet diversified page needs.
+- Table: Supports embedding tables in the page, suitable for scenarios such as displaying lists or data.
+- File Download: Supports packaging data into a file for download, suitable for batch obtaining data for subsequent analysis.
+- Drag and Drop Upload: Used to complete upload by dragging files into a specified area, also supporting click upload.
+- Handwriting Signature: Supports implementing handwriting signatures on web pages, suitable for online contract signing, electronic form signing, etc.
+## (三) Media
+- Multimedia Player: Supports embedding multimedia players in the page, suitable for scenarios such as viewing pictures and videos.
+- Map: Supports embedding maps in the page, suitable for scenarios such as displaying geographical locations and place positioning.
+- Chart: Supports displaying designed charts on the page.
+- Report: Supports displaying designed reports on the page.
+- Data Dashboard: Supports displaying designed data dashboards on the page.
+:::info Note
+Charts, reports, and data dashboards need to be designed in the 'Data Visualization' designer provided by the platform and published before they can be used.
 :::
-
-## （四）动作
-+ 提交动作：配置不同的服务器函数，可以执行不同的操作，适用于查询、删除、创建等多种场景。
-+ 跳转动作：支持跳转至某页面，适用于页面导航、提交确认等场景。
-+ 链接动作：支持链接到其他网页中，适用于快速导航到相关页面等场景。
-
-:::info 注意
-
-跳转动作与链接动作的区别：
-
-+ 跳转动作跳转的页面，均是由页面设计器设计的页面，支持多种打开方式，包括当前窗口打开、新窗口打开、弹窗打开以及抽屉打开
-+ 链接动作跳转的页面，是平台外部的页面，仅支持新窗口打开
-
+## (四) Actions
+- Submission Action: Configure different server functions to perform different operations, suitable for various scenarios such as query, delete, and create.
+- Navigation Action: Supports navigating to a certain page, suitable for scenarios such as page navigation and submission confirmation.
+- Link Action: Supports linking to other web pages, suitable for scenarios such as quickly navigating to related pages.
+:::info Note
+The difference between Navigation Action and Link Action:
+- Pages jumped by the Navigation Action are all pages designed by the Page Designer, supporting multiple opening methods, including opening in the current window, opening in a new window, opening in a pop-up, and opening in a drawer.
+- Pages jumped by the Link Action are pages outside the platform, only supporting opening in a new window.
 :::
-
-+ 客户端动作：依据不同的客户端行为，可以执行不同的操作，适用于返回、刷新、更新数据等场景。
-+ 批量动作：跳转动作处理多条数据的快捷方式，可对选中数据集内的数据进行批量修改的行为。
-+ 工作流：支持手动触发工作流。
-
-:::info 注意
-
-所选择的工作流触发条件必须为模型触发，且该模型需已发布并成功启用。
-
+- Client Action: Perform different operations based on different client behaviors, suitable for scenarios such as return, refresh, and data update.
+- Batch Action: A shortcut for the Navigation Action to process multiple pieces of data, enabling batch modification of data in the selected dataset.
+- Workflow: Supports manually triggering a workflow.
+:::info Note
+The selected workflow trigger condition must be model-triggered, and the model must have been published and successfully enabled.
 :::
-
-+ 微流：支持手动触发微流。
-+ 集成连接器：支持手动对其他应用或数据库发起连接请求。
-+ 数据流程：支持手动触发数据流程。
-+ AI：支持将已完成配置的 AI 连接器与当前页面的各类字段进行绑定与关联，通过数据映射快速构建定制化的 AI 产品解决方案。
-
-:::info 注意
-
-工作流、微流、集成连接器、数据流程和AI这五个动作，只有在页面所在应用已依赖相应的应用或模块后，才会在页面上显示。
-
+- Micro Flow: Supports manually triggering a micro flow.
+- Integration Connector: Supports manually initiating connection requests to other applications or databases.
+- Data Flow: Supports manually triggering a data flow.
+- AI: Supports binding and associating configured AI connectors with various fields on the current page, and quickly building customized AI product solutions through data mapping.
+:::info Note
+The five actions of Workflow, Micro Flow, Integration Connector, Data Flow, and AI will only be displayed on the page if the application where the page is located has depended on the corresponding application or module.
 :::
-
-# 二、模型
-此处的模型为创建页面时所选模型，模型组件是模型数据在页面上的可视化表现和操作入口。
-
-:::info 注意
-
-+ 当使用平台提供的组件时，系统会自动将该组件与模型中的相应字段绑定。
-+ 若模型中不存在该字段，系统会在模型中生成对应的字段，且在模型组件中展示。
-
+# II. Models
+The model here is the model selected when creating a page. Model components are the visual representation and operation entry of model data on the page.
+:::info Note
+- When using components provided by the platform, the system will automatically bind the component to the corresponding field in the model.
+- If the field does not exist in the model, the system will generate the corresponding field in the model and display it in the model component.
 :::
-
-## （一）字段
-可根据页面绑定的模型，灵活使用无代码字段与低代码字段对页面进行配置。
-
-+ 无代码字段：模型下包含的由无代码设计器生成的字段
-+ 低代码字段：模型下包含的由代码编写或系统自动生成的字段。
-
-## （二）动作
-模型中包含一些系统默认的动作，这些动作是模型数据的基本操作，无需额外配置即可使用。
-
-:::info 注意
-
-以代码形式定义的ServerAction也会在模型的动作中进行展示。
-
+## (一) Fields
+According to the model bound to the page, No-Code Fields and Low-Code Fields can be flexibly used to configure the page.
+- No-Code Fields: Fields under the model generated by the No-Code Designer.
+- Low-Code Fields: Fields under the model written by code or automatically generated by the system.
+## (二) Actions
+The model includes some system default actions, which are basic operations on model data and can be used without additional configuration.
+:::info Note
+Server Actions defined in code form will also be displayed in the actions of the model.
 :::
-
-系统默认动作：
-
-+ 业务流程：跳转动作的快捷方式，可跳转至业务流程抽屉，需且仅需选择一项数据。
-
-:::tip 举例
-
+System default actions:
+- Business Process: A shortcut for the Navigation Action, which can navigate to the business process drawer and requires selecting only one piece of data.
+:::tip Example
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/yewuliucheng.gif)
-
 :::
-
-+ 导入：跳转动作的快捷方式，可跳转至导入弹窗，下载对应模板，填写后导入。
-
-:::tip 举例
-
+- Import: A shortcut for the Navigation Action, which can navigate to the import pop-up window, download the corresponding template, fill it in, and import it.
+:::tip Example
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/daoru.gif)
-
 :::
-
-+ 导出：跳转动作的快捷方式，可跳转至导出弹窗，选择导出模板后将数据导出。
-
-:::tip 举例
-
-根据模板导出：
-
+- Export: A shortcut for the Navigation Action, which can navigate to the export pop-up window and export data after selecting an export template.
+:::tip Example
+Export according to the template:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/daochu1.gif)
-
-根据模型选择字段导出：
-
+Export by selecting fields according to the model:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/daochu2.gif)
-
 :::
-
-+ 日志记录：跳转动作的快捷方式，可跳转至日志记录页面查看日志信息，需且仅需选择一项数据。
-
-:::info 注意
-
-需在业务审计为页面模型定义审计规则后该动作方可生效。
-
+- Log Record: A shortcut for the Navigation Action, which can navigate to the log record page to view log information and requires selecting only one piece of data.
+:::info Note
+This action can only take effect after defining an audit rule for the page model in business auditing.
 :::
-
-:::tip 举例
-
+:::tip Example
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/rizhijilu.gif)
-
 :::
-
-+ 分享：跳转动作的快捷方式，可跳转至分享弹窗，提供分享链接。
-
-:::tip 举例
-
+- Share: A shortcut for the Navigation Action, which can navigate to the share pop-up window and provide a share link.
+:::tip Example
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/fenxiang.gif)
-
 :::
-
-+ 创建：提交动作的快捷方式，可创建单条数据。
-+ 删除：提交动作的快捷方式，可删除单条或多条数据。
-+ 更新：提交动作的快捷方式，可更新单条数据。
-
-:::info 注意
-
-+ 业务流程、导入、导出、日志记录这四个动作，只有在页面所在应用已依赖相应的应用或模块后，才会在页面上显示。
-
+- Create: A shortcut for the Submission Action, which can create a single piece of data.
+- Delete: A shortcut for the Submission Action, which can delete a single or multiple pieces of data.
+- Update: A shortcut for the Submission Action, which can update a single piece of data.
+:::info Note
+- The four actions of Business Process, Import, Export, and Log Record will only be displayed on the page if the application where the page is located has depended on the corresponding application or module.
 :::
-

@@ -1,294 +1,200 @@
 ---
-title: 视图类型
+title: View Types
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 2
 ---
-在Oinone平台中，界面设计器提供了多种视图类型，以满足不同应用场景下的界面设计需求。
-
-以下是关于表单、表格、详情、画廊和树视图这五种视图类型的介绍：
-
-# 一、表单
-表单视图是一种用于数据输入和展示的视图类型。它通常包含多个字段（如文本框、下拉列表、单选按钮等），用户可以在这些字段中输入或选择数据。表单视图适用于需要用户填写并提交信息的场景，如注册页面、信息填写表单等。
-
-![设计表单示例页面](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/biaodan1.png)
-
-:::tip 举例
-
-表单视图展示效果：
-
-![表单展示页面示例](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/biaodan2.png)
-
+In the Oinone platform, the interface designer provides multiple view types to meet interface design requirements in different application scenarios.
+The following is an introduction to five view types: form, table, detail, gallery, and tree view:
+# 1. Form
+The form view is a view type used for data input and display. It usually contains multiple fields (such as text boxes, drop-down lists, radio buttons, etc.), where users can input or select data. The form view is suitable for scenarios where users need to fill in and submit information, such as registration pages and information filling forms.
+![Design Form Example Page](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/biaodan1.png)
+:::tip Example
+Form view display effect:
+![Form Display Page Example](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/biaodan2.png)
 :::
-
-在画布设计区，表单视图会默认提供一个表单组件，在该表单组件中配置的属性可作用于整个表单视图
-
-+ 标题排列方式：即标题与其内容的排列，分为横向和纵向两种。
-+ 禁用数据加载：开启此选项后，将不执行数据加载函数。
-+ 加载函数：若开启禁用数据加载，不显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
-+ 关联关系更新类型：当表单中的关联关系字段更新时数据的提交方式，包括全量提交与差量提交。
-    - 全量提交：提交全部数据。
-    - 差量提交：仅提交有更新的数据。
-
-:::tip 举例
-
-若表单中有多个字段，其中只有部分字段的数据发生了变化
-
-+ 选择差量提交时，仅会提交这些发生变化的字段数据
-+ 选择全量提交时，则会提交表单中所有字段的数据，无论其是否发生变化。
-
+In the canvas design area, the form view will default to providing a form component, and the attributes configured in this form component can act on the entire form view.
++ Title arrangement: that is, the arrangement of the title and its content, which is divided into horizontal and vertical.
++ Disable data loading: after enabling this option, the data loading function will not be executed.
++ Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
++ Association update type: the data submission method when the association field in the form is updated, including full submission and incremental submission.
+    - Full submission: submit all data.
+    - Incremental submission: only submit updated data.
+:::tip Example
+If there are multiple fields in the form, and only the data of some fields have changed
++ When incremental submission is selected, only the data of these changed fields will be submitted
++ When full submission is selected, the data of all fields in the form will be submitted, regardless of whether they have changed.
 :::
-
-# 二、详情
-详情视图用于展示数据项的详细信息，不可编辑。它通常与其他视图配合使用，用户可以通过其他视图中的链接或按钮进入详情视图查看数据项的详细信息。详情视图可以包含多种类型的字段，以提供丰富的信息展示。
-
-![设计详情页面示例](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/xiangqing1.png)
-
-:::tip 举例
-
-详情视图展示效果：
-
-![详情展示页面示例](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/xiangqing2.png)
-
+# 2. Detail
+The detail view is used to display detailed information of data items and cannot be edited. It is usually used in conjunction with other views. Users can enter the detail view through links or buttons in other views to view the detailed information of data items. The detail view can contain multiple types of fields to provide rich information display.
+![Design Detail Page Example](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/xiangqing1.png)
+:::tip Example
+Detail view display effect:
+![Detail Display Page Example](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/xiangqing2.png)
 :::
-
-在画布设计区，详情视图会默认提供一个详情组件，在该详情组件中配置的属性可作用于整个详情视图
-
-+ 标题排列方式：即标题与其内容的排列，分为横向和纵向两种。
-+ 禁用数据加载：开启此选项后，将不执行数据加载函数。
-+ 加载函数：若开启禁用数据加载，不显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
-
-# 三、表格
-表格视图用于以行和列的形式展示数据集合。每一行代表一个数据项，每一列代表数据项的一个属性。它适用于需要直观展示和操作数据集合的场景，如订单管理、客户列表等。
-
-:::warning 提示
-
-在表格中，除常规表格外，还支持树表和级联两种高级视图，以满足更复杂的展示需求。
-
+In the canvas design area, the detail view will default to providing a detail component, and the attributes configured in this detail component can act on the entire detail view.
++ Title arrangement: that is, the arrangement of the title and its content, which is divided into horizontal and vertical.
++ Disable data loading: after enabling this option, the data loading function will not be executed.
++ Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
+# 3. Table
+The table view is used to display data sets in the form of rows and columns. Each row represents a data item, and each column represents an attribute of the data item. It is suitable for scenarios that require intuitive display and operation of data sets, such as order management and customer lists.
+:::warning Prompt
+In addition to the regular table, the table also supports two advanced views, tree table and cascading, to meet more complex display requirements.
 :::
-
-![设计表格页面示例-默认表格](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/morenbiaoge1.png)
-
-:::tip 举例
-
-默认表格视图展示效果：
-
+![Design Table Page Example - Default Table](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/morenbiaoge1.png)
+:::tip Example
+Default table view display effect:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/morenbiaoge2.png)
-
 :::
-
-在画布设计区，表格视图默认包含一个搜索组件和一个表格组件，对这两个组件的属性配置将影响全局设置。当拖动其他组件进入画布时，必须将其放置在搜索组件或表格组件的内部，否则将无法成功创建该组件。
-
-## （一）默认表格
-+ 搜索组件属性
-    - 隐藏搜索按钮：若启用此选项，搜索组件中的所有动作按钮将会被隐藏。如需进行搜索，可按下回车键来执行搜索操作。
-    - 禁用折叠：若启用此选项，搜索区域将保持固定状态，不允许进行展开或收起操作。
-    - 选项卡标签：当页面所在模型下存在数据字典类型字段时，可为搜索组件设置选项卡标签。配置后，搜索栏将以标签卡的形式呈现。
-+ 表格组件属性
-    - 启用序号：若启用此选项，表格将自动在首列添加序号列，以便用户更便捷地查看数据顺序。
-    - 启用复选框：若启用此选项，表格将在起始位置显示复选框，允许用户勾选所需的数据项。
-    - 自动列宽：若启用此选项，表格的表头宽度将根据其内容自动进行适配调整。
-    - 最小列宽：即表格每列所允许的最小宽度。
-    - 行高：允许用户自定义表格的行高。
-    - 操作列显示数量：表格最右侧的操作列将默认展示一定数量的操作项，超出此数量的操作项将被折叠收起。
-    - 操作列排列方向：表格最右侧操作列中的动作项可按照水平或竖直方向进行排列。
-    - 操作列宽度：允许用户自定义表格最右侧操作列的宽度。
-    - 操作列按钮样式： 操作列中的动作项可采用不同的按钮样式，包括主要按钮、次要按钮以及不设置样式三种选项。
-
-        :::info 注意
-
-        主要按钮：以按钮形式呈现，具有底色，突出显示。
-
-        次要按钮：同样以按钮形式呈现，但无底色，相对低调。
-
-        不设置样式：不采用按钮样式，动作项以普通文本形式展示。
+In the canvas design area, the table view by default includes a search component and a table component. The attribute configuration of these two components will affect the global settings. When dragging other components into the canvas, they must be placed inside the search component or table component, otherwise the component cannot be successfully created.
+## (1) Default Table
++ Search component attributes
+    - Hide search button: if this option is enabled, all action buttons in the search component will be hidden. To perform a search, you can press the Enter key.
+    - Disable folding: if this option is enabled, the search area will remain fixed and not allow expansion or collapse operations.
+    - Tab label: when there are data dictionary type fields under the model where the page is located, a tab label can be set for the search component. After configuration, the search bar will be presented in the form of a tab.
++ Table component attributes
+    - Enable serial number: if this option is enabled, the table will automatically add a serial number column in the first column to facilitate users to view the data order more conveniently.
+    - Enable check box: if this option is enabled, the table will display a check box at the starting position, allowing users to check the required data items.
+    - Auto column width: if this option is enabled, the width of the table header will be automatically adapted according to its content.
+    - Minimum column width: that is, the minimum width allowed for each column of the table.
+    - Row height: allows users to customize the row height of the table.
+    - Number of operation columns displayed: the operation column on the far right of the table will default to displaying a certain number of operation items, and operation items exceeding this number will be folded up.
+    - Operation column arrangement direction: the action items in the operation column on the far right of the table can be arranged horizontally or vertically.
+    - Operation column width: allows users to customize the width of the operation column on the far right of the table.
+    - Operation column button style: action items in the operation column can adopt different button styles, including primary button, secondary button, and no style.
+        :::info Note
+        Primary button: presented in the form of a button, with a background color, and highlighted.
+        Secondary button: also presented in the form of a button, but without a background color, relatively low-key.
+        No style: do not use button style, and action items are displayed in ordinary text form.
         :::
-
-    - 分页器风格：分页器的展示样式，提供简约、标准以及隐藏三种风格供选择。
-    - 默认分页条数：即每页显示的数据条目数。
-    - 查询条件：在实际页面展示中，会按照配置的查询条件展示数据。
-    - 支持展开行：若开启此选项，可选定展示字段设置展开行视图
-        * 默认展开全部：若启用此功能，在实际展示页面中，所有展开行将直接呈现，无需额外操作。
-        * 展开操作展示字段定义：可从当前页面所属模型中选择字段，选定后，在实际展示页面中可展开该字段，以查看所设置的展开行视图。
-        * 设置展开行视图：可根据当前模型或关联模型自定义展开行的视图。不同模型提供的视图类型可能有所不同，请根据实际情况进行选择。可选择复制已有页面，或使用新页面来创建展开行视图。
-        * 展开行上下文：当数据在不同位置名称不一致，但实质上指代同一数据时，可通过配置展开行上下文来实现数据的映射。
-    - 支持树形展示:若启用此功能，表格数据将根据设置的关联字段和展开字段，以树形结构的形式进行直观展示。
-        * 默认展开全部：若启用此功能，在实际展示页面中，所有展开行将直接呈现，无需额外操作。
-        * 关联字段：需从表格所属模型中选择一个自关联字段，作为树形结构中的关联依据。
-        * 展开字段：可选择表格中的某一字段作为树形结构的展开字段，以便更好地展现数据的层次和关系。
-    - 双击行动作：允许用户自定义跳转动作，当在表格中双击某一行时，将自动执行所设定的动作。
-    - 允许表格编辑：若启用此功能，用户无需跳转至编辑页面，即可直接在表格中对数据进行快捷编辑。该功能提供三种编辑模式，分别为整行编辑、单元格编辑与自定义编辑。
-        * 整行编辑：当用户点击某一数据项时，整行数据将进入编辑状态，方便用户对该行数据进行全面修改。
-        * 单元格编辑：当用户点击某一数据项时，仅该特定单元格将进入编辑状态，实现精准修改。
-        * 自定义编辑：用户可根据实际需求，自定义编辑操作的范围和具体编辑动作，提供更高的灵活性和个性化设置。
-
-        :::info 注意
-
-        启用允许表格编辑功能后，还需进一步对表格中的各个字段设置是否启用行内编辑。只有启用了行内编辑的字段，才会在表格中展示相应的编辑功能。
-
+    - Paginator style: the display style of the paginator, providing three styles: simple, standard, and hidden.
+    - Default number of pages: that is, the number of data entries displayed on each page.
+    - Query conditions: in the actual page display, data will be displayed according to the configured query conditions.
+    - Support expandable rows: if this option is enabled, the expandable row view can be set for the selected display fields.
+        * Expand all by default: if this function is enabled, in the actual display page, all expandable rows will be directly presented without additional operations.
+        * Expand operation display field definition: you can select fields from the model to which the current page belongs. After selection, in the actual display page, you can expand the field to view the set expandable row view.
+        * Set expandable row view: you can customize the view of expandable rows according to the current model or associated model. Different models may provide different view types, please select according to the actual situation. You can choose to copy an existing page or use a new page to create an expandable row view.
+        * Expandable row context: when data has different names in different positions but essentially refers to the same data, data mapping can be achieved by configuring the expandable row context.
+    - Support tree display: if this function is enabled, the table data will be intuitively displayed in a tree structure according to the set associated fields and expandable fields.
+        * Expand all by default: if this function is enabled, in the actual display page, all expandable rows will be directly presented without additional operations.
+        * Associated field: you need to select a self-associated field from the model to which the table belongs as the basis for association in the tree structure.
+        * Expandable field: you can select a field in the table as the expandable field of the tree structure to better display the hierarchy and relationship of the data.
+    - Double-click action: allows users to customize the jump action, and when a row in the table is double-clicked, the set action will be automatically executed.
+    - Allow table editing: if this function is enabled, users can directly edit data in the table without jumping to the edit page. This function provides three editing modes: whole row editing, cell editing, and custom editing.
+        * Whole row editing: when the user clicks on a data item, the entire row of data will enter the editing state, facilitating the user to make comprehensive modifications to the row of data.
+        * Cell editing: when the user clicks on a data item, only the specific cell will enter the editing state to achieve precise modification.
+        * Custom editing: users can customize the scope of editing operations and specific editing actions according to actual needs, providing higher flexibility and personalized settings.
+        :::info Note
+        After enabling the allow table editing function, it is also necessary to further set whether to enable in-line editing for each field in the table. Only fields with in-line editing enabled will display the corresponding editing function in the table.
         :::
-
-    - 允许排序：启用此功能后，表格表头将显示排序图标，支持用户自定义选择升序或降序排序方式。
-    - 默认排序字段：开启排序功能后，表格将自动根据预设的默认排序字段进行排序展示。
-    - 禁用数据加载：开启此选项后，将不执行数据加载函数。
-    - 加载函数：若开启禁用数据加载，不显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
-
-## （二）树表
-![设计表格页面示例-数表](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shubiao1.png)
-
-:::tip 举例
-
-表格-树表视图展示效果：
-
-![数表展示页面示例](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shubiao2.png)
-
+    - Allow sorting: after enabling this function, the table header will display a sorting icon, supporting users to customize the selection of ascending or descending sorting methods.
+    - Default sorting field: after enabling the sorting function, the table will automatically sort and display according to the preset default sorting field.
+    - Disable data loading: after enabling this option, the data loading function will not be executed.
+    - Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
+## (2) Tree Table
+![Design Table Page Example - Tree Table](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shubiao1.png)
+:::tip Example
+Table - Tree Table View Display Effect:
+![Tree Table Display Page Example](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shubiao2.png)
 :::
-
-树表与默认表格在搜索组件和表格组件上保持一致，其区别在于树表额外增加了树形结构。通过设置树形结构，树表能够以层次化的形式展示数据，使得数据呈现更加清晰直观，在此，仅针对树的相关属性进行介绍，如需了解搜索组件与表格组件的详情，请查阅默认表格的相关介绍。
-
-+ 联动关系：指树形结构中需要展示的模型字段，用户可自定义设置多层联动关系。
-    - 层级关联关系字段：在设置多层联动关系时，从第二级开始及其后续层级中，将显示此属性，用于定义与上级模型的关联关系字段。
-    - 数据标题：即选项值名称，当进行多选时，这些数据将被拼接起来显示。默认选项字段为名称。
-    - 筛选条件：在实际页面展示中，会按照配置的筛选条件展示数据。
-    - 表格关联关系字段：指当前层级模型与页面所选模型之间的关联关系字段。
-    - 自关联关系字段：指当前层级模型中，与自身模型相一致的字段。
-
-:::info 注意
-
-必须构成完整的关联关系字段，才能成功生成联动关系。
-
+The tree table is consistent with the default table in the search component and table component, and the difference is that the tree table additionally adds a tree structure. By setting the tree structure, the tree table can display data in a hierarchical form, making the data presentation clearer and more intuitive. Here, only the relevant attributes of the tree are introduced. For details of the search component and table component, please refer to the relevant introduction of the default table.
++ Linkage relationship: refers to the model fields that need to be displayed in the tree structure, and users can customize the setting of multi-layer linkage relationships.
+    - Hierarchical association field: when setting a multi-layer linkage relationship, this attribute will be displayed from the second level and subsequent levels, and is used to define the association field with the upper-level model.
+    - Data title: that is, the name of the option value. When multiple selections are made, these data will be spliced and displayed. The default option field is the name.
+    - Filter conditions: in the actual page display, data will be displayed according to the configured filter conditions.
+    - Table association field: refers to the association field between the current level model and the model selected by the page.
+    - Self-association field: refers to the field in the current level model that is consistent with its own model.
+:::info Note
+A complete association field must be formed to successfully generate the linkage relationship.
 :::
-
-+ 支持搜索：若开启此功能，将在树形结构中展示搜索框，可对层级字段进行筛选。
-+ 展开层级：若设置了多层联动关系，可指定展开至哪一层级。
-
-## （三）级联
-与树表相似，其区别在于级联中增加了级联组件。在实际页面展示中，树表会动态地在下方展示子级选项，而级联则会动态地在右侧展示子级选项。在此，仅针对级联的相关属性进行介绍，如需了解搜索组件与表格组件的详情，请查阅默认表格的相关介绍。
-
-![设计表格页面示例-级联](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/jilianbiaoge1.png)
-
-:::tip 举例
-
-表格-级联视图展示效果：
-
-![级联展示页面示例](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/jilianbiaoge2.png)
-
++ Support search: if this function is enabled, a search box will be displayed in the tree structure, and hierarchical fields can be filtered.
++ Expand level: if a multi-layer linkage relationship is set, you can specify which level to expand to.
+## (3) Cascading
+Similar to the tree table, the difference is that a cascading component is added to the cascading. In the actual page display, the tree table will dynamically display sub-options below, while the cascading will dynamically display sub-options on the right. Here, only the relevant attributes of the cascading are introduced. For details of the search component and table component, please refer to the relevant introduction of the default table.
+![Design Table Page Example - Cascading](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/jilianbiaoge1.png)
+:::tip Example
+Table - Cascading View Display Effect:
+![Cascading Display Page Example](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/jilianbiaoge2.png)
 :::
-
-+ 联动关系：指树形结构中需要展示的模型字段，用户可自定义设置多层联动关系。
-    - 层级关联关系字段：在设置多层联动关系时，从第二级开始及其后续层级中，将显示此属性，用于定义与上级模型的关联关系字段。
-    - 数据标题：即选项值名称，当进行多选时，这些数据将被拼接起来显示。默认选项字段为名称。
-    - 筛选条件：在实际页面展示中，会按照配置的筛选条件展示数据。
-    - 表格关联关系字段：指当前层级模型与页面所选模型之间的关联关系字段。
-    - 自关联关系字段：指当前层级模型中，与自身模型相一致的字段。
-
-:::info 注意
-
-必须构成完整的关联关系字段，才能成功生成联动关系。
-
++ Linkage relationship: refers to the model fields that need to be displayed in the tree structure, and users can customize the setting of multi-layer linkage relationships.
+    - Hierarchical association field: when setting a multi-layer linkage relationship, this attribute will be displayed from the second level and subsequent levels, and is used to define the association field with the upper-level model.
+    - Data title: that is, the name of the option value. When multiple selections are made, these data will be spliced and displayed. The default option field is the name.
+    - Filter conditions: in the actual page display, data will be displayed according to the configured filter conditions.
+    - Table association field: refers to the association field between the current level model and the model selected by the page.
+    - Self-association field: refers to the field in the current level model that is consistent with its own model.
+:::info Note
+A complete association field must be formed to successfully generate the linkage relationship.
 :::
-
-+ 支持搜索：若开启此功能，将在树形结构中展示搜索框，可对层级字段进行筛选。
-
-# 四、画廊
-画廊视图以卡片的形式展示内容项，用户可以直观的浏览不同的内容项。适用于需要展示视觉内容丰富的场景，如产品展示、相册浏览等。
-
-![设计画廊页面示例-设计卡片](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/hualang1.png)
-
-![设计画廊页面示例-设计其他](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/hualang2.png)
-
-:::tip 举例
-
-画廊视图展示效果：
-
-![画廊展示页面示例](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/hualang3.png)
-
++ Support search: if this function is enabled, a search box will be displayed in the tree structure, and hierarchical fields can be filtered.
+# 4. Gallery
+The gallery view displays content items in the form of cards, allowing users to intuitively browse different content items. It is suitable for scenarios that need to display visually rich content, such as product displays and photo album browsing.
+![Design Gallery Page Example - Design Card](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/hualang1.png)
+![Design Gallery Page Example - Design Other](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/hualang2.png)
+:::tip Example
+Gallery view display effect:
+![Gallery Display Page Example](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/hualang3.png)
 :::
-
-在画布设计区，画廊视图由两个页面组成，分别为“设计卡片”和“设计其他”。在“设计卡片”页面，用户可以对画廊中的单个卡片视图进行设计，包含三个区域，分别为标题区、内容区与动作区，可以自行拖拽组件对其进行设置，设计效果将应用于所有卡片。而“设计其他”页面则默认包含一个搜索组件和一个画廊组件，对这两个组件的属性配置将影响全局的设置。
-
-+ 卡片属性：
-    - 边框可见性：可自定义设置边框的四边是否可见。
-    - 边框颜色：当存在可见边框时，显示该属性。可为可见边框设定颜色。
-+ 搜索组件属性
-    - 隐藏搜索按钮：若启用此选项，搜索组件中的所有动作按钮将会被隐藏。如需进行搜索，可按下回车键来执行搜索操作。
-    - 禁用折叠：若启用此选项，搜索区域将保持固定状态，不允许进行展开或收起操作。
-    - 选项卡标签：当页面所在模型下存在数据字典类型字段时，可为搜索组件设置选项卡标签。配置后，搜索栏将以标签卡的形式呈现。
-+ 画廊组件属性
-    - 一行展示卡片数量：即在一行中能够展示的卡片数量。
-    - 分页器风格：分页器的展示样式，提供简约、标准以及隐藏三种风格供选择。
-    - 默认分页条数：即每页显示的数据条目数。
-    - 查询条件：在实际页面展示中，会按照配置的查询条件展示数据。
-    - 禁用数据加载：开启此选项后，将不执行数据加载函数。
-    - 加载函数：若开启禁用数据加载，不显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
-
-# 五、树视图
-树视图用于以层次结构的形式展示数据项。每个数据项可以包含子项，形成层级结构。树视图支持展开和折叠操作，方便用户查看和管理具有层级关系的数据。适用于需要展示具有层级关系的数据的场景，如组织架构图、分类目录等。
-
-:::info 注意
-
-表格中的树表与树视图中的树表有所区别，级联同理：
-
-+ 表格中的树表以表格的模型为主模型
-+ 树视图中的树表则以树表的模型为主模型，左侧表单为展开的内容部分。
-
+In the canvas design area, the gallery view consists of two pages: "Design Card" and "Design Other". On the "Design Card" page, users can design a single card view in the gallery, which includes three areas: title area, content area, and action area. They can drag components to set them by themselves, and the design effect will be applied to all cards. The "Design Other" page by default includes a search component and a gallery component, and the attribute configuration of these two components will affect the global settings.
++ Card attributes:
+    - Border visibility: you can customize whether the four sides of the border are visible.
+    - Border color: when there is a visible border, this attribute is displayed. You can set the color for the visible border.
++ Search component attributes
+    - Hide search button: if this option is enabled, all action buttons in the search component will be hidden. To perform a search, you can press the Enter key.
+    - Disable folding: if this option is enabled, the search area will remain fixed and not allow expansion or collapse operations.
+    - Tab label: when there are data dictionary type fields under the model where the page is located, a tab label can be set for the search component. After configuration, the search bar will be presented in the form of a tab.
++ Gallery component attributes
+    - Number of cards displayed in a row: that is, the number of cards that can be displayed in a row.
+    - Paginator style: the display style of the paginator, providing three styles: simple, standard, and hidden.
+    - Default number of pages: that is, the number of data entries displayed on each page.
+    - Query conditions: in the actual page display, data will be displayed according to the configured query conditions.
+    - Disable data loading: after enabling this option, the data loading function will not be executed.
+    - Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
+# 5. Tree View
+The tree view is used to display data items in a hierarchical structure. Each data item can contain sub-items, forming a hierarchical structure. The tree view supports expand and collapse operations, which is convenient for users to view and manage data with hierarchical relationships. It is suitable for scenarios that need to display data with hierarchical relationships, such as organizational charts and classification directories.
+:::info Note
+The tree table in the table is different from the tree table in the tree view, and the same is true for cascading:
++ The tree table in the table uses the table's model as the main model
++ The tree table in the tree view uses the tree table's model as the main model, and the left form is the expanded content part.
 :::
-
-树视图分为树表和级联两种类型，由级联组件（或树形组件）与选定的视图类型组件共同构成。关于表单组件的相关属性，已在上述内容中详细介绍，此处不再赘述。
-
-## （一）树表
-![设计树视图页面示例-数表](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-shubiao1.png)
-
-:::tip 举例
-
-树视图-树表视图展示效果：
-
-![树视图展示页面示例-数表](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-shubiao2.png)
-
+The tree view is divided into two types: tree table and cascading, which are composed of a cascading component (or tree component) and a selected view type component. The relevant attributes of the form component have been described in detail above, and will not be repeated here.
+## (1) Tree Table
+![Design Tree View Page Example - Tree Table](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-shubiao1.png)
+:::tip Example
+Tree View - Tree Table View Display Effect:
+![Tree View Display Page Example - Tree Table](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-shubiao2.png)
 :::
-
-+ 联动关系：指树形结构中需要展示的模型字段，用户可自定义设置多层联动关系。
-    - 层级关联关系字段：在设置多层联动关系时，从第二级开始及其后续层级中，将显示此属性，用于定义与上级模型的关联关系字段。
-    - 数据标题：即选项值名称，当进行多选时，这些数据将被拼接起来显示。默认选项字段为名称。
-    - 筛选条件：在实际页面展示中，会按照配置的筛选条件展示数据。
-    - 自关联关系字段：指当前层级模型中，与自身模型相一致的字段。
-+ 支持展开页面：启用此功能后，可设置展开行视图。在实际展示页面的树形结构中，选择某一项后即可显示该视图。
-    - 视图类型：用户可选择展开行视图的类型，包括“详情”和“表单”两种选项。
-    - 页面模型：指当前页面所关联的模型。
-    - 页面内容：用户可选择复制已有页面或使用新页面。选择使用新页面时，可在所选的视图类型下自定义内容。
-    - 复制页面：当选择复制已有页面时，此属性将显示。用户可选择当前模型下符合视图类型的已发布页面进行复制。
-+ 支持搜索：若开启此功能，将在树形结构中展示搜索框，可对层级字段进行筛选。
-+ 展开层级：支持指定页面默认展开至哪一层级。
-
-## （二）级联
-![设计树视图页面示例-级联](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-jilian.png)
-
-:::tip 举例
-
-树视图-级联视图展示效果：
-
-![树视图展示页面示例-级联](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-jilian2.png)
-
++ Linkage relationship: refers to the model fields that need to be displayed in the tree structure, and users can customize the setting of multi-layer linkage relationships.
+    - Hierarchical association field: when setting a multi-layer linkage relationship, this attribute will be displayed from the second level and subsequent levels, and is used to define the association field with the upper-level model.
+    - Data title: that is, the name of the option value. When multiple selections are made, these data will be spliced and displayed. The default option field is the name.
+    - Filter conditions: in the actual page display, data will be displayed according to the configured filter conditions.
+    - Self-association field: refers to the field in the current level model that is consistent with its own model.
++ Support expand page: after enabling this function, you can set the expand row view. In the tree structure of the actual display page, after selecting an item, the view will be displayed.
+    - View type: users can choose the type of expand row view, including two options: "detail" and "form".
+    - Page model: refers to the model associated with the current page.
+    - Page content: users can choose to copy an existing page or use a new page. When choosing to use a new page, you can customize the content under the selected view type.
+    - Copy page: when choosing to copy an existing page, this attribute will be displayed. Users can choose to copy a published page that meets the view type under the current model.
++ Support search: if this function is enabled, a search box will be displayed in the tree structure, and hierarchical fields can be filtered.
++ Expand level: supports specifying which level the page defaults to expand to.
+## (2) Cascading
+![Design Tree View Page Example - Cascading](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-jilian.png)
+:::tip Example
+Tree View - Cascading View Display Effect:
+![Tree View Display Page Example - Cascading](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-jilian2.png)
 :::
-
-:::info 注意
-
-当存在两级以上联动关系时，才会在实际展示页面中以级联的方式呈现。当只有一级联动关系时，实际展示页面与树形树视图的展示页面一致。
-
+:::info Note
+When there are more than two levels of linkage relationships, they will be presented in a cascading manner in the actual display page. When there is only one level of linkage relationship, the actual display page is the same as the display page of the tree view.
 :::
-
-+ 联动关系：指树形结构中需要展示的模型字段，用户可自定义设置多层联动关系。
-    - 层级关联关系字段：在设置多层联动关系时，从第二级开始及其后续层级中，将显示此属性，用于定义与上级模型的关联关系字段。
-    - 数据标题：即选项值名称，当进行多选时，这些数据将被拼接起来显示。默认选项字段为名称。
-    - 筛选条件：在实际页面展示中，会按照配置的筛选条件展示数据。
-    - 自关联关系字段：指当前层级模型中，与自身模型相一致的字段。
-    - 标题：即每一级联框的标题。
-+ 支持展开页面：启用此功能后，可设置展开行视图。在实际展示页面的级联结构中，选择某一项后即可显示该视图。
-    - 视图类型：用户可选择展开行视图的类型，包括“详情”和“表单”两种选项。
-    - 页面模型：指当前页面所关联的模型。
-    - 页面内容：用户可选择复制已有页面或使用新页面。选择使用新页面时，可在所选的视图类型下自定义内容。
-    - 复制页面：当选择复制已有页面时，此属性将显示。用户可选择当前模型下符合视图类型的已发布页面进行复制。
-+ 支持搜索：若开启此功能，将在级联结构中展示搜索框，可对层级字段进行筛选。
-
++ Linkage relationship: refers to the model fields that need to be displayed in the tree structure, and users can customize the setting of multi-layer linkage relationships.
+    - Hierarchical association field: when setting a multi-layer linkage relationship, this attribute will be displayed from the second level and subsequent levels, and is used to define the association field with the upper-level model.
+    - Data title: that is, the name of the option value. When multiple selections are made, these data will be spliced and displayed. The default option field is the name.
+    - Filter conditions: in the actual page display, data will be displayed according to the configured filter conditions.
+    - Self-association field: refers to the field in the current level model that is consistent with its own model.
+    - Title: that is, the title of each cascading box.
++ Support expand page: after enabling this function, you can set the expand row view. In the cascading structure of the actual display page, after selecting an item, the view will be displayed.
+    - View type: users can choose the type of expand row view, including two options: "detail" and "form".
+    - Page model: refers to the model associated with the current page.
+    - Page content: users can choose to copy an existing page or use a new page. When choosing to use a new page, you can customize the content under the selected view type.
+    - Copy page: when choosing to copy an existing page, this attribute will be displayed. Users can choose to copy a published page that meets the view type under the current model.
++ Support search: if this function is enabled, a search box will be displayed in the cascading structure, and hierarchical fields can be filtered.

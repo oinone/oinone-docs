@@ -1,23 +1,23 @@
 ---
-title: 用户手册
+title: User Manual
 index: false
 category:
-  - 用户手册
+  - User Manual
 dir:
   link: true
   order: 3
 prev:
-  text: 常见问题
-  link: /en/InstallOrUpgrade/FAQ.md
+  text: Frequently Asked Questions
+  link: /zh-cn/InstallOrUpgrade/FAQ.md
 next:
-  text: 设计器
-  link: /en/UserManual/Designers/README.md
+  text: Designer
+  link: /zh-cn/UserManual/Designers/README.md
 ---
-&emsp;&emsp;本手册旨在帮助用户高效掌握数式 Oinone 平台核心功能，无论是业务人员快速搭建简易应用，还是开发者构建复杂系统，都能将抽象功能转化为可落地的操作步骤。通过循序渐进的学习，用户能够逐步积累经验，提升数字化开发能力。
-&emsp;&emsp;数式 Oinone 作为企业级低代码开发平台，深度整合设计器、标准模块、低无一体、应用中心与应用环境五大核心模块，构建起完整的数字化应用开发生态。其核心架构设计实现了技术能力与业务需求的深度融合，能够覆盖从简单表单设计到复杂业务系统搭建的全场景开发需求：
-+ 设计器：提供模型、界面、流程等七大可视化设计器，支持通过拖拽、配置的方式降低开发门槛，非专业开发者也能轻松完成页面布局、数据模型构建及业务流程编排。同时，开放代码级深度定制功能，满足开发者对复杂业务逻辑的实现需求。
-+ 标准模块：内置权限管理、资源管理等标准化模块，支持直接调用复用，大幅提升开发效率。此外，还支持自定义扩展模块，灵活适配企业个性化需求。
-+ 低无一体：实现 “低代码快速开发” 与 “无代码便捷配置” 的有机结合，兼顾开发效率与灵活性。
-+ 应用中心与应用环境：应用中心提供从创建、部署到运维的一站式管理服务；应用环境则采用多环境隔离机制，确保开发、生产环境的数据安全与版本可控。
+&emsp;&emsp;This manual aims to help users efficiently master the core functions of the Oinone Mathematical Formula Platform. Whether it's business personnel quickly building simple applications or developers constructing complex systems, it can transform abstract functions into actionable steps. Through step-by-step learning, users can gradually accumulate experience and enhance their digital development capabilities.
+&emsp;&emsp;As an enterprise-level low-code development platform, the Oinone Mathematical Formula Platform deeply integrates five core modules: Designer, Standard Modules, Low-code and No-code Integration, Application Center, and Application Environment, to build a complete digital application development ecosystem. Its core architecture design achieves a deep integration of technical capabilities and business requirements, covering the full range of development needs from simple form design to complex business system construction:
++ Designer: It provides seven visual designers for models, interfaces, processes, etc., supporting the reduction of development barriers through drag-and-drop and configuration methods. Non-professional developers can easily complete page layout, data model construction, and business process orchestration. At the same time, it offers in-depth code-level customization features to meet the developers' needs for implementing complex business logic.
++ Standard Modules: It comes with built-in standardized modules such as permission management and resource management, supporting direct invocation and reuse, which significantly improves development efficiency. In addition, it supports custom extension modules to flexibly adapt to the enterprise's personalized needs.
++ Low-code and No-code Integration: It realizes the organic combination of "rapid low-code development" and "convenient no-code configuration", taking into account both development efficiency and flexibility.
++ Application Center and Application Environment: The Application Center provides one-stop management services from creation, deployment to operation and maintenance; the Application Environment adopts a multi-environment isolation mechanism to ensure data security and version control in the development and production environments.
 
-&emsp;&emsp;后续章节将深入解析各模块具体操作流程，结合实际业务场景，以图文结合的形式展示平台功能的实际应用，助力用户直观理解并掌握数式 Oinone 低代码平台的使用技巧，实现 “所想即所得” 的高效开发体验。
+&emsp;&emsp;Subsequent chapters will delve into the specific operation processes of each module. Combined with actual business scenarios, the practical applications of the platform's functions will be presented in a图文结合的形式 (illustrated with text and pictures, I'm not sure if there's a more exact English term here, this is a literal translation). It will help users intuitively understand and master the usage skills of the Oinone Mathematical Formula low-code platform, achieving an efficient development experience of "what you think is what you get".

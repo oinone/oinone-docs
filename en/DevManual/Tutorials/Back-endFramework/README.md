@@ -1,26 +1,25 @@
 ---
-title: 后端框架（Back-end framework）
+title: Back-end Framework
 index: true
 category:
-  - 研发手册
-  - 教程
-  - 后端框架
+  - Development Manual
+  - Tutorials
+  - Back-end Framework
 dir:
   link: true
   order: 2
 next:
-  text: 章节 1：整体介绍（Architecture Overview）
+  text: Chapter 1:Architecture Overview
   link: /en/DevManual/Tutorials/Back-endFramework/chapter1-architecture-overview.md
 ---
-欢迎来到 “后端框架教程”！如果你看到了这个页面，那就说明你对开发自己的Oinone模块很感兴趣。这也可能意味着你最近刚加入Oinone公司担任一个技术岗位。不管怎样，你在Oinone技术领域的旅程从这里开始。
+Welcome to the "Back-end Framework Tutorial"! If you're seeing this page, it means you're interested in developing your own Oinone modules. This might also indicate that you've recently joined Oinone in a technical role. Regardless, your journey in the Oinone technical domain starts here.
 
-本教程的目标是让你在开发自己的用于管理人力资源的Oinone模块的同时，深入了解Oinone开发框架中最重要的部分。你应该按照给定的顺序学习各个章节，因为它们以循序渐进的方式涵盖了从头开始开发一个新的Oinone应用程序的过程。换句话说，每个章节都依赖于前一个章节。
+The goal of this tutorial is to help you gain an in-depth understanding of the most important parts of the Oinone development framework while developing your own Oinone module for human resource management. You should study the chapters in the given order, as they cover the process of developing a new Oinone application from scratch in a step-by-step manner. In other words, each chapter relies on the previous one.
 
-:::warning 提示
+:::warning Tip
 
-在继续学习之前，请务必按照设置指南准备好你的开发环境。
+Before proceeding, make sure to prepare your development environment as per the setup guide.
 
 :::
 
-准备好了吗？让我们开始吧！
-
+Ready? Let's get started!

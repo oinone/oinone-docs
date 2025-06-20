@@ -1,219 +1,220 @@
 ---
-title: 源码安装
+title: Source Code Installation
 index: true
 category:
-  - 安装与升级
+  - Installation and Upgrade
 order: 3
 prev:
-  text: Maven安装与注意事项
+  text: Maven Installation and Precautions
   link: /en/InstallOrUpgrade/Dev-ENV/Maven-setup.md
 next:
-  text: 快速体验：docker-full方式安装
+  text: Quick Experience:Installation in docker-full Mode
   link: /en/InstallOrUpgrade/EnterpriseEdition/docker-full-installation.md
 ---
-# 一、概述
-:::info 注意
 
-此模式仅开源社区版提供，企业版可以通过其他几种模式进行安装
+# 1. Overview
+:::info Note
 
-:::
-
-基础是准备一台4核16G的Linux服务器，操作系统推荐CentOS 7.6 64位。其中安装了数式Oinone所有必需的依赖项以及常见的有用包。
-
-它提供了更大的灵活性，例如，它允许自行根据业务需求运行特定范围的模块。这足以用于开发模块，并且可以作为生产部署的基础。在实际使用过程中，中间件如redis、zookeeper、rockerMq可以独立服务器部署。部署结构示意如下：
-
-![部署结构](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Source-code-installation/bsjg.jpeg)
-
-:::warning 提示
-
-源码安装在修改了Oinone框架源码的情况，不可以直接从社区版切换到企业版，其他版本皆可从社区版切换都企业版
+This mode is only available for the open-source community edition. The enterprise edition supports installation via various other methods.
 
 :::
 
-# 二、安装MySQL数据库
-如果没有现成的数据库，可自行到官网下载安装：[https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)。
+The basic requirement is to prepare a Linux server with 4 CPU cores and 16GB of memory. The recommended operating system is CentOS 7.6 64-bit, which comes pre-installed with all dependencies required by the Oinone framework, along with common and useful utility packages.
 
-参考[MySQL安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+This approach offers greater flexibility. For instance, it allows specific modules to be run according to business requirements. It is sufficient for module development and can serve as a foundation for production deployment. In actual use, middleware services such as Redis, Zookeeper, and RocketMQ can be deployed on independent servers. The deployment architecture is shown below:
 
-# 三、其他中间件部署
-| RocketMQ | 必须 | 4.7.1以上 |
-| --- | --- | --- |
-| Redis | 必须 | 5.0.2以上 |
-| Zookeeper | 必须 | 3.5.8以上 |
+![Deployment Structure](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Source-code-installation/bsjg.jpeg)
 
+:::warning Tip
 
-# 四、代码库简介
+When modifying the Oinone framework source code during source code installation, you cannot directly switch from the community edition to the enterprise edition. However, for other versions, switching from the community edition to the enterprise edition is supported.
+
+:::
+
+# 2. Install MySQL Database
+
+If you don't already have a database installed, you can download and install MySQL from the official website: [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/).
+
+Refer to [MySQL Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+
+# 3. Deployment of Other Middleware
+
+| Component  | Required | Version |
+| ---------- | -------- | ------- |
+| RocketMQ   | Yes      | Version 4.7.1 or higher |
+| Redis      | Yes      | Version 5.0.2 or higher |
+| Zookeeper  | Yes      | Version 3.5.8 or higher |
+
+# 4. Introduction to Code Repositories
 
 <table  cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 1400px; margin: 20px auto;">
   <thead>
     <tr style="background-color: #f5f5f5;">
-      <th style="text-align: left; font-weight: bold;">说明</th>
-      <th style="text-align: left; font-weight: bold;">代码库路径</th>
-      <th style="text-align: left; font-weight: bold;">备注</th>
+      <th style="text-align: left; font-weight: bold;">Description</th>
+      <th style="text-align: left; font-weight: bold;">Code Repository Path</th>
+      <th style="text-align: left; font-weight: bold;">Remarks</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3">快速启动</td>
+      <td rowspan="3">Quick Start</td>
       <td>oinone/oinone-frontend-starter.git</td>
-      <td>前端一键启动(PC)</td>
+      <td>One-click startup for web front-end</td>
     </tr>
     <tr>
       <td>oinone/oinone-mobile-starter.git</td>
-      <td>前端一键启动(移动)</td>
+      <td>One-click startup for mobile front-end</td>
     </tr>
     <tr>
       <td>oinone/oinone-backend-starter.git</td>
-      <td>后端一键启动</td>
+      <td>One-click startup for back-end</td>
     </tr>
     <tr>
-      <td rowspan="2">教程</td>
+      <td rowspan="2">Tutorials</td>
       <td>oinone/oinone-frontend-tutorials.git</td>
-      <td>前端教程工程</td>
+      <td>Front-end tutorial project</td>
     </tr>
     <tr>
       <td>oinone/oinone-backend-tutorials.git</td>
-      <td>后端教程工程</td>
+      <td>Back-end tutorial project</td>
     </tr>
     <tr>
-      <td rowspan="2">示例</td>
+      <td rowspan="2">Examples</td>
       <td>oinone/oinone-frontend-examples.git</td>
-      <td>前端示例工程</td>
+      <td>Front-end sample project</td>
     </tr>
     <tr>
       <td>oinone/oinone-backend-examples.git</td>
-      <td>后端示例工程</td>
+      <td>Back-end sample project</td>
     </tr>
     <tr>
-      <td>文档</td>
+      <td>Documentation</td>
       <td>oinone/oinone-docs</td>
-      <td>文档</td>
+      <td>Technical documentation</td>
     </tr>
     <tr>
-      <td rowspan="6">后端核心包</td>
+      <td rowspan="6">Back-end Core Packages</td>
       <td>oinone/oinone-pamirs/pamirs-spi.git</td>
-      <td>后端SPI基础功能包</td>
+      <td>Back-end SPI basic functionality package</td>
     </tr>
     <tr>
       <td>oinone/oinone-pamirs/pamirs-k2.git</td>
-      <td>后端元数据核心功能</td>
+      <td>Back-end metadata core functionality</td>
     </tr>
     <tr>
       <td>oinone/oinone-pamirs/pamirs-framework-commons.git</td>
-      <td>后端核心功能公共包</td>
+      <td>Back-end shared functionality core package</td>
     </tr>
     <tr>
       <td>oinone/oinone-pamirs/pamirs-framework.git</td>
-      <td>后端核心功能包</td>
+      <td>Back-end core functionality package</td>
     </tr>
     <tr>
       <td>oinone/oinone-pamirs/pamirs-framework-adaptor.git</td>
-      <td>后端核心功能扩展包</td>
+      <td>Back-end core extension package</td>
     </tr>
     <tr>
       <td>oinone/oinone-pamirs/pamirs-boot.git</td>
-      <td>后端应用启动包</td>
+      <td>Back-end application bootstrap package</td>
     </tr>
     <tr>
-      <td>后端基础功能包</td>
+      <td>Back-end Utility Package</td>
       <td>oinone/oinone-pamirs/pamirs-core.git</td>
-      <td>后端基础功能包</td>
+      <td>Back-end basic utility package</td>
     </tr>
     <tr>
-      <td rowspan="7">前端核心包</td>
+      <td rowspan="7">Front-end Core Packages</td>
       <td>oinone/oinone-kunlun/kunlun-engine.git</td>
-      <td>前端核心功能扩展包</td>
+      <td>Front-end extended core functionality</td>
     </tr>
     <tr>
       <td>oinone/oinone-kunlun/kunlun-framework.git</td>
-      <td>前端核心功能包</td>
+      <td>Front-end core functionality package</td>
     </tr>
     <tr>
       <td>oinone/oinone-kunlun/kunlun-boot.git</td>
-      <td>前端PC端启动工程</td>
+      <td>Front-end PC bootstrap project</td>
     </tr>
     <tr>
       <td>oinone/oinone-kunlun/kunlun-mobile-boot.git</td>
-      <td>前端移动端启动工程</td>
+      <td>Front-end mobile bootstrap project</td>
     </tr>
     <tr>
       <td>oinone/oinone-kunlun/kunlun-expression.git</td>
-      <td>前端表达式组件包</td>
+      <td>Front-end expression component library</td>
     </tr>
     <tr>
       <td>oinone/oinone-kunlun/kunlun-vue.git</td>
-      <td>前端PC端组件包</td>
+      <td>Front-end PC component library</td>
     </tr>
     <tr>
       <td>oinone/oinone-kunlun/kunlun-mobile-vue.git</td>
-      <td>前端移动端组件包</td>
+      <td>Front-end mobile component library</td>
     </tr>
   </tbody>
 </table>
 
-# 五、获取源
-获取数式Oinone的源代码有两种方式：ZIP **压缩包** 或通过**Git**。这里介绍Git为主
+# 5. Obtain the Source Code
 
-:::warning 提示
+There are two ways to acquire the source code of Shushi Oinone: download the ZIP package or use Git. This documentation focuses on Git.
 
-需要安装 [Git](https://git-scm.com/)，建议具备 Git 命令的基本知识才能继续。
+:::warning Tip
+
+Please install [Git](https://git-scm.com/). We recommend having basic knowledge of Git commands.
 
 :::
 
-要克隆 Git 存储库，可选择使用 HTTPS 或 SSH 进行克隆。大多数情况下，最佳选择是 HTTPS。不过，要为数式Oinone源代码做贡献，或遵循开发者入门教程时，请选择SSH。
+You can use either HTTPS or SSH to clone the Git repositories. HTTPS is recommended for most users. Use SSH if you want to contribute to the source code or follow the developer onboarding guide.
 
-## （一）前端
-```plain
-#Clone with Https
+## (1) Front-end
+
+```bash
+# Clone using HTTPS
 git clone https://github.com/oinone/oinone-frontend-starter.git
-```
 
-```plain
-#Clone with SSH
+# Clone using SSH
 git clone git@github.com:oinone/oinone-frontend-starter.git
 ```
 
-## （二）后端
-```plain
-#Clone with Https
-git clone https://github.com/oinone/oinone-backend-starter.git
-```
+## (2) Back-end
 
-```plain
-#Clone with SSH
+```bash
+# Clone using HTTPS
+git clone https://github.com/oinone/oinone-backend-starter.git
+
+# Clone using SSH
 git clone git@github.com:oinone/oinone-backend-starter.git
 ```
 
-# 六、运行后端
-## （一）修改src/main/resources/config/application-dev.yml文件
-如果Mysql、Zookeeper、Redis、RocketMQ不在一个宿主机中，在文件中找到如下代码，修改IP、端口、用户名以及密码等配置项
+# 6. Run the Back-end
 
-+ Mysql
+## (1) Modify the `src/main/resources/config/application-dev.yml` file
+
+If MySQL, Zookeeper, Redis, and RocketMQ are not on the same machine, you need to find the relevant code and modify IP, port, username, password, etc.
+
+### MySQL
 
 ```yaml
-# application.yml文件
-# 改成mysql所在服务器的ip、端口(端口号默认3306，使用服务器上mysql的端口一致)、username、password
+# Modify the MySQL connection information
 pamirs:
   datasource:
     pamirs:
       driverClassName: com.mysql.cj.jdbc.Driver
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://192.168.0.129:3306/demo_pamirs?useSSL=false&allowPublicKeyRetrieval=true&useServerPrepStmts=true&cachePrepStmts=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true
+      url: jdbc:mysql://192.168.0.129:3306/demo_pamirs?...
       username: root
       password: shushi@2019
     base:
       driverClassName: com.mysql.cj.jdbc.Driver
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://192.168.0.129:3306/demo_base?useSSL=false&allowPublicKeyRetrieval=true&useServerPrepStmts=true&cachePrepStmts=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true
+      url: jdbc:mysql://192.168.0.129:3306/demo_base?...
       username: root
       password: shushi@2019
-
 ```
 
-+ Zookeeper
+### Zookeeper
 
 ```yaml
-# application.yml文件
 dubbo:
   application:
     name: pamirs-designer
@@ -224,14 +225,7 @@ dubbo:
     name: dubbo
     port: 20880
     serialization: pamirs
-  consumer:
-    timeout: 5000
-  provider:
-    timeout: 5000
-  scan:
-    base-packages: pro.shushi
-  cloud:
-    subscribed-services:
+  ...
 pamirs:
   zookeeper:
     zkConnectString: 127.0.0.1:2181
@@ -239,10 +233,9 @@ pamirs:
     rootPath: /oinone
 ```
 
-+ Redis
+### Redis
 
 ```yaml
-# application.yml文件
 spring:
   redis:
     database: 0
@@ -252,26 +245,21 @@ spring:
     password: Abc@1234
     jedis:
       pool:
-        # 连接池中的最大空闲连接 默认8
         max-idle: 16
-        # 连接池中的最小空闲连接 默认0
         min-idle: 0
-        # 连接池最大连接数 默认8 ，负数表示没有限制
         max-active: 16
-        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认-1
         max-wait: 3000
 ```
 
-+ RocketMQ
+### RocketMQ
 
 ```yaml
-# application.yml文件
 spring:
   rocketmq:
     name-server: 127.0.0.1:9876
 ```
 
-+ 文件存储oss
+### File Storage OSS
 
 ```yaml
 cdn:
@@ -291,70 +279,71 @@ cdn:
     localFolderUrl: 
 ```
 
-:::danger 警告
+:::danger Warning
 
-体验企业版时数式会提默认配置，但需要注意，cdn正式环境需要替换成自己的服务器，而不是用数式科技提供测试服务器，该服务器会定时清理，导致文件丢失。
+For enterprise edition trials, Shushi provides default CDN configuration. In production environments, you must replace it with your own CDN server. The test server will be periodically cleared, and file loss may occur.
 
 :::
 
-更多oss配置请参考：[文件存储配置](/en/DevManual/Reference/Back-EndFramework/module-API.md#十四-文件存储配置-pamirs-file)
+For more OSS configurations, see: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#14-File-Storage-Configuration-pamirs-file)
 
-## （二）启动后端服务
-### 1. 使用Maven启动
-```shell
+## (2) Start the Back-end Service
+
+### 1. Use Maven
+
+```bash
 cd oinone-backend-starter && \
 mvn clean compile spring-boot:run \
-    -Dspring-boot.run.profiles=dev
+  -Dspring-boot.run.profiles=dev
 ```
 
-### 2. 使用使用IDEA启动
-IDEA导入`oinone-backend-starter`工程, 使用`pro.shushi.pamirs.starter.OinoneBackendStarterApp`作为main类启动
+### 2. Use IntelliJ IDEA
 
-启动之后会有类似输出信息，表示启动成功
+Import the `oinone-backend-starter` project into IDEA and set `pro.shushi.pamirs.starter.OinoneBackendStarterApp` as the main class.
 
-```shell
-Oinone Backend Starter App 启动耗时 54.168926917 s
-```
+Successful startup message:
 
-# 七、运行前端
-## （一）安装依赖、启动
 ```bash
-# 初始化安装依赖
-npm i
+Oinone Backend Starter App started in 54.168926917 s
+```
 
-# 开发模式启动
+# 7. Run the Front-end
+
+## (1) Install Dependencies and Start
+
+```bash
+npm i
 npm run dev
 ```
 
-## （二）配置接口地址
-### 1. `适合生产环境使用`将.env 里面的 API_BASE_URL 改为自己需要配置的地址
-### 2. `适合开发环境使用` vue.config.js 内 devServer.proxy.pamirs.target 的值修改为自己需要配置的地址
-> 方法 1 的优先级高于方法 2，如果想要方法 2 生效，需要把方法 1 的配置删除
->
+## (2) Configure API Endpoint
 
-## （三）静态资源配置
-```plain
+1. **For Production**: Modify `API_BASE_URL` in `.env`
+2. **For Development**: Modify `devServer.proxy.pamirs.target` in `vue.config.js`
+
+> Method 1 has higher precedence than Method 2. To use Method 2, delete Method 1.
+
+## (3) Static Resources
+
+```plaintext
 ├── public
 └────static.zip
 ```
 
-解压 static.zip 到 public 目录下
+Extract `static.zip` into the `public` directory.
 
-**建议将静态资源文件上传在 oss，然后将 .env 里面的`STATIC_IMG` 改成 oss 的地址**
+> It is recommended to upload static resources to OSS and set `STATIC_IMG` in `.env` to the OSS address.
 
+## (4) Directory Structure
 
-
-## （四）目录结构
-```plain
-├── public 发布用的目录，index.html入口文件将在这里
-│   └── static 静态资源
+```plaintext
+├── public                Static resource directory (contains index.html)
+│   └── static            Static assets
 │
-├── src 源代码
-│   └── main.ts 应用入口文件 这里会注册providers/application.ts
-├── .env 启动的环境变量，后端api的请求地址在这里
-├── package.json 包描述文件
-├── tsconfig.json ts配置文件，可配置语法校验
-└── vue.config.js vue的配置文件，里面可以配置webpack参数和开发模式的后端api请求地址
-
+├── src                   Source code
+│   └── main.ts           Entry file, registers `providers/application.ts`
+├── .env                 Environment variables file
+├── package.json         Project dependencies and scripts
+├── tsconfig.json        TypeScript configuration
+└── vue.config.js        Vue/Webpack configuration, including dev proxy
 ```
-

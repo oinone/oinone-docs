@@ -1,176 +1,109 @@
 ---
-title: 数据字典
+title: Data Dictionary
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 2
 ---
-数据字典是一些固定字典项的集合，可作为多选或单选的选项。
-
-# 一、筛选
-### 1.功能介绍
-根据实际需求，选择应用/模块、数据字典类型或输入名称进行筛选条件的定制，以便对数据字典进行精准筛选，支持一键清除所有筛选条件。
-
-:::info 注意
-
-在下拉选择应用/模块筛选项中，仅是对平台上的应用或模块进行了初步筛选。在实际筛选操作时，仍需进一步选择具体的应用或模块以完成配置。同理，只有当所有的筛选项都配置正确，才能筛选出正确的数据字典。
-
+The data dictionary is a collection of fixed dictionary items, which can be used as options for multiple-choice or single-choice.
+# 1. Filter
+### 1. Function Introduction
+According to actual needs, select applications/modules, data dictionary types, or enter names to customize filter conditions, so as to accurately filter data dictionaries. It supports one-click clearing of all filter conditions.
+:::info Note
+In the drop-down selection of application/module filter items, it is only a preliminary filter for the applications or modules on the platform. In the actual filtering operation, you still need to further select specific applications or modules to complete the configuration. Similarly, only when all filter items are configured correctly can the correct data dictionary be filtered out.
 :::
-
-### 2.操作方法
-+ 在筛选区选择或输入条件，完成对数据字典的筛选
-+ 点击「重置筛选」，清空所有已有筛选条件
-
+### 2. Operation Method
++ Select or enter conditions in the filter area to complete the filtering of the data dictionary
++ Click "Reset Filter" to clear all existing filter conditions
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E7%AD%9B%E9%80%89.png)
-
-# 二、导入数据字典
-### 1.功能介绍
-导入数据字典是添加数据字典的一种高效方式。可以下载平台提供的导入模板，按照既定规则填写相关信息后，将文件导入系统，即可快速完成数据字典的添加。
-
-+ 导入模板：平台提供模型的导入模板，不同的操作模式下提供的模板不同，可切换操作模式
-
-:::info 注意
-
-无代码模式与专家模式下提供的导入模板不同：
-
-+ 在无代码模式下，模板仅提供基础的模型信息，数量较少，易于填写
-+ 在专家模式下，模板提供丰富的模型信息，内容详尽，信息更具专业性
-
+# 2. Import Data Dictionary
+### 1. Function Introduction
+Importing a data dictionary is an efficient way to add a data dictionary. You can download the import template provided by the platform, fill in the relevant information according to the established rules, and import the file into the system to quickly complete the addition of the data dictionary.
++ Import Template: The platform provides a model import template, and the templates provided under different operation modes are different, and the operation mode can be switched
+:::info Note
+The import templates provided in No-Code Mode and Expert Mode are different:
++ In No-Code Mode, the template only provides basic model information, with a small quantity and easy to fill in
++ In Expert Mode, the template provides rich model information, detailed content, and more professional information
 :::
-
-+ 导入说明：详细阐述了导入模板中各项内容的含义及填写规则，可以帮助用户准确无误地填写导入文件。根据不同的操作模式，提供了相应的导入说明，以确保用户能够顺利完成导入过程。
-+ 上传文件：仅支持上传扩展名为.xlsx、.xls、.xlsm的文件
-
-:::info 注意
-
-在上传文件时，应上传与当前操作模式对应的文件。
-
++ Import Instructions: It elaborates the meaning and filling rules of each item in the import template, which can help users fill in the import file accurately. According to different operation modes, corresponding import instructions are provided to ensure that users can successfully complete the import process.
++ Upload File: Only files with extensions .xlsx, .xls, .xlsm are supported
+:::info Note
+When uploading a file, you should upload a file corresponding to the current operation mode.
 :::
-
-### 2.操作方法
-+ 点击「导入数据字典」，选择所属应用
-
+### 2. Operation Method
++ Click "Import Data Dictionary" and select the所属 application
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%AF%BC%E5%85%A51.png)
-
-+ 点击「当前模式」按钮，即可切换操作模式
-+ 点击「点击下载导入数据字典模板」，即可下载对应模式下的导入模板
-+ 点击「导入说明」，即可查看对应模式下的导入说明
-+ 点击「点击上传」或拖拽文件至指定位置，即可上传文件
-
++ Click the "Current Mode" button to switch the operation mode
++ Click "Click to Download Import Data Dictionary Template" to download the import template in the corresponding mode
++ Click "Import Instructions" to view the import instructions in the corresponding mode
++ Click "Click to Upload" or drag the file to the specified location to upload the file
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%AF%BC%E5%85%A52.png)
-
-# 三、添加数据字典
-### 1.功能介绍
-可通过模型设计器创建无代码字典，在专家模式和无代码模式下添加数据字典有所不同：
-
-+ 专家模式下添加数据字典：需填写字典名称、字典编码、字典项类型，添加字典项。其他填写内容可不填，部分内容系统会赋默认值
-
-:::info 注意
-
-+ 字典项类型有三种，分别为：二进制、文本、整数。
-    - 选择二进制时，字典项值需要选择存储在数据库二进制中的第几位。系统会根据字典项值区查找字典项名称，因此字典项值不可重复。
-    - 选择文本/整数时，数据字典项值只能输入文本/整数
-+ 字典编码在专家模式下可设置英文开头的编码，在无代码模式下默认为“模块编码.k2.Dick + 十位数字”
-
+# 3. Add Data Dictionary
+### 1. Function Introduction
+You can create a no-code dictionary through the model designer. Adding a data dictionary in Expert Mode and No-Code Mode is different:
++ Adding a data dictionary in Expert Mode: You need to fill in the dictionary name, dictionary code, dictionary item type, and add dictionary items. Other filling contents can be left blank, and some contents will be assigned default values by the system
+:::info Note
++ There are three types of dictionary items, namely: Binary, Text, and Integer.
+    - When selecting Binary, the dictionary item value needs to select which bit is stored in the database binary. The system will find the dictionary item name according to the dictionary item value area, so the dictionary item values cannot be repeated.
+    - When selecting Text/Integer, the data dictionary item value can only input text/integer
++ The dictionary code can set an English-led code in Expert Mode, and the default in No-Code Mode is "Module Code.k2.Dick + ten-digit number"
 :::
-
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E6%B7%BB%E5%8A%A01.png)
-
-+ 无代码模式下添加数据字典：填写字典名称，添加字典项即可
-
-:::info 注意
-
-系统会自动将字典项类型设置为“二进制”，并将字典项按照创建的先后顺序设置字典项值的位数
-
++ Adding a data dictionary in No-Code Mode: Fill in the dictionary name and add dictionary items
+:::info Note
+The system will automatically set the dictionary item type to "Binary" and set the number of digits of the dictionary item value in the order of creation
 :::
-
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E6%B7%BB%E5%8A%A02.png)
-
-### 2.操作方法
-点击「添加数据字典」，选择所属应用/模块进行添加，点击「添加」后展示弹窗，填写完毕后点击「确定」即可成功创建数据字典。
-
+### 2. Operation Method
+Click "Add Data Dictionary", select the所属 application/module to add, click "Add" to display the pop-up window, and click "OK" after filling in to successfully create the data dictionary.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E6%B7%BB%E5%8A%A03.png)
-
-:::info 注意
-
-在添加数据字典项时，至多30项
-
+:::info Note
+When adding data dictionary items, there are at most 30 items
 :::
-
-# 四、修改数据字典
-### 1.功能介绍
-成功创建的数据字典可以进行修改
-
-:::info 注意
-
-+ 仅部分信息支持修改，部分信息在创建时即已固定，因此创建时需谨慎填写
-+ 若数据字典已经被引用，则无法删除其中的字典项
-
+# 4. Modify Data Dictionary
+### 1. Function Introduction
+The successfully created data dictionary can be modified
+:::info Note
++ Only part of the information supports modification, and part of the information is fixed when created, so please fill in carefully when creating
++ If the data dictionary has been referenced, the dictionary items cannot be deleted
 :::
-
-### 2.操作方法
-点击「修改图标」，即可对数据字典进行修改
-
+### 2. Operation Method
+Click the "Modify Icon" to modify the data dictionary
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E4%BF%AE%E6%94%B9.png)
-
-# 五、查看引用关系
-### 1.功能介绍
-通过此功能，可以查看到与该数据字典存在引用关系的各类元素，包括其他字段、视图。每种关系通过列表展示，列表项为链接，可链接到对应的设计页面；内容为对应内容。
-
-:::tip 举例
-
-存在引用关系的字段的列表项显示的是字段的名称，列表项链接到对应字段的设计页面。
-
+# 5. View Reference Relationship
+### 1. Function Introduction
+Through this function, you can view various elements that have a reference relationship with the data dictionary, including other fields and views. Each relationship is displayed through a list, and the list items are links that can be linked to the corresponding design page; the content is the corresponding content.
+:::tip Example
+The list items of the fields with reference relationships display the names of the fields, and the list items link to the design page of the corresponding field.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%BC%95%E7%94%A81.png)
-
 :::
-
-### 2.操作方法
-点击「查看被引用的信息」图标，即可查看引用关系
-
+### 2. Operation Method
+Click the "View Referenced Information" icon to view the reference relationship
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%BC%95%E7%94%A82.png)
-
-# 六、废弃/可用数据字典
-### 1.功能介绍
-对于当前暂不使用的数据字典，可以执行废弃操作。若日后需要，只需将废弃的数据字典设置为可用状态，即可重新投入使用。此外，废弃后的数据字典仍支持对其进行编辑等操作
-
-:::info 注意
-
-废弃后的数据字典，在被其他设计器中引用时，将不再显示在可选列表中。
-
+# 6. Discard/Enable Data Dictionary
+### 1. Function Introduction
+For data dictionaries that are not currently in use, you can perform the discard operation. If needed in the future, you only need to set the discarded data dictionary to the available state to put it back into use. In addition, the discarded data dictionary still supports operations such as editing.
+:::info Note
+The discarded data dictionary will no longer be displayed in the optional list when referenced by other designers.
 :::
-
-### 2.操作方法
-点击「废弃」，数据字典设置为废弃状态，按钮变为「设为可用」；再次点击，数据字典设置为可用状态
-
+### 2. Operation Method
+Click "Discard" to set the data dictionary to the discarded state, and the button becomes "Set to Available"; click again to set the data dictionary to the available state
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%BA%9F%E5%BC%83.png)
-
-# 七、删除数据字典
-### 1.功能介绍
-当数据字典不再使用时，可以选择将其删除。低代码字典不允许删除。
-
-:::info 注意
-
-在删除前，需确保该数据字典未被其他设计器引用，否则删除操作将无法进行。
-
+# 7. Delete Data Dictionary
+### 1. Function Introduction
+When the data dictionary is no longer used, you can choose to delete it. Low-code dictionaries are not allowed to be deleted.
+:::info Note
+Before deleting, make sure that the data dictionary is not referenced by other designers, otherwise the deletion operation will not be possible.
 :::
-
-:::danger 警告
-
-删除后的数据字典将不再出现在字典列表中，且此操作不可恢复，请务必谨慎执行！
-
+:::danger Warning
+The deleted data dictionary will no longer appear in the dictionary list, and this operation is irreversible. Please perform it with caution!
 :::
-
-### 2.操作方法
-点击「删除」，即可删除数据字典。
-
+### 2. Operation Method
+Click "Delete" to delete the data dictionary.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%88%A0%E9%99%A4.png)
-
-# 八、附件：名词解释
-| 名词 | 描述 |
+# 8. Attachment: Noun Explanation
+| Noun | Description |
 | --- | --- |
-| 无代码字典 | 通过无代码设计器（如模型设计器、界面设计器）设计的字典称之为无代码字典 |
-| 低代码字典 | 通过低代码研发框架编写代码或无代码设计时系统自动生成的字典称之为低代码字典 |
-
-
+| No-Code Dictionary | A dictionary designed through a no-code designer (such as a model designer, interface designer) is called a no-code dictionary |
+| Low-Code Dictionary | A dictionary written through a low-code R&D framework or automatically generated during no-code design is called a low-code dictionary |

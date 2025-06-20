@@ -1,16 +1,16 @@
 ---
-title: Redis安装与注意事项
+title: Redis Installation and Precautions
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - Installation and Upgrade
+  - Environment Preparation
 order: 3
 
 ---
-# 一、下载安装包
-安装包下载地址
+# 一、Download Installation Package
+Installation package download address  
 
-|  | 下载链接 |
+|  | Download Link |
 | --- | --- |
 | Linux | https://github.com/redis/redis/archive/refs/tags/.tar.gz |
 | macOS | https://github.com/redis/redis/archive/refs/tags/.tar.gz |
@@ -19,64 +19,64 @@ order: 3
 
 
 
-:::warning 提示
+:::warning Tip
 
-Windows 系统没有 Redis 官方版本，当前提供的下载链接为社区维护的非官方版本。
-对于 Linux 和 macOS 用户，在下载时需将链接中的 `<version>` 替换为实际的版本号。以 7.4.2 为例，下载链接为：
+There is no official version of Redis for Windows systems, and the provided download link is a community-maintained unofficial version.  
+For Linux and macOS users, replace `<version>` in the link with the actual version number when downloading. Taking 7.4.2 as an example, the download link is:  
 [https://github.com/redis/redis/archive/refs/tags/7.4.2.tar.gz](https://github.com/redis/redis/archive/refs/tags/7.4.2.tar.gz)
 
 :::
 
-# 二、安装
-## （一）Linux、macOS安装
-### 1、下载
+# 二、Installation
+## （一）Linux/macOS Installation
+### 1、Download
 ```shell
 curl -L https://github.com/redis/redis/archive/refs/tags/7.4.2.tar.gz -o redis-7.4.2.tar.gz
 ```
 
-### 2、解压缩
+### 2、Unzip
 ```shell
 tar zxvf redis-7.4.2.tar.gz -C ./
 ```
 
-### 3、编译安装
+### 3、Compile and Install
 ```shell
-# 编译
-export REDIS_HOME=<替换为redis安装目录>
+# Compile
+export REDIS_HOME=<replace with Redis installation directory>
 make PREFIX=${REDIS_HOME}
-# 安装
+# Install
 make PREFIX=${REDIS_HOME} install
 ```
 
-### 4、验证
-命令行中输入
+### 4、Verification
+Enter in the command line  
 
 ```shell
 ${REDIS_HOME}/bin/redis-server --version
 ```
 
-输出，类似信息即为安装成功
+Output similar information indicates successful installation  
 
 ```shell
 Redis server v=7.4.2 sha=00000000:1 malloc=libc bits=64 build=2e82a5cbb28cb878
 ```
 
-## （二）Windows安装
-### 1、下载
+## （二）Windows Installation
+### 1、Download
 ```shell
 Invoke-WebRequest -Uri "https://github.com/tporadowski/redis/releases/download/v5.0.14.1/Redis-x64-5.0.14.1.zip" -OutFile "Redis-x64-5.0.14.1.zip"
 ```
 
-### 2、解压
-可视化工具或者使用如下命令解压
+### 2、Unzip
+Use a visualization tool or the following command to unzip  
 
 ```shell
 # Windows
-Expand-Archive Redis-x64-5.0.14.1.zip <Redis安装目录>\redis
+Expand-Archive Redis-x64-5.0.14.1.zip <Redis installation directory>\redis
 ```
 
-## （三）配置
-Linux/macOS安装参考配置，Windows版本可忽略
+## （三）Configuration
+Reference configuration for Linux/macOS installation (Windows version can be ignored)  
 
 ```properties
 # redis.conf
@@ -89,8 +89,8 @@ appendonly no
 appendfilename "appendonly.aof"
 ```
 
-## （四）运行
-### 1、启动
+## （四）Run
+### 1、Start
 ```properties
 # Linux/macOS
 nohup ./bin/redis-server redis.conf >> redis.nohup 2>&1 &
@@ -101,7 +101,7 @@ nohup ./bin/redis-server redis.conf >> redis.nohup 2>&1 &
 Start-Process -FilePath ".\redis-server.exe" -WindowStyle Hidden
 ```
 
-### 2、停止
+### 2、Stop
 ```properties
 # Linux/macOS
 ./bin/redis-cli -p 6379 shutdown
@@ -111,8 +111,3 @@ Start-Process -FilePath ".\redis-server.exe" -WindowStyle Hidden
 # Windows
 .\redis-cli.exe -p 6379 shutdown
 ```
-
-
-
-
-

@@ -1,33 +1,33 @@
 ---
-title: 章节 14：产品的个性化开发（Customized Features）
+title: Chapter 14:Customized Features
 category:
-  - 研发手册
-  - 教程
-  - 后端框架
+  - Development Manual
+  - Tutorials
+  - Back-end Framework
 order: 14
 next:
-  text: 探索前端框架（Discover the Front-end Framework）
+  text: Discover the Front-end Framework
   link: /en/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
 ---
-在上一章的学习中，我们对 Oinone 模块化开发有了更深入的认识。在实际业务开展过程中，除了产品研发工作，我们还需频繁应对不同客户的个性化需求。这些需求丰富多样，涉及应用程序的菜单布局、操作逻辑、交互方式以及表字段设置等多个维度。依照传统研发思路，满足此类需求通常需要对产品源码进行修改。而今天，我们将探讨 Oinone 如何在不改动产品源码的情况下，精准满足客户的个性化诉求。
+In the previous chapter, we gained a deeper understanding of Oinone modular development. In actual business operations, besides product research and development, we frequently need to address personalized needs of different customers. These needs are diverse, involving multiple dimensions such as menu layout, operational logic, interaction methods, and table field settings of the application. According to traditional development ideas, meeting such needs usually requires modifying the product source code. Today, we will explore how Oinone can precisely meet customer personalized demands without altering the product source code.
 
-# 一、模块的upstream属性
+# I. The upstream Attribute of Modules
 
-参考：与此主题相关的文档可在 “[Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md)” 中找到。
+Reference: Documentation related to this topic can be found in "[Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md)".
 
-:::info 目标：在本节结束时：
+:::info Objectives: By the end of this section:
 
-1. 新增 “ce_expenses（费用管理客户化模块）”，此模块为 “expenses” 的定制化版本，可满足特定场景下的个性化需求。
+1. Add a new "ce_expenses (Custom Expense Management Module)", which is a customized version of "expenses" to meet personalized needs in specific scenarios.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-14/info1-1.gif)
 
-2. 在费用管理客户化模块中为ProjectType扩展一个描述字段
+2. Extend a description field for ProjectType in the customized expense management module.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-14/info1-2.gif)
 
 :::
 
-在 Oinone 体系中，我们可借助无代码设计器，或者通过新增模块的方式，在无需触碰产品源码的前提下满足客户个性化诉求。而本节将着重介绍一种更为先进的模式，即创建一个 “客户化模块”，使其继承自 “标准产品模块”。我们把客户的个性化需求整合至 “客户化模块”，而非直接作用于 “标准产品模块”。如此一来，在同一环境下，既能清晰对比 “客户化模块” 与 “标准产品模块” 的差异，又能够展示针对不同客户定制后的效果。如：
+In the Oinone system, we can use no-code designers or add modules to meet customer personalization needs without touching the product source code. This section focuses on a more advanced model: creating a "customized module" that inherits from the "standard product module". We integrate customer personalized needs into the "customized module" rather than directly modifying the "standard product module". This allows clear comparison between the "customized module" and the "standard product module" in the same environment, while demonstrating the customized effects for different customers. For example:
 
 ```java
 @Component
@@ -54,51 +54,50 @@ public class CeExpensesModule implements PamirsModule {
         };
     }
 }
-
 ```
 
-该模块可通过 `upstreams` 来指定上游标准产品应用，确保与标品应用的数据与功能衔接顺畅。
+This module can specify the upstream standard product application through `upstreams` to ensure smooth data and functional connection with the standard product application.
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 1. 创建一个客户化模块：
->    创建 `ce_expenses` 模块，`upstreams` 属性设置为 `expenses` ，且依赖增加于 `expenses` 模块。
-> 2. 给 `ce_expenses` 模块，增加一个 `ce.expenses.CeProjectType` 模型继承父模型 `expenses.ProjectType` ，增加一个字段：类型描述（description）。
-> 3. 按照本节目标中所示，为 `ce.expenses.CeProjectType` 模型，添加一个菜单入口。
+> 1. Create a customized module:
+>    Create the `ce_expenses` module, set the `upstreams` attribute to `expenses`, and add a dependency on the `expenses` module.
+> 2. For the `ce_expenses` module, add a `ce.expenses.CeProjectType` model that inherits from the parent model `expenses.ProjectType`, and add a field: Type Description (description).
+> 3. As shown in the objectives of this section, add a menu entry for the `ce.expenses.CeProjectType` model.
 
-:::danger 警告
+:::danger Warning
 
-各个模块的包路径，不能包含相同的包路径，否则会导致元数据加载出问题。所以如链接模块`ce_expenses` 它的包路径建议以link开头如：pro.shushi.oinone.trutorials.ce.expenses
-
-:::
-
-# 二、函数特性
-
-基于 Oinone 开发，能赋予研发人员的代码出色扩展性，以应对客户的个性化。逻辑除了通过重写函数以外，Oinone还提供了两种方式：
-
-1. 扩展点：用于扩展函数逻辑。扩展点类似于SPI机制（Service Provider Interface），是一种服务发现机制。这一机制为函数逻辑的扩展提供了可能。
-2. 拦截器：为平台满足条件的函数以非侵入方式根据优先级扩展函数执行前和执行后的逻辑。
-
-:::danger 警告
-
-默认情况下，扩展点和拦截器仅对页面发起的请求生效，对于在 Java 代码里直接调用函数的情况则不产生作用。
+The package paths of each module must not contain the same package path; otherwise, metadata loading will be problematic. Therefore, for linked modules like `ce_expenses`, its package path is recommended to start with "link", such as: pro.shushi.oinone.trutorials.ce.expenses.
 
 :::
 
-## （一）扩展点
+# II. Function Features
 
-参考：与此主题相关的文档可在 “[扩展点](/en/DevManual/Reference/Back-EndFramework/functions-API.md#二、extpoint-扩展点)” 中找到。
+Developing based on Oinone endows the developed code with excellent extensibility to address customer personalization. In addition to overriding functions, Oinone provides two ways to extend logic:
 
-:::info 目标：在本节结束时：
+1. Extpoints: Used to extend function logic. Extpoints are similar to the SPI mechanism (Service Provider Interface), a service discovery mechanism that enables the extension of function logic.
+2. Hooks: Non-invasively extend pre and post-execution logic for platform functions that meet conditions, based on priority.
 
-1. 费用管理的模块的项目类型在新增操作时不会有消息提示
-2. 费用管理的客户化模块的项目类型和新项目类型在新增操作时都会有消息提示
+:::danger Warning
+
+By default, extpoints and hooks only take effect for requests initiated from pages, not for functions directly called in Java code.
+
+:::
+
+## (一) Extpoints
+
+Reference: Documentation related to this topic can be found in "[Extpoints](/en/DevManual/Reference/Back-EndFramework/functions-API.md#二、extpoint-扩展点)".
+
+:::info Objectives: By the end of this section:
+
+1. No message prompt will appear when adding a new project type in the expense management module.
+2. Message prompts will appear when adding a new project type in both the customized expense management module and the new project type.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-14/info2.gif)
 
 :::
 
-Oinone所有的函数都提供了默认的前置扩展点、重载扩展点和后置扩展点，其技术名称的规则是所扩展函数的**函数编码fun**加上“Before”、“Override”和“After”后缀；如：
+All functions in Oinone provide default pre-extpoints, override extpoints, and post-extpoints. The technical naming rule is to add "Before", "Override", and "After" suffixes to the **function code fun** of the extended function. For example:
 
 ```java
 package pro.shushi.oinone.trutorials.ce.expenses.api.extpoint;
@@ -134,37 +133,37 @@ public class TestModelExtpointImpl implements TestModelExtpoint {
 }
 ```
 
-使用 `@Ext(TestModel.class)` 标记扩展点所扩展函数所在的类，以此明确命名空间。借助 `@ExtPoint` 来定义扩展点，利用 `@ExtPoint.Implement` 定义扩展点的实现。通过 `expression` 和 `priority` 分别设定扩展点的生效条件与优先级。在表达式里，可使用 `context` 与函数参数（如示例中的 `data`）作为变量，其中 `context` 的 `requestFromModule` 代表请求发起的模块。
+Use `@Ext(TestModel.class)` to mark the class where the extended function is located, clarifying the namespace. Define extpoints with `@ExtPoint` and their implementations with `@ExtPoint.Implement`. Set the activation condition and priority of the extpoint through `expression` and `priority`. In the expression, `context` and function parameters (such as `data` in the example) can be used as variables, where `context.requestFromModule` represents the module that initiated the request.
 
-:::warning 提示
+:::warning Tip
 
-扩展点可通过 `expression` 属性配置生效条件，默认留空时即自动生效。一个扩展点可设多个扩展点实现，Oinone最终会按条件与优先级，只选择一个执行。
+Extpoints can be configured with activation conditions through the `expression` attribute, which takes effect automatically when left empty. An extpoint can have multiple implementations, and Oinone will select only one to execute based on conditions and priority.
 
 :::
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 按照本节目标中所示，于 `ce_expenses` 模块中，新增项目类型记录，提示相关信息。
+> As shown in the objectives of this section, add a project type record in the `ce_expenses` module and prompt relevant information.
 
-:::danger 警告
+:::danger Warning
 
-函数参数请勿命名为 `context`，该命名会与 Oinone 内置上下文产生冲突，致使表达式执行异常。
-
-:::
-
-:::warning 提示
-
-子模型不仅继承父模型的字段与函数，在继承函数时，还会同步继承函数的扩展点。
+Do not name function parameters `context`, as this will conflict with Oinone's built-in context, causing expression execution exceptions.
 
 :::
 
-## （二）拦截器
+:::warning Tip
 
-参考：与此主题相关的文档可在 “[Hook](/en/DevManual/Reference/Back-EndFramework/functions-API.md#三、hook-拦截器)” 中找到。
+Submodels not only inherit fields and functions from the parent model but also synchronously inherit the extpoints of the inherited functions.
 
-:::info 目标：在本节结束时
+:::
 
-客户化模块对新项目类型进行新增操作时，Java后台会打印如下日志：
+## (二) Hooks
+
+Reference: Documentation related to this topic can be found in "[Hook](/en/DevManual/Reference/Back-EndFramework/functions-API.md#三、hook-拦截器)".
+
+:::info Objectives: By the end of this section
+
+When adding a new project type in the customized module, the Java backend will print the following log:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-14/info3.gif)
 
@@ -172,7 +171,7 @@ public class TestModelExtpointImpl implements TestModelExtpoint {
 
 :::
 
-拦截器分为前置与后置两类。前置拦截器处理所拦截函数的入参，后置拦截器则针对所拦截函数的出参进行处理。如：
+Hooks are divided into two types: pre-hooks and post-hooks. Pre-hooks process the input parameters of the intercepted function, while post-hooks process the output parameters of the intercepted function. For example:
 
 ```java
 package pro.shushi.oinone.trutorials.ce.expenses.core.hook;
@@ -197,25 +196,24 @@ public class TestModelCreateBeforeHook implements HookBefore {
 }
 ```
 
-Oinone通过在方法上添加 `@Hook` 注解，可将该方法标记为拦截器。其中，前置拦截器需实现 `HookBefore` 接口，后置拦截器则需实现 `HookAfter` 接口。示例为前置拦截器其入参涵盖当前拦截函数定义及拦截函数的输入参数。拦截器的执行顺序可通过 `priority` 属性灵活调整，该数值越小，对应拦截器的执行优先级越高，将优先触发执行。
+Oinone marks a method as a hook by adding the `@Hook` annotation. Pre-hooks need to implement the `HookBefore` interface, while post-hooks need to implement the `HookAfter` interface. The example shows a pre-hook whose input parameters include the current intercepted function definition and the input parameters of the intercepted function. The execution order of hooks can be flexibly adjusted through the `priority` attribute—the smaller the value, the higher the execution priority of the corresponding hook.
 
-:::warning 提示
+:::warning Tip
 
-拦截器采用类似 AOP 的机制，可对任意函数进行拦截，并支持多个拦截器按优先级顺序执行。通过非必填字段`module`、`model`、`fun`、函数类型及`active`，精准筛选出适用于当前拦截方法的生效拦截器。
-
-:::
-
-:::danger 警告
-
-由于拦截器会对所有函数进行拦截，若拦截器数量过多，将不可避免地导致性能下降。
+Hooks use an AOP-like mechanism to intercept any function and support the execution of multiple hooks in priority order. Through non-mandatory fields `module`, `model`, `fun`, function type, and `active`, accurately filter the effective hooks applicable to the current intercepted method.
 
 :::
 
-> **练习（Exercise）**
+:::danger Warning
+
+Since hooks intercept all functions, an excessive number of hooks will inevitably lead to performance degradation.
+
+:::
+
+> **Exercise**
 >
-> 按照本节目标中所示，于 `ce_expenses` 模块中，新增项目类型记录，系统打印对应日志。
+> As shown in the objectives of this section, add a project type record in the `ce_expenses` module, and the system will print the corresponding log.
 
 
 
-后端框架基础教程到此就结束啦，相信你已掌握要点。若实操遇问题，欢迎随时交流。后续还有进阶内容，期待与你共同进步！
-
+This concludes the basic tutorial on the back-end framework. We believe you have mastered the key points. If you encounter problems during practical operations, feel free to communicate at any time. Advanced content will follow, and we look forward to progressing together with you!

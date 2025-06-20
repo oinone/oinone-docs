@@ -1,34 +1,33 @@
 ---
-title: 界面设计器
+title: UI Designer
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 dir:
    link: true
    order: 2
 prev:
-  text: 数据编码
-  link: /en/UserManual/Designers/ModelDesigner/data-coding.md
+  text: Data Coding
+  link: /zh-cn/UserManual/Designers/ModelDesigner/data-coding.md
 next:
-  text: 视图管理
-  link: /en/UserManual/Designers/UIDesigner/view-management.md
+  text: View Management
+  link: /zh-cn/UserManual/Designers/UIDesigner/view-management.md
 ---
-&emsp;&emsp;界面设计器是Oinone平台设计器的重要组成部分，它提供了直观的可视化界面，允许用户通过拖拽和配置组件的方式来构建应用界面，而无需依赖传统的手写大量代码的方式。这种设计器旨在简化界面开发过程，提高开发效率，同时确保界面的美观和易用性。通过界面设计器，用户可以根据业务需求快速定制界面布局、样式和功能，满足不同场景下的应用需求。
+&emsp;&emsp;The UI Designer is an important part of the Oinone platform designer. It provides an intuitive visual interface that allows users to build application interfaces by dragging and configuring components, eliminating the need to write a large amount of code manually. This designer aims to simplify the interface development process, improve development efficiency, and ensure the aesthetics and usability of the interface. Through the UI Designer, users can quickly customize interface layouts, styles, and functions according to business requirements to meet the application needs of different scenarios.
 
-+ 丰富的组件库：提供多种常用的UI组件，如按钮、文本框、下拉列表、表格等，用户可以直接拖拽使用，减少重复开发工作。
-+ 自定义样式：支持用户自定义组件的样式，如颜色、字体、边框等，以满足品牌或个性化需求。
-+ 响应式设计：支持响应式布局，确保应用在不同设备上都能有良好的显示效果。
-+ 交互设计：允许用户设置组件间的交互逻辑，如点击按钮后显示弹窗、表单提交前校验等，提升用户体验。
-+ 实时预览：提供实时预览功能，用户在设计界面时可以即时看到效果，方便进行调整和优化。
++ Rich component library: It offers a variety of commonly used UI components, such as buttons, text boxes, dropdown lists, and tables. Users can directly drag and use these components, reducing repetitive development work.
++ Customizable styles: It supports users to customize the styles of components, such as colors, fonts, and borders, to meet brand or personalized requirements.
++ Responsive design: It supports responsive layouts to ensure that the application has a good display effect on different devices.
++ Interaction design: It allows users to set the interaction logic between components, such as displaying a pop-up window after clicking a button or validating a form before submission, enhancing the user experience.
++ Real-time preview: It provides a real-time preview function, allowing users to instantly see the effects while designing the interface, facilitating adjustments and optimizations.
 
-通过以上特点，Oinone的界面设计器为用户提供了强大的界面开发能力，可以帮助用户快速构建符合业务需求的高质量应用界面。
+With the above features, Oinone's UI Designer provides users with powerful interface development capabilities, which can help users quickly build high-quality application interfaces that meet business requirements.
 
-界面设计器中包含三个部分，分别为：页面、组件、菜单
+The UI Designer consists of three parts: pages, components, and menus.
 
-1. 页面：作为数据增删改查的入口，负责展示数据信息并提供交互界面，用户通过页面进行数据的填写、查看等操作。
-2. 组件：页面中的所有元素和内容均由组件构成，组件是构成页面的基本单元。
-3. 菜单：即应用的导航菜单，将页面绑定至菜单后，用户即可通过菜单快速访问和查看相应页面。
+1. Pages: As the entry points for data creation, deletion, modification, and query, pages are responsible for displaying data information and providing interaction interfaces. Users can fill in and view data through pages.
+2. Components: All elements and content on the pages are composed of components. Components are the basic units that make up pages.
+3. Menus: These are the navigation menus of the application. After binding pages to the menus, users can quickly access and view the corresponding pages through the menus.
 
-接下来将对这三个部分进行详细讲解。
-
+The following will provide a detailed explanation of these three parts.

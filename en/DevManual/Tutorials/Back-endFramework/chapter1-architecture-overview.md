@@ -1,73 +1,80 @@
 ---
-title: 章节 1：整体介绍（Architecture Overview）
+title: Chapter 1:Architecture Overview
 index: true
 category:
-  - 研发手册
-  - 教程
-  - 后端框架
+  - Development Manual
+  - Tutorials
+  - Back-end Framework
 order: 1
 prev:
-  text: 后端框架（Back-end framework）
+  text: Back-end Framework
   link: /en/DevManual/Tutorials/Back-endFramework/README.md
 ---
-# 一、前后端分离架构
-在软件开发中，前后端分离架构是一种高效的模式，将用户界面（前端）与业务逻辑、数据处理（后端）明确分开，使它们能独立开发、测试与部署。
 
-前端负责与用户交互，呈现及接收输入，由 HTML、CSS、JavaScript 构成，复杂项目还会用 React、Vue.js 等框架提升开发效率。后端专注业务逻辑、数据存储，通过 Python（搭配 Django 等）、Java（如 Spring Boot）、Node.js（结合 Express）等语言及框架实现。后端与 MySQL、PostgreSQL 等数据库交互，以 API 形式为前端提供数据，API 多遵循 RESTful 或 GraphQL 规范。
+# I. Frontend-Backend Separation Architecture
 
-此架构优势显著。开发团队可依专长分工，提高效率与代码质量。前后端能独立部署更新，降低维护成本与风险，且利于跨平台开发。电商平台就是典型应用，前端展示商品、购物车等，后端处理库存、订单等逻辑。
+In software development, the frontend-backend separation architecture is an efficient model that clearly separates the user interface (frontend) from business logic and data processing (backend), allowing them to be developed, tested, and deployed independently.  
 
-总之，前后端分离架构凭借清晰职责划分、高效开发及良好维护性，成为现代软件构建的重要模式。
+The frontend is responsible for user interaction, presentation, and input reception, composed of HTML, CSS, and JavaScript. Complex projects often use frameworks like React or Vue.js to enhance development efficiency. The backend focuses on business logic and data storage, implemented using languages and frameworks such as Python (with Django), Java (e.g., Spring Boot), or Node.js (with Express). The backend interacts with databases like MySQL or PostgreSQL and provides data to the frontend via APIs, typically following RESTful or GraphQL specifications.  
 
-数式Oinone的前端采用Vue.js，后端采用 Java 技术体系，API 遵循 GraphQL 规范。
+This architecture offers significant advantages. Development teams can divide tasks based on expertise, improving efficiency and code quality. Frontend and backend can be deployed and updated independently, reducing maintenance costs and risks while facilitating cross-platform development. E-commerce platforms are typical applications: the frontend displays products and shopping carts, while the backend handles inventory and order logic.  
 
-:::warning 提示：数式Oinone框架让前后端分离的开发模式更进一步
+In summary, the frontend-backend separation architecture, with its clear responsibility division, efficient development, and good maintainability, has become a crucial model for modern software construction.  
 
-前端只有在组件不满足需求或者特色业务组件开发的时候，进行前端专业开发工作。这样既保留前后端分离架构带来的好处，同时减少了因为业务开发过程中前后端不必要的沟通工作，极大地提升了效率。
+Shushi Oinone employs Vue.js for the frontend, a Java technology stack for the backend, and follows GraphQL specifications for APIs.  
 
-:::
 
-:::tip 举例：利用Oinone改进您的前后研发分工（**建议可选**）
+:::warning Tip: Shushi Oinone framework advances the frontend-backend separation development model  
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-1/tip.gif)
+Frontend development is only required when components need customization or special business components need to be built. This retains the benefits of frontend-backend separation while reducing unnecessary communication between front-end and back-end teams during business development, greatly improving efficiency.  
 
 :::
 
-# 二、Oinone Module
-模块(module): 它是将程序划分成若干个子功能，每个模块完成了一个子功能，再把这些模块总起来组成一个整体。它是按业务领域划分和管理的最小单元，是一组功能、界面的集合。
+:::tip Example: Optimize your front-end and back-end development division with Oinone (**optional recommendation**)  
 
-Oinone 模块既可以为 Oinone 系统添加全新的业务逻辑，也可以修改和扩展现有的业务逻辑。可以创建一个模块，将你业务所需的用户组织管理规则添加到Oinone的通用用户组织支持中，而另一个不同的模块可以添加对实时可视化的支持。
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-1/tip.gif)  
 
-在 Oinone 中，一切都以模块开始和结束。
+:::
 
-术语：开发人员将他们的业务功能分组到 Oinone 模块中。主要面向用户的模块被标记并显示为应用程序（Apps），但大多数模块并非应用程序。
 
-# 三、Module structure 模块结构
-每个模块都是独立的一个Java模块，工程结构按Spring面向接口编程规范一般包括：api工程和core工程。一个 Oinone 模块是通过其XxModule.java文件来声明的。[模块定义文件说明](/en/DevManual/Reference/Back-EndFramework/module-API.md)
+# II. Oinone Module  
 
-## （一）每个模块都需要配置扫描路径：
-当一个 Oinone 模块包含业务对象时，这些文件会被组织成在模块的扫描包路径下
+A module is a division of a program into sub-functions, where each module completes a sub-function, and together they form an integrated whole. It is the smallest unit divided and managed by business domain, a collection of functions and interfaces.  
 
-+ 使用packagePrefix方法来配置模块需要扫描元数据的包路径
+Oinone modules can either add entirely new business logic to the Oinone system or modify and extend existing logic. For example, one module can add business-specific user organization management rules to Oinone's general user organization support, while another can add real-time visualization capabilities.  
 
-## （二）一个简化的模块目录结构：
+In Oinone, everything starts and ends with modules.  
+
+Terminology: Developers group business functions into Oinone modules. User-facing modules are marked and displayed as applications (Apps), but most modules are not applications.  
+
+
+# III. Module Structure  
+
+Each module is an independent Java module. The project structure follows Spring's interface-oriented programming specifications, generally including `api` and `core` projects. An Oinone module is declared via its `XxModule.java` file. See [Module Definition File Description](/en/DevManual/Reference/Back-EndFramework/module-API.md) for details.  
+
+
+## (I) Package Scanning Configuration for Each Module  
+
+When an Oinone module contains business objects, these files are organized under the module's scanning package path:  
+- Use the `packagePrefix` method to configure the package paths where metadata should be scanned.  
+
+
+## (II) Simplified Module Directory Structure  
+
 ```plain
 Module
-├── module-api  模块接口工程
-│   ├── model   模型
-│   └── Module.java 模块定义
-└── module-core 模块实现工程
-    ├── action  行为
-    └── init    数据初始化
-```
-
-# 四、Oinone Editions
-Oinone 有两个版本：Oinone 企业版（需许可证且为共享源代码）和 Oinone 社区版（开源）。除了技术支持或升级等服务外，企业版还为 Oinone 提供了额外的功能。从技术角度来看，这些功能只是在社区版提供的模块基础上安装的新模块。
+├── module-api  Module interface project
+│   ├── model   Models
+│   └── Module.java  Module definition
+└── module-core  Module implementation project
+    ├── action  Actions
+    └── init    Data initialization
+```  
 
 
-准备好开始了吗？现在是时候编写你自己的应用程序了！
+# IV. Oinone Editions  
+
+Oinone has two versions: Oinone Enterprise Edition (requiring a license with shared source code) and Oinone Community Edition (open-source). In addition to technical support or upgrade services, the Enterprise Edition provides additional features, which technically are just new modules installed on top of the Community Edition's modules.  
 
 
-
-
-
+Ready to start? It's time to write your own application!

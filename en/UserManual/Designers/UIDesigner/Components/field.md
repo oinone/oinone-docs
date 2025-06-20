@@ -1,1370 +1,1256 @@
 ---
-title: 字段
+title: Fields
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 2
 ---
-# 一、通用属性
-## 表单
-+ 创建属性：同模型设计器创建字段，当创建一个字段类组件时，会在页面所在模型下新增一个对应的字段。
-+ 标题：组件在当前页面的展示名称。
-+ 隐藏标题：开启此选项后，组件的标题将被隐藏。
-+ 占位提示：在输入框或选择框未填写内容时，显示的浅色提示文字，用于引导用户输入，但不会影响字段的实际值。
-+ 描述说明：提供组件的描述信息，通常用于阐述字段的范围、注意事项等，帮助用户更好地理解和填写。对于字段类组件，描述说明将展示在组件的下方。
+# I. General Attributes
+## Form
++ Creation Attribute: Similar to creating fields in the model designer, when creating a field-type component, a corresponding field will be added under the model of the current page.
++ Title: The display name of the component on the current page.
++ Hide Title: When this option is enabled, the title of the component will be hidden.
++ Placeholder Prompt: When the input box or selection box is empty, it shows light-colored prompt text to guide users to input, which does not affect the actual value of the field.
++ Description: Provides descriptive information about the component, usually used to explain the scope and precautions of the field, helping users better understand and fill in. For field-type components, the description will be displayed below the component.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tongyong1.png)
 
-+ 默认值：在实际页面展示时，该字段将默认展示设定的值。若删除或更改字段，原默认值不会自动回填。
-+ 计算公式：若计算值涉及变量，当变量变更时，计算值同步变化。
++ Default Value: When the actual page is displayed, the field will show the set value by default. If the field is deleted or changed, the original default value will not be automatically filled back.
++ Calculation Formula: If the calculated value involves variables, when the variables change, the calculated value will change synchronously.
 
-:::info 注意
+:::info Note
 
-若同时设置了默认值和计算公式，在实际页面中，默认值会先填入，后续字段值会根据计算函数变更
-
-:::
-
-:::warning 提示
-
-有关计算公式中自定义表达式的填写，可以查看「自定义表达式」文档。
+If both the default value and the calculation formula are set, on the actual page, the default value will be filled in first, and then the field value will change according to the calculation function.
 
 :::
 
-+ 是否只读：设为只读，在实际页面中，字段可见，但不可编辑。若设置条件只读，则在符合条件时只读。
-+ 是否禁用：设为禁用，在实际页面中，字段可见，但不可编辑。若设置条件禁用，则在符合条件时禁用。
+:::warning Tip
 
-:::warning 提示
-
-一般为字段类组件设置是否只读，为动作型组件设置是否禁用。
+For the filling of custom expressions in the calculation formula, you can refer to the "Custom Expressions" document.
 
 :::
 
-+ 是否隐藏：设为隐藏，在实际页面中，字段不可见，也不可编辑。若设置条件隐藏，则在符合条件时隐藏。在设计页面时，隐藏的组件仍会展示。
-+ 是否必填：可以控制字段在当前页面是否必填，若设置为必填则会在标题前以*作为标识。若设置条件必填，则在符合条件时必填。
-+ 数据校验：支持自定义校验规则，用于检验输入的数据是否符合设定的要求。
++ Read-only: If set to read-only, on the actual page, the field is visible but cannot be edited. If conditional read-only is set, it will be read-only when the conditions are met.
++ Disabled: If set to disabled, on the actual page, the field is visible but cannot be edited. If conditional disable is set, it will be disabled when the conditions are met.
 
-:::warning 提示
+:::warning Tip
 
-有关数据校验中自定义表达式的填写，可以查看「自定义表达式」文档。
-
-:::
-
-+ 校验未通过提示：当输入的数据未通过校验时，将显示相应的提示信息。
-+ 提交数据：开关开启后，若当前字段变更，则根据提交函数，对提交方式所涵盖的数据范围进行变更
-+ 清除数据：开关开启后，若当前字段变更，会清除所选字段范围。
-+ 标题排列方式：即标题与其内容的排列，分为横向和纵向两种。
-+ 宽度：即组件占所在行的大小
-+ 显示设备：包括PC端、移动端与PAD端。
-
-:::tip 举例
-
-在设计PC端页面时，若组件的显示设备设置为仅移动端而未包含PC端，则在实际页面展示中，该组件及其所包含的其他组件均不会显示在PC端页面上。
+Generally, set read-only for field-type components and set disabled for action-type components.
 
 :::
 
-+ 显示清除按钮：开启此功能后，当输入框中有内容时，用户可一键清除已输入的内容。
++ Hidden: If set to hidden, on the actual page, the field is invisible and cannot be edited. If conditional hiding is set, it will be hidden when the conditions are met. When designing the page, the hidden component will still be displayed.
++ Required: You can control whether the field is required on the current page. If set to required, an asterisk (*) will be displayed before the title. If conditional requirement is set, it will be required when the conditions are met.
++ Data Validation: Supports custom validation rules to check whether the input data meets the set requirements.
+
+:::warning Tip
+
+For the filling of custom expressions in data validation, you can refer to the "Custom Expressions" document.
+
+:::
+
++ Validation Failure Prompt: When the input data fails the validation, the corresponding prompt message will be displayed.
++ Submit Data: When the switch is enabled, if the current field changes, the data scope covered by the submission method will be changed according to the submission function.
++ Clear Data: When the switch is enabled, if the current field changes, the selected field scope will be cleared.
++ Title Arrangement: That is, the arrangement of the title and its content, which is divided into horizontal and vertical arrangements.
++ Width: That is, the size of the component in the current row.
++ Display Devices: Include PC, mobile, and PAD.
+
+:::tip Example
+
+When designing a PC page, if the display device of a component is set to only mobile and does not include PC, on the actual page, the component and other components it contains will not be displayed on the PC page.
+
+:::
+
++ Show Clear Button: When this function is enabled, when there is content in the input box, users can clear the input content with one click.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tongyong2.png)
 
-## 表格
-+ 标题：组件在当前页面的展示名称。
-+ 计算公式：若计算值涉及变量，当变量变更时，计算值同步变化。
-+ 是否隐藏：设为隐藏，在实际页面中，字段不可见，也不可编辑。若设置条件隐藏，则在符合条件时隐藏。在设计页面时，隐藏的组件仍会展示。
-+ 行内编辑：启用后可在单元格中直接编辑字段内容。若设置条件启用，则在符合条件时支持编辑。
-    - 是否必填：可以控制字段在当前页面是否必填，若设置为必填则会在标题前以*作为标识。若设置条件必填，则在符合条件时必填。
-    - 数据校验：支持自定义校验规则，用于检验输入的数据是否符合设定的要求。
-    - 校验未通过提示：当输入的数据未通过校验时，将显示相应的提示信息。
-    - 二次确认：开启此功能后，在执行某一动作前，将弹出确认框进行二次确认。可自定义提示类型、方向、文字等弹框内容。
-    - 支持前/后缀：支持为输入内容添加前后缀，前后缀类型可选择文字或图表。当选择文字类型时，可选择是否将前/后缀内容存储，以便在数据高度重合时简化操作流程。
-+ 字段动作配置：启用此功能后，当点击字段数据时，即可执行预先配置好的动作。
-    - 操作方式：即用于选择字段的操作方式，可选择单击或双击
-    - 指定点击动作：可自定义点击字段时执行的具体动作，选择范围限定于当前表格行内已包含的动作选项。
-+ 固定列宽：用于指定字段在表格中所在列的固定宽度。一旦设置了固定列宽，无论表格中包含多少列，该列的宽度都将保持恒定。
-+ 最小列宽：用于设定字段在表格中所在列的最小宽度。当表格中的列宽度发生变化时，可缩小的最小值将受限于所设置的最小列宽。
+## Table
++ Title: The display name of the component on the current page.
++ Calculation Formula: If the calculated value involves variables, when the variables change, the calculated value will change synchronously.
++ Hidden: If set to hidden, on the actual page, the field is invisible and cannot be edited. If conditional hiding is set, it will be hidden when the conditions are met. When designing the page, the hidden component will still be displayed.
++ Inline Editing: When enabled, the field content can be directly edited in the cell. If conditional enablement is set, editing will be supported when the conditions are met.
+    - Required: You can control whether the field is required on the current page. If set to required, an asterisk (*) will be displayed before the title. If conditional requirement is set, it will be required when the conditions are met.
+    - Data Validation: Supports custom validation rules to check whether the input data meets the set requirements.
+    - Validation Failure Prompt: When the input data fails the validation, the corresponding prompt message will be displayed.
+    - Double Confirmation: When this function is enabled, before performing an action, a confirmation box will pop up for double confirmation. You can customize the prompt type, direction, text, and other content of the pop-up box.
+    - Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
++ Field Action Configuration: When this function is enabled, when you click on the field data, the pre-configured action will be executed.
+    - Operation Method: Used to select the operation method of the field, which can be single-click or double-click.
+    - Specify Click Action: You can customize the specific action to be executed when clicking on the field. The selection range is limited to the action options included in the current table row.
++ Fixed Column Width: Used to specify the fixed width of the column where the field is located in the table. Once the fixed column width is set, the width of this column will remain constant regardless of the number of columns in the table.
++ Minimum Column Width: Used to set the minimum width of the column where the field is located in the table. When the column width in the table changes, the minimum shrinkable value will be limited by the set minimum column width.
 
-:::info 注意
+:::info Note
 
-1. 若固定列宽的设置值小于最小列宽，则以最小列宽作为实际显示的列宽。
-2. 手动调整表格列宽后，原先设置的固定列宽与最小列宽将不再有效。需通过表头设置恢复其默认值，方可使这些设置重新生效。
+1. If the set value of the fixed column width is less than the minimum column width, the minimum column width will be used as the actual displayed column width.
+2. After manually adjusting the table column width, the previously set fixed column width and minimum column width will no longer be effective. You need to restore their default values through the table header settings for these settings to take effect again.
 
 :::
 
-+ 表头对齐方式：即表格中表头单元格内容的对齐方式，包括左对齐、居中对齐、右对齐。
-+ 内容对齐方式：即表格中数据单元格内容的对齐方式，包括左对齐、居中对齐、右对齐。
-+ 显示设备：包括PC端、移动端与PAD端。
-+ 允许排序：启用此功能后，该字段所在列将显示排序图标，支持用户自定义选择升序或降序排序方式。
++ Header Alignment: That is, the alignment of the content in the table header cells, including left alignment, center alignment, and right alignment.
++ Content Alignment: That is, the alignment of the content in the data cells in the table, including left alignment, center alignment, and right alignment.
++ Display Devices: Include PC, mobile, and PAD.
++ Allow Sorting: When this function is enabled, a sorting icon will be displayed in the column where the field is located, allowing users to customize the ascending or descending sorting method.
 
-# 二、特有属性
-## （一）单行文本
-单行文本框，适用于记录名称、编码等简短文字内容。
+# II. Specific Attributes
+## (1) Single-line Text
+A single-line text box is suitable for recording short text content such as names and codes.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang2.png)
 
 :::
 
-单行文本特有属性：
+Specific attributes of single-line text:
 
-+ 创建属性
-    - 字段业务类型：仅支持文本类型
-+ 文本类型：包含文本与密码，默认为文本。若设置为文本，则输入时内容可见；若设置为密码，则输入时内容不可见。
++ Creation Attribute
+    - Field Business Type: Only supports text type.
++ Text Type: Includes text and password, with text as the default. If set to text, the input content will be visible; if set to password, the input content will be invisible.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang3.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang4.png)
 
-+ 最大/小长度：可设定输入内容的长度范围，包括最大长度和最小长度，以限制用户输入。
-+ 输入格式：提供多种输入格式限制选项，包括无限制、网址、身份证和自定义。选择自定义时，可通过正则表达式定义具体格式，并设置格式不符时的提示内容。
-+ 是否支持前/后缀：支持为输入内容添加前后缀，前后缀类型可选择文字或图标。当选择文字类型时，可选择是否将前/后缀内容存储，以便在数据高度重合时简化操作流程。
-+ 显示计数器：若用户需要关注输入内容的长度，可开启显示计数器功能，在输入时将实时看到当前内容的长度。
++ Maximum/Minimum Length: You can set the length range of the input content, including the maximum and minimum lengths, to limit user input.
++ Input Format: Provides multiple input format restriction options, including no restriction, URL, ID card, and custom. When custom is selected, you can define the specific format through a regular expression and set the prompt message when the format does not match.
++ Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
++ Show Counter: If users need to pay attention to the length of the input content, they can enable the show counter function to see the current length of the content in real-time while inputting.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang5.png)
 
-## （二）多行文本
-多行文本框，适用于记录意见、备注等较长文字内容。
+## (2) Multi-line Text
+A multi-line text box is suitable for recording long text content such as opinions and remarks.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/duohang1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/duohang2.png)
 
 :::
 
-多行文本特有属性：
+Specific attributes of multi-line text:
 
-+ 创建属性
-    - 字段业务类型：仅支持多行文本类型
-+ 最大/小长度：可设定输入内容的长度范围，包括最大长度和最小长度，以限制用户输入。
-+ 显示计数器：若用户需要关注输入内容的长度，可开启显示计数器功能，在输入时将实时看到当前内容的长度。
++ Creation Attribute
+    - Field Business Type: Only supports multi-line text type.
++ Maximum/Minimum Length: You can set the length range of the input content, including the maximum and minimum lengths, to limit user input.
++ Show Counter: If users need to pay attention to the length of the input content, they can enable the show counter function to see the current length of the content in real-time while inputting.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/duohang3.png)
 
-## （三）富文本
-一种可内嵌于浏览器的所见即所得文本编辑器，功能类似Word，适用于编辑篇幅较长的说明性文字，支持改变字体样式、插入图片等操作。
+## (3) Rich Text
+A WYSIWYG text editor that can be embedded in the browser, similar to Word in function. It is suitable for editing long descriptive text and supports operations such as changing font styles and inserting pictures.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fuwenben1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fuwenben2.png)
 
 :::
 
-富文本特有属性：
+Specific attributes of rich text:
 
-+ 创建属性
-    - 字段业务类型：仅支持富文本类型
-+ 高度：指组件在实际页面中展示的尺寸大小。
++ Creation Attribute
+    - Field Business Type: Only supports rich text type.
++ Height: Refers to the size of the component displayed on the actual page.
 
-## （四）整数
-仅允许输入整数，适用于输入天数、数量等整数型数据。
+## (4) Integer
+Only allows integer input, suitable for inputting integer data such as days and quantities.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/zhengshu1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/zhengshu2.png)
 
 :::
 
-整数特有属性：
+Specific attributes of integers:
 
-+ 创建属性
-    - 字段业务类型：仅支持整数类型
-+ 最大/小值：可设定输入内容的值范围，包括最大值和最小值，以限制用户输入。
-+ 是否支持前后缀：支持为输入内容添加前后缀，前后缀类型可选择文字或图标。当选择文字类型时，可选择是否将前/后缀内容存储，以便在数据高度重合时简化操作流程。
-+ 显示千分位：开启此功能，当输入数值较大时，以千分位格式展示。
++ Creation Attribute
+    - Field Business Type: Only supports integer type.
++ Maximum/Minimum Value: You can set the value range of the input content, including the maximum and minimum values, to limit user input.
++ Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
++ Show Thousands Separator: When this function is enabled, when the input value is large, it will be displayed in thousands separator format.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/zhengshu3.png)
 
-## （五）小数
-仅允许输入小数，适用于输入金额、温度等小数型数据。
+## (5) Decimal
+Only allows decimal input, suitable for inputting decimal data such as amounts and temperatures.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xiaoshu1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xiaoshu2.png)
 
 :::
 
-小数特有属性：
+Specific attributes of decimals:
 
-+ 创建属性
-    - 字段业务类型：仅支持浮点数类型
-    - 精度：限制小数的精度范围，其值需介于1至2之间。
-+ 最大/小值：可设定输入内容的值范围，包括最大值和最小值，以限制用户输入。
-+ 保留小数位数：其值需在创建组件时设置的精度范围内。
-+ 是否支持前/后缀：支持为输入内容添加前后缀，前后缀类型可选择文字或图标。当选择文字类型时，可选择是否将前/后缀内容存储，以便在数据高度重合时简化操作流程。
-+ 显示千分位：开启此功能，当输入数值较大时，以千分位格式展示。
++ Creation Attribute
+    - Field Business Type: Only supports floating-point type.
+    - Precision: Limits the precision range of decimals, and its value must be between 1 and 2.
++ Maximum/Minimum Value: You can set the value range of the input content, including the maximum and minimum values, to limit user input.
++ Decimal Places: Its value must be within the precision range set when creating the component.
++ Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
++ Show Thousands Separator: When this function is enabled, when the input value is large, it will be displayed in thousands separator format.
 
-## （六）下拉单选
-可从多个选项中下拉选择一个数据值，选项为可关联模型数据、数据字典或布尔型数据，适用于单一选择场景。
+## (6) Drop-down Single Selection
+Allows users to select one data value from multiple options in a drop-down list. The options can be associated with model data, data dictionaries, or boolean data, suitable for single-selection scenarios.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx2.gif)
 
 :::
 
-下拉单选特有属性：
+Specific attributes of drop-down single selection:
 
-+ 创建属性
-    - 字段业务类型：支持布尔型、数据字典、多对一
++ Creation Attribute
+    - Field Business Type: Supports boolean, data dictionary, and many-to-one.
 
-:::info 注意
+:::info Note
 
-+ 数据字典需选择已有数据字典
-+ 多对一需设置关联模型
++ For data dictionaries, existing data dictionaries need to be selected.
++ For many-to-one, the associated model needs to be set.
 
 :::
 
-+ 选项类型：即创建时的字段业务类型，不可更改。
-+ 自动填充数据字典可选项：当字段业务类型为数据字典时，显示该属性。若开启此选项，则在数据字典中增添字典项会同步更新。
-+ 选项字段：当字段业务为多对一时，显示该属性。可选择特定字段作为选项值，当进行多选时，这些选项值将被拼接起来显示。默认选项字段为名称。
++ Option Type: That is, the field business type at creation, which cannot be changed.
++ Auto-fill Data Dictionary Options: When the field business type is a data dictionary, this attribute is displayed. If this option is enabled, adding dictionary items to the data dictionary will be updated synchronously.
++ Option Field: When the field business is many-to-one, this attribute is displayed. You can select a specific field as the option value. When multiple selections are made, these option values will be concatenated and displayed. The default option field is the name.
 
-:::warning 提示
+:::warning Tip
 
-可以在选项字段之间设置常量内容作为间隔，如「-」、「/」等。
+You can set constant content as a separator between option fields, such as "-" or "/".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx3.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx4.png)
 
 :::
 
-+ 搜索字段：当字段业务为多对一时，显示该属性。 用户在输入框中输入内容时，若所输入内容包含在搜索字段中，则这些包含内容的值将被作为搜索内容展示出来。默认情况下，所有选项字段均设为搜索字段，可根据需要选择是否使用已有的搜索条件。
++ Search Field: When the field business is many-to-one, this attribute is displayed. When users input content in the input box, if the input content is included in the search field, the values containing this content will be displayed as search results. By default, all option fields are set as search fields. You can choose whether to use existing search conditions as needed.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx5.png)
 
-+ 透出字段：当字段业务为多对一时，显示该属性。选择范围限定为组件所绑定的模型字段，当某个字段被设定为透出字段时，即表示该字段可在当前视图中被选用。
-+ 查询条件：当字段业务为多对一时，显示该属性。在实际页面展示中，会按照配置的查询条件展示数据。
++ Exposed Field: When the field business is many-to-one, this attribute is displayed. The selection range is limited to the model fields bound to the component. When a field is set as an exposed field, it means that this field can be used in the current view.
++ Query Condition: When the field business is many-to-one, this attribute is displayed. On the actual page, data will be displayed according to the configured query conditions.
 
-:::warning 提示
+:::warning Tip
 
-有关查询条件中自定义表达式的填写，可以查看「自定义表达式」文档。
+For the filling of custom expressions in query conditions, you can refer to the "Custom Expressions" document.
 
 :::
 
-+ 数据加载函数：当字段业务为多对一时，显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
-+ 选项配置：当字段业务为布尔型或数据字典时，显示该属性。
-    - 选中选项行后，直接拖动即可更改其排列位置。
-    - 点击选项前的单选框，即可将该选项设置为下拉单选的默认值，实际页面展示时将直接显示此默认值。
-    - 点击「编辑」图标，可修改该选项的显示值，使同一数据字典或布尔值在不同场景下均能适用。
-    - 点击「隐藏/可见」，可控制该选项在运行时是否可见。所有字典项默认均为可见状态。
++ Data Loading Function: When the field business is many-to-one, this attribute is displayed. When an option value is selected on the actual page, this function will be executed to load data.
++ Option Configuration: When the field business is boolean or a data dictionary, this attribute is displayed.
+    - After selecting an option row, you can directly drag it to change its position.
+    - Click the radio button before an option to set this option as the default value for drop-down single selection. This default value will be directly displayed on the actual page.
+    - Click the "Edit" icon to modify the display value of this option, making the same data dictionary or boolean value applicable in different scenarios.
+    - Click "Hide/Show" to control whether this option is visible at runtime. All dictionary items are visible by default.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx6.png)
 
-## （七）下拉多选
-可从多个选项中下拉选择多个数据值，选项为可关联模型数据、数据字典或布尔型数据，适用于多重选择场景。
+## (7) Drop-down Multiple Selection
+Allows users to select multiple data values from multiple options in a drop-down list. The options can be associated with model data, data dictionaries, or boolean data, suitable for multiple-selection scenarios.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox2.gif)
 
 :::
 
-下拉多选特有属性：
+Specific attributes of drop-down multiple selection:
 
-+ 创建属性
-    - 字段业务类型：支持数据字典、一对多、多对多
++ Creation Attribute
+    - Field Business Type: Supports data dictionary, one-to-many, and many-to-many.
 
-:::info 注意
+:::info Note
 
-+ 数据字典需选择已有数据字典
-+ 一对多、多对多需设置关联模型
++ For data dictionaries, existing data dictionaries need to be selected.
++ For one-to-many and many-to-many, the associated model needs to be set.
 
 :::
 
-+ 选项类型：即创建时的字段业务类型，不可更改。
-+ 自动填充数据字典可选项：当字段业务类型为数据字典时，显示该属性。若开启此选项，则在数据字典中增添字典项会同步更新。
-+ 选项配置：当字段业务为数据字典时，显示该属性。
-    - 选中选项行后，直接拖动即可更改其排列位置。
-    - 点击选项前的单选框，即可将该选项设置为下拉单选的默认值，实际页面展示时将直接显示此默认值。
-    - 点击「编辑」图标，可修改该选项的显示值，使同一数据字典或布尔值在不同场景下均能适用。
-    - 点击「隐藏/可见」，可控制该选项在运行时是否可见。所有字典项默认均为可见状态。
-+ 选项字段：当字段业务为一对多或多对多时，显示该属性。可选择特定字段作为选项值，当进行多选时，这些选项值将被拼接起来显示。默认选项字段为名称。
++ Option Type: That is, the field business type at creation, which cannot be changed.
++ Auto-fill Data Dictionary Options: When the field business type is a data dictionary, this attribute is displayed. If this option is enabled, adding dictionary items to the data dictionary will be updated synchronously.
++ Option Configuration: When the field business is a data dictionary, this attribute is displayed.
+    - After selecting an option row, you can directly drag it to change its position.
+    - Click the radio button before an option to set this option as the default value for drop-down single selection. This default value will be directly displayed on the actual page.
+    - Click the "Edit" icon to modify the display value of this option, making the same data dictionary or boolean value applicable in different scenarios.
+    - Click "Hide/Show" to control whether this option is visible at runtime. All dictionary items are visible by default.
++ Option Field: When the field business is one-to-many or many-to-many, this attribute is displayed. You can select a specific field as the option value. When multiple selections are made, these option values will be concatenated and displayed. The default option field is the name.
 
-:::warning 提示
+:::warning Tip
 
-可以在选项字段之间设置常量内容作为间隔，如「-」、「/」等。
+You can set constant content as a separator between option fields, such as "-" or "/".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox3.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox4.png)
 
 :::
 
-+ 搜索字段：当字段业务为一对多或多对多时，显示该属性。 用户在输入框中输入内容时，若所输入内容包含在搜索字段中，则这些包含内容的值将被作为搜索内容展示出来。默认情况下，所有选项字段均设为搜索字段，可根据需要选择是否使用已有的搜索条件。
++ Search Field: When the field business is one-to-many or many-to-many, this attribute is displayed. When users input content in the input box, if the input content is included in the search field, the values containing this content will be displayed as search results. By default, all option fields are set as search fields. You can choose whether to use existing search conditions as needed.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox5.png)
 
-+ 透出字段：当字段业务为一对多或多对多时，显示该属性。选择范围限定为组件所绑定的模型字段，当某个字段被设定为透出字段时，即表示该字段可在当前视图中被选用。
-+ 查询条件：当字段业务为一对多或多对多时，显示该属性。在实际页面展示中，会按照配置的查询条件展示数据。
++ Exposed Field: When the field business is one-to-many or many-to-many, this attribute is displayed. The selection range is limited to the model fields bound to the component. When a field is set as an exposed field, it means that this field can be used in the current view.
++ Query Condition: When the field business is one-to-many or many-to-many, this attribute is displayed. On the actual page, data will be displayed according to the configured query conditions.
 
-:::warning 提示
+:::warning Tip
 
-有关查询条件中自定义表达式的填写，可以查看「自定义表达式」文档。
+For the filling of custom expressions in query conditions, you can refer to the "Custom Expressions" document.
 
 :::
 
-+ 数据加载函数：当字段业务为一对多或多对多时，显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
-+ 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
++ Data Loading Function: When the field business is one-to-many or many-to-many, this attribute is displayed. When an option value is selected on the actual page, this function will be executed to load data.
++ Maximum/Minimum Selection Count: You can limit the selection count range, including the maximum and minimum selection counts, to limit user input.
 
-## （八）单选框
-在直接展示的选项中只能选择一个值，适用于如性别选择等单一选项场景。
+## (8) Radio Button
+Allows users to select only one value from directly displayed options, suitable for single-option scenarios such as gender selection.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk2.gif)
 
 :::
 
-单选框特有属性：
+Specific attributes of radio buttons:
 
-+ 创建属性
-    - 字段业务类型：支持布尔型、数据字典、多对一
++ Creation Attribute
+    - Field Business Type: Supports boolean, data dictionary, and many-to-one.
 
-:::info 注意
+:::info Note
 
-+ 数据字典需选择已有数据字典
-+ 多对一需设置关联模型
++ For data dictionaries, existing data dictionaries need to be selected.
++ For many-to-one, the associated model needs to be set.
 
 :::
 
-+ 选项类型：即创建时的字段业务类型，不可更改。
-+ 自动填充数据字典可选项：当字段业务类型为数据字典时，显示该属性。若开启此选项，则在数据字典中增添字典项会同步更新。
-+ 选项字段：同下拉单选。
-+ 透出字段：同下拉单选。
-+ 查询条件：同下拉单选。
-+ 数据加载函数：同下拉单选。
-+ 样式：当字段业务为布尔型或数据字典时，显示该属性。提供两种显示样式供选择：默认样式与分段选择器。
++ Option Type: That is, the field business type at creation, which cannot be changed.
++ Auto-fill Data Dictionary Options: When the field business type is a data dictionary, this attribute is displayed. If this option is enabled, adding dictionary items to the data dictionary will be updated synchronously.
++ Option Field: Same as drop-down single selection.
++ Exposed Field: Same as drop-down single selection.
++ Query Condition: Same as drop-down single selection.
++ Data Loading Function: Same as drop-down single selection.
++ Style: When the field business is boolean or a data dictionary, this attribute is displayed. Two display styles are provided for selection: default style and segmented selector.
 
-:::info 注意
+:::info Note
 
-+ 当选用默认样式时，可根据实际需求设置选项排列方式，包括横向与纵向。
++ When the default style is selected, you can set the option arrangement according to actual needs, including horizontal and vertical arrangements.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk3.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk4.png)
 
-+ 当选用分段选择器时，可根据实际需求设置单行最多显示的选项数量。
++ When the segmented selector is selected, you can set the maximum number of options displayed in a single line according to actual needs.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk5.png)
 
 :::
 
-+ 选项配置：同下拉单选。
++ Option Configuration: Same as drop-down single selection.
 
-## （九）复选框
-在直接展示的选项中可选择多个值，适用于如课程选择等多重选项场景。
+## (9) Checkbox
+Allows users to select multiple values from directly displayed options, suitable for multiple-option scenarios such as course selection.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fxk1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fxk2.gif)
 
 :::
 
-复选框特有属性：
+Specific attributes of checkboxes:
 
-+ 创建属性
-    - 字段业务类型：支持数据字典、一对多、多对多
++ Creation Attribute
+    - Field Business Type: Supports data dictionary, one-to-many, and many-to-many.
 
-:::info 注意
+:::info Note
 
-+ 数据字典需选择已有数据字典
-+ 一对多、多对多需设置关联模型
++ For data dictionaries, existing data dictionaries need to be selected.
++ For one-to-many and many-to-many, the associated model needs to be set.
 
 :::
 
-+ 选项类型：即创建时的字段业务类型，不可更改。
-+ 自动填充数据字典可选项：当字段业务类型为数据字典时，显示该属性。若开启此选项，则在数据字典中增添字典项会同步更新。
-+ 排列方式：同下拉多选。
-+ 选项配置：同下拉多选。
-+ 选项字段：同下拉多选。
-+ 透出字段：同下拉多选。
-+ 查询条件：同下拉多选。
-+ 数据加载函数：同下拉多选。
-+ 最多/少选择个数：同下拉多选。
++ Option Type: That is, the field business type at creation, which cannot be changed.
++ Auto-fill Data Dictionary Options: When the field business type is a data dictionary, this attribute is displayed. If this option is enabled, adding dictionary items to the data dictionary will be updated synchronously.
++ Arrangement: Same as drop-down multiple selection.
++ Option Configuration: Same as drop-down multiple selection.
++ Option Field: Same as drop-down multiple selection.
++ Exposed Field: Same as drop-down multiple selection.
++ Query Condition: Same as drop-down multiple selection.
++ Data Loading Function: Same as drop-down multiple selection.
++ Maximum/Minimum Selection Count: Same as drop-down multiple selection.
 
-## （十）开关
-常用于在是/否两种对立选项中进行选择。
+## (10) Switch
+Often used to select between two opposite options, such as yes/no.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/kg1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/kg2.gif)
 
 :::
 
-开关特有属性：
+Specific attributes of switches:
 
-+ 创建属性
-    - 字段业务类型：仅支持布尔型类型
++ Creation Attribute
+    - Field Business Type: Only supports boolean type.
 
-## （十一）年份
-提供年份选择器功能，适用于选择出生年份等需要指定年份的场景。
+## (11) Year
+Provides a year selector function, suitable for scenarios where a specific year needs to be selected, such as birth year.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/nf1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/nf2.gif)
 
 :::
 
-年份特有属性：
+Specific attributes of years:
 
-+ 创建属性
-    - 字段业务类型：仅支持年份类型
++ Creation Attribute
+    - Field Business Type: Only supports year type.
 
-## （十二）日期
-提供年-月-日的选择器，适用于需要精确到日期的字段，如入职日期、出生日期等。
+## (12) Date
+Provides a year-month-day selector, suitable for fields that need to be accurate to the date, such as employment date and birth date.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rq1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rq2.gif)
 
 :::
 
-日期特有属性：
+Specific attributes of dates:
 
-+ 创建属性
-    - 字段业务类型：仅支持日期类型
-+ 日期格式：提供多样化的日期格式选项，可根据实际需求选择合适的日期格式。
++ Creation Attribute
+    - Field Business Type: Only supports date type.
++ Date Format: Provides a variety of date format options. You can choose a suitable date format according to actual needs.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rq3.png)
 
-+ 起始日期：用于限定可选日期的最早开始时间。
-+ 结束日期：用于限定可选日期的最晚结束时间。
-+ 偏移量：可设置偏移量，使起始日期或结束日期相应地前进或后退指定时间。
-+ 快捷选项：用于快速指定可选时间。
++ Start Date: Used to limit the earliest start time of selectable dates.
++ End Date: Used to limit the latest end time of selectable dates.
++ Offset: You can set an offset to make the start date or end date move forward or backward by a specified time.
++ Quick Options: Used to quickly specify selectable time.
 
-## （十三）日期时间
-提供年-月-日、时-分-秒的全面选择器，适用于需要精确到具体时间的字段，如下单时间、发货时间等。
+## (13) Date and Time
+Provides a comprehensive year-month-day, hour-minute-second selector, suitable for fields that need to be accurate to a specific time, such as order time and shipping time.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rqsj1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rqsj2.gif)
 
 :::
 
-日期时间特有属性：
+Specific attributes of date and time:
 
-+ 创建属性
-    - 字段业务类型：仅支持日期时间类型
-+ 日期格式：提供多样化的日期格式选项，可根据实际需求选择合适的日期格式。
-+ 时间格式：提供多样化的时间格式选项，可根据实际需求选择合适的时间格式。
++ Creation Attribute
+    - Field Business Type: Only supports date and time type.
++ Date Format: Provides a variety of date format options. You can choose a suitable date format according to actual needs.
++ Time Format: Provides a variety of time format options. You can choose a suitable time format according to actual needs.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rqsj3.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rqsj4.png)
 
-+ 起始日期：用于限定可选日期的最早开始时间。
-+ 结束日期：用于限定可选日期的最晚结束时间。
-+ 偏移量：可设置偏移量，使起始日期或结束日期相应地前进或后退指定时间。
-+ 快捷选项：用于快速指定可选时间。
++ Start Date: Used to limit the earliest start time of selectable dates.
++ End Date: Used to limit the latest end time of selectable dates.
++ Offset: You can set an offset to make the start date or end date move forward or backward by a specified time.
++ Quick Options: Used to quickly specify selectable time.
 
-## （十四）时间
-提供时-分-秒的选择器，适用于仅涉及时间而不涉及日期的字段，如提交时间、上班时间等。
+## (14) Time
+Provides an hour-minute-second selector, suitable for fields that only involve time and not dates, such as submission time and working time.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sj1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sj2gif)
 
 :::
 
-时间特有属性：
+Specific attributes of time:
 
-+ 创建属性
-    - 字段业务类型：仅支持时间类型
-+ 时间格式：提供多样化的时间格式选项，可根据实际需求选择合适的时间格式。
++ Creation Attribute
+    - Field Business Type: Only supports time type.
++ Time Format: Provides a variety of time format options. You can choose a suitable time format according to actual needs.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sj3.png)
 
-## （十五）颜色选择器
-提供自定义颜色功能，适用于设置标签颜色、进行主题定制时选择所需色彩等场景。
+## (15) Color Picker
+Provides a custom color function, suitable for scenarios such as setting label colors and selecting colors for theme customization.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/ys1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/ys2.gif)
 
 :::
 
-颜色特有属性：
+Specific attributes of colors:
 
-+ 创建属性
-    - 文本字段业务类型：仅支持文本类型
++ Creation Attribute
+    - Text Field Business Type: Only supports text type.
 
-## （十六）文件上传
-支持上传多种格式的文件，包括文档、图片、视频等，适用于上传附件。
+## (16) File Upload
+Supports uploading files in multiple formats, including documents, pictures, videos, etc., suitable for uploading attachments.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wj1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wj2.gif)
 
 :::
 
-文件上传特有属性：
+Specific attributes of file upload:
 
-+ 创建属性
-    - 字段业务类型：支持文本、多行文本、一对多、多对一、多对多
++ Creation Attribute
+    - Field Business Type: Supports text, multi-line text, one-to-many, many-to-one, and many-to-many.
 
-:::info 注意
+:::info Note
 
-当字段业务类型为一对多、多对一、多对多时，关联模型仅能关联文件
-
-:::
-
-+ 最大上传文件个数：当字段业务为一对多或多对多时，显示该属性。限制可上传文件的最大数量。
-+ 最大上传文件体积：限制单个上传文件的大小。
-+ 限制上传文件类型：限制文件的上传格式，支持图片、文档、音频、视频等多种类型，同时也提供自定义选项。在自定义时，需输入所支持文件的格式后缀。
-
-:::info 注意
-
-若设置了允许某个格式，则在选择文件的弹框中其他格式的文件无法选中。
+When the field business type is one-to-many, many-to-one, or many-to-many, the associated model can only be associated with files.
 
 :::
 
-+ CDN配置：支持配置CDN。
-+ 私有链接：可选择是否为私有链接。
++ Maximum Number of Uploaded Files: When the field business is one-to-many or many-to-many, this attribute is displayed. Limits the maximum number of files that can be uploaded.
++ Maximum Upload File Size: Limits the size of a single uploaded file.
++ Restricted Upload File Types: Limits the upload format of files, supporting multiple types such as pictures, documents, audio, and videos, and also provides a custom option. When customizing, you need to enter the format suffix of the supported files.
+
+:::info Note
+
+If a certain format is allowed, files of other formats cannot be selected in the file selection dialog box.
+
+:::
+
++ CDN Configuration: Supports CDN configuration.
++ Private Link: You can choose whether to use a private link.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wj3.png)
 
-## （十七）图片上传
-支持上传图片文件，适用于上传示意图、照片、头像等场景。
+## (17) Image Upload
+Supports uploading image files, suitable for scenarios such as uploading schematic diagrams, photos, and avatars.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tp1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tp2.gif)
 
 :::
 
-:::warning 提示
+:::warning Tip
 
-当在上传图片时若显示链接长度过大，可在模型设计器中修改该组件字段的长度。
-
-:::
-
-图片特有属性：
-
-+ 创建属性
-    - 字段业务类型：支持文本、多行文本、一对多、多对一、多对多
-
-:::info 注意
-
-当字段业务类型为一对多、多对一、多对多时，关联模型仅能关联文件
+If the link length is too long when uploading an image, you can modify the length of the component field in the model designer.
 
 :::
 
-+ 最大上传图片个数：当字段业务为一对多或多对多时，显示该属性。限制可上传图片的最大数量。
-+ 最大上传图片体积：限制单个上传图片的大小。
-+ 限制上传文件类型：限制文件的上传格式，支持图片与自定义选项。在自定义时，需输入所支持文件的格式后缀。
+Specific attributes of images:
 
-:::info 注意
++ Creation Attribute
+    - Field Business Type: Supports text, multi-line text, one-to-many, many-to-one, and many-to-many.
 
-若设置了允许某个格式，则在选择文件的弹框中其他格式的文件无法选中。
+:::info Note
 
-:::
-
-## （十八）标签
-允许输入并保存多个值，适用于保存标记用户的标签。
-
-:::info 注意
-
-标签的值不允许重复
+When the field business type is one-to-many, many-to-one, or many-to-many, the associated model can only be associated with files.
 
 :::
 
-:::tip 举例
++ Maximum Number of Uploaded Images: When the field business is one-to-many or many-to-many, this attribute is displayed. Limits the maximum number of images that can be uploaded.
++ Maximum Upload Image Size: Limits the size of a single uploaded image.
++ Restricted Upload File Types: Limits the upload format of files, supporting pictures and a custom option. When customizing, you need to enter the format suffix of the supported files.
 
-设计示例：
+:::info Note
+
+If a certain format is allowed, files of other formats cannot be selected in the file selection dialog box.
+
+:::
+
+## (18) Tag
+Allows users to input and save multiple values, suitable for saving tags for users.
+
+:::info Note
+
+Tag values are not allowed to be repeated.
+
+:::
+
+:::tip Example
+
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bq1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bq2.gif)
 
 :::
 
-标签特有属性：
+Specific attributes of tags:
 
-+ 创建属性
-    - 字段业务类型：支持整数、文本
-    - 字段类型为存储字段时，还可为其设置数量限制与单值长度
++ Creation Attribute
+    - Field Business Type: Supports integer and text.
+    - When the field type is a storage field, you can also set a quantity limit and a single-value length for it.
 
-:::info 注意
+:::info Note
 
-+ 数量限制：可存储标签的最大数量，其值不能小于1。
-+ 单值长度：单个标签的长度，其值不能小于1。
++ Quantity Limit: The maximum number of tags that can be stored, and its value cannot be less than 1.
++ Single-value Length: The length of a single tag, and its value cannot be less than 1.
 
 :::
 
-+ 数量限制：同创建属性中的数量限制，可存储标签的最大数量，其值不能小于1。
++ Quantity Limit: Same as the quantity limit in the creation attribute, the maximum number of tags that can be stored, and its value cannot be less than 1.
 
-## （十九）级联选择
-通过逐级选择来筛选和定位所需的数据，适用于地区选择、分类筛选等场景。
+## (19) Cascading Selection
+Allows users to filter and locate the required data through step-by-step selection, suitable for scenarios such as region selection and category filtering.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/jl1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/jl2.gif)
 
 :::
 
-级联特有属性：
+Specific attributes of cascading selection:
 
-+ 创建属性
-    - 字段业务类型：支持一对多、多对一、多对多
-+ 设置联动关系：即组件中需展示的模型字段。
-    - 模型：需展示字段所在模型。
++ Creation Attribute
+    - Field Business Type: Supports one-to-many, many-to-one, and many-to-many.
++ Set Linkage Relationship: That is, the model fields to be displayed in the component.
+    - Model: The model where the fields to be displayed are located.
 
-    :::info 注意
+    :::info Note
 
-    该模型需与创建级联组件时所选关联模型一致，否则无法构成完整联动关系。
-
-    :::
-
-    - 数据标题：即选项值名称，当进行多选时，这些数据将被拼接起来显示。默认选项字段为名称。
-
-    :::warning 提示
-
-    可以在选项字段之间设置常量内容作为间隔，如「-」、「/」等。
+    This model needs to be consistent with the associated model selected when creating the cascading component; otherwise, a complete linkage relationship cannot be formed.
 
     :::
 
-    - 筛选条件：在实际页面展示中，会按照配置的筛选条件展示数据。
+    - Data Title: That is, the option value name. When multiple selections are made, these data will be concatenated and displayed. The default option field is the name.
 
-    :::warning 提示
+    :::warning Tip
 
-    有关筛选条件中自定义表达式的填写，可以查看「自定义表达式」文档。
-
-    :::
-
-    - 自关联关系字段：即所选模型中关联关系字段，且此字段的模型与所选模型一致。
-
-    :::info 注意
-
-    该关系字段是用于级联选择时设定层级的字段。
+    You can set constant content as a separator between option fields, such as "-" or "/".
 
     :::
 
-+ 最多/少选择个数：当字段业务类型为一对多或多对多时，显示该属性。可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
-+ 选择即改变：若启用此功能，则在选择任意层级时均可作为结束点，即当选定某一项后，若该项下存在子级选项，则直接全部选中。若未开启此选项，则只能选择最末级的子选项。
+    - Filter Conditions: On the actual page, data will be displayed according to the configured filter conditions.
 
-:::info 注意
+    :::warning Tip
 
-仅当字段业务类型为多对一时，该功能生效。选择时只能选择单值。
+    For the filling of custom expressions in filter conditions, you can refer to the "Custom Expressions" document.
+
+    :::
+
+    - Self-associated Relationship Field: That is, the associated relationship field in the selected model, and the model of this field is consistent with the selected model.
+
+    :::info Note
+
+    This relationship field is used to set the hierarchy during cascading selection.
+
+    :::
+
++ Maximum/Minimum Selection Count: When the field business type is one-to-many or many-to-many, this attribute is displayed. You can limit the selection count range, including the maximum and minimum selection counts, to limit user input.
++ Select and Change: If this function is enabled, any level can be used as the end point when selecting. That is, after selecting an item, if there are sub-options under this item, they will be directly all selected. If this option is not enabled, only the last-level sub-options can be selected.
+
+:::info Note
+
+This function is only effective when the field business type is many-to-one. Only a single value can be selected during selection.
 
 :::
 
-+ 展示选择路径：当字段业务类型为一对多或多对多时，显示该属性。若启用此功能，则在选中某选项后，将展示其完整的选择路径。
++ Display Selection Path: When the field business type is one-to-many or many-to-many, this attribute is displayed. If this function is enabled, after selecting an option, its complete selection path will be displayed.
 
-:::info 注意
+:::info Note
 
-当字段业务为多对一时，自动启用此功能。
+When the field business is many-to-one, this function is automatically enabled.
 
 :::
 
-## （二十）树选择
-通过逐级选择来筛选和定位所需的数据，适用于地区选择、分类筛选等场景。
+## (20) Tree Selection
+Allows users to filter and locate the required data through step-by-step selection, suitable for scenarios such as region selection and category filtering.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/shu1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/shu2.gif)
 :::
 
-树选择特有属性：
+Specific attributes of tree selection:
 
-+ 创建属性
-    - 字段业务类型：支持一对多、多对一、多对多
-+ 设置联动关系：即组件中需展示的模型字段。
-    - 模型：需展示字段所在模型。
-    - 数据标题：即选项值名称，当进行多选时，这些数据将被拼接起来显示。默认选项字段为名称。
++ Creation Attribute
+    - Field Business Type: Supports one-to-many, many-to-one, and many-to-many.
++ Set Linkage Relationship: That is, the model fields to be displayed in the component.
+    - Model: The model where the fields to be displayed are located.
+    - Data Title: That is, the option value name. When multiple selections are made, these data will be concatenated and displayed. The default option field is the name.
 
-    :::warning 提示
+    :::warning Tip
 
-    可以在选项字段之间设置常量内容作为间隔，如「-」、「/」等。
-
-    :::
-
-    - 筛选条件：在实际页面展示中，会按照配置的筛选条件展示数据。
-
-    :::warning 提示
-
-    有关筛选条件中自定义表达式的填写，可以查看「自定义表达式」文档。
+    You can set constant content as a separator between option fields, such as "-" or "/".
 
     :::
 
-    - 自关联关系字段：即所选模型中关联关系字段，且此字段的模型与所选模型一致。
-+ 最多/少选择个数：当字段业务类型为一对多或多对多时，显示该属性。可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
+    - Filter Conditions: On the actual page, data will be displayed according to the configured filter conditions.
 
-## （二十一）键值对
-以清晰直观的方式展示结构化信息，非常适用于产品详情展示、用户配置选项设置等场景。
+    :::warning Tip
 
-:::info 注意
+    For the filling of custom expressions in filter conditions, you can refer to the "Custom Expressions" document.
 
-字段不允许有重复的key
+    :::
+
+    - Self-associated Relationship Field: That is, the associated relationship field in the selected model, and the model of this field is consistent with the selected model.
++ Maximum/Minimum Selection Count: When the field business type is one-to-many or many-to-many, this attribute is displayed. You can limit the selection count range, including the maximum and minimum selection counts, to limit user input.
+
+## (21) Key-Value Pair
+Displays structured information in a clear and intuitive way, which is very suitable for scenarios such as product detail display and user configuration option settings.
+
+:::info Note
+
+Fields are not allowed to have duplicate keys.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/jzd1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/jzd2.gif)
 
 :::
 
-键值对特有属性：
+Specific attributes of key-value pairs:
 
-+ 创建属性
-    - 字段业务类型：仅支持键值对。
-    - 字段类型为存储字段时，还可为其设置数量限制、键长度与值长度。
++ Creation Attribute
+    - Field Business Type: Only supports key-value pairs.
+    - When the field type is a storage field, you can also set a quantity limit, key length, and value length for it.
 
-:::info 注意
+:::info Note
 
-+ 数量限制：可存储标签的最大数量，其值不能小于1。
-+ 键长度：限制键值的长度，其值不能小于1。
-+ 值长度：限制值的长度，其值不能小于1。
-
-:::
-
-## （二十二）范围
-支持为时间指定一段范围，便于在时间区间提示等场景中灵活应用。
-
-:::info 注意
-
-结束日期的选择必须位于开始日期之后。
++ Quantity Limit: The maximum number of tags that can be stored, and its value cannot be less than 1.
++ Key Length: Limits the length of the key value, and its value cannot be less than 1.
++ Value Length: Limits the length of the value, and its value cannot be less than 1.
 
 :::
 
-:::tip 举例
+## (22) Range
+Supports specifying a range for time, which is convenient for flexible application in scenarios such as time interval prompts.
 
-设计示例：
+:::info Note
+
+The end date must be after the start date.
+
+:::
+
+:::tip Example
+
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fw1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fw2.gif)
 
 :::
 
-范围特有属性：
+Specific attributes of ranges:
 
-+ 创建属性
-    - 字段业务类型：支持年份、日期、日期时间、时间。
-+ 起始占位提示：起始时间输入框或选择框未填写内容时，显示的浅色提示文字，用于引导用户输入，但不会影响字段的实际值。
-+ 结束占位提示：结束时间输入框或选择框未填写内容时，显示的浅色提示文字，用于引导用户输入，但不会影响字段的实际值。
-+ 起始默认值：在实际页面展示时，该字段将默认展示设定的起始时间。
-+ 结束默认值：在实际页面展示时，该字段将默认展示设定的结束时间。
-+ 日期格式：当字段业务为日期或日期时间时，显示该属性。
-+ 时间格式：当字段业务为日期时间或时间时，显示该属性。
++ Creation Attribute
+    - Field Business Type: Supports year, date, date and time, and time.
++ Start Placeholder Prompt: When the start time input box or selection box is empty, it shows light-colored prompt text to guide users to input, which does not affect the actual value of the field.
++ End Placeholder Prompt: When the end time input box or selection box is empty, it shows light-colored prompt text to guide users to input, which does not affect the actual value of the field.
++ Start Default Value: When the actual page is displayed, the field will show the set start time by default.
++ End Default Value: When the actual page is displayed, the field will show the set end time by default.
++ Date Format: When the field business is date or date and time, this attribute is displayed.
++ Time Format: When the field business is date and time or time, this attribute is displayed.
 
-## （二十三）手机
-专用于存储或展示手机号码类型的数据。
+## (23) Phone
+Specifically used to store or display data of the mobile phone number type.
 
-:::info 注意
+:::info Note
 
-输入规则：以数字1开头，第二位数字范围是3～9,共是11位数字。
+Input Rule: It must start with the digit 1, the second digit ranges from 3 to 9, and the total number of digits is 11.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design Example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/phone1.png)
 
-展示页面：
+Display Page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/phone2gif)
 
 :::
 
-手机特有属性：
+Specific attributes of phones:
 
-+ 创建属性
-    - 字段业务类型：仅支持手机。
-+ 支持前/后缀：支持为输入内容添加前后缀，前后缀类型可选择文字或图标。当选择文字类型时，可选择是否将前/后缀内容存储，以便在数据高度重合时简化操作流程。
++ Creation Attribute
+    - Field Business Type: Only supports mobile phones.
++ Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
 
-## （二十四）货币
-用于存储或展示金额类型的数据，允许输入整数或小数，小数位数需精确到两位以内。
 
-:::tip 举例
+## (24) Currency
+Used to store or display amount-type data, allowing input of integers or decimals with the number of decimal places accurate to within two.
 
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/hb1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/hb2.gif)
-
 :::
 
-货币特有属性：
+Specific attributes of currency:
 
-+ 创建属性
-    - 字段业务类型：仅支持金额
-    - 字段类型为存储字段时，还可为其设置长度与精度。
++ Creation Attribute
+    - Field Business Type: Only supports amount
+    - When the field type is a storage field, length and precision can also be set for it.
 
-:::info 注意
-
-+ 长度：限制数值的长度范围，其值需大于等于1且小于等于15。
-+ 精度：限制小数的精度范围，其值需大于等于1且小于等于6。
-
+:::info Note
++ Length: Limits the length range of the value, with values ranging from 1 to 15.
++ Precision: Limits the precision range of decimals, with values ranging from 1 to 6.
 :::
 
-+ 最大/小值：可设定输入内容的值范围，包括最大值和最小值，以限制用户输入。
-+ 保留小数位数：其值需在创建组件时设置的精度范围内。
-+ 支持前/后缀：支持为输入内容添加前后缀，前后缀类型可选择文字或图标。当选择文字类型时，可选择是否将前/后缀内容存储，以便在数据高度重合时简化操作流程。
-+ 显示千分位：开启此功能，当输入数值较大时，以千分位格式展示。
++ Maximum/Minimum Value: Can set the value range of input content, including maximum and minimum values, to limit user input.
++ Number of Decimal Places Reserved: Its value must be within the precision range set when creating the component.
++ Support Prefix/Suffix: Supports adding prefixes and suffixes to input content. Prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when data highly overlaps.
++ Show Thousands Separator: When this function is enabled, large input values will be displayed in thousands separator format.
 
-## （二十五）邮箱
-用于存储或展示符合邮箱格式（xx@xx.xx）的数据，方便用户进行信息交流和管理。
+## (25) Email
+Used to store or display data in compliance with the email format (xx@xx.xx), facilitating users' information exchange and management.
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yx1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yx2.gif)
-
 :::
 
-邮箱特有属性：
+Specific attributes of email:
 
-+ 创建属性
-    - 字段业务类型：仅支持金额
-    - 字段类型为存储字段时，还可为其设置长度
++ Creation Attribute
+    - Field Business Type: Only supports email
+    - When the field type is a storage field, length can also be set for it.
 
-:::info 注意
-
-+ 长度：限制数值的长度范围，其值需大于等于3且小于等于256。
-
+:::info Note
++ Length: Limits the length range of the value, with values ranging from 3 to 256.
 :::
 
-+ 支持前/后缀：支持为输入内容添加前后缀，前后缀类型可选择文字或图标。当选择文字类型时，可选择是否将前/后缀内容存储，以便在数据高度重合时简化操作流程。
++ Support Prefix/Suffix: Supports adding prefixes and suffixes to input content. Prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when data highly overlaps.
 
-## （二十六）他表字段
-可以从关联关系字段中取出对应字段，并平铺在当前模型中的特殊字段。适用于生成复杂报表时引用相关表中数据信息。
+## (26) Cross-table Field
+A special field that can extract corresponding fields from associated relationship fields and flatten them in the current model. Suitable for referencing data information from related tables when generating complex reports.
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tb1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tb2.png)
-
 :::
 
-他表字段特有属性：
+Specific attributes of cross-table field:
 
-+ 创建属性
-    - 字段业务类型：仅支持他表字段
-    - 关联字段：即当前页面所在模型下的存在关联关系的字段。
-    - 显示字段：选中关联字段所在模型下存在的字段。
++ Creation Attribute
+    - Field Business Type: Only supports cross-table field
+    - Associated Field: That is, the field with an associated relationship under the model where the current page is located.
+    - Display Field: Selects the field existing under the model of the associated field.
 
-## （二十七）段落
-允许在页面中展示一段完整的文字内容，适用于对产品进行详细解释、说明或阐述等场景。
+## (27) Paragraph
+Allows displaying a complete paragraph of text content on the page, suitable for scenarios such as detailed explanation, description, or elaboration of products.
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dl1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dl2.png)
-
 :::
 
-段落特有属性：
+Specific attributes of paragraph:
 
-+ 文本：提供一个功能丰富的富文本编辑器，可输入并编辑内容。
-+ 边框样式：支持为段落设置多样化的边框样式，包括无边框、实线边框、虚线边框三种样式。
++ Text: Provides a feature-rich rich text editor for inputting and editing content.
++ Border Style: Supports setting various border styles for paragraphs, including three styles: no border, solid border, and dashed border.
 
-## （二十八）嵌入网页
-支持在页面中嵌入指定的网页，使用户在设计页面中即可直接访问和浏览其他网页内容。
+## (28) Embedded Web Page
+Supports embedding specified web pages in the page, allowing users to directly access and browse other web content in the design page.
 
-:::tip 举例
-
-设计示例：
-
-静态：
-
+:::tip Example
+Design Examples:
+Static:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/qrwy1.png)
-
-动态：
-
+Dynamic:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/qrwy2.png)
-
-展示页面：
-
-静态：
-
+Display Pages:
+Static:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/qrwy3.gif)
-
-动态：
-
+Dynamic:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/qrwy4.gif)
-
 :::
 
-嵌入网页特有属性：
+Specific attributes of embedded web page:
 
-+ 创建属性
-    - 字段业务类型：仅支持文本
-+ 组件类型：包含动态与静态两种类型。动态组件在表单中为输入态，静态组件在表单中为只读态。
++ Creation Attribute
+    - Field Business Type: Only supports text
++ Component Type: Includes two types, dynamic and static. Dynamic components are in input state in forms, and static components are in read-only state in forms.
 
-:::info 注意
-
-+ 组件类型为动态时，支持设置可选前缀，包括http://、https://、ftp://、sftp://四种常用前缀。
-+ 组件类型为静态时，输入网页链接，即可在实际页面中直接展示该链接对应的页面内容。若无法展示，请检查网页是否允许被嵌入。
-
+:::info Note
++ When the component type is dynamic, it supports setting optional prefixes, including four common prefixes: http://, https://, ftp://, sftp://.
++ When the component type is static, entering a web link will directly display the page content corresponding to the link in the actual page. If it cannot be displayed, please check whether the web page allows embedding.
 :::
 
-## （二十九）超链接
-支持在页面中展示超链接，用户只需点击超链接即可轻松跳转至对应的页面，实现页面间的便捷导航。
+## (29) Hyperlink
+Supports displaying hyperlinks on the page. Users can easily jump to the corresponding page by clicking the hyperlink, achieving convenient navigation between pages.
 
-:::tip 举例
-
-设计示例：
-
-静态：
-
+:::tip Example
+Design Examples:
+Static:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/clj1.png)
-
-动态：
-
+Dynamic:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1750213786284-806d5bf9-abc6-4cdb-bebc-355162b76bf1.png)
-
-展示页面：
-
-静态：
-
+Display Pages:
+Static:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/clj2.gif)
-
-动态：
-
+Dynamic:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1750214026006-b724a184-b4ae-429d-9d9c-a9af03e19d1e.gif)
-
 :::
 
-超链接特有属性：
+Specific attributes of hyperlink:
 
-+ 创建属性
-    - 字段业务类型：仅支持文本
-+ 组件类型：包含动态与静态两种类型。动态组件在表单中为输入态，静态组件在表单中为只读态。
++ Creation Attribute
+    - Field Business Type: Only supports text
++ Component Type: Includes two types, dynamic and static. Dynamic components are in input state in forms, and static components are in read-only state in forms.
 
-:::info 注意
-
-+ 组件类型为动态时，支持设置可选前缀，包括http://、https://、ftp://、sftp://四种常用前缀。
-+ 组件类型为静态时，输入网页链接，即可在实际页面中展示链接，点击即可跳转至链接页面。
-    - 链接：需输入有效的网页链接。
-    - 链接文字：设置链接的展示文字。若未设置，默认直接展示网页链接。
-    - 打开方式：包含当前窗口打开和新窗口打开两种方式。
-
+:::info Note
++ When the component type is dynamic, it supports setting optional prefixes, including four common prefixes: http://, https://, ftp://, sftp://.
++ When the component type is static, entering a web link will display the link in the actual page, and clicking it will jump to the link page.
+    - Link: Requires entering a valid web link.
+    - Link Text: Sets the display text of the link. If not set, the web link is displayed by default.
+    - Opening Method: Includes two methods: opening in the current window and opening in a new window.
 :::
 
-## （三十）穿梭框
-穿梭框是一个左右分栏的选择框，左侧显示可选字段，右侧显示已选字段。可以通过穿梭框选择或取消字段，适用于选择展示字段等场景。
+## (30) Shuttle Box
+A shuttle box is a two-column selection box with selectable fields displayed on the left and selected fields displayed on the right. Fields can be selected or deselected through the shuttle box, suitable for scenarios such as selecting display fields.
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/csk1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/csk2.gif)
-
 :::
 
-穿梭框特有属性：
+Specific attributes of shuttle box:
 
-+ 创建属性
-    - 字段业务类型：支持一对多与多对多
-    - 关联模型：需设置当前组件的关联模型
-+ 选项类型：即创建时的指定的关联模型字段，不可更改。
-+ 选项字段：可选择特定字段作为选项值，当进行多选时，这些选项值将被拼接起来显示。默认选项字段为名称。
-+ 搜索字段： 用户在输入框中输入内容时，若所输入内容包含在搜索字段中，则这些包含内容的值将被作为搜索内容展示出来。默认情况下，所有选项字段均设为搜索字段，可根据需要选择是否使用已有的搜索条件。
-+ 透出字段：选择范围限定为组件所绑定的模型字段，当某个字段被设定为透出字段时，即表示该字段可在当前视图中被选用。
-+ 查询条件：在实际页面中，会按照配置的查询条件展示数据。
++ Creation Attribute
+    - Field Business Type: Supports one-to-many and many-to-many
+    - Associated Model: Requires setting the associated model of the current component
++ Option Type: That is, the associated model field specified at creation, which cannot be changed.
++ Option Field: Can select specific fields as option values. When multiple selections are made, these option values will be concatenated and displayed. The default option field is the name.
++ Search Field: When users enter content in the input box, if the entered content is included in the search field, the values containing this content will be displayed as search results. By default, all option fields are set as search fields, and you can choose whether to use existing search conditions as needed.
++ Exposed Field: The selection range is limited to the model fields bound to the component. When a field is set as an exposed field, it means the field can be selected in the current view.
++ Query Condition: In the actual page, data will be displayed according to the configured query conditions.
 
-:::warning 提示
-
-有关查询条件中自定义表达式的填写，可以查看「自定义表达式」文档。
-
+:::warning Tip
+For the filling of custom expressions in query conditions, you can refer to the "Custom Expressions" document.
 :::
 
-+ 选项框展示形式：提供列表与表格两种展示方式。当选择表格展示时，可进一步设置选项框字段定义，即定义表格的表头内容。
-+ 结果框展示形式：同选项框展示形式。
++ Display Form of Option Box: Provides two display methods, list and table. When table display is selected, you can further set the field definition of the option box, that is, define the header content of the table.
++ Display Form of Result Box: Same as the display form of the option box.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/csk3.png)
 
-+ 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
++ Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
-## （三十一）公司
-提供快捷方式，可直接选择在系统已录入的公司。
+## (31) Company
+Provides a shortcut to directly select companies already entered in the system.
 
-:::info 注意
-
-+ 创建的字段业务类型多对一时，实际应用中为下拉单选。
-+ 创建的字段业务类型多对多时，实际应用中为下拉多选。
-
+:::info Note
++ When the created field business type is many-to-one, it is a drop-down single selection in practical applications.
++ When the created field business type is many-to-many, it is a drop-down multiple selection in practical applications.
 :::
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/gs1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/gs2.gif)
-
 :::
 
-公司特有属性：
+Specific attributes of company:
 
-+ 创建属性
-    - 字段业务类型：支持多对一与多对多。
-    - 关联模型：需设置当前组件的关联模型，该组件仅支持关联“公司”模型
-+ 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
++ Creation Attribute
+    - Field Business Type: Supports many-to-one and many-to-many.
+    - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Company" model.
++ Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
-## （三十二）部门
-提供快捷方式，可直接选择在系统已录入的部门。
+## (32) Department
+Provides a shortcut to directly select departments already entered in the system.
 
-:::info 注意
-
-+ 创建的字段业务类型多对一时，实际应用中为下拉单选。
-+ 创建的字段业务类型多对多时，实际应用中为下拉多选。
-
+:::info Note
++ When the created field business type is many-to-one, it is a drop-down single selection in practical applications.
++ When the created field business type is many-to-many, it is a drop-down multiple selection in practical applications.
 :::
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bm1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bm2.gif)
-
 :::
 
-部门特有属性：
+Specific attributes of department:
 
-+ 创建属性
-    - 字段业务类型：支持多对一与多对多。
-    - 关联模型：需设置当前组件的关联模型，该组件仅支持关联“部门”模型
-+ 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
++ Creation Attribute
+    - Field Business Type: Supports many-to-one and many-to-many.
+    - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Department" model.
++ Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
-## （三十三）员工
-提供快捷方式，可直接选择在系统已录入的员工。
+## (33) Employee
+Provides a shortcut to directly select employees already entered in the system.
 
-:::info 注意
-
-+ 创建的字段业务类型多对一时，实际应用中为下拉单选。
-+ 创建的字段业务类型多对多时，实际应用中为下拉多选。
-
+:::info Note
++ When the created field business type is many-to-one, it is a drop-down single selection in practical applications.
++ When the created field business type is many-to-many, it is a drop-down multiple selection in practical applications.
 :::
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yg1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yg2.gif)
-
 :::
 
-员工特有属性：
+Specific attributes of employee:
 
-+ 创建属性
-    - 字段业务类型：支持多对一与多对多。
-    - 关联模型：需设置当前组件的关联模型，该组件仅支持关联“员工”模型
-+ 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
++ Creation Attribute
+    - Field Business Type: Supports many-to-one and many-to-many.
+    - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Employee" model.
++ Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
-## （三十四）地址
-提供地址选择器功能，适用于选择家庭住址等场景。
+## (34) Address
+Provides an address selector function, suitable for scenarios such as selecting home addresses.
 
-:::info 注意
-
-允许选择止于任何一层。
-
+:::info Note
+Allows selection to stop at any level.
 :::
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dz1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dz2.gif)
-
 :::
 
-地址特有功能：
+Specific attributes of address:
 
-+ 创建属性
-    - 字段业务类型：支持多对一。
-    - 关联模型：需设置当前组件的关联模型，该组件仅支持关联“地址”模型
++ Creation Attribute
+    - Field Business Type: Supports many-to-one.
+    - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Address" model.
 
-## （三十五）表单
-支持在页面中内嵌表单，适用于设计复杂页面，满足页面多样化需求。
+## (35) Form
+Supports embedding forms in the page, suitable for designing complex pages to meet diverse page requirements.
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bd1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bd2.png)
-
 :::
 
-表单特有属性：
+Specific attributes of form:
 
-+ 创建属性
-    - 字段业务类型：支持多对一。
-    - 关联模型：需设置当前组件的关联模型
-+ 空值展示样式：用于设定当表单中的某些字段值为空时的展示方式。
++ Creation Attribute
+    - Field Business Type: Supports many-to-one.
+    - Associated Model: Requires setting the associated model of the current component.
++ Empty Value Display Style: Used to set the display method when some field values in the form are empty.
 
-## （三十六）表格
-支持在页面中内嵌表格，适用于展示列表或数据的场景。
+## (36) Table
+Supports embedding tables in the page, suitable for scenarios such as displaying lists or data.
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bg1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bg2.png)
-
 :::
 
-表格特有属性：
+Specific attributes of table:
 
-+ 创建属性
-    - 字段业务类型：支持一对多和多对多。
-    - 关联模型：需设置当前组件的关联模型
-+ 显示添加：快捷操作，开启后在表格中显示添加按钮。
-+ 显示删除：快捷操作，开启后在表格中显示添加按钮。
-+ 数据提交类型：指定数据提交时所采用的提交方式，当前仅支持全量提交。
-+ 关联关系更新类型：当表格中的关联关系字段更新时数据的提交方式，包括全量提交与差量提交。
++ Creation Attribute
+    - Field Business Type: Supports one-to-many and many-to-many.
+    - Associated Model: Requires setting the associated model of the current component.
++ Show Add Button: A shortcut operation that displays an add button in the table when enabled.
++ Show Delete Button: A shortcut operation that displays a delete button in the table when enabled.
++ Data Submission Type: Specifies the submission method used when submitting data, currently only supporting full submission.
++ Associated Relationship Update Type: The data submission method when associated relationship fields in the table are updated, including full submission and incremental submission.
 
-:::info 注意
-
-+ 全量提交：提交全部数据。
-+ 差量提交：仅提交有更新的数据。
-
+:::info Note
++ Full Submission: Submits all data.
++ Incremental Submission: Only submits updated data.
 :::
-## （三十七）文件下载
-支持将数据封装为一个文件进行下载，适用于批量获取数据进行后续分析。
 
-:::tip 举例
+## (37) File Download
+Supports packaging data into a file for download, suitable for batch data acquisition for subsequent analysis.
 
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wjxz1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wjxz2.png)
-
 :::
 
-文件下载特有属性：
+Specific attributes of file download:
 
-+ 下载提示文本前缀：用于在下载提示信息前面添加一段引导性或说明性文字。
-+ 下载提示文本：下载提示信息的主体内容部分。可以在此输入具体告知用户的信息，明确下载内容。
-+ 下载的文件名：用于指定下载文件在用户设备上保存时显示的文件名。
++ Download Prompt Text Prefix: Used to add a paragraph of guiding or explanatory text before the download prompt information.
++ Download Prompt Text: The main content part of the download prompt information. You can enter specific information to inform users here, clarifying the download content.
++ Download File Name: Used to specify the file name displayed when the download file is saved on the user's device.
 
-## （三十八）拖拽上传
-用于把文件拖入指定区域完成上传，同样支持点击上传。
+## (38) Drag and Drop Upload
+Used to drag files into a specified area to complete upload, also supporting click upload.
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tzsc1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tzsc2.png)
-
 :::
 
-拖拽上传特有属性：
+Specific attributes of drag and drop upload:
 
-+ 拖拽上传提示词：用于设置在拖拽上传区域显示的提示性文字。
-+ 拖拽上传图标：支持选择合适的图标来展示在拖拽上传区域，起到视觉引导和美化作用
-+ 展示所支持拓展名：开启时，会在拖拽上传区域展示该组件支持上传的文件扩展名
++ Drag and Drop Upload Prompt: Used to set the prompt text displayed in the drag and drop upload area.
++ Drag and Drop Upload Icon: Supports selecting a suitable icon to display in the drag and drop upload area, serving as visual guidance and beautification.
++ Show Supported Extensions: When enabled, displays the file extensions supported by this component in the drag and drop upload area.
 
-:::info 注意
-
-此处展示的扩展名，为“限制上传文件类型”属性中所选文件格式的后缀。
-
+:::info Note
+The extensions displayed here are the suffixes of the file formats selected in the "Restricted Upload File Types" attribute.
 :::
 
-+ 最大上传文件个数：当字段业务为一对多或多对多时，显示该属性。限制可上传文件的最大数量。
-+ 最大上传文件体积：限制单个上传文件的大小。
-+ 限制上传文件类型：限制文件的上传格式，支持图片、文档、音频、视频等多种类型，同时也提供自定义选项。在自定义时，需输入所支持文件的格式后缀。
++ Maximum Number of Uploaded Files: When the field business is one-to-many or many-to-many, this attribute is displayed. Limits the maximum number of files that can be uploaded.
++ Maximum Upload File Size: Limits the size of a single uploaded file.
++ Restricted Upload File Types: Limits the upload format of files, supporting multiple types such as pictures, documents, audio, and videos, and also providing a custom option. When customizing, you need to enter the format suffixes of the supported files.
 
-:::info 注意
-
-若设置了允许某个格式，则在选择文件的弹框中其他格式的文件无法选中。
-
+:::info Note
+If a certain format is allowed, files of other formats cannot be selected in the file selection dialog box.
 :::
 
-+ CDN配置：支持配置CDN。
-+ 私有链接：可选择是否为私有链接。
++ CDN Configuration: Supports CDN configuration.
++ Private Link: Allows choosing whether to use a private link.
 
-## （三十九）手写签名
-支持在网页上实现手写签名，适用于在线合同签署、电子表格签名等。
+## (39) Handwritten Signature
+Supports implementing handwritten signatures on web pages, suitable for online contract signing, electronic form signing, etc.
 
-:::tip 举例
-
-设计示例：
-
+:::tip Example
+Design Example:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sxqm1.png)
-
-展示页面：
-
+Display Page:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sxqm2.gif)
-
 :::
 
-手写签名特有属性：
+Specific attributes of handwritten signature:
 
-+ 是否展示清除按钮：开启时，手写签名组件界面会显示清除按钮，可点击该按钮清除已有的手写签名内容；关闭时，清除按钮不会出现在界面上 。
-+ 清除按钮文字：用于设置清除按钮上显示的文本内容
-+ 是否展示保存按钮：开启时，手写签名组件界面会呈现保存按钮，方便用户保存手写签名；关闭则不显示保存按钮。
-+ 保存按钮文字：用来设定保存按钮上呈现的文字
-+ 签字文字颜色：用于设置手写签名后，签名笔迹所呈现的颜色 。
-+ 签名背景面板颜色：用于设置手写签名区域背景颜色
++ Show Clear Button: When enabled, a clear button will be displayed in the handwritten signature component interface, which can be clicked to clear the existing handwritten signature content; when disabled, the clear button will not appear in the interface.
++ Clear Button Text: Used to set the text displayed on the clear button.
++ Show Save Button: When enabled, a save button will be displayed in the handwritten signature component interface for users to save the handwritten signature; when disabled, the save button will not be displayed.
++ Save Button Text: Used to set the text displayed on the save button.
++ Signature Text Color: Used to set the color of the signature handwriting after handwritten signing.
++ Signature Background Panel Color: Used to set the background color of the handwritten signature area.

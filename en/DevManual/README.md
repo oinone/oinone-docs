@@ -1,47 +1,44 @@
 ---
-title: 研发手册
+title: Development Manual
 index: false
 category:
-  - 研发手册
+  - Development Manual
 dir:
   link: true
   order: 3
 prev:
-  text: 低无一体
+  text: Low-Code and No-Code Integration
   link: /en/UserManual/low-code-no-code-integration.md
 next:
-  text: 教程
+  text: Tutorials
   link: /en/DevManual/Tutorials/README.md
 ---
-欢迎访问 Oinone 开发者文档！无论您是经验丰富的开发者，还是刚入门的新手，都能在此找到开发 Oinone 应用所需的全部技术指南和资源。我们提供了丰富的教程、操作指南和参考资料，助您实现开发目标。
+Welcome to the Oinone developer documentation! Whether you are an experienced developer or a novice, you can find all the technical guides and resources needed to develop Oinone applications here. We provide rich tutorials, operation guides, and reference materials to help you achieve your development goals.
 
-# 一、Oinone 开发生态的核心优势
+# I. Core Advantages of the Oinone Development Ecosystem
 
-Oinone 开发生态基于**模块化可扩展架构**设计，支持扩展现有应用或创建全新应用，满足现代企业的个性化业务需求。借助 Oinone 提供的工具和框架，您无需重复造轮子或关注底层基础设施，可专注于快速构建 业务应用。
+The Oinone development ecosystem is designed based on a **modular and extensible architecture**, supporting the extension of existing applications or the creation of new ones to meet the personalized business needs of modern enterprises. With the tools and frameworks provided by Oinone, you can focus on quickly building business applications without reinventing the wheel or paying attention to underlying infrastructure.
 
-# 二、新手入门推荐
+# II. Recommendations for Newcomers
 
-如果您是 Oinone 或 Web 开发新手，建议从以下教程开始：
+If you are new to Oinone or Web development, it is recommended to start with the following tutorials:
 
-+ **《**[后端框架（Back-end framework）](/en/DevManual/Tutorials/Back-endFramework/README.md)**》**：掌握 Oinone 后端开发的核心基础。
++ **《**[Back-end Framework](/en/DevManual/Tutorials/Back-endFramework/README.md)**》**：Master the core fundamentals of Oinone back-end development.
 
-# 三、文档内容分类
+# III. Documentation Content Classification
 
-| **类别**                      | **内容说明**                                                 |
+| **Category**                      | **Content Description**                                                 |
 | :---------------------------- | :----------------------------------------------------------- |
-| **教程（Tutorials）**         | 提供手把手实践练习，帮助您逐步掌握 Oinone 开发技能与操作流程。 |
-| **操作指南（How-to guides）** | 针对实际问题和应用场景的分步解决方案，侧重解决具体业务需求。 |
-| **参考资料（Reference）**     | 包含 Oinone 框架和 API 的技术描述与详细信息，是开发过程中的权威技术手册。 |
+| **Tutorials**         | Provide step-by-step practical exercises to help you gradually master Oinone development skills and operation processes. |
+| **How-to Guides** | Step-by-step solutions for actual problems and application scenarios, focusing on solving specific business needs. |
+| **Reference** | Contains technical descriptions and detailed information about the Oinone framework and API, serving as an authoritative technical manual during development. |
 
 
-# 四、扩展资源
+# IV. Extended Resources
 
-+ **贡献指南**：《[参与代码贡献指南](/en/Contribute/DevelopmentContributions/README.md)》 —— 了解如何参与 Oinone 开源社区的代码贡献。
-+ **社区论坛**：访问[ Oinone 社区论坛](https://doc.oinone.top)，与全球开发者交流经验、获取技术支持。
++ **Contribution Guide**: 《[Code Contribution Guide](/en/Contribute/DevelopmentContributions/README.md)》— Learn how to participate in code contribution to the Oinone open-source community.
++ **Community Forum**: Visit the [Oinone Community Forum](https://doc.oinone.top) to exchange experiences and obtain technical support with developers worldwide.
 
-# 五、开始探索
+# V. Start Exploring
 
-立即从左侧导航栏选择感兴趣的内容，或通过搜索功能查找特定主题。祝您在 Oinone 开发之旅中顺利前行！ 🚀
-
-
-
+Immediately select the content of interest from the left navigation bar, or use the search function to find specific topics. We wish you a smooth journey in Oinone development! 🚀

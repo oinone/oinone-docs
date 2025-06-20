@@ -1,104 +1,103 @@
 ---
-title: Node.js安装与注意事项
+title: Node.js Installation and Precautions
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - Installation and Upgrade
+  - Environment Preparation
 order: 2
 
 ---
-# 一、下载安装包
-:::warning 提示
+# 一、Download Installation Package
+:::warning Tip
 
-下载时请注意选择与你的操作系统及 CPU 指令集架构（如 x64、arm64）相匹配的版本。
-以下安装过程以版本号为 20.16.0、架构为 arm64 的版本为例进行说明。
-
-:::
-
-
-
-:::info 注意
-
-在配置环境变量时，脚本中的配置路径需替换为对应 Shell 的 profile 文件路径：
-
-+ 对于 Zsh，请使用 `${HOME}/.zshrc`
-+ 对于 Bash，请使用 `${HOME}/.bashrc`
+When downloading, please note to select the version that matches your operating system and CPU instruction set architecture (such as x64, arm64).
+The following installation process takes the version with version number 20.16.0 and architecture arm64 as an example for explanation.
 
 :::
 
 
 
-Node.js下载地址：
+:::info Attention
+
+When configuring environment variables, the configuration path in the script needs to be replaced with the corresponding Shell's profile file path:
+
++ For Zsh, please use `${HOME}/.zshrc`
++ For Bash, please use `${HOME}/.bashrc`
+
+:::
+
+
+
+Node.js download address:
 
 [https://nodejs.org/dist/v20.16.0/](https://nodejs.org/dist/v20.16.0/)
 
-# 二、安装
-## （一）Linux/macOS安装Node.js
-### 1、解压
-可视化工具或者使用如下命令解压
+# 二、Installation
+## （一）Install Node.js on Linux/macOS
+### 1、Unzip
+Use a visualization tool or the following command to unzip
 
 ```shell
-# 解压命令
-# tar.gz包
-tar zxvf node-v20.16.0-darwin-arm64.tar.gz -C ./安装目录
+# Unzip command
+# tar.gz package
+tar zxvf node-v20.16.0-darwin-arm64.tar.gz -C ./installation directory
 
-# tar.xz包
-tar Jxvf node-v20.16.0-darwin-arm64.tar.gz -C ./安装目录
+# tar.xz package
+tar Jxvf node-v20.16.0-darwin-arm64.tar.gz -C ./installation directory
 ```
 
-### 2、配置环境变量
+### 2、Configure Environment Variables
 ```shell
-# 配置环境变量
-cat >> 替换具体Shell配置文件 << EOF
-export NODE_PATH="安装目录"
+# Configure environment variables
+cat >> replace the specific Shell configuration file << EOF
+export NODE_PATH="installation directory"
 export PATH=\$NODE_PATH/bin:\$PATH
 EOF
 ```
 
-### 3、验证
-使用终端输入 `node --version` 进行验证
+### 3、Verification
+Enter `node --version` in the terminal to verify
 
 ```shell
-# 验证环境变量
+# Verify environment variables
 node --version
 v20.16.0
 ```
 
-## （二）Windows安装Node.js
-### 1、解压
-可视化工具或者使用Windows自带zip工具（鼠标选中文件，右键点击“全部解压缩”），提取压缩文件的内容
+## （二）Install Node.js on Windows
+### 1、Unzip
+Use a visualization tool or the Windows built-in zip tool (select the file with the mouse, right-click "Extract All"), and extract the contents of the compressed file
 
-### 2、配置环境变量
-键盘触发 `Win + R`出现以下界面
+### 2、Configure Environment Variables
+Press `Win + R` on the keyboard to bring up the following interface
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/node.js/1.png)
 
-输入以下代码之后点击`确定`
+Enter the following code and click `OK`
 
 ```shell
-# 呼出环境变量配置界面
+# Call up the environment variable configuration interface
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
 
-配置`NODE_PATH`为node的安装目录，并把变量`%NODE_PATH%`添加到 `Path`中
+Configure `NODE_PATH` as the installation directory of node, and add the variable `%NODE_PATH%` to `Path`
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/node.js/2.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/node.js/3.png)
 
-### 3、验证
-使用Windows终端输入 `node --version` 进行验证
+### 3、Verification
+Enter `node --version` in the Windows terminal to verify
 
 ```shell
-# 验证环境变量
+# Verify environment variables
 node --version
 v20.16.0
 ```
 
-# 三、进阶
-使用 nvm 管理不同版本的 Node.js。安装与使用方法可参考 nvm 官方网站：
+# 三、Advanced
+Use nvm to manage different versions of Node.js. For installation and usage methods, please refer to the nvm official website:
 [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
 
-Vue.js 的开发工具为 Vue CLI，安装与使用方法可参考 Vue CLI 官方文档：
+The development tool for Vue.js is Vue CLI. For installation and usage methods, please refer to the Vue CLI official documentation:
 [https://cli.vuejs.org/zh/](https://cli.vuejs.org/zh/)
-

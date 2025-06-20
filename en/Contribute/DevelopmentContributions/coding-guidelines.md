@@ -1,11 +1,11 @@
 ---
-title: Coding guidelines
+title: Coding Guidelines
 index: true
 category:
-  - 贡献手册
-  - 研发贡献
+  - Contribution Manual
+  - R&D Contribution
 order: 2
 next:
-  text: Content guidelines
+  text: Content Guidelines
   link: /en/Contribute/DocumentationContributions/content-guidelines.md
 ---

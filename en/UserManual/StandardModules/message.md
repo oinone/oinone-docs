@@ -1,134 +1,133 @@
 ---
-title: 消息
+title: Message
 index: true
 category:
-  - 用户手册
+  - User Manual
 order: 6
 ---
-# 一、邮件配置管理
-## （一）邮件服务器
-### 1.功能介绍
-系统支持自定义邮件服务器配置，允许用户根据实际需求设置邮件服务器的各项参数，确保邮件能够准确、及时地发送和接收。用户可以根据自身的邮件服务提供商、服务器地址、端口号等信息进行配置，以满足不同场景下的邮件发送需求。
+# I. Email Configuration Management
+## (1) Email Server
+### 1. Function Introduction
+The system supports custom email server configuration, allowing users to set various parameters of the email server according to actual needs, ensuring that emails can be sent and received accurately and promptly. Users can configure based on their own email service providers, server addresses, port numbers, and other information to meet email sending needs in different scenarios.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对邮件服务器进行筛选。
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的邮件服务器。
-+ 编辑：点击「编辑」，即可对邮件服务器的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选邮件服务器的详细信息，包括配置参数、状态等。
-+ 删除：选中某一邮件服务器后，点击「删除」，即可将该邮件服务器删除。
+### 2. Operation Methods
++ Filter: Enter or select corresponding filter conditions according to actual scenario requirements to filter email servers.
++ Add: Click "Create", enter the required configuration information and save to successfully create a new email server.
++ Edit: Click "Edit" to update or modify relevant information of the email server.
++ Details: Click "Details" to view detailed information of the selected email server, including configuration parameters, status, etc.
++ Delete: Select an email server and click "Delete" to remove the email server.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/yjfwq.png)
 
-## （二）邮件签名
-### 1.功能介绍
-系统支持邮件签名配置功能。用户可以根据企业或个人品牌形象，自定义邮件签名内容，包括文字、图片、链接等多种元素。通过配置邮件签名，不仅提升了邮件的专业性，还增强了品牌识别度，使收件人能够更快速地识别邮件来源，提升沟通效率。
+## (2) Email Signature
+### 1. Function Introduction
+The system supports the email signature configuration function. Users can customize the email signature content according to the corporate or personal brand image, including various elements such as text, images, and links. By configuring the email signature, it not only enhances the professionalism of the email but also strengthens brand recognition, enabling recipients to identify the email source more quickly and improving communication efficiency.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对邮件签名进行筛选。
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的邮件签名。
-+ 查看：点击「查看」，可查看选中的邮件签名。
-+ 编辑：点击「编辑」，即可对邮件签名的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选邮件签名的详细信息，包括配置参数、状态等。
-+ 删除：选中某一邮件签名后，点击「删除」，即可将该邮件签名删除。
+### 2. Operation Methods
++ Filter: Enter or select corresponding filter conditions according to actual scenario requirements to filter email signatures.
++ Add: Click "Create", enter the required configuration information and save to successfully create a new email signature.
++ View: Click "View" to view the selected email signature.
++ Edit: Click "Edit" to update or modify relevant information of the email signature.
++ Details: Click "Details" to view detailed information of the selected email signature, including configuration parameters, status, etc.
++ Delete: Select an email signature and click "Delete" to remove the email signature.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/yjqm.png)
 
-## （三）邮件模板
-### 1.功能介绍
-系统支持自定义的邮件模板，允许用户根据品牌、营销或沟通需求，灵活设计邮件布局、色彩和字体，满足多元化邮件发送需求，提升邮件沟通效率。
+## (3) Email Template
+### 1. Function Introduction
+The system supports custom email templates, allowing users to flexibly design email layouts, colors, and fonts according to brand, marketing, or communication needs, meeting diverse email sending needs and improving email communication efficiency.
 
-:::info 注意
+:::info Note
 
-邮件模板并非在设计器中直接应用，而是在代码编写过程中被使用。
+Email templates are not directly applied in the designer but are used during the code writing process.
 
 :::
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对邮件模板进行筛选。
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的邮件模板。
-+ 编辑：点击「编辑」，即可对邮件模板的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选邮件模板的详细信息，包括配置参数、状态等。
-+ 删除：选中某一邮件模板后，点击「删除」，即可将该邮件模板删除。
+### 2. Operation Methods
++ Filter: Enter or select corresponding filter conditions according to actual scenario requirements to filter email templates.
++ Add: Click "Create", enter the required configuration information and save to successfully create a new email template.
++ Edit: Click "Edit" to update or modify relevant information of the email template.
++ Details: Click "Details" to view detailed information of the selected email template, including configuration parameters, status, etc.
++ Delete: Select an email template and click "Delete" to remove the email template.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/yjmb.png)
 
-## （四）邮件验证模板
-### 1.功能介绍
-系统支持自定义邮件验证模板，可以根据不同的用途和需求，灵活设置相应的验证邮件内容。
+## (4) Email Verification Template
+### 1. Function Introduction
+The system supports custom email verification templates, allowing users to flexibly set corresponding verification email content according to different uses and requirements.
 
-:::info 注意
+:::info Note
 
-邮件验证模板并非在设计器中直接应用，而是在代码编写过程中被使用。
+Email verification templates are not directly applied in the designer but are used during the code writing process.
 
 :::
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对邮件验证模板进行筛选。
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的邮件验证模板。
-+ 编辑：点击「编辑」，即可对邮件验证模板的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选邮件验证模板的详细信息，包括配置参数、状态等。
-+ 删除：选中某一邮件验证模板后，点击「删除」，即可将该邮件验证模板删除。
+### 2. Operation Methods
++ Filter: Enter or select corresponding filter conditions according to actual scenario requirements to filter email verification templates.
++ Add: Click "Create", enter the required configuration information and save to successfully create a new email verification template.
++ Edit: Click "Edit" to update or modify relevant information of the email verification template.
++ Details: Click "Details" to view detailed information of the selected email verification template, including configuration parameters, status, etc.
++ Delete: Select an email verification template and click "Delete" to remove the email verification template.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/yjyzmb.png)
 
-# 二、短信配置管理
-## （一）短信通道
-### 1.功能介绍
-由于不同版本、服务或业务场景的特异性需求，配置短信模板时可能需选用差异化的短信通道。为满足这一灵活多变的配置要求，我们特提供了短信通道配置管理界面，以确保短信服务的准确性和高效性。
+# II. SMS Configuration Management
+## (1) SMS Channel
+### 1. Function Introduction
+Due to the specific requirements of different versions, services, or business scenarios, different SMS channels may need to be selected when configuring SMS templates. To meet this flexible configuration requirement, we provide an SMS channel configuration management interface to ensure the accuracy and efficiency of SMS services.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对短信通道进行筛选。
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的短信通道。
-+ 编辑：点击「编辑」，即可对短信通道的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选短信通道的详细信息，包括配置参数、状态等。
-+ 删除：选中某一短信通道后，点击「删除」，即可将该短信通道删除。
+### 2. Operation Methods
++ Filter: Enter or select corresponding filter conditions according to actual scenario requirements to filter SMS channels.
++ Add: Click "Create", enter the required configuration information and save to successfully create a new SMS channel.
++ Edit: Click "Edit" to update or modify relevant information of the SMS channel.
++ Details: Click "Details" to view detailed information of the selected SMS channel, including configuration parameters, status, etc.
++ Delete: Select an SMS channel and click "Delete" to remove the SMS channel.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/dxtd.png)
 
-## （二）短信模板
-### 1.功能介绍
-在工作流、微流以及数据流程中的“短信”节点中，可选择已配置好的短信模板进行使用
+## (2) SMS Template
+### 1. Function Introduction
+In the "SMS" nodes of workflows, micro - flows, and data processes, configured SMS templates can be selected for use.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对短信模板进行筛选。
-+ 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的短信模板。
-+ 编辑：点击「编辑」，即可对短信模板的相关信息进行更新或修改。
-+ 详情：点击「详情」，可查看所选短信模板的详细信息，包括配置参数、状态等。
-+ 删除：选中某一短信模板后，点击「删除」，即可将该短信模板删除。
-+ 提交审核：对于处于待审核状态或审核未通过的短信模板，可点击「提交审核」，待审核通过后，即可正常使用短信节点进行相关操作。
+### 2. Operation Methods
++ Filter: Enter or select corresponding filter conditions according to actual scenario requirements to filter SMS templates.
++ Add: Click "Create", enter the required configuration information and save to successfully create a new SMS template.
++ Edit: Click "Edit" to update or modify relevant information of the SMS template.
++ Details: Click "Details" to view detailed information of the selected SMS template, including configuration parameters, status, etc.
++ Delete: Select an SMS template and click "Delete" to remove the SMS template.
++ Submit for Review: For SMS templates in the pending review state or those that have failed the review, click "Submit for Review". After the review is passed, the SMS node can be used normally for related operations.
 
-:::info 注意
+:::info Note
 
-对于已经审核通过或正在审核中的短信模板，将不允许进行编辑或再次提交审核操作。
+For SMS templates that have passed the review or are under review, editing or resubmitting for review operations are not allowed.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/dxmb.png)
 
-# 三、消息列表
-消息列表用于详细记录平台各类消息的执行情况，涵盖了通知、工作流、抄送等多种消息类型。每当系统内发生一次消息传递时，都会在消息列表中生成并保存一条相应的执行记录。
+# III. Message List
+The message list is used to record in detail the execution status of various types of messages on the platform, covering multiple message types such as notifications, workflows, and carbon copies. Whenever a message is transmitted within the system, a corresponding execution record is generated and saved in the message list.
 
-## （一）筛选
-### 1.功能介绍
-根据实际业务需求，可以定制消息列表的筛选条件。在当前的筛选条件下，将展示相应的消息列表，方便查看不同的消息记录。
+## (1) Filtering
+### 1. Function Introduction
+According to actual business needs, filter conditions for the message list can be customized. Under the current filter conditions, the corresponding message list will be displayed, facilitating the viewing of different message records.
 
-### 2.操作方法
-+ 筛选：在筛选区选择或输入条件后点击「搜索」，即可对消息列表进行筛选。
-+ 一键清除：点击「清除」图标，可一键清除当前筛选区中所有条件
-+ 管理筛选方案：鼠标移动至「筛选方案」图标，即可管理筛选方案
-    - 添加：在筛选区中选择或输入筛选条件后，点击「收藏当前条件」，在弹窗中输入方案名称，即可将当前筛选条件组合添加到筛选方案中
-    - 查找：在输入框中输入方案名称
-    - 修改：点击「筛选方案管理」后在弹窗中选择某项方案，点击方案名称，即可修改方案名称
-    - 删除：在方案列表中选择某项方案，点击「删除」图标，即可删除该筛选方案
+### 2. Operation Methods
++ Filter: Select or enter conditions in the filter area and click "Search" to filter the message list.
++ Clear All: Click the "Clear" icon to clear all conditions in the current filter area with one click.
++ Manage Filter Schemes: Move the mouse over the "Filter Scheme" icon to manage filter schemes.
+    - Add: After selecting or entering filter conditions in the filter area, click "Save Current Conditions". Enter the scheme name in the pop - up window to add the current filter condition combination to the filter scheme.
+    - Search: Enter the scheme name in the input box.
+    - Modify: Click "Manage Filter Schemes", select a scheme in the pop - up window, and click the scheme name to modify the scheme name.
+    - Delete: Select a scheme in the scheme list and click the "Delete" icon to remove the filter scheme.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/xxlb1.png)
 
-## （二）详情
-### 1.功能介绍
-系统支持查看消息的具体内容，方便对消息进行管理
+## (2) Details
+### 1. Function Introduction
+The system supports viewing the specific content of messages, facilitating message management.
 
-### 2.操作方法
-+ 点击「详情」，跳转至消息详情界面，即可查看详细消息内容
+### 2. Operation Methods
++ Click "Details" to jump to the message details page and view the detailed message content.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/xxlb2.png)
-

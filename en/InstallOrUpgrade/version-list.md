@@ -1,28 +1,24 @@
 ---
-title: 版本清单
+title: Version List
 index: true
 category:
-  - 安装与升级
+  - Installation and Upgrade
 order: 6
 
 ---
-# 一、概述
-数式Oinone对最近3个主要版本提供支持和错误修复。下表是每个版本的支持状态。
+# I. Overview
+Oinone Math provides support and bug fixes for the latest 3 major versions. The following table shows the support status of each version.
 
-| 版本 | 发布时间 | 停更日期 | 终止支持 |
+| Version | Release Time | End of Update Date | End of Support |
 | --- | --- | --- | --- |
-| 数式Oinone 6.0 | 2025 年 02 月 | 2026 年 01 月（计划） | |
-| 数式Oinone 5.0 | 2024 年 02 月 | 2025 年 01 月 | 2027 年 10 月（计划） |
-| 数式Oinone 4.0 | 2023 年 02 月 | 2024 年 01 月 | 2026 年 10 月 |
-| 更早版本 | - | 2023 年之前 | 已停止 |
+| Oinone Math 6.0 | February 2025 | January 2026 (Plan) |  |
+| Oinone Math 5.0 | February 2024 | January 2025 | October 2027 (Plan) |
+| Oinone Math 4.0 | February 2023 | January 2024 | October 2026 |
+| Earlier Versions | - | Before 2023 | Discontinued |
 
 
-:::warning 提示：
+:::warning Prompt:
 
-即使我们不支持旧版本，您也始终可以“从任何版本升级”。
+Even if we no longer support old versions, you can always "upgrade from any version".
 
 :::
-
-
-
-

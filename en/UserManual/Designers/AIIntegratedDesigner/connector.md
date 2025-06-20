@@ -1,81 +1,80 @@
 ---
-title: 连接器
+title: Connector
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 1
 prev:
-  text: AI集成设计器（AI Integrated Designer）
-  link: /en/UserManual/Designers/MicroflowDesigner/README.md
+  text: AI Integrated Designer
+  link: /zh-cn/UserManual/Designers/MicroflowDesigner/README.md
 ---
-AI集成设计器的连接器，通过可视化界面，构建平台应用与外部大模型的数据通道。企业用户可基于自身业务场景，自由组合不同能力的大模型组件，快速完成定制化 AI 应用产品包的设计与部署。
+The connector of the AI Integrated Designer builds a data channel between platform applications and external large models through a visual interface. Enterprise users can freely combine large model components with different capabilities based on their own business scenarios to quickly complete the design and deployment of customized AI application product packages.
 
-# 一、筛选
-### 1.功能介绍
-系统支持按需设置连接器筛选条件，用户可灵活设置参数。筛选完成后，系统将生成对应列表，直观呈现连接器信息，高效实现连接器管理。
+# I. Filtering
+### 1. Function Introduction
+The system supports setting connector filtering conditions as needed, and users can flexibly set parameters. After filtering, the system will generate a corresponding list to intuitively present connector information and efficiently manage connectors.
 
-### 2.操作方法
-+ 筛选：在筛选区输入条件后点击「搜索」，即可对连接器进行筛选。
-+ 一键清除：点击「清除」图标，可一键清除当前筛选区中条件
+### 2. Operation Method
++ Filtering: Enter conditions in the filtering area and click the "Search" button to filter connectors.
++ One-click Clear: Click the "Clear" icon to clear the conditions in the current filtering area with one click.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/connector/sx.png)
 
-# 二、创建与设计
-### 1，功能介绍
-支持新增连接器，可依据需求自定义连接器信息。当填写完信息后，可在设计界面拖入不同的AI配置，定制化设计不同的连接器
+# II. Creation and Design
+### 1. Function Introduction
+It supports adding new connectors and customizing connector information according to requirements. After filling in the information, different AI configurations can be dragged into the design interface to customize different connectors.
 
-### 2.操作方法
-+ 点击「创建连接器」，在弹出的页面中依据需求填写信息后保存，即可创建成功
+### 2. Operation Method
++ Click "Create Connector", fill in the information as required on the pop-up page, and save it to create the connector successfully.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/connector/cjysj1.png)
 
-+ 连接器创建完成后将自动跳转至设计界面。在此界面，可灵活配置连接器的输入输出类型，自由选择适配的大模型，并能根据实际业务需求，实时调整大模型的各类配置参数，实现个性化的连接设置。
++ After the connector is created, it will automatically jump to the design interface. On this interface, you can flexibly configure the input and output types of the connector, freely select the suitable large model, and adjust various configuration parameters of the large model in real-time according to actual business needs to achieve personalized connection settings.
 
-:::info 注意
+:::info Note
 
-+ 完成配置后，可通过系统验证功能测试连接器的连通性，确保数据传输正常
-+ 连接器发布成功后，可查看其 API 信息。
++ After completing the configuration, you can test the connectivity of the connector through the system verification function to ensure normal data transmission.
++ After the connector is successfully published, you can view its API information.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/connector/cjysj2.png)
 
-# 三、查看
-### 1.功能介绍
-已设计的连接器，支持快速查看 AI 配置连接顺序与详细配置信息；已发布的连接器，除上述内容外，还可获取其 API 信息，便于数据对接。
+# III. Viewing
+### 1. Function Introduction
+For designed connectors, it supports quickly viewing the connection order of AI configurations and detailed configuration information. For published connectors, in addition to the above content, you can also obtain their API information for easy data docking.
 
-### 2.操作方法
-+ 点击「查看」图标，即可跳转至对应页面查看
+### 2. Operation Method
++ Click the "View" icon to jump to the corresponding page for viewing.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/connector/ck.png)
 
-# 四、编辑
-### 1.功能介绍
-对于已创建的连接器，可以对其进行编辑修改，包括调整连接器信息或变更模型设置等操作。
+# IV. Editing
+### 1. Function Introduction
+For created connectors, you can edit and modify them, including adjusting connector information or changing model settings.
 
-### 2.操作方法
-点击「编辑」，即可在跳转的设计页面中进行编辑
+### 2. Operation Method
+Click "Edit" to edit on the jumped design page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/connector/bj.png)
 
-# 五、隐藏/可见
-### 1.功能介绍
-对于当前暂不使用的连接器，可以执行隐藏操作。隐藏后的连接器不可以被使用，但是不影响已经被使用的数据。若日后需要，只需将隐藏的连接器设置为可见状态即可重新投入使用。
+# V. Hiding/Showing
+### 1. Function Introduction
+For connectors that are not currently in use, you can perform a hiding operation. Hidden connectors cannot be used, but it does not affect the data that has already been used. If needed in the future, you can set the hidden connector to the visible state to reuse it.
 
-### 2.操作方法
-点击「隐藏」，连接器设置为隐藏状态；再次点击，连接器恢复为可见状态。
+### 2. Operation Method
+Click "Hide" to set the connector to the hidden state; click again to restore the connector to the visible state.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/connector/yc.png)
 
-# 六、查看API
-### 1.功能介绍
-对于已发布的连接器，可以查看其API信息
+# VI. Viewing API
+### 1. Function Introduction
+For published connectors, you can view their API information.
 
-### 2.操作方法
-在管理页面或设计页面，点击「查看API」按钮均可查看该连接器的API信息
+### 2. Operation Method
+On the management page or the design page, click the "View API" button to view the API information of the connector.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/connector/API1.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/connector/API2.png)
-

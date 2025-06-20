@@ -1,75 +1,75 @@
 ---
-title: 设置指南（Setup Guide）
+title: Setup Guide
 index: true
 category:
-  - 研发手册
-  - 教程
+  - Development Manual
+  - Tutorials
 order: 1
 prev:
-  text: 教程（Tutorials）
+  text: Tutorials
   link: /en/DevManual/Tutorials/README.md
 ---
-# 一、概述
-根据预期的使用场景，安装数式Oinone有多种方式。对于数式Oinone的开发者以及数式Oinone员工来说，首选的方式还是用源码安装。
+# I. Overview
+There are multiple ways to install Oinone Math based on the intended usage scenario. For developers of Oinone Math and Oinone Math staff, the preferred method is still to install using the source code.
 
-# 二、为教程适配环境
-## （一）后端研发
-那么，让我们把你的更改推送到教程代码库中：`oinone/oinone-backend-tutorials`。和oinone/oinone-backend-starter代码库一样，它将独立启动并成为整体的一部分。
+# II. Adapting the Environment for Tutorials
+## (一) Backend Development
+So, let's push your changes to the tutorial code repository: `oinone/oinone-backend-tutorials`. Like the oinone/oinone-backend-starter repository, it will start independently and become part of the whole.
 
-:::warning 提示：模块独立启动
+:::warning Tip: Independent Module Launch
 
-数式Oinone的模块支持独立运行，且不依赖Oinone的设计器模块。
+Modules of Oinone Math support independent operation and do not depend on the Oinone designer module.
 
 :::
 
-按照与 `oinone/oinone-backend-starter` 代码库相同的流程，在你的机器上克隆 `oinone/oinone-backend-tutorials` 代码库，命令如下：
+Follow the same process as the `oinone/oinone-backend-starter` repository to clone the `oinone/oinone-backend-tutorials` repository on your machine with the following command:
 
 ```shell
 git clone git@github.com:oinone/oinone-backend-tutorials.git
 ```
 
-配置你的派生仓库和 Git，以便将更改推送到你的派生仓库，而不是主代码库。
+Configure your forked repository and Git to push changes to your forked repository instead of the main repository.
 
-将 Git 与你的派生仓库关联
-访问 `github.com/oinone/oinone-backend-tutorials`，然后点击 “派生（Fork）” 按钮，在你的账户上创建该代码库的一个派生仓库。
+Associate Git with your forked repository
+Visit `github.com/oinone/oinone-backend-tutorials`, then click the "Fork" button to create a forked repository of this repository under your account.
 
-在下面的命令中，将 `<your_github_account>` 替换为你创建派生仓库时所使用的 GitHub 账户名。
+In the following command, replace `<your_github_account>` with the GitHub account name you used when creating the forked repository.
 
 ```shell
 cd /TutorialsPath
 git remote add dev git@github.com:<your_github_account>/oinone-backend-tutorials.git
 ```
 
-就是这样！现在你的环境已准备好从源代码运行 Oinone，并且你已成功创建了一个代码库。这将使你能够将你的工作推送到 GitHub 上。
+That's it! Now your environment is ready to run Oinone from the source code, and you have successfully created a repository. This will enable you to push your work to GitHub.
 
-## （二）前端研发
-那么，让我们把你的更改推送到教程代码库中：`oinone/oinone-frontend-tutorials`。和oinone/oinone-frontend-starter代码库一样，它可独立启动并代替oinone-frontend-starter提供前端服务。
+## (二) Frontend Development
+So, let's push your changes to the tutorial code repository: `oinone/oinone-frontend-tutorials`. Like the oinone/oinone-frontend-starter repository, it can start independently and replace oinone-frontend-starter to provide frontend services.
 
-按照与 `oinone/oinone-frontend-starter` 代码库相同的流程，在你的机器上克隆 `oinone/oinone-frontend-tutorials` 代码库，命令如下：
+Follow the same process as the `oinone/oinone-frontend-starter` repository to clone the `oinone/oinone-frontend-tutorials` repository on your machine with the following command:
 
 ```shell
 git clone git@github.com:oinone/oinone-frontend-tutorials.git
 ```
 
-配置你的派生仓库和 Git，以便将更改推送到你的派生仓库，而不是主代码库。
+Configure your forked repository and Git to push changes to your forked repository instead of the main repository.
 
-将 Git 与你的派生仓库关联
-访问 `github.com/oinone/oinone-frontend-tutorials`，然后点击 “派生（Fork）” 按钮，在你的账户上创建该代码库的一个派生仓库。
+Associate Git with your forked repository
+Visit `github.com/oinone/oinone-frontend-tutorials`, then click the "Fork" button to create a forked repository of this repository under your account.
 
-在下面的命令中，将 `<your_github_account>` 替换为你创建派生仓库时所使用的 GitHub 账户名。
+In the following command, replace `<your_github_account>` with the GitHub account name you used when creating the forked repository.
 
 ```shell
 cd /TutorialsPath
 git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorials.git
 ```
 
-就是这样！现在你的环境已准备好从源代码运行 Oinone，并且你已成功创建了一个代码库。这将使你能够将你的工作推送到 GitHub 上。
+That's it! Now your environment is ready to run Oinone from the source code, and you have successfully created a repository. This will enable you to push your work to GitHub.
 
-# 三、后端额外工具
-## （一）IDEA工具以及插件安装
-### 1、请根据各自Idea版本下载对应插件
+# III. Additional Backend Tools
+## (一) IDEA Tool and Plugin Installation
+### 1. Please download the corresponding plugin according to your Idea version
 
-| IDEA版本 | 对应插件                                                     |
+| IDEA Version | Corresponding Plugin                                                     |
 | -------- | ------------------------------------------------------------ |
 | 2023.2   | [pamirs-intellij-plugin-2023.2.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/MasterFrontendFramework/chapter-3/pamirs-intellij-plugin-2023.2.zip) |
 | 2023.3   | [pamirs-intellij-plugin-2023.3.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/MasterFrontendFramework/chapter-3/pamirs-intellij-plugin-2023.3.zip) |
@@ -84,7 +84,7 @@ git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorial
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
-  Mac：点击Preferences菜单（快捷键 comand+,）
+  Mac: Click the Preferences menu (shortcut command+,)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/setup-guide/mac.png)
 
@@ -92,7 +92,7 @@ git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorial
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
-  Windows：点击菜单项File => Settings => Plugins
+  Windows: Click the menu item File => Settings => Plugins
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/setup-guide/Windows.png)
 
@@ -101,26 +101,25 @@ git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorial
 </div>
 
 
-## （二）DB GUI工具
-数据库管理工具很多人喜欢用Datagrip、MySQLWorkbench、DBEaver，你可以根据自己喜好选择一款。
+## (二) DB GUI Tool
+Many people like to use Datagrip, MySQLWorkbench, DBEaver for database management tools. You can choose one according to your preference.
 
-## （三）Maven工具
-### 1、安装
-参照[Maven安装与注意事项](/en/InstallOrUpgrade/Dev-ENV/Maven-setup.md)
+## (三) Maven Tool
+### 1. Installation
+Refer to [Maven Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Maven-setup.md)
 
-### 2、配置
-建议将Maven配置文件 `settings.xml` 文件放置在用户目录下的 `.m2` 文件夹中。
+### 2. Configuration
+It is recommended to place the Maven configuration file `settings.xml` in the `.m2` folder under the user directory.
 
-如果没有用户级别的maven配置，可能需要在IDEA中配置maven的偏好设置。
+If there is no user-level maven configuration, you may need to configure maven preferences in IDEA.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/setup-guide/Maven.png)
 
-## （四）GraphQL API 调试工具
-常用的 GraphQL 调试工具包括 Postman、Insomnia 等。
-在使用这些工具时，可以结合 Environment（环境）与占位符功能，方便进行接口调试。
+## (四) GraphQL API Debugging Tool
+Common GraphQL debugging tools include Postman, Insomnia, etc.
+When using these tools, you can combine the Environment and placeholder functions to facilitate interface debugging.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/setup-guide/Graph.gif)
 
-#  四、前端额外工具
-参照前端[环境配置之进阶](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#三、进阶)
-
+# IV. Additional Frontend Tools
+Refer to the frontend [Environment Configuration Advanced](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#三、进阶)

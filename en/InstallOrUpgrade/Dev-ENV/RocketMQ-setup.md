@@ -1,45 +1,48 @@
 ---
-title: RocketMQ安装与注意事项
+title: RocketMQ Installation and Notes
 index: true
 category:
-  - 安装与升级
-  - 环境准备
+  - installation and upgrade
+  - Environmental preparation
 order: 5
-
 ---
-# 一、下载安装包
-下载地址: [https://rocketmq.apache.org/download](https://rocketmq.apache.org/download)
 
-推荐选择`4.5.2`及以上`5.0.0`以下版本, 以下使用`4.5.2`版本进行安装。
+# 1. Download the Installation Package
 
-:::info 注意
+Download: [https://rocketmq.apache.org/download](https://rocketmq.apache.org/download)
 
-以下命令均需在 RocketMQ 的安装目录中执行。你可以通过命令 `cd <RocketMQ安装目录>` 进入该目录。
-在 Linux/macOS 系统中，请使用默认终端；在 Windows 系统中，请使用 PowerShell(_**除非特殊指明使用CMD**_)。
+It is recommended to use versions `4.5.2` and above, and below `5.0.0`. Version `4.5.2` is recommended for installation.
+
+:::info Note
+
+The following commands must be executed from the RocketMQ installation directory. You can access this directory by running the command `cd <RocketMQ installation directory>`.
+On Linux/macOS, use the default terminal; on Windows, use PowerShell (**unless CMD is specified**).
 
 :::
 
-# 二、安装
-## （一）解压
-可视化工具或者使用如下命令解压
+# II. Installation
+
+## (i) Decompression
+
+Visualize or decompress using the following command
 
 ```shell
 # Linux/macOS
-unzip rocketmq-all-4.5.2-bin-release.zip -d <RocketMQ安装目录>
+unzip rocketmq-all-4.5.2-bin-release.zip -d <RocketMQ installation directory>
 ```
 
 ```shell
 # Windows
-Expand-Archive .\rocketmq-all-4.5.2-bin-release.zip <RocketMQ安装目录>
+Expand-Archive .\rocketmq-all-4.5.2-bin-release.zip <RocketMQ installation directory>
 ```
 
-:::warning 提示
+:::warning Tips
 
-为了方便后续操作，可以为 RocketMQ 安装目录创建软链接。
+For convenience, you can create symbolic links to the RocketMQ installation directory.
 
 :::
 
-建立软链(可选)
+Create symbolic link (optional)
 
 ```shell
 # Linux/macOS
@@ -51,20 +54,21 @@ ln -s rocketmq-all-4.5.2-bin-release rocketmq
 New-Item -Path .\rocketmq\ -ItemType SymbolicLink -Target .\rocketmq-all-4.5.2-bin-release
 ```
 
-:::info 注意
+:::info Note
 
-在 Windows 系统中，使用 PowerShell 创建软链接可能需要以管理员权限运行 PowerShell，或者需要开启开发者模式。
-
-:::
-
-## （二）开发环境修改配置
-:::info 注意
-
-RocketMQ 默认的 JVM 运行时内存设置对本地开发环境来说过大，建议调整内存值以优化性能。
+On Windows systems, using PowerShell to create symbolic links may require PowerShell to be running with administrator privileges or developer mode to be turned on.
 
 :::
 
-修改NameServer运行内存
+## (2) Modify Configuration for the Development Environment
+
+:::info Note
+
+The default JVM runtime memory settings of RocketMQ are too large for the local development environment. It is recommended to adjust the memory values to optimize performance.
+
+:::
+
+Modify NameServer Running Memory
 
 ```shell
 # Linux/macOS
@@ -81,7 +85,6 @@ awk '
     print
 }
 ' ./bin/runserver.sh > ./bin/tmp && mv ./bin/tmp ./bin/runserver.sh
-
 ```
 
 ```powershell
@@ -89,7 +92,7 @@ awk '
 (Get-Content .\bin\runserver.cmd) | ForEach-Object { $_ -replace '-Xms2g -Xmx2g -Xmn1g', '-Xms1g -Xmx1g -Xmn1g' } | Set-Content .\bin\runserver.cmd
 ```
 
-修改Broker运行内存
+Modify Broker Run Memory
 
 ```shell
 # Linux/macOS
@@ -108,7 +111,6 @@ awk '
     print
 }
 ' ./bin/runbroker.sh > ./bin/tmp && mv ./bin/tmp bin/runbroker.sh
-
 ```
 
 ```powershell
@@ -116,7 +118,7 @@ awk '
 (Get-Content .\bin\runbroker.cmd) | ForEach-Object { $_ -replace '-Xms2g -Xmx2g -Xmn1g', '-Xms1g -Xmx1g -Xmn1g' } | Set-Content .\bin\runbroker.cmd
 ```
 
-修改Broker配置
+Modify Broker Configuration
 
 ```shell
 # Linux/macOS
@@ -148,7 +150,8 @@ Set-Content -Path .\conf\broker.conf -Value @(
 )
 ```
 
-# 三、运行
+# III. Operation
+
 Linux/macOS
 
 ```shell
@@ -161,33 +164,33 @@ nohup ./bin/mqnamesrv start >> ./namesrv.nohup 2>&1 &
 nohup ./bin/mqbroker -c ./conf/broker.conf >> ./broker.nohup 2>&1 &
 ```
 
-
-
 Windows
 
 ```powershell
 # NameServer
-$env:ROCKETMQ_HOME = <RocketMQ安装目录>
+$env:ROCKETMQ_HOME = <RocketMQ installation directory>
 Start-Process -FilePath ".\bin\mqnamesrv.cmd" -ArgumentList "start" -WindowStyle Hidden
 ```
 
 ```powershell
 # Broker
-$env:ROCKETMQ_HOME = <RocketMQ安装目录>
+$env:ROCKETMQ_HOME = <RocketMQ installation directory>
 Start-Process -FilePath ".\bin\mqbroker.cmd" -ArgumentList "-c .\conf\broker.conf" -WindowStyle Hidden
 ```
 
-# 四、验证
-命令行输入 `jps -l`
+# IV. Verification
+
+Type `jps -l` in the command line
 
 ```powershell
 59205 org.apache.rocketmq.namesrv.NamesrvStartup
 59306 org.apache.rocketmq.broker.BrokerStartup
 ```
 
-命令行输出类似信息
+The command line should output similar information.
 
-# 五、停止
+# V. Stop
+
 ```shell
 # Linux/macOS
 ./bin/mqshutdown broker
@@ -200,8 +203,8 @@ Start-Process -FilePath ".\bin\mqbroker.cmd" -ArgumentList "-c .\conf\broker.con
 .\bin\mqshutdown.cmd namesrv
 ```
 
-:::info 注意
+:::info Note
 
-Windows运行RocketMQ命令请在CMD中运行。
+On Windows, run RocketMQ commands in CMD.
 
 :::

@@ -1,149 +1,141 @@
 ---
-title: 版本升级
+title: Version Upgrade
 index: true
 category:
-  - 安装与升级
+  - Installation and Upgrade
 order: 5
 
 ---
-# 一、概述
-升级涉及将数式Oinone从旧版本移动到新的支持版本（例如，从 数式Oinone 5.0.0 到 数式Oinone 6.0.0）。定期升级至关重要，因为每个版本都会提供新功能、错误修复和安全补丁。强烈建议使用 ``:doc: `支持的版本<supported_versions>` ``。每个主要版本的支持期为三年。
+# I. Overview
+Upgrading involves moving Oinone Math from an old version to a new supported version (e.g., from Oinone Math 5.0.0 to Oinone Math 6.0.0). Regular upgrades are crucial because each version provides new features, bug fixes, and security patches. It is highly recommended to use ``:doc: `supported versions<supported_versions>` ``. Each major version has a support period of three years.
 
-数式Oinone
+For Oinone Math:
++ If using a major version (e.g., 4.0.0, 5.0.0, 6.0.0), upgrade at least once every two years, typically one version per year.
++ If using a minor version (e.g., 5.1.0, 5.2.0, 5.4.0), upgrade within a few weeks after the next version is released. Minor versions are usually released every two months.
++ If using a patch version (e.g., 5.1.1, 5.1.2, 5.1.4), upgrade within one week after the next version is released. Patch versions are usually released every one to two weeks.
 
-+ 如果数式Oinone使用的是主版本（如 4.0.0、5.0.0、6.0.0），则至少每两年升级一次，通常每年一个版本。
-+ 如果数式Oinone为中版本（如 5.1.0、5.2.0、5.4.0），则必须在下一版本发布几周后进行升级。中版本通常每两个月发布一次。
-+ 如果数式Oinone为小版本（如 5.1.1、5.1.2、5.1.4），则必须在下一版本发布一周内进行升级。小版本通常一到两周发布一次。
+:::warning Prompt
 
-:::warning 提示
-
-您可以无限期地使用同一版本，即使不建议这样做。请注意，版本差距越小，升级就越容易。
-
-:::
-
-升级不包括：
-
-+ 降级到数式Oinone以前的版本
-+ 转换版本从社区版转换到企业版
-+ 从另一个低代码系统迁移到 数式Oinone
-
-# 二、升级步骤
-:::danger 警告
-
-如果您的系统包含自定义模块，在您的自定义模块版本可用于 数式Oinone 目标版本之前，将无法升级。
+You can use the same version indefinitely, even though it is not recommended. Note that the smaller the version gap, the easier the upgrade.
 
 :::
 
-随着 数式Oinone 的每个新版本的推出，都会引入一些更改。这些更改可能会影响已开发了定制功能的模块。这就是为什么升级包含自定义模块需要额外的步骤来升级源代码。
+Upgrades do not include:
++ Downgrading to a previous version of Oinone Math
++ Converting versions from the community edition to the enterprise edition
++ Migrating from another low-code system to Oinone Math
 
-以下是升级定制数式Oinone需要遵循的步骤：
+# II. Upgrade Steps
+:::danger Warning
 
-1. 停止开发工作并对其进行评估。
-2. 在用全新的环境下部署目标版本的数式Oinone，你的模块可在该环境能正常安装。
-3. 在原有的测试环境中，升级到目标版本的数式Oinone，你的模块可正常启动。
-4. 进行全面测试并进行演练。
-5. 升级生产环境。
-
-# 三、回归测试
-必须对升级后的测试应用进行测试，以确保升级上线后，不会因视图、行为或错误信息的变化而导致日常活动无法进行。
-
-强烈建议尽可能多地测试业务流程，以确保其正常运行，并进一步熟悉新版本。
-
-:::tip 举例：基本测试清单
-
-+ 是否存在在测试环境中停用但在生产环境中激活的视图？
-+ 您的常规视图是否仍能正确显示？
-+ 您的数据图表、数据大屏页面是否正常运行？
-+ 您的工作流、数据审计、权限等通用功能是否正常运行？
-+ 您是否能够创建和修改记录？(销售订单、发票、采购、用户、联系人、公司等）。
-+ 您的打印模板有问题吗？
-+ 已保存的翻译有问题吗？
-+ 您的搜索筛选器是否仍然存在？
-+ 能否导入、导出数据？
-+ 相关设计器是否能正常运行？
+If your system includes custom modules, you will not be able to upgrade until the version of your custom module is available for the target version of Oinone Math.
 
 :::
 
-在测试过程中，您可能会遇到标准视图、功能、字段和模型之间的重大差异。这些更改无法逐一还原。但是，如果新版本引入的更改破坏了定制，则您的定制模块维护者有责任使其与新版本的数式Oinone兼容。
+With each new version of Oinone Math, changes are introduced. These changes may affect modules with developed custom features. This is why upgrading custom modules requires additional steps to upgrade the source code.
 
-:::warning 提示：小技巧
+The following steps should be followed to upgrade custom Oinone Math:
 
-不要忘记测试：
+1. Stop development work and evaluate it.
+2. Deploy the target version of Oinone Math in a brand-new environment where your modules can be installed normally.
+3. In the original test environment, upgrade to the target version of Oinone Math, and your modules can start normally.
+4. Conduct comprehensive testing and drills.
+5. Upgrade the production environment.
 
-+ 与外部软件（电子数据交换、应用程序接口等）整合
-+ 不同应用程序之间的工作流程（电子商务在线销售、将潜在客户转化为销售订单、交付产品等）
-+ 数据导出
-+ 定时任务
-+ 在表单视图的操作菜单中执行服务器操作，以及在列表视图中选择多个记录执行服务器操作
+# III. Regression Testing
+The upgraded test application must be tested to ensure that daily activities are not disrupted by changes in views, behavior, or error messages after the upgrade is launched.
 
-:::
+It is highly recommended to test as many business processes as possible to ensure they run normally and further familiarize yourself with the new version.
 
-# 四、升级生成环境
-一旦完成测试，并且确信升级后的系统可以作为生成使用而不会出现任何问题，就可以计划启用日了。
+:::tip Example: Basic Test Checklist
 
-在升级期间，我们建议在系统使用量最小的时候进行。
-
-由于标准升级脚本和您的数据库都在不断变化，因此建议经常申请另一个升级测试数据库，以确保升级过程仍然成功，尤其是在升级需要很长时间才能完成的情况下。**还建议在升级生产数据库的前一天充分演练升级过程。**
-
-:::danger 警告
-
-在没有进行完整测试的情况下投入生产可能会导致：
-
-+ 用户无法适应变化和新功能
-+ 业务中断（例如，不再可能验证操作）
-+ 糟糕的客户体验（例如，网站无法正常运行）
-
-:::
-
-:::danger 警告
-
-一旦请求升级，数据库将不可用，直到升级完成。一旦升级完成，就无法恢复到以前的版本。
++ Are there any views that are deactivated in the test environment but activated in the production environment?
++ Do your regular views still display correctly?
++ Are your data charts and data dashboard pages running normally?
++ Are your general functions such as workflows, data auditing, and permissions running normally?
++ Can you create and modify records? (Sales orders, invoices, purchases, users, contacts, companies, etc.)
++ Are there any issues with your print templates?
++ Are there any issues with saved translations?
++ Do your search filters still exist?
++ Can you import and export data?
++ Can the relevant designers run normally?
 
 :::
 
-如果您的生产数据库出现问题，您可以联系数式Oinone售后员工，请求对应的帮助。
+During testing, you may encounter significant differences between standard views, functions, fields, and models. These changes cannot be restored one by one. However, if changes introduced in the new version break customizations, it is the responsibility of your custom module maintainer to make them compatible with the new version of Oinone Math.
 
-# 五、升级常见问题
-## （一）环境运行时Jar版本控制
-### 背景
-数式Oione支持分布式部署，如数式Oinone的标准应用，和基于数式Oinone的自研应用就是独立启动的，为了避免因为版本不同导致产生的元数据错乱。因此产生了`运行时Jar版本检查`
+:::warning Tip: Tips
 
-### 现象
-如果当前运行时依赖的`Ja版本`低于已安装版本，启动时会有如下类似信息提示：
+Don't forget to test:
++ Integration with external software (electronic data interchange, application programming interfaces, etc.)
++ Workflows between different applications (e-commerce online sales, converting leads to sales orders, delivering products, etc.)
++ Data export
++ Scheduled tasks
++ Executing server actions in the operation menu of the form view, and executing server actions for multiple records selected in the list view
+
+:::
+
+# IV. Upgrading the Production Environment
+Once testing is complete and you are confident that the upgraded system can be used in production without any issues, you can plan the activation date.
+
+During the upgrade, we recommend performing it when system usage is minimal.
+
+Since both the standard upgrade script and your database are constantly changing, it is recommended to frequently apply for another upgrade test database to ensure the upgrade process remains successful, especially if the upgrade takes a long time to complete. **It is also recommended to fully rehearse the upgrade process the day before upgrading the production database.**
+
+:::danger Warning
+
+Putting into production without complete testing may result in:
++ Users being unable to adapt to changes and new features
++ Business interruptions (e.g., no longer possible to verify operations)
++ Poor customer experience (e.g., website not functioning properly)
+
+:::
+
+:::danger Warning
+
+Once an upgrade is requested, the database will be unavailable until the upgrade is complete. Once the upgrade is complete, it is impossible to revert to a previous version.
+
+:::
+
+If you encounter problems with your production database, you can contact Oinone Math after-sales staff for corresponding assistance.
+
+# V. Common Upgrade Issues
+## (一) Environment Runtime Jar Version Control
+### Background
+Oinone Math supports distributed deployment. Standard applications of Oinone Math and self-developed applications based on Oinone Math start independently. To avoid metadata confusion caused by different versions, `runtime Jar version checking` is implemented.
+
+### Phenomenon
+If the `Jar version` depended on by the current runtime is lower than the installed version, the following similar information will be prompted during startup:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Install-by-running-the-package/xx.png)
 
-### 解决方式
-按照提示升级`依赖Jar版本`
+### Solution
+Upgrade the `dependent Jar version` as prompted.
 
-## （二）回滚
-### 背景
-因为方式升级过程中的某些不可控因素，导致无法在规定时间内完成升级，需要对已经升级系统进行回滚，但是数式Oinone默认是对环境运行时进行了Jar版本控制，导致无法回滚
+## (二) Rollback
+### Background
+Due to some uncontrollable factors during the upgrade, the upgrade cannot be completed within the specified time, and the upgraded system needs to be rolled back. However, Oinone Math defaults to Jar version control for the environment runtime, resulting in an inability to roll back.
 
-### 解决方式
-通过启动参数 `-PgoBack=true` 强制覆盖安装当前运行时版本
+### Solution
+Force overwrite and install the current runtime version through the startup parameter `-PgoBack=true`:
 
 ```plain
-java -jar xxx.jar -PgoBack=true [其他参数]
+java -jar xxx.jar -PgoBack=true [other parameters]
 ```
 
-# 六、服务水平协议（SLA）
-使用数式Oinone企业版，将数据库升级到最新版本数式Oinone完全 **免费**，包括为纠正升级后系统中潜在差异所需的任何支持。
+# VI. Service Level Agreement (SLA)
+Using the Oinone Math enterprise edition, upgrading the database to the latest version of Oinone Math is completely **free**, including any support required to correct potential differences in the system after the upgrade.
 
-## （一）服务水平协议涵盖的升级服务
-可随时享受升级服务：
+## (一) Upgrade Services Covered by the Service Level Agreement
+Upgrade services can be enjoyed at any time:
++ Upgrade all **standard applications**;
++ Upgrade all custom features **created using custom applications**, provided that the custom applications are still installed and the relevant authorizations are still active;
++ Upgrade all developments and customizations covered by the custom maintenance subscription.
 
-+ 升级所有** 标准应用程序 **；
-+ 升级所有使用定制应用程序** 创建的 **定制功能，前提是仍安装定制应用程序，且相关授权仍处于激活状态；
-+ 升级定制维护订购** 所涵盖的所有 **开发和定制。
+Upgrade services are limited to the technical conversion and adjustment of the system (standard modules and data) to make them compatible with the upgrade target version.
 
-升级服务仅限于对系统（标准模块和数据）进行技术转换和调整，使其与升级目标版本兼容。
-
-## （二）《服务水平协议》未涵盖的升级服务
-不包括以下与升级有关的服务：
-
-+ 在升级时** 清除 **已有的数据和配置；
-+ 升级内部创建或由第三方（包括 数式Oinone 合作伙伴）创建的** 维护合同未涵盖的 **附加模块；
-+ 关于使用升级版功能和工作流程的** 培训 **。
-
-
+## (二) Upgrade Services Not Covered by the Service Level Agreement
+The following upgrade-related services are not included:
++ Clearing existing data and configurations during the upgrade;
++ Upgrading additional modules created internally or by third parties (including Oinone Math partners) that are not covered by the maintenance contract;
++ Training on using upgraded functions and workflows.

@@ -1,37 +1,36 @@
 ---
-title: 微流设计器
+title: Microflow Designer
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 dir:
   link: true
   order: 6
 prev:
-  text: 接口日志
-  link: /en/UserManual/Designers/IntegratedDesigner/api-logs.md
+  text: Interface Logs
+  link: /zh-cn/UserManual/Designers/IntegratedDesigner/api-logs.md
 next:
-  text: 微流管理
-  link: /en/UserManual/Designers/MicroflowDesigner/microflow-management.md
+  text: Microflow Management
+  link: /zh-cn/UserManual/Designers/MicroflowDesigner/microflow-management.md
 ---
-在日常工作中，存在着多种多样的业务流程，这些流程能够自动依据预设的逻辑规则顺利完成，无需人工进行干预。基于这一需求，Oinone提供了微流设计器。相较于传统的流程设计器，微流设计器通过减少人工干预的节点，使得执行节奏更加高效快捷，能够更好地满足现代化工作的快速响应需求。
+In daily work, there are various business processes that can automatically complete according to preset logical rules without manual intervention. Based on this requirement, Oinone provides a Microflow Designer. Compared with traditional process designers, the Microflow Designer reduces nodes that require manual intervention, making the execution rhythm more efficient and better meeting the rapid response needs of modern work.
 
-:::info 注意
+:::info Note
 
-流程设计器与微流设计器的区别：
+Differences between the Process Designer and the Microflow Designer:
 
-+ 流程设计器包含需人工干预的节点，如审批、填写等节点；微流设计器不包含需人工干预的节点。
-+ 在流程设计器中，所设计的工作流更倾向于对整体工作流程的细致编排；而在微流设计器中，所设计的微流则更注重于逻辑层面的优化与处理。
-
-:::
-
-微流设计器主要有微流管理与微流设计两大部分构成。
-
-在微流管理环节，可以对微流进行一系列的管理操作，如创建、编辑、删除等。在微流设计环节，提供直观的流程界面，可以通过添加节点、设置节点属性等操作来控制微流的执行逻辑，快速构建业务流程图。
-
-:::warning 提示
-
-在界面设计器中，可以通过“微流”组件来调用微流设计器中已经设计好的微流，方便用户将复杂的逻辑处理嵌入到界面之中，实现功能的快速搭建与灵活配置
++ The Process Designer includes nodes that require manual intervention, such as approval and filling nodes; the Microflow Designer does not include nodes that require manual intervention.
++ In the Process Designer, the designed workflows tend to be more detailed orchestration of the overall work process; in the Microflow Designer, the designed microflows focus more on logical optimization and processing.
 
 :::
 
+The Microflow Designer mainly consists of two parts: Microflow Management and Microflow Design.
+
+In the Microflow Management section, you can perform a series of management operations on microflows, such as creating, editing, and deleting. In the Microflow Design section, an intuitive process interface is provided. You can control the execution logic of microflows by adding nodes, setting node properties, etc., and quickly build business flow diagrams.
+
+:::warning Tip
+
+In the Interface Designer, you can call the microflows designed in the Microflow Designer through the "Microflow" component, which allows users to easily embed complex logical processing into the interface, enabling rapid construction and flexible configuration of functions.
+
+:::

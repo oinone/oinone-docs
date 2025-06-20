@@ -1,110 +1,110 @@
 ---
-title: 自定义视图
+title: Custom Views
 index: true
 category:
-  - 研发手册
-  - 操作指南
+  - Development Manual
+  - Operation Guide
 order: 3
 
 ---
-回想一下我们在 “[精通前端框架](/en/DevManual/Tutorials/MasterTheFront-endFramework/README.md)” 章节中的内容，我们简要提到过关于 `元素组件的注册` 相关内容，接下来让我们根据每个视图类型分别介绍内置视图组件的自定义方法。
+Recall the content in our "[Master the Front-end Framework](/en/DevManual/Tutorials/MasterTheFront-endFramework/README.md)" chapter, where we briefly mentioned content related to `registration of element components`. Next, let's introduce the customization methods for built-in view components based on each view type.
 
-`视图组件` 是一类特殊的 `元素组件`，它们通常在 `视图` 中作为 `数据源提供者` 存在的。它是整个视图运行的核心组件，对于视图组件运行逻辑的学习可以帮助我们更好的理解 Widget 框架提供的数据交互能力，并基于此创建更多可被抽象的视图展示形式，就像我们之前创建的甘特图视图那样。
+`View components` are a special type of `element components` that typically exist as `data source providers` in `views`. They are the core components for view operation. Learning about the operational logic of view components can help us better understand the data interaction capabilities provided by the Widget framework and create more abstract view display forms based on this, just like the Gantt chart view we created before.
 
-在开始之前，我们先回顾一下 `元素组件的注册` 相关内容，接着动手做一些简单的练习，让我们可以对视图组件有更深刻的理解。
+Before we start, let's review the content related to `registration of element components`, then do some simple exercises to gain a deeper understanding of view components.
 
-# 一、理论：元素组件的注册
+# I. Theory: Registration of Element Components
 
-在 Widget 框架中，元素组件被定义为通用组件，它可以用来实现任何你想实现的功能，并把它放在页面中的任何地方。
+In the Widget framework, element components are defined as general components that can be used to implement any function you want and placed anywhere on the page.
 
-## （一）元素组件的注册可选项
+## (一) Registration Options for Element Components
 
 ```typescript
 /**
- * Element组件注册可选项
+ * Element component registration options
  */
 export interface BaseElementOptions extends SPIOptions {
   /**
-   * 当前视图类型
+   * Current view type
    */
   viewType?: ViewType | ViewType[];
   /**
-   * 组件名称
+   * Component name
    */
   widget?: string | string[];
   /**
-   * 内联组件
+   * Inline component
    */
   inline?: boolean;
   /**
-   * 指定模型
+   * Specified model
    */
   model?: string | string[];
   /**
-   * 指定视图
+   * Specified view
    */
   viewName?: string | string[];
 }
 ```
 
-从上述类型声明中不难发现，其分类维度涵盖以下多个方面：视图类型、组件名称、是否内联组件、模型编码以及视图名称。这些维度用于描述组件的使用位置。一般而言，位置描述得越“精确”，在相应位置进行渲染时，该组件所具备的优先级也就越高。在完全相同的位置描述的情况下，后注册的组件会覆盖先注册的组件。
+From the above type declaration, it is not difficult to find that the classification dimensions include the following aspects: view type, component name, whether it is an inline component, model code, and view name. These dimensions describe the usage location of the component. Generally speaking, the more "precise" the location description, the higher the priority of the component when rendering in the corresponding location. In the case of completely identical location descriptions, the later registered component will overwrite the earlier one.
 
-特别的是，在大多数情况下，元素组件通常我们仅使用组件名称就可以满足大多数场景的需求了，这是由于元素组件一般包含了对数据结构、特定视图类型甚至特定场景的功能支持，其复用度一般通过页面结构进行划分，因此在之前的学习中，我们也只用到了组件名称这个单一维度。
+In particular, in most cases, element components usually only need to use the component name to meet the needs of most scenarios. This is because element components generally include functional support for data structures, specific view types, or even specific scenarios, and their reuse is generally divided by page structure. Therefore, in previous studies, we have only used the single dimension of component name.
 
-## （二）内置元素组件
+## (二) Built-in Element Components
 
-在 Oinone 中，不同的视图类型处理了不同的数据结构和表现形式，其所采取的数据处理和渲染方式也是不同的。Widget 框架对数据结构主要分为列表（`List`）和对象（`Object`）两大类。
+In Oinone, different view types handle different data structures and presentation forms, and the data processing and rendering methods they adopt are also different. The Widget framework mainly divides data structures into two categories: list (`List`) and object (`Object`).
 
-下面根据数据结构和视图类型对一些组件进行了列举：
+The following lists some components according to data structure and view type:
 <table>
 	<tr>
-	    <th>数据结构</th>
-      <th>视图类型</th>
-      <th>组件</th>
-      <th>基类</th>
+	    <th>Data Structure</th>
+      <th>View Type</th>
+      <th>Component</th>
+      <th>Base Class</th>
 	</tr >
 	<tr >
-	    <td rowspan="2">列表（List）</td>
-      <td>表格（TABLE）</td>
+	    <td rowspan="2">List</td>
+      <td>Table (TABLE)</td>
       <td>TableWidget</td>
 	    <td rowspan="2">BaseElementListViewWidget</td>
 
   </tr>
   <tr >
-      <td>画廊（GALLERY）</td>
+      <td>Gallery (GALLERY)</td>
       <td>GalleryWidget</td>
   </tr>
   <tr >
-	    <td rowspan="2">对象（Object）</td>
-      <td>表单（FORM）</td>
+	    <td rowspan="2">Object</td>
+      <td>Form (FORM)</td>
       <td>FormWidget</td>
 	    <td rowspan="2">BaseElementObjectViewWidget</td>
 
   </tr>
   <tr >
-      <td>详情（DETAIL）</td>
+      <td>Detail (DETAIL)</td>
       <td>DetailWidget</td>
 
   </tr>
 </table>
 
-一般而言，我们对视图组件的定义都离不开对平台内置功能的灵活运用。
+Generally speaking, the definition of our view components is inseparable from the flexible use of platform built-in functions.
 
-:::warning 提示：
+:::warning Tip:
 
-更多关于元素组件的内容请参考：[Element](/en/DevManual/Reference/Front-EndFramework/Widget/element.md)
+For more information about element components, please refer to: [Element](/en/DevManual/Reference/Front-EndFramework/Widget/element.md)
 
 :::
 
-# 二、自定义表格组件
+# II. Custom Table Component
 
-在这个练习中，我们将从零开始逐步实现一个表格组件，在这个过程中，可以让我们了解内置表格组件所提供的功能以及对一些标准组件的使用。
+In this exercise, we will gradually implement a table component from scratch, which will allow us to understand the functions provided by the built-in table component and the use of some standard components.
 
-让我们开始动手吧～
+Let's get started～
 
-## （一）创建 CustomTableWidget 组件
+## (一) Create CustomTableWidget Component
 
-和所有的 `element` 组件一样，我们只需要继承 `TableWidget` 组件就可以获得默认表格组件的全部功能，就像这样：
+Like all `element` components, we can obtain all the functions of the default table component by inheriting the `TableWidget` component, just like this:
 
 ```typescript
 import CustomTable from './CustomTable.vue';
@@ -124,7 +124,7 @@ export class CustomTableWidget extends TableWidget {
 }
 ```
 
-让我们先写一个 `hello world` 吧：
+Let's start with a `hello world`:
 
 ```vue
 <template>
@@ -132,9 +132,9 @@ export class CustomTableWidget extends TableWidget {
 </template>
 ```
 
-## （二）将 CustomTableWidget 显示在页面上
+## (二) Display CustomTableWidget on the Page
 
-让我们通过 `registerLayout` 来切换组件，将 `widget="table"` 改为 `widget="CustomTable"` 来完成组件的切换：
+Let's switch components through `registerLayout` by changing `widget="table"` to `widget="CustomTable"` to complete the component switch:
 
 ```xml
 <view type="TABLE">
@@ -158,19 +158,19 @@ export class CustomTableWidget extends TableWidget {
 </view>
 ```
 
-:::warning 提示
+:::warning Tip
 
-关于内置布局的相关内容请参考：[Layout](/en/DevManual/Reference/Front-EndFramework/Widget/layout.md)
+For related content about built-in layouts, please refer to: [Layout](/en/DevManual/Reference/Front-EndFramework/Widget/layout.md)
 
 :::
 
-好了，我们现在的页面应该是这样的：
+Well, our page should now look like this:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/CustomTable.png)
 
-## （三）使用 OioTable 组件
+## (三) Use OioTable Component
 
-让我们对 Vue 组件模板进行一些修改：
+Let's make some modifications to the Vue component template:
 
 ```vue
 <template>
@@ -188,7 +188,7 @@ export class CustomTableWidget extends TableWidget {
 </template>
 ```
 
-对应的 `props` 声明可以是这样：
+The corresponding `props` declaration can be like this:
 
 ```vue
 props: {
@@ -201,15 +201,15 @@ props: {
 }
 ```
 
-:::warning 提示
+:::warning Tip
 
-在 `BaseElementListViewWidget` 组件中提供了两个数据源对象：`dataSource` 和 `showDataSource`。
+The `BaseElementListViewWidget` component provides two data source objects: `dataSource` and `showDataSource`.
 
-这两个数据源对象在不执行前端搜索和前端排序的情况下是完全一样的，在之前 [Create a gantt view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter2-create-a-gantt-view.md)  教程中，我们已经使用过 `dataSource` 数据源对象，在这里我们使用另一个 `showDataSource` 数据源对象。
+These two data source objects are completely the same when front-end search and front-end sorting are not performed. In the previous [Create a gantt view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter2-create-a-gantt-view.md) tutorial, we have used the `dataSource` data source object, and here we use another `showDataSource` data source object.
 
 :::
 
-在这里，我们要保证表格的功能不出问题，一定要使用 `setTableInstance` 方法将 `OioTable` 组件实例传递到 Widget 组件，这样就可以让 Widget 组件直接操作 `OioTable` 实例。这一点和我们在 [聚焦输入框](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#九、聚焦输入框) 教程中的操作类似，都是为了将逻辑转移到 Widget 组件以此提供可被重写或继承的具体的功能。我们可以这样处理一下：
+Here, to ensure the table functions properly, we must use the `setTableInstance` method to pass the `OioTable` component instance to the Widget component, allowing the Widget component to directly operate on the `OioTable` instance. This is similar to our operation in the [Focus on Input Box](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#九、聚焦输入框) tutorial, both aiming to transfer logic to the Widget component to provide specific functions that can be overridden or inherited. We can handle it like this:
 
 ```vue
 setup(props) {
@@ -225,17 +225,17 @@ setup(props) {
 }
 ```
 
-:::warning 提示
+:::warning Tip
 
-虽然不这样处理，我们也能看到页面被正常渲染了。但为了方便我们后续在某些功能上不出问题，在`挂载时`调用 `setTableInstance` 方法对 `TableWidget` 组件来说是十分必要的。
+Although we can see the page rendered normally without this handling, it is very necessary to call the `setTableInstance` method when `mounted` for the `TableWidget` component to facilitate our subsequent work without issues in certain functions.
 
 :::
 
-到了这里，这样我们就能看到一个和默认表格的样式 “几乎” 完全一样的表格展示在页面上：
+Up to this point, we can see a table display on the page that is "almost" identical to the default table style:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/oiotable.png)
 
-Oops～，表格高度好像不太对，让我们写一个 `css` 调整一下：
+Oops～, the table height doesn't seem right. Let's write some `css` to adjust it:
 
 ```css
 .custom-table-demo {
@@ -243,13 +243,13 @@ Oops～，表格高度好像不太对，让我们写一个 `css` 调整一下：
 }
 ```
 
-这样，我们的基础表格就完成啦～
+Thus, our basic table is completed～
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/chart.png)
 
-## （四）使用 OioPagination 组件
+## (四) Use OioPagination Component
 
-让我们对 Vue 组件模板进行一些修改：
+Let's make some modifications to the Vue component template:
 
 ```vue
 <template>
@@ -269,7 +269,7 @@ Oops～，表格高度好像不太对，让我们写一个 `css` 调整一下：
 </template>
 ```
 
-对应的 `props` 声明可以是这样：
+The corresponding `props` declaration can be like this:
 
 ```typescript
 props: {
@@ -286,13 +286,13 @@ props: {
 }
 ```
 
-这些属性有以下含义：
+These attributes have the following meanings:
 
-+ pageSizeOptions：分页大小可选项。
-+ pagination：分页参数。包括当前页、分页大小、总页数、数据总大小。
-+ onPaginationChange：在分页变更时调用。
++ pageSizeOptions: Pagination size options.
++ pagination: Pagination parameters. Including current page, page size, total pages, total data size.
++ onPaginationChange: Called when pagination changes.
 
-到了这里，我们发现分页器虽然已经渲染出来了，但样式又出了一点问题。现在我们希望表格可以按屏幕撑开，分页器总是在页面的最下方。我们可以用 `flex` 布局调整一下：
+At this point, we find that although the paginator has been rendered, there is a slight issue with the styling. Now we want the table to expand according to the screen, and the paginator should always be at the bottom of the page. We can adjust it with `flex` layout:
 
 ```css
 .custom-table-demo {
@@ -314,25 +314,25 @@ props: {
 }
 ```
 
-由于 `vxe-table` 第三方组件的高度实现问题，表格组件在高度控制有些特殊，除了上面的 `css` 需要调整，我们还需要在 `OioTable` 组件上增加 `height="100%"` 属性，这样才可以让表格高度变得正常。
+Due to the height implementation issue of the `vxe-table` third-party component, the height control of the table component is somewhat special. In addition to the above `css` adjustments, we also need to add the `height="100%"` attribute to the `OioTable` component to make the table height normal.
 
-现在，我们的页面是这样的：
+Now, our page looks like this:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/oiopagination.png)
 
-:::danger 警告
+:::danger Warning
 
-在上面我们给出了一个表格高度的解决方案，读者还可以自行解决表格高度的问题。
+We have provided a solution for the table height above, and readers can also solve the table height problem by themselves.
 
-在自行解决高度问题时，需要考虑当表格数据量超过一个屏幕时出现的超出屏幕范围的问题。为了便于观察，我们可以将分页器改为 `30条/页` 这样就会让表格的高度撑开超出屏幕范围。
+When solving the height problem independently, it is necessary to consider the issue of exceeding the screen range when the table data volume exceeds one screen. For easy observation, we can change the paginator to `30 items/page` so that the table height will expand beyond the screen range.
 
-在上面我们给出的 `css` 样式中，`position: relative;` 和 `position: absolute;` 组合是解决高度问题的关键，利用脱离文档流的高度控制让表格高度限制在外层 div 的最大高度，使得表格组件的高度计算不会超出外层 div 的最大高度。
+In the `css` style we provided above, the combination of `position: relative;` and `position: absolute;` is the key to solving the height problem. Using off-document flow height control, the table height is limited to the maximum height of the outer div, ensuring that the height calculation of the table component does not exceed the maximum height of the outer div.
 
 :::
 
-为了让我们能快速测试一下分页功能，我们将 `分页大小可选项（pageSizeOptions）` 参数调整一下，把它改成 `[1, 2, 3, 4, 5]` 数组。我们还需要调整一下 `默认分页大小（defaultPageSize）` 参数，这样我们在首次进入页面的时候才可以选中对应的 `分页大小` 选项。
+To allow us to quickly test the pagination function, let's adjust the `pagination size options (pageSizeOptions)` parameter to the array `[1, 2, 3, 4, 5]`. We also need to adjust the `default pagination size (defaultPageSize)` parameter so that we can select the corresponding `pagination size` option when first entering the page.
 
-遵循我们对 Widget 组件和 Vue 组件的职责划分，我们应当在 `CustomTableWidget` 中调整这些参数，就像下面这样：
+Following our division of responsibilities between Widget components and Vue components, we should adjust these parameters in `CustomTableWidget` as follows:
 
 ```typescript
 @Widget.Reactive()
@@ -346,27 +346,27 @@ protected get defaultPageSize(): number {
 }
 ```
 
-让我们来试试分页器是否正常工作吧。
+Let's test whether the paginator works properly.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/page.gif)
 
-看起来我们的分页器已经可以正常工作了。让我们继续练习实现其他功能吧～
+It seems that our paginator is working properly. Let's continue practicing to implement other functions～
 
-:::warning 提示
+:::warning Tip
 
-虽然我们对于分页功能的开发过程到这里已经结束了，但有一个变化需要我们明确提出来。
+Although our development process for the pagination function ends here, there is a change that we need to explicitly mention.
 
-默认分页变更（`onPaginationChange`）方法会同步修改浏览器 `URL` 参数，追加 `currentPage` 和 `pageSize` 两个参数，用来保存当前页面的状态。
+The default pagination change (`onPaginationChange`) method will synchronously modify the browser `URL` parameters, appending two parameters `currentPage` and `pageSize` to save the current page status.
 
-当页面被刷新时或 `URL` 被复制到其他地方的时候，会优先使用浏览器 `URL` 参数作为当前页面的分页参数。
+When the page is refreshed or the `URL` is copied elsewhere, the browser `URL` parameters will be prioritized as the pagination parameters for the current page.
 
 :::
 
-## （五）启用 Checkbox 功能
+## (五) Enable Checkbox Functionality
 
-在表格首列，我们发现缺少了默认表格的 Checkbox 选中功能，让我们尝试还原一下这个功能吧。
+In the first column of the table, we notice the lack of the default table's Checkbox selection function. Let's try to restore this function.
 
-让我们对 Vue 组件模板进行一些修改：
+Let's make some modifications to the Vue component template:
 
 ```vue
 <template>
@@ -397,7 +397,7 @@ protected get defaultPageSize(): number {
 </template>
 ```
 
-对应的 `props` 声明可以是这样：
+The corresponding `props` declaration can be like this:
 
 ```vue
 props: {
@@ -413,7 +413,7 @@ props: {
 }
 ```
 
-到了这里，在不做任何其他处理的情况下，我们会发现这些方法并不能正常工作。这是因为 `OioTable` 组件发出的事件并不能直接被 `TableWidget` 组件进行处理。我们还需要在 `setup` 中做一个 “桥接” 处理，使得这些方法可以正常工作。对于具体方法的处理方式不同，我们需要根据 API 文档灵活处理。对于我们现在这个功能来说，我们可以像下面这样处理：
+At this point, without any other processing, we will find that these methods do not work properly. This is because events emitted by the `OioTable` component cannot be directly processed by the `TableWidget` component. We also need to do a "bridging" process in `setup` to make these methods work properly. For different processing methods of specific methods, we need to handle them flexibly according to the API documentation. For our current function, we can handle it as follows:
 
 ```vue
 setup(props) {
@@ -434,49 +434,49 @@ setup(props) {
 }
 ```
 
-:::warning 提示
+:::warning Tip
 
-在 `setup` 中使用与 `props` 声明的同名方法时，在 `setup` 中的优先级高于 `props` 声明。
-
-:::
-
-:::warning 提示
-
-值得一提的是，在 Oinone 中，类似于 `onCheckedChange` 和 `onCheckedAllChange` 方法这样的设计还有很多。这样做的目的是，在组件抽象过程中，我们尽可能的不过多暴露标准组件事件参数的太多细节，在 Vue 组件中将一类行为的可处理参数从事件参数中进行分离，并且在内置 Widget 组件中尽可能少的使用组件的事件参数，这样可以最大化的保证一类行为的通用性。
-
-当然，这也有一些例外，由于每个开发人员对于这样的抽象过程理解不同，最终也会定义一些未经过抽象、抽象程度不足或者过度抽象的方法。之前我们在 “教程” 中有多次提到过组件通用化是一门组件抽象哲学，这也就导致了在不同时期或者使用不同的第三方组件库都会导致对之前抽象行为的重新评估，希望读者在学习 Oinone 的过程中，可以总结出自己对于组件抽象的理解，以此更好的使用 Oinone 。
+When using methods with the same name as those declared in `props` in `setup`, the priority in `setup` is higher than the `props` declaration.
 
 :::
 
-在上面我们使用 `OioColumn` 组件添加了 `Checkbox` 列。除此之外，我们还可以通过在 `布局（Layout）` 中使用 `widget="checkbox-column"` 组件来添加 `Checkbox` 列，也可以达到相同的效果。
+:::warning Tip
+
+It is worth mentioning that in Oinone, there are many designs similar to methods like `onCheckedChange` and `onCheckedAllChange`. The purpose of this is that during component abstraction, we try not to expose too many details of standard component event parameters. In Vue components, the processable parameters of a class of behaviors are separated from the event parameters, and built-in Widget components use component event parameters as little as possible, which can maximize the generality of a class of behaviors.
+
+Of course, there are some exceptions. Due to different understandings of this abstraction process among developers, some methods that are not abstracted, insufficiently abstracted, or overly abstracted will eventually be defined. We have mentioned in the "Tutorial" that component generalization is a philosophy of component abstraction, which leads to the re-evaluation of previously abstracted behaviors in different periods or when using different third-party component libraries. We hope that readers can summarize their own understanding of component abstraction during the study of Oinone to better use Oinone.
+
+:::
+
+In the above, we added a `Checkbox` column using the `OioColumn` component. In addition, we can also add a `Checkbox` column by using the `widget="checkbox-column"` component in the `layout (Layout)`, which can achieve the same effect.
 
 ```xml
 <element widget="checkbox-column" />
 ```
 
-:::danger 警告
+:::danger Warning
 
-在测试 Checkbox 功能时，我们可能发现 “删除” 按钮并没有变为 “可点击” 状态，这是由于 “资源-国家分组” 这个页面在 “删除” 动作上配置了 “disabled” 属性，它是一个表达式，不允许用户删除指定的几个的国家分组，我们可以通过 “创建” 功能新建一个用于测试的国家分组数据进行 “删除” 功能的测试。
+When testing the Checkbox function, we may find that the "Delete" button does not become "clickable" because the "Resource - Country Group" page configures a "disabled" attribute for the "Delete" action, which is an expression that does not allow users to delete specified country groups. We can test the "Delete" function by using the "Create" function to create a new country group data for testing.
 
 :::
 
-## （六）更进一步
+## (六) Further Steps
 
-如果你有时间的话，这里有一些你可以尝试进行的练习内容：
+If you have time, here are some exercises you can try:
 
-1. 使用内置 API 启用 Radio 单选功能替换 Checkbox 多选功能。
-2. 使用内置 API 启用排序功能。
-3. 使用内置 API 启用行内编辑功能。
+1. Enable Radio single-selection functionality to replace Checkbox multi-selection functionality using built-in APIs.
+2. Enable sorting functionality using built-in APIs.
+3. Enable inline editing functionality using built-in APIs.
 
-# 三、自定义表单组件
+# III. Custom Form Component
 
-在这个练习中，我们将从零开始逐步实现一个表单组件，在这个过程中，可以让我们了解内置表单组件所提供的功能以及对一些标准组件的使用。
+In this exercise, we will gradually implement a form component from scratch, which will allow us to understand the functions provided by the built-in form component and the use of some standard components.
 
-让我们开始动手吧～
+Let's get started～
 
-## （一）创建 CustomFormWidget 组件
+## (一) Create CustomFormWidget Component
 
-和自定义表格组件类似，我们可以通过继承 `FormWidget` 组件来创建 `CustomFormWidget` 组件来完成我们的练习内容。就像下面这样：
+Similar to the custom table component, we can create the `CustomFormWidget` component by inheriting the `FormWidget` component to complete our exercise content. Just like below:
 
 ```typescript
 import CustomForm from './CustomForm.vue';
@@ -496,13 +496,13 @@ export class CustomFormWidget extends FormWidget {
 }
 ```
 
-在之后的小节中不再提供 `registerLayout` 方法使用的模板，读者可以根据 [Layout](/en/DevManual/Reference/Front-EndFramework/Widget/layout.md) 文章中提供的默认布局自行完成 `布局（Layout）` 注册和组件的切换。和上面创建 自定义表格组件 类似，我们先用 `hello world` 看到组件切换的效果页面：
+In the following sections, the template for the `registerLayout` method will no longer be provided. Readers can complete the `layout (Layout)` registration and component switching by themselves according to the default layout provided in the [Layout](/en/DevManual/Reference/Front-EndFramework/Widget/layout.md) article. Similar to creating the custom table component above, we first use `hello world` to see the effect page of component switching:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/CustomFormWidget.png)
 
-## （二）使用 OioForm 组件
+## (二) Use OioForm Component
 
-相比于表格组件，`OioForm` 组件使用起来就比较简单，功能也没有表格组件那么复杂。让我们对 Vue 组件模板进行一些修改：
+Compared to the table component, the `OioForm` component is easier to use and has fewer complex functions than the table component. Let's make some modifications to the Vue component template:
 
 ```vue
 <template>
@@ -516,15 +516,15 @@ export class CustomFormWidget extends FormWidget {
 </template>
 ```
 
-:::warning 提示
+:::warning Tip
 
-这里用到了 Pack 组件，它和我们在 布局（Layout） 中使用的 XML 定义 pack 标签是完全一样的。你可以在 布局（Layout） 中使用，也可以在 Vue 组件模板中使用。
+Here we use the Pack component, which is exactly the same as the XML-defined pack tag we use in `layout (Layout)`. You can use it in `layout (Layout)` or in the Vue component template.
 
-更多关于 Pack 组件相关的内容请参考：[Pack](/en/DevManual/Reference/Front-EndFramework/Widget/pack.md)
+For more content related to the Pack component, please refer to: [Pack](/en/DevManual/Reference/Front-EndFramework/Widget/pack.md)
 
 :::
 
-对应的 `props` 声明可以是这样：
+The corresponding `props` declaration can be like this:
 
 ```vue
 props: {
@@ -543,29 +543,29 @@ props: {
 }
 ```
 
-与表格组件类似，我们要保证表单的功能不出问题，一定要使用 `setFormInstance` 方法将 `OioForm` 组件实例传递到 Widget 组件，这样就可以让 Widget 组件直接操作 `OioForm` 实例。
+Similar to the table component, to ensure the form functions properly, we must use the `setFormInstance` method to pass the `OioForm` component instance to the Widget component, allowing the Widget component to directly operate on the `OioForm` instance.
 
-接着，我们使用 `Pack` 组件、 `class="oio-default-form"` 和其他三个布局属性是为了让表单字段的布局样式和默认表单的保持一致。
+Next, we use the `Pack` component, `class="oio-default-form"`, and the other three layout attributes to keep the layout style of the form fields consistent with the default form.
 
-到了这里，我们就完成了这一小节的练习内容。
+At this point, we have completed the exercise content for this section.
 
-:::warning 提示
+:::warning Tip
 
-更多关于 Form 相关的内容请参考：[Form](/en/DevManual/Reference/Front-EndFramework/Widget/View/form.md)
+For more content related to Form, please refer to: [Form](/en/DevManual/Reference/Front-EndFramework/Widget/View/form.md)
 
 :::
 
-# 四、自定义画廊组件
+# IV. Custom Gallery Component
 
-让我们回想一下在 “[Customize a gallery view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)” 中学习的关于自定义卡片组件的案例。在那个案例中，我们通过自定义画廊视图中的卡片组件完成了对画廊视图的自定义需求。
+Let's recall the case of customizing a card component in the "[Customize a gallery view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)" section. In that case, we completed the customization requirements for the gallery view by customizing the card component in the gallery view.
 
-接下来，让我们创建一个画廊组件，用更加灵活的方式对画廊视图进行自定义吧。
+Next, let's create a gallery component to customize the gallery view in a more flexible way.
 
-在这个练习中，你将通过将表格视图转换为画廊视图进行展示，而不是直接使用画廊视图。并完成画廊布局的自定义以及卡片样式的自定义。
+In this exercise, you will display the table view as a gallery view instead of directly using the gallery view, and complete the customization of the gallery layout and card style.
 
-## （一）创建 CustomGalleryWidget 组件
+## (一) Create CustomGalleryWidget Component
 
-和自定义表格组件类似，我们可以通过继承 `GalleryWidget` 组件创建 `CustomGalleryWidget` 组件来完成我们的练习内容。就像下面这样：
+Similar to the custom table component, we can create the `CustomGalleryWidget` component by inheriting the `GalleryWidget` component to complete our exercise content. Just like below:
 
 ```typescript
 import CustomGallery from './CustomGallery.vue';
@@ -585,15 +585,15 @@ export class CustomGalleryWidget extends GalleryWidget {
 }
 ```
 
-:::warning 提示
+:::warning Tip
 
-需要注意的是，这里我们使用的视图类型是 `表格（TABLE）`，而不是 `画廊（GALLERY）`。
+It should be noted that here we use the view type `Table (TABLE)`, not `Gallery (GALLERY)`.
 
 :::
 
-## （二）使用 OioGallery 组件
+## (二) Use OioGallery Component
 
-让我们把 “[Customize a gallery view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)” 中实现的卡片 “摘抄” 过来，对应的 Vue 组件模板应该是这样的：
+Let's "extract" the card implemented in "[Customize a gallery view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)"过来, the corresponding Vue component template should be like this:
 
 ```vue
 <template>
@@ -623,7 +623,7 @@ export class CustomGalleryWidget extends GalleryWidget {
 </template>
 ```
 
-对应的 `props` 声明可以是这样：
+The corresponding `props` declaration can be like this:
 
 ```vue
 props: {
@@ -639,7 +639,7 @@ props: {
 }
 ```
 
-再 “摘抄” 一部分 `css` 样式：
+Then "extract" a part of the `css` style:
 
 ```css
 .custom-card-demo {
@@ -660,19 +660,19 @@ props: {
 }
 ```
 
-我们现在我们看到的页面是这样的：
+Now our page looks like this:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/oioogallery.png)
 
-:::warning 提示
+:::warning Tip
 
-结合 Vue 组件模板的定义，如果你没有在 `布局（Layout）` 中处理 `rowActions` 插槽的内容，那么，你可能无法正常看到卡片上的动作。关于这个问题，你可以在下一节中找到答案。
+Combined with the definition of the Vue component template, if you do not process the content of the `rowActions` slot in the `layout (Layout)`, you may not be able to see the actions on the card normally. Regarding this issue, you can find the answer in the next section.
 
 :::
 
-## （三）修复卡片动作
+## (三) Fix Card Actions
 
-按之前的方法直接切换组件的话，这里可能会丢失卡片中渲染的动作。有可能你是这样做的：
+If you directly switch components according to the previous method, the actions rendered in the card may be lost. Maybe you did this:
 
 ```xml
 <view type="TABLE">
@@ -696,7 +696,7 @@ props: {
 </view>
 ```
 
-其他地方的定义不变，让我们把 `CustomGallery` 这一段定义提取出来：
+The definition of other places remains unchanged. Let's extract the `CustomGallery` paragraph definition:
 
 ```xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
@@ -706,7 +706,7 @@ props: {
 </element>
 ```
 
-现在，让我们回想一下 “[带插槽的通用卡片](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#五、带插槽的通用卡片)” 一节，在 `布局（Layout）` 中，我们使用了 `插槽（Slot）` 以及在 `拓展内容` 部分提及的 `具名插槽` 相关内容。一个正确的定义应该是这样的：
+Now, let's recall the section "[Universal Card with Slots](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#五、带插槽的通用卡片)", in the `layout (Layout)`, we used `slots (Slot)` and the content related to `named slots` mentioned in the `extended content` section. A correct definition should be like this:
 
 ```xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
@@ -715,7 +715,7 @@ props: {
 </element>
 ```
 
-最终合并 DSL 后的结果可能是这样的：
+The final merged DSL result may be like this:
 
 ```xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
@@ -728,19 +728,19 @@ props: {
 </element>
 ```
 
-:::warning 提示
+:::warning Tip
 
-在 `布局（Layout）` 和 `DSL` 进行合并时，只要布局中的 `XML` 标签上存在 `slot` 属性，那么在 `DSL` 中同名的 `template` 片段，属性会合并到对应标签上，子标签会插入到对应 `XML` 标签下。对于 `xslot` 标签的处理，则是完整的片段替换。这样也就得到了我们上面看到的最终合并 DSL 后的 `XML` 片段。
+When merging the `layout (Layout)` and `DSL`, as long as the `XML` tag in the layout has a `slot` attribute, then the `template` fragment with the same name in the `DSL` will have its attributes merged into the corresponding tag, and the sub-tags will be inserted under the corresponding `XML` tag. For the processing of `xslot` tags, it is a complete fragment replacement. This is how we obtain the `XML` fragment after the final merged DSL as seen above.
 
-更多关于 DSL 的内容请参考：[DSL](/en/DevManual/Reference/Front-EndFramework/Widget/DSL.md)
+For more content about DSL, please refer to: [DSL](/en/DevManual/Reference/Front-EndFramework/Widget/DSL.md)
 
 :::
 
-## （四）更多布局形式
+## (四) More Layout Forms
 
-在使用 `OioGallery` 组件时，我们只能做到按 `栅格布局` 顺序渲染的一种布局形式。要想自定义画廊的布局，我们可以通过 `v-for` 语句循环处理数据集，以此来实现更多可能的布局形式。
+When using the `OioGallery` component, we can only achieve one layout form rendered in the order of `grid layout`. To customize the gallery layout, we can process the dataset through a `v-for` statement to achieve more possible layout forms.
 
-为了简单起见，我们在不使用 `OioGallery` 组件的情况下渲染出相同的页面，这样我们的 Vue 组件模板可以是这样的：
+For simplicity, we render the same page without using the `OioGallery` component, so our Vue component template can be like this:
 
 ```vue
 <template>
@@ -760,7 +760,7 @@ props: {
 </template>
 ```
 
-之前的页面是通过 `oio-row` 和 `oio-col` 的组合实现的 `栅格布局` ，每行四个卡片。为了达到相同效果，让我们添加这样一段 css 样式来看看效果：
+The previous page achieved a `grid layout` with four cards per row through the combination of `oio-row` and `oio-col`. To achieve the same effect, let's add such a paragraph of css style to see the effect:
 
 ```css
 .custom-gallery-demo {
@@ -775,24 +775,15 @@ props: {
 }
 ```
 
-:::warning 提示
+:::warning Tip
 
-在这个示例内容中，我们需要关心是对 `showDataSource` 属性的使用以及 `rowActions` 插槽的渲染，而不是最终展示的页面效果。再结合我们之前 “[Customize a gallery view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)” 章节的内容，我们同样可以达到自定义卡片样式的效果以及实现组件通用化。值得一提的是，相比于仅自定义卡片的方式，在这个示例内容中，我们可以有更多的属性来表示更多功能的变化。
+In this example, what we need to care about is the use of the `showDataSource` attribute and the rendering of the `rowActions` slot, rather than the final displayed page effect. Combined with the content of our previous "[Customize a gallery view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)" chapter, we can also achieve the effect of customizing card styles and realize component generalization. It is worth mentioning that compared to the method of only customizing cards, in this example, we can have more attributes to represent more functional changes.
 
 :::
 
-## （五）更进一步
+## (五) Further Improvements
 
-如果你有时间的话，这里有一些你可以尝试进行的小改进：
+If you have time, here are some small improvements you can try:
 
-1. 为我们的自定义画廊增加分页器。
-2. 在卡片上增加 Checkbox，可以让用户进行选中操作。
-
-
-
-
-
-
-
-
-
+1. Add a paginator to our custom gallery.
+2. Add Checkbox on the card to allow users to perform selection operations

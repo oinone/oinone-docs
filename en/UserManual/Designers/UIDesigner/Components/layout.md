@@ -1,123 +1,123 @@
 ---
-title: 布局
+title: Layout
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 1
 prev:
-  text: 组件与模型总览
-  link: /en/UserManual/Designers/UIDesigner/widgets-and-model-overview.md
+  text: Overview of Components and Models
+  link: /zh-cn/UserManual/Designers/UIDesigner/widgets-and-model-overview.md
 ---
-布局类组件主要用于页面的样式排版，它们相当于一个容器，可以容纳多个其他组件。同时，布局类组件之间支持互相嵌套，以便用户更灵活地构建页面结构和布局。
+Layout components are mainly used for the style layout of pages. They are equivalent to containers that can hold multiple other components. At the same time, layout components support nested use with each other, allowing users to more flexibly build page structures and layouts.
 
-# 一、通用属性
-+ 是否隐藏：除了简单的隐藏与非隐藏对立选项外，还可以设置条件隐藏功能。即当满足特定条件时，组件才会被隐藏；若条件不符合，则组件保持可见状态。
+# 1. Common Attributes
++ Hidden Status: In addition to the simple binary option of hidden or visible, a conditional hiding function can be set. That is, the component will be hidden when specific conditions are met; otherwise, it will remain visible.
 
-:::info 注意
+:::info Note
 
-当组件被设为隐藏时，其在实际页面中将不可见。然而，在设计页面时，即使组件被设置为隐藏，也会在设计界面中展示出来。
-
-:::
-
-+ 标题排列方式：即标题与其内容的排列，分为横向和纵向两种。对于布局类组件，设置排列方式，会将该组件内所有子类组件的标题统一按照设置的排列方式进行调整。
-+ 显示设备：包括PC端、移动端与PAD端。
-
-:::tip 举例
-
-在设计PC端页面时，若分组组件的显示设备设置为仅移动端而未包含PC端，则在实际页面展示中，该分组组件及其所包含的其他组件均不会显示在PC端页面上。
+When a component is set to be hidden, it will not be visible on the actual page. However, even if a component is set to be hidden, it will still be displayed on the design interface.
 
 :::
 
-# 二、特有属性
-## （一）分组
-可以将业务含义相近的组件归入同一个分组中，以实现页面组件的分类管理和清晰展示。
++ Title Arrangement: This refers to the arrangement of the title and its content, which can be either horizontal or vertical. For layout components, setting the arrangement will uniformly adjust the title arrangement of all sub-components within the component.
++ Display Devices: Include PC, mobile, and tablet devices.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+When designing a PC page, if the display device of a grouping component is set to only mobile devices and does not include PC devices, then in the actual page display, the grouping component and all its included components will not be shown on the PC page.
+
+:::
+
+# 2. Specific Attributes
+## (1) Grouping
+Components with similar business meanings can be grouped together to achieve categorized management and clear presentation of page components.
+
+:::tip Example
+
+Design example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/fenzu1.png)
 
-展示页面：
+Displayed page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/fenzu2.png)
 
 :::
 
-分组组件特有属性：
+Specific attributes of the grouping component:
 
-+ 标题：是组件在当前页面的展示名称。
-+ 描述说明：用于描述组件信息。分组的描述说明在标题左侧。
++ Title: This is the name of the component displayed on the current page.
++ Description: Used to describe the component information. The description of the grouping is on the left side of the title.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/fenzu3.png)
 
-## （二）布局容器
-类似于表格结构，用户可以灵活地增添或删除某一行或某一列，同时可以对其中的某个容器进行个性化设置。
+## (2) Layout Container
+Similar to a table structure, users can flexibly add or delete a row or a column, and can also customize the settings of a specific container.
 
-:::info 注意
+:::info Note
 
-+ 仅显示存在组件的容器，未配置组件的容器将不在页面中展示。
-+ 一个容器内可以包含多个容器
++ Only containers with components will be displayed. Containers without configured components will not be shown on the page.
++ A container can contain multiple sub - containers.
 
 :::
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/rongqi1.png)
 
-展示页面：
+Displayed page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/rongqi2.png)
 
 :::
 
-布局容器特有属性：
+Specific attributes of the layout container:
 
-+ 标题：是组件在当前页面的展示名称。
-+ 是否显示边框：支持对容器的边框进行显示或隐藏设置，并且可以一键将所设置的边框可见度应用到所有容器，或一键清除所有容器的边框设置。
-+ 边框宽度：可设置布局容器边框的宽度，且宽度值需为整数。
-+ 边框颜色：通过颜色选择器，可以自定义边框的颜色。
-+ 边框样式：提供实线、虚线、双线和点状线四种样式供选择。
++ Title: This is the name of the component displayed on the current page.
++ Border Visibility: Supports showing or hiding the container border. You can also apply the set border visibility to all containers with one click or clear all container border settings with one click.
++ Border Width: You can set the width of the layout container border, and the width value must be an integer.
++ Border Color: You can customize the border color through the color picker.
++ Border Style: Four styles are available: solid line, dashed line, double line, and dotted line.
 
-:::info 注意
+:::info Note
 
-+ 边框的颜色与样式只有在边框设置为可见，并且宽度设置为大于0的值时，才会在页面上显示出来。
-+ 若布局容器中未添加任何组件，即使设置了边框也无法显示。
-+ 可以分别为布局容器与单个容器设置边框。布局容器边框将应用与全局，单个容器边框仅应用与容器。
++ The border color and style will only be displayed on the page when the border is set to be visible and the width is set to a value greater than 0.
++ If no components are added to the layout container, the border will not be displayed even if it is set.
++ You can set borders for both the layout container and individual containers. The layout container border will be applied globally, while the individual container border will only be applied to that specific container.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/rongqi3.png)
 
 :::
 
-+ 行间距：若布局容器包含多行，可调整每行容器间的间距，以使得页面更加美观。
-+ 列间距：若布局容器包含多列，可调整每列容器间的间距，以使得页面更加美观。
-+ 内边距：即布局容器与所含容器之间的边距，可自定义上、下、左、右四个方向的边距
-+ 外边距：即布局容器与外部组件之间的边距，可自定义上、下、左、右四个方向的边距
-+ 容器
-    - 插入行：允许在选中容器所在行的上方或下方插入一行新的容器。
-    - 插入列：允许在选中容器的左侧或右侧插入一列新的容器。
-    - 宽度：支持自适应和自调节两种模式。选择自调节时，可自定义容器在所在行中所占的宽度大小。
-    - 纵向对齐方式：指容器中组件的纵向排列方式，默认设置为顶部对齐。
++ Row Spacing: If the layout container contains multiple rows, you can adjust the spacing between each row of containers to make the page more aesthetically pleasing.
++ Column Spacing: If the layout container contains multiple columns, you can adjust the spacing between each column of containers to make the page more aesthetically pleasing.
++ Padding: This is the margin between the layout container and its contained containers. You can customize the margins in the top, bottom, left, and right directions.
++ Margin: This is the margin between the layout container and external components. You can customize the margins in the top, bottom, left, and right directions.
++ Container
+    - Insert Row: Allows you to insert a new row of containers above or below the row where the selected container is located.
+    - Insert Column: Allows you to insert a new column of containers to the left or right of the selected container.
+    - Width: Supports two modes: adaptive and self - adjustable. When the self - adjustable mode is selected, you can customize the width of the container in its row.
+    - Vertical Alignment: Refers to the vertical arrangement of components within the container. The default setting is top alignment.
 
-:::info 注意
+:::info Note
 
-布局容器中包含了多个子容器。在设置属性时，如果选择“布局容器”，则将对所有包含在内的容器统一应用相同的属性设置；而如果选择具体的“容器”，则只会对该单个容器的属性进行设置，不影响其他容器。
+The layout container contains multiple sub - containers. When setting attributes, if you select the "layout container", the same attribute settings will be uniformly applied to all included containers; if you select a specific "container", only the attributes of that single container will be set, without affecting other containers.
 
 :::
 
-## （三）选项卡
-每个选项卡内可以添加多个选项页，用户可以为每个选项页配置不同的组件，以满足多样化的展示需求。
+## (3) Tab
+Multiple tab pages can be added to each tab. Users can configure different components for each tab page to meet diverse display requirements.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka1.png)
 
-展示页面：
+Displayed page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka2.png)
 
@@ -125,51 +125,51 @@ prev:
 
 :::
 
-选项卡特有属性：
+Specific attributes of the tab:
 
-+ 选项标题位置：支持上方或左侧两种位置。
++ Tab Title Position: Supports two positions: top or left.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka4.gif)
 
-+ 排序：支持拖拽选项页对其位置进行更换。
++ Sorting: Supports dragging tab pages to change their positions.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka5.gif)
 
-+ 选项页
-    - 默认激活：默认选项页激活，也可设置激活条件，当符合条件时激活选项页。
++ Tab Page
+    - Default Activation: A tab page can be set as the default active page, and activation conditions can also be set. The tab page will be activated when the conditions are met.
 
-## （四）折叠面板
-面板中可以配置各种组件，用户可以根据需要展开或折叠面板，以优化页面布局和用户体验。
+## (4) Collapsible Panel
+Various components can be configured in the panel. Users can expand or collapse the panel as needed to optimize the page layout and user experience.
 
-:::tip 举例
+:::tip Example
 
-设计示例：
+Design example:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/zhedie1.png)
 
-展示页面：
+Displayed page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/zhedie2.png)
 
 :::
 
-折叠面板特有属性：
+Specific attributes of the collapsible panel:
 
-+ 样式类型：提供四种风格样式供选择，包括带边框、斑马纹、简约和透明背板，以满足不同需求的折叠面板设计。
-+ 展开图标位置：可灵活设置展开图标的位置，支持左侧、右侧显示，或选择隐藏展开图标，以适应不同的设计风格。
-+ 默认展开全部：通过开关控制，可设置折叠面板在实际页面中的初始状态。开关打开时，面板默认展开；开关关闭时，面板默认收起。
++ Style Type: Four style options are available, including bordered, striped, simple, and transparent background, to meet different design needs for collapsible panels.
++ Expand Icon Position: The position of the expand icon can be flexibly set, supporting left or right display, or you can choose to hide the expand icon to adapt to different design styles.
++ Default Expand All: Controlled by a switch, you can set the initial state of the collapsible panel on the actual page. When the switch is on, the panel is expanded by default; when the switch is off, the panel is collapsed by default.
 
-:::info 注意
+:::info Note
 
-若启用手风琴模式，该功能失效。
+This function is invalid if the accordion mode is enabled.
 
 :::
 
-+ 手风琴模式：开启此模式后，若存在多个折叠面板项，将限制只能展开其中一项。当尝试展开其他面板项时，已打开的面板项会自动折叠。
-+ 折叠方式：提供两种折叠方式供选择，可通过点击头部区域或点击标题来折叠面板，以满足不同的用户交互习惯。
++ Accordion Mode: When this mode is enabled, if there are multiple collapsible panel items, only one item can be expanded at a time. When trying to expand another panel item, the currently open panel item will automatically collapse.
++ Collapse Method: Two collapse methods are available. You can collapse the panel by clicking on the header area or the title to meet different user interaction habits.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/zhedie3.gif)
 
-+ 排序：支持拖拽折叠面板项对其位置进行更换。
++ Sorting: Supports dragging collapsible panel items to change their positions.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/zhedie4.gif)

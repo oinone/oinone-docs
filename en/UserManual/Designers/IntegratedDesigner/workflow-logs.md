@@ -1,48 +1,47 @@
 ---
-title: 流程日志
+title: Process Logs
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 4
 ---
-流程日志用于详细记录数据流程的执行情况，每当数据流程执行一次，系统都会在流程日志中保存一次相应的执行记录。
+Process logs are used to record the execution details of data processes. Every time a data process is executed, the system saves a corresponding execution record in the process logs.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1.png)
 
-# 一、筛选
-### 1.功能介绍
-根据实际业务需求，可以定制流程记录的筛选条件。在当前的筛选条件下，将展示相应的流程记录列表，方便查看不同的流程记录。
+# I. Filtering
+### 1. Function Introduction
+You can customize the filtering conditions for process records according to actual business requirements. Under the current filtering conditions, the corresponding list of process records will be displayed, making it convenient to view different process records.
 
-### 2.操作方法
-+ 筛选：在筛选区输入条件后点击「搜索」，即可对流程记录进行筛选。
-+ 一键清除：点击「清除」图标，可一键清除当前筛选区中条件
+### 2. Operation Method
++ Filtering: Enter the conditions in the filtering area and click "Search" to filter the process records.
++ One-click Clear: Click the "Clear" icon to clear all the conditions in the current filtering area at once.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/sx.png)
 
-# 二、查看详情
-### 1.功能介绍
-系统支持查看数据流程的执行详情，不仅可以查阅每一个节点的基本信息以及参数日志，还能全面了解数据流程的整体运行状况和详细情况。
+# II. Viewing Details
+### 1. Function Introduction
+The system supports viewing the execution details of data processes. You can not only check the basic information and parameter logs of each node but also comprehensively understand the overall operation status and detailed information of the data process.
 
-### 2.操作方法
-+ 点击「详情」，跳转至流程设计界面
+### 2. Operation Method
++ Click "Details" to jump to the process design interface.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/xq1.png)
 
-+ 在流程日志中，点击节点，可查看单一节点执行情况
++ In the process logs, click a node to view the execution status of a single node.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/xq2.png)
 
-+ 在日志详情中，可查看数据流程整体运行情况
++ In the log details, you can view the overall operation status of the data process.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/xq3.png)
 
-# 三、重试
-### 1.功能介绍
-针对状态异常的数据流程，可重新执行数据流程
+# III. Retry
+### 1. Function Introduction
+For data processes with abnormal status, you can re - execute the data process.
 
-### 2.操作方法
-点击「重试」，即可重新执行数据流程
+### 2. Operation Method
+Click "Retry" to re - execute the data process.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/cs.png)
-

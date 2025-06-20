@@ -1,30 +1,29 @@
 ---
-title: 集成设计器
+title: Integrated Designer
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 dir:
   link: true
   order: 5
 prev:
-  text: 图表模板
-  link: /en/UserManual/Designers/DataVisualization/chart-template.md
+  text: Chart Template
+  link: /zh-cn/UserManual/Designers/DataVisualization/chart-template.md
 next:
-  text: 工作台
-  link: /en/UserManual/Designers/IntegratedDesigner/workbench.md
+  text: Workbench
+  link: /zh-cn/UserManual/Designers/IntegratedDesigner/workbench.md
 ---
-Oinone的集成设计器是一款高效专注于集成接口管理与业务编排的工具，它凭借可视化的操作界面，极大地简化了原本复杂的集成流程，成功实现了接口管理的规范化、业务编排的可视化，以及接口开放的标准化。以下是Oinone集成设计器的几大核心功能亮点：
+Oinone's Integrated Designer is a highly efficient tool focused on integrated interface management and business orchestration. With its visual operation interface, it greatly simplifies the originally complex integration process, successfully achieving standardization of interface management, visualization of business orchestration, and standardization of interface opening. Here are several core functional highlights of the Oinone Integrated Designer:
 
-+ 集成设计器配备了全面的集成管理工作台，能够实时展示各项集成关键指标，为监控和管理提供了极大便利。
-+ 通过可视化的编排方式，可以构建和管理系统之间的集成业务流程逻辑，使得集成工作更加直观、高效。
-+ 集成设计器提供了一套规范化的API开发流程，具备高度的可复用性。
++ The Integrated Designer is equipped with a comprehensive integrated management workbench that can display all key integration indicators in real-time, providing great convenience for monitoring and management.
++ Through visual orchestration, the integration business process logic between systems can be built and managed, making the integration work more intuitive and efficient.
++ The Integrated Designer provides a standardized API development process with high reusability.
 
-Oinone的集成设计器凭借其强大的功能，适用于多种场景下的集成需求，具体包括但不限于：
+Thanks to its powerful functions, Oinone's Integrated Designer is suitable for integration requirements in various scenarios, including but not limited to:
 
-+ 企业内部各类系统的整合与对接，实现信息资源的共享和协同工作。
-+ 与外部合作伙伴的系统进行无缝集成与数据交换，拓展业务边界，提升合作效率。
-+ 在复杂业务场景下，构建定制化的集成方案，满足企业多样化的需求。
++ Integration and connection of various internal enterprise systems to achieve sharing of information resources and collaborative work.
++ Seamless integration and data exchange with external partners' systems to expand business boundaries and improve cooperation efficiency.
++ Construction of customized integration solutions in complex business scenarios to meet the diverse needs of enterprises.
 
-综上所述，Oinone的集成设计器无疑是一款功能全面、操作灵活、使用便捷的集成工具。它能够帮助企业迅速应对复杂多变的集成挑战，实现业务流程的自动化处理，以及数据的无缝集成与流转。
-
+In summary, Oinone's Integrated Designer is undoubtedly a comprehensive, flexible, and user-friendly integration tool. It can help enterprises quickly respond to complex and ever-changing integration challenges, achieve automated processing of business processes, and seamless integration and flow of data.

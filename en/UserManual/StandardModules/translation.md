@@ -1,102 +1,101 @@
 ---
-title: 翻译
+title: Translation
 index: true
 category:
-  - 用户手册
+  - User Manual
 order: 10
 ---
-# 一、翻译管理
-### 1.功能介绍
-在翻译管理系统中，可以系统地管理和维护翻译项，这些规则以模型为基础，用于维护字段的翻译值，确保翻译的准确性和一致性。
+# I. Translation Management
+### 1. Feature Introduction
+In the translation management system, translation items can be systematically managed and maintained. These rules are based on models and are used to maintain the translation values of fields, ensuring the accuracy and consistency of translations.
 
-### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对翻译项进行筛选。
-+ 创建：点击「创建」，输入所需的配置信息及翻译项的相关信息，即可成功创建新的翻译项。
-+ 编辑：点击「编辑」，即可对翻译项的相关信息进行更新或修改。
+### 2. Operation Methods
++ Filtering: According to the requirements of the actual scenario, input or select the corresponding filtering conditions to filter the translation items.
++ Creation: Click "Create", input the required configuration information and relevant information of the translation item, and a new translation item can be successfully created.
++ Editing: Click "Edit" to update or modify the relevant information of the translation item.
 
-:::info 注意
+:::info Note
 
-翻译应用范围即翻译生效后可覆盖的范围，包括源术语所在应用与全局：
+The application scope of translation refers to the scope that can be covered after the translation takes effect, including the application where the source term is located and the global scope:
 
-+ 若选择“源术语所在应用”，则即该条规则仅作用于设置的“翻译所在应用”中
-+ 若选择“全局”，则在整个系统中都可使用这条规则
++ If "The application where the source term is located" is selected, this rule only applies to the "application where the translation is located" that has been set.
++ If "Global" is selected, this rule can be used throughout the entire system.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/translate/gl1.png)
 
 :::
 
-+ 刷新远程资源：当新增或编辑翻译项后，需点击「刷新远程资源」，以确保规则能够生效并应用到资源中。
++ Refresh Remote Resources: After adding or editing a translation item, click "Refresh Remote Resources" to ensure that the rule takes effect and is applied to the resources.
 
-:::info 注意
+:::info Note
 
-若未刷新远程资源，翻译项无法生效
+If the remote resources are not refreshed, the translation item will not take effect.
 
 :::
 
-+ 详情：点击「详情」，可查看所选翻译项的详细信息。
-+ 删除：选中某一翻译项后，点击「删除」，即可将该翻译项删除。
-+ 激活：当某一翻译项状态为“未激活”时，可选中该规则，点击「激活」，以快速启用该规则
++ Details: Click "Details" to view the detailed information of the selected translation item.
++ Deletion: Select a translation item and click "Delete" to delete the translation item.
++ Activation: When the status of a translation item is "Inactive", select the rule and click "Activate" to quickly enable the rule.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/translate/gl2.png)
 
-:::tip 举例
+:::tip Example
 
-现有一表格在英文模式下为：
+Suppose there is a table in English mode:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/translate/gl3.png)
 
-为其“销售量”添加翻译项。
+Add a translation item for "Sales Volume".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/translate/gl4.gif)
 
-创建完成后点击「刷新远程资源」。带刷新完毕后查看效果，原“销售量”变为“sales volume”
+After the creation is completed, click "Refresh Remote Resources". After the refresh is completed, check the effect. The original "Sales Volume" will be changed to "sales volume".
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/translate/gl5.png)
 
 :::
 
-# 二、导入翻译文件
-### 1.功能介绍
-系统支持通过Excel文件一次性统一导入多条翻译项，提高翻译项管理的效率和便捷性。
+# II. Import Translation Files
+### 1. Feature Introduction
+The system supports importing multiple translation items at once through an Excel file, improving the efficiency and convenience of translation item management.
 
-:::info 注意
+:::info Note
 
-需使用平台提供的翻译模板文件，将模板文件填写完毕后进行上传
+You need to use the translation template file provided by the platform. Fill in the template file and then upload it.
 
 :::
 
-### 2.操作方法
-点击「下载翻译模板文件」，填写完毕后进行上传即可成功导入
+### 2. Operation Methods
+Click "Download Translation Template File", fill it in, and then upload it to successfully import the translation items.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/translate/dr.png)
 
-# 三、导出文件
-### 1.功能介绍
-支持导出已有翻译项，可自定义导出文件内所包含的内容
+# III. Export Files
+### 1. Feature Introduction
+It supports exporting existing translation items, and you can customize the content included in the exported file.
 
-:::warning 提示
+:::warning Prompt
 
-若一次性导出全部应用可能会因为数据过多而耗时较长，推荐按照源术语所属的应用进行导出
+Exporting all applications at once may take a long time due to the large amount of data. It is recommended to export according to the application to which the source term belongs.
 
 :::
 
-### 2.操作方法
-填写需要导出的翻译项的信息后，点击「导出文件」，即可成功导出
+### 2. Operation Methods
+Fill in the information of the translation items to be exported, and then click "Export File" to successfully export the file.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/translate/dc.png)
 
-# 四、更改翻译项
-### 1.功能介绍
-支持更改已有翻译项的信息
+# IV. Change Translation Items
+### 1. Feature Introduction
+It supports changing the information of existing translation items.
 
-:::info 注意
+:::info Note
 
-需使用平台提供的翻译模板文件，将模板文件填写完毕后进行上传
+You need to use the translation template file provided by the platform. Fill in the template file and then upload it.
 
 :::
 
-### 2.操作方法
-点击「下载翻译模板文件」，填写完毕后进行上传即可成功更改
+### 2. Operation Methods
+Click "Download Translation Template File", fill it in, and then upload it to successfully change the translation items.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/translate/gg.png)
-

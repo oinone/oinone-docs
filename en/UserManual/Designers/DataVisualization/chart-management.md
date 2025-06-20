@@ -1,282 +1,280 @@
 ---
-title: 图表管理
+title: Chart Management
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 1
 prev:
-  text: 数据可视化(Data Visualization)
-  link: /en/UserManual/Designers/DataVisualization/README.md
+  text: Data Visualization
+  link: /en-us/UserManual/Designers/DataVisualization/README.md
 ---
-图表可以直观的展示模型中数据，在数据可视化中，提供图表管理界面，该界面支持用户自定义图表信息，实现信息的灵活配置。
+Charts can intuitively display data in models. In data visualization, a chart management interface is provided, which allows users to customize chart information and achieve flexible configuration of information.
 
-进入数据可视化后的「图表」页面可对图表进行管理，该页面主要包含三个部分：筛选区、列表区与图表预览区：
+You can manage charts on the "Charts" page after entering data visualization. This page mainly consists of three parts: the filtering area, the list area, and the chart preview area:
 
-+ 筛选区：提供图表筛选功能，便于用户快速查找出所需图表项。
-+ 列表区：展示图表与其分组的列表，清晰呈现图表结构。
-+ 图表预览区：展示已设计的图表，用户可在此进行编辑、发布、导出等操作。
++ Filtering Area: Provides a chart filtering function to help users quickly find the required chart items.
++ List Area: Displays a list of charts and their groups, clearly presenting the chart structure.
++ Chart Preview Area: Displays the designed charts. Users can perform operations such as editing, publishing, and exporting here.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/1.png)
 
-# 一、筛选
-### 1.功能介绍
-根据业务实际需求，可定制图表筛选条件。输入图表或分组名称后，系统能精确筛选所需项，便于后续操作。
+# I. Filtering
+### 1. Function Introduction
+You can customize chart filtering conditions according to actual business needs. After entering the chart or group name, the system can accurately filter the required items for subsequent operations.
 
-### 2.操作方法
-在筛选区中输入条件，完成对图表或分组的筛选。
+### 2. Operation Method
+Enter conditions in the filtering area to filter charts or groups.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/sx.png)
 
-# 二、分组管理
-### 1.功能介绍
-利用分组功能可以对图表进行归类处理。
+# II. Group Management
+### 1. Function Introduction
+You can use the grouping function to classify charts.
 
-### 2.操作方法
-+ 创建分组：首先，点击“创建一级分组”按钮并输入一级分组名称，即可完成一级分组的创建。接着，在一级分组下方，点击“创建”图标并输入二级分组名称，即可成功创建二级分组。至此，分组创建完成。
+### 2. Operation Method
++ Create a Group: First, click the "Create First-Level Group" button and enter the first-level group name to complete the creation of the first-level group. Then, below the first-level group, click the "Create" icon and enter the second-level group name to successfully create the second-level group. At this point, the group creation is completed.
 
-:::info 注意
+:::info Note
 
-+ 一级分组名称之间不允许重复，一级分组名称与二级分组名称不允许重复
-+ 同个一级分组下的二级分组名称不允许重复
-+ 不同一级分组下的二级分组名称允许重复
++ First-level group names are not allowed to be repeated, and first-level group names and second-level group names are not allowed to be repeated.
++ Second-level group names under the same first-level group are not allowed to be repeated.
++ Second-level group names under different first-level groups are allowed to be repeated.
 
 :::
 
- ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/fz1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/fz1.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/fz2.png)
 
-+ 编辑分组名称：鼠标移至需要修改的分组上，点击「编辑」图标后即可修改分组的名称。
++ Edit Group Name: Move the mouse over the group to be modified, click the "Edit" icon, and then you can modify the group name.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/fz3.png)
 
-+ 修改分组位置：拖拽分组即可改变其位置。
++ Modify Group Position: Drag the group to change its position.
 
-:::info 注意
+:::info Note
 
-+ 只能拖动同级分组，不可以将一级分组变为二级分组或将二级分组变为一级分组，同理，创建好的图表不允许变为分组。
-+ 可以将二级分组移至其他一级分组下。
++ You can only drag groups at the same level. You cannot change a first-level group into a second-level group or vice versa. Similarly, a created chart is not allowed to be changed into a group.
++ You can move a second-level group under another first-level group.
 
 :::
 
-+ 删除分组：鼠标移至需要删除的分组上，点击「删除」图标，即可删除该分组。
++ Delete a Group: Move the mouse over the group to be deleted, click the "Delete" icon, and then you can delete the group.
 
-:::info 注意
+:::info Note
 
-+ 删除一级分组时，其包含的二级分组也会被删除。
-+ 当分组下存在图表时，无法成功删除。
++ When deleting a first-level group, its included second-level groups will also be deleted.
++ You cannot successfully delete a group when there are charts under it.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/fz4.png)
 
-# 三、添加图表
-### 1.功能介绍
-Oinone的数据可视化提供了两个创建图表的方式：
+# III. Add a Chart
+### 1. Function Introduction
+Oinone's data visualization provides two ways to create charts:
 
-+ 在图表二级分组中创建图表
-+ 在报表中创建图表
++ Create a chart in the second-level chart group.
++ Create a chart in a report.
 
-在创建时需编辑图表基本信息，包括图标标题、数据来源类型与方法。数据来源提供四种类型：
+When creating a chart, you need to edit the basic chart information, including the chart title, data source type, and method. There are four types of data sources:
 
-+ 当选择模型字段时，需选择已有模型
-+ 当选择集成应用时，需选择应用以及API
-+ 当选择数据库时，需选择数据库以及API
-+ 当选择文件集时，需选择文件集与文件
++ When selecting model fields, you need to select an existing model.
++ When selecting an integrated application, you need to select an application and an API.
++ When selecting a database, you need to select a database and an API.
++ When selecting a file set, you need to select a file set and a file.
 
-### 2.操作方法
-+ 在图表列表区二级分组下点击「创建图表」图标，输入图表信息即可成功创建。
+### 2. Operation Method
++ Click the "Create Chart" icon under the second-level group in the chart list area, enter the chart information, and then you can successfully create the chart.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/tj1.png)
 
-+ 在报表中点击「创建图表」，输入信息后即可成功创建。
++ Click "Create Chart" in a report, enter the information, and then you can successfully create the chart.
 
-:::info 注意
+:::info Note
 
-此处需选择分组。
+You need to select a group here.
 
-+ 若报表中尚不存在图表，可选择图表中任意可引用分组。
-+ 若报表中已存在图表，只能选择图表所在一级分组下二级分组。
++ If there are no charts in the report yet, you can select any referable group in the chart.
++ If there are already charts in the report, you can only select the second-level group under the first-level group where the charts are located.
 
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/tj2.png)
 
-# 四、编辑图表
-### 1.功能介绍
-支持编辑未发布或已发布但未隐藏的图表，提供三种编辑情况：
+# IV. Edit a Chart
+### 1. Function Introduction
+You can edit charts that are not published or have been published but not hidden. There are three editing scenarios:
 
-+ 在列表区编辑，仅能编辑标题
-+ 在图表预览区编辑，可以编辑标题、副标题、描述
-+ 在设计图表时编辑，可以编辑数据来源类型、方法、标题、副标题以及描述。
++ Edit in the list area: You can only edit the title.
++ Edit in the chart preview area: You can edit the title, subtitle, and description.
++ Edit when designing the chart: You can edit the data source type, method, title, subtitle, and description.
 
-:::info 注意
+:::info Note
 
-若未显示标题、副标题、描述，可在设计图表的样式栏中查看是否关闭展示，若关闭则无法展示，同理无法编辑。
+If the title, subtitle, or description is not displayed, you can check whether the display is turned off in the style bar of the chart design. If it is turned off, it cannot be displayed, and similarly, it cannot be edited.
 
 :::
 
-### 2.操作方法
-+ 在列表区，点击「编辑」图标，输入信息后即可成功编辑
+### 2. Operation Method
++ In the list area, click the "Edit" icon, enter the information, and then you can successfully edit the chart.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/bj1.png)
 
-+ 在图表预览区，点击标题区域、副标题区域、描述区域或「编辑」图标，输入信息后即可成功编辑
++ In the chart preview area, click the title area, subtitle area, description area, or the "Edit" icon, enter the information, and then you can successfully edit the chart.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/bj2.png)
 
-+ 在图表设计时，点击「设置」图标后可更改数据来源类型和方法，点击标题区域、副标题区域、描述区域或「编辑」图标，输入信息后即可成功编辑
++ When designing the chart, click the "Settings" icon to change the data source type and method. Click the title area, subtitle area, description area, or the "Edit" icon, enter the information, and then you can successfully edit the chart.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/bj3.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/bj4.png)
 
-# 五、设计图表
-### 1.功能介绍
-图表创建完成后，会自动进入或可手动进入图表设计界面。在该界面中，用户可以对图表进行个性化的设计布局，包括选择不同的图表类型，以满足多样化的需求和风格。（详见图表设计文档）
+# V. Design a Chart
+### 1. Function Introduction
+After the chart is created, you can automatically enter or manually enter the chart design interface. On this interface, users can perform personalized design and layout of the chart, including selecting different chart types, to meet diverse needs and styles. (See the chart design documentation for details.)
 
-:::info 注意
+:::info Note
 
-当图表发布后隐藏，无法手动进入图表设计界面。
+When a chart is hidden after being published, you cannot manually enter the chart design interface.
 
 :::
 
-### 2.操作方法
-点击「编辑」，进入图表设计界面。
+### 2. Operation Method
+Click "Edit" to enter the chart design interface.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/sj.png)
 
-# 六、查看引用信息
-### 1.功能介绍
-可查看与该图表存在引用关系的各类元素，包括报表、数据大屏、页面等。
+# VI. View Reference Information
+### 1. Function Introduction
+You can view various elements that have a reference relationship with the chart, including reports, data dashboards, pages, etc.
 
-:::info 注意
+:::info Note
 
-+ 对于已发布图表，可提供引用链接，可以直接复制引用链接在别处使用。
-+ 对于未发布图表，不提供引用链接
++ For published charts, a reference link is provided, which can be directly copied and used elsewhere.
++ For unpublished charts, no reference link is provided.
 
 :::
 
-### 2.操作方法
-点击「查看引用」，即可查看引用信息。
+### 2. Operation Method
+Click "View References" to view the reference information.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/yy.png)
 
-# 七、复制图表
-### 1.功能介绍
-提供图表复制功能，该功能会在原图所在的分组最底层生成一个副本，该副本的标题为“copy of 原图名称”。
+# VII. Copy a Chart
+### 1. Function Introduction
+A chart copying function is provided. This function will generate a copy at the bottom of the group where the original chart is located. The title of the copy is "copy of [original chart name]".
 
-### 2.操作方法
-点击「复制」，即可成功复制
+### 2. Operation Method
+Click "Copy" to successfully copy the chart.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/fz.png)
 
-# 八、发布图表
-### 1.功能介绍
-图表设计完成后，用户可以选择发布图表。发布后的图表可在其他设计器中被引用，同时展示最近发布时间。若图表发布后有内容更新，原本的“发布”按钮将变为“更新发布”。
+# VIII. Publish a Chart
+### 1. Function Introduction
+After the chart design is completed, users can choose to publish the chart. The published chart can be referenced in other designers, and the latest publishing time will be displayed. If the content of the chart is updated after publishing, the original "Publish" button will change to "Update and Publish".
 
-:::info 注意
+:::info Note
 
-若内容发生更新但尚未进行重新发布，那么引用该图表的地方仍继续展示旧版本的内容。
-
-:::
-
-:::warning 提示
-
-当图表未发布但已保存时，可以在报表以及数据大屏中引用该图表。
+If the content is updated but not republished, the places where the chart is referenced will still display the old version of the content.
 
 :::
 
-:::info 注意
+:::warning Tip
 
-当图表隐藏后，无法发布该图表。
+When a chart is saved but not published, it can be referenced in reports and data dashboards.
 
 :::
 
-### 2.操作方法
-点击「发布/更新发布」，即可成功发布
+:::info Note
+
+When a chart is hidden, it cannot be published.
+
+:::
+
+### 2. Operation Method
+Click "Publish/Update and Publish" to successfully publish the chart.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/fb.png)
 
-# 九、查看最近一次发布版本
-### 1.功能介绍
-当图表发布后有更新，会在图表预览区左上方区域展示最近发布时间，可查看其最近一次发布的版本
+# IX. View the Latest Published Version
+### 1. Function Introduction
+When a chart is updated after being published, the latest publishing time will be displayed in the upper-left area of the chart preview area. You can view the latest published version.
 
-### 2.操作方法
-点击「查看」，图表预览区会展示最近一次发布版本
+### 2. Operation Method
+Click "View", and the chart preview area will display the latest published version.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/ckzj.png)
 
-# 十、隐藏/可见图表
-### 1.功能介绍
-对于当前暂不使用的图表，可以执行隐藏操作。若日后需要，只需将隐藏的图表设置为可见状态即可重新投入使用。隐藏后的图表不可以被引用，但是不影响已经被引用的数据。
+# X. Hide/Show a Chart
+### 1. Function Introduction
+You can hide charts that are not currently in use. If needed in the future, you can set the hidden chart to be visible and use it again. Hidden charts cannot be referenced, but it does not affect the already referenced data.
 
-:::info 注意
+:::info Note
 
-+ 对于已发布的图表，隐藏后不可编辑
-+ 对于未发布的图表，隐藏后允许编辑
++ For published charts, they cannot be edited after being hidden.
++ For unpublished charts, they can be edited after being hidden.
 
 :::
 
-### 2.操作方法
-点击「隐藏」，图表设置为隐藏状态；再次点击，图表恢复为可见状态。
+### 2. Operation Method
+Click "Hide" to set the chart to the hidden state. Click again to restore the chart to the visible state.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/yc.png)
 
-# 十一、导出Excel
-### 1.功能介绍
-可以将图表数据内容导出为标准化的Excel文件格式。
+# XI. Export to Excel
+### 1. Function Introduction
+You can export the chart data content to a standardized Excel file format.
 
-### 2.操作方法
-点击「导出excel」，即可将当前图表中数据以Excel形式导出。
+### 2. Operation Method
+Click "Export to Excel" to export the data in the current chart in Excel format.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/dc.png)
 
-# 十二、允许别人编辑
-### 1.功能介绍
-支持自定义编辑权限，当关闭编辑权限后，非创建者即使登录也无法对该内容进行编辑。
+# XII. Allow Others to Edit
+### 1. Function Introduction
+Customizable editing permissions are supported. When the editing permission is turned off, non-creators cannot edit the content even if they log in.
 
-### 2.操作方法
-点击开关，即可改变该功能状态。
+### 2. Operation Method
+Click the switch to change the state of this function.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/yxbj.png)
 
-# 十三、允许别人引用
-### 1.功能介绍
-支持自定义引用权限，当关闭引用权限后，非创建者即使登录也无法对该内容进行引用。
+# XIII. Allow Others to Reference
+### 1. Function Introduction
+Customizable reference permissions are supported. When the reference permission is turned off, non-creators cannot reference the content even if they log in.
 
-### 2.操作方法
-点击开关，即可改变该功能状态。
+### 2. Operation Method
+Click the switch to change the state of this function.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/yxyy.png)
 
-# 十四、删除图表
-### 1.功能介绍
-当图表不再使用时，可以选择将其删除。若不确定图表是否需要删除，可以先将其隐藏。
+# XIV. Delete a Chart
+### 1. Function Introduction
+When a chart is no longer needed, you can choose to delete it. If you are not sure whether to delete the chart, you can hide it first.
 
-:::info 注意
+:::info Note
 
-在删除前，需确保该图表未被其他报表、数据大屏或页面引用，否则删除操作将无法进行。
-
-:::
-
-:::danger 警告
-
-图表删除后无法恢复，请谨慎操作！
+Before deleting, make sure that the chart is not referenced by other reports, data dashboards, or pages; otherwise, the deletion operation cannot be performed.
 
 :::
 
-### 2.操作方法
-点击「删除」图标，确定删除后即可删除
+:::danger Warning
+
+Once a chart is deleted, it cannot be recovered. Please operate with caution!
+
+:::
+
+### 2. Operation Method
+Click the "Delete" icon, confirm the deletion, and then the chart will be deleted.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Chart%20Management/sc.png)
 
-# 十五、附件：名词解释
-| <div style="width:60px;">名词</div> | 描述 |
+# XV. Attachment: Glossary
+| <div style="width:60px;">Term</div> | Description |
 | :---: | --- |
-| 图表 | 指具体的图表信息，根据图表模版，带入需要分析的数据后会生成业务图表 |
-| 报表 | 设计图表的组合样式，将需要在一起展示的图表添加到一张报表中为一个整体，可以在报表设计页面调整单个图表的占比，发布报表等 |
-| 数据大屏 | 一种大型显示系统，可实时展示数据信息。 |
-
-
+| Chart | Refers to specific chart information. After bringing in the data to be analyzed according to the chart template, a business chart will be generated. |
+| Report | A combined style for designing charts. Adding the charts to be displayed together to a report forms a whole. You can adjust the proportion of individual charts on the report design page and publish the report. |
+| Data Dashboard | A large-scale display system that can display data information in real-time. |

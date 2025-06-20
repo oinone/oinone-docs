@@ -1,32 +1,33 @@
 ---
-title: 章节 8：字段间联动（Field Interlinkage）
+title: Chapter 8:Field Interlinkage
 index: true
 category:
-  - 研发手册
-  - 教程
-  - 后端框架
+  - Development Manual
+  - Tutorials
+  - Back-end Framework
 order: 8
 
 ---
-模型之间的关系是任何 Oinone 模块的关键组成部分。对于任何业务场景的建模，它们都是必不可少的。然而，我们可能还希望在给定模型内的字段之间建立联系。有时，一个字段的值是由其他字段的值决定的，而有时我们则希望在数据输入方面为用户提供帮助。
+Relationships between models are a key component of any Oinone module and are essential for modeling any business scenario. However, we may also want to establish connections between fields within a given model. Sometimes, the value of one field is determined by the values of other fields, and other times we want to assist users in data entry.
 
-这些情况可以通过关系字段domain属性，Ux相关的 compute、 constructFun 属性来实现。尽管从技术层面来讲，本章的内容并不复杂，但这三个概念的语义非常重要。这也是我们首次编写 JAVA 逻辑代码，在此之前，除了类定义和字段声明之外，我们还没有编写过其他任何代码。
+These scenarios can be achieved through the `domain` attribute of relation fields and the UX-related `compute` and `constructFun` attributes. Although technically uncomplicated, the semantics of these three concepts are crucial. This is also the first time we're writing Java logic code—before now, we've only written class definitions and field declarations.
 
-# 一、关系字段属性：domain
 
-参考：与此主题相关的文档可在 “[字段属性](/en/DevManual/Reference/Back-EndFramework/ORM-API.md)” 中找到。
+# I. Relation Field Attribute: domain
 
-:::info 目标：在本节结束时：
+Reference: Related documentation can be found in "[Field Attributes](/en/DevManual/Reference/Back-EndFramework/ORM-API.md)".
 
-在项目信息模型中，选择了伙伴类型以后，项目外部关联方的可选项自动发生变化
+:::info Objectives: By the end of this section:
+
+In the project information model, selecting a partner type automatically filters the available options for project external partners.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-8/domain3.gif)
 
 :::
 
-在我们的费用管理模块里，已完成项目外部关联方的定义。若新增一种伙伴类型，那么在选择该伙伴类型后，项目外部关联方的可选范围会随之改变。为实现这一功能，我们将运用`domain`属性这一概念。简单来说，关联字段所呈现的数据，会依据`domain`属性值进行筛选 。
+In our expense management module, we've defined project external partners. If a new partner type is added, the selectable range for project external partners should change accordingly after selecting this partner type. To achieve this, we use the `domain` attribute concept. In simple terms, data displayed in a relation field is filtered based on the `domain` attribute value.
 
-例如，为了在我们的`expenses.TestModel` 模型添加字段`partnerType`，并对字段 `partners` 设置其 `domain` 属性：
+For example, to add the `partnerType` field to our `expenses.TestModel` and set the `domain` attribute for the `partners` field:
 
 ```java
 @Field.Enum
@@ -42,47 +43,48 @@ private BusinessPartnerTypeEnum partnerType;
 private List<PamirsPartner> partners;
 ```
 
-通过Ux的 `clearFields`属性配置，当`partnerType` 字段发生变化时，需要清空的字段列表。
+Configure the Ux `clearFields` attribute to specify fields to clear when the `partnerType` field changes.
 
-在关系字段定义中，添加 `domain=X` 选项，其中 `X` 可以接受一个[RSQL](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#1、rsql-基础概念)的表达式，activeRecord代表视图的当前对象
+In the relation field definition, add a `domain=X` option where `X` accepts an [RSQL](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#1、rsql-基础概念) expression. `activeRecord` represents the current view object.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-8/domain2.gif)
 
-如果不指定UxForm的`widget` 属性，在生成默认视图时，在多对多字段使用的是Table组件，要影响弹出框的数据过滤。即在视图嵌套的情况下，子视图需要用到父视图数据，则可以通过则需要用`rootRecord` 来获取值。
+If the UxForm `widget` attribute is not specified, the default view uses a Table component for many-to-many fields. To affect data filtering in pop-ups—i.e., when a sub-view needs data from a parent view—use `rootRecord` to fetch values.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-8/domain1.gif)
 
-:::danger 警告：
+:::danger Warning:
 
-关系字段的 `domain` 属性仅在前端组件主动发起数据请求时起作用，展示的方式使用 `widget="Checkbox"` 属性，因为Oinone系统默认实现Checkbox组件，不会再选中是发起新请求，则domain无效。
+The `domain` attribute of relation fields only takes effect when front-end components actively initiate data requests. Using the `widget="Checkbox"` attribute displays data without triggering new requests, making `domain` ineffective.
 
 :::
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 按照本节目标中所示，将 `partnerType` 字段添加到你的 `expenses.ProjectInfo` 模型及其表单视图中。
+> As shown in this section's objectives, add the `partnerType` field to your `expenses.ProjectInfo` model and its form view.
 >
-> `expenses.ProjectInfo`模型的表单视图已完成自定义设置。基于前面所掌握的知识内容，现在让我们尝试对该表单的自定义视图进行进一步的修改与优化吧!
+> The form view of the `expenses.ProjectInfo` model has been custom-configured. Building on previously acquired knowledge, let's try further modifying and optimizing this form's custom view!
 
-# 二、UX的一些新属性
 
-## （一）compute
+# II. New UX Attributes
 
-参考：与此主题相关的文档可在 “[UX compute属性](/en/DevManual/Reference/Back-EndFramework/UX-API.md)” 中找到。
+## (I) compute
 
-:::info 目标：在本节结束时：
+Reference: Related documentation can be found in "[UX compute Attribute](/en/DevManual/Reference/Back-EndFramework/UX-API.md)".
 
-在项目信息模型中，应根据人均预算和人员投入规模，计算最佳项目预算
+:::info Objectives: By the end of this section:
+
+In the project information model, the optimal project budget should be calculated based on the budget per capita and staff size.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-8/computer4.gif)
 
 :::
 
-在我们的费用管理模块中，已经定义了预算和人员投入规模。如果增加一个人均预算，那么，将预算定义为人员投入规模和人均预算这两个字段的乘积是很自然的。为此，我们将使用计算属性的概念，即给定字段的值将根据其他字段的值来计算。
+In our expense management module, we've defined budget and staff size. If we add a budget per capita, it's natural to define the budget as the product of staff size and budget per capita. For this, we use the concept of computed attributes—i.e., the value of a given field is calculated based on other fields.
 
-要设置字段的计算属性，并将其 `compute` 属性设置为一个前端支持的计算表达式。计算方法应该为 `activeRecord` 中的每条记录设置计算字段的值。
+To set a field's computed attribute, set its `compute` attribute to a front-end-supported calculation expression. The calculation method should set the computed field's value for each record in `activeRecord`.
 
-例如，为了在我们的`expenses.TestModel` 模型及其表单视图中添加字段`computeName`，并设置其 `compute` 属性或表单视图上配置`compute` 属性：
+For example, to add the `computeName` field to our `expenses.TestModel` and set its `compute` attribute in the model or form view:
 
 ```xml
 @Field(displayName = "计算字段", compute = "activeRecord.name")
@@ -93,42 +95,40 @@ private String computeName;
 <field data="computeName" label="计算字段" compute="activeRecord.name"/>
 ```
 
-:::warning 提示：
+:::warning Tip:
 
-你可能已经注意到，计算属性一般是跟只读属性配合使用。这是合理的，因为用户不应该设置其值。
+You may have noticed that computed attributes are typically used with read-only attributes, which makes sense since users shouldn't set their values.
 
-然而，倘若`computeName`字段本身也需要支持用户进行修改操作，也就是说`computeName`仅仅是将`name`字段的值作为一个默认值来使用的话。
-
-此时，只需将计算逻辑修改为`activeRecord.computeName?activeRecord.computeName:activeRecord.name`即可。
+However, if the `computeName` field also needs to support user modifications—i.e., `computeName` uses the `name` field's value as a default—simply modify the calculation logic to `activeRecord.computeName?activeRecord.computeName:activeRecord.name`.
 
 :::
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 按照本节目标中所示，将 `budgetPerCapita` 字段添加到你的 `expenses.ProjectInfo` 模型及其表单视图中。
+> As shown in this section's objectives, add the `budgetPerCapita` field to your `expenses.ProjectInfo` model and its form view.
 
-| 字段（Field）                                                | 字段显示名                                               | 类型（Type） | JAVA类型   |
-| ------------------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- |
-| budgetPerCapita | 人均预算 | `FLOAT`                                                      | BigDecimal |
+| Field                | Display Name       | Type   | Java Type    |
+|----------------------|--------------------|--------|--------------|
+| budgetPerCapita      | 人均预算           | FLOAT  | BigDecimal   |
+
+> The `compute` configuration for the `budgetAmount` field in the form view is `activeRecord.staffSize * activeRecord.budgetPerCapita`.
 
 
-> 表单视图中 `budgetAmount` 字段的 `compute` 配置为 `activeRecord.staffSize * activeRecord.budgetPerCapita`
+## (II) constructFun
 
-## （二）constructFun
+Reference: Related documentation can be found in "[UX constructFun Attribute](/en/DevManual/Reference/Back-EndFramework/UX-API.md)".
 
-参考：与此主题相关的文档可在 “[UX constructFun属性](/en/DevManual/Reference/Back-EndFramework/UX-API.md)” 中找到。
+:::info Objectives: By the end of this section:
 
-:::info 目标：在本节结束时：
-
-当启切换 “项目可见性” 字段时，将设置人员投入规模的默认值为 1。
+When toggling the "project visibility" field, set the default value of staff size to 1.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-8/construct.gif)
 
 :::
 
-在我们的费用管理模块中，我们还希望在数据输入方面为用户提供帮助。当切换了 “项目可见性” 字段时，我们希望为"人员投入规模"设置为默认值。此外，当取消设置 “项目可见性” 字段时，我们希望"人员投入规模"重置为零。在这种情况下，给定字段的值会修改其他字段的值。
+In our expense management module, we also want to assist users in data entry. When the "project visibility" field is toggled, we want to set the staff size to a default value. Additionally, when "project visibility" is unset, we want to reset the staff size to zero. In this case, the value of a given field modifies other fields' values.
 
-`constructFun` 机制为客户端界面提供了一种方式，使得每当用户填写了一个字段值时，无需将任何内容保存到数据库，就可以更新表单。为了实现这一点，在给定字段上增加了Ux注解并指定`constructFun` 的值为我们定义的一个方法，其中 入参`data` 表示表单视图中的记录，并使用 `@Function(openLevel ={FunctionOpenEnum.API})` 来指定该方法可以由前端发起调用。对 `data` 所做的任何更改都会反映在表单上：
+The `constructFun` mechanism provides a way for the client interface to update the form whenever a user fills in a field value, without saving anything to the database. To achieve this, add a Ux annotation to the given field and specify the `constructFun` value as a defined method, where the parameter `data` represents the record in the form view. Use `@Function(openLevel ={FunctionOpenEnum.API})` to specify that this method can be called by the front-end. Any changes to `data` are reflected in the form:
 
 ```java
 package pro.shushi.oinone.trutorials.expenses.api.model;
@@ -170,29 +170,28 @@ public class TestConstructFunModel extends IdModel {
 }
 ```
 
-在这个例子中，更改合作伙伴也会更改名称和描述的值。之后用户可以自行决定是否进一步修改名称和描述的值。
+In this example, changing the partner also changes the name and description values. The user can then decide whether to modify the name and description further.
 
-> **练习（Exercise）**
+> **Exercise**
 >
-> 设置人员投入规模的值。
+> Set the staff size value.
 >
-> 在 `expenses.ProjectInfo` 模型中创建一个 `onProjectVisibilityChange` 方法，以便在切换了 “项目可见性” 字段时，将“人员投入规模”设置为 1。当取消设置时，清除“人员投入规模”字段的值。
+> Create an `onProjectVisibilityChange` method in the `expenses.ProjectInfo` model to set the staff size to 1 when the "project visibility" field is toggled, and clear the staff size field when it's unset.
 >
-> 基于此前所学，我们知道 UX 的 Prop 属性皆可在自定义视图中进行设置。现在，就让我们借助这些知识，着手对该表单的自定义视图展开进一步的修改与优化吧！
+> Based on previous learning, we know that UX Prop attributes can be set in custom views. Now, let's use this knowledge to further modify and optimize the form's custom view!
 
-:::warning 提示：用于提供有用的建议或指导
+:::warning Tip:
 
-`compute` 和 `constructFun` 机制常见的陷阱是试图通过添加过多的逻辑来显得 “过于聪明”。这可能会产生与预期相反的结果：最终用户会因所有的自动化操作而感到困惑。
+A common pitfall with `compute` and `constructFun` mechanisms is trying to be "too clever" by adding excessive logic, which can confuse end users with over-automation.
 
-`compute` 往往更容易调试：这样的字段是由给定的方法设置的，所以很容易跟踪值是何时设置的。另一方面，`constructFun` 机制可能会让人感到困惑：很难知道 `constructFun` 方法的影响范围。由于多个 `constructFun` 方法可能会设置相同的字段，因此很容易难以跟踪某个值的来源。
+`compute` is easier to debug since fields are set by a given method, making it easy to track when values are set. `constructFun`, however, can be confusing—it's hard to know the impact scope, and with multiple methods possibly setting the same field, it's difficult to track value sources.
 
 :::
 
-:::danger 警告：
+:::danger Warning:
 
-但凡，方法需要从用户界面调用，你都应该将其定义为public方法
+Any method called from the user interface should be defined as a public method.
 
 :::
 
-在下一章中，我们将了解如何在点击按钮时触发一些业务逻辑。
-
+In the next chapter, we'll learn how to trigger business logic when clicking buttons.

@@ -1,41 +1,41 @@
 ---
-title: 章节 9：准备学习行为（Ready For Some Action）
+title: Chapter 9:Ready For Some Action
 index: true
 category:
-  - 研发手册
-  - 教程
-  - 后端框架
+  - Development Manual
+  - Tutorials
+  - Back-end Framework
 order: 9
 
 ---
-到目前为止，我们主要通过声明字段和视图来构建模块。在上一章，借助 constructFun 机制，我们引入了业务逻辑。在任何实际的业务场景中，我们都希望将一些业务逻辑与操作按钮关联起来。以我们的费用管理模块为例，我们希望能够实现以下功能：
+So far, we have primarily built modules by declaring fields and views. In the previous chapter, we introduced business logic with the constructFun mechanism. In any real-world business scenario, we want to associate some business logic with action buttons. Taking our expense management module as an example, we hope to implement the following functions:
 
-+ 作废项目或批准项目
-+ 接受或拒绝报销单
++ Void or approve projects
++ Accept or reject expense bills
 
-有人可能会说，我们已经可以通过手动更改状态来完成这些操作，但这样做并不方便。此外，我们还想添加一些额外的处理逻辑：当报销单被接受时，我们要为项目已报销金额。
+Some may say we can already complete these operations by manually changing statuses, but this is inconvenient. Additionally, we want to add extra processing logic: when an expense bill is accepted, we need to update the project's reimbursed amount.
 
-# 一、单记录操作
+# I. Single Record Actions
 
-参考：与此主题相关的文档可在 “[操作](/en/DevManual/Reference/Back-EndFramework/actions-API.md)与[错误管理](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#七、异常处理)” 中找到。
+Reference: Documentation related to this topic can be found in "[Actions](/en/DevManual/Reference/Back-EndFramework/actions-API.md)" and "[Error Management](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#七、异常处理)".
 
-:::info 目标：在本节结束时，你应该能够：
+:::info Objective: By the end of this section, you should be able to:
 
-+ 作废项目或批准项目：
-  - 作废和批准操作
-  - 已作废的项目不能执行批准，已批准的项目也不能再作废。为清晰起见，视图中已添加状态字段。
++ Void or approve projects:
+  - Void and approve operations
+  - Voided projects cannot be approved, and approved projects cannot be voided. For clarity, a status field has been added to the view.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-9/info1-1.gif)
 
-+ 接受或拒绝报销单：
-  - 接受或拒绝报销操作
-  - 一旦报销被接受，就应设置项目的已报销金额。
++ Accept or reject expense bills:
+  - Accept or reject expense operations
+  - Once an expense is accepted, the project's reimbursed amount should be set.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-9/info1-2.gif)
 
 :::
 
-在我们的费用管理模块中，我们希望将业务逻辑与一些按钮关联起来。最常见的做法是：
+In our expense management module, we want to associate business logic with several buttons. The most common approach is:
 
 ```java
 package pro.shushi.oinone.trutorials.expenses.api.model;
@@ -64,7 +64,7 @@ public class TestActionModel extends IdModel {
 }
 ```
 
-或者，可通过独立的 JAVA 类来定义 Action。在此过程中，仅需运用`@Model.model(TestActionModel.MODEL_MODEL)`注解，即可实现与相应模型的关联 。
+Alternatively, Actions can be defined in independent Java classes. During this process, simply use the `@Model.model(TestActionModel.MODEL_MODEL)` annotation to achieve association with the corresponding model.
 
 ```java
 package pro.shushi.oinone.trutorials.expenses.core.action;
@@ -90,22 +90,22 @@ public class TestActionModelAction {
 }
 ```
 
-在对模型操作进行配置时，可运用`@Action`系列注解：
+When configuring model operations, use `@Action` series annotations:
 
-+ `@Action.Advanced(invisible = ExpConstants.idValueNotExist)`：该注解用于设定当 Id 字段值为空时，相关操作将被隐藏。这是由于新增与编辑行为均会跳转至相同的表单视图，而在执行新增操作时，并无展示该操作的必要 。该属性同时也能在 XML 文件中予以覆盖。
-+ `@Action(displayName = "actionDoSomething", bindingType = {ViewTypeEnum.FORM,ViewTypeEnum.TABLE})`：此注解主要用于描述操作以及基础展示规则，具体说明如下：	
-  - `name`：若未进行配置，其默认值为 JAVA 方法的名称。
-  - `bindingType`：用于明确该操作能够在哪些类型的视图中出现，例如表格视图、表单视图、详情视图等。
-  - `contextType`：若未配置，默认作用于单条记录。这意味着该操作会出现在表格视图的行内操作区域，以及表单视图的操作区域。
-+ @Action 本质上是用于声明一个操作，同时定义一个开放级别为 API 的函数，并将该操作与对应的函数进行绑定，使得在相应的调用场景下，操作能够触发关联函数的执行 。还记得上一章我们定义的 `constructFun` 吗？它仅仅是一个普通函数。
++ `@Action.Advanced(invisible = ExpConstants.idValueNotExist)`: This annotation sets that when the Id field value is empty, related operations will be hidden. This is because both creation and editing jump to the same form view, and there is no need to display the operation during creation. This attribute can also be overridden in XML files.
++ `@Action(displayName = "actionDoSomething", bindingType = {ViewTypeEnum.FORM,ViewTypeEnum.TABLE})`: This annotation mainly describes the operation and basic display rules, specifically:
+  - `name`: If not configured, the default value is the Java method name.
+  - `bindingType`: Specifies which view types the operation can appear in, such as table view, form view, detail view, etc.
+  - `contextType`: If not configured, it defaults to single record. This means the operation will appear in the row actions of the table view and the actions area of the form view.
++ @Action essentially declares an operation, defines a function with API-level openness, and binds the operation to the corresponding function, enabling the operation to trigger the associated function's execution in the corresponding call scenario. Remember the `constructFun` we defined in the previous chapter? It was just an ordinary function.
 
-:::warning 提示：
+:::warning Tip:
 
-从 JAVA 项目的工程管理视角来看，我们强烈推荐采用第二种写法。具体而言，模型以及接口类适宜定义在`api`包路径下，而业务逻辑实现类则建议放置于`core`包路径下。在上一章介绍`constructFun`机制时采用的是第一种写法，如今可考虑依照第二种方式将相关代码分开编写，以优化项目结构与管理 。
+From the perspective of Java project management, we strongly recommend the second writing approach. Specifically, models and interface classes are suitable for definition in the `api` package path, while business logic implementation classes are recommended to be placed in the `core` package path. The first writing approach was used when introducing the `constructFun` mechanism in the previous chapter, and now it is advisable to separate the code according to the second approach to optimize project structure and management.
 
 :::
 
-在视图中添加按钮，例如在Form视图中：
+Add buttons in the view, for example, in the Form view:
 
 ```xml
 <view name="formView" type="FORM" cols="2" model="expenses.TestActionModel">
@@ -119,7 +119,7 @@ public class TestActionModelAction {
 </view>
 ```
 
-视图默认启用 autoFill 机制，该机制能够自动筛选并填充给定模型内符合特定要求的操作，无需我们手动进行额外设置。另一种写法就是采用白名单机制，需要展示的操作都写着 actions 标签下
+The view enables the autoFill mechanism by default, which can automatically filter and fill operations within the given model that meet specific requirements, eliminating the need for manual additional settings. Another approach is to use a whitelist mechanism, writing all operations to be displayed under the actions tag:
 
 ```xml
 <view name="formView" type="FORM" cols="2" model="expenses.TestActionModel">
@@ -135,30 +135,30 @@ public class TestActionModelAction {
 </view>
 ```
 
-> 练习（Exercise）
+> Exercise
 >
-> + 为`expenses.ProjectInfo` 添加以下字段
+> + Add the following fields to `expenses.ProjectInfo`
 
-| 字段（Field）                                                | 字段显示名                                                 | 类型（Type） | JAVA类型     |
+| Field                                                | Display Name                                                 | Type | Java Type     |
 | ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| status       | 状态       | `ENUM`                                                       | pro.shushi.pamirs.core.common.enmu.DataStatusEnum |
-| reimbursedAmount | 已报销金额 | `FLOAT`                                                      | BigDecimal   |
+| status       | Status       | `ENUM`                                                       | pro.shushi.pamirs.core.common.enmu.DataStatusEnum |
+| reimbursedAmount | Reimbursed Amount | `FLOAT`                                                      | BigDecimal   |
 
 
-> + 为 `expenses.ExpenseBill` 同样添加字段 `status`
-> + 将新增的字段，添加到你`expenses.ProjectInfo` 模型的表格、表单视图中。
-> + 作废项目或批准项目：
->   - 为 `expenses.ProjectInfo` 模型添加 “作废” 和 “批准” 按钮。已作废的项目不能再标记为批准，已批准的项目也不能再作废。
->   - 参考目标中的第一张图片查看预期结果。
->   - 提示：若要抛出错误，可使用 `PamirsException` 异常。Oinone 源代码中有很多这样的示例。
-> + 接受或拒绝报销单：
->   - 为 `expenses.ProjectInfo` 模型的表单视图中  `expenseBills` 字段表格子视图中，添加 “接受” 和 “拒绝” 按钮，默认子视图actions标签没有采用autoFill 机制，需要主动增加，并且配置属性： `` ，来刷新主视图
->   - 参考目标中的第二张图片查看预期结果。
->   - 当报销被接受时，为相应的项目设置已报销金额。
+> + Also add the field `status` to `expenses.ExpenseBill`
+> + Add the new fields to the table and form views of your `expenses.ProjectInfo` model.
+> + Void or approve projects:
+>   - Add "Void" and "Approve" buttons to the `expenses.ProjectInfo` model. Voided projects cannot be marked as approved, and approved projects cannot be voided.
+>   - Refer to the first image in the objectives for expected results.
+>   - Tip: To throw an error, use the `PamirsException` exception. There are many examples in Oinone source code.
+> + Accept or reject expense bills:
+>   - Add "Accept" and "Reject" buttons to the table subview of the `expenseBills` field in the form view of the `expenses.ProjectInfo` model. By default, the subview actions tag does not use the autoFill mechanism; you need to actively add it and configure the attribute: `` to refresh the main view.
+>   - Refer to the second image in the objectives for expected results.
+>   - When an expense is accepted, set the corresponding project's reimbursed amount.
 
-# 二、批量操作
+# II. Batch Actions
 
-进行批量操作时，首先要求对应的方法能够对多条记录进行调用。同时，通过将`contextType`声明为`ActionContextTypeEnum.SINGLE_AND_BATCH`，可表明该方法在交互层面支持选择一条或多条记录。当然，若将其声明为`ActionContextTypeEnum.BATCH`，则意味着仅当选中多条数据记录时，该操作才会变为可点击状态 。最常见的做法是：
+For batch operations, the corresponding method must first be able to handle multiple records. By declaring `contextType` as `ActionContextTypeEnum.SINGLE_AND_BATCH`, it indicates that the method supports selecting one or multiple records at the interaction level. Of course, declaring it as `ActionContextTypeEnum.BATCH` means the operation will only become clickable when multiple records are selected. The most common approach is:
 
 ```java
 @Action(
@@ -176,5 +176,4 @@ public  List<TestActionModel> actionBatch(List<TestActionModel> dataList) {
 
 
 
-在下一章中，我们将了解如何防止在 Oinone 中输入错误的数据。
-
+In the next chapter, we will learn how to prevent incorrect data entry in Oinone.

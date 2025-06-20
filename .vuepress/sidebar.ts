@@ -3,7 +3,7 @@ import {sidebar, SidebarOptions} from "vuepress-theme-hope";
 const options: SidebarOptions = {
   "/en/": [
     {
-      text: "安装与升级",
+      text: "Install Or Upgrade",
       link: "InstallOrUpgrade/",
       prefix: "InstallOrUpgrade/",
       collapsible: true,
@@ -35,12 +35,12 @@ const options: SidebarOptions = {
       children: "structure",
     },
     {
-      text: "Third-Party-Open-Source-Software-And-License-Notice",
+      text: "Third Party Open Source Software And License Notice",
       icon: "/assets/icon/第三方开源软件及许可说明备份.svg",
       link: "Third-Party-Open-Source-Software-And-License-Notice",
     },
     {
-      text: "software-licenses",
+      text: "Software Licenses",
       icon: "/assets/icon/软件使用许可和合约.svg",
       link: "software-licenses",
     },

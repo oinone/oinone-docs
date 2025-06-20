@@ -1,90 +1,81 @@
 ---
-title: AI配置
+title: AI Configuration
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 2
 ---
-平台基于图像生成、文本生成、语言处理、视频生成四个常见分类，整合当前市场主流 AI 大模型的接入方案。用户仅需通过标准化、轻量化的操作流程，即可实现对应大模型的快速对接。接入完成后，支持在连接器中进行参数配置，以满足多元化、场景化的使用需求。
+The platform integrates the access solutions of mainstream large AI models in the current market based on four common categories: image generation, text generation, language processing, and video generation. Users can quickly connect to the corresponding large models through a standardized and lightweight operation process. After the connection is completed, parameter configuration is supported in the connector to meet diverse and scenario-based usage requirements.
 
-# 一、筛选
-### 1.功能介绍
-系统支持按需设置AI配置的筛选条件，用户可灵活设置参数。筛选完成后，系统将生成对应列表，直观呈现AI配置信息，高效实现AI配置管理。
+# I. Filtering
+### 1. Function Introduction
+The system supports setting filtering conditions for AI configurations as needed. Users can flexibly set parameters. After filtering, the system will generate a corresponding list to intuitively display AI configuration information and efficiently manage AI configurations.
 
-### 2.操作方法
-+ 筛选：在筛选区输入条件后点击「搜索」，即可对AI配置进行筛选。
-+ 一键清除：点击「清除」图标，可一键清除当前筛选区中条件
+### 2. Operation Method
++ Filtering: Enter the conditions in the filtering area and click the "Search" button to filter the AI configurations.
++ One-click Clear: Click the "Clear" icon to clear the conditions in the current filtering area with one click.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/AI%20configuration/sx.png)
 
-# 二、创建
-### 1.功能介绍
-系统提供 AI 配置创建功能，支持用户根据业务场景与使用需求，定义名称、大模型URL、API Key等多维配置信息。所创建的 AI 配置可在连接器中被使用，实现与各类 AI 大模型的适配与调用，为用户构建个性化 AI 应用场景提供标准化、模块化的配置支持。
+# II. Creation
+### 1. Function Introduction
+The system provides the function of creating AI configurations, allowing users to define multi-dimensional configuration information such as name, large model URL, and API Key according to business scenarios and usage requirements. The created AI configurations can be used in the connector to achieve adaptation and invocation with various large AI models, providing standardized and modular configuration support for users to build personalized AI application scenarios.
 
-:::info 注意
-
-AI配置发布前，需对API Key进行验证，仅在验证通过后，方可完成AI配置的正式发布流程。
-
+:::info Note
+Before publishing an AI configuration, the API Key needs to be verified. Only after the verification is passed can the formal publishing process of the AI configuration be completed.
 :::
 
-### 2.操作方法
-+ 点击「创建AI配置」，在弹出的页面中依据需求填写信息后发布，即可创建成功
-+ 在设计连接器时，可在AI配置列表“点击添加”，跳转至相应页面进行创建
+### 2. Operation Method
++ Click "Create AI Configuration", fill in the information as required on the pop-up page, and then publish to create successfully.
++ When designing the connector, click "Add" in the AI configuration list to jump to the corresponding page for creation.
 
-:::info 注意
-
-若AI配置存在API Key验证未通过、信息填写不完整等情况，支持先行保存操作。用户可在完善相关信息、确保内容合规完整后再进行发布。
-
+:::info Note
+If the AI configuration fails the API Key verification or has incomplete information, the save operation is supported. Users can publish the configuration after improving the relevant information and ensuring that the content is compliant and complete.
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/AI%20configuration/cj.png)
 
-# 三、查看
-### 1.功能介绍
-对于已存在的AI配置，支持快速查看 AI 配置连接顺序与详细配置信息。
+# III. Viewing
+### 1. Function Introduction
+For existing AI configurations, it supports quickly viewing the connection order and detailed configuration information of the AI configurations.
 
-### 2.操作方法
-+ 点击「查看」图标，即可跳转至对应页面查看
+### 2. Operation Method
++ Click the "View" icon to jump to the corresponding page for viewing.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/AI%20configuration/ck.png)
 
-# 四、编辑
-### 1.功能介绍
-对于已创建的AI配置，可以对其进行编辑修改，包括调整大模型信息或变更API Key等操作。
+# IV. Editing
+### 1. Function Introduction
+For the created AI configurations, they can be edited and modified, including adjusting large model information or changing the API Key.
 
-### 2.操作方法
-点击「编辑」，即可在跳转的设计页面中进行编辑
+### 2. Operation Method
+Click "Edit" to edit on the jumped design page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/AI%20configuration/bj.png)
 
-# 五、废弃
-### 1.功能介绍
-对于不再使用的AI配置，可以选择将其废除，即删除该AI配置。
+# V. Discarding
+### 1. Function Introduction
+For AI configurations that are no longer in use, you can choose to discard them, that is, delete the AI configurations.
 
-:::info 注意
-
-对于已被应用的AI配置，不允许被废弃。
-
+:::info Note
+AI configurations that are already in use are not allowed to be discarded.
 :::
 
-:::danger 警告
-
-AI配置被删除后无法恢复，请谨慎操作！
-
+:::danger Warning
+Once an AI configuration is deleted, it cannot be recovered. Please operate with caution!
 :::
 
-### 2.操作方法
-点击「废弃」图标，即可直接删除该AI配置。
+### 2. Operation Method
+Click the "Discard" icon to directly delete the AI configuration.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/AI%20configuration/fq.png)
 
-# 六、隐藏/可见
-### 1.功能介绍
-对于当前暂不使用的AI配置，可以执行隐藏操作。隐藏后的AI配置不可以被使用，但是不影响已经被使用的数据。若日后需要，只需将隐藏的AI配置设置为可见状态即可重新投入使用
+# VI. Hiding/Showing
+### 1. Function Introduction
+For AI configurations that are not currently in use, the hiding operation can be performed. Hidden AI configurations cannot be used, but it does not affect the data that is already in use. If needed in the future, simply set the hidden AI configuration to the visible state to put it back into use.
 
-### 2.操作方法
-点击「隐藏」，AI配置设置为隐藏状态；再次点击，AI配置恢复为可见状态。
+### 2. Operation Method
+Click "Hide" to set the AI configuration to the hidden state; click again to restore the AI configuration to the visible state.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/AI%20Integrated%20Designer/AI%20configuration/yc.png)
-

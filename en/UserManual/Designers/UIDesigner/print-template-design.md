@@ -1,148 +1,88 @@
 ---
-title: 打印模板设计
+title: Print Template Design
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 9
 next:
-  text: 流程设计器(Process Designer)
+  text: Process Designer
   link: /en/UserManual/Designers/WorkflowDesigner/README.md
 ---
-本界面主要分为四个功能区域，分别为：操作栏、数据源信息、画布设计区、属性面板
+This interface is mainly divided into four functional areas, namely: the operation bar, data source information, canvas design area, and property panel.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Print%20Template%20Design/1.png)
 
-# 一、操作栏-发布
-### 1.功能介绍
-模板设计完成后，通过发布操作可以使模板正式生效。若未进行发布操作，模板也会自动保存，但在此情况下，自动保存的版本仅作为草稿存在，并不会正式对外展示或生效。
+# I. Operation Bar - Publish
+### 1. Function Introduction
+After the template design is completed, the template can be officially made effective through the publish operation. If the publish operation is not performed, the template will also be automatically saved. However, in this case, the automatically saved version only exists as a draft and will not be officially displayed or take effect.
 
-### 2.操作方法
-在顶部操作栏，点击「发布」，即可将当前模板发布
+### 2. Operation Method
+On the top operation bar, click "Publish" to publish the current template.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Print%20Template%20Design/fb.png)
 
-# 二、数据源信息
-### 1.功能介绍
-数据源包含数据源与系统字段两个部分
+# II. Data Source Information
+### 1. Function Introduction
+The data source includes two parts: the data source and system fields.
 
-+ 数据源：即模板关联模型字段
-+ 系统字段
-    - 打印时间：打印发生时间，格式“YYYY-MM-DD”
-    - 打印人：档期打印发起操作员
-    - 业务流程信息：模板关联模型所触发流程中的人工节点信息
++ Data Source: That is, the model fields associated with the template.
++ System Fields
+    - Printing Time: The time when the printing occurs, in the format "YYYY-MM-DD".
+    - Printer: The operator who initiates the current printing.
+    - Business Process Information: The information of the manual nodes in the process triggered by the model associated with the template.
 
-### 2.操作方法
-拖拽数据至画布设计区对应区域
+### 2. Operation Method
+Drag the data to the corresponding area in the canvas design area.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Print%20Template%20Design/sjyxx.gif)
 
-# 三、画布设计区
-### 1.功能介绍
-当数据被添加到设计画布区域时，会自动生成默认样式。用户可以选中任一数据，并在上方工具栏中对其进行详细的配置。
+# III. Canvas Design Area
+### 1. Function Introduction
+When data is added to the design canvas area, a default style will be automatically generated. Users can select any data and perform detailed configuration on it in the toolbar above.
 
-### 2.操作方法
+### 2. Operation Method
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Print%20Template%20Design/hb.png)
 
-# 四、属性面板
-### 1.功能介绍
-在属性面板中，用户可以方便地设置各种属性，包括模板属性与字段属性。
+# IV. Property Panel
+### 1. Function Introduction
+In the property panel, users can conveniently set various properties, including template properties and field properties.
 
-+ 模型属性
++ Model Properties
 
-| 属性 | 说明 |
+| Property | Description |
 | :---: | --- |
-| 纸张大小 | 可设置打印模板纸张大小 |
-| 页面方向 | 可调整页面方向 |
-| 页边距 | 可分别调整纸张页边距的大小 |
-| 页眉/页脚 | 开启后可分别设置页眉/页脚的左侧、中间或右侧的展示内容 |
-| 水印 | 可选择水印类型，包括无水印、文字或图片三种类型:<br/> 文字：可自定义水印文字，文字将根据自定义的大小、颜色、倾角等属性在页面进行展示<br/> 图片：可上传图片，图片将根据自定义的宽、高、倾角等属性在页面进行展示 |
+| Paper Size | You can set the paper size of the print template. |
+| Page Orientation | You can adjust the page orientation. |
+| Margins | You can separately adjust the margins of the paper. |
+| Header/Footer | After enabling, you can separately set the display content on the left, middle, or right of the header/footer. |
+| Watermark | You can select the watermark type, including no watermark, text, or image:<br/> Text: You can customize the watermark text, and the text will be displayed on the page according to the customized size, color, inclination, etc.<br/> Image: You can upload an image, and the image will be displayed on the page according to the customized width, height, inclination, etc. |
 
++ Property Settings
 
-+ 属性设置
+| Field Type | Property | Description |
+| --- | --- | --- |
+| Text | Display Format | Set the text content to static text, QR code, or barcode. |
+| Text | When Content is Too Long | When the content is too long, you can set whether to enable automatic line breaks. |
+| Integer | When Content is Too Long | When the content is too long, you can set whether to enable automatic line breaks. |
+| Integer | Display Thousands Separator | When the value is too large, it can be displayed in thousands separator format. |
+| Decimal | When Content is Too Long | When the content is too long, you can set whether to enable automatic line breaks. |
+| Decimal | Specify Decimal Places | You can specify the number of decimal places to display. |
+| Decimal | Decimal Display Type | You can choose to display decimals in percentage form or with thousands separators. |
+| Date | When Content is Too Long | When the content is too long, you can set whether to enable automatic line breaks. |
+| Date | Date Format | You can select the date display format. |
+| DateTime | When Content is Too Long | When the content is too long, you can set whether to enable automatic line breaks. |
+| DateTime | Date Format | You can select the date display format. |
+| DateTime | Time Format | You can select the time display format. |
+| Time | When Content is Too Long | When the content is too long, you can set whether to enable automatic line breaks. |
+| Time | Time Format | You can select the time display format. |
+| Other Types | When Content is Too Long | When the content is too long, you can set whether to enable automatic line breaks. |
 
-<table>
-  <tr>
-    <th>字段类型</th>
-    <th>属性</th>
-    <th>说明</th>
-  </tr>
-    <td rowspan=2 style="text-align: center;">文本</td>
-    <td>显示格式</td>
-    <td>设置文本内容为静态文本、二维码、条形码</td>
-  <tr>
-    <td>内容超长时</td>
-    <td>当内容过于长时，可设置是否自动换行</td>
-  </tr>
-  <tr>
-    <td rowspan=2 style="text-align: center;">整数</td>
-    <td>内容超长时</td>
-    <td>当内容过于长时，可设置是否自动换行</td>
-  </tr>
-  <tr>
-    <td>显示千分位</td>
-    <td>当数值过于大时，可以千分位格式进行展示</td>
-  </tr>
-  <tr>
-    <td rowspan=3 style="text-align: center;">小数</td>
-    <td>内容超长时</td>
-    <td>当内容过于长时，可设置是否自动换行</td>
-  </tr>
-  <tr>
-    <td>指定小数位数</td>
-    <td>可指定小数展示时的显示位数</td>
-  </tr>
-  <tr>
-    <td>小数显示类型</td>
-    <td>可选择以百分比形式或千位分隔符两种形式来显示小数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-  </tr>
-  <tr>
-    <td rowspan=2 style="text-align: center;">日期</td>
-    <td>内容超长时</td>
-    <td>当内容过于长时，可设置是否自动换行</td>
-  </tr>
-  <tr>
-    <td>日期格式</td>
-    <td>可选择日期显示格式</td>
-  </tr>
-  <tr>
-    <td rowspan=3 style="text-align: center;">日期时间</td>
-    <td>内容超长时</td>
-    <td>当内容过于长时，可设置是否自动换行</td>
-  </tr>
-  <tr>
-    <td>日期格式</td>
-    <td>可选择日期显示格式</td>
-  </tr>
-  <tr>
-    <td>时间格式</td>
-    <td>可选择时间显示格式</td>
-  </tr>
-  <tr>
-    <td rowspan=2 style="text-align: center;">时间</td>
-    <td>内容超长时</td>
-    <td>当内容过于长时，可设置是否自动换行</td>
-  </tr>
-  <tr>
-    <td>时间格式</td>
-    <td>可选择时间显示格式</td>
-  </tr>
-  <tr>
-    <td style="text-align: center;">其他类型</td>
-    <td>内容超长时</td>
-    <td>当内容过于长时，可设置是否自动换行</td>
-  </tr>
-</table>
-
-:::info 注意
-
-日期、日期时间以及时间的可选项为当前语言设置的日期时间格式
-
+:::info Note
+The available options for date, date-time, and time are the date-time formats set for the current language.
 :::
 
-### 2.操作方法
-选中某一字段，可在属性面板中配置模板属性或数据属性
+### 2. Operation Method
+Select a field, and you can configure template properties or data properties in the property panel.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Print%20Template%20Design/sxmb.png)
-
-

@@ -1,14 +1,13 @@
 ---
-title: 管理中心
+title: Administration Center
 index: false
 category:
-  - 用户手册
-  - 标准模块
+  - User Manual
+  - Standard Modules
 dir:
   link: false
   order: 4
 next:
-  text: '用户'
-  link: '/en/UserManual/StandardModules/AdministrationCenter/user.md'
+  text: 'User'
+  link: '/zh-cn/UserManual/StandardModules/AdministrationCenter/user.md'
 ---
-
