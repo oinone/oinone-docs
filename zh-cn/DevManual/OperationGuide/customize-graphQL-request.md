@@ -144,7 +144,7 @@ order: 4
 
 再让我们回顾一下之前提到的语法格式：
 
-```graphql
+``` graphql
 ${query/mutation} {
   ${modelName}${Query/Mutation} {
     ${functionName} (${arg1Name}: ${arg1Value}) {
@@ -156,7 +156,7 @@ ${query/mutation} {
 
 ## （四）以 queryListByWrapper 为例的 GQL 语法
 
-```graphql
+``` graphql
 {
   ganttDemoModelQuery {
     queryListByWrapper(queryWrapper: {rsql: "1==1"}) {
@@ -198,7 +198,7 @@ ${query/mutation} {
 
 下面这段代码演示了如何通过 `HttpClient` 发起 GQL 请求以及获取请求结果：
 
-```typescript
+``` typescript
 import { HttpClient } from '@kunlun/dependencies';
 
 const http = HttpClient.getInstance();
@@ -242,7 +242,7 @@ export class GanttDemoModelService {
 
 由于我们并不能轻易找到一个可以用来练习的例子，因此在我们这个例子中，我们将上一小节对应的 `GQL` 通过 `GET` 方式打开，其返回的是 `JSON` 结构的数据。就像下面这样：
 
-```typescript
+``` typescript
 public static queryListByWrapperByWindowOpen(): void {
   const gql = `{
   ganttDemoModelQuery {
@@ -262,7 +262,7 @@ public static queryListByWrapperByWindowOpen(): void {
 
 `UrlHelper#appendBasePath` 方法是 Oinone 提供的用于处理 `BASE_PATH` 相关功能的方法。最终完整的 URL 格式为：
 
-```typescript
+``` typescript
 `${BASE_PATH}/pamirs/${MODULE_NAME}`
 
 // eg: BASE_PATH = '/test'
@@ -285,7 +285,7 @@ public static queryListByWrapperByWindowOpen(): void {
 
 以 `ganttDemoModel#queryListByWrapper` 为例：
 
-```typescript
+``` typescript
 const MODULE_NAME = 'demo';
 const MODEL_NAME = 'ganttDemoModel';
 
@@ -305,11 +305,11 @@ public static queryListByWrapperByGQLBuilder(): Promise<GanttDemoModel[]> {
 
 ## （二）GenericFunctionService
 
-在实践过程中，我们发现 `GQL` 发起请求相比于 `Ajax/Axios` 发起请求，还是有些麻烦的。那么，有没有一种方式可以让我们使用 `Ajax/Axios` 一样发起请求呢？
+在实践过程中，我们发现 `GQL` 发起请求相比于 `Ajax/Axios` 发起请求，还是有些麻烦的。那么，有没有一种方式可以让我们像使用 `Ajax/Axios` 一样发起请求呢？
 
 让我们使用 `GenericFunctionService` 像 `Ajax/Axios` 一样发起 GQL 请求吧：
 
-```typescript
+``` typescript
 public static queryListByWrapperByGenericFunctionService(): Promise<GanttDemoModel[] | undefined> {
   return GenericFunctionService.INSTANCE.simpleExecuteByName(MODEL_MODEL, 'queryListByWrapper', {
     rsql: '1==1'
@@ -331,7 +331,7 @@ public static queryListByWrapperByGenericFunctionService(): Promise<GanttDemoMod
 
 就像下面这样：
 
-```typescript
+``` typescript
 // 获取指定函数定义
 const functionName = 'update';
 const functionDefinition = await FunctionCache.getByName(this.model.model, functionName);
@@ -385,7 +385,7 @@ return (
 
 让我们先来看一下 `NetworkMiddlewareHandler` 类型声明：
 
-```typescript
+``` typescript
 /**
  * 网络请求中间件处理器 (基于原生apollo封装)
  */
@@ -394,7 +394,7 @@ export type NetworkMiddlewareHandler = (operation: Operation, forward: NextLink)
 
 接着，让我们创建一个 `CustomNetworkMiddlewareHandler` 来看看它是怎样在所有请求的 `请求头（header）` 中追加参数的：
 
-```typescript
+``` typescript
 export const CustomNetworkMiddlewareHandler: NetworkMiddlewareHandler = (operation, forward) => {
   operation.setContext(({ headers = {} }) => {
     return {
@@ -413,7 +413,7 @@ export const CustomNetworkMiddlewareHandler: NetworkMiddlewareHandler = (operati
 
 让我们在 `VueOioProvider` 中指定 `http.middleware` 参数，让拦截器生效：
 
-```typescript
+``` typescript
 VueOioProvider({
   http: {
     middleware: [CustomNetworkMiddlewareHandler]
@@ -425,7 +425,7 @@ VueOioProvider({
 
 让我们先来看一下 `NetworkInterceptor` 类型声明：
 
-```typescript
+``` typescript
 /**
  * <h3>网络请求拦截器</h3>
  * <ul>
@@ -452,7 +452,7 @@ export interface NetworkInterceptor {
 
 通过拦截器的类型声明我们可以发现，在请求成功和异常时有分别的处理方法，让我们创建一个 `CustomNetworkInterceptor` 来看看如何定义吧。就像下面这样：
 
-```typescript
+``` typescript
 export class CustomNetworkInterceptor implements NetworkInterceptor {
   public success(response: IResponseResult) {
     return true;
@@ -476,7 +476,7 @@ export class CustomNetworkInterceptor implements NetworkInterceptor {
 
 让我们在 `VueOioProvider` 中指定 `http.interceptor` 参数，让拦截器生效。作为示例内容，我们先不考虑其他参数，使用 `afterInterceptors` 参数即可：
 
-```typescript
+``` typescript
 VueOioProvider({
   http: {
     interceptor: {
