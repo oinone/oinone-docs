@@ -14,7 +14,7 @@ order: 2
 
 在 `启动工程` 创建 `.env` 文件可进行环境配置，例如：
 
-```shell
+``` shell
 kunlun-boot
 ├── .env
 ├── public
@@ -28,7 +28,7 @@ kunlun-boot
 
 尝试在 `.env` 文件中配置 `BASE_PATH` 属性：
 
-```plain
+``` plain
 BASE_PATH=/test
 ```
 
@@ -41,7 +41,7 @@ BASE_PATH=/test
 
 你可以在任何地方使用这样的方式获取 `.env` 配置：
 
-```typescript
+``` typescript
 protected doSomething() {
   console.log(process.env.CUSTOM_PROPERTY);
 }
@@ -49,7 +49,7 @@ protected doSomething() {
 
 在 .env 文件中配置 `CUSTOM_PROPERTY` 属性：
 
-```typescript
+``` typescript
 CUSTOM_PROPERTY=test
 ```
 
@@ -67,7 +67,7 @@ CUSTOM_PROPERTY=test
 
 在 `启动工程` 创建 `manifest.js` 文件可进行运行时环境配置，例如：
 
-```shell
+``` shell
 kunlun-boot
 ├── public
 │   ├── favicon.ico
@@ -81,7 +81,7 @@ kunlun-boot
 
 尝试在 `manifest.js` 文件中配置 `multiTabs.inline` 为 `true` ，将 `多选项卡` 从整个页面的顶部移动到主内容分发区的上方：
 
-```javascript
+``` javascript
 runtimeConfigResolve({
   multiTabs: {
     inline: true
@@ -93,7 +93,7 @@ runtimeConfigResolve({
 
 正常情况下，在 `启动工程` 的 `public` 目录下创建的 `manifest.js` 会在 `构建时` 自动放置在 `dist` 目录下，但有时我们不会把开发时的配置文件放在生产环境中使用。这时就需要我们在生产环境的 `dist` 目录下手动创建 `manifest.js` 文件进行一些生产环境的配置。例如：
 
-```shell
+``` shell
 dist
 ├── favicon.ico
 ├── fonts
@@ -116,7 +116,7 @@ dist
 
 ## （一）定义配置类型
 
-```typescript
+``` typescript
 /**
  * 演示运行时配置类型定义
  */
@@ -135,7 +135,7 @@ export interface DemoConfig extends RuntimeConfigOptions, EnabledConfig {
 
 ## （二）定义运行时配置管理器
 
-```typescript
+``` typescript
 export class DemoConfigManager {
   private constructor() {
     // reject create object
@@ -161,7 +161,7 @@ export class DemoConfigManager {
 
 ### 1、启用和禁用的简单配置
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   demo: true
 });
@@ -175,7 +175,7 @@ runtimeConfigResolve({
 
 ### 2、完整配置
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   demo: {
     enabled: true
@@ -192,7 +192,7 @@ runtimeConfigResolve({
 
 ## （四）在组件中使用配置方法
 
-```typescript
+``` typescript
 DemoConfigManager.isEnabled()
 ```
 
@@ -208,7 +208,7 @@ DemoConfigManager.isEnabled()
 
 示例：
 
-```plain
+``` plain
 BASE_PATH=/test
 ```
 
@@ -220,7 +220,7 @@ BASE_PATH=/test
 
 示例：
 
-```plain
+``` plain
 STATIC_IMG=/static/images
 ```
 
@@ -234,7 +234,7 @@ STATIC_IMG=/static/images
 
 示例：
 
-```plain
+``` plain
 MESSAGE_LEVEL=INFO
 ```
 
@@ -246,7 +246,7 @@ MESSAGE_LEVEL=INFO
 
 示例：
 
-```plain
+``` plain
 RUNTIME_CONFIG_BASE_URL=/test
 ```
 
@@ -258,7 +258,7 @@ RUNTIME_CONFIG_BASE_URL=/test
 
 示例：
 
-```plain
+``` plain
 RUNTIME_CONFIG_FILENAME=test
 ```
 
@@ -270,7 +270,7 @@ RUNTIME_CONFIG_FILENAME=test
 
 示例：
 
-```plain
+``` plain
 I18N_OSS_URL=/upload/test
 ```
 
@@ -284,7 +284,7 @@ I18N_OSS_URL=/upload/test
 
 示例：
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   I18N_OSS_URL: '/upload/test'
 });
@@ -295,8 +295,8 @@ runtimeConfigResolve({
 | **参数名** | **类型** | **默认值** | **描述** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `loginLabel`        | string | 登录 | 登录按钮文本 |
-| `forgetPassword`    | boolean | false | 是否显示忘记密码按钮 |
-| `forgetPasswordLabel` | string | 忘记密码 | 忘记密码按钮文本 |
+| `forgetPassword`    | boolean | false | 登录页是否显示忘记密码按钮 |
+| `forgetPasswordLabel` | string | 忘记密码 | 登录页忘记密码按钮文本内容 |
 | `register`          | boolean | false | 是否显示注册按钮 |
 | `registerLabel`     | string | 去注册 | 注册按钮文本 |
 | `codeLogin`         | boolean | true | 是否显示验证码登录 Tab |
@@ -314,7 +314,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   login: {
     loginLabel: "登录",
@@ -346,7 +346,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   plugins: {
     usingRemote: false
@@ -389,7 +389,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   multiTabs: {
     enabled: true,
@@ -431,7 +431,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   breadcrumb: {
     enabled: true,
@@ -454,7 +454,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   tableConfig: {
     lineHeight: 40,
@@ -473,7 +473,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   experimental: {
     buildQueryCondition: 'next'
@@ -490,7 +490,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   debug: {
     enabled: true
