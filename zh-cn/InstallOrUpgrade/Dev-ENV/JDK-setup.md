@@ -55,7 +55,7 @@ tar.gz解压安装: 自定义目录
 
  配置环境变量:
 
-```shell
+``` shell
 cat >> 替换具体Shell配置文件 << EOF
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home"
 export PATH=\$JAVA_HOME/bin:\$PATH
@@ -63,22 +63,22 @@ EOF
 ```
 
 ### 2、验证
-```shell
+``` shell
 #验证Java安装
 /usr/libexec/java_home -V
 ```
 
-```shell
+``` shell
 #验证Java安装验证结果示例
 1.8.0_451 (arm64) "Oracle Corporation" - "Java SE 8" /Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home
 ```
 
-```shell
+``` shell
 #环境变量验证结果示例
 java -version
 ```
 
-```shell
+``` shell
 #验证环境变量
 % java -version
 java version "1.8.0_451"
@@ -103,7 +103,7 @@ zip解压安装:  自定义目录
 
 输入以下代码之后点击`确定`
 
-```shell
+``` shell
 #呼出环境变量配置界面
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
@@ -119,13 +119,13 @@ rundll32.exe sysdm.cpl,EditEnvironmentVariables
 #### 1.2 命令行方式设置用户级别环境变量
 运行CMD或者Powershell或者Terminal
 
-```powershell
+``` powershell
 # 设置JAVA_HOME
 # 设置JAVA_HOME为默认安装目录绝对路径或者自定义目录绝对路径
 setx "JAVA_HOME" "C:\Program Files\Java\jdk-1.8"
 ```
 
-```powershell
+``` powershell
 # 追加PATH
 setx "Path" "%Path%;%JAVA_HOME%\bin"
 ```
@@ -133,12 +133,12 @@ setx "Path" "%Path%;%JAVA_HOME%\bin"
 ### 2、验证
 打开命令行输入以下代码
 
-```shell
+``` shell
 # 验证环境变量
 java -version
 ```
 
-```shell
+``` shell
 # 环境变量验证结果示例
 java version "1.8.0_441"
 Java(TM) SE Runtime Environment (build 1.8.0_441-b07)
@@ -150,20 +150,20 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.441-b07, mixed mode)
 ## （三）Linux安装JDK
 在Linux环境下，Oracle提供了`rpm`与`tar.gz`两种形式安装包。
 
-### 1、支持RPM<font style="color:rgb(51, 51, 51);">（Red Hat Package Manager）</font>包格式的Linux发行版安装
-```shell
+### 1、支持RPM（Red Hat Package Manager）包格式的Linux发行版安装
+``` shell
 # rpm包安装
 rpm -ivh jdk-8u441-linux-aarch64.rpm # 具体文件名会有编码
 ```
 
 ### 2、tar.gz包格式安装
-```shell
+``` shell
 # tar.gz包安装
 tar zxvf jdk-8u441-linux-aarch64.tar.gz -C "目标安装目录"  # 具体文件名会有编码
 ```
 
 ### 3、配置环境变量
-```shell
+``` shell
 # tar.gz包安装
 cat >> 替换具体Shell配置文件 << EOF
 export JAVA_HOME="JDK具体安装目录"
@@ -174,12 +174,12 @@ EOF
 ### 4、验证
 打开命令行输入以下代码
 
-```shell
+``` shell
 # 验证环境变量
 java -version
 ```
 
-```shell
+``` shell
 # 环境变量验证结果示例
 java version "1.8.0_441"
 Java(TM) SE Runtime Environment (build 1.8.0_441-b07)

@@ -9,15 +9,16 @@ category:
 order: 4
 
 ---
-在 Oinone Kunlun 中，`布局（Layout）` 是在 `母版（Mask）` 的 `主要内容区域` 中进行 `二次布局` 。其主要功能与母版类似，都是通过 `XML` 标签将<font style="color:rgba(0, 0, 0, 0.85);">页面拆分为可顺序排列的小单元（如容器、元素、插槽等），用于控制页面元素的相对位置。</font>
 
-# <font style="color:rgba(0, 0, 0, 0.85);">一、内置布局</font>
+在 Oinone Kunlun 中，`布局（Layout）` 是在 `母版（Mask）` 的 `主要内容区域` 中进行 `二次布局` 。其主要功能与母版类似，都是通过 `XML` 标签将页面拆分为可顺序排列的小单元（如容器、元素、插槽等），用于控制页面元素的相对位置。
+
+# 一、内置布局
 
 ## （一）表格视图布局
 
 ### 1、标准表格
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -41,7 +42,7 @@ order: 4
 
 ### 2、内联表格（子表格视图）
 
-```xml
+``` xml
 <view type="TABLE">
     <view type="SEARCH">
         <element widget="search" slot="search" slotSupport="field">
@@ -61,7 +62,7 @@ order: 4
 
 ### 3、左树右表
 
-```xml
+``` xml
 <view type="TABLE">
     <pack title="" widget="group">
         <view type="search">
@@ -93,7 +94,7 @@ order: 4
 
 ### 4、左级联右表格
 
-```xml
+``` xml
 <view type="table">
     <pack title="" widget="group">
         <view type="search">
@@ -123,7 +124,7 @@ order: 4
 
 ### 1、标准表单
 
-```xml
+``` xml
 <view type="FORM">
     <element widget="actionBar" slot="actionBar" slotSupport="action">
         <xslot name="actions" slotSupport="action" />
@@ -136,7 +137,7 @@ order: 4
 
 ### 2、内联表单（子表单视图）
 
-```xml
+``` xml
 <view type="FORM">
     <element widget="form" slot="form">
         <xslot name="fields" slotSupport="pack,field" />
@@ -148,7 +149,7 @@ order: 4
 
 ### 1、标准详情
 
-```xml
+``` xml
 <view type="DETAIL">
     <element widget="actionBar" slot="actionBar" slotSupport="action">
         <xslot name="actions" slotSupport="action" />
@@ -161,7 +162,7 @@ order: 4
 
 ### 2、内联详情（子详情视图）
 
-```xml
+``` xml
 <view type="DETAIL">
     <element widget="detail" slot="detail">
         <xslot name="fields" slotSupport="pack,field" />
@@ -173,7 +174,7 @@ order: 4
 
 ### 1、标准画廊视图
 
-```xml
+``` xml
 <view type="gallery">
     <view type="search">
         <element slot="search" widget="search" />
@@ -193,7 +194,7 @@ order: 4
 
 ### 1、标准树视图
 
-```xml
+``` xml
 <view type="tree">
     <pack title="" widget="group">
         <element widget="actionBar" slot="actionBar" />
@@ -224,7 +225,7 @@ order: 4
 
 ## （一）布局的注册可选项
 
-```typescript
+``` typescript
 /**
  * 布局注册可选项
  */
@@ -304,7 +305,7 @@ export interface LayoutRegisterOptions extends SPIOptions {
 
 下面是我们在 “[探索前端框架 - 组件](/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)” 中注册的布局：
 
-```typescript
+``` typescript
 import { registerLayout, ViewType } from '@kunlun/dependencies';
 
 registerLayout(
