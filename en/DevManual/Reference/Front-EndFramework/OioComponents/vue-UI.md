@@ -13,15 +13,15 @@ next:
 
 In Oinone Kunlun, some components are implemented based on independent third-party component libraries, such as `Vxe-Table`, `vuedreggable`, etc. These components can be used not only for Widget components, but also directly for any Vue component using Vue native writing. This article will provide a detailed introduction to the usage and API definitions of these components.
 
-# I. Import
+# Ⅰ. Import
 
 ``` typescript
 import { OioTable } from '@oinone/kunlun-vue-ui';
 ```
 
-# II. Reference List
+# Ⅱ. Reference List
 
-## (I) Table
+## (Ⅰ) Table
 
 ### Basic Usage
 
