@@ -194,8 +194,94 @@ Here, the `demo` key matches the parameter defined in the `DemoConfigManager#get
 ``` typescript
 DemoConfigManager.isEnabled()
 ```
+Here is the translated content in English:
 
-# IV. Reference List
+# IV. VueOioProvider Entry Configuration
+
+In a Vue project, `main.ts` is a common entry file used to create the framework instance and initialize the framework. The Oinone Kunlun framework provides an entry method `VueOioProvider` for system initialization.
+
+## (Ⅰ) Basic Usage
+
+```typescript
+import 'ant-design-vue/dist/antd.min.css';
+import 'element-plus/dist/index.css';
+
+// Comment out when running with 'npm run dev'
+import '@oinone/kunlun-vue-ui-antd/dist/oinone-kunlun-vue-ui-antd.css';
+import '@oinone/kunlun-vue-ui-el/dist/oinone-kunlun-vue-ui-el.css';
+
+// Other CSS imports
+
+import 'reflect-metadata';
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
+
+// Other module imports
+
+VueOioProvider();
+```
+
+:::warning Note:
+
+The import of `reflect-metadata` must precede the import of `@oinone/kunlun-dependencies`; otherwise, the system will not function properly.
+
+:::
+
+## (Ⅱ) Customizing HTTP Requests
+
+### 1. Enabling RSQL Encrypted Transmission
+
+```typescript
+VueOioProvider({
+  http: {
+    encodeRsql: true
+  }
+});
+```
+
+:::warning Note:
+
+The RSQL encrypted transmission feature must be used in conjunction with the backend class `pro.shushi.pamirs.framework.gateways.hook.RsqlDecodeHook`. No additional backend configuration is required by default.
+
+:::
+
+### 2. Adding Global Request Header Parameters
+First, let's create a custom header interceptor to add a fixed parameter like `demo: true` to the request headers:
+
+```typescript
+import { NetworkMiddlewareHandler } from '@oinone/kunlun-dependencies';
+
+export const CustomHeaderMiddleware: NetworkMiddlewareHandler = (operation, forward) => {
+  operation.setContext(({ headers = {} }) => {
+    return {
+      headers: {
+        ...headers,
+        demo: true
+      }
+    };
+  });
+  return forward(operation).subscribe({});
+};
+```
+
+Configure VueOioProvider to activate the interceptor:
+
+```typescript
+VueOioProvider({
+  http: {
+    middleware: CustomHeaderMiddleware
+  }
+});
+```
+
+:::warning Note:
+
+For more configuration parameters, refer to: [API](#III-OioProviderProps)
+
+:::
+
+The translation maintains the original formatting, technical terms, and structure while ensuring clarity and adherence to internet domain terminology.
+
+# V. Reference List
 
 ## (Ⅰ) .env
 
@@ -496,3 +582,143 @@ runtimeConfigResolve({
   }
 });
 ```
+Here is the translated content:
+
+## (Ⅲ) OioProviderProps
+
+| **Parameter** | **Type** | **Default Value** | **Description** |
+| :--- | :--- | :--- | :--- |
+| `http` | `OioHttpConfig` | - | HTTP configuration |
+| `router` | `RouterPath[]` | - | Routing configuration |
+| `appSwitcher` | `{ logo?: string; appSideLogo?: string; }` | - | Application logo configuration |
+| `copyrightStatus` | `boolean` | - | Copyright status |
+| `loginTheme` | `OioLoginThemeConfig` | - | Login theme configuration |
+| `sideBarTheme` | `SideBarThemeConfig` | - | Sidebar menu theme configuration |
+| `multiTabTheme` | `MultiTabsConfig` | - | Multi-tab theme configuration |
+| `browser` | `OioProviderBrowserProps` | - | Browser configuration |
+| `install` | `((app) => void) \| ((app) => Promise<void>)` | - | Triggered before the app is mounted, can be used to register global components |
+| `theme` | `ThemeName[]` | - | Global theme configuration |
+| `dependencies` | `PluginLoadDependencies` | - | Low-code/no-code integrated dependency configuration |
+| `encryptionUrlParams` | `boolean` | - | Whether to encrypt URL parameters |
+| `enableRuntimeConfig` | `boolean` | `true` | Whether to enable runtime configuration |
+| `enableI18n` | `boolean` | `true` | Whether to enable internationalization |
+| `enableScrollToErrorField` | `boolean` | `true` | When the form is submitted, fields with validation errors will automatically scroll into view (enabled by default) |
+| `extend` | `ExtendSettingType` | `false` | Single-item translation, toolbox switch configuration (disabled by default) |
+
+
+### 1. HTTP Configuration (OioHttpConfig)
+
+| **Parameter** | **Type** | **Default Value** | **Description** |
+| --- | --- | --- | --- |
+| `encodeRsql` | boolean | false | Whether to enable RSQL encrypted transmission |
+| `enableTranslate` | boolean | true | Whether to enable translation |
+| `interceptor` | Partial\<InterceptorOptions> | - | Built-in interceptor configuration |
+| `middleware` | NetworkMiddlewareHandler \| NetworkMiddlewareHandler[] | - | HttpClient middleware configuration (executed before built-in interceptors) |
+
+
+**InterceptorOptions**
+
+| **Parameter** | **Type** | **Default Value** | **Description** |
+| --- | --- | --- | --- |
+| translate | NetworkInterceptor | TranslateInterceptor | Translation interceptor |
+| networkError | NetworkInterceptor | NetworkErrorInterceptor | Network error interceptor (error) |
+| requestSuccess | NetworkInterceptor | RequestSuccessInterceptor | Request success interceptor (success) |
+| actionRedirect | NetworkInterceptor | ActionRedirectInterceptor | Redirect interceptor (success) |
+| loginRedirect | NetworkInterceptor | LoginRedirectInterceptor | Login redirect interceptor (error) |
+| requestError | NetworkInterceptor | RequestErrorInterceptor | Request error interceptor (error) |
+| beforeInterceptors | NetworkInterceptor \| NetworkInterceptor[] | - | Pre-interceptors |
+| afterInterceptors | NetworkInterceptor \| NetworkInterceptor[] | - | Post-interceptors |
+
+
+### 2. Login Theme Configuration (OioLoginThemeConfig)
+
+| **Parameter** | **Type** | **Default Value** | **Description** |
+| :--- | :--- | :--- | :--- |
+| `name` | OioLoginThemeName | - | Built-in login theme name |
+| `backgroundImage` | string | - | Background image URL |
+| `backgroundColor` | string | - | Background color |
+| `logo` | string | - | Logo URL |
+| `logoPosition` | OioLoginLogoPosition | - | Login page logo display position |
+
+
+**OioLoginThemeName**
+
+| **Member** | **Value** | **Description** |
+| :--- | :--- | :--- |
+| `LEFT_STICK` | `'LEFT_STICK'` | Large background, login form on the left |
+| `RIGHT_STICK` | `'RIGHT_STICK'` | Large background, login form on the right |
+| `CENTER_STICK` | `'CENTER_STICK'` | Large background, login form in the center |
+| `CENTER_STICK_LOGO` | `'CENTER_STICK_LOGO'` | Large background, login form in the center, logo inside login form |
+| `STAND_LEFT` | `'STAND_LEFT'` | Login form on the left |
+| `STAND_RIGHT` | `'STAND_RIGHT'` | Login form on the right |
+
+
+**OioLoginLogoPosition**
+
+| **Member** | **Value** | **Description** |
+| :--- | :--- | :--- |
+| `LEFT` | `'LEFT'` | Left |
+| `RIGHT` | `'RIGHT'` | Right |
+| `CENTER` | `'CENTER'` | Center |
+
+
+### 3. Sidebar Menu Theme Configuration (SideBarThemeConfig)
+
+| **Parameter** | **Type** | **Default Value** | **Description** |
+| :--- | :--- | :--- | :--- |
+| `mode` | `SideBarThemeColor` | - | Sidebar theme color mode |
+| `theme` | `SideBarTheme` | - | Sidebar theme type |
+
+
+**SideBarThemeColor**
+
+| **Member** | **Value** | **Description** |
+| :--- | :--- | :--- |
+| `default` | `'default'` | Default color |
+| `dark` | `'dark'` | Dark color |
+
+
+**SideBarTheme**
+
+| **Member** | **Value** | **Description** |
+| :--- | :--- | :--- |
+| `side1` | `'theme1'` | Sidebar theme 1 |
+| `side2` | `'theme2'` | Sidebar theme 2 |
+| `side3` | `'theme3'` | Sidebar theme 3 |
+| `side4` | `'theme4'` | Sidebar theme 4 |
+| `side5` | `'theme5'` | Sidebar theme 5 |
+| `side6` | `'theme6'` | Sidebar theme 6 |
+
+
+### 4. Multi-Tab Configuration (MultiTabsConfig)
+
+Same as `RuntimeConfg#multiTabs` configuration.
+
+### 5. Browser Configuration (OioProviderBrowserProps)
+
+| **Parameter** | **Type** | **Default Value** | **Description** |
+| :--- | :--- | :--- | :--- |
+| `favicon` | `string` | - | Browser tab icon |
+| `title` | `string` | - | Default browser title (only for non-home pages) |
+
+
+### 6. Extension Configuration (ExtendSettingType)
+
+**Description**: Extension settings type, including system style configuration and translation settings
+
+| **Parameter** | **Type** | **Default Value** | **Description** |
+| :--- | :--- | :--- | :--- |
+| `systemStyleConfig` | `SystemStyleConfig` | - | System style configuration |
+| `translationManage` | `boolean` | - | Single-item translation switch |
+| `toolboxTranslation` | `boolean` | - | Toolbox switch |
+| `resourceTranslations` | `{ moduleName: string; remoteUrl: string; [key: string]: unknown; }[]` | - | Translation list |
+
+
+**SystemStyleConfig**
+
+| **Parameter** | **Type** | **Default Value** | **Description** |
+| :--- | :--- | :--- | :--- |
+| `sideBarConfig` | `SideBarThemeConfig` | - | Sidebar theme configuration |
+| `multiTabConfig` | `MultiTabsConfig` | - | Multi-tab configuration |
+
+The translation maintains the original table structure, technical terms, and formatting while ensuring clarity and adherence to internet domain terminology.
