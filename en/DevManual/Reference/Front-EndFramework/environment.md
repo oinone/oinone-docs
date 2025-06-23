@@ -14,7 +14,7 @@ order: 2
 
 Create a `.env` file in the `startup project` for environment configuration, for example:
 
-```shell
+``` shell
 kunlun-boot
 ├── .env
 ├── public
@@ -28,7 +28,7 @@ kunlun-boot
 
 Try configuring the `BASE_PATH` property in the `.env` file:
 
-```plain
+``` plain
 BASE_PATH=/test
 ```
 
@@ -40,7 +40,7 @@ To make the configuration effective:
 
 You can retrieve `.env` configurations anywhere using:
 
-```typescript
+``` typescript
 protected doSomething() {
   console.log(process.env.CUSTOM_PROPERTY);
 }
@@ -48,7 +48,7 @@ protected doSomething() {
 
 Configure the `CUSTOM_PROPERTY` property in the .env file:
 
-```typescript
+``` typescript
 CUSTOM_PROPERTY=test
 ```
 
@@ -66,7 +66,7 @@ For more on `.env` configuration usage, refer to: [dotenv-webpack](https://githu
 
 Create a `manifest.js` file in the `startup project` for runtime environment configuration, for example:
 
-```shell
+``` shell
 kunlun-boot
 ├── public
 │   ├── favicon.ico
@@ -80,7 +80,7 @@ kunlun-boot
 
 Try configuring `multiTabs.inline` as `true` in the `manifest.js` file to move the `multi-tab` from the top of the entire page to above the main content distribution area:
 
-```javascript
+``` javascript
 runtimeConfigResolve({
   multiTabs: {
     inline: true
@@ -92,7 +92,7 @@ runtimeConfigResolve({
 
 Normally, the `manifest.js` created in the `public` directory of the `startup project` is automatically placed in the `dist` directory during `build-time`. However, sometimes development configuration files are not used in the production environment. In such cases, manually create a `manifest.js` file in the production `dist` directory for production-specific configurations, for example:
 
-```shell
+``` shell
 dist
 ├── favicon.ico
 ├── fonts
@@ -115,7 +115,7 @@ Additionally, all possible configurations should be independently placed in the 
 
 ## (Ⅰ) Define Configuration Type
 
-```typescript
+``` typescript
 /**
  * Demo runtime configuration type definition
  */
@@ -134,7 +134,7 @@ export interface DemoConfig extends RuntimeConfigOptions, EnabledConfig {
 
 ## (Ⅱ) Define Runtime Configuration Manager
 
-```typescript
+``` typescript
 export class DemoConfigManager {
   private constructor() {
     // reject create object
@@ -160,7 +160,7 @@ export class DemoConfigManager {
 
 ### 1. Simple Enable/Disable Configuration
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   demo: true
 });
@@ -174,7 +174,7 @@ In the `ConfigHelper#getConfig` method, the `boolean` value is converted to a `D
 
 ### 2. Complete Configuration
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   demo: {
     enabled: true
@@ -191,7 +191,7 @@ Here, the `demo` key matches the parameter defined in the `DemoConfigManager#get
 
 ## (Ⅳ) Use Configuration Methods in Components
 
-```typescript
+``` typescript
 DemoConfigManager.isEnabled()
 ```
 
@@ -207,7 +207,7 @@ Description: Uniform configuration for URL request path prefix
 
 Example:
 
-```plain
+``` plain
 BASE_PATH=/test
 ```
 
@@ -219,7 +219,7 @@ Description: Static resource path
 
 Example:
 
-```plain
+``` plain
 STATIC_IMG=/static/images
 ```
 
@@ -233,7 +233,7 @@ Description: MessageHub message level
 
 Example:
 
-```plain
+``` plain
 MESSAGE_LEVEL=INFO
 ```
 
@@ -245,7 +245,7 @@ Description: Runtime configuration file URL request path prefix
 
 Example:
 
-```plain
+``` plain
 RUNTIME_CONFIG_BASE_URL=/test
 ```
 
@@ -257,7 +257,7 @@ Description: Runtime configuration file name
 
 Example:
 
-```plain
+``` plain
 RUNTIME_CONFIG_FILENAME=test
 ```
 
@@ -269,7 +269,7 @@ Description: OSS directory for translation files
 
 Example:
 
-```plain
+``` plain
 I18N_OSS_URL=/upload/test
 ```
 
@@ -283,7 +283,7 @@ Description: OSS directory for translation files
 
 Example:
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   I18N_OSS_URL: '/upload/test'
 });
@@ -294,8 +294,8 @@ runtimeConfigResolve({
 | **Parameter Name** | **Type** | **Default Value** | **Description** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `loginLabel`        | string | Login | Login button text |
-| `forgetPassword`    | boolean | false | Whether to show the forgot password button |
-| `forgetPasswordLabel` | string | Forgot Password | Forgot password button text |
+| `forgetPassword`    | boolean | false | Is the forgot password button displayed on the login page |
+| `forgetPasswordLabel` | string | Forgot Password | Forgot password button text on the login page |
 | `register`          | boolean | false | Whether to show the register button |
 | `registerLabel`     | string | Register | Register button text |
 | `codeLogin`         | boolean | true | Whether to show the verification code login Tab |
@@ -313,7 +313,7 @@ runtimeConfigResolve({
 
 **Usage Example**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   login: {
     loginLabel: "Login",
@@ -345,7 +345,7 @@ runtimeConfigResolve({
 
 **Usage Example**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   plugins: {
     usingRemote: false
@@ -388,7 +388,7 @@ runtimeConfigResolve({
 
 **Usage Example**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   multiTabs: {
     enabled: true,
@@ -430,7 +430,7 @@ runtimeConfigResolve({
 
 **Usage Example**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   breadcrumb: {
     enabled: true,
@@ -453,7 +453,7 @@ runtimeConfigResolve({
 
 **Usage Example**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   tableConfig: {
     lineHeight: 40,
@@ -472,7 +472,7 @@ runtimeConfigResolve({
 
 **Usage Example**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   experimental: {
     buildQueryCondition: 'next'
@@ -489,7 +489,7 @@ runtimeConfigResolve({
 
 **Usage Example**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   debug: {
     enabled: true

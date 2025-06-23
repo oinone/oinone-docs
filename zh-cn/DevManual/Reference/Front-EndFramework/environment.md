@@ -14,7 +14,7 @@ order: 2
 
 在 `启动工程` 创建 `.env` 文件可进行环境配置，例如：
 
-```shell
+``` shell
 kunlun-boot
 ├── .env
 ├── public
@@ -28,7 +28,7 @@ kunlun-boot
 
 尝试在 `.env` 文件中配置 `BASE_PATH` 属性：
 
-```plain
+``` plain
 BASE_PATH=/test
 ```
 
@@ -41,7 +41,7 @@ BASE_PATH=/test
 
 你可以在任何地方使用这样的方式获取 `.env` 配置：
 
-```typescript
+``` typescript
 protected doSomething() {
   console.log(process.env.CUSTOM_PROPERTY);
 }
@@ -49,7 +49,7 @@ protected doSomething() {
 
 在 .env 文件中配置 `CUSTOM_PROPERTY` 属性：
 
-```typescript
+``` typescript
 CUSTOM_PROPERTY=test
 ```
 
@@ -67,7 +67,7 @@ CUSTOM_PROPERTY=test
 
 在 `启动工程` 创建 `manifest.js` 文件可进行运行时环境配置，例如：
 
-```shell
+``` shell
 kunlun-boot
 ├── public
 │   ├── favicon.ico
@@ -81,7 +81,7 @@ kunlun-boot
 
 尝试在 `manifest.js` 文件中配置 `multiTabs.inline` 为 `true` ，将 `多选项卡` 从整个页面的顶部移动到主内容分发区的上方：
 
-```javascript
+``` javascript
 runtimeConfigResolve({
   multiTabs: {
     inline: true
@@ -93,7 +93,7 @@ runtimeConfigResolve({
 
 正常情况下，在 `启动工程` 的 `public` 目录下创建的 `manifest.js` 会在 `构建时` 自动放置在 `dist` 目录下，但有时我们不会把开发时的配置文件放在生产环境中使用。这时就需要我们在生产环境的 `dist` 目录下手动创建 `manifest.js` 文件进行一些生产环境的配置。例如：
 
-```shell
+``` shell
 dist
 ├── favicon.ico
 ├── fonts
@@ -116,7 +116,7 @@ dist
 
 ## （一）定义配置类型
 
-```typescript
+``` typescript
 /**
  * 演示运行时配置类型定义
  */
@@ -135,7 +135,7 @@ export interface DemoConfig extends RuntimeConfigOptions, EnabledConfig {
 
 ## （二）定义运行时配置管理器
 
-```typescript
+``` typescript
 export class DemoConfigManager {
   private constructor() {
     // reject create object
@@ -161,7 +161,7 @@ export class DemoConfigManager {
 
 ### 1、启用和禁用的简单配置
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   demo: true
 });
@@ -175,7 +175,7 @@ runtimeConfigResolve({
 
 ### 2、完整配置
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   demo: {
     enabled: true
@@ -192,11 +192,94 @@ runtimeConfigResolve({
 
 ## （四）在组件中使用配置方法
 
-```typescript
+``` typescript
 DemoConfigManager.isEnabled()
 ```
 
-# 四、Reference List
+# 四、VueOioProvider 入口配置
+
+在 Vue 项目中，`main.ts` 是一个常用的入口文件，它通常用于创建框架实例以及初始化框架等准备工作。Oinone Kunlun 框架同样提供了一个用于初始化系统的入口方法 `VueOioProvider` 。
+
+## （一）基础用法
+
+``` typescript
+import 'ant-design-vue/dist/antd.min.css';
+import 'element-plus/dist/index.css';
+
+// npm run dev 启动时需要注释
+import '@oinone/kunlun-vue-ui-antd/dist/oinone-kunlun-vue-ui-antd.css';
+import '@oinone/kunlun-vue-ui-el/dist/oinone-kunlun-vue-ui-el.css';
+
+// 其他 css 导入
+
+import 'reflect-metadata';
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
+
+// 其他模块导入
+
+VueOioProvider();
+```
+
+:::warning 提示：
+
+`reflect-metadata` 导入必须在 `@oinone/kunlun-dependencies` 导入之前，否则系统将无法正常运行。
+
+:::
+
+## （二）自定义 HTTP 请求
+
+### 1、启用 RSQL 加密传输
+
+``` typescript
+VueOioProvider({
+  http: {
+    encodeRsql: true
+  }
+});
+```
+
+:::warning 提示：
+
+RSQL 加密传输功能需配合后端 `pro.shushi.pamirs.framework.gateways.hook.RsqlDecodeHook` 类进行使用，默认情况下后端无需其他配置。
+
+:::
+
+### 2、添加全局请求头参数
+首先，让我们先创建一个自定义 Header 的拦截器，在请求头中添加 `demo: true` 这样的固定参数：
+
+``` typescript
+import { NetworkMiddlewareHandler } from '@oinone/kunlun-dependencies';
+
+export const CustomHeaderMiddleware: NetworkMiddlewareHandler = (operation, forward) => {
+  operation.setContext(({ headers = {} }) => {
+    return {
+      headers: {
+        ...headers,
+        demo: true
+      }
+    };
+  });
+  return forward(operation).subscribe({});
+};
+```
+
+在 VueOioProvider 添加配置，让拦截器生效：
+
+``` typescript
+VueOioProvider({
+  http: {
+    middleware: CustomHeaderMiddleware
+  }
+});
+```
+
+:::warning 提示：
+
+更多配置参数请参考：[API](#三-oioproviderprops)
+
+:::
+
+# 五、Reference List
 
 ## （一）.env
 
@@ -208,7 +291,7 @@ DemoConfigManager.isEnabled()
 
 示例：
 
-```plain
+``` plain
 BASE_PATH=/test
 ```
 
@@ -220,7 +303,7 @@ BASE_PATH=/test
 
 示例：
 
-```plain
+``` plain
 STATIC_IMG=/static/images
 ```
 
@@ -234,7 +317,7 @@ STATIC_IMG=/static/images
 
 示例：
 
-```plain
+``` plain
 MESSAGE_LEVEL=INFO
 ```
 
@@ -246,7 +329,7 @@ MESSAGE_LEVEL=INFO
 
 示例：
 
-```plain
+``` plain
 RUNTIME_CONFIG_BASE_URL=/test
 ```
 
@@ -258,7 +341,7 @@ RUNTIME_CONFIG_BASE_URL=/test
 
 示例：
 
-```plain
+``` plain
 RUNTIME_CONFIG_FILENAME=test
 ```
 
@@ -270,7 +353,7 @@ RUNTIME_CONFIG_FILENAME=test
 
 示例：
 
-```plain
+``` plain
 I18N_OSS_URL=/upload/test
 ```
 
@@ -284,7 +367,7 @@ I18N_OSS_URL=/upload/test
 
 示例：
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   I18N_OSS_URL: '/upload/test'
 });
@@ -295,8 +378,8 @@ runtimeConfigResolve({
 | **参数名** | **类型** | **默认值** | **描述** |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `loginLabel`        | string | 登录 | 登录按钮文本 |
-| `forgetPassword`    | boolean | false | 是否显示忘记密码按钮 |
-| `forgetPasswordLabel` | string | 忘记密码 | 忘记密码按钮文本 |
+| `forgetPassword`    | boolean | false | 登录页是否显示忘记密码按钮 |
+| `forgetPasswordLabel` | string | 忘记密码 | 登录页忘记密码按钮文本内容 |
 | `register`          | boolean | false | 是否显示注册按钮 |
 | `registerLabel`     | string | 去注册 | 注册按钮文本 |
 | `codeLogin`         | boolean | true | 是否显示验证码登录 Tab |
@@ -314,7 +397,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   login: {
     loginLabel: "登录",
@@ -346,7 +429,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   plugins: {
     usingRemote: false
@@ -389,7 +472,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   multiTabs: {
     enabled: true,
@@ -431,7 +514,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   breadcrumb: {
     enabled: true,
@@ -454,7 +537,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   tableConfig: {
     lineHeight: 40,
@@ -473,7 +556,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   experimental: {
     buildQueryCondition: 'next'
@@ -490,7 +573,7 @@ runtimeConfigResolve({
 
 **使用示例**
 
-```typescript
+``` typescript
 runtimeConfigResolve({
   debug: {
     enabled: true
@@ -498,3 +581,139 @@ runtimeConfigResolve({
 });
 ```
 
+## （三）OioProviderProps
+
+| **参数名** | **类型** | **默认值** | **描述** |
+| :--- | :--- | :--- | :--- |
+| `http` | `OioHttpConfig` | - | http 配置 |
+| `router` | `RouterPath[]` | - | 路由配置 |
+| `appSwitcher` | `{ logo?: string; appSideLogo?: string; }` | - | 应用 logo 配置 |
+| `copyrightStatus` | `boolean` | - | copyright 状态 |
+| `loginTheme` | `OioLoginThemeConfig` | - | 登录主题配置 |
+| `sideBarTheme` | `SideBarThemeConfig` | - | 侧边栏菜单主题配置 |
+| `multiTabTheme` | `MultiTabsConfig` | - | 多 tab 主题配置 |
+| `browser` | `OioProviderBrowserProps` | - | 浏览器配置 |
+| `install` | `((app) => void) | ((app) => Promise\<void>)` | - | app 被 mount 前触发，可以用来注册全局组件 |
+| `theme` | `ThemeName[]` | - | 全局主题配置 |
+| `dependencies` | `PluginLoadDependencies` | - | 低无一体依赖配置 |
+| `encryptionUrlParams` | `boolean` | - | 是否对 url 参数进行加密 |
+| `enableRuntimeConfig` | `boolean` | `true` | 是否启用运行时配置 |
+| `enableI18n` | `boolean` | `true` | 是否启用国际化 |
+| `enableScrollToErrorField` | `boolean` | `true` | 当表单提交时，验证失败的字段会自动定位到视图可视化区域（默认开启） |
+| `extend` | `ExtendSettingType` | `false` | 单项翻译、工具箱开关配置（默认关闭） |
+
+
+### 1、HTTP配置（OioHttpConfig）
+
+| **参数名** | **类型** | **默认值** | **描述** |
+| --- | --- | --- | --- |
+| `encodeRsql` | boolean | false | 是否启用RSQL加密传输 |
+| `enableTranslate` | boolean | true | 是否启用翻译 |
+| `interceptor` | Partial\<InterceptorOptions> | - | 内置拦截器配置 |
+| `middleware` | NetworkMiddlewareHandler | NetworkMiddlewareHandler[] | - | HttpClient Middleware 配置（在内置拦截器之前执行） |
+
+
+**InterceptorOptions**
+
+| **参数名** | **类型** | **默认值** | **描述** |
+| --- | --- | --- | --- |
+| translate | NetworkInterceptor | TranslateInterceptor | 翻译拦截器 |
+| networkError | NetworkInterceptor | NetworkErrorInterceptor | 网络错误拦截器（error) |
+| requestSuccess | NetworkInterceptor | RequestSuccessInterceptor | 请求成功拦截器 (success) |
+| actionRedirect | NetworkInterceptor | ActionRedirectInterceptor | 重定向拦截器 (success) |
+| loginRedirect | NetworkInterceptor | LoginRedirectInterceptor | 登录重定向拦截器 (error) |
+| requestError | NetworkInterceptor | RequestErrorInterceptor | 请求错误拦截器 (error) |
+| beforeInterceptors | NetworkInterceptor | NetworkInterceptor[] | - | 前置拦截器 |
+| afterInterceptors | NetworkInterceptor | NetworkInterceptor[] | - | 后置拦截器 |
+
+
+### 2、登录主题配置（OioLoginThemeConfig）
+
+| **参数名** | **类型** | **默认值** | **描述** |
+| :--- | :--- | :--- | :--- |
+| `name` | OioLoginThemeName | - | 内置登录主题名称 |
+| `backgroundImage` | string | - | 背景图片 url |
+| `backgroundColor` | string | - | 背景色 |
+| `logo` | string | - | logo url |
+| `logoPosition` | OioLoginLogoPosition | - | 登录页 logo 显示位置 |
+
+
+**OioLoginThemeName**
+
+| **成员** | **值** | **描述** |
+| :--- | :--- | :--- |
+| `LEFT_STICK` | `'LEFT_STICK'` | 大背景居左登录 |
+| `RIGHT_STICK` | `'RIGHT_STICK'` | 大背景居右登录 |
+| `CENTER_STICK` | `'CENTER_STICK'` | 大背景居中登录 |
+| `CENTER_STICK_LOGO` | `'CENTER_STICK_LOGO'` | 大背景居中登录，logo 在登录页里面 |
+| `STAND_LEFT` | `'STAND_LEFT'` | 左侧登录 |
+| `STAND_RIGHT` | `'STAND_RIGHT'` | 右侧登录 |
+
+
+**OioLoginLogoPosition**
+
+| **成员** | **值** | **描述** |
+| :--- | :--- | :--- |
+| `LEFT` | `'LEFT'` | 左侧 |
+| `RIGHT` | `'RIGHT'` | 右侧 |
+| `CENTER` | `'CENTER'` | 中间 |
+
+
+### 3、侧边栏菜单主题配置（SideBarThemeConfig）
+
+| **参数名** | **类型** | **默认值** | **描述** |
+| :--- | :--- | :--- | :--- |
+| `mode` | `SideBarThemeColor` | - | 侧边栏主题颜色模式 |
+| `theme` | `SideBarTheme` | - | 侧边栏主题类型 |
+
+
+**SideBarThemeColor**
+
+| **成员** | **值** | **描述** |
+| :--- | :--- | :--- |
+| `default` | `'default'` | 默认颜色 |
+| `dark` | `'dark'` | 深色 |
+
+
+**SideBarTheme**
+
+| **成员** | **值** | **描述** |
+| :--- | :--- | :--- |
+| `side1` | `'theme1'` | 侧边栏主题 1 |
+| `side2` | `'theme2'` | 侧边栏主题 2 |
+| `side3` | `'theme3'` | 侧边栏主题 3 |
+| `side4` | `'theme4'` | 侧边栏主题 4 |
+| `side5` | `'theme5'` | 侧边栏主题 5 |
+| `side6` | `'theme6'` | 侧边栏主题 6 |
+
+
+### 4、多选项卡配置（MultiTabsConfig）
+
+同 `RuntimeConfg#multiTabs` 配置。
+
+### 5、浏览器配置（OioProviderBrowserProps）
+
+| **参数名** | **类型** | **默认值** | **描述** |
+| :--- | :--- | :--- | :--- |
+| `favicon` | `string` | - | 浏览器选项卡图标 |
+| `title` | `string` | - | 浏览器默认标题（仅用于非主页面） |
+
+
+### 6、扩展配置（ExtendSettingType）
+
+**描述**：扩展设置类型，包含系统样式配置和翻译设置
+
+| **参数名** | **类型** | **默认值** | **描述** |
+| :--- | :--- | :--- | :--- |
+| `systemStyleConfig` | `SystemStyleConfig` | - | 系统样式配置 |
+| `translationManage` | `boolean` | - | 单项翻译开关 |
+| `toolboxTranslation` | `boolean` | - | 工具箱开关 |
+| `resourceTranslations` | `{ moduleName: string; remoteUrl: string; [key: string]: unknown; }[]` | - | 翻译列表 |
+
+
+**SystemStyleConfig**
+
+| **参数名** | **类型** | **默认值** | **描述** |
+| :--- | :--- | :--- | :--- |
+| `sideBarConfig` | `SideBarThemeConfig` | - | 侧边栏主题配置 |
+| `multiTabConfig` | `MultiTabsConfig` | - | 多标签页配置 |

@@ -24,7 +24,7 @@ next:
 
 我们先来注册一个 `customTheme` 主题吧，这个主题将 `Oinone` 页面的主色修改为 `黑色（blank）`：
 
-```typescript
+``` typescript
 export const customThemeName = 'customTheme';
 export const customThemeCssVars = {
   'primary-color': 'black'
@@ -43,7 +43,7 @@ registerTheme(customThemeName, customThemeCssVars);
 
 让我们在 VueOioProvider 中指定 theme 参数，让主题变量生效：
 
-```typescript
+``` typescript
 VueOioProvider({
   theme: [customThemeName]
 });
@@ -69,7 +69,7 @@ VueOioProvider({
 
 ### 1、大（large）
 
-```typescript
+``` typescript
 {
     "font-size": "14px",
     "font-size-lg": "16px",
@@ -104,9 +104,9 @@ VueOioProvider({
 }
 ```
 
-### 2、中（<font style="color:#080808;background-color:#ffffff;">medium</font>）（默认尺寸）
+### 2、中（medium）（默认尺寸）
 
-```typescript
+``` typescript
 {
     "font-size": "14px",
     "font-size-lg": "16px",
@@ -143,7 +143,7 @@ VueOioProvider({
 
 ### 3、小（small）
 
-```typescript
+``` typescript
 {
     "font-size": "14px",
     "font-size-lg": "16px",
@@ -182,7 +182,7 @@ VueOioProvider({
 
 ### 1、默认主题（default）
 
-```typescript
+``` typescript
 {
     "primary-color-rgb": "3, 93, 255",
     "primary-color": "#035DFF",
@@ -270,7 +270,7 @@ VueOioProvider({
 
 ### 2、暗黑主题（dark）
 
-```typescript
+``` typescript
 {
     "primary-color-rgb": "3, 93, 255",
     "primary-color": "#035DFF",

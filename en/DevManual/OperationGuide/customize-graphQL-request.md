@@ -88,7 +88,7 @@ For more detailed content about function parameters and return values, refer to:
 
 Let's review the previously mentioned syntax format:
 
-```graphql
+``` graphql
 ${query/mutation} {
   ${modelName}${Query/Mutation} {
     ${functionName} (${arg1Name}: ${arg1Value}) {
@@ -100,7 +100,7 @@ ${query/mutation} {
 
 ## (IV) GQL Syntax Example with queryListByWrapper
 
-```graphql
+``` graphql
 {
   ganttDemoModelQuery {
     queryListByWrapper(queryWrapper: {rsql: "1==1"}) {
@@ -140,7 +140,7 @@ Let's send the GQL defined in the previous section to the back-end. We can do th
 
 The following code demonstrates how to initiate a GQL request via `HttpClient` and obtain the request result:
 
-```typescript
+``` typescript
 import { HttpClient } from '@kunlun/dependencies';
 
 const http = HttpClient.getInstance();
@@ -184,7 +184,7 @@ As mentioned before, GQL requests initiated by the browser consist of two parts:
 
 Since it's not easy to find a practice example, in our example, we will open the corresponding `GQL` of the previous section via the `GET` method, which returns `JSON` structured data, as shown below:
 
-```typescript
+``` typescript
 public static queryListByWrapperByWindowOpen(): void {
   const gql = `{
   ganttDemoModelQuery {
@@ -204,7 +204,7 @@ public static queryListByWrapperByWindowOpen(): void {
 
 The `UrlHelper#appendBasePath` method is a method provided by Oinone for handling `BASE_PATH` related functions. The final complete URL format is:
 
-```typescript
+``` typescript
 `${BASE_PATH}/pamirs/${MODULE_NAME}`
 
 // eg: BASE_PATH = '/test'
@@ -227,7 +227,7 @@ In Oinone, directly using the native `HttpClient` can initiate requests in the m
 
 Take `ganttDemoModel#queryListByWrapper` as an example:
 
-```typescript
+``` typescript
 const MODULE_NAME = 'demo';
 const MODEL_NAME = 'ganttDemoModel';
 
@@ -251,7 +251,7 @@ In practice, we found that initiating requests with `GQL` is still more troubles
 
 Let's use `GenericFunctionService` to initiate GQL requests like `Ajax/Axios`:
 
-```typescript
+``` typescript
 public static queryListByWrapperByGenericFunctionService(): Promise<GanttDemoModel[] | undefined> {
   return GenericFunctionService.INSTANCE.simpleExecuteByName(MODEL_MODEL, 'queryListByWrapper', {
     rsql: '1==1'
@@ -272,7 +272,7 @@ In general, initiating GQL requests in pages mainly consists of three steps:
 
 Like this:
 
-```typescript
+``` typescript
 // Get the specified function definition
 const functionName = 'update';
 const functionDefinition = await FunctionCache.getByName(this.model.model, functionName);
@@ -324,7 +324,7 @@ For more content about Apollo-Link Middleware, refer to the official documentati
 
 Let's first look at the type declaration of `NetworkMiddlewareHandler`:
 
-```typescript
+``` typescript
 /**
  * Network request middleware handler (encapsulated based on native apollo)
  */
@@ -333,7 +333,7 @@ export type NetworkMiddlewareHandler = (operation: Operation, forward: NextLink)
 
 Next, let's create a `CustomNetworkMiddlewareHandler` to see how it appends parameters to the `request header` of all requests:
 
-```typescript
+``` typescript
 export const CustomNetworkMiddlewareHandler: NetworkMiddlewareHandler = (operation, forward) => {
   operation.setContext(({ headers = {} }) => {
     return {
@@ -352,7 +352,7 @@ export const CustomNetworkMiddlewareHandler: NetworkMiddlewareHandler = (operati
 
 Let's specify the `http.middleware` parameter in `VueOioProvider` to enable the interceptor:
 
-```typescript
+``` typescript
 VueOioProvider({
   http: {
     middleware: [CustomNetworkMiddlewareHandler]
@@ -364,7 +364,7 @@ VueOioProvider({
 
 Let's first look at the type declaration of `NetworkInterceptor`:
 
-```typescript
+``` typescript
 /**
  * <h3>Network Request Interceptor</h3>
  * <ul>
@@ -391,7 +391,7 @@ export interface NetworkInterceptor {
 
 Through the type declaration of the interceptor, we can find that there are separate processing methods for successful and exceptional requests. Let's create a `CustomNetworkInterceptor` to see how to define it, as shown below:
 
-```typescript
+``` typescript
 export class CustomNetworkInterceptor implements NetworkInterceptor {
   public success(response: IResponseResult) {
     return true;
@@ -415,7 +415,7 @@ For more content about interceptors, refer to: [HttpClient Service](/en/DevManua
 
 Let's specify the `http.interceptor` parameter in `VueOioProvider` to enable the interceptor. As sample content, we will use the `afterInterceptors` parameter without considering other parameters for now:
 
-```typescript
+``` typescript
 VueOioProvider({
   http: {
     interceptor: {

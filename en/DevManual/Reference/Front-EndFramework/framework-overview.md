@@ -47,7 +47,7 @@ For the field/table subfolder, Oinone suggests classifying field components by `
 
 A possible complete directory structure is:
 
-```plain
+``` plain
 src
 ├─ mask
 ├─ layout
@@ -91,7 +91,7 @@ For more on R&D paradigms, refer to: [Widget Component Design Paradigm](/en/DevM
 
 As mentioned, the Web client is an application implemented via the Widget framework. Here's a simplified version of its default master:
 
-```xml
+``` xml
 <mask>
     <header />
     <container>
@@ -119,7 +119,7 @@ In Oinone Kunlun, "context" is a crucial concept: it provides components with re
 
 In any component, you can use these two context objects with code like:
 
-```typescript
+``` typescript
 protected doSomething() {
   const { metadataRuntimeContext, rootRuntimeContext } = this;
   // do something.
@@ -154,13 +154,13 @@ In SPAs, the routing system essentially triggers a set of behaviors by modifying
 
 Fetch browser variables:
 
-```typescript
+``` typescript
 useMatched().matched.segmentParams
 ```
 
 Obtain the router instance and handle page parameter changes:
 
-```typescript
+``` typescript
 protected $router!: Router;
 
 protected doSomething() {
@@ -183,7 +183,7 @@ protected beforeMount() {
 
 Subscribe to routing changes:
 
-```typescript
+``` typescript
 protected watchRouter() {
   useMatched()
     .getMatched$()
@@ -207,7 +207,7 @@ For more on routing, refer to: [Router Service](/en/DevManual/Reference/Front-En
 
 Oinone Kunlun provides a rendering function based on JSON data structures, handling structures like:
 
-```json
+``` json
 {
     "dslNodeType": "",
     ...,
@@ -235,7 +235,7 @@ For more on rendering, refer to: [View](/en/DevManual/Reference/Front-EndFramewo
 
 Oinone Kunlun uses the `GraphQL` protocol for `front-end to back-end interaction`. `HttpClient` is implemented based on `apollo-client`, allowing requests to the backend from anywhere. For example:
 
-```typescript
+``` typescript
 export class ResourceCountryGroupService {
   public static async queryListByWrapper(): Promise<ResourceCountryGroup[]> {
     const gql = `{
@@ -284,9 +284,15 @@ In Oinone Kunlun, the Widget framework provides component registration and looku
 
 During Oinone usage, you can directly use `Oio` components for secondary development without worrying about styles, themes, etc. For example, an input box can use `oio-input`:
 
-```vue
+``` vue
 <oio-input v-model:value="value" />
 ```
+
+:::warning Note
+
+For more on Oio Component, refer to: [Vue UI Antd](/en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.html)
+
+:::
 
 # VI. Expression
 
@@ -294,7 +300,7 @@ Oinone Kunlun includes a built-in small expression interpreter for evaluating sm
 
 For example:
 
-```xml
+``` xml
 <field data="phoneCode" label="国家码" />
 <field data="phoneNumber" label="手机号" />
 <field data="phone" compute="activeRecord.phoneCode + ' ' + activeRecord.phoneNumber" />
@@ -320,6 +326,6 @@ In Oinone Kunlun, we divide domains into visible domains (domain) and invisible 
 
 For example, in a `many-to-one (M2O)` `select box (Select)` component, we can use `domain` to show users the set of `active` records for selection:
 
-```xml
+``` xml
 <field data="relationOne" widget="Select" domain="state == ACTIVED" />
 ```

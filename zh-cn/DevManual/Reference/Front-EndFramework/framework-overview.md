@@ -47,7 +47,7 @@ Oinone Kunlun 框架是基于 `Vue` 框架实现的，其底层 `Oio` 组件库�
 
 一个可能的完整目录结构为：
 
-```plain
+``` plain
 src
 ├─ mask
 ├─ layout
@@ -91,7 +91,7 @@ src
 
 如上所述，Web 客户端是一个基于 Widget 框架实现的应用程序。以下是其默认母版的简化版本：
 
-```xml
+``` xml
 <mask>
     <header />
     <container>
@@ -119,7 +119,7 @@ src
 
 在任何组件中，你都可以通过这样的代码来使用这两类上下文对象：
 
-```typescript
+``` typescript
 protected doSomething() {
   const { metadataRuntimeContext, rootRuntimeContext } = this;
   // do something.
@@ -154,13 +154,13 @@ Web 客户端的构建通常是通过几种抽象类型构建的：Router、Rend
 
 获取浏览器变量：
 
-```typescript
+``` typescript
 useMatched().matched.segmentParams
 ```
 
 获取路由实例及页面参数变更：
 
-```typescript
+``` typescript
 protected $router!: Router;
 
 protected doSomething() {
@@ -183,7 +183,7 @@ protected beforeMount() {
 
 路由变更订阅：
 
-```typescript
+``` typescript
 protected watchRouter() {
   useMatched()
     .getMatched$()
@@ -207,7 +207,7 @@ protected beforeMount() {
 
 在 Oinone Kunlun 中提供了一种基于 JSON 数据结构的渲染功能，它能处理类似于这样的数据结构：
 
-```json
+``` json
 {
     "dslNodeType": "",
     ...,
@@ -235,7 +235,7 @@ protected beforeMount() {
 
 在 Oinone Kunlun 中使用 `GraphQL` 协议完成 `前后端交互` 。`HttpClient` 是基于 `apollo-client` 实现的。在任何地方，你都可以通过 `HttpClient` 向后端发起请求。例如：
 
-```typescript
+``` typescript
 export class ResourceCountryGroupService {
   public static async queryListByWrapper(): Promise<ResourceCountryGroup[]> {
     const gql = `{
@@ -284,9 +284,15 @@ export class ResourceCountryGroupService {
 
 在使用 Oinone 过程中，你可以直接使用 `Oio` 组件进行二次开发，并且不需要关心样式、主题等问题。例如输入框可以使用 `oio-input` ：
 
-```vue
+``` vue
 <oio-input v-model:value="value" />
 ```
+
+:::warning 提示
+
+更多关于 Oio 组件 的内容请参考：[Vue UI Antd](/zh-cn/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.html)
+
+:::
 
 # 六、Expression
 
@@ -294,7 +300,7 @@ export class ResourceCountryGroupService {
 
 例如：
 
-```xml
+``` xml
 <field data="phoneCode" label="国家码" />
 <field data="phoneNumber" label="手机号" />
 <field data="phone" compute="activeRecord.phoneCode + ' ' + activeRecord.phoneNumber" />
@@ -320,7 +326,7 @@ RSQL Expression 是用于域（domains）的语法，它是一种类似于 SQL �
 
 例如在一个 `多对一（M2O）` 的 `下拉框（Select）` 组件中，我们可以这样使用 `domain` 向用户展示 `激活态` 的记录集合供用户选择：
 
-```xml
+``` xml
 <field data="relationOne" widget="Select" domain="state == ACTIVED" />
 ```
 
