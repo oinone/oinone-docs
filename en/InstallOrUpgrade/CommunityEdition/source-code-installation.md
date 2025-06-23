@@ -12,7 +12,7 @@ next:
   link: /en/InstallOrUpgrade/EnterpriseEdition/docker-full-installation.md
 ---
 
-# 1. Overview
+# Ⅰ. Overview
 :::info Note
 
 This mode is only available for the open-source community edition. The enterprise edition supports installation via various other methods.
@@ -31,13 +31,13 @@ When modifying the Oinone framework source code during source code installation,
 
 :::
 
-# 2. Install MySQL Database
+# Ⅱ. Install MySQL Database
 
 If you don't already have a database installed, you can download and install MySQL from the official website: [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/).
 
 Refer to [MySQL Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
 
-# 3. Deployment of Other Middleware
+# Ⅲ. Deployment of Other Middleware
 
 | Component  | Required | Version |
 | ---------- | -------- | ------- |
@@ -45,7 +45,7 @@ Refer to [MySQL Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL
 | Redis      | Yes      | Version 5.0.2 or higher |
 | Zookeeper  | Yes      | Version 3.5.8 or higher |
 
-# 4. Introduction to Code Repositories
+# Ⅳ. Introduction to Code Repositories
 
 <table  cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 1400px; margin: 20px auto;">
   <thead>
@@ -154,7 +154,7 @@ Refer to [MySQL Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL
   </tbody>
 </table>
 
-# 5. Obtain the Source Code
+# Ⅴ. Obtain the Source Code
 
 There are two ways to acquire the source code of Shushi Oinone: download the ZIP package or use Git. This documentation focuses on Git.
 
@@ -166,7 +166,7 @@ Please install [Git](https://git-scm.com/). We recommend having basic knowledge 
 
 You can use either HTTPS or SSH to clone the Git repositories. HTTPS is recommended for most users. Use SSH if you want to contribute to the source code or follow the developer onboarding guide.
 
-## (1) Front-end
+## (Ⅰ) Front-end
 
 ```bash
 # Clone using HTTPS
@@ -176,7 +176,7 @@ git clone https://github.com/oinone/oinone-frontend-starter.git
 git clone git@github.com:oinone/oinone-frontend-starter.git
 ```
 
-## (2) Back-end
+## (Ⅱ) Back-end
 
 ```bash
 # Clone using HTTPS
@@ -186,9 +186,9 @@ git clone https://github.com/oinone/oinone-backend-starter.git
 git clone git@github.com:oinone/oinone-backend-starter.git
 ```
 
-# 6. Run the Back-end
+# Ⅵ. Run the Back-end
 
-## (1) Modify the `src/main/resources/config/application-dev.yml` file
+## (Ⅰ) Modify the `src/main/resources/config/application-dev.yml` file
 
 If MySQL, Zookeeper, Redis, and RocketMQ are not on the same machine, you need to find the relevant code and modify IP, port, username, password, etc.
 
@@ -287,7 +287,7 @@ For enterprise edition trials, Shushi provides default CDN configuration. In pro
 
 For more OSS configurations, see: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#14-File-Storage-Configuration-pamirs-file)
 
-## (2) Start the Back-end Service
+## (Ⅱ) Start the Back-end Service
 
 ### 1. Use Maven
 
@@ -307,23 +307,23 @@ Successful startup message:
 Oinone Backend Starter App started in 54.168926917 s
 ```
 
-# 7. Run the Front-end
+# Ⅶ. Run the Front-end
 
-## (1) Install Dependencies and Start
+## (Ⅰ) Install Dependencies and Start
 
 ```bash
 npm i
 npm run dev
 ```
 
-## (2) Configure API Endpoint
+## (Ⅱ) Configure API Endpoint
 
 1. **For Production**: Modify `API_BASE_URL` in `.env`
 2. **For Development**: Modify `devServer.proxy.pamirs.target` in `vue.config.js`
 
 > Method 1 has higher precedence than Method 2. To use Method 2, delete Method 1.
 
-## (3) Static Resources
+## (Ⅲ) Static Resources
 
 ```plaintext
 ├── public
@@ -334,7 +334,7 @@ Extract `static.zip` into the `public` directory.
 
 > It is recommended to upload static resources to OSS and set `STATIC_IMG` in `.env` to the OSS address.
 
-## (4) Directory Structure
+## (Ⅳ) Directory Structure
 
 ```plaintext
 ├── public                Static resource directory (contains index.html)

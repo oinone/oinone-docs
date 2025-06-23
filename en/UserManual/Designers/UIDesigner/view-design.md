@@ -16,8 +16,8 @@ This interface is mainly divided into four functional areas: the operation bar, 
 This section takes the form as an example. For details of other view types, please refer to the view type documentation.
 :::
 
-# I. Operation Bar
-## (1) Switch Page Size
+# Ⅰ. Operation Bar
+## (Ⅰ) Switch Page Size
 ### 1. Function Introduction
 Users can flexibly switch the page to be designed and laid out for the PC or mobile device according to different business application scenarios. This function effectively avoids the problem of page layout confusion caused by device differences, thereby significantly improving the user experience. Regardless of the device used by the user, the page can present the best display effect.
 
@@ -30,7 +30,7 @@ In the top operation bar, click the "PC" icon or the "Mobile" icon to switch the
 
 ![Mobile Design Page](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/chicun3.png)
 
-## (2) View Historical Versions
+## (Ⅱ) View Historical Versions
 ### 1. Function Introduction
 The function of viewing historical versions allows users to view the version records released at different time points in the past, which is particularly useful for scenarios where it is necessary to trace or compare page content. In addition, the function of viewing historical versions also provides users with data protection and security guarantees. In case of unexpected situations such as data loss, malicious tampering, or system failure, users can quickly retrieve important data or content by restoring a historical version.
 
@@ -47,7 +47,7 @@ This function is only available for viewing previously published page versions. 
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/lishi2.png)
 
-## (3) Show/Hide Master
+## (Ⅲ) Show/Hide Master
 ### 1. Function Introduction
 The master provides a set of standard page elements and layout templates, allowing users to quickly create pages with a consistent style based on the master. During page design, the master is not directly displayed by default, but users can manually set it as needed. When the master is selected to be displayed, users can preview the overall display effect of the page globally.
 
@@ -56,7 +56,7 @@ In the top operation bar, click the "Show/Hide Master" icon to show or hide the 
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/muban.png)
 
-## (4) Publish
+## (Ⅳ) Publish
 ### 1. Function Introduction
 After the page design is completed, the page can take effect officially through the publish operation. If the publish operation is not performed, the page will also be saved automatically, but in this case, the auto-saved version only exists as a draft and will not be officially displayed or take effect externally.
 
@@ -69,8 +69,8 @@ In the top operation bar, click "Publish" to publish the current page.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/fabu.png)
 
-# II. Toolbar
-## (1) Component Library
+# Ⅱ. Toolbar
+## (Ⅰ) Component Library
 ### 1. Function Introduction
 The component library includes two parts: components and models (for details, see the component introduction documentation):
 
@@ -120,7 +120,7 @@ Drag the component to the corresponding area in the canvas design area.
 When configuring components on the page, action components and non-action components need to be placed in appropriate positions on the canvas respectively, and the required properties of the components need to be correctly configured. Otherwise, the components will not work properly and may cause errors.
 :::
 
-## (2) Design Outline
+## (Ⅱ) Design Outline
 ### 1. Function Introduction
 Viewing the design outline is supported, and the hierarchical relationship between components is intuitively displayed using a list.
 
@@ -133,7 +133,7 @@ In the left tool area, click the "Design Outline" icon to display the design out
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/gongjulan/dagang.png)
 
-## (3) Page Settings
+## (Ⅲ) Page Settings
 ### 1. Function Introduction
 In the page settings, users can modify the relevant information of the current page, such as the title and description. Fixing the action area is supported, and the action area will always be visible when the page is scrolled. In addition, page settings are the only way to upload a thumbnail for the page, which facilitates users to add an appropriate thumbnail to the page to enhance the visual effect and recognition.
 
@@ -153,7 +153,7 @@ In the left tool area, click the "Page Settings" icon to display the page settin
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/gongjulan/fudong.png)
 
-# III. Canvas Design Area
+# Ⅲ. Canvas Design Area
 ### 1. Function Introduction
 When a component is added to the design canvas area, a default style will be automatically generated.
 
@@ -191,7 +191,7 @@ The supported switching type rule is: Only when the business type of the setting
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/huabushejiqu/3.png)
 
-# IV. Property Panel
+# Ⅳ. Property Panel
 ### 1. Function Introduction
 In the property panel, users can conveniently set various properties of the component (for details, see the component property introduction documentation) and view the field information of the component. By flexibly configuring component properties, users can achieve diverse display and function customization of components.
 
@@ -204,7 +204,7 @@ In the property panel, users can conveniently set various properties of the comp
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shuxingmianban/2.png)
 
-# V. Page Design Example
+# Ⅴ. Page Design Example
 Scenario: Employee leave application business page
 
 + Use the model designer to build two business models: the employee information model and the leave application model.
@@ -308,7 +308,7 @@ Scenario: Employee leave application business page
 
 5. After completing all the above design steps, click the publish button to officially publish the designed page. After successful publication, the page can be put into use.
 
-# VI. Attachment: Glossary
+# Ⅵ. Attachment: Glossary
 | Term | Description |
 | :---: | --- |
 | Operation Bar | Contains commonly used operation buttons for page settings, historical records, saving, etc. |

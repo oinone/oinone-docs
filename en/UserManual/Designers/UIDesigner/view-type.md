@@ -8,8 +8,8 @@ order: 2
 ---
 In the Oinone platform, the interface designer provides multiple view types to meet interface design requirements in different application scenarios.
 The following is an introduction to five view types: form, table, detail, gallery, and tree view:
-# 1. Form
-The form view is a view type used for data input and display. It usually contains multiple fields (such as text boxes, drop-down lists, radio buttons, etc.), where users can input or select data. The form view is suitable for scenarios where users need to fill in and submit information, such as registration pages and information filling forms.
+# Ⅰ. Form
+The form view is a view type used for data input and display. It usually contains multiple fields (such as text boxes, drop-down lists, radio buttons, etc.), where users can input or select data. The form view is suitable for scenarios where users need to fill in and submit information, such as registration pages and information filling forms.  
 ![Design Form Example Page](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/biaodan1.png)
 :::tip Example
 Form view display effect:
@@ -27,8 +27,8 @@ If there are multiple fields in the form, and only the data of some fields have 
 + When incremental submission is selected, only the data of these changed fields will be submitted
 + When full submission is selected, the data of all fields in the form will be submitted, regardless of whether they have changed.
 :::
-# 2. Detail
-The detail view is used to display detailed information of data items and cannot be edited. It is usually used in conjunction with other views. Users can enter the detail view through links or buttons in other views to view the detailed information of data items. The detail view can contain multiple types of fields to provide rich information display.
+# Ⅱ. Detail
+The detail view is used to display detailed information of data items and cannot be edited. It is usually used in conjunction with other views. Users can enter the detail view through links or buttons in other views to view the detailed information of data items. The detail view can contain multiple types of fields to provide rich information display.  
 ![Design Detail Page Example](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/xiangqing1.png)
 :::tip Example
 Detail view display effect:
@@ -38,7 +38,7 @@ In the canvas design area, the detail view will default to providing a detail co
 + Title arrangement: that is, the arrangement of the title and its content, which is divided into horizontal and vertical.
 + Disable data loading: after enabling this option, the data loading function will not be executed.
 + Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
-# 3. Table
+# Ⅲ. Table
 The table view is used to display data sets in the form of rows and columns. Each row represents a data item, and each column represents an attribute of the data item. It is suitable for scenarios that require intuitive display and operation of data sets, such as order management and customer lists.
 :::warning Prompt
 In addition to the regular table, the table also supports two advanced views, tree table and cascading, to meet more complex display requirements.
@@ -49,7 +49,7 @@ Default table view display effect:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/morenbiaoge2.png)
 :::
 In the canvas design area, the table view by default includes a search component and a table component. The attribute configuration of these two components will affect the global settings. When dragging other components into the canvas, they must be placed inside the search component or table component, otherwise the component cannot be successfully created.
-## (1) Default Table
+## (Ⅰ) Default Table
 + Search component attributes
     - Hide search button: if this option is enabled, all action buttons in the search component will be hidden. To perform a search, you can press the Enter key.
     - Disable folding: if this option is enabled, the search area will remain fixed and not allow expansion or collapse operations.
@@ -93,7 +93,7 @@ In the canvas design area, the table view by default includes a search component
     - Default sorting field: after enabling the sorting function, the table will automatically sort and display according to the preset default sorting field.
     - Disable data loading: after enabling this option, the data loading function will not be executed.
     - Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
-## (2) Tree Table
+## (Ⅱ) Tree Table
 ![Design Table Page Example - Tree Table](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shubiao1.png)
 :::tip Example
 Table - Tree Table View Display Effect:
@@ -111,7 +111,7 @@ A complete association field must be formed to successfully generate the linkage
 :::
 + Support search: if this function is enabled, a search box will be displayed in the tree structure, and hierarchical fields can be filtered.
 + Expand level: if a multi-layer linkage relationship is set, you can specify which level to expand to.
-## (3) Cascading
+## (Ⅲ) Cascading
 Similar to the tree table, the difference is that a cascading component is added to the cascading. In the actual page display, the tree table will dynamically display sub-options below, while the cascading will dynamically display sub-options on the right. Here, only the relevant attributes of the cascading are introduced. For details of the search component and table component, please refer to the relevant introduction of the default table.
 ![Design Table Page Example - Cascading](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/jilianbiaoge1.png)
 :::tip Example
@@ -128,7 +128,7 @@ Table - Cascading View Display Effect:
 A complete association field must be formed to successfully generate the linkage relationship.
 :::
 + Support search: if this function is enabled, a search box will be displayed in the tree structure, and hierarchical fields can be filtered.
-# 4. Gallery
+# Ⅳ. Gallery
 The gallery view displays content items in the form of cards, allowing users to intuitively browse different content items. It is suitable for scenarios that need to display visually rich content, such as product displays and photo album browsing.
 ![Design Gallery Page Example - Design Card](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/hualang1.png)
 ![Design Gallery Page Example - Design Other](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/hualang2.png)
@@ -151,7 +151,7 @@ In the canvas design area, the gallery view consists of two pages: "Design Card"
     - Query conditions: in the actual page display, data will be displayed according to the configured query conditions.
     - Disable data loading: after enabling this option, the data loading function will not be executed.
     - Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
-# 5. Tree View
+# Ⅴ. Tree View
 The tree view is used to display data items in a hierarchical structure. Each data item can contain sub-items, forming a hierarchical structure. The tree view supports expand and collapse operations, which is convenient for users to view and manage data with hierarchical relationships. It is suitable for scenarios that need to display data with hierarchical relationships, such as organizational charts and classification directories.
 :::info Note
 The tree table in the table is different from the tree table in the tree view, and the same is true for cascading:
@@ -159,7 +159,7 @@ The tree table in the table is different from the tree table in the tree view, a
 + The tree table in the tree view uses the tree table's model as the main model, and the left form is the expanded content part.
 :::
 The tree view is divided into two types: tree table and cascading, which are composed of a cascading component (or tree component) and a selected view type component. The relevant attributes of the form component have been described in detail above, and will not be repeated here.
-## (1) Tree Table
+## (Ⅰ) Tree Table
 ![Design Tree View Page Example - Tree Table](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-shubiao1.png)
 :::tip Example
 Tree View - Tree Table View Display Effect:
@@ -177,7 +177,7 @@ Tree View - Tree Table View Display Effect:
     - Copy page: when choosing to copy an existing page, this attribute will be displayed. Users can choose to copy a published page that meets the view type under the current model.
 + Support search: if this function is enabled, a search box will be displayed in the tree structure, and hierarchical fields can be filtered.
 + Expand level: supports specifying which level the page defaults to expand to.
-## (2) Cascading
+## (Ⅱ) Cascading
 ![Design Tree View Page Example - Cascading](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/shushitu-jilian.png)
 :::tip Example
 Tree View - Cascading View Display Effect:

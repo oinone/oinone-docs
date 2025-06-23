@@ -6,7 +6,7 @@ category:
 order: 13
 ---
 
-# 1. M2O Relationship Field Configuration
+# Ⅰ. M2O Relationship Field Configuration
 ```java
 @Field(displayName = "Teacher Associated Student")
 @Field.many2one
@@ -14,7 +14,7 @@ order: 13
 private Student students;
 ```
 
-## (1) Common Issues
+## \(Ⅰ\) Common Issues
 ### 1. Many-to-One Relationship Field Association:
 In a many-to-one relationship scenario, `studentName` is a field in the current model, while `name` belongs to the `Student` model. This many-to-one relationship is established through these two fields.
 
@@ -33,7 +33,7 @@ If an error occurs during startup, make targeted modifications based on the spec
 ### 6. Analysis of Saving Errors:
 When a "Duplicate entry '******' for key 'PRIMARY'" error occurs during saving, the root cause is that `studentName` is set as a unique key. When the same `name` value from the `Student` model is assigned to the `studentName` field of the current model, it triggers a unique key conflict. This situation may also occur in other similar relationship operations.
 
-# 2. O2M Relationship Field Configuration
+# Ⅱ. O2M Relationship Field Configuration
 ```java
 @Field(displayName = "Teacher Associated Pet")
 @Field.one2many
@@ -52,8 +52,8 @@ Common Issues:
 + Startup error: Make corresponding modifications based on the error content.
 + Saving error: Please save the associated relationship model first. If `id` is a custom field associated with `PetShop`, the `id` must be assigned a value when saving the association relationship; otherwise, an error will occur.
 
-# 3. M2M Relationship Field Configuration
-## (1) Configuration Example 1
+# Ⅲ. M2M Relationship Field Configuration
+## \(Ⅰ\) Configuration Example 1
 ```java
 @Field.many2many(through = OrderRelLogistics.MODEL_MODEL, relationFields = {"parentOrderId"}, referenceFields = {"logisticsBillId"})
 @Field.Relation(relationFields = {"id"}, referenceFields = {"id"})
@@ -69,7 +69,7 @@ Common Issues:
 
 + Saving error: Please save the associated relationship model first. If "id (left)" is a custom field in the current model, the custom value needs to be assigned when saving the association relationship to correctly save the association.
 
-## (2) Configuration Example 2:
+## \(Ⅱ\) Configuration Example 2:
 1. Add `TalentTypeEnum`
 
 ```java
@@ -127,7 +127,7 @@ Analysis:
 4. Common Issues:
 + Error: The associated field of the associated model needs to be configured. Reason: The `talentType` field is not defined in `PetTalent`.
 
-## (3) Configuration Example 3:
+## \(Ⅲ\) Configuration Example 3:
 ```java
 @Field(displayName = "Category")
 @Field.many2many(

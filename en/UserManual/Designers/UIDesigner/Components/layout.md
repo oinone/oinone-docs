@@ -11,7 +11,7 @@ prev:
 ---
 Layout components are mainly used for the style layout of pages. They are equivalent to containers that can hold multiple other components. At the same time, layout components support nested use with each other, allowing users to more flexibly build page structures and layouts.
 
-# 1. Common Attributes
+# Ⅰ. Common Attributes
 + Hidden Status: In addition to the simple binary option of hidden or visible, a conditional hiding function can be set. That is, the component will be hidden when specific conditions are met; otherwise, it will remain visible.
 
 :::info Note
@@ -29,8 +29,8 @@ When designing a PC page, if the display device of a grouping component is set t
 
 :::
 
-# 2. Specific Attributes
-## (1) Grouping
+# Ⅱ. Specific Attributes
+## (Ⅰ) Grouping
 Components with similar business meanings can be grouped together to achieve categorized management and clear presentation of page components.
 
 :::tip Example
@@ -52,7 +52,7 @@ Specific attributes of the grouping component:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/fenzu3.png)
 
-## (2) Layout Container
+## (Ⅱ) Layout Container
 Similar to a table structure, users can flexibly add or delete a row or a column, and can also customize the settings of a specific container.
 
 :::info Note
@@ -108,7 +108,7 @@ The layout container contains multiple sub - containers. When setting attributes
 
 :::
 
-## (3) Tab
+## (Ⅲ) Tab
 Multiple tab pages can be added to each tab. Users can configure different components for each tab page to meet diverse display requirements.
 
 :::tip Example
@@ -138,7 +138,7 @@ Specific attributes of the tab:
 + Tab Page
     - Default Activation: A tab page can be set as the default active page, and activation conditions can also be set. The tab page will be activated when the conditions are met.
 
-## (4) Collapsible Panel
+## (Ⅳ) Collapsible Panel
 Various components can be configured in the panel. Users can expand or collapse the panel as needed to optimize the page layout and user experience.
 
 :::tip Example

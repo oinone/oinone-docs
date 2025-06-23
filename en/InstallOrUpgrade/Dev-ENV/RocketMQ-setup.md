@@ -7,7 +7,7 @@ category:
 order: 5
 ---
 
-# 1. Download the Installation Package
+# Ⅰ. Download the Installation Package
 
 Download: [https://rocketmq.apache.org/download](https://rocketmq.apache.org/download)
 
@@ -22,7 +22,7 @@ On Linux/macOS, use the default terminal; on Windows, use PowerShell (**unless C
 
 # II. Installation
 
-## (i) Decompression
+## (Ⅰ) Decompression
 
 Visualize or decompress using the following command
 
@@ -60,7 +60,7 @@ On Windows systems, using PowerShell to create symbolic links may require PowerS
 
 :::
 
-## (2) Modify Configuration for the Development Environment
+## (Ⅱ) Modify Configuration for the Development Environment
 
 :::info Note
 

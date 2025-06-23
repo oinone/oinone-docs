@@ -13,14 +13,14 @@ order: 2
 
 PamirsSession is a class used to manage Oinone request sessions, inheriting from PamirsRequestSession. It provides a series of methods to obtain and set session-related information, such as environment variables, user information, request variables, etc. Meanwhile, it also offers functions like session cleanup.
 
-## (1) Class Overview
+## \(Ⅰ\) Class Overview
 
 **Full Path**: `pro.shushi.pamirs.meta.api.session.PamirsSession`
 **Inheritance Relationship**: Inherits from `PamirsRequestSession`
 **Function**: Manages the session context of the Oinone framework, provides global static methods to get and set session attributes (such as environment, user information, request variables, etc.), and manages business-related configurations and cached data through `RequestContext`.
 **Thread Safety**: All methods are static methods, and thread safety is achieved through a session context based on thread isolation.
 
-## (2) Member Variables
+## \(Ⅱ\) Member Variables
 
 ### 1. Session Attribute Constants
 
@@ -46,11 +46,11 @@ PamirsSession is a class used to manage Oinone request sessions, inheriting from
 | `clearServiceHolder` | `HoldKeeper<SessionClearService>` | Holds session cleanup service instances                       |
 
 
-## (3) Constructor
+## \(Ⅲ\) Constructor
 
 **No Explicit Constructor**: All methods are static methods, and underlying implementations (such as `SessionApi`) are loaded through the SPI mechanism. Default implementation: `PamirsSessionHolder`
 
-## (4) Core Methods
+## \(Ⅳ\) Core Methods
 
 ### 1. Session Attribute Operations
 
@@ -146,20 +146,20 @@ PamirsRequestVariables variables = PamirsSession.getRequestVariables();
 String requestUrl = variables.getRequestUrl(); // Get the request URL
 ```
 
-## (5) Notes
+## \(Ⅴ\) Notes
 
 + **Thread Safety**: `PamirsSession` methods are all static and thread-safe, using `TransmittableThreadLocal` internally to store context, supporting sub-thread data transmission.
 + **Extension Points**: Obtain extension interfaces (such as `SessionApi`) through `Spider.getDefaultExtension`, supporting custom implementations.
 + SessionClearApi: As long as the SessionClearApi interface is implemented, the clear method will be automatically called at the end of the request.
 
-# 2. RequestContext
+# Ⅱ. RequestContext
 
-## (1) Class Overview
+## \(Ⅰ\) Class Overview
 
 **Full Path**: `pro.shushi.pamirs.meta.api.session.RequestContext`
 **Function**: Stores request-level business context data, including model configurations, function definitions, cached data, etc., supporting efficient configuration query and cache operations.
 
-## (2) Member Variables
+## \(Ⅱ\) Member Variables
 
 | **Name**         | **Type**                  | **Description**     |
 | :--------------- | :------------------------ | :----------- |
@@ -169,7 +169,7 @@ String requestUrl = variables.getRequestUrl(); // Get the request URL
 | `extendCacheMap` | `Map<String, Object>`     | Extended cache     |
 
 
-## (3) Core Methods
+## \(Ⅲ\) Core Methods
 
 ### 1. `getModelConfig(String model)`
 
@@ -202,9 +202,9 @@ Function userFunction = context.getFunction("pamirs", "getUserInfo");
 + **Function**: Initializes the context cache (used internally, no need to call externally).
 + **Parameter**: `sessionCacheFactoryApi` - Cache factory instance.
 
-# 3. Session Construction Process (HTTP Request Handling)
+# Ⅲ. Session Construction Process (HTTP Request Handling)
 
-## (1) Request Initialization:
+## \(Ⅰ\) Request Initialization:
 
 Parses the HTTP request through `SessionPrepareTemplate`, extracts session attributes (such as Header, Cookie), and creates `PamirsRequestVariables`.
 
@@ -213,7 +213,7 @@ Parses the HTTP request through `SessionPrepareTemplate`, extracts session attri
 SessionPrepareTemplate.prepare(request, moduleName, requestParam);
 ```
 
-## (2) Session Initialization Extension
+## \(Ⅱ\) Session Initialization Extension
 
 ### 1. Extension via SessionInitApi
 
@@ -251,17 +251,17 @@ When in use, Oinone will automatically discover and load the `CustomSessionInitA
 
 Refer to the [Hook Interceptor Document](/en/DevManual/Reference/Back-EndFramework/functions-API.md#iii-hook-interceptors), and refer to the example code `pro.shushi.pamirs.user.api.hook.UserHook`. In this example, with the help of `UserHook`, it can be determined whether the user is logged in. If the user is logged in, user-related information will be automatically set, so that the `PamirsSession.getUserId()` method can successfully obtain the user ID value in the follow-up.
 
-## (3) Context:
+## \(Ⅲ\) Context:
 
 Obtain `RequestContext` through `PamirsSession.getContext()`, and use it to obtain metadata-related information, which will automatically use the first-level and second-level caches of models, modules, and functions.
 
-## (4) Session Cleanup:
+## \(Ⅳ\) Session Cleanup:
 
 After the request processing is completed, call `PamirsSession.clear()` to clear the current session data and release resources.
 
-# 4. Example Code
+# Ⅳ. Example Code
 
-## (1) Common Usage Scenarios
+## \(Ⅰ\) Common Usage Scenarios
 
 ```java
 // Get the user ID of the current session
@@ -275,7 +275,7 @@ ModelConfig testModel = context.getModelConfig(TestModel.MODEL_MODEL);
 Function userFunction = context.getFunction("pamirs", "userLogin");
 ```
 
-## (2) Extending PamirsSession
+## \(Ⅱ\) Extending PamirsSession
 
 ### 1. Extension Scenario Description
 

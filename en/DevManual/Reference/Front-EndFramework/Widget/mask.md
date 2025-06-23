@@ -24,7 +24,7 @@ In addition, the document lists the class names, attributes, and methods of some
 
 # I. Built-in Masks (Mask)
 
-## (一) Default Mask
+## (Ⅰ) Default Mask
 
 ```xml
 <mask>
@@ -53,7 +53,7 @@ In addition, the document lists the class names, attributes, and methods of some
 </mask>
 ```
 
-## (二) Inline Multi-Tab Mask
+## (Ⅱ) Inline Multi-Tab Mask
 
 ```xml
 <mask>
@@ -88,7 +88,7 @@ In addition, the document lists the class names, attributes, and methods of some
 
 Components used in masks are called **Mask Components**. According to their functions and positions, they are divided into navigation components, top bar components, layout components, and other components. Below we list all existing mask components in the platform, and provide API documentation at the end of this chapter for readers to refer to.
 
-## (一) Navigation Components
+## (Ⅰ) Navigation Components
 
 | **Component Name** | **ClassName**         | **Usage**                       |
 | ------------ | ---------------- | ------------------------------ |
@@ -97,7 +97,7 @@ Components used in masks are called **Mask Components**. According to their func
 | Multi-Tab     | MultiTabsWidget  | `<multi-tabs />`               |
 
 
-## (二) Top Bar Components
+## (Ⅱ) Top Bar Components
 
 | **Component Name** | **ClassName**           | **Usage**                           |
 | ------------ | ------------------ | ---------------------------------- |
@@ -107,7 +107,7 @@ Components used in masks are called **Mask Components**. According to their func
 | User Info     | UserWidget         | `<widget widget="user" />`         |
 
 
-## (三) Layout Components
+## (Ⅲ) Layout Components
 
 | **Component Name** | **ClassName**            | **Usage**                  |
 | ------------ | ------------------- | ------------------------- |
@@ -119,7 +119,7 @@ Components used in masks are called **Mask Components**. According to their func
 | Sidebar     | MaskSidebarWidget   | `<sidebar></sidebar>`     |
 
 
-## (四) Other Components
+## (Ⅳ) Other Components
 
 | **Component Name** | **ClassName**      | **Usage**                      |
 | ------------ | ------------- | ----------------------------- |
@@ -128,7 +128,7 @@ Components used in masks are called **Mask Components**. According to their func
 
 # VI. Registration of Mask Components
 
-## (一) Registration Options for Mask Components
+## (Ⅰ) Registration Options for Mask Components
 
 ```xml
 /**
@@ -153,7 +153,7 @@ It is not difficult to find from the above type declaration that the registratio
 
 Below, we introduce the components registered with these two attributes respectively.
 
-## (二) Registration Using dslNodeType
+## (Ⅱ) Registration Using dslNodeType
 
 Take `MaskBlockWidget` as an example:
 
@@ -182,7 +182,7 @@ The corresponding `DOM` structure in the browser is completely consistent with t
 </div>
 ```
 
-## (三) Registration Using widget
+## (Ⅲ) Registration Using widget
 
 Take `AppSwitcherWidget` as an example:
 
@@ -211,7 +211,7 @@ The corresponding `DOM` structure in the browser will wrap a `div` tag outside t
 </div>
 ```
 
-## (四) Best Practices
+## (Ⅳ) Best Practices
 
 ### 1. Registration Using dslNodeType
 
@@ -226,7 +226,7 @@ The corresponding `DOM` structure in the browser will wrap a `div` tag outside t
 
 Similar to component registration, masks can be replaced or modified through registration.
 
-## (一) Registration Options for Masks
+## (Ⅰ) Registration Options for Masks
 
 ```typescript
 /**
@@ -304,7 +304,7 @@ export interface LayoutRegisterOptions extends SPIOptions {
 
 It can be seen from the above type declaration that it is mainly divided into three categories: view, field, and action. For different elements, we provide different parameters to describe the usage scope of the mask. Similar to any component registration, the more "precise" the description of the usage scope, the higher the priority of the mask used in the corresponding position.
 
-## (二) Registering a Mask Using registerMask
+## (Ⅱ) Registering a Mask Using registerMask
 
 Below is the mask we registered in "[Explore the Front-end Framework - Build a dashboard](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)":
 
@@ -345,7 +345,7 @@ According to the requirements of the previous content, we removed some component
 2. Remove the breadcrumb component to make our main content distribution area look larger.
 3. Apply this mask to the page corresponding to the "Country Group" menu item.
 
-## (三) Editing Masks via MaskEditor
+## (Ⅲ) Editing Masks via MaskEditor
 
 For certain specific functions, the mask needs to change accordingly using different configuration items. For such requirements, it is impossible to achieve by registering a static mask through `registerMask`. So, is there a way to edit the mask at runtime? The answer is yes.
 
@@ -355,7 +355,7 @@ Let's look at a scenario that may be encountered in actual business: when the "O
 
 Let's first define a runtime configuration manager that can obtain whether it is enabled through the runtime configuration:
 
-(It is recommended to follow the best practices introduced in the [Environment - Custom Runtime Configuration](/en/DevManual/Reference/Front-EndFramework/environment.md#三、自定义运行时配置) section for definition)
+(It is recommended to follow the best practices introduced in the [Environment - Custom Runtime Configuration](/en/DevManual/Reference/Front-EndFramework/environment.md#iii-custom-runtime-configuration) section for definition)
 
 ```typescript
 /**
@@ -420,7 +420,7 @@ export class OrganizationSwitcherMaskEditor implements MaskEditor {
 
 # VIII. Reference List
 
-## (一) Public Components
+## (Ⅰ) Public Components
 
 ### 1. MaskWidget
 
@@ -476,7 +476,7 @@ export class MaskCommonWidget extends BaseMaskLayoutWidget<MaskCommonWidgetProps
 - **Parameters**:
   - `props`: Component configuration parameters.
 
-## (二) Navigation Components
+## (Ⅱ) Navigation Components
 
 ### 1. BreadcrumbWidget
 
@@ -803,7 +803,7 @@ export class MultiTabsWidget extends MaskWidget
 - **Function Description**: Reload all tabs.
 - **Type**: `() => Promise<void>`
 
-## (三) Top Bar Components
+## (Ⅲ) Top Bar Components
 
 ### 1. AppSwitcherWidget
 
@@ -1055,7 +1055,7 @@ export class UserWidget extends MaskWidget
 - **Parameters**:
   - `reloadParameters`: Reload parameters.
 
-## (四) Layout Components
+## (Ⅳ) Layout Components
 
 ### 1. MaskBlockWidget
 
@@ -1160,7 +1160,7 @@ export class MaskSidebarWidget extends BaseMaskLayoutWidget
 - classNames: Class name array of the component, inherited from the parent class and appended with `['k-layout-sidebar']`, and when `mode` is `horizontal`, append `['k-layout-sidebar-horizontal']`. (`string[] | undefined`)
 - mode: Sidebar display mode, optional: `horizontal`, `inline`. Default: `inline`. (`horizontal | inline`)
 
-## (五) Other Components
+## (Ⅴ) Other Components
 
 ### 1. DividerWidget
 

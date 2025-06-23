@@ -6,14 +6,14 @@ category:
 order: 12
 ---
 
-# 1. Function Definition Specifications
+# Ⅰ. Function Definition Specifications
 The definition of Function must strictly follow Oinone's specifications:
 
 + `@Action` refers to a method displayed as a button on the page, and all methods with the `@Action` annotation require permission settings to be accessible. Each Action corresponds to a Function.
 + `@Function` is a manageable execution logic in Oinone, which is ubiquitous.
 + If it is just a query and does not require a button on the page, define it as `@Function`.
 
-## (1) Overwrite Common Default Data Manager Definition Standards:
+## \(Ⅰ\) Overwrite Common Default Data Manager Definition Standards:
 ```java
 @Action.Advanced(name = FunctionConstants.create, managed = true)//The default is the method name
 @Action(displayName = "Confirm", summary = "Add", bindingType = ViewTypeEnum.FORM)
@@ -42,7 +42,7 @@ public AuthRole queryOne(AuthRole query) {
 }
 ```
 
-## (2) Custom Function Definition Standards
+## \(Ⅱ\) Custom Function Definition Standards
 ```java
 @Action(displayName = "Enable")
 @Action.Advanced(type = FunctionTypeEnum.UPDATE)
@@ -65,7 +65,7 @@ public Teacher constructAll(Teacher data) {}
 
 :::
 
-# 2. @Action and @Function Annotation Usage Conventions
+# Ⅱ. @Action and @Function Annotation Usage Conventions
 + For overriding built-in data manager actions and functions, they should be completely consistent with the platform registration method. The following attributes can be modified as needed: (must)
     - `@Function.Advanced#displayName`
     - `@Function#openLevel`

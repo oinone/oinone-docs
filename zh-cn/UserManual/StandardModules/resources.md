@@ -40,7 +40,7 @@ order: 9
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/gjfz.png)
 
-## （一）国家、省、市、区、街道
+## （三）国家、省、市、区、街道
 ### 1.功能介绍
 （以国家为例，其他层级类似）国家是地区设置中的基础单元，系统提供了完善的国家信息管理功能，支持用户查看、添加、编辑和删除国家信息。
 

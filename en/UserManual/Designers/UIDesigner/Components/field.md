@@ -96,7 +96,7 @@ When designing a PC page, if the display device of a component is set to only mo
 + Allow Sorting: When this function is enabled, a sorting icon will be displayed in the column where the field is located, allowing users to customize the ascending or descending sorting method.
 
 # II. Specific Attributes
-## (1) Single-line Text
+## (Ⅰ) Single-line Text
 A single-line text box is suitable for recording short text content such as names and codes.
 
 :::tip Example
@@ -128,7 +128,7 @@ Specific attributes of single-line text:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang5.png)
 
-## (2) Multi-line Text
+## (Ⅱ) Multi-line Text
 A multi-line text box is suitable for recording long text content such as opinions and remarks.
 
 :::tip Example
@@ -152,7 +152,7 @@ Specific attributes of multi-line text:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/duohang3.png)
 
-## (3) Rich Text
+## (Ⅲ) Rich Text
 A WYSIWYG text editor that can be embedded in the browser, similar to Word in function. It is suitable for editing long descriptive text and supports operations such as changing font styles and inserting pictures.
 
 :::tip Example
@@ -173,7 +173,7 @@ Specific attributes of rich text:
     - Field Business Type: Only supports rich text type.
 + Height: Refers to the size of the component displayed on the actual page.
 
-## (4) Integer
+## (Ⅳ) Integer
 Only allows integer input, suitable for inputting integer data such as days and quantities.
 
 :::tip Example
@@ -198,7 +198,7 @@ Specific attributes of integers:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/zhengshu3.png)
 
-## (5) Decimal
+## (Ⅴ) Decimal
 Only allows decimal input, suitable for inputting decimal data such as amounts and temperatures.
 
 :::tip Example
@@ -223,7 +223,7 @@ Specific attributes of decimals:
 + Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
 + Show Thousands Separator: When this function is enabled, when the input value is large, it will be displayed in thousands separator format.
 
-## (6) Drop-down Single Selection
+## (Ⅵ) Drop-down Single Selection
 Allows users to select one data value from multiple options in a drop-down list. The options can be associated with model data, data dictionaries, or boolean data, suitable for single-selection scenarios.
 
 :::tip Example
@@ -284,7 +284,7 @@ For the filling of custom expressions in query conditions, you can refer to the 
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx6.png)
 
-## (7) Drop-down Multiple Selection
+## (Ⅶ) Drop-down Multiple Selection
 Allows users to select multiple data values from multiple options in a drop-down list. The options can be associated with model data, data dictionaries, or boolean data, suitable for multiple-selection scenarios.
 
 :::tip Example
@@ -344,7 +344,7 @@ For the filling of custom expressions in query conditions, you can refer to the 
 + Data Loading Function: When the field business is one-to-many or many-to-many, this attribute is displayed. When an option value is selected on the actual page, this function will be executed to load data.
 + Maximum/Minimum Selection Count: You can limit the selection count range, including the maximum and minimum selection counts, to limit user input.
 
-## (8) Radio Button
+## (Ⅷ) Radio Button
 Allows users to select only one value from directly displayed options, suitable for single-option scenarios such as gender selection.
 
 :::tip Example
@@ -393,7 +393,7 @@ Specific attributes of radio buttons:
 
 + Option Configuration: Same as drop-down single selection.
 
-## (9) Checkbox
+## (Ⅸ) Checkbox
 Allows users to select multiple values from directly displayed options, suitable for multiple-option scenarios such as course selection.
 
 :::tip Example
@@ -430,7 +430,7 @@ Specific attributes of checkboxes:
 + Data Loading Function: Same as drop-down multiple selection.
 + Maximum/Minimum Selection Count: Same as drop-down multiple selection.
 
-## (10) Switch
+## (Ⅹ) Switch
 Often used to select between two opposite options, such as yes/no.
 
 :::tip Example
@@ -450,7 +450,7 @@ Specific attributes of switches:
 + Creation Attribute
     - Field Business Type: Only supports boolean type.
 
-## (11) Year
+## (Ⅺ) Year
 Provides a year selector function, suitable for scenarios where a specific year needs to be selected, such as birth year.
 
 :::tip Example
@@ -470,7 +470,7 @@ Specific attributes of years:
 + Creation Attribute
     - Field Business Type: Only supports year type.
 
-## (12) Date
+## (Ⅻ) Date
 Provides a year-month-day selector, suitable for fields that need to be accurate to the date, such as employment date and birth date.
 
 :::tip Example
@@ -498,7 +498,7 @@ Specific attributes of dates:
 + Offset: You can set an offset to make the start date or end date move forward or backward by a specified time.
 + Quick Options: Used to quickly specify selectable time.
 
-## (13) Date and Time
+## (XIII) Date and Time
 Provides a comprehensive year-month-day, hour-minute-second selector, suitable for fields that need to be accurate to a specific time, such as order time and shipping time.
 
 :::tip Example
@@ -527,7 +527,7 @@ Specific attributes of date and time:
 + Offset: You can set an offset to make the start date or end date move forward or backward by a specified time.
 + Quick Options: Used to quickly specify selectable time.
 
-## (14) Time
+## (XIV) Time
 Provides an hour-minute-second selector, suitable for fields that only involve time and not dates, such as submission time and working time.
 
 :::tip Example
@@ -550,7 +550,7 @@ Specific attributes of time:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sj3.png)
 
-## (15) Color Picker
+## (XV) Color Picker
 Provides a custom color function, suitable for scenarios such as setting label colors and selecting colors for theme customization.
 
 :::tip Example
@@ -570,7 +570,7 @@ Specific attributes of colors:
 + Creation Attribute
     - Text Field Business Type: Only supports text type.
 
-## (16) File Upload
+## (XVI) File Upload
 Supports uploading files in multiple formats, including documents, pictures, videos, etc., suitable for uploading attachments.
 
 :::tip Example
@@ -611,7 +611,7 @@ If a certain format is allowed, files of other formats cannot be selected in the
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wj3.png)
 
-## (17) Image Upload
+## (XVII) Image Upload
 Supports uploading image files, suitable for scenarios such as uploading schematic diagrams, photos, and avatars.
 
 :::tip Example
@@ -653,7 +653,7 @@ If a certain format is allowed, files of other formats cannot be selected in the
 
 :::
 
-## (18) Tag
+## (XVIII) Tag
 Allows users to input and save multiple values, suitable for saving tags for users.
 
 :::info Note
@@ -689,7 +689,7 @@ Specific attributes of tags:
 
 + Quantity Limit: Same as the quantity limit in the creation attribute, the maximum number of tags that can be stored, and its value cannot be less than 1.
 
-## (19) Cascading Selection
+## (XIX) Cascading Selection
 Allows users to filter and locate the required data through step-by-step selection, suitable for scenarios such as region selection and category filtering.
 
 :::tip Example
@@ -758,7 +758,7 @@ When the field business is many-to-one, this function is automatically enabled.
 
 :::
 
-## (20) Tree Selection
+## (XX) Tree Selection
 Allows users to filter and locate the required data through step-by-step selection, suitable for scenarios such as region selection and category filtering.
 
 :::tip Example
@@ -797,7 +797,7 @@ Specific attributes of tree selection:
     - Self-associated Relationship Field: That is, the associated relationship field in the selected model, and the model of this field is consistent with the selected model.
 + Maximum/Minimum Selection Count: When the field business type is one-to-many or many-to-many, this attribute is displayed. You can limit the selection count range, including the maximum and minimum selection counts, to limit user input.
 
-## (21) Key-Value Pair
+## (XXI) Key-Value Pair
 Displays structured information in a clear and intuitive way, which is very suitable for scenarios such as product detail display and user configuration option settings.
 
 :::info Note
@@ -832,7 +832,7 @@ Specific attributes of key-value pairs:
 
 :::
 
-## (22) Range
+## (XXII) Range
 Supports specifying a range for time, which is convenient for flexible application in scenarios such as time interval prompts.
 
 :::info Note
@@ -864,7 +864,7 @@ Specific attributes of ranges:
 + Date Format: When the field business is date or date and time, this attribute is displayed.
 + Time Format: When the field business is date and time or time, this attribute is displayed.
 
-## (23) Phone
+## (XXIII) Phone
 Specifically used to store or display data of the mobile phone number type.
 
 :::info Note
@@ -892,7 +892,7 @@ Specific attributes of phones:
 + Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
 
 
-## (24) Currency
+## (XXIV) Currency
 Used to store or display amount-type data, allowing input of integers or decimals with the number of decimal places accurate to within two.
 
 :::tip Example
@@ -918,7 +918,7 @@ Specific attributes of currency:
 + Support Prefix/Suffix: Supports adding prefixes and suffixes to input content. Prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when data highly overlaps.
 + Show Thousands Separator: When this function is enabled, large input values will be displayed in thousands separator format.
 
-## (25) Email
+## (XXV) Email
 Used to store or display data in compliance with the email format (xx@xx.xx), facilitating users' information exchange and management.
 
 :::tip Example
@@ -940,7 +940,7 @@ Specific attributes of email:
 
 + Support Prefix/Suffix: Supports adding prefixes and suffixes to input content. Prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when data highly overlaps.
 
-## (26) Cross-table Field
+## (XXVI) Cross-table Field
 A special field that can extract corresponding fields from associated relationship fields and flatten them in the current model. Suitable for referencing data information from related tables when generating complex reports.
 
 :::tip Example
@@ -957,7 +957,7 @@ Specific attributes of cross-table field:
     - Associated Field: That is, the field with an associated relationship under the model where the current page is located.
     - Display Field: Selects the field existing under the model of the associated field.
 
-## (27) Paragraph
+## (XXVII) Paragraph
 Allows displaying a complete paragraph of text content on the page, suitable for scenarios such as detailed explanation, description, or elaboration of products.
 
 :::tip Example
@@ -972,7 +972,7 @@ Specific attributes of paragraph:
 + Text: Provides a feature-rich rich text editor for inputting and editing content.
 + Border Style: Supports setting various border styles for paragraphs, including three styles: no border, solid border, and dashed border.
 
-## (28) Embedded Web Page
+## (XXVIII) Embedded Web Page
 Supports embedding specified web pages in the page, allowing users to directly access and browse other web content in the design page.
 
 :::tip Example
@@ -999,7 +999,7 @@ Specific attributes of embedded web page:
 + When the component type is static, entering a web link will directly display the page content corresponding to the link in the actual page. If it cannot be displayed, please check whether the web page allows embedding.
 :::
 
-## (29) Hyperlink
+## (XXIX) Hyperlink
 Supports displaying hyperlinks on the page. Users can easily jump to the corresponding page by clicking the hyperlink, achieving convenient navigation between pages.
 
 :::tip Example
@@ -1029,7 +1029,7 @@ Specific attributes of hyperlink:
     - Opening Method: Includes two methods: opening in the current window and opening in a new window.
 :::
 
-## (30) Shuttle Box
+## (XXX) Shuttle Box
 A shuttle box is a two-column selection box with selectable fields displayed on the left and selected fields displayed on the right. Fields can be selected or deselected through the shuttle box, suitable for scenarios such as selecting display fields.
 
 :::tip Example
@@ -1061,7 +1061,7 @@ For the filling of custom expressions in query conditions, you can refer to the 
 
 + Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
-## (31) Company
+## (XXXI) Company
 Provides a shortcut to directly select companies already entered in the system.
 
 :::info Note
@@ -1083,7 +1083,7 @@ Specific attributes of company:
     - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Company" model.
 + Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
-## (32) Department
+## (XXXII) Department
 Provides a shortcut to directly select departments already entered in the system.
 
 :::info Note
@@ -1105,7 +1105,7 @@ Specific attributes of department:
     - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Department" model.
 + Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
-## (33) Employee
+## (XXXIII) Employee
 Provides a shortcut to directly select employees already entered in the system.
 
 :::info Note
@@ -1127,7 +1127,7 @@ Specific attributes of employee:
     - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Employee" model.
 + Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
-## (34) Address
+## (XXXIV) Address
 Provides an address selector function, suitable for scenarios such as selecting home addresses.
 
 :::info Note
@@ -1147,7 +1147,7 @@ Specific attributes of address:
     - Field Business Type: Supports many-to-one.
     - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Address" model.
 
-## (35) Form
+## (XXXV) Form
 Supports embedding forms in the page, suitable for designing complex pages to meet diverse page requirements.
 
 :::tip Example
@@ -1164,7 +1164,7 @@ Specific attributes of form:
     - Associated Model: Requires setting the associated model of the current component.
 + Empty Value Display Style: Used to set the display method when some field values in the form are empty.
 
-## (36) Table
+## (XXXVI) Table
 Supports embedding tables in the page, suitable for scenarios such as displaying lists or data.
 
 :::tip Example
@@ -1189,7 +1189,7 @@ Specific attributes of table:
 + Incremental Submission: Only submits updated data.
 :::
 
-## (37) File Download
+## (XXXVII) File Download
 Supports packaging data into a file for download, suitable for batch data acquisition for subsequent analysis.
 
 :::tip Example
@@ -1205,7 +1205,7 @@ Specific attributes of file download:
 + Download Prompt Text: The main content part of the download prompt information. You can enter specific information to inform users here, clarifying the download content.
 + Download File Name: Used to specify the file name displayed when the download file is saved on the user's device.
 
-## (38) Drag and Drop Upload
+## (XXXVIII) Drag and Drop Upload
 Used to drag files into a specified area to complete upload, also supporting click upload.
 
 :::tip Example
@@ -1236,7 +1236,7 @@ If a certain format is allowed, files of other formats cannot be selected in the
 + CDN Configuration: Supports CDN configuration.
 + Private Link: Allows choosing whether to use a private link.
 
-## (39) Handwritten Signature
+## (XXXIX) Handwritten Signature
 Supports implementing handwritten signatures on web pages, suitable for online contract signing, electronic form signing, etc.
 
 :::tip Example

@@ -63,10 +63,10 @@ All images on this platform use docker manifest to support amd64 and arm64 archi
 :::
 
 ## (II) Pull Image
-### Community Edition
+### 1. Community Edition
 Not currently provided, please use the source code installation method
 
-### Enterprise Edition
+### 2. Enterprise Edition
 ```shell
 ##oinone-designer-mini-vMajorVersion.MediumVersion:FullVersion
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1

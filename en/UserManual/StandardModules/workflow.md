@@ -14,7 +14,7 @@ Similar to the workbench, for details, please refer to the workbench documentati
 # II. Process Execution Records
 Process execution records are used to record the execution status of workflows. Every time a workflow is executed, the system saves a corresponding execution record in the process execution records.
 
-## (1) Filtering
+## \(Ⅰ\) Filtering
 ### 1. Function Introduction
 According to actual business requirements, you can customize the filtering conditions for process execution records. Under the current filtering conditions, the corresponding list of process execution records will be displayed, making it convenient to view different process execution records.
 
@@ -29,7 +29,7 @@ According to actual business requirements, you can customize the filtering condi
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/lcsx.png)
 
-## (2) Details
+## \(Ⅱ\) Details
 ### 1. Function Introduction
 The system supports viewing the execution details of workflows. You can not only check the basic information of each node but also comprehensively understand the overall running status and detailed information of the workflow.
 
@@ -43,7 +43,7 @@ For workflows initiated by the currently logged-in user and still in the "In Pro
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/lcxq.png)
 
 # III. System Settings
-## (1) SMS Channel Configuration
+## \(Ⅰ\) SMS Channel Configuration
 ### 1. Function Introduction
 Due to the specific requirements of different versions, services, or business scenarios, different SMS channels may need to be selected when configuring SMS templates. To meet these flexible configuration requirements, we provide an SMS channel configuration management interface to ensure the accuracy and efficiency of SMS services.
 
@@ -56,7 +56,7 @@ Due to the specific requirements of different versions, services, or business sc
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/dxtd.png)
 
-## (2) Email Server Configuration
+## \(Ⅱ\) Email Server Configuration
 ### 1. Function Introduction
 The system supports customizing email server configurations, allowing users to set various parameters of the email server according to actual needs to ensure that emails can be sent and received accurately and in a timely manner. Users can configure based on their own email service providers, server addresses, port numbers, etc., to meet the email sending requirements in different scenarios.
 
@@ -69,7 +69,7 @@ The system supports customizing email server configurations, allowing users to s
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/yjfwq.png)
 
-## (3) Email Signature Configuration
+## \(Ⅲ\) Email Signature Configuration
 ### 1. Function Introduction
 The system supports the email signature configuration function. Users can customize the email signature content, including text, images, links, and other elements, according to the corporate or personal brand image. By configuring the email signature, not only the professionalism of the email is improved, but also the brand recognition is enhanced, enabling recipients to quickly identify the email source and improve communication efficiency.
 
@@ -83,7 +83,7 @@ The system supports the email signature configuration function. Users can custom
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/yjqm.png)
 
-## (4) SMS Templates
+## \(Ⅳ\) SMS Templates
 ### 1. Function Introduction
 In the "SMS" nodes of workflows, micro - flows, and data processes, you can select the configured SMS templates for use.
 
@@ -101,7 +101,7 @@ For SMS templates that have been approved or are under review, editing or resubm
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/dxmb.png)
 
-## (5) Email Templates
+## \(Ⅴ\) Email Templates
 ### 1. Function Introduction
 The system supports custom email templates, allowing users to flexibly design email layouts, colors, and fonts according to brand, marketing, or communication needs, meeting diverse email sending requirements and improving email communication efficiency.
 
@@ -121,7 +121,7 @@ Email templates are not directly applied in the designer but are used during the
 # IV. Micro - flow Execution Records
 Micro - flow execution records are used to record the execution status of micro - flows. Every time a micro - flow is executed, the system saves a corresponding execution record in the micro - flow execution records.
 
-## (1) Filtering
+## \(Ⅰ\) Filtering
 ### 1. Function Introduction
 According to actual business requirements, you can customize the filtering conditions for micro - flow execution records. Under the current filtering conditions, the corresponding list of micro - flow execution records will be displayed, making it convenient to view different micro - flow execution records.
 
@@ -136,7 +136,7 @@ According to actual business requirements, you can customize the filtering condi
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/wlsx.png)
 
-## (2) Details
+## \(Ⅱ\) Details
 ### 1. Function Introduction
 The system supports viewing the execution details of micro - flows. You can not only check the basic information of each node but also comprehensively understand the overall running status and detailed information of the micro - flow.
 
@@ -146,7 +146,7 @@ The system supports viewing the execution details of micro - flows. You can not 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/wlxq.png)
 
 # V. Dynamic Forms
-## (1) Dynamic Form Tasks
+## \(Ⅰ\) Dynamic Form Tasks
 ### 1. Function Introduction
 In dynamic form tasks, users can customize the process name. When a task node uses the process name set in the dynamic form task, you can trigger the dynamic form task to perform corresponding testing operations on the node.
 
@@ -160,7 +160,7 @@ In dynamic form tasks, users can customize the process name. When a task node us
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/dtbd.png)
 
-## (2) Task Node Configuration
+## \(Ⅱ\) Task Node Configuration
 ### 1. Function Introduction
 You can flexibly configure the task nodes of dynamic forms. When they match the names of approval or filling nodes in the process designer, they can be automatically connected to the corresponding task nodes and then jump to the corresponding dynamic forms.
 

@@ -6,7 +6,7 @@ category:
 order: 9
 ---
 
-# 1. Introduction
+# Ⅰ. Introduction
 In the scenario of enterprise digital office, integrating business systems with DingTalk is a key means to achieve unified identity authentication, organizational structure synchronization, message pushing, and page embedding. This article is based on the Java technology stack and uses the official [DingTalk Open Platform SDK](https://help.aliyun.com/document_detail/163984.html) to complete the docking.
 
 1. **Unified Login and Identity Authentication**
@@ -24,11 +24,11 @@ This article mainly explains how Oinone applications connect with DingTalk's OAu
 
 :::
 
-# 2. Access Preparation
-## (1) Understanding DingTalk Identity Authentication (Single Sign-On)
+# Ⅱ. Access Preparation
+## \(Ⅰ\) Understanding DingTalk Identity Authentication (Single Sign-On)
 Tutorial on using server-side API identity authentication (single sign-on) to implement logging in to third-party websites: [https://open.dingtalk.com/document/orgapp/tutorial-obtaining-user-personal-information](https://open.dingtalk.com/document/orgapp/tutorial-obtaining-user-personal-information)
 
-## (2) Creating a DingTalk Application
+## \(Ⅱ\) Creating a DingTalk Application
 1. Log in to [DingTalk Open Platform](https://open-dev.dingtalk.com/fe/app?hash=%23%2Fcorp%2Fapp#/corp/app)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746684768497-0864e8f5-5f3f-4ee7-9904-9f426e0a45ee-20250530144829568.png)
@@ -40,7 +40,7 @@ Tutorial on using server-side API identity authentication (single sign-on) to im
 - `AppSecret(Client Secret)`
 - `AgentId` (Micro Application ID)
 
-## (3) Introducing DingTalk SDK Dependencies
+## \(Ⅲ\) Introducing DingTalk SDK Dependencies
 ```xml
 <dependency>
     <groupId>com.aliyun</groupId>
@@ -49,8 +49,8 @@ Tutorial on using server-side API identity authentication (single sign-on) to im
 </dependency>
 ```
 
-# 3. Specific Docking Steps
-## (1) Adding DingTalk Configuration to the Project
+# Ⅲ. Specific Docking Steps
+## \(Ⅰ\) Adding DingTalk Configuration to the Project
 1. Project application.yml configuration (example used in this article)
 
 ```yaml
@@ -117,7 +117,7 @@ SimpleDingTalkConfig dingTalkConfig = new SimpleDingTalkConfig().singletonModel(
 dingTalkConfig.getAppUrl();
 ```
 
-## (2) Initializing the DingTalk Client
+## \(Ⅱ\) Initializing the DingTalk Client
 DingTalk client classes and functions. The following two clients are official encapsulations provided by the Alibaba Cloud SDK, corresponding to different API capability modules:
 
 | **Client Class** | **Function** |
@@ -188,7 +188,7 @@ public class DingTalkHelper {
 }
 ```
 
-## (3) Building the Authorization Link (Jumping to DingTalk)
+## \(Ⅲ\) Building the Authorization Link (Jumping to DingTalk)
 The oauth method is responsible for generating the DingTalk OAuth authorization link and redirecting to it.
 
 ```java
@@ -209,7 +209,7 @@ public void oauth(HttpServletResponse response) throws IOException {
 + After clicking, the user will be redirected to DingTalk's QR code scanning page;
 + After successful authorization, DingTalk will redirect the user to `/pamirs/ddAuth/oauth2url` with an `authCode` parameter.
 
-## (4) Handling DingTalk Callback, Obtaining authCode and Exchanging for accessToken
+## \(Ⅳ\) Handling DingTalk Callback, Obtaining authCode and Exchanging for accessToken
 + The `handleCallback` method processes the DingTalk callback request, obtains the `authCode` from the request parameters, then exchanges the `authCode` for an `accessToken`, and calls the `getUserinfo` method to further obtain detailed user information.
 
 ```java
@@ -233,7 +233,7 @@ public void handleCallback(@RequestParam(value = "authCode") String authCode, Ht
 }
 ```
 
-## (5) Using accessToken to Get User Personal Information
+## \(Ⅴ\) Using accessToken to Get User Personal Information
 ```java
 /**
  * Use accessToken to get user personal information
@@ -250,7 +250,7 @@ public void getUserinfo(String accessToken) throws Exception {
 }
 ```
 
-## (6) Processing User Information and Setting Login Status (Session + Cookie)
+## \(Ⅵ\) Processing User Information and Setting Login Status (Session + Cookie)
 Process user information, including creating or updating local user records, initializing the password table, setting third-party login records, and setting the user's login status (Session and Cookie).
 
 ```java
@@ -325,19 +325,19 @@ public void handleUserInfoAndCookie(GetUserResponseBody userResponseBody, String
 }
 ```
 
-# 4. DingTalk Open Platform Application Configuration
+# Ⅳ. DingTalk Open Platform Application Configuration
 H5 application configuration information, configure the application's home page address and PC home page address. The URL in the following figure: pamirs/ddAuth/oauth corresponds to the RequestMapping in the DingTalk integration Controller class in the business code.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746685835445-348bf42d-8025-494f-a1d7-cf77c6119f0d-20250530144829627.png)
 
-# 5. Access Permissions for Third-party Users
+# Ⅴ. Access Permissions for Third-party Users
 By default, users who first enter the system through third-party single sign-on do not have access to any applications in their initial state. To ensure that users can successfully access applications through the DingTalk workbench entry, you can grant users corresponding access permissions through the following two methods.
 
-## (1) Configuring Third-party User Roles
+## \(Ⅰ\) Configuring Third-party User Roles
 1. Create a specific role in the system for third-party users, with a clear identifier, such as: `THIRD_PARTY_USER`.
 2. Assign corresponding access permissions to the above role according to business needs.
 
-## (2) Granting Permissions When Creating Third-party Users
+## \(Ⅱ\) Granting Permissions When Creating Third-party Users
 In the sixth step of the docking process: during the user information processing stage, that is, when creating platform users (such as `PamirsUser`) based on third-party user information, you can call system interfaces to directly assign the above-defined roles to the user, achieving static binding of permissions.
 
 ```java
@@ -350,7 +350,7 @@ private void bindUserRole(PamirsUser pamirsUser) {
 }
 ```
 
-## (3) Runtime Dynamic Permission Granting
+## \(Ⅲ\) Runtime Dynamic Permission Granting
 If role assignment is not completed during user creation, you can also use the runtime dynamic permission extension mechanism to dynamically assign the "third-party user" role to users when they first access the system.
 
 This article's example uses this solution. For the complete implementation, please refer to the attached code file: `ThirdPartyRoleCustom.java`
@@ -371,7 +371,7 @@ public Set<Long> get() {
 }
 ```
 
-# 6. Source Code Download
+# Ⅵ. Source Code Download
 + DingTalk single sign-on example [DingTalkHelper.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746686113690-ffe1f79d-2293-483f-9979-74ff51f0f1b5.java)
 + Initialize DingTalk Client [DingTalkAuthController.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746686113489-e7f6518d-67f3-46e7-a9d2-700ceed6d610.java)
 + Runtime dynamic permission granting for third-party users [ThirdPartyRoleCustom.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746687938679-869c1dbf-58c8-47e6-b28e-2b6daad3a428.java)

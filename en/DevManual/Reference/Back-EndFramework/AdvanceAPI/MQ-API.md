@@ -44,7 +44,7 @@ Add corresponding dependencies as needed based on the message queue used in the 
 </dependency>
 ```
 
-## (二) YAML Configuration
+## \(Ⅱ\) YAML Configuration
 
 Documentation related to this topic can be found in [Event Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅸ-event-configuration-pamirsevent).
 
@@ -125,7 +125,7 @@ public class NotifySendResult {
 }
 ```
 
-## (二) NotifyConsumer Interface
+## \(Ⅱ\) NotifyConsumer Interface
 
 ```java
 @FunctionalInterface
@@ -320,7 +320,7 @@ public void processOrderSequence(Order order) {
 }
 ```
 
-## (二) Consumer Examples
+## \(Ⅱ\) Consumer Examples
 
 ### 1. @NotifyListener Annotation Definition
 

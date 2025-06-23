@@ -14,19 +14,19 @@ If MINIO can be directly accessed from the public network, you can normally conf
 
 :::
 
-# 1. Before Reading
+# Ⅰ. Before Reading
 + It should be noted that MINIO has specific restrictions on the endpoint, `As per S3 specification, path in the endpoint is not supported.` That is to say, the MINIO request address cannot contain a path.
 
 For detailed reference:  
 [https://github.com/minio/minio-java/issues/1476](https://github.com/minio/minio-java/issues/1476)
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/minIo-1024x667-20250530144824786.png)
 
-# 2. Solution
+# Ⅱ. Solution
 + In the project, a accessible public network address needs to be configured for MINIO. At the same time, set up in the network layer (NGINX) to map this public network address to the internal network address of MINIO.
 + Due to MINIO's restrictions on the endpoint, it only supports the form of "IP + port", neither allowing the inclusion of a path (path) nor achieving forwarding through path configuration. Therefore, an external address in the form of "IP (or domain name) + port" must be provided.
 
-# 3. Detailed Configuration Steps
-## (1) OSS Configuration in the Project
+# Ⅲ. Detailed Configuration Steps
+## \(Ⅰ\) OSS Configuration in the Project
 Configure the uploadUrl and downloadUrl as public network accessible addresses, which are not the actual addresses of MINIO. That is to say, for MINIO access operations, a externally accessible address needs to be used for conversion.
 
 ```yaml
@@ -48,7 +48,7 @@ cdn:
     localFolderUrl:
 ```
 
-## (2) NGINX Configuration (MINIO Configuration)
+## \(Ⅱ\) NGINX Configuration (MINIO Configuration)
 
 ```nginx
 upstream minio {

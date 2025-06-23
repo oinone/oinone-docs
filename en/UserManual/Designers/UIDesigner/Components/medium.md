@@ -19,7 +19,7 @@ When designing a PC page, if the display device of a component is set to Mobile 
 :::
 
 # II. Specific Attributes
-## (1) Multimedia Player
+## (Ⅰ) Multimedia Player
 Supports embedding a multimedia player on the page, suitable for scenarios such as viewing pictures and videos.
 
 :::tip Example
@@ -83,7 +83,7 @@ For the filling of custom expressions in data validation, you can refer to the "
 + Maximum Upload File Size: Limits the size of a single uploaded file.
 + Restrict Upload File Types: Limits the upload file formats, supporting pictures and videos.
 
-## (2) Map
+## (Ⅱ) Map
 Supports embedding a map on the page, suitable for scenarios such as displaying geographical locations and location positioning.
 
 :::tip Example
@@ -98,7 +98,7 @@ Display Page:
 
 :::
 
-## (3) Chart
+## (Ⅲ) Chart
 Supports displaying a designed chart on the page.
 
 :::tip Example
@@ -118,7 +118,7 @@ Specific attributes of the chart:
 + Select Chart: You can select a published chart in the data visualization.
 + Query Conditions: On the actual page display, data will be shown according to the configured query conditions.
 
-## (4) Report
+## (Ⅳ) Report
 Supports displaying a designed report on the page.
 
 :::tip Example
@@ -137,7 +137,7 @@ Specific attributes of the report:
 
 + Select Report: You can select a published report in the data visualization.
 
-## (5) Data Dashboard
+## (Ⅴ) Data Dashboard
 Supports displaying a designed data dashboard on the page.
 
 :::tip Example

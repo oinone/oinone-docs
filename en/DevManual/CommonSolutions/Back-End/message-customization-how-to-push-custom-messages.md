@@ -6,7 +6,7 @@ category:
 order: 55
 ---
 
-# 1. Adding Message Dependencies to the Project
+# Ⅰ. Adding Message Dependencies to the Project
 In the `pom.xml` file of the Boot project, the corresponding dependency configuration items need to be added.
 
 ```xml

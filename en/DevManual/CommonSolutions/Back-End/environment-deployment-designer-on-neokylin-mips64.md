@@ -6,7 +6,7 @@ category:
 order: 60
 ---
 
-# 1. Hardware and Software Overview
+# Ⅰ. Hardware and Software Overview
 1. Server Hardware and Software Overview
 
 Hardware Overview: Domestic信创 (IT application innovation) server, Loongson CPU, mips64 architecture
@@ -15,7 +15,7 @@ Hardware Overview: Domestic信创 (IT application innovation) server, Loongson C
 
 2. Deployment Method: The currently provided designer image package does not include an image package for the mips architecture, so the designer can only be deployed via the Jar method.
 
-# 2. Middleware Installation
+# Ⅱ. Middleware Installation
 + Manual middleware installation requires the following middleware list:
 
 ```graphql
@@ -30,10 +30,10 @@ Hardware Overview: Domestic信创 (IT application innovation) server, Loongson C
 
 + NeoKylin is derived from CentOS, and CentOS uses yum as the package manager.
 
-## (1) Install GO Runtime Environment
+## \(Ⅰ\) Install GO Runtime Environment
 The golang official website: https://golang.google.cn/dl/ provides packages for the mips64 architecture.
 
-## (2) Install JDK
+## \(Ⅱ\) Install JDK
 ```shell
 sudo yum update
 
@@ -46,13 +46,13 @@ sudo yum install java-1.8.xxx
 
 The JDK8 version supporting the mips64 architecture is 1.8_181. Since Oinone requires JDK1.8.221+, which is lower than this version, the JCE needs to be overridden to solve the 128-bit encryption key limitation issue.
 
-## (3) Install Redis and Nginx
+## \(Ⅲ\) Install Redis and Nginx
 The installation method is similar to that of JDK, directly installed via yum.
 
-## (4) Install ZooKeeper and RocketMQ
+## \(Ⅳ\) Install ZooKeeper and RocketMQ
 The Java 8 environment has been installed in the second step, and ZooKeeper and RocketMQ can be installed according to normal versions.
 
-## (5) Install MySQL
+## \(Ⅴ\) Install MySQL
 ### 1. Attempt to Install MySQL 8.x Version
 + The MySQL official website does not provide an installation package for the mips64 architecture, which needs to be compiled manually.
 + Initially tried to download the MySQL 8.0 package, and the following two options (Operating System and OS Version) were set with reference to the screenshot below:
@@ -230,10 +230,10 @@ FLUSH PRIVILEGES;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'your_password' WITH GRANT OPTION;
 ```
 
-# 3. Start the Designer Backend via Jar
+# Ⅲ. Start the Designer Backend via Jar
 Refer to the documentation: Backend Code-Free Designer Jar Package Startup Method.
 
-# 4. Deploy Designer Frontend with Nginx
+# Ⅳ. Deploy Designer Frontend with Nginx
 + You need to ask the `Oinone customer service` for the frontend dist resource package that matches the backend designer Jar package; upload the dist package to the server and start it with Nginx.
 + Nginx configuration is as follows:
 

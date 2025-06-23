@@ -6,7 +6,7 @@ category:
 order: 24
 ---
 
-# 1. Conditional Update (updateByWrapper)
+# Ⅰ. Conditional Update (updateByWrapper)
 Normally, when performing an update, we create a new object to reduce the number of fields being updated.
 
 ```java
@@ -25,7 +25,7 @@ userTaskUp.setNodeContext(json);
 userTaskUp.updateById();
 ```
 
-# 2. Conditional Deletion (updateByWrapper)
+# Ⅱ. Conditional Deletion (updateByWrapper)
 ```java
 public List<T> delete(List<T> data) {
     List<Long> petTypeIdList = new ArrayList<>();
@@ -37,7 +37,7 @@ public List<T> delete(List<T> data) {
 }
 ```
 
-## 3. Construct Conditional Query Data
+# Ⅲ. Construct Conditional Query Data
 + Example 1: LambdaQueryWrapper to concatenate query conditions
 
 ```java

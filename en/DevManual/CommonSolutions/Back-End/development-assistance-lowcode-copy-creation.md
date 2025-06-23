@@ -8,8 +8,8 @@ order: 16
 
 In the business scenarios of actual projects, there is a requirement for "duplication creation" to enable rapid data entry. This article introduces how to implement the duplication creation function in a low-code mode.
 
-# 1. Implementation Steps
-## (1) Define the Base Class Model
+# Ⅰ. Implementation Steps
+## \(Ⅰ\) Define the Base Class Model
 1. Define a base class model for duplication (e.g., `AbstractCopyModel`), and all models with the duplication creation function inherit from this model:
 
 ```java
@@ -49,7 +49,7 @@ public class AbstractCopyModelAction {
 }
 ```
 
-## (2) Define the Business Model
+## \(Ⅱ\) Define the Business Model
 Models requiring the duplication creation function inherit from the "base class for duplication" defined above, i.e., inherit from `AbstractCopyModel`:
 
 ```java
@@ -71,7 +71,7 @@ public class Employee extends AbstractCopyModel {
 }
 ```
 
-## (3) Initialize the "Duplicate" Button
+## \(Ⅲ\) Initialize the "Duplicate" Button
 Initialize the "view action" when the system starts, i.e., add a "Duplicate" button to the row operations of the default page:
 
 ```java

@@ -20,9 +20,9 @@ If there is no existing database, you can download and install it from the offic
 
 :::
 
-# 1. Version Selection
+# Ⅰ. Version Selection
 
-## (1) macOS
+## (Ⅰ) macOS
 
 <table>
   <tr>
@@ -35,7 +35,7 @@ If there is no existing database, you can download and install it from the offic
   </tr>
 </table>
 
-## (2) Linux
+## (Ⅱ) Linux
 
 ### 1. Check glibc Version
 
@@ -63,13 +63,13 @@ Install the `libaio` package:
 | apt | `apt-cache search libaio1` & `apt-get install libaio1` |
 | yum | `yum search libaio` & `yum install libaio` |
 
-## (3) Windows
+## (Ⅲ) Windows
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Preparing-the-development-environment/MySQL/4.png)
 
-# 2. Installation
+# Ⅱ. Installation
 
-## (1) Extract Files
+## (Ⅰ) Extract Files
 
 ```bash
 # macOS
@@ -92,7 +92,7 @@ Expand-Archive .\mysql-8.0.42-winx64.zip .\
 New-Item -Path .\mysql\ -ItemType SymbolicLink -Target .\mysql-8.0.42-winx64\
 ```
 
-## (2) Configuration
+## (Ⅱ) Configuration
 
 macOS/Linux:
 
@@ -116,7 +116,7 @@ lower-case-table-names      = 1
 default-time-zone           = '+08:00'
 ```
 
-## (3) Install MySQL
+## (Ⅲ) Install MySQL
 
 ```bash
 # macOS
@@ -145,7 +145,7 @@ cd mysql-8.0.42-winx64
 .\bin\mysqld.exe --defaults-file=my.ini --initialize --console
 ```
 
-## (4) Change Root Password
+## (Ⅳ) Change Root Password
 
 ### 1. Get Default Password
 
@@ -206,7 +206,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'shushi@2
 
 At this point, MySQL installation is complete.
 
-# 3. Stop MySQL
+# Ⅲ. Stop MySQL
 
 :::info Note
 
@@ -224,9 +224,9 @@ The password shown is an example and should be replaced with your own if changed
 .\bin\mysqladmin.exe shutdown -uroot -pshushi@2019
 ```
 
-# 4. Common Database Configuration Issues
+# Ⅳ. Common Database Configuration Issues
 
-## (1) Enable Remote Access
+## (Ⅰ) Enable Remote Access
 
 ```sql
 -- Enable remote access for root
@@ -244,7 +244,7 @@ After installation, use your preferred tools to test the connection. If it fails
 
 :::
 
-## (2) Time Zone Issues
+## (Ⅱ) Time Zone Issues
 
 ```ini
 # Add in my.cnf (macOS) or my.ini (Windows)

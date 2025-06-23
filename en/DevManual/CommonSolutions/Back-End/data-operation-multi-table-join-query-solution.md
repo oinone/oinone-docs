@@ -12,7 +12,7 @@ In some business scenarios, we need to query data from two tables simultaneously
 
 :::
 
-# 1. Scenario Description
+# Ⅰ. Scenario Description
 Scenario: On the page corresponding to Model A, the query conditions include fields from Model B.
 
 Model A
@@ -64,7 +64,7 @@ public class YesTwo extends IdModel {
 }
 ```
 
-# 2. Query Using Wrapper
+# Ⅱ. Query Using Wrapper
 Query all data IDs that meet the conditions through the query conditions of Model B, then use these IDs to query the required data in Model A.
 
 ```java
@@ -89,7 +89,7 @@ public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> qu
 }
 ```
 
-# 3. Query Using Mapper
+# Ⅲ. Query Using Mapper
 Use SQL to directly query results, employing join query methods.
 
 ```java

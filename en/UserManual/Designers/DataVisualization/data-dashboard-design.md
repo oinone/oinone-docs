@@ -11,7 +11,7 @@ This interface is mainly divided into four areas: the operation bar, the compone
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Design%20of%20Big%20Data%20Screen/1.png)
 
 # I. Operation Bar
-## (1) Zoom and Adaptation
+## \(Ⅰ\) Zoom and Adaptation
 ### 1. Function Introduction
 It supports zooming operations on the data dashboard. You can adjust the display ratio of the data dashboard according to actual needs to better view and analyze data details.
 
@@ -20,7 +20,7 @@ Click the zoom button or "Full Screen" to zoom the data dashboard.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Design%20of%20Big%20Data%20Screen/sf.png)
 
-## (2) Save
+## \(Ⅱ\) Save
 ### 1. Function Introduction
 It supports archiving and saving the data dashboard design. Even if the data dashboard design is not yet complete, you can choose to save the current design progress. When you enter the data dashboard design page next time, the system will automatically load and display the previously saved design page, which is convenient for continuing to improve the data dashboard.
 
@@ -36,7 +36,7 @@ Click "Save" to archive and save the current design progress.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Design%20of%20Big%20Data%20Screen/bc.png)
 
 # II. Component Bar
-## (1) Components
+## \(Ⅰ\) Components
 ### 1. Function Introduction
 The components include two parts: charts and other components:
 
@@ -70,7 +70,7 @@ Click or drag the component to add it successfully.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Design%20of%20Big%20Data%20Screen/zj.png)
 
-## (2) Data Dashboard Outline
+## \(Ⅱ\) Data Dashboard Outline
 ### 1. Function Introduction
 It supports viewing the outline, which intuitively displays the existing components of the data dashboard in a list. You can delete a component in the outline or view the component style.
 

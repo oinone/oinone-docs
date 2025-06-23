@@ -39,7 +39,7 @@ next:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/ty2.png)
 
 # II. Specific Attributes
-## (1) Submit Action
+## (Ⅰ) Submit Action
 By configuring different server functions, different operations can be performed, which is suitable for various scenarios such as querying, deleting, and creating.
 
 :::tip Example
@@ -75,7 +75,7 @@ Through context configuration, the names in these two different systems can be m
 
 :::
 
-## (2) Jump Action
+## (Ⅱ) Jump Action
 Supports jumping to a certain page, which is suitable for scenarios such as page navigation and submission confirmation.
 
 :::tip Example
@@ -143,7 +143,7 @@ Through context configuration, the names in these two different systems can be m
 :::
 + Design Jump Page: Provides a shortcut for users to quickly design the jumped page.
 
-## (3) Link Action
+## (Ⅲ) Link Action
 Supports linking to other web pages, which is suitable for scenarios such as quickly navigating to relevant pages.
 
 :::tip Example
@@ -175,7 +175,7 @@ Calculation Function: The function executed by the action, which can be customiz
 :::
 + Open Mode: Sets the open mode of the linked page.
 
-## (4) Client Action
+## (Ⅳ) Client Action
 According to different client behaviors, different operations can be performed, which is suitable for scenarios such as returning, refreshing, and updating data.
 
 :::tip Example
@@ -200,7 +200,7 @@ Specific attributes of the client action:
   + Add a Row of Data: You can directly add a row of data to the table without jumping to a page.
   + Copy a Row of Data: After selecting any piece of data, you can quickly copy the data.
 
-## (5) Batch Action
+## (Ⅴ) Batch Action
 A shortcut for the jump action to process multiple pieces of data, which can perform batch modification operations on the data in the selected data set.
 
 :::tip Example
@@ -227,7 +227,7 @@ When setting a pop-up window/drawer page for the batch action, the "Client Actio
 
 :::
 
-## (6) Workflow
+## (Ⅵ) Workflow
 Supports manually triggering the workflow.
 
 :::info Note
@@ -261,7 +261,7 @@ Specific attributes of the workflow:
 + Submit Data: If this option is enabled, parameter mapping can be configured. That is, when the data has different names in different locations but actually refers to the same data, it can be achieved by configuring parameter mapping.
 + Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-## (7) Microflow
+## (Ⅶ) Microflow
 Supports manually triggering the microflow.
 
 :::info Note
@@ -295,7 +295,7 @@ Specific attributes of the microflow:
 + Submit Data: If this option is enabled, parameter mapping can be configured. That is, when the data has different names in different locations but actually refers to the same data, it can be achieved by configuring parameter mapping.
 + Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-## (8) Integration Connector
+## (Ⅷ) Integration Connector
 Supports manually initiating an integration connection to other applications or databases.
 
 :::info Note
@@ -331,7 +331,7 @@ Specific attributes of the integration connector:
 + Submit Data: If this option is enabled, parameter mapping can be configured. That is, when the data has different names in different locations but actually refers to the same data, it can be achieved by configuring parameter mapping.
 + Context: When the data has different names in different locations but actually refers to the same data, data mapping can be achieved by configuring the context.
 
-## (9) Data Flow
+## (Ⅸ) Data Flow
 Supports manually triggering the data flow.
 
 :::info Note
@@ -371,7 +371,7 @@ The actions in the model are shortcut operation methods for the above actions. T
 
 :::
 
-## (10) AI
+## (Ⅹ) AI
 Supports binding and associating the configured AI connector with various fields on the current page, and quickly building customized AI product solutions through data mapping.
 
 :::info Note

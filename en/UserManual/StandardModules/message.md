@@ -6,7 +6,7 @@ category:
 order: 6
 ---
 # I. Email Configuration Management
-## (1) Email Server
+## \(Ⅰ\) Email Server
 ### 1. Function Introduction
 The system supports custom email server configuration, allowing users to set various parameters of the email server according to actual needs, ensuring that emails can be sent and received accurately and promptly. Users can configure based on their own email service providers, server addresses, port numbers, and other information to meet email sending needs in different scenarios.
 
@@ -19,7 +19,7 @@ The system supports custom email server configuration, allowing users to set var
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/yjfwq.png)
 
-## (2) Email Signature
+## \(Ⅱ\) Email Signature
 ### 1. Function Introduction
 The system supports the email signature configuration function. Users can customize the email signature content according to the corporate or personal brand image, including various elements such as text, images, and links. By configuring the email signature, it not only enhances the professionalism of the email but also strengthens brand recognition, enabling recipients to identify the email source more quickly and improving communication efficiency.
 
@@ -33,7 +33,7 @@ The system supports the email signature configuration function. Users can custom
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/yjqm.png)
 
-## (3) Email Template
+## \(Ⅲ\) Email Template
 ### 1. Function Introduction
 The system supports custom email templates, allowing users to flexibly design email layouts, colors, and fonts according to brand, marketing, or communication needs, meeting diverse email sending needs and improving email communication efficiency.
 
@@ -52,7 +52,7 @@ Email templates are not directly applied in the designer but are used during the
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/yjmb.png)
 
-## (4) Email Verification Template
+## \(Ⅳ\) Email Verification Template
 ### 1. Function Introduction
 The system supports custom email verification templates, allowing users to flexibly set corresponding verification email content according to different uses and requirements.
 
@@ -72,7 +72,7 @@ Email verification templates are not directly applied in the designer but are us
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/yjyzmb.png)
 
 # II. SMS Configuration Management
-## (1) SMS Channel
+## \(Ⅰ\) SMS Channel
 ### 1. Function Introduction
 Due to the specific requirements of different versions, services, or business scenarios, different SMS channels may need to be selected when configuring SMS templates. To meet this flexible configuration requirement, we provide an SMS channel configuration management interface to ensure the accuracy and efficiency of SMS services.
 
@@ -85,7 +85,7 @@ Due to the specific requirements of different versions, services, or business sc
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/dxtd.png)
 
-## (2) SMS Template
+## \(Ⅱ\) SMS Template
 ### 1. Function Introduction
 In the "SMS" nodes of workflows, micro - flows, and data processes, configured SMS templates can be selected for use.
 
@@ -108,7 +108,7 @@ For SMS templates that have passed the review or are under review, editing or re
 # III. Message List
 The message list is used to record in detail the execution status of various types of messages on the platform, covering multiple message types such as notifications, workflows, and carbon copies. Whenever a message is transmitted within the system, a corresponding execution record is generated and saved in the message list.
 
-## (1) Filtering
+## \(Ⅰ\) Filtering
 ### 1. Function Introduction
 According to actual business needs, filter conditions for the message list can be customized. Under the current filter conditions, the corresponding message list will be displayed, facilitating the viewing of different message records.
 
@@ -123,7 +123,7 @@ According to actual business needs, filter conditions for the message list can b
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/message/xxlb1.png)
 
-## (2) Details
+## \(Ⅱ\) Details
 ### 1. Function Introduction
 The system supports viewing the specific content of messages, facilitating message management.
 

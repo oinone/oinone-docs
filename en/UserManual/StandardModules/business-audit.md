@@ -5,7 +5,7 @@ category:
   - User Manual
 order: 7
 ---
-# 1. Login Logs
+# Ⅰ. Login Logs
 ### 1. Function Introduction
 The system automatically generates login logs based on users' login behaviors, recording detailed login information of users.
 
@@ -16,7 +16,7 @@ The system automatically generates login logs based on users' login behaviors, r
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/operational%20auditing/dl.png)
 
-# 2. Application Logs
+# Ⅱ. Application Logs
 ### 1. Function Introduction
 The system automatically generates application logs based on content changes of models and fields defined in audit rules, recording detailed operation information of users.
 
@@ -27,7 +27,7 @@ The system automatically generates application logs based on content changes of 
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/operational%20auditing/yy.png)
 
-# 3. Audit Rules
+# Ⅲ. Audit Rules
 ### 1. Function Introduction
 To record changes of models and fields, users can customize audit rules. Once an audit rule is generated, whenever an operation on the model or field causes a change, the system automatically generates a corresponding record in the application log for subsequent tracing and verification.
 

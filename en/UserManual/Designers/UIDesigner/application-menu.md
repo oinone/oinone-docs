@@ -7,7 +7,7 @@ category:
 order: 2
 ---
 The data dictionary is a collection of fixed dictionary items that can be used as options for multiple-choice or single-choice selections.
-# 1. Filter
+# Ⅰ. Filter
 ### 1. Function Introduction
 According to actual needs, select applications/modules, data dictionary types, or enter names to customize filter conditions to accurately filter data dictionaries. It supports one-click clearing of all filter conditions.
 :::info Note
@@ -17,7 +17,7 @@ In the drop-down selection of application/module filter items, it is only a prel
 + Select or enter conditions in the filter area to complete the filtering of the data dictionary
 + Click "Reset Filter" to clear all existing filter conditions
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E7%AD%9B%E9%80%89.png)
-# 2. Import Data Dictionary
+# Ⅱ. Import Data Dictionary
 ### 1. Function Introduction
 Importing a data dictionary is an efficient way to add a data dictionary. You can download the import template provided by the platform, fill in the relevant information according to the established rules, and import the file into the system to quickly complete the addition of the data dictionary.
 + Import Template: The platform provides a model import template, and the templates provided under different operation modes are different, and the operation mode can be switched
@@ -39,7 +39,7 @@ When uploading a file, you should upload a file corresponding to the current ope
 + Click "Import Instructions" to view the import instructions in the corresponding mode
 + Click "Click to Upload" or drag the file to the specified location to upload the file
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%AF%BC%E5%85%A52.png)
-# 3. Add Data Dictionary
+# Ⅲ. Add Data Dictionary
 ### 1. Function Introduction
 You can create a no-code dictionary through the model designer. Adding a data dictionary in Expert Mode and No-Code Mode is different:
 + Adding a data dictionary in Expert Mode: You need to fill in the dictionary name, dictionary code, dictionary item type, and add dictionary items. Other filling contents can be left blank, and some contents will be assigned default values by the system
@@ -61,7 +61,7 @@ Click "Add Data Dictionary", select the所属 application/module to add, click "
 :::info Note
 When adding data dictionary items, there are at most 30 items
 :::
-# 4. Modify Data Dictionary
+# Ⅳ. Modify Data Dictionary
 ### 1. Function Introduction
 The successfully created data dictionary can be modified
 :::info Note
@@ -71,7 +71,7 @@ The successfully created data dictionary can be modified
 ### 2. Operation Method
 Click the "Modify Icon" to modify the data dictionary
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E4%BF%AE%E6%94%B9.png)
-# 5. View Reference Relationship
+# Ⅴ. View Reference Relationship
 ### 1. Function Introduction
 Through this function, you can view various elements that have a reference relationship with the data dictionary, including other fields and views. Each relationship is displayed through a list, and the list items are links that can be linked to the corresponding design page; the content is the corresponding content.
 :::tip Example
@@ -81,7 +81,7 @@ The list items of the fields with reference relationships display the names of t
 ### 2. Operation Method
 Click the "View Referenced Information" icon to view the reference relationship
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%BC%95%E7%94%A82.png)
-# 6. Discard/Enable Data Dictionary
+# Ⅵ. Discard/Enable Data Dictionary
 ### 1. Function Introduction
 For data dictionaries that are not currently in use, you can perform the discard operation. If needed in the future, you only need to set the discarded data dictionary to the available state to put it back into use. In addition, the discarded data dictionary still supports operations such as editing.
 :::info Note
@@ -90,7 +90,7 @@ The discarded data dictionary will no longer be displayed in the optional list w
 ### 2. Operation Method
 Click "Discard" to set the data dictionary to the discarded state, and the button becomes "Set to Available"; click again to set the data dictionary to the available state
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%BA%9F%E5%BC%83.png)
-# 7. Delete Data Dictionary
+# Ⅶ. Delete Data Dictionary
 ### 1. Function Introduction
 When the data dictionary is no longer used, you can choose to delete it. Low-code dictionaries are not allowed to be deleted.
 :::info Note
@@ -102,7 +102,7 @@ The deleted data dictionary will no longer appear in the dictionary list, and th
 ### 2. Operation Method
 Click "Delete" to delete the data dictionary.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%88%A0%E9%99%A4.png)
-# 8. Attachment: Noun Explanation
+# Ⅷ. Attachment: Noun Explanation
 | Noun | Description |
 | --- | --- |
 | No-Code Dictionary | A dictionary designed through a no-code designer (such as a model designer, interface designer) is called a no-code dictionary |

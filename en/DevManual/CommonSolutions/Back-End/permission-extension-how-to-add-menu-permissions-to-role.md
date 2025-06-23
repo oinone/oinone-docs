@@ -6,11 +6,11 @@ category:
 order: 47
 ---
 
-# 1. Overview
+# Ⅰ. Overview
 
 During permission docking with third parties, the third party will transmit menu items to this platform. In this case, authorization operations need to be carried out on this platform based on these transmitted menu items. To meet this requirement, code implementation can be used to create corresponding permissions for specified menus.
 
-# 2. Code Implementation
+# Ⅱ. Code Implementation
 
 Code example:
 

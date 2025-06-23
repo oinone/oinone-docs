@@ -10,7 +10,7 @@ prev:
   link: /en/InstallOrUpgrade/Dev-ENV/README.md
 ---
 
-# 1. Download the Installer
+# Ⅰ. Download the Installer
 
 :::warning Tip
 
@@ -44,9 +44,9 @@ When configuring environment variables, make sure to update the profile path acc
 
 :::
 
-# 2. Installation
+# Ⅱ. Installation
 
-## (1) Install JDK on macOS
+## (Ⅰ) Install JDK on macOS
 
 ### 1. Configure Environment Variables
 
@@ -88,7 +88,7 @@ Java(TM) SE Runtime Environment (build 1.8.0_451-b10)
 Java HotSpot(TM) 64-Bit Server VM (build 25.451-b10, mixed mode)
 ```
 
-## (2) Install JDK on Windows
+## (Ⅱ) Install JDK on Windows
 
 - Default install directory for `.exe`: `C:\Program Files\Java\jdk-1.8\`
 - Custom install directory: user-defined
@@ -155,7 +155,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.441-b07, mixed mode)
 
 If the output is similar, the JDK is installed successfully.
 
-## (3) Install JDK on Linux
+## (Ⅲ) Install JDK on Linux
 
 Oracle provides `.rpm` and `.tar.gz` formats for Linux.
 

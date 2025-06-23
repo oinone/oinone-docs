@@ -12,7 +12,7 @@ next:
   text: Vue UI Antd
   link: /en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.md
 ---
-# Ⅰ、Reference List
+# Ⅰ. Reference List
 
 ## （Ⅰ）Text (String)
 

@@ -6,8 +6,8 @@ category:
 order: 69
 ---
 
-# 1. Introduction to Oinone Platform Home Pages
-## (1) Home pages include two types: `global home page` and `application home page`
+# Ⅰ. Introduction to Oinone Platform Home Pages
+## \(Ⅰ\) Home pages include two types: `global home page` and `application home page`
 + **Global home page**: Refers to the application home page used when users do not specify a redirect address during login.
 + **Application home page**: Refers to the home page used when users switch applications.
 
@@ -17,17 +17,17 @@ The global home page is essentially an application home page, serving as the hom
 
 :::
 
-## (2) Global Home Page Search Rules
+## \(Ⅱ\) Global Home Page Search Rules
 1. Retrieve all applications accessible to the current user.
 2. If the home page is configured using AppConfig, this configuration takes precedence as the global home page. If not specified or no access permission exists, proceed to step 3.
 3. Sequentially obtain accessible home pages or menus as the global home page based on application priorities.
 4. If no accessible pages are found, prompt an unauthorized access exception, preventing users from entering the platform.
 
-### (3) Application Home Page Search Rules
+### \(Ⅲ\) Application Home Page Search Rules
 1. Under the specified application, obtain accessible home pages or menus as the application home page.
 2. If no accessible pages are found, prompt an unauthorized access exception, preventing users from normal viewing or operation after entering the application.
 
-# 2. Configuring the `Global Home Page`
+# Ⅱ. Configuring the `Global Home Page`
 Set the global home page using application priority
 
 ```java
@@ -69,8 +69,8 @@ public class DemoModule implements PamirsModule {
 
 :::
 
-# 3. Configuring the `Application Home Page`
-## (1) Configuring the Application Home Page with `@UxHomepage`
+# Ⅲ. Configuring the `Application Home Page`
+## \(Ⅰ\) Configuring the Application Home Page with `@UxHomepage`
 ### 1. Designate the default table view of a model as the application home page
 ```java
 @UxHomepage(@UxRoute(DemoDepartment.MODEL_MODEL))
@@ -113,7 +113,7 @@ Therefore, the application home page can be designated as the "Demo Department" 
 @UxHomepage(actionName = "DemoMenus_DepartmentManagement", value = @UxRoute(DemoDepartment.MODEL_MODEL))
 ```
 
-# 4. Modifying the Application Home Page in the App Center
+# Ⅳ. Modifying the Application Home Page in the App Center
 After the platform starts, the home page cannot be modified via code, requiring modifications in the App Center.
 
 Follow the operations shown in the figure to set the application home page.

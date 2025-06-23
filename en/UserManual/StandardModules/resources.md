@@ -12,7 +12,7 @@ You can use the information in the address library in the address field to impro
 
 :::
 
-## (1) Regions
+## \(Ⅰ\) Regions
 ### 1. Function Introduction
 The regions comprehensively and detailedly display the hierarchical relationships among countries, provinces, cities, districts, and streets. When the regional information changes, the system supports synchronization and update through Amap to ensure the accuracy and timeliness of the information.
 
@@ -21,7 +21,7 @@ Click "Synchronize Amap Address" to update the current regional information.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/dq.png)
 
-## (2) Country Groups
+## \(Ⅱ\) Country Groups
 ### 1. Function Introduction
 The system supports users to customize country groups and allows adding corresponding country members to the set country groups to meet diverse management needs.
 
@@ -40,7 +40,7 @@ The relevant information of countries needs to be maintained in "Address Library
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/file/gjfz.png)
 
-## (1) Countries, Provinces, Cities, Districts, and Streets
+## \(Ⅲ\) Countries, Provinces, Cities, Districts, and Streets
 ### 1. Function Introduction
 (Taking countries as an example, the other levels are similar) A country is the basic unit in the regional settings. The system provides a comprehensive country information management function, supporting users to view, add, edit, and delete country information.
 

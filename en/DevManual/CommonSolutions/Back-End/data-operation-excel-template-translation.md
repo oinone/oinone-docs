@@ -6,7 +6,7 @@ category:
 order: 22
 ---
 
-# 1. Export Translation Items
+# Ⅰ. Export Translation Items
 Similar to exporting all translation items for translation, this operation is not currently integrated into the page interaction. You need to initiate a backend service request through a tool to obtain the Excel template for import/export translations and then add template translation items. (View path: File --> Export Task)
 
 ```graphql
@@ -40,7 +40,7 @@ variables.lang: Used to specify the target language code for translation items, 
 
 :::
 
-# 2. Import Translation Items
+# Ⅱ. Import Translation Items
 ```graphql
 mutation {
   excelImportTaskMutation {

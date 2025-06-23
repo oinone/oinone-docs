@@ -6,13 +6,13 @@ category:
 order: 63
 ---
 
-# 1. Overview of Framework Information
+# Ⅰ. Overview of Framework Information
 In the process of backend data interaction, in addition to returning error information to the frontend, it also has the ability to return different levels of information such as debugging, warnings, success, and general information. However, by default, the frontend only prompts for error information. If you want to implement prompts for other levels of information, you can adjust the prompt level through the frontend's unified configuration. This mechanism is similar to the backend's log level setting, and through flexible configuration, the frontend can differentially present and process information of different importance.
 
-# 2. Framework MessageHub
+# Ⅱ. Framework MessageHub
 For the Oinone platform, how to achieve friendly error prompts is a crucial consideration. Next, we will introduce MessageHub in detail. This tool opens up extremely broad space for implementing custom error prompts, giving the platform great flexibility and possibility in error prompt customization.
 
-# 3. When to Use
+# Ⅲ. When to Use
 Error prompting is a particularly important part of the user experience, and most errors are reflected at the whole page level, field level, and button level. What should a friendly error prompt look like? We assume it is like this:
 
 - Closely契合 with user operations
@@ -26,7 +26,7 @@ Error prompting is a particularly important part of the user experience, and mos
     - Debug
 - Concise and easy-to-understand error messages
 
-# 4. Examples of Different Information Types
+# Ⅳ. Examples of Different Information Types
 ```java
 package pro.shushi.pamirs.demo.core.action;
 
@@ -62,7 +62,7 @@ public class PetTypeAction {
 }
 ```
 
-# 5. Query Operation Return and Effect
+# Ⅴ. Query Operation Return and Effect
 System prompt return results
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/result-1024x363-20250530144822298.webp)
 

@@ -8,8 +8,8 @@ order: 18
 
 In practical project business scenarios, there is often a requirement to automatically embed user-related information such as user name and department into forms to achieve automatic form data filling. This article elaborates on the specific implementation steps to achieve this function.
 
-# 1. Implementation Steps
-## (1) Define Base Class Model
+# Ⅰ. Implementation Steps
+## \(Ⅰ\) Define Base Class Model
 1. Define a base class model (e.g., AbstractDeptModel) containing attributes (fields) that need to be automatically filled; any model requiring automatic user information form filling inherits from this model:
 
 ```java
@@ -68,7 +68,7 @@ public class AbstractDeptModelAction {
 }
 ```
 
-## (2) Define Business Model
+## \(Ⅱ\) Define Business Model
 Models requiring automatic user information form filling inherit from this model, i.e., inherit from AbstractDeptModel:
 
 ```java
@@ -95,7 +95,7 @@ public class UnitProjectFiling extends AbstractDeptModel {
 }
 ```
 
-## (3) Running Effect
+## \(Ⅲ\) Running Effect
 Through the above steps, models inheriting from the base class `AbstractDeptModel` will automatically fill in user information (such as registrant and affiliated department) on the creation page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746533429493-cf183ce0-9aa2-418b-93a6-54f54d9552c0-20250530144824829.png)
