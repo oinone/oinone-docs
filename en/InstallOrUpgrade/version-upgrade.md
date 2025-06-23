@@ -100,7 +100,7 @@ Once an upgrade is requested, the database will be unavailable until the upgrade
 If you encounter problems with your production database, you can contact Oinone Math after-sales staff for corresponding assistance.
 
 # V. Common Upgrade Issues
-## (一) Environment Runtime Jar Version Control
+## (Ⅰ) Environment Runtime Jar Version Control
 ### Background
 Oinone Math supports distributed deployment. Standard applications of Oinone Math and self-developed applications based on Oinone Math start independently. To avoid metadata confusion caused by different versions, `runtime Jar version checking` is implemented.
 
@@ -112,7 +112,7 @@ If the `Jar version` depended on by the current runtime is lower than the instal
 ### Solution
 Upgrade the `dependent Jar version` as prompted.
 
-## (二) Rollback
+## (Ⅱ) Rollback
 ### Background
 Due to some uncontrollable factors during the upgrade, the upgrade cannot be completed within the specified time, and the upgraded system needs to be rolled back. However, Oinone Math defaults to Jar version control for the environment runtime, resulting in an inability to roll back.
 
@@ -126,7 +126,7 @@ java -jar xxx.jar -PgoBack=true [other parameters]
 # VI. Service Level Agreement (SLA)
 Using the Oinone Math enterprise edition, upgrading the database to the latest version of Oinone Math is completely **free**, including any support required to correct potential differences in the system after the upgrade.
 
-## (一) Upgrade Services Covered by the Service Level Agreement
+## (Ⅰ) Upgrade Services Covered by the Service Level Agreement
 Upgrade services can be enjoyed at any time:
 + Upgrade all **standard applications**;
 + Upgrade all custom features **created using custom applications**, provided that the custom applications are still installed and the relevant authorizations are still active;
@@ -134,7 +134,7 @@ Upgrade services can be enjoyed at any time:
 
 Upgrade services are limited to the technical conversion and adjustment of the system (standard modules and data) to make them compatible with the upgrade target version.
 
-## (二) Upgrade Services Not Covered by the Service Level Agreement
+## (Ⅱ) Upgrade Services Not Covered by the Service Level Agreement
 The following upgrade-related services are not included:
 + Clearing existing data and configurations during the upgrade;
 + Upgrading additional modules created internally or by third parties (including Oinone Math partners) that are not covered by the maintenance contract;

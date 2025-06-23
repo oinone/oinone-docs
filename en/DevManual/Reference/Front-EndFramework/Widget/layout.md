@@ -13,7 +13,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 # I. Built-in Layouts
 
-## (一) Table View Layouts
+## (Ⅰ) Table View Layouts
 
 ### 1. Standard Table
 
@@ -119,7 +119,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 </view>
 ```
 
-## (二) Form View Layouts
+## (Ⅱ) Form View Layouts
 
 ### 1. Standard Form
 
@@ -144,7 +144,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 </view>
 ```
 
-## (三) Detail View Layouts
+## (Ⅲ) Detail View Layouts
 
 ### 1. Standard Detail
 
@@ -169,7 +169,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 </view>
 ```
 
-## (四) Gallery View Layout
+## (Ⅳ) Gallery View Layout
 
 ### 1. Standard Gallery View
 
@@ -189,7 +189,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 </view>
 ```
 
-## (五) Tree View Layout
+## (Ⅴ) Tree View Layout
 
 ### 1. Standard Tree View
 
@@ -222,7 +222,7 @@ For information on **slots**, please refer to: [DSL](/en/DevManual/Reference/Fro
 
 Similar to component registration, layouts can also be replaced through registration.
 
-## (一) Layout Registration Options
+## (Ⅰ) Layout Registration Options
 
 ```typescript
 /**
@@ -300,7 +300,7 @@ export interface LayoutRegisterOptions extends SPIOptions {
 
 From the above type declaration, it can be seen that it is mainly divided into three categories: view, field, and action. For different elements, we provide different parameters to describe the usage scope of the layout. Similar to any component registration, the more "precise" the description of the usage scope, the higher the priority of the layout in the corresponding position.
 
-## (二) Registering Layouts with registerLayout
+## (Ⅱ) Registering Layouts with registerLayout
 
 Below is the layout registered in "[Exploring the Frontend Framework - Components](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)":
 

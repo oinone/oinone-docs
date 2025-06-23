@@ -13,9 +13,9 @@ next:
 ---
 Oinone Business Common Tool Class API Documentation Guide
 
-# 一、IdGenerator Interface (ID Generator)
+# Ⅰ、IdGenerator Interface (ID Generator)
 
-## (一) Class Overview
+## (Ⅰ) Class Overview
 
 ```java
 @SPI(factory = SpringServiceLoaderFactory.class)
@@ -26,7 +26,7 @@ public interface IdGenerator<T>
 + **Generic Parameter**: `T` represents the type of the generated ID
 + **Extension Mechanism**: Supports service discovery through the `@SPI` annotation, using the Spring service loading factory by default
 
-## (二) Method List
+## (Ⅱ) Method List
 
 ### 1、generate(String keyGenerator)
 
@@ -41,9 +41,9 @@ public interface IdGenerator<T>
 Long generate = (Long) Spider.getDefaultExtension(IdGenerator.class).generate(PamirsTableInfo.fetchKeyGenerator(TestModel.MODEL_MODEL));
 ```
 
-# 二、UidGenerator Interface (Unique ID Generator)
+# Ⅱ、UidGenerator Interface (Unique ID Generator)
 
-## (一) Class Overview
+## (Ⅰ) Class Overview
 
 ```java
 @SPI
@@ -53,7 +53,7 @@ public interface UidGenerator
 + **Function**: Generates 64-bit unique IDs and supports parsing the composition elements of the ID (such as timestamp, work node, sequence number, etc.)
 + **Extension Points**: Different unique ID generation algorithms (such as snowflake algorithm variants) can be implemented through SPI
 
-## (二) Method List
+## (Ⅱ) Method List
 
 ### 1、getUID()
 
@@ -80,9 +80,9 @@ String parseResult = UidGeneratorFactory.getCachedUidGenerator().parseUID(123456
 System.out.println("UID Parsing Result: " + parseResult);
 ```
 
-# 三、SequenceGenerator Interface Documentation
+# Ⅲ、SequenceGenerator Interface Documentation
 
-## (一) Class Overview
+## (Ⅰ) Class Overview
 
 `SequenceGenerator` is an SPI interface for generating various types of sequences, supporting multiple sequence generation strategies, including auto-incrementing serial numbers, date serial numbers, UUIDs, etc. The interface is pluggable through the SPI mechanism, using the Spring service loading factory by default.
 
@@ -101,7 +101,7 @@ public interface SequenceGenerator<T>
 + Generates different types of unique identifiers
 + Provides strong order guarantees (such as `ORDERLY_SEQ` type)
 
-## (二) Method List
+## (Ⅱ) Method List
 
 ### 1、`generate(String sequence, String configCode)`
 
@@ -166,7 +166,7 @@ Object dateSequence = CommonApiFactory.getSequenceGenerator().generate(SequenceE
 String dateCode = "DT" + TypeUtils.stringValueOf(dateSequence);
 ```
 
-## (三) Associated Enum: `SequenceEnum`
+## (Ⅲ) Associated Enum: `SequenceEnum`
 
 `SequenceEnum` defines the supported sequence generator types, including multiple strategies:
 
@@ -182,9 +182,9 @@ public enum SequenceEnum implements IEnum<String> {
 }
 ```
 
-# 四、RSQLHelper Class (RSQL Parsing Utility Class)
+# Ⅳ、RSQLHelper Class (RSQL Parsing Utility Class)
 
-## (一) Class Overview
+## (Ⅰ) Class Overview
 
 ```java
 @Slf4j
@@ -202,7 +202,7 @@ public class RSQLHelper
 private RSQLHelper() {} // Private constructor, prohibits instantiation, all methods are static methods
 ```
 
-## (二) Core Method List
+## (Ⅱ) Core Method List
 
 ### 1、getRsqlValues (String rsql, Getter<T, ?>... getters)
 
@@ -260,9 +260,9 @@ Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, targetFields);
 // Output: {name=Bob, age=25}
 ```
 
-# 五、RsqlParseHelper Class (RSQL to SQL Utility Class)
+# Ⅴ、RsqlParseHelper Class (RSQL to SQL Utility Class)
 
-## (一) Class Overview
+## (Ⅰ) Class Overview
 
 ```java
 public class RsqlParseHelper
@@ -270,7 +270,7 @@ public class RsqlParseHelper
 
 + **Function**: Converts RSQL expressions into SQL WHERE clauses
 
-## (二) Core Method List:
+## (Ⅱ) Core Method List:
 
 ### 1、parseRsql2Sql(String model, String rsql)
 
@@ -285,9 +285,9 @@ String sqlWhere = RsqlParseHelper.parseRsql2Sql(TestModel.MODEL_MODEL, "name==Ad
 String sqlWhere = RsqlParseHelper.parseRsql2Sql(queryWrapper.getModel(), rsql);
 ```
 
-# 六、ObjectUtils Class (Object Utility Class)
+# Ⅵ、ObjectUtils Class (Object Utility Class)
 
-## (一) Class Overview
+## (Ⅰ) Class Overview
 
 ```java
 public class ObjectUtils
@@ -296,7 +296,7 @@ public class ObjectUtils
 + **Function**: Provides general utility methods for object operations, including deep cloning and value comparison
 + **Constructor**: None (static utility class)
 
-## (二) Core Method List
+## (Ⅱ) Core Method List
 
 ### 1、clone(T object)
 
@@ -325,13 +325,13 @@ User cloned = ObjectUtils.clone(original);
 boolean isEqual = ObjectUtils.equals(EnumType.A, EnumType.A); // true
 ```
 
-# 七、PamirsJsonUtils Class (For Frontend Interaction)
+# Ⅶ、PamirsJsonUtils Class (For Frontend Interaction)
 
-## (一) Class Overview
+## (Ⅰ) Class Overview
 
 `PamirsJsonUtils` is a utility class located in the `pro.shushi.pamirs.framework.orm.json` package, mainly used for serialization and deserialization operations of JSON data. The class is based on Alibaba's FastJSON library, which is encapsulated and customized to provide a series of convenient methods, supporting custom parsing and serialization configurations, filters, etc.
 
-## (二) Member Variables
+## (Ⅱ) Member Variables
 
 | **Variable Name**        | **Type**            | **Description**                                                     |
 | :----------------------- | :------------------ | :----------------------------------------------------------- |
@@ -340,7 +340,7 @@ boolean isEqual = ObjectUtils.equals(EnumType.A, EnumType.A); // true
 | `defaultFilters`         | `SerializeFilter[]` | Array of default serialization filters, including `BigDecimalSerializeFilter`<br/>, `PreNameSerializeFilter`<br/> and `DMapSerializeFilter`<br/>. |
 
 
-## (三) Core Method List
+## (Ⅲ) Core Method List
 
 ### 1、`toJSONString(Object object, SerializerFeature... features)`
 

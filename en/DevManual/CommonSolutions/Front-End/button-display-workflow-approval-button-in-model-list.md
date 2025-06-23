@@ -9,7 +9,7 @@ order: 7
 When we need to display approval buttons in the list of a business model, we can complete the extension through customization. This allows direct clicking on the action button in business data to navigate to the workflow to-do detail page for handling approvals or filling out tasks.
 
 # II. Solutions
-## (一) First, add the `userTaskList` field in the business data model to store the workflow to-do data of the record
+## (Ⅰ) First, add the `userTaskList` field in the business data model to store the workflow to-do data of the record
 ```java
 @Model.model(DemoItem.MODEL_MODEL)
 @Model(displayName = "Test Product")
@@ -22,7 +22,7 @@ public class DemoItem extends IdModel {
 }
 ```
 
-## (二) Query the data of the current logged-in user in workflow tasks within the query method of business data
+## (Ⅱ) Query the data of the current logged-in user in workflow tasks within the query method of business data
 ```java
 @Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "Query List", timeout = 50000)
 @Function.fun(FunctionConstants.queryPage)
@@ -57,11 +57,11 @@ public Pagination<DemoItem> queryPage(Pagination<DemoItem> page, QueryWrapper<De
 }
 ```
 
-## (三) Drag a server-side action into the operation column in the interface designer
-## (四) Drag the workflow task list field `userTaskList` into the table column and hide this field
+## (Ⅲ) Drag a server-side action into the operation column in the interface designer
+## (Ⅳ) Drag the workflow task list field `userTaskList` into the table column and hide this field
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240509-175829-1024x472.png)
 
-## (五) Frontend custom action component for navigating to the workflow to-do detail page
+## (Ⅴ) Frontend custom action component for navigating to the workflow to-do detail page
 ```typescript
 import {
   ActionType,

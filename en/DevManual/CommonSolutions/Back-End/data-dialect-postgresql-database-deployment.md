@@ -7,7 +7,7 @@ order: 41
 ---
 
 # I. Driver Configuration
-## (一) Maven Configuration (Suitable for Version 14.3)
+## (Ⅰ) Maven Configuration (Suitable for Version 14.3)
 ```xml
 <postgresql.version>42.6.0</postgresql.version>
 <dependency>
@@ -17,7 +17,7 @@ order: 41
 </dependency>
 ```
 
-## (二) Offline Driver Download
+## (Ⅱ) Offline Driver Download
 [postgresql-42.2.18.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/pgsql/postgresql-42.2.18.jar)
 [postgresql-42.6.0.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/pgsql/postgresql-42.6.0.jar)
 [postgresql-42.7.3.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/pgsql/postgresql-42.7.3.jar)
@@ -46,10 +46,10 @@ pamirs:
 
 **Note**: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## (一) Connection URL Configuration
+## (Ⅰ) Connection URL Configuration
 No official documentation available currently.
 
-## (二) URL Format
+## (Ⅱ) URL Format
 ```plain
 jdbc:postgresql://${host}:${port}/${database}?currentSchema=${schema}
 ```
@@ -61,7 +61,7 @@ When configuring the JDBC connection, both `${database}` and `${schema}` must be
 For other connection parameters, you can refer to relevant materials for optimization as needed.
 
 # III. Dialect Configuration
-## (一) pamirs Dialect Configuration
+## (Ⅰ) pamirs Dialect Configuration
 ```yaml
 pamirs:
   dialect:
@@ -86,7 +86,7 @@ pamirs:
 Since the dialect development environment is Version 14.3, other similar versions (14.x) generally will not have significant differences. If you encounter issues with unsupported versions, please leave a comment below the document.
 :::
 
-## (二) Schedule Dialect Configuration
+## (Ⅱ) Schedule Dialect Configuration
 ```yaml
 pamirs:
   event:
@@ -108,7 +108,7 @@ As there are no obvious differences in the schedule dialect across multiple vers
 :::
 
 # IV. Other Configurations
-## (一) Logical Deletion Value Configuration
+## (Ⅰ) Logical Deletion Value Configuration
 ```yaml
 pamirs:
   mapper:
@@ -117,7 +117,7 @@ pamirs:
         logic-delete-value: (EXTRACT(epoch FROM CURRENT_TIMESTAMP) * 1000000 + EXTRACT(MICROSECONDS FROM CURRENT_TIMESTAMP))::bigint
 ```
 
-## (二) PostgreSQL Database User Initialization and Authorization
+## (Ⅱ) PostgreSQL Database User Initialization and Authorization
 ```sql
 -- init root user (user name can be modified by oneself)
 

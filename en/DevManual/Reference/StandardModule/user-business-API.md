@@ -12,7 +12,7 @@ prev:
 ---
 # I. Overview
 
-## (一) Nomenclature Explanation
+## (Ⅰ) Nomenclature Explanation
 
 + **Business Entity (PamirsPartner)**: Refers to an independent entity participating in commercial activities, continuing the socialized concept, representing natural persons or legal persons, and serving as the subject of commercial relationships and transaction behaviors (such as signing contracts, performing contracts).
   - An independent entity participating in commercial activities, continuing the socialized concept, representing natural persons or legal persons, and serving as the subject of commercial relationships and transaction behaviors (such as signing contracts, performing contracts).
@@ -23,7 +23,7 @@ prev:
     * **Business Rules**: Relationships can be associated with business logic (such as restricting transaction scope, automatically matching processes).
 + **User (PamirsUser)**: Focuses on the "system user", referring to an entity with an account (including username, password, or third-party login credentials) that operates through interface interaction, emphasizing the subject of operational behavior (such as logging in, editing data).
 
-## (二) Design Logic of Business Entities and Users
+## (Ⅱ) Design Logic of Business Entities and Users
 
 These two are independent at the underlying level and associated through upper-layer business logic (such as binding the customer entity through the user account during login):
 
@@ -43,7 +43,7 @@ These two are independent at the underlying level and associated through upper-l
   - Bound to a login account (username/password), supporting multiple `PamirsUserThirdParty` (third-party login accounts, such as WeChat, DingTalk).
   - Independent of the customer system, associated with one or more customer entities through upper-layer business logic (e.g., session management) (for example: an employee account can operate the business of multiple customers belonging to the company).
 
-## (三) Oinone's Business Relationships (Partnerships)
+## (Ⅲ) Oinone's Business Relationships (Partnerships)
 
 In the Oinone platform, through the combination of **relationship design patterns + multi-table inheritance**, a flexible and extensible partnership system can be efficiently constructed, providing underlying support for scenarios such as supply chain management, distribution networks, and group-level businesses. In enterprise-level system architecture, business relationship modeling is one of the core challenges. Mainstream design patterns are mainly divided into **role patterns** and **relationship patterns**. Oinone's choice of relationship patterns is based on a comprehensive trade-off among extensibility, business flexibility, and system complexity.
 
@@ -76,7 +76,7 @@ In the Oinone platform, through the combination of **relationship design pattern
 
 # II. Common Examples
 
-## (一) Example Design: User-Employee-Company Association Modeling and Session Integration
+## (Ⅰ) Example Design: User-Employee-Company Association Modeling and Session Integration
 
 ### 1. Scenario Objectives
 
@@ -196,7 +196,7 @@ public class TestCompanyQueryServiceImpl implements TestCompanyQueryService {
 
 #### Step 2: Session Context Integration
 
-Reference: Documentation related to this topic can be found in "[Extending PamirsSession](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/request-context-API.md#二-扩展pamirssession)".
+Reference: Documentation related to this topic can be found in "[Extending PamirsSession](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/request-context-API.md#2-extending-pamirssession".
 
 **Objective**: Establish the association of user→employee→company during login and store it in the Session.
 
@@ -309,7 +309,7 @@ Through such design, automatic association of business entities after user login
 
 Describes the Oinone platform's APIs related to user login, password management, and information maintenance, including core models, interface definitions, extension mechanisms, and sample code, suitable for secondary development and function extension.
 
-## (一) PamirsUserTransient (User Temporary Model)
+## (Ⅰ) PamirsUserTransient (User Temporary Model)
 
 **Class Path**: `pro.shushi.pamirs.user.api.model.tmodel.PamirsUserTransient`
 **Function**: Processes temporary data such as user login, registration, and information modification, including encrypted fields and business status identifiers.
@@ -337,7 +337,7 @@ Other fields are as detailed in the source code
 | setLogin(String login) | Set the login account (auto-encrypt) | login    | void       | Encryption exceptions handled by the framework |
 
 
-## (二) PamirsUserAction (User Information Maintenance)
+## (Ⅱ) PamirsUserAction (User Information Maintenance)
 
 **Class Path**: `pro.shushi.pamirs.user.view.action.PamirsUserAction`
 **Function**: Processes persistent operations such as user creation, modification, and query, supporting API interface calls.
@@ -352,7 +352,7 @@ Other fields are as detailed in the source code
 | active(PamirsUser user) | Activate a user         | user: User entity with ID           | PamirsUser |
 
 
-## (三) UserBehaviorAction (User Behavior Processing)
+## (Ⅲ) UserBehaviorAction (User Behavior Processing)
 
 **Class Path**: `pro.shushi.pamirs.user.view.action.UserBehaviorAction`
 **Function**: Processes core behaviors such as login, logout, password modification, and verification code sending, supporting multiple login methods (Cookie, Token, verification code).
@@ -367,9 +367,9 @@ Other fields are as detailed in the source code
 | firstResetPassword              | Reset the password for the first login | user: Including initial password and new password         | PamirsUserTransient |
 
 
-## (四) Common Examples
+## (Ⅳ) Common Examples
 
-To extend user-related APIs, you can use Oinone's "[Default Extension Points](/en/DevManual/Reference/Back-EndFramework/functions-API.md#一-默认扩展点)" and [SPI](/en/DevManual/Reference/common-extension-points-and-SPI-list.md#一、spi-机制) mechanisms.
+To extend user-related APIs, you can use Oinone's "[Default Extension Points](/en/DevManual/Reference/Back-EndFramework/functions-API.md#ⅰ-default-extension-points)" and [SPI](/en/DevManual/Reference/common-extension-points-and-SPI-list.md#i-spi-mechanism) mechanisms.
 
 ### 1. Modify Password on First Login
 

@@ -6,20 +6,20 @@ category:
 order: 25
 ---
 
-# 一、Scenario Description
+# Ⅰ、Scenario Description
 In practical business scenarios, there is often a need to connect to external data sources for data acquisition. Common approaches include:  
 1. **Recommended**: Use the platform's data connector to connect to external data sources for data operations.  
 2. Connect to data sources in project code, i.e., operate external data source data through programming.  
 
 This article focuses on the approach of operating external data sources via programming.
 
-# 二、Overall Solution
+# Ⅱ、Overall Solution
 - Oinone manages external data sources by configuring them in yml.  
 - The backend performs data operations (CRUD) through Mapper.  
 - When calling Mapper interfaces, specify the external data source.  
 
-# 三、Detailed Steps
-## （一）Data Source Configuration (application.yml)
+# Ⅲ、Detailed Steps
+## （Ⅰ）Data Source Configuration (application.yml)
 The configuration is similar to normal data sources:  
 ```yaml
 out_ds_name(alias_for_external_ds):
@@ -41,7 +41,7 @@ out_ds_name(alias_for_external_ds):
   asyncInit: true
 ```
 
-## （二）Additional Configurations for External Data Sources
+## （Ⅱ）Additional Configurations for External Data Sources
 To restrict table structure creation for external data sources, configure:  
 ```yaml
 persistence:
@@ -56,11 +56,11 @@ persistence:
       auto-create-table: false
 ```
 
-## （三）Backend Mapper Development
+## （Ⅲ）Backend Mapper Development
 - SQL Mapper follows the same syntax as native MyBatis/MyBatis-Plus with no special restrictions.  
 - Mapper and SQL can be written in the same file or separated into two files.  
 
-## （四）Calling Mapper in Service/Action
+## （Ⅳ）Calling Mapper in Service/Action
 - The startup Application's `@MapperScan` must scan the corresponding package.  
 - Invoke the Mapper like a normal bean, with the only difference being using `DsHintApi` to specify the data source:  
 ```java

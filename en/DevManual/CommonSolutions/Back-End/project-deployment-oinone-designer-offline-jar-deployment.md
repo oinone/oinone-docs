@@ -15,19 +15,19 @@ This article uses `5.2.6` as an example for introduction.
 
 # II. Deployment Environment Requirements
 
-## (一) Environment Requirements for Environments Including All Middleware and Designer Services
+## (Ⅰ) Environment Requirements for Environments Including All Middleware and Designer Services
 - CPU: 8 vCPU
 - Memory (RAM): 16G or above
 - Hard Disk (HDD/SSD): 60G or above
 
-## (二) Environment Requirements for Designer Services Only
+## (Ⅱ) Environment Requirements for Designer Services Only
 - CPU: 8 vCPU
 - Memory (RAM): 8G or above
 - Hard Disk (HDD/SSD): 40G or above
 
 # III. Deployment Preparation
 
-## (一) Create a Deployment Directory in the Deployment Environment
+## (Ⅰ) Create a Deployment Directory in the Deployment Environment
 ```shell
 mkdir -p /home/admin/oinone-designer
 ```
@@ -36,7 +36,7 @@ mkdir -p /home/admin/oinone-designer
 For easy management, all files required for Oinone deployment should be stored in this directory.
 :::
 
-## (二) Middleware to be Installed on the Server
+## (Ⅱ) Middleware to be Installed on the Server
 - JDK: jdk_1.8_221 or later
   - [Download Address](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html)
 - MySQL: 8.0.26 or later
@@ -51,7 +51,7 @@ For easy management, all files required for Oinone deployment should be stored i
   - [Linux Installation Tutorial](https://www.runoob.com/linux/nginx-install-setup.html)
   - [Download Address](https://nginx.org/en/download.html)
 
-## (三) Start All Middleware Using Docker
+## (Ⅲ) Start All Middleware Using Docker
 Click to download the one-click deployment package for all middleware
 
 [middleware-kits.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/oinone-designer-deploy/middleware-kits.zip)
@@ -69,10 +69,10 @@ If you need to copy all deployment files to the deployment environment at one ti
 
 # V. Prepare Deployment Files in the Local Environment
 
-## (一) Download the Offline Deployment Structure Package
+## (Ⅰ) Download the Offline Deployment Structure Package
 [oinone-designer-jar-offline.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/oinone-designer-deploy/oinone-designer-jar-offline.zip)
 
-## (二) Download the Deployment JAR Package
+## (Ⅱ) Download the Deployment JAR Package
 Find the title of "Independently Deploy All Designer JARs," under which the corresponding JAR package is provided for download.
 
 For example:
@@ -80,7 +80,7 @@ For example:
 
 # VI. Backend Service Deployment
 
-## (一) Move the Deployment JAR Package to the `backend` Directory and Rename It to `oinone-designer.jar`
+## (Ⅰ) Move the Deployment JAR Package to the `backend` Directory and Rename It to `oinone-designer.jar`
 ```shell
 mv pamirs-designer-boot-v5.2-5.2.6.jar backend/oinone-designer.jar
 ```
@@ -89,12 +89,12 @@ mv pamirs-designer-boot-v5.2-5.2.6.jar backend/oinone-designer.jar
 This name is the default value of the `startup.sh` script and can be modified according to actual circumstances.
 :::
 
-## (二) Move the Pamirs License to the `backend/config` Directory and Rename It to `license.lic`
+## (Ⅱ) Move the Pamirs License to the `backend/config` Directory and Rename It to `license.lic`
 ```shell
 mv oinone-demo_1730163770607.lic backend/config/license.lic
 ```
 
-## (三) Load Non-MySQL Database Drivers (as Needed)
+## (Ⅲ) Load Non-MySQL Database Drivers (as Needed)
 Move the driver `jar` file to the `backend/lib` directory.
 
 Take the KDB8 database driver `kingbase8-8.6.0.jar` as an example:
@@ -106,7 +106,7 @@ mv kingbase8-8.6.0.jar backend/lib/
 The `backend/lib` directory is an external loading directory (external library) for non-designer built-in packages, where any `jar` package can be added and integrated into the designer.
 :::
 
-## (四) Modify the `backend/startup.sh` Script
+## (Ⅳ) Modify the `backend/startup.sh` Script
 - `IP`: Modify to the IP address accessible from the outside
 - `DB_BASE_`: Database connection configuration related to the base library
 - `DB_PAMIRS_`: Database connection configuration related to the pamirs library
@@ -118,7 +118,7 @@ The `backend/lib` directory is an external loading directory (external library) 
 If you need to configure dialects or other parameters, you can directly modify the `backend/config/application.yml` configuration file. Variables are only used for simple configuration scenarios.
 :::
 
-## (五) Execute the `startup.sh` Script to Start
+## (Ⅴ) Execute the `startup.sh` Script to Start
 ```shell
 sh startup.sh
 ```
@@ -130,7 +130,7 @@ After execution, three paths will be printed:
 
 # VII. Nginx Configuration
 
-## (一) Find `nginx.conf` in the local nginx service and add the Nginx configuration path as the loading directory
+## (Ⅰ) Find `nginx.conf` in the local nginx service and add the Nginx configuration path as the loading directory
 ```nginx
 http {
     ...
@@ -138,7 +138,7 @@ http {
 }
 ```
 
-## (二) Modify the `root` configuration in Line 7 of `default.conf` in the structure package to the `frontend path` to the `dist` directory
+## (Ⅱ) Modify the `root` configuration in Line 7 of `default.conf` in the structure package to the `frontend path` to the `dist` directory
 ```nginx
 server {
     ...
@@ -146,7 +146,7 @@ server {
 }
 ```
 
-## (三) Modify the `alias` configuration in Line 30 of `oss.conf` in the structure package to the `frontend path` to the `static` directory
+## (Ⅲ) Modify the `alias` configuration in Line 30 of `oss.conf` in the structure package to the `frontend path` to the `static` directory
 ```nginx
 server {
     ...

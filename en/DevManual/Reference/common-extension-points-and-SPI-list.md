@@ -11,7 +11,7 @@ prev:
 ---
 # I. SPI Mechanism
 
-## (一) Pamirs SPI Framework
+## (Ⅰ) Pamirs SPI Framework
 
 Integrates three service discovery mechanisms to support dynamic component extension:
 
@@ -20,7 +20,7 @@ Integrates three service discovery mechanisms to support dynamic component exten
   - Implementation classes set extension names via `@SPI.Service` (Spring SPI uses default Bean names, Java SPI uses full class names)
   - `@Order`/`@Priority` defines extension priority
 
-## (二) Configuration Methods
+## (Ⅱ) Configuration Methods
 
 ### 1. Java SPI
 
@@ -52,7 +52,7 @@ DemoApi ext = Spider.getExtension(DemoApi.class, "ext1");
 
 # II. System Extension Points
 
-## (一) Framework Layer
+## (Ⅰ) Framework Layer
 
 | Extension Point        | Implementation Location                      | SPI  | Interface                                      |
 | ---------------------- | -------------------------------------------- | ---- | --------------------------------------------- |
@@ -61,7 +61,7 @@ DemoApi ext = Spider.getExtension(DemoApi.class, "ext1");
 | SPI Path Setting       | *                                            | Yes  | SpiClassPathApi                               |
 
 
-## (二) Metadata Scanning
+## (Ⅱ) Metadata Scanning
 
 | Extension Point                 | Implementation Location                      | SPI  | Interface                                                      |
 | ------------------------------- | -------------------------------------------- | ---- | -------------------------------------------------------------- |
@@ -72,7 +72,7 @@ DemoApi ext = Spider.getExtension(DemoApi.class, "ext1");
 | Scan path configuration for meta models processed by annotation converters | yaml:pamirs.meta.meta-packages               | No   | Default:<br/>**pro.shushi.pamirs.meta.domain**<br/>**pro.shushi.pamirs.boot.base.model** |
 
 
-## (三) Metadata Calculation
+## (Ⅲ) Metadata Calculation
 
 | Extension Point          | Implementation Location                      | SPI  | Interface                  |
 | ------------------------ | -------------------------------------------- | ---- | -------------------------- |
@@ -88,7 +88,7 @@ DemoApi ext = Spider.getExtension(DemoApi.class, "ext1");
 | Metadata Calculation Extension Logic | *                                            | Yes  | MetaDataExtendComputer     |
 
 
-## (四) API Layer
+## (Ⅳ) API Layer
 
 | Extension Point            | Implementation Location                      | SPI  | Interface               |
 | -------------------------- | -------------------------------------------- | ---- | ----------------------- |
@@ -98,7 +98,7 @@ DemoApi ext = Spider.getExtension(DemoApi.class, "ext1");
 | Data Loader Registration Extension | *                                            | Yes  | DataLoaderRegistryApi   |
 
 
-## (五) FaaS Layer
+## (Ⅴ) FaaS Layer
 
 | Extension Point              | Implementation Location                      | SPI  | Interface                 |
 | ---------------------------- | -------------------------------------------- | ---- | ------------------------- |
@@ -108,7 +108,7 @@ DemoApi ext = Spider.getExtension(DemoApi.class, "ext1");
 | Allowed/Blocked List for Executable Functions in Expressions | *                                            | Yes  | FaasScriptAllowListApi    |
 
 
-## (六) ORM Layer
+## (Ⅵ) ORM Layer
 
 | Extension Point            | Implementation Location                      | SPI  | Interface                      |
 | -------------------------- | -------------------------------------------- | ---- | ------------------------------ |
@@ -118,7 +118,7 @@ DemoApi ext = Spider.getExtension(DemoApi.class, "ext1");
 | Field Serialization API    | *                                            | No   | Serializer                     |
 
 
-## (七) Persistence Layer
+## (Ⅶ) Persistence Layer
 
 | Extension Point               | Implementation Location                                                     | SPI  | Interface                                           |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------- |

@@ -18,13 +18,13 @@ The visual debugging tool can only be used for testing the current environment a
 
 :::
 
-## (一) Overview of Page Debugging
+## (Ⅰ) Overview of Page Debugging
 It provides a simple parsing of the front-end runtime context of the current page, mainly used to solve common issues such as `metadata`, `permissions`, and `views`.
 
-## (二) Overview of API Debugging
+## (Ⅱ) Overview of API Debugging
 Any standard request initiated by the Oinone platform can be checked using this debugging tool. It is mainly used for troubleshooting issues related to `exception stacks`, `permissions`, `SQL execution`, etc.
 
-## (三) Expression Explanation
+## (Ⅲ) Expression Explanation
 For the convenience of expression, the following content includes backend model fields/methods or GQL request-related information, and the expression rule is:
 
 ```plain
@@ -73,7 +73,7 @@ All subsequent content expressions are based on this.
 :::
 
 # II. Instructions for Using the Debugging Tool
-## (一) Accessing the Debugging Tool Page
+## (Ⅰ) Accessing the Debugging Tool Page
 On the page that needs debugging, access the debugging tool page by modifying the browser URL. As shown in the following figure:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/CCD283A6-19B4-4C0E-BDEE-35BEF82C8303-20250530144827459.png)
@@ -96,7 +96,7 @@ It is common practice to paste the modified new URL into a new browser tab to re
 
 :::
 
-## (二) Debugging Tool Page
+## (Ⅱ) Debugging Tool Page
 After entering the debugging tool page, you will see the page shown in the following figure:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/72D2EB2F-8B6C-476C-8761-3F36BF54DE7F-20250530144827519.png)
@@ -175,7 +175,7 @@ After entering the debugging tool page, you will see the page shown in the follo
     - Environment Configuration Information: Server environment configuration information.
     - {GQLNamespace}#{GQLName}: Response result of the currently executed function.
 
-## (三) Initiating an API Debugging
+## (Ⅲ) Initiating an API Debugging
 The following examples are demonstrated in the Chrome browser, and there may be differences in other browsers.
 
 ### 1. Using the Browser to View APIs and Check API Exceptions
@@ -213,14 +213,14 @@ When issues cannot be located using the debugging tool, you can use the `Downloa
 
 The following debugging scenarios do not distinguish between `Page Debugging` and `API Debugging`; developers need to judge based on the encountered issues which debugging tool to use to solve the problem.
 
-## (一) Explanation of SQL Examples
+## (Ⅰ) Explanation of SQL Examples
 Table names in SQL examples may differ from those in the developer's debugging environment. Developers need to find the corresponding database and data tables based on the SQL examples and execute the SQL. Parameters in SQL examples need to be adjusted according to the issues encountered by developers.
 
 SQL examples do not include tenant isolation-related fields; developers need to supplement query conditions according to the operating environment.
 
 `{URL#model}` indicates replacing with the `model` attribute value in the `URL parameters`, and developers can adjust other cases as needed.
 
-## (二) When Fields/Actions on the Page Are Not Displayed Correctly
+## (Ⅱ) When Fields/Actions on the Page Are Not Displayed Correctly
 ### 1. Check if the Current User Has Permissions for the Field/Action (super administrators can skip this step)
 #### Using the Page for Inspection
 Step 1: Go to the `User` module, view the role list configured for the user, and check if it includes the expected role.

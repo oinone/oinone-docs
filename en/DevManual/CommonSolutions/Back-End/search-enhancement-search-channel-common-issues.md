@@ -10,16 +10,16 @@ order: 21
 After introducing Oinone's search (i.e., the Channel module), errors may occur due to incorrect configurations, missing configurations, or missing JAR package introductions.
 
 # II. Class JCTree Not Found During Startup
-## (一) Specific Phenomenon
+## (Ⅰ) Specific Phenomenon
 An error may occur during startup:
 `java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExpression`
 
-## (二) Root Cause
+## (Ⅱ) Root Cause
 After introducing the Channel module, the system startup process will execute a scan operation on the Class package to find content with the Enhance annotation. It is important to note that the Pamirs underlying architecture will call classes in the JDK's tools package during operation, specifically involving the `com/sun/tools/javac/tree/JCTree$JCExpression` class.
 
 It should be emphasized that specific versions of the JDK may lack the tools.jar file, and this absence is highly likely to cause system startup failure.
 
-## (三) Specific Error Log
+## (Ⅲ) Specific Error Log
 ```java
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:107) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:58) [pamirs-venus-boot.jar:na]
@@ -43,7 +43,7 @@ Caused by: java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExp
     at pro.shushi.pamirs.channel.core.init.ChannelSystemBootAfterInit.init(ChannelSystemBootAfterInit.java:31)
 ```
 
-## (四) Solutions
+## (Ⅳ) Solutions
 + **Method 1 [Recommended]**: Configure the Channel scanning path
 ```yaml
 pamirs:
@@ -55,7 +55,7 @@ pamirs:
 + **Method 2**: Use the Oracle JDK version and ensure that the tools.jar in the JDK's lib directory contains the corresponding class `com/sun/tools/javac/tree/JCTree`.
 
 # III. Class JsonProvider Not Found During Startup
-## (一) Specific Error Log
+## (Ⅰ) Specific Error Log
 If the startup error message is as follows:
 ```java
 Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
@@ -65,10 +65,10 @@ Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
     at java.net.URLClassLoader.defineClass(URLClassLoader.java:467) ~[na:1.8.0_181]
 ```
 
-## (二) Root Cause
+## (Ⅱ) Root Cause
 The project only introduces `pamirs-channel-core` but does not introduce `elasticsearch`-related packages.
 
-## (三) Solutions
+## (Ⅲ) Solutions
 ```xml
 <dependency>
   <groupId>org.elasticsearch.client</groupId>

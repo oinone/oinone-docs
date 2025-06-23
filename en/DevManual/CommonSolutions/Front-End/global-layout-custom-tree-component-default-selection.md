@@ -14,12 +14,12 @@ In the Oinone platform architecture, the system预设 (predefines) a standard le
 Therefore, the Oinone platform enables users to achieve more flexible data presentation through custom views. This chapter will guide readers through a step-by-step approach to understand and master how to customize the tree component in the left-tree-right-table view.
 
 # I. Custom Tree View
-## (一) Configuring the View Using the Interface Designer
+## (Ⅰ) Configuring the View Using the Interface Designer
 First, the Interface Designer needs to be used to generate the basic architecture of the left-tree-right-table view. The Interface Designer has powerful functions, allowing users to flexibly configure through drag-and-drop operations according to diverse business needs, thereby quickly building a visual interface.
 
 After completing the view configuration, we can rewrite the left-side tree component. In the Oinone platform, the default tree component is `TableSearchTreeWidget`, and through customization, we can implement more advanced features to meet specific business scenario requirements.
 
-## (二) Rewriting `TableSearchTreeWidget`
+## (Ⅱ) Rewriting `TableSearchTreeWidget`
 ```typescript
 import { BaseElementWidget, SPI, TableSearchTreeWidget, ViewType } from '@kunlun/dependencies';
 import CustomTableSearchTree from './CustomTableSearchTree.vue';
@@ -40,7 +40,7 @@ import CustomTableSearchTree from './CustomTableSearchTree.vue';
   }
 ```
 
-## (三) Defining the Vue Tree Component
+## (Ⅲ) Defining the Vue Tree Component
 Next, we implement the `CustomTableSearchTree.vue` component, which will handle tree data loading, node selection, and other logic. You can modify the interaction logic or UI design according to project requirements.
 
 ```vue
@@ -95,7 +95,7 @@ Next, we implement the `CustomTableSearchTree.vue` component, which will handle 
 </script>
 ```
 
-## (四) Custom UI
+## (Ⅳ) Custom UI
 If you wish to modify the UI of the tree component, such as adjusting styles or interaction methods, you can make adjustments in the `CustomTableSearchTree.vue` file as needed. Through this custom component, you can flexibly control the appearance and behavior of the tree to meet specific business requirements.
 
 # II. Default Selection of the First Data
@@ -109,10 +109,10 @@ const stop = watch(
       return;
     }
 
-    // 选中树中的第一条记录 (Select the first record in the tree)
+    // Select the first record in the tree
     selectedKeys.value = [treeData.value[0].key];
     props.onSelected?.(treeData.value[0].value.metadata, true);
-    stop(); // 停止监听 (Stop listening)
+    stop(); // Stop listening
   },
   {
     immediate: true

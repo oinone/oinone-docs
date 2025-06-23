@@ -27,7 +27,7 @@ A set of environments refers to all JVMs sharing the Base library as a single se
 :::
 
 # II. How to Configure the License?
-## (一) Configure the License in `yaml`
+## (Ⅰ) Configure the License in `yaml`
 ### 1. Single License Configuration
 ```yaml
 pamirs:
@@ -49,7 +49,7 @@ pamirs:
 
 `pamirs.license.path` can be a relative path, absolute path, or URL path.
 
-## (二) Configure the License in `Program Arguments`
+## (Ⅱ) Configure the License in `Program Arguments`
 ```shell
 java -jar -Psubject=<subject> -Plicense=<license1.lic> -Plicense=<license1.lic> <boot.jar>
 ```
@@ -64,7 +64,7 @@ Place the license in the same directory as the JAR package.
 Add a mount volume mapping in the Docker runtime directory and configure the corresponding path in the YAML file.
 
 # VI. How to Obtain CPU and Motherboard Serial Numbers?
-## (一) Using the `dmidecode` Command in Linux Environment
+## (Ⅰ) Using the `dmidecode` Command in Linux Environment
 ```shell
 # Get CPU serial number
 dmidecode -s system-serial-number
@@ -85,7 +85,7 @@ dmidecode -s system-uuid
 4c4xxxxx-xxxx-xxxx-xxxx-xxxxxxxx5831
 ```
 
-## (二) Using the `system_profiler` Command in Mac Environment
+## (Ⅱ) Using the `system_profiler` Command in Mac Environment
 ```shell
 # Get CPU serial number
 system_profiler SPHardwareDataType | grep 'Serial Number' | awk -F ':' '{print $2}'
@@ -100,7 +100,7 @@ system_profiler SPHardwareDataType | grep 'Hardware UUID' | awk -F ':' '{print $
 1AAxxxxx-xxxx-xxxx-xxxx-xxxxxxxxF0FC
 ```
 
-## (三) Using the `wmic` Command in Windows Environment
+## (Ⅲ) Using the `wmic` Command in Windows Environment
 ```shell
 # Get CPU serial number
 wmic cpu get processorid
@@ -140,7 +140,7 @@ yum install dmidecode
 2. Check whether the position of the license in the image matches that in the configuration file.
 
 # IX. How to Handle License Installation Failure?
-## (一) Log Displays `License installation failed.` Message
+## (Ⅰ) Log Displays `License installation failed.` Message
 :::danger Warning:
 Issues with JDK version dependencies have been fully resolved in versions above `5.0.0`, and this problem only occurs in lower platform versions.
 :::
@@ -153,11 +153,11 @@ In environments where JDK version upgrading is not possible, click to download [
 + If JRE is installed, place the two JAR files in the `%JRE_HOME%\lib\security` directory to overwrite the original files
 + If JDK is installed, place the two JAR files in the `%JDK_HOME%\jre\lib\security` directory to overwrite the original files
 
-## (二) Spring Context is Closed During Startup
+## (Ⅱ) Spring Context is Closed During Startup
 Check the startup log for logs related to the `pamirs-lic` keyword. If there are license-related exception messages, confirm whether the license is used correctly according to license rules.
 
 # X. License is Installed Successfully, but Access is Denied with "Unauthorized Module Cannot Be Accessed". How to Handle?
-## (一) Check License Information During Startup
+## (Ⅰ) Check License Information During Startup
 + For services started with `nohup java -jar boot.jar > $home/out.log 2>&1 &`, view license information in the `out.log` file.
 + For services started with `docker`, view license information using `docker logs`.
 + For services started with `kubernetes`, view license information using `kubectl logs`.

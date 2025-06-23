@@ -148,7 +148,7 @@ In Oinone Kunlun, Widget specifically refers to components defined by TypeScript
 
 :::
 
-## (一) Router
+## (Ⅰ) Router
 
 In SPAs, the routing system essentially triggers a set of behaviors by modifying the browser URL. In Oinone Kunlun, the routing system, based on `rxjs`, is core to page updates. In any component, you can use all routing system functions via `useRouter` and `useMatched`.
 
@@ -203,7 +203,7 @@ For more on routing, refer to: [Router Service](/en/DevManual/Reference/Front-En
 
 :::
 
-## (二) Render
+## (Ⅱ) Render
 
 Oinone Kunlun provides a rendering function based on JSON data structures, handling structures like:
 
@@ -231,7 +231,7 @@ For more on rendering, refer to: [View](/en/DevManual/Reference/Front-EndFramewo
 
 :::
 
-## (三) Service
+## (Ⅲ) Service
 
 Oinone Kunlun uses the `GraphQL` protocol for `front-end to back-end interaction`. `HttpClient` is implemented based on `apollo-client`, allowing requests to the backend from anywhere. For example:
 
@@ -259,7 +259,7 @@ For more on HTTP requests, refer to: [HttpClient Service](/en/DevManual/Referenc
 
 :::
 
-## (四) Widget
+## (Ⅳ) Widget
 
 In Oinone Kunlun, the `Widget` framework is the core module. All visible components on the page are defined via the `Widget` framework and rendered in the page.
 
@@ -278,7 +278,7 @@ In the Widget framework, different `dslNodeType` uses different `SPI.Token` for 
 | field           | BaseFieldWidget   | [Field](/en/DevManual/Reference/Front-EndFramework/Widget/Field/README.md) |
 
 
-## (五) Component
+## (Ⅴ) Component
 
 In Oinone Kunlun, the Widget framework provides component registration and lookup, but specific page rendering is done via Component. Oinone Kunlun implements a set of components corresponding to the Widget framework based on the Vue framework. Additionally, Component provides a set of `Oio` component libraries for standard components, handling `standard API` and `theme`-related content.
 
@@ -306,7 +306,7 @@ Almost all expressions include context variables like `activeRecord`, `rootRecor
 
 For more on expressions, refer to: [Expression Service](/en/DevManual/Reference/Front-EndFramework/Services/expression-service.md)
 
-For more on built-in functions, refer to: [Function API - Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#五、内置函数)
+For more on built-in functions, refer to: [Function API - Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#v-built-in-functions)
 
 :::
 

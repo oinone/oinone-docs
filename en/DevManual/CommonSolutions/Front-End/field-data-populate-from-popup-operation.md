@@ -26,21 +26,21 @@ In the expanded [table] of [Item Order Detail], [Item Code] and [Item Name] are 
 
 The model definitions are as follows:
 
-## (一) Item
+## (Ⅰ) Item
 | Name | API Name | Business Type | Multi-Value | Length (Single Value) | Related Model | Related Field |
 | --- | --- | --- | --- | --- | --- | --- |
 | ID | id | Integer | No | - | - | - |
 | Code | code | Text | No | 128 | - | - |
 | Name | name | Text | No | 128 | - | - |
 
-## (二) Item Order
+## (Ⅱ) Item Order
 | Name | API Name | Business Type | Multi-Value | Length (Single Value) | Related Model | Related Field |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ID | id | Integer | No | 128 | - | - |
 | Code | code | Text | No | 128 | - | - |
 | Order Details | details | One-to-Many | Yes | - | Item Order Detail (ItemOrderDetail) | id - orderId |
 
-## (三) Item Order Detail
+## (Ⅲ) Item Order Detail
 | Name | API Name | Business Type | Multi-Value | Length (Single Value) | Related Model | Related Field |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ID | id | Integer | No | 128 | - | - |
@@ -55,7 +55,7 @@ Based on the model definitions, we need to create basic CRUD operations for [Ite
 
 (Only some special pages are shown below; other pages are no different from basic CRUD pages)
 
-## (一) Designing the [Form] View for Item Order
+## (Ⅰ) Designing the [Form] View for Item Order
 Drag and drop the order details onto the page, and use the [Component Switch] function to switch the current [Drop-down Multiple Selection] component to a [Table] component.
 
 Design the [embedded table] expanded from the order details. Place the [Item] and [Quantity] fields in the table.

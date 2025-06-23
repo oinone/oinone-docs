@@ -20,7 +20,7 @@ This document helps you quickly master core concepts and basic logic. In additio
 
 In the Oinone system, Server Actions are core components for implementing backend business logic and data interaction. They define server requests and trigger button actions. Through annotation configuration and validation mechanisms, you can flexibly define request processing rules and data validation logic. The detailed description is as follows:
 
-## (一) Server Action Configuration
+## (Ⅰ) Server Action Configuration
 
 Server actions can be quickly created using the `@Action` annotation. Here is a configuration example:
 
@@ -56,7 +56,7 @@ Key configuration item analysis:
   - `TREE`: Tree view
   - `CUSTOM`: Custom page to meet specific business needs.
 
-## (二) Server Action Validation
+## (Ⅱ) Server Action Validation
 
 In Oinone, data validation can be set not only at the model or field level but also for Server Actions through the `@Validation` annotation. For example:
 
@@ -80,7 +80,7 @@ public class Demo {
 
 Built-in functions are used to quickly implement validations such as non-null and length checks. If validation fails, an error is反馈 (fed back) with the预设 (predefined) prompt.
 
-## (三) Annotation Configuration
+## (Ⅲ) Annotation Configuration
 
 @Action
 
@@ -116,7 +116,7 @@ View Actions play a crucial role in intra-system page navigation, and their rout
 
 View Actions can be defined through the button `UxRouteButton` or the menu `UxMenu`.
 
-## (一) Definition via Button `UxRouteButton`
+## (Ⅰ) Definition via Button `UxRouteButton`
 
 Here is a detailed example of defining a View Action using the `UxRouteButton` annotation:
 
@@ -163,7 +163,7 @@ public class TestButtonModel extends IdModel {
 }
 ```
 
-## (二) Definition via Menu `UxMenu`
+## (Ⅱ) Definition via Menu `UxMenu`
 
 ```java
 @UxMenus
@@ -177,7 +177,7 @@ public class TestMenus implements ViewActionConstants {
 }
 ```
 
-## (三) Load Function
+## (Ⅲ) Load Function
 
 The load function plays a key role in View Actions. When field mapping DSL is not configured, the load function is executed directly, with both input and output parameters being the target model. The system provides default convention functions, specifically:
 
@@ -188,7 +188,7 @@ The load function plays a key role in View Actions. When field mapping DSL is no
 
 In addition, developers can also manually specify other load functions as needed to meet customized loading requirements. For example, in the above example, the load function is specified as `newQueryPage`.
 
-## (四) Data Filtering
+## (Ⅳ) Data Filtering
 
 Data filtering is divided into frontend filtering (`domain`) and backend filtering (`filter`).
 
@@ -201,7 +201,7 @@ The operator of frontend filtering (`domain`) must be consistent with the operat
 
 :::
 
-## (五) Context Passing
+## (Ⅴ) Context Passing
 
 Context passing is achieved through data mapping DSL, mainly used in the following two common scenarios:
 
@@ -216,7 +216,7 @@ Through the detailed introduction of the above configurations, load functions, d
 
 Url Actions focus on implementing external link navigation, guiding users to access external web pages, third-party systems, or resource links, providing a convenient channel for interaction between the system and external resources. Url Actions support definition through two methods: the button `UxLinkButton` and the menu `UxMenu`.
 
-## (一) Definition via Button `UxLinkButton`
+## (Ⅰ) Definition via Button `UxLinkButton`
 
 The `UxLinkButton` annotation can be used to create custom external link buttons. An example is as follows:
 
@@ -262,7 +262,7 @@ In Oinone, the `compute` function has a higher priority than the `value` attribu
 
 :::
 
-## (二) Definition via Menu `UxMenu`
+## (Ⅱ) Definition via Menu `UxMenu`
 
 Menu links can be quickly created through the `UxMenu` annotation. An example is as follows:
 
@@ -279,7 +279,7 @@ public class TestMenus implements ViewActionConstants {
 
 Client Actions are used to execute frontend interaction logic and can define trigger buttons through the `UxClientButton` annotation. A configuration example is as follows:
 
-## (一) Definition of ClientAction
+## (Ⅰ) Definition of ClientAction
 
 ```java
 @UxClientButton(
@@ -306,7 +306,7 @@ public class TestButtonModel extends IdModel {
 
 Client Actions use the currently selected row data as method input and return values, suitable for scenarios such as dynamic rendering of page elements, form validation, and pop-up prompts, helping developers efficiently implement frontend interaction functions.
 
-## (二) Client Function List
+## (Ⅱ) Client Function List
 
 | **Function Identifier (fun)**               | **Function Description (displayName)** | **Interface Display Label (label)** | **Detailed Description**                       | **Context Type (ActionContextTypeEnum)**  |
 | :------------------------------------------ | :------------------------------ | :---------------------------- | :----------------------------------------- | :--------------------------------------- |

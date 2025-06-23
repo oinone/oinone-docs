@@ -10,9 +10,9 @@ prev:
   text: Gallery Field
   link: /en/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
 ---
-# 一、Reference List
+# Ⅰ、Reference List
 
-## （一）General
+## （Ⅰ）General
 
 ### Button
 
@@ -139,7 +139,7 @@ export default defineComponent({
 | icon | Custom icon (higher priority than `icon`<br/> prop) |
 
 
-## （二）Layout
+## （Ⅱ）Layout
 
 ### Divider
 
@@ -358,7 +358,7 @@ export default defineComponent({
 | gutter | string   | number                                                       | `StandardGutterType`（`[number, number]`） |
 
 
-## （三）Navigation
+## （Ⅲ）Navigation
 
 ### Breadcrumb
 
@@ -510,7 +510,7 @@ For usage examples and `API`, please refer to: [Antd Dropdown for Vue](https://w
 | pageSizeOption | { value: string } | Custom display content for items per page selector |
 
 
-## （四）Data Entry
+## （Ⅳ）Data Entry
 
 ### Cascader
 

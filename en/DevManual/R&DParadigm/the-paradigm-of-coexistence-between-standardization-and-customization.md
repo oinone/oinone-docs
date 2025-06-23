@@ -61,7 +61,7 @@ The essential value of the Oinone technical framework lies in **establishing the
 
 # IV. Best Paradigms for Standard Product Development
 
-## (一) Best Paradigms for R&D Processes
+## (Ⅰ) Best Paradigms for R&D Processes
 
 Reference: Documents related to this topic can be found in "[Development Paradigm: R&D Process](/en/DevManual/R&DParadigm/R&D-paradigm-R&D-process.md)".
 
@@ -75,13 +75,13 @@ The core recommended process is as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/401a7d24389d02966575096c2312877c.svg)
 
-## (二) Best Paradigms for Module Design
+## (Ⅱ) Best Paradigms for Module Design
 
 Reference: Documents related to this topic can be found in "[Development Paradigm: Modular Design](/en/DevManual/R&DParadigm/R&D-paradigm-modular-design.md)".
 
 Oinone's modular architecture is the cornerstone of its technical system, emphasizing the design principle of "high cohesion, low coupling". Each module serves as an independent unit encapsulating functional logic for specific domains. In business module division, this feature should be fully utilized to encapsulate different business functions in independent modules, with each module focusing on solving problems in specific business domains.
 
-## (三) Best Paradigms for Model Design
+## (Ⅲ) Best Paradigms for Model Design
 
 Reference: Documents related to this topic can be found in "[Development Paradigm: Model Design](/en/DevManual/R&DParadigm/R&D-paradigm-model-design.md)".
 
@@ -102,7 +102,7 @@ As a specific business system or framework, the quality of model design in Oinon
 
 Design specific standard product secondary development solutions for customer personalized needs, including新增 (addition) or modification of functional modules, optimization of business processes, and customized interface design. Solution design must follow Oinone's development specifications and best practices to ensure the secondary developed system is stable, reliable, and easy to maintain.
 
-## (一) Applicable During Standard Product Construction
+## (Ⅰ) Applicable During Standard Product Construction
 
 **Delivery System**: Three-level architecture of basic framework layer (Oinone enterprise exclusive) + business standard product layer (modular development) + customer customization layer (coverage inheritance)
 
@@ -133,7 +133,7 @@ In this mode, model addition or extension is done through code rather than no-co
 
 Oinone's integration designer supports rich connector types, such as applications (WebService and RESTful API), databases (SQL), files, etc., enabling integration between systems and external applications.
 
-## (二) Applicable During Ecological System Formation Stage
+## (Ⅱ) Applicable During Ecological System Formation Stage
 
 :::warning Tip
 

@@ -48,7 +48,7 @@ The recommended process is as follows:
 
 # III. R&D Efficiency Comparison
 
-## (一) Original R&D Approach
+## (Ⅰ) Original R&D Approach
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/1746538046698-7e60b3f7-0fab-4f86-9547-1a4249507494.png)
 
@@ -57,7 +57,7 @@ The recommended process is as follows:
 + **Basic Code Risks**: The large volume of basic work code leads to frequent basic bugs, requiring continuous collaboration between R&D and testing personnel.
 + **Implementation Barriers for Specifications**: Although coding specifications are formulated, they often remain on paper, making it difficult to implement. This results in inconsistent frontend-backend coding specifications, hindering technical precipitation and team capability improvement.
 
-## (二) Oinone's R&D Approach
+## (Ⅱ) Oinone's R&D Approach
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/BestParadigm/1746538137122-b137845b-b50a-410e-97a2-9e92134131f0.png)
 

@@ -6,11 +6,11 @@ category:
 order: 36
 ---
 
-# 一、Unstored Field Search
-## (一) Description
+# Ⅰ、Unstored Field Search
+## (Ⅰ) Description
 When using information outside the current model as search conditions, these fields are often set in the proxy model. This scenario is referred to as unstored field search.
 
-## (二) Scenario One
+## (Ⅱ) Scenario One
 The unstored field is of basic string type (String).
 
 1. Code Definition: The unstored field is a basic wrapper data type
@@ -37,7 +37,7 @@ if (null != queryData) {
 }
 ```
 
-## (三) Scenario Two
+## (Ⅲ) Scenario Two
 The unstored field is an unstored object.
 
 1. Defined as unstored
@@ -119,10 +119,10 @@ private Long produceId;
 
 :::
 
-# 二、Rsql Parsing Class
+# Ⅱ、Rsql Parsing Class
 `pro.shushi.pamirs.framework.gateways.rsql.RSQLHelper`
 
-# 三、Rsql Reference Code
+# Ⅲ、Rsql Reference Code
 ```java
 /**
      * Rsql parsing: Extract attribute field values from the Rsql in the originRsql attribute of QueryWrapper

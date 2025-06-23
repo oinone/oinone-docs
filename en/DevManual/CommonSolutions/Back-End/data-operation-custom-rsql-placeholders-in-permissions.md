@@ -207,7 +207,7 @@ So far, we have completed an employee ID placeholder.
 # VIII. Using This Placeholder as a Filter Condition in Permission Configuration
 Below, we will simulate a simple business scenario to detail how this placeholder is used in business.
 
-## (一) Scenario Description
+## (Ⅰ) Scenario Description
 The current system includes two models: `Department` and `Employee`, with basic definitions as follows:
 
 ### 1. Department
@@ -267,22 +267,22 @@ We require that the currently logged-in user can only view departments where the
 
 The data preparation process is omitted here, only showing the configuration of key pages and final effects.
 
-## (二) Permission Item Configuration
+## (Ⅱ) Permission Item Configuration
 Switch to the `Permissions` module in the application, select `Permission Item List`, create a data permission item, and configure it as shown in the figure below.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032407371552-20250530144824939.png)
 
-## (三) Role Permission Configuration
+## (Ⅲ) Role Permission Configuration
 Select `Role List`, click the `Permission Configuration` button for the specified role in the role table, enter the `Permission Configuration` page, and configure it as shown in the figure below.
 
 PS: Action permission configuration is omitted here. Configured permissions should ensure the role can correctly access the `Demo Department` page to view the effect.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032407464515-20250530144825046.png)
 
-## (四) Bind the Specified Role to the User (Skip if Already Bound)
+## (Ⅳ) Bind the Specified Role to the User (Skip if Already Bound)
 Switch to the `User Center` module in the application, select the specified user, and bind the specified role.
 
-## (五) View Permission Configuration Effects on the `Demo Department` Page
+## (Ⅴ) View Permission Configuration Effects on the `Demo Department` Page
 ### 1. Page Effect Without Permission Configuration
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024032408343797-20250530144825203.png)
 

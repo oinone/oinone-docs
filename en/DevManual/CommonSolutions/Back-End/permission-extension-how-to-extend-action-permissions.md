@@ -11,7 +11,7 @@ Under the permission control strategy of this system, permission regulation for 
 
 # II. Menu Page for Extending System Permissions
 
-## (一) Implementation Steps
+## (Ⅰ) Implementation Steps
 
 1. Create an authorization node
 Implement the permission node extension interface: `pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
@@ -54,7 +54,7 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
 
 # III. Action Permissions under the Extended Menu
 
-## (一) Implementation Steps:
+## (Ⅰ) Implementation Steps:
 
 1. Create a `viewAction` for use as a permission menu
 "permissionExtension" is the `name` of the custom `viewAction`, used for splicing the `path` for authentication below.

@@ -12,9 +12,9 @@ next:
   text: Vue UI Antd
   link: /en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.md
 ---
-# 一、Reference List
+# Ⅰ、Reference List
 
-## （一）Text (String)
+## （Ⅰ）Text (String)
 
 ### 1、GalleryStringFieldWidget{#quote1}
 
@@ -157,7 +157,7 @@ export class GalleryStringTagFieldWidget extends DetailStringTagFieldWidget
 
 + displayNameList: Tag display list converted from the value array. (`{ label: string }[]`)
 
-## （二）Multiline Text (Text)
+## （Ⅱ）Multiline Text (Text)
 
 ### 1、GalleryCommonFieldWidget
 
@@ -183,7 +183,7 @@ export class GalleryCommonFieldWidget extends DetailCommonFieldWidget
 
 + justifyContent: Content alignment. (`string | undefined`)
 
-## （三）Rich Text (Html)
+## （Ⅲ）Rich Text (Html)
 
 ### 1、GalleryHtmlFieldWidget
 
@@ -203,19 +203,19 @@ export class GalleryHtmlFieldWidget extends DetailHtmlFieldWidget
 
 + showHeight: Display height. (`number | undefined`)
 
-## （四）Phone (Phone)
+## （Ⅳ）Phone (Phone)
 
 ### 1、GalleryStringFieldWidget
 
 **Reference**: Text (String) - [GalleryStringFieldWidget](#quote1)
 
-## （五）Email (Email)
+## （Ⅴ）Email (Email)
 
 ### 1、GalleryStringFieldWidget
 
 **Reference**: Text (String) - [GalleryStringFieldWidget](#quote1)
 
-## （六）Integer (Integer)
+## （Ⅵ）Integer (Integer)
 
 ### 1、GalleryNumberWidget{#quote2}
 
@@ -231,19 +231,19 @@ export class GalleryHtmlFieldWidget extends DetailHtmlFieldWidget
 export class GalleryNumberWidget extends DetailNumberWidget
 ```
 
-## （七）Floating Point (Float)
+## （Ⅶ）Floating Point (Float)
 
 ### 1、GalleryNumberWidget
 
 **Reference**: Integer (Integer) - [GalleryNumberWidget](#quote2)
 
-## （八）Amount (Money)
+## （Ⅷ）Amount (Money)
 
 ### 1、GalleryNumberWidget
 
 **Reference**: Integer (Integer) - [GalleryNumberWidget](#quote2)
 
-## （九）Boolean (Boolean)
+## （Ⅸ）Boolean (Boolean)
 
 ### 1、GalleryBooleanFieldWidget
 
@@ -274,7 +274,7 @@ export class GalleryBooleanFieldWidget extends DetailBooleanFieldWidget
 export class GalleryBooleanSelectFieldWidget extends DetailBooleanSelectFieldWidget
 ```
 
-## （十）Data Dictionary (Enum)
+## （Ⅹ）Data Dictionary (Enum)
 
 ### 1、GalleryEnumFieldWidget
 
@@ -333,7 +333,7 @@ export class GalleryEnumMultiFieldWidget extends DetailEnumMultiFieldWidget
 
 + justifyContent: Content alignment. (`string | undefined`)
 
-## （十一）Time and Date (Datetime)
+## （Ⅺ）Time and Date (Datetime)
 
 ### 1、GalleryDateTimeFieldWidget
 
@@ -378,7 +378,7 @@ export class GalleryDateTimeCountdownWidget extends GalleryDateTimeFieldWidget
 export class GalleryDateTimeRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 ```
 
-## （十二）Date (Date)
+## （Ⅻ）Date (Date)
 
 ### 1、GalleryDateFieldWidget
 
@@ -423,7 +423,7 @@ export class GalleryDateCountdownWidget extends GalleryDateFieldWidget
 export class GalleryDateRangeFieldWidget extends DetailDateRangeFieldWidget
 ```
 
-## （十三）Time (Time)
+## （XIII）Time (Time)
 
 ### 1、GalleryTimeFieldWidget
 
@@ -453,7 +453,7 @@ export class GalleryTimeFieldWidget extends DetailTimeFieldWidget
 export class GalleryTimeRangeFieldWidget extends DetailTimeRangeFieldWidget
 ```
 
-## （十四）Year (Year)
+## （XIV）Year (Year)
 
 ### 1、GalleryYearFieldWidget
 
@@ -483,7 +483,7 @@ export class GalleryYearFieldWidget extends DetailYearFieldWidget
 export class GalleryYearRangeFieldWidget extends DetailYearRangeFieldWidget
 ```
 
-## （十五）Key-Value Pair (Map)
+## （XV）Key-Value Pair (Map)
 
 ### 1、GalleryMapFieldWidget
 
@@ -499,7 +499,7 @@ export class GalleryYearRangeFieldWidget extends DetailYearRangeFieldWidget
 export class GalleryMapFieldWidget extends DetailMapFieldWidget
 ```
 
-## （十六）Many-to-One (M2O)
+## （XVI）Many-to-One (M2O)
 
 ### 1、GalleryM2OSelectFieldWidget
 
@@ -515,7 +515,7 @@ export class GalleryMapFieldWidget extends DetailMapFieldWidget
 export class GalleryM2OSelectFieldWidget extends DetailM2OSelectFieldWidget
 ```
 
-## （十七）One-to-Many (O2M)
+## （XVII）One-to-Many (O2M)
 
 ### 1、GalleryO2MSelectFieldWidget
 
@@ -535,7 +535,7 @@ export class GalleryO2MSelectFieldWidget extends DetailO2MSelectFieldWidget
 
 + currentValueStr: Label text of the currently selected values, separated by commas. (`string`)
 
-## （十八）Many-to-Many (M2M)
+## （XVIII）Many-to-Many (M2M)
 
 ### 1、GalleryM2MSelectFieldWidget
 

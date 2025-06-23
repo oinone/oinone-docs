@@ -9,7 +9,7 @@ order: 53
 # I. Workflow Node Approver Function
 In business process handling, custom functions for handover, cc, additional signature, filling, and notifiers are included. When the default approver selection mechanism provided by the platform cannot meet personalized business requirements, we can use custom functions to specifically process the generation logic of approvers.
 
-## (一) Writing a Custom Approver Function
+## (Ⅰ) Writing a Custom Approver Function
 ```java
 @Function(openLevel = {FunctionOpenEnum.API})
 @Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "Reimbursement Form - Certifier - Approval", category = CUSTOM_DESIGNER)
@@ -39,7 +39,7 @@ public List<NodePerson> bizZmrApprovePerson(List<NodePerson> nodePersonList, Nod
 }
 ```
 
-## (二) Setting Custom Function for Approval Node in Process Designer
+## (Ⅱ) Setting Custom Function for Approval Node in Process Designer
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20231204-144055-20250530144830203.png)
 
 

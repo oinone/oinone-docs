@@ -6,8 +6,8 @@ category:
 order: 40
 ---
 
-# 一、Driver Configuration
-## （一）Maven Configuration
+# Ⅰ、Driver Configuration
+## （Ⅰ）Maven Configuration
 Download the driver package from Huawei official website: [gsjdbc4.jar](https://support.huaweicloud.com/mgtg-dws/dws_01_0032.html);
 
 ```xml
@@ -22,7 +22,7 @@ Download the driver package from Huawei official website: [gsjdbc4.jar](https://
 </dependency>
 ```
 
-## （二）JDBC Connection Configuration
+## （Ⅱ）JDBC Connection Configuration
 ```yaml
 pamirs:
   datasource:
@@ -60,7 +60,7 @@ pamirs:
       asyncInit: true
 ```
 
-## （三）Connection URL Configuration
+## （Ⅲ）Connection URL Configuration
 Click to view official documentation: [Official Documentation](https://docs-opengauss.osinfra.cn/zh/docs/5.0.0/docs/GettingStarted/%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93.html)
 
 ### 1、URL Format
@@ -76,7 +76,7 @@ When configuring the Pamirs connection, ${database} and ${schema} must be fully 
 
 For other connection parameters, you can refer to relevant materials for optimization as needed.
 
-## （四）Dialect Configuration
+## （Ⅳ）Dialect Configuration
 ### 1、Pamirs Dialect Configuration
 ```yaml
 pamirs:
@@ -129,7 +129,7 @@ Since there are no obvious differences in the schedule dialect across multiple v
 
 :::
 
-## （五）Other Configurations
+## （Ⅴ）Other Configurations
 ### 1、Logical Delete Value Configuration
 ```yaml
 pamirs:
@@ -139,7 +139,7 @@ pamirs:
         logic-delete-value: (EXTRACT(epoch FROM CURRENT_TIMESTAMP) * 1000000 + EXTRACT(MICROSECONDS FROM CURRENT_TIMESTAMP))::bigint
 ```
 
-# 二、Gauss Database User Initialization and Authorization
+# Ⅱ、Gauss Database User Initialization and Authorization
 ```sql
 -- init root user (user name can be modified by oneself)
 -- Create user wangxian
@@ -153,10 +153,10 @@ SELECT * FROM pg_roles;
 GRANT CREATE ON DATABASE pamirs TO root;
 ```
 
-# 三、Considerations for Migrating Data from MySQL to Gauss Database
+# Ⅲ、Considerations for Migrating Data from MySQL to Gauss Database
 Since the configuration of MySQL auto-increment IDs is in the table creation statement, while Gauss uses a separate sequence table to record auto-increment IDs, the auto-increment ID data needs to be migrated independently after data synchronization.
 
-## （一）Models Using Auto-increment IDs in Built-in Platform Modules:
+## （Ⅰ）Models Using Auto-increment IDs in Built-in Platform Modules:
 + `LeafAlloc` in `base` module
 + `WorkerNode` in `base` module
 + `PamirsSchedule` in `trigger` module
@@ -177,15 +177,15 @@ SELECT setval('demo_pamirs.eip_eip_log_id_seq', (select id from demo_pamirs.eip_
 SELECT setval('demo_pamirs.common_model_meta_change_record_id_seq', (select id from demo_pamirs.common_model_meta_change_record order by id desc limit 1), true);
 ```
 
-# 四、How to Manually Set Auto-increment Sequence Values in Gauss
-## （一）Using the `setval` Function
+# Ⅳ、How to Manually Set Auto-increment Sequence Values in Gauss
+## （Ⅰ）Using the `setval` Function
 The `setval` function directly sets the current value of a sequence, suitable for scenarios requiring precise control over sequence values.
 
 + The first parameter of `setval` is the sequence name.
 + The second parameter is the value to set (e.g., 10).
 + The third parameter indicates whether to set the `is_called` flag to `true`, meaning the next `nextval` call returns the set value.
 
-## （二）Example Operations
+## （Ⅱ）Example Operations
 Assume your full sequence name is `demo_pamirs.pamirs_schedule_0_id_seq`, where `demo_pamirs` is the database name. The specific steps are as follows:
 
 1. Reset the current value of the sequence:

@@ -29,7 +29,7 @@ Download address: [https://github.com/Kong/insomnia/releases](https://github.com
 # IV. Log in to GQL
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/71715839574_.pic_.jpg)
 
-## (一) Example Call Code
+## (Ⅰ) Example Call Code
 ```graphql
 mutation {
     pamirsUserTransientMutation {
@@ -48,7 +48,7 @@ mutation {
 Execute GraphQL to directly return export data, suitable for downloading files through a browser.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/81715839618_.pic_-20250530144827397.jpg)
 
-## (一) Example Call Code by Module
+## (Ⅰ) Example Call Code by Module
 ```graphql
 Request example:
 mutation {
@@ -66,7 +66,7 @@ mutation {
 - **fileName parameter**: This parameter is used to specify the name of the generated JSON file. By defining the file name, it facilitates the identification, storage, and management of the generated file.
 - **moduleBasics parameter**: This parameter determines whether to export only module basic data. If the parameter value is `true`, the system will only export built-in layouts, module menus, and actions associated with menus. If the value is `false`, in addition to the above basic data, it will also export all pages within the module, as well as detailed information such as action metadata and page design data associated with the pages. The default value of this parameter is set to `false`.
 
-## (二) Export by Menu
+## (Ⅱ) Export by Menu
 ```graphql
 mutation {
     uiDesignerExportReqMutation {
@@ -87,7 +87,7 @@ mutation {
 - **fileName parameter**: This parameter is used to clearly specify the name of the generated `json` file. Accurate naming facilitates the identification, positioning, and management of the file in subsequent operations, ensuring the efficiency of data storage and invocation.
 - **relationViews parameter**: This parameter determines whether to export associated pages, with a default value of `false`, meaning only pages associated with the menu are exported by default. If this parameter is set to `true`, in addition to the menu-associated pages, the system will further export custom pages associated with the page through jump actions. This parameter setting provides flexibility for data export to meet the needs of obtaining associated page data in different business scenarios.
 
-## (三) Specified Page Export
+## (Ⅲ) Specified Page Export
 ```graphql
 mutation {
     uiDesignerExportReqMutation {
@@ -113,7 +113,7 @@ mutation {
 
 # VI. Export Components
 
-## (一) Export All Component Data
+## (Ⅰ) Export All Component Data
 ```graphql
 mutation {
     uiDesignerExportReqMutation {
@@ -127,7 +127,7 @@ mutation {
 - **fileName parameter**: The role of this parameter is to clearly specify the name of the generated `json` file. By precisely setting the file name, it is convenient for effective identification, storage, and subsequent invocation of the generated file.
 - **Note**: It should be particularly noted that the metadata of custom components belongs to the page designer (`ui_designer`), which means that when importing metadata, the corresponding module (`module`) is not a business module. In view of this, when importing components, it is recommended to use `pro.shushi.pamirs.metadata.manager.core.helper.WidgetInstallHelper` to ensure the accuracy and standardization of the component import process.
 
-## (二) Export All Component Files
+## (Ⅱ) Export All Component Files
 When the OSS (Object Storage Service) in the development environment and the import environment cannot communicate with each other, the following method can be used to export the CSS and JS file compression packages of custom components. During the import process, the system supports specifying a ZIP file to upload to OSS and correspondingly replacing the CSS and JS file paths in the imported component data.
 
 ```graphql

@@ -16,7 +16,7 @@ A module is the smallest unit divided and managed by business domain, a collecti
 
 # II. Module
 
-## (一) Module Definition
+## (Ⅰ) Module Definition
 
 Oinone's module definition file declares modules through Java classes and specifies corresponding module metadata. In Oinone, all modules inherit from `PamirsModule`. Take the `expenses` module as an example:
 
@@ -106,7 +106,7 @@ Once installed until uninstalled, the module code cannot be changed; otherwise, 
 
 :::
 
-## (二) Annotation Configuration
+## (Ⅱ) Annotation Configuration
 
 ### 1、@Module
 
@@ -180,7 +180,7 @@ Once installed until uninstalled, the module code cannot be changed; otherwise, 
 
 └── logo Icon
 
-## (三) Module Metadata
+## (Ⅲ) Module Metadata
 
 ### 1、ModuleDefinition
 
@@ -400,11 +400,11 @@ Inherits from ModuleDefinition and extends metadata related to frontend interact
 
 # III. Module Lifecycle
 
-## (一) Lifecycle Diagram
+## (Ⅰ) Lifecycle Diagram
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/module-API/1634113652591-6dbcd403-00e2-47bc-a09c-24a584e07dd5-20250529105412418.jpeg)
 
-## (二) Business Extension Description
+## (Ⅱ) Business Extension Description
 
 <table border="1" cellspacing="0" cellpadding="8" style="border-collapse: collapse; width: 100%; max-width: 1200px; margin: 20px auto;">
   <thead>
@@ -468,7 +468,7 @@ Inherits from ModuleDefinition and extends metadata related to frontend interact
 
 # IV. Module Startup
 
-## (一) Startup Project
+## (Ⅰ) Startup Project
 
 The module startup project is usually independent of the module project, existing as a separate project. It undertakes the important responsibility of organizing and assembling different modules to achieve collaborative startup.
 
@@ -485,7 +485,7 @@ In Oinone, if cross-module storage models have an inheritance relationship, they
 
 :::
 
-## (二) Deployment Parameter pamirs.boot
+## (Ⅱ) Deployment Parameter pamirs.boot
 
 In Oinone, there are two convenient ways to set startup parameters:
 
@@ -660,7 +660,7 @@ pamirs:
         - nocodeModule2
 ```
 
-## (三) Framework Configuration pamirs.framework
+## (Ⅲ) Framework Configuration pamirs.framework
 
 Oinone framework's core configuration items are categorized by functional modules as follows:
 
@@ -726,7 +726,7 @@ pamirs:
         #- pro.shushi.pamirs.user.api.hook.UserQueryOneHookAfter
 ```
 
-## (四) Database Dialect pamirs.dialect.ds
+## (Ⅳ) Database Dialect pamirs.dialect.ds
 
 Configuration Description of `pamirs.datasource` Data Source Dialect
 
@@ -753,7 +753,7 @@ pamirs:
 
 For more dialect configurations, refer to: [Database Dialect Configuration Topic](/en/DevManual/CommonSolutions/Back-End/data-dialect-opengauss-database-deployment.md)
 
-## (五) Data Source Configuration pamirs.datasource
+## (Ⅴ) Data Source Configuration pamirs.datasource
 
 In the application development and deployment process, data storage and interaction are crucial links. `pamirs.datasource`, as a core configuration item, is mainly used to configure the data source information required for installing modules. It builds a bridge between the application and the database, enabling the application to connect to and operate the database stably and efficiently according to different business needs. Through this configuration, we can independently set multiple data sources to meet the differentiated needs of different modules for database connections, thereby enhancing the flexibility and scalability of the system.
 
@@ -823,7 +823,7 @@ pamirs:
 
 In practical applications, you can adjust the data source name, connection parameters, and connection pool configuration according to business needs to flexibly adapt to different database environments. For example, if you need to connect to a PostgreSQL database, you only need to change `driverClassName` to `org.postgresql.Driver` and modify the `url` to the corresponding PostgreSQL connection address. At the same time, according to the performance of the database and the load of the application, reasonably adjusting connection pool parameters such as `initialSize` and `maxActive` can further optimize system performance.
 
-## (六) Database and Table Sharding Configuration pamirs.sharding
+## (Ⅵ) Database and Table Sharding Configuration pamirs.sharding
 
 `pamirs.sharding` is the core configuration module in the Oinone framework for implementing database and table sharding, mainly used to define the horizontal splitting strategy and mapping rules of the database. When using the `pamirs-trigger-bridge-tbschedule` project to enable the built-in scheduling function, this configuration is a **required item**, which can effectively cope with the data storage and access pressure in high-concurrency scenarios and improve the scalability and performance of the system. Through this configuration, developers can flexibly specify data source mapping relationships, data model sharding rules, and specific database and table sharding strategies to achieve the reasonable distribution of data among multiple databases and tables.
 
@@ -975,7 +975,7 @@ pamirs:
 + If you need to add a new slave database, directly add the data source name to the `replicaDataSourceNames` list.
 + Support switching the load balancing type (such as `RANDOM` random strategy), just modify the `type` field value.
 
-## (七) Library-Table Mapping Rules pamirs.mapper
+## (Ⅶ) Library-Table Mapping Rules pamirs.mapper
 
 ### 1、Library Configuration
 
@@ -1086,7 +1086,7 @@ pamirs:
         table-pattern: '${moduleAbbr}_%s'
 ```
 
-## (八) Data Persistence Layer Configuration pamirs.persistence
+## (Ⅷ) Data Persistence Layer Configuration pamirs.persistence
 
 `pamirs.persistence` is the core configuration item for implementing automated data persistence management in the Oinone framework, **supporting the automatic creation of databases and data tables**.
 
@@ -1127,7 +1127,7 @@ pamirs:
 
 Through the above configuration, global and local rules can be flexibly combined to balance efficiency and flexibility, ensuring按需 (on-demand) automated deployment of database resources while reducing the risk of misoperations.
 
-## (九) Event Configuration pamirs.event
+## (Ⅸ) Event Configuration pamirs.event
 
 ### 1、Core Configuration
 
@@ -1196,7 +1196,7 @@ spring:
 
 The above configuration needs to be adjusted according to the actual environment for parameters such as address, port, and authentication information. Through the linkage between `pamirs.event.notify-map` and message queue configuration, efficient distribution and reliable transmission of different types of messages can be achieved.
 
-## (十) Data Record Configuration pamirs.record.sql
+## (Ⅹ) Data Record Configuration pamirs.record.sql
 
 When using the SQL record function of the `pamirs` framework, you can specify the storage location of the SQL log file through the following configuration. This configuration allows you to record the SQL statements executed by the system and their related information to a specific directory.
 
@@ -1210,7 +1210,7 @@ pamirs:
 
 You can modify the `store` field to a suitable local or remote storage path as needed. If not configured, it defaults to `System.getProperty("user.dir")`, i.e., the user's home directory.
 
-## (十一) Metadata Path Configuration pamirs.meta
+## (Ⅺ) Metadata Path Configuration pamirs.meta
 
 `pamirs.meta` is used to configure metadata-related path information, where the core configuration item `views-package` is used to specify the storage suffix of template files. The specific description is as follows:
 
@@ -1222,7 +1222,7 @@ You can modify the `store` field to a suitable local or remote storage path as n
     views-package: /pamirs/views
 ```
 
-## (十二) Enhanced Model Configuration pamirs.channel
+## (Ⅻ) Enhanced Model Configuration pamirs.channel
 
 The EnhanceModel enhanced model gives the system powerful full-text search capabilities. To use this function, you need to configure the scan path, search engine-related parameters, and this function depends on the `pamirs.event` event configuration.
 
@@ -1253,7 +1253,7 @@ The EnhanceModel enhanced model function depends on the `pamirs.event` event con
 
 :::
 
-## (十三) Authorization File Configuration pamirs.license
+## (XIII) Authorization File Configuration pamirs.license
 
 When using the Oinone enterprise edition, you need to configure the authorization file to ensure the normal operation of the system. The specific configuration is as follows:
 
@@ -1267,7 +1267,7 @@ pamirs:
 
 Please accurately modify the values of `path` and `subject` according to the actual information provided by the platform. `path` needs to specify the storage path of the certificate file, and `subject` is the identification information of the certificate. Only after completing the correct configuration can you smoothly use the functions of the Oinone enterprise edition.
 
-## (十四) File Storage Configuration pamirs.file
+## (XIV) File Storage Configuration pamirs.file
 
 Oinone currently supports multiple types of OSS services to meet the storage needs of different users. The following is a detailed introduction:
 

@@ -11,7 +11,7 @@ Oinone provides two deployment methods for the designer, allowing partners to ch
 
 # II. Docker Configuration Parameters
 
-## (一) Environment Variables
+## (Ⅰ) Environment Variables
 - ARG_ENV: Specifies spring.profiles.active (Default: dev)
 - ARG_LIFECYCLE: Specifies -Plifecycle (Default: INSTALL)
 - JVM_OPTIONS: JVM parameters
@@ -22,7 +22,7 @@ Oinone provides two deployment methods for the designer, allowing partners to ch
 java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 ```
 
-## (二) Port Description
+## (Ⅱ) Port Description
 :::info Note:
 The following are all ports of the current designer image. Different types of images use different numbers of ports due to built-in services, but the port numbers are completely consistent.
 :::
@@ -37,7 +37,7 @@ The following are all ports of the current designer image. Different types of im
 - **Ports 9876/10991**: Built-in RocketMQ ports. As a distributed message queue, RocketMQ uses these two ports for message sending, receiving, and storage to ensure asynchronous communication and peak shaving between systems.
 - **Port 9999**: Built-in local OSS default port. The local object storage service (OSS) provides object storage functions through this port, supporting data storage and access.
 
-## (三) Mount Directory Description (Mount Virtual Volume)
+## (Ⅲ) Mount Directory Description (Mount Virtual Volume)
 In the image environment, `/opt/pamirs` is specified as the working directory, and all mount directories are built based on this directory. The specific functions of each directory are as follows:
 
 - `/opt/pamirs/ext`: Directory for storing application configuration files, including key configuration files such as `application.yml`, `logback.xml`, and `license.lic`, which configure application runtime parameters, logging strategies, and authorization licenses.
@@ -48,7 +48,7 @@ In the image environment, `/opt/pamirs` is specified as the working directory, a
 - `/opt/pamirs/dist`: Frontend service directory, hosting frontend service-related files and resources to support frontend application operation.
 - `/opt/pamirs/static`: A multi-functional directory serving as both the frontend static file directory for storing frontend static resources and the upload/download directory for `LOCAL`-type OSS (Object Storage Service), managing data transmission for local object storage.
 
-## (四) Common Parameters for `docker run` Startup
+## (Ⅳ) Common Parameters for `docker run` Startup
 - `-e`: Specify environment variables
 - `-p`: Specify port mapping
 - `-v`: Specify mount directory (mount virtual volume)
@@ -57,7 +57,7 @@ In the image environment, `/opt/pamirs` is specified as the working directory, a
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
-## (五) Common Configurations for `docker compose` Startup
+## (Ⅴ) Common Configurations for `docker compose` Startup
 ```yaml
 services:
   container:
@@ -81,7 +81,7 @@ services:
       ...
 ```
 
-## (六) Common `docker compose` Commands
+## (Ⅵ) Common `docker compose` Commands
 ```shell
 # Start using docker-compose.yaml
 docker compose up -d
@@ -98,10 +98,10 @@ docker compose -f config.yaml down -v
 
 # III. JAR Package Startup Method
 
-## (一) Download Oinone Exclusive Starter
+## (Ⅰ) Download Oinone Exclusive Starter
 [oinone-boot-starter.zip](https://pamirs.oss-cn-hangzhou.aliyuncs.com/install/oinone-boot-starter.zip)
 
-## (二) Startup Command Changes
+## (Ⅱ) Startup Command Changes
 ```shell
 # Original command
 java -jar boot.jar

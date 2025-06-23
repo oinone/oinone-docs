@@ -19,7 +19,7 @@ Components used to wrap other components are typically registered through Pack c
 
 # II. Registration of Pack Components
 
-## (一) Registration Options for Pack Components
+## (Ⅰ) Registration Options for Pack Components
 
 ```typescript
 /**
@@ -51,7 +51,7 @@ export interface BasePackOptions extends SPIOptions {
 
 From the above type declaration, it's evident that the classification dimensions include view type, component name, inline status, model code, and view name. These dimensions describe the component's usage location. Generally, the more "precise" the location description, the higher the priority of the component when rendered in that location. Components registered later will overwrite those with identical location descriptions.
 
-## (二) Registering Components
+## (Ⅱ) Registering Components
 
 ### 1. Registering Default Pack Components
 
@@ -93,7 +93,7 @@ For this component, use the pack tag in DSL with the `widget` attribute specifie
 
 # III. Usage of Common Layout and Container Components
 
-## (一) Grid Layout
+## (Ⅰ) Grid Layout
 
 Referencing [Antd Grid for Vue](https://3x.antdv.com/components/grid-cn), Oinone's grid layout also uses a `24-column` grid. Let's explore how grid layouts are used in DSL.
 
@@ -132,7 +132,7 @@ Unlike native component-supported grid layouts, Oinone provides a combination of
 </pack>
 ```
 
-## (二) Tab Components
+## (Ⅱ) Tab Components
 
 Referencing [Antd Tabs for Vue](https://3x.antdv.com/components/tabs-cn), for `parent-child combined` components, the usage is similar to native components, requiring adjacent definition of parent and child components.
 
@@ -146,7 +146,7 @@ Referencing [Antd Tabs for Vue](https://3x.antdv.com/components/tabs-cn), for `p
 </pack>
 ```
 
-## (三) Built-in Grid Layout
+## (Ⅲ) Built-in Grid Layout
 
 In Oinone, some components natively use grid layouts, allowing direct usage without explicit grid layout component definitions.
 
@@ -182,7 +182,7 @@ The built-in grid layout is implemented via a mechanism similar to `component mi
 
 # IV. Reference List
 
-## (一) Layout Components
+## (Ⅰ) Layout Components
 
 ### 1、DefaultBlockWidget
 
@@ -334,7 +334,7 @@ export class DefaultContainerWidget extends DefaultRowWidget
 + showInternalBorder: Whether to show internal borders. (`boolean`)
 + style: Component styles. (`CSSStyleDeclaration`)
 
-## (二) Container Components
+## (Ⅱ) Container Components
 
 ### 1、DefaultGroupWidget
 
@@ -608,7 +608,7 @@ export class DefaultCollapsePanelWidget extends BasePackWidget
 + layout: Layout mode. (`string | undefined`)
 + title: Title. (`string`)
 
-## (三) Other Components
+## (Ⅲ) Other Components
 
 ### 1、DefaultSpinWidget
 

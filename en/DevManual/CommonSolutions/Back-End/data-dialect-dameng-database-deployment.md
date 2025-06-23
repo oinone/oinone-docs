@@ -11,7 +11,7 @@ The server version of Dameng database must match the driver version. It is stron
 
 When encountering an error "Table xx cannot contain both clustered KEY and large fields", specify a non-clustered primary key during table creation. Query configuration via `SELECT * FROM V$DM_INI WHERE PARA_NAME = 'PK_WITH_CLUSTER';` and set parameters with `SP_SET_PARA_VALUE (1,'PK_WITH_CLUSTER',0)`.
 
-## (一) Maven Configuration for DM8 (Latest Version in Maven Repository)
+## (Ⅰ) Maven Configuration for DM8 (Latest Version in Maven Repository)
 ```xml
 <dm.version>8.1.2.192</dm.version>
 <dependency>
@@ -27,7 +27,7 @@ The 8.1.3.12 driver version needs to be manually uploaded to the Nexus repositor
 
 :::
 
-## (二) Maven Configuration for DM7
+## (Ⅱ) Maven Configuration for DM7
 ```xml
 <dm7.version>7.6.1.120</dm7.version>
 <dependency>
@@ -43,7 +43,7 @@ The 7.6.1.120 driver version needs to be manually uploaded to the Nexus reposito
 
 :::
 
-## (三) Offline Driver Download
+## (Ⅲ) Offline Driver Download
 [Dm7JdbcDriver18-7.6.1.120.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/dm/Dm7JdbcDriver18-7.6.1.120.jar)
 [DmJdbcDriver18-8.1.3.12.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/dm/DmJdbcDriver18-8.1.3.12.jar)
 
@@ -74,7 +74,7 @@ pamirs:
 
 Note: For more YAML configurations, refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## (一) Connection URL Configuration
+## (Ⅰ) Connection URL Configuration
 Click to view the official document: [DM JDBC Programming Guide](https://eco.dameng.com/document/dm/en/pm/jdbc-rogramming-guide.html)
 
 ### 1. Connection String 1
@@ -114,7 +114,7 @@ Dameng database requires different connection strings for different driver versi
 
 
 # III. Dialect Configuration
-## (一) pamirs Dialect Configuration
+## (Ⅰ) pamirs Dialect Configuration
 ```yaml
 pamirs:
   dialect:
@@ -135,7 +135,7 @@ pamirs:
 | 8-20230418 | DM | 8 | 8 |
 
 
-## (二) Schedule Dialect Configuration
+## (Ⅱ) Schedule Dialect Configuration
 ```yaml
 pamirs:
   event:
@@ -158,7 +158,7 @@ As there are no significant differences in the schedule dialect across multiple 
 :::
 
 # IV. Other Configurations
-## (一) Logical Deletion Value Configuration
+## (Ⅰ) Logical Deletion Value Configuration
 ```yaml
 pamirs:
   mapper:
@@ -167,7 +167,7 @@ pamirs:
         logic-delete-value: (CAST(SYSTIMESTAMP AS TIMESTAMP) - CAST(TIMESTAMP '1970-01-01 08:00:00' AS TIMESTAMP)) * 8640000000000
 ```
 
-## (二) Dameng Database User Initialization and Authorization
+## (Ⅱ) Dameng Database User Initialization and Authorization
 ```sql
 -- init oinone role (role name can be modified by oneself)
 

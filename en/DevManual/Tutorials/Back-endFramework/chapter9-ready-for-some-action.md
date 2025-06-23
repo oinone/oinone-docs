@@ -17,7 +17,7 @@ Some may say we can already complete these operations by manually changing statu
 
 # I. Single Record Actions
 
-Reference: Documentation related to this topic can be found in "[Actions](/en/DevManual/Reference/Back-EndFramework/actions-API.md)" and "[Error Management](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#七、异常处理)".
+Reference: Documentation related to this topic can be found in "[Actions](/en/DevManual/Reference/Back-EndFramework/actions-API.md)" and "[Error Management](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#vii-exception-handling)".
 
 :::info Objective: By the end of this section, you should be able to:
 

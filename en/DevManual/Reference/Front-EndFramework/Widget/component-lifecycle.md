@@ -52,7 +52,7 @@ The Widget framework uses the object-oriented inheritance feature, so it is unav
 
 # III. Reference List
 
-## (一) Standard Lifecycle Functions
+## (Ⅰ) Standard Lifecycle Functions
 
 ### 1. beforeCreated
 
@@ -269,7 +269,7 @@ protected deactivated() {
 }
 ```
 
-# (二) Widget Component Extended Functions
+# (Ⅱ) Widget Component Extended Functions
 
 ### 1. initialize
 

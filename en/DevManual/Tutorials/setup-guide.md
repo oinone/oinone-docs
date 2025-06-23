@@ -13,7 +13,7 @@ prev:
 There are multiple ways to install Oinone Math based on the intended usage scenario. For developers of Oinone Math and Oinone Math staff, the preferred method is still to install using the source code.
 
 # II. Adapting the Environment for Tutorials
-## (一) Backend Development
+## (Ⅰ) Backend Development
 So, let's push your changes to the tutorial code repository: `oinone/oinone-backend-tutorials`. Like the oinone/oinone-backend-starter repository, it will start independently and become part of the whole.
 
 :::warning Tip: Independent Module Launch
@@ -42,7 +42,7 @@ git remote add dev git@github.com:<your_github_account>/oinone-backend-tutorials
 
 That's it! Now your environment is ready to run Oinone from the source code, and you have successfully created a repository. This will enable you to push your work to GitHub.
 
-## (二) Frontend Development
+## (Ⅱ) Frontend Development
 So, let's push your changes to the tutorial code repository: `oinone/oinone-frontend-tutorials`. Like the oinone/oinone-frontend-starter repository, it can start independently and replace oinone-frontend-starter to provide frontend services.
 
 Follow the same process as the `oinone/oinone-frontend-starter` repository to clone the `oinone/oinone-frontend-tutorials` repository on your machine with the following command:
@@ -66,7 +66,7 @@ git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorial
 That's it! Now your environment is ready to run Oinone from the source code, and you have successfully created a repository. This will enable you to push your work to GitHub.
 
 # III. Additional Backend Tools
-## (一) IDEA Tool and Plugin Installation
+## (Ⅰ) IDEA Tool and Plugin Installation
 ### 1. Please download the corresponding plugin according to your Idea version
 
 | IDEA Version | Corresponding Plugin                                                     |
@@ -101,10 +101,10 @@ That's it! Now your environment is ready to run Oinone from the source code, and
 </div>
 
 
-## (二) DB GUI Tool
+## (Ⅱ) DB GUI Tool
 Many people like to use Datagrip, MySQLWorkbench, DBEaver for database management tools. You can choose one according to your preference.
 
-## (三) Maven Tool
+## (Ⅲ) Maven Tool
 ### 1. Installation
 Refer to [Maven Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Maven-setup.md)
 
@@ -115,11 +115,11 @@ If there is no user-level maven configuration, you may need to configure maven p
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/setup-guide/Maven.png)
 
-## (四) GraphQL API Debugging Tool
+## (Ⅳ) GraphQL API Debugging Tool
 Common GraphQL debugging tools include Postman, Insomnia, etc.
 When using these tools, you can combine the Environment and placeholder functions to facilitate interface debugging.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/setup-guide/Graph.gif)
 
 # IV. Additional Frontend Tools
-Refer to the frontend [Environment Configuration Advanced](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#三、进阶)
+Refer to the frontend [Environment Configuration Advanced](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#ⅲadvanced)

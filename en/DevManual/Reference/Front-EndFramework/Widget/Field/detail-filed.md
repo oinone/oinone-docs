@@ -12,7 +12,7 @@ order: 4
 ---
 # Reference List
 
-## (一) String
+## (Ⅰ) String
 
 ### 1、DetailStringFieldWidget{#quote2}
 
@@ -193,7 +193,7 @@ export class DetailStringUploadFieldWidget extends FormFieldWidget
 export class DetailStringUploadImgFieldWidget extends FormFieldWidget
 ```
 
-## (二) Text
+## (Ⅱ) Text
 
 ### 1、DetailCommonFieldWidget
 
@@ -213,7 +213,7 @@ export class DetailCommonFieldWidget extends FormFieldWidget
 
 **Reference**: String - [DetailStringDownloadFieldWidget](#quote1)
 
-## (三) Html
+## (Ⅲ) Html
 
 ### 1、DetailHtmlFieldWidget
 
@@ -233,19 +233,19 @@ export class DetailHtmlFieldWidget extends FormFieldWidget
 
 + encode: Whether to encode HTML content, default value is `false`.（`boolean`）
 
-## (四) Phone
+## (Ⅳ) Phone
 
 ### 1、DetailStringFieldWidget
 
 **Reference**: String - [DetailStringFieldWidget](#quote2)
 
-## (五) Email
+## (Ⅴ) Email
 
 ### 1、DetailStringFieldWidget
 
 **Reference**: String - [DetailStringFieldWidget](#quote2)
 
-## (六) Integer
+## (Ⅵ) Integer
 
 ### 1、DetailNumberWidget{#quote3}
 
@@ -265,19 +265,19 @@ export class DetailNumberWidget extends FormNumberAbstractFieldWidget
 
 + currentValue: Current value (processed), supporting zero padding and thousands formatting.（`string | undefined`）
 
-## (七) Float
+## (Ⅶ) Float
 
 ### 1、DetailNumberWidget
 
 **Reference**: Integer - [DetailNumberWidget](#quote3)
 
-## (八) Money
+## (Ⅷ) Money
 
 ### 1、DetailNumberWidget
 
 **Reference**: Integer - [DetailNumberWidget](#quote3)
 
-## (九) Boolean
+## (Ⅸ) Boolean
 
 ### 1、DetailBooleanFieldWidget
 
@@ -315,7 +315,7 @@ export class DetailBooleanSelectFieldWidget extends FormBooleanSelectFieldWidget
 + optionColor: Whether to enable colorful option styles, determined by `optionColorStyle`.（`boolean`）
 + optionColorStyle: Option color style, default value is `OptionColorStyle.COLORFUL`.（`OptionColorStyle`）
 
-## (十) Enum
+## (Ⅹ) Enum
 
 ### 1、DetailEnumFieldWidget
 
@@ -356,7 +356,7 @@ export class DetailEnumMultiFieldWidget extends FormEnumFieldAbstractWidget<Enum
 + displayNameList: Enumeration option display name list (multiple selection mode) obtained based on the current value.（`{ label: string; value: any }[] | undefined`）
 + displayNameListStr: String form of the enumeration option display name list, separated by commas.（`string | undefined`）
 
-## (十一) Datetime
+## (Ⅺ) Datetime
 
 ### 1、DetailDateTimeFieldWidget
 
@@ -460,7 +460,7 @@ export class DetailDateTimeRangeFieldWidget extends FormRangeFieldsWidget<Standa
   - `format`: Time format to be converted.
 + **Return Value**: Converted time format or `undefined`.
 
-## (十二) Date
+## (Ⅻ) Date
 
 ### 1、DetailDateFieldWidget
 
@@ -522,7 +522,7 @@ export class DetailDateRangeFieldWidget extends DetailDateTimeRangeFieldWidget
   - `format`: Date format to be converted.
 + **Return Value**: Converted date or `undefined`.
 
-## (十三) Time
+## (XIII) Time
 
 ### 1、DetailTimeFieldWidget
 
@@ -584,7 +584,7 @@ export class DetailTimeRangeFieldWidget extends DetailDateTimeRangeFieldWidget
   - `format`: Time format to be converted.
 + **Return Value**: Converted time or `undefined`.
 
-## (十四) Year
+## (XIV) Year
 
 ### 1、DetailYearFieldWidget
 
@@ -630,7 +630,7 @@ export class DetailYearRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 + hasTimeFormat: Whether it contains a time format, default value is `false`.（`boolean`）
 + valueFormat: Value format, default is `defaultYearValueFormat`.（`string`）
 
-## (十五) Map
+## (XV) Map
 
 ### 1、DetailMapFieldWidget
 
@@ -646,7 +646,7 @@ export class DetailYearRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 export class DetailMapFieldWidget extends FormMapFieldWidget
 ```
 
-## (十六) M2O
+## (XVI) M2O
 
 ### 1、DetailM2OSelectFieldWidget
 
@@ -682,7 +682,7 @@ export class DetailM2OUploadWidget extends DetailRelationSelectFieldWidget
 + cdnKey: CDN key.（`string | undefined`）
 + privateLink: Whether to use a private link.（`boolean`）
 
-## (十七) O2M
+## (XVII) O2M
 
 ### 1、DetailO2MSelectFieldWidget
 
@@ -729,7 +729,7 @@ export class DetailO2MTableFieldWidget extends FormSubviewListFieldWidget<Runtim
 + **Function Description**: Refresh value processing, only call the parent class method in data source provider mode.
 + **Type**: `() => Promise<void>`
 
-## (十八) M2M
+## (XVIII) M2M
 
 ### 1、DetailM2MSelectFieldWidget
 
@@ -772,7 +772,7 @@ export class DetailM2MTableFieldWidget extends FormSubviewListFieldWidget<Runtim
 + **Function Description**: Refresh value processing, only call the parent class method in data source provider mode.
 + **Type**: `() => Promise<void>`
 
-## (十九) Abstract Base Class
+## (XIX) Abstract Base Class
 
 ### 1、DetailRelationSelectFieldWidget
 

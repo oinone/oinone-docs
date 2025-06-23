@@ -13,7 +13,7 @@ next:
   link: /en/software-licenses.md
 ---
 
-#### **一、Documentation Types and Corresponding Templates**
+#### **Ⅰ、Documentation Types and Corresponding Templates**
 
 ##### **1. User Guides (for End Users)**
 
@@ -46,7 +46,7 @@ next:
 
 ##### **3. API Documentation (for Integration Developers)**
 
-#### **二、Documentation Contribution Process**
+#### **Ⅱ、Documentation Contribution Process**
 
 ##### **1. Contribution Flowchart**
 
@@ -99,7 +99,7 @@ next:
   - At least 1 maintainer approval (2 for large documents).
   - Automatically trigger CI checks (spelling verification, link validity).
 
-#### **三、Review Standards and Tools**
+#### **Ⅲ、Review Standards and Tools**
 
 ##### **1. Review Checklist**
 

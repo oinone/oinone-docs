@@ -37,7 +37,7 @@ Request context directives are set through the non-persistent `META_BIT` attribu
 
 # III. Meta Directive Usage Modes
 
-## (一) Normal Mode
+## (Ⅰ) Normal Mode
 
 ```java
 PamirsSession.directive().disableOptimisticLocker();
@@ -48,7 +48,7 @@ try {
 }
 ```
 
-## (二) Batch Setting Mode
+## (Ⅱ) Batch Setting Mode
 
 ```java
 Models.directive().run(() -> { /* Add logic here */}, SystemDirectiveEnum.AUTHENTICATE);

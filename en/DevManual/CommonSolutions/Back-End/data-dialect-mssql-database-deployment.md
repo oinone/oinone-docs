@@ -7,7 +7,7 @@ order: 39
 ---
 
 # I. Driver Configuration
-## (一) Maven Configuration (Suitable for 2017 Version)
+## (Ⅰ) Maven Configuration (Suitable for 2017 Version)
 ```xml
 <mssql.version>9.4.0.jre8</mssql.version>
 <dependency>
@@ -17,7 +17,7 @@ order: 39
 </dependency>
 ```
 
-## (二) Offline Driver Download
+## (Ⅱ) Offline Driver Download
 [mssql-jdbc-7.4.1.jre8.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/mssql/mssql-jdbc-7.4.1.jre8.jar)
 [mssql-jdbc-9.4.0.jre8.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/mssql/mssql-jdbc-9.4.0.jre8.jar)
 [mssql-jdbc-12.2.0.jre8.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/mssql/mssql-jdbc-12.2.0.jre8.jar)
@@ -46,10 +46,10 @@ pamirs:
 
 **Note**: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## (一) Connection URL Configuration
+## (Ⅰ) Connection URL Configuration
 No official documentation available currently.
 
-## (二) URL Format
+## (Ⅱ) URL Format
 ```plain
 jdbc:sqlserver://${host}:${port};DatabaseName=${database}
 ```
@@ -61,7 +61,7 @@ When configuring the JDBC connection, both `${database}` and `${schema}` must be
 For other connection parameters, you can refer to relevant materials for optimization as needed.
 
 # III. Dialect Configuration
-## (一) pamirs Dialect Configuration
+## (Ⅰ) pamirs Dialect Configuration
 ```yaml
 pamirs:
   dialect:
@@ -86,7 +86,7 @@ pamirs:
 Since the dialect development environment is the 2017 version, other similar versions generally will not have significant differences. If you encounter issues with unsupported versions, please leave a comment below the document.
 :::
 
-## (二) Schedule Dialect Configuration
+## (Ⅱ) Schedule Dialect Configuration
 ```yaml
 pamirs:
   event:
@@ -108,7 +108,7 @@ As there are no obvious differences in the schedule dialect across multiple vers
 :::
 
 # IV. Other Configurations
-## (一) Logical Deletion Value Configuration
+## (Ⅰ) Logical Deletion Value Configuration
 ```yaml
 pamirs:
   mapper:
@@ -117,7 +117,7 @@ pamirs:
         logic-delete-value: CAST(DATEDIFF(S, CAST('1970-01-01 00:00:00' AS DATETIME), GETUTCDATE()) AS BIGINT) * 1000000 + DATEPART(NS, SYSUTCDATETIME()) / 100
 ```
 
-## (二) MSSQL Database User Initialization and Authorization
+## (Ⅱ) MSSQL Database User Initialization and Authorization
 ```sql
 -- init root user (user name can be modified by oneself)
 

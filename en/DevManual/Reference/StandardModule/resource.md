@@ -14,7 +14,7 @@ In Oinone, built-in model definitions exist for common basic data to support spe
 
 # II. Dependencies and Configuration
 
-## (一) pom Dependencies
+## (Ⅰ) pom Dependencies
 
 ```xml
 <dependency>
@@ -27,7 +27,7 @@ In Oinone, built-in model definitions exist for common basic data to support spe
 </dependency>
 ```
 
-## (二) Yaml Configuration
+## (Ⅱ) Yaml Configuration
 
 ```yaml
 pamirs:
@@ -38,7 +38,7 @@ pamirs:
 
 # IV. Reference List
 
-## (一) Models
+## (Ⅰ) Models
 
 ### 1. Region (ResourceRegion)
 
@@ -330,7 +330,7 @@ pamirs:
 | apColonShortMap | Map<String, Object> | Short Colon Format (AP Style, Frontend) | Mapping containing format information |
 
 
-## (二) Enums
+## (Ⅱ) Enums
 
 ### 1. Address Type (AddressTypeEnum)
 

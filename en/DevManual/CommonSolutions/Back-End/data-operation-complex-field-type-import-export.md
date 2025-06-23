@@ -39,7 +39,7 @@ public class EmployeeTemplate implements ExcelTemplateInit {
 ```
 
 # II. Code Examples
-## (一) Export of Non-Stored Fields
+## (Ⅰ) Export of Non-Stored Fields
 If the field to be exported is a non-stored field, since by default only fields stored in the database are exported, manual setting is required for non-stored fields during export.
 
 ```java
@@ -66,7 +66,7 @@ public class EmpTemplateExportExtPoint extends DefaultExcelExportFetchDataExtPoi
 }
 ```
 
-## (二) Multi-Value Field Import
+## (Ⅱ) Multi-Value Field Import
 If the field to be imported has multiple values, you can create a proxy model. In this proxy model, set a field to receive the multi-value field. Specifically, in Excel, fill the multi-value field in a single cell, with each value separated by a custom symbol (e.g., ";"). When creating the template, use the template corresponding to this proxy class. During import and export operations, split the field based on ";".
 
 ```java

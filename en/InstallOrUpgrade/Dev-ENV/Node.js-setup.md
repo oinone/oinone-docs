@@ -7,7 +7,7 @@ category:
 order: 2
 
 ---
-# 一、Download Installation Package
+# Ⅰ、Download Installation Package
 :::warning Tip
 
 When downloading, please note to select the version that matches your operating system and CPU instruction set architecture (such as x64, arm64).
@@ -32,8 +32,8 @@ Node.js download address:
 
 [https://nodejs.org/dist/v20.16.0/](https://nodejs.org/dist/v20.16.0/)
 
-# 二、Installation
-## （一）Install Node.js on Linux/macOS
+# Ⅱ、Installation
+## （Ⅰ）Install Node.js on Linux/macOS
 ### 1、Unzip
 Use a visualization tool or the following command to unzip
 
@@ -64,7 +64,7 @@ node --version
 v20.16.0
 ```
 
-## （二）Install Node.js on Windows
+## （Ⅱ）Install Node.js on Windows
 ### 1、Unzip
 Use a visualization tool or the Windows built-in zip tool (select the file with the mouse, right-click "Extract All"), and extract the contents of the compressed file
 
@@ -95,7 +95,7 @@ node --version
 v20.16.0
 ```
 
-# 三、Advanced
+# Ⅲ、Advanced
 Use nvm to manage different versions of Node.js. For installation and usage methods, please refer to the nvm official website:
 [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
 

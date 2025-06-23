@@ -16,7 +16,7 @@ This document introduces the Oinone workflow-related APIs, aiming to enhance the
 
 The workflow runtime requires dependencies on related modules.
 
-## (一) pom.xml Dependency Description
+## (Ⅰ) pom.xml Dependency Description
 
 ```xml
 <dependency>
@@ -45,7 +45,7 @@ The workflow runtime requires dependencies on related modules.
 </dependency>
 ```
 
-## (二) application.yml Configuration Description
+## (Ⅱ) application.yml Configuration Description
 
 ```yaml
 spring:
@@ -100,7 +100,7 @@ The following API descriptions all involve models triggering workflows, where th
 
 :::
 
-## (一) Manual Workflow Triggering
+## (Ⅰ) Manual Workflow Triggering
 
 Manually trigger workflows for scenarios that are not automatically triggered.
 
@@ -165,7 +165,7 @@ public <TriggerModel> triggerWorkflow(<TriggerModel> data) {
 }
 ```
 
-## (二) Customize Process Participants
+## (Ⅱ) Customize Process Participants
 
 Customize workflow approvers through configuration functions to achieve flexible runtime configuration of process participants (including transfer, cc, add signature, fill, and notifier).
 
@@ -213,7 +213,7 @@ public List<NodePerson> customPerson(List<NodePerson> nodePersonList, NodeModel 
 }
 ```
 
-## (三) Custom Pre-Approval Execution Function
+## (Ⅲ) Custom Pre-Approval Execution Function
 
 Use Case: When custom logic processing is required after the approval node task is initialized but before the task starts, this extension is used.  
 Execution Time: This extension is executed after the approval to-do task is initialized and before the approval is executed.
@@ -232,7 +232,7 @@ public void approvalCustomStartFun(ApprovalNode approvalNode, WorkflowContext co
 }
 ```
 
-## (四) Custom Pre-Fill Execution Function
+## (Ⅳ) Custom Pre-Fill Execution Function
 
 Use Case: When custom logic processing is required after the fill node task is initialized but before the task starts, this extension is used.  
 Execution Time: This extension is executed after the fill to-do task is initialized and before the fill result is executed.
@@ -252,7 +252,7 @@ public void writeCustomStartFun(WorkflowTaskInstance taskInstance, WriteNode wri
 }
 ```
 
-## (五) Post-Todo Operation Submission Function
+## (Ⅴ) Post-Todo Operation Submission Function
 
 Use Case: When additional logic needs to be executed during the operation of approval or fill to-do tasks, such as updating database records related to the current user's operation after submission.  
 Execution Time: This extension is executed after saving the to-do task and before asynchronously executing the approval or fill result.
@@ -288,7 +288,7 @@ public WorkflowUserTask transformEndFun(WorkflowUserTask userTask) {
 }
 ```
 
-## (六) Approval Operation Data Function
+## (Ⅵ) Approval Operation Data Function
 
 Use Case: During approval or fill execution, when additional business data logic needs to be changed (e.g., modifying associated data status after approval), this extension is used.  
 Execution Time: This extension is executed after the business data is saved following approval agreement or fill submission during approval or fill execution.
@@ -319,7 +319,7 @@ public void approvalDataProcessFun(ApprovalNode approvalNode, WorkflowContext co
 }
 ```
 
-## (七) [Recall] Callback Hook
+## (Ⅶ) [Recall] Callback Hook
 
 Use Case: When the process instance is recalled, this callback hook can be used to change other business data logic.
 
@@ -344,7 +344,7 @@ public <ReplacedByProcessTriggerModel> recall(String data) {
 }
 ```
 
-## (八) [Rollback] Callback Hook
+## (Ⅷ) [Rollback] Callback Hook
 
 Use Case: When a rollback operation is performed on a workflow to-do, this callback hook can be used to change other business data logic.
 
@@ -369,7 +369,7 @@ public <ReplacedByProcessTriggerModel> fallBack(String data) {
 }
 ```
 
-## (九) [Reject] Callback Hook
+## (Ⅸ) [Reject] Callback Hook
 
 Use Case: When a reject operation is performed on a workflow to-do, this callback hook can be used to change other business data logic.
 
@@ -396,7 +396,7 @@ public <ReplacedByProcessTriggerModel> reject(String data) {
 }
 ```
 
-## (十) Custom Approval Method
+## (Ⅹ) Custom Approval Method
 
 Use Case: Set the approval method at workflow runtime via code.
 
@@ -428,7 +428,7 @@ public class ReplacedByProcessTriggerModelAction {
 }
 ```
 
-## (十一) Custom Approval Node Name
+## (Ⅺ) Custom Approval Node Name
 
 Use Case: Dynamically set the workflow approval node name via code.
 

@@ -6,10 +6,10 @@ category:
 order: 33
 ---
 
-# 一、Specify Fields for Sorting
+# Ⅰ、Specify Fields for Sorting
 The platform's default sorting fields, refer to IdModel, sorted in descending order by creation time and ID: `ordering = "createDate DESC, id DESC"`
 
-## （一）Specify Sorting in the Model
+## （Ⅰ）Specify Sorting in the Model
 Add sorting fields to the model definition. `@Model.Advanced(ordering = "xxxxx DESC, yyyy DESC")`
 
 ```java
@@ -23,7 +23,7 @@ public class PetShop extends AbstractDemoIdModel {
 }
 ```
 
-## （二）Custom Sorting Rules in Page Queries
+## （Ⅱ）Custom Sorting Rules in Page Queries
 + API reference: `pro.shushi.pamirs.meta.api.dto.condition.Pagination#orderBy`
 
 ```java
@@ -49,7 +49,7 @@ public Pagination<PetShop> queryPage(Pagination<PetShop> page, IWrapper<PetShop>
 }
 ```
 
-## （三）Specify in the Query Wrapper
+## （Ⅲ）Specify in the Query Wrapper
 + API reference: `pro.shushi.pamirs.framework.connectors.data.sql.AbstractWrapper#orderBy`
 
 ```java
@@ -79,8 +79,8 @@ public List<PetShop> queryList(String name) {
 }
 ```
 
-# 二、Disable Sorting for Queries
-## （一）Turn Off the Platform's Default Sorting Fields by Setting the Model's Ordering to: `ordering = "1=1"`
+# Ⅱ、Disable Sorting for Queries
+## （Ⅰ）Turn Off the Platform's Default Sorting Fields by Setting the Model's Ordering to: `ordering = "1=1"`
 Add sorting fields to the model definition. `@Model.Advanced(ordering = "1=1")`
 
 ```java
@@ -98,7 +98,7 @@ In `ORDER BY 1=1`, `1=1` is a conditional expression that always returns true (o
 
 So, `ORDER BY 1=1` is actually equivalent to not using an `ORDER BY` clause, or sorting in the default order.
 
-## （二）Set the Sortable Property During Query
+## （Ⅱ）Set the Sortable Property During Query
 ```java
 // Example 1:
 LambdaQueryWrapper<PetShop> query = Pops.<PetShop>lambdaQuery();

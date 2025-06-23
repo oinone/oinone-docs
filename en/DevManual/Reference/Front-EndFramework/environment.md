@@ -10,7 +10,7 @@ order: 2
 ---
 # I. Compile-time Environment Configuration
 
-## (一) Using .env Configuration
+## (Ⅰ) Using .env Configuration
 
 Create a `.env` file in the `startup project` for environment configuration, for example:
 
@@ -36,7 +36,7 @@ To make the configuration effective:
 + Use `npm run dev` to restart the service during development.
 + Use `npm run build` for production to complete the build and release.
 
-## (二) Custom .env Configuration
+## (Ⅱ) Custom .env Configuration
 
 You can retrieve `.env` configurations anywhere using:
 
@@ -62,7 +62,7 @@ For more on `.env` configuration usage, refer to: [dotenv-webpack](https://githu
 
 # II. Runtime Environment Configuration
 
-## (一) Using Runtime Configuration in Development
+## (Ⅰ) Using Runtime Configuration in Development
 
 Create a `manifest.js` file in the `startup project` for runtime environment configuration, for example:
 
@@ -88,7 +88,7 @@ runtimeConfigResolve({
 });
 ```
 
-## (二) Using Runtime Configuration in Production Environment
+## (Ⅱ) Using Runtime Configuration in Production Environment
 
 Normally, the `manifest.js` created in the `public` directory of the `startup project` is automatically placed in the `dist` directory during `build-time`. However, sometimes development configuration files are not used in the production environment. In such cases, manually create a `manifest.js` file in the production `dist` directory for production-specific configurations, for example:
 
@@ -113,7 +113,7 @@ The following steps demonstrate the declaration and usage process of a runtime c
 
 Additionally, all possible configurations should be independently placed in the `src/config` directory or the `corresponding function` directory.
 
-## (一) Define Configuration Type
+## (Ⅰ) Define Configuration Type
 
 ```typescript
 /**
@@ -132,7 +132,7 @@ export interface DemoConfig extends RuntimeConfigOptions, EnabledConfig {
 + RuntimeConfigOptions: Defines types that can be configured in `manifest.js` and used.
 + EnabledConfig: Defines a standard enable/disable configuration format.
 
-## (二) Define Runtime Configuration Manager
+## (Ⅱ) Define Runtime Configuration Manager
 
 ```typescript
 export class DemoConfigManager {
@@ -156,7 +156,7 @@ export class DemoConfigManager {
 }
 ```
 
-## (三) Define Parameters in Runtime Configuration
+## (Ⅲ) Define Parameters in Runtime Configuration
 
 ### 1. Simple Enable/Disable Configuration
 
@@ -189,7 +189,7 @@ Here, the `demo` key matches the parameter defined in the `DemoConfigManager#get
 
 :::
 
-## (四) Use Configuration Methods in Components
+## (Ⅳ) Use Configuration Methods in Components
 
 ```typescript
 DemoConfigManager.isEnabled()
@@ -197,7 +197,7 @@ DemoConfigManager.isEnabled()
 
 # IV. Reference List
 
-## (一) .env
+## (Ⅰ) .env
 
 ### 1. BASE_PATH
 
@@ -273,7 +273,7 @@ Example:
 I18N_OSS_URL=/upload/test
 ```
 
-## (二) RuntimeConfig
+## (Ⅱ) RuntimeConfig
 
 ### 1. I18N_OSS_URL
 

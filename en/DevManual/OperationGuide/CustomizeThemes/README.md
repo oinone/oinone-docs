@@ -65,7 +65,7 @@ Theme variables for adjusting UI pages generally fall into two categories: `size
 
 Below, we list all existing system theme variables for reference, organized by these three dimensions.
 
-## (一) General Sizes
+## (Ⅰ) General Sizes
 
 ### 1. Large
 
@@ -178,7 +178,7 @@ Below, we list all existing system theme variables for reference, organized by t
 }
 ```
 
-## (二) General Colors
+## (Ⅱ) General Colors
 
 ### 1. Default Theme
 

@@ -6,17 +6,17 @@ category:
 order: 9
 ---
 
-## 一、OioProvider
+## Ⅰ、OioProvider
 OioProvider serves as the initialization entry point of the platform.
 
-## (一) Example Entry `main.ts`
+## (Ⅰ) Example Entry `main.ts`
 ```typescript
 import { VueOioProvider } from '@kunlun/dependencies';
 
 VueOioProvider();
 ```
 
-# 二、Network Request/Response Configuration `http`
+# Ⅱ、Network Request/Response Configuration `http`
 The platform uniformly uses Apollo as the unified HTTP request initiation service and adopts the GraphQL protocol as the front-end to back-end protocol.
 
 Reference documents:
@@ -24,14 +24,14 @@ Reference documents:
 + [apollo-client](https://github.com/apollographql/apollo-client#readme)
 + [graphql](https://github.com/graphql/graphql-js#readme)
 
-## (一) Configuration Method
+## (Ⅰ) Configuration Method
 ```typescript
 VueOioProvider({
   http?: OioHttpConfig
 });
 ```
 
-## (二) OioHttpConfig
+## (Ⅱ) OioHttpConfig
 ```typescript
 /**
  * OioHttp configuration
@@ -54,7 +54,7 @@ export interface OioHttpConfig {
 }
 ```
 
-## (三) Built-in Interceptor Options `InterceptorOptions`
+## (Ⅲ) Built-in Interceptor Options `InterceptorOptions`
 ```typescript
 /**
  * Interceptor options
@@ -113,7 +113,7 @@ Execution order of built-in interceptors:
 + messageHub: MessageHub
 + afterInterceptors: Post-interceptors
 
-## (四) NetworkInterceptor
+## (Ⅳ) NetworkInterceptor
 ```typescript
 /**
  * <h3>Network request interceptor</h3>
@@ -139,15 +139,15 @@ export interface NetworkInterceptor {
 }
 ```
 
-# 三、Custom Routing Configuration `router`
-## (一) Configuration Method
+# Ⅲ、Custom Routing Configuration `router`
+## (Ⅰ) Configuration Method
 ```typescript
 VueOioProvider({
   router?: RouterPath[]
 });
 ```
 
-## (二) RouterPath
+## (Ⅱ) RouterPath
 ```typescript
 /**
  * Routing configuration
@@ -164,7 +164,7 @@ export interface RouterPath {
 }
 ```
 
-## (三) Built-in Routing Configuration
+## (Ⅲ) Built-in Routing Configuration
 ```typescript
 [
   {
@@ -186,8 +186,8 @@ export interface RouterPath {
 + forget: Forgot password page route (non-login state)
 + first: First login page route
 
-# 四、Appearance Configuration
-## (一) Configuration Method
+# Ⅳ、Appearance Configuration
+## (Ⅰ) Configuration Method
 ```typescript
 VueOioProvider({
   copyrightStatus?: boolean;
@@ -197,10 +197,10 @@ VueOioProvider({
 });
 ```
 
-## (二) copyrightStatus
+## (Ⅱ) copyrightStatus
 Whether to display copyright information, default is display (true)
 
-## (三) OioLoginThemeConfig
+## (Ⅲ) OioLoginThemeConfig
 ```typescript
 /**
  * Login theme configuration
@@ -277,7 +277,7 @@ export enum OioLoginLogoPosition {
 }
 ```
 
-## (四) OioProviderBrowserProps
+## (Ⅳ) OioProviderBrowserProps
 ```typescript
 /**
  * Browser configuration
@@ -294,7 +294,7 @@ export interface OioProviderBrowserProps {
 }
 ```
 
-## (五) ThemeName
+## (Ⅴ) ThemeName
 ```typescript
 type ThemeName =
   | 'default-large'
@@ -314,7 +314,7 @@ type ThemeName =
 + dark-small: Dark small theme
 + Others: Custom themes
 
-## (六) Define Custom Theme
+## (Ⅵ) Define Custom Theme
 ```typescript
 export const themeName = 'customTheme';
 
@@ -325,7 +325,7 @@ export const themeCssVars = {
 
 Theme variable reference document: [OioThemeCssVars] (document missing)
 
-## (七) Apply Custom Theme
+## (Ⅶ) Apply Custom Theme
 ```typescript
 import { registerTheme } from '@kunlun/dependencies';
 import { themeName, themeCssVars } from './theme';
@@ -337,15 +337,15 @@ VueOioProvider({
 });
 ```
 
-# 五、Low-Code Dependencies Configuration `dependencies`
-## (一) Configuration Method
+# Ⅴ、Low-Code Dependencies Configuration `dependencies`
+## (Ⅰ) Configuration Method
 ```typescript
 VueOioProvider({
   dependencies?: PluginLoadDependencies
 });
 ```
 
-## (二) PluginLoadDependencies
+## (Ⅱ) PluginLoadDependencies
 ```typescript
 /**
  * Plugin load dependencies

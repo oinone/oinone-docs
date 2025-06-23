@@ -21,7 +21,7 @@ For each action type, built-in components support system operations. However, co
 
 # I. Registration of Action Components  
 
-## (一) Registration Options for Action Components  
+## (Ⅰ) Registration Options for Action Components  
 
 ```typescript  
 /**  
@@ -62,7 +62,7 @@ export interface BaseActionOptions extends SPIOptions {
 The classification dimensions in the declaration above include action type, target type (for ViewAction), action name, model code, view type, and view name. These dimensions define where the component is used. More precise location descriptions grant higher rendering priority. If locations match exactly, later registrations override earlier ones.  
 
 
-## (二) Action Component Types  
+## (Ⅱ) Action Component Types  
 
 Oinone provides built-in components for the four action types defined in metadata, each implementing specific functionalities. Below is a list of components and base classes categorized by action type:  
 
@@ -83,7 +83,7 @@ Oinone provides built-in components for the four action types defined in metadat
 |                   | TableCopyOneAction            | Copies a row of data                 | *ActionWidget*     |  
 
 
-## (三) Registering Components  
+## (Ⅲ) Registering Components  
 
 Unlike other components, action components are typically replaced by model action names rather than specified via the `widget` attribute.  
 
@@ -128,7 +128,7 @@ export class CustomRouterViewActionWidget extends RouterViewActionWidget {
 
 # II. Reference List  
 
-## (一) Abstract Base Classes  
+## (Ⅰ) Abstract Base Classes  
 
 ### 1. ActionWidget  
 **Inheritance**: BaseActionWidget  
@@ -494,7 +494,7 @@ export class CustomRouterViewActionWidget extends RouterViewActionWidget {
 - **Return**: Search runtime context, or `undefined`.  
 
 
-## (二) ViewAction (Navigation Actions)  
+## (Ⅱ) ViewAction (Navigation Actions)  
 
 ### 1. ViewActionWidget  
 **Type Declaration**:  
@@ -659,7 +659,7 @@ export class GotoO2MEditDialogActionWidget extends DialogViewActionWidget
 - label: Action label, prioritizing DSL/action configuration, default「编辑」. (`string`)  
 
 
-## (三) ServerAction (Submission Actions)  
+## (Ⅲ) ServerAction (Submission Actions)  
 
 ### 1. ServerActionWidget  
 **Type Declaration**:  
@@ -949,7 +949,7 @@ export class PrintPdfDocumentActionWidget extends AbstractTaskAction<PdfPrintTas
 - **Type**: `() => ReturnPromise<string | undefined>`  
 
 
-## (四) UrlAction (URL Actions)  
+## (Ⅳ) UrlAction (URL Actions)  
 
 ### 1. UrlActionWidget  
 **Type Declaration**:  
@@ -1018,7 +1018,7 @@ export class DownloadImportWorkbookActionWidget extends UrlActionWidget
 - **Type**: `() => ReturnPromise<string | undefined>`  
 
 
-## (五) ClientAction (Client-Side Actions)  
+## (Ⅴ) ClientAction (Client-Side Actions)  
 
 ### 1. BackActionWidget  
 **Type Declaration**:  

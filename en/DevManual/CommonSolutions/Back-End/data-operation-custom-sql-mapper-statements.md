@@ -35,7 +35,7 @@ public interface DemoItemMapper {
 ```
 
 # III. Invoking the Mapper
-## (一) Example Code for Invoking the Mapper
+## (Ⅰ) Example Code for Invoking the Mapper
 ```java
 package pro.shushi.pamirs.demo.core.map;
 
@@ -67,7 +67,7 @@ public class DemoItemDAO {
 }
 ```
 
-## (二) Notes on Invoking the Mapper
+## (Ⅱ) Notes on Invoking the Mapper
 + The startup class needs to configure the Mapper scan package.
 ```java
 @MapperScan(value = "pro.shushi", annotationClass = Mapper.class)

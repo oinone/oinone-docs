@@ -10,7 +10,7 @@ In the software development process, implementing a full-scale technology stack 
 To seamlessly integrate Oinone into existing projects and meet diverse requirements such as route navigation, interface nesting, and data communication between the existing project and Oinone, a template project for Oinone's integration with Qiankun has been systematically organized and developed. This project aims to provide developers with a standardized and reusable solution to efficiently complete relevant integration tasks. ——[Engineering Compressed Package Address](https://doc.oinone.top/wp-content/uploads/2025/03/ss-front-micro-modules.zip)
 
 # I. Template Project Startup
-## (一) Introduction to Project Structure Directory
+## (Ⅰ) Introduction to Project Structure Directory
 The outermost `micro-front-end` uses a `pnpm` workspace to manage multi-project repositories, maintaining unified scripts for installation, running, cleaning, building, etc. `micro-main` is the main application, `micro-son` is the sub-application simulating a legacy application with huge refactoring workload, and `ss-front-modules` is the Oinone application.
 ```text
 micro-front-end/
@@ -29,7 +29,7 @@ micro-front-end/
 └── package.json
 ```
 
-## (二) Installation and Running of Template Project
+## (Ⅱ) Installation and Running of Template Project
 ### 1. Installation
 In the `micro-front-end` directory, execute `pnpm install`.
 
@@ -41,7 +41,7 @@ Access the main application at `http://localhost:8888/`, and you can route to th
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/CF76E5EF-CEBE-4EC4-B764-B531CD8B65E9.png)
 
 # II. Analysis of Access Steps
-## (一) Main Application Construction
+## (Ⅰ) Main Application Construction
 ### 1. Micro-Application Registration Configuration
 A sub-application named `oinone` is configured with the `name` as `ss-boot`.
 
@@ -202,7 +202,7 @@ export default defineConfig({
 });
 ```
 
-## (二) Construction of Oinone Application
+## (Ⅱ) Construction of Oinone Application
 ### 1. Configuring Environment Variables for `ss-boot`
 `BASE_PATH=/app/ss-boot`
 The role of BASE_PATH is to add a public prefix to the routes of the Oinone application to adapt to the routes of the main application.

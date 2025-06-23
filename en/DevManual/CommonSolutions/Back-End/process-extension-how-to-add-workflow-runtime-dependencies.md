@@ -26,7 +26,7 @@ VueOioProvider({
 
 # II. Backend
 
-## (一) Add Dependencies to Parent pom
+## (Ⅰ) Add Dependencies to Parent pom
 The version numbers in the following example are for reference only. Please select the correct version according to the current framework version.
 
 ```xml
@@ -46,7 +46,7 @@ The version numbers in the following example are for reference only. Please sele
 </dependencyManagement>
 ```
 
-## (二) Add Dependencies to the pom of the Boot Startup Project
+## (Ⅱ) Add Dependencies to the pom of the Boot Startup Project
 
 ```xml
 <dependency>
@@ -99,7 +99,7 @@ The version numbers in the following example are for reference only. Please sele
 </dependency>
 ```
 
-## (三) Add Dependencies to application.yml Configuration
+## (Ⅲ) Add Dependencies to application.yml Configuration
 
 ```yaml
 pamirs:

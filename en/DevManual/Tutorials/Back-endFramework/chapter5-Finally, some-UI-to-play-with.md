@@ -33,7 +33,7 @@ In our expense management scenario, we want:
 # I. New Attributes of Fields
 Before proceeding with view design, let's revisit our model definitions. We see attributes like `required=True` that affect the mandatory property of fields during interaction. Other attributes will affect views or provide default values.
 
-## (一) Default Values
+## (Ⅰ) Default Values
 Any field can be given a default value. In the field definition, add the `defaultValue=X` option, where `X` can accept a Java literal (boolean, integer, floating-point number, string), and other requirements can use functions:
 
 ```python
@@ -49,7 +49,7 @@ The `defaultValue` attribute of a field only takes effect on the backend and is 
 
 The backend default value takes effect because when the frontend page loads, the system calls the model's `construct` method, which calculates and returns the default value of the field to the frontend. However, when the frontend发起请求 and the submitted field already has a value, the `construct` method ignores the `defaultValue` attribute. This indicates that the frontend XML configuration has a higher priority than the backend field attribute configuration.
 
-## (二) Field Code Generator
+## (Ⅱ) Field Code Generator
 ```python
 @Field.String
 @Field(displayName = "编码", unique = true)
@@ -99,7 +99,7 @@ private String code;
 
 :::warning Tip: Default Value Calculation
 
-In addition to passing the defaultValue attribute to the component through @Prop, the [compute](/en/DevManual/Tutorials/Back-endFramework/chapter8-field-interlinkage.md#一、compute) attribute can also be used to handle more complex scenarios.
+In addition to passing the defaultValue attribute to the component through @Prop, the [compute](/en/DevManual/Tutorials/Back-endFramework/chapter8-field-interlinkage.md#i-compute) attribute can also be used to handle more complex scenarios.
 
 :::
 

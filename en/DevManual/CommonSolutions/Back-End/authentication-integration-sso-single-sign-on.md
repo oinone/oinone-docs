@@ -7,10 +7,10 @@ order: 66
 ---
 # I. SSO-Related
 
-## (一) SSO Server-side Operations
+## (Ⅰ) SSO Server-side Operations
 In the application system, locate the [Single Sign-On] functional module and create an application identifier within this module. This application identifier will serve as the unique identification symbol for the application in the SSO system, used for subsequent authentication and authorization processes.
 
-## (二) SSO Login Authentication Operations
+## (Ⅱ) SSO Login Authentication Operations
 When performing SSO login authentication, the `grant_type=password` authentication method should be adopted, and the username and password information should be included in the request. The specific request link is as follows (using the POST request method):
 
 ```plain
@@ -63,7 +63,7 @@ curl --location --request POST 'http://127.0.0.1:8092/pamirs/base' \
 
 # III. SSO Server-side Project (Supported by Version 5.3.X and Above)
 
-## (一) Server-side Project Dependencies
+## (Ⅰ) Server-side Project Dependencies
 
 ### 1. pom Dependencies
 
@@ -85,7 +85,7 @@ pamirs:
 
 # IV. SSO Client-side Project (Supported by Version 5.3.X and Above)
 
-## (一) Client-side Project Dependencies
+## (Ⅰ) Client-side Project Dependencies
 The client-side project is the application that needs to join SSO.
 
 ### 1. pom Dependencies

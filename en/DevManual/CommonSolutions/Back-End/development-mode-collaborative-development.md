@@ -34,7 +34,7 @@ Noun Explanations:
 + A server prepared for deploying the testing environment.
 
 # II. Introduction to Collaborative Parameters
-## (一) Parameters for the Testing Environment
+## (Ⅰ) Parameters for the Testing Environment
 `-PmetaProtected=${value}`
 
 Enables metadata protection, allowing only services with the same startup parameter to update metadata. This command is typically used for designer services and business engineering services, which must be started with the same `metadata protection marker (value)`. The local environment does not use this command to prevent accidental modification of testing environment metadata during collaborative development, which could cause metadata confusion.
@@ -43,7 +43,7 @@ Enables metadata protection, allowing only services with the same startup parame
 java -jar boot.jar -PmetaProtected=pamirs
 ```
 
-## (二) Parameters for the Local Environment
+## (Ⅱ) Parameters for the Local Environment
 ### 1. Configure ownSign Using Commands (Recommended)
 ```java
 java -jar boot.jar --pamirs.distribution.session.ownSign=demo
@@ -59,12 +59,12 @@ pamirs:
 ```
 
 # III. Start Designer Environment
-## (一) Start with docker-run
+## (Ⅰ) Start with docker-run
 ```java
 -e PROGRAM_ARGS=-PmetaProtected=pamirs
 ```
 
-## (二) Start with docker-compose
+## (Ⅱ) Start with docker-compose
 ```yaml
 services:
   backend:
@@ -91,10 +91,10 @@ java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1746513506595-f26f0ef6-76b7-45a2-946c-b5e9b691054c-20250530144829686.png)
 
 # V. Collaborative Development Support
-## (一) Version Support
+## (Ⅰ) Version Support
 Version 4.7.x already includes distributed support.
 
-## (二) Usage Steps
+## (Ⅱ) Usage Steps
 ### 1. Introduce the Collaborative Development Package into the Business Backend Boot Project
 ```java
 <dependency>

@@ -6,7 +6,7 @@ category:
 order: 8
 ---
 
-# 一、Introduction
+# Ⅰ、Introduction
 In the scenario of enterprise digital office, integrating business systems with Enterprise WeChat is a key means to achieve unified identity authentication, message push, etc. This article is based on the Java technology stack and uses the open-source project `weixin-java-cp` to complete the docking.
 
 **Core Functions**
@@ -20,11 +20,11 @@ This document mainly explains how to use OAuth2.0 to打通 (open up) the passwor
 
 :::
 
-# 二、Access Preparation
-## （一）Understand Enterprise WeChat Identity Authentication (Password-Free Login)
+# Ⅱ、Access Preparation
+## （Ⅰ）Understand Enterprise WeChat Identity Authentication (Password-Free Login)
 For the tutorial on using server-side API identity authentication (password-free login) to implement logging in to third-party websites: [Enterprise WeChat OAuth2.0](https://work.weixin.qq.com/api/doc/90000/90135/91437)
 
-## （二）Create an Enterprise WeChat Application
+## （Ⅱ）Create an Enterprise WeChat Application
 1. Log in to the [Enterprise WeChat Management Console](https://work.weixin.qq.com/wework_admin/loginpage_wx)
 2. Go to "Application Management" --> "Self-Built Application" and create a new application
 3. Record the following parameters:
@@ -32,7 +32,7 @@ For the tutorial on using server-side API identity authentication (password-free
     - Secret (Application Credential Key)
     - AgentId (Application Proxy ID)
 
-## （三）Introduce Enterprise WeChat SDK Dependencies
+## （Ⅲ）Introduce Enterprise WeChat SDK Dependencies
 ```xml
 <dependency>
   <groupId>com.github.binarywang</groupId>
@@ -41,8 +41,8 @@ For the tutorial on using server-side API identity authentication (password-free
 </dependency>
 ```
 
-# 三、Specific Docking Steps
-## （一）Add Enterprise WeChat Configuration to the Project
+# Ⅲ、Specific Docking Steps
+## （Ⅰ）Add Enterprise WeChat Configuration to the Project
 1. Application.yml configuration in the project (adopted in this example)
 
 ```yaml
@@ -57,7 +57,7 @@ pamirs:
 
 2. The backend configuration method refers to the instructions in the DingTalk docking.
 
-## （二）Initialize the Enterprise WeChat Client (WxCpService)
+## （Ⅱ）Initialize the Enterprise WeChat Client (WxCpService)
 ```java
 @Slf4j
 @Service
@@ -116,7 +116,7 @@ public class WxBaseConfig {
 }
 ```
 
-## （三）Build the Authorization Link (Jump to Enterprise WeChat)
+## （Ⅲ）Build the Authorization Link (Jump to Enterprise WeChat)
 ```java
 /**
  * Get the redirect URL to make Enterprise WeChat jump to the oauth2url and bring the code parameter
@@ -142,7 +142,7 @@ public void oauth(HttpServletRequest request, HttpServletResponse response) {
 }
 ```
 
-## （四）Handle the Enterprise WeChat Callback
+## （Ⅳ）Handle the Enterprise WeChat Callback
 Obtain the code and exchange it for the user's UserTicket; use the UserTicket to obtain user information
 
 ```java
@@ -202,7 +202,7 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
 }
 ```
 
-## （五）Process User Information and Set the Login State (Session + Cookie)
+## （Ⅴ）Process User Information and Set the Login State (Session + Cookie)
 ```java
     private PamirsUser handleUserInfo(WxCpOauth2UserInfo userInfo, WxCpUserDetail userDetail, HttpServletResponse response) {
         if (userDetail == null) {
@@ -281,17 +281,17 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
     }
 ```
 
-# 四、Enterprise WeChat Open Platform Application Configuration
+# Ⅳ、Enterprise WeChat Open Platform Application Configuration
 Omitted
 
-# 五、Access Permissions for Third-Party Users to the System
+# Ⅴ、Access Permissions for Third-Party Users to the System
 By default, users who first enter the system through third-party password-free login do not have any access permissions to applications in the initial state. To ensure that users can smoothly access applications through the DingTalk workbench entry, you can grant users the corresponding access permissions through the following two methods.
 
-## （一）Configure Third-Party User Roles
+## （Ⅰ）Configure Third-Party User Roles
 1. Create a specific role in the system for the use of third-party users. This role should have a clear identifier, such as: `THIRD_PARTY_USER`.
 2. Assign corresponding access permissions to the above role according to business needs.
 
-## （二）Grant Permissions When Creating Third-Party Users
+## （Ⅱ）Grant Permissions When Creating Third-Party Users
 In the sixth step of the docking process: the user information processing stage, that is, when creating platform users (such as `PamirsUser`) based on third-party user information, you can directly assign the above-defined role to the user by calling the system interface to achieve static binding of permissions.
 
 ```java
@@ -304,7 +304,7 @@ private void bindUserRole(PamirsUser pamirsUser) {
 }
 ```
 
-## （三）Dynamic Permission Granting at Runtime
+## （Ⅲ）Dynamic Permission Granting at Runtime
 If role assignment is not completed during the user creation stage, you can also use the runtime dynamic permission extension mechanism to dynamically assign the "third-party user" role to users when they first access the system.
 
 This example uses this solution. For the complete implementation, please refer to the code file in the attachment: `ThirdPartyRoleCustom.java`
@@ -325,6 +325,6 @@ public Set<Long> get() {
 }
 ```
 
-# 六、Source Code Download
+# Ⅵ、Source Code Download
 + Enterprise WeChat Docking Example Code Package [Enterprise WeChat Docking Example.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/zip/751600/1746696522151-6afb014b-69d7-4bd4-927d-0486ef79c257.zip)
 + Runtime Dynamic Permission Granting for Third-Party Users [ThirdPartyRoleCustom.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746696590436-5d7fe764-32b0-4708-8f91-b22f6684ed68.java)

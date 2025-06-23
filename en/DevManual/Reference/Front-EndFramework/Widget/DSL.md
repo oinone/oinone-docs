@@ -15,7 +15,7 @@ In Oinone Kunlun, DSL is an important part that collaborates with **Layout**. It
 
 Before explaining DSL, let's briefly recall the use of slots in Vue.
 
-## (一) Default Slot
+## (Ⅰ) Default Slot
 
 (The following example code is excerpted from the Vue slots official documentation)
 
@@ -41,7 +41,7 @@ The最终 rendered DOM is as follows:
 <button class="fancy-btn">Click me!</button>
 ```
 
-## (二) Named Slots
+## (Ⅱ) Named Slots
 
 (The following example code is excerpted from the Vue slots official documentation)
 
@@ -109,7 +109,7 @@ In `Layout`, slots can be defined in two ways:
 + Declare slots using the xslot tag.
 + Declare slots using the slot attribute on any XML tag.
 
-## (一) xslot Tag
+## (Ⅰ) xslot Tag
 
 The xslot tag is the closest way to use Vue slots. Let's see how to use it in layouts and DSL, as well as the final merged result.
 
@@ -143,7 +143,7 @@ The final merged `Template` is as follows:
 </element>
 ```
 
-## (二) slot Attribute
+## (Ⅱ) slot Attribute
 
 Since the Widget framework needs to adapt to more diversified page configurations, we usually want to add some attributes to components defined in the layout through DSL. Defining slots by adding the slot attribute to XML tags makes it easy to achieve `attribute merging`.
 
@@ -179,7 +179,7 @@ The final merged `Template` is as follows:
 
 Like masks and layouts, DSL splits pages into orderable small units through XML tags to control the relative positions of page elements. However, it does not intuitively reflect the relative positions of elements in the entire page like masks and layouts, but only represents the relative positions of elements within a **slot** area.
 
-## (一) Standard Merging
+## (Ⅰ) Standard Merging
 
 Taking "Resource - Country Group" as an example, a possible `DSL` template should be:
 
@@ -279,7 +279,7 @@ According to the slot merging rules, let's try to merge them. Merge `actions`, `
 
 In this way, we obtain a complete page containing all elements.
 
-## (二) Attribute Merging
+## (Ⅱ) Attribute Merging
 
 When merging `DSL` into `Layout`, we can not only replace or insert `child elements` but also merge attributes defined on the `template` tag into tags with the `slot` attribute.
 
@@ -331,7 +331,7 @@ However, according to our previous standard merging rules, we have lost all chil
 
 To solve this problem, we propose a more friendly solution - **reverse merging**.
 
-## (三) Reverse Merging
+## (Ⅲ) Reverse Merging
 
 **Forward merging** means that the layout controls the relative positions of all elements, and DSL only defines `attributes` and `child elements`. After merging, the relative positions of all elements remain unchanged based on the layout.
 
@@ -385,7 +385,7 @@ Then, the final merged result is:
 
 It can be seen that the `<element widget="rowActions">` defined in the `layout` is merged into the position of the `template` tag defined in DSL, preserving the `attributes` and `child elements` in DSL.
 
-## (四) Attribute Slots
+## (Ⅳ) Attribute Slots
 
 If we only need to add some attributes to a tag without changing the content of internal child elements, we can define a `template` tag without child elements in DSL to achieve this.
 
@@ -432,7 +432,7 @@ For the tag `<pack widget="group" title="标题">`, we successfully merged the `
 
 In the Widget framework, the concept of slots is not only used for fragment replacement between `Layout` and `DSL`. To enable components to change according to DSL definitions, each component can use slots to provide specific content. This is very similar to the concept of Vue slots.
 
-## (一) Named Slots
+## (Ⅰ) Named Slots
 
 Take a card as an example. We want to define the top (header), content (content), and bottom (footer) separately. In a Vue component, we can define the `Vue Template` as follows:
 
@@ -500,7 +500,7 @@ The final merged `Template` is as follows:
 
 In this merging process, it will fully follow the DSL merging rules and finally retain the `template` tag to provide specific content for Vue component slots.
 
-## (二) Default Slot
+## (Ⅱ) Default Slot
 
 Let's remove the content slot name from the previous Vue Template, as follows:
 

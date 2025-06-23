@@ -19,7 +19,7 @@ In our expense management module, for a project information model, we also need 
 
 # I. Many-to-One Relationship (many2one)
 
-Reference: Documentation related to this topic can be found in "[Many-to-One Relationship](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#多对一关系many2one)".
+Reference: Documentation related to this topic can be found in "[Many-to-One Relationship](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#many-to-one-relationship-many2one)".
 
 :::info Objective: By the end of this section:
 
@@ -179,7 +179,7 @@ One project can have multiple external partners, and one external partner can be
 
 A many-to-many relationship is a two-way multiple relationship: any record on one side can be associated with any number of records on the other side. For example, to define a link to `business.PamirsPartner` in our `expenses.TestModel` model, we can write it in two ways:
 
-## (一) Intermediate table using system default generation
+## (Ⅰ) Intermediate table using system default generation
 
 ```java
 @Field.many2many
@@ -202,7 +202,7 @@ for(PamirsPartner partner: testModel.getPartners()){
 }
 ```
 
-## (二) Intermediate table using a specific model
+## (Ⅱ) Intermediate table using a specific model
 
 ```java
 package pro.shushi.oinone.trutorials.expenses.api.model;

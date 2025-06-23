@@ -8,7 +8,7 @@ category:
 order: 5
 
 ---
-# 一、Overview
+# Ⅰ、Overview
 
 This document mainly introduces the Java annotation classes used for configuring visual interactions in Oinone. Through these annotations, developers can easily configure visual interaction-related functions such as application interface layouts, menus, button behaviors, and view displays.
 
@@ -28,9 +28,9 @@ It is recommended to first establish a preliminary understanding through the fam
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/UX-API/1745930521148-6df18b41-d756-427b-8b35-05f008bc0ab8.jpeg)
 
-# 二、Detailed Annotation Explanation
+# Ⅱ、Detailed Annotation Explanation
 
-## （一）Application-related
+## （Ⅰ）Application-related
 
 ### 1、`UxAppLogo`
 
@@ -64,7 +64,7 @@ public class YourModuleClass {
 }
 ```
 
-## （二）Menu-related Annotations
+## （Ⅱ）Menu-related Annotations
 
 ### 1、`UxMenus`
 
@@ -101,7 +101,7 @@ public class YourModuleClass {
 
 :::
 
-## （三）View-related Annotations
+## （Ⅲ）View-related Annotations
 
 ### 1、`UxDetail`
 
@@ -234,7 +234,7 @@ public class TestModel extends IdModel {
 }
 ```
 
-## （四）Button-related Annotations
+## （Ⅳ）Button-related Annotations
 
 ### 1、`UxClientButton`
 
@@ -337,7 +337,7 @@ public class TestButtonModel extends IdModel {
 }
 ```
 
-## （五）Action-related Annotations
+## （Ⅴ）Action-related Annotations
 
 ### 1、`UxAction`
 

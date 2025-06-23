@@ -16,12 +16,12 @@ When Dubbo registers `provider/consumer`, it selects `Netty` as the core service
 
 When the client discovers callable services through the service center, it establishes a connection with the server and initiates requests using the server's call information provided by the service center, thus achieving remote invocation.
 
-## (一) Service Registration (Binding Host/Port)
+## (Ⅰ) Service Registration (Binding Host/Port)
 When a JAVA program starts, it needs to register the `provider` information with the `service center` and open `Host/Port` listening for the `Netty` service in the current environment to implement the `service registration` function.
 
 In the following text, `binding Host/Port` denotes the access address of the Netty service, and `registering Host/Port` denotes the client's access address.
 
-## (二) Using YAML to Configure `Binding Host/Port`
+## (Ⅱ) Using YAML to Configure `Binding Host/Port`
 :::info Note: This configuration is universal across multiple environments, and changing the deployment method does not require modifying this configuration.
 
 :::
@@ -38,7 +38,7 @@ Assuming the available IP in the current environment is `192.168.1.100`, the abo
 
 If port 20880 is occupied, the system will automatically search for the next available port, such as 20881, 20882, etc. If the current available port is 20881, the above configuration will bind the Netty service to `0.0.0.0:20881` by default, with the service registration address becoming `192.168.1.100:20881`.
 
-## (三) Using Environment Variables to Configure `Registered Host/Port`
+## (Ⅲ) Using Environment Variables to Configure `Registered Host/Port`
 When the server is in a container environment, due to the independence of the container's internal network configuration relative to the host, to ensure the client can normally invoke the server, environment variables need to be configured within the container to ensure the client can access via the specified `registered Host/Port`.
 
 The following example changes the host's accessible port from 20880 to 20881 when port 20880 cannot be used.
@@ -54,7 +54,7 @@ The above configuration will bind the Netty service to `0.0.0.0:20881` by defaul
 
 The client will invoke the server's services via `192.168.1.100:20881`.
 
-## (四) Starting with Docker/Docker Compose
+## (Ⅳ) Starting with Docker/Docker Compose
 Port mapping needs to be added to map port 20881 to port 20881 on the host. (The port inside the container changes here; for the specific reason, refer to the Digression section.)
 
 **docker-run**
@@ -83,7 +83,7 @@ services:
      - 20881:20881 # dubbo port
 ```
 
-## (五) Starting with Kubernetes
+## (Ⅴ) Starting with Kubernetes
 **Workload (Deployment)**
 
 ```yaml
@@ -126,7 +126,7 @@ spec:
 
 :::
 
-## (六) Other Service Exposure Methods in Kubernetes
+## (Ⅵ) Other Service Exposure Methods in Kubernetes
 When deploying services in Kubernetes, multiple configuration methods can expose services. The above configuration only uses `Service/NodePort` to expose port `20881` to the host, and other services can be invoked via any Kubernetes node IP.
 
 If other services are also deployed in Kubernetes, they can be invoked via the `Service/Service` method. Set `DUBBO_IP_TO_REGISTRY` to `${serviceName}.${namespace}`.
@@ -184,7 +184,7 @@ In the source code of `dubbo-v2.7.22`, the author found that the way `Host/Port`
     - `Registered Host/Port` and `bound Host/Port` should support fully independent configuration. When both `registered Host/Port` and `bound Host/Port` are configured, `registered Host` and `bound Host` take effect independently, but `bound Port` forcibly uses `registered Port`. (This is also the main reason for failed invocations in container environments.)
 
 # V. Common Configurations
-## (一) YAML Configuration
+## (Ⅰ) YAML Configuration
 ```yaml
 dubbo:
   application:
@@ -218,7 +218,7 @@ dubbo:
 + dubbo.scan.base-packages: Provider/consumer scan package path
 + dubbo.cloud.subscribed-services: Multi-provider configuration; The parameter is configured as empty in the example to avoid warning logs during startup, and generally does not require configuration.
 
-## (二) Environment Variable Configuration
+## (Ⅱ) Environment Variable Configuration
 ```shell
 DUBBO_IP_TO_REGISTRY=127.0.0.1
 DUBBO_PORT_TO_REGISTRY=20880

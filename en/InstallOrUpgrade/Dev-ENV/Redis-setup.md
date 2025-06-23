@@ -7,7 +7,7 @@ category:
 order: 3
 
 ---
-# 一、Download Installation Package
+# Ⅰ、Download Installation Package
 Installation package download address  
 
 |  | Download Link |
@@ -27,8 +27,8 @@ For Linux and macOS users, replace `<version>` in the link with the actual versi
 
 :::
 
-# 二、Installation
-## （一）Linux/macOS Installation
+# Ⅱ、Installation
+## （Ⅰ）Linux/macOS Installation
 ### 1、Download
 ```shell
 curl -L https://github.com/redis/redis/archive/refs/tags/7.4.2.tar.gz -o redis-7.4.2.tar.gz
@@ -61,7 +61,7 @@ Output similar information indicates successful installation
 Redis server v=7.4.2 sha=00000000:1 malloc=libc bits=64 build=2e82a5cbb28cb878
 ```
 
-## （二）Windows Installation
+## （Ⅱ）Windows Installation
 ### 1、Download
 ```shell
 Invoke-WebRequest -Uri "https://github.com/tporadowski/redis/releases/download/v5.0.14.1/Redis-x64-5.0.14.1.zip" -OutFile "Redis-x64-5.0.14.1.zip"
@@ -75,7 +75,7 @@ Use a visualization tool or the following command to unzip
 Expand-Archive Redis-x64-5.0.14.1.zip <Redis installation directory>\redis
 ```
 
-## （三）Configuration
+## （Ⅲ）Configuration
 Reference configuration for Linux/macOS installation (Windows version can be ignored)  
 
 ```properties
@@ -89,7 +89,7 @@ appendonly no
 appendfilename "appendonly.aof"
 ```
 
-## （四）Run
+## （Ⅳ）Run
 ### 1、Start
 ```properties
 # Linux/macOS

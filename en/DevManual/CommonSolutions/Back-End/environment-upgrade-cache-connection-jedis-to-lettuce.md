@@ -5,14 +5,14 @@ category:
   - Common Solutions
 order: 58
 ---
-# 一、Differences between Jedis and Lettuce
+# Ⅰ、Differences between Jedis and Lettuce
 
 + Jedis is synchronous and does not support asynchrony. The Jedis client instance is not thread-safe, so each thread needs a Jedis instance. Therefore, Jedis is generally used through a connection pool.
 + Lettuce is an event-driven Redis client based on the Netty framework. Its method calls are asynchronous. The Lettuce API is also thread-safe, so multiple threads can operate a single Lettuce connection to complete various operations. At the same time, Lettuce also supports connection pools.
 
-# 二、Switching from Jedis to Lettuce
+# Ⅱ、Switching from Jedis to Lettuce
 
-## （一）Dependency Modification
+## （Ⅰ）Dependency Modification
 
 Changes to the pom.xml of the boot startup project
 
@@ -48,7 +48,7 @@ dependencies
 </dependency>
 ```
 
-## （二）Configuration Modification
+## （Ⅱ）Configuration Modification
 
 Modifications to the application.yml configuration
 

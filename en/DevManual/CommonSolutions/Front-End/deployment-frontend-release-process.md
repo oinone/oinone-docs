@@ -6,7 +6,7 @@ category:
 order: 2
 ---
 ## I. Application Deployment
-### (一) Middleware and Resource Requirements
+### (Ⅰ) Middleware and Resource Requirements
 The backend of a business project developed with Oinone is essentially a Springboot project, and its deployment method is similar to other Springboot projects.
 
 #### 1. Middleware and Versions
@@ -37,7 +37,7 @@ The minimum set for Oinone startup includes: Java, MySQL, zk, redis, and nginx (
 | OSS | 2c | 4G | - | 1 | Use cloud resources or build MINIO |
 | Oinone Business Application | 4c | 8G | 50G | Deployment package count * 2+ |  |
 
-### (二) Backend Deployment
+### (Ⅱ) Backend Deployment
 #### 1. Designer Page Data Export
 > If the interface designer is not used to design pages in the project, ignore this step.
 
@@ -138,7 +138,7 @@ public class DemoAppMetaInstall implements MetaDataEditor {
 }
 ```
 
-### (三) Backend Packaging and Deployment
+### (Ⅲ) Backend Packaging and Deployment
 1. The backend project is a standard Springboot project, and the deployment method is similar.
 2. Deployment methods:
    - Can be deployed via `java -jar`.
@@ -146,7 +146,7 @@ public class DemoAppMetaInstall implements MetaDataEditor {
    - Can be packaged into a `war package` and deployed on tomcat or domestic TongWeb.
 3. The backend project is also connected to an automated deployment tool, such as Jenkins.
 
-### (四) Frontend Deployment
+### (Ⅳ) Frontend Deployment
 The frontend is essentially a VUE project, and the corresponding deployment method is similar to that of a general frontend project written in VUE. Deployment steps:
 
 1. Packaging: Execute the packaging command in the frontend boot project (e.g., ss-boot): `pnpm run build`
@@ -177,7 +177,7 @@ server {
 4. After modifying and saving the configuration, execute startup or restart to take effect.
 
 # II. Application Upgrade
-## (一) Backend Upgrade
+## (Ⅰ) Backend Upgrade
 1. Obtain the corresponding version information; get the backend version information from the `backend version package information` in the update log. Usually, only the version number of oinone-bom needs to be concerned.
 ```xml
 <!-- Platform foundation -->
@@ -185,7 +185,7 @@ server {
 ```
 2. Modify the `oinone.version` in the main `POM` of the backend project, and re-execute the `maven` update after modification.
 
-## (二) Frontend Upgrade
+## (Ⅱ) Frontend Upgrade
 1. Obtain the corresponding version information; get the frontend version information from the `frontend version package information` in the update log.
 2. Upgrade steps:
    Modify the version number of the `oinone` dependency in `package.json` and reinstall it.

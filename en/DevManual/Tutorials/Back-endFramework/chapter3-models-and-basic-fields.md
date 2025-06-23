@@ -11,7 +11,7 @@ order: 3
 At the end of the previous chapter, we successfully created an Oinone module. But it's still an empty shell, unable to store any data. In our expense module, we want to store project information related to expenses (name, description, project type, department, etc.) in the database. The Oinone framework provides tools for convenient database interaction.
 
 # I. Object-Relational Mapping
-Reference: Documentation related to this topic can be found in "[Model API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#一、模型-model)".
+Reference: Documentation related to this topic can be found in "[Model API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#i-model)".
 
 :::info Objective: By the end of this section, the `expenses_project_info` table should be created:
 
@@ -93,7 +93,7 @@ If this occurs, you should be doing it correctly! To ensure accuracy, use the `m
 >
 
 # II. Model fields
-Reference: Documentation related to this topic can be found in "[Field API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#二、字段-field)".
+Reference: Documentation related to this topic can be found in "[Field API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#ii-field)".
 Fields define what a model can store and where. Fields are defined as attributes in the model class:
 
 ```java
@@ -176,7 +176,7 @@ The `date` field is of `DATE` type, represented as a date in Java and as `DATE` 
 
 :::
 
-## (一) Types
+## (Ⅰ) Types
 :::info Objective: By the end of this section, several basic fields should be added to the `expenses_project_info` table:
 
 :::
@@ -230,7 +230,7 @@ Examples of simple fields include `BOOLEAN`, `INTEGER`, `FLOAT`, `STRING`, `TEXT
 | isKeyProject | Is Key Project | `BOOLEAN` | Boolean |
 
 
-## (二) Common Attributes
+## (Ⅱ) Common Attributes
 Like the model itself, fields can be configured by passing configuration attributes as parameters:
 
 ```python
@@ -253,7 +253,7 @@ The following attributes in the @Field annotation can be used to configure the d
 > name、projectYear add required attribute as true
 >
 
-## (三) Inheritance Fields
+## (Ⅲ) Inheritance Fields
 Reference: Documentation related to this topic can be found in "[Model Inheritance](/en/DevManual/Reference/Back-EndFramework/ORM-API.md)".
 
 You may have noticed that there are several fields in your model that you never defined. Oinone creates several fields in all models. These fields are inherited by this model from the parent model:

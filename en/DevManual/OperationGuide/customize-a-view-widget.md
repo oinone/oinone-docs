@@ -17,7 +17,7 @@ Before we start, let's review the content related to `registration of element co
 
 In the Widget framework, element components are defined as general components that can be used to implement any function you want and placed anywhere on the page.
 
-## (一) Registration Options for Element Components
+## (Ⅰ) Registration Options for Element Components
 
 ```typescript
 /**
@@ -51,7 +51,7 @@ From the above type declaration, it is not difficult to find that the classifica
 
 In particular, in most cases, element components usually only need to use the component name to meet the needs of most scenarios. This is because element components generally include functional support for data structures, specific view types, or even specific scenarios, and their reuse is generally divided by page structure. Therefore, in previous studies, we have only used the single dimension of component name.
 
-## (二) Built-in Element Components
+## (Ⅱ) Built-in Element Components
 
 In Oinone, different view types handle different data structures and presentation forms, and the data processing and rendering methods they adopt are also different. The Widget framework mainly divides data structures into two categories: list (`List`) and object (`Object`).
 
@@ -102,7 +102,7 @@ In this exercise, we will gradually implement a table component from scratch, wh
 
 Let's get started～
 
-## (一) Create CustomTableWidget Component
+## (Ⅰ) Create CustomTableWidget Component
 
 Like all `element` components, we can obtain all the functions of the default table component by inheriting the `TableWidget` component, just like this:
 
@@ -132,7 +132,7 @@ Let's start with a `hello world`:
 </template>
 ```
 
-## (二) Display CustomTableWidget on the Page
+## (Ⅱ) Display CustomTableWidget on the Page
 
 Let's switch components through `registerLayout` by changing `widget="table"` to `widget="CustomTable"` to complete the component switch:
 
@@ -168,7 +168,7 @@ Well, our page should now look like this:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/CustomTable.png)
 
-## (三) Use OioTable Component
+## (Ⅲ) Use OioTable Component
 
 Let's make some modifications to the Vue component template:
 
@@ -209,7 +209,7 @@ These two data source objects are completely the same when front-end search and 
 
 :::
 
-Here, to ensure the table functions properly, we must use the `setTableInstance` method to pass the `OioTable` component instance to the Widget component, allowing the Widget component to directly operate on the `OioTable` instance. This is similar to our operation in the [Focus on Input Box](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#九、聚焦输入框) tutorial, both aiming to transfer logic to the Widget component to provide specific functions that can be overridden or inherited. We can handle it like this:
+Here, to ensure the table functions properly, we must use the `setTableInstance` method to pass the `OioTable` component instance to the Widget component, allowing the Widget component to directly operate on the `OioTable` instance. This is similar to our operation in the [Focus on Input Box](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#ix-focus-on-input-box) tutorial, both aiming to transfer logic to the Widget component to provide specific functions that can be overridden or inherited. We can handle it like this:
 
 ```vue
 setup(props) {
@@ -247,7 +247,7 @@ Thus, our basic table is completed～
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/chart.png)
 
-## (四) Use OioPagination Component
+## (Ⅳ) Use OioPagination Component
 
 Let's make some modifications to the Vue component template:
 
@@ -362,7 +362,7 @@ When the page is refreshed or the `URL` is copied elsewhere, the browser `URL` p
 
 :::
 
-## (五) Enable Checkbox Functionality
+## (Ⅴ) Enable Checkbox Functionality
 
 In the first column of the table, we notice the lack of the default table's Checkbox selection function. Let's try to restore this function.
 
@@ -460,7 +460,7 @@ When testing the Checkbox function, we may find that the "Delete" button does no
 
 :::
 
-## (六) Further Steps
+## (Ⅵ) Further Steps
 
 If you have time, here are some exercises you can try:
 
@@ -474,7 +474,7 @@ In this exercise, we will gradually implement a form component from scratch, whi
 
 Let's get started～
 
-## (一) Create CustomFormWidget Component
+## (Ⅰ) Create CustomFormWidget Component
 
 Similar to the custom table component, we can create the `CustomFormWidget` component by inheriting the `FormWidget` component to complete our exercise content. Just like below:
 
@@ -500,7 +500,7 @@ In the following sections, the template for the `registerLayout` method will no 
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-view/CustomFormWidget.png)
 
-## (二) Use OioForm Component
+## (Ⅱ) Use OioForm Component
 
 Compared to the table component, the `OioForm` component is easier to use and has fewer complex functions than the table component. Let's make some modifications to the Vue component template:
 
@@ -563,7 +563,7 @@ Next, let's create a gallery component to customize the gallery view in a more f
 
 In this exercise, you will display the table view as a gallery view instead of directly using the gallery view, and complete the customization of the gallery layout and card style.
 
-## (一) Create CustomGalleryWidget Component
+## (Ⅰ) Create CustomGalleryWidget Component
 
 Similar to the custom table component, we can create the `CustomGalleryWidget` component by inheriting the `GalleryWidget` component to complete our exercise content. Just like below:
 
@@ -591,7 +591,7 @@ It should be noted that here we use the view type `Table (TABLE)`, not `Gallery 
 
 :::
 
-## (二) Use OioGallery Component
+## (Ⅱ) Use OioGallery Component
 
 Let's "extract" the card implemented in "[Customize a gallery view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)"过来, the corresponding Vue component template should be like this:
 
@@ -670,7 +670,7 @@ Combined with the definition of the Vue component template, if you do not proces
 
 :::
 
-## (三) Fix Card Actions
+## (Ⅲ) Fix Card Actions
 
 If you directly switch components according to the previous method, the actions rendered in the card may be lost. Maybe you did this:
 
@@ -706,7 +706,7 @@ The definition of other places remains unchanged. Let's extract the `CustomGalle
 </element>
 ```
 
-Now, let's recall the section "[Universal Card with Slots](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#五、带插槽的通用卡片)", in the `layout (Layout)`, we used `slots (Slot)` and the content related to `named slots` mentioned in the `extended content` section. A correct definition should be like this:
+Now, let's recall the section "[Universal Card with Slots](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#v-universal-card-with-slots)", in the `layout (Layout)`, we used `slots (Slot)` and the content related to `named slots` mentioned in the `extended content` section. A correct definition should be like this:
 
 ```xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
@@ -736,7 +736,7 @@ For more content about DSL, please refer to: [DSL](/en/DevManual/Reference/Front
 
 :::
 
-## (四) More Layout Forms
+## (Ⅳ) More Layout Forms
 
 When using the `OioGallery` component, we can only achieve one layout form rendered in the order of `grid layout`. To customize the gallery layout, we can process the dataset through a `v-for` statement to achieve more possible layout forms.
 
@@ -781,7 +781,7 @@ In this example, what we need to care about is the use of the `showDataSource` a
 
 :::
 
-## (五) Further Improvements
+## (Ⅴ) Further Improvements
 
 If you have time, here are some small improvements you can try:
 

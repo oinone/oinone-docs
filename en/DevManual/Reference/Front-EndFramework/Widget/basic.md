@@ -11,15 +11,15 @@ order: 2
 ---
 In Oinone Kunlun, we derive a series of `Widget` components based on `VueWidget`. This chapter provides a detailed introduction to some "abstract" components.
 
-# 一、Core Component Map
+# Ⅰ、Core Component Map
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1748415952590-e994a698-9272-4525-93c4-113656cbf141.jpeg)
 
-# 二、SPI Token Component Map
+# Ⅱ、SPI Token Component Map
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1748416256027-68d1afbb-369c-4161-924b-196a63e42ca1.jpeg)
 
-# 三、Metadata Component Map
+# Ⅲ、Metadata Component Map
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1748416542172-ae3b57d2-f594-423a-b29c-dde5224b039d.jpeg)
 
@@ -28,9 +28,9 @@ In Oinone Kunlun, we derive a series of `Widget` components based on `VueWidget`
 - DefaultMainViewWidget: Main content distribution area rendering component, used to create `RootRuntimeContext` and render `Layout` and `DSL`.
 - MultiTabsContainerWidget and MultiTabContainerWidget: Multi-tab container component and tab component.
 
-# 四、Reference List
+# Ⅳ、Reference List
 
-## （一）Core Components
+## （Ⅰ）Core Components
 
 ### 1、VueWidget
 
@@ -464,7 +464,7 @@ In Oinone Kunlun, we derive a series of `Widget` components based on `VueWidget`
 - subDataIndex: Current data subpath index. (`string | number | undefined`)
 - subDataPath: Current data subpath, defaulting to itemData. (`string | undefined`)
 
-## （二）SPI Token Components
+## （Ⅱ）SPI Token Components
 
 ### 1、BaseMaskWidget
 
@@ -720,7 +720,7 @@ No content.
 
 No content.
 
-## （三）Metadata Components
+## （Ⅲ）Metadata Components
 
 ### 1、MetadataViewWidget
 

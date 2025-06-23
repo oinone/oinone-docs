@@ -414,4 +414,4 @@ For table field widget APIs, see [Table Field Widgets](/en/DevManual/Reference/F
 
 If time permits, try these exercises:
 1. Define a red read-only input widget for detail and gallery views and use it on a page.
-2. Combine with the UI Designer to use our practice components as custom widgets. Refer to [Custom Widgets with Designer - Field Widgets](/en/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md#二、自定义字段组件).
+2. Combine with the UI Designer to use our practice components as custom widgets. Refer to [Custom Widgets with Designer - Field Widgets](/en/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md#ii-custom-field-components).

@@ -249,7 +249,7 @@ When in use, Oinone will automatically discover and load the `CustomSessionInitA
 
 ### 2. Extension via Function Hook
 
-Refer to the [Hook Interceptor Document](/en/DevManual/Reference/Back-EndFramework/functions-API.md#三、hook-拦截器), and refer to the example code `pro.shushi.pamirs.user.api.hook.UserHook`. In this example, with the help of `UserHook`, it can be determined whether the user is logged in. If the user is logged in, user-related information will be automatically set, so that the `PamirsSession.getUserId()` method can successfully obtain the user ID value in the follow-up.
+Refer to the [Hook Interceptor Document](/en/DevManual/Reference/Back-EndFramework/functions-API.md#iii-hook-interceptors), and refer to the example code `pro.shushi.pamirs.user.api.hook.UserHook`. In this example, with the help of `UserHook`, it can be determined whether the user is logged in. If the user is logged in, user-related information will be automatically set, so that the `PamirsSession.getUserId()` method can successfully obtain the user ID value in the follow-up.
 
 ## (3) Context:
 

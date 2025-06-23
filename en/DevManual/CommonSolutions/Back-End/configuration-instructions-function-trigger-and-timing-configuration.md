@@ -6,15 +6,15 @@ category:
 order: 68
 ---
 
-# 一、Overall Introduction to Asynchronous Tasks
+# Ⅰ、Overall Introduction to Asynchronous Tasks
 In numerous application scenarios, the trigger and scheduling mechanisms of functions play a crucial role, and this is also a fundamental and core capability of the Oinone platform. Taking Oinone's process products as an example, when users define process trigger conditions, the system provides options to choose between model-based triggering or time-based triggering. This design fully leverages the triggering and scheduling capabilities of functions to meet the diverse needs of different business processes for trigger conditions, enabling users to flexibly and accurately set the timing for process initiation according to actual business scenarios, thereby enhancing the flexibility and adaptability of the product in process management.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1235-1024x651-20250530144823048.png)
 
-# 二、Trigger Task (TriggerTaskAction)
+# Ⅱ、Trigger Task (TriggerTaskAction)
 + **Creation Process of Trigger Task**: The sql-record module is used to monitor binlog events of MySQL. Once related events are detected, a message containing changed data is sent via RocketMQ. Upon receiving this MQ message, the system immediately creates a TriggerAutoTask. This process realizes a series of automated workflows from database operation log monitoring, message transmission, to task creation, ensuring that trigger tasks can be generated in a timely manner based on database changes.
 + **Execution Process of Trigger Task**: The TBSchedule tool is used to pull the created trigger tasks. After successfully pulling the tasks, the system executes the corresponding functions, completing the full closed-loop operation from task creation to execution of the trigger task, realizing automated processing of business logic.
 
-## (一) Introducing Dependencies in the Project
+## (Ⅰ) Introducing Dependencies in the Project
 1. The project's API engineering introduces the pamirs-core-trigger module dependency.
 
 ```xml
@@ -59,7 +59,7 @@ public class DemoModule implements PamirsModule {
 </dependency>
 ```
 
-## (二) Modifying the yml File (application-xxx.yml)
+## (Ⅱ) Modifying the yml File (application-xxx.yml)
 + Adjust the values of configuration parameters `pamris.event.enabled` and `pamris.event.schedule.enabled` to true.
 + Add the following startup modules in `pamirs_boot_modules`: trigger, sql_record.
 
@@ -89,7 +89,7 @@ boot:
 
 Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## (三) Creating a New Trigger Task
+## (Ⅲ) Creating a New Trigger Task
 Create a class named `PetTalentTrigger`. This class is designed such that when a new data record is completed in the `PetTalent` model, the system will automatically trigger and execute a series of related transactions.
 
 ```java
@@ -115,10 +115,10 @@ public class PetTalentTrigger {
 }
 ```
 
-# 三、Scheduled Tasks
+# Ⅲ、Scheduled Tasks
 Scheduled tasks are a very common pattern, so we won't introduce the concept here and directly jump into the example.
 
-## (一) Creating PetTalentAutoTask to Implement ScheduleAction
+## (Ⅰ) Creating PetTalentAutoTask to Implement ScheduleAction
 + The setting of `getInterfaceName()` needs to be consistent with the definition of `taskAction.setExecuteNamespace`, both being the namespace of the function.
 + `taskAction.setExecuteFun("execute")` needs to be consistent with the execution function name `execute`.
 + `TaskType` should be configured as `CYCLE_SCHEDULE_NO_TRANSACTION_TASK`, which can separate the `schedule` thread of the scheduled task. Otherwise, if there is a task with a long execution time, it will cause delays in all ordinary asynchronous tasks or trigger tasks.
@@ -186,7 +186,7 @@ public class PetTalentAutoTask implements ScheduleAction {
 }
 ```
 
-## (二) Modifying DemoModuleBizInit for Scheduled Task Initialization
+## (Ⅱ) Modifying DemoModuleBizInit for Scheduled Task Initialization
 When the module is updated, call the `petTalentAutoTask.initTask()` method. Since `initTask` itself is idempotent, multiple calls are harmless. The "Module Lifecycle" article introduces `InstallDataInit`, `UpgradeDataInit`, and `ReloadDataInit`.
 
 ```java

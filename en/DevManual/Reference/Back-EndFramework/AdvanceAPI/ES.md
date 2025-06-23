@@ -9,7 +9,7 @@ category:
 order: 9
 
 ---
-# 一、Overview
+# Ⅰ、Overview
 
 `EnhanceModel` is the core abstract base class for implementing **read-write separation** in the Oinone framework, providing the capability to write data to the database (DB) while enabling efficient retrieval through Elasticsearch (ES). By inheriting from `EnhanceModel`, business models automatically gain the following features:
 
@@ -18,9 +18,9 @@ order: 9
 + **Logical Deletion**: Built-in `isDeleted` field supports soft deletion mode
 + **Extensibility**: Supports custom data synchronization logic and search algorithms
 
-# 二、EnhanceModel Usage Guide
+# Ⅱ、EnhanceModel Usage Guide
 
-## (一) Read-Write Separation Implementation
+## (Ⅰ) Read-Write Separation Implementation
 
 ### 1. Inherit from EnhanceModel
 
@@ -67,7 +67,7 @@ public class TestModelEnhance extends TestModel {
 )
 ```
 
-## (二) Custom Synchronization Logic
+## (Ⅱ) Custom Synchronization Logic
 
 ```java
 @Override
@@ -81,7 +81,7 @@ public List<TestModelEnhance> synchronize(List<TestModelEnhance> data) {
 }
 ```
 
-## (三) Custom Search Logic
+## (Ⅲ) Custom Search Logic
 
 ```java
 @Override
@@ -100,7 +100,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 }
 ```
 
-## (四) Using Native elasticsearchClient
+## (Ⅳ) Using Native elasticsearchClient
 
 ```java
     @Override
@@ -212,9 +212,9 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
     }
 ```
 
-# 三、Basic Configuration
+# Ⅲ、Basic Configuration
 
-## (一) Add Relevant Dependencies to the Startup Project
+## (Ⅰ) Add Relevant Dependencies to the Startup Project
 
 + The startup project needs to specify the version of the ES client package. Not specifying the version will implicitly depend on the lower version specified by the top-level spring-boot dependency management.
 + The startup project adds project dependencies of pamris-channel and pamirs-sql-record.
@@ -241,7 +241,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 </dependency>
 ```
 
-## (二) Add Relevant Dependencies to the API Project
+## (Ⅱ) Add Relevant Dependencies to the API Project
 
 Add the dependency of pamirs-channel-api to XXX-api.
 
@@ -252,9 +252,9 @@ Add the dependency of pamirs-channel-api to XXX-api.
 </dependency>
 ```
 
-## (三) YAML File Configuration
+## (Ⅲ) YAML File Configuration
 
-Documentation related to this topic can be found in [Enhanced Model Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十二-增强模型配置-pamirs-channel) and [Data Record Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十-数据记录配置-pamirs-record-sql).
+Documentation related to this topic can be found in [Enhanced Model Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅻ-enhanced-model-configuration-pamirschannel) and [Data Record Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅹ-data-record-configuration-pamirsrecordsql).
 
 Add the configuration pamirs.boot.modules in the application.yml file of the startup project to include channel and sql_record, that is, add the channel and sql_record modules to the startup module. At the same time, pay attention to the ES configuration to ensure it matches the ES service.
 
@@ -273,7 +273,7 @@ pamirs:
     url: 127.0.0.1:9200
 ```
 
-## (四) Add Module Dependencies to the Project's Modules
+## (Ⅳ) Add Module Dependencies to the Project's Modules
 
 The definition class of xxxModule adds a dependency on ChannelModule.
 
@@ -281,11 +281,11 @@ The definition class of xxxModule adds a dependency on ChannelModule.
 @Module(dependencies = {ChannelModule.MODULE_MODULE})
 ```
 
-# 四、Common Issues
+# Ⅳ、Common Issues
 
 After introducing Oinone's search (i.e., the Channel module), errors may occur due to incorrect configuration, missing configuration, or missing introduction of some Jar packages.
 
-## (一) Class JCTree Not Found During Startup
+## (Ⅰ) Class JCTree Not Found During Startup
 
 ### 1. Specific Phenomenon
 
@@ -337,7 +337,7 @@ pamirs:
 
 Ensure that the jdk's lib directory and tools.jar have the corresponding classes for com/sun/tools/javac/tree/JCTree.
 
-## (二) Class JsonProvider Not Found During Startup
+## (Ⅱ) Class JsonProvider Not Found During Startup
 
 ### 1. Specific Error
 

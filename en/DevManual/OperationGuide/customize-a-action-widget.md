@@ -24,7 +24,7 @@ The Widget framework classifies components, and during registration, we determin
 
 Here, we briefly explain the basics of action component registration to ensure easy understanding of key concepts in the following learning. For more details on component registration, refer to: [Action](/en/DevManual/Reference/Front-EndFramework/Widget/action.md)
 
-## (一) Registration Options for Action Components {#registration-options-for-action-components}
+## (Ⅰ) Registration Options for Action Components {#registration-options-for-action-components}
 
 ```typescript
 /**
@@ -80,7 +80,7 @@ export class RouterViewActionWidget extends ViewActionWidget {
 
 From the registration criteria, we can see this component handles view actions and processes only the "open in current window" navigation mode.
 
-## (二) Different Types of Action Components
+## (Ⅱ) Different Types of Action Components
 
 In Oinone, we provide built-in components for the four action types defined in metadata, each implementing corresponding functionalities.
 
@@ -103,7 +103,7 @@ The following lists some components and base classes categorized by action type:
 |                   | BackActionWidget               | Copies a row of data                |                  |
 
 
-## (三) Using Action Components in DSL
+## (Ⅲ) Using Action Components in DSL
 
 ```typescript
 <action name="redirectCreatePage" />
@@ -121,7 +121,7 @@ In most cases, modifications to action components involve logical changes, which
 
 Let's explore how to replace page action components via SPI registration and add processing logic.
 
-## (一) Viewing Action Metadata with Vue DevTools
+## (Ⅰ) Viewing Action Metadata with Vue DevTools
 
 Using `Vue DevTools`, select a specified action, then choose the first Widget component under the Action component in the Components area. You will see the following information:
 
@@ -142,7 +142,7 @@ Looking at the right section, which contains all visible information about the s
 + action: Action metadata, an object processed from the template attribute. Typed as `RuntimeAction` and its subclasses, a non - reactive object.
 + template: The original data object converted from `XML` to `JSON` format. Typed as `DslDefinition` and its subclasses.
 
-## (二) Replacing Components by Model and Action Name
+## (Ⅱ) Replacing Components by Model and Action Name
 
 From `Vue DevTools`, we see the corresponding Widget component is `RouterViewActionWidget`, with `action` attribute `model` as `resource.ResourceCountryGroup` and `name` as `redirectCreatePage`.
 
@@ -176,7 +176,7 @@ After replacement, checking the action via `Vue DevTools` shows the correspondin
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/custom-field/CustomRouterViewActionWidget.png)
 
-## (三) Replacing Components by View Name and Action Name {#replacing-components-by-view-name-and-action-name}
+## (Ⅲ) Replacing Components by View Name and Action Name {#replacing-components-by-view-name-and-action-name}
 
 Replacing components by model and action name has an inevitable issue: unintended replacements may occur if the same action is used on other pages. So, how to solve this?
 
@@ -198,7 +198,7 @@ export class CustomRouterViewActionWidget extends RouterViewActionWidget {
 
 This replaces all actions named `redirectCreatePage` in the `国家分组table` view.
 
-## (四) How to Obtain View Names
+## (Ⅳ) How to Obtain View Names
 
 We've used `Vue DevTools` to find the `RouterViewActionWidget` component, which may now be `CustomRouterViewActionWidget`. Starting from this component, search for the nearest `View` component in the parent component hierarchy, as shown below:
 

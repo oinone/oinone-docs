@@ -24,13 +24,13 @@ In summary, there are only two interfaces for permission extension: `Permission 
 
 # I. Concept Introduction
 
-## (一) RBAC Permission Control System
+## (Ⅰ) RBAC Permission Control System
 
 Role-Based Access Control (RBAC) is a common permission system including three entity models: users, roles, and resource items, as well as two entity relationship models (M2M): user-role relationships and role-resource item relationships. As shown below:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/SecurityInOinone/1748924950380-13d299d7-8247-417e-8f9e-61188b9bd4f3.jpeg)
 
-## (二) Resources and Permission Items
+## (Ⅱ) Resources and Permission Items
 
 In Oinone, the following metadata are called resources, and each resource has corresponding permission items for standardized description:
 
@@ -45,7 +45,7 @@ In Oinone, the following metadata are called resources, and each resource has co
   - Field (field)
 + Row Permission Items (AuthRowPermission)
 
-## (三) Permission Tree and Resource Access Path
+## (Ⅲ) Permission Tree and Resource Access Path
 
 As seen in previous tutorials, both the "System Permissions" page and the "Role Management - Permission Configuration" page use a "permission tree" starting from the application for permission configuration. This tree generates resource permission items based on the topological structure of page metadata, and each permission item has a corresponding resource access path. Only access paths conforming to the rules can be authenticated.
 
@@ -99,7 +99,7 @@ Take the scenario where a mobile module does not require authentication. Let's s
 
 :::
 
-## (一) Preparation
+## (Ⅰ) Preparation
 
 ### 1. Create a Mobile Application
 
@@ -119,7 +119,7 @@ To see specific effects when customizing permissions, create a standalone user a
 
 Logging in with this user will trigger an exception: "Entry application not found or no permission to access."
 
-## (二) Filter by Module Code
+## (Ⅱ) Filter by Module Code
 
 Register the custom permission filter service as a `Spring Bean` and override the `All Resource Access Control` method to complete module filtering. For example:
 
@@ -172,7 +172,7 @@ public class CustomAuthFilterService implements AuthFilterService {
 + Returning `false` means permission verification fails, and the user cannot access any resources under this module.
 + Returning `null` means passing to other permission filter services for continued judgment.
 
-## (三) Verify User Login
+## (Ⅲ) Verify User Login
 
 Using the above `module filtering`, we find all interfaces in this module can be accessed without user login, which is clearly insecure.
 
@@ -191,7 +191,7 @@ public Boolean isAccessModule(String module) {
 
 The `AuthVerificationHelper#checkLogin` method throws an exception with front-end-backend约定 (agreed) information when the user is not logged in. Upon receiving this exception, the front end automatically redirects to the login page.
 
-## (四) AccessResourceInfo
+## (Ⅳ) AccessResourceInfo
 
 You can obtain access resource information using the following method almost anywhere:
 
@@ -215,7 +215,7 @@ When certain actions/functions do not require authentication, we can filter them
 
 :::
 
-## (一) Access Without Login
+## (Ⅰ) Access Without Login
 
 Configure the `pamirs.auth.fun-filter` attribute in `yaml` to allow the "Country Group - Create" action to be accessed directly without login:
 
@@ -227,7 +227,7 @@ pamirs:
        fun: create
 ```
 
-## (二) Access Requiring Login
+## (Ⅱ) Access Requiring Login
 
 Configure the `pamirs.auth.fun-filter-only-login` attribute in `yaml` to allow the "Country Group - Create" action to be accessed after login without worrying about corresponding permission configuration:
 
@@ -239,7 +239,7 @@ pamirs:
        fun: create
 ```
 
-## (三) Custom "Blacklist"
+## (Ⅲ) Custom "Blacklist"
 
 Built-in whitelist configurations may not cover most business scenarios or may not be convenient to configure. For example, when using `module filtering`, how to require permission control for specified actions/functions in that module?
 
@@ -321,11 +321,11 @@ Solution 1: Expose required pages and actions for the mobile end through menus v
 
 Solution 2: Extend the permission tree for specified action authorization.
 
-## (一) Solution 1: Use Built-in Authorization and Authentication
+## (Ⅰ) Solution 1: Use Built-in Authorization and Authentication
 
 When using "Solution 1," the backend requires no special processing or modification. The frontend only needs to carry the corresponding resource access path, which is the commonly used "permission埋点 (permission instrumentation)" solution. This simple solution is not elaborated here.
 
-## (二) Solution 2: Extend the Permission Tree
+## (Ⅱ) Solution 2: Extend the Permission Tree
 
 First, let's look at part of the `PermissionNodeLoadExtendApi` definition:
 

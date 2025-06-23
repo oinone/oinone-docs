@@ -57,7 +57,7 @@ For example, component rendering errors due to unmet field registration conditio
 
 # IV. API Debugging
 
-## (一) Initiating an API Debugging Session
+## (Ⅰ) Initiating an API Debugging Session
 
 The following examples are demonstrated in the Chrome browser, with possible differences in other browsers.
 
@@ -97,7 +97,7 @@ Log Levels:
 
 :::
 
-## (二) Exception Stack Analysis
+## (Ⅱ) Exception Stack Analysis
 
 Code exceptions are common during development. The debug tools provide simple stack analysis for quickly locating routine issues. You can gradually locate problems using the following functions:
 
@@ -137,7 +137,7 @@ Sometimes, business-related data is printed for debugging via `Logback` near exc
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/DebugTools/1749216817051-6fddd803-75f0-47b7-b897-ed25cf8d8e6a.png)
 
-## (三) Request Performance Analysis
+## (Ⅲ) Request Performance Analysis
 
 For slow request issues, we can use the `SQL debugging` and `function chain tracking` functions provided by the debug tools for preliminary analysis. Let's look at how to use this information in performance analysis.
 
@@ -172,7 +172,7 @@ Function tracking format:
   - `LOCAL`: Non-Spring function executor.
 + `>:pamirs-dev#127.0.0.1:20881`: Indicates that the current function is executed on the service with the `application name (spring.application.name)`, and the corresponding `dubbo` registration IP and port are `127.0.0.1:20881`.
 
-## (四) Permission Verification Failure Analysis
+## (Ⅳ) Permission Verification Failure Analysis
 
 When an interface throws an exception such as "no permission to perform this operation" as shown in the following figure:
 
@@ -200,7 +200,7 @@ Different requests use different permission restrictions, so these verification 
 
 :::
 
-## (五) Environment Configuration Information
+## (Ⅴ) Environment Configuration Information
 
 When environment configuration issues occur, you can obtain server configurations through debug tools without accessing the server. This configuration information can only be obtained by logging in as an "administrator"; other users are prohibited from accessing it.
 
@@ -208,7 +208,7 @@ When environment configuration issues occur, you can obtain server configuration
 
 # V. Disabling Debug Tools in Production Environment
 
-## (一) Disabling Debug Tools on the Front End
+## (Ⅰ) Disabling Debug Tools on the Front End
 
 In the front-end runtime environment configuration, you can disable the debug page route through debug configuration. Refer to: [Front-End API - Environment](/en/DevManual/Reference/Front-EndFramework/environment.md)
 
@@ -220,7 +220,7 @@ runtimeConfigResolve({
 });
 ```
 
-## (二) Disabling Debug APIs on the Back End
+## (Ⅱ) Disabling Debug APIs on the Back End
 
 Configuring `pamirs.framework.debug.enabled` as `false` in Yaml disables debug APIs. Refer to: [Back-End API - Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md)
 

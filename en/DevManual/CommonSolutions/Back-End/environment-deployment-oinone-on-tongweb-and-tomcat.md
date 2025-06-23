@@ -22,11 +22,11 @@ For detailed steps, refer to: [https://www.cnblogs.com/memoa/p/10250553.html](ht
 + This article focuses on explaining the unique aspects of deploying WAR packages generated from Oinone projects.
 
 # V. Deploying Oinone Project WAR Packages
-## (一) Known Limitations
+## (Ⅰ) Known Limitations
 + When deploying Oinone projects, specifying the lifecycle `-Plifecycle=INSTALL` is required.
 + TongWeb and Tomcat cannot set `Program arguments` in startup scripts.
 
-## (二) Solution Approach
+## (Ⅱ) Solution Approach
 Parameters equivalent to `-Plifecycle=INSTALL` can be configured via YML file configuration:
 
 ```yaml
@@ -40,7 +40,7 @@ pamirs:
     modules:
 ```
 
-## (三) Configuration Reference
+## (Ⅲ) Configuration Reference
 Refer to `Module Startup Instructions` for configuration.
 
 | Parameter | Name | Default Value | Description |

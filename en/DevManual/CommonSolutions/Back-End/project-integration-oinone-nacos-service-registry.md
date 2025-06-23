@@ -74,7 +74,7 @@ dubbo:
 ```
 
 # IV. Notes on Building Distributed Projects with Oinone
-## (一) Service Publication Scope of Oinone Remote Services
+## (Ⅰ) Service Publication Scope of Oinone Remote Services
 Generalized service scope, optional values: module, namespace
 module: Publish remote services by module dimension
 namespace: Publish remote services by Fun's namespace dimension
@@ -88,7 +88,7 @@ pamirs:
      serviceScope: module
 ```
 
-## (二) Turning Off Dubbo Service Registration Metadata Reporting Logs
+## (Ⅱ) Turning Off Dubbo Service Registration Metadata Reporting Logs
 ```yaml
 logging:
  level:
@@ -108,7 +108,7 @@ logging:
    org.apache.dubbo.metadata.store.nacos.NacosMetadataReport: off
 ```
 
-## (三) Redundant Configurations Appearing in the Nacos Configuration List
+## (Ⅲ) Redundant Configurations Appearing in the Nacos Configuration List
 When Dubbo integrates with the Nacos registration center, redundant configurations will appear. For detailed references:
 Many irrelevant configurations will be automatically created in the configuration list: [https://github.com/apache/dubbo/issues/6645](https://github.com/apache/dubbo/issues/6645)
 Redundant configurations appear in the configuration list: [https://github.com/alibaba/nacos/issues/8843](https://github.com/alibaba/nacos/issues/8843)

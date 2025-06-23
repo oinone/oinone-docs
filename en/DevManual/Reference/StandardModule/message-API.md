@@ -16,7 +16,7 @@ The Oinone message service provides a unified message sending interface, support
 
 If generated through our project scaffolding tool, the dependency is already introduced and no further configuration is needed. If not, follow these steps to configure dependencies and add the startup module:
 
-## (一) Introduce Core Dependencies for Message Service
+## (Ⅰ) Introduce Core Dependencies for Message Service
 
 Add the following dependency to the `pom.xml` of the startup project:
 
@@ -29,7 +29,7 @@ Add the following dependency to the `pom.xml` of the startup project:
 
 **Explanation**: This dependency includes the basic interfaces, implementation classes, and configuration items for the message service.
 
-## (二) Enable the Message Service Module
+## (Ⅱ) Enable the Message Service Module
 
 Add the module loading configuration to `application-dev.yml` (or the corresponding environment configuration file):
 
@@ -40,14 +40,14 @@ pamirs:
       - message  # Enable the message service module
 ```
 
-## (三) Environment Differences Description
+## (Ⅲ) Environment Differences Description
 
 + **Development Environment**: Directly use the above configuration, which loads the basic parameters in `application-dev.yml` by default.
 + **Production Environment**: Supplement sensitive information such as actual email server accounts and SMS channel keys in the corresponding configuration file (e.g., `application-prod.yml`) to ensure the configuration matches the production environment.
 
 After completing the above steps, the message service module will be automatically loaded with the application startup, and relevant interfaces can be directly called to send messages.
 
-## (四) Introduce Message Service API Dependencies
+## (Ⅳ) Introduce Message Service API Dependencies
 
 Add the message service API dependency to the `pom.xml` of the business module for calling email/SMS sending interfaces:
 
@@ -62,7 +62,7 @@ Add the message service API dependency to the `pom.xml` of the business module f
 
 # III. Message Configuration
 
-## (一) Initialize Email and SMS Channel Configuration
+## (Ⅰ) Initialize Email and SMS Channel Configuration
 
 This class is used to initialize email and SMS channel configurations, implementing the `InstallDataInit` and `UpgradeDataInit` interfaces, and automatically executes configuration initialization during system installation and upgrade.
 
@@ -96,7 +96,7 @@ public class TestMessageInit implements InstallDataInit, UpgradeDataInit {
 }
 ```
 
-## (二) Email Service Configuration
+## (Ⅱ) Email Service Configuration
 
 **Method**: `initEmail()`
 
@@ -121,7 +121,7 @@ private void initEmail(){
 + **Security Protocol**: SSL/TLS
 + **Account Password**: Replace with actual available email account and authorization code
 
-## (三) SMS Service Configuration
+## (Ⅲ) SMS Service Configuration
 
 **Method**: `initSms()`
 
@@ -161,7 +161,7 @@ private void initSms(){
 
 # IV. API Usage Instructions
 
-## (一) System Message Interface (MessageSender)
+## (Ⅰ) System Message Interface (MessageSender)
 
 ### 1. Interface Definition
 
@@ -333,7 +333,7 @@ PamirsMessage orderMsg = new PamirsMessage()
 messageSender.sendModelMail(List.of(orderMsg), List.of(customerUser));
 ```
 
-## (二) Email Service Interface (EmailSender)
+## (Ⅱ) Email Service Interface (EmailSender)
 
 ### 1. Interface Definition
 
@@ -483,7 +483,7 @@ Boolean sendVerify(String templateType, String mailAddr);
   - Send email using the corresponding template
   - Verification code validity period is 10 minutes by default
 
-## (三) SMS Sending Interface (SMSSender)
+## (Ⅲ) SMS Sending Interface (SMSSender)
 
 ### 1. Interface Definition
 
@@ -548,7 +548,7 @@ smsSender.smsSend(template, "13912345678",
 Your verification code is ${code}, valid for 5 minutes. Do not disclose it.
 ```
 
-## (四) Appendix: Public Models
+## (Ⅳ) Appendix: Public Models
 
 ### 1. MessageChannel Message Channel
 

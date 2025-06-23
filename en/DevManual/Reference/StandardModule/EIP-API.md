@@ -27,22 +27,22 @@ This document helps you quickly grasp core concepts and basic logic. However, du
 
 # II. Preparation Work
 
-## (一) YAML Configuration
+## (Ⅰ) YAML Configuration
 
 ### 1. Open Platform Configuration
 
-Related documentation on this topic can be found in "[Integration Platform Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十六-集成平台配置-pamirs-eip)".
+Related documentation on this topic can be found in "[Integration Platform Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#xvi-integration-platform-configuration-pamirseip)".
 
 ### 2. Start the eip Module
 
 ```yaml
-pamirs:
+pamirs
   boot:
     modules:
       - eip
 ```
 
-## (二) Maven Dependencies
+## (Ⅱ) Maven Dependencies
 
 ### 1. Add Relevant Dependencies to the api Project
 
@@ -64,7 +64,7 @@ Add the dependency on pamirs-eip2-api to xxxModule-api:
 </dependency>
 ```
 
-## (三) Add Module Dependencies to the Project's Module
+## (Ⅲ) Add Module Dependencies to the Project's Module
 
 Add dependency on EipModule to the xxxModule definition class:
 
@@ -74,11 +74,11 @@ Add dependency on EipModule to the xxxModule definition class:
 
 # III. `@Open` Annotation
 
-## (一) Function Description
+## (Ⅰ) Function Description
 
 The `@Open` annotation defines open interfaces, allowing external systems to invoke them via HTTP requests. It supports configuring request methods, input/output converters, authentication processors, and other functions.
 
-## (二) Annotation Structure
+## (Ⅱ) Annotation Structure
 
 ```java
 @Target({ElementType.METHOD})
@@ -132,7 +132,7 @@ Open
 
 │   └── deserializationNamespace Deserialization function namespace
 
-## (三) Usage Example
+## (Ⅲ) Usage Example
 
 ```java
 @Fun(TestOpenApiModelService.FUN_NAMESPACE)
@@ -156,7 +156,7 @@ public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
 }
 ```
 
-## (四) Parameter Description
+## (Ⅳ) Parameter Description
 
 ### 1. Member Variables
 
@@ -186,11 +186,11 @@ Used to configure advanced options, can be annotated on methods or classes.
 
 # IV. `@Integrate` Annotation
 
-## (一) Function Description
+## (Ⅰ) Function Description
 
 The `@Integrate` annotation defines integrated interfaces, supporting invocation of external system open interfaces. It supports routing configuration, parameter conversion, exception handling, and other functions.
 
-## (二) Annotation Structure
+## (Ⅱ) Annotation Structure
 
 ```java
 @Target({ElementType.METHOD})
@@ -325,7 +325,7 @@ Integrate
 
 │             └── outParam Output parameter key
 
-## (三) Usage Example
+## (Ⅲ) Usage Example
 
 ```java
 @Fun(TestIntegrateService.FUN_NAMESPACE)
@@ -353,7 +353,7 @@ public class TestIntegrateServiceImpl implements TestIntegrateService {
 }
 ```
 
-## (四) Parameter Description
+## (Ⅳ) Parameter Description
 
 ### 1. Member Variables
 
@@ -411,11 +411,11 @@ The integration platform extends interface behavior through the following functi
 
 # VI. Complete Call Flow
 
-## (一) Request Flow
+## (Ⅰ) Request Flow
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/c8e20cfdb7698815f7ae55e1ab9893ed.svg)
 
-## (二) Response Flow
+## (Ⅱ) Response Flow
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/BestParadigm/a76a5527135a992ec7d7f3fbcdb0409e-20250529172921273.svg)
 
@@ -427,9 +427,9 @@ Perform md5 and encryption/decryption processing in `IEipInOutConverter`
 
 # VII. Register Open and Integrated Interfaces
 
-## (一) Scan and Register All Interfaces Marked with `@Open` and `@Integrate`
+## (Ⅰ) Scan and Register All Interfaces Marked with `@Open` and `@Integrate`
 
-Called during module startup lifecycle, related documentation on this topic can be found in "[Module Lifecycle](/en/DevManual/Reference/Back-EndFramework/module-API.md#三、模块生命周期)".
+Called during module startup lifecycle, related documentation on this topic can be found in "[Module Lifecycle](/en/DevManual/Reference/Back-EndFramework/module-API.md#Ⅲ、模块生命周期)".
 
 ```java
 EipResolver.resolver(TestModule.MODULE_MODULE,null);
@@ -475,7 +475,7 @@ public class SecondModuleBizInit implements InstallDataInit, UpgradeDataInit, Re
 
 # VIII. Examples
 
-## (一) Notes
+## (Ⅰ) Notes
 
 :::info Note: config Configuration
 
@@ -490,7 +490,7 @@ http://localhost:8094/openapi/pamirs/yourPath
 
 :::
 
-## (二) Open Interface Definition Examples
+## (Ⅱ) Open Interface Definition Examples
 
 ### 1. Basic Open Interface
 
@@ -559,7 +559,7 @@ public OpenEipResult<TestOpenApiResponse> queryById4OpenError() {
 
 
 
-## (三) Integrated Interface Invocation Examples
+## (Ⅲ) Integrated Interface Invocation Examples
 
 ### 1. Basic Integrated Interface
 
@@ -632,7 +632,7 @@ public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperM
 }
 ```
 
-## (四) Security Policy Configuration Examples
+## (Ⅳ) Security Policy Configuration Examples
 
 ### 1. AccessToken Authentication
 
@@ -701,7 +701,7 @@ public class RSAInOutConverter implements IEipInOutConverter {
 }
 ```
 
-## (五) Custom Serialization Examples
+## (Ⅴ) Custom Serialization Examples
 
 ### 1. XML Serialization
 

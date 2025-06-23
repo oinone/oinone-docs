@@ -6,9 +6,9 @@ category:
 order: 38
 ---
 
-# 一、Driver Configuration
+# Ⅰ、Driver Configuration
 
-## （一）Maven Configuration
+## （Ⅰ）Maven Configuration
 
 [Click to view official driver documentation](https://help.kingbase.com.cn/v9/development/client-interfaces/jdbc/jdbc-1.html#id3)
 
@@ -27,11 +27,11 @@ The `9.0.0` version mentioned in the official driver documentation has not been 
 </dependency>
 ```
 
-## （二）Offline Driver Download
+## （Ⅱ）Offline Driver Download
 
 [kingbase8-8.6.0.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/kdb/kingbase8-8.6.0.jar)
 
-# 二、JDBC Connection Configuration
+# Ⅱ、JDBC Connection Configuration
 
 ```yaml
 pamirs:
@@ -63,11 +63,11 @@ The `validConnectionCheckerClassName` configuration is crucial. Connection liven
 
 :::
 
-## （一）Connection URL Configuration
+## （Ⅰ）Connection URL Configuration
 
 [Click to view official JDBC connection configuration instructions](https://help.kingbase.com.cn/v9/development/client-interfaces/jdbc/jdbc-2.html#id2)
 
-## （二）URL Format
+## （Ⅱ）URL Format
 
 ```plain
 jdbc:kingbase8://${host}:${port}/${database}?currentSchema=${schema}&autosave=always&cleanupSavepoints=true
@@ -81,9 +81,9 @@ When configuring the JDBC connection, ${database} and ${schema} must be configur
 
 For other connection parameters, you can refer to relevant materials for optimization as needed.
 
-# 三、Dialect Configuration
+# Ⅲ、Dialect Configuration
 
-## （一）Pamirs Dialect Configuration
+## （Ⅰ）Pamirs Dialect Configuration
 
 ```yaml
 pamirs:
@@ -111,7 +111,7 @@ Since the dialect development environment uses version `V009R001C001B0030`, othe
 
 :::
 
-## （二）Schedule Dialect Configuration
+## （Ⅱ）Schedule Dialect Configuration
 
 ```yaml
 pamirs:
@@ -138,9 +138,9 @@ Since the schedule dialect does not differ significantly from the PostgreSQL dat
 
 :::
 
-# 四、Other Configurations
+# Ⅳ、Other Configurations
 
-## （一）Logical Delete Value Configuration
+## （Ⅰ）Logical Delete Value Configuration
 
 ```yaml
 pamirs:
@@ -150,7 +150,7 @@ pamirs:
         logic-delete-value: (EXTRACT(epoch FROM CURRENT_TIMESTAMP) * 1000000 + EXTRACT(MICROSECONDS FROM CURRENT_TIMESTAMP))::bigint
 ```
 
-# 五、Key Parameter Check for KDB Database
+# Ⅴ、Key Parameter Check for KDB Database
 
 :::info Note:
 
@@ -158,17 +158,17 @@ The following parameters are the database parameters used when the Oinone platfo
 
 :::
 
-## （一）Database Mode
+## （Ⅰ）Database Mode
 
 Recommended configuration: `DB_MODE=oracle`
 
 Configured during database installation/initialization
 
-## （二）Case Sensitivity
+## （Ⅱ）Case Sensitivity
 
 Recommended configuration: `enable_ci=off`
 
-## （三）Enable Statement-Level Rollback
+## （Ⅲ）Enable Statement-Level Rollback
 
 Recommended configuration: `ora_statement_level_rollback = off`
 
@@ -184,7 +184,7 @@ The Oinone platform was initially developed based on the transaction characteris
 
 Inconsistencies may lead to abnormal functionality, such as errors when the process designer first publishes a timer-triggered workflow, or import/export tasks failing to update task status normally.
 
-## （四）Treat Empty Strings as NULL
+## （Ⅳ）Treat Empty Strings as NULL
 
 Recommended configuration: `ora_input_emptystr_isnull = off`
 
@@ -194,7 +194,7 @@ show ora_input_emptystr_isnull;
 set ora_input_emptystr_isnull=off;
 ```
 
-# 六、KDB Database User Initialization and Authorization
+# Ⅵ、KDB Database User Initialization and Authorization
 
 ```sql
 -- Initialize root user (user name can be modified by oneself)
@@ -210,7 +210,7 @@ SELECT * FROM pg_roles;
 GRANT CREATE ON DATABASE kingbase TO root;
 ```
 
-# 七、Common Database Operation and Maintenance Scripts
+# Ⅶ、Common Database Operation and Maintenance Scripts
 
 :::info Note:
 

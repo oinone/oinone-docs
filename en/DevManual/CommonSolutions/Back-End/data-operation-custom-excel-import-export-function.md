@@ -6,13 +6,13 @@ category:
 order: 32
 ---
 
-# 一、Scenario Description
+# Ⅰ、Scenario Description
 When the default import and export functions provided by the platform cannot meet business requirements, we can customize import and export functions to satisfy personalized business needs.
 
-# 二、Import Function Example
+# Ⅱ、Import Function Example
 The following takes adding a `Publisher` field during file import as an example for explanation.
 
-## （一）Inherit the platform's import task model and add fields to be displayed in the import pop-up view.
+## （Ⅰ）Inherit the platform's import task model and add fields to be displayed in the import pop-up view.
 ```java
 package pro.shushi.pamirs.demo.api.model;
 
@@ -32,7 +32,7 @@ public class DemoItemImportTask extends ExcelImportTask {
 }
 ```
 
-## （二）Write the data initialization method for the custom import pop-up view and the import submission action.
+## （Ⅱ）Write the data initialization method for the custom import pop-up view and the import submission action.
 ```java
 package pro.shushi.pamirs.demo.core.action;
 
@@ -91,7 +91,7 @@ public class DemoItemExcelImportTaskAction extends ExcelImportTaskAction {
 }
 ```
 
-## （三）Write the processing logic for single-row import data.
+## （Ⅲ）Write the processing logic for single-row import data.
 In this process, values submitted by custom fields in the import pop-up can be obtained. Based on these values, custom logic can be processed. For example, in this demo code, the specific logic is to uniformly set the publisher of imported products to the publisher information filled in the custom import view.
 
 ```java
@@ -143,7 +143,7 @@ public class DemoItemImportExtPoint extends AbstractExcelImportDataExtPointImpl<
 }
 ```
 
-## （四）Write the import view xml.
+## （Ⅳ）Write the import view xml.
 ```xml
 <view type="FORM" title="Import" name="import_dialog" widget="form" model="demo.DemoItemImportTask" width="small">
     <template slot="form" cols="1">
@@ -160,7 +160,7 @@ public class DemoItemImportExtPoint extends AbstractExcelImportDataExtPointImpl<
 </view>
 ```
 
-## （五）Initialize the import action.
+## （Ⅴ）Initialize the import action.
 ```java
 package pro.shushi.pamirs.demo.core.init;
 
@@ -208,11 +208,11 @@ public class DemoModuleAppInstall implements MetaDataEditor, LifecycleCompletedA
 }
 ```
 
-## （六）The import function is completed. Here is a screenshot of the import pop-up page.
+## （Ⅵ）The import function is completed. Here is a screenshot of the import pop-up page.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20231122-042634@2x-20250530144823169.png)
 
-# 三、Export Function Example
-## （一）Inherit the platform's export task model and add fields to be displayed in the export pop-up view.
+# Ⅲ、Export Function Example
+## （Ⅰ）Inherit the platform's export task model and add fields to be displayed in the export pop-up view.
 ```java
 package pro.shushi.pamirs.demo.api.model;
 
@@ -232,7 +232,7 @@ public class DemoItemExportTask extends ExcelExportTask {
 }
 ```
 
-## （二）Write the data initialization method for the custom export pop-up view and the export submission action.
+## （Ⅱ）Write the data initialization method for the custom export pop-up view and the export submission action.
 ```java
 package pro.shushi.pamirs.demo.core.action;
 
@@ -284,7 +284,7 @@ public class DemoItemExcelExportTaskAction extends ExcelExportTaskAction {
 }
 ```
 
-## （三）Write the export data processing logic, where values submitted by custom fields in the export pop-up can be obtained to process custom logic.
+## （Ⅲ）Write the export data processing logic, where values submitted by custom fields in the export pop-up can be obtained to process custom logic.
 ```java
 package pro.shushi.pamirs.demo.core.excel.extPoint;
 
@@ -336,7 +336,7 @@ public class DemoItemExportExtPoint extends ExcelExportSameQueryPageTemplate imp
 }
 ```
 
-## （四）Write the export view xml.
+## （Ⅳ）Write the export view xml.
 ```xml
 <view type="FORM" title="Export" name="export_dialog" widget="form" model="demo.DemoItemExportTask" width="small">
     <template slot="form" cols="1">
@@ -352,7 +352,7 @@ public class DemoItemExportExtPoint extends ExcelExportSameQueryPageTemplate imp
 </view>
 ```
 
-## （五）Initialize the export action.
+## （Ⅴ）Initialize the export action.
 ```java
 package pro.shushi.pamirs.demo.core.init;
 
@@ -402,5 +402,5 @@ public class DemoModuleAppInstall implements MetaDataEditor, LifecycleCompletedA
 }
 ```
 
-## （六）Screenshot of the export pop-up page.
+## （Ⅵ）Screenshot of the export pop-up page.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240103-203537-20250530144823225.png)

@@ -32,7 +32,7 @@ public class Test {
 
 # II. Best Practices
 
-## (一) AbstractRedisCacheService
+## (Ⅰ) AbstractRedisCacheService
 
 **Function Overview**: `AbstractRedisCacheService<T>` encapsulates Redis cache operations, simplifying data read-write logic while standardizing usage. Even without using this encapsulated class, you can directly call `RedisTemplate` or `stringRedisTemplate` with unaffected functionality.
 
@@ -75,7 +75,7 @@ public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
 }
 ```
 
-## (二) Jedis and Lettuce Switching Guide
+## (Ⅱ) Jedis and Lettuce Switching Guide
 
 ### 1. Core Differences:
 
@@ -136,7 +136,7 @@ spring:
 
 # III. Source Code Analysis of Core Configuration
 
-## (一) RedisSimpleConfig
+## (Ⅰ) RedisSimpleConfig
 
 This configuration class takes effect in the single Redis mode, responsible for the initialization of `redisTemplate` and `stringRedisTemplate`:
 
@@ -187,7 +187,7 @@ public class RedisSimpleConfig {
 }
 ```
 
-## (二) PamirsStringRedisSerializer
+## (Ⅱ) PamirsStringRedisSerializer
 
 A custom string serializer that implements automatic addition and parsing of tenant prefixes:
 

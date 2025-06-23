@@ -20,7 +20,7 @@ Nacos, SpringCloud, and SpringCloudAlibaba have strict dependency version requir
 :::
 
 # II. Specific Examples:
-## (一) Adding Dependencies to the Project
+## (Ⅰ) Adding Dependencies to the Project
 Introduce compatible versions in the main pom:
 
 ```xml
@@ -48,7 +48,7 @@ Introduce dependencies in the pom of the used module:
 </dependency>
 ```
 
-## (二) Configuring application.yml
+## (Ⅱ) Configuring application.yml
 ```yaml
 spring:
   cloud:
@@ -61,7 +61,7 @@ spring:
 
 Note: For more YAML configurations, please go to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) for consultation.
 
-## (三) Adding Annotations to the Startup Class
+## (Ⅲ) Adding Annotations to the Startup Class
 ```java
 @EnableDiscoveryClient
 @EnableFeignClients
@@ -72,7 +72,7 @@ public class NacosConsumerApplication {
 }
 ```
 
-## (四) Verification
+## (Ⅳ) Verification
 Create a Feign Client interface
 
 ```java

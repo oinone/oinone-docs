@@ -6,7 +6,7 @@ category:
 order: 43
 ---
 
-# 一、OSS Types Supported by Oinone
+# Ⅰ、OSS Types Supported by Oinone
 | Type | Service |
 | --- | --- |
 | OSS | Alibaba Cloud OSS |
@@ -17,7 +17,7 @@ order: 43
 | TENCENT_COS | Tencent Cloud COS |
 
 
-# 二、OSS Universal YAML Configuration
+# Ⅱ、OSS Universal YAML Configuration
 ```yaml
 cdn:
   oss:
@@ -57,8 +57,8 @@ In `others`, use a custom `key` to specify the OSS service for file upload/downl
 
 :::
 
-# 三、OSS Configuration Examples
-## （一）Alibaba Cloud OSS
+# Ⅲ、OSS Configuration Examples
+## （Ⅰ）Alibaba Cloud OSS
 ```yaml
 cdn:
   oss:
@@ -78,7 +78,7 @@ cdn:
     referer:
 ```
 
-## （二）Huawei Cloud OBS
+## （Ⅱ）Huawei Cloud OBS
 ```yaml
 cdn:
   oss:
@@ -115,7 +115,7 @@ For Huawei Cloud OBS anti-leech configuration, only requests with specific refer
 
 :::
 
-## （三）MINIO
+## （Ⅲ）MINIO
 ```yaml
 File system, MinIO configuration:
 cdn:
@@ -136,7 +136,7 @@ cdn:
     localFolderUrl:
 ```
 
-## （四）Upyun
+## （Ⅳ）Upyun
 ```yaml
 cdn:
   oss:
@@ -155,7 +155,7 @@ cdn:
     referer:
 ```
 
-## （五）Local File Storage
+## （Ⅴ）Local File Storage
 ```yaml
 cdn:
   oss:
@@ -173,7 +173,7 @@ cdn:
     localFolderUrl: /Users/wangxian/nginx/html/designer/static
 ```
 
-## （六）Tencent Cloud COS
+## （Ⅵ）Tencent Cloud COS
 ```yaml
 cdn:
   oss:
@@ -195,7 +195,7 @@ cdn:
 
 Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-# 四、OSS Code Examples
+# Ⅳ、OSS Code Examples
 To directly upload files to OSS in the background, obtain the file system client through `FileClientFactory.getClient()`:
 
 ```java

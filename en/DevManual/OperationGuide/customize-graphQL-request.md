@@ -7,7 +7,7 @@ category:
 order: 4
 ---
 
-Let's recall the theoretical content of "Initiating a Backend Request" we first encountered in the "[Build a Dashboard](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md#二、理论-发起一个后端请求)" section of the "[Build a Dashboard](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)" chapter. We initiated a backend request through the `GenericFunctionService` instance. In this chapter, we will provide a detailed introduction to GraphQL requests.
+Let's recall the theoretical content of "Initiating a Backend Request" we first encountered in the "[Build a Dashboard](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md#ii-theory-initiate-a-back-end-request)" section of the "[Build a Dashboard](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)" chapter. We initiated a backend request through the `GenericFunctionService` instance. In this chapter, we will provide a detailed introduction to GraphQL requests.
 
 For convenience, GraphQL is abbreviated as GQL in the following content.
 
@@ -23,7 +23,7 @@ In addition to using the `GenericFunctionService` instance to initiate requests,
 In Oinone, all functions are driven by a series of metadata, using `GQL` as the front-end to back-end interaction protocol, which has certain advantages compared to `RESTFul`. Namely, the front-end can define response datasets through `GQL`.
 
 Before learning this chapter, you need a preliminary understanding of `GQL`:
-- Refer to the GraphQL protocol section in "[Front-End Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#二、graphql协议)".
+- Refer to the GraphQL protocol section in "[Front-End Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#ii-graphql-protocol)".
 - Refer to the official documentation "[GraphQL 入门](https://graphql.cn/learn)".
 - Further understand "[What's the Difference Between GraphQL and REST](https://aws.amazon.com/cn/compare/the-difference-between-graphql-and-rest/)".
 
@@ -53,8 +53,8 @@ In most cases, the model name is usually automatically generated from the model 
 
 :::warning Note
 
-For more overview content about models, refer to: [Front-End Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#三-模型)  
-For more content about model field types, refer to: [Field](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#二、字段-field)
+For more overview content about models, refer to: [Front-End Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#iii-model)  
+For more content about model field types, refer to: [Field](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#ii-field)
 
 :::
 
@@ -80,7 +80,7 @@ For any model inherited from `IdModel`, it has some basic `CRUD` built-in functi
 Here we list some commonly used default functions that can be called by the front-end. All functions are ultimately initiated by the function name (name). Here we need to note a special case:
 - queryByWrapper and queryOneByWrapper call the same function, only fun and name are different.
 
-For more detailed content about function parameters and return values, refer to: [ORM API - Common ORM Methods](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#五、common-orm-methods)
+For more detailed content about function parameters and return values, refer to: [ORM API - Common ORM Methods](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#v-common-orm-methods)
 
 :::
 

@@ -13,7 +13,7 @@ order: 6
 
 `FileClient` is an abstract interface used to unify file operations for different object storage services (such as Alibaba Cloud OSS, Huawei Cloud OBS, Tencent Cloud COS, MinIO, Upyun, etc.). Instances are obtained through the factory class `FileClientFactory`, supporting multi-CDN configurations.
 
-## (一) Obtaining Instances
+## (Ⅰ) Obtaining Instances
 
 ```plain
 // Get the default client
@@ -23,7 +23,7 @@ FileClient fileClient = FileClientFactory.getClient();
 FileClient fileClient = FileClientFactory.getClient("cdnKey");
 ```
 
-## (二) Configuration Example: Taking Alibaba Cloud OSS as an Example
+## (Ⅱ) Configuration Example: Taking Alibaba Cloud OSS as an Example
 
 ```yaml
 cdn:
@@ -41,11 +41,11 @@ cdn:
     active: true
 ```
 
-For more configuration references: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十四-文件存储配置-pamirs-file)
+For more configuration references: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#xiv-file-storage-configuration-pamirsfile)
 
 # II. Method Descriptions
 
-## (一) Uploading Files
+## (Ⅰ) Uploading Files
 
 ### 1、`upload(String fileName, byte[] data)`
 
@@ -95,7 +95,7 @@ String url = fileClient.uploadByFileName("path/image.png", imageData);
 String url = fileClient.uploadByFileName("path/image.png", inputStream);
 ```
 
-## (二) Obtaining Download URLs
+## (Ⅱ) Obtaining Download URLs
 
 ### 1、`getDownloadUrl(String fileName)`
 
@@ -108,7 +108,7 @@ String url = fileClient.uploadByFileName("path/image.png", inputStream);
 String url = fileClient.getDownloadUrl("path/image.png");
 ```
 
-## (三) Delete Operations
+## (Ⅲ) Delete Operations
 
 ### 1、`deleteByFolder(String folder)`
 
@@ -130,7 +130,7 @@ fileClient.deleteByFolder("temp/");
 fileClient.deleteByFilename("path/file.txt");
 ```
 
-## (四) File Check
+## (Ⅳ) File Check
 
 ### 1、`isExistByFilename(String filename)`
 
@@ -142,7 +142,7 @@ fileClient.deleteByFilename("path/file.txt");
 boolean exists = fileClient.isExistByFilename("path/file.txt");
 ```
 
-## (五) Obtaining Static Resource URLs
+## (Ⅴ) Obtaining Static Resource URLs
 
 ### 1、`getStaticUrl()`
 

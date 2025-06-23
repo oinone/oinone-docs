@@ -20,7 +20,7 @@ next:
 ---
 In the "[Master the Front-end Framework - Front-end Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md)" chapter we studied earlier, we have already provided a brief overview of all metadata in Oinone. In this chapter, we will provide a more comprehensive introduction to the "view" class of components.
 
-# 一、View Components
+# Ⅰ、View Components
 In Oinone, different view types handle different data structures and presentation forms, and the data processing and rendering methods they adopt are also different. The Widget framework mainly classifies data structures into two categories: `List` and `Object`.
 
 The following lists some components based on data structures and view types:
@@ -78,9 +78,9 @@ In this chapter, all view components mentioned are `View` view components.
 
 :::
 
-# 二、Data Interaction Design
+# Ⅱ、Data Interaction Design
 
-## （一）Data Structure Design
+## （Ⅰ）Data Structure Design
 Data structures are divided into three categories: `List`, `Object`, and `Popup`.
 
 - List: Used for displaying multiple data items, mainly including `search (client-side)`, `custom conditions (product-side)`, `sorting`, `pagination`, `data selection`, `data submission`, and `data validation` functions.
@@ -93,7 +93,7 @@ Strictly speaking, popups should not be called data structures, but in Oinone's 
 
 :::
 
-## （二）Data Source Design
+## （Ⅱ）Data Source Design
 In a single view, there are only two data structures: `List` and `Object`.
 
 To handle them uniformly, we can regard `Object` as a `List` with one and only one item.
@@ -111,7 +111,7 @@ In view types with different data structures, these data sources have different 
 - List: `dataSource` is the current data source of the list, and `activeRecords` are the selected data in the list. Specifically, `showDataSource` is the current displayed data source, which is the data source processed by search, sorting, pagination, etc., and is also the data source we actually use in the component.
 - Object: `dataSource` and `activeRecords` are always completely consistent, and their length is always `1`. Therefore, we sometimes define a `formData` property in the component and provide a default implementation: `this.activeRecords?.[0] || {}`.
 
-## （三）Component Lifecycle and Component Behavior
+## （Ⅲ）Component Lifecycle and Component Behavior
 During `automated rendering`, we usually cannot clearly know the specific interaction between the `current component and child components` or the `current component and adjacent components`. Even when defining the `current component`, we do not need to care (and in some cases may not be able to care) about the specific situation of the `child components`. This also determines that we cannot completely encapsulate all the functional logic required for the page in a single component as we do when using the native `Vue` framework.
 
 When we use the native `Vue` framework to build pages, we usually initiate a backend request in the `beforeMount` or `mounted` lifecycle of the `outermost component` to obtain data. However, if the component is handed over to the `automated rendering` mechanism, changes in the `XML structure` will lead to changes in the `component topology structure`. To cope with this series of changes, we have proposed some concepts:
@@ -181,7 +181,7 @@ The following is the existing behavior interaction timing diagram in the table v
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/c57184b3bfd76b9b8eb8169fed4f4353.svg)
 
-## （四）Data Submission
+## （Ⅳ）Data Submission
 For form views, the data submission of a form is crucial to the business system.
 
 Before discussing data submission, we have clear definitions of the field values at different stages:
@@ -205,14 +205,14 @@ Not only does the data submission of forms follow this process, but almost all d
 
 :::
 
-## （五）Conclusion
+## （Ⅴ）Conclusion
 The entire page is split into independent components, which are finally assembled on the page to form a complete page. It is unavoidable that we need to focus on the complete design of data interaction to ensure that it can cope with more changes, which undoubtedly increases the understanding burden of developers. In the process of implementing the entire Widget framework, we try to use simple methods to allow developers to focus on the development of individual independent components without particularly caring about the mechanisms of these data interactions. Especially as introduced in the "[Customize a Field](/en/DevManual/OperationGuide/customize-a-field-widget.md)" chapter, a single field component is nothing more than two parts: rendering and data submission, and most of the repetitive development work is handled built-in.
 
 Although it无形中 increases the development difficulty, it also brings some conveniences: the reusability of individual components is improved, and developers can provide independent components one by one for business personnel to use like any third-party component library. This is undoubtedly a significant improvement in a management information system with a unified interaction style.
 
 <div style="display: none">
 
-# 三、Working Principle of View Components
+# Ⅲ、Working Principle of View Components
 As seen in the example in the component lifecycle and component behavior section, it is meaningless to introduce the working principle of View view components alone. Each type of view needs to rely on an Element view component for specific display. For the working principle of each type of view, please refer to the following contents:
 
 + [Table](/en/DevManual/Reference/Front-EndFramework/Widget/View/table.md)
@@ -224,9 +224,9 @@ As seen in the example in the component lifecycle and component behavior section
 
 </div>
 
-# 三、Reference List
+# Ⅲ、Reference List
 
-## （一）Abstract Base Classes
+## （Ⅰ）Abstract Base Classes
 
 ### 1、BaseObjectView
 
@@ -259,7 +259,7 @@ As seen in the example in the component lifecycle and component behavior section
   - `searchBody`: Search form data object.
   - `searchConditions`: Advanced search condition expression array (optional).
 
-## （二）View Components
+## （Ⅱ）View Components
 
 ### 1、TableView
 

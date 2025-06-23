@@ -11,7 +11,7 @@ order: 4
 ---
 # I. Data Source Specification DsHint
 
-## (一) Overview
+## (Ⅰ) Overview
 
 In the Oinone development environment, `DsHintApi` is used to enforce the specification of the data source to be used during data queries. In actual business scenarios, complex SQLs may occur in the following situations:
 
@@ -21,7 +21,7 @@ In the Oinone development environment, `DsHintApi` is used to enforce the specif
 
 In such cases, the business functions can be implemented by using the native mybatis/mybatis-plus and custom Mappers. At this time, `DsHintApi` can be used in combination.
 
-## (二) API Definition
+## (Ⅱ) API Definition
 
 ```java
 public static DsHintApi model(String model) {
@@ -36,7 +36,7 @@ public DsHintApi(Object dsKey) {
 + `model(String model)`: Specify the data source by passing in the model code. The model code serves as the basis for data source selection, making it convenient for developers to associate with the corresponding data source according to the business model.
 + `DsHintApi(Object dsKey)`: Directly pass in the data source name to specify the data source. This method is more intuitive and suitable for scenarios where the data source name is clearly known.
 
-## (三) Usage Examples
+## (Ⅲ) Usage Examples
 
 ### 1. Precautions
 
@@ -73,11 +73,11 @@ In this example, `DsHintApi.use("data source name")` directly specifies the data
 
 # II. Batch Size Specification BatchSizeHint
 
-## (一) Usage Scenarios
+## (Ⅰ) Usage Scenarios
 
 In the Oinone development environment, `BatchSizeHintApi` is used to enforce the specification of the batch size for queries. When processing a large number of data queries, reasonably setting the batch size can optimize performance, reduce memory consumption, and alleviate network transmission pressure. For example, in paged query or batch data processing scenarios, the amount of data returned by each query can be precisely controlled according to the data volume and system resource conditions.
 
-## (二) API Definition
+## (Ⅱ) API Definition
 
 ```java
 public static BatchSizeHintApi use(Integer batchSize) {
@@ -87,7 +87,7 @@ public static BatchSizeHintApi use(Integer batchSize) {
 
 `use(Integer batchSize)`: Specify the batch size for queries by passing in an integer value. This integer represents the amount of data returned by each query. The special value `-1` indicates no pagination, returning all data that meets the conditions at once.
 
-## (三) Usage Examples
+## (Ⅲ) Usage Examples
 
 ### 1. Precautions
 

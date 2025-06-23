@@ -6,12 +6,12 @@ category:
 order: 21
 ---
 
-# 一、Scenario Description
+# Ⅰ、Scenario Description
 + DsHintApi, which forces the specification of the data source,
 + BatchSizeHintApi, which forces the specification of the query batch quantity
 
-# 二、API Definition
-## (一) DsHintApi
+# Ⅱ、API Definition
+## (Ⅰ) DsHintApi
 ```java
 public static DsHintApi model(String model/**Model Code*/) {
     // Specific implementation
@@ -22,14 +22,14 @@ public DsHintApi(Object dsKey/**Data Source Name*/) {
 }
 ```
 
-## (二) BatchSizeHintApi
+## (Ⅱ) BatchSizeHintApi
 ```java
 public static BatchSizeHintApi use(Integer batchSize) {
     // Specific implementation
 }
 ```
 
-# 三、Usage Examples
+# Ⅲ、Usage Examples
 :::danger
 Warning:
 

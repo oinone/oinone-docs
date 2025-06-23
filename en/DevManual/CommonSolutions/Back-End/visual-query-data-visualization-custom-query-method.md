@@ -109,7 +109,7 @@ public Pagination<DemoItemStatistics> queryPage(Pagination<DemoItemStatistics> p
 
 # VI. Defining Custom Query Methods for Transfer Models
 
-## (一) Define Transfer Model
+## (Ⅰ) Define Transfer Model
 ```java
 package pro.shushi.pamirs.demo.api.tmodel;
 
@@ -140,7 +140,7 @@ public class DemoItemTransient extends TransientModel {
 }
 ```
 
-## (二) Define Query Data Method for Transfer Model
+## (Ⅱ) Define Query Data Method for Transfer Model
 ```java
 package pro.shushi.pamirs.demo.core.action;
 

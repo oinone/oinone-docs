@@ -6,19 +6,19 @@ category:
 order: 29
 ---
 
-# 一、Scenario Description
+# Ⅰ、Scenario Description
 Preparations: Two models, Material and MaterialCategory.
 
 :::info Target: By the end of this section, import and export data of two models in one Excel template.
 
 :::
 
-# 二、Code Example
+# Ⅱ、Code Example
 **The example is for reference only**
 
 [Click to download the code example](https://doc.oinone.top/wp-content/uploads/2024/04/2024042409482459.zip)
 
-# 三、Material Model
+# Ⅲ、Material Model
 ```java
 @Model.model(Material.MODEL_MODEL)
 @Model.Advanced(unique = {"code"})
@@ -39,7 +39,7 @@ public class Material extends IdModel {
 }
 ```
 
-# 四、MaterialCategory Model
+# Ⅳ、MaterialCategory Model
 ```java
 @Model.model(MaterialCategory.MODEL_MODEL)
 @Model.Advanced(unique = {"code"})
@@ -60,7 +60,7 @@ public class MaterialCategory extends IdModel {
 }
 ```
 
-# 五、Template Definition
+# Ⅴ、Template Definition
 MaterialTemplate definition
 
 ```java
@@ -110,8 +110,8 @@ public class MaterialTemplate implements ExcelTemplateInit {
 
 The above template defines a Workbook, creating two Sheets using `createrSheet()`, named `Material` and `Material Category`.
 
-# 六、Import Extension Points
-## （一）MaterialImportExtPoint
+# Ⅵ、Import Extension Points
+## （Ⅰ）MaterialImportExtPoint
 ```java
 @Component
 @Ext(ExcelImportTask.class)
@@ -131,7 +131,7 @@ public class MaterialImportExtPoint implements ExcelImportDataExtPoint<List<Mate
 
 The above example uses the platform's built-in batch creation or update method. Businesses can define import logic according to business requirements when using it.
 
-## （二）MaterialCategoryImportExtPoint
+## （Ⅱ）MaterialCategoryImportExtPoint
 ```java
 @Component
 @Ext(ExcelImportTask.class)
@@ -155,7 +155,7 @@ When defining import extension points, we determine the Workbook corresponding t
 
 In summary, the above realizes the function of multi-Sheet import through template definition and import extension points.
 
-# 七、Export Template
+# Ⅶ、Export Template
 In the above template definition example, we can use it for export without any modification.
 
 In special cases, we can set the usage scope of the template through the `setType` method.
@@ -164,8 +164,8 @@ In special cases, we can set the usage scope of the template through the `setTyp
 + `ExcelTemplateTypeEnum#EXPORT`: For export only
 + `ExcelTemplateTypeEnum#IMPORT_EXPORT`: For both import and export
 
-# 八、Export Extension Points
-## （一）MaterialExportExtPoint
+# Ⅷ、Export Extension Points
+## （Ⅰ）MaterialExportExtPoint
 ```java
 @Component
 @Ext(ExcelExportTask.class)

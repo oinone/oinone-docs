@@ -6,7 +6,7 @@ category:
 order: 31
 ---
 
-# 一、Scenario Examples
+# Ⅰ、Scenario Examples
 In many projects, there are fields in the database representing "multiple selection status identifiers." Take an example from our project to illustrate:
 
 + Example 1:
@@ -35,10 +35,10 @@ select * from factory where MEMBERCARD & b'0010';
 select * from factory where MEMBERCARD & 2;
 ```
 
-# 二、Binary (Bitwise Operation) Enumeration
+# Ⅱ、Binary (Bitwise Operation) Enumeration
 You can set the bit attribute of the data dictionary through the @Dict annotation or implement the BitEnum interface to mark that the enumeration value is a power of 2. The biggest difference of binary enumerations lies in the different serialization and deserialization methods of values.
 
-## （一）Example of Bitwise Operation Enumeration Definition
+## （Ⅰ）Example of Bitwise Operation Enumeration Definition
 ```java
 import pro.shushi.pamirs.meta.annotation.Dict;
 import pro.shushi.pamirs.meta.common.enmu.BitEnum;
@@ -79,7 +79,7 @@ public enum ClientTypeEnum implements BitEnum {
 }
 ```
 
-## （二）Example of Usage Methods
+## （Ⅱ）Example of Usage Methods
 + API: addTo and removeFrom
 
 ```java

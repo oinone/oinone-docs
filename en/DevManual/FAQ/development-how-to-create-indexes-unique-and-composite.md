@@ -18,8 +18,8 @@ Add index annotations to the model. Whether it is a composite index or a unique 
 
 
 # III. Composite Index
-## (一) Composite Unique Constraint
+## (Ⅰ) Composite Unique Constraint
 `@Model.Advanced(unique = {"namespace,fun"})`
 
-## (二) Two Independent Unique Constraints
+## (Ⅱ) Two Independent Unique Constraints
 `@Model.Advanced(unique = {"namespace", "fun"})`

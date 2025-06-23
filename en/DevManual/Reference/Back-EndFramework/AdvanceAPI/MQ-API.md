@@ -20,7 +20,7 @@ The Oinone Message Queue module provides unified API interfaces supporting three
 
 # II. Dependencies and YAML Configuration
 
-## (一) Maven Dependencies
+## (Ⅰ) Maven Dependencies
 
 Add corresponding dependencies as needed based on the message queue used in the actual business.
 
@@ -46,7 +46,7 @@ Add corresponding dependencies as needed based on the message queue used in the 
 
 ## (二) YAML Configuration
 
-Documentation related to this topic can be found in [Event Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#九-事件配置-pamirs-event).
+Documentation related to this topic can be found in [Event Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅸ-event-configuration-pamirsevent).
 
 ### 1. Basic Configuration
 
@@ -89,7 +89,7 @@ spring:
 
 # III. Core Interfaces
 
-## (一) NotifyProducer Interface
+## (Ⅰ) NotifyProducer Interface
 
 ```java
 public interface NotifyProducer<TEMPLATE> {
@@ -136,7 +136,7 @@ public interface NotifyConsumer<T extends Serializable> {
 
 # IV. Usage Examples
 
-## (一) Producer Examples
+## (Ⅰ) Producer Examples
 
 ### 1. Producer Acquisition Methods
 
@@ -382,7 +382,7 @@ public NotifyConsumer<OrderMessage> orderCreateConsumer() {
 
 # V. Advanced Features
 
-## (一) Message Interceptors
+## (Ⅰ) Message Interceptors
 
 ```java
 // Pre-sending processing

@@ -26,7 +26,7 @@ Download address: [https://github.com/Kong/insomnia/releases](https://github.com
 # IV. Log in to GQL
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/71715839574_.pic_.jpg)
 
-## (一) Example Call Code
+## (Ⅰ) Example Call Code
 ```graphql
 mutation {
     pamirsUserTransientMutation {
@@ -45,7 +45,7 @@ mutation {
 Execute GraphQL to directly return export data, suitable for downloading files through a browser.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/91715840179_.pic_.jpg)
 
-## (一) Full Export
+## (Ⅰ) Full Export
 Request example:
 ```graphql
 mutation {
@@ -57,7 +57,7 @@ mutation {
 }
 ```
 
-## (二) Specified Chart Export
+## (Ⅱ) Specified Chart Export
 Request example:
 ```graphql
 mutation {
@@ -71,7 +71,7 @@ mutation {
 The corresponding `chartCode` is the coding code of the chart, which can be obtained by querying the database.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/211716342220_.pic_-20250530144824320.jpg)
 
-## (三) Specified Report Export
+## (Ⅲ) Specified Report Export
 Request example:
 ```graphql
 mutation {
@@ -85,7 +85,7 @@ mutation {
 The corresponding `reportCode` is the coding `code` of the report, which can be obtained by querying the database.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/221716342429_.pic_-20250530144824441.jpg)
 
-## (四) Specified Business Dashboard Export
+## (Ⅳ) Specified Business Dashboard Export
 Request example:
 ```graphql
 mutation {

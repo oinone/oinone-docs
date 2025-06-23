@@ -9,11 +9,11 @@ category:
 order: 5
 
 ---
-# 一、Class Overview
+# Ⅰ、Class Overview
 
 **MessageHub** is the core class for message processing, used to manage message transmission and status control in applications. It supports different levels of messages (debug, info, success, warning, error) and determines the front-end display form and business process control (such as whether to interrupt operations) based on the message level and configuration. Obtain the instance through `PamirsSession.getMessageHub()`.
 
-# 二、Member Variables
+# Ⅱ、Member Variables
 
 | **Variable Name**       | **Type**              | **Description**                                                     |
 | :--------------- | :-------------------- | :----------------------------------------------------------- |
@@ -24,16 +24,16 @@ order: 5
 | `path`           | `ClientExecutionPath` | The execution path associated with the message, used to locate the front-end display position (such as field-level errors).   |
 
 
-# 三、Constructor
+# Ⅲ、Constructor
 
-## (一) `MessageHub()`
+## (Ⅰ) `MessageHub()`
 
 + **Description**: Default constructor, initializes `success` to `true`.
 + **Return Value**: `MessageHub` instance.
 
-# 四、Core Methods
+# Ⅳ、Core Methods
 
-## (一) Message Addition Methods
+## (Ⅰ) Message Addition Methods
 
 ### 1. `msg(Message message)`
 
@@ -73,7 +73,7 @@ PamirsSession.getMessageHub()
 messageHub.warn("连接即将超时");
 ```
 
-## (二) Extended Data and Directives
+## (Ⅱ) Extended Data and Directives
 
 ### 1. `extensions(Map<Object, Object> extensions)`
 
@@ -93,7 +93,7 @@ messageHub.warn("连接即将超时");
 + **Parameter**: `directives` - Directive set or single directive.
 + **Return Value**: `MessageHub` instance.
 
-## (三) Error Handling
+## (Ⅲ) Error Handling
 
 ### 1. `error(ExpBaseEnum error)`
 
@@ -107,7 +107,7 @@ messageHub.warn("连接即将超时");
 + **Parameter**: `success` - Whether successful, `errorExtension` - Error extension information.
 + **Return Value**: `MessageHub` instance.
 
-## (四) Execution Path
+## (Ⅳ) Execution Path
 
 ### 1. `appendPath(String segment)` / `appendPath(Integer segment)`
 
@@ -122,7 +122,7 @@ messageHub.warn("连接即将超时");
 messageHub.appendPath("name");
 ```
 
-## (五) Status Control
+## (Ⅴ) Status Control
 
 ### 1. `error()`
 
@@ -134,7 +134,7 @@ messageHub.appendPath("name");
 + **Description**: Clears all messages and statuses, resetting `success=true`.
 + **Return Value**: `MessageHub` instance.
 
-## (六) Data Acquisition
+## (Ⅵ) Data Acquisition
 
 ### 1. `getAllMessages()`
 
@@ -146,7 +146,7 @@ messageHub.appendPath("name");
 + **Description**: Gets the non-error message and error message lists, respectively.
 + **Return Value**: `List<Message>` (may be `null`).
 
-# 五、Message Levels (`InformationLevelEnum`)
+# Ⅴ、Message Levels (`InformationLevelEnum`)
 
 | **Level**  | **Description** | **Front-end Display Characteristics**                                   |
 | :-------- | :------- | :------------------------------------------------- |
@@ -163,9 +163,9 @@ messageHub.appendPath("name");
 + Messages with `field`: Displayed below the corresponding field (such as form validation errors).
 + Error message interruption logic: If `success=false`, only display the message without navigation; otherwise, display and navigate.
 
-# 六、Example Code
+# Ⅵ、Example Code
 
-## (一) Form Validation Scenario
+## (Ⅰ) Form Validation Scenario
 
 ```java
 @Function
@@ -194,20 +194,20 @@ public Boolean checkData(TestConstraintsModel data) {
 
 + **Explanation**: Validates the `name` field, adds field-level error messages, automatically marks `success=false`, and the front end displays errors below the `name` field.
 
-## (二) Quickly Add a Success Message
+## (Ⅱ) Quickly Add a Success Message
 
 ```java
 messageHub.success("操作成功！")
           .directives("redirectToHome"); // Add front-end navigation directive
 ```
 
-# 七、Notes
+# Ⅶ、Notes
 
 1. **Message Level Priority**: `ERROR`-level messages will force `success=false`, and other levels do not affect `success` (unless `error()` is called explicitly).
 2. **Field Positioning**: Set the field path through `setField()` or `appendPath()` to ensure the front end correctly locates the display position.
 3. **Performance**: The `closure(Supplier<T>)` method is used to automatically clear the message center before and after code blocks to avoid cross-request message pollution.
 
-# 八、Class Diagram (Simplified)
+# Ⅷ、Class Diagram (Simplified)
 
 ```plain
 MessageHub

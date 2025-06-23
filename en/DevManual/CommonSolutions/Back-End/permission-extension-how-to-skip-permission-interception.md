@@ -7,7 +7,7 @@ order: 44
 ---
 # I. Invoking Interfaces Directly Without Login
 
-## (一) Example:
+## (Ⅰ) Example:
 + Skip permission validation for `queryTea`
 
 ```java
@@ -31,7 +31,7 @@ pamirs:
 
 # II. Invoking Interfaces Directly with Login (Without Skipping Login)
 
-## (一) Example:
+## (Ⅰ) Example:
 + Configure the function's `namespace` (model code) and function name in the YAML file:
 
 ```yaml
@@ -46,7 +46,7 @@ pamirs:
 
 + How to batch skip permission validation? The above two methods provide ways to configure permission filters in the YML file, but if a large number of permissions need to be filtered, configuration becomes tedious. Therefore, the following mainly introduces controlling permissions through code extension.
 
-## (一) Example:
+## (Ⅰ) Example:
 + The following example skips permissions by controlling the package path.
 + Inherit the `pro.shushi.pamirs.auth.api.spi.AuthFilterService` interface:
 

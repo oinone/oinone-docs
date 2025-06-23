@@ -42,7 +42,7 @@ In the "[Customize a View](/en/DevManual/OperationGuide/customize-a-view-widget.
 
 # II. Registration of Element Components
 
-## (一) Registration Options for Element Components
+## (Ⅰ) Registration Options for Element Components
 
 ```typescript
 /**
@@ -74,7 +74,7 @@ export interface BaseElementOptions extends SPIOptions {
 
 From the above type declaration, it is not difficult to find that the classification dimensions cover multiple aspects: view type, component name, whether it is an inline component, model code, and view name. These dimensions are used to describe the usage location of the component. Generally, the more "precise" the location description, the higher the priority of the component when rendering in the corresponding location. In the case of completely identical location descriptions, the later registered component will overwrite the earlier registered one.
 
-## (二) Registering Components
+## (Ⅱ) Registering Components
 
 When registering element components, we usually distinguish them through the `viewType` and `widget` attributes. Take `FormWidget` as an example:
 
@@ -96,7 +96,7 @@ When using the widget attribute, you can specify multiple component names as "al
 
 # I. Reference List
 
-## (一) Abstract Base Classes
+## (Ⅰ) Abstract Base Classes
 
 ### 1. BaseElementViewWidget
 
@@ -586,7 +586,7 @@ When using the widget attribute, you can specify multiple component names as "al
 + **Function Description**: Verify whether the initial context contains fields not used in search conditions.
 + **Type**: `() => void`
 
-## (二) View Component Base Classes
+## (Ⅱ) View Component Base Classes
 
 ### 1. BaseTableWidget
 

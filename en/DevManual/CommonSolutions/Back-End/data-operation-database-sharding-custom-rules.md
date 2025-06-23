@@ -6,19 +6,19 @@ category:
 order: 26
 ---
 
-# 一、Scenario Description
+# Ⅰ、Scenario Description
 + Oinone's database and table sharding solution is based on integration with Sharding-JDBC. Relevant personnel should first master certain Sharding-JDBC knowledge beforehand. [Sharding-JDBC](https://shardingsphere.apache.org/document/current/cn/overview/)
 + Before implementing database and table sharding, it is crucial to clarify the rational selection of the sharding field (also known as the balancing field). This link is of vital importance and is closely related to specific business scenarios. After determining the database and table sharding field, concessions may even need to be made at the functional level. For example, in query management, the sharding field is indispensable as a query condition; otherwise, query efficiency will significantly decrease.
 + Sharding fields are strictly prohibited from being updated. Therefore, at the code level, the update strategy setting class should be set to never update, and it should be set as readonly in the page modification settings.
 
-# 二、Configuring Sharding Strategies
+# Ⅱ、Configuring Sharding Strategies
 + Configure the ShardingModel to use the sharded data source pamirsSharding.
 + Complete the configuration of data sources and sharding rules for pamirsSharding:
     - pamirs.sharding.define is used for creating Oinone database tables.
     - pamirs.sharding.rule is used to configure sharding rules.
 + Properly configure data sources and sharding rules for pamirsSharding.
 
-## （一）Specify Data Source for Model
+## （Ⅰ）Specify Data Source for Model
 ```yaml
 pamirs:
   framework:
@@ -34,7 +34,7 @@ pamirs:
         "[demo.ShardingModel]": pamirsSharding  # Configure the library corresponding to the model
 ```
 
-## （二）Sharding Rule Configuration
+## （Ⅱ）Sharding Rule Configuration
 ```yaml
 pamirs:
   sharding:
@@ -72,11 +72,11 @@ pamirs:
 
 Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-# 三、Custom Rules
+# Ⅲ、Custom Rules
 + Default rules refer to the commonly used database and table sharding strategies, such as sharding by data volume or hash algorithm. In general cases, default rules are sufficient to meet business needs.
 + However, in some complex business scenarios, default rules may fail to meet actual requirements, and custom settings are required based on specific circumstances. For example, some businesses may have specific data distribution patterns or unique query characteristics, which require customized sharding rules to optimize data access performance or meet specific business needs. In such cases, using custom rules can more effectively adapt to business requirements.
 
-## （一）Custom Sharding Rule Examples
+## （Ⅰ）Custom Sharding Rule Examples
 ### 1、Table Sharding by Month (DATE_MONTH)
 ```java
 package pro.shushi.pamirs.demo.core.sharding;
@@ -228,8 +228,8 @@ public class AppUserCodeShardingAlgorithm implements StandardShardingAlgorithm<S
 }
 ```
 
-# 四、Using Custom Sharding Strategies
-## （一）Specify Data Source for Model
+# Ⅳ、Using Custom Sharding Strategies
+## （Ⅰ）Specify Data Source for Model
 ```yaml
 pamirs:
   framework:
@@ -246,7 +246,7 @@ pamirs:
         "[demo.record.MsgRecode]": pamirsSharding
 ```
 
-## （二）Sharding Rule Configuration
+## （Ⅱ）Sharding Rule Configuration
 ```yaml
 pamirs:
   sharding:
@@ -279,7 +279,7 @@ pamirs:
 
 Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-## （三）Configure Custom Rule SPI
+## （Ⅲ）Configure Custom Rule SPI
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2024051104035339-1024x314-20250530144830015.png)
 
 Configure `org.apache.shardingsphere.sharding.spi.ShardingAlgorithm` under the `resources/META-INF/services` path.

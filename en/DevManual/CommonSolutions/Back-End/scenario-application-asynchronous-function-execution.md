@@ -17,7 +17,7 @@ This article describes how Oinone implements asynchronous tasks by integrating S
 
 # II. Building the First Asynchronous Task
 
-## (一) Creating PetShopService and PetShopServiceImpl
+## (Ⅰ) Creating PetShopService and PetShopServiceImpl
 - Create PetShopService to define the updatePetShops method:
 
 ```java
@@ -70,7 +70,7 @@ d. `nextRetryTimeUnit`: Defines the time unit for retry intervals (default: `Tim
 e. `delayTime`: Defines the delay time before task execution (default: 0).  
 f. `delayTimeUnit`: Defines the time unit for delay (default: `TimeUnitEnum.SECOND`).
 
-## (二) Modifying PetShopBatchUpdateAction to Invoke the Asynchronous Task
+## (Ⅱ) Modifying PetShopBatchUpdateAction to Invoke the Asynchronous Task
 1. Import PetShopService.  
 2. Modify the conform method to call `petShopService.updatePetShops`:
 

@@ -44,7 +44,7 @@ This exercise does not focus on preparing models and views. If you need familiar
 
 :::
 
-## (一) Prepare the Model (GanttDemoModel)
+## (Ⅰ) Prepare the Model (GanttDemoModel)
 
 You can create a model using the `Model Designer` or through the `backend`.
 
@@ -66,7 +66,7 @@ In this exercise, task start and end dates use the Date type. You can use other 
 
 :::
 
-## (二) Prepare Views
+## (Ⅱ) Prepare Views
 
 In addition to the model, we need views connected via navigation actions. You can complete these operations using the `UI Designer` or `backend`.
 
@@ -78,7 +78,7 @@ Finally, bind the two tables to corresponding menus to view the views and enter 
 
 # II. Switch to Custom Components
 
-## (一) Switch via registerLayout
+## (Ⅰ) Switch via registerLayout
 
 As practiced in the "Explore the Front-End Framework" chapter, we can switch components by registering a layout (Layout). Change `widget="table"` to `widget="Gantt"` to complete the switch:
 
@@ -104,7 +104,7 @@ As practiced in the "Explore the Front-End Framework" chapter, we can switch com
 </view>
 ```
 
-## (二) Switch via Backend DSL
+## (Ⅱ) Switch via Backend DSL
 
 Add the `widget` attribute to `<template slot="table">` and specify the component as `Gantt`:
 
@@ -125,7 +125,7 @@ Add the `widget` attribute to `<template slot="table">` and specify the componen
 
 Before starting the exercise, it's essential to clarify key concepts and designs to form a basic understanding for the practical process.
 
-## (一) Gantt Chart
+## (Ⅰ) Gantt Chart
 
 :::info Baidu Encyclopedia
 
@@ -141,7 +141,7 @@ This article aims to help readers understand the thinking behind view design. Th
 
 :::
 
-## (二) View Types and Data Structures
+## (Ⅱ) View Types and Data Structures
 
 In Oinone, different view types handle various data structures and presentation forms using different data processing and rendering methods. The Widget framework classifies data structures into two main categories: `List` and `Object`.
 
@@ -162,7 +162,7 @@ For more on view types and data structures, refer to: [View Architectures](/en/D
 
 Regarding view types, we can determine that Gantt charts can be created by modifying `TABLE` views, resulting in a new view type—Gantt charts. This supports using table views to present Gantt charts in the preparation phase.
 
-## (三) Technology Selection
+## (Ⅲ) Technology Selection
 
 Before implementing a Gantt chart, we need to select a front-end component library or evaluate self-implementation feasibility.
 
@@ -189,7 +189,7 @@ Official Documentation: [https://zunnzunn.github.io/vue-ganttastic/getting-start
 
 For this exercise, we use version `"@infectoone/vue-ganttastic": "2.3.2"`.
 
-## (四) Data Query
+## (Ⅳ) Data Query
 
 Based on Gantt chart content, visible data always falls within a "range." In this exercise, task schedules use date precision ("day") to represent ranges.
 
@@ -217,7 +217,7 @@ taskStartDate >= '2025-05-01 00:00:00' and taskEndDate < '2025-06-01 00:00:00'
 
 :::
 
-## (五) Data Processing
+## (Ⅴ) Data Processing
 
 Without sorting or processing, raw data may appear as:
 
@@ -283,7 +283,7 @@ When creating dashboards, all components belong to element components (`element`
 
 In the Widget framework, element components are defined as general components, enabling any functionality and placement on the page.
 
-## (一) Registration Options for Element Components
+## (Ⅰ) Registration Options for Element Components
 
 ```typescript
 /**
@@ -317,7 +317,7 @@ From the type declaration, classification dimensions include view type, componen
 
 Notably, in most cases, using the component name suffices for element components, as they often support specific data structures, view types, or scenarios. Reusability is typically divided by page structure, explaining why we've only used the component name dimension in previous learning.
 
-## (二) Built-in Element Components
+## (Ⅱ) Built-in Element Components
 
 In Oinone, different view types handle various data structures and presentation forms using different data processing and rendering methods. The Widget framework classifies data structures into `List` and `Object`.
 
@@ -346,7 +346,7 @@ Let's implement it step by step:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/MasterFrontendFramework/chapter-2/gantt.png)
 
-## (一) Introduce Third-Party Component Library
+## (Ⅰ) Introduce Third-Party Component Library
 
 Unlike most `Vue` projects, Oinone does not actively create or mount a `Vue` `App` object. Instead, use `VueOioProvider` for initialization in `main.ts`. Obtaining the `Vue` `App` object is straightforward:
 
@@ -367,7 +367,7 @@ For more on VueOioProvider, refer to: [Context](/en/DevManual/Reference/Front-En
 
 :::
 
-## (二) Define Widget Component
+## (Ⅱ) Define Widget Component
 
 Similar to previously encountered components, tables are `element` components. However, table and Gantt chart components differ, meaning we cannot inherit from `TableWidget`. Instead, inherit from `BaseElementListViewWidget` to auto-fetch metadata and initiate query requests:
 
@@ -679,7 +679,7 @@ Component generalization is a philosophy of component abstraction. Good property
 
 This section includes more theoretical discussion to help readers build a mindset for component generalization and necessary trade-offs. Please read carefully and form your own insights—every component in Oinone undergoes this abstraction process, serving as an "important cornerstone" for future Oinone use.
 
-## (一) Eliminate Model Influence and Extract Configuration Items
+## (Ⅰ) Eliminate Model Influence and Extract Configuration Items
 
 To adapt Gantt charts to more models and views, eliminating model influence and extracting configurations is essential. In simple terms, data structures should not restrict component values—typically achieved by mapping required fields through configuration to enhance flexibility.
 
@@ -703,7 +703,7 @@ Merely extracting data is insufficient—we also need a field for date-time form
 
 Are we ready to proceed? Clearly not—further thinking is required.
 
-## (二) Further Considerations
+## (Ⅱ) Further Considerations
 
 After extracting configurations and reading them from `DSL`, some issues remain unresolved, for which we provide reference solutions:
 
@@ -721,7 +721,7 @@ This is similar to developing most third-party component libraries, where `API` 
 
 :::
 
-## (三) Implement Date-Time Format Configuration
+## (Ⅲ) Implement Date-Time Format Configuration
 
 Consider the following implementation:
 
@@ -779,7 +779,7 @@ For example, the real value type stored in a component for date-time may be `Dat
 
 :::
 
-## (四) Implement Title Expression Configuration
+## (Ⅳ) Implement Title Expression Configuration
 
 Consider the following implementation:
 
@@ -839,7 +839,7 @@ For more on expressions, refer to: [Expression Service](/en/DevManual/Reference/
 
 :::
 
-## (五) Calculate Display Range Based on Current Time
+## (Ⅴ) Calculate Display Range Based on Current Time
 
 Consider the following implementation:
 
@@ -868,7 +868,7 @@ For more `moment` tool `API`, refer to: [https://momentjs.com/docs](https://mome
 
 :::
 
-## (六) Implement Other Configurations
+## (Ⅵ) Implement Other Configurations
 
 ```typescript
 @Widget.Reactive()
@@ -877,7 +877,7 @@ protected get precision(): GanttPrecision | keyof GanttPrecision | string | unde
 }
 ```
 
-## (七) Apply These Configurations to Methods
+## (Ⅶ) Apply These Configurations to Methods
 
 至此, we've completed initial implementations for all configurable items we can think of. The final step is to use these configurations throughout the component and configure them in the `UI Designer` or backend `DSL`.
 

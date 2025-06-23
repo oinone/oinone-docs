@@ -9,7 +9,7 @@ prev:
   link: /en/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
 ---
 
-# 一、Frontend
+# Ⅰ、Frontend
 1. Add the dependency `@kunlun/data-designer-open-pc` in `package.json` with the same version as `@kunlun/dependencies`.
 2. Import the dependency in `src/main.ts`:
 
@@ -26,8 +26,8 @@ VueOioProvider({
 });
 ```
 
-# 二、Backend
-## （一）Add Dependencies to Parent pom
+# Ⅱ、Backend
+## （Ⅰ）Add Dependencies to Parent pom
 ```xml
 <!-- Platform Basics -->
 <oinone.version>5.3.5</oinone.version>
@@ -45,7 +45,7 @@ VueOioProvider({
 </dependencyManagement>
 ```
 
-## （二）Add Dependencies to pom of Boot Startup Project
+## （Ⅱ）Add Dependencies to pom of Boot Startup Project
 ```xml
 <dependency>
     <groupId>pro.shushi.pamirs.data.visualization</groupId>
@@ -53,7 +53,7 @@ VueOioProvider({
 </dependency>
 ```
 
-## （三）Add Dependencies to application.yml Configuration
+## （Ⅲ）Add Dependencies to application.yml Configuration
 ```yaml
 pamirs:
   boot:

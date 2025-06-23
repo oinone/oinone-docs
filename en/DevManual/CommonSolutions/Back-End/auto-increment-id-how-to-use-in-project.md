@@ -9,7 +9,7 @@ All models in Oinone inherit from IdModel (including direct or indirect inherita
 
 In some scenarios, the primary key needs to be set as auto-increment. This article explains how to change the ID generation rule to the auto-increment method. The auto-increment method can be applied to a single model or globally (for data sources).
 
-# 一、Setting Auto-increment Primary Key for Models
+# Ⅰ、Setting Auto-increment Primary Key for Models
 
 Specify the PrimaryKey rule for the field with `@Field.PrimaryKey(keyGenerator = KeyGeneratorEnum.AUTO_INCREMENT)`.
 
@@ -38,7 +38,7 @@ public class ProjectInfo extends IdModel {
 }
 ```
 
-# 二、Global Setting for Auto-increment Primary Key
+# Ⅱ、Global Setting for Auto-increment Primary Key
 
 Specify the database ID generation rule in `application.yml` (can be configured globally or for a single data source). In the yml file, find the keyword `key-generator`, which defaults to `DISTRIBUTION` (i.e., distributed ID), and change it to `AUTO_INCREMENT` (auto-increment ID); if certain storage models under the data source are configured separately, the model-level rules take precedence.
 
@@ -80,7 +80,7 @@ pamirs:
 
 Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
 
-# 三、Manual Way to Obtain IDs
+# Ⅲ、Manual Way to Obtain IDs
 
 ```java
 /**
@@ -95,7 +95,7 @@ public void manualSetIdCode(){
 }
 ```
 
-# 四、Best Practices
+# Ⅳ、Best Practices
 
 If there is a need to modify the ID generation rule or manually obtain IDs in the project, you should clarify the rationale behind such changes^_^; Typically:
 

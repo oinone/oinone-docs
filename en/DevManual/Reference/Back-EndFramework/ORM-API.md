@@ -14,7 +14,7 @@ A model consists of metadata, fields, data managers, and custom functions. Model
 
 Meta-models are divided into three domains: module domain, model domain, and function domain. The domain division rule is determined by the discreteness of data association relationships defined in the meta-model—the smaller the discreteness, the more aggregated into one domain.
 
-## (一) Model Types
+## (Ⅰ) Model Types
 
 ### 1. Abstract Model:
 
@@ -93,7 +93,7 @@ public class TestProxyModel extends IdModel {
 
 Mark a proxy model using the `@Model.Advanced(type = ModelTypeEnum.PROXY)` annotation.
 
-## (二) Model Definition Categories
+## (Ⅱ) Model Definition Categories
 
 Model definition refers to model description. Different definition types represent different rules for calculating metadata describing the model:
 - Static model definition: Model metadata is not persisted, and model definition calculations (default values, primary keys, inheritance, relationships) are not performed.
@@ -102,13 +102,13 @@ Model definition refers to model description. Different definition types represe
 
 A static model definition requires the `@Model.Static` annotation; a static computed model definition uses `@Model.Static(compute=true)`; a dynamic model definition omits the `@Model.Static` annotation.
 
-## (三) Installation and Update
+## (Ⅲ) Installation and Update
 
 Use `@Model.model` to configure the non-modifiable code of a model. Once installed, the model code cannot be modified; subsequent configuration updates will be found and updated based on this code. If the annotation configuration is modified, the system will recognize it as a new model, create a new database table for storage models, and rename the original table as a deprecated table.
 
 If a model is configured with the `@Base` annotation, it indicates that the model configuration is non-modifiable in the model designer; if a field is configured with `@Base`, the field configuration is non-modifiable in the model designer.
 
-## (四) Basic Configuration
+## (Ⅳ) Basic Configuration
 
 ### 1. Model Base Classes
 
@@ -236,7 +236,7 @@ public class TestModel extends IdModel {
 | display_name | Empty string                                                     | 1. Length must be ≤ 128 characters                                 |
 
 
-## (五) Model Metadata
+## (Ⅴ) Model Metadata
 
 The `priority` of a model is used to sort models when displaying the model definition list.
 
@@ -672,7 +672,7 @@ Field definition inheritance form:
 | Field definition | Field definition | C                    | C                      | C                   | C                       |
 
 
-## (六) Model Constraints
+## (Ⅵ) Model Constraints
 
 ### 1. SQL Constraints
 
@@ -708,7 +708,7 @@ private Integer age;
 ```
 
 - **Multi-rule configuration**: Declare multiple validation rules via the `ruleWithTips` array, each defined by `@Validation.Rule` with `value` (validation expression) and `error` (error message).
-- **Built-in function support**: Supports functions like `IS_BLANK` (check if text is empty) and `LEN` (get text length); see [Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#六、表达式) for the full list.
+- **Built-in function support**: Supports functions like `IS_BLANK` (check if text is empty) and `LEN` (get text length); see [Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#vi-expressions) for the full list.
 
 For complex checks, use `@Validation(check="X")` in model/field definitions, where `X` refers to a function of the given model.
 
@@ -757,7 +757,7 @@ The Validation validation capability can be flexibly activated via the requestSt
 
 :::
 
-## (七) Data Management
+## (Ⅶ) Data Management
 
 In Oinone, data managers and data constructors are core functional components automatically equipped for models, providing powerful inherent data management capabilities.
 
@@ -875,7 +875,7 @@ Model fields define the characteristic attributes of an entity, establishing an 
 
 Field definitions use the `@Field` annotation. If the field type is not explicitly specified, the system automatically identifies the field declaration type in the Java code as the business type. To ensure front-end display standards, set the field display name via the `displayName` attribute and configure default values using the `defaultValue` attribute.
 
-## (一) Field Types
+## (Ⅰ) Field Types
 
 The type system consists of four types: basic types, composite (component) types, reference types, and relation types. It describes how applications, databases, and front-end visual views interact and how data and data relationships are processed.
 
@@ -1355,11 +1355,11 @@ M represents precision (total digits), D represents scale (decimal places), frac
 | List<`DataMap`>             | @Field.Relation                                              | O2M           | multi=true           | text               |
 
 
-## (二) Installation and Update
+## (Ⅱ) Installation and Update
 
 Configure the immutable code of a field via `@Field.field`, which cannot be modified once set. Subsequent updates to field configurations are retrieved based on this code. Modifying the annotation value will treat it as a new field, creating a new database table field for storage models and renaming the original field as deprecated.
 
-## (三) Basic Configuration
+## (Ⅲ) Basic Configuration
 
 ### 1. Immutable Fields
 
@@ -1500,7 +1500,7 @@ Use the following attributes in the `@Field` annotation to configure front-end d
 ├── priority Database field priority
 ├── serialize Back-end serialization function SerializeEnum or custom serialization function
 ├── requestSerialize Front-end serialization function SerializeEnum or custom serialization function
-├── defaultValue Default value, supporting [built-in functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#六、表达式)
+├── defaultValue Default value, supporting [built-in functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#vi-expressions)
 ├── required Mandatory, default is false
 ├── invisible Invisible, default is false
 ├── immutable Unchangeable, default is false
@@ -1654,7 +1654,7 @@ Use the following attributes in the `@Field` annotation to configure front-end d
 | summary      | Default uses displayName attribute                                      | 1. Cannot use semicolons<br/>2. Length must be ≤ 500 characters             |
 
 
-## (四) Field Constraints
+## (Ⅳ) Field Constraints
 
 ### 1. Primary Key
 
@@ -2110,7 +2110,7 @@ public class PetItemDetail extends PetItemRemark {
 
 When using the ORM framework in Oinone, commonly used methods include basic CRUD operations, association queries, transaction processing, etc.
 
-## (一) Basic CRUD
+## (Ⅰ) Basic CRUD
 
 ### 1. create
 
@@ -2307,7 +2307,7 @@ int rows = user.deleteByWrapper(queryWrapper);
 System.out.println("Rows deleted: " + rows);
 ```
 
-## (二) Conditional Query and Pagination
+## (Ⅱ) Conditional Query and Pagination
 
 ### 1. queryByPk
 

@@ -6,11 +6,11 @@ category:
 order: 62
 ---
 
-# 一、Overview
+# Ⅰ、Overview
 
 In an enterprise internal environment, if a complete Single Sign-On (SSO) system has been built, it is often required to integrate all internal systems into this SSO system based on considerations of improving enterprise information management efficiency and user experience. This article focuses on explaining the specific implementation methods and steps for projects developed using Oinone to dock with the SSO system.
 
-# 二、Docking Steps
+# Ⅱ、Docking Steps
 
 1. The project customizes the implementation of `UserCookieLogin`, which can refer to the example: `pro.shushi.pamirs.user.api.login.UserCookieLoginFree`
 
@@ -196,6 +196,6 @@ public class DemoUserSSOCookieLogin extends UserCookieLogin<PamirsUser>  {
 }
 ```
 
-# 三、SSO Docking Example Code Package
+# Ⅲ、SSO Docking Example Code Package
 
 Example code package download: [SSO Docking Demo Example](https://doc.oinone.top/wp-content/uploads/2024/04/2024053012472822.zip)

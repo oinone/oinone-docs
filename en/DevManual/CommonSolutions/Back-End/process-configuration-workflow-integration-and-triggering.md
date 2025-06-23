@@ -8,7 +8,7 @@ order: 54
 
 # I. Dependencies and Settings Required for Using Workflow
 
-## (一) Modules Dependent on Workflow
+## (Ⅰ) Modules Dependent on Workflow
 
 ### 1. Add dependencies on workflow, sql-record, and trigger related modules in pom.xml
 - workflow: Core module for workflow operation
@@ -85,10 +85,10 @@ Note: For more YAML configurations, please refer to [Module API](/en/DevManual/R
 
 # II. Trigger Modes
 
-## (一) Automatic Trigger Mode
+## (Ⅰ) Automatic Trigger Mode
 Set the trigger mode in the process designer. If the code trigger mode is set, automatic triggering will not occur.
 
-## (二) Code Invocation Trigger Mode
+## (Ⅱ) Code Invocation Trigger Mode
 
 ### 1. In the trigger settings of the process designer, set whether to trigger manually to "Yes"
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2023110703530190-20250530144823478.png)

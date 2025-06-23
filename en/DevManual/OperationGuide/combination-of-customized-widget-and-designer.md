@@ -56,7 +56,7 @@ Recall the `RedInput` component we created in the "[Customize a Field Widget](/e
 
 Next, let's create the first RedInput component in the designer.
 
-## (一) Enter the Interface Designer Component Management Page
+## (Ⅰ) Enter the Interface Designer Component Management Page
 
 After entering from the `Interface Designer`, select the "Components" item, and you can see the component management page, just like this:
 
@@ -64,7 +64,7 @@ After entering from the `Interface Designer`, select the "Components" item, and 
 
 Next, let's create components and elements.
 
-## (二) Create Components
+## (Ⅱ) Create Components
 
 Select the "Add Component" button and fill in some necessary information, just like below:
 
@@ -80,7 +80,7 @@ Click "OK", and we can see that the component is successfully created～
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/component-with-designer/create-success.png)
 
-## (三) Create Elements
+## (Ⅲ) Create Elements
 
 Click anywhere on the "Component Card" or select the fourth item "Manage Elements" to enter the element management page:
 
@@ -137,7 +137,7 @@ Click "OK", and we can see that the element is successfully created～
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/component-with-designer/yjcreate-success.png)
 
-## (四) Using Custom Components on Pages
+## (Ⅳ) Using Custom Components on Pages
 
 Remember the `Gantt Chart Data Entry` page we used in the "[Create a Gantt View](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter2-create-a-gantt-view.md)" chapter? It contains complete CRUD functions. Let's use the `RedInput` component on the `Code Field` in the corresponding `Table View` and `Form View`.
 
@@ -169,7 +169,7 @@ Let's take a look at the final effect on the "Gantt Chart Data Entry" page～
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/OperationGuide/component-with-designer/red-input3.png)
 
-## (五) Low-code and No-code Integration
+## (Ⅴ) Low-code and No-code Integration
 
 As developers, we know that any component must be supported by corresponding code. In Oinone, the `Interface Designer` collectively refers to functions such as view design and component/element management as `no-code`, and collectively refers to `RedInput` components implemented through code in the project as `low-code`. The `low-code and no-code integration` function provided by the interface designer refers to the function of adding to the `delivered` business system through the method of `uploading` code to achieve `secondary development`.
 

@@ -10,7 +10,7 @@ order: 10
 In scenarios with high security requirements, Oinone provides the capability to extend frontend encryption for request content and backend decryption, requiring that the encryption and decryption schemes of the frontend and backend are unified.
 
 # II. Backend
-## (一) Inherit the platform's `RequestController` and add a new request class to handle encryption logic
+## (Ⅰ) Inherit the platform's `RequestController` and add a new request class to handle encryption logic
 ```java
 package pro.shushi.pamirs.demo.core.controller;
 
@@ -74,7 +74,7 @@ public class DemoRequestController extends RequestController {
 }
 ```
 
-## (二) The boot project's startup class excludes the platform's default `RequestController` class
+## (Ⅱ) The boot project's startup class excludes the platform's default `RequestController` class
 ```java
 @ComponentScan(
         excludeFilters = {
@@ -88,7 +88,7 @@ public class DemoApplication {
 }
 ```
 
-## (三) The following is an example of a startup class in an actual project
+## (Ⅲ) The following is an example of a startup class in an actual project
 ```java
 package pro.shushi.pamirs.demo.boot;
 
@@ -158,7 +158,7 @@ public class DemoApplication {
 ```
 
 # III. Frontend
-## (一) Add a utility class `EncryptRequestUtil.ts`
+## (Ⅰ) Add a utility class `EncryptRequestUtil.ts`
 ```typescript
 import { encrypt, NetworkMiddlewareHandler } from '@kunlun/dependencies';
 
@@ -171,7 +171,7 @@ export const encryptMiddleWare: NetworkMiddlewareHandler = (operation, forward) 
 };
 ```
 
-## (二) Register the encryption interceptor in `main.ts`
+## (Ⅱ) Register the encryption interceptor in `main.ts`
 Register within the `VueOioProvider` method of `main.ts`. The following code only demonstrates the key configuration for encryption; other configurations should follow the original code.
 
 ```typescript

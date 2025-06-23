@@ -14,8 +14,8 @@ In project development, there is often a need for page data linkage. Common scen
 
 These linkage mechanisms achieve dynamic response and consistency of data through front-end and back-end collaboration, enhancing interaction efficiency and accuracy.
 
-# 一、Implementation Methods
-## （一）Configuring domain Expressions
+# Ⅰ、Implementation Methods
+## （Ⅰ）Configuring domain Expressions
 In the following example, the data in the department `department` drop-down list during page interaction is the list of departments under the selected company.
 
 ```java
@@ -45,7 +45,7 @@ private String departmentCode;
 
 :::
 
-## （二）Configuring the compute Attribute
+## （Ⅱ）Configuring the compute Attribute
 Example 1: Total cost = stock quantity * unit price;
 
 The total cost `totalCost` is configured with the compute attribute, `value = MULTIPLY(activeRecord.stock, activeRecord.unitPrice)`
@@ -96,7 +96,7 @@ It can be visually configured in the UI designer, UI Designer Form -> Select Fie
 
 :::
 
-## （三）Calling Back-end Linkage Functions
+## （Ⅲ）Calling Back-end Linkage Functions
 In the following example, the birthday and gender are calculated based on the ID card number `idCard`; the linkage function `constructIdCardChange` is configured for the ID card number `idCard` field, and data linkage is achieved by calling the back-end function.
 
 ```java

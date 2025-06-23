@@ -5,14 +5,14 @@ category:
   - Frequently Asked Questions (faq)
 order: 10
 ---
-# 一、Problem Description
+# Ⅰ、Problem Description
 When starting the project for importing design data locally, a Dubbo call timeout occurs, causing the design data to fail to import completely.
 
 ```plain
 org.apache.dubbo.remoting.TimeoutException
 ```
 
-# 二、Root Causes
+# Ⅱ、Root Causes
 There is an issue with the package dependencies in the pom, leading to the incorrect remote service being used.
 
 The possible exception error stack information locally is as follows:
@@ -85,10 +85,10 @@ Caused by: org.apache.dubbo.remoting.TimeoutException: Waiting server-side respo
   ... 45 more
 ```
 
-# 三、Expected Behavior
+# Ⅲ、Expected Behavior
 When importing design data, the `pro.shushi.pamirs.metadata.manager.core.api.IUiDesignerInstaller` interface should be used to directly call the remote service, without involving remote call logic within the method.
 
-# 四、Solutions
+# Ⅳ、Solutions
 Check whether the dependencies related to the UI designer only use the api package.
 
 :::danger Warning:

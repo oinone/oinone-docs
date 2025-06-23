@@ -12,7 +12,7 @@ order: 3
 
 Oinone provides various environment configurations and method annotations to standardize model method behavior and data interaction logic. Below is a detailed explanation of core annotations:
 
-## (一) Function Source Types
+## (Ⅰ) Function Source Types
 
 ### 1、Regular Function
 
@@ -161,7 +161,7 @@ public class TestActionModelAction {
 }
 ```
 
-## (二) Function Invocation Methods
+## (Ⅱ) Function Invocation Methods
 
 In the system, functions can be invoked in various ways, mainly including:
 
@@ -184,7 +184,7 @@ Models.directive().run(() -> {
 
 Additionally, function invocations by the function manager (Fun) are compatible with both Spring bean and reflection invocations. If the function's class is not managed by Spring, reflection invocation is used; otherwise, Spring bean invocation is employed.
 
-## (三) Function Configuration
+## (Ⅲ) Function Configuration
 
 ### 1、Identification of Non-Model Function Classes
 
@@ -455,7 +455,7 @@ For server actions (ServerAction), their corresponding functions are automatical
 
 └── enableXa Distributed transaction default is false
 
-## (四) Function Metadata
+## (Ⅳ) Function Metadata
 
 ### 1、FunctionDefinition
 
@@ -739,7 +739,7 @@ Transaction configuration for function transaction management
 
 # II. Extpoint Extension Points
 
-## (一) Default Extension Points
+## (Ⅰ) Default Extension Points
 
 All functions in Oinone provide default pre-extension points, override extension points, and post-extension points. Their technical names follow the rule of adding "Before", "Override", and "After" suffixes to the **function code fun** of the extended function. For example:
 
@@ -809,7 +809,7 @@ public class TestModelExtpointImpl implements CreateBeforeExtPoint<TestModel> {
 Extension points implemented using the quick method do not support remote invocation
 :::
 
-## (二) Custom Extension Points
+## (Ⅱ) Custom Extension Points
 
 During daily development, as our understanding of business deepens, we often reserve extension points in certain logic to flexibly replace local logic to meet various future needs.
 
@@ -851,7 +851,7 @@ public List<TestModel> includeCallExtpoint(){
 
 Through the above steps, you can complete the creation and invocation of custom extension points to achieve dynamic extension and flexible replacement of business logic.
 
-## (三) Override Original Extension Points
+## (Ⅲ) Override Original Extension Points
 
 An extension point can have multiple extension point implementations, and Oinone will ultimately select only one to execute based on conditions and priority. The default priority is 99, and the smaller the number, the higher the priority. For example:
 
@@ -867,7 +867,7 @@ public class TestModelDoSomethingExtpointImpl2 implements TestModelDoSomethingEx
 }
 ```
 
-## (四) Notes
+## (Ⅳ) Notes
 
 ::: warning
 
@@ -897,11 +897,11 @@ Do not name function parameters `context`, as this naming conflicts with Oinone'
 
 As an important part of the platform, interceptors can extend corresponding logic before and after function execution for functions that meet specific conditions in a non-intrusive manner.
 
-## (一) Interceptor Usage Method
+## (Ⅰ) Interceptor Usage Method
 
 By adding the `@Hook` annotation to a method, you can mark the method as an interceptor. Specifically, pre-extension points need to implement the `HookBefore` interface, while post-extension points need to implement the `HookAfter` interface. Their input parameters include the definition of the intercepted function and the function's input parameters, allowing interceptors to flexibly process execution logic based on function definitions and input parameters.
 
-## (二) Interceptor Classification and Characteristics
+## (Ⅱ) Interceptor Classification and Characteristics
 
 Interceptors are mainly divided into two categories: pre-interceptors and post-interceptors, which differ in function and data processing:
 
@@ -941,15 +941,15 @@ public class AfterXXXHook implements HookAfter {
 }
 ```
 
-## (三) Interceptor Filtering and Activation Rules
+## (Ⅲ) Interceptor Filtering and Activation Rules
 
 You can use the non-mandatory fields `module`, `model`, `fun`, function type, and `active` of the `@Hook` annotation to filter interceptors that need to take effect for the current intercepted method. If no filtering attributes are configured, the interceptor will take effect for all functions.
 
-## (四) Interceptor Execution Order Adjustment
+## (Ⅳ) Interceptor Execution Order Adjustment
 
 The execution order of interceptors can be flexibly adjusted according to the interceptor's `priority` attribute. The smaller the `priority` number, the earlier the interceptor executes. For example, when there are multiple pre-interceptors, the pre-interceptor with the smallest `priority` value will execute its logic first. This mechanism allows developers to finely control the logical extension of functions at different stages based on business needs, thereby improving system flexibility and maintainability.
 
-## (五) Notes
+## (Ⅴ) Notes
 
 ::: danger Warning
 
@@ -970,11 +970,11 @@ Models.directive().run(() -> {
 
 A trigger is a mechanism that drives logic execution based on function execution events. The following details configuration, task types, etc.
 
-## (一) Enable Trigger Configuration
+## (Ⅰ) Enable Trigger Configuration
 
 ### 1、YMAL Configuration
 
-Complete [event configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#3、配置中心-pamirs-zookeeper), [data record configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#十-数据记录配置-pamirs-record-sql), and add dependencies on the `sql_record` and `trigger` modules. The specific configuration is as follows:
+Complete [event configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#3、配置中心-pamirs-zookeeper), [data record configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅹ-data-record-configuration-pamirsrecordsql), and add dependencies on the `sql_record` and `trigger` modules. The specific configuration is as follows:
 
 ```yaml
 spring:
@@ -1031,7 +1031,7 @@ Introduce the following dependencies in the startup project:
 </dependency>
 ```
 
-## (二) Triggered Tasks
+## (Ⅱ) Triggered Tasks
 
 ### 1、Trigger Annotation
 
@@ -1083,7 +1083,7 @@ The business module project needs to introduce the api package of the `trigger` 
 </dependency>
 ```
 
-## (三) Scheduled Tasks
+## (Ⅲ) Scheduled Tasks
 
 ### 1、Definition of Scheduled Tasks
 
@@ -1165,7 +1165,7 @@ A Cron expression is a string used to define the execution time of scheduled tas
 :::
 By reasonably combining special characters, Cron expressions can meet various定时 (scheduled) requirements from simple to complex, widely used in automated task scenarios such as database maintenance, log cleanup, and data synchronization.
 
-## (四) Asynchronous Tasks
+## (Ⅳ) Asynchronous Tasks
 
 Asynchronous tasks are commonly used patterns in distributed development, widely applied in high-concurrency processing, time-consuming task decoupling, and other scenarios. The following is a detailed usage description of asynchronous tasks in Oinone:
 
@@ -1221,7 +1221,7 @@ By setting the `pamirs.event.schedule.ownSign` parameter, different applications
 
 Built-in functions are pre-defined functions in the system, supporting direct invocation in expressions, covering various functional types, as follows:
 
-## (一) General Functions
+## (Ⅰ) General Functions
 
 ### 1、Mathematical Functions
 
@@ -1351,7 +1351,7 @@ Built-in functions are pre-defined functions in the system, supporting direct in
 | OR         | Logical OR   | Return the logical OR result of two conditions        | OR(condition1, condition2)       |
 | NOT        | Logical NOT  | Return the logical NOT result of a condition           | NOT(condition)                |
 
-## (二) Scenario-Specific Functions
+## (Ⅱ) Scenario-Specific Functions
 
 ### 1、Business Functions
 
@@ -1378,7 +1378,7 @@ View implementation code: pro.shushi.pamirs.framework.faas.fun.builtin.business.
 
 View implementation code: pro.shushi.pamirs.framework.faas.fun.builtin.ContextFunctions.
 
-## (三) Extending Built-in Functions
+## (Ⅲ) Extending Built-in Functions
 
 Developing expression functions in Oinone follows a similar process to defining regular functions, with the key difference being the specification of the **function namespace**: the `namespace` must be set to `NamespaceConstants.expression` to clarify that the function is for expression calculation scenarios. The specific example is as follows:
 
@@ -1407,11 +1407,11 @@ Expressions can use operators (+, -, *, /, &&, ||, !, ==, !=), dot expressions (
 
 In expressions, the front-end display of model fields uses the display name `displayName`, while the original expression content uses the technical name `name`.
 
-## (一) Dot Expressions
+## (Ⅰ) Dot Expressions
 
 A dot expression is a subset of expressions, composed of a variable name and a dot. The variable before the dot and the variable after the dot have a subordinate relationship, with the variable after the dot being subordinate to the one before. Dot expressions can be used to obtain the value of the variable after the last dot determined by the full expression.
 
-## (二) Regular Expressions
+## (Ⅱ) Regular Expressions
 
 | Corresponding Built-in Function           | Description                         | Regular Expression                                                   |
 | ---------------------- | ---------------------------- | ------------------------------------------------------------ |
@@ -1434,7 +1434,7 @@ A dot expression is a subset of expressions, composed of a variable name and a d
 | CHECK_CODE             | Only Composed of English, Numbers, and Underscores | ^[a-z0-9A-Z_]*$                                              |
 | CHECK_ENG_NUM          | Only Contains English and Numbers           | ^[a-z0-9A-Z]*$                                               |
 
-## (三) Built-in Variables
+## (Ⅲ) Built-in Variables
 
 In expressions, dot expressions can be used to obtain attributes of built-in variables and attributes of their sub-attributes. For example, use `activeRecord` to get the current record, and `activeRecord.id` to get the ID of the currently selected row record.
 
@@ -1457,7 +1457,7 @@ In expressions, dot expressions can be used to obtain attributes of built-in var
 | env               | Environment         | Usage example: context.env Example description: Environment in the request context            |
 | extend            | Extended Information     | Usage example: context.extend.extendedVariableName Example description: Extended information in the request context |
 
-## (四) Built-in Functions
+## (Ⅳ) Built-in Functions
 
 The built-in functions described in the built-in functions section can be used in expressions. For example, use `ABS(activeRecord.amount)` to get the absolute value of the amount in the currently selected record.
 
@@ -1465,7 +1465,7 @@ The built-in functions described in the built-in functions section can be used i
 
 In the Oinone platform, transaction management is a core function to ensure data consistency and reliability. Its design is deeply compatible with the Spring transaction mechanism while being enhanced for multi-data source scenarios to ensure stable operation in high-concurrency environments.
 
-## (一) Function-Level Transaction Configuration
+## (Ⅰ) Function-Level Transaction Configuration
 
 Transaction configuration for functions (`Function`) follows the principle of **minimal intrusion**, with transactions disabled by default:
 
@@ -1475,7 +1475,7 @@ Transaction configuration for functions (`Function`) follows the principle of **
 
 The platform also provides global transaction configuration capabilities, supporting unified adjustment of transaction strategies to meet project-level customization needs.
 
-## (二) Transaction Management Capabilities
+## (Ⅱ) Transaction Management Capabilities
 
 In Oinone's transaction management system, multi-mode compatibility and multi-data source enhancement are two core advantages, jointly providing solid guarantees for data consistency and system stability in complex business scenarios.
 
@@ -1530,7 +1530,7 @@ Oinone supports nested independent transactions for multiple data sources and ef
 
 To ensure data consistency in multi-data source and table sharding scenarios, Oinone has built-in powerful isolation strategies to eliminate dirty reads. This strategy guarantees data accuracy and integrity during concurrent operations, providing a strong guarantee for normal business operations.
 
-## (三) Core Transaction Characteristics
+## (Ⅲ) Core Transaction Characteristics
 
 | **Characteristic** | **Definition**                                             | **Application Value**                 |
 | -------- | ---------------------------------------------------- | ---------------------------- |
@@ -1539,7 +1539,7 @@ To ensure data consistency in multi-data source and table sharding scenarios, Oi
 | Isolation   | Concurrent transactions are isolated from each other and do not interfere                         | Improve data access reliability           |
 | Durability   | Data is permanently saved to disk after transaction commit                           | Ensure data security and no loss           |
 
-## (四) Transaction Isolation Levels
+## (Ⅳ) Transaction Isolation Levels
 
 ### 1、Concurrent Access Risks
 
@@ -1561,7 +1561,7 @@ Without configured isolation mechanisms, concurrent transactions may cause the f
 | `REPEATABLE_READ`  | Ensures consistent query results within the same transaction, but phantom reads are still possible                  | Solves non-repeatable reads | Medium-high         |
 | `SERIALIZABLE`     | The highest level, completely eliminating all concurrency issues through serialization                  | Full protection       | Highest         |
 
-## (五) Transaction Propagation Behavior
+## (Ⅴ) Transaction Propagation Behavior
 
 Transaction propagation behavior defines the transaction processing strategy for method calls:
 

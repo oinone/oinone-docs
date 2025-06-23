@@ -23,12 +23,12 @@ In the Oinone platform, the context is mainly divided into three types:
 All three are of the object (Object) type.
 
 # II. Introduction to Views
-## (一) Current View
+## (Ⅰ) Current View
 The nearest parent view of the component. For example, for a field component within a pop-up window, its current view is the view where the pop-up window is opened.
 
 The keyword for retrieving values in the current view in the code is `activeRecord`, and to obtain the `id` of the data in the current view, it is `activeRecord.id`.
 
-## (二) Main View
+## (Ⅱ) Main View
 The view of the current main model of the page (the model code in the browser address is the main model). For example, for a field component within a pop-up window, its main view is not the view where the pop-up window is opened, but the view where the action to open the pop-up window is located.
 
 The keyword for retrieving values in the main view in the code is `rootRecord`, and to obtain the `id` of the data in the main view, it is `rootRecord.id`.
@@ -36,14 +36,14 @@ The keyword for retrieving values in the main view in the code is `rootRecord`, 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240606-163748-1024x513.png)
 
 # III. Introduction to Scenario Settings
-## (一) After the server-side action closes the pop-up window, refresh the data of the main view
+## (Ⅰ) After the server-side action closes the pop-up window, refresh the data of the main view
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240606-164436-1024x648.png)
 
-## (二) After the server-side action closes the pop-up window, refresh the data of the table row that opened the pop-up window
+## (Ⅱ) After the server-side action closes the pop-up window, refresh the data of the table row that opened the pop-up window
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240606-164605-1024x688.png)
 
 # II. Configuration of Interface Designer
-## (一) Carrying current view data in the pop-up window of o2m and m2m table fields
+## (Ⅰ) Carrying current view data in the pop-up window of o2m and m2m table fields
 Suppose we design a form page containing table fields of `o2m` (one-to-many) and `m2m` (many-to-many). When opening the relevant pop-up window, the `code` data in the form needs to be passed to the pop-up window.
 
 1. Select the corresponding "action", such as Create or Add. Find "Context" at the bottom of the right property panel and add context information in the format of an object `{}`.

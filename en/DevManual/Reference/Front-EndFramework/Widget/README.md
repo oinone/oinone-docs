@@ -44,7 +44,7 @@ This example attribute will limit the number of `characters` that can be entered
 
 # II. Component Registration
 
-Taking field components as an example, we can register a special input box via SPI, where the entered content will be displayed in red font: (This is the example in the [Customize a field widget](/en/DevManual/OperationGuide/customize-a-field-widget.md#三、创建一个新的表单字段组件) section)
+Taking field components as an example, we can register a special input box via SPI, where the entered content will be displayed in red font: (This is the example in the [Customize a field widget](/en/DevManual/OperationGuide/customize-a-field-widget.md#iii-creating-a-new-form-field-widget) section)
 
 ```typescript
 @SPI.ClassFactory(

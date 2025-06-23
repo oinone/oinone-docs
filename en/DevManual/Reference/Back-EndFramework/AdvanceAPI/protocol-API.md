@@ -11,7 +11,7 @@ prev:
   text: 安全机制（Security in Oinone）
   link: /en/DevManual/Reference/Back-EndFramework/security-in-oinone.md
 ---
-# 一、Request URL Specifications
+# Ⅰ、Request URL Specifications
 
 ```plain
 http://127.0.0.1:8090/pamirs/DemoCore?scene=redirectListPage
@@ -29,11 +29,11 @@ http://127.0.0.1:8090/pamirs/DemoCore?scene=redirectListPage
 
 **Application Scenario**: In a distributed system, requests can be directed to a specific server cluster based on the module name `DemoCore` to achieve traffic distribution and load balancing.
 
-# 二、Request Protocol
+# Ⅱ、Request Protocol
 
 The Oinone front-end and back-end network protocol adopts a combination of GraphQL and RSQL. GraphQL, as an API query language, is responsible for defining data query and operation specifications; RSQL is used for parameterized data filtering. The two work together to provide efficient and flexible data interaction capabilities for the Oinone system.
 
-## (一) Detailed Explanation of GraphQL Protocol
+## (Ⅰ) Detailed Explanation of GraphQL Protocol
 
 ### 1. Basic Concepts of GraphQL
 
@@ -103,7 +103,7 @@ mutation {
 
 Create new data through the `create` function under `testModelMutation`.
 
-## (二) Detailed Explanation of RSQL Protocol
+## (Ⅱ) Detailed Explanation of RSQL Protocol
 
 ### 1. Basic Concepts of RSQL
 
@@ -174,7 +174,7 @@ query {
 
 **Query Description**: Filter model data with the name `testName` and status `ENABLED` or `PENDING` through RSQL conditions.
 
-## (三) Advantage Comparison Between GraphQL and RESTful
+## (Ⅲ) Advantage Comparison Between GraphQL and RESTful
 
 | **Feature**         | **RESTful**                     | **GraphQL**                    |
 | :--------------- | :------------------------------ | :----------------------------- |
@@ -186,7 +186,7 @@ query {
 | **Applicable Scenarios**     | Simple data sources, clear resources          | Complex, related data,多变 client requirements |
 
 
-## (四) Variables
+## (Ⅳ) Variables
 
 ### 1. Variables
 
@@ -225,7 +225,7 @@ String scene = variables.getVariables().get("scene");
 
 The `requestStrategy` can effectively control the execution of `Validation` constraints. `Validation` has been described in ORM API and Function API, and can act on different levels such as models, fields, and functions to achieve flexible and precise business validation.
 
-## (五) PlaceHolder
+## (Ⅴ) PlaceHolder
 
 In Oinone development, when encountering parameters that need to be passed by the front end but whose values are only known by the back end, back-end placeholders can be used.
 

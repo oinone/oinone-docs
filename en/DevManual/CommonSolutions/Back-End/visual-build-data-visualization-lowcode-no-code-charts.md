@@ -200,7 +200,7 @@ This example implements a bar chart using the `echarts` library, while the frame
 
 ```
 
-## (一) Registering the Template
+## (Ⅰ) Registering the Template
 
 ```typescript
 import { ChartRenderEngine, ChartRenderType, registerChartComponent } from '@kunlun/data-designer-core';
@@ -217,6 +217,6 @@ registerChartComponent({
 );
 ```
 
-## (三) Effect Display
+## (Ⅲ) Effect Display
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240710-163839-1024x369-20250530144826749.png)

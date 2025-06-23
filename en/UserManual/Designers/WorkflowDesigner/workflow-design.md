@@ -19,7 +19,7 @@ Process configuration is mainly divided into two functional areas, the Operation
 + Process Configuration Area: Here, process parameters can be configured as temporary fields, or the application to which the process belongs can be changed.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/3.png)
 # I. Process Design
-## (一) Operation Bar
+## (Ⅰ) Operation Bar
 ### 1. Edit Process Name and Description
 #### I. Function Introduction
 The name and description of the process can be edited on the left side of the operation bar. The modified name and description will be displayed in the process list or card.
@@ -62,13 +62,13 @@ When publishing a process, it is necessary to ensure that there is at least one 
 #### II. Operation Method
 Click the "Publish/Update Publish" button to publish the current process design.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/fb.png)
-## (二) Toolbar
+## (Ⅱ) Toolbar
 ### 1. Function Introduction
 The toolbar integrates various node actions required for process design, and the node actions in the toolbar can be placed at the specified position of the process.
 ### 2. Operation Method
 Node actions in the toolbar can be dragged, or the "+" sign between nodes in the process can be clicked to place the nodes at the specified positions.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/gjl.png)
-## (三) Process Design Area
+## (Ⅲ) Process Design Area
 ### 1. Function Introduction
 After adding nodes to the process, their names can be modified, descriptions can be edited, and unnecessary nodes can be deleted to better carry out process design.
 :::danger Warning
@@ -81,7 +81,7 @@ Once a node is deleted, it cannot be recovered. Please operate with caution!
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj2.png)
 + Click the "Delete" icon, and in the pop-up window, click "OK" to delete the node.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj3.png)
-## (四) Property Panel
+## (Ⅳ) Property Panel
 ### 1. Function Introduction
 In the property panel, various attributes can be configured for node actions.
 ### 2. Operation Method
@@ -92,7 +92,7 @@ Required information in the attributes must be filled in; otherwise, saving will
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sxmb.png)
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sxmb2.png)
 # II. Process Configuration
-## (一) Parameter Configuration
+## (Ⅰ) Parameter Configuration
 ### 1. Function Introduction
 In process design, process parameters can be used as a temporary field to store a field value, calculation result, or accept values passed from other processes. Temporary parameters support four data types: text, number, date, and boolean to meet the needs of different scenarios.
 :::info Note
@@ -108,7 +108,7 @@ Parameter name rules: The parameter name must start with a letter, support numbe
 :::
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/cs.png)
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/cs2.png)
-## (二) Process Configuration
+## (Ⅱ) Process Configuration
 ### 1. Function Introduction
 In process configuration, it is supported to change the application to which the process belongs and the rollback type when the process has an exception.
 + The application to which it belongs has been selected when creating the process. If the application selection is found to be incorrect or needs to be changed, editing operations can be performed here.
