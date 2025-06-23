@@ -10,15 +10,22 @@ next:
   text: Metadata Service
   link: /zh-cn/DevManual/Reference/Front-EndFramework/Services/metadata-service.md
 ---
-# 一、Reference List
 
-## （一）数据展示
+在 Oinone Kunlun 中，有一部分组件是基于一些独立功能的第三方组件库实现的，比如：`Vxe-Table`、`vuedraggable` 等。这些组件不仅可以用于 Widget 组件，也可以直接通过 Vue 原生写法用于任何一个 Vue 组件。这篇文章将详细介绍这些组件的用法及 API 定义。
 
-### Table 表格
+# 一、引入
 
-#### 基础用法
+``` typescript
+import { OioTable } from '@oinone/kunlun-vue-ui';
+```
 
-```vue
+# 二、Reference List
+
+## （一）Table 表格
+
+### 基础用法
+
+``` vue
 <template>
   <oio-table :data="tableData">
     <oio-column label="名称" field="name" />
@@ -58,9 +65,9 @@ export default defineComponent({
 </script>
 ```
 
-#### 固定表头
+### 固定表头
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%">
     <oio-column label="名称" field="name" />
@@ -69,9 +76,9 @@ export default defineComponent({
 </template>
 ```
 
-#### 分组表头
+### 分组表头
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%">
     <oio-column label="名称" field="name" />
@@ -127,9 +134,9 @@ export default defineComponent({
 </script>
 ```
 
-#### 冻结操作列
+### 冻结操作列
 
-```vue
+``` vue
 <template>
   <div style="width: 1000px; height: 800px">
     <oio-table :data="tableData" height="100%">
@@ -150,9 +157,9 @@ export default defineComponent({
 </template>
 ```
 
-#### 可调整列宽
+### 可调整列宽
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%" resizable>
     <oio-column label="名称" field="name" />
@@ -161,9 +168,9 @@ export default defineComponent({
 </template>
 ```
 
-#### 全边框样式和斑马纹
+### 全边框样式和斑马纹
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
     <oio-column label="名称" field="name" />
@@ -172,9 +179,9 @@ export default defineComponent({
 </template>
 ```
 
-#### 筛选和排序
+### 筛选和排序
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
     <oio-column label="名称" field="name" />
@@ -236,9 +243,9 @@ export default defineComponent({
 </script>
 ```
 
-#### 格式化内容
+### 格式化内容
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
     <oio-column label="名称" field="name" />
@@ -315,9 +322,9 @@ export default defineComponent({
 </script>
 ```
 
-#### 复选框
+### 复选框
 
-```vue
+``` vue
 <template>
   <oio-table
     :data="tableData"
@@ -383,9 +390,9 @@ export default defineComponent({
 </script>
 ```
 
-#### 前端分页表格
+### 前端分页表格
 
-```vue
+``` vue
 <template>
   <div class="table-pagination-demo">
     <oio-table :data="showTableData" height="100%" :loading="loading">
@@ -482,9 +489,9 @@ export default defineComponent({
 </style>
 ```
 
-#### API
+### API
 
-##### oio-table
+#### oio-table
 
 **Props**
 
@@ -589,7 +596,7 @@ export default defineComponent({
 
 更多使用方式，可参考：[vxe-table](https://vxetable.cn/v3/#/table/api)
 
-##### oio-column
+#### oio-column
 
 **Props**
 
@@ -643,7 +650,7 @@ export default defineComponent({
 
 更多使用方式，可参考：[vxe-column](https://vxetable.cn/v3/#/column/api)
 
-##### oio-colgroup
+#### oio-colgroup
 
 **Props**
 

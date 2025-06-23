@@ -8,15 +8,24 @@ category:
 order: 2
 
 ---
-# 1. Reference List
 
-## (1) Data Display
+In Oinone Kunlun, some components are implemented based on the third-party component library "[Element Plus](https://cn.element-plus.org/en-US/component/overview.html)". These components can be used not only for Widget components, but also directly for any Vue component using Vue native writing. This article will provide a detailed introduction to the usage and API definitions of these components.
 
-### ColorPicker Color Picker
+# I. Import
+
+``` typescript
+import { OioColorPicker } from '@oinone/kunlun-vue-ui-el';
+```
+
+# II. Reference List
+
+## (I) Data Display
+
+### ColorPicker
 
 #### Basic Usage
 
-```vue
+``` vue
 <template>
   <oio-color-picker v-model:value="value" />
 </template>
@@ -24,7 +33,7 @@ order: 2
 
 #### Color Picker with Input Box
 
-```vue
+``` vue
 <template>
   <oio-color-picker v-model:value="value" has-input />
   <oio-color-picker v-model:value="value" has-input input-placement="prepend" />
@@ -33,7 +42,7 @@ order: 2
 
 #### Only Apply Oinone Theme Style
 
-```vue
+``` vue
 <template>
   <!-- Basic usage -->
   <div class="oio-color-picker">

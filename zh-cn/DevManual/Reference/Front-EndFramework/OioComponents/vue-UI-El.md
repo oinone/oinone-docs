@@ -8,7 +8,16 @@ category:
 order: 2
 
 ---
-# 一、Reference List
+
+在 Oinone Kunlun 中，有一部分组件是基于第三方组件库 “[Element Plus](https://cn.element-plus.org/zh-CN/component/overview.html)” 实现的。这些组件不仅可以用于 Widget 组件，也可以直接通过 Vue 原生写法用于任何一个 Vue 组件。这篇文章将详细介绍这些组件的用法及 API 定义。
+
+# 一、引入
+
+``` typescript
+import { OioColorPicker } from '@oinone/kunlun-vue-ui-el';
+```
+
+# 二、Reference List
 
 ## （一）数据展示
 
@@ -16,7 +25,7 @@ order: 2
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-color-picker v-model:value="value" />
 </template>
@@ -24,7 +33,7 @@ order: 2
 
 #### 带输入框的取色器
 
-```vue
+``` vue
 <template>
   <oio-color-picker v-model:value="value" has-input />
   <oio-color-picker v-model:value="value" has-input input-placement="prepend" />
@@ -33,7 +42,7 @@ order: 2
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <!-- 基础用法 -->
   <div class="oio-color-picker">

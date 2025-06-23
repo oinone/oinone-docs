@@ -10,15 +10,22 @@ next:
   text: Metadata Service
   link: /en/DevManual/Reference/Front-EndFramework/Services/metadata-service.md
 ---
-# 一、Reference List
 
-## （一）Data Display
+In Oinone Kunlun, some components are implemented based on independent third-party component libraries, such as `Vxe-Table`, `vuedreggable`, etc. These components can be used not only for Widget components, but also directly for any Vue component using Vue native writing. This article will provide a detailed introduction to the usage and API definitions of these components.
 
-### Table
+# I. Import
 
-#### Basic Usage
+``` typescript
+import { OioTable } from '@oinone/kunlun-vue-ui';
+```
 
-```vue
+# II. Reference List
+
+## (I) Table
+
+### Basic Usage
+
+``` vue
 <template>
   <oio-table :data="tableData">
     <oio-column label="Name" field="name" />
@@ -58,9 +65,9 @@ export default defineComponent({
 </script>
 ```
 
-#### Fixed Header
+### Fixed Header
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%">
     <oio-column label="Name" field="name" />
@@ -69,9 +76,9 @@ export default defineComponent({
 </template>
 ```
 
-#### Grouped Header
+### Grouped Header
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%">
     <oio-column label="Name" field="name" />
@@ -127,9 +134,9 @@ export default defineComponent({
 </script>
 ```
 
-#### Frozen Action Column
+### Frozen Action Column
 
-```vue
+``` vue
 <template>
   <div style="width: 1000px; height: 800px">
     <oio-table :data="tableData" height="100%">
@@ -150,9 +157,9 @@ export default defineComponent({
 </template>
 ```
 
-#### Resizable Columns
+### Resizable Columns
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%" resizable>
     <oio-column label="Name" field="name" />
@@ -161,9 +168,9 @@ export default defineComponent({
 </template>
 ```
 
-#### Full Border and Zebra Stripes
+### Full Border and Zebra Stripes
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
     <oio-column label="Name" field="name" />
@@ -172,9 +179,9 @@ export default defineComponent({
 </template>
 ```
 
-#### Filter and Sort
+### Filter and Sort
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
     <oio-column label="Name" field="name" />
@@ -236,9 +243,9 @@ export default defineComponent({
 </script>
 ```
 
-#### Content Formatting
+### Content Formatting
 
-```vue
+``` vue
 <template>
   <oio-table :data="tableData" height="100%" border="full" stripe>
     <oio-column label="Name" field="name" />
@@ -315,9 +322,9 @@ export default defineComponent({
 </script>
 ```
 
-#### Checkbox
+### Checkbox
 
-```vue
+``` vue
 <template>
   <oio-table
     :data="tableData"
@@ -383,9 +390,9 @@ export default defineComponent({
 </script>
 ```
 
-#### Frontend Pagination Table
+### Frontend Pagination Table
 
-```vue
+``` vue
 <template>
   <div class="table-pagination-demo">
     <oio-table :data="showTableData" height="100%" :loading="loading">
@@ -482,9 +489,9 @@ export default defineComponent({
 </style>
 ```
 
-#### API
+### API
 
-##### oio-table
+#### oio-table
 
 **Props**
 
@@ -589,7 +596,7 @@ export default defineComponent({
 
 For more usage, please refer to: [vxe-table](https://vxetable.cn/v3/#/table/api)
 
-##### oio-column
+#### oio-column
 
 **Props**
 
@@ -643,7 +650,7 @@ For more usage, please refer to: [vxe-table](https://vxetable.cn/v3/#/table/api)
 
 For more usage, please refer to: [vxe-column](https://vxetable.cn/v3/#/column/api)
 
-##### oio-colgroup
+#### oio-colgroup
 
 **Props**
 

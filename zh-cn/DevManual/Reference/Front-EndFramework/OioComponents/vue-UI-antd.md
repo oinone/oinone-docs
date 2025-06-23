@@ -10,7 +10,16 @@ prev:
   text: Gallery Field
   link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
 ---
-# 一、Reference List
+
+在 Oinone Kunlun 中，大部分组件都是基于第三方组件库 “[Ant Design Vue](https://3x.antdv.com/components/overview-cn)” 实现的。这些组件不仅可以用于 Widget 组件，也可以直接通过 Vue 原生写法用于任何一个 Vue 组件。这篇文章将详细介绍这些组件的用法及 API 定义。
+
+# 一、引入
+
+``` typescript
+import { OioButton } from '@oinone/kunlun-vue-ui-antd';
+```
+
+# 二、Reference List
 
 ## （一）通用
 
@@ -18,8 +27,7 @@ prev:
 
 #### 基础用法
 
-
-```vue
+``` vue
 <template>
   <oio-button>默认按钮</oio-button>
   <oio-button type="primary">主按钮</oio-button>
@@ -31,7 +39,7 @@ prev:
 
 #### 带图标按钮
 
-```vue
+``` vue
 <template>
   <oio-button icon="oinone-sousuo" icon-placement="before">搜索</oio-button>
   <oio-button icon="oinone-xiazai2" icon-placement="after">下载</oio-button>
@@ -41,7 +49,7 @@ prev:
 
 #### 业务场景按钮
 
-```vue
+``` vue
 <template>
   <oio-button biz-style="success">成功按钮</oio-button>
   <oio-button biz-style="warning">警告按钮</oio-button>
@@ -57,7 +65,7 @@ prev:
 
 #### 加载状态与选中状态
 
-```vue
+``` vue
 <template>
   <oio-button async @click="onSubmit1">内置加载状态</oio-button>
   <oio-button :loading="loading" @click="onSubmit2">带loading参数控制加载状态</oio-button>
@@ -145,7 +153,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <!-- 水平分割线 -->
   <oio-divider />
@@ -156,7 +164,7 @@ export default defineComponent({
 
 #### 虚线分割线
 
-```vue
+``` vue
 <template>
   <oio-divider dashed />
   <oio-divider dashed>虚线样式</oio-divider>
@@ -165,7 +173,7 @@ export default defineComponent({
 
 #### 文字居左 / 居右分割线
 
-```vue
+``` vue
 <template>
   <oio-divider orientation="left">左侧标题</oio-divider>
   <oio-divider orientation="right">右侧说明</oio-divider>
@@ -174,7 +182,7 @@ export default defineComponent({
 
 #### 垂直分割线
 
-```vue
+``` vue
 <template>
   <div style="display: flex; column-gap: 16px; align-items: center">
     <span>Item 1</span>
@@ -209,7 +217,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-row>
     <oio-col :span="8">Column 1</oio-col>
@@ -221,7 +229,7 @@ export default defineComponent({
 
 #### 带间距的布局
 
-```vue
+``` vue
 <template>
   <oio-row :gutter="16">
     <oio-col :span="8">Gutter 16</oio-col>
@@ -233,7 +241,7 @@ export default defineComponent({
 
 #### 换行布局
 
-```vue
+``` vue
 <template>
   <oio-row gutter="16" wrap>
     <oio-col :span="6" v-for="i in 5" :key="i">Wrap Item {{ i }}</oio-col>
@@ -294,7 +302,7 @@ export default defineComponent({
 
 #### 基础布局
 
-```vue
+``` vue
 <template>
   <oio-block>
     <div>这是一段内容</div>
@@ -304,7 +312,7 @@ export default defineComponent({
 
 #### 行内布局
 
-```vue
+``` vue
 <template>
   <oio-block>
     <oio-block inline>Inline Item 1</oio-block>
@@ -315,7 +323,7 @@ export default defineComponent({
 
 #### 弹性布局（行方向）
 
-```vue
+``` vue
 <template>
   <oio-block flex>
     <div>Item 1</div>
@@ -326,7 +334,7 @@ export default defineComponent({
 
 #### 弹性布局（列方向）
 
-```vue
+``` vue
 <template>
   <oio-block flex flex-direction="column">
     <div>Item 1</div>
@@ -337,7 +345,7 @@ export default defineComponent({
 
 #### 带间距的弹性布局
 
-```vue
+``` vue
 <template>
   <oio-block flex gutter="16">
     <div>Item 1</div>
@@ -364,7 +372,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-breadcrumb>
     <oio-breadcrumb-item>首页</oio-breadcrumb-item>
@@ -376,7 +384,7 @@ export default defineComponent({
 
 #### 自定义分隔符
 
-```vue
+``` vue
 <template>
   <oio-breadcrumb separator=">">
     <oio-breadcrumb-item>首页</oio-breadcrumb-item>
@@ -430,7 +438,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-dropdown class="oio-dropdown" overlay-class-name="oio-dropdown-overlay" />
 </template>
@@ -440,7 +448,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-pagination
     :total="total"
@@ -451,7 +459,7 @@ export default defineComponent({
 
 #### 自定义每页数量
 
-```vue
+``` vue
 <template>
   <oio-pagination
     :total="total"
@@ -464,7 +472,7 @@ export default defineComponent({
 
 #### 显示总数与快速跳转
 
-```vue
+``` vue
 <template>
   <oio-pagination
     :total="total"
@@ -516,7 +524,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-cascader v-model:value="selected" :options="options" placeholder="请选择级联项" />
 </template>
@@ -580,7 +588,7 @@ export default defineComponent({
 
 #### 异步加载级联数据
 
-```vue
+``` vue
 <template>
   <oio-cascader v-model:value="selected" :options="options" placeholder="请选择级联项" :load-data="loadData" />
 </template>
@@ -654,7 +662,7 @@ export default defineComponent({
 
 #### 自定义显示内容
 
-```vue
+``` vue
 <template>
   <oio-cascader
     v-model:value="selected"
@@ -771,7 +779,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-checkbox v-model:checked="checked">同意</oio-checkbox>
 </template>
@@ -779,7 +787,7 @@ export default defineComponent({
 
 #### 中间状态
 
-```vue
+``` vue
 <template>
   <oio-checkbox indeterminate>部分选中</oio-checkbox>
 </template>
@@ -787,7 +795,7 @@ export default defineComponent({
 
 #### 只读与禁用状态
 
-```vue
+``` vue
 <template>
   <oio-checkbox checked readonly>只读状态(勾选)</oio-checkbox>
   <oio-checkbox readonly>只读状态(非勾选)</oio-checkbox>
@@ -821,7 +829,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-date-picker v-model:value="value" />
 </template>
@@ -829,7 +837,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-date-picker
     class="oio-date-time-picker"
@@ -885,7 +893,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-date-range-picker v-model:value="value" />
 </template>
@@ -893,7 +901,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-range-picker
     class="oio-date-time-range-picker oio-date-time-picker-range-date"
@@ -937,7 +945,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-date-time-picker v-model:value="value" />
 </template>
@@ -945,7 +953,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-date-picker
     class="oio-date-time-picker"
@@ -1003,7 +1011,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-date-time-range-picker v-model:value="value" />
 </template>
@@ -1011,7 +1019,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-range-picker
     class="oio-date-time-range-picker oio-date-time-picker-range-datetime"
@@ -1056,7 +1064,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-form :data="data" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }" autocomplete="off">
     <oio-form-item label="用户名" name="username" :rules="[{ required: true, message: '请输入用户名' }]">
@@ -1096,7 +1104,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-form class="oio-form" :model="data" :label-col="{ span: 8 }" :wrapper-col="{ span: 16 }" autocomplete="off">
     <a-form-item
@@ -1201,7 +1209,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-input v-model:value="value" placeholder="请输入" />
 </template>
@@ -1209,7 +1217,7 @@ export default defineComponent({
 
 #### 带移除图标
 
-```vue
+``` vue
 <template>
   <oio-input v-model:value="value" placeholder="请输入" allow-clear />
 </template>
@@ -1217,7 +1225,7 @@ export default defineComponent({
 
 #### 前缀和后缀
 
-```vue
+``` vue
 <template>
   <oio-input v-model:value="value" placeholder="请输入">
     <template #prefix>
@@ -1235,7 +1243,7 @@ export default defineComponent({
 
 #### 数字输入框
 
-```vue
+``` vue
 <template>
   <oio-input-number v-model:value="value" placeholder="请输入" />
 </template>
@@ -1243,7 +1251,7 @@ export default defineComponent({
 
 #### 密码输入框
 
-```vue
+``` vue
 <template>
   <oio-input-password v-model:value="value" placeholder="请输入" />
 </template>
@@ -1251,7 +1259,7 @@ export default defineComponent({
 
 #### 搜索输入框
 
-```vue
+``` vue
 <template>
   <oio-input-search v-model:value="value" placeholder="请输入" @search="onSearch" />
 </template>
@@ -1282,7 +1290,7 @@ export default defineComponent({
 
 #### 输入框组合
 
-```vue
+``` vue
 <template>
   <oio-input-group compact>
     <oio-input v-model:value="value1" style="flex: 1" />
@@ -1300,7 +1308,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <!-- 基础用法 -->
   <a-input class="oio-input" v-model:value="value" placeholder="请输入" />
@@ -1510,7 +1518,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-select class="oio-select" dropdown-class-name="oio-select-dropdown" />
 </template>
@@ -1522,7 +1530,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-slider v-model:value="value" />
 </template>
@@ -1530,7 +1538,7 @@ export default defineComponent({
 
 #### 垂直
 
-```vue
+``` vue
 <template>
   <div style="height: 300px">
     <oio-slider v-model:value="value" direction="vertical" />
@@ -1540,7 +1548,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <!-- 基础用法 -->
   <a-slider class="oio-slider" v-model:value="value" :min="0" :max="100" :step="1" />
@@ -1588,7 +1596,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-switch v-model:value="value" />
 </template>
@@ -1596,7 +1604,7 @@ export default defineComponent({
 
 #### 带文字的开关
 
-```vue
+``` vue
 <template>
   <oio-switch v-model:checked="value" checked-children="开" unchecked-children="关" />
   <oio-switch v-model:checked="value">
@@ -1608,7 +1616,7 @@ export default defineComponent({
 
 #### 自定义开关值
 
-```vue
+``` vue
 <template>
   <oio-switch v-model:checked="value" :checked-value="1" :unchecked-value="0" />
 </template>
@@ -1616,7 +1624,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-switch class="oio-switch" v-model:checked="value" />
 </template>
@@ -1660,7 +1668,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-textarea v-model:value="value" placeholder="请输入" />
 </template>
@@ -1668,7 +1676,7 @@ export default defineComponent({
 
 #### 带移除图标
 
-```vue
+``` vue
 <template>
   <oio-textarea v-model:value="value" placeholder="请输入" allow-clear />
 </template>
@@ -1676,7 +1684,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <!-- 基础用法 -->
   <a-textarea v-model:value="value" placeholder="请输入" />
@@ -1725,7 +1733,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-time-picker v-model:value="value" />
 </template>
@@ -1733,7 +1741,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-time-picker
     class="oio-date-time-picker"
@@ -1773,7 +1781,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-time-range-picker v-model:value="value" />
 </template>
@@ -1781,7 +1789,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-time-range-picker
     class="oio-date-time-range-picker oio-date-time-picker-range-time"
@@ -1825,7 +1833,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-tree-select
     class="oio-select oio-tree-select"
@@ -1840,7 +1848,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-upload :upload-list="fileList" @success="onSuccess" @failure="onFailure">
     <oio-button>点击上传</oio-button>
@@ -1879,7 +1887,7 @@ export default defineComponent({
 
 #### 上传图片
 
-```vue
+``` vue
 <template>
   <oio-upload
     :upload-list="fileList"
@@ -1983,7 +1991,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-year-picker v-model:value="value" />
 </template>
@@ -1991,7 +1999,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-date-picker
     class="oio-date-time-picker"
@@ -2034,7 +2042,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-year-range-picker v-model:value="value" />
 </template>
@@ -2042,7 +2050,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-range-picker
     class="oio-date-time-range-picker oio-date-time-picker-range-year"
@@ -2089,7 +2097,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-card title="标题">
     <p>这是一段内容</p>
@@ -2099,7 +2107,7 @@ export default defineComponent({
 
 #### 带操作按钮的卡片
 
-```vue
+``` vue
 <template>
   <oio-card title="标题">
     <p>这是一段内容</p>
@@ -2145,7 +2153,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-collapse v-model:activeKey="activeKey">
     <oio-collapse-panel key="1" header="面板1">
@@ -2163,7 +2171,7 @@ export default defineComponent({
 
 #### 手风琴模式
 
-```vue
+``` vue
 <template>
   <oio-collapse v-model:activeKey="activeKey" accordion>
     <oio-collapse-panel key="1" header="面板1">
@@ -2181,7 +2189,7 @@ export default defineComponent({
 
 #### 斑马纹风格
 
-```vue
+``` vue
 <template>
   <oio-collapse v-model:activeKey="activeKey" type="stripe">
     <oio-collapse-panel key="1" header="面板1">
@@ -2199,7 +2207,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <!-- 基础用法 -->
   <a-collapse class="oio-collapse" v-model:activeKey="activeKey">
@@ -2301,7 +2309,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-empty-data />
 </template>
@@ -2309,7 +2317,7 @@ export default defineComponent({
 
 #### 自定义描述
 
-```vue
+``` vue
 <template>
   <oio-empty-data description="空描述" />
   <oio-empty-data>
@@ -2345,7 +2353,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-gallery :list="list" item-key="key">
     <template #default="{ key, data, index }">
@@ -2392,7 +2400,7 @@ export default defineComponent({
 
 #### 自定义列数和间距
 
-```vue
+``` vue
 <template>
   <oio-gallery :list="list" item-key="key" :cols="3" gutter="24,24">
     <template #default="{ key, data, index }">
@@ -2434,7 +2442,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-group title="标题">
     <p>这是一段内容</p>
@@ -2444,7 +2452,7 @@ export default defineComponent({
 
 #### 带描述和帮助提示的分组
 
-```vue
+``` vue
 <template>
   <oio-group title="标题" description="这是分组的详细描述" help="这是帮助提示内容">
     <p>这是一段内容</p>
@@ -2454,7 +2462,7 @@ export default defineComponent({
 
 #### 带工具栏的分组
 
-```vue
+``` vue
 <template>
   <oio-group title="标题">
     <p>这是一段内容</p>
@@ -2500,7 +2508,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-tabs v-model:active-key="activeKey">
     <oio-tab key="1" tab="标签1">内容1</oio-tab>
@@ -2513,7 +2521,7 @@ export default defineComponent({
 
 #### 居中
 
-```vue
+``` vue
 <template>
   <oio-tabs v-model:active-key="activeKey" :component-data="{ centered: true }">
     <oio-tab key="1" tab="标签1">内容1</oio-tab>
@@ -2525,7 +2533,7 @@ export default defineComponent({
 
 #### 页签左右附加操作按钮
 
-```vue
+``` vue
 <template>
   <oio-tabs v-model:active-key="activeKey">
     <oio-tab key="1" tab="标签1">内容1</oio-tab>
@@ -2543,7 +2551,7 @@ export default defineComponent({
 
 #### 左侧页签
 
-```vue
+``` vue
 <template>
   <oio-tabs v-model:active-key="activeKey" tab-position="left">
     <oio-tab key="1" tab="标签1">内容1</oio-tab>
@@ -2555,7 +2563,7 @@ export default defineComponent({
 
 #### 卡片式页签
 
-```vue
+``` vue
 <template>
   <oio-tabs v-model:active-key="activeKey" type="card">
     <oio-tab key="1" tab="标签1">内容1</oio-tab>
@@ -2567,7 +2575,7 @@ export default defineComponent({
 
 #### 可编辑页签
 
-```vue
+``` vue
 <template>
   <oio-tabs v-model:active-key="activeKey" type="editable-card" @edit="onEdit">
     <oio-tab v-for="pane in panes" :key="pane.key" :tab="pane.title" :component-data="{ closable: pane.closable }">
@@ -2698,7 +2706,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-tooltip title="这是提示内容">hover trigger</oio-tooltip>
 </template>
@@ -2706,7 +2714,7 @@ export default defineComponent({
 
 #### 点击触发
 
-```vue
+``` vue
 <template>
   <oio-tooltip title="这是提示内容" trigger="click">click trigger</oio-tooltip>
 </template>
@@ -2714,7 +2722,7 @@ export default defineComponent({
 
 #### 提示在右侧
 
-```vue
+``` vue
 <template>
   <oio-tooltip title="这是提示内容" placement="rm">hover trigger</oio-tooltip>
 </template>
@@ -2756,7 +2764,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-tree :data="treeData" />
 </template>
@@ -2821,7 +2829,7 @@ export default defineComponent({
 
 #### 仅应用 Oinone 主题样式
 
-```vue
+``` vue
 <template>
   <a-tree class="oio-tree" :tree-data="treeData" />
 </template>
@@ -2879,7 +2887,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-button @click="showDrawer">打开抽屉</oio-button>
   <oio-drawer v-model:visible="visible" title="基础用法">
@@ -2916,7 +2924,7 @@ export default defineComponent({
 
 #### 添加帮助文案
 
-```vue
+``` vue
 <template>
   <oio-button @click="showDrawer">打开抽屉</oio-button>
   <oio-drawer v-model:visible="visible" title="基础用法" help="这是最简单的抽屉">
@@ -2929,7 +2937,7 @@ export default defineComponent({
 
 #### 添加一些操作按钮
 
-```vue
+``` vue
 <template>
   <oio-button @click="showDrawer">打开抽屉</oio-button>
   <oio-drawer v-model:visible="visible" title="基础用法">
@@ -2946,7 +2954,7 @@ export default defineComponent({
 
 #### 关闭抽屉回调
 
-```vue
+``` vue
 <template>
   <oio-button @click="showDrawer">打开抽屉</oio-button>
   <oio-drawer v-model:visible="visible" title="关闭回调" :cancel-callback="cancelCallback">
@@ -3037,7 +3045,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-button @click="openMessage">打开消息提示</oio-button>
 </template>
@@ -3095,7 +3103,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-button @click="showModal">打开弹窗</oio-button>
   <oio-modal v-model:visible="visible" title="基础用法">
@@ -3132,7 +3140,7 @@ export default defineComponent({
 
 #### 添加帮助文案
 
-```vue
+``` vue
 <template>
   <oio-button @click="showModal">打开弹窗</oio-button>
   <oio-modal v-model:visible="visible" title="基础用法" help="这是最简单的弹窗">
@@ -3145,7 +3153,7 @@ export default defineComponent({
 
 #### 关闭弹窗回调
 
-```vue
+``` vue
 <template>
   <oio-button @click="showModal">打开弹窗</oio-button>
   <oio-modal
@@ -3201,7 +3209,7 @@ export default defineComponent({
 
 #### 渲染表单及数据回填
 
-```vue
+``` vue
 <template>
   <oio-button @click="showModal">打开弹窗</oio-button>
   <oio-modal
@@ -3336,7 +3344,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-button @click="openNotification">打开通知</oio-button>
 </template>
@@ -3397,7 +3405,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-popconfirm text="你确认要删除吗？" :confirm-callback="confirmCallback" :cancel-callback="cancelCallback">
     <oio-button type="primary" biz-style="danger">删除</oio-button>
@@ -3433,7 +3441,7 @@ export default defineComponent({
 
 #### 条件触发
 
-```vue
+``` vue
 <template>
   <oio-popconfirm
     text="你确认要删除吗？"
@@ -3525,7 +3533,7 @@ export default defineComponent({
 
 #### 基础用法
 
-```vue
+``` vue
 <template>
   <oio-spin />
 </template>
@@ -3533,7 +3541,7 @@ export default defineComponent({
 
 #### 遮罩任意元素
 
-```vue
+``` vue
 <template>
   <oio-spin>
     <div style="width: 300px; height: 300px">
@@ -3546,7 +3554,7 @@ export default defineComponent({
 
 #### 各种大小
 
-```vue
+``` vue
 <template>
   <oio-spin size="small" />
   <oio-spin />
@@ -3556,7 +3564,7 @@ export default defineComponent({
 
 #### 放入容器中
 
-```vue
+``` vue
 <template>
   <div style="padding: 30px 50px; background-color: rgba(0, 0, 0, 0.05); text-align: center">
     <oio-spin />
@@ -3566,7 +3574,7 @@ export default defineComponent({
 
 #### 手动控制加载状态
 
-```vue
+``` vue
 <template>
   <div>
     <span>加载状态:</span>
