@@ -238,7 +238,7 @@ protected doPublish() {
 }
 ```
 
-When we call the `doSomething` method in the `Widget2.ts` component, the corresponding subscription method in the `Widget1.ts` component will be executed, and the latest value can be obtained.
+When we call the `doPublish` method in the `Widget2.ts` component, the corresponding subscription method in the `Widget1.ts` component will be executed, and the latest value can be obtained.
 
 `BehaviorSubContext` is almost identical to `SubContext` in usage, with the only difference being that when subscribing for the first time, it will trigger a `subscription function`. This feature is similar to the functionality of the `immediate` property in `watch`.
 

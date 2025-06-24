@@ -238,7 +238,7 @@ protected doPublish() {
 }
 ```
 
-当我们在 `Widget2.ts` 组件中调用 `doSomething` 方法时，`Widget1.ts` 组件中对应的订阅方法就会执行，并且可以获取到最新的值。
+当我们在 `Widget2.ts` 组件中调用 `doPublish` 方法时，`Widget1.ts` 组件中对应的订阅方法就会执行，并且可以获取到最新的值。
 
 `BehaviorSubContext` 与 `SubContext` 在使用方式上几乎完全一样，唯一的区别是，在首次订阅时，会触发一次 `订阅函数` 。这个特性类似于 `watch` 的 `immediate` 属性的功能。
 
