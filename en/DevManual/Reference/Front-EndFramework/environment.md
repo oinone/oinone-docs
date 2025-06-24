@@ -201,7 +201,7 @@ In a Vue project, `main.ts` is a common entry file used to create the framework 
 
 ## (Ⅰ) Basic Usage
 
-```typescript
+``` typescript
 import 'ant-design-vue/dist/antd.min.css';
 import 'element-plus/dist/index.css';
 
@@ -229,7 +229,7 @@ The import of `reflect-metadata` must precede the import of `@oinone/kunlun-depe
 
 ### 1. Enabling RSQL Encrypted Transmission
 
-```typescript
+``` typescript
 VueOioProvider({
   http: {
     encodeRsql: true
@@ -246,7 +246,7 @@ The RSQL encrypted transmission feature must be used in conjunction with the bac
 ### 2. Adding Global Request Header Parameters
 First, let's create a custom header interceptor to add a fixed parameter like `demo: true` to the request headers:
 
-```typescript
+``` typescript
 import { NetworkMiddlewareHandler } from '@oinone/kunlun-dependencies';
 
 export const CustomHeaderMiddleware: NetworkMiddlewareHandler = (operation, forward) => {
@@ -264,7 +264,7 @@ export const CustomHeaderMiddleware: NetworkMiddlewareHandler = (operation, forw
 
 Configure VueOioProvider to activate the interceptor:
 
-```typescript
+``` typescript
 VueOioProvider({
   http: {
     middleware: CustomHeaderMiddleware
