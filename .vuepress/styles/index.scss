@@ -169,6 +169,24 @@
 	}
 }
 
+*:lang(en-US) {
+	.level2 {
+		padding-inline-start: 1rem !important;
+	}
+	.level3 {
+		padding-inline-start: 2rem !important;
+	}
+	.level4 {
+		padding-inline-start: 3rem !important;
+	}
+	.level5 {
+		padding-inline-start: 4rem !important;
+	}
+	.level6 {
+		padding-inline-start: 5rem !important;
+	}
+}
+
 // 主内容
 #main-content.vp-page {
 	// 中心容器
@@ -226,20 +244,17 @@
 				.active a {
 					color: #035dff;
 				}
-				.level2 {
+				.level3 {
 					padding-inline-start: 1rem;
 				}
-				.level3 {
+				.level4 {
 					padding-inline-start: 2rem;
 				}
-				.level4 {
+				.level5 {
 					padding-inline-start: 3rem;
 				}
-				.level5 {
-					padding-inline-start: 4rem;
-				}
 				.level6 {
-					padding-inline-start: 5rem;
+					padding-inline-start: 4rem;
 				}
 
 				.vp-toc-marker {
