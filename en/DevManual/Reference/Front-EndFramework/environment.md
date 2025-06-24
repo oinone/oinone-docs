@@ -194,7 +194,6 @@ Here, the `demo` key matches the parameter defined in the `DemoConfigManager#get
 ``` typescript
 DemoConfigManager.isEnabled()
 ```
-Here is the translated content in English:
 
 # IV. VueOioProvider Entry Configuration
 
@@ -582,7 +581,6 @@ runtimeConfigResolve({
   }
 });
 ```
-Here is the translated content:
 
 ## (Ⅲ) OioProviderProps
 
