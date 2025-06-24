@@ -215,10 +215,22 @@ const subContextSymbol = Symbol('subContext');
 @Widget.SubContext(subContextSymbol)
 protected subContext$!: WidgetSubjection<boolean>;
 
+protected subContextSubscription: Subscription | undefined;
+
 protected doSubject() {
-  this.subContext$.subject.subscribe((value) => {
-    // do something.
+  this.subContextSubscription = this.subContext$.subject.subscribe((value) => {
+    console.log(this.currentHandle, value);
   });
+}
+
+protected mounted() {
+  // 组件挂载时发起订阅
+  this.doSubject();
+}
+
+protected unmounted() {
+  // 组件卸载时取消订阅
+  this.subContextSubscription?.unsubscribe();
 }
 ```
 
