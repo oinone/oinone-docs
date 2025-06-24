@@ -206,7 +206,7 @@ We can conveniently use the `publish/subscribe` mechanism implemented based on `
 Define a `Symbol` constant in `stream.ts` to declare the `key` corresponding to the observer, which will be used in both the "publisher" and "subscriber":
 
 ``` typescript
-const subContextSymbol = Symbol('subContext');
+export const subContextSymbol = Symbol('subContext');
 ```
 
 First, define a "subscriber" component (`Widget1.ts`):

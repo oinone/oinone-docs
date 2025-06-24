@@ -206,7 +206,7 @@ protected watchFormData(newVal: ActiveRecord | undefined, oldVal: ActiveRecord |
 在 `stream.ts` 定义 `Symbol` 常量，用于声明可观测者对应的 `key`，它会分别在 “发布方” 和 “订阅方” 使用：
 
 ``` typescript
-const subContextSymbol = Symbol('subContext');
+export const subContextSymbol = Symbol('subContext');
 ```
 
 先定义一个 “订阅方” 组件（`Widget1.ts`）：
