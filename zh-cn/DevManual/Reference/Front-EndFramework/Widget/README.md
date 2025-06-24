@@ -28,7 +28,7 @@ Oinone Kunlun 框架使用自研的 Widget 框架。它是一个声明式组件�
 
 你可以通过 Widget 框架提供的 `XML` 标签来使用 `Widget` 组件：
 
-```xml
+``` xml
 <field data="code" widget="Input" />
 ```
 
@@ -36,7 +36,7 @@ Oinone Kunlun 框架使用自研的 Widget 框架。它是一个声明式组件�
 
 不仅如此，Widget 组件提供了一系列属性，这些属性仍然是通过 XML 模板进行定义并使用的：
 
-```xml
+``` xml
 <field data="code" widget="Input" maxLength="100" />
 ```
 
@@ -46,7 +46,7 @@ Oinone Kunlun 框架使用自研的 Widget 框架。它是一个声明式组件�
 
 以字段组件为例，我们可以通过 SPI 注册一个特殊的输入框，用它输入的内容将以红色字体展示：（这就是我们在 [Customize a field widget](/zh-cn/DevManual/OperationGuide/customize-a-field-widget.md#三、创建一个新的表单字段组件) 章节中的示例）
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -63,27 +63,27 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 
 我们可以在 Widget 组件中定义一个属性，并通过 `@Widget.Reactive` 装饰器修饰，以此来定义一个响应式变量：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public title: string | undefined;
 ```
 
 这相当于 Vue 框架中使用 `ref` 方法定义变量：
 
-```typescript
+``` typescript
 const title = ref<string | undefined>();
 ```
 
 也可以这样给变量赋予一个默认值：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public title: string = '标题';
 ```
 
 这相当于 Vue 框架中使用 `ref` 方法定义变量并赋予默认值：
 
-```typescript
+``` typescript
 const title = ref<string>('标题');
 ```
 
@@ -91,7 +91,7 @@ const title = ref<string>('标题');
 
 我们可以在 Widget 组件中定义一个 `get` 方法属性，并通过 `@Widget.Reactive` 装饰器修饰，以此来定义一个计算属性：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public get title() {
   return this.getDsl().title || '标题';
@@ -100,7 +100,7 @@ public get title() {
 
 这相当于 Vue 框架中使用 `computed` 方法定义计算属性：
 
-```typescript
+``` typescript
 const title = computed(() => this.getDsl().title || '标题');
 ```
 
@@ -120,7 +120,7 @@ Widget 框架目前还不支持同时定义 `set` 方法属性，计算属性在
 
 我们可以在 Widget 组件中定义一个方法，并通过 `@Widget.Method` 装饰器修饰，以此将其传入 Vue 组件的 `props` 进行使用：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public title: string = '标题';
 
@@ -138,7 +138,7 @@ public setTitle(title: string) {
 
 **父组件**：
 
-```typescript
+``` typescript
 @Widget.Provide()
 @Widget.Reactive()
 public get minWidth(): number | null | undefined {
@@ -148,7 +148,7 @@ public get minWidth(): number | null | undefined {
 
 **子组件**：
 
-```typescript
+``` typescript
 @Widget.Inject('minWidth')
 @Widget.Reactive()
 public parentMinWidth: number | null | undefined;
@@ -175,7 +175,7 @@ Widget 组件使用的 Provide / Inject 是基于 Vue 实现的。它与 Vue 依
 
 我们可以在 Widget 组件中使用 `@Widget.Watch` 装饰器修饰方法，用于实现对响应式属性变化的监听。例如在表单中我们可以监听编码变化进行一些处理：
 
-```typescript
+``` typescript
 @Widget.Watch('formData.code')
 protected watchCode(newVal: string | null | undefined, oldVal: string | null | undefined) {
   // do something.
@@ -184,7 +184,7 @@ protected watchCode(newVal: string | null | undefined, oldVal: string | null | u
 
 与 Vue 的 watch 方法类似，@Widget.Watch 同样提供了 `deep` 和 `immediate` 属性支持。例如在表单中监听任意数据变化进行一些处理：
 
-```typescript
+``` typescript
 @Widget.Watch('formData', { deep: true, immediate: true })
 protected watchFormData(newVal: ActiveRecord | undefined, oldVal: ActiveRecord | undefined) {
   // do something.
@@ -205,14 +205,14 @@ protected watchFormData(newVal: ActiveRecord | undefined, oldVal: ActiveRecord |
 
 在 `stream.ts` 定义 `Symbol` 常量，用于声明可观测者对应的 `key`，它会分别在 “发布方” 和 “订阅方” 使用：
 
-```typescript
+``` typescript
 const subContextSymbol = Symbol('subContext');
 ```
 
 先定义一个 “订阅方” 组件（`Widget1.ts`）：
 
-```typescript
-@Widget.(subContextSymbol)
+``` typescript
+@Widget.SubContext(subContextSymbol)
 protected subContext$!: WidgetSubjection<boolean>;
 
 protected doSubject() {
@@ -224,7 +224,7 @@ protected doSubject() {
 
 再定义一个 “发布方” 组件（`Widget2.ts`）：
 
-```typescript
+``` typescript
 @Widget.SubContext(subContextSymbol)
 protected subContext$!: WidgetSubjection<boolean>;
 
@@ -253,7 +253,7 @@ Widget 框架使用 `TypeScript Class` 定义组件，天生具备 `面向对象
 
 以 `RedInput` 组件为例，若需调整输入内容的字体样式，而内置组件未提供此功能，可以通过 `继承` 父组件 `FormStringFieldSingleWidget` ，在保留原有功能的基础上，针对性地扩展字体样式定制逻辑。
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,

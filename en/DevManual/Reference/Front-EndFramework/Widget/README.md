@@ -19,8 +19,8 @@ The Oinone Kunlun framework uses a self-developed Widget framework. It is a decl
 
 It is important to note that part of the article uses `Widget` as the component, and part uses `Component` as the component. In the Widget framework, these two concepts are clearly distinguished.
 
-+ Widget component: Refers to components defined through `TypeScript Class`.
-+ Component component: The actual rendering component bound to `TypeScript Class`. In components implemented using the `Vue` framework, it usually refers to `Vue` components.
++ Widget: Refers to components defined through `TypeScript Class`.
++ Component: The actual rendering component bound to `TypeScript Class`. In components implemented using the `Vue` framework, it usually refers to `Vue` components.
 
 :::
 
@@ -28,7 +28,7 @@ It is important to note that part of the article uses `Widget` as the component,
 
 You can use `Widget` components through the `XML` tags provided by the Widget framework:
 
-```xml
+``` xml
 <field data="code" widget="Input" />
 ```
 
@@ -36,7 +36,7 @@ This example shows that Widget components only need to be defined and used throu
 
 Moreover, Widget components provide a series of attributes, which are still defined and used through XML templates:
 
-```xml
+``` xml
 <field data="code" widget="Input" maxLength="100" />
 ```
 
@@ -46,7 +46,7 @@ This example attribute will limit the number of `characters` that can be entered
 
 Taking field components as an example, we can register a special input box via SPI, where the entered content will be displayed in red font: (This is the example in the [Customize a field widget](/en/DevManual/OperationGuide/customize-a-field-widget.md#iii-creating-a-new-form-field-widget) section)
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -63,27 +63,27 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 
 We can define a property in a Widget component and decorate it with the `@Widget.Reactive` decorator to define a reactive variable:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public title: string | undefined;
 ```
 
 This is equivalent to defining a variable using the `ref` method in the Vue framework:
 
-```typescript
+``` typescript
 const title = ref<string | undefined>();
 ```
 
 We can also assign a default value to the variable:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public title: string = 'Title';
 ```
 
 This is equivalent to defining a variable with a default value using the `ref` method in the Vue framework:
 
-```typescript
+``` typescript
 const title = ref<string>('Title');
 ```
 
@@ -91,7 +91,7 @@ const title = ref<string>('Title');
 
 We can define a `get` method property in a Widget component and decorate it with the `@Widget.Reactive` decorator to define a computed property:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public get title() {
   return this.getDsl().title || 'Title';
@@ -100,7 +100,7 @@ public get title() {
 
 This is equivalent to defining a computed property using the `computed` method in the Vue framework:
 
-```typescript
+``` typescript
 const title = computed(() => this.getDsl().title || 'Title');
 ```
 
@@ -120,7 +120,7 @@ The Widget framework currently does not support defining `set` method properties
 
 We can define a method in a Widget component and decorate it with the `@Widget.Method` decorator to pass it into the `props` of a Vue component for use:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public title: string = 'Title';
 
@@ -138,7 +138,7 @@ For example, for the design of the minimum width property, we can configure the 
 
 **Parent Component**:
 
-```typescript
+``` typescript
 @Widget.Provide()
 @Widget.Reactive()
 public get minWidth(): number | null | undefined {
@@ -148,7 +148,7 @@ public get minWidth(): number | null | undefined {
 
 **Child Component**:
 
-```typescript
+``` typescript
 @Widget.Inject('minWidth')
 @Widget.Reactive()
 public parentMinWidth: number | null | undefined;
@@ -175,7 +175,7 @@ For more content on Provide / Inject, please refer to: [Vue Dependency Injection
 
 We can use the `@Widget.Watch` decorator to modify methods in Widget components to implement listening for changes in reactive properties. For example, in a form, we can listen for changes in the code and perform some processing:
 
-```typescript
+``` typescript
 @Widget.Watch('formData.code')
 protected watchCode(newVal: string | null | undefined, oldVal: string | null | undefined) {
   // do something.
@@ -184,7 +184,7 @@ protected watchCode(newVal: string | null | undefined, oldVal: string | null | u
 
 Similar to Vue's watch method, `@Widget.Watch` also provides support for `deep` and `immediate` properties. For example, listening for any data changes in a form and performing some processing:
 
-```typescript
+``` typescript
 @Widget.Watch('formData', { deep: true, immediate: true })
 protected watchFormData(newVal: ActiveRecord | undefined, oldVal: ActiveRecord | undefined) {
   // do something.
@@ -205,14 +205,14 @@ We can conveniently use the `publish/subscribe` mechanism implemented based on `
 
 Define a `Symbol` constant in `stream.ts` to declare the `key` corresponding to the observer, which will be used in both the "publisher" and "subscriber":
 
-```typescript
+``` typescript
 const subContextSymbol = Symbol('subContext');
 ```
 
 First, define a "subscriber" component (`Widget1.ts`):
 
-```typescript
-@Widget.(subContextSymbol)
+``` typescript
+@Widget.SubContext(subContextSymbol)
 protected subContext$!: WidgetSubjection<boolean>;
 
 protected doSubject() {
@@ -224,7 +224,7 @@ protected doSubject() {
 
 Then define a "publisher" component (`Widget2.ts`):
 
-```typescript
+``` typescript
 @Widget.SubContext(subContextSymbol)
 protected subContext$!: WidgetSubjection<boolean>;
 
@@ -253,7 +253,7 @@ Through `inheritance`, you can obtain all the properties, methods, and functions
 
 Taking the `RedInput` component as an example, if you need to adjust the font style of the input content and the built-in component does not provide this functionality, you can `inherit` from the parent component `FormStringFieldSingleWidget` to extend the font style customization logic while retaining the original functionality.
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
