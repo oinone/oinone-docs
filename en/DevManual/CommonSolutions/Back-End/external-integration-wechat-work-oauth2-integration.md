@@ -326,5 +326,5 @@ public Set<Long> get() {
 ```
 
 # Ⅵ、Source Code Download
-+ Enterprise WeChat Docking Example Code Package [Enterprise WeChat Docking Example.zip](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/%E4%BC%81%E5%BE%AE%E5%BE%AE%E4%BF%A1%E5%AF%B9%E6%8E%A5%E7%A4%BA%E4%BE%8B.zip)
-+ Runtime Dynamic Permission Granting for Third-Party Users [ThirdPartyRoleCustom.java](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/ThirdPartyRoleCustom.java)
++ Enterprise WeChat Docking Example Code Package [Enterprise WeChat Docking Example.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/%E4%BC%81%E5%BE%AE%E5%BE%AE%E4%BF%A1%E5%AF%B9%E6%8E%A5%E7%A4%BA%E4%BE%8B.zip)
++ Runtime Dynamic Permission Granting for Third-Party Users [ThirdPartyRoleCustom.java](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/ThirdPartyRoleCustom.java)

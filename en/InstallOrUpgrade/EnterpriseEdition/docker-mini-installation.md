@@ -93,7 +93,7 @@ mkdir oinone
 cd oinone
 ```
 
-+ Download the structure package [oinone-op-ds-all-mini.zip](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/oinone-op-ds-all-mini.zip) locally, unzip it, and upload the structure package from the local computer to the server
++ Download the structure package [oinone-op-ds-all-mini.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/oinone-op-ds-all-mini.zip) locally, unzip it, and upload the structure package from the local computer to the server
 
 ```plain
 # Upload structure package from local computer

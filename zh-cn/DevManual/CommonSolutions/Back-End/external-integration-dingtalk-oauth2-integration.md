@@ -373,9 +373,6 @@ public Set<Long> get() {
 ```
 
 # 六、源代码下载
-+ 对接钉钉免登示例[DingTalkHelper.java](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/DingTalkHelper.java)
-+ 初始化 DingTalk Client [DingTalkAuthController.java](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/DingTalkAuthController.java)
-+ 三方用户运行时动态赋权[ThirdPartyRoleCustom.java](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/ThirdPartyRoleCustom%20(1).java)
-
-
-
++ 对接钉钉免登示例[DingTalkHelper.java](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/DingTalkHelper.java)
++ 初始化 DingTalk Client [DingTalkAuthController.java](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/DingTalkAuthController.java)
++ 三方用户运行时动态赋权[ThirdPartyRoleCustom.java](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/ThirdPartyRoleCustom.java)
