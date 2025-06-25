@@ -326,8 +326,8 @@ public Set<Long> get() {
 ```
 
 # 六、源代码下载
-+ 企微对接示例代码包[企微微信对接示例.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/zip/751600/1746696522151-6afb014b-69d7-4bd4-927d-0486ef79c257.zip)
-+ 三方用户运行时动态赋权[ThirdPartyRoleCustom.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746696590436-5d7fe764-32b0-4708-8f91-b22f6684ed68.java)
++ 企微对接示例代码包[企微微信对接示例.zip](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/%E4%BC%81%E5%BE%AE%E5%BE%AE%E4%BF%A1%E5%AF%B9%E6%8E%A5%E7%A4%BA%E4%BE%8B.zip)
++ 三方用户运行时动态赋权[ThirdPartyRoleCustom.java](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/ThirdPartyRoleCustom.java)
 
 
 

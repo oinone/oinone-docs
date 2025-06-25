@@ -106,7 +106,7 @@ Windows平台启动器切换为：win-boot.exe
 :::
 
 ## （三）修改配置文件 config目录下的application.yml文件
-下载[application.yml](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/yml/317547/1741586195436-500e2115-7920-4b7a-9404-a24d85a7ff8a.yml)文件到指定位置如：$home/oinone/config/目录下，并做对应修改。
+下载[application.yml](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/application.yml)文件到指定位置如：$home/oinone/config/目录下，并做对应修改。
 
 如果Mysql、Zookeeper、Redis、RocketMQ不在一个宿主机中，在文件中找到如下代码，修改IP、端口、用户名以及密码等配置项
 

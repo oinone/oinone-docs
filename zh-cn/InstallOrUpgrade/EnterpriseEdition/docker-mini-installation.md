@@ -93,7 +93,7 @@ mkdir oinone
 cd oinone
 ```
 
-+ 本地下载结构包[oinone-op-ds-all-mini.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/zip/324864/1749714397061-53fc8e46-f7b3-4ba6-9d7d-b1ba71df95a7.zip)，解压后从本地电脑上传结构包到服务器
++ 本地下载结构包[oinone-op-ds-all-mini.zip](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/oinone-op-ds-all-mini.zip)，解压后从本地电脑上传结构包到服务器
 
 ```plain
 #本地电脑上传结构包

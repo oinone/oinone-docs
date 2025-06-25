@@ -94,7 +94,7 @@ mkdir oinone
 cd oinone
 ```
 
-+ Download the structure package [oinone-op-ds-all-full.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/zip/324864/1749714379891-ca0231e5-2d29-4e7f-ad52-f0a4eb920f78.zip) locally, unzip it, and upload the structure package from the local computer to the server
++ Download the structure package [oinone-op-ds-all-full.zip](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/oinone-op-ds-all-full.zip) locally, unzip it, and upload the structure package from the local computer to the server
 
 ```plain
 # Upload structure package from local computer

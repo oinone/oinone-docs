@@ -106,7 +106,7 @@ The Windows platform launcher is switched to: win-boot.exe
 :::
 
 ## (III) Modify the application.yml File in the config Directory
-Download the [application.yml](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/yml/317547/1741586195436-500e2115-7920-4b7a-9404-a24d85a7ff8a.yml) file to the specified location, such as the $home/oinone/config/ directory, and make corresponding modifications.
+Download the [application.yml](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/application.yml) file to the specified location, such as the $home/oinone/config/ directory, and make corresponding modifications.
 
 If Mysql, Zookeeper, Redis, and RocketMQ are not on the same host, find the following code in the file and modify the IP, port, username, password, and other configuration items.
 

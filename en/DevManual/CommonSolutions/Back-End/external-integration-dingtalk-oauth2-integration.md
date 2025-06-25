@@ -372,6 +372,6 @@ public Set<Long> get() {
 ```
 
 # Ⅵ. Source Code Download
-+ DingTalk single sign-on example [DingTalkHelper.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746686113690-ffe1f79d-2293-483f-9979-74ff51f0f1b5.java)
-+ Initialize DingTalk Client [DingTalkAuthController.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746686113489-e7f6518d-67f3-46e7-a9d2-700ceed6d610.java)
-+ Runtime dynamic permission granting for third-party users [ThirdPartyRoleCustom.java](https://gounixiangxiang.yuque.com/attachments/yuque/0/2025/java/751600/1746687938679-869c1dbf-58c8-47e6-b28e-2b6daad3a428.java)
++ DingTalk single sign-on example [DingTalkHelper.java](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/DingTalkHelper.java)
++ Initialize DingTalk Client [DingTalkAuthController.java](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/DingTalkAuthController.java)
++ Runtime dynamic permission granting for third-party users [ThirdPartyRoleCustom.java](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/ThirdPartyRoleCustom%20(1).java)
