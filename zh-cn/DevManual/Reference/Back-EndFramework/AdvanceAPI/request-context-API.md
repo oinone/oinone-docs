@@ -275,7 +275,61 @@ ModelConfig testModel = context.getModelConfig(TestModel.MODEL_MODEL);
 Function userFunction = context.getFunction("pamirs", "userLogin");
 ```
 
-## （二）扩展PamirsSession
+## （二）扩展PamirsSession 使用 SessionInitApi 接口
+
+`SessionInitApi` 是一个专门用于请求会话初始化的Api接口
+
+### 1、实现SessionInitApi接口
+
+创建一个实现类来在session初始化时添加部门信息：
+
+```java
+@Component  
+public class DepartmentSessionInitApi implements SessionInitApi {  
+
+    @Override  
+    public void init(HttpServletRequest request, String moduleName, PamirsRequestParam requestParam) {  
+        // 获取当前用户部门信息  
+        String departmentCode = getCurrentUserDepartmentCode();  
+        if (StringUtils.isNotBlank(departmentCode)) {  
+            // 添加到session的transmittableExtend中  
+            PamirsSession.getTransmittableExtend().put("departmentCode", departmentCode);  
+        }  
+    }  
+
+    private String getCurrentUserDepartmentCode() {  
+        // 使用现有的部门获取逻辑  
+        Long userId = PamirsSession.getUserId();  
+        if (userId == null) {  
+            return null;  
+        }  
+        // 查询用户部门逻辑...  
+        return departmentCode;  
+    }  
+}
+```
+
+### 2、自动调用机制
+
+`SessionInitApi` 会在session准备过程中自动被调用。在 `SessionPrepareTemplate` 的 `after` 方法中： SessionPrepareTemplate.java:96-100
+
+系统会自动加载所有 `SessionInitApi` 的实现并按顺序执行。
+
+### 3、Session数据持久化
+
+部门信息会通过 `Sessions.fetchSessionMap()` 和 `*Sessions.fillSessionFromMap()` 方法进行序列化和反序列化： Sessions.java:237-238
+
+这样部门信息就会在整个session生命周期中保持可用。
+
+### 4、优势
+
+使用 `SessionInitApi` 的优势：
+
++ **自动执行**：在每次请求session初始化时自动调用
++ **扩展性好**：支持多个实现类，按顺序执行
++ **集成度高**：与现有session管理机制完全集成
+  
+## （三）自定义业务Session
 
 ### 1、扩展场景说明
 
