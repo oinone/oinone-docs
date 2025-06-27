@@ -215,16 +215,12 @@ Node.js version management tool, which supports installing, switching, and manag
 
 :::info Note
 
-For the settings file of the community version mvn, please refer to the announcement in the Oinone open source community group.
-
-For the settings of the enterprise version mvn, please contact Oinone staff.
+For the enterprise version of mvn settings, please contact the Shushi Oinone assistant.
 
 :::
 
 :::info Note
 
-For the source configuration of the community version npm, please refer to the announcement in the Oinone open source community group.
-
-For the source configuration of the enterprise version npm, please contact Oinone staff.
+For the enterprise version of npm source configuration, please contact the Shushi Oinone assistant.
 
 :::

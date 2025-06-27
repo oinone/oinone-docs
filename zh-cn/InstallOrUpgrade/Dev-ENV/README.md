@@ -215,17 +215,13 @@ Node.js 版本管理工具，支持在同一设备上安装、切换和管理多
 
 :::info 注意
 
-社区版mvn的settings文件，见数式Oinone开源社区群公告
-
-企业版mvn的settings，请找数式Oinone的员工
+企业版mvn的settings，请找数式Oinone小助手
 
 :::
 
 :::info 注意
 
-社区版npm的源配置，见数式Oinone开源社区群公告
-
-企业版npm的源配置，请找数式Oinone的员工
+企业版npm的源配置，请找数式Oinone小助手
 
 :::
 
