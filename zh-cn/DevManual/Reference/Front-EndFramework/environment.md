@@ -549,9 +549,10 @@ runtimeConfigResolve({
 
 ### 7、实验性配置（ExperimentalConfig）
 
-| **参数名** | **类型** | **默认值** | **描述** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `buildQueryCondition` | string | - | buildQueryCondition 方法版本；目前仅有 next 和非 next 两个版本 |
+| **参数名**               | **类型** | **描述**                                                                                                                                 |
+|:----------------------|:-------|:---------------------------------------------------------------------------------------------------------------------------------------|
+| `buildQueryCondition` | string | 设置为 next 使用新版搜索条件构建方式<br>旧版：构建搜索条件时，关联关系字段不判断是否存储，全部加入到 rsql 中。<br>新版：构建搜索条件时，关联关系字段根据字段元数据是否存储判断是否将其加入到 rsql 中，非存储字段将加入到 queryData 中。 |
+| `AddressWidget`       | string | 设置为 next 使用新版地址组件<br>旧版：使用 ResourceCountry、ResourceProvince、ResourceCity 等模型进行地址的查询和回填。<br>新版：使用 ResourceRegion 模型进行地址的查询和回填。          |
 
 
 **使用示例**
@@ -559,7 +560,8 @@ runtimeConfigResolve({
 ``` typescript
 runtimeConfigResolve({
   experimental: {
-    buildQueryCondition: 'next'
+    buildQueryCondition: 'next',
+    AddressWidget: 'next'
   }
 });
 ```

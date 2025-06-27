@@ -550,9 +550,10 @@ runtimeConfigResolve({
 
 ### 7. Experimental Configuration (ExperimentalConfig)
 
-| **Parameter Name** | **Type** | **Default Value** | **Description** |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `buildQueryCondition` | string | - | buildQueryCondition method version; currently has next and non-next versions |
+| **Parameter Name**    | **Type** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|:----------------------|:-----------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `buildQueryCondition` | string | Set to use the new version of search criteria construction method for next<br>Old version: When constructing search criteria, the association relationship fields are not judged whether they are stored or not, and are all added to RSQL. <br>New version: When building search criteria, the association relationship field will be added to rsql based on whether the field metadata is stored, and non stored fields will be added to queryData. |
+| `AddressWidget`       | string | Set to use the new address component for next<br>Old version: Use models such as ResourceCountry, ResourceProvince, and ResourceCity for address queries and backfilling. <br>New version: Use the ResourceRegion model for address queries and backfilling.                                                                                                                                                                                          |
 
 
 **Usage Example**
@@ -560,7 +561,8 @@ runtimeConfigResolve({
 ``` typescript
 runtimeConfigResolve({
   experimental: {
-    buildQueryCondition: 'next'
+    buildQueryCondition: 'next',
+    AddressWidget: 'next'
   }
 });
 ```
