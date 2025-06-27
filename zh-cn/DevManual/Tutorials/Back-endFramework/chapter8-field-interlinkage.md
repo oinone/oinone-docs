@@ -28,7 +28,7 @@ order: 8
 
 例如，为了在我们的`expenses.TestModel` 模型添加字段`partnerType`，并对字段 `partners` 设置其 `domain` 属性：
 
-```java
+``` java
 @Field.Enum
 @Field(displayName = "伙伴类型")
 @UxForm.FieldWidget(@UxWidget(config = {@Prop(name = "clearFields",value = "partners")}))
@@ -84,12 +84,13 @@ private List<PamirsPartner> partners;
 
 例如，为了在我们的`expenses.TestModel` 模型及其表单视图中添加字段`computeName`，并设置其 `compute` 属性或表单视图上配置`compute` 属性：
 
-```xml
-@Field(displayName = "计算字段", compute = "activeRecord.name")
+``` java
+@Field(displayName = "计算字段")
+@UxForm.FieldWidget(@UxWidget(config = {@Prop(name = "compute",value = "activeRecord.name")}))
 private String computeName;
 ```
 
-```xml
+``` xml
 <field data="computeName" label="计算字段" compute="activeRecord.name"/>
 ```
 
@@ -99,7 +100,7 @@ private String computeName;
 
 然而，倘若`computeName`字段本身也需要支持用户进行修改操作，也就是说`computeName`仅仅是将`name`字段的值作为一个默认值来使用的话。
 
-此时，只需将计算逻辑修改为`activeRecord.computeName?activeRecord.computeName:activeRecord.name`即可。
+此时，只需将计算逻辑修改为`activeRecord.computeName ? activeRecord.computeName : activeRecord.name`即可。
 
 :::
 
@@ -130,7 +131,7 @@ private String computeName;
 
 `constructFun` 机制为客户端界面提供了一种方式，使得每当用户填写了一个字段值时，无需将任何内容保存到数据库，就可以更新表单。为了实现这一点，在给定字段上增加了Ux注解并指定`constructFun` 的值为我们定义的一个方法，其中 入参`data` 表示表单视图中的记录，并使用 `@Function(openLevel ={FunctionOpenEnum.API})` 来指定该方法可以由前端发起调用。对 `data` 所做的任何更改都会反映在表单上：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.boot.base.ux.annotation.field.UxWidget;
