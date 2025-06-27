@@ -48,8 +48,8 @@ public AuthRole queryOne(AuthRole query) {
 @Action.Advanced(type = FunctionTypeEnum.UPDATE)
 public Teacher dataStatus(Teacher data) {}
 
-@Function(displayName = "Construct", openLevel = FunctionOpenEnum.API)
-@Function.Advanced(type = FunctionTypeEnum.QUERY)
+@Function
+@Function.Advanced(displayName = "Construct", type = FunctionTypeEnum.QUERY)
 public Teacher constructAll(Teacher data) {}
 ```
 
