@@ -10,7 +10,7 @@ prev:
 ---
 # 一、Oinone 6 社区版
 
-[Oinone 6 社区版采用AGPL 版本 3](http://www.gnu.org/licenses/agpl-3.0.en.html)（也称为 AGPLv3）许可。另请参阅[GPL 常见问题解答](http://www.gnu.org/licenses/gpl-faq.en.html)和[兼容性矩阵](http://www.gnu.org/licenses/gpl-faq.en.html%23AllCompatibility)。
+[Oinone 6 社区版采用AGPL 版本 3](http://www.gnu.org/licenses/agpl-3.0.en.html)（也称为 AGPLv3）许可。另请参阅[GPL 常见问题解答](http://www.gnu.org/licenses/gpl-faq.en.html)和[兼容性矩阵](https://www.gnu.org/licenses/gpl-faq.en.html#AllCompatibility)。
 
 # 二、Oinone 企业版
 

@@ -10,7 +10,7 @@ prev:
 ---
 # I. Oinone 6 Community Edition  
 
-The Oinone 6 Community Edition is licensed under the Affero General Public License (AGPL) Version 3.0. For details, please refer to the [AGPLv3 official document](http://www.gnu.org/licenses/agpl-3.0.en.html), [GPL FAQ](http://www.gnu.org/licenses/gpl-faq.en.html), and [Compatibility Matrix](http://www.gnu.org/licenses/gpl-faq.en.html%23AllCompatibility).  
+The Oinone 6 Community Edition is licensed under the Affero General Public License (AGPL) Version 3.0. For details, please refer to the [AGPLv3 official document](http://www.gnu.org/licenses/agpl-3.0.en.html), [GPL FAQ](http://www.gnu.org/licenses/gpl-faq.en.html), and [Compatibility Matrix](https://www.gnu.org/licenses/gpl-faq.en.html#AllCompatibility).  
 
 
 # II. Oinone Enterprise Edition  
