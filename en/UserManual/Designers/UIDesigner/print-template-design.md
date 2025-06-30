@@ -37,12 +37,35 @@ Drag the data to the corresponding area in the canvas design area.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Print%20Template%20Design/sjyxx.gif)
 
-# III. Canvas Design Area
+# 3. Canvas Design Area
 ### 1. Function Introduction
-When data is added to the design canvas area, a default style will be automatically generated. Users can select any data and perform detailed configuration on it in the toolbar above.
+When data is added to the design canvas area, a default style will be automatically generated. Users can select any data and configure it in detail using the toolbar above.
 
-### 2. Operation Method
+When a many-to-many field is dragged in, the system will automatically generate a sub-form. Clicking on the sub-form area allows you to edit it. By default, the sub-form contains 5 fields (taken from the first 5 fields under the many-to-many relationship of the left data source).
+
+:::info Note
+
++ If you need to expand the sub-form area, the values of the original cells within the expanded range will be cleared; if the expanded area overlaps with another sub-form area, this expansion will be invalid.
++ If you need to shrink the sub-form area, the shrinking range will clear the values of cells that are not within the current range.
+
+:::
+
+### 2. Operation Methods
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Print%20Template%20Design/hb.png)
+
+The sub-form area is equipped with two function buttons:
+
++ **Select Sub-form**: After clicking, the property panel on the right will switch to the sub-form property display interface.
++ **Delete**: After clicking, the entire sub-form will be removed.
+
+:::info Note
+
++ Fields under cascading fields are not allowed to be dragged into non-sub-form cells; and the content in the sub-form cannot be copied to outside the sub-form area, otherwise the print template cannot be published successfully.
++ Fields under non-cascading fields are also not allowed to be dragged into the sub-form.
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/1751282269018-f4a7227e-2540-4506-9b96-dc4cd8343b59.png)
 
 # IV. Property Panel
 ### 1. Function Introduction
