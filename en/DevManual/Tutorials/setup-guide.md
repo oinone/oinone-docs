@@ -100,6 +100,11 @@ That's it! Now your environment is ready to run Oinone from the source code, and
 
 </div>
 
+:::warning Tip
+
+When installing the plugin, select the .zip file without unzipping it.
+
+:::
 
 ## (Ⅱ) DB GUI Tool
 Many people like to use Datagrip, MySQLWorkbench, DBEaver for database management tools. You can choose one according to your preference.

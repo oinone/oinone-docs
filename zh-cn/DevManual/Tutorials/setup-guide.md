@@ -100,6 +100,11 @@ git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorial
 
 </div>
 
+:::warning 提示
+
+安装插件的时候，选择.zip文件，不需要解压
+
+:::
 
 ## （二）DB GUI工具
 数据库管理工具很多人喜欢用Datagrip、MySQLWorkbench、DBEaver，你可以根据自己喜好选择一款。
