@@ -262,6 +262,12 @@ pamirs:
 
 :::
 
+:::danger 警告
+
+如果启动报错，请优先检查数据库安装是否正确，[数据库配置常见问题](/zh-cn/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+
+:::
+
 一切都没问题了吗？如果是，那么让我们来创建我们的第一个模型吧！
 
 

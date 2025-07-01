@@ -265,4 +265,10 @@ The default administrator login account and password are: admin\admin.
 
 :::
 
+:::danger Warning
+
+If a startup error occurs, please first check whether the database installation is correct. [Common Issues with Database Configuration](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+
+:::
+
 Is everything okay? If so, let's create our first model!
