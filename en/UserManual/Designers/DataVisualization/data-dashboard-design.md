@@ -112,6 +112,14 @@ It supports configuring styles for components, including the data dashboard, cha
 
 + Data Dashboard: When setting the data dashboard, you can set the width and height of the screen, background color, background image, and theme.
     - Width and Height: Set according to the screen size where the data dashboard needs to be displayed.
+    :::info Note
+
+    To ensure that the designed data dashboard can be fully displayed on the screen (achieving a full-screen effect), it is necessary to set reasonable screen width and height parameters.   
+    It is particularly important to note that the screen width and height values need to be divided by the device pixel ratio (DPR, i.e., Device Pixel Ratio); otherwise, display abnormalities may occur.
+
+    For example, when needing to fully display a data dashboard on a screen with a resolution of 2880×1800 (DPR=2), the actual screen width and height should be set to 1440×900 to ensure the image properly fills the screen.
+
+    :::
     - Background Color: Adjust the background color when the data dashboard has no image background.
     - Background Image: Support uploading an image as the background for the data dashboard.
     - Theme Template: You can choose any one of the templates, but please make sure to select the template before starting the design work.
