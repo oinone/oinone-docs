@@ -233,7 +233,7 @@ public class ExpensesModule implements PamirsModule {
 :::
 
 ## （三）配置启动工程的YAML文件
-在 `trutorials-boot`  工程的 `src/main/resource/config` 目录下提供的 `application-dev.yml` 配置文件中添加与 `expenses` 模块相关的配置。在 `pamirs.boot.modules` 列表里引入`expenses` 模块，同时在 `pamirs.framework.data.ds-map` 中也有对应的数据源映射。
+在 `trutorials-boot`  工程的 `src/main/resource/config` 目录下提供的 `application-dev.yml` 配置文件中添加与 `expenses` 模块相关的配置。在 `pamirs.boot.modules` 列表里追加引入`expenses` 模块，同时在 `pamirs.framework.data.ds-map` 中也追加对应的数据源映射。
 
 ```java
 pamirs:

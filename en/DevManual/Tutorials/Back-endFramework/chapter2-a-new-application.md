@@ -236,7 +236,7 @@ The module package path is returned by the `packagePrefix` method. If different 
 
 
 ## (III) Configure the Startup Project's YAML File
-Add configurations related to the `expenses` module in the `application-dev.yml` configuration file provided in the `src/main/resource/config` directory of the `trutorials-boot` project. Introduce the `expenses` module in the `pamirs.boot.modules` list and add the corresponding data source mapping in `pamirs.framework.data.ds-map`.
+Add configurations related to the `expenses` module to the `application-dev.yml` configuration file provided in the `src/main/resource/config` directory of the `trutorials-boot` project. Append the `expenses` module to the `pamirs.boot.modules` list, and also add the corresponding data source mapping in `pamirs.framework.data.ds-map`.
 
 ```java
 pamirs:
