@@ -258,4 +258,15 @@ Caused by: java.sql.SQLException: The server time zone value 'й ʱ' is unrecogn
 :::
 
 
+如何验证default-time-zone参数是否生效？登录 MySQL 后，执行以下 SQL 命令：
+
+```sql
+SELECT @@global.time_zone, @@session.time_zone;
+```
+
+#### **预期结果**
+
++ 若配置成功，`@@global.time_zone` 会显示你设置的值（如 `'+8:00'` 或 `'Asia/Shanghai'`）。
++ `@@session.time_zone` 通常显示 `SYSTEM`（表示使用全局设置），或者显示与全局时区相同的值。
+
 

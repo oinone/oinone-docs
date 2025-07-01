@@ -262,3 +262,14 @@ Caused by: java.sql.SQLException: The server time zone value 'й ʱ' is unrecogn
 ```
 
 :::
+
+How to verify if the `default-time-zone` parameter has taken effect? After logging into MySQL, execute the following SQL command:
+
+```sql
+SELECT @@global.time_zone, @@session.time_zone;
+```
+
+#### **Expected Results**
+
++ If the configuration is successful, `@@global.time_zone` will display the value you set (such as `'+8:00'` or `'Asia/Shanghai'`).
++ `@@session.time_zone` usually displays `SYSTEM` (indicating that the global setting is used) or a value consistent with the global time zone.
