@@ -6,7 +6,7 @@ category:
   - Reference
   - Front-EndFramework
   - Services
-order: 10
+order: 11
 next:
   text: User & Business API
   link: /en/DevManual/Reference/StandardModule/user-business-API.md
