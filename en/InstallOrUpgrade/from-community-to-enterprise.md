@@ -89,6 +89,12 @@ Upgrade dependencies for business applications:
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-auth3-ee-rbac-view</artifactId>
 </dependency>
+
+<!-- Startup acceleration -->
+<dependency>
+    <groupId>pro.shushi.pamirs.framework</groupId>
+    <artifactId>pamirs-framework-turbo-ee</artifactId>
+</dependency>
 ```
 
 

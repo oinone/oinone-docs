@@ -89,6 +89,12 @@ prev:
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-auth3-ee-rbac-view</artifactId>
 </dependency>
+
+<!-- 启动加速 -->
+<dependency>
+    <groupId>pro.shushi.pamirs.framework</groupId>
+    <artifactId>pamirs-framework-turbo-ee</artifactId>
+</dependency>
 ```
 
 
