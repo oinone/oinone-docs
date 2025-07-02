@@ -1377,7 +1377,7 @@ Conveniently configure field code generation rules via the `@Field.Sequence` ann
 ```plsql
 @Field.String
 @Field(displayName = "Code", unique = true)
-@Field.Sequence(sequence = "SEQ", prefix = "C", size = 5, step = 1, initial = 10000)
+@Field.Sequence(sequence = SequenceNameConstants.SEQ, prefix = "C", size = 5, step = 1, initial = 10000)
 private String code;
 ```
 
@@ -1388,7 +1388,7 @@ At the model level, code generators can also be defined via `@Model.Code`. Note 
 :::
 
 ```java
-@Model.Code(sequence = "DATE_ORDERLY_SEQ", prefix = "P", size = 6, step = 1, initial = 10000, format = "yyyyMMdd")
+@Model.Code(sequence = SequenceNameConstants.DATE_ORDERLY_SEQ,prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
 public class TestModel extends CodeModel {}
 ```
 
