@@ -154,6 +154,14 @@ Refer to [MySQL Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL
   </tbody>
 </table>
 
+:::warning Tip: Differences between `oinone-backend-starter.git` and `oinone-backend-tutorials.git`:
+
+1. `starter` depends on all `oinone` modules, while `tutorials` depends on some modules.
+2. `starter` requires `mysql`, `redis`, `zookeeper`, and `mq`; `tutorials` depends on `mysql` and `redis`, and other components will be gradually introduced when new features are added later.
+3. Examples may be added to `oinone-backend-tutorials` in the future. Currently, we are quite hesitant about whether to include examples from the tutorials. The original intention of not adding examples now is to encourage learners to actually do it themselves.
+
+:::
+
 # Ⅴ. Obtain the Source Code
 
 There are two ways to acquire the source code of Shushi Oinone: download the ZIP package or use Git. This documentation focuses on Git.

@@ -151,6 +151,14 @@ next:
   </tbody>
 </table>
 
+:::warning 提示：`oinone-backend-starter.git`与`oinone-backend-tutorials.git`的区别：
+
+1. `starter` 依赖所有`oinone`模块，`tutorials`依赖部分模块
+2. `starter` 需要 `mysql`、`redis`、`zookeeper`、`mq`，`tutorials`依赖 `mysql`、`redis`后续增加功能时再逐步引入。
+3. 未来在`oinone-backend-tutorials`里可能会加例子。目前我们比较纠结要不要把教程中的例子加进去。之所以现在不加例子的初心，是想让学习的人真正动手做一下。
+
+:::
+
 # 五、获取源
 获取数式Oinone的源代码有两种方式：ZIP **压缩包** 或通过**Git**。这里介绍Git为主
 
