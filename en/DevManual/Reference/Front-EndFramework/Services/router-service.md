@@ -11,7 +11,7 @@ order: 3
 ---
 In any web application, a routing system is an essential component. In Oinone Kunlun, in addition to the single-page application routing under the `/page` route implemented through the `navigation action (ViewAction)`, it also provides other independent routing pages such as the login page (`/login`) and the forgot password page (`/forget`).
 
-# 1. Built-in Routes
+# Ⅰ. Built-in Routes
 
 Oinone has built-in some routing paths and routing components that support the basic functions of the system:
 
@@ -21,7 +21,7 @@ Oinone has built-in some routing paths and routing components that support the b
 + /debug: Debug page. (`DebugMainViewWidget`)
 + /shared: Sharing page. (`SharedMainViewWidget`)
 
-## (1) Login Page
+## (Ⅰ) Login Page
 
 The login page is the entry page for users to enter login information when they are not logged in.
 
@@ -31,7 +31,7 @@ The login page is the entry page for users to enter login information when they 
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1750470594174-e4acae91-1b69-46bd-9047-df85d9093b9a.jpeg)
 
-## (2) Forgot Password Page
+## (Ⅱ) Forgot Password Page
 
 When a user forgets their password, they can reset it through some authentication methods. The built-in forgot password page of the system resets the password through mobile phone verification. Business systems can decide whether to allow self-service password reset and the related logic of password reset according to their own needs.
 
@@ -48,7 +48,7 @@ runtimeConfigResolve({
 });
 ```
 
-## (3) First Login Password Reset Page
+## (Ⅲ) First Login Password Reset Page
 
 When the business system requires users to modify their initial password when logging in for the first time, this function can be enabled through the `needModifyInitialPassword` attribute of the `sysSetting.SysSettings` model. In this way, new users will be redirected to the first login password reset page when they have not modified their initial password.
 
@@ -58,7 +58,7 @@ When the business system requires users to modify their initial password when lo
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1750475079830-7461c110-dcfd-4e69-ba35-ce3aca62146a.jpeg)
 
-# 2. Custom Routes
+# Ⅱ. Custom Routes
 
 In addition to the built-in routes, Oinone can also configure other routes through `OioProviderProps#router`. For example:
 
@@ -104,9 +104,9 @@ At this point, the custom route has been added. We can access the corresponding 
 http://127.0.0.1:8080/custom
 ```
 
-# 3. Common Usages
+# Ⅲ. Common Usages
 
-## (1) Get Current URL Parameters
+## (Ⅰ) Get Current URL Parameters
 
 ```typescript
 // Get URL parameters under any route
@@ -116,7 +116,7 @@ useMatched().matched.segmentParams
 getMatchedUrl()
 ```
 
-## (2) Get Routing Instance and Navigate
+## (Ⅱ) Get Routing Instance and Navigate
 
 ### 1. Basic Usage
 
@@ -178,7 +178,7 @@ this.$router.push({
 });
 ```
 
-## (3) Subscribe to Route Changes
+## (Ⅲ) Subscribe to Route Changes
 
 ### 1. Basic Usage
 
@@ -213,9 +213,9 @@ this.watchRouter = subscribeRoute(
 );
 ```
 
-# 4. Reference List
+# Ⅳ. Reference List
 
-## (1) useMatched
+## (Ⅰ) useMatched
 
 **Description**: A custom Hook for managing route matching status, used to track the currently matched route information and historical matching status, and provide status update and subscription functions.
 
@@ -239,7 +239,7 @@ this.watchRouter = subscribeRoute(
 + **Type**: `() => BehaviorSubject<Matched>`
 + **Return Value**: An observable object for route change subscription.
 
-## (2) useRouter
+## (Ⅱ) useRouter
 
 **Description**: Get the routing object in the current Vue instance, which can only be used inside Vue components.
 
@@ -250,13 +250,13 @@ this.watchRouter = subscribeRoute(
 + **Description**: Routing instance.
 + **Type**: `Router`
 
-## (3) getRouterInstance
+## (Ⅲ) getRouterInstance
 
 **Description**: Get the current routing instance, which can be called anywhere after initialization is completed.
 
 **Return Value**: `Router`
 
-## (4) Router
+## (Ⅳ) Router
 
 **Description**: Routing instance.
 
