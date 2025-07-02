@@ -109,7 +109,8 @@ order: 2
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/gjl.png)
 
 ## （三）流程设计区
-### 1.功能介绍
+### 1.编辑节点
+#### 一、功能介绍
 节点添加到流程后，可修改其名称、编辑说明以及删除不需要的节点，以便更好地进行流程设计。
 
 :::danger 警告
@@ -118,7 +119,7 @@ order: 2
 
 :::
 
-### 2.操作方法
+#### 二、操作方法
 + 点击「节点名称」，可在输入框中修改名称
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj1.png)
@@ -130,6 +131,38 @@ order: 2
 + 点击「删除」图标后，在弹窗中点击「确定」，即可删除节点
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj3.png)
+
+### 2.剪切/复制节点
+
+#### 一、功能介绍
+
+支持对节点执行复制、剪切与粘贴操作，以实现移动和重新排列节点
+
+:::info 注意：
+
++ 支持框选单个或多个节点。
++ 触发与结束节点不支持复制 / 剪切操作。
++ 若在分支节点下（条件分支 / 并行分支 / 审批分支）框选单条分支，仅会复制 / 剪切其中的流程节点（条件将被去除）。
++ 若在分支节点下（条件分支 / 并行分支 / 审批分支）框选多条分支，需同时框选条件，否则本次复制 / 剪切操作不生效。
++ 若复制 / 剪切某一节点后，导致后续其他节点无法正确获取所需节点，系统将清空后续节点的配置。
++ 若复制 / 剪切某一节点后，无法维持节点内的配置数据，系统将清空该节点的配置。
+
+:::
+
+#### 二、操作方法
+
++ 单个节点：点击节点右上方的「更多」，可选择复制 / 剪切当前节点。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microfluidic%20Design/1751425826861-faf16238-efb4-4bc7-9079-1e21f76e78b8.png)
+
++ 多个节点：点击「框选」图标进入可框选状态，框选需要复制 / 剪切的节点后，执行复制或剪切操作。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microfluidic%20Design/1751426228932-035fa0af-5605-4886-89f1-e0278f5a31d8.png)
+
++ 粘贴：在目标位置点击「添加节点」图标，即可将刚复制 / 剪切的节点粘贴至此。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microfluidic%20Design/1751426307571-43bf3a69-0afb-4d9a-9ef0-b81af87e714b.png)
+
 
 ## （四）属性面板
 ### 1.功能介绍

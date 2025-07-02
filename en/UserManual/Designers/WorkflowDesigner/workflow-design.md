@@ -68,19 +68,62 @@ The toolbar integrates various node actions required for process design, and the
 ### 2. Operation Method
 Node actions in the toolbar can be dragged, or the "+" sign between nodes in the process can be clicked to place the nodes at the specified positions.
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/gjl.png)
+
 ## (Ⅲ) Process Design Area
-### 1. Function Introduction
-After adding nodes to the process, their names can be modified, descriptions can be edited, and unnecessary nodes can be deleted to better carry out process design.
+### 1. Edit Nodes
+#### I. Function Introduction
+After adding nodes to the process, you can modify their names, edit descriptions, and delete unnecessary nodes to better facilitate process design.
+
 :::danger Warning
-Once a node is deleted, it cannot be recovered. Please operate with caution!
+
+Deleted nodes cannot be recovered. Please operate with caution!
+
 :::
-### 2. Operation Method
-+ Click the "Node Name" to modify the name in the input box.
+
+#### II. Operation Methods
++ Click on the 「Node Name」 to modify the name in the input box.
+
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj1.png)
-+ Click the "Node Description" icon, enter the node description in the pop-up window, and click "OK" to successfully edit the node description.
+
++ Click on the 「Node Description」 icon, enter the node description in the pop-up window, and click 「Confirm」 to successfully edit the node description.
+
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj2.png)
-+ Click the "Delete" icon, and in the pop-up window, click "OK" to delete the node.
+
++ Click on the 「Delete」 icon, then click 「Confirm」 in the pop-up window to delete the node.
+
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sj3.png)
+
+### 2. Cut/Copy Nodes
+
+#### I. Function Introduction
+
+Supports copying, cutting, and pasting nodes to move and rearrange them.
+
+:::info Note:
+
++ Supports box selection of single or multiple nodes.
++ Start and end nodes do not support copy/cut operations.
++ If a single branch is box-selected under a branch node (conditional branch / parallel branch / approval branch), only the process nodes within it will be copied/cut (conditions will be removed).
++ If multiple branches are box-selected under a branch node (conditional branch / parallel branch / approval branch), the conditions must be box-selected simultaneously; otherwise, the copy/cut operation will not take effect.
++ If copying/cutting a node causes subsequent nodes to fail to correctly obtain required nodes, the system will clear the configuration of subsequent nodes.
++ If copying/cutting a node makes it impossible to maintain the configuration data within the node, the system will clear the configuration of that node.
+
+:::
+
+#### II. Operation Methods
+
++ Single node: Click 「More」 in the upper right corner of the node to select Copy / Cut the current node.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microfluidic%20Design/1751425826861-faf16238-efb4-4bc7-9079-1e21f76e78b8.png)
+
++ Multiple nodes: Click the 「Box Selection」 icon to enter the box-selectable state. After框选 (box-selecting) the nodes to be copied/cut, perform the copy or cut operation.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microfluidic%20Design/1751426228932-035fa0af-5605-4886-89f1-e0278f5a31d8.png)
+
++ Paste: Click the 「Add Node」 icon at the target location to paste the newly copied/cut nodes here.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Microflow%20Designer/Microfluidic%20Design/1751426307571-43bf3a69-0afb-4d9a-9ef0-b81af87e714b.png)
+
 ## (Ⅳ) Property Panel
 ### 1. Function Introduction
 In the property panel, various attributes can be configured for node actions.
