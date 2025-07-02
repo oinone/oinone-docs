@@ -10,15 +10,15 @@ prev:
 ---
 
 # Ⅰ、Frontend
-1. Add the dependency `@kunlun/data-designer-open-pc` in `package.json` with the same version as `@kunlun/dependencies`.
+1. Add the dependency `@oinone/kunlun-data-designer-open-pc` in `package.json` with the same version as `@oinone/kunlun-dependencies`.
 2. Import the dependency in `src/main.ts`:
 
 ```typescript
 import 'reflect-metadata';
-import { VueOioProvider } from '@kunlun/dependencies';
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
-// START Import code after importing @kunlun/dependencies
-import '@kunlun/data-designer-open-pc';
+// START Import code after importing @oinone/kunlun-dependencies
+import '@oinone/kunlun-data-designer-open-pc';
 // END Import code before executing VueOioProvider()
 
 VueOioProvider({

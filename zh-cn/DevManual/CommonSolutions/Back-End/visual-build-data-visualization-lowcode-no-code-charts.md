@@ -53,7 +53,7 @@ order: 3
   import { GridComponent } from 'echarts/components';
   import { BarChart, BarSeriesOption } from 'echarts/charts';
   import { CanvasRenderer } from 'echarts/renderers';
-  import { deepClone } from '@kunlun/dependencies';
+  import { deepClone } from '@oinone/kunlun-dependencies';
   import {
     filterDimensionScaleColumns,
     isSameObj,
@@ -65,7 +65,7 @@ order: 3
     isShowChatView,
     watchEchartsSize,
     ChartRenderEngine
-  } from '@kunlun/data-designer-core';
+  } from '@oinone/kunlun-data-designer-core';
 
   echarts.use([GridComponent, BarChart, CanvasRenderer]);
 

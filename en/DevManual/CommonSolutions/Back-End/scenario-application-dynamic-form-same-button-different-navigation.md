@@ -571,7 +571,7 @@ import {
   SPI,
   ViewType,
   Widget
-} from '@kunlun/dependencies';
+} from '@oinone/kunlun-dependencies';
 import CustomViewActionVue from './CustomViewAction.vue';
 
 @SPI.ClassFactory(

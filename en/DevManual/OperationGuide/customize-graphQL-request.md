@@ -141,7 +141,7 @@ Let's send the GQL defined in the previous section to the back-end. We can do th
 The following code demonstrates how to initiate a GQL request via `HttpClient` and obtain the request result:
 
 ``` typescript
-import { HttpClient } from '@kunlun/dependencies';
+import { HttpClient } from '@oinone/kunlun-dependencies';
 
 const http = HttpClient.getInstance();
 

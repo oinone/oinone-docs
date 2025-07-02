@@ -1387,7 +1387,7 @@ At the model level, code generators can also be defined via `@Model.Code`. Note 
 
 :::
 
-```java
+``` java
 @Model.Code(sequence = SequenceNameConstants.DATE_ORDERLY_SEQ,prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
 public class TestModel extends CodeModel {}
 ```

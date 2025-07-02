@@ -7,16 +7,16 @@ order: 51
 ---
 
 # I. Frontend
-1. Add the dependency `@kunlun/workflow` in `package.json`, and use the same version as `@kunlun/dependencies`.
+1. Add the dependency `@oinone/kunlun-workflow` in `package.json`, and use the same version as `@oinone/kunlun-dependencies`.
 2. Import the dependency in `src/main.ts`.
 
 ```typescript
 import 'reflect-metadata';
-import { VueOioProvider } from '@kunlun/dependencies';
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
-// START Import code after importing @kunlun/dependencies
-import '@kunlun/workflow/dist/kunlun-workflow.css';
-import '@kunlun/workflow';
+// START Import code after importing @oinone/kunlun-dependencies
+import '@oinone/kunlun-workflow/dist/kunlun-workflow.css';
+import '@oinone/kunlun-workflow';
 // END Import code before executing the VueOioProvider() method
 
 VueOioProvider({

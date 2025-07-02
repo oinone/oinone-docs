@@ -70,7 +70,7 @@ import {
   executeViewAction, RuntimeViewAction,
   ServerActionWidget,
   SPI, ViewActionTarget, ViewType, Widget
-} from '@kunlun/dependencies';
+} from '@oinone/kunlun-dependencies';
 
 // name is the action name dragged from the interface designer
 @SPI.ClassFactory(ActionWidget.Token({ actionType: ActionType.Server, model: 'demo.DemoItem', name: 'uiServer0358d42817d64fe7908fe48dfce084d3' }))

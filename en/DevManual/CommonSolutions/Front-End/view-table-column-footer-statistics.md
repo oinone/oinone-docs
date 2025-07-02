@@ -18,7 +18,7 @@ import {
   TableWidget,
   ViewType,
   Widget
-} from '@kunlun/dependencies';
+} from '@oinone/kunlun-dependencies';
 
 @SPI.ClassFactory(
   BaseElementWidget.Token({

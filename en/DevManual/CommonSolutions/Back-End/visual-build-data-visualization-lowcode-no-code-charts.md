@@ -54,7 +54,7 @@ This example implements a bar chart using the `echarts` library, while the frame
   import { GridComponent } from 'echarts/components';
   import { BarChart, BarSeriesOption } from 'echarts/charts';
   import { CanvasRenderer } from 'echarts/renderers';
-  import { deepClone } from '@kunlun/dependencies';
+  import { deepClone } from '@oinone/kunlun-dependencies';
   import {
     filterDimensionScaleColumns,
     isSameObj,
@@ -66,7 +66,7 @@ This example implements a bar chart using the `echarts` library, while the frame
     isShowChatView,
     watchEchartsSize,
     ChartRenderEngine
-  } from '@kunlun/data-designer-core';
+  } from '@oinone/kunlun-data-designer-core';
 
   echarts.use([GridComponent, BarChart, CanvasRenderer]);
 

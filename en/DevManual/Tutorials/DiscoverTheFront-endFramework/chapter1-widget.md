@@ -144,7 +144,7 @@ The `index.ts` under each directory exports files that need to be `exported` in 
 
 :::danger Warning
 
-When importing in `main.ts`, the import directory needs to be placed after the import of `@kunlun/dependencies`; otherwise, the page will not render correctly.
+When importing in `main.ts`, the import directory needs to be placed after the import of `@oinone/kunlun-dependencies`; otherwise, the page will not render correctly.
 
 The import order affects the component registration order. To override platform-built components, it is recommended to append the `import` statement after the last `import`.
 

@@ -19,7 +19,7 @@ Create a custom `MergeTableWidget` to support cell merging and header grouping.
 
 ```typescript
 // MergeTableWidget.ts
-import { BaseElementWidget, SPI, ViewType, TableWidget, Widget, DslRender } from '@kunlun/dependencies';
+import { BaseElementWidget, SPI, ViewType, TableWidget, Widget, DslRender } from '@oinone/kunlun-dependencies';
 import MergeTable from './MergeTable.vue';
 
 @SPI.ClassFactory(
@@ -117,9 +117,9 @@ Define a Vue component that supports cell merging and header grouping.
 </template>
 <script lang="ts">
   import { defineComponent, PropType, ref } from 'vue';
-  import { CheckedChangeEvent } from '@kunlun/vue-ui';
-  import { ActiveRecord, ActiveRecords, ManualWidget, Pagination, RuntimeModelField } from '@kunlun/dependencies';
-  import { ListPaginationStyle, OioPagination, OioSpin, ReturnPromise } from '@kunlun/vue-ui-antd';
+  import { CheckedChangeEvent } from '@oinone/kunlun-vue-ui';
+  import { ActiveRecord, ActiveRecords, ManualWidget, Pagination, RuntimeModelField } from '@oinone/kunlun-dependencies';
+  import { ListPaginationStyle, OioPagination, OioSpin, ReturnPromise } from '@oinone/kunlun-vue-ui-antd';
   import RowActionRender from './RowActionRender.vue';
 
   export default defineComponent({
@@ -237,7 +237,7 @@ Define a Vue component that supports cell merging and header grouping.
 ## (Ⅲ) Create In-Row Actions
 ```vue
 <script lang="ts">
-  import { ActionBar, RowActionBarWidget } from '@kunlun/dependencies';
+  import { ActionBar, RowActionBarWidget } from '@oinone/kunlun-dependencies';
   import { debounce } from 'lodash-es';
   import { createVNode, defineComponent } from 'vue';
 
@@ -292,7 +292,7 @@ Define a Vue component that supports cell merging and header grouping.
 ```javascript
 // registry.ts
 
-import { registerLayout, ViewType } from '@kunlun/dependencies';
+import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';
 
 registerLayout(
   `<view type="TABLE">
