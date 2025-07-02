@@ -125,7 +125,7 @@ import pro.shushi.pamirs.meta.common.enmu.IEnum;
 @Dict(dictionary = TestEnum.dictionary, displayName = "测试枚举")
 public enum TestEnum implements IEnum<String> {
     enum1("enum1", "枚举1", "枚举1"),
-    enum2("enum1", "枚举2", "枚举2");
+    enum2("enum2", "枚举2", "枚举2");
 
     public static final String dictionary = "expenses.TestEnum";
 
