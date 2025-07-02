@@ -1247,6 +1247,8 @@ pamirs:
 | AVG         | 取平均值 | 返回集合的平均值（参数为集合或数组）   | AVG(collection)     |
 | COUNT       | 计数     | 返回集合的元素总数（参数为集合或数组） | COUNT(collection)   |
 | UPPER_MONEY | 大写金额 | 将数值或数值型字符串转换为大写金额格式 | UPPER_MONEY(number) |
+| POW  | 幂运算   | 计算数字A的数字B次方       | POW(A, B) |
+| LOG  | 对数运算 | 计算以数字B为底数字A的对数 | LOG B(A)  |
 
 ### 2、文本函数
 
@@ -1264,6 +1266,9 @@ pamirs:
 | JOIN        | 连接字符串           | 将 text 与 join 字符串连接，空文本按空串处理        | JOIN(text, join)                |
 | PARSE       | 反序列化 JSON 字符串 | 将 JSON 字符串转换为集合或 Map                      | PARSE(text)                     |
 | JSON        | 序列化为 JSON 字符串 | 将对象转换为 JSON 字符串                            | JSON(object)                    |
+| NOT_CONTAINS  | 不包含 | 判断文本字符串text是否不包含文本字符串subtext，文本text为空时，按照空字符串处理 | NOT_CONTAINS(text,subtext) |
+| SUBSTRING_END | 截取从指定位置到末尾子字符串 | 截取Hello字符串从1位置到末尾子字符串，返回 "ello"            | SUBSTRING_END("Hello", 1)      |
+| SUBSTRING     | 从指定位置截取子字符串       | 截取Hello字符串从1位到3位，返回 "el"                         | SUBSTRING("Hello", 1, 3)       |
 
 ### 3、正则函数
 
@@ -1300,6 +1305,9 @@ pamirs:
 | ADD_YEAR     | 加减指定年数         | 对指定日期加减指定年数（负数为减）              | ADD_YEAR(date, years)    |
 | TO_DATE      | 转换为时间           | 将字符串按指定格式转换为时间对象                | TO_DATE(date, pattern)   |
 | ADD_WORK_DAY | 工作日加减天数       | 对指定日期加减工作日天数（自动跳过周末）        | ADD_WORK_DAY(date, days) |
+| YEAR  | 提取年 | 提取date中的年份 | YEAR(date)  |
+| MONTH | 提取月 | 提取date中的月份 | MONTH(date) |
+| DAY   | 提取日 | 提取date中的日   | DAY(date)   |
 
 ### 5、集合函数
 

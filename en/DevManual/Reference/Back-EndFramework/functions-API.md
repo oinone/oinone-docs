@@ -1246,6 +1246,8 @@ Built-in functions are pre-defined functions in the system, supporting direct in
 | AVG         | Average      | Return the average of a collection (parameter is a collection or array) | AVG(collection)     |
 | COUNT       | Count        | Return the total number of elements in a collection (parameter is a collection or array) | COUNT(collection)   |
 | UPPER_MONEY | Uppercase amount | Convert a number or numeric string to uppercase amount format | UPPER_MONEY(number) |
+| POW  | Power Operation | Calculate the power of number A to number B | POW(A, B) |
+| LOG  | Logarithmic Operation | Calculate the logarithm of number A with base number B | LOG(A, B) |
 
 ### 2、Text Functions
 
@@ -1263,6 +1265,9 @@ Built-in functions are pre-defined functions in the system, supporting direct in
 | JOIN        | Join strings           | Join text with join string, handle empty text as empty string        | JOIN(text, join)                |
 | PARSE       | Deserialize JSON string | Convert a JSON string to a collection or Map                      | PARSE(text)                     |
 | JSON        | Serialize to JSON string | Convert an object to a JSON string                            | JSON(object)                    |
+| NOT_CONTAINS  | Not Contain | Determine whether the text string "text" does not contain the text string "subtext". When "text" is empty, it is treated as an empty string | NOT_CONTAINS(text, subtext) |
+| SUBSTRING_END | Extract Substring from Specified Position to End | Extract the substring of the "Hello" string from position 1 to the end, returning "ello" | SUBSTRING_END("Hello", 1)      |
+| SUBSTRING     | Extract Substring from Specified Positions       | Extract the substring of the "Hello" string from position 1 to position 3, returning "el" | SUBSTRING("Hello", 1, 3)       |
 
 ### 3、Regular Expression Functions
 
@@ -1299,6 +1304,9 @@ Built-in functions are pre-defined functions in the system, supporting direct in
 | ADD_YEAR     | Add/subtract specified years        | Add or subtract specified years from a date (negative for subtraction)            | ADD_YEAR(date, years)    |
 | TO_DATE      | Convert to time           | Convert a string to a time object according to a specified format                | TO_DATE(date, pattern)   |
 | ADD_WORK_DAY | Add/subtract working days       | Add or subtract working days from a date (automatically skip weekends)          | ADD_WORK_DAY(date, days) |
+| YEAR  | Extract Year | Extract the year from the date | YEAR(date)  |
+| MONTH | Extract Month | Extract the month from the date | MONTH(date) |
+| DAY   | Extract Day | Extract the day from the date | DAY(date)   |
 
 ### 5、Collection Functions
 
