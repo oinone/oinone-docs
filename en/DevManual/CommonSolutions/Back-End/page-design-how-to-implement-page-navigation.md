@@ -39,7 +39,7 @@ import {
   RuntimeViewAction,
   ViewActionTarget,
   ViewType
-} from '@kunlun/dependencies';
+} from '@oinone/kunlun-dependencies';
 
 export class JumpActionWidget {
 

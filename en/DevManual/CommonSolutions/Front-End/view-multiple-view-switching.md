@@ -24,7 +24,7 @@ As mentioned, both the table and card views reside within the current view, so w
 
 ```typescript
 // TableWithCardViewWidget.ts
-import { BaseElementWidget, SPI, Widget } from '@kunlun/dependencies';
+import { BaseElementWidget, SPI, Widget } from '@oinone/kunlun-dependencies';
 import TableWithCardView from './TableWithCardView.vue';
 
 enum ListViewType {
@@ -175,7 +175,7 @@ import {
   QueryVariables,
   SPI,
   Widget
-} from '@kunlun/dependencies';
+} from '@oinone/kunlun-dependencies';
 import cardList from './card-list.vue';
 
 @SPI.ClassFactory(

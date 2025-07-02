@@ -36,11 +36,11 @@ import 'ant-design-vue/dist/antd.css';
 import 'element-plus/dist/index.css';
 
 
-import '@kunlun/vue-ui-antd/dist/kunlun-vue-ui-antd.css';
-import '@kunlun/vue-ui-el/dist/kunlun-vue-ui-el.css';
+import '@oinone/kunlun-vue-ui-antd/dist/kunlun-vue-ui-antd.css';
+import '@oinone/kunlun-vue-ui-el/dist/kunlun-vue-ui-el.css';
 
 import 'reflect-metadata';
-import { VueOioProvider } from '@kunlun/dependencies';
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
 import interceptor from './middleware/network-interceptor';
 
 import './field';

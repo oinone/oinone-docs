@@ -47,7 +47,7 @@ import CustomTableSearchTree from './CustomTableSearchTree.vue';
   <a-tree :load-data="onLoadData" :tree-data="treeData" @select="onSelected" />
 </template>
 <script lang="ts">
-  import { OioTreeNode, TreeUtils } from '@kunlun/dependencies';
+  import { OioTreeNode, TreeUtils } from '@oinone/kunlun-dependencies';
   import { computed, defineComponent } from 'vue';
 
   export default defineComponent({
@@ -129,8 +129,8 @@ const stop = watch(
 
 ```typescript
 
-import { ActionType, ActionWidget, SPI, ViewActionTarget, RouterViewActionWidget } from '@kunlun/dependencies';
-import { OioNotification } from '@kunlun/vue-ui-antd';
+import { ActionType, ActionWidget, SPI, ViewActionTarget, RouterViewActionWidget } from '@oinone/kunlun-dependencies';
+import { OioNotification } from '@oinone/kunlun-vue-ui-antd';
 
 @SPI.ClassFactory(
   ActionWidget.Token({

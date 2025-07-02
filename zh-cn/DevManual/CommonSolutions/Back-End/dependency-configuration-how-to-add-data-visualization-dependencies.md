@@ -10,15 +10,15 @@ prev:
 ---
 
 # 一、前端
-1. `package.json`中新增依赖 `@kunlun/data-designer-open-pc`,版本跟`@kunlun/dependencies`的填一样
+1. `package.json`中新增依赖 `@oinone/kunlun-data-designer-open-pc`,版本跟`@oinone/kunlun-dependencies`的填一样
 2. `src/main.ts`内导入依赖
 
 ```typescript
 import 'reflect-metadata';
-import { VueOioProvider } from '@kunlun/dependencies';
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
-// START 导入代码放在导入@kunlun/dependencies之后
-import '@kunlun/data-designer-open-pc';
+// START 导入代码放在导入@oinone/kunlun-dependencies之后
+import '@oinone/kunlun-data-designer-open-pc';
 // END 导入代码放在VueOioProvider()方法执行前
 
 VueOioProvider({

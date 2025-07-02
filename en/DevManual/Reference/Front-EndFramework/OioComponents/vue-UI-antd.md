@@ -71,7 +71,7 @@ import { OioButton } from '@oinone/kunlun-vue-ui-antd';
   <oio-button :loading="loading" @click="onSubmit2">Control Loading State with loading Parameter</oio-button>
 </template>
 <script lang="ts">
-import { OioButton } from '@kunlun/vue-ui-antd';
+import { OioButton } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -529,7 +529,7 @@ For usage examples and `API`, please refer to: [Antd Dropdown for Vue](https://w
   <oio-cascader v-model:value="selected" :options="options" placeholder="Please select cascade items" />
 </template>
 <script lang="ts">
-import { OioCascader } from '@kunlun/vue-ui-antd';
+import { OioCascader } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 interface Option {
@@ -593,7 +593,7 @@ export default defineComponent({
   <oio-cascader v-model:value="selected" :options="options" placeholder="Please select cascade items" :load-data="loadData" />
 </template>
 <script lang="ts">
-import { CascaderItem, OioCascader } from '@kunlun/vue-ui-antd';
+import { CascaderItem, OioCascader } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 interface Option {
@@ -672,7 +672,7 @@ export default defineComponent({
   />
 </template>
 <script lang="ts">
-import { OioCascader } from '@kunlun/vue-ui-antd';
+import { OioCascader } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 interface Option {
@@ -1076,7 +1076,7 @@ For more usage, please refer to: [Antd DatePicker for Vue](https://www.antdv.com
   </oio-form>
 </template>
 <script lang="ts">
-import { OioForm, OioFormItem, OioInput, OioInputPassword } from '@kunlun/vue-ui-antd';
+import { OioForm, OioFormItem, OioInput, OioInputPassword } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -1264,7 +1264,7 @@ For more usage, please refer to: [Antd Form for Vue](https://www.antdv.com/compo
   <oio-input-search v-model:value="value" placeholder="Please enter" @search="onSearch" />
 </template>
 <script lang="ts">
-import { InputSearchEvent, OioInputSearch } from '@kunlun/vue-ui-antd';
+import { InputSearchEvent, OioInputSearch } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -1854,7 +1854,7 @@ For more usage methods, please refer to: [Antd Tree Select Tree Selection For Vu
   </oio-upload>
 </template>
 <script lang="ts">
-import { FileModel, OioButton, OioUpload } from '@kunlun/vue-ui-antd';
+import { FileModel, OioButton, OioUpload } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -1905,7 +1905,7 @@ export default defineComponent({
 </template>
 <script lang="ts">
 import { UploadOutlined } from '@ant-design/icons-vue';
-import { FileModel, OioUpload } from '@kunlun/vue-ui-antd';
+import { FileModel, OioUpload } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -2363,7 +2363,7 @@ For more usage methods, please refer to: [Antd Collapse Collapsible Panel For Vu
   </oio-gallery>
 </template>
 <script lang="ts">
-import { OioCard, OioGallery } from '@kunlun/vue-ui-antd';
+import { OioCard, OioGallery } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 interface DataItem {
@@ -2583,7 +2583,7 @@ export default defineComponent({
   </oio-tabs>
 </template>
 <script lang="ts">
-import { OioTab, OioTabs } from '@kunlun/vue-ui-antd';
+import { OioTab, OioTabs } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -2768,7 +2768,7 @@ export default defineComponent({
   <oio-tree :data="treeData" />
 </template>
 <script lang="ts">
-import { OioTree, OioTreeNode, TreeNodeSelectedEvent } from '@kunlun/vue-ui-antd';
+import { OioTree, OioTreeNode, TreeNodeSelectedEvent } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 interface DataItem {
@@ -2896,7 +2896,7 @@ For more usage methods, please refer to: [Antd Tree Tree Control For Vue](https:
   </oio-drawer>
 </template>
 <script lang="ts">
-import { OioButton, OioDrawer } from '@kunlun/vue-ui-antd';
+import { OioButton, OioDrawer } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -2963,7 +2963,7 @@ export default defineComponent({
   </oio-drawer>
 </template>
 <script lang="ts">
-import { OioButton, OioDrawer } from '@kunlun/vue-ui-antd';
+import { OioButton, OioDrawer } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -3048,7 +3048,7 @@ export default defineComponent({
   <oio-button @click="openMessage">Open Message Prompt</oio-button>
 </template>
 <script lang="ts">
-import { OioButton, OioMessage } from '@kunlun/vue-ui-antd';
+import { OioButton, OioMessage } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -3111,7 +3111,7 @@ For more usage methods, please refer to: [Antd Message Global Prompt For Vue](ht
   </oio-modal>
 </template>
 <script lang="ts">
-import { OioButton, OioModal } from '@kunlun/vue-ui-antd';
+import { OioButton, OioModal } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -3166,7 +3166,7 @@ export default defineComponent({
   </oio-modal>
 </template>
 <script lang="ts">
-import { OioButton, OioModal } from '@kunlun/vue-ui-antd';
+import { OioButton, OioModal } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -3230,7 +3230,7 @@ export default defineComponent({
   </oio-modal>
 </template>
 <script lang="ts">
-import { OioButton, OioForm, OioFormItem, OioInput, OioModal, OioTextarea } from '@kunlun/vue-ui-antd';
+import { OioButton, OioForm, OioFormItem, OioInput, OioModal, OioTextarea } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent, ref } from 'vue';
 
 interface DataType {
@@ -3347,7 +3347,7 @@ export default defineComponent({
   <oio-button @click="openNotification">Open Notification</oio-button>
 </template>
 <script lang="ts">
-import { OioButton, OioNotification } from '@kunlun/vue-ui-antd';
+import { OioButton, OioNotification } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -3410,7 +3410,7 @@ For more usage methods, please refer to: [Antd Notification Reminder Box For Vue
   </oio-popconfirm>
 </template>
 <script lang="ts">
-import { OioButton, OioPopconfirm } from '@kunlun/vue-ui-antd';
+import { OioButton, OioPopconfirm } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -3451,7 +3451,7 @@ export default defineComponent({
   </oio-popconfirm>
 </template>
 <script lang="ts">
-import { OioButton, OioPopconfirm } from '@kunlun/vue-ui-antd';
+import { OioButton, OioPopconfirm } from '@oinone/kunlun-vue-ui-antd';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

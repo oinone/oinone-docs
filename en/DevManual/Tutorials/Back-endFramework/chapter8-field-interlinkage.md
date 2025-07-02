@@ -29,7 +29,7 @@ In our expense management module, we've defined project external partners. If a 
 
 For example, to add the `partnerType` field to our `expenses.TestModel` and set the `domain` attribute for the `partners` field:
 
-```java
+``` java
 @Field.Enum
 @Field(displayName = "伙伴类型")
 @UxForm.FieldWidget(@UxWidget(config = {@Prop(name = "clearFields",value = "partners")}))
@@ -86,12 +86,13 @@ To set a field's computed attribute, set its `compute` attribute to a front-end-
 
 For example, to add the `computeName` field to our `expenses.TestModel` and set its `compute` attribute in the model or form view:
 
-```xml
-@Field(displayName = "计算字段", compute = "activeRecord.name")
+``` java
+@Field(displayName = "计算字段")
+@UxForm.FieldWidget(@UxWidget(config = {@Prop(name = "compute",value = "activeRecord.name")}))
 private String computeName;
 ```
 
-```xml
+``` xml
 <field data="computeName" label="计算字段" compute="activeRecord.name"/>
 ```
 
@@ -99,7 +100,7 @@ private String computeName;
 
 You may have noticed that computed attributes are typically used with read-only attributes, which makes sense since users shouldn't set their values.
 
-However, if the `computeName` field also needs to support user modifications—i.e., `computeName` uses the `name` field's value as a default—simply modify the calculation logic to `activeRecord.computeName?activeRecord.computeName:activeRecord.name`.
+However, if the `computeName` field also needs to support user modifications—i.e., `computeName` uses the `name` field's value as a default—simply modify the calculation logic to `activeRecord.computeName ? activeRecord.computeName : activeRecord.name`.
 
 :::
 
@@ -130,7 +131,7 @@ In our expense management module, we also want to assist users in data entry. Wh
 
 The `constructFun` mechanism provides a way for the client interface to update the form whenever a user fills in a field value, without saving anything to the database. To achieve this, add a Ux annotation to the given field and specify the `constructFun` value as a defined method, where the parameter `data` represents the record in the form view. Use `@Function(openLevel ={FunctionOpenEnum.API})` to specify that this method can be called by the front-end. Any changes to `data` are reflected in the form:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.boot.base.ux.annotation.field.UxWidget;

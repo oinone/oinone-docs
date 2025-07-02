@@ -234,9 +234,9 @@ export const mount = async () => {
             antDesignVue: import('ant-design-vue'),
             elementPlusIconsVue: import('@element-plus/icons-vue'),
             elementPlus: import('element-plus'),
-            kunlunDependencies: import('@kunlun/dependencies'),
-            kunlunVueUiAntd: import('@kunlun/vue-ui-antd'),
-            kunlunVueUiEl: import('@kunlun/vue-ui-el')
+            kunlunDependencies: import('@oinone/kunlun-dependencies'),
+            kunlunVueUiAntd: import('@oinone/kunlun-vue-ui-antd'),
+            kunlunVueUiEl: import('@oinone/kunlun-vue-ui-el')
           }
         },
         []

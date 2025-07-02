@@ -70,7 +70,7 @@ import {
   executeViewAction, RuntimeViewAction,
   ServerActionWidget,
   SPI, ViewActionTarget, ViewType, Widget
-} from '@kunlun/dependencies';
+} from '@oinone/kunlun-dependencies';
 
 // name为界面设计器拖出的动作名称
 @SPI.ClassFactory(ActionWidget.Token({ actionType: ActionType.Server, model: 'demo.DemoItem', name: 'uiServer0358d42817d64fe7908fe48dfce084d3' }))

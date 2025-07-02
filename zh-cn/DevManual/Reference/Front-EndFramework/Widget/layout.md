@@ -306,7 +306,7 @@ export interface LayoutRegisterOptions extends SPIOptions {
 下面是我们在 “[探索前端框架 - 组件](/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)” 中注册的布局：
 
 ``` typescript
-import { registerLayout, ViewType } from '@kunlun/dependencies';
+import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';
 
 registerLayout(
   `<view type="TABLE">

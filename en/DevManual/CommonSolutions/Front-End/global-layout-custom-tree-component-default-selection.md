@@ -48,7 +48,7 @@ Next, we implement the `CustomTableSearchTree.vue` component, which will handle 
   <a-tree :load-data="onLoadData" :tree-data="treeData" @select="onSelected" />
 </template>
 <script lang="ts">
-  import { OioTreeNode, TreeUtils } from '@kunlun/dependencies';
+  import { OioTreeNode, TreeUtils } from '@oinone/kunlun-dependencies';
   import { computed, defineComponent } from 'vue';
 
   export default defineComponent({

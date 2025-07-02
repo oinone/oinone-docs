@@ -144,7 +144,7 @@ oinone-frontend-tutorials
 
 :::danger 警告
 
-在`main.ts`中导入时，需要将导入目录放置在`@kunlun/dependencies`的导入之后，否则将导致页面无法正常渲染。
+在`main.ts`中导入时，需要将导入目录放置在`@oinone/kunlun-dependencies`的导入之后，否则将导致页面无法正常渲染。
 
 导入顺序将影响组件注册顺序，如需覆盖平台内置组件，建议将`import`语句在最后一个`import`后进行追加。
 

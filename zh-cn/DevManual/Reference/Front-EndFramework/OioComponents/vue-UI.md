@@ -33,7 +33,7 @@ import { OioTable } from '@oinone/kunlun-vue-ui';
   </oio-table>
 </template>
 <script lang="ts">
-import { OioColumn, OioTable } from '@kunlun/dependencies';
+import { OioColumn, OioTable } from '@oinone/kunlun-dependencies';
 import { defineComponent, ref } from 'vue';
 
 interface DataItem {
@@ -91,7 +91,7 @@ export default defineComponent({
   </oio-table>
 </template>
 <script lang="ts">
-import { OioColgroup, OioColumn, OioTable } from '@kunlun/dependencies';
+import { OioColgroup, OioColumn, OioTable } from '@oinone/kunlun-dependencies';
 import { defineComponent, ref } from 'vue';
 
 interface DataItem {
@@ -198,7 +198,7 @@ export default defineComponent({
   </oio-table>
 </template>
 <script lang="ts">
-import { OioColgroup, OioColumn, OioTable } from '@kunlun/dependencies';
+import { OioColgroup, OioColumn, OioTable } from '@oinone/kunlun-dependencies';
 import { random } from 'lodash-es';
 import { defineComponent, ref } from 'vue';
 import type { VxeColumnPropTypes } from 'vxe-table';
@@ -267,7 +267,7 @@ export default defineComponent({
   </oio-table>
 </template>
 <script lang="ts">
-import { OioColgroup, OioColumn, OioTable } from '@kunlun/dependencies';
+import { OioColgroup, OioColumn, OioTable } from '@oinone/kunlun-dependencies';
 import { random } from 'lodash-es';
 import { defineComponent, ref } from 'vue';
 import type { RowVO, VxeColumnPropTypes } from 'vxe-table';
@@ -342,7 +342,7 @@ export default defineComponent({
   </oio-table>
 </template>
 <script lang="ts">
-import { CheckedChangeEvent, OioColgroup, OioColumn, OioTable } from '@kunlun/dependencies';
+import { CheckedChangeEvent, OioColgroup, OioColumn, OioTable } from '@oinone/kunlun-dependencies';
 import { random } from 'lodash-es';
 import { defineComponent, ref } from 'vue';
 
@@ -413,8 +413,8 @@ export default defineComponent({
   </div>
 </template>
 <script lang="ts">
-import { OioColgroup, OioColumn, OioTable } from '@kunlun/dependencies';
-import { OioPagination } from '@kunlun/vue-ui-antd';
+import { OioColgroup, OioColumn, OioTable } from '@oinone/kunlun-dependencies';
+import { OioPagination } from '@oinone/kunlun-vue-ui-antd';
 import { random } from 'lodash-es';
 import { defineComponent, ref } from 'vue';
 
