@@ -120,6 +120,8 @@ next:
 | 平方根 | 函数示例: SQRT(number) <br/>函数说明: 对number平方根 |
 | 正弦 | 函数示例: SIN(number)<br/>函数说明: 对number取正弦 |
 | 求和 | 函数示例: SUM(collection)<br/>函数说明: 返回对集合的求和，参数collection为集合或数组 |
+| 幂运算 | 函数示例: POW(number1,number2)<br/>函数说明: 返回number1的number2次幂 |
+| 对数运算 | 函数示例: LOG(number1,number2)<br/>函数说明: 返回以number1为底的number2的对数 |
 
 
 ## （二）文本函数
@@ -137,7 +139,10 @@ next:
 | 是否为空字符串 | 函数示例: IS_BLANK(text)<br/>函数说明: 判断文本字符串text是否为空 |
 | 将记录序列化为JSON字符串 | 函数示例: JSON(object)<br/>函数说明: 将记录object序列化为JSON字符串 |
 | 过滤首尾空格 | 函数示例: TRIM(text)<br/>函数说明: 去掉文本字符串text中的首尾空格，文本为空时，返回空字符串 |
-
+| 不包含 | 函数示例: NOT_CONTAINS(text,subtext)<br/>函数说明: 判断文本字符串text是否不包含文本字符串subtext，文本text为空时，按照空字符串处理 |  
+| 从指定位置截取子字符串 | 函数示例: SUBSTRING(text,begin,end)<br/>函数说明: 从指定位置截取子字符串，返回从text中begin-end位置的子字符串 |
+| 按分割符分割字符串为集合 | 函数示例: SPLIT(text,subtext)<br/>函数说明: 返回按subtext分割text的集合 |
+| 返回子串首次出现的位置 | 函数示例: INDEXOF(text,subtext)<br/>函数说明: 返回subtext首次在text出现的位置 |
 
 ## （三）正则函数
 | 函数 | 说明 |
@@ -182,7 +187,9 @@ next:
 | 大于 | 函数示例：GREATER_THAN(datetime1,datetime2)<br/>函数说明：判断datetime1是否大于datetime2，返回布尔值 |
 | 加减指定天数 | 函数示例: ADD_DAY(date,days)<br/>函数说明: 将指定日期加/减指定天数，date为指定日期，days为指定天数，当为负数时在date上减去此天数 |
 | 返回当前时间字符串 | 函数示例: NOW_STR()<br/>函数说明: 返回当前时间字符串，精确到时分秒，格式为yyyy-MM-dd hh:mm:ss |
-
+| 提取年 | 函数示例: YEAR(date)<br/>函数说明: 返回当前日期的年份部分 |
+| 提取月 | 函数示例: MONTH(date)<br/>函数说明: 返回当前日期的月份部分 |
+| 提取日 | 函数示例: DAY(date)<br/>函数说明: 返回当前日期的日期部分 |
 
 ## （五）集合函数
 | 函数 | 说明 |

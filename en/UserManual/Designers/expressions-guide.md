@@ -89,7 +89,7 @@ Custom expressions provide nine types of functions, namely mathematical function
 ## (I) Mathematical Functions
 | Function | Description |
 | :---: | --- |
-| <div style="width:100px;">Non-negative Difference of Subtraction</div> | <div style="width:600px;">Function example: NNZ_SUBTRACT(A,B)<br/>Function description: The absolute value of the subtraction of B from A</div> |
+| Non-negative Difference of Subtraction | <div style="width:600px;">Function example: NNZ_SUBTRACT(A,B)<br/>Function description: The absolute value of the subtraction of B from A</div> |
 | Ceiling | Function example: CEIL(number)<br/>Function description: Round the number up |
 | Floor | Function example: FLOOR(number)<br/>Function description: Round the number down |
 | Average | Function example: AVG(collection)<br/>Function description: Return the average of the collection. The parameter collection is a collection or an array. |
@@ -109,6 +109,8 @@ Custom expressions provide nine types of functions, namely mathematical function
 | Square Root | Function example: SQRT(number) <br/>Function description: Calculate the square root of the number |
 | Sine | Function example: SIN(number)<br/>Function description: Calculate the sine of the number |
 | Sum | Function example: SUM(collection)<br/>Function description: Return the sum of the elements in the collection. The parameter collection is a collection or an array. |
+| Power Operation | Function Example: POW(number1, number2)<br>Function Description: Returns the result of raising number1 to the power of number2 |
+| Logarithmic Operation | Function Example: LOG(number1, number2)<br>Function Description: Returns the logarithm of number2 with base number1 |
 
 ## (II) Text Functions
 | Function | Description |
@@ -125,6 +127,10 @@ Custom expressions provide nine types of functions, namely mathematical function
 | Is Blank | Function example: IS_BLANK(text)<br/>Function description: Check if the text string text is empty |
 | Serialize to JSON String | Function example: JSON(object)<br/>Function description: Serialize the record object into a JSON string |
 | Trim | Function example: TRIM(text)<br/>Function description: Remove the leading and trailing spaces from the text string text. If the text is empty, return an empty string. |
+| Not Contain | Function Example: NOT_CONTAINS(text, subtext)<br/>Function Description: Determines whether the text string "text" does not contain the text string "subtext". When "text" is empty, it is treated as an empty string |
+| Extract Substring from Specified Position | Function Example: SUBSTRING(text, begin, end)<br/>Function Description: Extracts a substring from the specified position and returns the substring from the "begin" to "end" positions in "text" |
+| Split String into Collection by Separator | Function Example: SPLIT(text, subtext)<br/>Function Description: Returns a collection obtained by splitting "text" with "subtext" |
+| Return Position of First Occurrence of Substring | Function Example: INDEXOF(text, subtext)<br/>Function Description: Returns the position where "subtext" first appears in "text" |
 
 ## (III) Regular Functions
 | Function | Description |
@@ -168,6 +174,9 @@ Custom expressions provide nine types of functions, namely mathematical function
 | Greater Than | Function example: GREATER_THAN(datetime1,datetime2)<br/>Function description: Check if datetime1 is greater than datetime2 and return a boolean value |
 | Add/Subtract Days | Function example: ADD_DAY(date,days)<br/>Function description: Add or subtract the specified number of days to/from the specified date. date is the specified date, and days is the specified number of days. If days is negative, subtract this number of days from date. |
 | Current Time String | Function example: NOW_STR()<br/>Function description: Return the current time string, accurate to hours, minutes, and seconds, in the format of yyyy-MM-dd hh:mm:ss |
+| Extract Year | Function Example: YEAR(date)<br/>Function Description: Returns the year part of the current date |
+| Extract Month | Function Example: MONTH(date)<br/>Function Description: Returns the month part of the current date |
+| Extract Day | Function Example: DAY(date)<br/>Function Description: Returns the day part of the current date |
 
 ## (V) Collection Functions
 | Function | Description |
