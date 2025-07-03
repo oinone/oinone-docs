@@ -156,6 +156,30 @@ Select the model at the time of workflow trigger as the approval model, select t
     - Custom Approvers: When the system's available approvers cannot meet your requirements, you can customize the addition of approvers through code.
         * Approver Data Node: It includes all the data that can be obtained before the approval node.
         * Select Custom Function: It is the function to customize approvers through code.
+
++ Automatic Approval: After enabling this function, preset conditions are supported. If the conditions are met, the approval will be completed automatically, which can improve approval efficiency.
+  - Basic Configuration: You need to select "Auto Approve" or "Auto Reject" to determine the default operation of the system when the conditions are met.
+  - Condition Settings
+    * Add Conditions: Multiple conditions can be added. You can manually drag and drop conditions to adjust the order, and the execution priority will change accordingly. If no conditions are set and automatic approval is enabled, the system will complete the automatic approval, and the configured approver information will not be displayed.
+    * Condition Expression: Custom rules can be set (for example, "Amount < 100"). When the rules are met, the system will automatically complete the approval, and the preset approver information will not be displayed.
+    * Approvers: You can select automatic approvers from the organizational structure or dynamic approvers. When the actual approvers include the automatic approvers configured here, the approver will automatically complete the approval, while other approvers still need to operate manually. The final approval result will be handled according to the preset multi - approver rules.
+
+        :::info Note
+
+        If both the condition expression and the approver are set under the same condition, they are processed in an "and" relationship.
+
+        :::
+
+  - Approval Comments: The comment will be displayed during automatic approval, and variables are supported to make the comment content more flexible.
+
+:::tip Example
+
+When the asset price is ≤ 200, the approval will be automatically passed, and the approval comment "Approved" will be displayed.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/1751524147641-eb34c4b6-6edb-418e-82a0-32fd689be771.gif)
+
+:::
+
 + Approval Method for Multiple Approvers: This attribute is displayed when there are approvers. It includes two methods: any-sign and all-sign.
     - Any-Sign: Only one approver's approval or rejection is needed to determine the approval result. After the approval is completed, other approvers cannot enter the approval operation, but they will receive a message prompt about the approval result.
     - All-Sign: It includes two methods. One is "approval is only valid when all approvers agree, and rejection is valid when one approver rejects"; the other is "approval is valid when one approver agrees, and rejection is only valid when all approvers reject".
