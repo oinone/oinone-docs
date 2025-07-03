@@ -119,7 +119,7 @@ ${query/mutation} {
         "${modelName}${Query/Mutation}": {
             "${functionName}": [
                 {
-                    "id": "711215677633014354"
+                    "id": "1"
                 }
             ]
         }

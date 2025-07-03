@@ -120,7 +120,7 @@ From the browser's "Preview", the request response is a standard format represen
         "${modelName}${Query/Mutation}": {
             "${functionName}": [
                 {
-                    "id": "711215677633014354"
+                    "id": "1"
                 }
             ]
         }
