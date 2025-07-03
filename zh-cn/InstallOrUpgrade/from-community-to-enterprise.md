@@ -97,9 +97,14 @@ prev:
 </dependency>
 ```
 
+# 四、IDEA开发验证
+
+验证IDEA开发证书
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1751511410221-7ea9c089-6599-4467-b44b-a4167c04885a.png)
 
 
-# 四、启动/体验
+# 五、启动/体验
 
 至此开心的体验Oinone企业版啦😀。
 

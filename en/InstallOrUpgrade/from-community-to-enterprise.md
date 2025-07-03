@@ -97,8 +97,11 @@ Upgrade dependencies for business applications:
 </dependency>
 ```
 
+# Ⅳ. IDEA Development Verification
 
+Verify the IDEA development certificate.  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1751511410221-7ea9c089-6599-4467-b44b-a4167c04885a.png)
 
-# IV. Launch/Experience
+# Ⅴ. Launch/Experience
 
-Now you can happily experience the Oinone Enterprise Edition 😀.
+Now you can happily experience the Oinone Enterprise Edition 😀.  
