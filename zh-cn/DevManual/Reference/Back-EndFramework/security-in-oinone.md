@@ -69,7 +69,7 @@ next:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/SecurityInOinone/1748938838174-dbaba116-409e-44a4-b513-ae5826e480b1.png)
 
-通过 `ViewAction#load` 接口获取的 `DSL` 中 的 `sessionPath` 属性：
+通过 `viewAction#load` 接口获取的 `DSL` 中 的 `sessionPath` 属性：
 
 ```shell
 /resource/国家分组/ACTION#resource.ResourceCountryGroup#redirectCreatePage/ACTION#$$#create

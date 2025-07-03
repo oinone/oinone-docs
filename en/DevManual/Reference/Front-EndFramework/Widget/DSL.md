@@ -235,7 +235,7 @@ For this table view, it has a corresponding standard table view layout template:
 :::warning
 Tip:
 
-The layout template corresponding to any view can be viewed through the `ViewAction#load` interface. If it is not returned by the interface, the default layout template will be used for rendering without custom registration.
+The layout template corresponding to any view can be viewed through the `viewAction#load` interface. If it is not returned by the interface, the default layout template will be used for rendering without custom registration.
 
 For more content about Layout, please refer to: [Layout](/en/DevManual/Reference/Front-EndFramework/Widget/layout.md)
 

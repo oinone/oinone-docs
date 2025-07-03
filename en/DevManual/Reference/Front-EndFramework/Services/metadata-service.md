@@ -18,7 +18,7 @@ In Oinone Kunlun, metadata is the most important part of the system operation. W
 In Oinone Kunlun, metadata is divided into three categories:
 
 + Standard Metadata: One-to-one correspondence with backend models.
-+ DSL Metadata: DSL metadata obtained through the `ViewAction#load` interface.
++ DSL Metadata: DSL metadata obtained through the `viewAction#load` interface.
 + Runtime Metadata: A unified metadata type converted from standard metadata or DSL metadata.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1750494193269-de6c9cab-da3e-4c7e-9c3b-4b0d48f6eaf3.jpeg)

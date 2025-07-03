@@ -112,7 +112,7 @@ http://127.0.0.1:9093/debug;module=resource;viewType=TABLE;model=resource.Resour
     - viewType：视图类型。`ViewAction#resView#viewType`
     - model：当前跳转动作模型编码。`ViewAction#model`
     - action：当前跳转动作名称。`ViewAction#name`
-+ 页面信息：`ViewAction#load`接口返回的基础信息。
++ 页面信息：`viewAction#load`接口返回的基础信息。
     - id：当前跳转动作ID。
     - model：同URL参数`model`。
     - name：同URL参数`action`。

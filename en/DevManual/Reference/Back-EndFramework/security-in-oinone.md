@@ -69,7 +69,7 @@ Let's look at the access path for a "Country Group - Create Action," as shown be
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/BackendAPI/SecurityInOinone/1748938838174-dbaba116-409e-44a4-b513-ae5826e480b1.png)
 
-The `sessionPath` attribute in the DSL obtained through the `ViewAction#load` interface:
+The `sessionPath` attribute in the DSL obtained through the `viewAction#load` interface:
 
 ```shell
 /resource/国家分组/ACTION#resource.ResourceCountryGroup#redirectCreatePage/ACTION#$$#create

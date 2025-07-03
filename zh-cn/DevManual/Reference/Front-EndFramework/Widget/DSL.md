@@ -235,7 +235,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 :::warning
 提示：
 
-任何一个视图对应的布局模板都可以通过 `ViewAction#load` 接口进行查看，如果不是通过接口返回的，那么在没有自定义注册的情况下，将使用默认布局模板进行渲染。
+任何一个视图对应的布局模板都可以通过 `viewAction#load` 接口进行查看，如果不是通过接口返回的，那么在没有自定义注册的情况下，将使用默认布局模板进行渲染。
 
 更多关于布局（Layout）的内容请参考：[Layout](/zh-cn/DevManual/Reference/Front-EndFramework/Widget/layout.md)
 

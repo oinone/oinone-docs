@@ -18,7 +18,7 @@ prev:
 在 Oinone Kunlun 中，元数据分为三类：
 
 + 标准元数据：与后端模型一一对应。
-+ DSL 元数据：通过 `ViewAction#load` 接口获取的 DSL 元数据。
++ DSL 元数据：通过 `viewAction#load` 接口获取的 DSL 元数据。
 + 运行时元数据：通过标准元数据或 DSL 元数据转换后的统一元数据类型。
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/FrontEndFramework/1750494193269-de6c9cab-da3e-4c7e-9c3b-4b0d48f6eaf3.jpeg)

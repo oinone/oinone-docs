@@ -112,7 +112,7 @@ After entering the debugging tool page, you will see the page shown in the follo
     - viewType: View type. `ViewAction#resView#viewType`
     - model: Current jump action model code. `ViewAction#model`
     - action: Current jump action name. `ViewAction#name`
-+ Page Information: Basic information returned by the `ViewAction#load` API.
++ Page Information: Basic information returned by the `viewAction#load` API.
     - id: Current jump action ID.
     - model: Same as the URL parameter `model`.
     - name: Same as the URL parameter `action`.

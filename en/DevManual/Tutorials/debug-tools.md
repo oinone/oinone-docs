@@ -42,7 +42,7 @@ After entering the debug tools page, you will see a page similar to the followin
 After entering page debugging, you can intuitively view the following information:
 
 + Page parameters: Parsed results of current URL parameters.
-+ Page information: Basic information of the navigation action returned by the `ViewAction#load` API.
++ Page information: Basic information of the navigation action returned by the `viewAction#load` API.
 + DSL: Metadata information used by the current page.
 + Layout: Layout used by the current page.
 + Mask: Template used by the current page.
