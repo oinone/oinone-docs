@@ -210,33 +210,49 @@ next:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sjqxx.png)
 
 # 六、角色权限示例
-配置一个“子管理员”角色，该角色含有以下功能：
+配置一个“管理员”角色，该角色含有以下功能：
 
-+ 管理权限向下分配能力：子管理员可以向下分配管理权限，包括向其他角色授予或取消某应用、菜单或首页的管理权限。
-+ 访问权限：子管理员被授予访问权限，可以访问平台中指定的应用、菜单或首页。
++ 管理权限向下分配能力：管理员可以向下分配管理权限，包括向其他角色授予或取消某应用、菜单或首页的管理权限。
++ 访问权限：管理员被授予访问权限，可以访问平台中指定的应用、菜单或首页。
 
 :::info 注意
 
-子管理员必须拥有“管理中心”的管理权限与访问权限
+管理员必须拥有“管理中心”的管理权限与访问权限
 
 :::
 
-1. 创建一个名为“子管理员”的角色
+1. 创建一个名为“管理员”的角色
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751506733584-40b33d48-f747-451d-a8bd-62e2d85e97b0-20250703103110668.png)
 
-2. 将“子管理员”角色绑定给某一用户，使其拥有对应权限
+2. 将“管理员”角色绑定给某一用户，使其拥有对应权限
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751506950254-f77fa006-1506-4cdf-8a1c-fee125244fda-20250703103117248.png)
 
-3. 为“子管理员”分配某一应用的管理权限
+3. 为“管理员”分配某一应用的管理权限（访问权限同理）
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl3.png)
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl4.png)
++ 方法一：通过系统权限分配权限
 
-4. 登录“子管理员”所属用户，可继续向下分配管理权限和访问权限
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751507358794-e885479d-697c-4c7a-ab4e-c4264d6a0a8c.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751507422796-ccd22d8c-99cb-4649-a9ef-2c2cd55fcbea.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl5.png)
++ 方法二：通过角色管理-权限配置分配权限
 
-至此，成功完成对“子管理员”的角色权限配置，“子管理员”可依循相同步骤，继续向下分配权限
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751507645341-2614432b-2fe7-4d37-8baa-b30acb994071.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751507911213-faca67d5-7ea0-4847-986f-19bd6802fc9d.png)
+
+:::warning 提示
+
+两种权限配置方法均可完成权限设置，您可根据实际使用习惯选择：
+
++ 新增角色时，通过「角色管理 - 权限配置」操作更高效；
++ 若角色配置已基本定型，仅需新增应用或菜单权限，使用「系统权限」操作更快捷。
+
+:::
+
+4. 登录“管理员”所属用户，可继续向下分配管理权限和访问权限
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751509717168-a68e9938-9bb0-44d4-9da8-016bba8129f2.png)
+
+至此，成功完成对“管理员”的角色权限配置，“管理员”可依循相同步骤，继续向下分配权限
 

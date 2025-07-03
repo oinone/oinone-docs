@@ -208,32 +208,48 @@ You can configure specific filtering conditions for fields in the model to deter
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sjqxx.png)
 
 # VI. Role Permission Example
-Configure a "Sub - Administrator" role with the following functions:
+Configure an "Administrator" role with the following functions:
 
-+ Ability to Distribute Management Permissions Downward: Sub - administrators can distribute management permissions downward, including granting or revoking the management permissions of an application, menu, or homepage to other roles.
-+ Access Permission: Sub - administrators are granted access permissions to access specified applications, menus, or the homepage on the platform.
++ Ability to assign management permissions downward: Administrators can assign management permissions downward, including granting or revoking management permissions for a certain application, menu, or homepage to other roles.
++ Access permissions: Administrators are granted access permissions to access specified applications, menus, or homepages in the platform.
 
 :::info Note
 
-Sub - administrators must have management and access permissions to the "Management Center".
+Administrators must have management permissions and access permissions for the "Management Center".
 
 :::
 
-1. Create a role named "Sub - Administrator".
+1. Create a role named "Administrator"
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751506733584-40b33d48-f747-451d-a8bd-62e2d85e97b0-20250703103110668.png)
 
-2. Bind the "Sub - Administrator" role to a user so that the user has the corresponding permissions.
+2. Bind the "Administrator" role to a user to enable them to have corresponding permissions
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751506950254-f77fa006-1506-4cdf-8a1c-fee125244fda-20250703103117248.png)
 
-3. Assign the management permission of an application to the "Sub - Administrator".
+3. Assign management permissions for a certain application to the "Administrator" (the same applies to access permissions)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl3.png)
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl4.png)
++ Method 1: Assign permissions through system permissions
 
-4. Log in as the user belonging to the "Sub - Administrator" and continue to distribute management and access permissions downward.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751507358794-e885479d-697c-4c7a-ab4e-c4264d6a0a8c.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751507422796-ccd22d8c-99cb-4649-a9ef-2c2cd55fcbea.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/sl5.png)
++ Method 2: Assign permissions through Role Management - Permission Configuration
 
-At this point, the role permission configuration for the "Sub - Administrator" is successfully completed. The "Sub - Administrator" can continue to distribute permissions downward following the same steps.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751507645341-2614432b-2fe7-4d37-8baa-b30acb994071.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751507911213-faca67d5-7ea0-4847-986f-19bd6802fc9d.png)
+
+:::warning Note
+
+Both permission configuration methods can complete the permission setting, and you can choose according to your actual usage habits:
+
++ When adding a new role, it is more efficient to operate through 「Role Management - Permission Configuration」;
++ If the role configuration is basically finalized and only needs to add application or menu permissions, it is faster to use the 「System Permissions」 operation.
+
+:::
+
+4. Log in as the user belonging to the "Administrator" and continue to assign management permissions and access permissions downward
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/1751509717168-a68e9938-9bb0-44d4-9da8-016bba8129f2.png)
+
+So far, the role permission configuration for the "Administrator" has been successfully completed. The "Administrator" can follow the same steps to continue assigning permissions downward.
