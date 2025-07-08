@@ -157,7 +157,6 @@ next:
         * 删除：支持删除不再需要的权限组
         * 禁用/启用：权限组不再使用时，关闭开关即可停用；需重新使用时，打开开关即可恢复。
 
-、
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Management%20Center/Roles%20and%20Permissions/xt2.png)
 

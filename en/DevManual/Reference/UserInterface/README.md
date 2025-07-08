@@ -6,7 +6,6 @@ category:
   - Reference
   - User interface
 dir:
-  index: false
   link: false
   order: 3
 prev:
