@@ -1,5 +1,7 @@
 // place your custom styles here
 
+@import "./icons.scss";
+
 @mixin hide-scrollbar() {
 	// 隐藏滚动条
 	/*overflow-y: scroll;
