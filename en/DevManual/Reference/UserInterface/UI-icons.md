@@ -13,13 +13,13 @@ next:
 
 Oinone provides an icon library and icon components based on iconfont, which you can use in any Vue component.
 
-# 一、oio-icon
+# Ⅰ.oio-icon
 
 ``` vue
 <oio-icon icon="oinone-guanbi" />
 ```
 
-# 二、Built-in icon pack
+# Ⅱ.Built-in icon pack
 
 <div class="doc-icons">
 
