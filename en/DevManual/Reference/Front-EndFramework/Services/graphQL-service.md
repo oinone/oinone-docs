@@ -14,8 +14,8 @@ order: 4
 
 This chapter contains all content related to `GraphQL Service` in Oinone Kunlun. In addition to the content in this chapter, you can also find information about `GraphQL` in the following chapters:
 
-+ The GraphQL protocol section in "[Mastering Frontend Frameworks - Frontend Framework Overview](/en-us/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#ii-graphql-protocol)"
-+ The GraphQL protocol section in [Customize GraphQL Requests](/en-us/DevManual/OperationGuide/customize-graphQL-request.md)
++ The GraphQL protocol section in "[Mastering Frontend Frameworks - Frontend Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#ii-graphql-protocol)"
++ The GraphQL protocol section in [Customize GraphQL Requests](/en/DevManual/OperationGuide/customize-graphQL-request.md)
 
 :::
 
@@ -29,7 +29,7 @@ The GraphQL protocol is the standard protocol used for frontend-backend interact
 
 For more reference materials:
 
-+ [Oinone Gateway Protocol API](/en-us/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#i-graphql-protocol-details)
++ [Oinone Gateway Protocol API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#i-detailed-explanation-of-graphql-protocol)
 + [How to GraphQL](https://www.howtographql.com/)
 + [GraphQL Introduction](https://www.graphql.org/learn/)
 
@@ -237,7 +237,7 @@ Flexible use of `Fragments` can make the code more concise.
 
 ## (Ⅰ) Starting from the Model
 
-The model is the starting point of all functions. Let's review the use of models in "[Mastering Frontend Frameworks](/en-us/DevManual/Tutorials/MasterTheFront-endFramework/README.md)", and let's start with the `GanttDemoModel` model.
+The model is the starting point of all functions. Let's review the use of models in "[Mastering Frontend Frameworks](/en/DevManual/Tutorials/MasterTheFront-endFramework/README.md)", and let's start with the `GanttDemoModel` model.
 
 This is the information of the model (`GanttDemoModel`) used in this chapter:
 
@@ -338,7 +338,7 @@ Here we list some commonly used default functions that can be called by the fron
 
 + queryByWrapper and queryOneByWrapper call the same function, but fun and name are different.
 
-For more details about function input parameters, output parameters, etc., please refer to: [ORM API - Common ORM Methods](/en-us/DevManual/Reference/Back-EndFramework/ORM-API.md#v-common-orm-methods)
+For more details about function input parameters, output parameters, etc., please refer to: [ORM API - Common ORM Methods](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#v-common-orm-methods)
 
 :::
 
@@ -360,7 +360,7 @@ For more details about function input parameters, output parameters, etc., pleas
 
 :::warning Note
 
-For more content about RSQL, please refer to: [RSQL Service](/en-us/DevManual/Reference/Front-EndFramework/Services/RSQL-service.md)
+For more content about RSQL, please refer to: [RSQL Service](/en/DevManual/Reference/Front-EndFramework/Services/RSQL-service.md)
 
 :::
 
@@ -504,6 +504,6 @@ In the request tool, we can initiate such requests in JSON format.
 
 Batch requests utilize the automatic batching capability provided by the `apollo-client` toolkit. When we use `Promise` for asynchronous operations, requests from the same module within the same clock cycle will be merged and automatically combined into such batch requests.
 
-For more information about `HTTP requests`, please refer to: [HttpClient Service](/en-us/DevManual/Reference/Front-EndFramework/Services/httpclient-service.md)
+For more information about `HTTP requests`, please refer to: [HttpClient Service](/en/DevManual/Reference/Front-EndFramework/Services/httpclient-service.md)
 
 :::
