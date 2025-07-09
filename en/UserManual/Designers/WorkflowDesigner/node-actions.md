@@ -152,10 +152,93 @@ Select the model at the time of workflow trigger as the approval model, select t
 
 :::
 
-+ Add Approvers: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed.
-    - Custom Approvers: When the system's available approvers cannot meet your requirements, you can customize the addition of approvers through code.
-        * Approver Data Node: It includes all the data that can be obtained before the approval node.
-        * Select Custom Function: It is the function to customize approvers through code.
++ Approval Type: Supports two types, regular approval and step - by - step approval, to adapt to the needs of different business scenarios.
+
+:::warning Note
+
++ **Regular Approval**: Flexibly specify approvers, suitable for simple and direct approval scenarios (such as daily administrative applications, simple expense reimbursements).
++ **Step - by - step Approval**: Automatically flows according to the organizational structure level, suitable for processes that require multiple levels and standardization (such as procurement reimbursement, project declaration).
+
+:::
+
++ Regular Approval:
+  - Add Approvers: You can select from personal, department, role, and model - related fields, and multiple selections are allowed.
+  - Custom Approvers: When the system's optional approvers cannot meet the requirements, you can add approvers through code.
+    * Approver Data Nodes: Include all data that can be obtained before the approval node.
+    * Select Custom Function: That is, the function for customizing approvers through code.
+  - Empty Approvers: When there is no valid object for the configured approvers, the following rules can be set:
+    * Terminate the Process: The process is abnormally interrupted (for example, enabled when there is no supervisor at a key level).
+    * Automatic Approval: Handled automatically by the system according to preset rules (such as "default approval", "default rejection"), only applicable to nodes with empty approvers.
+    * Automatic Transfer: Specify a fixed transferee (such as "department assistant", "system administrator"), and empty pending tasks will automatically flow.
++ Step - by - step Approval:
+  - Approval Starting Point: Define the initial flow level of the process, which needs to be configured in conjunction with the "organizational structure":
+
+    :::info Note
+
+    + Employee as the starting point: You can choose the direct supervisor (the employee's direct superior) or the department supervisor (the person in charge of the employee's department); since an employee may be in multiple departments, it is necessary to specify the department to which the process belongs (to avoid level confusion).
+    + Department as the starting point: Only the department supervisor can be selected.
+    + When the direct supervisor is empty, the approval pending task will be sent to the department supervisor.
+
+    :::
+
+  - Approval End Point: Control the termination condition of the process flowing upward
+      * Specify Level: Clearly indicate the level to which it flows (such as "flow upward to the 2nd level starting from the employee").
+      * Step - by - step Approval: Specify a fixed number of levels to flow upward (such as "flow upward 3 levels of supervisors starting from the department").
+
+    :::info Note
+
+    1. The judgment of the approval level is based solely on the **department level** in the organizational structure.
+    2. Even if "direct supervisor" is selected as the approval line, the level still strictly follows the department level rules.
+
+    The approval node is configured as
+
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/1752047466538-dc6a61f5-c2c8-4dfe-b5f3-340a90c53ef0.png)
+
+    Example illustration:
+
+    + The product department has employees A, B, and C, among whom B is A's direct supervisor and C is B's direct supervisor.
+    + The superior department of the product department is the technical department, and the supervisor of this department is employee D.
+
+    When employee A initiates an approval and the approval is set to "flow according to the direct supervisor level", the specific flow path is:
+
+    **Employee A → Direct Supervisor B → B's Direct Supervisor C → Superior Department Supervisor D**
+
+    (Note: The flow path strictly follows the department level relationship in the organizational structure, not just based on personal job titles.)
+
+    :::
+
+  - Empty Approvers: Same as the logic of regular approval, supporting:
+      * Terminate the Process: The process is abnormally interrupted (for example, enabled when there is no supervisor at a key level).
+      * Automatic Transfer: Specify a fixed transferee (such as "department assistant", "system administrator"), and empty pending tasks will automatically flow.
+
+:::tip Example
+
+Example diagram of organizational structure
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/1752045870571-0fe1363d-fe7a-4c4a-bd37-8d93f3379017.png)
+
+**Scenario 1: Administrative Department Office Supplies Procurement**
+
++ **Organizational Structure Association**: The administrative logistics team is subordinate to the administrative department, and the administrative department and the finance department are at the same level (both are managed by a higher level).
++ **Process Operation Route**: Employee of the administrative logistics team (Wang Fang) → Supervisor of the administrative logistics team (Wu Min) → Supervisor of the administrative department (Li Ting) → Financial Audit Department (Yang Fang) → Supervisor of the Financial Audit Department (Zhu Jing)
+
+The configuration items of the approval node are:![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/1752045589401-925c3bd9-a025-4559-a327-1268ece45380.png)
+
+Starting from the administrative logistics team, it advances 2 levels upward along the department supervisor line. That is, the supervisor of the administrative logistics team (Wu Min) is the 1st level, and the supervisor of the administrative department (Li Ting) is the 2nd level. After completing these two levels of approval, it enters the subsequent finance department process.
+
+**Scenario 2: Product Function Confirmation Process**
+
++ **Organizational Structure Association**: Product managers are subordinate to the product department, and the product department and the technical department are at the same level (both are managed by a higher level).
++ **Process Operation Route**: Product Manager (Zhao Liang) → Product Leader (Luo Feng) → Product Department Supervisor (Huang Yong) → Technical Department Supervisor (Zheng Hua)
+
+The configuration items of the approval node are:
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/1752046132254-f24657de-bbf5-45e5-b473-d253727ffbb2.png)
+
+Starting from product manager Zhao Liang, it advances 2 levels upward along the direct supervisor line. The first level is the direct supervisor line within the product department (Zhao Liang → Luo Feng → Huang Yong), and the 2nd level is the supervisor of the superior department of the product department (Zheng Hua). After completing these two levels of approval, it enters the subsequent technical department supervisor process.
+
+:::
+
 
 + Automatic Approval: After enabling this function, preset conditions are supported. If the conditions are met, the approval will be completed automatically, which can improve approval efficiency.
   - Basic Configuration: You need to select "Auto Approve" or "Auto Reject" to determine the default operation of the system when the conditions are met.
