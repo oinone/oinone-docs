@@ -310,7 +310,7 @@ cdn:
 ## （二）启动后端服务
 ### 1. 使用Maven启动
 ```shell
-cd oinone-backend-starter && \
+cd oinone-backend-starter/oinone-backend-starter-boot && \
 mvn clean compile spring-boot:run \
     -Dspring-boot.run.profiles=dev
 ```

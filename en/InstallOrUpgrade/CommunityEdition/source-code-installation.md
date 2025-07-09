@@ -300,9 +300,9 @@ For more OSS configurations, see: [File Storage Configuration](/en/DevManual/Ref
 ### 1. Use Maven
 
 ```bash
-cd oinone-backend-starter && \
+cd oinone-backend-starter/oinone-backend-starter-boot && \
 mvn clean compile spring-boot:run \
-  -Dspring-boot.run.profiles=dev
+    -Dspring-boot.run.profiles=dev
 ```
 
 ### 2. Use IntelliJ IDEA
