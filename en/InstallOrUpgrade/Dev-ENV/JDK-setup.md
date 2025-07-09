@@ -184,6 +184,14 @@ EOF
 ```
 
 ### 4. Verify Installation
+:::info Note
+
+After modifying the environment variable configuration, you need to open a new terminal session for the new environment variables to take effect.
+
+:::
+
+
+Open the command line and enter the following code
 
 ```shell
 # Check Java version
