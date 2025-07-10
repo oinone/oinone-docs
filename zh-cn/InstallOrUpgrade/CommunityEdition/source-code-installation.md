@@ -171,23 +171,23 @@ next:
 要克隆 Git 存储库，可选择使用 HTTPS 或 SSH 进行克隆。大多数情况下，最佳选择是 HTTPS。不过，要为数式Oinone源代码做贡献，或遵循开发者入门教程时，请选择SSH。
 
 ## （一）前端
-```plain
+``` plain
 #Clone with Https
 git clone https://github.com/oinone/oinone-frontend-starter.git
 ```
 
-```plain
+``` plain
 #Clone with SSH
 git clone git@github.com:oinone/oinone-frontend-starter.git
 ```
 
 ## （二）后端
-```plain
+``` plain
 #Clone with Https
 git clone https://github.com/oinone/oinone-backend-starter.git
 ```
 
-```plain
+``` plain
 #Clone with SSH
 git clone git@github.com:oinone/oinone-backend-starter.git
 ```
@@ -198,7 +198,7 @@ git clone git@github.com:oinone/oinone-backend-starter.git
 
 + Mysql
 
-```yaml
+``` yaml
 # application.yml文件
 # 改成mysql所在服务器的ip、端口(端口号默认3306，使用服务器上mysql的端口一致)、username、password
 pamirs:
@@ -220,7 +220,7 @@ pamirs:
 
 + Zookeeper
 
-```yaml
+``` yaml
 # application.yml文件
 dubbo:
   application:
@@ -249,7 +249,7 @@ pamirs:
 
 + Redis
 
-```yaml
+``` yaml
 # application.yml文件
 spring:
   redis:
@@ -272,7 +272,7 @@ spring:
 
 + RocketMQ
 
-```yaml
+``` yaml
 # application.yml文件
 spring:
   rocketmq:
@@ -281,7 +281,7 @@ spring:
 
 + 文件存储oss
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: MINIO
@@ -309,7 +309,7 @@ cdn:
 
 ## （二）启动后端服务
 ### 1. 使用Maven启动
-```shell
+``` shell
 cd oinone-backend-starter/oinone-backend-starter-boot && \
 mvn clean compile spring-boot:run \
     -Dspring-boot.run.profiles=dev
@@ -320,28 +320,22 @@ IDEA导入`oinone-backend-starter`工程, 使用`pro.shushi.pamirs.starter.Oinon
 
 启动之后会有类似输出信息，表示启动成功
 
-```shell
+``` shell
 Oinone Backend Starter App 启动耗时 54.168926917 s
 ```
 
 # 七、运行前端
-## （一）安装依赖、启动
-```bash
-# 初始化安装依赖
-npm i
 
-# 开发模式启动
-npm run dev
-```
+## （一）配置接口地址
 
-## （二）配置接口地址
-### 1. `适合生产环境使用`将.env 里面的 API_BASE_URL 改为自己需要配置的地址
-### 2. `适合开发环境使用` vue.config.js 内 devServer.proxy.pamirs.target 的值修改为自己需要配置的地址
+### 1. `适合开发环境使用` vue.config.js 内 devServer.proxy.pamirs.target 的值修改为自己需要配置的地址
+### 2. `适合生产环境使用` 将.env 里面的 API_BASE_URL 改为自己需要配置的地址
+
 > 方法 1 的优先级高于方法 2，如果想要方法 2 生效，需要把方法 1 的配置删除
->
 
-## （三）静态资源配置
-```plain
+## （二）静态资源配置
+
+``` plain
 ├── public
 └────static.zip
 ```
@@ -350,19 +344,27 @@ npm run dev
 
 **建议将静态资源文件上传在 oss，然后将 .env 里面的`STATIC_IMG` 改成 oss 的地址**
 
+## （三）安装依赖、启动
 
+``` shell
+# 初始化安装依赖
+npm i
+
+# 开发模式启动
+npm run dev
+```
 
 ## （四）目录结构
-```plain
-├── public 发布用的目录，index.html入口文件将在这里
-│   └── static 静态资源
-│
-├── src 源代码
-│   └── main.ts 应用入口文件 这里会注册providers/application.ts
-├── .env 启动的环境变量，后端api的请求地址在这里
-├── package.json 包描述文件
-├── tsconfig.json ts配置文件，可配置语法校验
-└── vue.config.js vue的配置文件，里面可以配置webpack参数和开发模式的后端api请求地址
 
+``` plain
+├── public               发布用的目录，index.html入口文件将在这里
+│   └── static           静态资源
+│
+├── src                  源代码
+│   └── main.ts          应用入口文件 这里会注册providers/application.ts
+├── .env                 启动的环境变量，后端api的请求地址在这里
+├── package.json         包描述文件
+├── tsconfig.json        ts配置文件，可配置语法校验
+└── vue.config.js        vue配置文件，里面可以配置webpack参数和开发模式的后端api请求地址
 ```
 
