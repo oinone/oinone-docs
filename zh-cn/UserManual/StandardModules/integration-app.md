@@ -1,5 +1,5 @@
 ---
-title: 集成接口
+title: 集成应用
 index: true
 category:
   - 用户手册
@@ -9,12 +9,16 @@ next:
   link: /zh-cn/UserManual/apps-hub.md
 ---
 # 一、集成管理
+
 ## （一）集成接口
+
 ### 1.功能介绍
-集成接口全面展示了集成设计器中连接器所包含的所有API，包括接口信息与调用情况，提供了便捷的管理方式，实现对所有接口的统一管理
+
+集成接口全面展示了集成设计器中连接器所包含的所有API，包括接口信息与调用情况，提供了便捷的管理方式，实现对所有接口的统一管理。
 
 ### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对集成接口进行筛选。
+
++ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对集成应用进行筛选。
 + 启用：通过控制开关的状态，即可改变接口的启用状态。
 + 忽略日志频率配置：通过控制开关的状态，即可改变接口的日志频率。
 
@@ -24,26 +28,39 @@ next:
 
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/jc.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1752644944274-42840790-f049-4b70-9fbb-592582072ca3.png)
 
 ## （二）熔断配置
+
 ### 1.功能介绍
-支持熔断规则配置功能，当特定接口的错误率突破预设阈值或响应延迟超出临界值时，系统将自动触发熔断机制，暂时阻断对该接口的调用。此机制可有效地为系统稳定性提供动态保护屏障。
+
+熔断机制和限流机制用于保障平台接口的高可用性。当系统负载过高或者接口响应过慢时，熔断机制将自动触发，停止接口请求，从而避免系统崩溃。
 
 ### 2.操作方法
+
 + 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对熔断规则进行筛选。
-+ 创建：点击「创建」，输入所需的配置信息并保存，即可成功创建一条熔断规则。
++ 创建：
+  - 登录平台，进入 集成应用→ 集成管理 → 熔断配置。
+  - 点击 创建 新增熔断规则。
+  - 填写熔断规则配置表单，设置熔断类型、集成应用、统计时长等字段。
+  - 点击 保存 完成配置。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1752645099956-cf663627-a5a7-4faa-9257-d9bb85c48e3d.png)
 
 :::info 提示
 
-支持两种熔断类型：慢调用熔断与异常熔断
+熔断机制用于保护系统免于过载。平台支持慢调用熔断和异常熔断。
 
-+ 慢调用熔断：是一种针对接口响应延迟过高的熔断机制，通过监控接口调用的响应时间，当慢调用（即响应时间超过预设阈值的调用）的比达到触发条件时，暂时阻断对该接口的调用
-+ 异常熔断：针对接口调用中异常（错误）比例过高的熔断机制，通过监控接口调用的错误率，当异常比例超过阈值时，暂时阻断对该接口的调用
+熔断规则：
+
++ 慢调用熔断：当某个接口的响应时间超过设定阈值并且慢调用比例超过设定阈值时，触发熔断。
++ 异常熔断：当某个接口的异常响应比例超过设定阈值时，触发熔断。
 
 :::
 
-+ 编辑：点击「编辑」可修改已有规则配置。
++ 编辑：
+  - 进入 集成应用→ 集成管理 → 熔断配置，选择需要编辑的熔断规则。
+  - 点击 编辑，修改规则相关字段，点击 保存 更新规则。
 
 :::info 提示
 
@@ -53,21 +70,27 @@ next:
 
 + 删除：点击「删除」，可删除已有熔断规则
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/rdpz.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1745573470545-eb972126-3e72-4be9-8fee-a478023abe28.png)
 
 ## （三）熔断记录
+
 ### 1.功能介绍
+
 熔断记录用于详细记载接口的熔断事件信息。当接口调用触发预设的熔断规则时，系统将自动生成熔断记录，支持通过该记录实时追溯对应接口的熔断时间等详情，为故障分析与策略优化提供数据支撑。
 
 ### 2.操作方法
-+ 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对熔断记录进行筛选。
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/rdjl.png)
++ 查看日志： 集成应用→ 集成管理 → 熔断记录，查看相关日志。
++ 筛选：可以根据 集成接口名称、熔断类型等字段进行筛选。
 
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1745573355765-930ce269-c80a-4051-975e-4aa880101068.png)
 
 # 二、开放管理
+
 ## （一）开放接口
+
 ### 1.功能介绍
+
 支持将系统的能力对外进行开放，具体包括但不限于商品信息查询接口、发货单查询接口等关键业务接口。便于对开放接口的统一管理与维护。
 
 :::warning 提示
@@ -77,6 +100,7 @@ next:
 :::
 
 ### 2.操作方法
+
 + 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对开放接口进行筛选。
 + 启用：通过控制开关的状态，即可改变接口的启用状态。
 + 忽略日志频率配置：通过控制开关的状态，即可改变接口的日志频率。
@@ -87,10 +111,12 @@ next:
 
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/kfjk.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1752645482038-49470a51-4457-4899-9ecc-3e1c466aa863.png)
 
 ## （二）应用
+
 ### 1.功能介绍
+
 支持将系统的能力对外进行开放，允许将多个接口整合至一个应用中对外开放，为用户提供了便捷、高效的开放途径。
 
 :::warning 提示
@@ -100,16 +126,73 @@ next:
 :::
 
 ### 2.操作方法
+
 + 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对应用进行筛选。
 + 新增：点击「新增应用」，输入所需的配置信息并保存，即可成功创建新的应用。
 + 启用：通过控制开关的状态，即可改变应用的启用状态。
 + 查看密钥：点击「查看密钥」，即可查看该应用的密钥
 + 授权调整：点击「授权调整」，即可对应用中允许开放的接口范围做出调整
+  - IP 白名单：用于限制接口访问的来源 IP 地址。只有在白名单中的 IP 地址，才可以访问平台提供的接口。
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/yy.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1752645635630-45736568-976a-4d69-8eb5-fbe51ba30c2d.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1752646240458-ca509623-aa26-45d0-9eee-b4eeb2f04c38.png)
+
++ 流控配置：点击「流控配置」，即可对应用进行相关配置。（流控机制是对系统请求流量的管理和限制，以防止系统因过载而崩溃。流控机制可确保接口请求流量在系统承受范围内，避免接口过载引发的性能问题。）
+  - 创建：
+    * 登录平台，进入 集成应用 → 开放管理 → 应用→ 流控配置。
+    * 点击 流控配置。
+    * 选择开放接口进行编辑，填写流控规则配置表单，包括：
+    * 单机 QPS 阈值：每台实例允许的最大 QPS。
+    * 流控效果：选择流控效果（快速失败或排队等待）。
+    * 超时时长：设置排队等待时的超时时长（单位：ms）。
+    * 配置完成后，点击 确定。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1752645951563-a6b85857-adba-489e-9fc0-b5f389e9a93a.png)
+
+:::info 提示
+
+流控机制支持单机 QPS 阈值限制和两种流控效果：
+
++ **快速失败**：当请求超过限流阈值时，系统直接返回错误信息。
++ **排队等待**：当请求超过限流阈值时，系统会将多余的请求排队处理，直到队列中有空余的处理资源。
+
+:::
+
+    - 编辑
+        * 进入 集成应用 → 开放管理 → 应用→ 流控配置，选择需要编辑的流控规则。
+        * 点击 编辑，修改流控规则相关字段，点击 确定 更新规则。
+
+## （三）黑名单
+
+### 1.功能介绍
+
+IP 黑名单功能用于提升平台的安全性，通过拦截不符合要求的 IP 请求，防止恶意访问。通过设置黑名单，可以控制哪些 IP 被拒绝访问平台。
+
++ 基于 IP 的黑名单拦截机制，有效防止恶意请求。
++ 系统首先会检查白名单，只有在白名单通过的情况下，才会检查黑名单。即使某个 IP 在白名单中，如果它也在黑名单中，仍然会被拒绝访问。
++ 支持灵活配置与实时生效，可通过手动或批量导入配置 IP 黑名单。
+
+### 2.操作方法
+
++ 查看：查看当前已配置的黑名单记录。
++ 添加：新增 IP 或 IP 网段。
+  - 新增黑名单规则：
+    * 应用：选择应用（必填）
+    * IP：输入单个 IP 或 CIDR 网段（必填）
+    * 响应消息：被黑名单拦截时的返回信息。
+    * 状态码：返回的 HTTP 状态码（默认 403）。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1752646590110-73d1924b-33bf-4a3c-96a2-61ef8c4a66d6.png)
+
++ 编辑：修改已有黑名单记录。
++ 删除：移除黑名单中的记录。
++ 批量导入：支持导入模板批量添加规则。
 
 # 三、接口日志
-### （一）功能介绍
+
+### 1.功能介绍
+
 接口日志用于记录接口调用情况。在连接集成资源并使用接口时，可以在接口日志中查看该接口是否成功被调用，并根据接口的执行情况做出相应的调整和优化。
 
 :::warning 提示
@@ -118,15 +201,19 @@ next:
 
 :::
 
-### （二）操作方法
+### 2.操作方法
+
 + 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对接口日志进行筛选。
 + 详情：点击「详情」，可查看所选应用日志的详细信息，包括基础信息、执行信息与参数信息。
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/rz.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1738919759170-59393f3f-bfbd-4d79-8690-b4fca2532468.png)
 
 # 四、基础数据
+
 ## （一）业务域
+
 ### 1.功能介绍
+
 可按照业务域对集成应用与开放接口进行系统的归类和管理，以提升管理的效率和准确性。
 
 :::warning 提示
@@ -136,9 +223,10 @@ next:
 :::
 
 ### 2.操作方法
+
 + 筛选：根据实际场景需求，输入或选择相应的筛选条件，即可对业务域进行筛选。
 + 添加：点击「创建」，输入所需的配置信息并保存，即可成功创建新的业务域。
 + 删除：选中某一业务域后，点击「删除」，即可将该业务域则删除。
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/ywy.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/integration%20interface/1738919915687-58d782ab-de39-44d1-85d2-ee20805e1813.png)
 
