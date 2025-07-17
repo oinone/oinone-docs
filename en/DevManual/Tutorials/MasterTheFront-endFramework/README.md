@@ -23,6 +23,8 @@ Each of these chapters can be completed independently and in any order. Addition
 
 :::
 
-The first project will create a Gantt chart page by combining existing views. It is interesting to see how to leverage existing code and modify it to meet our needs. Furthermore, this project is highly practical and will incorporate methodologies for handling the customization of any new type of view. Learning and mastering this skill can lead to a better understanding of Oinone development in the future.
+The first chapter briefly introduces the basics of developing with Oinone. We will have a brief understanding of the concept of metadata, which includes the four parts of model, field, view, and action, which are also the core of developing with Oinone. This section contains a lot of concepts and theory, so we recommend that you sit through it all and try your best to memorize it.
 
-The second project focuses on the transformation of the gallery view. When using the gallery view to meet our business scenarios, simply defining a card using DSL may not achieve the desired display effect. In such cases, customizing a type of card becomes essential.
+In our first project in Chapter 2, we'll create a Gantt chart page by combining existing views. It would be interesting to see how we could take the existing code and modify it to suit our needs. Moreover, this project is a realistic one that will contain methodologies when dealing with customizing any kind of new views. Learning and mastering this skill can lead to better understanding in the future development process using Oinone.
+
+The second project is aimed at the transformation of gallery views. When we use gallery views to satisfy our business scenario, simply defining a card using a DSL may not achieve the presentation we want. At this point, it is necessary to customize a class of cards.
