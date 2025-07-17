@@ -176,7 +176,7 @@ You can use either HTTPS or SSH to clone the Git repositories. HTTPS is recommen
 
 ## (Ⅰ) Front-end
 
-```bash
+``` bash
 # Clone using HTTPS
 git clone https://github.com/oinone/oinone-frontend-starter.git
 
@@ -186,7 +186,7 @@ git clone git@github.com:oinone/oinone-frontend-starter.git
 
 ## (Ⅱ) Back-end
 
-```bash
+``` bash
 # Clone using HTTPS
 git clone https://github.com/oinone/oinone-backend-starter.git
 
@@ -202,7 +202,7 @@ If MySQL, Zookeeper, Redis, and RocketMQ are not on the same machine, you need t
 
 ### MySQL
 
-```yaml
+``` yaml
 # Modify the MySQL connection information
 pamirs:
   datasource:
@@ -222,7 +222,7 @@ pamirs:
 
 ### Zookeeper
 
-```yaml
+``` yaml
 dubbo:
   application:
     name: pamirs-designer
@@ -243,7 +243,7 @@ pamirs:
 
 ### Redis
 
-```yaml
+``` yaml
 spring:
   redis:
     database: 0
@@ -261,7 +261,7 @@ spring:
 
 ### RocketMQ
 
-```yaml
+``` yaml
 spring:
   rocketmq:
     name-server: 127.0.0.1:9876
@@ -269,7 +269,7 @@ spring:
 
 ### File Storage OSS
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: MINIO
@@ -299,7 +299,7 @@ For more OSS configurations, see: [File Storage Configuration](/en/DevManual/Ref
 
 ### 1. Use Maven
 
-```bash
+``` bash
 cd oinone-backend-starter/oinone-backend-starter-boot && \
 mvn clean compile spring-boot:run \
     -Dspring-boot.run.profiles=dev
@@ -311,29 +311,22 @@ Import the `oinone-backend-starter` project into IDEA and set `pro.shushi.pamirs
 
 Successful startup message:
 
-```bash
+``` bash
 Oinone Backend Starter App started in 54.168926917 s
 ```
 
 # Ⅶ. Run the Front-end
 
-## (Ⅰ) Install Dependencies and Start
+## (Ⅰ) Configure API Endpoint
 
-```bash
-npm i
-npm run dev
-```
-
-## (Ⅱ) Configure API Endpoint
-
-1. **For Production**: Modify `API_BASE_URL` in `.env`
-2. **For Development**: Modify `devServer.proxy.pamirs.target` in `vue.config.js`
+### 1. **For Development** Modify `devServer.proxy.pamirs.target` in `vue.config.js`
+### 2. **For Production** Modify `API_BASE_URL` in `.env`
 
 > Method 1 has higher precedence than Method 2. To use Method 2, delete Method 1.
 
-## (Ⅲ) Static Resources
+## (Ⅱ) Static Resources
 
-```plaintext
+``` plaintext
 ├── public
 └────static.zip
 ```
@@ -342,14 +335,24 @@ Extract `static.zip` into the `public` directory.
 
 > It is recommended to upload static resources to OSS and set `STATIC_IMG` in `.env` to the OSS address.
 
+## (Ⅲ) Install Dependencies and Start
+
+``` shell
+# initialize dependencies
+npm i
+
+# run application for development mode
+npm run dev
+```
+
 ## (Ⅳ) Directory Structure
 
-```plaintext
-├── public                Static resource directory (contains index.html)
-│   └── static            Static assets
+``` plaintext
+├── public               Static resource directory (contains index.html)
+│   └── static           Static assets
 │
-├── src                   Source code
-│   └── main.ts           Entry file, registers `providers/application.ts`
+├── src                  Source code
+│   └── main.ts          Entry file, registers `providers/application.ts`
 ├── .env                 Environment variables file
 ├── package.json         Project dependencies and scripts
 ├── tsconfig.json        TypeScript configuration
