@@ -169,6 +169,7 @@ Applications can add new APIs or WebServices according to business needs, databa
         * Protocol type: HTTP/HTTPS
         * Verb: GET, POST, PUT, DELETE
     - Parameter type support: Long, Double, String, Boolean, Integer, Date, Void, Object.
+    - Content types supported: application/json, x-www-form-urlencoded, multipart/form-data, application/json + fhir
 + New WebService: You can set the basic information of the WebService, request parameters, and response results (not supported for databases).
     - API URL support:
         * Protocol type: HTTP/HTTPS

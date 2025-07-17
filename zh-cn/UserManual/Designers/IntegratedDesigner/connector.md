@@ -169,6 +169,7 @@ order: 2
         * 协议类型：HTTP/HTTPS
         * Verb：GET、POST、PUT、DELETE
     - 参数类型支持：Long、Double、String、Boolean、Integer、Date、Void、Object。
+    - 内容类型支持：application/json、x-www-form-urlencoded 、multipart/form-data 、application/json + fhir
 + 新增WebService：可设置WebService基本信息、请求参数与响应结果（数据库不支持）
     - API URL支持：
         * 协议类型：HTTP/HTTPS
