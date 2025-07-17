@@ -16,13 +16,13 @@ next:
   link: /en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md
 ---
 
-This tutorial is divided into three parts, designed to introduce you to the basic knowledge of this Web framework. Whether you are new to this framework or already have some experience using it, this tutorial will lay a solid foundation for using this Web framework in your projects.  
+This two-part tutorial aims to introduce you to the basics of this Web framework. Whether you are new to the framework or already have some experience with it, this tutorial will give you a solid foundation for using the Web framework in your projects.
 
-The first part briefly introduces the basic knowledge of Oinone development. We will provide a simple understanding of the concept of metadata, including four core components: models, fields, views, and actions. These contents are also the core of development using Oinone. This part contains many concepts and theoretical knowledge, and we recommend that you read all the contents patiently and even try your best to remember them.  
+The first part covers the basics of Widget components, which are a key part of this Web framework. Widgets are reusable user interface (UI) components that can be used to build complex Web interfaces quickly and efficiently. We will explore how to create and use widgets in Oinone.
 
-The second part covers the basic knowledge of Widget components, which are a key part of this Web framework. Widget components are reusable user interface (UI) components that can be used to quickly and efficiently build complex Web interfaces. We will explore how to create and use Widget components in Oinone.  
+Then, in the second part of this tutorial, we will focus on how to leverage the various features of Oinone to create a dashboard. Dashboards are an important part of any Web application and a good starting point for using and interacting with the Oinone codebase.
 
-Then, in the third part of this tutorial, we will focus on how to use various functions of Oinone to create a dashboard. A dashboard is an important part of any Web application and a good starting point for using and interacting with the Oinone codebase.  
+The goal of this tutorial is to get up to speed on the Oinone front-end development framework. You should follow the chapters in the given order as they cover the core of Oinone front-end development in a step-by-step manner. In other words, they are also the most basic part of learning Oinone and looking at other Oinone front-end documentation.
 
 :::warning Tip
 
