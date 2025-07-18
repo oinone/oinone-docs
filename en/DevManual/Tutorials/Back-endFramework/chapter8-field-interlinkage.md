@@ -195,4 +195,46 @@ Any method called from the user interface should be defined as a public method.
 
 :::
 
+### 1. Configuration Items for constructFun  
+
+By default, `constructFun` only submits the currently changed fields. To submit the entire form data or specific field data, you need to configure **`constructSubmitType`** as follows:  
+
+
+1. Optional Values and Configuration Requirements  
+
+- **`ALL`**: Submits the entire form data without requiring additional parameters.  
+- **`CUSTOM`**: Submits specified field data. When using this option, you must configure **`submitFields`** with field names separated by commas (e.g., "id,projectVisibility").  
+
+
+2. XML Configuration Examples  
+
+- Submit the entire form:  
+
+```xml
+<field span="1" priority="108" data="projectVisibility" label="Project Visibility" 
+       constructFun="onProjectVisibilityChange" constructSubmitType='ALL' >
+```  
+
+- Submit specified fields:  
+
+```xml
+<field span="1" priority="108" data="projectVisibility" label="Project Visibility" 
+       constructFun="onProjectVisibilityChange" constructSubmitType="CUSTOM" 
+       submitFields="id,projectVisibility" >
+```  
+
+
+3. Example of Model Field Definition  
+
+Configure via annotations on model fields:  
+
+```java
+@UxForm.FieldWidget(@UxWidget(config = {
+    @Prop(name = "constructFun", value = "onProjectVisibilityChange"),
+    @Prop(name = "constructSubmitType", value = "ALL") // Value can be "ALL" or "CUSTOM" here
+}))
+```  
+
+Through the above configurations, you can flexibly control the data range submitted by `constructFun` to meet the needs of different scenarios.
+
 In the next chapter, we'll learn how to trigger business logic when clicking buttons.

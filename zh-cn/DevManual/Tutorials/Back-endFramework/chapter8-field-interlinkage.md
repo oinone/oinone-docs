@@ -195,5 +195,44 @@ public class TestConstructFunModel extends IdModel {
 
 :::
 
+### 1、constructFun的配置项
+
+constructFun 默认仅提交当前变化的字段。若需提交整个表单数据或指定字段数据，需通过配置 **constructSubmitType** 实现，具体说明如下：
+
+1. 可选项及配置要求
+
++ **ALL**：提交整个 form 表单数据，无需额外配置其他参数。
++ **CUSTOM**：提交指定字段数据，需同时配置 **submitFields**，并以逗号分隔字段名（如 "id,projectVisibility"）。
+
+2. XML 配置示例
+
++ 提交整个表单：
+
+```xml
+<field span="1" priority="108" data="projectVisibility" label="项目可见性" 
+       constructFun="onProjectVisibilityChange" constructSubmitType='ALL' >
+```
+
++ 提交指定字段：
+
+```xml
+<field span="1" priority="108" data="projectVisibility" label="项目可见性" 
+       constructFun="onProjectVisibilityChange" constructSubmitType="CUSTOM" 
+       submitFields="id,projectVisibility" >
+```
+
+3. 模型字段定义示例
+
+在模型字段上通过注解配置：
+
+```java
+@UxForm.FieldWidget(@UxWidget(config = {
+    @Prop(name = "constructFun", value = "onProjectVisibilityChange"),
+    @Prop(name = "constructSubmitType", value = "ALL") // 此处值可为"ALL"或"CUSTOM"
+}))
+```
+
+通过上述配置，可灵活控制 constructFun 提交的数据范围，满足不同场景的需求。
+
 在下一章中，我们将了解如何在点击按钮时触发一些业务逻辑。
 
