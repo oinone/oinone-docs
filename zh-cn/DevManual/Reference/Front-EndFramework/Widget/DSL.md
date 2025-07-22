@@ -21,7 +21,7 @@ order: 5
 
 可以这样在 `FancyButton` 组件中定义一个插槽：
 
-```vue
+``` vue
 <button class="fancy-btn">
   <slot /><!-- 插槽出口 -->
 </button>
@@ -29,7 +29,7 @@ order: 5
 
 对于 `FancyButton` 组件在任何地方使用的时候，我们可以这样定义按钮中的文本：
 
-```vue
+``` vue
 <FancyButton>
   Click me! <!-- 插槽内容 -->
 </FancyButton>
@@ -37,7 +37,7 @@ order: 5
 
 最终渲染出的 DOM 是这样的：
 
-```html
+``` html
 <button class="fancy-btn">Click me!</button>
 ```
 
@@ -49,7 +49,7 @@ order: 5
 
 可以这样在 `BaseLayout` 组件中定义这样三个插槽：
 
-```html
+``` html
 <div class="container">
   <div class="header">
     <slot name="header" />
@@ -65,7 +65,7 @@ order: 5
 
 当我们在使用 `BaseLayout` 组件时，可以通过指定插槽名称来决定哪一部分片段需要插入到哪个插槽中，就像这样：
 
-```html
+``` html
 <BaseLayout>
   <template #default>
     content <!-- 默认插槽的内容放这里 -->
@@ -81,7 +81,7 @@ order: 5
 
 最终渲染出的 DOM 是这样的：
 
-```html
+``` html
 <div class="container">
   <div class="header">
     header
@@ -115,7 +115,7 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 
 在 `布局（Layout）` 中我们可以像下面这样来定义一个 `fields` 插槽：
 
-```xml
+``` xml
 <element widget="table">
     <xslot name="fields" />
 </element>
@@ -123,7 +123,7 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 
 在 `DSL` 中使用 `template` 标签为插槽提供具体的内容：
 
-```xml
+``` xml
 <template slot="fields">
     <field data="id" invisible="true" />
     <field data="code" />
@@ -134,7 +134,7 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 
 最终合并得到的 `Template` 模板是这样的：
 
-```xml
+``` xml
 <element widget="table">
     <field data="id" invisible="true" />
     <field data="code" />
@@ -149,13 +149,13 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 
 在 `布局（Layout）` 中我们可以像下面这样来定义一个 `table` 插槽：
 
-```xml
+``` xml
 <element widget="table" slot="table" />
 ```
 
 在 `DSL` 中使用 `template` 标签为插槽提供具体的内容：
 
-```xml
+``` xml
 <template slot="table" sortable="true">
     <field data="id" invisible="true" />
     <field data="code" />
@@ -166,7 +166,7 @@ xslot 标签是最接近 Vue 插槽的一种使用方式，下面我们来看一
 
 最终合并得到的 `Template` 模板是这样的：
 
-```xml
+``` xml
 <element widget="table" sortable="true">
     <field data="id" invisible="true" />
     <field data="code" />
@@ -183,7 +183,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 以 “资源-国家分组” 为例，一个可能的 `DSL` 模板应该是这样的：
 
-```xml
+``` xml
 <view type="TABLE" model="resource.ResourceCountryGroup" title="国家分组" name="国家分组table">
     <template slot="actions">
         <action name="redirectCreatePage" label="创建"/>
@@ -210,7 +210,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 对于这个表格视图来说，它有一个对应的标准表格视图布局模板：
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -243,7 +243,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 按照插槽的合并规则，让我们尝试合并一下。将 `actions`、`searchFields`、`fields`、`rowActions` 分别合并到对应的包含 `slot` 属性和 `xslot` 标签的 XML 元素中：
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -285,7 +285,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 以布局中的表格组件片段为例：
 
-```xml
+``` xml
 <view type="TABLE">
     <element widget="table" slot="table" slotSupport="field">
         <element widget="expandColumn" slot="expandRow" />
@@ -297,7 +297,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 如果我们有这样一个 DSL 片段：
 
-```xml
+``` xml
 <view type="TABLE">
     <template slot="table" sortable="true">
         <field data="id" invisible="true"/>
@@ -314,7 +314,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 那么，最终合并的结果是这样的：
 
-```xml
+``` xml
 <view type="TABLE">
     <element widget="table" sortable="true">
         <field data="id" invisible="true" />
@@ -329,7 +329,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 但按照我们之前的标准合并规则，我们丢失了 `原布局` 中表格组件的所有子元素，只保留了 DSL 中的片段内容。显而易见的是，现在的表格已经将 `行内动作（rowActions）` 组件丢掉了，这一定不是我们想要的结果。
 
-为了解决这个问题，我们提出了一个较为友好的解决方式——**反向合并**。
+为了解决这个问题，我们提出了一个较为友好的解决方式——**逆向合并**。
 
 ## （三）逆向合并
 
@@ -339,7 +339,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 以布局中的表格组件片段为例：
 
-```xml
+``` xml
 <view type="TABLE">
     <element widget="table" slot="table" slotSupport="field">
         <element widget="expandColumn" slot="expandRow" />
@@ -351,7 +351,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 如果我们有这样一个 DSL 片段：
 
-```xml
+``` xml
 <view type="TABLE">
     <template slot="table">
         <field data="id" invisible="true" />
@@ -368,7 +368,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 那么，最终合并的结果是这样的：
 
-```xml
+``` xml
 <view type="TABLE">
     <element widget="table">
         <field data="id" invisible="true" />
@@ -391,7 +391,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 例如：
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group" slot="tableGroup">
         <element widget="table" slot="table" slotSupport="field">
@@ -401,7 +401,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-```xml
+``` xml
 <view type="TABLE">
     <template slot="tableGroup" title="标题" />
     <template slot="table">
@@ -413,7 +413,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 </view>
 ```
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group" title="标题">
         <element widget="table">
@@ -436,7 +436,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 以卡片为例，我们希望可以分别定义顶部（header）、内容（content）以及底部（footer），在 Vue 组件中我们可以这样来定义 `Vue Template` 模板：
 
-```vue
+``` vue
 <template>
   <div class="card-demo">
     <div class="card-demo-header">
@@ -454,7 +454,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 这个 Vue 组件被绑定在一个 `CardDemoWidget` 组件上，那么，我们在 `布局（Layout）` 中可以通过这样的方式使用这个卡片组件：
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header" />
     <template slot="content" />
@@ -464,7 +464,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 在 `DSL` 中分别对这三部分内容进行声明：
 
-```vue
+``` vue
 <view>
     <template slot="header">
         <field data="code" />
@@ -482,7 +482,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 最终合并得到的 `Template` 模板是这样的：
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header">
         <field data="code" />
@@ -504,7 +504,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 让我们将之前的 Vue Template 模板的 content 插槽名去掉，就像下面这样：
 
-```vue
+``` vue
 <template>
   <div class="card-demo">
     <div class="card-demo-header">
@@ -524,7 +524,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 ### 1、使用 default 默认具名插槽
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header" />
     <template slot="default">
@@ -536,7 +536,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 最终合并得到的 `Template` 模板是这样的：
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header">
         <field data="code" />
@@ -554,7 +554,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 ### 2、自动收集子元素到默认插槽
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header" />
     <xslot name="content" />
@@ -564,7 +564,7 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 最终合并得到的 `Template` 模板是这样的：
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header">
         <field data="code" />

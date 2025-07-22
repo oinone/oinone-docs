@@ -21,7 +21,7 @@ Before explaining DSL, let's briefly recall the use of slots in Vue.
 
 A slot can be defined in the `FancyButton` component as follows:
 
-```vue
+``` vue
 <button class="fancy-btn">
   <slot /><!-- Slot outlet -->
 </button>
@@ -29,7 +29,7 @@ A slot can be defined in the `FancyButton` component as follows:
 
 When using the `FancyButton` component anywhere, we can define the text in the button like this:
 
-```vue
+``` vue
 <FancyButton>
   Click me! <!-- Slot content -->
 </FancyButton>
@@ -37,7 +37,7 @@ When using the `FancyButton` component anywhere, we can define the text in the b
 
 The最终 rendered DOM is as follows:
 
-```html
+``` html
 <button class="fancy-btn">Click me!</button>
 ```
 
@@ -49,7 +49,7 @@ When a component contains multiple slots, named slots specify where to insert co
 
 Three slots can be defined in the `BaseLayout` component as follows:
 
-```html
+``` html
 <div class="container">
   <div class="header">
     <slot name="header" />
@@ -65,7 +65,7 @@ Three slots can be defined in the `BaseLayout` component as follows:
 
 When using the `BaseLayout` component, we can determine which fragment inserts into which slot by specifying the slot name, just like this:
 
-```html
+``` html
 <BaseLayout>
   <template #default>
     content <!-- Content for the default slot goes here -->
@@ -81,7 +81,7 @@ When using the `BaseLayout` component, we can determine which fragment inserts i
 
 The最终 rendered DOM is as follows:
 
-```html
+``` html
 <div class="container">
   <div class="header">
     header
@@ -115,7 +115,7 @@ The xslot tag is the closest way to use Vue slots. Let's see how to use it in la
 
 In `Layout`, we can define a `fields` slot as follows:
 
-```xml
+``` xml
 <element widget="table">
     <xslot name="fields" />
 </element>
@@ -123,7 +123,7 @@ In `Layout`, we can define a `fields` slot as follows:
 
 In `DSL`, use the `template` tag to provide specific content for the slot:
 
-```xml
+``` xml
 <template slot="fields">
     <field data="id" invisible="true" />
     <field data="code" />
@@ -134,7 +134,7 @@ In `DSL`, use the `template` tag to provide specific content for the slot:
 
 The final merged `Template` is as follows:
 
-```xml
+``` xml
 <element widget="table">
     <field data="id" invisible="true" />
     <field data="code" />
@@ -149,13 +149,13 @@ Since the Widget framework needs to adapt to more diversified page configuration
 
 In `Layout`, we can define a `table` slot as follows:
 
-```xml
+``` xml
 <element widget="table" slot="table" />
 ```
 
 In `DSL`, use the `template` tag to provide specific content for the slot:
 
-```xml
+``` xml
 <template slot="table" sortable="true">
     <field data="id" invisible="true" />
     <field data="code" />
@@ -166,7 +166,7 @@ In `DSL`, use the `template` tag to provide specific content for the slot:
 
 The final merged `Template` is as follows:
 
-```xml
+``` xml
 <element widget="table" sortable="true">
     <field data="id" invisible="true" />
     <field data="code" />
@@ -183,7 +183,7 @@ Like masks and layouts, DSL splits pages into orderable small units through XML 
 
 Taking "Resource - Country Group" as an example, a possible `DSL` template should be:
 
-```xml
+``` xml
 <view type="TABLE" model="resource.ResourceCountryGroup" title="国家分组" name="国家分组table">
     <template slot="actions">
         <action name="redirectCreatePage" label="创建"/>
@@ -210,7 +210,7 @@ In this `DSL` template, the `slot` attribute on the `template` tag is similar to
 
 For this table view, it has a corresponding standard table view layout template:
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -243,7 +243,7 @@ For more content about Layout, please refer to: [Layout](/en/DevManual/Reference
 
 According to the slot merging rules, let's try to merge them. Merge `actions`, `searchFields`, `fields`, and `rowActions` into the corresponding XML elements containing the `slot` attribute and `xslot` tag:
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -285,7 +285,7 @@ When merging `DSL` into `Layout`, we can not only replace or insert `child eleme
 
 Take the table component fragment in the layout as an example:
 
-```xml
+``` xml
 <view type="TABLE">
     <element widget="table" slot="table" slotSupport="field">
         <element widget="expandColumn" slot="expandRow" />
@@ -297,7 +297,7 @@ Take the table component fragment in the layout as an example:
 
 If we have such a DSL fragment:
 
-```xml
+``` xml
 <view type="TABLE">
     <template slot="table" sortable="true">
         <field data="id" invisible="true"/>
@@ -314,7 +314,7 @@ If we have such a DSL fragment:
 
 Then, the final merged result is:
 
-```xml
+``` xml
 <view type="TABLE">
     <element widget="table" sortable="true">
         <field data="id" invisible="true" />
@@ -329,7 +329,7 @@ In this way, we can use the `sortable` attribute defined in DSL on the table com
 
 However, according to our previous standard merging rules, we have lost all child elements of the table component in the `original layout`, retaining only the fragment content in DSL. Obviously, the current table has lost the `rowActions` component, which is definitely not the result we want.
 
-To solve this problem, we propose a more friendly solution - **reverse merging**.
+To solve this problem, we propose a more friendly solution - **Reverse merging**.
 
 ## (Ⅲ) Reverse Merging
 
@@ -339,7 +339,7 @@ To solve this problem, we propose a more friendly solution - **reverse merging**
 
 Take the table component fragment in the layout as an example:
 
-```xml
+``` xml
 <view type="TABLE">
     <element widget="table" slot="table" slotSupport="field">
         <element widget="expandColumn" slot="expandRow" />
@@ -351,7 +351,7 @@ Take the table component fragment in the layout as an example:
 
 If we have such a DSL fragment:
 
-```xml
+``` xml
 <view type="TABLE">
     <template slot="table">
         <field data="id" invisible="true" />
@@ -368,7 +368,7 @@ If we have such a DSL fragment:
 
 Then, the final merged result is:
 
-```xml
+``` xml
 <view type="TABLE">
     <element widget="table">
         <field data="id" invisible="true" />
@@ -391,7 +391,7 @@ If we only need to add some attributes to a tag without changing the content of 
 
 For example:
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group" slot="tableGroup">
         <element widget="table" slot="table" slotSupport="field">
@@ -401,7 +401,7 @@ For example:
 </view>
 ```
 
-```xml
+``` xml
 <view type="TABLE">
     <template slot="tableGroup" title="标题" />
     <template slot="table">
@@ -413,7 +413,7 @@ For example:
 </view>
 ```
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group" title="标题">
         <element widget="table">
@@ -436,7 +436,7 @@ In the Widget framework, the concept of slots is not only used for fragment repl
 
 Take a card as an example. We want to define the top (header), content (content), and bottom (footer) separately. In a Vue component, we can define the `Vue Template` as follows:
 
-```vue
+``` vue
 <template>
   <div class="card-demo">
     <div class="card-demo-header">
@@ -454,7 +454,7 @@ Take a card as an example. We want to define the top (header), content (content)
 
 This Vue component is bound to a `CardDemoWidget` component. Then, in `Layout`, we can use this card component in the following way:
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header" />
     <template slot="content" />
@@ -464,7 +464,7 @@ This Vue component is bound to a `CardDemoWidget` component. Then, in `Layout`, 
 
 Declare these three parts in `DSL` respectively:
 
-```vue
+``` vue
 <view>
     <template slot="header">
         <field data="code" />
@@ -482,7 +482,7 @@ Declare these three parts in `DSL` respectively:
 
 The final merged `Template` is as follows:
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header">
         <field data="code" />
@@ -504,7 +504,7 @@ In this merging process, it will fully follow the DSL merging rules and finally 
 
 Let's remove the content slot name from the previous Vue Template, as follows:
 
-```vue
+``` vue
 <template>
   <div class="card-demo">
     <div class="card-demo-header">
@@ -524,7 +524,7 @@ So, how should we use this unnamed slot in `Layout`? Since the final rendered Te
 
 ### 1. Use the default named slot "default"
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header" />
     <template slot="default">
@@ -536,7 +536,7 @@ So, how should we use this unnamed slot in `Layout`? Since the final rendered Te
 
 The final merged `Template` is as follows:
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header">
         <field data="code" />
@@ -554,7 +554,7 @@ The final merged `Template` is as follows:
 
 ### 2. Automatically collect child elements into the default slot
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header" />
     <xslot name="content" />
@@ -564,7 +564,7 @@ The final merged `Template` is as follows:
 
 The final merged `Template` is as follows:
 
-```vue
+``` vue
 <element widget="CardDemo">
     <template slot="header">
         <field data="code" />
