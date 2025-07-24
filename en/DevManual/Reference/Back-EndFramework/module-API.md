@@ -983,9 +983,11 @@ In `pamirs.mapper`, you can configure the database through the YAML configuratio
 
 | **Configuration Item**       | **Default Value** | **Description**                                   |
 | :--------------- | :--------- | :----------------------------------------- |
-| `databaseFormat` | `%s`       | Library name formatting rule, where `%s`<br/> will be replaced by the actual library name |
-| `tableFormat`    | `%s`       | Table name formatting rule, where `%s`<br/> will be replaced by the actual table name |
+| `databaseFormat` | `%s`       | Library name formatting rule, where `%s`will be replaced by the actual library name |
+| `tableFormat`    | `%s`       | Table name formatting rule, where `%s`will be replaced by the actual table name |
 | `tablePattern`   | `%s`       | Dynamic table name expression for flexible table name generation           |
+| `columnPattern`   | `%s`       | Column name formatting rules, `%s` will be replaced by the actual column name          |
+| `tableNameCaseSensitive`   | `false`       | The table name is case sensitive, `toLowerCase`will be automatically converted to all lowercase when `false`, and `true` can be used to specify the table name in case format.           |
 
 ### 2、Table Configuration
 
@@ -993,17 +995,17 @@ Table configuration can be achieved in two ways: one is to use the YAML configur
 
 | **Configuration Item**               | **Default Value**                               | **Description**                                                     |
 | :----------------------- | :--------------------------------------- | :----------------------------------------------------------- |
-| `logicDelete`            | `true`                                   | Whether to use logical deletion, where `true`<br/> means enabled, and `false`<br/> means disabled |
+| `logicDelete`            | `true`                                   | Whether to use logical deletion, where `true`means enabled, and `false`means disabled |
 | `logicDeleteColumn`      | `is_delete`                              | The field name used for logical deletion                                       |
 | `logicDeleteValue`       | `REPLACE(unix_timestamp(NOW(6)),'.','')` | The value assigned to this field during logical deletion                           |
 | `logicNotDeleteValue`    | `0`                                      | The value of this field during non-logical deletion                               |
-| `optimisticLocker`       | `false`                                  | Whether to enable the optimistic locking mechanism, where `true`<br/> means enabled, and `false`<br/> means disabled  |
+| `optimisticLocker`       | `false`                                  | Whether to enable the optimistic locking mechanism, where `true`means enabled, and `false`means disabled  |
 | `optimisticLockerColumn` | `opt_version`                            | The field name used for optimistic locking                                         |
 | `keyGenerator`           | `AUTO_INCREMENT`                         | The rule for primary key auto-increment                                            |
-| `underCamel`             | `true`                                   | Whether to enable camel case and underscore conversion, where `true`<br/> means conversion is enabled         |
-| `capitalMode`            | `false`                                  | Whether to perform case conversion, where `true`<br/> means conversion is enabled                 |
-| `columnFormat`           | `%s`                                      | The formatting rule for column names, where `%s`<br/> will be replaced by the actual column name                 |
-| `aliasFormat`            | `%s`                                      | The formatting rule for field aliases, where `%s`<br/> will be replaced by the actual field alias               |
+| `underCamel`             | `true`                                   | Whether to enable camel case and underscore conversion, where `true`means conversion is enabled         |
+| `capitalMode`            | `false`                                  |  If case conversion is applied or not, `true` indicates that the conversion is enabled. The conversion will only take effect if the `tableNameCaseSensitive` property is enabled.                |
+| `columnFormat`           | `%s`                                      | The formatting rule for column names, where `%s`will be replaced by the actual column name                 |
+| `aliasFormat`            | `%s`                                      | The formatting rule for field aliases, where `%s`will be replaced by the actual field alias               |
 | `charset`                | `utf8mb4`                                | The character set used                                               |
 | `collate`                | `bin`                                    | The character set used for sorting                                           |
 

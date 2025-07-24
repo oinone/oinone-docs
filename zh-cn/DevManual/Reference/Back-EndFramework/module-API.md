@@ -994,9 +994,11 @@ pamirs:
 
 | **配置项**       | **默认值** | **描述**                                   |
 | :--------------- | :--------- | :----------------------------------------- |
-| `databaseFormat` | `%s`       | 库名格式化规则，`%s`<br/> 会被实际库名替换 |
-| `tableFormat`    | `%s`       | 表名格式化规则，`%s`<br/> 会被实际表名替换 |
+| `databaseFormat` | `%s`       | 库名格式化规则，`%s`会被实际库名替换 |
+| `tableFormat`    | `%s`       | 表名格式化规则，`%s`会被实际表名替换 |
 | `tablePattern`   | `%s`       | 动态表名表达式，用于灵活生成表名           |
+| `columnPattern`   | `%s`       | 列名格式化规则， `%s`会被实际列名替换           |
+| `tableNameCaseSensitive`   | `false`       | 表名区分大小写，为`false`时，会自动执行`toLowerCase`转换为全小写，为`true`时可指定具有大小写格式的表名。           |
 
 
 ### 2、表配置
@@ -1005,17 +1007,17 @@ pamirs:
 
 | **配置项**               | **默认值**                               | **描述**                                                     |
 | :----------------------- | :--------------------------------------- | :----------------------------------------------------------- |
-| `logicDelete`            | `true`                                   | 是否采用逻辑删除方式，`true`<br/> 表示开启，`false`<br/> 表示关闭 |
+| `logicDelete`            | `true`                                   | 是否采用逻辑删除方式，`true`表示开启，`false`表示关闭 |
 | `logicDeleteColumn`      | `is_delete`                              | 逻辑删除所使用的字段名                                       |
 | `logicDeleteValue`       | `REPLACE(unix_timestamp(NOW(6)),'.','')` | 逻辑删除时该字段所赋予的值                                   |
 | `logicNotDeleteValue`    | `0`                                      | 非逻辑删除时该字段的值                                       |
-| `optimisticLocker`       | `false`                                  | 是否开启乐观锁机制，`true`<br/> 为开启，`false`<br/> 为关闭  |
+| `optimisticLocker`       | `false`                                  | 是否开启乐观锁机制，`true`为开启，`false`为关闭  |
 | `optimisticLockerColumn` | `opt_version`                            | 乐观锁所使用的字段名                                         |
 | `keyGenerator`           | `AUTO_INCREMENT`                         | 主键自增的规则                                               |
-| `underCamel`             | `true`                                   | 是否开启驼峰与下划线的转换，`true`<br/> 表示开启转换         |
-| `capitalMode`            | `false`                                  | 是否进行大小写转换，`true`<br/> 表示开启转换                 |
-| `columnFormat`           | `%s`                                     | 列名的格式化规则，`%s`<br/> 会被实际列名替换                 |
-| `aliasFormat`            | `%s`                                     | 字段别名的格式化规则，`%s`<br/> 会被实际字段别名替换         |
+| `underCamel`             | `true`                                   | 是否开启驼峰与下划线的转换，`true`表示开启转换         |
+| `capitalMode`            | `false`                                  | 是否进行大小写转换，`true`表示开启转换，只有开启了`tableNameCaseSensitive`属性后才会生效。                 |
+| `columnFormat`           | `%s`                                     | 列名的格式化规则，`%s`会被实际列名替换                 |
+| `aliasFormat`            | `%s`                                     | 字段别名的格式化规则，`%s`会被实际字段别名替换         |
 | `charset`                | `utf8mb4`                                | 所使用的字符集                                               |
 | `collate`                | `bin`                                    | 排序所使用的字符集                                           |
 

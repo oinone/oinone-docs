@@ -5,7 +5,7 @@ category:
   - 用户手册
 order: 3
 prev:
-  text: 集成接口
+  text: 集成应用
   link: /zh-cn/UserManual/StandardModules/integration-app.md
 ---
 Oinone应用中心集成了多种应用和模块，旨在为用户提供丰富、多样化的功能选择，以满足在不同场景下的需求。这些应用覆盖了业务协同、数据分析、运营管理等多个领域。用户可以根据自己的实际需求，在应用中心中轻松找到所需应用，并通过简单的配置，即可快速投入到实际使用中。
