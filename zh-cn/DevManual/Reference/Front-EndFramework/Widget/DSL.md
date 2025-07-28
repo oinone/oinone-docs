@@ -580,3 +580,125 @@ DSL 与母版和布局一样，它们都是通过 XML 标签将页面拆分为�
 
 不论使用哪种方式，在 Vue 组件中获取到的插槽内容都是完全一样的。
 
+# 五、默认视图与设计视图的区别
+
+以“资源-国家分组”为例，其默认视图可能为：
+
+```xml
+<view name="tableView" type="TABLE" cols="2" model="resource.ResourceCountryGroup" enableSequence="false">
+  <template slot="actions" autoFill="true"/>
+  <template slot="rowActions" autoFill="true"/>
+  <template slot="fields">
+    <field span="1" invisible="true" data="id" label="ID" readonly="true"/>
+    <field span="1" data="code" label="编码"/>
+    <field span="1" data="name" label="名称"/>
+    <field data="countryList" label="国家列表">
+      <options>
+        <option references="resource.ResourceCountry" referencesModelName="resourceCountry" referencesModuleName="resource" referencesType="STORE" referencesPks="id" referencesUniques="code" referencesLabelFields="name">
+          <field name="name" data="name" label="国家/地区名称" ttype="STRING" store="true" relationStore="false"/>
+          <field name="id" data="id" label="ID" ttype="INTEGER" store="true" relationStore="false"/>
+        </option>
+      </options>
+    </field>
+    <field span="1" data="createDate" label="创建时间" readonly="true"/>
+    <field span="1" data="writeDate" label="更新时间" readonly="true"/>
+    <field span="1" data="createUid" label="创建人ID"/>
+    <field span="1" data="writeUid" label="更新人ID"/>
+  </template>
+  <template slot="search" cols="4">
+    <field span="1" invisible="true" data="id" label="ID" readonly="true"/>
+    <field span="1" data="code" label="编码"/>
+    <field span="1" data="name" label="名称"/>
+    <field span="1" data="createDate" label="创建时间" readonly="true"/>
+    <field span="1" data="writeDate" label="更新时间" readonly="true"/>
+  </template>
+</view>
+```
+
+在“界面设计器”选择国家分组模型后生成的默认视图可能为：
+
+```xml
+<view model="resource.ResourceCountryGroup" type="table">
+	<template slot="search">
+		<field colSpan="QUARTER" data="code" widget="Input" />
+		<field colSpan="QUARTER" data="name" widget="Input" />
+		<field colSpan="QUARTER" data="createDate" widget="DateTimePicker" />
+		<field colSpan="QUARTER" data="writeDate" widget="DateTimePicker" />
+	</template>
+	<template slot="tableGroup" />
+	<template slot="actionBar">
+		<action disabled="false" invisible="false" label="创建" name="redirectCreatePage" />
+		<action disabled="!(context.activeRecords &amp;&amp; LIST_COUNT(context.activeRecords) &gt;= 1 &amp;&amp; LIST_AND(LIST_FIELD_NOT_IN(context.activeRecords, 'resource.ResourceCountryGroup','code',['Asia','Europe','Americas','Africa','Oceania'])))" invisible="false" label="删除" name="delete" />
+	</template>
+	<template slot="table">
+		<field data="code" disabled="false" invisible="false" label="编码" readonly="false" required="true" widget="Input" />
+		<field data="name" disabled="false" invisible="false" label="名称" readonly="false" required="true" widget="Input" />
+		<field data="countryList" disabled="false" invisible="false" label="国家列表" readonly="false" required="false" widget="Select" />
+		<field data="createDate" disabled="false" invisible="false" label="创建时间" readonly="true" required="false" widget="DateTimePicker" />
+		<field data="writeDate" disabled="false" invisible="false" label="更新时间" readonly="true" required="false" widget="DateTimePicker" />
+		<template slot="rowActions">
+			<action disabled="false" invisible="false" label="详情" name="redirectDetailPage" />
+			<action disabled="false" invisible="false" label="编辑" name="redirectUpdatePage" />
+		</template>
+		<field data="id" invisible="true" />
+	</template>
+</view>
+```
+
+经过对比，我们可以发现这两个 DSL 之间存在下面这些差异：
+
++ 使用的插槽不同
+  - 在默认视图中主要用到了 `actions`、`rowActions`、`fields`、`search` 这四个插槽。
+  - 在设计视图中主要用到了 `actionBar`、`rowActions`、`table`、`search` 以及 `tableGroup` 这五个插槽。
+
+**差异原因**
+
+默认视图主要是对元数据的动态生成，不涉及组件本身的属性配置，在没有具体的业务场景时，组件的属性配置是无法提前预知的。而设计视图需要在设计页面时对其进行多样化的配置，这些配置需要使用属性合并到对应组件上让它们可以正常使用。
+
++ 动作区的填充方式不同
+  - 在默认视图中使用 `autoFill` 属性在视图编译时动态添加当前模型动作。
+  - 在设计视图中将当前模型动作按相同方式提前进行了填充。
+
+**差异原因**
+
+默认视图在每次启动时根据菜单用到的模型会自动生成，当动作发生变更时，默认视图是不会发生变化的，这样就可以尽可能的减少数据库的更新次数。
+
+设计视图在生成后需要对动作进行属性配置，因此动作区的动作也就被提前填充在动作区了。
+
+:::warning 提示
+
+默认视图中仅实现了动作的自动填充，这一设计主要基于两方面考量：
+
+一方面，我们假定模型字段的变化频率低于模型动作。字段作为模型的基础数据结构，往往相对稳定；而动作作为交互逻辑的载体，更易随业务需求调整。因此，仅针对变化更活跃的动作进行自动填充，既能保障灵活响应需求，又能避免不必要的资源消耗。
+
+另一方面，默认视图包含表格、表单、详情三种类型。其中，表单与详情视图均涉及布局功能，而布局计算会对运行时性能产生一定影响；相比之下，动作区的元数据采用顺序填充模式，逻辑简单且计算成本低。综合来看，只有动作区这类元数据具备运行时自动填充的必要性，从而在功能完整性与性能优化间取得平衡。
+
+:::
+
++ 元数据属性生成规则不同
+  - 默认视图的元数据属性是在编译时自动填充的，比如必填（required）、隐藏（invisible）等。
+  - 设计视图的元数据属性是在生成时自动填充的。
+
+**差异原因**
+
+与动作的自动填充类似，设计视图在生成后需要对字段进行属性配置，因此部分元数据属性也就被提前填充了。
+
+:::warning 提示
+
+这里需要特别指出 `元数据属性` 和 `Ux 交互属性` 之间的区别：
+
+**元数据属性**是指保存在元数据表中的部分交互属性，如 `Field` 注解上的 `required`、`invisible` 属性等。
+
+**Ux 交互属性**是指通过 `UxWidget` 等交互 API 注解上的所有属性，这些属性配置是不体现在元数据表中的。
+
+因此，当你使用了 **Ux 交互注解**时，生成的默认视图也会填充这些 **Ux 交互属性**。
+
+:::
+
++ `span` 和 `colSpan` 不同
+  - 默认视图使用 `cols` 和 `span` 属性配置数字来表示布局跨度。
+  - 设计视图使用 `colSpan` 属性配置枚举来表示布局跨度。
+
+**差异原因**
+
+在 DSL 设计之初使用的是 `cols` 和 `span` 属性配置实现栅格布局的，但界面设计器在设计时认为组合配置的栅格对用户来说较难理解，以行维度进行单个字段配置比例是较为容易的，因此设计视图便使用了 `colSpan` 枚举属性进行配置。

@@ -579,3 +579,126 @@ The final merged `Template` is as follows:
 ```
 
 Regardless of the method used, the slot content obtained in the Vue component is exactly the same.
+
+# V. Differences Between Default View and Design View
+
+Taking "Resource-Country Grouping" as an example, its default view may be as follows:
+
+```xml
+<view name="tableView" type="TABLE" cols="2" model="resource.ResourceCountryGroup" enableSequence="false">
+  <template slot="actions" autoFill="true"/>
+  <template slot="rowActions" autoFill="true"/>
+  <template slot="fields">
+    <field span="1" invisible="true" data="id" label="ID" readonly="true"/>
+    <field span="1" data="code" label="编码"/>
+    <field span="1" data="name" label="名称"/>
+    <field data="countryList" label="国家列表">
+      <options>
+        <option references="resource.ResourceCountry" referencesModelName="resourceCountry" referencesModuleName="resource" referencesType="STORE" referencesPks="id" referencesUniques="code" referencesLabelFields="name">
+          <field name="name" data="name" label="国家/地区名称" ttype="STRING" store="true" relationStore="false"/>
+          <field name="id" data="id" label="ID" ttype="INTEGER" store="true" relationStore="false"/>
+        </option>
+      </options>
+    </field>
+    <field span="1" data="createDate" label="创建时间" readonly="true"/>
+    <field span="1" data="writeDate" label="更新时间" readonly="true"/>
+    <field span="1" data="createUid" label="创建人ID"/>
+    <field span="1" data="writeUid" label="更新人ID"/>
+  </template>
+  <template slot="search" cols="4">
+    <field span="1" invisible="true" data="id" label="ID" readonly="true"/>
+    <field span="1" data="code" label="编码"/>
+    <field span="1" data="name" label="名称"/>
+    <field span="1" data="createDate" label="创建时间" readonly="true"/>
+    <field span="1" data="writeDate" label="更新时间" readonly="true"/>
+  </template>
+</view>
+```
+
+The default view generated after selecting the country grouping model in the "Interface Designer" may be as follows:
+
+```xml
+<view model="resource.ResourceCountryGroup" type="table">
+	<template slot="search">
+		<field colSpan="QUARTER" data="code" widget="Input" />
+		<field colSpan="QUARTER" data="name" widget="Input" />
+		<field colSpan="QUARTER" data="createDate" widget="DateTimePicker" />
+		<field colSpan="QUARTER" data="writeDate" widget="DateTimePicker" />
+	</template>
+	<template slot="tableGroup" />
+	<template slot="actionBar">
+		<action disabled="false" invisible="false" label="创建" name="redirectCreatePage" />
+		<action disabled="!(context.activeRecords &amp;&amp; LIST_COUNT(context.activeRecords) &gt;= 1 &amp;&amp; LIST_AND(LIST_FIELD_NOT_IN(context.activeRecords, 'resource.ResourceCountryGroup','code',['Asia','Europe','Americas','Africa','Oceania'])))" invisible="false" label="删除" name="delete" />
+	</template>
+	<template slot="table">
+		<field data="code" disabled="false" invisible="false" label="编码" readonly="false" required="true" widget="Input" />
+		<field data="name" disabled="false" invisible="false" label="名称" readonly="false" required="true" widget="Input" />
+		<field data="countryList" disabled="false" invisible="false" label="国家列表" readonly="false" required="false" widget="Select" />
+		<field data="createDate" disabled="false" invisible="false" label="创建时间" readonly="true" required="false" widget="DateTimePicker" />
+		<field data="writeDate" disabled="false" invisible="false" label="更新时间" readonly="true" required="false" widget="DateTimePicker" />
+		<template slot="rowActions">
+			<action disabled="false" invisible="false" label="详情" name="redirectDetailPage" />
+			<action disabled="false" invisible="false" label="编辑" name="redirectUpdatePage" />
+		</template>
+		<field data="id" invisible="true" />
+	</template>
+</view>
+```
+
+After comparison, we can find the following differences between these two DSLs:
+
++ Different slots are used
+  - In the default view, four slots: `actions`, `rowActions`, `fields`, and `search` are mainly used.
+  - In the design view, five slots: `actionBar`, `rowActions`, `table`, `search`, and `tableGroup` are mainly used.
+
+**Reasons for Differences**
+
+The default view mainly focuses on the dynamic generation of metadata and does not involve the property configuration of the components themselves. Without specific business scenarios, the property configuration of components cannot be predicted in advance. In contrast, the design view requires diversified configurations during page design, and these configurations need to be merged into the corresponding components through properties to ensure their proper functionality.
+
++ Different filling methods for the action area
+  - In the default view, the `autoFill` property is used to dynamically add current model actions during view compilation.
+  - In the design view, the current model actions are pre-filled in the same way in advance.
+
+**Reasons for Differences**
+
+The default view is automatically generated based on the model used by the menu each time it starts. When actions change, the default view remains unchanged, which can minimize the number of database updates.
+
+After the design view is generated, property configuration for actions is required, so the actions in the action area are pre-filled in the action area in advance.
+
+:::warning Note
+
+Only automatic filling of actions is implemented in the default view, and this design is mainly based on two considerations:
+
+On one hand, we assume that the change frequency of model fields is lower than that of model actions. As the basic data structure of the model, fields are often relatively stable; while actions, as carriers of interaction logic, are more likely to be adjusted with business requirements. Therefore, only automatically filling actions that change more actively can not only ensure flexible response to needs but also avoid unnecessary resource consumption.
+
+On the other hand, the default view includes three types: table, form, and detail. Among them, both form and detail views involve layout functions, and layout calculation will have a certain impact on runtime performance; in contrast, the metadata in the action area adopts a sequential filling mode, with simple logic and low calculation cost. Overall, only metadata such as that in the action area has the necessity of runtime automatic filling, thereby achieving a balance between functional integrity and performance optimization.
+
+:::
+
++ Different generation rules for metadata properties
+  - The metadata properties of the default view are automatically filled during compilation, such as required, invisible, etc.
+  - The metadata properties of the design view are automatically filled during generation.
+
+**Reasons for Differences**
+
+Similar to the automatic filling of actions, after the design view is generated, property configuration for fields is required, so some metadata properties are pre-filled in advance.
+
+:::warning Note
+
+It should be specially noted here that there is a difference between `metadata properties` and `Ux interaction properties`:
+
+**Metadata properties** refer to some interaction properties stored in the metadata table, such as the `required` and `invisible` properties on the `Field` annotation.
+
+**Ux interaction properties** refer to all properties on interaction API annotations such as `UxWidget`, and these property configurations are not reflected in the metadata table.
+
+Therefore, when you use **Ux interaction annotations**, the generated default view will also be filled with these **Ux interaction properties**.
+
+:::
+
++ Differences between `span` and `colSpan`
+  - The default view uses the `cols` and `span` properties with numerical configurations to represent layout spans.
+  - The design view uses the `colSpan` property with enumeration configurations to represent layout spans.
+
+**Reasons for Differences**
+
+At the initial stage of DSL design, the `cols` and `span` properties were used to implement grid layout. However, during the design of the interface designer, it was considered that grid layouts with combined configurations are difficult for users to understand, and it is easier to configure the proportion of individual fields in the row dimension. Therefore, the design view uses the `colSpan` enumeration property for configuration. 
