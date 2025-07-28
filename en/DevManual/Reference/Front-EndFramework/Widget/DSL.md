@@ -647,17 +647,19 @@ The default view generated after selecting the country grouping model in the "In
 
 After comparison, we can find the following differences between these two DSLs:
 
-+ Different slots are used
-  - In the default view, four slots: `actions`, `rowActions`, `fields`, and `search` are mainly used.
-  - In the design view, five slots: `actionBar`, `rowActions`, `table`, `search`, and `tableGroup` are mainly used.
+## (Ⅰ) Different slots are used
+
+- In the default view, four slots: `actions`, `rowActions`, `fields`, and `search` are mainly used.
+- In the design view, five slots: `actionBar`, `rowActions`, `table`, `search`, and `tableGroup` are mainly used.
 
 **Reasons for Differences**
 
 The default view mainly focuses on the dynamic generation of metadata and does not involve the property configuration of the components themselves. Without specific business scenarios, the property configuration of components cannot be predicted in advance. In contrast, the design view requires diversified configurations during page design, and these configurations need to be merged into the corresponding components through properties to ensure their proper functionality.
 
-+ Different filling methods for the action area
-  - In the default view, the `autoFill` property is used to dynamically add current model actions during view compilation.
-  - In the design view, the current model actions are pre-filled in the same way in advance.
+## (Ⅱ) Different filling methods for the action area
+
+- In the default view, the `autoFill` property is used to dynamically add current model actions during view compilation.
+- In the design view, the current model actions are pre-filled in the same way in advance.
 
 **Reasons for Differences**
 
@@ -675,9 +677,10 @@ On the other hand, the default view includes three types: table, form, and detai
 
 :::
 
-+ Different generation rules for metadata properties
-  - The metadata properties of the default view are automatically filled during compilation, such as required, invisible, etc.
-  - The metadata properties of the design view are automatically filled during generation.
+## (Ⅲ) Different generation rules for metadata properties
+
+- The metadata properties of the default view are automatically filled during compilation, such as required, invisible, etc.
+- The metadata properties of the design view are automatically filled during generation.
 
 **Reasons for Differences**
 
@@ -695,10 +698,20 @@ Therefore, when you use **Ux interaction annotations**, the generated default vi
 
 :::
 
-+ Differences between `span` and `colSpan`
-  - The default view uses the `cols` and `span` properties with numerical configurations to represent layout spans.
-  - The design view uses the `colSpan` property with enumeration configurations to represent layout spans.
+## (Ⅳ) Different layout span attributes
+
+- The default view uses the `cols` and `span` properties with numerical configurations to represent layout spans.
+- The design view uses the `colSpan` property with enumeration configurations to represent layout spans.
 
 **Reasons for Differences**
 
-At the initial stage of DSL design, the `cols` and `span` properties were used to implement grid layout. However, during the design of the interface designer, it was considered that grid layouts with combined configurations are difficult for users to understand, and it is easier to configure the proportion of individual fields in the row dimension. Therefore, the design view uses the `colSpan` enumeration property for configuration. 
+At the initial stage of DSL design, the `cols` and `span` properties were used to implement grid layout. However, during the design of the interface designer, it was considered that grid layouts with combined configurations are difficult for users to understand, and it is easier to configure the proportion of individual fields in the row dimension. Therefore, the design view uses the `colSpan` enumeration property for configuration.
+
+## (Ⅴ) Whether to specify components
+
+- The default view uses field metadata properties to automatically match default components.
+- The design view needs to specify the `widget` property to determine the components used for fields during design.
+
+**Reasons for Differences**
+
+For convenience, the design view does not distinguish whether the current component is the default component when generating DSL, and uniformly marks the `widget` attribute on the `field` tag.
