@@ -20,7 +20,7 @@ prev:
 
 Oinone 的模块定义文件通过 Java 类来声明模块，并指定相应的模块元数据。在 Oinone 中，所有模块均继承自`PamirsModule`。以`expenses`模块为例：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api;
 
 import org.springframework.stereotype.Component;
@@ -605,7 +605,7 @@ Oinone 的启动配置入口为 Java 类`pro.shushi.pamirs.boot.orm.configure.Bo
 
 :::
 
-```yaml
+``` yaml
 pamirs:
 	boot:
   	options:
@@ -618,7 +618,7 @@ pamirs:
 
 :::
 
-```plain
+``` plain
 pamirs:
   persistence:
   	global:
@@ -643,7 +643,7 @@ pamirs:
 
 通过启动模块列表，可指定 boot 工程启动时需加载的模块。若模块分布于不同 boot 工程，其相互调用将自动触发远程通信流程，确保跨工程交互的正常运行。示例如下：
 
-```plain
+``` plain
 pamirs:
 	boot:
     modules:
@@ -661,7 +661,7 @@ pamirs:
 
 #### noCodeModule 无代码模块启动配置
 
-```yaml
+``` yaml
 pamirs:
 	boot:
     noCodeModule:
@@ -715,7 +715,7 @@ Oinone 框架的核心配置项按功能模块分类如下：
 
 标识为元数据模型，统一存储至`system-ds-key`对应的数据库中。
 
-```yaml
+``` yaml
 pamirs:
   framework:
     system:
@@ -748,7 +748,7 @@ pamirs:
    - `majorVersion`：指定数据库主版本号，默认值为`8`，用于区分不同大版本的语法特性。
 3. **配置示例**
 
-```yaml
+``` yaml
 pamirs:
 	dialect: #MySQL8.0可不配置
   	ds:
@@ -795,7 +795,7 @@ pamirs:
 
 以下 YAML 示例展示了两个数据源（`pamirs` 和 `base`）的完整配置，均采用阿里巴巴 Druid 连接池连接 MySQL 数据库：
 
-```yaml
+``` yaml
 pamirs:
   datasource:
     pamirs:
@@ -874,7 +874,7 @@ pamirs:
 
 #### 分库分表配置示例
 
-```yaml
+``` yaml
 pamirs:
   sharding:
     define:
@@ -949,7 +949,7 @@ pamirs:
 
 #### 主从读写规则配置示例
 
-```yaml
+``` yaml
 pamirs:
   sharding:
     define:
@@ -992,13 +992,13 @@ pamirs:
 
 在 `pamirs.mapper` 中，可借助 YAML 里的 “`pamirs.mapper.<global或者ds>`” 配置项对数据库进行相关配置。若未进行配置，系统会自动采用默认值。具体配置项、默认值及描述如下表所示：
 
-| **配置项**       | **默认值** | **描述**                                   |
-| :--------------- | :--------- | :----------------------------------------- |
-| `databaseFormat` | `%s`       | 库名格式化规则，`%s`会被实际库名替换 |
-| `tableFormat`    | `%s`       | 表名格式化规则，`%s`会被实际表名替换 |
-| `tablePattern`   | `%s`       | 动态表名表达式，用于灵活生成表名           |
-| `columnPattern`   | `%s`       | 列名格式化规则， `%s`会被实际列名替换           |
-| `tableNameCaseSensitive`   | `false`       | 表名区分大小写，为`false`时，会自动执行`toLowerCase`转换为全小写，为`true`时可指定具有大小写格式的表名。           |
+| **配置项**       | **默认值**            | **描述**                                                            |
+| :--------------- |:-------------------|:------------------------------------------------------------------|
+| `databaseFormat` | `%s`               | 库名格式化规则，`%s`会被实际库名替换                                              |
+| `tableFormat`    | `%s`               | 表名格式化规则，`%s`会被实际表名替换                                              |
+| `tablePattern`   | `${moduleAbbr}_%s` | 动态表名表达式，用于灵活生成表名，`%s`会被实际表名替换                                     |
+| `columnPattern`   | `%s`               | 列名格式化规则， `%s`会被实际列名替换                                             |
+| `tableNameCaseSensitive`   | `false`            | 表名区分大小写，为`false`时，会自动执行`toLowerCase`转换为全小写，为`true`时可指定具有大小写格式的表名。 |
 
 
 ### 2、表配置
@@ -1066,7 +1066,7 @@ pamirs:
 
 ### 4、配置示例
 
-```yaml
+``` yaml
 pamirs:
   mapper:
     static-model-config-locations:
@@ -1126,7 +1126,7 @@ pamirs:
 
 ### 2、配置示例
 
-```yaml
+``` yaml
 pamirs:
   persistence:
   	global:
@@ -1149,7 +1149,7 @@ pamirs:
 
 `pamirs.event` 用于管理系统事件消息的基础配置与分发策略，具体配置如下：
 
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true       # 全局控制event功能的启用状态，默认为true，true为开启，false为关闭
@@ -1171,7 +1171,7 @@ pamirs:
 
 #### RocketMQ 配置
 
-```yaml
+``` yaml
   spring:
     rocketmq:
       name-server: 127.0.0.1:9876 # RocketMQ NameServer地址，用于生产者与消费者定位集群
@@ -1185,7 +1185,7 @@ pamirs:
 
 #### Kafka 配置
 
-```yaml
+``` yaml
 spring:
   kafka:
     bootstrap-servers: localhost:9092 # Kafka集群地址，用于建立连接
@@ -1198,7 +1198,7 @@ spring:
 
 #### RabbitMQ 配置
 
-```yaml
+``` yaml
 spring:
   rabbitmq:
     host: 127.0.0.1 # RabbitMQ服务器主机地址
@@ -1216,7 +1216,7 @@ spring:
 
 在使用 `pamirs` 框架的 SQL 记录功能时，可通过如下配置指定 SQL 日志文件的存储位置。该配置允许你将系统执行的 SQL 语句及其相关信息记录到特定目录
 
-```yaml
+``` yaml
 pamirs:
   record:
     sql:
@@ -1232,7 +1232,7 @@ pamirs:
 
 + `views-package`：定义模板文件的默认路径后缀，默认值为 `/pamirs/views`。若需自定义视图文件路径，可按约定采用 `/pamirs/views/X` 格式（`X` 为模块编码，**，无需在路径中手动指定**），**自定义路径优先级高于默认配置**，即系统优先读取自定义路径下的模板文件。
 
-```yaml
+``` yaml
   meta:
     # 模板文件后缀，默认值为：/pamirs/views
     views-package: /pamirs/views
@@ -1246,7 +1246,7 @@ EnhanceModel 增强模型为系统赋予了强大的全文检索能力。若要�
 
 在 `pamirs.channel.packages` 中指定需要扫描的包路径，若增强模型的定义类不在 `pro.shushi.pamirs` 包下，则必须进行此项配置。示例如下：
 
-```yaml
+``` yaml
 pamirs:
   channel:
     packages:
@@ -1257,7 +1257,7 @@ pamirs:
 
 使用 Elasticsearch 作为搜索引擎时，需在 `pamirs.elastic` 中配置其连接地址。示例如下：
 
-```yaml
+``` yaml
 pamirs:
 	elastic:
     url: 127.0.0.1:9200
@@ -1273,7 +1273,7 @@ EnhanceModel 增强模型功能依赖 `pamirs.event` 事件配置，请确保该
 
 在使用 Oinone 企业版时，为确保系统正常运行，你需要对授权文件进行配置。具体配置如下：
 
-```yaml
+``` yaml
 pamirs:
   license:
     #改成平台提供证书的路径以及subject
@@ -1301,7 +1301,7 @@ Oinone 目前支持多种类型的 OSS 服务，以满足不同用户的存储�
 
 ### 2、OSS 通用 YAML 配置
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: # 名称
@@ -1340,7 +1340,7 @@ cdn:
 
 #### 阿里云 OSS
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: 阿里云
@@ -1361,7 +1361,7 @@ cdn:
 
 #### 华为云 OBS
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: 华为云
@@ -1382,7 +1382,7 @@ cdn:
 
 **依赖添加**：使用华为云 OBS 需要在启动工程中增加以下依赖：
 
-```xml
+``` xml
 <okhttp3.version>4.9.3</okhttp3.version>
 <dependency>
     <groupId>com.squareup.okhttp3</groupId>
@@ -1395,7 +1395,7 @@ cdn:
 
 #### MINIO
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: minio
@@ -1418,7 +1418,7 @@ cdn:
 
 #### 又拍云
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: 又拍云
@@ -1438,7 +1438,7 @@ cdn:
 
 #### 腾讯云 COS
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: TENCENT_COS
@@ -1461,7 +1461,7 @@ cdn:
 
 若后台要直接上传文件到 OSS，可通过 `FileClientFactory.getClient()` 获取系统配置的文件系统客户端。
 
-```java
+``` java
 // 获取文件客户端
 // 1、获取默认的文件客户端
 FileClient fileClient = FileClientFactory.getClient();
@@ -1478,7 +1478,7 @@ FileClientFactory.getClient().uploadByFileName(fileName, is/**InputStream*/);
 
 ### 5、数据导入导出配置
 
-```yaml
+``` yaml
 pamirs:
 	file:
     auto-upload-logo: false
@@ -1506,7 +1506,7 @@ pamirs:
 
 ### 2、配置示例
 
-```yaml
+``` yaml
 pamirs:
 	auth:
     fun-filter-only-login:
@@ -1523,7 +1523,7 @@ pamirs:
 
 通过配置 `open-api` 模块可快速启用并自定义开放接口参数，具体说明如下：
 
-```yaml
+``` yaml
 pamirs:
   eip:
     open-api:
@@ -1551,7 +1551,7 @@ Oinone 的分布式缓存配置核心入口为 Java 类`pro.shushi.pamirs.distri
 1. `allMetaRefresh`：在分布式缓存元数据刷新策略配置中，`allMetaRefresh`默认值为`false`，系统自动启用差量更新 Redis 机制；当该配置项设为`true`，系统将切换至全量更新模式，确保数据完整同步。
 2. `ownSign`：用于设置缓存数据专属标识，保障数据唯一性与可追溯性，避免研发协同环境中本地元数据污染公共环境，并在请求 URL 含该参数时自动合并双路径缓存。
 
-```yaml
+``` yaml
 pamirs:
   distribution:
     session:
@@ -1581,7 +1581,7 @@ ZooKeeper 作为配置中心，用于管理和存储系统的配置信息。通�
 
 **配置示例**
 
-```yaml
+``` yaml
 pamirs:
   zookeeper:
     zkConnectString: 127.0.0.1:2181
@@ -1595,7 +1595,7 @@ pamirs:
 
 Oinone 使用 Redis 时，借助 Spring 框架进行配置。以下是详细的 Redis 配置示例，你可依据实际情况灵活调整配置项。
 
-```yaml
+``` yaml
 spring:
   redis:
     database: 1
@@ -1621,7 +1621,7 @@ spring:
 
 Dubbo 是高性能、轻量级的开源 RPC 框架，通过以下配置可实现基于 Dubbo 的远程服务调用与管理。以下配置示例涵盖服务应用信息、注册中心、通信协议、服务消费与提供方等核心参数，可根据实际需求灵活调整：
 
-```yaml
+``` yaml
 dubbo:
   application:
     # 当前应用名称，用于在注册中心标识服务所属应用

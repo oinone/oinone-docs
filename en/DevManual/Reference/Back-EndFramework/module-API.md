@@ -20,7 +20,7 @@ A module is the smallest unit divided and managed by business domain, a collecti
 
 Oinone's module definition file declares modules through Java classes and specifies corresponding module metadata. In Oinone, all modules inherit from `PamirsModule`. Take the `expenses` module as an example:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api;
 
 import org.springframework.stereotype.Component;
@@ -594,7 +594,7 @@ In Oinone, for startup parameters not set via the command line, the custom optio
 
 :::
 
-```yaml
+``` yaml
 pamirs:
 	boot:
   	options:
@@ -607,7 +607,7 @@ pamirs:
 
 :::
 
-```plain
+``` plain
 pamirs:
   persistence:
   	global:
@@ -632,7 +632,7 @@ pamirs:
 
 Through the startup module list, you can specify the modules to be loaded when the boot project starts. If modules are distributed in different boot projects, their mutual calls will automatically trigger the remote communication process to ensure normal cross-project interaction. An example is as follows:
 
-```plain
+``` plain
 pamirs:
 	boot:
     modules:
@@ -650,7 +650,7 @@ pamirs:
 
 #### noCodeModule No-code Module Startup Configuration
 
-```yaml
+``` yaml
 pamirs:
 	boot:
     noCodeModule:
@@ -704,7 +704,7 @@ Specifies the data source corresponding to the metadata system, which should mat
 
 Identifies metadata models, which are uniformly stored in the database corresponding to `system-ds-key`.
 
-```yaml
+``` yaml
 pamirs:
   framework:
     system:
@@ -737,7 +737,7 @@ Configuration Description of `pamirs.datasource` Data Source Dialect
    - `majorVersion`: Specifies the database major version number, with the default value `8`, used to distinguish grammatical features of different major versions.
 3. **Configuration Example**
 
-```yaml
+``` yaml
 pamirs:
 	dialect: # MySQL8.0 can be left unconfigured
   	ds:
@@ -784,7 +784,7 @@ Under `pamirs.datasource`, each data source has a series of general configuratio
 
 The following YAML example shows the complete configuration of two data sources (`pamirs` and `base`), both using Alibaba Druid connection pool to connect to the MySQL database:
 
-```yaml
+``` yaml
 pamirs:
   datasource:
     pamirs:
@@ -847,7 +847,7 @@ For each logical data source, configure specific database and table sharding str
 + `sharding-rules`: Defines table-level database and table sharding rules, including:
   - `actualDataNodes`: Specifies the combination of libraries and tables where data is actually stored (such as `pamirs.demo_core_sharding_model_${0..7}`);
   - `tableStrategy`/`databaseStrategy`: Configures the sharding strategy for tables/databases, specifies the sharding key through `shardingColumn`, and `shardingAlgorithmName` is associated with the specific sharding algorithm;
-  - `shardingAlgorithms`: Defines the sharding algorithm implementation. For example, the `INLINE` type calculates the target library and table through the `algorithm-expression` expression (such as `demo_core_sharding_model_${(Long.valueOf(user_id) % 8)}` indicates distributing to 8 tables based on the `user_id` modulo).
+  - `shardingAlgorithms`: Defines the sharding algorithm implementation. For example, the `INLINE` type calculates the target database and table through the `algorithm-expression` expression (such as `demo_core_sharding_model_${(Long.valueOf(user_id) % 8)}` indicates distributing to 8 tables based on the `user_id` modulo).
 + `replica-query-rules`: Defines the master-slave read-write rules, including:
   - **Data Source Definition (**`data-sources`**):**
     * `pamirsSharding`: Data source group name, which can be customized.
@@ -863,14 +863,14 @@ For each logical data source, configure specific database and table sharding str
 
 #### Database and Table Sharding Configuration Example
 
-```yaml
+``` yaml
 pamirs:
   sharding:
     define:
       data-sources:
         ds: pamirs
-        pamirsSharding: pamirs # Declare that the pamirsSharding library corresponds to the pamirs data source
-        testShardingDs:        # Declare that the testShardingDs library corresponds to the testShardingDs_0\1 data sources
+        pamirsSharding: pamirs # Declare that the pamirsSharding database corresponds to the pamirs data source
+        testShardingDs:        # Declare that the testShardingDs database corresponds to the testShardingDs_0\1 data sources
           - testShardingDs_0
           - testShardingDs_1
       models:
@@ -880,14 +880,14 @@ pamirs:
           tables: 0..7
           table-separator: _
         "[demo.ShardingModel2]":
-          ds-nodes: 0..1       # Declare the database creation rules corresponding to the testShardingDs library
+          ds-nodes: 0..1       # Declare the database creation rules corresponding to the testShardingDs database
           ds-separator: _
           tables: 0..7
           table-separator: _
     rule:
-      pamirsSharding: # Configure the database and table sharding rules for the pamirsSharding library
+      pamirsSharding: # Configure the database and table sharding rules for the pamirsSharding database
         actual-ds:
-          - pamirs # Declare that the pamirsSharding library corresponds to the pamirs data source
+          - pamirs # Declare that the pamirsSharding database corresponds to the pamirs data source
         sharding-rules:
           # Configure sharding rules, the following configuration is consistent with sharding-jdbc configuration
           - tables:
@@ -904,8 +904,8 @@ pamirs:
                   algorithm-expression: demo_core_sharding_model_${(Long.valueOf(user_id) % 8)}
         props:
           sql.show: true
-      testShardingDs: # Configure the database and table sharding rules for the testShardingDs library
-        actual-ds: # Declare that the testShardingDs library corresponds to the pamirs data source
+      testShardingDs: # Configure the database and table sharding rules for the testShardingDs database
+        actual-ds: # Declare that the testShardingDs database corresponds to the pamirs data source
           - testShardingDs_0
           - testShardingDs_1
         sharding-rules:
@@ -938,7 +938,7 @@ Adjust the data source mapping, sharding strategy, and algorithm expressions acc
 
 #### Master-Slave Read-Write Rule Configuration Example
 
-```yaml
+``` yaml
 pamirs:
   sharding:
     define:
@@ -975,19 +975,19 @@ pamirs:
 + If you need to add a new slave database, directly add the data source name to the `replicaDataSourceNames` list.
 + Support switching the load balancing type (such as `RANDOM` random strategy), just modify the `type` field value.
 
-## (Ⅶ) Library-Table Mapping Rules pamirs.mapper
+## (Ⅶ) Database-Table Mapping Rules pamirs.mapper
 
-### 1、Library Configuration
+### 1、Database Configuration
 
 In `pamirs.mapper`, you can configure the database through the YAML configuration item "`pamirs.mapper.<global or ds>`". If not configured, the system will automatically use the default value. The specific configuration items, default values, and descriptions are as follows:
 
-| **Configuration Item**       | **Default Value** | **Description**                                   |
-| :--------------- | :--------- | :----------------------------------------- |
-| `databaseFormat` | `%s`       | Library name formatting rule, where `%s`will be replaced by the actual library name |
-| `tableFormat`    | `%s`       | Table name formatting rule, where `%s`will be replaced by the actual table name |
-| `tablePattern`   | `%s`       | Dynamic table name expression for flexible table name generation           |
-| `columnPattern`   | `%s`       | Column name formatting rules, `%s` will be replaced by the actual column name          |
-| `tableNameCaseSensitive`   | `false`       | The table name is case sensitive, `toLowerCase`will be automatically converted to all lowercase when `false`, and `true` can be used to specify the table name in case format.           |
+| **Configuration Item**       | **Default Value** | **Description**                                                                                                                                                                |
+| :--------------- | :--------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `databaseFormat` | `%s`       | Database name formatting rule, where `%s`will be replaced by the actual database name                                                                                          |
+| `tableFormat`    | `%s`       | Table name formatting rule, where `%s`will be replaced by the actual table name                                                                                                |
+| `tablePattern`   | `${moduleAbbr}_%s`       | Dynamic table name expression for flexible table name generation, `%s`will be replaced by the actual table name                                                                |
+| `columnPattern`   | `%s`       | Column name formatting rules, `%s` will be replaced by the actual column name                                                                                                  |
+| `tableNameCaseSensitive`   | `false`       | The table name is case sensitive, `toLowerCase`will be automatically converted to all lowercase when `false`, and `true` can be used to specify the table name in case format. |
 
 ### 2、Table Configuration
 
@@ -1052,7 +1052,7 @@ Batch operations support **batch creation** and **batch update**, and the defaul
 
 ### 4、Configuration Example
 
-```yaml
+``` yaml
 pamirs:
   mapper:
     static-model-config-locations:
@@ -1112,7 +1112,7 @@ Independently configures specific data sources, with higher priority than global
 
 ### 2、Configuration Example
 
-```yaml
+``` yaml
 pamirs:
   persistence:
   	global:
@@ -1135,7 +1135,7 @@ Through the above configuration, global and local rules can be flexibly combined
 
 `pamirs.event` is used to manage the basic configuration and distribution strategy of system event messages. The specific configuration is as follows:
 
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true       # Globally control the enable status of the event function, default is true, true for enable, false for disable
@@ -1157,7 +1157,7 @@ The system supports three message queues: RocketMQ, Kafka, and RabbitMQ. The con
 
 #### RocketMQ Configuration
 
-```yaml
+``` yaml
   spring:
     rocketmq:
       name-server: 127.0.0.1:9876 # RocketMQ NameServer address, used by producers and consumers to locate the cluster
@@ -1171,7 +1171,7 @@ The system supports three message queues: RocketMQ, Kafka, and RabbitMQ. The con
 
 #### Kafka Configuration
 
-```yaml
+``` yaml
 spring:
   kafka:
     bootstrap-servers: localhost:9092 # Kafka cluster address for establishing connections
@@ -1184,7 +1184,7 @@ spring:
 
 #### RabbitMQ Configuration
 
-```yaml
+``` yaml
 spring:
   rabbitmq:
     host: 127.0.0.1 # RabbitMQ server host address
@@ -1202,7 +1202,7 @@ The above configuration needs to be adjusted according to the actual environment
 
 When using the SQL record function of the `pamirs` framework, you can specify the storage location of the SQL log file through the following configuration. This configuration allows you to record the SQL statements executed by the system and their related information to a specific directory.
 
-```yaml
+``` yaml
 pamirs:
   record:
     sql:
@@ -1218,7 +1218,7 @@ You can modify the `store` field to a suitable local or remote storage path as n
 
 + `views-package`: Defines the default path suffix for template files, with the default value `/pamirs/views`. If you need to customize the view file path, you can use the format `/pamirs/views/X` as agreed (`X` is the module code, **no need to manually specify it in the path**). The **custom path has higher priority than the default configuration**, meaning the system preferentially reads template files from the custom path.
 
-```yaml
+``` yaml
   meta:
     # Template file suffix, default value: /pamirs/views
     views-package: /pamirs/views
@@ -1232,7 +1232,7 @@ The EnhanceModel enhanced model gives the system powerful full-text search capab
 
 Specify the package paths to be scanned in `pamirs.channel.packages`. If the definition class of the enhanced model is not under the `pro.shushi.pamirs` package, this configuration must be performed. The example is as follows:
 
-```yaml
+``` yaml
 pamirs:
   channel:
     packages:
@@ -1243,7 +1243,7 @@ pamirs:
 
 When using Elasticsearch as the search engine, configure its connection address in `pamirs.elastic`. The example is as follows:
 
-```yaml
+``` yaml
 pamirs:
 	elastic:
     url: 127.0.0.1:9200
@@ -1259,7 +1259,7 @@ The EnhanceModel enhanced model function depends on the `pamirs.event` event con
 
 When using the Oinone enterprise edition, you need to configure the authorization file to ensure the normal operation of the system. The specific configuration is as follows:
 
-```yaml
+``` yaml
 pamirs:
   license:
     # Modify to the path of the certificate provided by the platform and the subject
@@ -1287,7 +1287,7 @@ Oinone currently supports multiple types of OSS services to meet the storage nee
 
 ### 2、OSS Generic YAML Configuration
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: # Name
@@ -1326,7 +1326,7 @@ cdn:
 
 #### Alibaba Cloud OSS
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: Alibaba Cloud
@@ -1347,7 +1347,7 @@ cdn:
 
 #### Huawei Cloud OBS
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: Huawei Cloud
@@ -1368,7 +1368,7 @@ cdn:
 
 **Dependency Addition**: To use Huawei Cloud OBS, add the following dependency to the startup project:
 
-```xml
+``` xml
 <okhttp3.version>4.9.3</okhttp3.version>
 <dependency>
     <groupId>com.squareup.okhttp3</groupId>
@@ -1381,7 +1381,7 @@ cdn:
 
 #### MINIO
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: minio
@@ -1404,7 +1404,7 @@ cdn:
 
 #### Upyun
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: Upyun
@@ -1424,7 +1424,7 @@ cdn:
 
 #### Tencent Cloud COS
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: TENCENT_COS
@@ -1447,7 +1447,7 @@ cdn:
 
 To directly upload files to OSS from the backend, obtain the file system client configured by the system through `FileClientFactory.getClient()`.
 
-```java
+``` java
 // Get file client
 // 1. Get the default file client
 FileClient fileClient = FileClientFactory.getClient();
@@ -1464,7 +1464,7 @@ The above configurations and examples help you quickly and accurately configure 
 
 ### 5、Data Import/Export Configuration
 
-```yaml
+``` yaml
 pamirs:
 	file:
     auto-upload-logo: false
@@ -1492,7 +1492,7 @@ This configuration item is used to specify that specific functions in the model 
 
 ### 2、Configuration Example
 
-```yaml
+``` yaml
 pamirs:
 	auth:
     fun-filter-only-login:
@@ -1509,7 +1509,7 @@ In the above example, the `homepage` function under the `base.ViewAction` namesp
 
 Enable and customize open interface parameters quickly by configuring the `open-api` module, as specified below:
 
-```yaml
+``` yaml
 pamirs:
   eip:
     open-api:
@@ -1537,7 +1537,7 @@ The core configuration entry for Oinone's distributed cache is the Java class `p
 1. `allMetaRefresh`: In the distributed cache metadata refresh strategy configuration, `allMetaRefresh` has a default value of `false`, and the system automatically enables the delta update Redis mechanism; when this configuration item is set to `true`, the system switches to the full update mode to ensure complete data synchronization.
 2. `ownSign`: Used to set a unique identifier for cached data, ensuring data uniqueness and traceability, avoiding local metadata pollution of the public environment in the R&D collaboration environment, and automatically merging dual-path caches when the request URL contains this parameter.
 
-```yaml
+``` yaml
 pamirs:
   distribution:
     session:
@@ -1567,7 +1567,7 @@ ZooKeeper serves as the configuration center for managing and storing the system
 
 **Configuration Example**
 
-```yaml
+``` yaml
 pamirs:
   zookeeper:
     zkConnectString: 127.0.0.1:2181
@@ -1581,7 +1581,7 @@ Through the above configuration, the system connects to the local ZooKeeper serv
 
 When Oinone uses Redis, configure it through the Spring framework. The following is a detailed Redis configuration example, which you can flexibly adjust according to actual conditions.
 
-```yaml
+``` yaml
 spring:
   redis:
     database: 1
@@ -1607,7 +1607,7 @@ The above configuration sets Redis connection information and connection pool pa
 
 Dubbo is a high-performance, lightweight open-source RPC framework. The following configuration enables remote service invocation and management based on Dubbo. The configuration example below covers core parameters such as service application information, registry, communication protocol, service consumers, and providers, which can be flexibly adjusted according to actual needs:
 
-```yaml
+``` yaml
 dubbo:
   application:
     # Current application name, used to identify the service's所属 (affiliated) application in the registry
