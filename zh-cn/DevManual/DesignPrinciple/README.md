@@ -5,6 +5,7 @@ category:
   - 研发手册
   - 设计原理
 dir:
+  index: false
   link: false
   order: 7
 prev:
