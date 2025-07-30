@@ -3,6 +3,11 @@ import {sidebar, SidebarOptions} from "vuepress-theme-hope";
 const options: SidebarOptions = {
   "/en/": [
     {
+      text: "Description Of Product Characteristics",
+      link: "Description-Of-Product-Characteristics",
+      icon: "/assets/icon/产品特性说明.svg",
+    },
+    {
       text: "Install Or Upgrade",
       link: "InstallOrUpgrade/",
       prefix: "InstallOrUpgrade/",
@@ -49,6 +54,11 @@ const options: SidebarOptions = {
 
 const zhCNOptions: SidebarOptions = {
   "/zh-cn/": [
+    {
+      text: "产品特性说明",
+      link: "Description-Of-Product-Characteristics",
+      icon: "/assets/icon/产品特性说明.svg",
+    },
     {
       text: "安装与升级",
       link: "InstallOrUpgrade/",
