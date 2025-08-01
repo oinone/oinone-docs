@@ -50,7 +50,7 @@ prev:
 
 在 `template` 模板里，我们会使用 `value` 属性并将其显示在页面上，随后添加一个按钮。同时，在按钮上指定点击属性，这样每次点击按钮时就能触发 `onIncrement` 方法。
 
-```vue
+``` vue
 <template>
   <div class="counter-demo">
     <span>计数: {{ value }}</span>
@@ -93,8 +93,8 @@ export default defineComponent({
 
 我们开始创建 `Widget` 组件，需先选合适基础组件完成注册，此示例选用 `BaseElementWidget`。随后，用 `@SPI.ClassFactory` 装饰器注册该组件。接着，在 `initialize` 方法里，通过 `setComponent` 方法关联 Widget 与 Vue 组件。最后，用 `@Widget.Reactive` 和 `@Widget.Method` 装饰器为 Vue 组件提供 props。
 
-```typescript
-import { BaseElementWidget, SPI, Widget } from '@kunlun/dependencies';
+``` typescript
+import { BaseElementWidget, SPI, Widget } from '@oinone/kunlun-dependencies';
 import Counter from './Counter.vue';
 
 @SPI.ClassFactory(
@@ -121,7 +121,7 @@ export class CounterWidget extends BaseElementWidget {
 
 组件在`oinone-frontend-tutorials`工程下的目录结构如下：
 
-```plain
+``` plain
 oinone-frontend-tutorials
 └── src
     ├── layout
@@ -152,7 +152,7 @@ oinone-frontend-tutorials
 
 接下来，我们可以使用如下方式在“布局（Layout）”中使用该组件。
 
-```xml
+``` xml
 <element widget="Counter"/>
 ```
 
@@ -166,8 +166,8 @@ oinone-frontend-tutorials
 
 作为第一个练习，让我们在位于 `oinone-frontend-tutorials/src/layout` 目录下创建 `register.ts` 文件，将计数器插入到两个“分组”的中间。
 
-```typescript
-import { registerLayout, ViewType } from '@kunlun/dependencies';
+``` typescript
+import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';
 
 registerLayout(
   `<view type="TABLE">
@@ -225,7 +225,7 @@ registerLayout(
 
 例如，下面是它的使用方式：
 
-```xml
+``` xml
 <element widget="SimpleCard" title="这是标题" content="这是内容" />
 ```
 
@@ -237,7 +237,7 @@ registerLayout(
 
 上述示例使用 Vue 组件的`template`模板如下所示：
 
-```typescript
+``` typescript
 <template>
   <div class="simple-card-demo">
     <h5 class="simple-card-demo-title">{{ title }}</h5>
@@ -250,7 +250,7 @@ registerLayout(
 
 与之前不同的是，我们需要从“布局（Layout）”中获取标题（title）和内容（content），并将对应的值在 Vue 组件中进行使用。
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public get title() {
   return this.getDsl().title;
@@ -272,7 +272,7 @@ public get content() {
 
 在“布局（Layout）”中，使用 `div` 标签将四个卡片组件进行包裹，并且声明一个 `class` 名称用于指定 `css` 样式。
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -302,7 +302,7 @@ public get content() {
 
 为了让我们的卡片看起来不那么难看，我们只需要在 `SimpleCard.vue` 文件中使用如下的样式定义：
 
-```typescript
+``` typescript
 <style lang="scss">
 .simple-card-demo-groups {
   display: flex;
@@ -343,7 +343,7 @@ public get content() {
 
 在 Vue 组件的`template`模板中我们可以使用 Vue 原生的 `slot` 插槽标签继续向下渲染子组件，以达到我们的目的，示例代码如下所示：
 
-```vue
+``` vue
 <template>
   <div class="simple-card-demo">
     <h5 class="simple-card-demo-title">{{ title }}</h5>
@@ -355,7 +355,7 @@ public get content() {
 
 与之对应的，我们还需要修改“布局（Layout）”，将一个计数器（Counter）组件放在第一个卡片（Card）的里面，示例代码如下所示：
 
-```xml
+``` xml
 <div class="simple-card-demo-groups">
     <element widget="SimpleCard" title="这是标题1" content="这是内容1">
         <element widget="Counter" />
@@ -397,7 +397,7 @@ public get content() {
 
 Widget 框架提供了各种各样的内置函数。所有这些函数都在`VueWidget`基类中被声明。例如，如果你想在组件挂载时执行一些代码，你可以在当前组件重写`mounted`函数：
 
-```typescript
+``` typescript
 protected mounted() {
   super.mounted();
   // do something.
@@ -436,7 +436,7 @@ Widget 组件在实现层面，其本质也是一个 Vue 组件。挂载在页�
 
 和任何一个 Vue 组件相同，我们可以使用 `ref` 在 Vue 组件中访问文档对象模型（DOM）。那么，让我们看看如何使用 `ref` 在 Widget 组件中访问文档对象模型（DOM）。其主要思路是，你需要在 Vue 组件模板中用 `ref` 标记目标元素：
 
-```vue
+``` vue
 <template>
   <div ref="divDom">hello world</div>
 </template>
@@ -444,7 +444,7 @@ Widget 组件在实现层面，其本质也是一个 Vue 组件。挂载在页�
 
 然后你可以在 `TypeScript` 中使用 `ref` 方法定义并访问它。然而，仔细想想会发现这里存在一个问题：当组件被创建时，该组件对应的实际 HTML 元素是不存在的。只有当组件被挂载时，它才会存在。所以我们需要在 `setup` 方法中使用`ref` 定义一个对象，该对象包含一个名为 `value`（代表元素）的键，而这个键只有在组件挂载时才会被定义。
 
-```vue
+``` vue
 setup() {
   const divDom = ref<HTMLElement | undefined>();
 

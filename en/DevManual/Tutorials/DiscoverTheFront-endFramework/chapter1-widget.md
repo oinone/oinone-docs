@@ -50,7 +50,7 @@ As with conventional Vue components, we use a `.vue` file to create the componen
 
 In the `template`, we use the `value` property, display it on the page, and add a button. We also specify the click attribute on the button to trigger the `onIncrement` method each time the button is clicked.
 
-```vue
+``` vue
 <template>
   <div class="counter-demo">
     <span>Count: {{ value }}</span>
@@ -93,8 +93,8 @@ All sample codes are demonstrated based on Vue2+TS syntax. Readers accustomed to
 
 To create a `Widget` component, we first select an appropriate base component for registration; this example uses `BaseElementWidget`. Then, register the component with the `@SPI.ClassFactory` decorator. Next, in the `initialize` method, associate the Widget with the Vue component via the `setComponent` method. Finally, use the `@Widget.Reactive` and `@Widget.Method` decorators to provide props for the Vue component.
 
-```typescript
-import { BaseElementWidget, SPI, Widget } from '@kunlun/dependencies';
+``` typescript
+import { BaseElementWidget, SPI, Widget } from '@oinone/kunlun-dependencies';
 import Counter from './Counter.vue';
 
 @SPI.ClassFactory(
@@ -121,7 +121,7 @@ export class CounterWidget extends BaseElementWidget {
 
 The directory structure under the `oinone-frontend-tutorials` project is as follows:
 
-```plain
+``` plain
 oinone-frontend-tutorials
 └── src
     ├── layout
@@ -152,7 +152,7 @@ The import order affects the component registration order. To override platform-
 
 Next, we can use the component in a "Layout" as follows.
 
-```xml
+``` xml
 <element widget="Counter"/>
 ```
 
@@ -166,8 +166,8 @@ For more information about element components, refer to: [Element](/en/DevManual
 
 As the first exercise, let's create a `register.ts` file in the `oinone-frontend-tutorials/src/layout` directory to insert the counter between two "groups".
 
-```typescript
-import { registerLayout, ViewType } from '@kunlun/dependencies';
+``` typescript
+import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';
 
 registerLayout(
   `<view type="TABLE">
@@ -225,7 +225,7 @@ The goal of this section's exercise is to create a Card component that accepts t
 
 For example, here's how it's used:
 
-```xml
+``` xml
 <element widget="SimpleCard" title="This is the title" content="This is the content" />
 ```
 
@@ -237,7 +237,7 @@ Since Oinone has a built-in card component, `card` cannot be used as the compone
 
 The `template` of the Vue component in the above example is as follows:
 
-```typescript
+``` typescript
 <template>
   <div class="simple-card-demo">
     <h5 class="simple-card-demo-title">{{ title }}</h5>
@@ -250,7 +250,7 @@ Similar to the "Counter" component, we need to create a Widget component for reg
 
 Different from before, we need to obtain the title and content from the "Layout" and use the corresponding values in the Vue component.
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public get title() {
   return this.getDsl().title;
@@ -272,7 +272,7 @@ We can continue to modify `oinone-frontend-tutorials/src/layout/register.ts` to 
 
 In the "Layout", wrap the four card components using a `div` tag and declare a `class` name to specify the `css` style.
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -302,7 +302,7 @@ In the "Layout", wrap the four card components using a `div` tag and declare a `
 
 To make our cards look better, we just need to use the following style definition in the `SimpleCard.vue` file:
 
-```typescript
+``` typescript
 <style lang="scss">
 .simple-card-demo-groups {
   display: flex;
@@ -343,7 +343,7 @@ Okay, let's get started!
 
 In the `template` of the Vue component, we can use Vue's native `slot` tag to continue rendering subcomponents downward to achieve our goal. The sample code is as follows:
 
-```vue
+``` vue
 <template>
   <div class="simple-card-demo">
     <h5 class="simple-card-demo-title">{{ title }}</h5>
@@ -355,7 +355,7 @@ In the `template` of the Vue component, we can use Vue's native `slot` tag to co
 
 Correspondingly, we also need to modify the "Layout" to place a Counter component inside the first Card, as shown in the sample code below:
 
-```xml
+``` xml
 <div class="simple-card-demo-groups">
     <element widget="SimpleCard" title="This is title 1" content="This is content 1">
         <element widget="Counter" />
@@ -397,7 +397,7 @@ A Widget component goes through many stages: it can be instantiated, rendered, m
 
 The Widget framework provides various built-in functions, all declared in the `VueWidget` base class. For example, if you want to execute some code when the component is mounted, you can override the `mounted` function in the current component:
 
-```typescript
+``` typescript
 protected mounted() {
   super.mounted();
   // do something.
@@ -436,7 +436,7 @@ Complete the function of an input box that `automatically focuses` when `mounted
 
 Like any Vue component, we can use `ref` to access the Document Object Model (DOM) in the Vue component. So, let's see how to use `ref` to access the DOM in a Widget component. The main idea is that you need to mark the target element with `ref` in the Vue component template:
 
-```vue
+``` vue
 <template>
   <div ref="divDom">hello world</div>
 </template>
@@ -444,7 +444,7 @@ Like any Vue component, we can use `ref` to access the Document Object Model (DO
 
 Then you can define and access it using the `ref` method in `TypeScript`. However, upon careful consideration, there's an issue: when the component is created, the actual HTML element corresponding to the component does not exist. It only exists when the component is mounted. So we need to define an object using `ref` in the `setup` method, which contains a key named `value` (representing the element), and this key is only defined when the component is mounted.
 
-```vue
+``` vue
 setup() {
   const divDom = ref<HTMLElement | undefined>();
 
