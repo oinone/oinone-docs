@@ -77,6 +77,7 @@ That's it! Now your environment is ready to run Oinone from the source code, and
 | 2024.2   | [pamirs-intellij-plugin-2024.2.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/MasterFrontendFramework/chapter-3/pamirs-intellij-plugin-2024.2.zip) |
 | 2024.3   | [pamirs-intellij-plugin-2024.3.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/MasterFrontendFramework/chapter-3/pamirs-intellij-plugin-2024.3.zip) |
 | 2025.1   | [pamirs-intellij-plugin-2025.1.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/MasterFrontendFramework/chapter-3/pamirs-intellij-plugin-2025.1.zip) |
+| 2025.2   | [pamirs-intellij-plugin-2025.2.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/MasterFrontendFramework/chapter-3/pamirs-intellij-plugin-2025.2.zip)  |
 
 
 
