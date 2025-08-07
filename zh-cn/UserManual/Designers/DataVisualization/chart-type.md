@@ -29,6 +29,58 @@ order: 2
 
 :::
 
+## （三）多柱图 + 折线图
+
+在同一个坐标系中，用不同颜色的柱状体表示多个类别的数值（多柱图），同时叠加折线表示趋势或参考值。
+
+:::tip 举例
+
+连锁奶茶店 2025 年季度经营分析
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1754552081374-d8ccbe5b-e27f-4ee6-b71b-8ec7c4f04c9b-20250807162408594.png)
+
+:::
+
+## （四）多柱图 + 符号图
+
+多柱图基础上，在柱顶或特定位置添加个性化符号标记特殊数据点。
+
+:::tip 举例
+
+手机品牌 2025 年 3 月质量问题投诉统计
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1754552309456-bfd5f40c-a36d-4d7e-8604-fb9c02493af8.png)
+
+:::
+
+## （五）堆积图 + 折线图
+
+堆积柱状图显示各成分总量及构成比例，折线表示独立但相关的指标。
+
+:::tip 举例
+
+跨境电商2023年广告渠道ROI分析
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1754552465290-3687159a-a273-4b3d-8c57-850cdf29610b.png)
+
+:::
+
+## （六）堆积图 + 符号图
+
+堆积图中用符号强调特定数据点，通常表示异常值或重要里程碑。
+
+:::tip 举例
+
+某视频平台月度用户观看时长分析
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1754554269262-f07ac6ce-b45f-4fd8-a352-903c5e500431.png)
+
+:::
+
+
+
+
+
 # 二、折线图
 ## （一）单折线图
 单折线图是用一条折线连接各个数据点，展示数据的变化趋势。 适用于展示单一数据系列随时间或其他连续变量的变化趋势。

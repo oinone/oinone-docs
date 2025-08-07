@@ -27,6 +27,54 @@ Comparison of sales amounts and sales volumes of different products
 
 :::
 
+## (Ⅲ)Multi - column Chart + Line Chart
+
+In the same coordinate system,Cylindrical body of different colors are used to represent the values of multiple categories (multi - column chart), and at the same time, a line is superimposed to show the trend or reference value.
+
+:::tip Example
+
+Quarterly Operation Analysis of Chain Milk Tea Stores in 2025
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1754552081374-d8ccbe5b-e27f-4ee6-b71b-8ec7c4f04c9b-20250807162408594.png)
+
+:::
+
+## (Ⅳ)Multi - column Chart + Symbol Chart
+
+On the basis of the multi - column chart, personalized symbols are added on the top of the columns or at specific positions to mark special data points.
+
+:::tip Example
+
+Statistics of Quality Complaint for Mobile Phone Brands in March 2025
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1754552309456-bfd5f40c-a36d-4d7e-8604-fb9c02493af8.png)
+
+:::
+
+## (Ⅴ)Stacked Chart + Line Chart
+
+The stacked column chart shows the total amount and composition ratio of each component, and the line represents an independent but related indicator.
+
+:::tip Example
+
+ROI Analysis of Cross - border E - commerce Advertising Channels in 2023
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1754552465290-3687159a-a273-4b3d-8c57-850cdf29610b.png)
+
+:::
+
+## (Ⅵ)Stacked Chart + Symbol Chart
+
+Symbols are used in the stacked chart to emphasize specific data points, which usually represent outliers or important milestones.
+
+:::tip Example
+
+Analysis of Monthly User Watching Duration on a Video Platform
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/chart%20type/1754554269262-f07ac6ce-b45f-4fd8-a352-903c5e500431.png)
+
+:::
+
 # II. Line Chart
 ## \(Ⅰ\) Single Line Chart
 A single line chart connects data points with a single line to show the changing trend of data. It is suitable for displaying the changing trend of a single data series over time or other continuous variables.
