@@ -188,7 +188,9 @@ API的路径不允许重复。
 
 :::
 
-+ 新增文件：可上传本地文件，设置其名称与描述。可预览上传文件中的已有数据
++ 新增文件：可上传本地文件，设置其名称与描述。可预览文件中的已有数据，并根据解析出的数据更改数据类型。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1754567980575-250b44e9-39e5-43e4-9da1-841751f4517c.png)
 
 :::info 注意
 

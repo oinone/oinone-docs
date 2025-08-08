@@ -188,7 +188,8 @@ The paths of APIs are not allowed to be repeated.
 
 :::
 
-+ New File: You can upload local files, set their names and descriptions, and preview the existing data in the uploaded files.
++ New File: You can upload local files, set their names and descriptions. You can preview the existing data in the files, and modify the data types according to the parsed data.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1754567980575-250b44e9-39e5-43e4-9da1-841751f4517c.png)
 
 :::info Note
 
