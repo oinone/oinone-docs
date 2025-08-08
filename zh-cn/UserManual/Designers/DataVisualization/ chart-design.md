@@ -63,9 +63,30 @@ order: 3
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/tbbj.png)
 
-## （二）数据配置
+## （二）计算字段
+
 ### 1.功能介绍
-支持配置维度、数值、筛选、排序、对比、拆分、图内筛选项。
+
++ **功能位置**：数据配置区 → 新增计算字段
++ **配置方式**：
+  - 支持使用已有字段进行加减乘除、平台内置函数
++ **示例**：
+  - `总时长 = 短视频时长 + 长视频时长 + 直播时长` 作为实际总时长
++ **校验规则**：
+  - 表达式中字段需存在于当前数据集中
+  - 不支持跨数据集字段引用
+
+### 2.操作方法
+
+点击「 + 」图标，在弹窗中编辑信息后点击「确定」，即可成功创建计算字段。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754554838815-68bd8c94-d414-4939-83fe-da9f8d2148c7.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754555541922-9937d741-acb7-4013-99d1-6df31369f725.png)
+
+## （三）数据配置
+### 1.功能介绍
+支持配置维度、数值、筛选、排序、对比、拆分、图内筛选项、用户自定义查询数量。
 
 :::info 注意
 
@@ -152,6 +173,8 @@ order: 3
 不同类型的图表所支持的数据配置可能存在差异。
 
 :::
+
++ 限制可查询最大条数：用户自定义查询数量。
 
 ### 2.操作方法
 + 添加：点击「添加」图标，在弹框中点选或将字段拖入。
@@ -255,17 +278,33 @@ order: 3
 
 :::
 
-+ 下钻：可为图表维度字段值设置下钻链接。当选择下钻类型为图表下钻时，可为维度字段值选择下钻图表；当选择下钻类型为自由下钻时，可为维度字段值选择跳转URL。
++ 下钻：
+
+可为**图表的维度/数值 字段值**设置下钻交互。
+
+当配置下钻时，可选择以下两种类型：
+
+  - **图表下钻**：为维度字段值选择目标图表，点击后在当前组件区域展示目标图表内容。
+  - **自由下钻**：为维度字段值设置跳转链接（URL），点击后通过外链打开新页面。
 
 :::info 注意
 
-维度字段值仅支持一次下钻操作。
++ **目标图表应支持下钻上下文变量传参**（如：地区、部门等维度值）。
++ 不同类型图表所支持的下钻样式与表现可能存在差异。
 
 :::
 
++ 跳转
+  - 跳转用于为图表整体或图元元素配置点击跳转行为，打开其他页面或系统外部链接。
+  - 配置场景包括但不限于：
+    * 图表整体点击跳转（如点击柱图任意柱子跳转至明细表页面）
+    * 图元级跳转（如点击某一数据点跳转至第三方系统）
+
 :::info 注意
 
-不同类型的图表所支持的样式可能存在差异。
++ 跳转链接支持拼接字段参数（如：`https://example.com/detail?region={地区}`）。
++ 某些图表（如饼图、散点图）仅支持图元级跳转，不支持整体跳转。
++ 跳转与下钻互斥，同一字段/图元仅支持其中一种配置。
 
 :::
 
@@ -277,6 +316,22 @@ order: 3
 + 切换标准样式：开启「切换为标准模式」按钮，即可切换将当前图表为标准样式
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/ys2.png)
+
++ 下钻
+
+示例：【全球销售情况】下钻到【占比情况】图表
+
+此处需要配置图表与图表之间字段的映射关系。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754560920137-a4f24666-42ff-4d49-a353-94bc4cb81a41.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754566971562-f97ba583-e476-4e9d-a396-61334e75d83f.gif)
+
++ 跳转
+
+支持跳转至指定仪表板或外部页面
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754567515474-16ccae3b-483d-4693-928b-a2b5b792f4d4.png)
 
 # 五、附件：名词解释
 | 名词 | 描述 |

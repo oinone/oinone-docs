@@ -55,9 +55,30 @@ Click the "Settings" icon, edit the information in the pop-up window, and then c
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/tbbj.png)
 
-## (II) Data Configuration
+## （Ⅱ）Calculated Fields
+
 ### 1. Function Introduction
-It supports configuring dimensions, values, filters, sorting, comparison, splitting, and in-chart filters.
+
++ **Function Location**: Data Configuration Area → Add Calculated Field
++ **Configuration Methods**:
+  - Supports using existing fields for addition, subtraction, multiplication, and division, as well as platform - built - in functions
++ **Examples**:
+  - `Total Duration = Short Video Duration + Long Video Duration + Live Broadcast Duration` as the actual total duration
++ **Validation Rules**:
+  - Fields in the expression must exist in the current dataset
+  - Cross - dataset field reference is not supported
+
+### 2. Operation Methods
+
+Click the 「 + 」 icon, edit the information in the pop - up window, and then click 「Confirm」 to successfully create a calculated field.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754554838815-68bd8c94-d414-4939-83fe-da9f8d2148c7.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754555541922-9937d741-acb7-4013-99d1-6df31369f725.png)
+
+## (Ⅲ) Data Configuration
+### 1. Function Introduction
+Supports configuration of dimensions, values, filters, sorting, comparison, splitting, in-chart filter options, and user-defined query quantity.
 
 :::info Note
 The data configuration here only applies to the general data configuration of standard chart types provided by the system. For the special data configuration of some charts, please refer to the chart type documentation.
@@ -128,6 +149,8 @@ The chart shows the order amounts of different products. Set the in-chart filter
 :::info Note
 The data configuration supported by different types of charts may vary.
 :::
++ Limit the maximum number of queryable entries: Users can customize the query quantity.
+
 
 ### 2. Operation Method
 + Add: Click the "Add" icon, and click or drag the fields into the pop-up window.
@@ -215,14 +238,34 @@ The style settings here only apply to the general styles of standard chart types
 When the display drag bar function is enabled and the number of dimension values to be displayed on one screen is set, you can adjust the number of dimension values displayed on one screen by lengthening or shortening the length of the drag bar in the chart, achieving an increase or decrease effect.
 :::
 
-+ Drill-down: You can set drill-down links for the dimension field values of the chart. When the drill-down type is selected as chart drill-down, you can select a drill-down chart for the dimension field values. When the drill-down type is selected as free drill-down, you can select a jump URL for the dimension field values.
++ Drill-down:
+
+You can set drill-down interactions for **dimension/value field values of the chart**.
+
+When configuring drill-down, you can choose the following two types:
+
+  - **Chart Drill-down**: Select a target chart for the dimension field value; upon clicking, the content of the target chart will be displayed in the current component area.
+  - **Free Drill-down**: Set a jump link (URL) for the dimension field value; upon clicking, a new page will be opened via the external link.
 
 :::info Note
-The dimension field values only support one drill-down operation.
+
++ **The target chart should support the passing of drill-down context variables** (e.g., dimension values like region, department, etc.).
++ Different types of charts may vary in terms of supported drill-down styles and behaviors.
+
 :::
 
++ Jump
+  - Jump is used to configure click-to-jump behaviors for the entire chart or graphic elements, enabling the opening of other pages or external system links.
+  - Configuration scenarios include but are not limited to:
+    * Overall chart click jump (e.g., clicking any bar in a bar chart to jump to the detailed list page)
+    * Graphic element-level jump (e.g., clicking a specific data point to jump to a third-party system)
+
 :::info Note
-The styles supported by different types of charts may vary.
+
++ Jump links support concatenation of field parameters (e.g., `https://example.com/detail?region={Region}`).
++ Certain charts (such as pie charts, scatter plots) only support graphic element-level jumps, not overall jumps.
++ Jump and drill-down are mutually exclusive; only one of the configurations is supported for the same field/graphic element.
+
 :::
 
 ### 2. Operation Method
@@ -233,6 +276,22 @@ The styles supported by different types of charts may vary.
 + Switch to the standard style: Click the "Switch to Standard Mode" button to switch the current chart to the standard style.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/ys2.png)
+
++ Drill-down
+
+Example: Drill down from 【Global Sales Status】 to 【Proportion Status】 chart
+
+It is necessary to configure the field mapping relationship between charts here.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754560920137-a4f24666-42ff-4d49-a353-94bc4cb81a41.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754566971562-f97ba583-e476-4e9d-a396-61334e75d83f.gif)
+
++ Jump
+
+Supports jumping to a specified dashboard or external page
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754567515474-16ccae3b-483d-4693-928b-a2b5b792f4d4.png)
 
 # V. Attachment: Glossary
 | Term | Description |
