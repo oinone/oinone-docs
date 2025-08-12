@@ -8,7 +8,7 @@ category:
 order: 11
 
 ---
-From a business perspective, our expense management module is now quite functional. We've created specific views, added multiple action buttons, and implemented constraints. However, our user interface still lacks polish. We want to add visual enhancements to list views and make certain fields and buttons show or hide based on conditions. For example, when a project is disabled or enabled, the "Void" and "Enable" buttons should disappear since changing the property status is no longer allowed in such cases.
+From a business perspective, our expense management module has become quite meaningful now. We have created specific views, added multiple operation buttons and constraints. However, our user interface is still somewhat rough. We hope to add some colors to the list view and make certain fields and buttons show or hide based on conditions. For example, when an item is disabled or enabled, the "Invalidate" and "Enable" buttons should disappear, because in such cases, changing the item status is no longer allowed.
 
 This chapter covers only a fraction of what's possible with views. For a more comprehensive overview, don't hesitate to refer to the documentation.
 
