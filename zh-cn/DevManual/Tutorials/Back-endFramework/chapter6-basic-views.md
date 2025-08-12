@@ -150,7 +150,7 @@ mysql> select template from base_view where model='expenses.TestModel' and name 
 
 # 三、详情视图
 
-详情视图用于查看单条记录。其根元素为 `` 并且 `type="DETAIL"`，由高级结构元素（组和标签）和交互元素（按钮和字段）组成。与表单视图类似，同样任何模型只要有访问路径则可以在数据库中找到一个简单示例，即该模型对应的默认视图。
+详情视图用于查看单条记录。其根元素为 `<view>` 并且 `type="DETAIL"`，由高级结构元素（组和标签）和交互元素（按钮和字段）组成。与表单视图类似，同样任何模型只要有访问路径则可以在数据库中找到一个简单示例，即该模型对应的默认视图。
 
 ```sql
 mysql> select template from base_view where model='expenses.TestModel' and name ='detailView' and type='DETAIL' and is_deleted = 0;
