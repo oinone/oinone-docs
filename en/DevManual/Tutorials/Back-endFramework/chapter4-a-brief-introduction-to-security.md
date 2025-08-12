@@ -147,6 +147,12 @@ When configuring field permissions, be sure to uncheck the "Visible" and "Editab
 
 :::
 
+:::warning Note: Field Permissions and Data Permissions
+
+The Enterprise Edition includes the functions of field permissions and data permissions, while the Community Edition does not have these functions.
+
+:::
+
 > **Exercise**
 >
 > **Data permission settings for Project Management**: Grant the "test" role row-level data permissions for the Project Information model corresponding to the [Expense Management - Basic Data - Project Management] menu, i.e., only view data where the "Project Name" field value contains the "test" string, following the "Test Menu" example.
