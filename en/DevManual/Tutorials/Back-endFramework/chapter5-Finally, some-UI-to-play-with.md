@@ -31,7 +31,7 @@ In our expense management scenario, we want:
 + The default quantity for personnel input scale should be 1
 
 # I. New Attributes of Fields
-Before proceeding with view design, let's revisit our model definitions. We see attributes like `required=True` that affect the mandatory property of fields during interaction. Other attributes will affect views or provide default values.
+Before proceeding with view design, let's revisit our model definitions. We see attributes like `required=true` that affect the mandatory property of fields during interaction. Other attributes will affect views or provide default values.
 
 ## (Ⅰ) Default Values
 Any field can be given a default value. In the field definition, add the `defaultValue=X` option, where `X` can accept a Java literal (boolean, integer, floating-point number, string), and other requirements can use functions:
