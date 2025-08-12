@@ -72,6 +72,12 @@ public class CeExpensesModule implements PamirsModule {
 
 :::
 
+:::warning 提示：upstream特性
+
+企业版包含`upstream`特性，社区版无此功能。
+
+:::
+
 # 二、函数特性
 
 基于 Oinone 开发，能赋予研发人员的代码出色扩展性，以应对客户的个性化。逻辑除了通过重写函数以外，Oinone还提供了两种方式：

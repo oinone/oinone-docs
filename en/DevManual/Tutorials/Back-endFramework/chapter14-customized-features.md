@@ -71,6 +71,12 @@ The package paths of each module must not contain the same package path; otherwi
 
 :::
 
+:::warning Note: Upstream Feature
+
+The Enterprise Edition includes the `upstream` feature, while the Community Edition does not have this function.
+
+:::
+
 # II. Function Features
 
 Developing based on Oinone endows the developed code with excellent extensibility to address customer personalization. In addition to overriding functions, Oinone provides two ways to extend logic:
