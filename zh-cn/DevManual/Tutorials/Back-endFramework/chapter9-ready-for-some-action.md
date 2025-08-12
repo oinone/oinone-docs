@@ -152,7 +152,7 @@ public class TestActionModelAction {
 >   - 参考目标中的第一张图片查看预期结果。
 >   - 提示：若要抛出错误，可使用 `PamirsException` 异常。Oinone 源代码中有很多这样的示例。
 > + 接受或拒绝报销单：
->   - 为 `expenses.ProjectInfo` 模型的表单视图中  `expenseBills` 字段表格子视图中，添加 “接受” 和 “拒绝” 按钮，默认子视图actions标签没有采用autoFill 机制，需要主动增加，并且配置属性： `` ，来刷新主视图
+>   - 为 `expenses.ProjectInfo` 模型的表单视图中  `expenseBills` 字段表格子视图中，添加 “接受” 和 “拒绝” 按钮，默认子视图actions标签没有采用autoFill 机制，需要主动增加，并且配置属性： `<action refreshRoot = "true"/>` ，来刷新主视图
 >   - 参考目标中的第二张图片查看预期结果。
 >   - 当报销被接受时，为相应的项目设置已报销金额。
 

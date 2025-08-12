@@ -152,7 +152,7 @@ The view enables the autoFill mechanism by default, which can automatically filt
 >   - Refer to the first image in the objectives for expected results.
 >   - Tip: To throw an error, use the `PamirsException` exception. There are many examples in Oinone source code.
 > + Accept or reject expense bills:
->   - Add "Accept" and "Reject" buttons to the table subview of the `expenseBills` field in the form view of the `expenses.ProjectInfo` model. By default, the subview actions tag does not use the autoFill mechanism; you need to actively add it and configure the attribute: `` to refresh the main view.
+>   - Add "Accept" and "Reject" buttons to the table subview of the `expenseBills` field in the form view of the `expenses.ProjectInfo` model. By default, the subview actions tag does not use the autoFill mechanism; you need to actively add it and configure the attribute: `<action refreshRoot = "true"/>` to refresh the main view.
 >   - Refer to the second image in the objectives for expected results.
 >   - When an expense is accepted, set the corresponding project's reimbursed amount.
 
