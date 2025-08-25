@@ -101,8 +101,30 @@ For more information on masks, refer to: [Mask](/en/DevManual/Reference/Front-En
 
 :::  
 
+# II. Theory: Master Template (Mask) Registration
 
-# II. Theory: Initiate a Back-end Request  
+Recall the layout registration we learned earlier: the `registerLayout` method has two required parameters: **layout template** and **layout options**. Similarly, the `registerMask` method also has two required parameters: **master template (mask template)** and **master layout options**.
+
+Whether it is a master template (mask) or a layout, the template is defined via XML. Both are used to describe the main components of a page and the relative positions between these components.
+
+For **master options**, they are almost identical to layout options. The corresponding master template can only be applied to pages that meet the specified conditions. Common master options include:
+
++ viewType: View type
++ model: Model code
++ actionName: Action name
++ viewName: View name
+
+In the example above, we used three of these options: the view type `Table`, the model code `resource.ResourceCountryGroup`, and the action name `resource#国家分组`.
+
+The method for obtaining these parameters is exactly the same as what was introduced in the "Layout Registration" section.
+
+:::warning Tips
+
+For more information about Master Templates (Mask), please refer to: [Mask](/en/DevManual/Reference/Front-EndFramework/Widget/mask.md)
+
+:::
+
+# Ⅲ. Theory: Initiate a Back-end Request  
 
 In practice, each component may initiate requests to the back-end to fetch necessary data for display on the page. We usually manage these requests in the `service` directory for easy use in any component.  
 
@@ -160,7 +182,7 @@ For more information on `RSQL`, refer to: [RSQL Service](/en/DevManual/Reference
 :::  
 
 
-# III. Add a Statistics Count Card  
+# Ⅳ. Add a Statistics Count Card  
 
 Next, we will complete a simple dashboard by implementing a statistics count card. This is the final page effect:  
 
@@ -210,7 +232,7 @@ The layout provided above solves this problem with an empty `div` tag.
 :::  
 
 
-# IV. Display a Pie Chart  
+# Ⅴ. Display a Pie Chart  
 
 Everyone loves charts(!), so let's add a pie chart to the dashboard. It will show the proportion of system users (`source == 'BUILD_IN'`) and non-system users (`source != 'BUILD_IN'`) in the entire system.  
 
@@ -245,7 +267,7 @@ The sub-tags defined in the layout can be obtained using `this.template.widgets`
 :::  
 
 
-# V. Take It Further  
+# Ⅵ. Take It Further  
 
 If you have time, here are some small improvements you can try:  
 1. Ensure your page can be translated (use `$translate` for static text in Vue templates and `translateValueByKey` for static text in TypeScript).  
