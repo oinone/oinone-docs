@@ -213,7 +213,71 @@ registerLayout(
 
 :::
 
-# 四、一个简单的卡片组件
+# 四、理论：布局的注册
+
+从上面我们使用的 `registerLayout` 方法来看，有两个必要的参数：布局模板和布局可选项。
+
+通常情况下，布局模板我们可以基于默认布局模板进行修改，以达到业务需求，也可以在学习了更多内容之后自由使用，总而言之，布局模板是用来描述一个页面的主要组件和组件与组件之间的相对位置的。
+
+对于布局可选项，它是注册布局的条件参数，只有在满足条件的页面中才可以使用对应的布局模板。常见的布局可选项有：
+
++ viewType：视图类型
++ model：模型编码
++ actionName：动作名称
++ viewName：视图名称
+
+上面的示例中，我们用到了其中三个，视图类型 `Table` ，模型编码 `resource.ResourceCountryGroup`以及动作名称 `resource#国家分组`。
+
+在这里我们不需要了解过多参数的含义，只需要学会通过浏览器的地址栏获取 `URL` 对应的参数值进行注册即可。
+
+以 “资源-国家分组” 页面为例，`URL` 可以是：
+
+```javascript
+/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23国家分组;scene=resource%23国家分组;target=OPEN_WINDOW;menu=%7B"selectedKeys":%5B"国家分组"%5D,"openKeys":%5B"地址库","地区"%5D%7D
+```
+
+通过 `decodeURIComponent` 对地址进行解码，可以得到：
+
+```javascript
+// 浏览器控制台（console）输入
+decodeURIComponent('/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23国家分组;scene=resource%23国家分组;target=OPEN_WINDOW;menu=%7B"selectedKeys":%5B"国家分组"%5D,"openKeys":%5B"地址库","地区"%5D%7D')
+
+// 执行结果
+'/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource#国家分组;scene=resource#国家分组;target=OPEN_WINDOW;menu={"selectedKeys":["国家分组"],"openKeys":["地址库","地区"]}'
+```
+
+从解码的结果来看，我们可以得到以下这些内容：（为了方便起见，我们将参数转换为 JSON 格式进行查看）
+
+```json
+{
+    "module": "resource",
+    "viewType": "TABLE",
+    "model": "resource.ResourceCountryGroup",
+    "action": "resource#国家分组",
+    "target": "OPEN_WINDOW",
+    "menu": {
+        "selectedKeys": [
+            "国家分组"
+        ],
+        "openKeys": [
+            "地址库",
+            "地区"
+        ]
+    }
+}
+```
+
+其中，`viewType` 参数是视图类型，在代码中通过 `ViewType`枚举进行使用；`model` 参数是模型编码，同布局可选项中的 `model` 属性；`action` 参数是动作名称，同布局可选项中的 `actionName` 属性。
+
+在 Oinone 中，大多数的页面都可以通过这样的方式找到对应的注册条件，以达到修改页面布局的目的。但实际上注册条件的查找逻辑相对比较复杂，对于刚接触 Oinone 前端框架的读者来说不太容易理解，让我们先用这种较为简单的方式做起来。
+
+:::warning 提示
+
+更多关于 布局 相关的内容请参考：[Layout](/zh-cn/DevManual/Reference/Front-EndFramework/Widget/layout.md)
+
+:::
+
+# 五、一个简单的卡片组件
 
 组件确实是将复杂的用户界面划分为多个可重用部分的最自然的方法。但是，为了使它们真正有用，有必要能够在它们之间传达一些信息。让我们看看组件如何通过使用属性（最常见的是props）提供信息。
 
@@ -323,7 +387,7 @@ public get content() {
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExploreFrontendFramework/chapter-1/card.png)
 
-# 五、带插槽的通用卡片
+# 六、带插槽的通用卡片
 
 在之前的一个练习中，我们构建了一个简单的卡片（Card）组件。但说实话，它的功能相当有限。要是我们想在卡片里显示一些任意内容，比如一个子组件，那该怎么办呢？嗯，这是行不通的，因为卡片的内容是用一个字符串来描述的。不过，如果我们能够将内容描述为一段模板，那就会非常方便了。
 
@@ -380,7 +444,7 @@ public get content() {
 
 :::
 
-# 六、最小化卡片内容
+# 七、最小化卡片内容
 
 最后，让我们给卡片（Card）组件添加一个功能，使其更有趣些：我们想要一个按钮来切换卡片内容的显示状态（显示或隐藏内容）。
 
@@ -389,7 +453,7 @@ public get content() {
 3. 在卡片头部添加一个按钮，并修改代码，使得在点击按钮时能够翻转状态。
 4. （加分项）使用动画效果将卡片内容进行折叠或展开。
 
-# 七、理论：组件生命周期和生命周期函数
+# 八、理论：组件生命周期和生命周期函数
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExploreFrontendFramework/chapter-1/mind.jpeg)
 
@@ -416,7 +480,7 @@ Widget 框架使用面向对象继承的特性，因此无法避免的是，部�
 
 :::
 
-# 八、理论：Widget 组件与 Vue 组件的关系
+# 九、理论：Widget 组件与 Vue 组件的关系
 
 Widget 组件在实现层面，其本质也是一个 Vue 组件。挂载在页面中时，它们之间是`父子组件`的关系。即 Widget 组件作为父组件向 Vue 组件提供 props。这一点也可以通过 `Vue DevTools` 插件在浏览器中可以查看。
 
@@ -424,7 +488,7 @@ Widget 组件在实现层面，其本质也是一个 Vue 组件。挂载在页�
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExploreFrontendFramework/chapter-1/mind2.jpeg)
 
-# 九、聚焦输入框
+# 十、聚焦输入框
 
 :::info 目标
 

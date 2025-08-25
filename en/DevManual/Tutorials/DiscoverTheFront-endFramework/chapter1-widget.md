@@ -26,7 +26,7 @@ More Vue toolchain: [Browser Developer Plugins](https://cn.vuejs.org/guide/scali
 
 In this chapter, we learn the basic functions of Widget component development by registering a "Layout," aiming to study Widget components themselves without relying on the Oinone server.
 
-# I. Start with "Resource - Country Group"
+# Ⅰ. Start with "Resource - Country Group"
 
 Before learning, we need to switch to a unified page to facilitate learning the Widget framework without relying on the backend or other designers.
 
@@ -36,7 +36,7 @@ Select "Resources" from the module switch in the upper left corner of the page. 
 
 Next, let's create the first component!
 
-# II. Take the "Counter" Component as an Example
+# Ⅱ. Take the "Counter" Component as an Example
 
 First, let's look at a simple example. The counter component shown below is a component that maintains an internal value, displays the value, and updates the value whenever the user clicks a button.
 
@@ -162,7 +162,7 @@ For more information about element components, refer to: [Element](/en/DevManual
 
 :::
 
-# III. Display the "Counter" Component on the Page
+# Ⅲ. Display the "Counter" Component on the Page
 
 As the first exercise, let's create a `register.ts` file in the `oinone-frontend-tutorials/src/layout` directory to insert the counter between two "groups".
 
@@ -213,7 +213,71 @@ The first two sections may be the only sections where you can see the complete c
 
 :::
 
-# IV. A Simple Card Component
+# Ⅳ. Theory: Layout Registration
+
+Judging from the `registerLayout` method we used above, there are two necessary parameters: layout template and layout options.
+
+Under normal circumstances, we can modify the layout template based on the default layout template to meet business requirements. We can also use it freely after learning more knowledge. In a word, the layout template is used to describe the main components of a page and the relative positions between components.
+
+For layout options, they are conditional parameters for registering a layout, and the corresponding layout template can only be used in pages that meet the conditions. Common layout options include:
+
++ viewType: view type
++ model: model code
++ actionName: action name
++ viewName: view name
+
+In the above example, we used three of them: the view type `Table`, the model code `resource.ResourceCountryGroup`, and the action name `resource#国家分组`.
+
+We don't need to understand the meaning of too many parameters here. We just need to learn to obtain the parameter values corresponding to the `URL` through the browser's address bar for registration.
+
+Take the "Resource - Country Group" page as an example, the `URL` can be:
+
+```javascript
+/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23国家分组;scene=resource%23国家分组;target=OPEN_WINDOW;menu=%7B"selectedKeys":%5B"国家分组"%5D,"openKeys":%5B"地址库","地区"%5D%7D
+```
+
+By decoding the address with `decodeURIComponent`, we can get:
+
+```javascript
+// Enter in the browser console
+decodeURIComponent('/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23国家分组;scene=resource%23国家分组;target=OPEN_WINDOW;menu=%7B"selectedKeys":%5B"国家分组"%5D,"openKeys":%5B"地址库","地区"%5D%7D')
+
+// Execution result
+'/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource#国家分组;scene=resource#国家分组;target=OPEN_WINDOW;menu={"selectedKeys":["国家分组"],"openKeys":["地址库","地区"]}'
+```
+
+From the decoded results, we can get the following contents: (for convenience, we convert the parameters into JSON format for viewing)
+
+```json
+{
+    "module": "resource",
+    "viewType": "TABLE",
+    "model": "resource.ResourceCountryGroup",
+    "action": "resource#国家分组",
+    "target": "OPEN_WINDOW",
+    "menu": {
+        "selectedKeys": [
+            "国家分组"
+        ],
+        "openKeys": [
+            "地址库",
+            "地区"
+        ]
+    }
+}
+```
+
+Among them, the `viewType` parameter is the view type, which is used through the `ViewType` enumeration in the code; the `model` parameter is the model code, which is the same as the `model` attribute in the layout options; the `action` parameter is the action name, which is the same as the `actionName` attribute in the layout options.
+
+In Oinone, most pages can find the corresponding registration conditions in this way to modify the page layout. However, in fact, the search logic of registration conditions is relatively complex, which is not easy to understand for readers who are new to the Oinone front-end framework. Let's start with this relatively simple way.
+
+:::warning Tips
+
+For more content related to layout, please refer to: [Layout](/en/DevManual/Reference/Front-EndFramework/Widget/layout.md)
+
+:::
+
+# V. A Simple Card Component
 
 Components are indeed the most natural way to divide complex UIs into reusable parts. But to make them truly useful, it's necessary to communicate information between them. Let's see how components provide information by using properties (most commonly props).
 
@@ -323,7 +387,7 @@ Finally, we can see the following effect on the page:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExploreFrontendFramework/chapter-1/card.png)
 
-# V. Universal Card with Slots
+# Ⅵ. Universal Card with Slots
 
 In a previous exercise, we built a simple Card component. But to be honest, its functionality is quite limited. What if we want to display arbitrary content in the card, such as a subcomponent? Well, that won't work because the card's content is described with a string. However, it would be very convenient if we could describe the content as a template.
 
@@ -380,7 +444,7 @@ For more information about Layout, refer to: [Layout](/en/DevManual/Reference/Fr
 
 :::
 
-# VI. Minimize Card Content
+# Ⅶ. Minimize Card Content
 
 Finally, let's add a feature to the Card component to make it more interesting: we want a button to toggle the display state of the card content (show or hide).
 
@@ -389,7 +453,7 @@ Finally, let's add a feature to the Card component to make it more interesting: 
 3. Add a button to the card header and modify the code to flip the state when the button is clicked.
 4. (Bonus) Use animation effects to fold or unfold the card content.
 
-# VII. Theory: Component Lifecycle and Lifecycle Functions
+# Ⅷ. Theory: Component Lifecycle and Lifecycle Functions
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExploreFrontendFramework/chapter-1/mind.jpeg)
 
@@ -416,7 +480,7 @@ For more information about component lifecycles, refer to: [Component Lifecycle]
 
 :::
 
-# VIII. Theory: The Relationship Between Widget Components and Vue Components
+# Ⅸ. Theory: The Relationship Between Widget Components and Vue Components
 
 At the implementation level, a Widget component is essentially a Vue component. When mounted on a page, they have a `parent-child component` relationship. That is, the Widget component, as the parent component, provides props to the Vue component. This can also be viewed in the browser using the `Vue DevTools` plugin.
 
@@ -424,7 +488,7 @@ Therefore, combining the lifecycles of the two components, the lifecycle executi
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/ExploreFrontendFramework/chapter-1/mind2.jpeg)
 
-# IX. Focus on Input Box
+# Ⅹ. Focus on Input Box
 
 :::info Objective
 
