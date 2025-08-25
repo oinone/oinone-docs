@@ -56,6 +56,42 @@ In the examples of this chapter, you need to make the following changes to this 
 2. Remove the breadcrumb component to make the main content distribution area appear larger.  
 3. Apply this mask to the page corresponding to the "Country Groups" menu item.  
 
+As the first master template exercise, let's create a `register.ts` file in the `oinone-frontend-tutorials/src/mask` directory to register the modified master template.
+
+```typescript
+import { registerMask, ViewType } from '@oinone/kunlun-dependencies';
+
+registerMask(
+  `<mask>
+    <multi-tabs />
+    <header>
+        <widget widget="app-switcher" />
+        <block>
+            <widget widget="notification" />
+            <widget widget="divider" />
+            <widget widget="language" />
+            <widget widget="divider" />
+            <widget widget="user" />
+        </block>
+    </header>
+    <container>
+        <content>
+            <block width="100%">
+                <widget width="100%" widget="main-view" />
+            </block>
+        </content>
+    </container>
+</mask>`,
+  {
+    viewType: ViewType.Table,
+    model: 'resource.ResourceCountryGroup',
+    actionName: 'resource#国家分组'
+  }
+);
+```
+
+As required, we have removed the `nav-menu` and `breadcrumb` components, and set the registration conditions using the corresponding parameter values for "Resource-Country Group".
+
 After making these modifications, we can proceed with the following learning content.  
 
 

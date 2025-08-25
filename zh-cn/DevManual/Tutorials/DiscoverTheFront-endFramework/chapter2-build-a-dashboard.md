@@ -55,6 +55,42 @@ next:
 2. 移除面包屑组件，让我们的主内容分发区看起来更大一些。
 3. 将这个母版应用于“国家分组”这个菜单项对应的页面上。
 
+作为第一个母版练习内容，让我们在位于 `oinone-frontend-tutorials/src/mask` 目录下创建 `register.ts` 文件，将修改好的母版进行注册。
+
+```typescript
+import { registerMask, ViewType } from '@oinone/kunlun-dependencies';
+
+registerMask(
+  `<mask>
+    <multi-tabs />
+    <header>
+        <widget widget="app-switcher" />
+        <block>
+            <widget widget="notification" />
+            <widget widget="divider" />
+            <widget widget="language" />
+            <widget widget="divider" />
+            <widget widget="user" />
+        </block>
+    </header>
+    <container>
+        <content>
+            <block width="100%">
+                <widget width="100%" widget="main-view" />
+            </block>
+        </content>
+    </container>
+</mask>`,
+  {
+    viewType: ViewType.Table,
+    model: 'resource.ResourceCountryGroup',
+    actionName: 'resource#国家分组'
+  }
+);
+```
+
+根据要求，我们移除了 `nav-menu` 和 `breadcrumb` 组件，并将其注册条件使用 “资源-国家分组” 对应的条件参数。
+
 做好这些修改之后，我们就可以继续接下来的学习内容了。
 
 :::warning 提示：
