@@ -222,7 +222,71 @@ API的路径不允许重复。
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)
 
-## （四）详情
+## （四）集成接口测试
+
+### 1.功能介绍
+
+以往用户在连接器中配置接口后，还需要借助 数据流程、 Postman、curl 等外部工具进行验证，操作割裂且效率不高。现在，我们将接口测试功能直接集成到平台中，实现一站式的开发与调试体验。
+
+### 2.操作方法
+
+#### 一、使用方法举例
+
+以下以 **钉钉开放平台-创建用户接口** 为例，展示接口测试的使用流程。
+
+##### （一）获取接口信息
+
+在钉钉开放平台中，我们可以了解到该接口的相关信息：
+
++ **请求方式**：POST
++ **请求地址**：`https://oapi.dingtalk.com/topapi/v2/user/create`
+
+**Query 参数**
+
+```json
+{
+  "access_token": "d13ad96bbfd73d61a737ed2673e6bfa9"
+}
+```
+
+**Body 参数**
+
+```json
+{
+  "userid": "002",
+  "name": "小钉",
+  "mobile": "18546673752",
+  "title": "教职人员",
+  "job_number": "100828",
+  "work_place": "未来park",
+  "senior_mode": "false",
+  "dept_id_list": "1"
+}
+```
+
+##### （二）在我们平台中操作：
+
+1. 进入 **连接器**，新增一个【创建用户】 API 接口。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196514227-f6a82607-2bf9-4217-84b4-e5ec14612329.png)
+
+2. 创建完成后，在操作栏中点击 **测试**。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196559965-6e19b376-80c0-4b02-9c22-2a889f38c74f.png)
+
+3. 将上一步获取到的请求方式、地址、参数信息填写到对应位置。
+4. 点击 **测试** 按钮，即可立即验证接口是否正常工作。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756197885555-61b80280-6ac3-4c9d-a9a9-c5fcd75d128a.png)
+
+这样，用户无需跳转到外部工具，即可在 Oinone 内快速完成接口的配置与调试，提升了集成效率与体验。
+
+除此之外还可以在 **集成应用-集成接口** 中进行测试。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756198182893-13ace4a6-4717-48bd-a4ff-61ad0d78d4c5.png)
+
+
+## （五）详情
 ### 1.功能介绍
 支持展示API与文件的详细信息
 
@@ -231,7 +295,7 @@ API的路径不允许重复。
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/xq.png)
 
-## （五）复制
+## （六）复制
 ### 1.功能介绍
 当API信息相似度较高的情况时，可使用复制功能，将生成一个“原API名称-复制”的新增页面，编辑内容后保存，方可成功复制（数据库与文件集不支持）
 
@@ -251,7 +315,7 @@ API的路径不允许重复。
 :::
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/fz.png)
-## （六）删除
+## （七）删除
 ### 1.功能介绍
 当API与文件不再使用时，可以选择将其删除。
 
@@ -272,7 +336,7 @@ API删除后无法恢复，请谨慎操作！
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/sc.png)
 
-## （七）发布开放接口
+## （八）发布开放接口
 ### 1.功能介绍
 支持将应用与数据库中的API发布为开放接口，设置为开放接口后可被外部系统使用。
 
@@ -287,7 +351,7 @@ API删除后无法恢复，请谨慎操作！
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/fb.png)
 
-## （八）导出API文档
+## （九）导出API文档
 ### 1.功能介绍
 支持将API的信息导出为文档格式
 

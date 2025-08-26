@@ -221,7 +221,62 @@ Editing operations are only allowed when APIs and files are in the disabled stat
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)
 
-## (IV) Details
+## (IV) Integrated API Testing
+
+### 1. Feature Introduction
+Previously, after users configured an API in the connector, they still needed to use external tools such as **data flows**, **Postman**, or **curl** for verification. This approach resulted in fragmented operations and low efficiency. Now, we have directly integrated the API testing function into the platform to achieve a one-stop development and debugging experience.
+
+### 2. Operation Method
+#### I. Usage Example
+The following uses the **DingTalk Open Platform - Create User API** as an example to demonstrate the workflow of API testing.
+
+##### (I) Obtain API Information
+On the DingTalk Open Platform, we can find the relevant information about this API:
+- **Request Method**: POST
+- **Request URL**: `https://oapi.dingtalk.com/topapi/v2/user/create`
+
+**Query Parameters**
+```json
+{
+  "access_token": "d13ad96bbfd73d61a737ed2673e6bfa9"
+}
+```
+
+**Body Parameters**
+```json
+{
+  "userid": "002",
+  "name": "小钉",
+  "mobile": "18546673752",
+  "title": "教职人员",
+  "job_number": "100828",
+  "work_place": "未来park",
+  "senior_mode": "false",
+  "dept_id_list": "1"
+}
+```
+
+##### (II) Operations on Our Platform:
+1. Enter the **Connector** module and create a new API named 【Create User】.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196514227-f6a82607-2bf9-4217-84b4-e5ec14612329.png)
+
+2. After creation, click **Test** in the operation bar.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196559965-6e19b376-80c0-4b02-9c22-2a889f38c74f.png)
+
+3. Fill in the request method, URL, and parameter information obtained in the previous step into the corresponding fields.
+4. Click the **Test** button to immediately verify whether the API works properly.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756197885555-61b80280-6ac3-4c9d-a9a9-c5fcd75d128a.png)
+
+In this way, users can quickly complete API configuration and debugging within Oinone without switching to external tools, improving integration efficiency and user experience.
+
+In addition, testing can also be performed in the **Integrated Application - Integrated API** module.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756198182893-13ace4a6-4717-48bd-a4ff-61ad0d78d4c5.png)
+
+## (Ⅴ) Details
 ### 1. Function Introduction
 It supports displaying the detailed information of APIs and files.
 
@@ -230,7 +285,7 @@ Click the "Details" button to view the detailed information of the selected API 
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/xq.png)
 
-## (V) Copy
+## (Ⅵ) Copy
 ### 1. Function Introduction
 When the API information has a high degree of similarity, you can use the copy function to generate a new page named "Original API Name - Copy". Edit the content and save it to successfully copy (not supported for databases and file sets).
 
@@ -251,7 +306,7 @@ When an API is not enabled, the "Edit" button will be displayed in the operation
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/fz.png)
 
-## (VI) Deletion
+## (Ⅶ) Deletion
 ### 1. Function Introduction
 When an API or file is no longer in use, you can choose to delete it.
 
@@ -272,7 +327,7 @@ Click the "Delete" icon, confirm the deletion, and it will be deleted.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/sc.png)
 
-## (VII) Publish Open APIs
+## (Ⅷ) Publish Open APIs
 ### 1. Function Introduction
 It supports publishing APIs in applications and databases as open APIs. After being set as open APIs, they can be used by external systems.
 
@@ -287,7 +342,7 @@ Select an API and click the "Publish Open API" button to publish it successfully
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/fb.png)
 
-## (VIII) Export API Documentation
+## (Ⅸ) Export API Documentation
 ### 1. Function Introduction
 It supports exporting API information as documentation.
 
