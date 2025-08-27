@@ -221,17 +221,19 @@ Editing operations are only allowed when APIs and files are in the disabled stat
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)
 
-## (IV) Integrated API Testing
+## (IV) Integrated Interface Testing
 
 ### 1. Feature Introduction
-Previously, after users configured an API in the connector, they still needed to use external tools such as **data flows**, **Postman**, or **curl** for verification. This approach resulted in fragmented operations and low efficiency. Now, we have directly integrated the API testing function into the platform to achieve a one-stop development and debugging experience.
+Previously, after users configured an interface in the connector, they still needed to use external tools such as **data flows**, **Postman**, or **curl** for verification. This approach led to fragmented operations and low efficiency. Now, we have directly integrated the interface testing function into the platform, enabling a one-stop development and debugging experience.
 
-### 2. Operation Method
-#### I. Usage Example
-The following uses the **DingTalk Open Platform - Create User API** as an example to demonstrate the workflow of API testing.
 
-##### (I) Obtain API Information
-On the DingTalk Open Platform, we can find the relevant information about this API:
+### 2. Operation Methods
+#### API:
+##### Usage Example
+The following takes the **DingTalk Open Platform - Create User Interface** as an example to demonstrate the workflow of interface testing.
+
+###### Obtain Interface Information
+On the DingTalk Open Platform, we can find the relevant information about this interface:
 - **Request Method**: POST
 - **Request URL**: `https://oapi.dingtalk.com/topapi/v2/user/create`
 
@@ -256,25 +258,139 @@ On the DingTalk Open Platform, we can find the relevant information about this A
 }
 ```
 
-##### (II) Operations on Our Platform:
-1. Enter the **Connector** module and create a new API named 【Create User】.
+###### Operations on Our Platform:
+1. Enter the **Connector** module and create a new API interface named 【Create User】.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196514227-f6a82607-2bf9-4217-84b4-e5ec14612329.png)
+:::warning Tips
+Creating an API is not a mandatory step. If there is an available API already in the platform, you can directly perform testing on it.
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196514227-f6a82607-2bf9-4217-84b4-e5ec14612329-20250827110934173.png)
 
 2. After creation, click **Test** in the operation bar.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196559965-6e19b376-80c0-4b02-9c22-2a889f38c74f.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196559965-6e19b376-80c0-4b02-9c22-2a889f38c74f-20250827110939341.png)
 
 3. Fill in the request method, URL, and parameter information obtained in the previous step into the corresponding fields.
-4. Click the **Test** button to immediately verify whether the API works properly.
+4. Click the **Test** button to immediately verify whether the interface works properly.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756197885555-61b80280-6ac3-4c9d-a9a9-c5fcd75d128a.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756197885555-61b80280-6ac3-4c9d-a9a9-c5fcd75d128a-20250827110943601.png)
 
-In this way, users can quickly complete API configuration and debugging within Oinone without switching to external tools, improving integration efficiency and user experience.
 
-In addition, testing can also be performed in the **Integrated Application - Integrated API** module.
+#### WebService:
+##### Usage Example
+The following takes the [WebService Weather Query Interface](http://www.webxml.com.cn/WebServices/WeatherWebService.asmx?op=getSupportCity) as an example to demonstrate the workflow of interface testing.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756198182893-13ace4a6-4717-48bd-a4ff-61ad0d78d4c5.png)
+###### Obtain Interface Information
+- **Method**: `getSupportCity`
+- **Function**: Query information about supported domestic and international cities.
+- **Input Parameters**:
+  - `byProvinceName`: Specified province. Pass `ALL` or leave it empty to return all cities.
+- **Return Result**:
+  - A one-dimensional string array `String[]`, with content in the format of `City Name (City Code)`.
+
+###### Common Calling Methods
+```plain
+# SOAP 1.1 Request Example
+POST /WebServices/WeatherWebService.asmx HTTP/1.1
+Host: www.webxml.com.cn
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://WebXml.com.cn/getSupportCity"
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+               xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <getSupportCity xmlns="http://WebXml.com.cn/">
+      <byProvinceName>北京</byProvinceName>
+    </getSupportCity>
+  </soap:Body>
+</soap:Envelope>
+```
+
+```plain
+# HTTP GET Request Example
+GET /WebServices/WeatherWebService.asmx/getSupportCity?byProvinceName=北京 HTTP/1.1
+Host: www.webxml.com.cn
+```
+
+```plain
+# Return Result (Example):
+<ArrayOfString xmlns="http://WebXml.com.cn/">
+  <string>北京(101010100)</string>
+  <string>昌平(101010700)</string>
+</ArrayOfString>
+```
+
+###### Operations on Our Platform:
+1. Enter the **Connector** module and create a new API interface named 【Query Weather】.
+
+:::warning Tips
+Creating a WebService is not a mandatory step. If there is an available API already in the platform, you can directly perform testing on it.
+:::
+
+If the method name can be correctly parsed at the request parameter position, there is no need to add the additional parameter `op=methodName`.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756261554190-95087607-82dc-4745-8c44-2d2d28706291-20250827111614053.png)
+
+2. After creation, click **Test** in the operation bar.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756261373805-472e9462-a222-4e94-a4d7-414cb4abcbe4.png)
+
+3. Fill in the request method, URL, and parameter information obtained in the previous step into the corresponding fields.
+4. Click the **Test** button to immediately verify whether the interface works properly.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756261453261-39386670-fad2-437f-9b03-bf35a16761fa.png)
+
+
+#### Database:
+##### Usage Example: Database Query Interface
+The following takes the **Database Query Interface** as an example to demonstrate how to perform interface testing on the Oinone platform.
+
+###### Obtain Interface Information
+- **Operation Type**: SQL Query
+- **Function**: Query student information based on the specified `id`.
+- **Input Parameters**:
+  - `id`: Student ID (required).
+- **SQL Statement**:
+```sql
+select name,
+       code,
+       gender,
+       age,
+       create_time,
+       enu,
+       is_off
+  from xs.test
+ where id = {id};
+```
+- **Return Result**:
+  - Tabular data containing fields such as `name, code, gender, age, create_time, enu, is_off`.
+
+###### Operations on Our Platform:
+1. Enter the **Connector** module and create a new database API interface named 【Query Student Information】.
+
+:::warning Tips
+Creating an API is not a mandatory step. If there is an available database API already in the platform, you can directly perform testing on it.
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756261870239-976c9ca8-29f4-4d45-bbc8-ff8764f1f112.png)
+
+2. After creation, click **Test** in the operation bar.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756262164666-fef63bf1-a33e-4823-bd59-383f3b6de35f.png)
+
+3. Fill in the SQL statement and parameters (e.g., `id=1`) obtained in the previous step into the corresponding fields.
+4. Click the **Test** button to immediately verify whether the query result is returned normally.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756262216261-0ac3a3ed-0cda-45f0-94bd-5255cdef6211.png)
+
+
+In this way, users can quickly complete interface configuration and debugging within Oinone without switching to external tools, improving integration efficiency and user experience.  
+In addition, both API and database interfaces can be directly tested in 【Integrated Application → Integrated Interface】, enabling seamless connection between interface debugging and application integration.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756198182893-13ace4a6-4717-48bd-a4ff-61ad0d78d4c5-20250827111023473.png)
 
 ## (Ⅴ) Details
 ### 1. Function Introduction

@@ -230,11 +230,13 @@ API的路径不允许重复。
 
 ### 2.操作方法
 
-#### 一、使用方法举例
+#### API：
+
+##### 使用方法举例
 
 以下以 **钉钉开放平台-创建用户接口** 为例，展示接口测试的使用流程。
 
-##### （一）获取接口信息
+###### 获取接口信息
 
 在钉钉开放平台中，我们可以了解到该接口的相关信息：
 
@@ -264,26 +266,154 @@ API的路径不允许重复。
 }
 ```
 
-##### （二）在我们平台中操作：
+###### 在我们平台中操作：
 
 1. 进入 **连接器**，新增一个【创建用户】 API 接口。
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196514227-f6a82607-2bf9-4217-84b4-e5ec14612329.png)
+:::warning 提示
+
+创建 API 并非必需操作，若平台中已有可用 API，可直接在其上执行测试
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196514227-f6a82607-2bf9-4217-84b4-e5ec14612329-20250827110934173.png)
 
 2. 创建完成后，在操作栏中点击 **测试**。
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196559965-6e19b376-80c0-4b02-9c22-2a889f38c74f.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756196559965-6e19b376-80c0-4b02-9c22-2a889f38c74f-20250827110939341.png)
 
 3. 将上一步获取到的请求方式、地址、参数信息填写到对应位置。
 4. 点击 **测试** 按钮，即可立即验证接口是否正常工作。
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756197885555-61b80280-6ac3-4c9d-a9a9-c5fcd75d128a.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756197885555-61b80280-6ac3-4c9d-a9a9-c5fcd75d128a-20250827110943601.png)
 
-这样，用户无需跳转到外部工具，即可在 Oinone 内快速完成接口的配置与调试，提升了集成效率与体验。
+#### WebService：
 
-除此之外还可以在 **集成应用-集成接口** 中进行测试。
+##### 使用方法举例
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756198182893-13ace4a6-4717-48bd-a4ff-61ad0d78d4c5.png)
+以下以[WebService 天气查询接口](http://www.webxml.com.cn/WebServices/WeatherWebService.asmx?op=getSupportCity)为例，展示接口测试的使用流程。
+
+###### 获取接口信息
+
++ **方法**：`getSupportCity`
++ **功能**：查询支持的国内外城市信息。
++ **输入参数**：
+  - `byProvinceName`：指定的省份，传入 `ALL` 或为空时返回全部城市。
++ **返回结果**：
+  - 一维字符串数组 `String[]`，内容为 `城市名称(城市代码)`。
+
+###### 常用调用方式
+
+```plain
+# SOAP 1.1 请求示例
+POST /WebServices/WeatherWebService.asmx HTTP/1.1
+Host: www.webxml.com.cn
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://WebXml.com.cn/getSupportCity"
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+               xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <getSupportCity xmlns="http://WebXml.com.cn/">
+      <byProvinceName>北京</byProvinceName>
+    </getSupportCity>
+  </soap:Body>
+</soap:Envelope>
+```
+
+```plain
+# HTTP GET 请求示例
+GET /WebServices/WeatherWebService.asmx/getSupportCity?byProvinceName=北京 HTTP/1.1
+Host: www.webxml.com.cn
+```
+
+```plain
+# 返回结果（示例）：
+<ArrayOfString xmlns="http://WebXml.com.cn/">
+  <string>北京(101010100)</string>
+  <string>昌平(101010700)</string>
+</ArrayOfString>
+```
+
+###### 在我们平台中操作：
+
+1. 进入 **连接器**，新增一个【查询天气】 API 接口。
+
+:::warning 提示
+
+创建 WebService 并非必需操作，若平台中已有可用 API，可直接在其上执行测试。
+
+:::
+
+如果方法名已经能够在请求参数位置正确解析，则无需再额外添加 `op=方法名` 参数。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756261554190-95087607-82dc-4745-8c44-2d2d28706291-20250827111614053.png)
+
+2. 创建完成后，在操作栏中点击 **测试**。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756261373805-472e9462-a222-4e94-a4d7-414cb4abcbe4.png)
+
+3. 将上一步获取到的请求方式、地址、参数信息填写到对应位置。
+4. 点击 **测试** 按钮，即可立即验证接口是否正常工作。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756261453261-39386670-fad2-437f-9b03-bf35a16761fa.png)
+
+#### 数据库：
+
+##### 使用方法举例：数据库查询接口
+
+以下以 **数据库查询接口** 为例，展示在 Oinone 平台中如何进行接口测试。
+
+###### 获取接口信息
+
++ **操作类型**：SQL 查询
++ **功能**：根据指定的 `id` 查询学生信息。
++ **输入参数**：
+  - `id`：学生编号（必填）。
++ **SQL 语句**：
+
+```sql
+select name,
+       code,
+       gender,
+       age,
+       create_time,
+       enu,
+       is_off
+  from xs.test
+ where id = {id};
+```
+
++ **返回结果**：
+  - 表格数据，包含 `name, code, gender, age, create_time, enu, is_off` 等字段。
+
+###### 在我们平台中操作：
+
+1. 进入 **连接器**，新增一个【查询学生信息】数据库 API 接口。
+
+:::warning 提示
+
+创建 API 并非必需操作，若平台中已有可用的数据库 API，可直接在其上执行测试。
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756261870239-976c9ca8-29f4-4d45-bbc8-ff8764f1f112.png)
+
+2. 创建完成后，在操作栏中点击 **测试**。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756262164666-fef63bf1-a33e-4823-bd59-383f3b6de35f.png)
+
+3. 将上一步获取到的 SQL 语句与参数（如 `id=1`）填写到对应位置。
+4. 点击 **测试** 按钮，即可立即验证查询结果是否正常返回。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756262216261-0ac3a3ed-0cda-45f0-94bd-5255cdef6211.png)
+
+这样，用户无需跳转到外部工具，即可在 Oinone 内快速完成接口的配置与调试，提升了集成效率与体验。  
+除此之外，无论是 API 还是数据库接口，都可以在【集成应用 → 集成接口】中直接进行测试，从而实现接口调试与应用集成的无缝衔接。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/1756198182893-13ace4a6-4717-48bd-a4ff-61ad0d78d4c5-20250827111023473.png)
 
 
 ## （五）详情
