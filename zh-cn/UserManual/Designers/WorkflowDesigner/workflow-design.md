@@ -58,7 +58,19 @@ order: 2
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/qh.png)
 
-### 3.暂存
+### 3.展示回退路线
+
+#### 一、功能介绍
+
+可视化呈现人工节点预设退回路线，清晰指引操作流程，助于快速掌握节点回溯逻辑。
+
+#### 二、操作方法
+
+开启「展示回退路线」开关，选择配置退回功能的人工节点，系统将自动显示对应回退路线
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1754029147834-b519ee08-3cc7-4492-8aef-b7b04d857022.png)
+
+### 4.暂存
 #### 一、功能介绍
 支持对流程设计进行存档保存。即便流程设计尚未完整，也可以选择暂存当前设计进度。下次进入流程设计页面时，系统将自动加载并显示之前暂存的设计页面，方便继续完善流程。
 
@@ -71,9 +83,31 @@ order: 2
 #### 二、操作方法
 点击「暂存」，即可将当前设计进度存档保存。
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/zc.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1754287777231-3ddbd01e-90f8-4b62-b34f-3a9e28913348.png)
 
-### 4.发布/更新发布
+### 5.查看历史记录
+
+#### 一、功能介绍
+
+查看历史记录功能为用户提供了回溯内容过往状态的便捷途径，支持用户查询并浏览在不同时间节点暂存或发布的版本记录。
+
+同时，该功能支持将某一历史记录保存为版本，且每个版本都可以单独命名，便于用户对不同版本进行区分和管理，进一步提升版本管理的便捷性。
+
+#### 二、操作方法
+
++ **查看入口**：在顶部操作栏中，点击「历史记录」图标，进入历史版本记录页面。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1754289433319-44d46fbc-f170-42af-a9d9-ca4d408c6f5a.png)
+
++ **版本筛选与展示**：系统会按时间顺序展示所有已暂存或发布的版本记录，每条记录会标注对应的创建时间、操作人，方便用户快速定位目标版本。
++ **版本查看**：用户选中某一历史版本后，系统会展示该版本的完整内容，与该版本在当时暂存或发布时的状态保持一致。
++ **保存为版本**：选择某一历史记录，点击「保存为版本」，输入名称即可将该记录保存为版本；或点击记录下方悬浮的「编辑」图标，输入名称后也可将该记录保存为版本。
++ **恢复历史版本**：选择某一历史记录，点击「恢复此记录」，即可恢复至该历史版本。
++ **删除历史记录**：选择某一历史记录，点击「删除」即可将该记录删除。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1754289501388-28f46593-0c13-4347-a1a2-3ca85b288004.png)
+
+### 6.发布/更新发布
 #### 一、功能介绍
 流程设计完成后，可以选择将其发布，以使流程正式生效并投入使用。对于尚未发布过的流程，发布按钮上会显示“发布”字样。而对于已经发布过的流程，发布按钮则会变为“更新发布”字样。
 
@@ -182,40 +216,10 @@ order: 2
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sxmb2.png)
 
 # 二、流程配置
-## （一）参数配置
+
 ### 1.功能介绍
-在流程设计中，流程参数可以作为一个临时字段来存放某个字段值、计算结果或接受其他流程传过来的值。临时参数支持文本、数值、日期、布尔四种数据类型，以满足不同场景的需求。
 
-:::info 注意
-
-一旦流程参数在流程中被引用，将无法对其进行修改或删除操作
-
-:::
-
-:::warning 提示
-
-在流程中可以使用“更新流程参数”来使用配置好的参数来存放数据。
-
-:::
-
-### 2.操作方法
-在参数配置下，点击「添加新参数」，选择参数类型并输入参数名后点击「保存」，即可成功添加参数。
-
-:::info 注意
-
-参数名称规则：参数名称必须以字母开头，支持输入数字与下划线，不支持输入汉字。
-
-:::
-
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/cs.png)
-
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/cs2.png)
-
-## （二）流程配置
-### 1.功能介绍
-在流程配置中，支持更改流程所属应用与流程异常时的回滚类型
-
-+ 在创建流程时已选择了所属应用。若发现应用选择错误或需要更改所属应用，可以在此处进行编辑操作。
++ 应用：在创建流程时已选择所属应用，若发现应用选择错误或需变更所属应用，可在此处进行编辑操作。
 
 :::info 注意
 
@@ -226,18 +230,57 @@ order: 2
 
 :::
 
-+ 可设置异常类型为“节点异常终止”或“节点异常回滚”
-    - 节点异常终止：当节点出现异常时，将终止该流程
-    - 节点异常回滚：当节点出现异常时，将回滚该节点状态至未执行时
++ 异常回滚类型：指节点出现异常时的处理方式，具体包括以下两种：
+  - 节点异常终止：当节点发生异常时，该流程将直接终止运行。
+  - 节点异常回滚：当节点发生异常时，系统会将该节点的状态回滚至未执行状态，以便重新处理。
 
-:::info 注意
+:::info 注意：
 
-该异常处理机制仅适用于人工节点
+该异常处理机制仅对人工节点生效。
+
+:::
+
++ 是否展示流程图：用于设置流程运行过程中是否显示流程图，开启后可在任务待办中查看流程图。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1756365549787-6f2230a8-0c63-4657-86a4-b362f21b643e.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1756363428877-dab35d56-2f8e-4975-8455-24f2f53ee32b.png)
+
++ 允许反悔：支持反悔待办结果。开启后，所有的人工节点均可执行反悔操作。可设置**限制时长**，即最后一个人工节点可反悔的时间范围，超过该时长则禁止反悔。
+
+:::warning 提示
+
+1. **基本规则**
+   - 反悔需二次确认：操作时弹框提示“您确定要反悔当前审批/填写结果吗？”，确认后执行。
+   - 反悔后撤销当前节点结果，流程回退至上一节点，相关后续待办撤销。
+2. **节点处理状态规则**
+   - **当前待办**：恢复待办状态
+   - **后续人工节点未处理**：允许反悔，撤销待办。
+   - **后续人工节点已查看未处理**：允许反悔，并提示后续人员“您的待办任务已撤回，无法进行操作”。
+   - **后续人工节点已处理**：禁止反悔。
+3. **加签规则**
+   - **审批前加签**：若审批人已有结果，加签人不可反悔。
+   - **审批后加签**：若加签人已有结果，审批人不可反悔。
+4. **最后人工节点规则**
+   - 最后一个人工节点可反悔，但必须在配置的 **限制时长** 内操作。
+   - 超过限制时长，禁止反悔。
 
 :::
 
 ### 2.操作方法
+
 + 在流程配置下，选择应用后，点击「保存」，即可成功修改应用。
 + 在流程配置下，可下拉选异常回滚类型，包括节点异常终止与节点异常回滚
++ 在流程配置下，可选择是否要在待办中展示流程图
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/ychglx.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1756363266788-1f170faa-8c52-476c-96cb-fdad55c20708.png)
+
++ 反悔：
+  - 在流程配置下，勾选“允许反悔”开关，若开启，需设置 **限制时长**（单位：分钟/小时/天）。
+  - 进入「我已办结」，打开已完成的待办详情。
+  - 若节点支持反悔，操作区显示 **“反悔”按钮**。点击后系统弹出提示框：“您确定要反悔当前审批/填写结果吗？”
+    * 点击 **取消**：不执行操作，流程保持不变。
+    * 点击 **确定**：执行反悔，撤销本节点结果及后续待办。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1756363585888-5043f555-b277-495d-9893-e9b0f9019e7a.png)
+

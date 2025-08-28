@@ -36,18 +36,57 @@ After editing the name or description, it needs to be saved temporarily or publi
 #### I. Function Introduction
 When designing a process, if temporary parameters or changes to the application to which the process belongs are required, the menu can be switched in the operation bar to complete the operation.
 #### II. Operation Method
-Click the menu area in the operation bar to switch between process design and process configuration.
+Click the menu area in the operation bar to switch between process design and process configuration.  
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/qh.png)
-### 3. Save Draft
+
+### 3. Display Rollback Routes  
+
+#### I. Feature Introduction  
+Visually presents the preset rollback routes for manual nodes, clearly guiding the operation process and helping users quickly grasp the node backtracking logic.  
+
+
+#### II. Operation Method  
+1. Toggle on the **"Display Rollback Routes"** switch.  
+2. Select the manual node configured with the rollback function.  
+3. The system will automatically display the corresponding rollback routes.  
+
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1754029147834-b519ee08-3cc7-4492-8aef-b7b04d857022.png)  
+
+
+### 4. Save Draft
 #### I. Function Introduction
 Supports archiving and saving the process design. Even if the process design is not complete, you can choose to save the current design progress temporarily. When entering the process design page next time, the system will automatically load and display the previously saved design page, facilitating the continuation of the process improvement.
 :::warning Tip
 When the process design is complete but not yet published, you can choose to enable the process directly. The enable operation will automatically trigger the release process of the current version, making the design take effect immediately and put into use.
 :::
 #### II. Operation Method
-Click "Save Draft" to archive and save the current design progress.
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/zc.png)
-### 4. Publish/Update Publish
+Click "Save Draft" to archive and save the current design progress.   
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1754287777231-3ddbd01e-90f8-4b62-b34f-3a9e28913348-20250828154301087.png)
+
+### 5. View History Records  
+
+#### I. Feature Introduction  
+The **View History Records** feature provides users with a convenient way to trace the past states of content. It allows users to query and browse version records that were either saved as drafts or published at different time points.  
+
+Additionally, this feature supports saving a specific history record as a formal version. Each version can be named individually, making it easier for users to distinguish and manage different versions—further enhancing the convenience of version management.  
+
+
+#### II. Operation Method  
+- **Access Entry**: In the top operation bar, click the **"History Records"** icon to navigate to the History Versions page.  
+
+  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1754289433319-44d46fbc-f170-42af-a9d9-ca4d408c6f5a.png)  
+
+- **Version Filtering & Display**: The system displays all draft or published version records in chronological order. Each record is labeled with its creation time and the operator, enabling users to quickly locate the target version.  
+- **View Version Content**: When a user selects a historical version, the system displays the complete content of that version, consistent with its state when it was saved as a draft or published.  
+- **Save as Formal Version**: Select a historical record and click **"Save as Version"**, then enter a name to save the record as a formal version. Alternatively, click the floating **"Edit"** icon below the record, enter a name, and also save it as a formal version.  
+- **Restore Historical Version**: Select a historical record and click **"Restore This Record"** to revert the content to the state of that historical version.  
+- **Delete Historical Record**: Select a historical record and click **"Delete"** to remove the record.  
+
+  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1754289501388-28f46593-0c13-4347-a1a2-3ca85b288004.png)  
+
+
+### 6. Publish/Update Publish
 #### I. Function Introduction
 After the process design is completed, it can be published to make the process officially take effect and put into use. For processes that have not been published before, the publish button will display the word "Publish". For processes that have been published, the publish button will change to "Update Publish".
 :::info Note
@@ -60,7 +99,7 @@ Only after completing all modifications and performing an update publish will th
 When publishing a process, it is necessary to ensure that there is at least one valid node between the trigger node and the end node, and all nodes have been configured. If these conditions are not met, the process cannot be published.
 :::
 #### II. Operation Method
-Click the "Publish/Update Publish" button to publish the current process design.
+Click the "Publish/Update Publish" button to publish the current process design.  
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/fb.png)
 ## (Ⅱ) Toolbar
 ### 1. Function Introduction
@@ -134,39 +173,61 @@ Required information in the attributes must be filled in; otherwise, saving will
 :::
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sxmb.png)
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/sxmb2.png)
-# II. Process Configuration
-## (Ⅰ) Parameter Configuration
+# Ⅱ. Process Configuration
 ### 1. Function Introduction
-In process design, process parameters can be used as a temporary field to store a field value, calculation result, or accept values passed from other processes. Temporary parameters support four data types: text, number, date, and boolean to meet the needs of different scenarios.
++ **Application**: The associated application is selected when creating a process. If you find an incorrect application selection or need to change the associated application, you can perform the editing operation here.
+
 :::info Note
-Once a process parameter is referenced in the process, it cannot be modified or deleted.
+When viewing process instances in "Workflow" - "Process Execution Records":
++ If process instances were generated before the application change, these instances will remain stored in the application prior to the change.
++ Newly generated instances after the application change will be stored in the updated application.
 :::
-:::warning Tip
-In the process, "Update Process Parameters" can be used to store data using the configured parameters.
+
++ **Exception Rollback Type**: Refers to the handling method when an exception occurs in a node, including the following two types:
+  - **Node Exception Termination**: When an exception occurs in the node, the process will terminate immediately.
+  - **Node Exception Rollback**: When an exception occurs in the node, the system will roll back the node's status to the unexecuted state for reprocessing.
+
+:::info Note
+This exception handling mechanism only takes effect for manual nodes.
 :::
+
++ **Whether to Display Process Diagram**: Used to set whether to display the process diagram during process execution. After enabling, the process diagram can be viewed in the pending tasks.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1756365549787-6f2230a8-0c63-4657-86a4-b362f21b643e.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1756363428877-dab35d56-2f8e-4975-8455-24f2f53ee32b.png)
+
++ **Allow Reversal**: Supports reversing the result of pending tasks. After enabling, all manual nodes can perform the reversal operation. A **Time Limit** can be set, which refers to the time range within which the last manual node can be reversed; beyond this duration, reversal is prohibited.
+
+:::warning Reminder
+1. **Basic Rules**
+   - Reversal requires secondary confirmation: A pop-up window will prompt "Are you sure you want to reverse the current approval/filling result?" during operation, and the reversal will be executed after confirmation.
+   - After reversal, the result of the current node is revoked, the process rolls back to the previous node, and the relevant subsequent pending tasks are cancelled.
+2. **Node Processing Status Rules**
+   - **Current Pending Task**: Resume the pending status.
+   - **Subsequent Manual Nodes Not Processed**: Reversal is allowed, and the pending task is cancelled.
+   - **Subsequent Manual Nodes Viewed but Not Processed**: Reversal is allowed, and the subsequent personnel will be prompted "Your pending task has been withdrawn and cannot be operated on".
+   - **Subsequent Manual Nodes Processed**: Reversal is prohibited.
+3. **Additional Signatory Rules**
+   - **Additional Signatory Before Approval**: If the approver has already given a result, the additional signatory cannot reverse it.
+   - **Additional Signatory After Approval**: If the additional signatory has already given a result, the approver cannot reverse it.
+4. **Last Manual Node Rules**
+   - The last manual node can be reversed, but the operation must be performed within the configured **Time Limit**.
+   - If the time limit is exceeded, reversal is prohibited.
+:::
+
 ### 2. Operation Method
-Under parameter configuration, click "Add New Parameter", select the parameter type, enter the parameter name, and click "Save" to successfully add the parameter.
-:::info Note
-Parameter name rules: The parameter name must start with a letter, support numbers and underscores, and does not support Chinese characters.
-:::
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/cs.png)
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/cs2.png)
-## (Ⅱ) Process Configuration
-### 1. Function Introduction
-In process configuration, it is supported to change the application to which the process belongs and the rollback type when the process has an exception.
-+ The application to which it belongs has been selected when creating the process. If the application selection is found to be incorrect or needs to be changed, editing operations can be performed here.
-:::info Note
-When viewing process instances in "Workflow" - "Process Operation Records":
-+ If process instances have been generated before the application change, these instances will continue to be stored in the pre-change application.
-+ New instances generated after the application change will be stored in the post-change application.
-:::
-+ The exception type can be set to "Node Exception Termination" or "Node Exception Rollback"
-    - Node Exception Termination: When a node has an exception, the process will be terminated.
-    - Node Exception Rollback: When a node has an exception, the node status will be rolled back to the unexecuted state.
-:::info Note
-This exception handling mechanism is only applicable to manual nodes.
-:::
-### 2. Operation Method
-+ Under process configuration, select the application and click "Save" to successfully modify the application.
-+ Under process configuration, the exception rollback type can be selected from the drop-down menu, including Node Exception Termination and Node Exception Rollback.
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/ychglx.png)
++ Under Process Configuration, select an application and click "Save" to successfully modify the application.
++ Under Process Configuration, you can select the exception rollback type from the drop-down menu, including Node Exception Termination and Node Exception Rollback.
++ Under Process Configuration, you can select whether to display the process diagram in pending tasks.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1756363266788-1f170faa-8c52-476c-96cb-fdad55c20708.png)
+
++ **Reversal**:
+  - Under Process Configuration, check the "Allow Reversal" switch. If enabled, you need to set a **Time Limit** (Unit: Minutes/Hours/Days).
+  - Enter "My Completed Tasks" and open the details of the completed pending task.
+  - If the node supports reversal, a **"Reversal" Button** will be displayed in the operation area. After clicking, the system will pop up a prompt: "Are you sure you want to reverse the current approval/filling result?"
+    * Click **Cancel**: No operation is performed, and the process remains unchanged.
+    * Click **Confirm**: Execute the reversal, revoke the result of this node and subsequent pending tasks.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Process%20Design/1756363585888-5043f555-b277-495d-9893-e9b0f9019e7a.png)
