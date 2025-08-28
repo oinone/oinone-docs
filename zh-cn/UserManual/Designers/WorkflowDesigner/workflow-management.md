@@ -84,6 +84,14 @@ prev:
 + 在平铺模式下，点击「设计流程」图标，即可进入设计流程界面。
 + 在列表模式下，点击「编辑」，即可进入设计流程界面。（详情见流程设计文档）
 
+:::warning 提示
+
+当流程中存在多个人工节点（审批 / 填写节点），且节点所绑定的视图发生变更时，点击属性面板右上角的「刷新」按钮，即可批量同步获取最新数据权限。
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/process%20management/1754031932389-0f0d7bb8-46ed-4fb1-bf27-b6da6e760d50.png)
+
+:::
+
 ![平铺模式](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/process%20management/sj1.png)
 
 ![列表模式](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/process%20management/sj2.png)

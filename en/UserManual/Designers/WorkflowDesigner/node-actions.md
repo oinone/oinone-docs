@@ -372,6 +372,13 @@ If there is a sub-table in the view selected by the current node, you can contro
 + If a sub-table field is set to "Edit", the permissions of the fields and actions in the sub-table can be set.
 
 :::
+
+:::warning Reminder
+When the view bound to an approval node is changed, click the "Refresh" button in the upper right corner of the property panel to synchronize and obtain the latest data permissions.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/1754031469431-5788a06d-fdb3-4e34-9fa7-1b315ef86f31.png)
+:::
+
 + Duplicate Participants: You can select the provided duplicate scenarios. When the approval process meets the selected scenario, the system will automatically approve the process.
 + Execute Function Before Approval Starts: After enabling this function, you can execute the selected custom function before the approval starts.
 + Execute Function After Pending Operation Submission: After enabling this function, you can execute the selected custom function after the pending task is submitted.

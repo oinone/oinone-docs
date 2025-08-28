@@ -77,6 +77,11 @@ When designing a process, you can use various node actions to layout the process
 ### 2. Operation Method
 + In Tile Mode, click the "Design Process" icon to enter the process design interface.
 + In List Mode, click "Edit" to enter the process design interface. (See the process design documentation for details.)
+:::warning Reminder
+When there are multiple manual nodes (approval/filling nodes) in a process, and the views bound to these nodes are changed, click the "Refresh" button in the upper right corner of the property panel to batch synchronize and obtain the latest data permissions.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/process%20management/1754031932389-0f0d7bb8-46ed-4fb1-bf27-b6da6e760d50.png)
+:::
 
 ![Tile Mode](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/process%20management/sj1.png)
 
