@@ -145,7 +145,56 @@ The system supports viewing the execution details of micro - flows. You can not 
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/wlxq.png)
 
-# V. Dynamic Forms
+# Ⅴ. Delegation and Handover
+## (I) Delegation
+### 1. Function Introduction
+When a user is unable to handle pending work tasks, they can delegate the pending tasks to others for processing. After delegation, the delegatee will be responsible for handling these pending tasks to ensure the continuity of business processes.
+
+:::info Note
++ For workflows, you can select "All Workflows"; the delegator is the currently logged-in user, the delegatee is limited to all employees and only 1 person can be selected, and the delegator and delegatee cannot be the same.
++ During the delegated time period, the delegator cannot delegate to others again; the delegatee cannot initiate a new delegation within the delegated time period; during the delegation period, the delegator cannot accept other delegations.
++ Delegatee disabled after delegation: The system will automatically return the delegatee's unprocessed delegated pending tasks to the original delegator, and at the same time send an in-site message: "The pending tasks you delegated to [XXX] have been returned because the other party has been disabled. Please handle them in a timely manner".
+:::
+
+:::warning Reminder
+You can initiate delegation for an employee in Admin Center - Employees. After delegation, the relevant records will be synchronized to the delegation records.
+:::
+
+### 2. Operation Method
++ **Create Delegation**: Click "Create", fill in the delegation information (including time, delegatee, etc.) in the pop-up window. After setting, the current user's pending tasks will be automatically transferred to the delegatee during the delegation period.
++ **End Delegation**: Click "End" to terminate the ongoing delegation process in advance.
++ **Continuous Delegation**: Click "Continue Delegation". After submitting a delegation, you will not return to the original page; the pop-up window will clear the information, and you can directly add a new delegation.
++ **Record Synchronization**: Delegation records are synchronized bidirectionally. Both the delegator and the delegatee can view them in "Delegation and Handover - Delegation Records".
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/1754034475704-d5d891b1-1200-4a2f-8009-c4853ea102aa.png)
+
+## (II) Handover
+### 1. Function Introduction
+The handover function allows users to transfer work content to other employees, realizing a smooth transition and efficient flow of work. The relevant personnel of the handover work will be changed to the recipient. After that, no more pending tasks for this work will be sent to the original employee, and the work content after handover will no longer be displayed under the original employee's name.
+
+Handover records are displayed synchronously in "Delegation and Handover - Handover Records" of both the handover initiator and the recipient. At the same time, an in-site message containing the handover content will be sent to the recipient.
+
+:::warning Reminder
+You can initiate handover for an employee in Admin Center - Employees. After handover, the relevant records will be synchronized to the handover records.
+:::
+
+### 2. Operation Method
++ **Initiate Handover**: Click "Create", select the employee's unprocessed pending tasks, workflows in which they participate as a node participant, and the recipient (the recipient cannot be the same as the initiator) in the pop-up window. Confirm to complete the work handover.
++ **Change Recipient**: Click "Change Recipient". In the pop-up window, only the recipient can be edited, and other fields are read-only; click "Confirm" to submit the modification.
+
+:::info Note
+The handover initiator can only hand over their own pending tasks and workflows. For pending tasks and workflows handed over by others, the recipient needs to be modified in the original record.
+:::
+
++ **Cancel Handover**: Click "Cancel" to cancel the current handover. The pending tasks and workflows will still be handled by the original processor; after cancellation, the record will be invalidated but not deleted, and the status will be marked as "Cancelled".
+
+:::info Note
+Cancellation is only allowed when the handover content is a workflow.
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/standard%20module/Workflow/1754274063780-73701952-a2b9-4ac4-9917-d8a0c6b89853.png)
+
+# Ⅵ. Dynamic Forms
 ## \(Ⅰ\) Dynamic Form Tasks
 ### 1. Function Introduction
 In dynamic form tasks, users can customize the process name. When a task node uses the process name set in the dynamic form task, you can trigger the dynamic form task to perform corresponding testing operations on the node.
