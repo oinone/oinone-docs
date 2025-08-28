@@ -318,16 +318,23 @@ Add the employee "R & D Employee 1" as a copy recipient, enable the read confirm
 :::
 
 + Allow Reassignment: You can choose whether to allow the current approval to be reassigned to others. The added reassignees are the candidate list for reassignment.
-    - Add Reassignees: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed. Reassignees have the same rights as approvers.
+    - Selection Scope: Refers to the range of personnel that can be selected when transferring a pending task, with two options provided: "Transfer to All Members" and "Transfer to Designated Members".
+    - Add Transferee: This function is visible when "Transfer to Designated Members" is selected. You can select from fields related to employees, departments, roles, and models, and multiple selections are allowed. Transferees have the same rights as approvers.
     - Custom Reassignees: When the system's available reassignees cannot meet your requirements, you can customize the addition of reassignees through code.
         * Reassignee Data Node: It includes all the data that can be obtained before the approval node.
         * Select Custom Function: It is the function to customize reassignees through code.
-+ Allow Additional Signing: You can choose to temporarily add other approvers during the approval process. The added additional signers are the candidate list for additional signing.
-    - Add Additional Signers: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed.
-    - Custom Additional Signers: When the system's available additional signers cannot meet your requirements, you can customize the addition of additional signers through code.
-        * Additional Signer Data Node: It includes all the data that can be obtained before the approval node.
-        * Select Custom Function: It is the function to customize additional signers through code.
-    - Participate in Approval: After enabling, additional signers can participate in the approval.
+        * Custom Function Execution Timing:Refers to the specific timing for executing the custom function, which mainly includes two scenarios: taking effect when the task is created and taking effect when the user approves.
++ Allow Additional Signatories: You can choose to temporarily add other approvers during the approval process. The added additional signatories will be part of the candidate list for countersigning.
+    - Selection Scope: Refers to the range of personnel that can be selected when handling pending tasks, with two options provided: "All Members" and "Designated Members".
+    - Add Additional Signatories: This function is visible when "Designated Members" is selected. You can select from fields related to employees, departments, roles, and models, and multiple selections are allowed.
+    - Custom Additional Signatories: When the system's available additional signatories cannot meet the requirements, you can custom-add additional signatories through code.
+        * Additional Signatory Data Nodes: Include all data that can be obtained before the approval node.
+        * Select Custom Function: A function for customizing additional signatories through code.
+        * Custom Function Execution Timing:Refers to the specific timing for executing the custom function, which mainly includes two scenarios: taking effect when the task is created and taking effect when the user approves.
+    - Countersign Methods: Supports two countersign methods: countersign before approval and countersign after approval.
+        * Countersign Before Approval: Push the current approval task to the additional signatories. During this period, the approver cannot perform approval operations; the task will be pushed back to the approver for processing only after the additional signatories approve it.
+        * Countersign After Approval: After the current approver completes and approves the task, the system will automatically push the task to the additional signatories for subsequent processing.
+        * User's Choice: In the user's pending task countersign pop-up window, two options, "Countersign Before Approval" and "Countersign After Approval", will be displayed, allowing users to independently choose the countersign method according to actual needs.
 
 :::info Note
 
@@ -348,11 +355,33 @@ Effect preview:
 :::
 
 + Rejection Reason Required: After enabling this function, the approver must fill in the rejection reason when rejecting the approval.
-+ Allow Return: After enabling this function, you can choose to return to any reachable approval or filling node before this approval node.
+
+Manual Return: When this function is enabled, you can choose to return to any approval or filling node before the current approval node.
+  - Return Methods:
+    * All Nodes Above: When a user performs a return operation in pending tasks, the selectable nodes are all approval nodes and filling nodes above the current node.
+    * Specified Nodes: Supports customizing the nodes that users can select when performing return operations in pending tasks.
+  - After Resubmission of Returned Node: Refers to the operation rules of the process after the returned node is resubmitted, including the following two types:
+    * Execute in Process Order: When resubmitting after return, the process starts from the returned node and executes all subsequent nodes in sequence according to the original process path.
+    * Directly to Current Node: When resubmitting after return, the process jumps directly back to the current node, and intermediate nodes will not be executed repeatedly.
 
 :::info Note
 
-In the case of multiple approvers and the approval method is all-sign (approval is valid when one approver agrees, and rejection is only valid when all approvers reject), returning is not allowed.
+When multiple people approve and the approval method is countersign where "one person's approval counts as approval, and all people's rejection counts as rejection", return is not allowed.
+
+:::
+
++ Automatic Return: When this function is enabled, the system will automatically return to the specified node when the data meets the preset conditions.
+  - Condition Settings: Supports adding multiple conditions. You can manually drag to adjust the order of conditions, and the execution priority will change synchronously with the order. It specifically includes the following settings:
+    * Return Condition: Custom rules can be set. When the rules are met, the system will automatically return the node to the specified node without displaying preset approver information.
+    * Specified Node: You can select a manual node (approval node or filling node) before the current node.
+    * After Resubmission of Returned Node: Refers to the operation rules of the process after the returned node is resubmitted, including the following two types:
+      + Execute in Process Order: When resubmitting after return, the process starts from the returned node and executes all subsequent nodes in sequence according to the original process path.
+      + Directly to Current Node: When resubmitting after return, the process jumps directly back to the current node, and intermediate nodes will not be executed repeatedly.
+    * Rejection Reason: This text will be displayed during automatic return. Variables are supported to make the content more flexible.
+
+:::info Note
+
+After enabling the return function, whether it is manual return or automatic return, if the node to which it is returned has automatic approval set, the automatic approval function will be invalid.
 
 :::
 
@@ -703,38 +732,43 @@ Delay the process until 5 days later.
 
 :::
 
-## (II) Conditional Branch
-The conditional branch node can make data under different conditions execute different branch processes.
+## (II) Conditional Branch Node
+A conditional branch node enables data that meets different conditions to execute different branch processes.
 
 :::tip Example
-
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/tjfz1.gif)
-
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/1754019210920-4b49580e-b8af-4f0c-9344-ab3ac04197ee.gif)
 :::
 
+
 :::info Note
-
-+ You can add or delete conditional branches. When there are only two branches, deleting any branch will delete the entire conditional branch.
-+ When deleting a branch, all nodes under this branch will also be deleted.
-
++ You can add or delete conditional branches. When there are only two branches, deleting either branch will delete the entire conditional branch.
++ When a branch is deleted, all nodes under that branch will be deleted simultaneously.
 :::
 
-The following are the attributes included in the conditional branch node. You can view them by clicking on the node:
+:::warning Reminder
+Supports moving the target branch to the desired position.
 
-+ Branch Conditions: You can customize the node rule expressions to configure different conditions for the branches.
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/1754020806313-82792496-0822-40ac-9dae-f81739157dac.png)
+:::
+
+The following are the attributes included in the conditional branch node, which will be displayed when you click the node:
+
++ Execution Rules: The rules used when conditional branches are executed, including **Parallel Execution** and **First Match Execution**.
+  - Parallel Execution: All branches that meet the conditions are triggered simultaneously. After all branches are executed, the process continues to run downward.
+  - First Match Execution: According to the priority order, only the first branch path that meets the conditions is executed, and other branches are automatically ignored.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/1754020415815-ebc5ea79-a1b2-4282-8136-3f598358af81.png)
+
++ Branch Conditions: You can customize node rule expressions to configure different conditions for branches.
 
 :::info Note
-
-The branch condition expressions cannot be empty; otherwise, the process cannot be executed normally.
-
+Branch condition expressions are not allowed to be empty; otherwise, the process cannot run normally.
 :::
 
 :::tip Example
+Take the order amount in "Shopping Guide Invites Order Placement" as the branch condition to create a conditional branch for the workflow, so that different processes can be completed under different amount scenarios.
 
-Take the order amount in the "Guide Invitation to Place an Order" as the branch condition, create a conditional branch for the workflow, and complete different processes under different amounts.
-
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/tjfz2.gif)
-
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/1754020503040-45d627ff-714d-4f61-8e05-698a77dfa011.gif)
 :::
 
 ## (III) Parallel
@@ -742,7 +776,7 @@ The parallel node can make the branches that meet the conditions execute simulta
 
 :::tip Example
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/gjjd/bx1.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/1754027396816-f1382413-74c2-494c-b77f-9f29e6f92b39.gif)
 
 :::
 
