@@ -4,7 +4,7 @@ index: true
 category:
   - 用户手册
   - 设计器
-order: 7
+order: 8
 next:
   text: 微流设计器(Microflow Designer)
   link: /zh-cn/UserManual/Designers/MicroflowDesigner/README.md

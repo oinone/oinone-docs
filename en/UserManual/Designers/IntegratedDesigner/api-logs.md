@@ -4,7 +4,7 @@ index: true
 category:
   - User Manual
   - Designer
-order: 7
+order: 8
 next:
   text: Microflow Designer
   link: /en-us/UserManual/Designers/MicroflowDesigner/README.md

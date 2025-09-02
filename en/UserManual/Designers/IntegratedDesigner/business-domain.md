@@ -4,7 +4,7 @@ index: true
 category:
   - User Manual
   - Designer
-order: 6
+order: 7
 ---
 Integrated applications and open APIs can be systematically categorized and managed according to business domains to improve the efficiency and accuracy of management.
 
