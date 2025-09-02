@@ -2,8 +2,8 @@
 title: MCP
 index: true
 category:
-  - 用户手册
-  - 设计器
+  - User Manual
+  - Designer
 order: 6
 ---
 # 一、What is MCP?
