@@ -65,6 +65,10 @@ Upgrade dependencies for business applications:
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-core-common-ee</artifactId>
 </dependency>
+<dependency>
+    <groupId>pro.shushi.pamirs.distribution</groupId>
+    <artifactId>pamirs-distribution-faas</artifactId>
+</dependency>
 
 <!-- Application Center - Enterprise Edition -->
 <dependency>

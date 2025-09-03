@@ -65,6 +65,10 @@ prev:
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-core-common-ee</artifactId>
 </dependency>
+<dependency>
+    <groupId>pro.shushi.pamirs.distribution</groupId>
+    <artifactId>pamirs-distribution-faas</artifactId>
+</dependency>
 
 <!-- 应用中心 - 企业版 -->
 <dependency>
