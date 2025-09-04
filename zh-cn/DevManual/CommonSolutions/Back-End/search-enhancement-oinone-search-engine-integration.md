@@ -62,12 +62,12 @@ pamirs:
   record:
     sql:
       #改成自己本地路径(或服务器路径)
-      store: /Users/wangxian/record
-    boot:
-      modules:
-        - channel
-        ## 确保也安装了sql_record
-        - sql_record
+      store: /Users/oinone/record
+  boot:
+    modules:
+      - channel
+      ## 确保也安装了sql_record
+      - sql_record
   elastic:
     url: 127.0.0.1:9200
 ```
