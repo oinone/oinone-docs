@@ -32,14 +32,15 @@ Refer to:
 + [Quick Experience: Installation via docker-full Method](/en/InstallOrUpgrade/EnterpriseEdition/docker-full-installation.md)
 + [Installation via docker-mini Method](/en/InstallOrUpgrade/EnterpriseEdition/docker-mini-installation.md)
 
-# III. Upgrade Dependencies for Business Applications
+# III. Dependencies for Business Application Upgrade
 
-Add business application dependency management:
+## (I) Add Business Application Dependency Management (Main POM)
 
 ```xml
 <properties>
-    <!-- Update the version according to Oinone release announcements (https://doc.oinone.top/category/version) -->
-    <oinone.version>6.2.1</oinone.version>
+    <!-- Version can be updated according to the Oinone Release Announcement (https://doc.oinone.top/category/version) -->
+    <!-- The version number must be consistent with the deployed Enterprise Edition version. For any questions, please contact Shushi Oinone staff -->
+    <oinone-bom.version>6.2.10</oinone-bom.version>
 </properties>
 
 <dependencyManagement>
@@ -50,24 +51,22 @@ Add business application dependency management:
     <dependency>
         <groupId>pro.shushi</groupId>
         <artifactId>oinone-bom</artifactId>
-        <version>${oinone.version}</version>
+        <version>${oinone-bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
     </dependency>
 </dependencyManagement>
 ```
 
-Upgrade dependencies for business applications:
+## (II) Upgrade Dependencies of the Business Application (POM of the Boot Project)
+
+1. Basic packages that need to be imported for the Enterprise Edition
 
 ```xml
-<!-- Common package - Enterprise Edition -->
+<!-- Common Package - Enterprise Edition -->
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-core-common-ee</artifactId>
-</dependency>
-<dependency>
-    <groupId>pro.shushi.pamirs.distribution</groupId>
-    <artifactId>pamirs-distribution-faas</artifactId>
 </dependency>
 
 <!-- Application Center - Enterprise Edition -->
@@ -76,7 +75,7 @@ Upgrade dependencies for business applications:
   <artifactId>pamirs-apps-ee</artifactId>
 </dependency>
 
-<!-- Permissions - Enterprise Edition -->
+<!-- Authentication - Enterprise Edition -->
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-auth3-ee-core</artifactId>
@@ -94,18 +93,93 @@ Upgrade dependencies for business applications:
   <artifactId>pamirs-auth3-ee-rbac-view</artifactId>
 </dependency>
 
-<!-- Startup acceleration -->
+<!-- Remote Invocation (Publish and Subscribe to Dubbo Services) -->
+<dependency>
+    <groupId>pro.shushi.pamirs.distribution</groupId>
+    <artifactId>pamirs-distribution-faas</artifactId>
+</dependency>
+```
+
+2. Startup Acceleration Package, used to improve startup speed
+
+```xml
+<!-- Startup Acceleration -->
 <dependency>
     <groupId>pro.shushi.pamirs.framework</groupId>
     <artifactId>pamirs-framework-turbo-ee</artifactId>
 </dependency>
 ```
 
-# Ⅳ. IDEA Development Verification
+3. Packages related to distributed caching. After import, metadata is cached via Redis, which is suitable for scenarios where local projects and the designer are linked in real time
 
-Verify the IDEA development certificate.  
+```xml
+<!-- Distributed Caching -->
+<dependency>
+    <groupId>pro.shushi.pamirs.distribution</groupId>
+    <artifactId>pamirs-distribution-gateway</artifactId>
+</dependency>
+<dependency>
+    <groupId>pro.shushi.pamirs.distribution</groupId>
+    <artifactId>pamirs-distribution-session</artifactId>
+</dependency>
+<dependency>
+    <groupId>pro.shushi.pamirs.distribution</groupId>
+    <artifactId>pamirs-distribution-session-cd</artifactId>
+</dependency>
+```
+
+# IV. IDEA Development Verification
+
+Verify the IDEA Development Certificate
+
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1751511410221-7ea9c089-6599-4467-b44b-a4167c04885a.png)
 
-# Ⅴ. Launch/Experience
+:::warning Tip
 
-Now you can happily experience the Oinone Enterprise Edition 😀.  
+If the IDEA plugin activation fails on the Windows operating system (including no response when clicking Activate), you can first check whether WMIC is activated. If it is not activated, you can refer to the instructions in the figure below to install and activate WMIC.
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1756949752012-9224cc42-e42e-46ac-b306-084cfd8f5c1d.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1756949757891-a09cade0-0909-4439-8e76-91e50d9ec1f5.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1756949763318-31436010-2a10-43df-91e3-60d006cd2d77.png)
+
+# V. Business Application YAML Modification
+
+## (I) Add License Configuration
+
+The License file is located in the "license" folder of the Enterprise Edition deployment package released by Shushi. For the configuration in the YML file, please refer to "Deployment Instructions.md";
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1756949792869-e9614909-6733-49ef-8d29-8bcc6cce38ff.png)
+
+## (II) Middleware Configuration for Business Applications
+
+The **middleware (ZK/Redis/RocketMQ) configuration of the business system must be consistent with that of the deployed Enterprise Edition designer**;
+
+## (III) Database Configuration for Business Applications
+
+The database configuration of the business system must be **consistent with that of the deployed Enterprise Edition designer**;
+
+## (IV) New Configuration for Business Projects
+
+```plain
+logging:
+  level:
+    org.apache.dubbo.registry.client.metadata.store.RemoteMetadataServiceImpl: off
+```
+
+:::warning Tip
+
+Inconsistent middleware and versions under the same base database and same Redis will cause startup verification failure.
+
+:::
+
+# VI. Startup/Experience
+
+Now you can enjoy the Oinone Enterprise Edition happily 😀.
+
+# VII. Reference Materials
+
+[Common Issues with Backend Deployment and Startup](/en/DevManual/FAQ/startup-frequently-asked-questions-about-backend-startup.md)
