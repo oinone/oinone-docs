@@ -67,7 +67,7 @@ This module can specify the upstream standard product application through `upstr
 
 :::danger Warning
 
-The package paths of each module must not contain the same package path; otherwise, metadata loading will be problematic. Therefore, for linked modules like `ce_expenses`, its package path is recommended to start with "link", such as: pro.shushi.oinone.trutorials.ce.expenses.
+The package paths of each module must not contain the same package path; otherwise, metadata loading will be problematic. Therefore, for linked modules like `ce_expenses`, its package path is recommended to start with "ce", such as: pro.shushi.oinone.trutorials.ce.expenses.
 
 :::
 

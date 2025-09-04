@@ -68,7 +68,7 @@ public class CeExpensesModule implements PamirsModule {
 
 :::danger 警告
 
-各个模块的包路径，不能包含相同的包路径，否则会导致元数据加载出问题。所以如链接模块`ce_expenses` 它的包路径建议以link开头如：pro.shushi.oinone.trutorials.ce.expenses
+各个模块的包路径，不能包含相同的包路径，否则会导致元数据加载出问题。所以如链接模块`ce_expenses` 它的包路径建议以ce开头如：pro.shushi.oinone.trutorials.ce.expenses
 
 :::
 
