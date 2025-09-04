@@ -262,13 +262,13 @@ Add the configuration pamirs.boot.modules in the application.yml file of the sta
 pamirs:
   record:
     sql:
-      # Change to your local path (or server path)
+      #改成自己本地路径(或服务器路径)
       store: /Users/oinone/record
-    boot:
-      modules:
-        - channel
-        ## Ensure sql_record is also installed
-        - sql_record
+  boot:
+    modules:
+      - channel
+      ## 确保也安装了sql_record
+      - sql_record
   elastic:
     url: 127.0.0.1:9200
 ```
