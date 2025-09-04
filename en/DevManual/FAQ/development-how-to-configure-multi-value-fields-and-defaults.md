@@ -3,7 +3,7 @@ title: How to Configure Multi-value Fields and Field Default Values During Devel
 index: true
 category:
   - FAQ (Frequently Asked Questions)
-order: 4
+order: 5
 ---
 # I. Multi-value Fields
 Configure the field with `multi = true` and the field type as `List<>`.

@@ -3,7 +3,7 @@ title: 开发中：多值字段、字段默认值如何配置
 index: true
 category:
   - 常见问题（faq）
-order: 4
+order: 5
 ---
 # 一、多值字段
 字段配置 `multi = true` 字段类型为 `List<>`
