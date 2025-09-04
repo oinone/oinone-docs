@@ -396,7 +396,35 @@ public <ReplacedByProcessTriggerModel> reject(String data) {
 }
 ```
 
-## (Ⅹ) Custom Approval Method
+## (X) [Retract] Callback Hook
+
+Usage scenario: This callback hook can be used when additional business data logic needs to be modified during the retract operation of a pending workflow task.
+
+:::info Note
+
+The namespace of this function needs to be set to the process trigger model.
+
+:::
+
+```java
+@Function
+@Function.fun(WorkflowBizCallConstants.retract)
+public void retract(WorkflowUserTask workflowUserTask) {
+  // Get the process instance
+  workflowUserTask.fieldQuery(WorkflowUserTask::getInstance);
+  WorkflowInstance instance = workflowUserTask.getInstance();
+  // Get the user task instance
+  WorkflowUserInstance userInstance = new WorkflowUserInstance()
+          .setId(workflowUserTask.getWorkflowUserInstanceId())
+          .queryById();
+  // ID of the user who performed the retract
+  Long userId = workflowUserTask.getUserId();
+  // ID of the node where the retract occurred
+  String nodeId = workflowUserTask.getNodeId();
+}
+```
+
+## (XI) Custom Approval Method
 
 Use Case: Set the approval method at workflow runtime via code.
 
@@ -428,7 +456,7 @@ public class ReplacedByProcessTriggerModelAction {
 }
 ```
 
-## (Ⅺ) Custom Approval Node Name
+## (XII) Custom Approval Node Name
 
 Use Case: Dynamically set the workflow approval node name via code.
 
@@ -448,5 +476,32 @@ public class ReplacedByProcessTriggerModelAction {
     public String customApprovalName() {
         return UUID.randomUUID().toString();
     }
+}
+```
+
+## (XIII) Custom-defined Workflow Designer Approver Company List
+
+When opening the pop-up window, the first company returned will be selected by default. ALL_COMPANY indicates all companies.
+
+```java
+@Order(10)
+@Component
+@SPI.Service
+public class CustomWorkflowCompanyQueryApi implements WorkflowCompanyQueryApi {
+
+    @Override
+    public Pagination<PamirsCompany> queryPage(Pagination<PamirsCompany> page, IWrapper<PamirsCompany> queryWrapper) {
+        // Example: Only display all companies
+        Pagination<PamirsCompany> pageResult = new Pagination<>();
+        pageResult.setContent(Lists.newArrayList(ALL_COMPANY));
+        pageResult.setTotalPages(1);
+        return pageResult;
+    }
+
+    //@Override
+    //public Pagination<PamirsCompany> queryPage(Pagination<PamirsCompany> page, IWrapper<PamirsCompany> queryWrapper) {
+    //    // Example: Do not display all companies
+    //    return new PamirsCompany().queryPage(page, queryWrapper);
+    //}
 }
 ```

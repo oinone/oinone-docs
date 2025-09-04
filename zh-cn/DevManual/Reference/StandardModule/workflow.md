@@ -398,7 +398,35 @@ public <替换为流程触发模型> reject(String data) {
 }
 ```
 
-## （十）、自定义审批方式
+## （十）、【反悔】回调钩子
+
+使用场景：流程待办进行反悔操作时，需要额外更改其他的业务数据逻辑时可用该回调钩子。
+
+:::info 注意
+
+该函数的namespace需要设置为流程触发模型。
+
+:::
+
+```java
+@Function
+@Function.fun(WorkflowBizCallConstants.retract)
+public void retract(WorkflowUserTask workflowUserTask) {
+  // 获取流程实例
+  workflowUserTask.fieldQuery(WorkflowUserTask::getInstance);
+  WorkflowInstance instance = workflowUserTask.getInstance();
+  // 获取用户任务实例
+  WorkflowUserInstance userInstance = new WorkflowUserInstance()
+          .setId(workflowUserTask.getWorkflowUserInstanceId())
+          .queryById();
+  // 反悔的用户id
+  Long userId = workflowUserTask.getUserId();
+  // 反悔的节点id
+  String nodeId = workflowUserTask.getNodeId();
+}
+```
+
+## （十一）、自定义审批方式
 
 使用场景：代码方式设置流程运行时审批方式
 
@@ -432,7 +460,7 @@ public class 替换为流程触发模型Action {
 
 
 
-## （十一）、自定义审批节点名称
+## （十二）、自定义审批节点名称
 
 使用场景：代码方式动态设置流程审批节点名称。
 
@@ -455,3 +483,29 @@ public class 替换为流程触发模型Action {
 }
 ```
 
+## （十三）、自定义流程设计器审批人公司列表
+
+打开弹窗时会默认选中返回的第一个公司，ALL_COMPANY表示所有公司。
+
+```java
+@Order(10)
+@Component
+@SPI.Service
+public class CustomWorkflowCompanyQueryApi implements WorkflowCompanyQueryApi {
+
+    @Override
+    public Pagination<PamirsCompany> queryPage(Pagination<PamirsCompany> page, IWrapper<PamirsCompany> queryWrapper) {
+        // 示例：仅显示所有公司
+        Pagination<PamirsCompany> pageResult = new Pagination<>();
+        pageResult.setContent(Lists.newArrayList(ALL_COMPANY));
+        pageResult.setTotalPages(1);
+        return pageResult;
+    }
+
+    //@Override
+    //public Pagination<PamirsCompany> queryPage(Pagination<PamirsCompany> page, IWrapper<PamirsCompany> queryWrapper) {
+    //    // 示例：不显示所有公司
+    //    return new PamirsCompany().queryPage(page, queryWrapper);
+    //}
+}
+```
