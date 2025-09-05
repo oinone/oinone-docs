@@ -49,7 +49,7 @@ prev:
 
 下面是“获取全局配置”请求中的 `query` 参数内容：
 
-```graphql
+``` graphql
 {
   appConfigQuery {
     queryListByWrapper(queryWrapper: {rsql: "1==1"}) {
@@ -88,7 +88,7 @@ prev:
 
  `query` 参数是一个标准请求格式，它可以对后端任何一个可以被请求的函数的签名、入参、出参进行声明。让我们先对这样的数据结构有一个基本认识，再逐步深入。下面是 GraphQL 语法的标准格式：
 
-```graphql
+``` graphql
 ${query/mutation} {
   ${modelName}${Query/Mutation} {
     ${functionName} (${arg1Name}: ${arg1Value}) {
@@ -113,7 +113,7 @@ ${query/mutation} {
 
 从浏览器的 `预览（Preview）` 可以看到这个请求的响应结果。它实际上是一个用 JSON 格式表示的标准响应格式：
 
-```json
+``` json
 {
     "data": {
         "${modelName}${Query/Mutation}": {
@@ -179,7 +179,7 @@ ${query/mutation} {
 
 那么，如何进行登录呢？其实很简单，我们将登录页面发起的登录请求在请求工具中发起即可，就像下面这样：
 
-```graphql
+``` graphql
 mutation {
 	pamirsUserTransientMutation {
 		login(user: { login: "admin", password: "admin" }) {
@@ -235,7 +235,7 @@ variables 参数的获取：右键点击 variables，选中 “`复制对象（C
 
 在 “资源-国家分组” 这个页面，让我们先来看这样一个URL：
 
-```json
+``` json
 http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
@@ -245,7 +245,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.Resourc
 
 转换后的URL：
 
-```json
+``` json
 http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource#国家分组;scene=resource#国家分组;target=OPEN_WINDOW;menu={"selectedKeys":["国家分组"],"openKeys":["地址库","地区"]}
 ```
 
@@ -273,7 +273,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.Resourc
 
 在之前的小节中，我们已经对 `浏览器URL` 进行了介绍，接下来我们看看 `viewAction#load` 请求获取的元数据结构：
 
-```json
+``` json
 {
     "data": {
         "viewActionQuery": {
@@ -309,7 +309,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.Resourc
 
 这不是一个完整的响应结果，我们对内容做了一些裁剪，其中 `resView.template` 中的内容单独用 `JSON` 格式展示在下面：
 
-```json
+``` json
 {
     "dslNodeType": "view",
     "type": "TABLE",
@@ -480,7 +480,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.Resourc
 
 让我们对照着上面提供的 `DSL` 来看，一个类似的数据结构如下所示：
 
-```json
+``` json
 {
     "dslNodeType": "VIEW",
     "type": "TABLE",
@@ -600,7 +600,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.Resourc
 
 让我们通过 `TypeScript` 语法来简单认识一下函数：
 
-```typescript
+``` typescript
 countByWrapper(queryWrapper: { rsql: string }): Promise<number>
 ```
 
@@ -657,7 +657,7 @@ countByWrapper(queryWrapper: { rsql: string }): Promise<number>
 
 以 “资源-国家分组” 表格为例，表格上方有一个 “创建” 动作，这个 “创建” 动作对应的元数据为：（为了便于理解，我们仅展示了上面介绍的内容）
 
-```json
+``` json
 {
     "actionType": "VIEW",
     "model": "resource.ResourceCountryGroup",
@@ -683,13 +683,13 @@ countByWrapper(queryWrapper: { rsql: string }): Promise<number>
 
 点击前：（同第三节浏览器URL `decodeURIComponent` 后的结果）
 
-```json
+``` json
 http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource#国家分组;scene=resource#国家分组;target=OPEN_WINDOW;menu={"selectedKeys":["国家分组"],"openKeys":["地址库","地区"]}
 ```
 
 点击后：
 
-```json
+``` json
 http://127.0.0.1:8080/page;module=resource;viewType=FORM;model=resource.ResourceCountryGroup;action=redirectCreatePage;scene=redirectCreatePage;target=ROUTER;menu={"selectedKeys":["国家分组"],"openKeys":["地址库","地区"]};path=/resource/国家分组/ACTION#resource.ResourceCountryGroup#redirectCreatePage
 ```
 
@@ -721,7 +721,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=FORM;model=resource.Resource
 
 它是通过一个这样的默认母版进行渲染的：
 
-```xml
+``` xml
 <mask>
     <multi-tabs />
     <header>
@@ -779,7 +779,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=FORM;model=resource.Resource
 
 它是通过一个这样的默认布局进行渲染的：
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -822,7 +822,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=FORM;model=resource.Resource
 
 我们可以这样定义一个 DSL：
 
-```xml
+``` xml
 <view type="TABLE" model="resource.ResourceCountryGroup" title="国家分组" name="国家分组table">
     <template slot="actions">
         <action name="redirectCreatePage" label="创建" />

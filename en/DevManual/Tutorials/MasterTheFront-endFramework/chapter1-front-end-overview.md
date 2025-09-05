@@ -50,7 +50,7 @@ From the browser's "Payload", the request parameters include two valid component
 
 Below is the `query` parameter content from the "get global configuration" request:
 
-```graphql
+``` graphql
 {
   appConfigQuery {
     queryListByWrapper(queryWrapper: {rsql: "1==1"}) {
@@ -89,7 +89,7 @@ Below is the `query` parameter content from the "get global configuration" reque
 
 The `query` parameter follows a standard request format, declaring the signature, input parameters, and output parameters of any callable function on the back-end. Let's first gain a basic understanding of this data structure before delving deeper. Below is the standard format of GraphQL syntax:
 
-```graphql
+``` graphql
 ${query/mutation} {
   ${modelName}${Query/Mutation} {
     ${functionName} (${arg1Name}: ${arg1Value}) {
@@ -114,7 +114,7 @@ In Oinone, any GraphQL request is one of two types: `Query` or `Mutation`, deter
 
 From the browser's "Preview", the request response is a standard format represented in JSON:
 
-```json
+``` json
 {
     "data": {
         "${modelName}${Query/Mutation}": {
@@ -180,7 +180,7 @@ When we initiated the "get global configuration" request above, we noticed no us
 
 So, how do we log in? It's simple: just initiate the login request from the login page in the request tool, as shown below:
 
-```graphql
+``` graphql
 mutation {
 	pamirsUserTransientMutation {
 		login(user: { login: "admin", password: "admin" }) {
@@ -236,7 +236,7 @@ For more information on `HTTP requests`, refer to: [HttpClient Service](/en/DevM
 
 For the "Resource - Country Groups" page, consider the following URL:
 
-```json
+``` json
 http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
@@ -246,7 +246,7 @@ This URL is the result of converting to ciphertext using the `encodeURIComponent
 
 The converted URL:
 
-```json
+``` json
 http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource#国家分组;scene=resource#国家分组;target=OPEN_WINDOW;menu={"selectedKeys":["国家分组"],"openKeys":["地址库","地区"]}
 ```
 
@@ -274,7 +274,7 @@ Take "Resource - Country Groups" as an example. How is this page loaded and rend
 
 In the previous section, we introduced the `browser URL`. Next, let's look at the metadata structure obtained from the `viewAction#load` request:
 
-```json
+``` json
 {
     "data": {
         "viewActionQuery": {
@@ -310,7 +310,7 @@ In the previous section, we introduced the `browser URL`. Next, let's look at th
 
 This is not a complete response; we have cropped the content. The `resView.template` content is separately displayed in `JSON` format below:
 
-```json
+``` json
 {
     "dslNodeType": "view",
     "type": "TABLE",
@@ -481,7 +481,7 @@ The content displayed in `resView.template` is actually the result of DSL conver
 
 Let's compare the provided `DSL` with a similar data structure:
 
-```json
+``` json
 {
     "dslNodeType": "VIEW",
     "type": "TABLE",
@@ -601,7 +601,7 @@ Regarding functions, several important attributes must be understood and remembe
 
 Let's briefly understand functions using TypeScript syntax:
 
-```typescript
+``` typescript
 countByWrapper(queryWrapper: { rsql: string }): Promise<number>
 ```
 
@@ -658,7 +658,7 @@ Regarding ViewAction, several important attributes must be understood and rememb
 
 Taking the "Resource - Country Groups" table as an example, there is a "Create" action above the table. The metadata corresponding to this "Create" action is as follows (for ease of understanding, we only show the content introduced above):
 
-```json
+``` json
 {
     "actionType": "VIEW",
     "model": "resource.ResourceCountryGroup",
@@ -684,13 +684,13 @@ When we click this action, let's observe the change in the `browser URL`.
 
 Before clicking: (same as the result of `decodeURIComponent` in Section III's browser URL)
 
-```json
+``` json
 http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource#国家分组;scene=resource#国家分组;target=OPEN_WINDOW;menu={"selectedKeys":["国家分组"],"openKeys":["地址库","地区"]}
 ```
 
 After clicking:
 
-```json
+``` json
 http://127.0.0.1:8080/page;module=resource;viewType=FORM;model=resource.ResourceCountryGroup;action=redirectCreatePage;scene=redirectCreatePage;target=ROUTER;menu={"selectedKeys":["国家分组"],"openKeys":["地址库","地区"]};path=/resource/国家分组/ACTION#resource.ResourceCountryGroup#redirectCreatePage
 ```
 
@@ -722,7 +722,7 @@ Like this:
 
 It is rendered through the following default mask:
 
-```xml
+``` xml
 <mask>
     <multi-tabs />
     <header>
@@ -780,7 +780,7 @@ Like this:
 
 It is rendered through the following default layout:
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -823,7 +823,7 @@ In the layout (Layout) we saw above, we reserved some slots (Slot). Next, we nee
 
 We can define a DSL as follows:
 
-```xml
+``` xml
 <view type="TABLE" model="resource.ResourceCountryGroup" title="国家分组" name="国家分组table">
     <template slot="actions">
         <action name="redirectCreatePage" label="创建" />

@@ -84,7 +84,7 @@ order: 2
 
 像我们之前在 “探索前端框架” 章节练习的那样，我们可以通过注册这样一个布局（Layout）来切换组件，让我们将 `widget="table"` 改为 `widget="Gantt"` 来完成组件的切换：
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -110,7 +110,7 @@ order: 2
 
 让我们在 `<template slot="table">` 上添加 `widget` 属性，并且指定组件为 `Gantt`。
 
-```xml
+``` xml
 <view model="demo.GanttDemoModel" type="table">
     <template slot="table" widget="Gantt">
         <field data="id" invisible="true" />
@@ -225,7 +225,7 @@ order: 2
 
 一个可能的查询条件可以是：
 
-```plain
+``` plain
 taskStartDate >= '2025-05-01' and taskEndDate <= '2025-05-31'
 ```
 
@@ -251,7 +251,7 @@ taskStartDate >= '2025-05-01 00:00:00' and taskEndDate < '2025-06-01 00:00:00'
 
 在不经过排序和处理的情况下，我们在页面中拿到的原始数据可能是这样的：
 
-```json
+``` json
 [
     {
         "code": "T007",
@@ -275,7 +275,7 @@ taskStartDate >= '2025-05-01 00:00:00' and taskEndDate < '2025-06-01 00:00:00'
 
 一个有效的数据格式可能是这样的：
 
-```json
+``` json
 [
     {
         "key": "1746783941876087636S8",
@@ -317,7 +317,7 @@ taskStartDate >= '2025-05-01 00:00:00' and taskEndDate < '2025-06-01 00:00:00'
 
 ## （一）元素组件的注册可选项
 
-```typescript
+``` typescript
 /**
  * Element组件注册可选项
  */
@@ -409,7 +409,7 @@ export interface BaseElementOptions extends SPIOptions {
 
 和大多数 `Vue` 工程不同，在 Oinone 中，我们不再主动创建 `Vue` 的 `App` 对象以及挂载，而是在 `main.ts` 中使用 `VueOioProvider` 进行初始化。但获取 `Vue` 的 `App` 对象这一点并不困难，你可以像下面这样使用：
 
-```typescript
+``` typescript
 VueOioProvider({}, [
   () => {
     const app = RuntimeContextManager.createOrReplace().frameworkInstance as App;
@@ -430,7 +430,7 @@ VueOioProvider 方法不能执行多次，这里只需要将现有的 VueOioProv
 
 和我们之前接触到的组件类似，表格是一个 `element` 组件，但是表格组件和甘特图看起来就不是一类组件，也就是说，我们不能通过继承 `TableWidget` 来完成这一功能，退而求其次，我们可以通过继承 `BaseElementListViewWidget` 获得自动获取元数据以及发起查询请求的功能。
 
-```typescript
+``` typescript
 import Gantt from './Gantt.vue';
 
 @SPI.ClassFactory(
@@ -474,7 +474,7 @@ Oinone 使用的技术栈是 `TypeScript` ，而大多数第三方组件库提�
 
 在我们初步了解了第三方组件的基础使用之后，我们可以直接根据第三方组件提供的可被渲染的数据结构进行定义，这样做也是最简单的，就像下面这样定义：
 
-```typescript
+``` typescript
 export interface GanttBars {
   key: string;
   label: string;
@@ -509,7 +509,7 @@ export interface GanttBar {
 
 有了数据结构，我们就可以将 Vue 组件按照这个数据结构定义模板，一个可能的模板可以是这样：
 
-```vue
+``` vue
 <template>
   <div class="gantt-demo">
     <g-gantt-chart
@@ -528,7 +528,7 @@ export interface GanttBar {
 
 对应的 props 声明可以是这样：
 
-```vue
+``` vue
 props: {
   chartStart: {
     type: Date,
@@ -557,7 +557,7 @@ props: {
 
 让我们先使用固定值定义这些属性吧：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected get chartStart(): Date {
   return DateUtil.toDate('2025-04-28', 'YYYY-MM-DD');
@@ -584,7 +584,7 @@ protected get precision(): GanttPrecision | keyof GanttPrecision | string | unde
 
 在 `BaseElementListViewWidget` 基类提供了一个挂载时处理函数（`mountedProcess`），我们可以在调用父类方法后通过 `dataSource` 获取到这些数据，并把它转换为我们所需要的 `ganttData` 。就像下面这样做：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected ganttData: GanttBars[] | undefined;
 
@@ -596,7 +596,7 @@ protected async mountedProcess(): Promise<void> {
 
 这里我们为读者提供了一段实现参考，里面用到了一些内置工具类和内置属性。当然了，你并不一定只能这样做，根据数据特征我们还可以有其他实现方式。
 
-```typescript
+``` typescript
 protected convertGanttData(list: ActiveRecord[]): GanttBars[] {
   const dateFormat = 'YYYY-MM-DD';
   const ganttData: GanttBars[] = [];
@@ -662,7 +662,7 @@ Oops～，中间两条数据的展示出现了问题，不仅如此，其他数�
 
 我们可以这样处理一下 `taskEndDate` 的转换：
 
-```typescript
+``` typescript
 const barEndDate = moment(barEndVal, dateFormat);
 barEndDate.add(1, 'day');
 const barEnd = barEndDate.toDate();
@@ -697,7 +697,7 @@ const barEnd = barEndDate.toDate();
 
 就像下面这样：
 
-```typescript
+``` typescript
 public async queryPage<T = ActiveRecord>(
   condition: Condition,
   pagination: Pagination,
@@ -790,7 +790,7 @@ public async queryPage<T = ActiveRecord>(
 
 让我们先来看这样的一种实现方式：
 
-```typescript
+``` typescript
 export enum GanttDateType {
   datetime = 'datetime',
   date = 'date',
@@ -799,8 +799,8 @@ export enum GanttDateType {
 }
 ```
 
-```typescript
-import { defaultDateFormat, defaultFormat, defaultTimeFormat, defaultYearValueFormat } from '@kunlun/dependencies';
+``` typescript
+import { defaultDateFormat, defaultFormat, defaultTimeFormat, defaultYearValueFormat } from '@oinone/kunlun-dependencies';
 
 @Widget.Reactive()
 protected get dateType(): GanttDateType {
@@ -848,7 +848,7 @@ protected get dateFormat(): string {
 
 让我们先来看这样的一种实现方式：
 
-```typescript
+``` typescript
 protected get labelField(): string | undefined {
   return this.getDsl().labelField;
 }
@@ -908,7 +908,7 @@ protected computeBarLabel(data: ActiveRecord): string {
 
 让我们先来看这样的一种实现方式：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected chartStart: Date = new Date();
 
@@ -935,7 +935,7 @@ protected beforeMount() {
 
 ## （六）实现其他配置
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected get precision(): GanttPrecision | keyof GanttPrecision | string | undefined {
   return this.getDsl().precision || GanttPrecision.date;
@@ -952,7 +952,7 @@ protected get precision(): GanttPrecision | keyof GanttPrecision | string | unde
 
 在 `XML` 中配置的属性是这样的：
 
-```xml
+``` xml
 <element widget="Gantt"
     barLabel="activeRecord.name + '(' + activeRecord.code + ')'"
     startField="taskStartDate"
@@ -975,7 +975,7 @@ protected get precision(): GanttPrecision | keyof GanttPrecision | string | unde
 
 一个可能的实现可以是这样的：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected monthOffset: number = 0;
 
@@ -1016,7 +1016,7 @@ protected computeChartRange(offset?: number) {
 
 Oops～，切换分页的过程中，虽然页面上的甘特图展示范围发生了变化，但页面数据好像还是和之前的完全一样。通过 `Vue DevTools` 我们发现，`ganttData` 属性在切换分页时并没有发生变化，原来我们忘记了在切换分页过程中调用的是 `refreshProcess` 方法，可以影响 `ganttData` 属性变化的地方只有 `mountedProcess` 方法。遵循相同的思路，我们重写 `refreshProcess` ，并在调用父类方法之后重新对 `ganttData` 进行赋值即可，就像这样：
 
-```typescript
+``` typescript
 protected async refreshProcess(condition?: Condition): Promise<void> {
   await super.refreshProcess(condition);
   this.ganttData = this.convertGanttData(this.dataSource || []);

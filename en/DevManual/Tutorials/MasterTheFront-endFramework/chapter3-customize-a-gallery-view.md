@@ -75,7 +75,7 @@ Finally, bind the gallery view to a menu so we can access it by clicking the men
 
 As we practiced in the "Explore Frontend Framework" chapter, we can switch components by registering a layout. Change `widget="card"` to `widget="GalleryCustomCard"` to complete the component switch:
 
-```xml
+``` xml
 <view type="gallery">
     <view type="search">
         <element slot="search" widget="search" />
@@ -95,7 +95,7 @@ As we practiced in the "Explore Frontend Framework" chapter, we can switch compo
 
 Add the `widget="GalleryCustomCard"` attribute to `<template slot="card">`. A possible `DSL` template is as follows:
 
-```xml
+``` xml
 <view model="demo.GalleryDemoModel" type="gallery">
     <template slot="actionBar">
         <action name="redirectCreatePage" label="创建" />
@@ -123,7 +123,7 @@ Add the `widget="GalleryCustomCard"` attribute to `<template slot="card">`. A po
 
 Similar to components we've encountered before, a card is an `element` component that reuses built-in component functionality. Define it as follows:
 
-```typescript
+``` typescript
 import GalleryCustomCard from './GalleryCustomCard.vue';
 
 @SPI.ClassFactory(
@@ -143,7 +143,7 @@ export class GalleryCustomCardWidget extends CardWidget {
 
 Next, we need a Vue component template to display the required information. Start with a simple display:
 
-```vue
+``` vue
 <template>
   <div class="gallery-custom-card-demo">
     <b>{{ formData.name }}({{ formData.code }})</b>
@@ -153,7 +153,7 @@ Next, we need a Vue component template to display the required information. Star
 
 The built-in component provides a `formData` property to access current card data. Declare its data type for maintainability:
 
-```typescript
+``` typescript
 interface DemoData {
   code?: string;
   name?: string;
@@ -170,7 +170,7 @@ props: {
 
 Enhance the page appearance with CSS styling:
 
-```css
+``` css
 .gallery-custom-card-demo {
   background-color: #ffffff;
   border: 1px solid #e3e7ee;
@@ -193,7 +193,7 @@ The `rowActions` inline action area defined in the UI Designer or backend DSL ca
 
 Use it in the Vue component template as follows:
 
-```vue
+``` vue
 <div class="default-card-row-actions">
   <action-bar widget="CardRowActions" inline :active-records="formData" :row-index="rowIndex">
     <slot name="rowActions" />
@@ -203,8 +203,8 @@ Use it in the Vue component template as follows:
 
 Declare the component in Vue:
 
-```typescript
-import { ActionBar } from '@kunlun/dependencies';
+``` typescript
+import { ActionBar } from '@oinone/kunlun-dependencies';
 
 components: {
   ActionBar
@@ -237,7 +237,7 @@ For example, using `formData.name` is straightforward but sacrifices flexibility
 
 In the Widget component, define attributes by fetching DSL configurations:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public get title() {
   return `${this.formData[this.nameField]}(${this.formData[this.codeField]})`;

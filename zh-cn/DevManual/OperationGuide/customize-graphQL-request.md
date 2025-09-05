@@ -1034,7 +1034,7 @@ const gql = `mutation {
 下面这段代码演示了如何通过 `HttpClient` 发起 GQL 请求以及获取请求结果：
 
 ```typescript
-import { HttpClient } from '@kunlun/dependencies';
+import { HttpClient } from '@oinone/kunlun-dependencies';
 
 const http = HttpClient.getInstance();
 
