@@ -238,60 +238,186 @@ The style settings here only apply to the general styles of standard chart types
 When the display drag bar function is enabled and the number of dimension values to be displayed on one screen is set, you can adjust the number of dimension values displayed on one screen by lengthening or shortening the length of the drag bar in the chart, achieving an increase or decrease effect.
 :::
 
-+ Drill-down:
+### Ⅰ.**Drill**：Users click on a specific data dimension or metric to access more granular data analysis layer by layer. Supported features include:
 
-You can set drill-down interactions for **dimension/value field values of the chart**.
++ Chart Drill：Bind to an existing chart and configure field mappings.
++ Free Drill：Select all fields from the current data source; the selection order determines the drilling sequence.
 
-When configuring drill-down, you can choose the following two types:
+##### （Ⅰ）Chart Drill
 
-  - **Chart Drill-down**: Select a target chart for the dimension field value; upon clicking, the content of the target chart will be displayed in the current component area.
-  - **Free Drill-down**: Set a jump link (URL) for the dimension field value; upon clicking, a new page will be opened via the external link.
++ Feature Introduction
+
+The Chart Drill feature enables users to click on data points in a chart during runtime to view more granular data details layer by layer.  
+During the analysis process, users can quickly switch from a macro perspective to micro-level data, facilitating the identification of trends, anomalies, or key driving factors.
+
+For example:
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1757053899614-61960546-8c77-4516-a7ed-1dd2fb902c65.gif)
+
+Click on the "Asia" region in the "Global Sales" chart to drill down to "Sales by Country in Asia";
+
+Click on "China" in the "Sales by Country" chart to further drill down to "Sales by Province in China".
+
++ Applicable Scenarios
+  - Sales Analysis: Global → Region → Country → Province → City → Store
+  - Financial Analysis: Company Overall → Department → Team → Employee
+  - Operations Analysis: Full Platform → Product Line → Individual Product → User Group
+  - Customer Analysis: Customer Industry → Customer Company → Customer Contact Person
++ Supported Data Sources
+
+  Chart Drill can be configured based on the following data sources:
+
+    - Model Data Source: Structured data provided by the low-code platform model.
+    - Database: Relational databases such as MySQL, PostgreSQL, and Oracle.
+    - Integrated Application: Integrated data from third-party systems.
+    - File: Uploaded files such as Excel and CSV.
+
+  The Drill feature supports the following chart types:
+
+    - Bar Chart
+    - Horizontal Bar Chart
+    - Line Chart
+    - Dual-Axis Chart
+    - Area Chart
+    - Pie Chart / Donut Chart
+    - Funnel Chart
+    - Map
+    - Table
+    - KPI Statistic Chart (Single-Value Chart, usable as a drill entry)
 
 :::info Note
 
-+ **The target chart should support the passing of drill-down context variables** (e.g., dimension values like region, department, etc.).
-+ Different types of charts may vary in terms of supported drill-down styles and behaviors.
++ The drill interaction method may vary across different chart types. For instance, Map Drill supports geographic region linkage.
++ At the same hierarchy level, the drill path configured for the parent chart takes precedence over that of the child chart.
++ The data source must have pre-configured field hierarchical relationships (e.g., Region → Country → Province).
++ Drill paths must be pre-defined; otherwise, data gaps or interruptions may occur.
++ Chart refresh performance is related to data volume. It is recommended to configure pagination or aggregation strategies for large datasets.
 
 :::
 
-+ Jump
-  - Jump is used to configure click-to-jump behaviors for the entire chart or graphic elements, enabling the opening of other pages or external system links.
-  - Configuration scenarios include but are not limited to:
-    * Overall chart click jump (e.g., clicking any bar in a bar chart to jump to the detailed list page)
-    * Graphic element-level jump (e.g., clicking a specific data point to jump to a third-party system)
+##### （Ⅱ）Free Drill
+
++ Feature Introduction
+
+The Free Drill feature allows users to independently select dimension fields for drilling during runtime and dynamically expand data details. Compared with fixed-hierarchy drilling, Free Drill does not require pre-set hierarchy sequences. Users can freely determine the drill path and hierarchy depth based on analysis needs.  
+  Examples:
+  - A user first clicks on **Order ID** in the order table → to view the details of that order;
+  - Then selects to drill down to **Date** → to view the order occurrence time;
+  - Next, drills down to **Sales Region** or **Product Category** → to view the performance of the region or category.
+
+The path can be flexibly adjusted without being restricted by a fixed sequence.
+
++ Supported Data Sources
+  - Model
+  - Database
+  - Integrated Application
+  - File
++ upported Chart Type：Table
++ Configuration Logic
+  - Multiple fields can be selected as drillable fields
+  - Configuration order = Label display order
+  - Number of fields = Maximum drill hierarchy
 
 :::info Note
 
-+ Jump links support concatenation of field parameters (e.g., `https://example.com/detail?region={Region}`).
-+ Certain charts (such as pie charts, scatter plots) only support graphic element-level jumps, not overall jumps.
-+ Jump and drill-down are mutually exclusive; only one of the configurations is supported for the same field/graphic element.
++ **The target chart must support the passing of drill context variables** (e.g., dimension values such as Region and Department).
++ The supported drill styles and behaviors may vary across different chart types.
 
 :::
 
-### 2. Operation Method
-+ Customize the style in the style bar, and the style will take effect immediately and be displayed in real-time in the chart.
+##### （Ⅲ）Jump
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/ys1.png)
++ Feature Introduction
 
-+ Switch to the standard style: Click the "Switch to Standard Mode" button to switch the current chart to the standard style.
+The Chart Jump feature allows users to click on the entire chart or chart elements during runtime to jump to other pages or external system links.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/ys2.png)
++ **Overall Jump**: Click anywhere on the chart (or the entire chart area) to jump to the target page.
++ **Element-Level Jump**: Click on specific data points (bars, pie chart sectors, scatter points, etc.) to jump to the target page or a third-party system.
 
-+ Drill-down
+  The Jump feature is commonly used for:
+    - Viewing data detail pages
+    - Opening related reports or dashboards
+    - Linking to external systems or business tools
 
-Example: Drill down from 【Global Sales Status】 to 【Proportion Status】 chart
++ Configuration Scenarios
++ Example:
+  - A bar chart displays sales data; clicking any bar → jumps to the Sales Detail Table page.
+  - A pie chart displays sales proportion by region; clicking the "Asia" sector → jumps to the "Asia Sales Details" page in a third-party system.
++ Configuration Key Points
+  - **Jump links support parameter concatenation**: Field values can be dynamically concatenated into the URL. For example:
 
-It is necessary to configure the field mapping relationship between charts here.
+```plain
+https://example.com/detail?region={Region}&date={Date}
+```
+
++ **Coexistence of Jump and Drill**: When both Jump and Drill are configured for the same field, users can select the entry for either Jump or Drill.
+
+:::info Note
+
++ Jump links support field parameter concatenation (e.g., `https://example.com/detail?region={Region}`).
++ Ensure the target page can accept parameter transmission to avoid blank data after jumping.
++ It is recommended to use HTTPS for jump links to ensure security.
+
+:::
+
+### 2.Operation Method
+
++ Customize styles in the Style Panel; styles take effect immediately and are displayed in real-time on the chart.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1737429918774-16ec9a19-45b7-4365-9fdf-f5ae2a49cfaa.png)
+
++ Switch to Standard Style: Enable the "Switch to Standard Mode" button to convert the current chart to the standard style.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1737429933979-74d1455a-ce80-4546-9c84-6541ab724297.png)
+
++ Chart Drill
+
+Example: Drill down from [Global Sales Overview] to [Proportion Analysis] chart.
+
+Field mapping relationships between the two charts need to be configured here.
+
+Usage Steps (Runtime)
+
+1. Open the target chart.
+2. Click on a data point (e.g., the "Asia" region).
+3. The system automatically applies the filter condition (Region = Asia) and displays the data of the next hierarchy.
+4. Confirm the current position via the path navigation bar (e.g., "Region > Asia").
+5. Continue clicking on the next-level data to access more granular dimensions step by step.
+6. To return, click on the upper-level node in the path navigation bar.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754560920137-a4f24666-42ff-4d49-a353-94bc4cb81a41.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754566971562-f97ba583-e476-4e9d-a396-61334e75d83f.gif)
 
++ Free Drill
+
+Example: Drill down from [Global Sales Overview] to [Proportion Analysis] chart.
+
+Drillable fields need to be configured here.
+
+Usage Steps (Runtime)
+
+1. Click on a dimension field value  
+   a. The user clicks on the value of a dimension field (e.g., "Order ID = 1001").  
+   b. The system adds this condition to the current drill path.  
+2. Select a drill-down field  
+   a. The system pops up a drill field selection box, and the user can select a drillable field.  
+   b. The next-level table will display data based on the current condition + the new dimension.  
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1757059940191-ca49d29e-d58b-4466-bfdf-0a89ae45d971.gif)
+
 + Jump
 
-Supports jumping to a specified dashboard or external page
+External page jumping is supported.
+
+Usage Steps (Runtime)
+
+1. The user clicks on the chart or chart element configured with the Jump feature.
+2. The system concatenates parameters according to the configured URL and opens the target page or external link.
+3. If there are path parameters or context variables, the system will automatically replace the placeholders in the URL.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1754567515474-16ccae3b-483d-4693-928b-a2b5b792f4d4.png)
+
 
 # V. Attachment: Glossary
 | Term | Description |
