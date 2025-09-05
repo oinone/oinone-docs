@@ -82,7 +82,7 @@ Finally, bind the two tables to corresponding menus to view the views and enter 
 
 As practiced in the "Explore the Front-End Framework" chapter, we can switch components by registering a layout (Layout). Change `widget="table"` to `widget="Gantt"` to complete the switch:
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -108,7 +108,7 @@ As practiced in the "Explore the Front-End Framework" chapter, we can switch com
 
 Add the `widget` attribute to `<template slot="table">` and specify the component as `Gantt`:
 
-```xml
+``` xml
 <view model="demo.GanttDemoModel" type="table">
     <template slot="table" widget="Gantt">
         <field data="id" invisible="true" />
@@ -195,7 +195,7 @@ Based on Gantt chart content, visible data always falls within a "range." In thi
 
 For example, query tasks from 2025-05-01 to 2025-05-31:
 
-```plain
+``` plain
 taskStartDate >= '2025-05-01' and taskEndDate <= '2025-05-31'
 ```
 
@@ -221,7 +221,7 @@ taskStartDate >= '2025-05-01 00:00:00' and taskEndDate < '2025-06-01 00:00:00'
 
 Without sorting or processing, raw data may appear as:
 
-```json
+``` json
 [
     {
         "code": "T007",
@@ -243,7 +243,7 @@ Without sorting or processing, raw data may appear as:
 
 Based on the third-party component library's data structure requirements, process data according to rules. In this exercise, sort tasks by start date in ascending order, display one task per row, and convert to the component's required format:
 
-```json
+``` json
 [
     {
         "key": "1746783941876087636S8",
@@ -285,7 +285,7 @@ In the Widget framework, element components are defined as general components, e
 
 ## (Ⅰ) Registration Options for Element Components
 
-```typescript
+``` typescript
 /**
  * Element component registration options
  */
@@ -350,7 +350,7 @@ Let's implement it step by step:
 
 Unlike most `Vue` projects, Oinone does not actively create or mount a `Vue` `App` object. Instead, use `VueOioProvider` for initialization in `main.ts`. Obtaining the `Vue` `App` object is straightforward:
 
-```typescript
+``` typescript
 VueOioProvider({}, [
   () => {
     const app = RuntimeContextManager.createOrReplace().frameworkInstance as App;
@@ -371,7 +371,7 @@ For more on VueOioProvider, refer to: [Context](/en/DevManual/Reference/Front-En
 
 Similar to previously encountered components, tables are `element` components. However, table and Gantt chart components differ, meaning we cannot inherit from `TableWidget`. Instead, inherit from `BaseElementListViewWidget` to auto-fetch metadata and initiate query requests:
 
-```typescript
+``` typescript
 import Gantt from './Gantt.vue';
 
 @SPI.ClassFactory(
@@ -415,7 +415,7 @@ Previous tutorials haven't explained data structures in detail, merely presentin
 
 After初步 understanding the third-party component's basic usage, define data structures based on the renderable structure it provides, as shown below:
 
-```typescript
+``` typescript
 export interface GanttBars {
   key: string;
   label: string;
@@ -450,7 +450,7 @@ This represents a trade-off between execution efficiency and adaptability—cons
 
 With the data structure defined, template the `Vue` component as follows:
 
-```vue
+``` vue
 <template>
   <div class="gantt-demo">
     <g-gantt-chart
@@ -469,7 +469,7 @@ With the data structure defined, template the `Vue` component as follows:
 
 Corresponding props declaration:
 
-```vue
+``` vue
 props: {
   chartStart: {
     type: Date,
@@ -496,7 +496,7 @@ The `GanttPrecision` enum is defined based on the third-party component's proper
 
 In the `GanttWidget` component, define `chartStart`, `chartEnd`, and `precision` properties. Initialize these before component mounting or use computed properties:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected get chartStart(): Date {
   return DateUtil.toDate('2025-04-28', 'YYYY-MM-DD');
@@ -523,7 +523,7 @@ When should we fetch this data and add conversion logic?
 
 The `BaseElementListViewWidget` base class provides a mounted processing function (`mountedProcess`). After calling the parent class method, obtain data via `dataSource` and convert it to `ganttData`:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected ganttData: GanttBars[] | undefined;
 
@@ -535,7 +535,7 @@ protected async mountedProcess(): Promise<void> {
 
 Here's an implementation reference using built-in utility classes and properties. Alternative approaches exist based on data characteristics:
 
-```typescript
+``` typescript
 protected convertGanttData(list: ActiveRecord[]): GanttBars[] {
   const dateFormat = 'YYYY-MM-DD';
   const ganttData: GanttBars[] = [];
@@ -599,7 +599,7 @@ At this point, we can finally see a Gantt chart page with real data:
 
 Oops—two middle data items display incorrectly, and others appear to be off by one day. Observing the missing items, `taskStartDate` and `taskEndDate` are identical. The issue arises because the third-party component renders based on specific times—no interval exists for identical values. Fix this by uniformly incrementing `taskEndDate` by one day:
 
-```typescript
+``` typescript
 const barEndDate = moment(barEndVal, dateFormat);
 barEndDate.add(1, 'day');
 const barEnd = barEndDate.toDate();
@@ -632,7 +632,7 @@ This clearly doesn't align with Gantt chart query requirements. For this exercis
 
 Achieve this by overriding the `queryPage` method in `BaseElementListViewWidget` to process query conditions, pagination, sorting, etc.:
 
-```typescript
+``` typescript
 public async queryPage<T = ActiveRecord>(
   condition: Condition,
   pagination: Pagination,
@@ -725,7 +725,7 @@ This is similar to developing most third-party component libraries, where `API` 
 
 Consider the following implementation:
 
-```typescript
+``` typescript
 export enum GanttDateType {
   datetime = 'datetime',
   date = 'date',
@@ -734,8 +734,8 @@ export enum GanttDateType {
 }
 ```
 
-```typescript
-import { defaultDateFormat, defaultFormat, defaultTimeFormat, defaultYearValueFormat } from '@kunlun/dependencies';
+``` typescript
+import { defaultDateFormat, defaultFormat, defaultTimeFormat, defaultYearValueFormat } from '@oinone/kunlun-dependencies';
 
 @Widget.Reactive()
 protected get dateType(): GanttDateType {
@@ -783,7 +783,7 @@ For example, the real value type stored in a component for date-time may be `Dat
 
 Consider the following implementation:
 
-```typescript
+``` typescript
 protected get labelField(): string | undefined {
   return this.getDsl().labelField;
 }
@@ -843,7 +843,7 @@ For more on expressions, refer to: [Expression Service](/en/DevManual/Reference/
 
 Consider the following implementation:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected chartStart: Date = new Date();
 
@@ -870,7 +870,7 @@ For more `moment` tool `API`, refer to: [https://momentjs.com/docs](https://mome
 
 ## (Ⅵ) Implement Other Configurations
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected get precision(): GanttPrecision | keyof GanttPrecision | string | undefined {
   return this.getDsl().precision || GanttPrecision.date;
@@ -887,7 +887,7 @@ View the effect of configuring an expression:
 
 The properties configured in `XML` are:
 
-```xml
+``` xml
 <element widget="Gantt"
     barLabel="activeRecord.name + '(' + activeRecord.code + ')'"
     startField="taskStartDate"
@@ -910,7 +910,7 @@ In the previous section, we implemented calculating the display range based on t
 
 A possible implementation:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected monthOffset: number = 0;
 
@@ -951,7 +951,7 @@ In Oinone, after any parameter change affecting page data, simply refresh the co
 
 Oops—when switching pages, the Gantt display range changes, but data remains the same. Using `Vue DevTools`, we find `ganttData` doesn't change during pagination switching—we forgot that `refreshProcess` is called during switching, and `ganttData` is only updated in `mountedProcess`. Follow the same logic to override `refreshProcess` and reassign `ganttData` after calling the parent method:
 
-```typescript
+``` typescript
 protected async refreshProcess(condition?: Condition): Promise<void> {
   await super.refreshProcess(condition);
   this.ganttData = this.convertGanttData(this.dataSource || []);

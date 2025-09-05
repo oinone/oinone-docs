@@ -74,7 +74,7 @@ next:
 
 像我们之前在 “探索前端框架” 章节练习的那样，我们可以通过注册这样一个布局（Layout）来切换组件，让我们将 `widget="card"` 改为 `widget="GalleryCustomCard"` 来完成组件的切换：
 
-```xml
+``` xml
 <view type="gallery">
     <view type="search">
         <element slot="search" widget="search" />
@@ -94,7 +94,7 @@ next:
 
 让我们在 `<template slot="card">` 上添加 `widget="GalleryCustomCard"` 属性。一个可能的 `DSL` 模板如下所示：
 
-```xml
+``` xml
 <view model="demo.GalleryDemoModel" type="gallery">
     <template slot="actionBar">
         <action name="redirectCreatePage" label="创建" />
@@ -122,7 +122,7 @@ next:
 
 和我们之前接触到的组件类似，卡片是一个 `element` 组件，并且我们需要使用内置组件的部分功能。因此我们可以这样定义：
 
-```typescript
+``` typescript
 import GalleryCustomCard from './GalleryCustomCard.vue';
 
 @SPI.ClassFactory(
@@ -142,7 +142,7 @@ export class GalleryCustomCardWidget extends CardWidget {
 
 接下来，我们需要一个 Vue 组件模板来展示我们需要展示的信息，让我们先从一个最简单的展示开始吧。
 
-```vue
+``` vue
 <template>
   <div class="gallery-custom-card-demo">
     <b>{{ formData.name }}({{ formData.code }})</b>
@@ -152,7 +152,7 @@ export class GalleryCustomCardWidget extends CardWidget {
 
 内置组件中提供了 `formData` 属性，用于获取当前卡片数据，为了便于代码的维护，我们还需要声明其数据类型。
 
-```typescript
+``` typescript
 interface DemoData {
   code?: string;
   name?: string;
@@ -169,7 +169,7 @@ props: {
 
 为了让我们的页面好看一点，我们可以使用这样的 css 样式美化一下。
 
-```css
+``` css
 .gallery-custom-card-demo {
   background-color: #ffffff;
   border: 1px solid #e3e7ee;
@@ -192,7 +192,7 @@ props: {
 
 在 `Vue` 组件模板中，我们可以这样使用：
 
-```vue
+``` vue
 <div class="default-card-row-actions">
   <action-bar widget="CardRowActions" inline :active-records="formData" :row-index="rowIndex">
     <slot name="rowActions" />
@@ -202,8 +202,8 @@ props: {
 
 还需要在 `Vue` 中声明组件：
 
-```typescript
-import { ActionBar } from '@kunlun/dependencies';
+``` typescript
+import { ActionBar } from '@oinone/kunlun-dependencies';
 
 components: {
   ActionBar
@@ -236,7 +236,7 @@ components: {
 
 在 `Widget` 组件中，我们通过获取 `DSL` 中的配置对属性进行定义：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public get title() {
   return `${this.formData[this.nameField]}(${this.formData[this.codeField]})`;
