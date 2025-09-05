@@ -371,7 +371,7 @@ public <ReplacedByProcessTriggerModel> fallBack(String data) {
 
 ## (Ⅸ) [Reject] Callback Hook
 
-Use Case: When a reject operation is performed on a workflow to-do, this callback hook can be used to change other business data logic.
+Use case: This callback hook can be used when the process backlog is rejected and additional business data logic needs to be changed.
 
 :::info Note
 
