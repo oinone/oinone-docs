@@ -152,7 +152,9 @@ Select the model at the time of workflow trigger as the approval model, select t
 
 :::
 
-+ Approval Type: Supports two types, regular approval and step - by - step approval, to adapt to the needs of different business scenarios.
+### 1.Approval Type
+
+Supports two types, regular approval and step - by - step approval, to adapt to the needs of different business scenarios.
 
 :::warning Note
 
@@ -239,8 +241,9 @@ Starting from product manager Zhao Liang, it advances 2 levels upward along the 
 
 :::
 
+### 2.Automatic Approval
 
-+ Automatic Approval: After enabling this function, preset conditions are supported. If the conditions are met, the approval will be completed automatically, which can improve approval efficiency.
+After enabling this function, preset conditions are supported. If the conditions are met, the approval will be completed automatically, which can improve approval efficiency.
   - Basic Configuration: You need to select "Auto Approve" or "Auto Reject" to determine the default operation of the system when the conditions are met.
   - Condition Settings
     * Add Conditions: Multiple conditions can be added. You can manually drag and drop conditions to adjust the order, and the execution priority will change accordingly. If no conditions are set and automatic approval is enabled, the system will complete the automatic approval, and the configured approver information will not be displayed.
@@ -263,12 +266,14 @@ When the asset price is ≤ 200, the approval will be automatically passed, and 
 
 :::
 
-+ Approval Method for Multiple Approvers: This attribute is displayed when there are approvers. It includes two methods: any-sign and all-sign.
-    - Any-Sign: Only one approver's approval or rejection is needed to determine the approval result. After the approval is completed, other approvers cannot enter the approval operation, but they will receive a message prompt about the approval result.
-    - All-Sign: It includes two methods. One is "approval is only valid when all approvers agree, and rejection is valid when one approver rejects"; the other is "approval is valid when one approver agrees, and rejection is only valid when all approvers reject".
-    - Custom Approval Method: When the system's available approval methods cannot meet your requirements, you can customize the addition of an approval method through code.
-        * Approval Method Data Node: It includes all the data that can be obtained before the approval node.
-        * Select Custom Function: It is the function to customize the approval method through code.
+### 3.Approval Method for Multiple Approvers
+
+This attribute is displayed when there are approvers. It includes two methods: any-sign and all-sign.
+  - Any-Sign: Only one approver's approval or rejection is needed to determine the approval result. After the approval is completed, other approvers cannot enter the approval operation, but they will receive a message prompt about the approval result.
+  - All-Sign: It includes two methods. One is "approval is only valid when all approvers agree, and rejection is valid when one approver rejects"; the other is "approval is valid when one approver agrees, and rejection is only valid when all approvers reject".
+  - Custom Approval Method: When the system's available approval methods cannot meet your requirements, you can customize the addition of an approval method through code.
+      * Approval Method Data Node: It includes all the data that can be obtained before the approval node.
+      * Select Custom Function: It is the function to customize the approval method through code.
 
 :::info Note
 
@@ -285,14 +290,16 @@ Add two approvers with the roles of "FL-Role" and "Leader", and set the approval
 
 :::
 
-+ Approval Deadline: You can set a deadline rule for the current approval node to ensure the timely progress of the approval process.
-    - Deadline Rule: There are three options for the deadline rule, including specifying a date and time, limiting the duration, and specifying a field value.
-        * When specifying a date and time, you need to set the specific deadline.
-        * When limiting the duration, you can set the time length and its unit.
-        * When specifying a field value, you can choose a field of date or date-time type. When choosing a date field, you need to specify the trigger time.
-    - Reminder Before Deadline: You can choose whether to remind the approver before the approval deadline to ensure that the approver can handle it in time.
-        * Deadline Reminder Time and Unit: You can set the specific time and unit of the reminder before the deadline.
-        * Deadline Reminder Content: The reminder content supports customization to meet the needs of different scenarios.
+### 4.Approval Deadline
+
+You can set a deadline rule for the current approval node to ensure the timely progress of the approval process.
+  - Deadline Rule: There are three options for the deadline rule, including specifying a date and time, limiting the duration, and specifying a field value.
+      * When specifying a date and time, you need to set the specific deadline.
+      * When limiting the duration, you can set the time length and its unit.
+      * When specifying a field value, you can choose a field of date or date-time type. When choosing a date field, you need to specify the trigger time.
+  - Reminder Before Deadline: You can choose whether to remind the approver before the approval deadline to ensure that the approver can handle it in time.
+      * Deadline Reminder Time and Unit: You can set the specific time and unit of the reminder before the deadline.
+      * Deadline Reminder Content: The reminder content supports customization to meet the needs of different scenarios.
 
 :::tip Example
 
@@ -301,6 +308,8 @@ Set a 5-day duration limit for the approval process, and configure the correspon
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/ProcessDesiner/Node%20action/lcjd/sp4.gif)
 
 :::
+
+### 5.Copy in
 
 + Add Copy Recipients: You can select from individuals, departments, roles, and model-related fields, and multiple selections are allowed. Copy recipients can view the approval information but cannot operate on it.
     - Custom Copy Recipients: When the system's available copy recipients cannot meet your requirements, you can customize the addition of copy recipients through code.
@@ -317,6 +326,8 @@ Add the employee "R & D Employee 1" as a copy recipient, enable the read confirm
 
 :::
 
+### 6.Transfer of
+
 + Allow Reassignment: You can choose whether to allow the current approval to be reassigned to others. The added reassignees are the candidate list for reassignment.
     - Selection Scope: Refers to the range of personnel that can be selected when transferring a pending task, with two options provided: "Transfer to All Members" and "Transfer to Designated Members".
     - Add Transferee: This function is visible when "Transfer to Designated Members" is selected. You can select from fields related to employees, departments, roles, and models, and multiple selections are allowed. Transferees have the same rights as approvers.
@@ -324,6 +335,9 @@ Add the employee "R & D Employee 1" as a copy recipient, enable the read confirm
         * Reassignee Data Node: It includes all the data that can be obtained before the approval node.
         * Select Custom Function: It is the function to customize reassignees through code.
         * Custom Function Execution Timing:Refers to the specific timing for executing the custom function, which mainly includes two scenarios: taking effect when the task is created and taking effect when the user approves.
+
+### 7.Add to signature
+
 + Allow Additional Signatories: You can choose to temporarily add other approvers during the approval process. The added additional signatories will be part of the candidate list for countersigning.
     - Selection Scope: Refers to the range of personnel that can be selected when handling pending tasks, with two options provided: "All Members" and "Designated Members".
     - Add Additional Signatories: This function is visible when "Designated Members" is selected. You can select from fields related to employees, departments, roles, and models, and multiple selections are allowed.
@@ -354,6 +368,8 @@ Effect preview:
 
 :::
 
+### 8.Return
+
 + Rejection Reason Required: After enabling this function, the approver must fill in the rejection reason when rejecting the approval.
 
 Manual Return: When this function is enabled, you can choose to return to any approval or filling node before the current approval node.
@@ -369,6 +385,8 @@ Manual Return: When this function is enabled, you can choose to return to any ap
 When multiple people approve and the approval method is countersign where "one person's approval counts as approval, and all people's rejection counts as rejection", return is not allowed.
 
 :::
+
+### 9.Others
 
 + Automatic Return: When this function is enabled, the system will automatically return to the specified node when the data meets the preset conditions.
   - Condition Settings: Supports adding multiple conditions. You can manually drag to adjust the order of conditions, and the execution priority will change synchronously with the order. It specifically includes the following settings:
