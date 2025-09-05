@@ -16,6 +16,7 @@
     "@vuepress/core": "2.0.0-rc.22",
     "@vuepress/plugin-slimsearch": "2.0.0-rc.105",
     "@vuepress/theme-default": "2.0.0-rc.105",
+    "@vuepress/helper": "2.0.0-rc.105",
     "sass-embedded": "^1.89.0",
     "vue": "^3.4.21",
     "vue-router": "^4.2.5",
