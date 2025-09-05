@@ -35,7 +35,7 @@ Oinone 集成平台通过注解 `@Integrate` 和 `@Open` 提供灵活的接口�
 
 ### 2、启动eip模块
 
-```yaml
+``` yaml
 pamirs:
 	boot:
     modules:
@@ -48,7 +48,7 @@ pamirs:
 
 在xxxModule-api中增加入pamirs-eip2-api的依赖
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-api</artifactId>
@@ -57,7 +57,7 @@ pamirs:
 
 ### 2、启动工程加入相关依赖包
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-core</artifactId>
@@ -68,7 +68,7 @@ pamirs:
 
 xxxModule的定义类增加对EipModule的依赖
 
-```java
+``` java
 @Module(dependencies = {EipModule.MODULE_MODULE})
 ```
 
@@ -80,7 +80,7 @@ xxxModule的定义类增加对EipModule的依赖
 
 ## （二）注解结构
 
-```java
+``` java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
@@ -134,7 +134,7 @@ Open
 
 ## （三）使用示例
 
-```java
+``` java
 @Fun(TestOpenApiModelService.FUN_NAMESPACE)
 @Component
 public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
@@ -192,7 +192,7 @@ public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
 
 ## （二）注解结构
 
-```java
+``` java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
@@ -327,7 +327,7 @@ Integrate
 
 ## （三）使用示例
 
-```java
+``` java
 @Fun(TestIntegrateService.FUN_NAMESPACE)
 @Component
 public class TestIntegrateServiceImpl implements TestIntegrateService {
@@ -431,11 +431,11 @@ public class TestIntegrateServiceImpl implements TestIntegrateService {
 
 在模块启动生命周期中调用，与此主题相关的文档可在 “[模块生命周期](/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md#三、模块生命周期)” 中找到。
 
-```java
+``` java
 EipResolver.resolver(TestModule.MODULE_MODULE,null);
 ```
 
-```java
+``` java
 @Component
 public class SecondModuleBizInit implements InstallDataInit, UpgradeDataInit, ReloadDataInit {
 
@@ -497,7 +497,7 @@ http://localhost:8094/openapi/pamirs/yourPath
 **功能**：定义一个供外部系统调用的查询接口，支持路径参数和基本认证。
 **代码示例**：
 
-```java
+``` java
 @Fun(TestOpenApiModelService.FUN_NAMESPACE)
 @Component
 public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
@@ -533,7 +533,7 @@ public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
 **功能**：定义一个返回异常信息的开放接口，用于测试错误处理。
 **代码示例**：
 
-```java
+``` java
 @Function
 @Open(path = "error")
 @Open.Advanced(
@@ -549,7 +549,7 @@ public OpenEipResult<TestOpenApiResponse> queryById4OpenError() {
 
 **响应格式**：
 
-```plain
+``` plain
 {
   "success": false,
   "errorCode": "20140000",
@@ -566,7 +566,7 @@ public OpenEipResult<TestOpenApiResponse> queryById4OpenError() {
 **功能**：调用外部开放接口，实现参数映射和路由配置。
 **代码示例**：
 
-```java
+``` java
 @Fun(TestIntegrateService.FUN_NAMESPACE)
 @Component
 public class TestIntegrateServiceImpl implements TestIntegrateService {
@@ -601,7 +601,7 @@ public class TestIntegrateServiceImpl implements TestIntegrateService {
 **功能**：调用可能返回异常的接口，并配置自定义异常判定逻辑。
 **代码示例**：
 
-```java
+``` java
 @Function
 @Integrate(config = TestEipConfig.class)
 @Integrate.Advanced(path = "/openapi/pamirs/error?tenant=pamirs")
@@ -616,7 +616,7 @@ return null;
 
 **自定义异常判定类**：
 
-```java
+``` java
 @Fun(TestExceptionPredictFunction.FUN_NAMESPACE)
 public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperMap> {
     public static final String FUN_NAMESPACE ="test.TestExceptionPredictFunction";
@@ -639,7 +639,7 @@ public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperM
 **功能**：在开放接口中启用 AccessToken 认证，并在集成接口中自动获取 Token。
 **开放接口配置**：
 
-```java
+``` java
 @Open.Advanced(
     authenticationProcessorFun = TestAuthFunction.FUN,
     authenticationProcessorNamespace = TestAuthFunction.FUN_NAMESPACE
@@ -648,7 +648,7 @@ public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperM
 
 **集成接口认证处理类**：
 
-```java
+``` java
 @Component
 @Fun(TestAuthFunction.FUN_NAMESPACE)
 public class TestAuthFunction implements IEipAuthenticationProcessor<SuperMap> {
@@ -672,7 +672,7 @@ public class TestAuthFunction implements IEipAuthenticationProcessor<SuperMap> {
 **功能**：在集成接口中对请求参数进行 RSA 加密。
 **代码示例**：
 
-```java
+``` java
 @Integrate.RequestProcessor(
     inOutConverterFun = RSAInOutConverter.FUN,
     inOutConverterNamespace = RSAInOutConverter.FUN_NAMESPACE
@@ -684,7 +684,7 @@ return null;
 
 **加密处理类**：
 
-```java
+``` java
 @Fun(RSAInOutConverter.FUN_NAMESPACE)
 @Component
 public class RSAInOutConverter implements IEipInOutConverter {
@@ -708,7 +708,7 @@ public class RSAInOutConverter implements IEipInOutConverter {
 **功能**：实现 XML 格式的响应数据解析。
 **代码示例**：
 
-```java
+``` java
 @Integrate.ResponseProcessor(
     serializableFun = TestSerializableFunction.FUN,
     serializableNamespace = TestSerializableFunction.FUN_NAMESPACE
@@ -720,7 +720,7 @@ public EipResult<XmlData> parseXmlResponse() {
 
 **XML 序列化类**：
 
-```java
+``` java
 public class TestSerializableFunction implements IEipSerializable<SuperMap> {
     public static final String FUN_NAMESPACE ="test.TestSerializableFunction";
     public static final String FUN ="xmlParser";

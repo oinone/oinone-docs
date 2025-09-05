@@ -16,7 +16,7 @@ In Oinone, built-in model definitions exist for common basic data to support spe
 
 ## (Ⅰ) pom Dependencies
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-resource-api</artifactId>
@@ -29,7 +29,7 @@ In Oinone, built-in model definitions exist for common basic data to support spe
 
 ## (Ⅱ) Yaml Configuration
 
-```yaml
+``` yaml
 pamirs:
 	boot:
     modules:

@@ -18,7 +18,7 @@ order: 3
 
 ## （一）pom.xml依赖说明
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.workflow</groupId>
     <artifactId>pamirs-workflow-api</artifactId>
@@ -47,7 +47,7 @@ order: 3
 
 ## （二）application.yml配置说明
 
-```yaml
+``` yaml
 spring:
   rocket-mq:
   # enabled 为 false情况不用配置
@@ -106,7 +106,7 @@ pamirs:
 
 ### 1. 实现手动触发
 
-```java
+``` java
 /**
  * 手动触发
  * 
@@ -153,7 +153,7 @@ public Boolean startWorkflow(WorkflowD workflowD, IdModel modelData) {
 
 代码中根据业务相关性获取工作流定义，这里示例以工作流编码方式查找。
 
-```java
+``` java
 @Action(displayName = "触发工作流")
 public <触发模型> triggerWorkflow(<触发模型> data) {
     // 示例以工作流编码查找工作流元数据
@@ -169,7 +169,7 @@ public <触发模型> triggerWorkflow(<触发模型> data) {
 
 通过配置函数自定义工作流审批人，实现流程参与人(包含: 转交、抄送、加签、填写、通知人)的运行时灵活配置。
 
-```java
+``` java
 /*
  * 自定义流程参与人
  * @param nodePersonList 当前节点参与人
@@ -220,7 +220,7 @@ public List<NodePerson> customPerson(List<NodePerson> nodePersonList, NodeModel 
 使用场景：在流程执行到审批节点任务初始化后，任务尚未开始，需要在初始化任务做一些自定义逻辑处理时，使用该扩展。  
 执行时间：执行节点是在审批待办任务初始化之后，审批执行之前，执行该扩展。
 
-```java
+``` java
 /**
  * 审批节点初始化完成，执行前置函数
  * @param approvalNode 审批节点数据
@@ -239,7 +239,7 @@ public void approvalCustomStartFun(ApprovalNode approvalNode, WorkflowContext co
 使用场景：在流程执行到填写节点任务初始化后，任务尚未开始，需要在初始化任务做一些自定义逻辑处理时，使用该扩展  
 执行时间：执行节点是在填写待办任务初始化之后，填写结果执行之前，执行该扩展
 
-```java
+``` java
 /**
  * 填写执行前置处理
  * 
@@ -259,7 +259,7 @@ public void writeCustomStartFun(WorkflowTaskInstance taskInstance, WriteNode wri
 使用场景：在审批或填写的待办任务在操作任务时，需要额外执行一些逻辑，比如当前人提交操作以后需要更新更当前人操作相关的数据库记录。  
 执行时间：执行节点是在保存待办任务之后，异步执行审批或填写结果之前，执行该扩展。
 
-```java
+``` java
 /**
  * 转交操作后置函数,再流程设计器中审批和填写节点中 扩展设置-填写操作提交后执行函数选择
  *
@@ -295,7 +295,7 @@ public WorkflowUserTask transformEndFun(WorkflowUserTask userTask) {
 使用场景：在审批或填写执行过程中审批同意或则填写提交时，需要额外更改其他的业务数据逻辑，如审批同意后需要修改关联数据状态之类。  
 执行时间：在审批或填写执行过程中审批同意或则填写提交后执行完业务数据保存后，执行该扩展。
 
-```java
+``` java
 /**
  * 审批后数据处理
  * @param approvalNode 审批节点
@@ -331,7 +331,7 @@ public void approvalDataProcessFun(ApprovalNode approvalNode, WorkflowContext co
 
 :::
 
-```java
+``` java
 /**
  * 对应返回不影响流程上下文
  * @param data 入参为触发时的业务数据，数据的JsonString
@@ -356,7 +356,7 @@ public <替换为流程触发模型> recall(String data) {
 
 :::
 
-```java
+``` java
 /**
  * 对应返回不影响流程上下文
  * @param data 入参为触发时的业务数据，数据的JsonString
@@ -381,7 +381,7 @@ public <替换为流程触发模型> fallBack(String data) {
 
 :::
 
-```java
+``` java
 /**
  * XXX为当前流程触发方式为模型触发时对应的触发模型
  * 回调钩子
@@ -430,7 +430,7 @@ public void retract(WorkflowUserTask workflowUserTask) {
 
 使用场景：代码方式设置流程运行时审批方式
 
-```java
+``` java
 @Model.model(替换为流程触发模型.MODEL_MODEL)
 @Component
 public class 替换为流程触发模型Action {
@@ -464,7 +464,7 @@ public class 替换为流程触发模型Action {
 
 使用场景：代码方式动态设置流程审批节点名称。
 
-```java
+``` java
 @Model.model(替换为流程触发模型.MODEL_MODEL)
 @Component
 public class 替换为流程触发模型Action {

@@ -18,7 +18,7 @@ The workflow runtime requires dependencies on related modules.
 
 ## (Ⅰ) pom.xml Dependency Description
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.workflow</groupId>
     <artifactId>pamirs-workflow-api</artifactId>
@@ -47,7 +47,7 @@ The workflow runtime requires dependencies on related modules.
 
 ## (Ⅱ) application.yml Configuration Description
 
-```yaml
+``` yaml
 spring:
   rocket-mq:
   # Do not configure when enabled is false
@@ -106,7 +106,7 @@ Manually trigger workflows for scenarios that are not automatically triggered.
 
 ### 1. Implement Manual Triggering
 
-```java
+``` java
 /**
  * Manual triggering
  * 
@@ -153,7 +153,7 @@ public Boolean startWorkflow(WorkflowD workflowD, IdModel modelData) {
 
 Obtain the workflow definition based on business relevance in the code. The example below finds it by workflow code.
 
-```java
+``` java
 @Action(displayName = "Trigger Workflow")
 public <TriggerModel> triggerWorkflow(<TriggerModel> data) {
     // Example: Find workflow metadata by workflow code
@@ -169,7 +169,7 @@ public <TriggerModel> triggerWorkflow(<TriggerModel> data) {
 
 Customize workflow approvers through configuration functions to achieve flexible runtime configuration of process participants (including transfer, cc, add signature, fill, and notifier).
 
-```java
+``` java
 /*
  * Customize process participants
  * @param nodePersonList Current node participants
@@ -218,7 +218,7 @@ public List<NodePerson> customPerson(List<NodePerson> nodePersonList, NodeModel 
 Use Case: When custom logic processing is required after the approval node task is initialized but before the task starts, this extension is used.  
 Execution Time: This extension is executed after the approval to-do task is initialized and before the approval is executed.
 
-```java
+``` java
 /**
  * After the approval node is initialized, execute the pre-function
  * @param approvalNode Approval node data
@@ -237,7 +237,7 @@ public void approvalCustomStartFun(ApprovalNode approvalNode, WorkflowContext co
 Use Case: When custom logic processing is required after the fill node task is initialized but before the task starts, this extension is used.  
 Execution Time: This extension is executed after the fill to-do task is initialized and before the fill result is executed.
 
-```java
+``` java
 /**
  * Pre-fill execution processing
  * 
@@ -257,7 +257,7 @@ public void writeCustomStartFun(WorkflowTaskInstance taskInstance, WriteNode wri
 Use Case: When additional logic needs to be executed during the operation of approval or fill to-do tasks, such as updating database records related to the current user's operation after submission.  
 Execution Time: This extension is executed after saving the to-do task and before asynchronously executing the approval or fill result.
 
-```java
+``` java
 /**
  * Post-transfer operation function, selected in the process designer's approval and fill node extension settings - post-fill operation submission function
  *
@@ -293,7 +293,7 @@ public WorkflowUserTask transformEndFun(WorkflowUserTask userTask) {
 Use Case: During approval or fill execution, when additional business data logic needs to be changed (e.g., modifying associated data status after approval), this extension is used.  
 Execution Time: This extension is executed after the business data is saved following approval agreement or fill submission during approval or fill execution.
 
-```java
+``` java
 /**
  * Post-approval data processing
  * @param approvalNode Approval node
@@ -329,7 +329,7 @@ The namespace of this function needs to be set to the process triggering model.
 
 :::
 
-```java
+``` java
 /**
  * The corresponding return does not affect the process context
  * @param data The input parameter is the business data at the time of triggering, as a JsonString
@@ -354,7 +354,7 @@ The namespace of this function needs to be set to the process triggering model.
 
 :::
 
-```java
+``` java
 /**
  * The corresponding return does not affect the process context
  * @param data The input parameter is the business data at the time of triggering, as a JsonString
@@ -379,7 +379,7 @@ The namespace of this function needs to be set to the process triggering model.
 
 :::
 
-```java
+``` java
 /**
  * XXX is the triggering model when the current process triggering method is model triggering
  * Callback hook
@@ -406,7 +406,7 @@ The namespace of this function needs to be set to the process trigger model.
 
 :::
 
-```java
+``` java
 @Function
 @Function.fun(WorkflowBizCallConstants.retract)
 public void retract(WorkflowUserTask workflowUserTask) {
@@ -428,7 +428,7 @@ public void retract(WorkflowUserTask workflowUserTask) {
 
 Use Case: Set the approval method at workflow runtime via code.
 
-```java
+``` java
 @Model.model(ReplacedByProcessTriggerModel.MODEL_MODEL)
 @Component
 public class ReplacedByProcessTriggerModelAction {
@@ -460,7 +460,7 @@ public class ReplacedByProcessTriggerModelAction {
 
 Use Case: Dynamically set the workflow approval node name via code.
 
-```java
+``` java
 @Model.model(ReplacedByProcessTriggerModel.MODEL_MODEL)
 @Component
 public class ReplacedByProcessTriggerModelAction {
@@ -483,7 +483,7 @@ public class ReplacedByProcessTriggerModelAction {
 
 When opening the pop-up window, the first company returned will be selected by default. ALL_COMPANY indicates all companies.
 
-```java
+``` java
 @Order(10)
 @Component
 @SPI.Service

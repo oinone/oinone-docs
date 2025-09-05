@@ -18,7 +18,7 @@ Oinone 消息服务提供统一的消息发送接口，支持系统消息、邮�
 
 pamirs-demo-boot的pom文件中引入pamirs-message-core包依赖
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-message-core</artifactId>
@@ -27,7 +27,7 @@ pamirs-demo-boot的pom文件中引入pamirs-message-core包依赖
 
 pamirs-demo-boot的application-dev.yml文件中增加配置pamirs.boot.modules增加message，即在启动应用中增加message模块
 
-```yaml
+``` yaml
 pamirs:
 	boot:
     modules:
@@ -38,7 +38,7 @@ pamirs:
 
 在 启动工程中 的 `pom.xml` 中添加以下依赖：
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-message-core</artifactId>
@@ -51,7 +51,7 @@ pamirs:
 
 在 `application-dev.yml`（或对应环境配置文件）中添加模块加载配置：
 
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:
@@ -69,7 +69,7 @@ pamirs:
 
 在业务模块的 `pom.xml` 中添加消息服务 API 依赖，用于调用邮件 / 短信发送接口：
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-message-api</artifactId>
@@ -84,7 +84,7 @@ pamirs:
 
 该类用于初始化邮件和短信通道配置，实现了`InstallDataInit`和`UpgradeDataInit`接口，系统安装和升级时自动执行配置初始化。
 
-```java
+``` java
 @Component
 public class TestMessageInit implements InstallDataInit, UpgradeDataInit {
 
@@ -119,7 +119,7 @@ public class TestMessageInit implements InstallDataInit, UpgradeDataInit {
 
 **方法**：`initEmail()`
 
-```java
+``` java
 private void initEmail(){
     EmailSenderSource emailSenderSource = new EmailSenderSource();
     emailSenderSource.setName("邮件发送服务");
@@ -144,7 +144,7 @@ private void initEmail(){
 
 **方法**：`initSms()`
 
-```java
+``` java
 private void initSms(){
     SmsChannelConfig smsChannelConfig = new SmsChannelConfig();
     smsChannelConfig.setType(MessageEngineTypeEnum.SMS_SEND);
@@ -184,7 +184,7 @@ private void initSms(){
 
 ### 1、接口定义
 
-```java
+``` java
 public interface MessageSender {
     Boolean sendSystemMail(SystemMessage systemTransient);
     Boolean sendSystemMailBroadcast(SystemMessage systemTransient);
@@ -195,7 +195,7 @@ public interface MessageSender {
 
 ### 2、发送点对点系统消息 
 
-```java
+``` java
 /**
  * 发送点对点系统消息
  * @param systemTransient 系统消息传输模型
@@ -209,7 +209,7 @@ Boolean sendSystemMail(SystemMessage systemTransient);
 + **参数**：`systemTransient` 系统消息载体，必填，类型为`SystemMessage`，包含消息内容（`messages`）和接收人（`partners`）
 + **SystemMessage 模型**：
 
-```java
+``` java
 public class SystemMessage {
     private List<`PamirsMessage`> messages; // 消息内容列表
     private List<`PamirsUser`> partners;    // 接收用户列表
@@ -253,7 +253,7 @@ public class SystemMessage {
   - `SYSTEM_ERROR`：数据库操作或频道创建失败。
 + **示例：**
 
-```java
+``` java
 MessageSender mailSender = (MessageSender) MessageEngine.get(MessageEngineTypeEnum.MAIL_SEND).get(null);
 
 SystemMessage msg = new SystemMessage().setMessages(List.of(
@@ -269,7 +269,7 @@ messageSender.sendSystemMail(msg);
 
 ### 3、广播系统消息
 
-```java
+``` java
 /**
  * 发送广播消息到 SYSTEM_MAIL_BROADCAST 频道
  * @param systemTransient 系统消息传输模型
@@ -288,7 +288,7 @@ Boolean sendSystemMailBroadcast(SystemMessage systemTransient);
 + **返回值**：`Boolean`，成功与否。
 + **使用场景：**
 
-```java
+``` java
 // 发送全员公告
 SystemMessage broadcast = new SystemMessage()
 .setMessages(List.of(
@@ -304,7 +304,7 @@ messageSender.sendSystemMailBroadcast(broadcast);
 
 ### 4、发送频道消息
 
-```java
+``` java
 Boolean sendChannelMail(MessageGroup groupTransient);
 ```
 
@@ -312,7 +312,7 @@ Boolean sendChannelMail(MessageGroup groupTransient);
 + **参数**：`groupTransient` 频道消息载体，必填，包含频道（`channel`）和消息列表（`messages`）
 + **MessageGroup 模型**：**java**
 
-```java
+``` java
 public class MessageGroup {
     private Long id;                // 频道/用户 ID
     private List<`PamirsMessage`> messages; // 消息列表
@@ -324,7 +324,7 @@ public class MessageGroup {
 
 ### 5、发送模型关联消息
 
-```java
+``` java
 /**
  * 发送与业务模型关联的消息
  * @param messageList 消息列表
@@ -341,7 +341,7 @@ Boolean sendModelMail(List<`PamirsMessage`> messageList, List<`PamirsUser`> part
 + **返回值**：`Boolean`，成功与否。
 + **示例场景：**
 
-```java
+``` java
 // 订单新增备注通知
 PamirsMessage orderMsg = new PamirsMessage()
 .setResModel("sale.order")
@@ -356,7 +356,7 @@ messageSender.sendModelMail(List.of(orderMsg), List.of(customerUser));
 
 ### 1、接口定义
 
-```java
+``` java
 public interface EmailSender {
     Boolean send(EmailTemplate template, Map<String, Object> data, String sendTo, String copyTo) throws Exception;
     Boolean send(EmailPoster poster);
@@ -366,7 +366,7 @@ public interface EmailSender {
 
 ### 2、基于模板发送邮件
 
-```java
+``` java
 /**
  * 使用邮件模板发送
  * @param template 邮件模板
@@ -391,7 +391,7 @@ Boolean send(EmailTemplate template, Map<String, Object> data, String sendTo, St
 
 + **EmailTemplate 模型**：
 
-```java
+``` java
 public class EmailTemplate {
     private String title;       // 邮件标题
     private String body;        // 邮件内容（支持 HTML）
@@ -401,7 +401,7 @@ public class EmailTemplate {
 
 + **模板示例：**
 
-```plain
+``` plain
 <!-- 模板示例 -->
 亲爱的${user.name}，您的验证码是：${code}
 ```
@@ -410,7 +410,7 @@ public class EmailTemplate {
 
 ### 3、直接发送邮件
 
-```java
+``` java
 /**
  * 直接发送原始邮件
  * @param poster 邮件数据对象
@@ -429,7 +429,7 @@ Boolean send(EmailPoster poster);
 
 + **EmailPoster 模型**：**java**
 
-```java
+``` java
 public class EmailPoster {
     private String title;       // 标题
     private String sender; 		// 发件人名称
@@ -443,7 +443,7 @@ public class EmailPoster {
 
 + **示例场景：**
 
-```java
+``` java
 List<String> receiveEmails = Collections.singletonList("testhaha@shushi.pro"); // 需替换为实际收件人邮箱
     
 EmailSender emailSender = (EmailSender) MessageEngine.get(MessageEngineTypeEnum.EMAIL_SEND).get(null);
@@ -477,7 +477,7 @@ receiveEmails.forEach(email -> {
 
 ### 4、发送验证邮件
 
-```java
+``` java
 /**
  * 发送验证邮件（含验证码）
  * @param templateType 模板类型（如 SIGN_UP）
@@ -507,7 +507,7 @@ Boolean sendVerify(String templateType, String mailAddr);
 
 ### 1、接口定义
 
-```java
+``` java
 public interface SMSSender {
     Boolean smsSend(SMSTemplateTypeEnum templateType, String phoneNum, Map<String, String> placeholders);
     Boolean smsSend(SmsTemplate template, String phoneNum, Map<String, String> placeholders);
@@ -516,7 +516,7 @@ public interface SMSSender {
 
 ### 2、发送短信
 
-```java
+``` java
 Boolean smsSend(SMSTemplateTypeEnum templateType, String phoneNum, Map<String, String> placeholders);
 ```
 
@@ -536,7 +536,7 @@ Boolean smsSend(SMSTemplateTypeEnum templateType, String phoneNum, Map<String, S
   - `SMSTemplateTypeEnum.NOTIFY`：通知短信
 + **示例场景：**
 
-```java
+``` java
 // 获取 SMSSender
 SMSSender smsSender = (SMSSender) MessageEngine.get(MessageEngineTypeEnum.SMS_SEND).get(null);
 
@@ -564,7 +564,7 @@ smsSender.smsSend(template, "13912345678",
 
 **阿里云模板示例：**
 
-```java
+``` java
 您的验证码为${code}，5分钟内有效，请勿泄露
 ```
 

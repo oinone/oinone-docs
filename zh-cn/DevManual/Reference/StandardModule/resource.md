@@ -16,7 +16,7 @@ order: 5
 
 ## （一）pom 依赖
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-resource-api</artifactId>
@@ -29,7 +29,7 @@ order: 5
 
 ## （二）Yaml 配置
 
-```yaml
+``` yaml
 pamirs:
 	boot:
     modules:

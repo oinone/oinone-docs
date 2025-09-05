@@ -20,7 +20,7 @@ If generated through our project scaffolding tool, the dependency is already int
 
 Add the following dependency to the `pom.xml` of the startup project:
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-message-core</artifactId>
@@ -33,7 +33,7 @@ Add the following dependency to the `pom.xml` of the startup project:
 
 Add the module loading configuration to `application-dev.yml` (or the corresponding environment configuration file):
 
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:
@@ -51,7 +51,7 @@ After completing the above steps, the message service module will be automatical
 
 Add the message service API dependency to the `pom.xml` of the business module for calling email/SMS sending interfaces:
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-message-api</artifactId>
@@ -66,7 +66,7 @@ Add the message service API dependency to the `pom.xml` of the business module f
 
 This class is used to initialize email and SMS channel configurations, implementing the `InstallDataInit` and `UpgradeDataInit` interfaces, and automatically executes configuration initialization during system installation and upgrade.
 
-```java
+``` java
 @Component
 public class TestMessageInit implements InstallDataInit, UpgradeDataInit {
 
@@ -100,7 +100,7 @@ public class TestMessageInit implements InstallDataInit, UpgradeDataInit {
 
 **Method**: `initEmail()`
 
-```java
+``` java
 private void initEmail(){
     EmailSenderSource emailSenderSource = new EmailSenderSource();
     emailSenderSource.setName("Email Sending Service");
@@ -125,7 +125,7 @@ private void initEmail(){
 
 **Method**: `initSms()`
 
-```java
+``` java
 private void initSms(){
     SmsChannelConfig smsChannelConfig = new SmsChannelConfig();
     smsChannelConfig.setType(MessageEngineTypeEnum.SMS_SEND);
@@ -165,7 +165,7 @@ private void initSms(){
 
 ### 1. Interface Definition
 
-```java
+``` java
 public interface MessageSender {
     Boolean sendSystemMail(SystemMessage systemTransient);
     Boolean sendSystemMailBroadcast(SystemMessage systemTransient);
@@ -176,7 +176,7 @@ public interface MessageSender {
 
 ### 2. Send Point-to-Point System Message
 
-```java
+``` java
 /**
  * Send point-to-point system message
  * @param systemTransient System message transmission model
@@ -190,7 +190,7 @@ Boolean sendSystemMail(SystemMessage systemTransient);
 + **Parameters**: `systemTransient` system message carrier, required, type `SystemMessage`, including message content (`messages`) and recipients (`partners`)
 + **SystemMessage Model**:
 
-```java
+``` java
 public class SystemMessage {
     private List<`PamirsMessage`> messages; // Message content list
     private List<`PamirsUser`> partners;    // Recipient user list
@@ -234,7 +234,7 @@ public class SystemMessage {
   - `SYSTEM_ERROR`: Database operation or channel creation fails.
 + **Example**:
 
-```java
+``` java
 MessageSender mailSender = (MessageSender) MessageEngine.get(MessageEngineTypeEnum.MAIL_SEND).get(null);
 
 SystemMessage msg = new SystemMessage().setMessages(List.of(
@@ -250,7 +250,7 @@ messageSender.sendSystemMail(msg);
 
 ### 3. Broadcast System Messages
 
-```java
+``` java
 /**
  * Send broadcast messages to the SYSTEM_MAIL_BROADCAST channel
  * @param systemTransient System message transmission model
@@ -269,7 +269,7 @@ Boolean sendSystemMailBroadcast(SystemMessage systemTransient);
 + **Return Value**: `Boolean`, success or failure.
 + **Usage Scenario**:
 
-```java
+``` java
 // Send a notice to all employees
 SystemMessage broadcast = new SystemMessage()
 .setMessages(List.of(
@@ -285,7 +285,7 @@ messageSender.sendSystemMailBroadcast(broadcast);
 
 ### 4. Send Channel Messages
 
-```java
+``` java
 Boolean sendChannelMail(MessageGroup groupTransient);
 ```
 
@@ -293,7 +293,7 @@ Boolean sendChannelMail(MessageGroup groupTransient);
 + **Parameters**: `groupTransient` channel message carrier, required, including channel (`channel`) and message list (`messages`)
 + **MessageGroup Model**: **java**
 
-```java
+``` java
 public class MessageGroup {
     private Long id;                // Channel/user ID
     private List<`PamirsMessage`> messages; // Message list
@@ -305,7 +305,7 @@ public class MessageGroup {
 
 ### 5. Send Model-Associated Messages
 
-```java
+``` java
 /**
  * Send messages associated with business models
  * @param messageList Message list
@@ -322,7 +322,7 @@ Boolean sendModelMail(List<`PamirsMessage`> messageList, List<`PamirsUser`> part
 + **Return Value**: `Boolean`, success or failure.
 + **Example Scenario**:
 
-```java
+``` java
 // Order note addition notification
 PamirsMessage orderMsg = new PamirsMessage()
 .setResModel("sale.order")
@@ -337,7 +337,7 @@ messageSender.sendModelMail(List.of(orderMsg), List.of(customerUser));
 
 ### 1. Interface Definition
 
-```java
+``` java
 public interface EmailSender {
     Boolean send(EmailTemplate template, Map<String, Object> data, String sendTo, String copyTo) throws Exception;
     Boolean send(EmailPoster poster);
@@ -347,7 +347,7 @@ public interface EmailSender {
 
 ### 2. Send Emails Based on Templates
 
-```java
+``` java
 /**
  * Send using an email template
  * @param template Email template
@@ -372,7 +372,7 @@ Boolean send(EmailTemplate template, Map<String, Object> data, String sendTo, St
 
 + **EmailTemplate Model**:
 
-```java
+``` java
 public class EmailTemplate {
     private String title;       // Email title
     private String body;        // Email content (supports HTML)
@@ -382,7 +382,7 @@ public class EmailTemplate {
 
 + **Template Example**:
 
-```plain
+``` plain
 <!-- Template example -->
 Dear ${user.name}, your verification code is: ${code}
 ```
@@ -391,7 +391,7 @@ Dear ${user.name}, your verification code is: ${code}
 
 ### 3. Send Emails Directly
 
-```java
+``` java
 /**
  * Send raw emails directly
  * @param poster Email data object
@@ -410,7 +410,7 @@ Boolean send(EmailPoster poster);
 
 + **EmailPoster Model**: **java**
 
-```java
+``` java
 public class EmailPoster {
     private String title;       // Title
     private String sender; 		// Sender name
@@ -424,7 +424,7 @@ public class EmailPoster {
 
 + **Example Scenario**:
 
-```java
+``` java
 List<String> receiveEmails = Collections.singletonList("testhaha@shushi.pro"); // Replace with actual recipient email
     
 EmailSender emailSender = (EmailSender) MessageEngine.get(MessageEngineTypeEnum.EMAIL_SEND).get(null);
@@ -457,7 +457,7 @@ receiveEmails.forEach(email -> {
 
 ### 4. Send Verification Emails
 
-```java
+``` java
 /**
  * Send verification emails (including verification codes)
  * @param templateType Template type (e.g., SIGN_UP)
@@ -487,7 +487,7 @@ Boolean sendVerify(String templateType, String mailAddr);
 
 ### 1. Interface Definition
 
-```java
+``` java
 public interface SMSSender {
     Boolean smsSend(SMSTemplateTypeEnum templateType, String phoneNum, Map<String, String> placeholders);
     Boolean smsSend(SmsTemplate template, String phoneNum, Map<String, String> placeholders);
@@ -496,7 +496,7 @@ public interface SMSSender {
 
 ### 2. Send SMS
 
-```java
+``` java
 Boolean smsSend(SMSTemplateTypeEnum templateType, String phoneNum, Map<String, String> placeholders);
 ```
 
@@ -516,7 +516,7 @@ Boolean smsSend(SMSTemplateTypeEnum templateType, String phoneNum, Map<String, S
   - `SMSTemplateTypeEnum.NOTIFY`: Notification SMS
 + **Example Scenario**:
 
-```java
+``` java
 // Get SMSSender
 SMSSender smsSender = (SMSSender) MessageEngine.get(MessageEngineTypeEnum.SMS_SEND).get(null);
 
@@ -544,7 +544,7 @@ smsSender.smsSend(template, "13912345678",
 
 **Alibaba Cloud Template Example**:
 
-```java
+``` java
 Your verification code is ${code}, valid for 5 minutes. Do not disclose it.
 ```
 

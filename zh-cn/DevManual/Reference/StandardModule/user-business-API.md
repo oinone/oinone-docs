@@ -88,7 +88,7 @@ prev:
 
 + **添加 Maven 依赖**
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-business-api</artifactId>
@@ -99,7 +99,7 @@ prev:
 
 + **声明模块依赖**
 
-```java
+``` java
 @Module(
     dependencies = { BusinessModule.MODULE_MODULE }
 )
@@ -114,7 +114,7 @@ public class TestModule { /* ... */ }
 
 **员工模型（TestEmployee）**
 
-```java
+``` java
 @Model.model(TestEmployee.MODEL_MODEL)
 @Model(displayName = "公司员工", labelFields = "name")
 public class TestEmployee extends PamirsEmployee {
@@ -127,7 +127,7 @@ public class TestEmployee extends PamirsEmployee {
 
 **公司模型（TestCompany）**
 
-```java
+``` java
 @Model.model(TestCompany.MODEL_MODEL)
 @Model(displayName = "公司", labelFields = "name")
 public class TestCompany extends PamirsCompany {
@@ -141,7 +141,7 @@ public class TestCompany extends PamirsCompany {
 
 **员工查询服务**
 
-```java
+``` java
 @Fun(TestEmployeeQueryService.FUN_NAMESPACE)
 public interface TestEmployeeQueryService {
     String FUN_NAMESPACE = "test.TestEmployeeQueryService";
@@ -153,7 +153,7 @@ public interface TestEmployeeQueryService {
 
 **实现类**：
 
-```java
+``` java
 @Fun(TestEmployeeQueryService.FUN_NAMESPACE)
 @Component
 public class TestEmployeeQueryServiceImpl implements TestEmployeeQueryService {
@@ -171,7 +171,7 @@ public class TestEmployeeQueryServiceImpl implements TestEmployeeQueryService {
 
 **公司查询服务**
 
-```java
+``` java
 @Fun(TestCompanyQueryService.FUN_NAMESPACE)
 public interface TestCompanyQueryService {
     String FUN_NAMESPACE = "test.TestCompanyQueryService";
@@ -183,7 +183,7 @@ public interface TestCompanyQueryService {
 
 **实现类**：
 
-```java
+``` java
 @Fun(TestCompanyQueryService.FUN_NAMESPACE)
 @Component
 public class TestCompanyQueryServiceImpl implements TestCompanyQueryService {
@@ -204,7 +204,7 @@ public class TestCompanyQueryServiceImpl implements TestCompanyQueryService {
 
 修改`DemoSessionData`，增加公司属性：
 
-```java
+``` java
 public class DemoSessionData {
     private PamirsUser user;
     private TestCompany company; // 新增公司属性
@@ -214,7 +214,7 @@ public class DemoSessionData {
 
 **修改 DemoSessionCache 缓存逻辑**
 
-```java
+``` java
 public class DemoSessionCache {
     private static final ThreadLocal<DemoSessionData> BIZ_DATA_THREAD_LOCAL = new ThreadLocal<>();
 
@@ -254,7 +254,7 @@ public class DemoSessionCache {
 
 **重写业务模型的创建方法**
 
-```java
+``` java
 @Component
 @Model.model(TestShop.MODEL_MODEL)
 public class TestShopAction {
@@ -278,7 +278,7 @@ public class TestShopAction {
 + **员工创建逻辑**
   - 需重写`TestEmployee`的`create`方法，确保`employeeType`字段非空（基础模型必填）：
 
-```java
+``` java
 @Action.Advanced(name = FunctionConstants.create, type = {FunctionTypeEnum.CREATE}, managed = true,check = true)
 public TestEmployee create(TestEmployee data) {
     data.setEmployeeType(EmployeeTypeEnum.COMMON); // 手动赋值
@@ -289,7 +289,7 @@ public TestEmployee create(TestEmployee data) {
 + **多员工场景**
   - 当前`queryByUserId`方法未处理 “一用户多员工” 场景，需调整为返回列表或指定主员工：****
 
-```java
+``` java
 // 修改服务接口
 List<TestEmployee> queryByUserId(Long userId);
 ```
@@ -375,7 +375,7 @@ List<TestEmployee> queryByUserId(Long userId);
 
 自定义User增加是否是第一次登录的属性，登录后执行一个扩展点。 判断是否是一次登录，如果是则返回对应的状态码，前端根据状态码重定向到修改密码的页面。修改完成则重置第一次登录的标识。
 
-```java
+``` java
 /**
  * @author wangxian
  */
@@ -395,7 +395,7 @@ public class DemoUser extends PamirsUser {
 }
 ```
 
-```java
+``` java
 @Order(0)
 @Component
 @Ext(PamirsUserTransient.class)
@@ -472,7 +472,7 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
 
 平台已提供内置SPI：UserPatternCheckApi 支持用户自定义密码、用户Nick、邮箱等指定以校验规则。内置SPI接口定义如下：
 
-```java
+``` java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface UserPatternCheckApi {
 
@@ -593,7 +593,7 @@ public interface UserPatternCheckApi {
 + 用户账号不检验格式，只检验登录login不为空；
 + 密码不检验格式，只校验长度是 3 到 8位；
 
-```java
+``` java
 @Slf4j
 @SPI.Service
 @Order(50) //默认优先级最低，业务配置需要配置成为优先级高

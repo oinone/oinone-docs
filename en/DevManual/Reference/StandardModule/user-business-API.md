@@ -88,7 +88,7 @@ Achieve automatic association of the affiliated company after user login, and au
 
 + **Add Maven Dependency**
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-business-api</artifactId>
@@ -99,7 +99,7 @@ Achieve automatic association of the affiliated company after user login, and au
 
 + **Declare Module Dependencies**
 
-```java
+``` java
 @Module(
     dependencies = { BusinessModule.MODULE_MODULE }
 )
@@ -114,7 +114,7 @@ public class TestModule { /* ... */ }
 
 **Employee Model (TestEmployee)**
 
-```java
+``` java
 @Model.model(TestEmployee.MODEL_MODEL)
 @Model(displayName = "Company Employee", labelFields = "name")
 public class TestEmployee extends PamirsEmployee {
@@ -127,7 +127,7 @@ public class TestEmployee extends PamirsEmployee {
 
 **Company Model (TestCompany)**
 
-```java
+``` java
 @Model.model(TestCompany.MODEL_MODEL)
 @Model(displayName = "Company", labelFields = "name")
 public class TestCompany extends PamirsCompany {
@@ -141,7 +141,7 @@ public class TestCompany extends PamirsCompany {
 
 **Employee Query Service**
 
-```java
+``` java
 @Fun(TestEmployeeQueryService.FUN_NAMESPACE)
 public interface TestEmployeeQueryService {
     String FUN_NAMESPACE = "test.TestEmployeeQueryService";
@@ -153,7 +153,7 @@ public interface TestEmployeeQueryService {
 
 **Implementation Class**:
 
-```java
+``` java
 @Fun(TestEmployeeQueryService.FUN_NAMESPACE)
 @Component
 public class TestEmployeeQueryServiceImpl implements TestEmployeeQueryService {
@@ -171,7 +171,7 @@ public class TestEmployeeQueryServiceImpl implements TestEmployeeQueryService {
 
 **Company Query Service**
 
-```java
+``` java
 @Fun(TestCompanyQueryService.FUN_NAMESPACE)
 public interface TestCompanyQueryService {
     String FUN_NAMESPACE = "test.TestCompanyQueryService";
@@ -183,7 +183,7 @@ public interface TestCompanyQueryService {
 
 **Implementation Class**:
 
-```java
+``` java
 @Fun(TestCompanyQueryService.FUN_NAMESPACE)
 @Component
 public class TestCompanyQueryServiceImpl implements TestCompanyQueryService {
@@ -204,7 +204,7 @@ Reference: Documentation related to this topic can be found in "[Extending Pamir
 
 Modify `DemoSessionData` to add company attributes:
 
-```java
+``` java
 public class DemoSessionData {
     private PamirsUser user;
     private TestCompany company; // Add company attribute
@@ -214,7 +214,7 @@ public class DemoSessionData {
 
 **Modify the DemoSessionCache Cache Logic**
 
-```java
+``` java
 public class DemoSessionCache {
     private static final ThreadLocal<DemoSessionData> BIZ_DATA_THREAD_LOCAL = new ThreadLocal<>();
 
@@ -254,7 +254,7 @@ public class DemoSessionCache {
 
 **Override the business model's creation method**
 
-```java
+``` java
 @Component
 @Model.model(TestShop.MODEL_MODEL)
 public class TestShopAction {
@@ -278,7 +278,7 @@ public class TestShopAction {
 + **Employee Creation Logic**
   - Need to override the `create` method of `TestEmployee` to ensure that the `employeeType` field is not empty (required in the basic model):
 
-```java
+``` java
 @Action.Advanced(name = FunctionConstants.create, type = {FunctionTypeEnum.CREATE}, managed = true,check = true)
 public TestEmployee create(TestEmployee data) {
     data.setEmployeeType(EmployeeTypeEnum.COMMON); // Manually assign a value
@@ -289,7 +289,7 @@ public TestEmployee create(TestEmployee data) {
 + **Multi-Employee Scenario**
   - The current `queryByUserId` method does not handle the scenario of "one user with multiple employees" and needs to be adjusted to return a list or specify the primary employee:****
 
-```java
+``` java
 // Modify the service interface
 List<TestEmployee> queryByUserId(Long userId);
 ```
@@ -375,7 +375,7 @@ To extend user-related APIs, you can use Oinone's "[Default Extension Points](/e
 
 Customize the User to add an attribute indicating whether it is the first login, and execute an extension point after login. Determine whether it is the first login, and if so, return the corresponding status code, and the front end redirects to the password modification page based on the status code. After modification, reset the first login flag.
 
-```java
+``` java
 /**
  * @author wangxian
  */
@@ -395,7 +395,7 @@ public class DemoUser extends PamirsUser {
 }
 ```
 
-```java
+``` java
 @Order(0)
 @Component
 @Ext(PamirsUserTransient.class)
@@ -472,7 +472,7 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
 
 The platform provides a built-in SPI: UserPatternCheckApi supports users to customize password, user Nick, email, etc., with specified validation rules. The built-in SPI interface is defined as follows:
 
-```java
+``` java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface UserPatternCheckApi {
 
@@ -593,7 +593,7 @@ The following example implements custom validation:
 + User accounts are not checked for format, only that the login is not empty;
 + Passwords are not checked for format, only that the length is between 3 and 8 characters;
 
-```java
+``` java
 @Slf4j
 @SPI.Service
 @Order(50) // Default lowest priority, business configuration needs to be set to high priority

@@ -35,7 +35,7 @@ Related documentation on this topic can be found in "[Integration Platform Confi
 
 ### 2. Start the eip Module
 
-```yaml
+``` yaml
 pamirs
   boot:
     modules:
@@ -48,7 +48,7 @@ pamirs
 
 Add the dependency on pamirs-eip2-api to xxxModule-api:
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-api</artifactId>
@@ -57,7 +57,7 @@ Add the dependency on pamirs-eip2-api to xxxModule-api:
 
 ### 2. Add Relevant Dependencies to the Startup Project
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-core</artifactId>
@@ -68,7 +68,7 @@ Add the dependency on pamirs-eip2-api to xxxModule-api:
 
 Add dependency on EipModule to the xxxModule definition class:
 
-```java
+``` java
 @Module(dependencies = {EipModule.MODULE_MODULE})
 ```
 
@@ -80,7 +80,7 @@ The `@Open` annotation defines open interfaces, allowing external systems to inv
 
 ## (Ⅱ) Annotation Structure
 
-```java
+``` java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
@@ -134,7 +134,7 @@ Open
 
 ## (Ⅲ) Usage Example
 
-```java
+``` java
 @Fun(TestOpenApiModelService.FUN_NAMESPACE)
 @Component
 public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
@@ -192,7 +192,7 @@ The `@Integrate` annotation defines integrated interfaces, supporting invocation
 
 ## (Ⅱ) Annotation Structure
 
-```java
+``` java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
@@ -327,7 +327,7 @@ Integrate
 
 ## (Ⅲ) Usage Example
 
-```java
+``` java
 @Fun(TestIntegrateService.FUN_NAMESPACE)
 @Component
 public class TestIntegrateServiceImpl implements TestIntegrateService {
@@ -431,11 +431,11 @@ Perform md5 and encryption/decryption processing in `IEipInOutConverter`
 
 Called during module startup lifecycle, related documentation on this topic can be found in "[Module Lifecycle](/en/DevManual/Reference/Back-EndFramework/module-API.md#Ⅲ、模块生命周期)".
 
-```java
+``` java
 EipResolver.resolver(TestModule.MODULE_MODULE,null);
 ```
 
-```java
+``` java
 @Component
 public class SecondModuleBizInit implements InstallDataInit, UpgradeDataInit, ReloadDataInit {
 
@@ -497,7 +497,7 @@ http://localhost:8094/openapi/pamirs/yourPath
 **Function**: Define a query interface for external system invocation, supporting path parameters and basic authentication.
 **Code Example**:
 
-```java
+``` java
 @Fun(TestOpenApiModelService.FUN_NAMESPACE)
 @Component
 public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
@@ -533,7 +533,7 @@ public class TestOpenApiModelServiceImpl implements TestOpenApiModelService {
 **Function**: Define an open interface returning exception information for testing error handling.
 **Code Example**:
 
-```java
+``` java
 @Function
 @Open(path = "error")
 @Open.Advanced(
@@ -549,7 +549,7 @@ public OpenEipResult<TestOpenApiResponse> queryById4OpenError() {
 
 **Response Format**:
 
-```plain
+``` plain
 {
   "success": false,
   "errorCode": "20140000",
@@ -566,7 +566,7 @@ public OpenEipResult<TestOpenApiResponse> queryById4OpenError() {
 **Function**: Invoke external open interfaces, implementing parameter mapping and routing configuration.
 **Code Example**:
 
-```java
+``` java
 @Fun(TestIntegrateService.FUN_NAMESPACE)
 @Component
 public class TestIntegrateServiceImpl implements TestIntegrateService {
@@ -601,7 +601,7 @@ public class TestIntegrateServiceImpl implements TestIntegrateService {
 **Function**: Invoke interfaces that may return exceptions and configure custom exception determination logic.
 **Code Example**:
 
-```java
+``` java
 @Function
 @Integrate(config = TestEipConfig.class)
 @Integrate.Advanced(path = "/openapi/pamirs/error?tenant=pamirs")
@@ -616,7 +616,7 @@ return null;
 
 **Custom Exception Determination Class**:
 
-```java
+``` java
 @Fun(TestExceptionPredictFunction.FUN_NAMESPACE)
 public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperMap> {
     public static final String FUN_NAMESPACE ="test.TestExceptionPredictFunction";
@@ -639,7 +639,7 @@ public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperM
 **Function**: Enable AccessToken authentication in open interfaces and automatically obtain tokens in integrated interfaces.
 **Open Interface Configuration**:
 
-```java
+``` java
 @Open.Advanced(
     authenticationProcessorFun = TestAuthFunction.FUN,
     authenticationProcessorNamespace = TestAuthFunction.FUN_NAMESPACE
@@ -648,7 +648,7 @@ public class TestExceptionPredictFunction implements IEipExceptionPredict<SuperM
 
 **Integrated Interface Authentication Processing Class**:
 
-```java
+``` java
 @Component
 @Fun(TestAuthFunction.FUN_NAMESPACE)
 public class TestAuthFunction implements IEipAuthenticationProcessor<SuperMap> {
@@ -672,7 +672,7 @@ public class TestAuthFunction implements IEipAuthenticationProcessor<SuperMap> {
 **Function**: Encrypt request parameters in integrated interfaces using RSA.
 **Code Example**:
 
-```java
+``` java
 @Integrate.RequestProcessor(
     inOutConverterFun = RSAInOutConverter.FUN,
     inOutConverterNamespace = RSAInOutConverter.FUN_NAMESPACE
@@ -684,7 +684,7 @@ return null;
 
 **Encryption Processing Class**:
 
-```java
+``` java
 @Fun(RSAInOutConverter.FUN_NAMESPACE)
 @Component
 public class RSAInOutConverter implements IEipInOutConverter {
@@ -708,7 +708,7 @@ public class RSAInOutConverter implements IEipInOutConverter {
 **Function**: Implement parsing of response data in XML format.
 **Code Example**:
 
-```java
+``` java
 @Integrate.ResponseProcessor(
     serializableFun = TestSerializableFunction.FUN,
     serializableNamespace = TestSerializableFunction.FUN_NAMESPACE
@@ -720,7 +720,7 @@ public EipResult<XmlData> parseXmlResponse() {
 
 **XML Serialization Class**:
 
-```java
+``` java
 public class TestSerializableFunction implements IEipSerializable<SuperMap> {
     public static final String FUN_NAMESPACE ="test.TestSerializableFunction";
     public static final String FUN ="xmlParser";
