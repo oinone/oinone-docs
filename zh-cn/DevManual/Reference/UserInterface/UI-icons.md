@@ -6,6 +6,9 @@ category:
   - Reference
   - User interface
 order: 3
+prev:
+  text: 树（Tree）
+  link: /zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/tree.md
 next:
   text: 标准模块（Standard Modules）
   link: /zh-cn/DevManual/Reference/StandardModule/README.md

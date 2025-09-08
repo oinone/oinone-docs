@@ -7,6 +7,9 @@ category:
   - User interface
   - View architectures
 order: 5
+next:
+  text: UI icons
+  link: /en/DevManual/Reference/UserInterface/UI-icons.md
 ---
 # I. View Features
 

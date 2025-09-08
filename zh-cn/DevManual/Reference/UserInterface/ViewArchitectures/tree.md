@@ -7,6 +7,9 @@ category:
   - User interface
   - View architectures
 order: 5
+next:
+  text: UI icons
+  link: /zh-cn/DevManual/Reference/UserInterface/UI-icons.md
 ---
 # 一、视图特征
 

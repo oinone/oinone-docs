@@ -6,6 +6,9 @@ category:
   - Reference
   - User interface
 order: 3
+prev:
+  text: Tree
+  link: /en/DevManual/Reference/UserInterface/ViewArchitectures/tree.md
 next:
   text: Standard Modules
   link: /en/DevManual/Reference/StandardModule/README.md

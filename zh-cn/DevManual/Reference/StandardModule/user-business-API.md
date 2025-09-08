@@ -7,8 +7,8 @@ category:
   - 标准模块
 order: 1
 prev:
-  text: Translate Service
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/Services/translate-service.md
+  text: UI icons
+  link: /zh-cn/DevManual/Reference/UserInterface/UI-icons.md
 ---
 # 一、概述
 

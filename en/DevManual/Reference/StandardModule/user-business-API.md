@@ -7,8 +7,8 @@ category:
   - Standard Modules
 order: 1
 prev:
-  text: Translate Service
-  link: /en/DevManual/Reference/Front-EndFramework/Services/translate-service.md
+  text: UI icons
+  link: /en/DevManual/Reference/UserInterface/UI-icons.md
 ---
 # I. Overview
 

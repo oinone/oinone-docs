@@ -8,8 +8,8 @@ category:
   - Services
 order: 11
 next:
-  text: User & Business API
-  link: /en/DevManual/Reference/StandardModule/user-business-API.md
+  text: View architectures
+  link: /en/DevManual/Reference/UserInterface/ViewArchitectures/README.md
 ---
 In Oinone Kunlun, a "translation" module is built - in. Combined with the front - end "buried point" translation function, it can realize the translation function for any language. This article will introduce the use of the "translation" function and its implementation details.
 
