@@ -38,16 +38,17 @@ Refer to:
 
 ```xml
 <properties>
-    <!-- Version can be updated according to the Oinone Release Announcement (https://doc.oinone.top/category/version) -->
-    <!-- The version number must be consistent with the deployed Enterprise Edition version. For any questions, please contact Shushi Oinone staff -->
+    <!-- 可根据Oinone发布公告(https://doc.oinone.top/category/version)更新版本 -->
+    <!-- 版本号需与部署企业版版本号保持一致，有疑问可联系数式Oinone员工 -->
     <oinone-bom.version>6.2.10</oinone-bom.version>
 </properties>
 
 <dependencyManagement>
-    <!-- Other dependency management -->
-    <!-- ... -->
+    <!-- 去掉开源版本pro.shushi.pamirs的依赖 -->
+    <!-- 统一替换下面的oinone bom依赖 -->
+    <!-- 注意MySQL驱动的依赖不要去掉 -->
   
-    <!-- Add oinone bom -->
+    <!-- 添加oinone bom-->
     <dependency>
         <groupId>pro.shushi</groupId>
         <artifactId>oinone-bom</artifactId>
@@ -55,6 +56,9 @@ Refer to:
         <type>pom</type>
         <scope>import</scope>
     </dependency>
+  
+    <!-- 其他依赖管理 -->
+    <!-- ... -->
 </dependencyManagement>
 ```
 

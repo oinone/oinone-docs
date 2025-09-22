@@ -44,8 +44,9 @@ prev:
 </properties>
 
 <dependencyManagement>
-    <!-- 其他依赖管理 -->
-    <!-- ... -->
+    <!-- 去掉开源版本pro.shushi.pamirs的依赖 -->
+    <!-- 统一替换下面的oinone bom依赖 -->
+    <!-- 注意MySQL驱动的依赖不要去掉 -->
   
     <!-- 添加oinone bom-->
     <dependency>
@@ -55,6 +56,9 @@ prev:
         <type>pom</type>
         <scope>import</scope>
     </dependency>
+  
+    <!-- 其他依赖管理 -->
+    <!-- ... -->
 </dependencyManagement>
 ```
 
@@ -156,7 +160,7 @@ License文件在数式发布的企业版部署包中license文件夹下，yml文
 
 （二）、业务应用中间件配置
 
-  业务系统的**中间件(zk/redis/rockermq)配置和部署的企业版设计器中间件保持一致**；
+  业务系统的**中间件(zk/redis/rocketmq)配置和部署的企业版设计器中间件保持一致**；
 
 （三）、业务应用数据库配置
 
