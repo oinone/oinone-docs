@@ -1090,7 +1090,7 @@ public class TestModelFunction {
 
 Oinone XSchedule 是 Oinone 框架提供的一个用于实现定时任务调度的功能模块，它允许开发者方便地在应用程序中定义和执行定时任务。以下是关于 Oinone XSchedule 的使用说明：
 
-通过在方法上添加 `@XScheduled` 注解来定义定时任务。`@XScheduled` 注解目前只支持通过 `cron` 属性来配置任务的执行时间，示例如下：
+通过在方法上添加 `@XSchedule` 注解来定义定时任务。`@XSchedule` 注解目前只支持通过 `cron` 属性来配置任务的执行时间，示例如下：
 
 ```java
 @Component
@@ -1098,7 +1098,7 @@ Oinone XSchedule 是 Oinone 框架提供的一个用于实现定时任务调度�
 public class CronJobExample {
     String FUN_NAMESPACE = "test.CronJobExample";
 
-    @XScheduled(cron = "0 0 10 * * *") // 每天上午10点执行
+    @XSchedule(cron = "0 0 10 * * *") // 每天上午10点执行
     @Function
     public void cronJob() {
         System.out.println("Cron job is running...");

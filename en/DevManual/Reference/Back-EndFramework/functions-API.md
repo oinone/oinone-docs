@@ -1089,7 +1089,7 @@ The business module project needs to introduce the api package of the `trigger` 
 
 Oinone XSchedule is a functional module provided by the Oinone framework for implementing scheduled task scheduling, allowing developers to easily define and execute scheduled tasks in applications. The following is the usage description of Oinone XSchedule:
 
-Define scheduled tasks by adding the `@XScheduled` annotation to methods. The `@XScheduled` annotation currently only supports configuring task execution time through the `cron` attribute, as shown in the example:
+Define scheduled tasks by adding the `@XSchedule` annotation to methods. The `@XSchedule` annotation currently only supports configuring task execution time through the `cron` attribute, as shown in the example:
 
 ```java
 @Component
@@ -1097,7 +1097,7 @@ Define scheduled tasks by adding the `@XScheduled` annotation to methods. The `@
 public class CronJobExample {
     String FUN_NAMESPACE = "test.CronJobExample";
 
-    @XScheduled(cron = "0 0 10 * * *") // Execute at 10 AM daily
+    @XSchedule(cron = "0 0 10 * * *") // Execute at 10 AM daily
     @Function
     public void cronJob() {
         System.out.println("Cron job is running...");
