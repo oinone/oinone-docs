@@ -1137,10 +1137,10 @@ A Cron expression is a string used to define the execution time of scheduled tas
 
 | **Character** | **Meaning and Usage**                                               | **Example and Explanation**                                               |
 | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `*`      | Wildcard, representing all possible values for the field                                 | `* * * * *`: Execute every minute and second; `0 * * * *`: Execute at the 0th second of every hour |
+| `*`      | Wildcard, representing all possible values for the field                                 | `* * * * * *`: Execute every minute and second; `0 0 * * * *`: Execute at the 0th second of every hour |
 | `,`      | Separate multiple values                                               | `0 0 8,12,16 * * *`: Execute at 8 AM, 12 PM, and 4 PM daily           |
 | `-`      | Specify a continuous range                                               | `0 0 9-17 * * *`: Execute once every hour from 9 AM to 5 PM           |
-| `/`      | Define interval frequency                                               | `0/15 * * * *`: Execute every 15 minutes (starting from the 0th minute, i.e., 0, 15, 30, 45 minutes) |
+| `/`      | Define interval frequency                                               | `0 0/15 * * * ?`: Execute every 15 minutes (starting from the 0th minute, i.e., 0, 15, 30, 45 minutes) |
 | `?`      | Only used in **date** and **week** fields, indicating no specified value (both cannot set specific values simultaneously) | `0 0 12 * * ?`: Execute at 12 PM daily, no specified week; `0 0 12 1 * ?`: Execute at 12 PM on the 1st day of each month |
 | `#`      | Only used in the **week** field, specifying the nth week X of the month                   | `0 0 12 ? * 1#3`: Execute at 12 PM on the third Monday of each month               |
 | `L`      | Only used in **date** and **week** fields, representing "last"                | Date: `0 0 12 L * *`: Execute at 12 PM on the last day of each month; Week: `0 0 12 ? * 6L`: Execute at 12 PM on the last Saturday of each month |
