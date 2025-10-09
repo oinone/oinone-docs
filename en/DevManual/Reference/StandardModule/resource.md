@@ -16,16 +16,25 @@ In Oinone, built-in model definitions exist for common basic data to support spe
 
 ## (Ⅰ) pom Dependencies
 
-``` xml
+
+### Add relevant dependency packages to the api project
+
+```xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-resource-api</artifactId>
 </dependency>
+```
+
+### Start the project and add the relevant dependency packages
+
+```xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-resource-core</artifactId>
 </dependency>
 ```
+
 
 ## (Ⅱ) Yaml Configuration
 

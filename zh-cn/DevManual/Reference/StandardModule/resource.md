@@ -16,16 +16,24 @@ order: 5
 
 ## （一）pom 依赖
 
-``` xml
+### api工程加入相关依赖包
+
+```xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-resource-api</artifactId>
 </dependency>
+```
+
+### 启动工程加入相关依赖包
+
+```xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-resource-core</artifactId>
 </dependency>
 ```
+
 
 ## （二）Yaml 配置
 
