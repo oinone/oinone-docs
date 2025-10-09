@@ -18,11 +18,18 @@ The workflow runtime requires dependencies on related modules.
 
 ## (Ⅰ) pom.xml Dependency Description
 
-``` xml
+### Add relevant dependency packages to the API project
+
+```xml
 <dependency>
     <groupId>pro.shushi.pamirs.workflow</groupId>
     <artifactId>pamirs-workflow-api</artifactId>
 </dependency>
+```
+
+### Start the project and add the relevant dependency packages
+
+```xml
 <dependency>
     <groupId>pro.shushi.pamirs.workflow</groupId>
     <artifactId>pamirs-workflow-core</artifactId>

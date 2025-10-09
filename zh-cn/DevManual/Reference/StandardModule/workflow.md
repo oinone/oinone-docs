@@ -18,11 +18,18 @@ order: 3
 
 ## （一）pom.xml依赖说明
 
-``` xml
+### API工程加入相关依赖包
+
+```xml
 <dependency>
     <groupId>pro.shushi.pamirs.workflow</groupId>
     <artifactId>pamirs-workflow-api</artifactId>
 </dependency>
+```
+
+### 启动工程加入相关依赖包
+
+```xml
 <dependency>
     <groupId>pro.shushi.pamirs.workflow</groupId>
     <artifactId>pamirs-workflow-core</artifactId>
@@ -44,6 +51,7 @@ order: 3
     <artifactId>pamirs-connectors-event-rocketmq</artifactId>
 </dependency>
 ```
+
 
 ## （二）application.yml配置说明
 
