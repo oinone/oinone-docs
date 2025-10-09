@@ -5,23 +5,23 @@ category:
   - Installation and Upgrade
 order: 3
 ---
-# 1. Overview
+# Ⅰ. Overview
 The image of the **Shushi Oinone Enterprise-level Low-Code R&D Platform** in the Cloud Marketplace includes structure packages for the operating system, middleware, and Oinone no-code designer. With only minimal configuration modifications, it can be launched with one click, helping users quickly set up an Oinone Enterprise Edition environment.
 
 
-# 2. Purchase Alibaba Cloud ECS Instance
+# Ⅱ. Purchase Alibaba Cloud ECS Instance
 Purchase an Alibaba Cloud ECS (Elastic Compute Service) instance and select the **"Shushi Oinone Enterprise-level Low-Code R&D Platform"** image.
 
-## 2.1 Shushi Oinone Enterprise-level Low-Code R&D Platform (Cloud Marketplace)
+## (Ⅰ) Shushi Oinone Enterprise-level Low-Code R&D Platform (Cloud Marketplace)
 [Shushi Oinone Enterprise-level Low-Code R&D Platform 【Latest Version】_JAVA_ERP_OA-_Cloud Marketplace - Alibaba Cloud](https://market.aliyun.com/detail/cmjj00071974.html?spm=5176.730005.result.2.5b40414aJ3Zx2a&innerSource=search_oinone)
 
-## 2.2 Select 【Region】 and Click 【Purchase】
+## (Ⅱ) Select 【Region】 and Click 【Purchase】
 - The region can remain unchanged.
 - If internal network interconnection with an existing ECS instance is required, select the same region for the new instance.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Deploy-Oinone-through-the-cloud-marketplace/1759140825748-ebaf2794-6737-4c42-b95e-78bcc250d252.png)
 
-## 2.3 Purchase the ECS Instance
+## (Ⅲ) Purchase the ECS Instance
 1. Choose the billing method based on your needs. It is recommended to select a specification with **4 vCPUs and 16GB+ memory**.
    - The image includes a database (MySQL), middleware (Redis/RocketMQ/Zookeeper/Nginx), and the Oinone Enterprise Edition designer application. Sufficient resources must be ensured.
    
@@ -36,7 +36,7 @@ Purchase an Alibaba Cloud ECS (Elastic Compute Service) instance and select the 
 
 3. A bandwidth of **5M+** is recommended. Configure other settings according to the ECS purchase prompts.
 
-## 2.4 ECS Instance Configuration
+## (Ⅳ) ECS Instance Configuration
 1. Configure the ECS security group and open the following necessary ports:
    - 22: SSH port
    - 88: Designer web access port
@@ -53,9 +53,9 @@ Purchase an Alibaba Cloud ECS (Elastic Compute Service) instance and select the 
 2. Set the root password to enable SSH login.
 
 
-# 3. Run Oinone Enterprise Edition
+# Ⅲ. Run Oinone Enterprise Edition
 
-## 3.1 Understand the Deployment Package Directory
+## (Ⅰ) Understand the Deployment Package Directory
 After logging into the instance, switch to the directory: `/opt`. The corresponding file list and directory structure are as follows:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/Deploy-Oinone-through-the-cloud-marketplace/1759230389315-fb2f276a-7647-4120-8fba-2a9916de7551.png)
@@ -78,10 +78,10 @@ After logging into the instance, switch to the directory: `/opt`. The correspond
 |___Deployment Guide.md
 ```
 
-## 3.2 Replace the License File
+## (Ⅱ) Replace the License File
 Copy the license file provided by Shushi (typically named like `xxxx-trial.lic`) to the `licence` directory mentioned above.
 
-## 3.3 Modify Necessary Configurations
+## (Ⅲ) Modify Necessary Configurations
 Use `vi` to open `start-all.sh`, modify the necessary parameters for configuration, and save the file.
 
 ```plain
@@ -101,7 +101,7 @@ export OINONE_IMAGE_TAG=6.3:6.3.3
 # ==================== Configuration Information (Mandatory) End =====================
 ```
 
-## 3.4 Start and Access
+## (Ⅳ) Start and Access
 1. Start the platform: Execute the following command in the terminal:
    ```plain
    sh start-all.sh
@@ -111,7 +111,7 @@ export OINONE_IMAGE_TAG=6.3:6.3.3
 2. Access the platform: Visit `http://[Public IP of the Server]:88`. The default login username and password are both `admin`.
 
 
-# 4. Connect Local Environment to Designer Middleware
+# Ⅳ. Connect Local Environment to Designer Middleware
 After deploying the **Oinone Enterprise-level Low-Code R&D Platform** as above, a no-code designer and a set of middleware are also deployed. The configuration information for each middleware is as follows:
 
 | **Middleware** | **Connection IP**          | **Port** | **Password**   |
