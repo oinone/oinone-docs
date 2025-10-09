@@ -62,6 +62,20 @@ Add the dependency on pamirs-eip2-api to xxxModule-api:
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-core</artifactId>
 </dependency>
+<dependency>
+  <groupId>pro.shushi.pamirs.core</groupId>
+  <artifactId>pamirs-eip2-view</artifactId>
+</dependency>
+<dependency>
+  <groupId>pro.shushi.pamirs.core</groupId>
+  <artifactId>pamirs-eip2-designer</artifactId>
+</dependency>
+
+<!-- After version 6.3.0, eip2-mcp will be added. Do not add it in previous versions -->
+<dependency>
+  <groupId>pro.shushi.pamirs.core</groupId>
+  <artifactId>pamirs-eip2-mcp</artifactId>
+</dependency>
 ```
 
 ## (Ⅲ) Add Module Dependencies to the Project's Module

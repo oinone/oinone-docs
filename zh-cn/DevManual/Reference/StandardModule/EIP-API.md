@@ -62,6 +62,20 @@ pamirs:
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-core</artifactId>
 </dependency>
+<dependency>
+  <groupId>pro.shushi.pamirs.core</groupId>
+  <artifactId>pamirs-eip2-view</artifactId>
+</dependency>
+<dependency>
+  <groupId>pro.shushi.pamirs.core</groupId>
+  <artifactId>pamirs-eip2-designer</artifactId>
+</dependency>
+
+<!-- 6.3.0版本后增加eip2-mcp，之前的版本不要增加 -->
+<dependency>
+  <groupId>pro.shushi.pamirs.core</groupId>
+  <artifactId>pamirs-eip2-mcp</artifactId>
+</dependency>
 ```
 
 ## （三）项目的模块增加模块依赖
