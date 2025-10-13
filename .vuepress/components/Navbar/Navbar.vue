@@ -436,7 +436,7 @@ a.nav-link:hover {
         }
 
         .dropdown-submenu {
-          background: transparent;
+          background: transparent !important;
         }
 
         .nav-channel {
