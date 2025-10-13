@@ -265,7 +265,7 @@
                                   href="https://doc.oinone.top/"
                                 >社区</a
                                 >
-                                <a class="dropdown-item" :href=`${WELCOME_WEBSITE_URL}/document.html`
+                                <a class="dropdown-item" :href="`${WELCOME_WEBSITE_URL}/document.html`"
                                 >学习</a
                                 >
                               </div>
