@@ -43,7 +43,7 @@
                     :href="`${WELCOME_WEBSITE_URL}/product.html`"
                     role="button"
                     aria-expanded="false"
-                    >产品中心</a
+                  >产品中心</a
                   >
                   <div class="dropdown-menu nav-product w-100">
                     <div class="container">
@@ -61,22 +61,22 @@
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/lowcodeDesign.html`"
-                                  >低代码开发平台</a
+                                >低代码开发平台</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/nocodeDesign.html`"
-                                  >无代码开发平台</a
+                                >无代码开发平台</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/ipaasDesign.html`"
-                                  >集成开发平台</a
+                                >集成开发平台</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/AI-large-model.html`"
-                                  >AI大模型开发</a
+                                >AI大模型开发</a
                                 >
                               </div>
                             </div>
@@ -97,32 +97,32 @@
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/systemCapability?menuName=user`"
-                                  >用户与组织</a
+                                >用户与组织</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/systemCapability?menuName=authority`"
-                                  >权限管理</a
+                                >权限管理</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/systemCapability?menuName=file`"
-                                  >文件管理</a
+                                >文件管理</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/systemCapability?menuName=message`"
-                                  >消息中心</a
+                                >消息中心</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/systemCapability?menuName=internationalization`"
-                                  >国际化</a
+                                >国际化</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/systemCapability?menuName=audit`"
-                                  >业务审计</a
+                                >业务审计</a
                                 >
                               </div>
                             </div>
@@ -138,32 +138,32 @@
                             >
                               数式Oinone核心产品特性
                             </p>
-                            <div class="dropdown-menu" id="sub-menu-3">
+                            <div class="dropdown-menu dropdown-submenu" id="sub-menu-3">
                               <div class="col-12">
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/choose?menuName=understand`"
-                                  >低无一体</a
+                                >低无一体</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/choose?menuName=powerful`"
-                                  >面向软件公司</a
+                                >面向软件公司</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/choose?menuName=marvel`"
-                                  >场景无限制</a
+                                >场景无限制</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/choose?menuName=extreme`"
-                                  >应用级扩容</a
+                                >应用级扩容</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/choose`"
-                                  >可分可合</a
+                                >可分可合</a
                                 >
                               </div>
                             </div>
@@ -183,7 +183,7 @@
                     :href="`${WELCOME_WEBSITE_URL}/serve`"
                     role="button"
                     aria-expanded="false"
-                    >服务中心</a
+                  >服务中心</a
                   >
                   <div class="dropdown-menu nav-serve w-100">
                     <div class="container">
@@ -201,22 +201,22 @@
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/demonstrate.html`"
-                                  >预约演示</a
+                                >预约演示</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/consultation.html`"
-                                  >方案咨询</a
+                                >方案咨询</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/deployment.html`"
-                                  >私有部署</a
+                                >私有部署</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/customized.html`"
-                                  >找人定制</a
+                                >找人定制</a
                                 >
                               </div>
                             </div>
@@ -237,12 +237,12 @@
                                 <a
                                   class="dropdown-item"
                                   href="https://doc.oinone.top/faq"
-                                  >问答</a
+                                >问答</a
                                 >
                                 <a
                                   class="dropdown-item"
                                   :href="`${WELCOME_WEBSITE_URL}/download.html`"
-                                  >下载</a
+                                >下载</a
                                 >
                               </div>
                             </div>
@@ -263,18 +263,18 @@
                                 <a
                                   class="dropdown-item"
                                   href="https://doc.oinone.top/"
-                                  >社区</a
+                                >社区</a
                                 >
                                 <a class="dropdown-item" :href=`${WELCOME_WEBSITE_URL}/document.html`
-                                  >学习</a
+                                >学习</a
                                 >
                               </div>
                             </div>
                           </li>
                         </ul>
                       </div>
-                      <div class="col-3 nav-serve nav-img">
-                        <p>数式Oinone核心产品特性</p>
+                      <div class="col-3 nav-serve nav-img nav-serve-title">
+                        <p>《精讲面向软件公司的低代码平台——以Oinone为例》</p>
                       </div>
                     </div>
                   </div>
@@ -289,29 +289,29 @@
                     :href="`${WELCOME_WEBSITE_URL}/partner`"
                     role="button"
                     aria-expanded="false"
-                    >合作伙伴</a
+                  >合作伙伴</a
                   >
                   <div class="dropdown-menu nav-channel">
                     <a
                       class="dropdown-item"
                       :href="`${WELCOME_WEBSITE_URL}/channelApply`"
-                      >渠道申请</a
+                    >渠道申请</a
                     >
                     <a
                       class="dropdown-item"
                       :href="`${WELCOME_WEBSITE_URL}/partnerDirectory`"
-                      >伙伴名录</a
+                    >伙伴名录</a
                     >
                     <a
                       class="dropdown-item"
                       :href="`${WELCOME_WEBSITE_URL}/expertDB`"
-                      >专家库</a
+                    >专家库</a
                     >
                   </div>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" :href="`${WELCOME_WEBSITE_URL}/about`"
-                    >关于数式</a
+                  >关于数式</a
                   >
                 </li>
               </ul>
@@ -335,45 +335,45 @@
 </template>
 
 <script setup lang="ts">
-import Navbar from "vuepress-theme-hope/navbar/components/Navbar.js";
-import RepoLink from "vuepress-theme-hope/navbar/components/RepoLink";
-import GiteeRepo from "./GiteeRepo.js";
-import LanguageDropdown from "vuepress-theme-hope/navbar/components/LanguageDropdown.js";
-import OutlookButton from "vuepress-theme-hope/outlook/components/OutlookButton";
-import {defineEmits, inject, onMounted, onUnmounted} from "vue";
-import noopComponent from "./noopComponent.vue";
+import Navbar from 'vuepress-theme-hope/navbar/components/Navbar.js';
+import RepoLink from 'vuepress-theme-hope/navbar/components/RepoLink';
+import GiteeRepo from './GiteeRepo.js';
+import LanguageDropdown from 'vuepress-theme-hope/navbar/components/LanguageDropdown.js';
+import OutlookButton from 'vuepress-theme-hope/outlook/components/OutlookButton';
+import { defineEmits, inject, onMounted, onUnmounted } from 'vue';
+import noopComponent from './noopComponent.vue';
 
 declare const __VP_MULTI_LANGUAGES__: Boolean;
 
 const Language = __VP_MULTI_LANGUAGES__ ? LanguageDropdown : noopComponent;
 
-const os = inject("os");
+const os = inject('os');
 
-const emit = defineEmits(["toggleSidebar"]);
+const emit = defineEmits(['toggleSidebar']);
 
 const toggleSidebarEvent = () => {
-  emit("toggleSidebar");
+  emit('toggleSidebar');
 };
 
 const env = import.meta.env;
 
 const WELCOME_WEBSITE_URL =
-  env?.VITE_WELCOME_WEBSITE_URL || "https://www.oinone.top";
+  env?.VITE_WELCOME_WEBSITE_URL || 'https://www.oinone.top';
 
 let toggleSidebarButton;
 onMounted(async () => {
-  await import("./js/style.js");
+  await import('./js/style.js');
   const toggleSidebarButtons = document.getElementsByClassName(
-    "vp-toggle-sidebar-button"
+    'vp-toggle-sidebar-button'
   );
   if (toggleSidebarButtons.length > 0) {
     toggleSidebarButton = toggleSidebarButtons[0] as HTMLElement;
-    toggleSidebarButton.addEventListener("click", toggleSidebarEvent);
+    toggleSidebarButton.addEventListener('click', toggleSidebarEvent);
   }
 });
 onUnmounted(() => {
   toggleSidebarButton &&
-    toggleSidebarButton.removeEventListener("click", toggleSidebarEvent);
+  toggleSidebarButton.removeEventListener('click', toggleSidebarEvent);
 });
 </script>
 
@@ -382,12 +382,12 @@ onUnmounted(() => {
 @import "./css/style-2.min.css";
 
 .custom-vp-navbar
-  .navbar
-  .container
-  .collapse
-  .navbar-nav
-  li.nav-item
-  a.nav-link:hover {
+.navbar
+.container
+.collapse
+.navbar-nav
+li.nav-item
+a.nav-link:hover {
   color: rgb(3, 93, 255);
 }
 
@@ -435,6 +435,10 @@ onUnmounted(() => {
           }
         }
 
+        .dropdown-submenu {
+          background: transparent;
+        }
+
         .nav-channel {
           display: flex;
           flex-direction: column;
@@ -447,6 +451,15 @@ onUnmounted(() => {
       margin-right: 1.75rem;
       color: var(--th-color);
     }
+  }
+
+  .nav-serve-title {
+    width: 235px;
+    white-space: break-spaces;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    padding-left: 4px;
   }
 }
 </style>
