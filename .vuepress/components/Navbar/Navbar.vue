@@ -200,22 +200,22 @@
                               <div class="col-12">
                                 <a
                                   class="dropdown-item"
-                                  :href="`${WELCOME_WEBSITE_URL}/demonstrate`"
+                                  :href="`${WELCOME_WEBSITE_URL}/demonstrate.html`"
                                   >预约演示</a
                                 >
                                 <a
                                   class="dropdown-item"
-                                  :href="`${WELCOME_WEBSITE_URL}/consultation`"
+                                  :href="`${WELCOME_WEBSITE_URL}/consultation.html`"
                                   >方案咨询</a
                                 >
                                 <a
                                   class="dropdown-item"
-                                  :href="`${WELCOME_WEBSITE_URL}/deployment`"
+                                  :href="`${WELCOME_WEBSITE_URL}/deployment.html`"
                                   >私有部署</a
                                 >
                                 <a
                                   class="dropdown-item"
-                                  :href="`${WELCOME_WEBSITE_URL}/customized`"
+                                  :href="`${WELCOME_WEBSITE_URL}/customized.html`"
                                   >找人定制</a
                                 >
                               </div>
@@ -241,7 +241,7 @@
                                 >
                                 <a
                                   class="dropdown-item"
-                                  :href="`${WELCOME_WEBSITE_URL}/download`"
+                                  :href="`${WELCOME_WEBSITE_URL}/download.html`"
                                   >下载</a
                                 >
                               </div>
@@ -265,7 +265,7 @@
                                   href="https://doc.oinone.top/"
                                   >社区</a
                                 >
-                                <a class="dropdown-item" href="/document"
+                                <a class="dropdown-item" :href=`${WELCOME_WEBSITE_URL}/document.html`
                                   >学习</a
                                 >
                               </div>
