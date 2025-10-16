@@ -362,7 +362,7 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 
 ### 2、使用 createRow 方法创建自定义内容的预置行
 
-除了预置空行之外，我们还可以通过 `createRow` 方法创建行并且设置对应值自定义预置行。这在具有示例填写的导入模板中非常是有意义的。示例代码如下所示：
+除了预置空行之外，我们还可以通过 `createRow` 方法创建行并且设置对应值自定义预置行，这在具有示例填写的导入模板中是非常有意义的。示例代码如下所示：
 
 ``` java
 @Component
