@@ -126,7 +126,7 @@ Components used in masks are called **Mask Components**. According to their func
 | Divider       | DividerWidget | `<widget widget="divider" />` |
 
 
-# VI. Registration of Mask Components
+# Ⅲ. Registration of Mask Components
 
 ## (Ⅰ) Registration Options for Mask Components
 
@@ -222,7 +222,7 @@ The corresponding `DOM` structure in the browser will wrap a `div` tag outside t
 
 - Sub-components defined in container components with layouts, such as: notification, divider, language, etc.
 
-# VII. Registering Masks
+# Ⅳ. Registering Masks
 
 Similar to component registration, masks can be replaced or modified through registration.
 
@@ -418,7 +418,7 @@ export class OrganizationSwitcherMaskEditor implements MaskEditor {
 - findTopBarWidgets: Can only find the top bar component list of the **built-in mask**. Custom templates need to be found according to the data structure.
 - generatorWidget: Can only generate components registered with `widget`. Components registered with `dslNodeType` need to use the `generatorWidgetByDslNodeType` method.
 
-# VIII. Reference List
+# Ⅴ. Reference List
 
 ## (Ⅰ) Public Components
 

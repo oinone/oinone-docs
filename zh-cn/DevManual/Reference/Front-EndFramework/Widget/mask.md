@@ -126,7 +126,7 @@ order: 3
 | 分割线       | DividerWidget | `<widget widget="divider" />` |
 
 
-# 六、母版组件的注册
+# 三、母版组件的注册
 
 ## （一）母版组件的注册可选项
 
@@ -222,7 +222,7 @@ export class AppSwitcherWidget extends MaskWidget
 
 + 在带有布局的容器组件中定义的子组件。如：notification、divider、language 等。
 
-# 七、注册母版
+# 四、注册母版
 
 与注册组件类似，母版可以通过注册的方式替换或者修改。
 
@@ -418,7 +418,7 @@ export class OrganizationSwitcherMaskEditor implements MaskEditor {
 + findTopBarWidgets：只能查找 **内置母版** 的顶部栏组件列表，自定义模板需要根据数据结构自行查找。
 + generatorWidget：只能生成使用 `widget` 注册的组件，使用 `dslNodeType` 注册的组件需使用 `generatorWidgetByDslNodeType` 方法。
 
-# 八、Reference List
+# 五、Reference List
 
 ## （一）公共组件
 
