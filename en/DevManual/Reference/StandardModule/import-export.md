@@ -130,7 +130,7 @@ public class DemoModule implements PamirsModule {
 
 ``` yaml
 pamirs:
-	boot:
+  boot:
     modules:
       - file
   file:
