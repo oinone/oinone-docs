@@ -25,7 +25,7 @@ In the drop-down selection of application/module filtering options, only a preli
 + Select or enter conditions in the filtering area to filter the data encoding.
 + Click "Reset Filter" to clear all existing filtering conditions.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/shaixuan.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626145944634.png)
 
 # II. Import Data Encoding
 ### 1. Function Introduction
@@ -53,14 +53,14 @@ When uploading a file, you should upload the file corresponding to the current o
 ### 2. Operation Method
 + Click "Import Data Encoding" and select the affiliated application.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/daoru1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150034424.png)
 
 + Click the "Current Mode" button to switch the operation mode.
 + Click "Click to download the import data encoding template" to download the import template corresponding to the mode.
 + Click "Import Instructions" to view the import instructions corresponding to the mode.
 + Click "Click to upload" or drag the file to the specified location to upload the file.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/daoru2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150127224.png)
 
 # III. Add Data Encoding
 ### 1. Function Introduction
@@ -89,12 +89,12 @@ If you choose the "YYYYMMDD" format, the available options include "Year", "Mont
     - Step Type: The default value is "Custom Step", and it can also be set to "Random Step between 1 and 10".
     - Step: When "Custom Step" is selected, the set step is the actual step. When "Random Step between 1 and 10" is selected, the actual step is a random integer between 1 and the set value.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/tianjia1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150218942.png)
 
 ### 2. Operation Method
 Click "Add Data Encoding", select the affiliated application/module to add. After clicking "Add", a pop-up window will appear. After filling in the information, click "OK" to successfully create the data encoding.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/tianjia2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150316366.png)
 
 # IV. Modify Data Encoding
 ### 1. Function Introduction
@@ -109,7 +109,7 @@ The successfully created data encoding can be modified.
 ### 2. Operation Method
 Click the "Modify" icon to modify the data encoding.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/xiugai.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150316366.png)
 
 # V. View Reference Relationships
 ### 1. Function Introduction
@@ -119,14 +119,14 @@ Through this function, you can view various elements that have reference relatio
 
 The list item of a field with a reference relationship displays the name of the field, and the list item links to the design page of the corresponding field.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/yinyong1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150530527.png)
 
 :::
 
 ### 2. Operation Method
 Click the "View Referenced Information" icon to view the reference relationships.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/yinyong2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150624923.png)
 
 # VI. Disable/Enable Data Encoding
 ### 1. Function Introduction
@@ -141,7 +141,7 @@ The disabled data encoding will no longer be displayed in the optional list when
 ### 2. Operation Method
 Click "Disable", the data encoding will be set to the disabled state, and the button will change to "Set to Enabled"; click again, and the data encoding will be set to the enabled state.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/feiqi.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150830233.png)
 
 # VII. Delete Data Encoding
 ### 1. Function Introduction
@@ -162,7 +162,7 @@ The deleted data encoding will no longer appear in the encoding list, and this o
 ### 2. Operation Method
 Click "Delete" to delete the data encoding.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E7%BC%96%E7%A0%81/shanchu.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/ModelDesigner/DataCoding/image-20250626150936841.png)
 
 # VIII. Attachment: Glossary
 | Term | Description |
