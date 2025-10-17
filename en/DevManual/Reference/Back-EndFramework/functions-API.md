@@ -966,7 +966,7 @@ Models.directive().run(() -> {
 }, SystemDirectiveEnum.HOOK);
 ```
 
-# IV. Trigger Triggers
+# IV. Trigger
 
 A trigger is a mechanism that drives logic execution based on function execution events. The following details configuration, task types, etc.
 

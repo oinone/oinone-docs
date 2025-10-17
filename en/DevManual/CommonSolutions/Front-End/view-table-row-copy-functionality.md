@@ -1,325 +1,144 @@
 ---
-title: Views:Table Column Merging
+title: Views:Table Row Copy Functionality 
 index: true
 category:
    - Frontend
-order: 12
+order: 14
 ---
 
-# I. Scenario Overview
-This article explains how to implement table cell merging and header grouping through customization.
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2025010912371117.png)
+# Ⅰ. Scenario Overview
+After clicking the Add Button, the table displays an empty row without business data, and **inline editing** is required.
 
-# II. Code Example
-[Click to download the corresponding code](https://doc.oinone.top/wp-content/uploads/2025/01/merg-table.zip)
 
-# III. Operation Steps
-## (Ⅰ) Customize `widget`
-Create a custom `MergeTableWidget` to support cell merging and header grouping.
+# Ⅱ. Solution
+## (I) Add a new copyTable component in the layout directory; the component code is as follows
+```javascript
+import { BaseElementWidget, SPI, TableWidget, Widget } from '@kunlun/dependencies';
+import { OioNotification } from '@kunlun/vue-ui-antd';
 
+@SPI.ClassFactory(BaseElementWidget.Token({ widget: 'copy-table-row' }))
+  export class CopyTableWidget extends TableWidget {
+    @Widget.BehaviorSubContext(Symbol("$$TABLE_COPY_CB"), {})
+    private tableCopySub;
+
+    @Widget.BehaviorSubContext(Symbol("$$TABLE_DELETE_CB"))
+    private tableDeleteSub;
+
+    @Widget.Reactive()
+    @Widget.Provide()
+    protected get editorMode(): any {
+      return 'manual'
+    }
+
+    public async copyRowData(row,currentRow) {
+      // Get the vxetable instance
+      const tableRef = this.getTableInstance()!.getOrigin();
+      if (tableRef) {
+        // How to handle copied unsaved data?
+        const insertData = tableRef.getInsertRecords();
+        if(insertData.length > 0){
+          OioNotification.warning("Warning","Please check unsaved data!")
+          return;
+        }
+
+        const { row: newRow } = await tableRef.insertAt(row,currentRow)
+        // Insert a piece of data and trigger verification; the field name can be replaced
+        await tableRef.setEditCell(newRow, 'city')
+      }
+    }
+
+    public async deleteRowData(row) {
+      // Get the vxetable instance
+      const tableRef = this.getTableInstance()!.getOrigin();
+      if (tableRef) {
+        // How to handle copied unsaved data?
+        console.log(row, 'remove row')
+        tableRef.remove(row)
+        // Insert a piece of data and trigger verification
+      }
+    }
+
+    async mounted() {
+      super.mounted();
+      this.tableCopySub.subject.next({copyCb: (row,currentRow) => this.copyRowData(row,currentRow)})
+      this.tableDeleteSub.subject.next({deleteCb: (row) => this.deleteRowData(row)})
+    }
+  }
+```
+
+## (II) Override the Add Button or Copy Row Button in the action directory; the code is as follows
 ```typescript
-// MergeTableWidget.ts
-import { BaseElementWidget, SPI, ViewType, TableWidget, Widget, DslRender } from '@oinone/kunlun-dependencies';
-import MergeTable from './MergeTable.vue';
+import {ActionWidget, ClickResult, ReturnPromise, SPI, Widget} from "@kunlun/dependencies";
 
 @SPI.ClassFactory(
-  BaseElementWidget.Token({
-    viewType: ViewType.Table,
-    widget: 'MergeTableWidget'
+  ActionWidget.Token({
+    model: 'resource.k2.Model0000001211', // Replace with the corresponding model
+    name: 'uiView57c25f66fac9439089d590a4ac47f027' // Replace with the name of the corresponding action
   })
 )
-export class MergeTableWidget extends TableWidget {
-  public initialize(props) {
-    super.initialize(props);
-    this.setComponent(MergeTable);
-    return this;
-  }
+  export class CopyRow extends ActionWidget{
+    @Widget.BehaviorSubContext(Symbol("$$TABLE_COPY_CB"))
+    private tableCopySub;
 
-  /**
-   * Table display fields
-   */
-  @Widget.Reactive()
-  public get currentModelFields() {
-    return this.metadataRuntimeContext.model.modelFields.filter((f) => !f.invisible);
-  }
+    private tableCopyCb;
 
-  /**
-   * Render in-row action VNodes
-   */
-  @Widget.Method()
-  protected renderRowActionVNodes() {
-    const table = this.metadataRuntimeContext.viewDsl!;
+    @Widget.Method()
+    public clickAction(): ReturnPromise<ClickResult> {
+      // Copy a row based on a specific piece of data; the button is inline
+      // let data = JSON.parse(JSON.stringify(this.activeRecords?.[0]));
+      // Delete the ID when copying the row
+      // if(data) {
+      //   delete data.id
+      //   delete  data['_X_ROW_KEY']
+      // }
+      // console.log(data, 'datatatatat')
+      // this.tableCopyCb(data,this.activeRecords?.[0])
 
-    const rowAction = table?.widgets.find((w) => w.slot === 'rowActions');
-    if (rowAction) {
-      return rowAction.widgets.map((w) => DslRender.render(w));
+      // Global addition without default data
+      this.tableCopyCb({},null)
     }
 
-    return null;
-  }
-}
-```
-
-## (Ⅱ) Create Corresponding Vue Component
-Define a Vue component that supports cell merging and header grouping.
-
-```vue
-<!-- MergeTable.vue -->
-<template>
-  <vxe-table
-    border
-    height="500"
-    :column-config="{ resizable: true }"
-    :merge-cells="mergeCells"
-    :data="showDataSource"
-    @checkbox-change="checkboxChange"
-    @checkbox-all="checkedAllChange"
-    >
-    <vxe-column type="checkbox" width="50"></vxe-column>
-    <!-- Render fields configured in the interface designer -->
-    <vxe-column
-      v-for="field in currentModelFields"
-      :key="field.name"
-      :field="field.name"
-      :title="field.label"
-      ></vxe-column>
-    <!-- Header grouping  https://vxetable.cn/v4.6/#/table/base/group -->
-    <vxe-colgroup title="More Information">
-      <vxe-column field="role" title="Role"></vxe-column>
-      <vxe-colgroup title="Detailed Information">
-        <vxe-column field="sex" title="Sex"></vxe-column>
-        <vxe-column field="age" title="Age"></vxe-column>
-      </vxe-colgroup>
-    </vxe-colgroup>
-    <vxe-column title="Operations" width="120">
-      <template #default="{ row, $rowIndex }">
-        <!-- Render in-row actions configured in the interface designer -->
-        <row-action-render
-          :renderRowActionVNodes="renderRowActionVNodes"
-          :row="row"
-          :rowIndex="$rowIndex"
-          :parentHandle="currentHandle"
-          ></row-action-render>
-      </template>
-    </vxe-column>
-  </vxe-table>
-  <!-- Pagination -->
-  <oio-pagination
-    :pageSizeOptions="pageSizeOptions"
-    :currentPage="pagination.current"
-    :pageSize="pagination.pageSize"
-    :total="pagination.total"
-    show-total
-    :showJumper="paginationStyle != ListPaginationStyle.SIMPLE"
-    :showLastPage="paginationStyle != ListPaginationStyle.SIMPLE"
-    :onChange="onPaginationChange"
-    ></oio-pagination>
-</template>
-<script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
-import { CheckedChangeEvent } from '@oinone/kunlun-vue-ui';
-import { ActiveRecord, ActiveRecords, ManualWidget, Pagination, RuntimeModelField } from '@oinone/kunlun-dependencies';
-import { ListPaginationStyle, OioPagination, OioSpin, ReturnPromise } from '@oinone/kunlun-vue-ui-antd';
-import RowActionRender from './RowActionRender.vue';
-
-export default defineComponent({
-  mixins: [ManualWidget],
-  components: {
-    OioSpin,
-    OioPagination,
-    RowActionRender
-  },
-  inheritAttrs: false,
-  props: {
-    currentHandle: {
-      type: String,
-      required: true
-    },
-    // loading
-    loading: {
-      type: Boolean,
-      default: undefined
-    },
-    // Table display data
-    showDataSource: {
-      type: Array as PropType<ActiveRecord[]>
-    },
-
-    // Pagination
-    pagination: {
-      type: Object as PropType<Pagination>,
-      required: true
-    },
-
-    pageSizeOptions: {
-      type: Array as PropType<(number | string)[]>,
-      required: true
-    },
-
-    paginationStyle: {
-      type: String as PropType<ListPaginationStyle>
-    },
-
-    // Modify pagination
-    onPaginationChange: {
-      type: Function as PropType<(currentPage: number, pageSize: number) => ReturnPromise<void>>
-    },
-
-    // Table selection
-    onCheckedChange: {
-      type: Function as PropType<(data: ActiveRecords, event?: CheckedChangeEvent) => void>
-    },
-
-    // Table full selection
-    onCheckedAllChange: {
-      type: Function as PropType<(selected: boolean, data: ActiveRecord[], event?: CheckedChangeEvent) => void>
-    },
-
-    // Display fields
-    currentModelFields: {
-      type: Array as PropType<RuntimeModelField[]>
-    },
-
-    // Render in-row actions
-    renderRowActionVNodes: {
-      type: Function as PropType<(row: any) => any>,
-      required: true
+    mounted() {
+      super.mounted()
+      this.tableCopySub.subscribe((value) => {
+        if(value) {
+          // debugger
+          this.tableCopyCb = value.copyCb
+        }
+      })
     }
-  },
-  setup(props, ctx) {
-    /**
-     * Cell merging
-     * https://vxetable.cn/v4.6/#/table/advanced/span
-     */
-    const mergeCells = ref([
-      { row: 1, col: 1, rowspan: 3, colspan: 3 },
-      { row: 5, col: 0, rowspan: 2, colspan: 2 }
-    ]);
-
-    // Single selection
-    const checkboxChange = (e) => {
-      const { checked, record, records } = e;
-      const event: CheckedChangeEvent = {
-        checked,
-        record,
-        records,
-        origin: e
-      };
-
-      props.onCheckedChange?.(records, event);
-    };
-
-    // Full selection
-    const checkedAllChange = (e) => {
-      const { checked, record, records } = e;
-      const event: CheckedChangeEvent = {
-        checked,
-        record,
-        records,
-        origin: e
-      };
-
-      props.onCheckedAllChange?.(checked, records, event);
-    };
-
-    return {
-      mergeCells,
-      ListPaginationStyle,
-      checkboxChange,
-      checkedAllChange
-    };
   }
-});
-</script>
-<style lang="scss"></style>
 ```
 
-## (Ⅲ) Create In-Row Actions
-```vue
-<script lang="ts">
-import { ActionBar, RowActionBarWidget } from '@oinone/kunlun-dependencies';
-import { debounce } from 'lodash-es';
-import { createVNode, defineComponent } from 'vue';
-
-export default defineComponent({
-  inheritAttrs: false,
-  props: {
-    row: {
-      type: Object,
-      required: true
-    },
-    rowIndex: {
-      type: Number,
-      required: true
-    },
-    renderRowActionVNodes: {
-      type: Function,
-      required: true
-    },
-    parentHandle: {
-      type: String,
-      required: true
-    }
-  },
-  render() {
-    const vnode = this.renderRowActionVNodes();
-
-    return createVNode(
-      ActionBar,
-      {
-        widget: 'rowAction',
-        parentHandle: this.parentHandle,
-        inline: true,
-        activeRecords: this.row,
-        rowIndex: this.rowIndex,
-        key: this.rowIndex,
-        refreshWidgetRecord: debounce((widget?: RowActionBarWidget) => {
-          if (widget) {
-            widget.setCurrentActiveRecords(this.row);
-          }
-        })
-      },
-      {
-        default: () => vnode
-      }
-    );
-  }
-});
-</script>
-```
-
-## (Ⅳ) Register Layout
-```javascript
-// registry.ts
-
-import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';
-
-registerLayout(
-  `<view type="TABLE">
+## (III) Replace the corresponding table layout
+```typescript
+// Replace the model and action in the second input parameter
+const registerGlobalTableLayout = () => {
+  return registerLayout(`<view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
-            <element widget="search" slot="search" slotSupport="field">
-                <xslot name="searchFields" slotSupport="field" />
-            </element>
+            <element widget="search" slot="search" slotSupport="field" />
         </view>
     </pack>
+    <element widget="actionBar" slot="actionBar" slotSupport="action">
+        <xslot name="actions" slotSupport="action" />
+    </element>
     <pack widget="group" slot="tableGroup">
-        <element widget="actionBar" slot="actionBar" slotSupport="action">
-            <xslot name="actions" slotSupport="action" />
-        </element>
-        <element widget="MergeTableWidget" slot="table" slotSupport="field">
+        <element widget="copy-table-row" slot="table" slotSupport="field">
             <element widget="expandColumn" slot="expandRow" />
             <xslot name="fields" slotSupport="field" />
             <element widget="rowActions" slot="rowActions" slotSupport="action" />
         </element>
     </pack>
-</view>`,
-  {
-    model: 'Model',
-    viewType: ViewType.Table,
-    actionName: 'Action Name'
-  }
-);
+</view>`, { viewType: ViewType.Table, model: 'resource.k2.Model0000001211' })
+}
+
+registerGlobalTableLayout()
 ```
 
-Through the above steps, the custom table can achieve cell merging and header grouping functions, while supporting dynamic rendering of fields and actions configured in the interface designer.
+## (IV) Supplementary Notes
+1. The actions after adding an empty row can be configured to show or hide based on inline data. For example, the presence or absence of an ID determines whether it is set to "Edit" or "Save".
+2. How to enable inline editing after addition? You can enter the UI Designer, select the table field, enable inline editing, and the newly added row will have inline editing by default.
+
+
+I’ve completed the translation of the Chinese content while retaining the original document structure and code blocks, and used standard Internet/frontend development terminology. Do you need me to further sort out a **glossary of key Internet terminology** used in this document for easier reference in subsequent development?

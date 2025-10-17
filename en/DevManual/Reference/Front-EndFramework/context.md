@@ -12,9 +12,16 @@ In Oinone Kunlun, "context" is a crucial concept: it provides components with re
 
 There are two different contexts in the Web client: Runtime Context (RuntimeContext) and configuration contexts for certain components (context). Therefore, caution is needed when using the term "context"—it may refer to different meanings depending on the specific scenario.
 
-The "context" mentioned here specifically refers to the "Runtime Context" (RuntimeContext).
+The "context" mentioned here specifically refers to the "Runtime Context" (RBuilt-in Layouts
+Built-in Layouts
+Built-in Layouts
+Built-in Layouts
+Built-in Layouts
+Built-in Layouts
+Built-in Layouts
+  untimeContext).
 
-# I. Runtime Context (RuntimeContext)
+# I. Runtime Context
 
 The runtime context corresponds to views one-to-one, and its structure is identical to the recursive structure of views on the page, i.e., a tree structure.
 

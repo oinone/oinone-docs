@@ -71,7 +71,7 @@ try (DsHintApi dsHintApi = DsHintApi.use("data source name")) {
 In this example, `DsHintApi.use("data source name")` directly specifies the data source by the data source name, also ensuring that the query operations within the `try` block obtain data from this data source.
 
 
-# II. Batch Size Specification BatchSizeHint
+# II. BatchSizeHint
 
 ## (Ⅰ) Usage Scenarios
 

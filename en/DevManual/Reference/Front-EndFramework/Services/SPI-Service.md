@@ -17,25 +17,25 @@ Most of the content in this chapter explains the implementation principles and c
 
 :::
 
-# 1. Overview
+# Ⅰ. Overview
 
-## (1) What is SPI?
+## (Ⅰ) What is SPI?
 
 For **SPI** used in software programs, we usually refer to it as **Service Provider Interface**.
 
 For users, we usually only need to care about the input and output parameters of the method, without caring about the implementation of the method itself. This kind of programming method is also called **interface-oriented programming**.
 
-## (2) What is IOC?
+## (Ⅱ) What is IOC?
 
 **IOC** is not a technology, but a thought, an important object-oriented programming principle. It can guide us how to design **loosely coupled** and better programs. In traditional applications, we actively create dependent objects inside the class, resulting in high coupling between classes and difficulty in testing. With the IOC container, the control of **creating and finding dependent objects** is handed over to the **container**, and the container injects and combines objects. Therefore, objects are loosely coupled, which also facilitates testing, is conducive to function reuse, and more importantly, makes the entire architecture of the program very flexible. During runtime, the dependent objects are dynamically injected into the components by the external container. When the external container starts, the external container will initialize, create and manage object instances, and destroy them. This application itself is not responsible for the creation and maintenance of dependent objects. The creation and maintenance of dependent objects are handled by the external container, which is called **Inversion of Control**.
 
-## (3) IOC (Inversion of Control) and DI (Dependency Injection)
+## (Ⅲ) IOC (Inversion of Control) and DI (Dependency Injection)
 
 **IOC (Inversion of Control)**: A thought of managing object instances through an external container.
 
 **DI (Dependency Injection)**: An implementation way of **IOC**.
 
-## (4) Oinone SPI
+## (Ⅳ) Oinone SPI
 
 IOC is the core of the Spring framework (a framework developed in Java) and runs through it. Its interface-oriented development capability enables service callers and service providers to achieve complete decoupling. As long as the calls follow the rules defined by the interface, the specific service implementations can be diversified.
 
@@ -43,7 +43,7 @@ For the front-end, we use `inversify` to implement **IOC**. Its powerful decoupl
 
 Next, we will introduce the basic application of Oinone SPI in development.
 
-# 2. SPI API
+# Ⅱ. SPI API
 
 For convenience, we have grouped the calling methods of component SPI and IOC-related functions together. These static properties are all provided in the form of `decorator` functions, and some basic usages will be explained below.
 
@@ -91,9 +91,9 @@ export class SPI {
 }
 ```
 
-# 3. Using SPI Service to Abstract Business Logic
+# Ⅲ. Using SPI Service to Abstract Business Logic
 
-## (1) Create the First Service
+## (Ⅰ) Create the First Service
 
 When using SPI, we usually need to separate the definition of interfaces and implementations, so that business logic does not rely on specific implementations, so as to achieve "loose coupling".
 
@@ -155,7 +155,7 @@ export class ProductServiceImpl implements ProductService {
 
 ```
 
-## (2) Using Services in Widget Components
+## (Ⅱ) Using Services in Widget Components
 
 Inject `ProductService` using the `SPI.Instantiate` decorator in any `Widget component` and call it at the appropriate time. Take the "counter component" as an example:
 
@@ -197,7 +197,7 @@ In this example, `ProductService` and `ProductServiceToken` act as a bridge betw
 
 `CounterWidget` injects an "effective" functional implementation through `ProductServiceToken` and calls it in the `onIncrement` method.
 
-## (3) Extension or Replacement
+## (Ⅲ) Extension or Replacement
 
 When we need to extend or replace the ProductService in the business project, we can define the priority of the extended service through the priority attribute, so that when obtaining a single instance, it will be used first. Priorities are sorted in descending order; the larger the number, the higher the priority. On the basis of the previous section, we can register an extended product service to replace the default service, as shown below:
 
@@ -225,7 +225,7 @@ export class ExtendProductServiceImpl implements ProductService {
 // extend product service getProductById
 ```
 
-## (4) Service Calling Service
+## (Ⅳ) Service Calling Service
 
 When calling other services in a service, you need to use the `SPI.Autowired` decorator to inject the corresponding service. As shown below:
 
@@ -261,9 +261,9 @@ export class ExtendProductServiceImpl implements ProductService {
 
 :::
 
-# 4. Using SPI Storage for Dimension Storage
+# Ⅳ. Using SPI Storage for Dimension Storage
 
-## (1) Basic Concepts
+## (Ⅰ) Basic Concepts
 
 The essence of **dimension storage** is a way of storing data in various **dimension nodes** through a **multi - fork tree structure**. When retrieving data, the corresponding data on the dimension nodes is obtained through a **weighted longest path matching** algorithm.
 
@@ -275,7 +275,7 @@ Here are some basic concepts used in dimension storage:
 - Dimension registration: A method for registering by providing the storage Key, dimension values, and stored data.
 - Dimension matching: A method for obtaining stored data by providing the storage Key and dimension values.
 
-## (2) Take BaseFieldWidget as an Example
+## (Ⅱ) Take BaseFieldWidget as an Example
 
 ### 1. Declare a Storage Instance
 
@@ -355,7 +355,7 @@ The component tree formed above is not the actual storage structure. The actual 
 
 PS: Rounded rectangles represent attributes and values on the dimension, and rectangles represent corresponding components.
 
-## (3) Weighted Longest Path Matching
+## (Ⅲ) Weighted Longest Path Matching
 
 When we need to use the `FormStringHyperlinksFieldWidget` component, it will be defined like this in the `DSL`:
 
@@ -390,9 +390,9 @@ At this time, the corresponding component will be obtained by dimension accordin
 - The fourth layer is empty, and no further search is performed downward.
 - Return the first item of the to - return queue.
 
-# 5. Using SPIOperator for Dimension Storage
+# Ⅴ. Using SPIOperator for Dimension Storage
 
-## (1) API
+## (Ⅰ) API
 
 `SPI.Base` and `SPI.ClassFactory` are essentially encapsulations of `SPIOperator` operations, enabling them to have the ability of decorator creation and registration. But sometimes, it is not very convenient to use decorators for operations. At this time, it is necessary to directly use `SPIOperator` for some encapsulation.
 
@@ -433,7 +433,7 @@ export class SPIOperator {
 }
 ```
 
-## (2) Best Practices
+## (Ⅱ) Best Practices
 
 Let's simulate the process of declaring dimension storage and registration for `BaseFieldWidget` in Section 4, and use `string` instead of specific components to see the best practice cases of `SPIOperator` in actual use. A possible implementation is as follows:
 
