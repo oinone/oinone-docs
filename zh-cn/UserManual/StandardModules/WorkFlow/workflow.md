@@ -3,10 +3,11 @@ title: 工作流
 index: true
 category:
   - 用户手册
-order: 5
+  - 工作流
+order: 1
 prev:
-  text: 角色与权限
-  link: /zh-cn/UserManual/StandardModules/AdministrationCenter/role-and-permission.md
+  text: 工作流管理
+  link: /zh-cn/UserManual/StandardModules/WorkFlow/workflow-management.md
 ---
 # 一、工作流
 同工作台，详情可见工作台文档
