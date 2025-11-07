@@ -11,7 +11,11 @@ next:
 # I. Integration Management
 
 ## (I) Integration Interfaces
+:::info Interface statistical function optimization description:
++ The statistical function of the original integrated interface is adjusted from statistics of all historical records to statistics of yesterday's data only.
 
++ The system will automatically perform the statistical task at 1:45 AM every day, and automatically generate the statistical results of yesterday.
+:::
 ### 1. Function Introduction
 
 Integration interfaces comprehensively display all APIs included in the connectors within the Integration Designer, including interface information and invocation status. They provide a convenient management method to achieve unified management of all interfaces.
@@ -88,6 +92,11 @@ Circuit breaking records are used to detailedly record information about interfa
 # II. Open Management
 
 ## (I) Open Interfaces
+:::info Interface statistical function optimization description:
++ The statistical function of the original integrated interface is adjusted from statistics of all historical records to statistics of yesterday's data only.
+
++ The system will automatically perform the statistical task at 1:45 AM every day, and automatically generate the statistical results of yesterday.
+:::
 
 ### 1. Function Introduction
 
