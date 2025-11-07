@@ -93,7 +93,7 @@ Circuit breaking records are used to detailedly record information about interfa
 
 ## (I) Open Interfaces
 :::info Interface statistical function optimization description:
-+ The statistical function of the original integrated interface is adjusted from statistics of all historical records to statistics of yesterday's data only.
++ The original open interface statistical function is adjusted from statistics of all historical records to statistics of yesterday's data only.
 
 + The system will automatically perform the statistical task at 1:45 AM every day, and automatically generate the statistical results of yesterday.
 :::
