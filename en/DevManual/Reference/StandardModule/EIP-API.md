@@ -40,6 +40,7 @@ pamirs
   boot:
     modules:
       - eip
+      -eip_mcp #is added as needed. If eip_mcp is included here, pamirs-eip2-mcp should be included in the pom of boot
 ```
 
 ## (Ⅱ) Maven Dependencies
@@ -71,7 +72,7 @@ Add the dependency on pamirs-eip2-api to xxxModule-api:
   <artifactId>pamirs-eip2-designer</artifactId>
 </dependency>
 
-<!-- After version 6.3.0, eip2-mcp will be added. Do not add it in previous versions -->
+<!-- Version 6.3.0 provides eip2-mcp, which can be added as needed. If this is added here, this starts modules by increasing eip_mcp -->
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-mcp</artifactId>

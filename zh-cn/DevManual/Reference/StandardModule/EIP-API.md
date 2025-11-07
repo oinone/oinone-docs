@@ -40,6 +40,7 @@ pamirs:
 	boot:
     modules:
       - eip
+      - eip_mcp #按需增加，这里引入eip_mcp则boot的pom中需引入pamirs-eip2-mcp
 ```
 
 ## （二）maven依赖
@@ -71,7 +72,7 @@ pamirs:
   <artifactId>pamirs-eip2-designer</artifactId>
 </dependency>
 
-<!-- 6.3.0版本后增加eip2-mcp，之前的版本不要增加 -->
+<!-- 6.3.0版本提供eip2-mcp，按需增加。如果这里增加了该报，这启动modules需增加eip_mcp -->
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-mcp</artifactId>
