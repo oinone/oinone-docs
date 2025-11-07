@@ -62,6 +62,10 @@ All images on this platform use docker manifest to support amd64 and arm64 archi
 :::
 
 ## (II) Pull Image
+:::info Special notes
+
+If the digital staff has already sent you a deployment package, use 'oinone-op-ds-all-mini' in the deployment package and the version specified in the deployment package; This article serves as a reference for the deployment process.
+:::
 ### Community Edition
 Not currently provided, please use the source code installation method
 
