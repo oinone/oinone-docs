@@ -1086,7 +1086,7 @@ public class TestModelExportExtPoint implements ExcelExportFetchDataExtPoint {
 | size | Integer | 否 | 11 | 字体大小（单位：磅） |
 | italic | Boolean | 否 | false | 是否斜体 |
 | strikeout | Boolean | 否 | false | 是否添加删除线 |
-| color | Integer（RGB 色值，默认 0xfff 为白色） | 否 | 0xfff | 字体颜色（如 0x000000 为黑色） |
+| color | Integer（IndexedColors索引值） | 否 | 0xfff | 字体颜色（如IndexedColors.RED.getIndex()为红色） |
 | typeOffset | ExcelTypeOffsetEnum | 否 | NORMAL | 字符偏移类型（正常 / 上标 / 下标） |
 | underline | ExcelUnderlineEnum | 否 | NONE | 下划线类型（无 / 单下划线 / 双下划线等） |
 | bold | Boolean | 否 | false | 是否加粗 |

@@ -1086,7 +1086,7 @@ If calculation is required after querying, you can use the `ExcelExportSameQuery
 | size | Integer | No | 11 | Font size (unit: point) |
 | italic | Boolean | No | false | Whether it is italic |
 | strikeout | Boolean | No | false | Whether to add a strikethrough |
-| color | Integer（RGB Color Value, default 0xfff is white） | No | 0xfff | Font color (such as 0x000000 is black) |
+| color | Integer（IndexedColors索引值） | No | 0xfff | Font color(such as IndexedColors. RED. GetIndex () in RED)|
 | typeOffset | ExcelTypeOffsetEnum | No | NORMAL | Character offset type (normal/superscript/subscript) |
 | underline | ExcelUnderlineEnum | No | NONE | Underline type (none/single underline/double underline, etc.) |
 | bold | Boolean | No | false | Whether it is bold |
