@@ -52,6 +52,13 @@ order: 3
 </dependency>
 ```
 
+### 流程概览与统计指标依赖
+```xml
+<dependency>
+  <groupId>pro.shushi.pamirs.workflow</groupId>
+  <artifactId>pamirs-workflow-datavi-core</artifactId>
+</dependency>
+```
 
 ## （二）application.yml配置说明
 
@@ -99,6 +106,18 @@ pamirs:
     trigger:
       auto-trigger: true
 ```
+
+### 流程概览配置说明
+
+```yaml
+pamirs:
+  workflow:
+    dashboard:
+      cache-time: 10   	# 流程概览缓存刷新时间，单位分钟，默认10分钟
+      page-size: 10     # 流程运行分析的4个图表展示数量，默认查询前10条数据
+```
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/WorkFlow/1763017314684-c4c70660-352d-46a1-a20e-247788010f4c.png)
 
 # 三、工作流API介绍
 

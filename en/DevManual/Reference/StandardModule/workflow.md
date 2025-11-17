@@ -52,6 +52,14 @@ The workflow runtime requires dependencies on related modules.
 </dependency>
 ```
 
+### Process overview and metrics dependent
+```xml
+<dependency>
+  <groupId>pro.shushi.pamirs.workflow</groupId>
+  <artifactId>pamirs-workflow-datavi-core</artifactId>
+</dependency>
+```
+
 ## (Ⅱ) application.yml Configuration Description
 
 ``` yaml
@@ -98,6 +106,18 @@ pamirs:
     trigger:
       auto-trigger: true
 ```
+
+### Process Overview Configuration description
+
+```yaml
+pamirs:
+  workflow:
+    dashboard:
+      cache-time: 10   	# Process overview Cache refresh time in minutes, 10 minutes by default
+      page-size: 10     # The 4 charts of the process running analysis show the number, and the first 10 data are queried by default
+```
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Reference/StandardModule/WorkFlow/1763017314684-c4c70660-352d-46a1-a20e-247788010f4c.png)
 
 # III. Workflow API Introduction
 
