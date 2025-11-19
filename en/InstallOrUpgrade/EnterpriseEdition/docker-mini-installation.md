@@ -72,6 +72,7 @@ Not currently provided, please use the source code installation method
 ### Enterprise Edition
 ```shell
 ##oinone-designer-mini-vMajorVersion.MediumVersion:FullVersion
+## The version numbers 6.2:6.2.1 are just examples and will vary based on the actual version of the digital Oinone image
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1
 ```
 
@@ -79,6 +80,7 @@ If the image pull is too slow, you can add `-amd64` or `-arm64` suffix to the co
 
 ```shell
 ##oinone-designer-mini-vMajorVersion.MediumVersion:FullVersion-ArchitectureTag
+## The version numbers 6.2:6.2.1 are just examples and will vary based on the actual version of the digital Oinone image
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-amd64
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-arm64
 ```

@@ -73,6 +73,7 @@ order: 2
 ### 企业版
 ```shell
 ##oinone-designer-mini-v大版本.中版本:全版本
+##这里的版本号6.2:6.2.1仅是示例，根据数式Oinone镜像的实际版本进行修改
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1
 ```
 
@@ -80,6 +81,7 @@ docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1
 
 ```shell
 ##oinone-designer-mini-v大版本.中版本:全版本-架构Tag
+##这里的版本号6.2:6.2.1仅是示例，根据数式Oinone镜像的实际版本进行修改
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-amd64
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-arm64
 ```
