@@ -7,6 +7,12 @@ category:
 order: 3
 ---
 # I. General Attributes
++ Create properties: that is, configure the bound fields for the desired component. You can:
+  - New field: Set the business type, display name, encoding length and other parameters of the field.
+  :::info Note
+  This creates a new field in the model for the current page, which is the same as creating the field in the model Designer.
+  :::
+  - Select an existing field: If the field already exists in the model, it can be selected directly. This operation will not repeat the creation of new fields.
 + Title: The display name of the component on the current page.
 + Hide Title: When this option is enabled, the title of the component will be hidden.
 + Width: The size of the component in the current row.
@@ -26,11 +32,11 @@ Supports embedding a multimedia player on the page, suitable for scenarios such 
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/dmt1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250702114819974.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/dmt2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-02%2011.54.56.gif)
 
 :::
 
@@ -90,11 +96,11 @@ Supports embedding a map on the page, suitable for scenarios such as displaying 
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/dt1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250702194827640.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/dt2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250702194936467.png)
 
 :::
 
@@ -105,11 +111,11 @@ Supports displaying a designed chart on the page.
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/tb1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250702195219775.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/tb2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703162458258.png)
 
 :::
 
@@ -144,11 +150,11 @@ Supports displaying a designed data dashboard on the page.
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/sjdp1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703165411633.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/medium/sjdp2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703165625206.png)
 
 :::
 
