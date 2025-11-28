@@ -301,6 +301,7 @@ Click on "China" in the "Sales by Country" chart to further drill down to "Sales
 
 The Free Drill feature allows users to independently select dimension fields for drilling during runtime and dynamically expand data details. Compared with fixed-hierarchy drilling, Free Drill does not require pre-set hierarchy sequences. Users can freely determine the drill path and hierarchy depth based on analysis needs.  
   Examples:
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1764322151052-11a89ca0-004c-437b-9e6c-3cb736f2fc17.gif)
   - A user first clicks on **Order ID** in the order table → to view the details of that order;
   - Then selects to drill down to **Date** → to view the order occurrence time;
   - Next, drills down to **Sales Region** or **Product Category** → to view the performance of the region or category.
