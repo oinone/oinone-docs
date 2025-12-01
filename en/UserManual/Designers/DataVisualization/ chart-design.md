@@ -302,9 +302,11 @@ Click on "China" in the "Sales by Country" chart to further drill down to "Sales
 The Free Drill feature allows users to independently select dimension fields for drilling during runtime and dynamically expand data details. Compared with fixed-hierarchy drilling, Free Drill does not require pre-set hierarchy sequences. Users can freely determine the drill path and hierarchy depth based on analysis needs.  
   Examples:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Data%20Visualization/Graphic%20Design/1764322151052-11a89ca0-004c-437b-9e6c-3cb736f2fc17.gif)
-  - A user first clicks on **Order ID** in the order table → to view the details of that order;
-  - Then selects to drill down to **Date** → to view the order occurrence time;
-  - Next, drills down to **Sales Region** or **Product Category** → to view the performance of the region or category.
+Scenario: Quickly locate the core market
+- Click on "Asia" : find out that Asia contributes 65% of the company's sales and is the absolute main force.
+- Drill down to "China" : See that China accounts for 39% of Asia's revenue and is the core pillar.
+- Drill down to "East China" : find that East China alone accounts for 39% of China's income.
+Conclusion: Through three clicks, immediately lock East China is the engine of the company's global business. The decision became clear: priority must be given to securing resource inputs in the region and to studying its success models for replication in other regions.
 
 The path can be flexibly adjusted without being restricted by a fixed sequence.
 
