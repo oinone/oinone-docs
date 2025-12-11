@@ -10,7 +10,7 @@ Oinone provides users with a comprehensive set of tools to help them create, edi
 
 This interface is mainly divided into four functional areas: the operation bar, the toolbar, the canvas design area, and the property panel.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626172135911.png)
 
 :::warning Tip
 This section takes the form as an example. For details of other view types, please refer to the view type documentation.
@@ -24,11 +24,11 @@ Users can flexibly switch the page to be designed and laid out for the PC or mob
 ### 2. Operation Method
 In the top operation bar, click the "PC" icon or the "Mobile" icon to switch the canvas to the corresponding page.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/chicun1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626172539829.png)
 
-![PC Design Page](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/chicun2.png)
+![PC Design Page](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626172644649.png)
 
-![Mobile Design Page](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/chicun3.png)
+![Mobile Design Page](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626173555464.png)
 
 ## (Ⅱ) View Historical Versions
 ### 1. Function Introduction
@@ -41,11 +41,11 @@ This function is only available for viewing previously published page versions. 
 ### 2. Operation Method
 + In the top operation bar, click the "View Historical Versions" icon to enter the historical version record page.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/lishi1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626173733590.png)
 
 + Select a historical version and click "Restore This Version" to restore to that historical version.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/lishi2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626173909394.png)
 
 ## (Ⅲ) Show/Hide Master
 ### 1. Function Introduction
@@ -54,7 +54,7 @@ The master provides a set of standard page elements and layout templates, allowi
 ### 2. Operation Method
 In the top operation bar, click the "Show/Hide Master" icon to show or hide the master.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/muban.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626174100385.png)
 
 ## (Ⅳ) Publish
 ### 1. Function Introduction
@@ -67,7 +67,7 @@ During the publishing process, if the component properties on the page do not me
 ### 2. Operation Method
 In the top operation bar, click "Publish" to publish the current page.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/caozuolan/fabu.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626174239740.png)
 
 # Ⅱ. Toolbar
 ## (Ⅰ) Component Library
@@ -89,13 +89,13 @@ In addition to the field components included in the current page model:
     - Addition
         * Field mapping: When the field type is selected as "Associated model field", field mapping needs to be configured, that is, the field mapping rules between the current page model and the associated model.
 
-          ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/gongjulan/xuniziduan-tj1.png)
+          ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626174445606.png)
 
-          ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/gongjulan/xuniziduan-tj2.png)
+          ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626174533143.png)
 
     - Deletion
 
-    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/gongjulan/xuniziduan-sc.png)
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626174629603.png)
 
 + Drilling down on many-to-one fields is supported. Users are allowed to switch the model displayed in the current component library to the associated model of the many-to-one field through the drilling-down function. Users can directly drag the available fields in the associated model to the page design area.
 :::
@@ -131,7 +131,7 @@ When a component on the page is selected, the relevant properties of the compone
 ### 2. Operation Method
 In the left tool area, click the "Design Outline" icon to display the design outline list.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/gongjulan/dagang.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626174803539.png)
 
 ## (Ⅲ) Page Settings
 ### 1. Function Introduction
@@ -143,7 +143,7 @@ When there are changes to the fields in the model to which the page belongs, use
 + Regenerate all: A brand-new default view will be generated according to the model changes in the order of the default components.
 + Regenerate only the changed parts: Keep the unchanged parts of the original model, and only add or remove the field components that have changed in the model.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/gongjulan/shezhi1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626175727329.png)
 :::
 
 ### 2. Operation Method
@@ -151,7 +151,7 @@ In the left tool area, click the "Page Settings" icon to display the page settin
 + Floating operation bar: If this function is enabled, the action area will remain stationary when the page is scrolled.
 + Thumbnail: An image can be uploaded as the page thumbnail.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/gongjulan/fudong.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250626175830265.png)
 
 # Ⅲ. Canvas Design Area
 ### 1. Function Introduction
@@ -177,7 +177,7 @@ This takes the form view as an example, and the same applies to other view types
 
 + In the component library in the left tool area, drag the component into the corresponding position in the canvas design area.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/huabushejiqu/1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250630100415165.png)
 
 + Click the "Switch Component" icon to select other eligible components.
 
@@ -185,11 +185,11 @@ This takes the form view as an example, and the same applies to other view types
 The supported switching type rule is: Only when the business type of the setting field at the time of component creation is exactly the same as the view type supported by the component itself can the component be switched.
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/huabushejiqu/2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627093038909.png)
 
 + Click the "Switch Selected Component" icon to switch to the outer component.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/huabushejiqu/3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627093608992.png)
 
 # Ⅳ. Property Panel
 ### 1. Function Introduction
@@ -198,11 +198,15 @@ In the property panel, users can conveniently set various properties of the comp
 ### 2. Operation Method
 + Click a component and configure the property information on the "Properties" page of the property panel.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shuxingmianban/1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627094539690.png)
 
 + Click a component and view the field information on the "Fields" page of the property panel.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shuxingmianban/2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627095508221.png)
+
++ Click on a component and customize the component style in the Properties panel Styles page.
+  - Provides a class attribute to customize the styles of individual components in code
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shuxingmianban/1765366386700-7341cc9c-0136-4c9e-aca9-a6a326ca0740.png)
 
 # Ⅴ. Page Design Example
 Scenario: Employee leave application business page
@@ -288,23 +292,23 @@ Scenario: Employee leave application business page
 
 (1) Under the "Component Library - Model" category, add a virtual field and name it "Employee", and establish an association relationship between it and the "Employee Information Model".
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shili/1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627095838693.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shili/2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627100346953.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shili/3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627100458935.png)
 
 (2) Drill down on the added "Employee" virtual field to obtain all the fields included in the associated model. Then, drag the required field components from the field list to the "Employee Information" group on the page.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shili/4.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627100636138.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shili/5.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627100741780.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shili/6.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627100927114.png)
 
 4. In the "Leave Information" group, drag the required fields to the page to complete the design of the leave information area.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shili/7.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewDesign/image-20250627101022161.png)
 
 5. After completing all the above design steps, click the publish button to officially publish the designed page. After successful publication, the page can be put into use.
 

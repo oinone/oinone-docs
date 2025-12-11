@@ -232,6 +232,9 @@ Oinone为用户提供一套全面的工具集，旨在帮助用户创建、编�
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shuxingmianban/2.png)
 
++ 点击某一组件，在属性面板「样式」页面中自定义组件样式。
+  - 提供 class 属性，可通过代码形式对单个组件的样式进行自定义  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-Design/shuxingmianban/1765366386700-7341cc9c-0136-4c9e-aca9-a6a326ca0740.png)
 # 五、页面设计示例
 场景：员工请假业务页面
 
