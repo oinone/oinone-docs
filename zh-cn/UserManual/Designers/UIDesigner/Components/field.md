@@ -223,7 +223,7 @@ order: 2
 + 是否支持前/后缀：支持为输入内容添加前后缀，前后缀类型可选择文字或图标。当选择文字类型时，可选择是否将前/后缀内容存储，以便在数据高度重合时简化操作流程。
 + 显示千分位：开启此功能，当输入数值较大时，以千分位格式展示。
 
-## （六）下拉单选
+## （六）下拉单选/表格下拉单选/弹窗单选
 可从多个选项中下拉选择一个数据值，选项为可关联模型数据、数据字典或布尔型数据，适用于单一选择场景。
 
 :::tip 举例
@@ -232,9 +232,15 @@ order: 2
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx1.png)
 
-展示页面：
-
+展示页面：  
+标准下拉单选：
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx2.gif)
+
+表格下拉单选：
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765420449613-62a91cd6-4b1d-403c-850e-2141d4020aaf.gif)
+
+弹窗单选：
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765420674694-0337bdeb-0d2d-4f52-aa00-4b915779aaeb.gif)
 
 :::
 
@@ -247,6 +253,7 @@ order: 2
 
 + 数据字典需选择已有数据字典
 + 多对一需设置关联模型
++ 表格下拉单选与弹窗单选仅支持多对一类型
 
 :::
 
@@ -275,6 +282,8 @@ order: 2
 
 :::
 
++ 展示字段：可勾选关联模型中的字段，下拉展开时将以这些字段作为列展示在表格/弹窗中  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765420289390-ef5f9181-8609-4c39-bc2b-eb51cf0b4bda.png)
 + 数据加载函数：当字段业务为多对一时，显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
 + 选项配置：当字段业务为布尔型或数据字典时，显示该属性。
     - 选中选项行后，直接拖动即可更改其排列位置。
@@ -284,7 +293,7 @@ order: 2
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx6.png)
 
-## （七）下拉多选
+## （七）下拉多选/表格下拉多选/弹窗多选
 可从多个选项中下拉选择多个数据值，选项为可关联模型数据、数据字典或布尔型数据，适用于多重选择场景。
 
 :::tip 举例
@@ -293,9 +302,15 @@ order: 2
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox1.png)
 
-展示页面：
-
+展示页面：  
+标准下拉多选
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox2.gif)
+
+表格下拉多选
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765422303664-17e34588-43e1-42f0-9332-1cd4430c6177.gif)
+
+弹窗多选
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765422641485-78c03988-320e-4be6-999c-f2afc2adf59b.gif)
 
 :::
 
@@ -308,6 +323,7 @@ order: 2
 
 + 数据字典需选择已有数据字典
 + 一对多、多对多需设置关联模型
++ 表格下拉多选与弹窗多选仅支持一对多、多对多类型
 
 :::
 
@@ -341,6 +357,8 @@ order: 2
 
 :::
 
++ 展示字段：可勾选关联模型中的字段，下拉展开时将以这些字段作为列展示在表格/弹窗中
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765420289390-ef5f9181-8609-4c39-bc2b-eb51cf0b4bda-20251211152308988.png)
 + 数据加载函数：当字段业务为一对多或多对多时，显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
 + 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
 
@@ -1133,10 +1151,6 @@ order: 2
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/gs1.png)
 
-展示页面：
-
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/gs2.gif)
-
 :::
 
 公司特有属性：
@@ -1144,10 +1158,14 @@ order: 2
 + 创建属性
     - 字段业务类型：支持多对一与多对多。
     - 关联模型：需设置当前组件的关联模型，该组件仅支持关联“公司”模型
+- 下拉样式：支持两种下拉展示样式：精简样式 与 详细样式。
+  - 精简样式：以更紧凑的方式展示公司信息，适用于空间有限或只需要快速选择公司的场景。
+  - 详细样式：提供更多维度的信息，适用于选择公司时需了解更多背景信息的场景。
+  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765363997364-3d03203f-dcca-4702-a6c0-c7c6ec3fed3c.png)
 + 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
 
 ## （三十二）部门
-提供快捷方式，可直接选择在系统已录入的部门。
+在使用部门组件时，系统会根据当前登录用户自动识别相关组织信息，并根据配置的部门范围展示可选部门
 
 :::info 注意
 
@@ -1160,11 +1178,11 @@ order: 2
 
 设计示例：
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bm1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765364697825-5f96bc3a-415f-4abd-bba6-a767387698f1.png)
 
 展示页面：
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bm2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765364767620-b63184c5-a639-4dae-a7f1-78d91ed3b11e.png)
 
 :::
 
@@ -1173,10 +1191,44 @@ order: 2
 + 创建属性
     - 字段业务类型：支持多对一与多对多。
     - 关联模型：需设置当前组件的关联模型，该组件仅支持关联“部门”模型
+- 可选范围：包括全部部门与自定义，未手动勾选指定部门则为全部部门
+  - 全部部门：可选择系统内全部已创建的部门。
+  - 自定义：可手动勾选指定部门，提供快捷选项：
+    * 当前员工：当前用户绑定的首个员工身份
+    * 当前公司：当前员工员工所属的公司
+    * 当前用户所在部门：当前员工所属的全部部门
+    * 当前用户所在部门及下级部门：当前员工所属的全部部门及其所有子部门
 + 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
 
-## （三十三）员工
-提供快捷方式，可直接选择在系统已录入的员工。
+## （三十三）角色
+在使用角色组件时，系统会根据当前登录用户自动识别相关信息，并根据配置的角色范围展示可选角色
+
+:::info 注意
+
++ 创建的字段业务类型多对一时，实际应用中为下拉单选。
++ 创建的字段业务类型多对多时，实际应用中为下拉多选。
+
+:::
+
+:::tip 举例
+
++ 设计示例：  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765365093274-7f6fb97c-4c1b-40d9-862d-7a29fe602807.png)
++ 展示页面：  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765365138239-975b488b-97ae-4335-ae33-e1744c4131d3.png)
+:::
+角色特有属性：
++ 创建属性
+  + 字段业务类型：支持多对一与多对多。
+  + 关联模型：需设置当前组件的关联模型，该组件仅支持关联“角色”模型
++ 可选范围：包括全部部门与自定义，未手动勾选指定角色则为全部角色
+  + 全部角色：可选择系统内全部已创建的角色。
+  + 自定义：可手动勾选指定角色，提供快捷选项：
+    + 当前用户所绑定角色：当前登录用户所绑定的所有角色
++ 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
+
+## （三十四）员工
+在使用员工组件时，系统会根据当前登录用户自动识别相关信息，并根据配置的员工范围展示员工
 
 :::info 注意
 
@@ -1189,11 +1241,11 @@ order: 2
 
 设计示例：
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yg1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765365605324-7752c1e2-1624-46a5-9bac-52040446365c.png)
 
 展示页面：
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yg2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765365605324-7752c1e2-1624-46a5-9bac-52040446365c.png)
 
 :::
 
@@ -1202,9 +1254,15 @@ order: 2
 + 创建属性
     - 字段业务类型：支持多对一与多对多。
     - 关联模型：需设置当前组件的关联模型，该组件仅支持关联“员工”模型
+- 可选范围：包括全部员工与自定义，未手动勾选指定员工则为全部员工
+  - 全部员工：可选择系统内全部已创建的员工。
+  - 自定义：可手动勾选指定员工，提供快捷选项：
+    * **当前用户所绑定员工**：指当前用户绑定的首个员工身份。
+    * **当前用户所在部门中的员工**：指该员工所属部门内的所有员工。
+    * **当前用户所在部门及下级部门中的员工**：指该员工所属部门及其所有子部门内的全部员工。
 + 最多/少选择个数：可限制选择个数范围，包括最多选择个数和最少选择个数，以限制用户输入。
 
-## （三十四）地址
+## （三十五）地址
 提供地址选择器功能，适用于选择家庭住址等场景。
 
 :::info 注意
@@ -1231,7 +1289,7 @@ order: 2
     - 字段业务类型：支持多对一。
     - 关联模型：需设置当前组件的关联模型，该组件仅支持关联“地址”模型
 
-## （三十五）表单
+## （三十六）表单
 支持在页面中内嵌表单，适用于设计复杂页面，满足页面多样化需求。
 
 :::tip 举例
@@ -1251,9 +1309,16 @@ order: 2
 + 创建属性
     - 字段业务类型：支持多对一。
     - 关联模型：需设置当前组件的关联模型
+- 布局类型：提供两种表单布局格式：普通布局与 word 布局
+  + 普通布局：  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765366674096-3aa354fa-49b7-4406-8850-6df4b7ada136.png)
+
+  + word 布局：  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765366705144-93e94233-7450-4fca-97fa-a8918ebf4e83.png)
+
 + 空值展示样式：用于设定当表单中的某些字段值为空时的展示方式。
 
-## （三十六）表格
+## （三十七）表格
 支持在页面中内嵌表格，适用于展示列表或数据的场景。
 
 :::tip 举例
@@ -1273,8 +1338,54 @@ order: 2
 + 创建属性
     - 字段业务类型：支持一对多和多对多。
     - 关联模型：需设置当前组件的关联模型
-+ 显示添加：快捷操作，开启后在表格中显示添加按钮。
-+ 显示删除：快捷操作，开启后在表格中显示添加按钮。
++ 一对多表格：可设置快捷操作，包括创建、编辑、删除、行内编辑、添加一行、快速填报。开启后会在表格中显示对应动作![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765360427623-bd85620e-3b20-4b1f-9a47-46b8be9b30bf.png)
+
+:::info
+快速填报：允许用户通过复制 Excel 内容或批量编辑方式，高效录入或更新子表数据。
+
+1. 模式说明
+
+该功能包含“新增数据”与“编辑已有数据”两种模式，适用于多种字段类型，并会在录入时自动校验数据格式与字段规则。
+
++ 新增数据模式：适用于批量导入数据：
+  - 可将 Excel 内容直接粘贴到填报区域。
+  - 粘贴的数据将以追加方式写入子表中对应字段。
+  - 仅展示 **支持粘贴** 且 **开启行内编辑** 的字段列。
+  - 若粘贴过程中包含空行，提交时会自动过滤并忽略空行。
++ 编辑已有数据模式：适用于快速修改子表中已有的数据：
+  - 可直接对已有值进行批量编辑或粘贴替换。
+  - 对于仅可见但不可编辑的字段，会在填报页面显示为灰色，不可修改；粘贴数据时会**自动跳过这些字段**，对应列的数据会被舍弃。
+
+ 2. 字段列选择
+
+填报页支持在表头通过下拉方式选择字段：
+
++ 可选择子表模型中支持的其他字段。
++ 每个字段列可设置为 **“不粘贴”**，表示粘贴内容不会写入该列。
+
+注意：未设置为“不粘贴”的字段列不能重复。若通过调整字段出现重复，系统会自动将原字段列改为“不粘贴”。
+
+3. 数据填报
+
+系统会依据表头字段的类型对粘贴数据进行判断：
+
++ 当数据格式不符合字段类型时，系统会标红提示。
++ 若用户未更正并选择“继续填报”，系统将自动清空不符合格式的数据，并以空值写入子表。
++ 提交数据时，若子表中存在依赖当前字段的计算公式，系统将自动根据用户填写的数据计算并回填其他字段的结果。
+
+4. 特殊字段：
+
++ 下拉选择：通过“选项字段”判断填报值是否合法；若填报值不在可选范围内，会标红提示并显示下拉组件供用户选择正确项
++ 日期与时间：系统会按字段设置的日期或时间格式进行回填
+  - 日期支持以下格式识别：`2000/01/01`、`2000-01-01`、`2000.01.01`
+  - 时间支持 `00:00:00` 格式。
++ 组织类字段（公司/部门/员工/角色）：若输入名称不在可选范围内或出现重名，会标红提示并提供组件以供选择正确值
++ 地址字段：填报时系统会将地址拆分为多个单元格（国家-省/州-市-区/县-街道）；系统会按顺序验证国家 → 省 → 市 → 区 → 街道是否符合真实地址数据
+
+:::
+
++ 多对多表格：可设置快捷操作，包括添加、删除、行内删除。开启后会在表格中显示对应动作  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765360107018-0dae0594-b8df-42f3-aedf-6eaaff763822.png)
 + 数据提交类型：指定数据提交时所采用的提交方式，当前仅支持全量提交。
 + 关联关系更新类型：当表格中的关联关系字段更新时数据的提交方式，包括全量提交与差量提交。
 
@@ -1284,7 +1395,7 @@ order: 2
 + 差量提交：仅提交有更新的数据。
 
 :::
-## （三十七）文件下载
+## （三十八）文件下载
 支持将数据封装为一个文件进行下载，适用于批量获取数据进行后续分析。
 
 :::tip 举例
@@ -1305,7 +1416,7 @@ order: 2
 + 下载提示文本：下载提示信息的主体内容部分。可以在此输入具体告知用户的信息，明确下载内容。
 + 下载的文件名：用于指定下载文件在用户设备上保存时显示的文件名。
 
-## （三十八）拖拽上传
+## （三十九）拖拽上传
 用于把文件拖入指定区域完成上传，同样支持点击上传。
 
 :::tip 举例
@@ -1345,7 +1456,7 @@ order: 2
 + CDN配置：支持配置CDN。
 + 私有链接：可选择是否为私有链接。
 
-## （三十九）手写签名
+## （四十）手写签名
 支持在网页上实现手写签名，适用于在线合同签署、电子表格签名等。
 
 :::tip 举例

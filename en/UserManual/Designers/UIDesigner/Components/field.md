@@ -14,7 +14,7 @@ order: 2
 + Placeholder Prompt: When the input box or selection box is empty, it shows light-colored prompt text to guide users to input, which does not affect the actual value of the field.
 + Description: Provides descriptive information about the component, usually used to explain the scope and precautions of the field, helping users better understand and fill in. For field-type components, the description will be displayed below the component.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tongyong1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627164417141.png)
 
 + Default Value: When the actual page is displayed, the field will show the set value by default. If the field is deleted or changed, the original default value will not be automatically filled back.
 + Calculation Formula: If the calculated value involves variables, when the variables change, the calculated value will change synchronously.
@@ -65,7 +65,7 @@ When designing a PC page, if the display device of a component is set to only mo
 
 + Show Clear Button: When this function is enabled, when there is content in the input box, users can clear the input content with one click.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tongyong2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627164748847.png)
 
 ## Table
 + Title: The display name of the component on the current page.
@@ -103,11 +103,11 @@ A single-line text box is suitable for recording short text content such as name
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627165128314.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627165745480.png)
 
 :::
 
@@ -117,16 +117,15 @@ Specific attributes of single-line text:
     - Field Business Type: Only supports text type.
 + Text Type: Includes text and password, with text as the default. If set to text, the input content will be visible; if set to password, the input content will be invisible.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang3.png)
-
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang4.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627170521652.png){width=100%}  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627170752613.png){width=100%}
 
 + Maximum/Minimum Length: You can set the length range of the input content, including the maximum and minimum lengths, to limit user input.
 + Input Format: Provides multiple input format restriction options, including no restriction, URL, ID card, and custom. When custom is selected, you can define the specific format through a regular expression and set the prompt message when the format does not match.
 + Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
 + Show Counter: If users need to pay attention to the length of the input content, they can enable the show counter function to see the current length of the content in real-time while inputting.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/danhang5.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627171203974.png)
 
 ## (Ⅱ) Multi-line Text
 A multi-line text box is suitable for recording long text content such as opinions and remarks.
@@ -135,11 +134,11 @@ A multi-line text box is suitable for recording long text content such as opinio
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/duohang1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627171844427.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/duohang2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627171933837.png)
 
 :::
 
@@ -150,7 +149,7 @@ Specific attributes of multi-line text:
 + Maximum/Minimum Length: You can set the length range of the input content, including the maximum and minimum lengths, to limit user input.
 + Show Counter: If users need to pay attention to the length of the input content, they can enable the show counter function to see the current length of the content in real-time while inputting.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/duohang3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627172148390.png)
 
 ## (Ⅲ) Rich Text
 A WYSIWYG text editor that can be embedded in the browser, similar to Word in function. It is suitable for editing long descriptive text and supports operations such as changing font styles and inserting pictures.
@@ -159,11 +158,11 @@ A WYSIWYG text editor that can be embedded in the browser, similar to Word in fu
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fuwenben1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627172522486.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fuwenben2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627172702002.png)
 
 :::
 
@@ -180,11 +179,11 @@ Only allows integer input, suitable for inputting integer data such as days and 
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/zhengshu1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627173315619.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/zhengshu2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627173359384.png)
 
 :::
 
@@ -196,7 +195,7 @@ Specific attributes of integers:
 + Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
 + Show Thousands Separator: When this function is enabled, when the input value is large, it will be displayed in thousands separator format.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/zhengshu3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627190429438.png)
 
 ## (Ⅴ) Decimal
 Only allows decimal input, suitable for inputting decimal data such as amounts and temperatures.
@@ -205,11 +204,11 @@ Only allows decimal input, suitable for inputting decimal data such as amounts a
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xiaoshu1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627190631866.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xiaoshu2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627190818507.png)
 
 :::
 
@@ -223,18 +222,25 @@ Specific attributes of decimals:
 + Support Prefix/Suffix: Supports adding prefixes and suffixes to the input content. The prefix and suffix types can be text or icons. When the text type is selected, you can choose whether to store the prefix/suffix content to simplify the operation process when the data highly overlaps.
 + Show Thousands Separator: When this function is enabled, when the input value is large, it will be displayed in thousands separator format.
 
-## (Ⅵ) Drop-down Single Selection
+## (Ⅵ) Drop-down Single Selection/Table drop-down radio/popup radio
 Allows users to select one data value from multiple options in a drop-down list. The options can be associated with model data, data dictionaries, or boolean data, suitable for single-selection scenarios.
 
 :::tip Example
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250627191137301.png)
 
-Display Page:
-
+Display Page:  
+Standard drop-down single selection：
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx2.gif)
+
+Table drop down single selection：
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765420449613-62a91cd6-4b1d-403c-850e-2141d4020aaf.gif)
+
+Select the popup window：
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765420674694-0337bdeb-0d2d-4f52-aa00-4b915779aaeb.gif)
+
 
 :::
 
@@ -247,6 +253,7 @@ Specific attributes of drop-down single selection:
 
 + For data dictionaries, existing data dictionaries need to be selected.
 + For many-to-one, the associated model needs to be set.
++ Table drop-down radio and popup radio only support many-to-one type
 
 :::
 
@@ -258,13 +265,13 @@ Specific attributes of drop-down single selection:
 
 You can set constant content as a separator between option fields, such as "-" or "/".
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx3.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx4.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630110518490.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630110822908.png)
 
 :::
 
 + Search Field: When the field business is many-to-one, this attribute is displayed. When users input content in the input box, if the input content is included in the search field, the values containing this content will be displayed as search results. By default, all option fields are set as search fields. You can choose whether to use existing search conditions as needed.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx5.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630111008197.png)
 
 + Exposed Field: When the field business is many-to-one, this attribute is displayed. The selection range is limited to the model fields bound to the component. When a field is set as an exposed field, it means that this field can be used in the current view.
 + Query Condition: When the field business is many-to-one, this attribute is displayed. On the actual page, data will be displayed according to the configured query conditions.
@@ -275,6 +282,8 @@ For the filling of custom expressions in query conditions, you can refer to the 
 
 :::
 
++ Display fields: Fields in the associated model can be checked and displayed as columns in the table/popup when the drop-down is expanded    
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765420289390-ef5f9181-8609-4c39-bc2b-eb51cf0b4bda.png)
 + Data Loading Function: When the field business is many-to-one, this attribute is displayed. When an option value is selected on the actual page, this function will be executed to load data.
 + Option Configuration: When the field business is boolean or a data dictionary, this attribute is displayed.
     - After selecting an option row, you can directly drag it to change its position.
@@ -282,20 +291,26 @@ For the filling of custom expressions in query conditions, you can refer to the 
     - Click the "Edit" icon to modify the display value of this option, making the same data dictionary or boolean value applicable in different scenarios.
     - Click "Hide/Show" to control whether this option is visible at runtime. All dictionary items are visible by default.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xldx6.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630111712809.png)
 
-## (Ⅶ) Drop-down Multiple Selection
+## (Ⅶ) Drop-down Multiple Selection/Table drop down multiple select/popup multiple select
 Allows users to select multiple data values from multiple options in a drop-down list. The options can be associated with model data, data dictionaries, or boolean data, suitable for multiple-selection scenarios.
 
 :::tip Example
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630111925197.png)
 
-Display Page:
-
+Display Page:  
+Standard drop-down multiple selection
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox2.gif)
+
+Drop down the table to select more
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765422303664-17e34588-43e1-42f0-9332-1cd4430c6177.gif)
+
+Multiple options for the popup
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765422641485-78c03988-320e-4be6-999c-f2afc2adf59b.gif)
 
 :::
 
@@ -308,6 +323,7 @@ Specific attributes of drop-down multiple selection:
 
 + For data dictionaries, existing data dictionaries need to be selected.
 + For one-to-many and many-to-many, the associated model needs to be set.
++ Table drop-down multi-select and popup multi-select only support one-to-many and many-to-many types
 
 :::
 
@@ -324,13 +340,13 @@ Specific attributes of drop-down multiple selection:
 
 You can set constant content as a separator between option fields, such as "-" or "/".
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox3.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox4.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630112720473.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630112916114.png)
 
 :::
 
 + Search Field: When the field business is one-to-many or many-to-many, this attribute is displayed. When users input content in the input box, if the input content is included in the search field, the values containing this content will be displayed as search results. By default, all option fields are set as search fields. You can choose whether to use existing search conditions as needed.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/xlduox5.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630112959680.png)
 
 + Exposed Field: When the field business is one-to-many or many-to-many, this attribute is displayed. The selection range is limited to the model fields bound to the component. When a field is set as an exposed field, it means that this field can be used in the current view.
 + Query Condition: When the field business is one-to-many or many-to-many, this attribute is displayed. On the actual page, data will be displayed according to the configured query conditions.
@@ -341,6 +357,8 @@ For the filling of custom expressions in query conditions, you can refer to the 
 
 :::
 
++ Display fields: Fields in the associated model can be checked and displayed as columns in the table/popup when the drop-down is expanded
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765420289390-ef5f9181-8609-4c39-bc2b-eb51cf0b4bda-20251211152308988.png)
 + Data Loading Function: When the field business is one-to-many or many-to-many, this attribute is displayed. When an option value is selected on the actual page, this function will be executed to load data.
 + Maximum/Minimum Selection Count: You can limit the selection count range, including the maximum and minimum selection counts, to limit user input.
 
@@ -351,11 +369,11 @@ Allows users to select only one value from directly displayed options, suitable 
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630113639636.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2011.37.55.gif)
 
 :::
 
@@ -383,11 +401,11 @@ Specific attributes of radio buttons:
 
 + When the default style is selected, you can set the option arrangement according to actual needs, including horizontal and vertical arrangements.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk3.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk4.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630114406471.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630114449721.png)
 
 + When the segmented selector is selected, you can set the maximum number of options displayed in a single line according to actual needs.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dxk5.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630114546383.png)
 
 :::
 
@@ -400,11 +418,11 @@ Allows users to select multiple values from directly displayed options, suitable
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fxk1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630115225596.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fxk2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2011.53.35.gif)
 
 :::
 
@@ -437,11 +455,11 @@ Often used to select between two opposite options, such as yes/no.
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/kg1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630133759883.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/kg2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2013.41.33.gif)
 
 :::
 
@@ -457,11 +475,11 @@ Provides a year selector function, suitable for scenarios where a specific year 
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/nf1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630134537208.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/nf2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2013.47.00.gif)
 
 :::
 
@@ -477,11 +495,11 @@ Provides a year-month-day selector, suitable for fields that need to be accurate
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rq1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630135004617.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rq2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2013.57.40.gif)
 
 :::
 
@@ -491,7 +509,7 @@ Specific attributes of dates:
     - Field Business Type: Only supports date type.
 + Date Format: Provides a variety of date format options. You can choose a suitable date format according to actual needs.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rq3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630141112367.png)
 
 + Start Date: Used to limit the earliest start time of selectable dates.
 + End Date: Used to limit the latest end time of selectable dates.
@@ -505,11 +523,11 @@ Provides a comprehensive year-month-day, hour-minute-second selector, suitable f
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rqsj1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630141412864.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rqsj2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2014.16.40.gif)
 
 :::
 
@@ -520,7 +538,7 @@ Specific attributes of date and time:
 + Date Format: Provides a variety of date format options. You can choose a suitable date format according to actual needs.
 + Time Format: Provides a variety of time format options. You can choose a suitable time format according to actual needs.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rqsj3.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/rqsj4.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630142043397.png){width=50%}![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630142153801.png){width=50%}
 
 + Start Date: Used to limit the earliest start time of selectable dates.
 + End Date: Used to limit the latest end time of selectable dates.
@@ -534,11 +552,11 @@ Provides an hour-minute-second selector, suitable for fields that only involve t
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sj1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630142430145.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sj2gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2014.25.49.gif)
 
 :::
 
@@ -548,7 +566,7 @@ Specific attributes of time:
     - Field Business Type: Only supports time type.
 + Time Format: Provides a variety of time format options. You can choose a suitable time format according to actual needs.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sj3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630142723033.png)
 
 ## (XV) Color Picker
 Provides a custom color function, suitable for scenarios such as setting label colors and selecting colors for theme customization.
@@ -557,11 +575,11 @@ Provides a custom color function, suitable for scenarios such as setting label c
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/ys1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630143107449.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/ys2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2014.33.25.gif)
 
 :::
 
@@ -577,11 +595,11 @@ Supports uploading files in multiple formats, including documents, pictures, vid
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wj1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630143815682.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wj2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2014.49.16.gif)
 
 :::
 
@@ -609,7 +627,7 @@ If a certain format is allowed, files of other formats cannot be selected in the
 + CDN Configuration: Supports CDN configuration.
 + Private Link: You can choose whether to use a private link.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wj3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630145207043.png)
 
 ## (XVII) Image Upload
 Supports uploading image files, suitable for scenarios such as uploading schematic diagrams, photos, and avatars.
@@ -618,11 +636,11 @@ Supports uploading image files, suitable for scenarios such as uploading schemat
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tp1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630145458021.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tp2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2015.04.25.gif)
 
 :::
 
@@ -666,11 +684,11 @@ Tag values are not allowed to be repeated.
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bq1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630150945134.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bq2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2015.13.00.gif)
 
 :::
 
@@ -696,11 +714,11 @@ Allows users to filter and locate the required data through step-by-step selecti
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/jl1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630151758287.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/jl2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2015.41.48.gif)
 
 :::
 
@@ -765,11 +783,11 @@ Allows users to filter and locate the required data through step-by-step selecti
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/shu1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630154643894.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/shu2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2015.48.41.gif)
 :::
 
 Specific attributes of tree selection:
@@ -810,11 +828,11 @@ Fields are not allowed to have duplicate keys.
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/jzd1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630160343769.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/jzd2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2016.07.36.gif)
 
 :::
 
@@ -845,11 +863,11 @@ The end date must be after the start date.
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fw1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250630161334661.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/fw2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-06-30%2019.33.06.gif)
 
 :::
 
@@ -877,11 +895,11 @@ Input Rule: It must start with the digit 1, the second digit ranges from 3 to 9,
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/phone1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701095628959.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/phone2gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2009.58.23.gif)
 
 :::
 
@@ -897,9 +915,9 @@ Used to store or display amount-type data, allowing input of integers or decimal
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/hb1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701100314374.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/hb2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2010.04.31.gif)
 :::
 
 Specific attributes of currency:
@@ -923,9 +941,9 @@ Used to store or display data in compliance with the email format (xx@xx.xx), fa
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yx1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701100837828.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yx2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2010.09.58.gif)
 :::
 
 Specific attributes of email:
@@ -945,9 +963,9 @@ A special field that can extract corresponding fields from associated relationsh
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tb1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701101604963.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tb2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701101836594.png)
 :::
 
 Specific attributes of cross-table field:
@@ -962,9 +980,9 @@ Allows displaying a complete paragraph of text content on the page, suitable for
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dl1.png)
-Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dl2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701102148016.png)
+Display Page:  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701102431005.png)
 :::
 
 Specific attributes of paragraph:
@@ -976,16 +994,16 @@ Specific attributes of paragraph:
 Supports embedding specified web pages in the page, allowing users to directly access and browse other web content in the design page.
 
 :::tip Example
-Design Examples:
+Design Examples:  
 Static:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/qrwy1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701103441824.png)
 Dynamic:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/qrwy2.png)
-Display Pages:
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701103650660.png)
+Display Pages:  
 Static:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/qrwy3.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2010.49.04.gif)
 Dynamic:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/qrwy4.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2010.40.52.gif)
 :::
 
 Specific attributes of embedded web page:
@@ -1003,16 +1021,16 @@ Specific attributes of embedded web page:
 Supports displaying hyperlinks on the page. Users can easily jump to the corresponding page by clicking the hyperlink, achieving convenient navigation between pages.
 
 :::tip Example
-Design Examples:
-Static:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/clj1.png)
+Design Examples:  
+Static:  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701105328948.png)
 Dynamic:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1750213786284-806d5bf9-abc6-4cdb-bebc-355162b76bf1.png)
-Display Pages:
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701110739778.png)
+Display Pages:  
 Static:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/clj2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2011.04.11.gif)
 Dynamic:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1750214026006-b724a184-b4ae-429d-9d9c-a9af03e19d1e.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2011.09.41.gif)
 :::
 
 Specific attributes of hyperlink:
@@ -1034,9 +1052,9 @@ A shuttle box is a two-column selection box with selectable fields displayed on 
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/csk1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701111245449.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/csk2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2011.14.02.gif)
 :::
 
 Specific attributes of shuttle box:
@@ -1057,7 +1075,7 @@ For the filling of custom expressions in query conditions, you can refer to the 
 + Display Form of Option Box: Provides two display methods, list and table. When table display is selected, you can further set the field definition of the option box, that is, define the header content of the table.
 + Display Form of Result Box: Same as the display form of the option box.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/csk3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701111805648.png)
 
 + Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
@@ -1071,9 +1089,8 @@ Provides a shortcut to directly select companies already entered in the system.
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/gs1.png)
-Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/gs2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701112100045.png)
+
 :::
 
 Specific attributes of company:
@@ -1081,51 +1098,90 @@ Specific attributes of company:
 + Creation Attribute
     - Field Business Type: Supports many-to-one and many-to-many.
     - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Company" model.
+- Drop - down Style: Supports two drop - down display styles: Compact Style and Detailed Style.
+  - Compact Style: Displays company information in a more compact way, suitable for scenarios where space is limited or you only need to quickly select a company.
+  - Detailed Style: Provides information in more dimensions, suitable for scenarios where you need to know more background information when selecting a company.
+  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765363997364-3d03203f-dcca-4702-a6c0-c7c6ec3fed3c.png)
 + Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
 
 ## (XXXII) Department
-Provides a shortcut to directly select departments already entered in the system.
+When using the department component, the system will automatically identify the relevant organizational information based on the currently logged - in user and display the selectable departments according to the configured department scope.
 
 :::info Note
-+ When the created field business type is many-to-one, it is a drop-down single selection in practical applications.
-+ When the created field business type is many-to-many, it is a drop-down multiple selection in practical applications.
++ When the business type of the created field is many - to - one, it will be a single - select dropdown in actual applications.
++ When the business type of the created field is many - to - many, it will be a multi - select dropdown in actual applications.
 :::
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bm1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765364697825-5f96bc3a-415f-4abd-bba6-a767387698f1.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bm2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765364767620-b63184c5-a639-4dae-a7f1-78d91ed3b11e.png)
 :::
 
-Specific attributes of department:
+Department - specific Attributes:
++ Creation Attributes
+    - Field Business Type: Supports many - to - one and many - to - many.
+    - Associated Model: You need to set the associated model for the current component. This component only supports associating with the "Department" model.
+- Selectable Scope: Includes all departments and custom selection. If no specific departments are manually selected, it will be all departments.
+  - All Departments: You can select all the departments created in the system.
+  - Custom: You can manually select specific departments, and there are quick options provided:
+    * Current Employee: The first employee identity bound to the current user.
+    * Current Company: The company to which the current employee belongs.
+    * Department of Current User: All departments to which the current employee belongs.
+    * Department of Current User and Its Sub - departments: All departments to which the current employee belongs and all their sub - departments.
++ Maximum/Minimum Number of Selections: You can limit the range of the number of selections, including the maximum and minimum number of selections, to restrict user input.
 
-+ Creation Attribute
-    - Field Business Type: Supports many-to-one and many-to-many.
-    - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Department" model.
-+ Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
+## (XXXIII) Role
+When using the role component, the system will automatically identify relevant information based on the currently logged - in user and display selectable roles according to the configured role scope.
+
+:::info Note
++ When the business type of the created field is many - to - one, it will be a single - select dropdown in actual applications.
++ When the business type of the created field is many - to - many, it will be a multi - select dropdown in actual applications.
+:::
+
+:::tip Example
++ Design Example:  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765365093274-7f6fb97c-4c1b-40d9-862d-7a29fe602807.png)
++ Display Page:  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765365138239-975b488b-97ae-4335-ae33-e1744c4131d3.png)
+:::
+Role - specific Attributes:
++ Creation Attributes
+  + Field Business Type: Supports many - to - one and many - to - many.
+  + Associated Model: You need to set the associated model for the current component. This component only supports associating with the "Role" model.
++ Selectable Scope: Includes all roles and custom selection. If no specific roles are manually selected, it will be all roles.
+  + All Roles: You can select all the roles created in the system.
+  + Custom: You can manually select specific roles, and there are quick options provided:
+    + Roles Bound to the Current User: All roles bound to the currently logged - in user.
++ Maximum/Minimum Number of Selections: You can limit the range of the number of selections, including the maximum and minimum number of selections, to restrict user input.
 
 ## (XXXIII) Employee
-Provides a shortcut to directly select employees already entered in the system.
+When using the employee component, the system will automatically identify relevant information based on the currently logged - in user and display employees according to the configured employee scope.
 
 :::info Note
-+ When the created field business type is many-to-one, it is a drop-down single selection in practical applications.
-+ When the created field business type is many-to-many, it is a drop-down multiple selection in practical applications.
++ When the business type of the created field is many - to - one, it will be a single - select dropdown in actual applications.
++ When the business type of the created field is many - to - many, it will be a multi - select dropdown in actual applications.
 :::
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yg1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765365605324-7752c1e2-1624-46a5-9bac-52040446365c.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/yg2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765365605324-7752c1e2-1624-46a5-9bac-52040446365c.png)
 :::
 
-Specific attributes of employee:
-
-+ Creation Attribute
-    - Field Business Type: Supports many-to-one and many-to-many.
-    - Associated Model: Requires setting the associated model of the current component, and this component only supports associating with the "Employee" model.
-+ Maximum/Minimum Selection Count: Can limit the selection count range, including maximum and minimum selection counts, to limit user input.
+Employee - specific Attributes:
++ Creation Attributes
+    - Field Business Type: Supports many - to - one and many - to - many.
+    - Associated Model: You need to set the associated model for the current component. This component only supports associating with the "Employee" model.
+- Selectable Scope: Includes all employees and custom selection. If no specific employees are manually selected, it will be all employees.
+  - All Employees: You can select all the employees created in the system.
+  - Custom: You can manually select specific employees, and there are quick options provided:
+    * **Employee Bound to the Current User**: Refers to the first employee identity bound to the current user.
+    * **Employees in the Department of the Current User**: Refers to all employees in the department to which the current user's employee belongs.
+    * **Employees in the Department of the Current User and Its Sub - departments**: Refers to all employees in the department to which the current user's employee belongs and all its sub - departments.
++ Maximum/Minimum Number of Selections: You can limit the range of the number of selections, including the maximum and minimum number of selections, to restrict user input.
 
 ## (XXXIV) Address
 Provides an address selector function, suitable for scenarios such as selecting home addresses.
@@ -1136,9 +1192,9 @@ Allows selection to stop at any level.
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dz1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701143136206.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/dz2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2014.51.05.gif)
 :::
 
 Specific attributes of address:
@@ -1152,9 +1208,9 @@ Supports embedding forms in the page, suitable for designing complex pages to me
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bd1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701150419028.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bd2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701150518893.png)
 :::
 
 Specific attributes of form:
@@ -1162,6 +1218,12 @@ Specific attributes of form:
 + Creation Attribute
     - Field Business Type: Supports many-to-one.
     - Associated Model: Requires setting the associated model of the current component.
+- Layout Type: Two form layout formats are provided: Normal Layout and Word Layout.
+  + Normal Layout:  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765366674096-3aa354fa-49b7-4406-8850-6df4b7ada136.png)
+
+  + Word Layout:  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765366705144-93e94233-7450-4fca-97fa-a8918ebf4e83.png)
 + Empty Value Display Style: Used to set the display method when some field values in the form are empty.
 
 ## (XXXVI) Table
@@ -1169,9 +1231,9 @@ Supports embedding tables in the page, suitable for scenarios such as displaying
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bg1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701151036902.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/bg2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701151152877.png)
 :::
 
 Specific attributes of table:
@@ -1179,8 +1241,55 @@ Specific attributes of table:
 + Creation Attribute
     - Field Business Type: Supports one-to-many and many-to-many.
     - Associated Model: Requires setting the associated model of the current component.
-+ Show Add Button: A shortcut operation that displays an add button in the table when enabled.
-+ Show Delete Button: A shortcut operation that displays a delete button in the table when enabled.
++ One - to - Many Table: You can set up quick operations, including creation, editing, deletion, in - line editing, adding a row, and quick data entry. After enabling these operations, the corresponding actions will be displayed in the table.  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765360427623-bd85620e-3b20-4b1f-9a47-46b8be9b30bf.png)
+
+:::info
+Quick Data Entry: Allows users to efficiently enter or update sub - table data by copying Excel content or performing batch editing.
+
+1. Mode Description
+
+This function includes two modes: "Add New Data" and "Edit Existing Data". It is applicable to various field types and will automatically validate the data format and field rules during data entry.
+
++ Add New Data Mode: Suitable for batch data import:
+  - You can directly paste the Excel content into the data entry area.
+  - The pasted data will be appended to the corresponding fields in the sub - table.
+  - Only the field columns that **support pasting** and have **in - line editing enabled** will be displayed.
+  - If there are empty rows in the pasted content, the empty rows will be automatically filtered and ignored when submitting.
++ Edit Existing Data Mode: Suitable for quickly modifying existing data in the sub - table:
+  - You can directly perform batch editing or paste replacement on the existing values.
+  - For fields that are only visible but not editable, they will be displayed in gray on the data entry page and cannot be modified. When pasting data, these fields will be **automatically skipped**, and the data in the corresponding columns will be discarded.
+
+2. Field Column Selection
+
+The data entry page supports selecting fields through a dropdown menu in the table header:
+
++ You can select other supported fields in the sub - table model.
++ Each field column can be set to **"Do not paste"**, which means the pasted content will not be written to this column.
+
+Note: The field columns that are not set to "Do not paste" cannot be repeated. If there are repetitions after adjusting the fields, the system will automatically change the original field column to "Do not paste".
+
+3. Data Entry
+
+The system will judge the pasted data based on the type of the table header fields:
+
++ When the data format does not match the field type, the system will mark it in red as a prompt.
++ If the user does not correct the data and selects "Continue data entry", the system will automatically clear the data that does not match the format and write null values to the sub - table.
++ When submitting the data, if there are calculation formulas in the sub - table that depend on the current field, the system will automatically calculate and fill back the results of other fields based on the data entered by the user.
+
+4. Special Fields:
+
++ Drop - down Selection: The system will judge whether the entered value is valid through the "Option Field". If the entered value is not within the selectable range, it will be marked in red as a prompt, and a drop - down component will be displayed for the user to select the correct item.
++ Date and Time: The system will fill back the data according to the date or time format set for the field.
+  - The date supports the following format recognition: `2000/01/01`, `2000 - 01 - 01`, `2000.01.01`.
+  - The time supports the `00:00:00` format.
++ Organization - related Fields (Company/Department/Employee/Role): If the entered name is not within the selectable range or there are duplicate names, it will be marked in red as a prompt, and a component will be provided for the user to select the correct value.
++ Address Field: During data entry, the system will split the address into multiple cells (Country - Province/State - City - District/County - Street). The system will verify in sequence whether the country, province, city, district, and street match the real - world address data.
+
+:::
+
++ Many - to - Many Table: You can set up quick operations, including adding, deleting, and in - line deletion. After enabling these operations, the corresponding actions will be displayed in the table.  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765360107018-0dae0594-b8df-42f3-aedf-6eaaff763822.png)
 + Data Submission Type: Specifies the submission method used when submitting data, currently only supporting full submission.
 + Associated Relationship Update Type: The data submission method when associated relationship fields in the table are updated, including full submission and incremental submission.
 
@@ -1194,9 +1303,9 @@ Supports packaging data into a file for download, suitable for batch data acquis
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wjxz1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701153541083.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/wjxz2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701154212704.png)
 :::
 
 Specific attributes of file download:
@@ -1210,9 +1319,9 @@ Used to drag files into a specified area to complete upload, also supporting cli
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tzsc1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701154436404.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/tzsc2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701154549648.png)
 :::
 
 Specific attributes of drag and drop upload:
@@ -1241,9 +1350,9 @@ Supports implementing handwritten signatures on web pages, suitable for online c
 
 :::tip Example
 Design Example:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sxqm1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/image-20250701154918907.png)
 Display Page:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/sxqm2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Field/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-01%2015.51.09.gif)
 :::
 
 Specific attributes of handwritten signature:
