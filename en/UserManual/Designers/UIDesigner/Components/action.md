@@ -9,7 +9,14 @@ next:
   text: Customized Components
   link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
 ---
-# I. General Attributes
+# I. Operation Bar
++ Styles: Two display styles for action components are provided:
+  - **Default Style**: All buttons are displayed according to their respective preset styles.
+  - **Prominent First Button Style**: The first button is displayed as a primary button, while the remaining buttons are shown as text buttons.
+  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765366197643-11cf1654-1b01-4b68-a5f3-534b311c7805.png)
++ Number of Displayed Actions in the Action Area: You can set the number of buttons directly displayed in the action area. When "Disable Collapse" is not selected, you can set the style of the "More" button. If "Disable Collapse" is enabled, the "More" button will not be displayed.
+
+# II. General Attributes
 + Action Name/Button Text: The display name of the component on the current page.
 + Retain Action: After enabling this option, if the action component is deleted, it will be retained in the model action list in the left tool area for subsequent reuse.
 + Icon: Supports adding icons to action components to enhance their visualization and recognition.
@@ -34,11 +41,11 @@ next:
     - Confirm Button Text: Supports customizing the display text of the confirm button.
     - Cancel Button Text: Supports customizing the display text of the cancel button.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/ty1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703171044008.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/ty2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703171418160.png)
 
-# II. Specific Attributes
+# III. Specific Attributes
 ## (Ⅰ) Submit Action
 By configuring different server functions, different operations can be performed, which is suitable for various scenarios such as querying, deleting, and creating.
 
@@ -46,11 +53,11 @@ By configuring different server functions, different operations can be performed
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/tj1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703172404690.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/tj2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/%E6%8F%90%E4%BA%A4%E5%8A%A8%E4%BD%9C.gif)
 
 :::
 
@@ -82,11 +89,11 @@ Supports jumping to a certain page, which is suitable for scenarios such as page
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/tz1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703173625864.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/tz2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-03%2018.00.40.gif)
 
 :::
 
@@ -97,8 +104,6 @@ Specific attributes of the jump action:
   :::warning Prompt
 
     When setting the jumped page to a pop-up window or a drawer, its page attributes can be configured:
-
-  + Pop-up Window
     - Title: You can enter the title to be displayed on the pop-up window page.
     - Enable Dynamic Title: When enabled, the title can be dynamically displayed according to the set rules; when disabled, the default title will be displayed statically.
     - Pop-up Window Height/Pop-up Window Width: Different size specifications can be selected.
@@ -107,16 +112,12 @@ Specific attributes of the jump action:
     - Add Display Mask: You can choose whether to display a mask to blur the background content when the pop-up window appears, highlighting the content of the pop-up window.
     - Allow Closing: You can set whether to display the close button.
     - Close on Mask Click: You can set whether the pop-up window closes when the user clicks on the mask area.
-  + Drawer
-    - Title: You can enter the title to be displayed on the drawer page.
-    - Enable Dynamic Title: When enabled, the title can be dynamically displayed according to the set rules; when disabled, the default title will be displayed statically.
-    - Drawer Position: Used to set the position where the drawer pops up on the interface.
-    - Drawer Size: Different size specifications can be selected.
-    - Title Arrangement: The arrangement style of the drawer title can be set, including horizontal and vertical.
-    - Add Display Mask: You can choose whether to display a mask to blur the background content when the drawer appears, highlighting the content of the drawer.
-    - Allow Closing: You can set whether to display the close drawer button.
-    - Close on Mask Click: You can set whether the drawer closes when the user clicks on the mask area.
-
+    - Switch to Full - screen: After enabling this function, users can switch the pop - up window/drawer to full - screen mode on the actual running page.
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765354301076-e71e3a43-7462-46a6-9bff-db801c50fa06.gif)
+    - Pop - up Window/Drawer Switch: After enabling this function, users can freely switch the display form (pop - up window or drawer) on the actual running page.
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765354213913-a74a7d99-8228-487d-9032-46fe6ff912f4.gif)
+    + Record Switch: After enabling this function, users can quickly switch the data displayed on the page on the actual running page.
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765354394985-23e30334-7172-4531-8342-cbcdef20c93d.gif)
   :::
 + Page Content: Specifies the content of the jumped page. You can either choose to bind an existing page or create a new page. When choosing to create a new page, relevant attributes for creating a new page will be added to the current component property bar, facilitating the quick creation and setting of a new page.
 + Bind Page: When choosing to bind an existing page, this attribute is displayed. You can select a published page in the interface designer.
@@ -150,11 +151,11 @@ Supports linking to other web pages, which is suitable for scenarios such as qui
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/lj1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703180846391.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/lj2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-03%2018.12.13.gif)
 
 :::
 
@@ -182,11 +183,11 @@ According to different client behaviors, different operations can be performed, 
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/khd1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703185945769.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/khd2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-03%2019.03.19.gif)
 
 :::
 
@@ -199,6 +200,8 @@ Specific attributes of the client action:
   + Delete Data: After selecting the data to be deleted, the deletion operation can be performed.
   + Add a Row of Data: You can directly add a row of data to the table without jumping to a page.
   + Copy a Row of Data: After selecting any piece of data, you can quickly copy the data.
+  + Save as Draft: Temporarily save the currently filled - in content without submitting it as official data.
+  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765419181775-cb54a6d5-d605-45bb-903c-133917bedfe6.gif)
 
 ## (Ⅴ) Batch Action
 A shortcut for the jump action to process multiple pieces of data, which can perform batch modification operations on the data in the selected data set.
@@ -207,11 +210,11 @@ A shortcut for the jump action to process multiple pieces of data, which can per
 
 Design Example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/pl1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/image-20250703191531729.png)
 
 Display Page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/pl2gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Medium/%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B62025-07-03%2019.03.19.gif)
 
 :::
 

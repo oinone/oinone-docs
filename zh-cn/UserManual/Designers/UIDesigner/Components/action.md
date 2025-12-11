@@ -9,7 +9,14 @@ next:
   text: 自定义组件
   link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
 ---
-# 一、通用属性
+# 一、操作栏
++ 样式：提供两种动作组件的展示样式：
+  - **默认样式**：所有按钮按各自的预设样式显示。
+  - **首按钮突出样式**：首个按钮以主要按钮样式展示，其余按钮显示为文字按钮。
+  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765366197643-11cf1654-1b01-4b68-a5f3-534b311c7805.png)
++ 动作区显示数量：可设置动作区中直接显示的按钮数量；当未选择“禁用折叠”时，可设置「更多」按钮的样式；若启用“禁用折叠”，则不显示「更多」按钮。
+
+# 二、通用属性
 + 动作名称/按钮文字：组件在当前页面的展示名称。
 + 保留动作：开启此选项后，若删除该动作组件，它将会被保留在左侧工具区的模型动作列表中，便于后续继续使用。
 + 图标：支持为动作组件添加图标，以增强其可视化和识别度。
@@ -38,7 +45,7 @@ next:
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/action/ty2.png)
 
-# 二、特有属性
+# 三、特有属性
 ## （一）提交动作
 配置不同的服务器函数，可以执行不同的操作，适用于查询、删除、创建等多种场景。
 
@@ -97,8 +104,6 @@ next:
   :::warning 提示
 
     当设置跳转页面为弹窗或抽屉时，可以配置其页面属性：
-
-  + 弹窗
     - 标题：可输入用于显示在弹窗页面上的标题
     - 开启动态标题：开启时，可按设定规则动态展示标题；关闭则固定显示默认标题。
     - 弹窗高度/弹窗宽度：可选择不同尺寸规格。
@@ -107,16 +112,12 @@ next:
     - 添加显示遮罩：可选择是否显示遮罩，用于在弹窗弹出时，使背景内容虚化，突出弹窗内容。
     - 允许关闭：可设置是否显示关闭按钮。
     - 点击遮罩关闭：可设置当用户点击遮罩区域时，弹窗是否关闭。
-  + 抽屉
-    - 标题：可输入用于显示在抽屉页面上的标题
-    - 开启动态标题：开启时，可按设定规则动态展示标题；关闭则固定显示默认标题。
-    - 抽屉位置：用于设置抽屉在界面中弹出的方位 。
-    - 抽屉大小：可选择不同尺寸规格。
-    - 标题排列方式：可设置抽屉标题的排列样式，包括横向与纵向。
-    - 添加显示遮罩：可选择是否显示遮罩，用于在抽屉弹出时，使背景内容虚化，突出抽屉内容。
-    - 允许关闭：可设置是否显示关闭抽屉按钮。
-    - 点击遮罩关闭：可设置当用户点击遮罩区域时，抽屉是否关闭。
-
+    - 切换全屏：启用此功能后，用户在实际运行的页面中可将弹窗/抽屉切换为全屏状态
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765354301076-e71e3a43-7462-46a6-9bff-db801c50fa06.gif)
+    - 弹窗/抽屉切换：启用此功能后，用户在实际运行的页面中，可以随意切换展示形式（弹窗或抽屉）
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765354213913-a74a7d99-8228-487d-9032-46fe6ff912f4.gif)
+    + 记录切换：启用此功能后，用户在实际运行的页面中可快捷切换页面中展示的数据
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765354394985-23e30334-7172-4531-8342-cbcdef20c93d.gif)
   :::
 + 页面内容：指定跳转的页面内容，既可以选择绑定已有的页面，也可以创建新的页面。当选择创建新页面时，当前组件属性栏中将新增新建页面的相关属性，便于快速创建并设置新页面。
 + 绑定页面：当选择绑定已有的页面时，显示此属性。可选择在界面设计器中已发布的页面。
@@ -201,6 +202,8 @@ next:
   + 删除数据：选中所需删除的数据后，即可执行删除操作
   + 添加一行数据：无需跳转页面，即可在表格直接添加一行数据
   + 复制一行数据：选中任意一条数据后，即可快速复制该数据。
+  + 保存为草稿：将当前填写内容临时保存，不会提交为正式数据
+  ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/1765419181775-cb54a6d5-d605-45bb-903c-133917bedfe6.gif)
 
 ## （五）批量动作
 跳转动作处理多条数据的快捷方式，可对选中数据集内的数据进行批量修改的行为。
