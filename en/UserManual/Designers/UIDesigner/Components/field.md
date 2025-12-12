@@ -1126,10 +1126,9 @@ Department - specific Attributes:
 - Selectable Scope: Includes all departments and custom selection. If no specific departments are manually selected, it will be all departments.
   - All Departments: You can select all the departments created in the system.
   - Custom: You can manually select specific departments, and there are quick options provided:
-    * Current Employee: The first employee identity bound to the current user.
-    * Current Company: The company to which the current employee belongs.
-    * Department of Current User: All departments to which the current employee belongs.
-    * Department of Current User and Its Sub - departments: All departments to which the current employee belongs and all their sub - departments.
+    * All departments of the current user's company: All departments of the company to which the current user binds all employee identities
+    * Department of the current user: All departments belonging to all employee identities tied to the current user
+    * Department and subordinate departments of the current user: all departments and all sub-departments belonging to all employee identities bound by the current user
 + Maximum/Minimum Number of Selections: You can limit the range of the number of selections, including the maximum and minimum number of selections, to restrict user input.
 
 ## (XXXIII) Role
@@ -1178,7 +1177,7 @@ Employee - specific Attributes:
 - Selectable Scope: Includes all employees and custom selection. If no specific employees are manually selected, it will be all employees.
   - All Employees: You can select all the employees created in the system.
   - Custom: You can manually select specific employees, and there are quick options provided:
-    * **Employee Bound to the Current User**: Refers to the first employee identity bound to the current user.
+    * **Employee Bound to the Current User**: Refers to all employee identity bound to the current user.
     * **Employees in the Department of the Current User**: Refers to all employees in the department to which the current user's employee belongs.
     * **Employees in the Department of the Current User and Its Sub - departments**: Refers to all employees in the department to which the current user's employee belongs and all its sub - departments.
 + Maximum/Minimum Number of Selections: You can limit the range of the number of selections, including the maximum and minimum number of selections, to restrict user input.

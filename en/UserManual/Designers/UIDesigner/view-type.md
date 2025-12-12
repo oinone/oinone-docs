@@ -111,8 +111,6 @@ In the canvas design area, the table view by default includes a search component
 | ------ | --------------- |
 | Move cell left | 'Shift' + 'Tab' |
 | Move cell to the right | 'Tab' |
-| Move cell up | 'Ctrl' + 'Shift' + 'Tab' |
-| Move the cell down | 'Ctrl' + 'Enter' |
 | Submit data | 'Enter' |
 | Unedit | 'Esc' |
 
@@ -124,10 +122,11 @@ With "Allow users to sort" enabled, this feature allows you to set and manage th
 2. Sorting: The table provides two ways to set the sorting, and they have different scopes:
    + Single field sort (list header setting)
      - Action position: Directly click the table column title next to the sort icon.
-     - Valid logic: Sorting only applies to the currently clicked field. This is a quick, single-level sort that overwrites any currently applied sorting rules (including the multi-field sorting set in the popup). Once the configuration is complete, click the "OK" button to apply multilevel sorting.
-   + Multi-field sorting (icon popover Settings)
+     - Valid logic: Sorting only applies to the currently clicked field. This is a quick, single-level sort that overwrites any currently applied sorting rules (including the multi-field sorting set in the popup). 
+   - Multi-field sorting (icon popover Settings)
      - Action location: Click the sort icon in the top right corner of the table.
-     - Valid logic: Multiple fields can be sorted and manually dragged to adjust the priority (the higher the priority, the higher the priority)
+     - Valid logic: Multiple fields can be sorted and manually dragged to adjust the priority (the higher the priority, the higher the priority)Once the configuration is complete, click the "OK" button to apply multilevel sorting.
+   + Multi-field sorting (icon popover Settings)
 3. Remove sorting
    + Single field sort: Click the "Unsort" button next to the column title.
    + Multi-field sort: Click the Delete icon next to the field
@@ -160,7 +159,6 @@ The grouping function is mutually exclusive with the tree table, and the two can
 **Sorting and Statistics**
 + Sorting within Groups: You can sort the selected fields, with the default being ascending order. Sorting within groups will override the sorting settings for this field in the original sorting function, and the two functions do not affect each other.
 + Statistics within Groups: Supports statistics on the data within groups (such as summation, average, total number of records, etc.), and the results are displayed in the group title row.
-  - Null values are not included in the statistics.
   - Multi - value data with the same content but only different orders is treated as one piece of data.
 
 **Expanding and Collapsing**
