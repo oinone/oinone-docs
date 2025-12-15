@@ -16,6 +16,16 @@ Form view display effect:
 ![Form Display Page Example](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewType/image-20250626160622878.png)
 :::
 In the canvas design area, the form view will default to providing a form component, and the attributes configured in this form component can act on the entire form view.
+
+:::info Attention
+
+The extended carrying forms of the form include pop - up windows and drawers. Both can complete form interactions in the current scenario. The specific choice can be determined based on the amount of content and the usage scenario:
++ The pop - up window appears as a pop - up in the center of the screen and is suitable for operations with fewer form items that need to be completed quickly.
++ The drawer slides out from the edge of the screen and is suitable for scenarios with more form items where detailed information needs to be supplemented.
+For detailed configuration and interaction rules, please refer to the description in "Jump Action Component": [Link Name](/zh-cn/UserManual/Designers/UIDesigner/Components/action.md#2. Jump Action)
+
+:::
+
 + Title arrangement: that is, the arrangement of the title and its content, which is divided into horizontal and vertical.
 + Disable data loading: after enabling this option, the data loading function will not be executed.
 + Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
