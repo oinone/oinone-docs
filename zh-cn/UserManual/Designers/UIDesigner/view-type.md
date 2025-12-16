@@ -29,7 +29,7 @@ order: 2
 表单的延伸承载形式包含弹窗和抽屉，二者均可在当前场景下完成表单交互，具体选择可根据内容量和使用场景判断：
 + 弹窗以屏幕中央弹窗形式呈现，，适合表单项较少、需快速完成的操作
 + 抽屉从屏幕边缘滑出，适合表单项较多、需补充详细信息的场景
-详细的配置与交互规则请参见「跳转动作组件」中的说明：[链接名称](/zh-cn/UserManual/Designers/UIDesigner/Components/action.md#二-跳转动作)
+详细的配置与交互规则请参见「跳转动作组件」中的说明：[跳转动作](/zh-cn/UserManual/Designers/UIDesigner/Components/action.md#二-跳转动作)
 
 :::
 + 标题排列方式：即标题与其内容的排列，分为横向和纵向两种。
@@ -106,7 +106,8 @@ order: 2
     - 最小列宽：即表格每列所允许的最小宽度。
     - 自动行高：当单个单元格的高度超过其他单元格时，当前行高会根据最高单元格进行变化。
     - 行高：可自定义表格显示的最小行高。
-    - 切换行高：启用此属性后，表格在运行时会显示行高调节图标。用户可点击图标，从下拉菜单中选择行高，包括：默认（使用设计时设置的行高）、低、中、高、自适应（行高根据内容自动调整）。
+    - 切换行高：启用此属性后，表格在运行时会显示行高调节图标。用户可点击图标，从下拉菜单中选择行高，包括：默认（使用设计时设置的行高）、低、中、高、自适应（行高根据内容自动调整）。  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E8%A1%A8%E6%A0%BC%E8%A1%8C%E9%AB%98%E5%8A%A8%E5%9B%BE.gif)
     :::info 注意
 
     如果用户在使用表格时切换了行高，则设置的自动行高将失去效果
@@ -146,7 +147,9 @@ order: 2
         * 自定义编辑：用户可根据实际需求，自定义编辑操作的范围和具体编辑动作，提供更高的灵活性和个性化设置。
     - 禁用数据加载：开启此选项后，将不执行数据加载函数。
     - 加载函数：若开启禁用数据加载，不显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
-    - 切换全屏：开启此属性后，用户可手动选择是否全屏展示表格
+    - 切换全屏：开启此属性后，用户可手动选择是否全屏展示表格  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E8%A1%A8%E6%A0%BC%E5%85%A8%E5%B1%8F%E5%8A%A8%E5%9B%BE.gif)
+
     + 快捷键：启用此功能后，用户可在表格视图中使用以下快捷键对允许编辑的字段列进行快速操作。此外用户可在表格右上方查看快捷键提示面板。
     :::info 注意
 
@@ -164,7 +167,8 @@ order: 2
 | 取消编辑      | `Esc`         |
 
 #### 排序
-开启了“允许用户排序”后，此功能允许您在表格中设置和管理数据的排序规则，以便更高效地查看和分析信息。
+开启了“允许用户排序”后，此功能允许您在表格中设置和管理数据的排序规则，以便更高效地查看和分析信息。  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E8%A1%A8%E6%A0%BC%E6%8E%92%E5%BA%8F%E5%8A%A8%E5%9B%BE.gif)
 1. 默认排序：如果系统在设计时配置了默认排序规则， 表格加载时，数据将按照预设的默认排序规则进行排列。
    + 单字段排序：相应列标题旁显示当前排序顺序
    + 多字段排序：弹窗中将默认显示该字段及其当前的排序配置。
@@ -181,8 +185,8 @@ order: 2
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/image-20251211144352376.png)
 
 #### 分组
-开启了“允许数据分组”后，此功能允许您根据选择的一个或多个字段对表格数据进行组织和分类，从而提高数据的可读性和分析效率。
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/image-20251211145254135.png)
+开启了“允许数据分组”后，此功能允许您根据选择的一个或多个字段对表格数据进行组织和分类，从而提高数据的可读性和分析效率。  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E8%A1%A8%E6%A0%BC%E5%88%86%E7%BB%84%E5%8A%A8%E5%9B%BE.gif)
 :::info 注意
 
 分组功能与树形表格互斥，两者不可同时开启。
@@ -334,9 +338,21 @@ order: 2
     - 选项卡标签：当页面所在模型下存在数据字典类型字段时，可为搜索组件设置选项卡标签。配置后，搜索栏将以标签卡的形式呈现。
 + 画廊组件属性
     - 一行展示卡片数量：即在一行中能够展示的卡片数量。
+    - 切换卡片数量：启用此功能后，用户可在实际运行的页面中自定义一行展示卡片的数量  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E5%8D%A1%E7%89%87%E6%95%B0%E9%87%8F%E5%8A%A8%E5%9B%BE.gif)
     - 分页器风格：分页器的展示样式，提供简约、标准以及隐藏三种风格供选择。
     - 默认分页条数：即每页显示的数据条目数。
     - 查询条件：在实际页面展示中，会按照配置的查询条件展示数据。
+    - 排序：开启了“允许用户排序”后，此功能允许您在画廊中设置和管理数据的排序规则，以便更高效地查看和分析信息。
+      :::info 注意
+        1. 默认排序：如果系统在设计时配置了默认排序规则， 画廊加载时，数据将按照预设的默认排序规则进行排列。
+        2. 排序方式：点击表格右上角的排序图标，可对多个字段设置排序规则，并支持手动拖拽调整优先级（排在越上方的字段，优先级越高）。
+        3. 删除排序：点击字段旁的删除图标即可删除选中字段  
+        ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E6%8E%92%E5%BA%8F%E5%8A%A8%E5%9B%BE.gif)
+      :::
+
+    - 切换全屏：开启此属性后，用户可手动选择是否全屏展示表格  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E5%85%A8%E5%B1%8F%E5%8A%A8%E5%9B%BE.gif)
     - 禁用数据加载：开启此选项后，将不执行数据加载函数。
     - 加载函数：若开启禁用数据加载，不显示该属性。在实际页面中选择某一选项值时，将执行该函数加载数据。
 

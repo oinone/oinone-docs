@@ -1341,6 +1341,7 @@ order: 2
 
 :::info
 快速填报：允许用户通过复制 Excel 内容或批量编辑方式，高效录入或更新子表数据。
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E5%8A%A8%E5%9B%BE.gif)
 
 1. 模式说明
 

@@ -22,7 +22,7 @@ In the canvas design area, the form view will default to providing a form compon
 The extended carrying forms of the form include pop - up windows and drawers. Both can complete form interactions in the current scenario. The specific choice can be determined based on the amount of content and the usage scenario:
 + The pop - up window appears as a pop - up in the center of the screen and is suitable for operations with fewer form items that need to be completed quickly.
 + The drawer slides out from the edge of the screen and is suitable for scenarios with more form items where detailed information needs to be supplemented.
-For detailed configuration and interaction rules, please refer to the description in "Jump Action Component": [Link Name](/zh-cn/UserManual/Designers/UIDesigner/Components/action.md#2. Jump Action)
+For detailed configuration and interaction rules, please refer to the description in "Jump Action Component": [Jump Action](/en/UserManual/Designers/UIDesigner/Components/action.md#2. Jump Action)
 
 :::
 
@@ -73,7 +73,8 @@ In the canvas design area, the table view by default includes a search component
     - Minimum column width: This is the minimum allowable width of each column in the table.
     -Automatic row height: When the height of a single cell exceeds other cells, the current row height is changed based on the highest cell.
     - Row height: You can customize the minimum row height displayed in the table.
-    - Toggle row height: When this property is enabled, the table will display a row height adjustment icon at runtime. The user can click on the icon, and select the row height from the drop-down menu, including: default (using the row height set at design time), low, medium, high, and adaptive (the row height is automatically adjusted based on the content).
+    - Toggle row height: When this property is enabled, the table will display a row height adjustment icon at runtime. The user can click on the icon, and select the row height from the drop-down menu, including: default (using the row height set at design time), low, medium, high, and adaptive (the row height is automatically adjusted based on the content).  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E8%A1%A8%E6%A0%BC%E8%A1%8C%E9%AB%98%E5%8A%A8%E5%9B%BE.gif)
     :::info Note
 
     If the user switches the row height while working with the table, the set automatic row height will lose its effect
@@ -107,7 +108,10 @@ In the canvas design area, the table view by default includes a search component
     * Custom editing: Users can customize the scope of editing operations and specific editing actions according to their actual needs, providing higher flexibility and personalized Settings.
      - Disable data loading: after enabling this option, the data loading function will not be executed.
      - Loading function: if data loading is disabled, this attribute will not be displayed. When a certain option value is selected in the actual page, this function will be executed to load data.
-   - Toggle full screen: When this property is enabled, the user can manually choose whether to display the table in full screen
+   - Toggle full screen: When this property is enabled, the user can manually choose whether to display the table in full screen  
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E8%A1%A8%E6%A0%BC%E5%85%A8%E5%B1%8F%E5%8A%A8%E5%9B%BE.gif)
+
+
     + Shortcuts: With this feature enabled, users can use the following shortcuts in the table view to perform quick operations on the field columns that are allowed to be edited. In addition, the user can see the shortcut prompt panel at the top right of the table.
     :::info Note
 
@@ -125,7 +129,8 @@ In the canvas design area, the table view by default includes a search component
 | Unedit | 'Esc' |
 
 #### Sort
-With "Allow users to sort" enabled, this feature allows you to set and manage the ordering of data in the table for more efficient viewing and analysis of information.
+With "Allow users to sort" enabled, this feature allows you to set and manage the ordering of data in the table for more efficient viewing and analysis of information.  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E8%A1%A8%E6%A0%BC%E6%8E%92%E5%BA%8F%E5%8A%A8%E5%9B%BE.gif)  
 1. Default ordering: If the system has a default ordering configured at design time, when the table is loaded, the data will be arranged according to the default ordering.
    + Single field sort: The current sort order is displayed next to the column header
    + Multi-field sort: This field and its current sort configuration will be shown by default in the popup.
@@ -140,11 +145,11 @@ With "Allow users to sort" enabled, this feature allows you to set and manage th
 3. Remove sorting
    + Single field sort: Click the "Unsort" button next to the column title.
    + Multi-field sort: Click the Delete icon next to the field
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/image-20251211144352376.png)
+
 
 #### Grouping
-After enabling "Allow Data Grouping", this function allows you to organize and classify table data based on one or more selected fields, thereby improving the readability and analysis efficiency of the data.  
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-type/image-20251211145254135.png)
+After enabling "Allow Data Grouping", this function allows you to organize and classify table data based on one or more selected fields, thereby improving the readability and analysis efficiency of the data.    
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E8%A1%A8%E6%A0%BC%E5%88%86%E7%BB%84%E5%8A%A8%E5%9B%BE.gif)
 :::info Note
 The grouping function is mutually exclusive with the tree table, and the two cannot be enabled simultaneously.
 :::
@@ -254,12 +259,23 @@ In the canvas design area, the gallery view consists of two pages, namely "Desig
     - Disable Collapse: If this option is enabled, the search area will remain in a fixed state, and expansion or collapse operations are not allowed.
     - Tab Labels: When there are data dictionary type fields under the model of the current page, you can set tab labels for the search component. After configuration, the search bar will be presented in the form of tab cards.
 + Gallery Component Attributes
-    - Number of Cards Displayed per Row: That is, the number of cards that can be displayed in one row.
-    - Paginator Style: The display style of the paginator. There are three styles to choose from: simple, standard, and hidden.
-    - Default Number of Items per Page: That is, the number of data items displayed per page.
-    - Query Conditions: In the actual page display, data will be displayed according to the configured query conditions.
-    - Disable Data Loading: After enabling this option, the data loading function will not be executed.
-    - Loading Function: If "Disable Data Loading" is enabled, this property is not displayed. When a certain option value is selected on the actual page, this function will be executed to load data.
+    - Number of cards displayed per row: That is, the number of cards that can be displayed in one row.
+    - Switch the number of cards: After enabling this function, users can customize the number of cards displayed per row on the actual running page.
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E4%B8%80%E8%A1%8C%E5%B1%95%E7%A4%BA%E5%8D%A1%E7%89%87%E6%95%B0%E9%87%8F%E5%8A%A8%E5%9B%BE.gif)
+    - Paginator style: The display style of the paginator. There are three styles available for selection: minimalist, standard, and hidden.
+    - Default number of items per page: That is, the number of data entries displayed per page.
+    - Query conditions: In the actual page display, the data will be displayed according to the configured query conditions.
+    - Sorting: After enabling "Allow users to sort", this function allows you to set and manage the sorting rules of data in the gallery for more efficient data viewing and analysis.
+      :::info Attention
+        1. Default sorting: If the system is configured with default sorting rules during design, when the gallery is loaded, the data will be arranged according to the preset default sorting rules.
+        2. Sorting method: Click the sorting icon in the upper - right corner of the table to set sorting rules for multiple fields, and manual dragging is supported to adjust the priority (the field ranked higher has a higher priority).
+        3. Delete sorting: Click the delete icon next to a field to delete the selected field.
+        ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E6%8E%92%E5%BA%8F%E5%8A%A8%E5%9B%BE.gif)
+      :::
+    - Switch to full - screen: After enabling this property, users can manually choose whether to display the table in full - screen mode.
+    ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E5%85%A8%E5%B1%8F%E5%8A%A8%E5%9B%BE.gif)
+    - Disable data loading: After enabling this option, the data loading function will not be executed.
+    - Loading function: If "Disable data loading" is enabled, this property will not be displayed. When a certain option value is selected on the actual page, this function will be executed to load data.
 
 
 # Ⅴ. Tree View

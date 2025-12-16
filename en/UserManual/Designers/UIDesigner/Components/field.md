@@ -1246,6 +1246,8 @@ Specific attributes of table:
 :::info
 Quick Data Entry: Allows users to efficiently enter or update sub - table data by copying Excel content or performing batch editing.
 
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/field/%E5%8A%A8%E5%9B%BE.gif)
+
 1. Mode Description
 
 This function includes two modes: "Add New Data" and "Edit Existing Data". It is applicable to various field types and will automatically validate the data format and field rules during data entry.
