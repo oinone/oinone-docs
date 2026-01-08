@@ -25,10 +25,25 @@ next:
 
 # 二、查看详情
 ### 1.功能介绍
-支持查看接口的执行详情，可以全面了解接口的整体运行状况与参数信息
+支持查看接口的执行详情，可以全面了解接口的整体运行状况与参数信息  
+**展示内容**
+
++ **基础信息**：展示API名称、技术名称、API 类型、 API URL等基础配置。
++ **执行信息**：展示接口的执行相关信息，如响应结果、调用时间、执行时长等。
++ **参数信息**：展示接口的请求头数据与原始请求数据等参数信息，支持按结构化方式查看。
+
+**参数展示与复制**
+
++ 参数信息支持 **JSON / XML** 两种格式展示，可根据需要自由切换参数展示格式
++ 支持一键复制当前格式下的参数内容，便于接口调试与对接
 
 ### 2.操作方法
 点击「详情」，即可在弹出的页面中查看接口执行情况
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Interface%20log/xq.png)
 
+在参数信息中可切换数据的展示格式  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1767862005070-ccf4353f-fa1b-47e6-b08e-b0f2c24f117e.png)
+
+在参数信息中可复制所选参数类型的数据  
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1767862113195-43cf3fdd-551c-43f7-aa23-28002e693481.png)

@@ -219,7 +219,14 @@ Editing operations are only allowed when APIs and files are in the disabled stat
 
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)  
+
+In the SQL input area of the database API, a **「Format / Restore」** toggle button is provided to help users view and edit SQL statements more clearly.
+
++ **Formatting**: After entering or pasting SQL in the input box, click "Format". The system will format the current SQL, and the content in the input box will be updated to the formatted SQL.
++ **Restoring**: In the formatted state, click "Restore". The system will restore the SQL content to the original content before the last formatting.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1767863894249-29c4ecf6-266f-4c8b-8ef1-23c570566703.gif)
 
 ## (IV) Integrated Interface Testing
 
@@ -460,7 +467,7 @@ Select an API and click the "Publish Open API" button to publish it successfully
 
 ## (Ⅸ) Export API Documentation
 ### 1. Function Introduction
-It supports exporting API information as documentation.
+It supports the export of API information in applications and databases into document format. The document adopts a uniform structure, and different types display different information according to their own characteristics, which is used to describe the configured interface capabilities under an application, including interface purpose, call mode, parameter description and return data structure
 
 ### 2. Operation Method
 Select an API and click the "Export API Documentation" button to export it successfully.

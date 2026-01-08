@@ -220,7 +220,14 @@ API的路径不允许重复。
 
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)  
+
+在数据库 API 的 SQL 输入区域，提供 **「格式化 / 恢复」** 切换按钮，帮助用户更清晰地查看和编辑 SQL 语句。
+
++ **格式化**：在输入框中输入或粘贴 SQL 后，点击「格式化」，系统对当前 SQL 执行格式化处理，输入框内容更新为格式化后的 SQL
++ **恢复**：在已格式化状态下，点击「恢复」，系统将 SQL 内容还原为最近一次格式化前的原始内容
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1767863894249-29c4ecf6-266f-4c8b-8ef1-23c570566703.gif)
 
 ## （四）集成接口测试
 
@@ -483,7 +490,7 @@ API删除后无法恢复，请谨慎操作！
 
 ## （九）导出API文档
 ### 1.功能介绍
-支持将API的信息导出为文档格式
+支持将应用与数据库中的API的信息导出为文档格式，文档采用统一结构，不同类型根据自身特性展示差异化信息，用于说明某应用下已配置的接口能力，包括接口用途、调用方式、参数说明及返回数据结构等信息
 
 ### 2.操作方法
 选定API，点击「导出API文档」，即可成功导出
