@@ -222,12 +222,12 @@ API的路径不允许重复。
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)  
 
-在数据库 API 的 SQL 输入区域，提供 **「格式化 / 恢复」** 切换按钮，帮助用户更清晰地查看和编辑 SQL 语句。
+在数据库 API 的 SQL 输入区域，提供 「格式化 」与「压缩」 切换按钮，帮助用户更清晰地查看和编辑 SQL 语句。
 
-+ **格式化**：在输入框中输入或粘贴 SQL 后，点击「格式化」，系统对当前 SQL 执行格式化处理，输入框内容更新为格式化后的 SQL
-+ **恢复**：在已格式化状态下，点击「恢复」，系统将 SQL 内容还原为最近一次格式化前的原始内容
++ 格式化：在输入框中输入或粘贴 SQL 后，点击「格式化」，系统对当前 SQL 执行格式化处理，在不改变 SQL 含义 的前提下，重新排版 SQL 文本，让它更容易阅读和维护
++ 压缩：在输入框中输入或粘贴 SQL 后，点击「压缩」，系统对当前 SQL 执行压缩处理，在不改变 SQL 含义 的前提下，删除多余空格、换行、缩进，将其合并为一行或极少行
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1767863894249-29c4ecf6-266f-4c8b-8ef1-23c570566703.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1767922157116-f6a72f64-66d3-44c4-b532-a26c078f91b4.gif)
 
 ## （四）集成接口测试
 
