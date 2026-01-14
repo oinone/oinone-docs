@@ -8,37 +8,37 @@ let rootFontSizeLocked = false;
 const getClientWidth = () => document.documentElement.clientWidth;
 
 const getDesignWidth = () => {
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  return isMobile ? mobileDesignWidth : pcDesignWidth;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    return isMobile ? mobileDesignWidth : pcDesignWidth;
 }
 
 const getRootFontSize = () => {
-  if (rootFontSizeLocked) {
-    return designFont;
-  } else {
-    const targetW = getClientWidth();
-    const designW = getDesignWidth();
-    const targetFont = (targetW / designW) * designFont;
-    rootFontSize = targetFont;
-    return targetFont;
-  }
+    if (rootFontSizeLocked) {
+        return designFont;
+    } else {
+        const targetW = getClientWidth();
+        const designW = getDesignWidth();
+        const targetFont = (targetW / designW) * designFont;
+        rootFontSize = targetFont;
+        return targetFont;
+    }
 }
 
 const adjustRootFontSize = () => {
-  const fz = getRootFontSize();
-  console.log(`Calculated font-size: ${fz}px`); // 添加日志查看计算结果
-  document.documentElement.style.fontSize = fz + 'px';
+    const fz = getRootFontSize();
+    console.log(`Calculated font-size: ${fz}px`); // 添加日志查看计算结果
+    document.documentElement.style.fontSize = fz + 'px';
 }
 
 window.addEventListener('resize', adjustRootFontSize);
 window.addEventListener('load', adjustRootFontSize);
 adjustRootFontSize();
 
-document.addEventListener('DOMContentLoaded', function() {
+const init = function () {
     // 为链接添加点击事件监听
     var wechatLink = document.querySelector('a[href="https://work.weixin.qq.com/kfid/kfcc96fe71e3c539df2"]');
     if (wechatLink) {
-        wechatLink.addEventListener('click', function() {
+        wechatLink.addEventListener('click', function () {
             var weixinIcon = document.querySelector('.bar-wechat .bar-img-bg .bar-wechat-info');
             if (weixinIcon) {
                 // 停止动画并隐藏元素
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 弹窗按钮绑定点击事件
     var openButtons = document.querySelectorAll('.identity-form-btn, .silder-consult, .banner-advisory, .btn-t, .btn1, .btn.btn-outline-primary, .bar-chat');
-    openButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
+    openButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
             if (formBackground) {
                 formBackground.style.display = 'flex';
                 if (phoneNumberInputPopup && phoneNumberInput) {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 获取关闭表单的按钮并为其绑定点击事件
     var closeButton = document.querySelector('.form-close');
     if (closeButton) {
-        closeButton.addEventListener('click', function() {
+        closeButton.addEventListener('click', function () {
             if (formBackground) {
                 formBackground.style.display = 'none'; // 隐藏表单
             }
@@ -99,15 +99,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 菜单控制器
     var navItems = document.querySelectorAll('.nav-item.dropdown');
-    navItems.forEach(function(item) {
-        item.addEventListener('click', function(event) {
+    navItems.forEach(function (item) {
+        item.addEventListener('click', function (event) {
             event.stopPropagation();
             var isActive = this.classList.contains('active');
-            navItems.forEach(function(i) {
+            navItems.forEach(function (i) {
                 if (i !== item) {
                     i.classList.remove('active');
                     var subMenus = i.querySelectorAll('.dropdown-menu');
-                    subMenus.forEach(function(subMenu) {
+                    subMenus.forEach(function (subMenu) {
                         subMenu.classList.remove('submenu-active');
                     });
                 }
@@ -120,14 +120,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         var subMenuToggles = item.querySelectorAll('.sub-menu-toggle');
-        subMenuToggles.forEach(function(toggle) {
-            toggle.addEventListener('click', function(event) {
+        subMenuToggles.forEach(function (toggle) {
+            toggle.addEventListener('click', function (event) {
                 event.stopPropagation();
                 var target = document.querySelector(toggle.getAttribute('data-target'));
                 if (target) {
                     var isSubActive = target.classList.contains('submenu-active');
                     var subMenus = item.querySelectorAll('.dropdown-menu');
-                    subMenus.forEach(function(subMenu) {
+                    subMenus.forEach(function (subMenu) {
                         if (subMenu !== target) {
                             subMenu.classList.remove('submenu-active');
                         }
@@ -145,18 +145,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // 取消移动端链接跳转行为
     var navLinks = document.querySelectorAll('.nav-link.dropdown-toggle');
     if (window.innerWidth < 768) {
-        navLinks.forEach(function(link) {
-            link.addEventListener('click', function(event) {
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
                 event.preventDefault();
             });
         });
     }
 
-    document.addEventListener('click', function() {
-        navItems.forEach(function(item) {
+    document.addEventListener('click', function () {
+        navItems.forEach(function (item) {
             item.classList.remove('active');
             var subMenus = item.querySelectorAll('.dropdown-menu');
-            subMenus.forEach(function(subMenu) {
+            subMenus.forEach(function (subMenu) {
                 subMenu.classList.remove('submenu-active');
             });
         });
@@ -169,8 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var video = document.querySelector('video');
     var bannerBtns = document.querySelectorAll('.banner-btn');
 
-    bannerBtns.forEach(function(bannerBtn) {
-        bannerBtn.addEventListener('click', function() {
+    bannerBtns.forEach(function (bannerBtn) {
+        bannerBtn.addEventListener('click', function () {
             if (videoBackground) {
                 videoBackground.style.display = 'flex';
                 loadVideo(); // 调用加载视频的函数
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (videoCloseBtn) {
-        videoCloseBtn.addEventListener('click', function() {
+        videoCloseBtn.addEventListener('click', function () {
             if (videoBackground) {
                 videoBackground.style.display = 'none';
             }
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (videoContainerBtn) {
-        videoContainerBtn.addEventListener('click', function() {
+        videoContainerBtn.addEventListener('click', function () {
             if (videoBackground) {
                 videoBackground.style.display = 'none';
             }
@@ -202,6 +202,9 @@ document.addEventListener('DOMContentLoaded', function() {
             video.appendChild(source); // 将source元素添加到video中
             video.load(); // 加载视频
         }
+        if (video) {
+            video.play(); // 播放视频
+        }
     }
 
     // 多表单提交事件
@@ -212,18 +215,18 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'custJob', names: ['custJob1', 'custJob2'] }
     ];
 
-    formFields.forEach(function(field) {
-        field.names.forEach(function(name) {
+    formFields.forEach(function (field) {
+        field.names.forEach(function (name) {
             var element = document.getElementById(name);
             if (element) {
-                element.addEventListener('input', function(e) {
+                element.addEventListener('input', function (e) {
                     recordInput(field.id, e.target.value);
                 });
             }
         });
     });
 
-    window.handleSubmit = function(formNumber) {
+    window.handleSubmit = function (formNumber) {
         var custCompanyName = document.getElementById('custCompanyName' + formNumber).value.trim();
         var custName = document.getElementById('custName' + formNumber).value.trim();
         var phoneNum = document.getElementById('phoneNum' + formNumber).value.trim();
@@ -232,9 +235,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // 新增的验证规则
         var chineseCharRegex = /^[\u4e00-\u9fa5]+$/;
         var forbiddenKeywords = ['大学', '学院', '院校', '公司名称', '学校', '个人', '保密', '其他'];
-        var isValidCompanyName = chineseCharRegex.test(custCompanyName) && 
-                                custCompanyName.length >= 2 &&
-                                !forbiddenKeywords.some(function(keyword) { return custCompanyName.includes(keyword); });
+        var isValidCompanyName = chineseCharRegex.test(custCompanyName) &&
+            custCompanyName.length >= 2 &&
+            !forbiddenKeywords.some(function (keyword) { return custCompanyName.includes(keyword); });
         if (!isValidCompanyName) {
             alert('公司名称填写错误，请正确填写公司名称');
             return;
@@ -311,21 +314,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 `
             })
         })
-        .then(function(response) {
-            if (!response.ok) {
-                throw new Error('服务器响应错误');
-            }
-            return response.json();
-        })
-        .then(function(data) {
-            console.log('提交成功:', data);
-            alert('提交成功！');
-            clearForm(formNumber);
-        })
-        .catch(function(error) {
-            console.error('提交失败:', error);
-            alert('提交失败，请稍后再试！');
-        });
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('服务器响应错误');
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                console.log('提交成功:', data);
+                alert('提交成功！');
+                clearForm(formNumber);
+            })
+            .catch(function (error) {
+                console.error('提交失败:', error);
+                alert('提交失败，请稍后再试！');
+            });
     }
 
     function getURLParameter(name) {
@@ -339,6 +342,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('phoneNum' + formNumber).value = '';
         document.getElementById('custJob' + formNumber).value = '';
     }
-});
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
 
 export default {}

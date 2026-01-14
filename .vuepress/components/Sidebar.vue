@@ -75,7 +75,7 @@ onUnmounted(() => {
 });
 
 onMounted(() => {
-  originSidebarWidth = getRootStyle("--sidebar-width");
+  originSidebarWidth = getRootStyle("--sidebar-width")
   if (document.getElementsByClassName("sidebar-hide-space").length > 0) {
     hideSidebarWidth = getComputedStyle(
       document.getElementsByClassName("sidebar-hide-space")[0]
