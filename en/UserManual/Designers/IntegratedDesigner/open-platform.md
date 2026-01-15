@@ -58,7 +58,7 @@ Click the "Details" button to view the detailed information of the selected API.
 
 ## (V) Export API Documentation
 ### 1. Function Introduction
-You can export the information of an API in document format.
+It supports exporting the information of open interfaces into document format. The document adopts a uniform structure, and different types display different information according to their own characteristics, which is used to describe the configured interface capabilities under an application, including interface purpose, call mode, parameter description and return data structure
 
 ### 2. Operation Method
 Select an API and click the "Export API Documentation" button to successfully export the documentation.
