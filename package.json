@@ -5,7 +5,8 @@
   "description": "Oinone API使用文档",
   "type": "module",
   "scripts": {
-    "docs:build": "node --max_old_space_size=8000 ./node_modules/.bin/vuepress build .",
+    "clean": "rm -rf ./node_modules && rm -rf ./vuepress/.cache && rm -rf ./vuepress/.temp && rm -rf ./vuepress/dist",
+    "docs:build": "node --max_old_space_size=10000 ./node_modules/.bin/vuepress build .",
     "docs:clean-dev": "vuepress dev . --clean-cache",
     "docs:dev": "vuepress dev .",
     "docs:update-package": "npx vp-update"
