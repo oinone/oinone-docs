@@ -50,7 +50,6 @@ export default defineClientConfig({
   enhance({app, router, siteData}) {
     currentApp = app;
     router.beforeEach((to, from, next) => {
-      console.log(to, from);
       next();
       if (!__VUEPRESS_SSR__) {
         if (
