@@ -20,8 +20,8 @@ First, the Interface Designer needs to be used to generate the basic architectur
 After completing the view configuration, we can rewrite the left-side tree component. In the Oinone platform, the default tree component is `TableSearchTreeWidget`, and through customization, we can implement more advanced features to meet specific business scenario requirements.
 
 ## (Ⅱ) Rewriting `TableSearchTreeWidget`
-```typescript
-import { BaseElementWidget, SPI, TableSearchTreeWidget, ViewType } from '@kunlun/dependencies';
+``` typescript
+import { BaseElementWidget, SPI, TableSearchTreeWidget, ViewType } from '@oinone/kunlun-dependencies';
 import CustomTableSearchTree from './CustomTableSearchTree.vue';
 
 @SPI.ClassFactory(
@@ -43,7 +43,7 @@ import CustomTableSearchTree from './CustomTableSearchTree.vue';
 ## (Ⅲ) Defining the Vue Tree Component
 Next, we implement the `CustomTableSearchTree.vue` component, which will handle tree data loading, node selection, and other logic. You can modify the interaction logic or UI design according to project requirements.
 
-```vue
+``` vue
 <template>
   <a-tree :load-data="onLoadData" :tree-data="treeData" @select="onSelected" />
 </template>
@@ -101,7 +101,7 @@ If you wish to modify the UI of the tree component, such as adjusting styles or 
 # II. Default Selection of the First Data
 In some cases, when using a tree structure, we want the first data to be selected by default after the page loads. To achieve this, we can listen for changes in `treeData` and automatically trigger the selection of the first record when the data loading is complete.
 
-```javascript
+``` javascript
 const stop = watch(
   () => treeData.value.length,
   async (len) => {
@@ -127,9 +127,9 @@ Specifically, on the left-tree-right-table page, when the user triggers the "New
 
 The operation step is to create a new `action` file named `TreeActionWidget.ts` as the basis for subsequent function development and logic writing.
 
-```typescript
-import { ActionType, ActionWidget, SPI, ViewActionTarget, RouterViewActionWidget } from '@kunlun/dependencies';
-import { OioNotification } from '@kunlun/vue-ui-antd';
+``` typescript
+import { ActionType, ActionWidget, SPI, ViewActionTarget, RouterViewActionWidget } from '@oinone/kunlun-dependencies';
+import { OioNotification } from '@oinone/kunlun-vue-ui-antd';
 
 @SPI.ClassFactory(
   ActionWidget.Token({

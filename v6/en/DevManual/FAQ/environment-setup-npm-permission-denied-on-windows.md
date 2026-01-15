@@ -16,13 +16,13 @@ Ensure that you are running the command-line tool with administrator privileges.
 ## (Ⅱ) Clear npm Cache
 Sometimes, issues in the npm cache can cause installation failures. Try clearing the npm cache:
 
-```bash
+``` bash
 npm cache clean –force
 ```
 
 Then try installing again:
 
-```bash
+``` bash
 npm install
 ```
 
@@ -32,7 +32,7 @@ Ensure that there is sufficient space on your disk to install new packages and t
 ## (Ⅳ) Modify npm Configuration
 If `unsafe-perm` or `_authToken` is set in your npm configuration, it may affect the installation. Try changing npm's configuration to disable `unsafe-perm`:
 
-```bash
+``` bash
 npm config set unsafe-perm false
 ```
 
@@ -51,7 +51,7 @@ Ensure that you are using the latest versions of Node.js and npm. Older versions
 ## (Ⅸ) Check npm Logs
 View npm's log files, which can help you find more detailed error information. The location of the log files can be queried using the following command:
 
-```bash
+``` bash
 npm config get cache
 ```
 

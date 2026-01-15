@@ -8,10 +8,10 @@ dir:
   order: 3
 prev:
   text: Frequently Asked Questions
-  link: /zh-cn/InstallOrUpgrade/FAQ.md
+  link: /en/InstallOrUpgrade/FAQ.md
 next:
   text: Designer
-  link: /zh-cn/UserManual/Designers/README.md
+  link: /en/UserManual/Designers/README.md
 ---
 &emsp;&emsp;This manual aims to help users efficiently master the core functions of the Oinone Mathematical Formula Platform. Whether it's business personnel quickly building simple applications or developers constructing complex systems, it can transform abstract functions into actionable steps. Through step-by-step learning, users can gradually accumulate experience and enhance their digital development capabilities.
 &emsp;&emsp;As an enterprise-level low-code development platform, the Oinone Mathematical Formula Platform deeply integrates five core modules: Designer, Standard Modules, Low-code and No-code Integration, Application Center, and Application Environment, to build a complete digital application development ecosystem. Its core architecture design achieves a deep integration of technical capabilities and business requirements, covering the full range of development needs from simple form design to complex business system construction:

@@ -15,7 +15,7 @@ order: 6
 
 ## (Ⅰ) Obtaining Instances
 
-```plain
+``` plain
 // Get the default client
 FileClient fileClient = FileClientFactory.getClient();
 
@@ -25,7 +25,7 @@ FileClient fileClient = FileClientFactory.getClient("cdnKey");
 
 ## (Ⅱ) Configuration Example: Taking Alibaba Cloud OSS as an Example
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: 阿里云
@@ -56,7 +56,7 @@ For more configuration references: [File Storage Configuration](/en/DevManual/Re
 + **Returns**: `CdnFile` containing file metadata and access URL
 + **Example**:
 
-```java
+``` java
 byte[] data = ...; // File content
 CdnFile cdnFile = fileClient.upload("path/file.txt", data);
 ```
@@ -70,7 +70,7 @@ CdnFile cdnFile = fileClient.upload("path/file.txt", data);
 + **Returns**: `CdnFile`
 + **Example**:
 
-```java
+``` java
 try (InputStream is = new FileInputStream("local.txt")) {
     CdnFile cdnFile = fileClient.upload("path/file.txt", is);
 }
@@ -82,7 +82,7 @@ try (InputStream is = new FileInputStream("local.txt")) {
 + **Returns**: File download URL (String)
 + **Example**:
 
-```java
+``` java
 String url = fileClient.uploadByFileName("path/image.png", imageData);
 ```
 
@@ -91,7 +91,7 @@ String url = fileClient.uploadByFileName("path/image.png", imageData);
 + **Description**: Uploads a file via an input stream and returns the download URL.
 + **Example**:
 
-```java
+``` java
 String url = fileClient.uploadByFileName("path/image.png", inputStream);
 ```
 
@@ -104,7 +104,7 @@ String url = fileClient.uploadByFileName("path/image.png", inputStream);
 + **Returns**: Complete download URL
 + **Example**:
 
-```java
+``` java
 String url = fileClient.getDownloadUrl("path/image.png");
 ```
 
@@ -116,7 +116,7 @@ String url = fileClient.getDownloadUrl("path/image.png");
 + **Parameters**: `folder` - Folder path
 + **Example**:
 
-```java
+``` java
 fileClient.deleteByFolder("temp/");
 ```
 
@@ -126,7 +126,7 @@ fileClient.deleteByFolder("temp/");
 + **Parameters**: `filename` - Complete file name (including path)
 + **Example**:
 
-```java
+``` java
 fileClient.deleteByFilename("path/file.txt");
 ```
 
@@ -138,7 +138,7 @@ fileClient.deleteByFilename("path/file.txt");
 + **Returns**: `true` if exists, `false` if not
 + **Example**:
 
-```java
+``` java
 boolean exists = fileClient.isExistByFilename("path/file.txt");
 ```
 
@@ -150,7 +150,7 @@ boolean exists = fileClient.isExistByFilename("path/file.txt");
 + **Returns**: URL string
 + **Example**:
 
-```java
+``` java
 String staticUrl = fileClient.getStaticUrl();
 ```
 
@@ -158,7 +158,7 @@ String staticUrl = fileClient.getStaticUrl();
 
 Batch upload files and obtain URLs
 
-```java
+``` java
 private static Map<String, String> uploadFiles(File directory) {
     Map<String, String> result = new HashMap<>();
     File[] files = directory.listFiles();

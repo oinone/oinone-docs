@@ -9,7 +9,7 @@ category:
 order: 8
 prev:
   text: Tree
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/View/tree.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/View/tree.md
 ---
 Components used to wrap other components are typically registered through Pack components, also known as `container components`. These components are particularly meaningful in views with layout capabilities.
 
@@ -21,7 +21,7 @@ Components used to wrap other components are typically registered through Pack c
 
 ## (Ⅰ) Registration Options for Pack Components
 
-```typescript
+``` typescript
 /**
  * Registration options for Pack components
  */
@@ -57,14 +57,14 @@ From the above type declaration, it's evident that the classification dimensions
 
 When the `widget` property is not specified, the component is registered as a default Pack component. Take `DefaultGroupWidget` as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(BasePackWidget.Token({}))
 export class DefaultGroupWidget extends BasePackWidget
 ```
 
 For this component, use the pack tag in DSL:
 
-```xml
+``` xml
 <pack>
   ...
 </pack>
@@ -74,7 +74,7 @@ For this component, use the pack tag in DSL:
 
 For other components, specify the component name via `widget` to distinguish them. Take the `DefaultBlockWidget` component as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'block'
@@ -85,7 +85,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 For this component, use the pack tag in DSL with the `widget` attribute specified:
 
-```xml
+``` xml
 <pack widget="block">
   ...
 </pack>
@@ -101,7 +101,7 @@ Unlike native component-supported grid layouts, Oinone provides a combination of
 
 **Three Columns in a Row (1:1:1)**
 
-```xml
+``` xml
 <pack widget="row" cols="3">
     <pack widget="col" span="1"></pack>
     <pack widget="col" span="1"></pack>
@@ -111,7 +111,7 @@ Unlike native component-supported grid layouts, Oinone provides a combination of
 
 **1:3 Ratio**
 
-```xml
+``` xml
 <pack widget="row" cols="4">
     <pack widget="col" span="1"></pack>
     <pack widget="col" span="3"></pack>
@@ -120,7 +120,7 @@ Unlike native component-supported grid layouts, Oinone provides a combination of
 
 **Two Rows (Auto Wrap)**
 
-```xml
+``` xml
 <pack widget="row" cols="3">
     <!-- First row -->
     <pack widget="col" span="1"></pack>
@@ -138,7 +138,7 @@ Referencing [Antd Tabs for Vue](https://3x.antdv.com/components/tabs-cn), for `p
 
 **Basic Usage**
 
-```xml
+``` xml
 <pack widget="tabs">
     <pack widget="tab" title="Tab 1"></pack>
     <pack widget="tab" title="Tab 2"></pack>
@@ -152,7 +152,7 @@ In Oinone, some components natively use grid layouts, allowing direct usage with
 
 **Using Grid Layout in Groups**
 
-```xml
+``` xml
 <pack title="Basic Information" cols="3">
     <field data="code" label="Code" span="1" />
     <field data="name" label="Name" span="2" />
@@ -162,7 +162,7 @@ In Oinone, some components natively use grid layouts, allowing direct usage with
 
 The above DSL is equivalent to:
 
-```xml
+``` xml
 <pack title="Basic Information">
     <pack widget="row" cols="3">
         <pack widget="col" span="1">
@@ -188,7 +188,7 @@ The built-in grid layout is implemented via a mechanism similar to `component mi
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'block'
@@ -210,7 +210,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'row'
@@ -236,7 +236,7 @@ export class DefaultRowWidget extends BasePackWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'col'
@@ -258,7 +258,7 @@ export class DefaultColWidget extends BasePackWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'containers'
@@ -297,7 +297,7 @@ export class DefaultContainersWidget extends DefaultRowWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'container'
@@ -340,7 +340,7 @@ export class DefaultContainerWidget extends DefaultRowWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({})
 )
@@ -359,7 +359,7 @@ export class DefaultGroupWidget extends BasePackWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'tabs'
@@ -422,7 +422,7 @@ export class DefaultTabsWidget extends BasePackWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'tab'
@@ -452,7 +452,7 @@ export class DefaultTabWidget extends BasePackWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'MultiViewTabs'
@@ -480,7 +480,7 @@ export class DefaultMultiViewTabsWidget extends DefaultTabsWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'MultiViewTab'
@@ -547,7 +547,7 @@ export class DefaultMultiViewTabWidget extends DefaultTabWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'collapse'
@@ -591,7 +591,7 @@ export class DefaultCollapseWidget extends BasePackWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: ['collapsePanel', 'collapse-panel', 'CollapsePanel']
@@ -614,7 +614,7 @@ export class DefaultCollapsePanelWidget extends BasePackWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'spin'

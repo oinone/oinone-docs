@@ -9,7 +9,7 @@ order: 24
 # Ⅰ. Conditional Update (updateByWrapper)
 Normally, when performing an update, we create a new object to reduce the number of fields being updated.
 
-```java
+``` java
 Integer update = new DemoUser().updateByWrapper(new DemoUser().setFirstLogin(Boolean.FALSE),
                                                 Pops.<DemoUser>lambdaUpdate().from(DemoUser.MODEL_MODEL).eq(IdModel::getId, userId));
 ```
@@ -18,7 +18,7 @@ Method to update specified fields using the `updateById` method of the base mode
 
 + Create a new update object and update this object.
 
-```java
+``` java
 WorkflowUserTask userTaskUp = new WorkflowUserTask();
 userTaskUp.setId(userTask.getId());
 userTaskUp.setNodeContext(json);
@@ -26,7 +26,7 @@ userTaskUp.updateById();
 ```
 
 # Ⅱ. Conditional Deletion (updateByWrapper)
-```java
+``` java
 public List<T> delete(List<T> data) {
     List<Long> petTypeIdList = new ArrayList<>();
     for (T item : data) {
@@ -40,7 +40,7 @@ public List<T> delete(List<T> data) {
 # Ⅲ. Construct Conditional Query Data
 + Example 1: LambdaQueryWrapper to concatenate query conditions
 
-```java
+``` java
 private void queryPetShops() {
     LambdaQueryWrapper<PetShop> query = Pops.<PetShop>lambdaQuery();
     query.from(PetShop.MODEL_MODEL);
@@ -53,7 +53,7 @@ private void queryPetShops() {
 
 + Example 2: IWrapper to concatenate query conditions
 
-```java
+``` java
 private void queryPetShops() {
     IWrapper<PetShop> wrapper = Pops.<PetShop>lambdaQuery()
     .from(PetShop.MODEL_MODEL).eq(PetShop::getId, 1L);
@@ -64,7 +64,7 @@ private void queryPetShops() {
 
 + Example 3: QueryWrapper to concatenate query conditions
 
-```java
+``` java
 private void queryPetShops() {
     // Use Lambda to get the field name to prevent missing changes when modifying the field name later
     String nameField = LambdaUtil.fetchFieldName(PetTalent::getName);
@@ -78,7 +78,7 @@ private void queryPetShops() {
 ```
 
 ## Convert IWrapper to LambdaQueryWrapper
-```java
+``` java
 @Function.Advanced(type = FunctionTypeEnum.QUERY)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.API})

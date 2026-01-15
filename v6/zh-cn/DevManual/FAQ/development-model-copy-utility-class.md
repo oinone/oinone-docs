@@ -6,7 +6,7 @@ category:
 order: 6
 ---
 # 一、拷贝工具类
-```java
+``` java
 KryoUtils.get().copy(modelData);
 
 ArgUtils.convert(DataReport.MODEL_MODEL, DataDesignerReport.MODEL_MODEL, report);

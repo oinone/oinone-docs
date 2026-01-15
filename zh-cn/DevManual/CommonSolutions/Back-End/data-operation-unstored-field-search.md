@@ -15,7 +15,7 @@ order: 36
 
 1、代码定义：非存储字段为基本的包装数据类型
 
-```java
+``` java
 @Field(displayName = "确认密码", store = NullableBoolEnum.FALSE)
 private String confirmPassword;
 ```
@@ -26,7 +26,7 @@ private String confirmPassword;
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1692579279272-cf0b669a-963d-4e78-b9b7-cc302be9e0ad.png)
 4、后台逻辑处理代码示例：
 
-```java
+``` java
 Map<String, Object> queryData = queryWrapper.getQueryData();
 if (null != queryData) {
     Object productIdObj = queryData.get(PRODUCT_ID);
@@ -42,7 +42,7 @@ if (null != queryData) {
 
 1、定义为非存储的
 
-```java
+``` java
 @Field(displayName = "款", store = NullableBoolEnum.FALSE)
 @Field.many2one
 @Field.Relation(store = false)
@@ -54,7 +54,7 @@ private MesProduct product;
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1692601763717-658fb442-7948-465f-9b61-41363ddc2430.png)
 3、后台逻辑处理代码示例：
 
-```java
+``` java
 try {
     if (null != queryData && !queryData.isEmpty()) {
         List<Long> detailId = null;
@@ -104,7 +104,7 @@ try {
 
 :::
 
-```java
+``` java
 @Field(displayName = "款",store = NullableBoolEnum.FALSE)
 @Field.Relation(relationFields = "produceId", referenceFields = "id",store = false)
 @Field.many2one
@@ -123,7 +123,7 @@ private Long produceId;
 `pro.shushi.pamirs.framework.gateways.rsql.RSQLHelper`
 
 # 三、Rsql参考代码
-```java
+``` java
 /**
      * Rsql解析 将属性字段值从QueryWrapper中originRsql属性值的Rsql解出来
      * 将原有条件替换成 ’1‘==’1‘

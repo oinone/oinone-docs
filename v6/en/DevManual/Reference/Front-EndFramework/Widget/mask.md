@@ -26,7 +26,7 @@ In addition, the document lists the class names, attributes, and methods of some
 
 ## (Ⅰ) Default Mask
 
-```xml
+``` xml
 <mask>
     <multi-tabs />
     <header>
@@ -55,7 +55,7 @@ In addition, the document lists the class names, attributes, and methods of some
 
 ## (Ⅱ) Inline Multi-Tab Mask
 
-```xml
+``` xml
 <mask>
     <header>
         <widget widget="app-switcher" />
@@ -130,7 +130,7 @@ Components used in masks are called **Mask Components**. According to their func
 
 ## (Ⅰ) Registration Options for Mask Components
 
-```xml
+``` xml
 /**
  * Mask component registration options
  */
@@ -157,7 +157,7 @@ Below, we introduce the components registered with these two attributes respecti
 
 Take `MaskBlockWidget` as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'block'
@@ -168,7 +168,7 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 
 For this component, use the `block` tag in `mask`:
 
-```xml
+``` xml
 <block>
     ...
 </block>
@@ -176,7 +176,7 @@ For this component, use the `block` tag in `mask`:
 
 The corresponding `DOM` structure in the browser is completely consistent with the `Vue` component:
 
-```xml
+``` xml
 <div class="k-layout-block">
     ...
 </div>
@@ -186,7 +186,7 @@ The corresponding `DOM` structure in the browser is completely consistent with t
 
 Take `AppSwitcherWidget` as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'app-switcher'
@@ -197,13 +197,13 @@ export class AppSwitcherWidget extends MaskWidget
 
 For this component, use the `XML` tag in `mask`:
 
-```xml
+``` xml
 <widget widget="app-switcher" />
 ```
 
 The corresponding `DOM` structure in the browser will wrap a `div` tag outside the `Vue` component and declare `class="k-layout-widget"`:
 
-```xml
+``` xml
 <div class="k-layout-widget">
     <div class="k-oinone-application">
         ...
@@ -228,7 +228,7 @@ Similar to component registration, masks can be replaced or modified through reg
 
 ## (Ⅰ) Registration Options for Masks
 
-```typescript
+``` typescript
 /**
  * Layout registration options
  */
@@ -308,8 +308,8 @@ It can be seen from the above type declaration that it is mainly divided into th
 
 Below is the mask we registered in "[Explore the Front-end Framework - Build a dashboard](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)":
 
-```typescript
-import { registerMask, ViewType } from '@kunlun/dependencies';
+``` typescript
+import { registerMask, ViewType } from '@oinone/kunlun-dependencies';
 
 registerMask(
   `<mask>
@@ -357,7 +357,7 @@ Let's first define a runtime configuration manager that can obtain whether it is
 
 (It is recommended to follow the best practices introduced in the [Environment - Custom Runtime Configuration](/en/DevManual/Reference/Front-EndFramework/environment.md#iii-custom-runtime-configuration) section for definition)
 
-```typescript
+``` typescript
 /**
  * Organization switch configuration
  */
@@ -391,7 +391,7 @@ export class OrganizationSwitcherConfigManager {
 
 A possible implementation could be:
 
-```typescript
+``` typescript
 @SPI.Service(MaskEditorToken, { priority: 100 })
 export class OrganizationSwitcherMaskEditor implements MaskEditor {
   @SPI.Autowired(MaskEditServiceToken)
@@ -454,7 +454,7 @@ export class OrganizationSwitcherMaskEditor implements MaskEditor {
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'widget'
@@ -482,7 +482,7 @@ export class MaskCommonWidget extends BaseMaskLayoutWidget<MaskCommonWidgetProps
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'breadcrumb'
@@ -548,7 +548,7 @@ export class BreadcrumbWidget extends MaskWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'nav-menu'
@@ -659,7 +659,7 @@ export class MenuWidget extends MaskWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'multi-tabs'
@@ -809,7 +809,7 @@ export class MultiTabsWidget extends MaskWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'app-switcher'
@@ -871,7 +871,7 @@ export class AppSwitcherWidget extends MaskWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'notification'
@@ -959,7 +959,7 @@ export class NotificationWidget extends MaskWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'language'
@@ -1007,7 +1007,7 @@ export class LanguageWidget extends MaskWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'user'
@@ -1061,7 +1061,7 @@ export class UserWidget extends MaskWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'block'
@@ -1078,7 +1078,7 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'container'
@@ -1095,7 +1095,7 @@ export class MaskContainerWidget extends BaseMaskLayoutWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'content'
@@ -1112,7 +1112,7 @@ export class MaskContentWidget extends BaseMaskLayoutWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'header'
@@ -1129,7 +1129,7 @@ export class MaskHeaderWidget extends BaseMaskLayoutWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'mask'
@@ -1146,7 +1146,7 @@ export class MaskRootWidget extends BaseMaskLayoutWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'sidebar'
@@ -1166,7 +1166,7 @@ export class MaskSidebarWidget extends BaseMaskLayoutWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'divider'

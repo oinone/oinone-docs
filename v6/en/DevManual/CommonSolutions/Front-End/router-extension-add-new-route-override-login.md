@@ -6,13 +6,13 @@ category:
 order: 15
 next:
   text: Dependency Configuration:How to Add Data Visualization Runtime Dependencies
-  link: /en/DevManual/CommonSolutions/Back-End/dependency-configuration-how-to-add-data-visualization-dependencies.md
+  link: /v6/en/DevManual/CommonSolutions/Back-End/dependency-configuration-how-to-add-data-visualization-dependencies.md
 ---
 
 # I. Problem Overview
 The Oinone platform has three default routes built into its routing system:
 
-```plain
+``` plain
 /login // Default login page
 /page // Default main logic page
 / // Root page, which automatically initiates the highest-priority application query and redirects
@@ -31,7 +31,7 @@ Take the login page as an example.
 
 1. Add a custom router in the project's `src/main.ts` file:
 
-```typescript
+``` typescript
 import 'ant-design-vue/dist/antd.css';
 import 'element-plus/dist/index.css';
 
@@ -65,8 +65,8 @@ VueOioProvider(
 
 2. Define `CustomLogin` using the same approach as custom forms and tables in the documentation. The simplified code is as follows:
 
-```typescript
-import { RouterWidget, SPI } from "@kunlun/dependencies";
+``` typescript
+import { RouterWidget, SPI } from "@oinone/kunlun-dependencies";
 
 
 @SPI.ClassFactory(RouterWidget.Token({ widget: 'CustomLogin' })) // SPI registration: the router's widget must match this widget
@@ -84,7 +84,7 @@ The process is similar to overriding the login page.
 
 1. Add routes to the `router` configuration:
 
-```typescript
+``` typescript
 router: [{ path: '/login', widget: 'CustomLogin'}, { path: '/help', widget: 'Help'}]
 ```
 
@@ -93,7 +93,7 @@ router: [{ path: '/login', widget: 'CustomLogin'}, { path: '/help', widget: 'Hel
 # IV. Defining Personalized Paths
 To add a unified identifier (e.g., "Oinone") to all access paths, create a `.env` file in the project directory (reuse if existing) and add:
 
-```plain
+``` plain
 BASE_PATH=/Oinone
 ```
 

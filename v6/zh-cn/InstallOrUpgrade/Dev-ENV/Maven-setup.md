@@ -7,7 +7,7 @@ category:
 order: 8
 next:
   text: 源码安装
-  link: /zh-cn/InstallOrUpgrade/CommunityEdition/source-code-installation.md
+  link: /v6/zh-cn/InstallOrUpgrade/CommunityEdition/source-code-installation.md
 ---
 # 一、下载安装包
 下载地址 [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
@@ -25,12 +25,12 @@ next:
 
 # 二、安装
 ## （一）下载
-```shell
+``` shell
 # Linux/macOS
 curl -L https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz -o apache-maven-3.9.9-bin.tar.gz
 ```
 
-```shell
+``` shell
 # Windows
 Invoke-WebRequest -Uri "https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip" -OutFile "apache-maven-3.9.9-bin.zip"
 ```
@@ -38,24 +38,24 @@ Invoke-WebRequest -Uri "https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/ap
 ## （二）解压
 可视化工具或者使用如下命令解压
 
-```shell
+``` shell
 # Linux/macOS
 tar zxvf apache-maven-3.9.9-bin.tar.gz -C <Maven安装目录>
 ```
 
-```shell
+``` shell
 # Windows
 Expand-Archive apache-maven-3.9.9-bin.zip <Maven安装目录>
 ```
 
 建立软链(可选)
 
-```shell
+``` shell
 # Linux/macOS
 ln -s apache-maven-3.9.9 maven
 ```
 
-```powershell
+``` powershell
 # Windows
 New-Item -Path .\maven\ -ItemType SymbolicLink -Target .\apache-maven-3.9.9
 ```
@@ -71,7 +71,7 @@ New-Item -Path .\maven\ -ItemType SymbolicLink -Target .\apache-maven-3.9.9
 
 :::
 
-```shell
+``` shell
 # Linux/macOS
 cat >> 替换具体Shell配置文件 << EOF
 export M2_HOME="<Maven安装目录>"
@@ -90,7 +90,7 @@ EOF
 
 输入以下代码之后点击`确定`
 
-```shell
+``` shell
 # 呼出环境变量配置界面
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
@@ -109,14 +109,14 @@ rundll32.exe sysdm.cpl,EditEnvironmentVariables
 
 运行CMD或者Powershell或者Terminal
 
-```powershell
+``` powershell
 # 设置M2_HOME
 # 设置M2_HOME为默认安装目录绝对路径或者自定义目录绝对路径
 setx "M2_HOME" "<Maven安装目录>"
 # 例如 setx "M2_HOME" C:\Users\yakir\Developer\apache-maven-3.9.9\
 ```
 
-```powershell
+``` powershell
 # 追加PATH
 setx "Path" "%Path%;%M2_HOME%\bin"
 ```
@@ -126,7 +126,7 @@ setx "Path" "%Path%;%M2_HOME%\bin"
 
 `mvn --version`
 
-```powershell
+``` powershell
 # Linux/macOS
 Apache Maven 3.9.9 (8e8579a9e76f7d015ee5ec7bfcdc97d260186937)
 Maven home: /Users/yakir/local/maven
@@ -135,7 +135,7 @@ Default locale: zh_CN, platform encoding: UTF-8
 OS name: "mac os x", version: "15.3.2", arch: "aarch64", family: "mac"
 ```
 
-```powershell
+``` powershell
 # Windows
 Apache Maven 3.9.9 (8e8579a9e76f7d015ee5ec7bfcdc97d260186937)
 Maven home: C:\Users\yakir\Developer\apache-maven-3.9.9

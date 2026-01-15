@@ -9,10 +9,10 @@ dir:
    order: 2
 prev:
   text: Data Coding
-  link: /zh-cn/UserManual/Designers/ModelDesigner/data-coding.md
+  link: /v6/en/UserManual/Designers/ModelDesigner/data-coding.md
 next:
   text: View Management
-  link: /zh-cn/UserManual/Designers/UIDesigner/view-management.md
+  link: /v6/en/UserManual/Designers/UIDesigner/view-management.md
 ---
 &emsp;&emsp;The UI Designer is an important part of the Oinone platform designer. It provides an intuitive visual interface that allows users to build application interfaces by dragging and configuring components, eliminating the need to write a large amount of code manually. This designer aims to simplify the interface development process, improve development efficiency, and ensure the aesthetics and usability of the interface. Through the UI Designer, users can quickly customize interface layouts, styles, and functions according to business requirements to meet the application needs of different scenarios.
 

@@ -9,7 +9,7 @@ order: 55
 # Ⅰ. Adding Message Dependencies to the Project
 In the `pom.xml` file of the Boot project, the corresponding dependency configuration items need to be added.
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-message-api</artifactId>
@@ -18,7 +18,7 @@ In the `pom.xml` file of the Boot project, the corresponding dependency configur
 
 Call `pro.shushi.pamirs.message.engine.message.MessageSender#sendSystemMail` to send system messages.
 
-```java
+``` java
 @Action(displayName = "Send Message")
 public Student sendMessage(Student data){
     MessageSender mailSender = (MessageSender) MessageEngine.get(MessageEngineTypeEnum.MAIL_SEND).get(null);

@@ -36,7 +36,7 @@ order: 5
 ## （一）默认值
 任何字段都可以给定一个默认值。在字段定义中，添加 `defaultValue=X` 选项，其中 `X` 可以接受一个 JAVA 字面值（布尔值、整数、浮点数、字符串），其他需求可以使用函数：
 
-```python
+``` python
 @Field(displayName = "名称", required = true, defaultValue = "Unknown")
 private String name;
 
@@ -50,7 +50,7 @@ private Date date;
 后端默认值之所以能够生效，是因为在前端页面加载时，系统会调用该模型的 `construct` 方法。在这个方法里，会计算字段的默认值并返回给前端。不过，当前端发起请求，且提交的字段已有值时，`construct` 方法会忽略 `defaultValue` 属性。这就表明，前端 XML 的配置优先级高于后端字段属性配置。
 
 ## （二）字段编码生成器
-```python
+``` python
 @Field.String
 @Field(displayName = "编码", unique = true)
 @Field.Sequence(sequence = "SEQ", prefix = "C", size = 5, step = 1, initial = 10000)
@@ -74,7 +74,7 @@ code 字段设置为唯一健（关于约束的更多信息，参考教程：[Co
 
 :::
 
-```python
+``` python
 @UxTableSearch.FieldWidget(@UxWidget())
 @UxForm.FieldWidget(@UxWidget(config = {
         @Prop(name = "defaultValue", value = "Ux默认值优先于Unknown，但不支持函数")}))

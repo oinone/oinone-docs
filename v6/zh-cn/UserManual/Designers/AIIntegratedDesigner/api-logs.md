@@ -7,7 +7,7 @@ category:
 order: 3
 next:
   text: 表达式的使用说明
-  link: /zh-cn/UserManual/Designers/expressions-guide.md
+  link: /v6/zh-cn/UserManual/Designers/expressions-guide.md
 ---
 接口日志系统用于完整记录连接器的调用信息。用户可查看接口调用状态，判断调用是否成功。通过对接口执行结果、响应时间、参数信息等数据的深度分析，能够优化调用逻辑，确保 AI 服务运行的稳定性与高效性。
 

@@ -8,7 +8,7 @@ order: 10
 # 一、问题描述
 在本地启动导入设计数据的工程时，会出现 dubbo 调用超时导致设计数据无法完整导入的问题。
 
-```plain
+``` plain
 org.apache.dubbo.remoting.TimeoutException
 ```
 
@@ -17,7 +17,7 @@ pom 中的包依赖出现问题，导致没有使用正确的远程服务。
 
 本地可能出现的异常报错堆栈信息如下：
 
-```dart
+``` dart
 Exception in thread "fixed-1-thread-10" PamirsException level: ERROR, code: 10100025, type: SYSTEM_ERROR, msg: 函数执行错误, extra:, extend: null
   at pro.shushi.pamirs.meta.common.exception.PamirsException$Builder.errThrow(PamirsException.java:190)
   at pro.shushi.pamirs.framework.faas.fun.manage.ManagementAspect.around(ManagementAspect.java:118)
@@ -97,7 +97,7 @@ Caused by: org.apache.dubbo.remoting.TimeoutException: Waiting server-side respo
 
 :::
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.designer</groupId>
   <artifactId>pamirs-ui-designer-api</artifactId>
@@ -128,7 +128,7 @@ Caused by: org.apache.dubbo.remoting.TimeoutException: Waiting server-side respo
 
 :::
 
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:

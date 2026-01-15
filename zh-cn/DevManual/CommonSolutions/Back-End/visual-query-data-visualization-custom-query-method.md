@@ -13,7 +13,7 @@ order: 4
 
 # 二、测试商品模型
 
-```java
+``` java
 @Model.model(DemoItem.MODEL_MODEL)
 @Model(displayName = "测试商品", labelFields = "name")
 @Model.Code(sequence = "SEQ", prefix = "IT", size = 8)
@@ -44,7 +44,7 @@ public class DemoItem extends CodeModel {
 
 # 三、测试商品统计
 
-```java
+``` java
 @Model.model(DemoItemStatistics.MODEL_MODEL)
 @Model(displayName = "测试商品统计", labelFields = "name")
 public class DemoItemStatistics extends IdModel {
@@ -79,7 +79,7 @@ public class DemoItemStatistics extends IdModel {
 
 :::
 
-```java
+``` java
 @Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "商品统计列表", category = FunctionCategoryEnum.QUERY_PAGE)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
@@ -119,7 +119,7 @@ public Pagination<DemoItemStatistics> queryPage(Pagination<DemoItemStatistics> p
 
 ## （一）定义传输模型
 
-```java
+``` java
 package pro.shushi.pamirs.demo.api.tmodel;
 
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -151,7 +151,7 @@ public class DemoItemTransient extends TransientModel {
 
 ## （二）定义传输模型查询数据方法
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 
 import org.springframework.stereotype.Component;

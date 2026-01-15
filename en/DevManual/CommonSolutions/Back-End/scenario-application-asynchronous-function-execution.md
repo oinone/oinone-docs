@@ -20,7 +20,7 @@ This article describes how Oinone implements asynchronous tasks by integrating S
 ## (Ⅰ) Creating PetShopService and PetShopServiceImpl
 - Create PetShopService to define the updatePetShops method:
 
-```java
+``` java
 package pro.shushi.pamirs.demo.api.service;
 
 import pro.shushi.pamirs.demo.api.model.PetShop;
@@ -40,7 +40,7 @@ public interface PetShopService {
 
 - PetShopServiceImpl implements the PetShopService interface and adds the @XAsync annotation to updatePetShops:
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.service;
 
 import org.springframework.stereotype.Component;
@@ -74,7 +74,7 @@ f. `delayTimeUnit`: Defines the time unit for delay (default: `TimeUnitEnum.SECO
 1. Import PetShopService.  
 2. Modify the conform method to call `petShopService.updatePetShops`:
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 @Model.model(PetShopBatchUpdate.MODEL_MODEL)
 @Component
@@ -99,7 +99,7 @@ When the schedule is deployed together with modules in a multi-module independen
 1. Configure `pamirs.zookeeper.rootPath` to ensure both machine groups cover all task shards, preventing data loss.  
 2. Use `pamirs.event.schedule.ownSign` for isolation, ensuring each group processes only its own data to avoid duplicate executions.
 
-```yaml
+``` yaml
 pamirs:
   zookeeper:
     zkConnectString: 127.0.0.1:2181

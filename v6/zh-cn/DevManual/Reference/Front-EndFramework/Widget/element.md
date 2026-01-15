@@ -9,7 +9,7 @@ category:
 order: 7
 next:
   text: View
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/README.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/README.md
 ---
 在 Oinone Kunlun 中，有这样一类组件无法在一个具体的分类中被描述，它们被称为 `元素组件`。它可以用来实现任何你想实现的功能，并把它放在页面中的任何地方。
 
@@ -44,7 +44,7 @@ next:
 
 ## （一）元素组件的注册可选项
 
-```typescript
+``` typescript
 /**
  * Element组件注册可选项
  */
@@ -78,7 +78,7 @@ export interface BaseElementOptions extends SPIOptions {
 
 在注册元素组件时，通常我们通过 `viewType` 以及 `widget` 属性对元素组件进行区分。以 `FormWidget` 为例：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Form,
@@ -791,7 +791,7 @@ export class FormWidget extends BaseFormWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 export class BaseSearchWidget extends BaseElementWidget
 ```
 
@@ -1288,7 +1288,7 @@ export class BaseSearchWidget extends BaseElementWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Table,
@@ -1506,7 +1506,7 @@ export class TableWidget<Props extends TableWidgetProps = TableWidgetProps> exte
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Search,
@@ -1595,7 +1595,7 @@ export class SearchWidget extends BaseSearchWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Form,
@@ -1609,7 +1609,7 @@ export class FormWidget extends BaseFormWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Detail,
@@ -1623,7 +1623,7 @@ export class DetailWidget extends BaseFormWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Gallery,
@@ -1653,7 +1653,7 @@ export class GalleryWidget extends BaseElementListViewWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Tree,
@@ -1697,7 +1697,7 @@ export class TreeWidget extends AbstractTreeElementWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Tree,
@@ -1746,7 +1746,7 @@ export class CardCascaderWidget extends AbstractCardCascaderElementWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     widget: ['actionBar', 'action-bar', 'ActionBar']
@@ -1789,7 +1789,7 @@ export class ActionBarWidget<Props extends ActionBarWidgetProps = ActionBarWidge
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     widget: [
@@ -1826,7 +1826,7 @@ export class RowActionBarWidget<Props extends RowActionBarWidgetProps = RowActio
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     widget: 'TreeNodeActions',
@@ -1844,7 +1844,7 @@ export class TreeNodeActionsWidget<V extends TreeData = TreeData> extends Action
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     widget: 'CardRowActions',
@@ -1858,7 +1858,7 @@ export class CardRowActionsWidget extends RowActionBarWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Table,
@@ -1893,7 +1893,7 @@ export class TableUserPreferWidget extends BaseElementWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: [ViewType.Table, ViewType.Form],
@@ -1943,7 +1943,7 @@ export class TableSearchTreeWidget extends AbstractTreeElementWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Table,
@@ -1990,7 +1990,7 @@ export class TableSearchCardCascaderWidget extends AbstractCardCascaderElementWi
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     viewType: ViewType.Gallery,

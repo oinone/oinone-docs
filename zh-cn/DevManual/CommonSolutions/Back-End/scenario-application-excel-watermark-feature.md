@@ -9,7 +9,7 @@ order: 5
 # 一、场景描述
 实现`ExcelWriteHandlerExtendApi`接口从而实现对 Excel 增加复杂功能的操作。如添加水印。
 
-```java
+``` java
 
 /**
  * 根据上下文判断是否执行
@@ -35,7 +35,7 @@ default void extendBuilder(ExcelWriterBuilder builder) {
 # 二、实现`ExcelWriteHandlerExtendApi`接口
 添加依赖包
 
-```xml
+``` xml
 <!-- eaysexcel -->
 <dependency>
   <groupId>com.alibaba</groupId>
@@ -59,7 +59,7 @@ default void extendBuilder(ExcelWriterBuilder builder) {
 
 
 
-```java
+``` java
 package pro.shushi.pamirs.top.core.temp;
 
 import cn.hutool.core.img.ImgUtil;
@@ -166,7 +166,7 @@ public class CustomWaterMarkHandler implements ExcelWriteHandlerExtendApi {
 ```
 
 # 三、水印配置类
-```java
+``` java
 /**
  * 水印配置类
  */

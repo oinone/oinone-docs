@@ -25,7 +25,7 @@ On Linux/macOS systems, use the default terminal; on Windows systems, use PowerS
 ## (I) Unzip
 Use visualization tools or the following commands to unzip:
 
-```shell
+``` shell
 # Linux/macOS
 tar zxvf apache-zookeeper-3.8.4-bin.tar.gz -C <Zookeeper installation directory>
 ```
@@ -40,12 +40,12 @@ For the convenience of subsequent operations, a soft link can be created for the
 
 Create a soft link (optional):
 
-```shell
+``` shell
 # Linux/macOS
 ln -s apache-zookeeper-3.8.4-bin zookeeper
 ```
 
-```powershell
+``` powershell
 # Windows
 New-Item -Path .\zookeeper\ -ItemType SymbolicLink -Target .\apache-zookeeper-3.8.4-bin
 ```
@@ -53,14 +53,14 @@ New-Item -Path .\zookeeper\ -ItemType SymbolicLink -Target .\apache-zookeeper-3.
 ## (II) Configuration
 Create a data storage directory:
 
-```powershell
+``` powershell
 # Linux/macOS/Windows
 mkdir data
 ```
 
 Modify the Zookeeper configuration:
 
-```shell
+``` shell
 # Linux/macOS
 cat > ./conf/zoo.cfg << EOF
 tickTime=2000
@@ -76,7 +76,7 @@ admin.enableServer=false
 EOF
 ```
 
-```shell
+``` shell
 # Windows
 Set-Content -Path ./conf/zoo.cfg -Value @(
     "tickTime=2000"
@@ -93,23 +93,23 @@ Set-Content -Path ./conf/zoo.cfg -Value @(
 ```
 
 # III. Run
-```shell
+``` shell
 # Linux/macOS
 ./bin/zkServer.sh start
 ```
 
-```powershell
+``` powershell
 # Windows
 .\bin\zkServer.cmd
 ```
 
 # IV. Stop
-```shell
+``` shell
 # Linux/macOS
 ./bin/zkServer.sh stop
 ```
 
-```powershell
+``` powershell
 # Windows
 Close the running terminal
 ```

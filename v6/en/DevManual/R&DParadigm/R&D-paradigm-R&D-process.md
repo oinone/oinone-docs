@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Platform Error Codes (Error Codes)
-  link: /en/DevManual/Reference/Error-codes.md
+  link: /v6/en/DevManual/Reference/Error-codes.md
 ---
 # I. Frontend-Backend Separation Architecture
 

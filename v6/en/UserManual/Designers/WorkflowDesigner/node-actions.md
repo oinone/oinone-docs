@@ -7,7 +7,7 @@ category:
 order: 3
 next:
   text: Data Visualization
-  link: /en-us/UserManual/Designers/DataVisualization/README.md
+  link: /v6/en-us/UserManual/Designers/DataVisualization/README.md
 ---
 # I. Trigger Nodes
 The newly added process design page by default includes two core nodes: one is the process trigger node, used to define the conditions for starting the process; the other is the process end node, used to mark the termination of the process.

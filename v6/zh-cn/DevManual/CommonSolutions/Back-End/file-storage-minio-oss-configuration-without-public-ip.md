@@ -29,7 +29,7 @@ order: 42
 ## （一）项目中OSS的配置
 将 uploadUrl 与 downloadUrl 配置设定为外网可访问的地址，此地址并非 MINIO 的实际地址。也就是说，针对 MINIO 的访问操作，需借助一个能够从外部进行访问的地址来实现转换。
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: MINIO
@@ -50,7 +50,7 @@ cdn:
 
 ## （二）NGINX配置（MINIO配置）
 
-```nginx
+``` nginx
 upstream minio {
   #真实的MINIO的地址
   server xxx.xxx.xxx.xxx:9000 weight=100 max_fails=2 fail_timeout=30s;

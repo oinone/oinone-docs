@@ -7,7 +7,7 @@ category:
 order: 4
 next:
   text: Customized Components
-  link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
+  link: /en/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
 ---
 # I. Operation Bar
 + Styles: Two display styles for action components are provided:

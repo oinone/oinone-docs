@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Overview of Components and Models
-  link: /zh-cn/UserManual/Designers/UIDesigner/widgets-and-model-overview.md
+  link: /v6/en/UserManual/Designers/UIDesigner/widgets-and-model-overview.md
 ---
 Layout components are mainly used for the style layout of pages. They are equivalent to containers that can hold multiple other components. At the same time, layout components support nested use with each other, allowing users to more flexibly build page structures and layouts.
 

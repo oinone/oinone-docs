@@ -9,10 +9,10 @@ dir:
   order: 4
 prev:
   text: 节点动作
-  link: /zh-cn/UserManual/Designers/WorkflowDesigner/node-actions.md
+  link: /v6/zh-cn/UserManual/Designers/WorkflowDesigner/node-actions.md
 next:
   text: 图表管理
-  link: /zh-cn/UserManual/Designers/DataVisualization/chart-management.md
+  link: /v6/zh-cn/UserManual/Designers/DataVisualization/chart-management.md
 ---
 &emsp;&emsp;数据可视化是Oinone的核心功能之一，它使企业能够轻松地将海量、复杂的数据转化为直观、易于理解的图表、报表和数据大屏。这一功能不仅极大地提升了数据的可读性，还使得数据分析变得更加高效和便捷。
 

@@ -9,10 +9,10 @@ dir:
   order: 3
 prev:
   text: 打印模板设计
-  link: /zh-cn/UserManual/Designers/UIDesigner/print-template-design.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/print-template-design.md
 next:
   text: 流程管理
-  link: /zh-cn/UserManual/Designers/WorkflowDesigner/workflow-management.md
+  link: /v6/zh-cn/UserManual/Designers/WorkflowDesigner/workflow-management.md
 ---
 &emsp;&emsp;Oinone的流程设计器，作为Oinone低代码平台的核心模块，致力于以直观、可视化的方式，助力用户高效构建与管理各类业务流程。在日常工作中，我们时常会遇到审批流程、工作流管理、项目管理、订单处理、客户服务等多种多样的流程需求。而流程设计器能够帮助企业实现这些流程数字化，规范流程操作，同时确保操作留痕，从而大幅提升工作效率与安全性。
 

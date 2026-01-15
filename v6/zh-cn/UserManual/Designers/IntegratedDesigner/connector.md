@@ -220,7 +220,14 @@ API的路径不允许重复。
 
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)  
+
+在数据库 API 的 SQL 输入区域，提供 「格式化 」与「压缩」 切换按钮，帮助用户更清晰地查看和编辑 SQL 语句。
+
++ 格式化：在输入框中输入或粘贴 SQL 后，点击「格式化」，系统对当前 SQL 执行格式化处理，在不改变 SQL 含义 的前提下，重新排版 SQL 文本，让它更容易阅读和维护
++ 压缩：在输入框中输入或粘贴 SQL 后，点击「压缩」，系统对当前 SQL 执行压缩处理，在不改变 SQL 含义 的前提下，删除多余空格、换行、缩进，将其合并为一行或极少行
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1767922157116-f6a72f64-66d3-44c4-b532-a26c078f91b4.gif)
 
 ## （四）集成接口测试
 
@@ -483,7 +490,7 @@ API删除后无法恢复，请谨慎操作！
 
 ## （九）导出API文档
 ### 1.功能介绍
-支持将API的信息导出为文档格式
+支持将应用与数据库中的API的信息导出为文档格式，文档采用统一结构，不同类型根据自身特性展示差异化信息，用于说明某应用下已配置的接口能力，包括接口用途、调用方式、参数说明及返回数据结构等信息
 
 ### 2.操作方法
 选定API，点击「导出API文档」，即可成功导出

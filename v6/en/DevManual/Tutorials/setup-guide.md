@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Tutorials
-  link: /en/DevManual/Tutorials/README.md
+  link: /v6/en/DevManual/Tutorials/README.md
 ---
 # I. Overview
 There are multiple ways to install Oinone Math based on the intended usage scenario. For developers of Oinone Math and Oinone Math staff, the preferred method is still to install using the source code.
@@ -24,7 +24,7 @@ Modules of Oinone Math support independent operation and do not depend on the Oi
 
 Follow the same process as the `oinone/oinone-backend-starter` repository to clone the `oinone/oinone-backend-tutorials` repository on your machine with the following command:
 
-```shell
+``` shell
 git clone git@github.com:oinone/oinone-backend-tutorials.git
 ```
 
@@ -35,7 +35,7 @@ Visit `github.com/oinone/oinone-backend-tutorials`, then click the "Fork" button
 
 In the following command, replace `<your_github_account>` with the GitHub account name you used when creating the forked repository.
 
-```shell
+``` shell
 cd /TutorialsPath
 git remote add dev git@github.com:<your_github_account>/oinone-backend-tutorials.git
 ```
@@ -47,7 +47,7 @@ So, let's push your changes to the tutorial code repository: `oinone/oinone-fron
 
 Follow the same process as the `oinone/oinone-frontend-starter` repository to clone the `oinone/oinone-frontend-tutorials` repository on your machine with the following command:
 
-```shell
+``` shell
 git clone git@github.com:oinone/oinone-frontend-tutorials.git
 ```
 
@@ -58,7 +58,7 @@ Visit `github.com/oinone/oinone-frontend-tutorials`, then click the "Fork" butto
 
 In the following command, replace `<your_github_account>` with the GitHub account name you used when creating the forked repository.
 
-```shell
+``` shell
 cd /TutorialsPath
 git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorials.git
 ```

@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Data Visualization
-  link: /en-us/UserManual/Designers/DataVisualization/README.md
+  link: /v6/en-us/UserManual/Designers/DataVisualization/README.md
 ---
 Charts can intuitively display data in models. In data visualization, a chart management interface is provided, which allows users to customize chart information and achieve flexible configuration of information.
 

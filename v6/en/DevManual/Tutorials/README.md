@@ -9,10 +9,10 @@ dir:
   order: 1
 prev:
   text: Development Manual
-  link: /en/DevManual/README.md
+  link: /v6/en/DevManual/README.md
 next:
   text: Setup Guide
-  link: /en/DevManual/Tutorials/setup-guide.md
+  link: /v6/en/DevManual/Tutorials/setup-guide.md
 ---
 :::warning Tip
 

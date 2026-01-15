@@ -103,7 +103,7 @@ So, where do these information come from?
 
 Let's first look at the code snippets used when registering the `RedInput` form and table field components:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -116,7 +116,7 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 }
 ```
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Table,
@@ -199,7 +199,7 @@ In the opened pop-up window, click the "Generate SDK" button, and the system wil
 
 Then, by "downloading the template project", you can get a "kunlun-sdk.zip" compressed package with built-in component registration information. After unzipping it, we can get a front-end project that can be used for development, and the directory structure is similar to the following:
 
-```shell
+``` shell
 ├── packages
 │   ├── kunlun-boot
 │   └── kunlun-plugin
@@ -232,7 +232,7 @@ The template project is a front-end project that can be started and run directly
 
 After the development is completed, we can get a `dist` directory in the `kunlun-plugin` directory through the `npm run build` command. This directory contains the `kunlun-plugin.umd.js` and `kunlun-plugin.css` files required for front-end operation. Just like the directory structure shown below:
 
-```shell
+``` shell
 ├── packages
 │   ├── kunlun-boot
 │   └── kunlun-plugin

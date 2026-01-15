@@ -10,7 +10,7 @@ dir:
   order: 2
 next:
   text: 章节 1：整体介绍（Architecture Overview）
-  link: /zh-cn/DevManual/Tutorials/Back-endFramework/chapter1-architecture-overview.md
+  link: /v6/zh-cn/DevManual/Tutorials/Back-endFramework/chapter1-architecture-overview.md
 ---
 欢迎来到 “后端框架教程”！如果你看到了这个页面，那就说明你对开发自己的Oinone模块很感兴趣。这也可能意味着你最近刚加入Oinone公司担任一个技术岗位。不管怎样，你在Oinone技术领域的旅程从这里开始。
 

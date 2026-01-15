@@ -11,7 +11,7 @@ order: 34
 + Context variable extension for query expressions
 
 # II. Custom RSQL Template
-```java
+``` java
 /**
  * Demonstrate the basic definition of Placeholder
  *
@@ -73,7 +73,7 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
 # III. Priority Issues When Using Placeholders
 When replacing multiple placeholders, they will be executed in ascending order based on `priority`. To specify the replacement order, use Spring's `Order` annotation for sorting.
 
-```java
+``` java
 import org.springframework.core.annotation.Order;
 
 @Order(0)
@@ -93,7 +93,7 @@ In the above template, we used the built-in context variables of the Oinone plat
 
 Below, we will demonstrate defining a context variable to get the `current employee ID` based on the `current user`.
 
-```java
+``` java
 /**
  * Employee session
  *
@@ -149,7 +149,7 @@ public class EmployeeSession implements HookBefore {
 # VII. Using Employee Session in Placeholder
 Modify `DemoPlaceHolder` to use `${currentEmployeeId}` to get the `employeeId` saved in the employee session.
 
-```java
+``` java
 /**
  * Demonstrate using employee session in Placeholder
  *
@@ -211,7 +211,7 @@ Below, we will simulate a simple business scenario to detail how this placeholde
 The current system includes two models: `Department` and `Employee`, with basic definitions as follows:
 
 ### 1. Department
-```java
+``` java
 /**
  * Demo department
  *
@@ -235,7 +235,7 @@ public class DemoDepartment extends IdModel {
 ```
 
 ### 2. Employee
-```java
+``` java
 /**
  * Demo employee
  *

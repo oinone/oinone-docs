@@ -7,7 +7,7 @@ category:
 order: 4
 next:
   text: 自定义组件
-  link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
 ---
 # 一、操作栏
 + 样式：提供两种动作组件的展示样式：

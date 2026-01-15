@@ -7,7 +7,7 @@ category:
 order: 5
 next:
   text: Global Layout:Custom Tree Component with Default First Value Selection
-  link: /en/DevManual/CommonSolutions/Front-End/global-layout-custom-tree-component-default-selection.md
+  link: /v6/en/DevManual/CommonSolutions/Front-End/global-layout-custom-tree-component-default-selection.md
 ---
 # I. Introduction
 

@@ -39,7 +39,7 @@ order: 3
 
 ## （一）普通模式
 
-```java
+``` java
 PamirsSession.directive().disableOptimisticLocker();
 try{
     更新逻辑
@@ -50,7 +50,7 @@ try{
 
 ## （二）批量设置模式
 
-```java
+``` java
 Models.directive().run(() -> {此处添加逻辑}, SystemDirectiveEnum.AUTHENTICATE)
 ```
 

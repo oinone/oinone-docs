@@ -27,7 +27,7 @@ order: 5
 
 主数据通常是模块技术或业务需求的一部分。换句话说，这类数据对于模块的正常运行往往至关重要。在安装模块时，这些数据会一同被安装。我们之前定义视图和动作时已经接触过技术数据，它们就是主数据的一种。除了技术数据，还可以定义业务数据，例如国家、货币、计量单位，以及完整的国家本地化数据（法定报告、税收定义、会计科目表）等等。例如：
 
-```java
+``` java
 @Component
 public class ExpensesModuleBizDataInit implements InstallDataInit, UpgradeDataInit, ReloadDataInit {
 

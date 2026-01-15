@@ -30,7 +30,7 @@ The global home page is essentially an application home page, serving as the hom
 # Ⅱ. Configuring the `Global Home Page`
 Set the global home page using application priority
 
-```java
+``` java
 /**
  * Demo Module
  *
@@ -72,7 +72,7 @@ public class DemoModule implements PamirsModule {
 # Ⅲ. Configuring the `Application Home Page`
 ## \(Ⅰ\) Configuring the Application Home Page with `@UxHomepage`
 ### 1. Designate the default table view of a model as the application home page
-```java
+``` java
 @UxHomepage(@UxRoute(DemoDepartment.MODEL_MODEL))
 ```
 
@@ -83,7 +83,7 @@ This designation produces the following results:
 ### 2. Designate the menu corresponding to the model as the application home page
 The current application has the following menu definitions:
 
-```java
+``` java
 /**
  * Demo Module Menus
  *
@@ -109,7 +109,7 @@ The "Demo Department" menu generates a navigation action (ViewAction) with the m
 
 Therefore, the application home page can be designated as the "Demo Department" menu using:
 
-```java
+``` java
 @UxHomepage(actionName = "DemoMenus_DepartmentManagement", value = @UxRoute(DemoDepartment.MODEL_MODEL))
 ```
 

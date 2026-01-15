@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Model Designer
-  link: /en-us/UserManual/Designers/ModelDesigner/README.md
+  link: /v6/en-us/UserManual/Designers/ModelDesigner/README.md
 ---
 On the model page of the Model Designer, you can manage groups, models, and fields.
 

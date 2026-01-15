@@ -9,10 +9,10 @@ dir:
   order: 5
 prev:
   text: Software Company:The Paradigm of Coexistence between Standardization and Customization
-  link: /en/DevManual/R&DParadigm/the-paradigm-of-coexistence-between-standardization-and-customization.md
+  link: /v6/en/DevManual/R&DParadigm/the-paradigm-of-coexistence-between-standardization-and-customization.md
 next:
   text: Front-End
-  link: /en/DevManual/CommonSolutions/Front-End/README.md
+  link: /v6/en/DevManual/CommonSolutions/Front-End/README.md
 ---
 ## Front-end
 <div style="display: flex; gap: 20px; margin: 20px 0;">

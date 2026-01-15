@@ -11,7 +11,7 @@ order: 11
 
 本文将引领大家实现该项功能。从上述两张图片不难看出，无论是表格还是卡片，均处于当前视图范围之内。因此，我们需要一个视图容器来对表格与卡片进行封装。鉴于表格可采用平台默认的表格渲染方式，我们仅需针对卡片进行自定义设置。 我们以资源模块下的国家菜单为例来实现此功能，对应的 URL 如下：
 
-```plain
+``` plain
 http://localhost:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountry;action=resource%23%E5%9B%BD%E5%AE%B6;scene=resource%23%E5%9B%BD%E5%AE%B6;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
@@ -21,7 +21,7 @@ http://localhost:8080/page;module=resource;viewType=TABLE;model=resource.Resourc
 # 二、创建外层的视图容器
 刚刚我们讲过，不管是`表格`还是`卡片`，它都在当前的视图里面，所以我们需要写一个视图容器来包裹它们，并且对应的容器里面允许拆入`表格`跟`卡片`，我们先创建`TableWithCardViewWidget.ts`
 
-```typescript
+``` typescript
 // TableWithCardViewWidget.ts
 import { BaseElementWidget, SPI, Widget } from '@oinone/kunlun-dependencies';
 import TableWithCardView from './TableWithCardView.vue';
@@ -54,7 +54,7 @@ enum ListViewType {
 
 在`TableWithCardViewWidget`中的`initialize`函数中，我们定义了两个插槽: `tableWidget`、`cardWidget`，所以需要在对应的 vue 文件里面里接收这两个插槽
 
-```vue
+``` vue
 <template>
   <div class="list-view-wrapper">
     <!-- 表格插槽 -->
@@ -86,8 +86,8 @@ enum ListViewType {
 这样一来，我们就定义好了视图容器，接下来就是通过自定义 layout 的方式注册该容器
 
 # 三、layout注册
-```javascript
-import { registerLayout, ViewType } from '@kunlun/dependencies';
+``` javascript
+import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';
 
 registerLayout(
   `<view type="TABLE">
@@ -126,7 +126,7 @@ registerLayout(
 
 这个 layout 是基于平台默认的 table layout 改造的，大家可以看到
 
-```xml
+``` xml
 <element widget="TableWithCardViewWidget">
   <template slot="tableWidget">
     ...
@@ -139,7 +139,7 @@ registerLayout(
 
 这段模版是将自定义的视图容器`TableWithCardViewWidget`注册进去，并且有两个 template, 每个template 里面的 slot 属性其实就是在`TableWithCardViewWidget`中的`initialize`函数定义的两个插槽: tableWidget、cardWidget，这两个名字要对应上。
 
-```xml
+``` xml
 <template slot="tableWidget">
   <element widget="table" slot="table" datasource-provider="true">
     <element widget="expandColumn" slot="expandRow" />
@@ -153,7 +153,7 @@ registerLayout(
 
 
 
-```xml
+``` xml
 <template slot="cardWidget">
   <element widget="CardListViewWidget" datasource-provider="true" />
 </template>
@@ -162,7 +162,7 @@ registerLayout(
 第二个 slot 是 cardWidget，里面渲染的是 `CardListViewWidget`, 所以这个时候我们需要按照自定义视图的方式自定义`CardListViewWidget`即可。
 
 # 四、自定义卡片
-```typescript
+``` typescript
 // CardListViewWidget.ts
 
 import {
@@ -234,7 +234,7 @@ import cardList from './card-list.vue';
   }
 ```
 
-```vue
+``` vue
 <template>
   <div v-if="showDataSource && showDataSource.length">
     <div v-for="data in showDataSource" :key="data.id">
@@ -284,7 +284,7 @@ import cardList from './card-list.vue';
 # 五、视图类型切换
 我们只需要在`TableWithCardViewWidget`对应的 vue 里面添加切换视图类型的功能就行了。
 
-```vue
+``` vue
 <template>
   <div class="list-view-wrapper">
     <!-- 切换视图类型 -->
@@ -319,7 +319,7 @@ import cardList from './card-list.vue';
 
 最后在`TableWithCardViewWidget.ts`里面写对应的`onChangeViewType`方法即可。
 
-```javascript
+``` javascript
 public resetSearch() {
     getRouterInstance()!.push({
       segments: [

@@ -27,13 +27,13 @@ order: 14
 ## （三）表述解释
 为了方便表述，以下内容包含的后端模型字段/方法或 GQL 请求相关信息，其表述规则为：
 
-```plain
+``` plain
 {ClassSimpleName/GQLNamespace}#{field/method}
 ```
 
 例如后端模型字段/方法：（该示例并不在平台代码中，仅作为展示）
 
-```java
+``` java
 public class ModuleDefinition {
     private String module;
 
@@ -49,7 +49,7 @@ public class ModuleDefinition {
 
 例如：
 
-```plain
+``` plain
 {
   viewActionQuery {
     load(
@@ -80,13 +80,13 @@ public class ModuleDefinition {
 
 如需要调试的页面的URL如下所示：
 
-```plain
+``` plain
 http://127.0.0.1:9093/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
 将page改为debug后即可进入该页面的调试页面，如下所示：
 
-```plain
+``` plain
 http://127.0.0.1:9093/debug;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
@@ -230,14 +230,14 @@ SQL 示例中并不包含租户隔离相关字段，请开发者根据运行环�
 **步骤1**：根据当前登录用户获取用户 ID（请开发者通过当前登录用户信息在`user_pamirs_user`表中自行查看）
 **步骤2**：查看该用户配置的角色列表，检查是否包含预期角色。
 
-```sql
+``` sql
 -- 检查当前用户配置的角色列表
 select id,name from auth_auth_role where id in (select role_id from auth_user_role_rel where user_id = {userId} and is_deleted = 0) and is_deleted = 0;
 ```
 
 **步骤3**：根据角色列表分别查看字段和动作权限配置相关信息
 
-```sql
+``` sql
 
 ```
 
@@ -251,7 +251,7 @@ select id,name from auth_auth_role where id in (select role_id from auth_user_ro
 
 如未正确返回，可根据以下 SQL 示例在数据库中检查相关内容。
 
-```sql
+``` sql
 -- 检查ViewAction对应的视图是否为预期视图
 select id,res_model,res_view_name from base_view_action where model = '{URL#model}' and name = '{URL#action}' and is_deleted = 0;
 

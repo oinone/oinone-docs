@@ -11,10 +11,10 @@ dir:
   order: 2
 prev:
   text: Translate Service
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/Services/translate-service.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Services/translate-service.md
 next:
   text: 表格（Table）
-  link: /zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/table.md
+  link: /v6/zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/table.md
 ---
 在 Oinone 中，不论是`母版（Mask）`、`布局（Layout）`还是 `视图（DSL）` ，在后端统一使用 `XML` 格式进行定义和存储，在经过后端请求编译之后，前端将获得 `JSON` 格式的模板数据，并将其在 `Web 客户端`上进行渲染。
 

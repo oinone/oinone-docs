@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 集成设计器(Integrated Designer)
-  link: /zh-cn/UserManual/Designers/IntegratedDesigner/README.md
+  link: /v6/zh-cn/UserManual/Designers/IntegratedDesigner/README.md
 ---
 工作台用于呈现集成相关的统计数据：
 

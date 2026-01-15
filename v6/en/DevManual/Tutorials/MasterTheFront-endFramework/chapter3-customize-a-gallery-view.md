@@ -8,7 +8,7 @@ category:
 order: 3
 next:
   text: Init Module Data
-  link: /en/DevManual/Tutorials/init-module-data.md
+  link: /v6/en/DevManual/Tutorials/init-module-data.md
 ---
 
 In Oinone, a gallery view is a type of view that displays data in card form. While the card content can be designed through the `UI Designer` or backend `DSL`, this sometimes fails to meet our business scenarios—after all, not all cards are designed uniformly. Therefore, customizing the cards in a gallery view is often necessary.

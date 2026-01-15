@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: Discover the Front-end Framework
-  link: /en/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
+  link: /v6/en/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
 ---
 This chapter introduces the Widget framework, a component system tailored for Oinone. The main components of Widget are `TypeScript` components and `Vue` components.
 

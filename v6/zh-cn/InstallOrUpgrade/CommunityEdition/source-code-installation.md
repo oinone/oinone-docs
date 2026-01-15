@@ -6,10 +6,10 @@ category:
 order: 3
 prev:
   text: Maven安装与注意事项
-  link: /zh-cn/InstallOrUpgrade/Dev-ENV/Maven-setup.md
+  link: /v6/zh-cn/InstallOrUpgrade/Dev-ENV/Maven-setup.md
 next:
   text: 快速体验：docker-full方式安装
-  link: /zh-cn/InstallOrUpgrade/EnterpriseEdition/docker-full-installation.md
+  link: /v6/zh-cn/InstallOrUpgrade/EnterpriseEdition/docker-full-installation.md
 ---
 # 一、概述
 :::info 注意

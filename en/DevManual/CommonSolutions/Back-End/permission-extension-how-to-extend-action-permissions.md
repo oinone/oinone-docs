@@ -16,7 +16,7 @@ Under the permission control strategy of this system, permission regulation for 
 1. Create an authorization node
 Implement the permission node extension interface: `pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
 
-```java
+``` java
 @Component
 @Order(88)
 public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
@@ -60,7 +60,7 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
 "permissionExtension" is the `name` of the custom `viewAction`, used for splicing the `path` for authentication below.
 Because here we only need to use this `viewAction` to create authorization nodes in the system permissions. Therefore, the "permission extension form" can be named arbitrarily, and the system will use the default view.
 
-```java
+``` java
 @Model.model(AuthTest.MODEL_MODEL)
 @Component
 @UxRouteButton(
@@ -79,7 +79,7 @@ public class AuthTestAction {
 2. Create authorization nodes
 Implement the permission node extension interface: `pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
 
-```java
+``` java
 @Component
 @Order(88)
 public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {

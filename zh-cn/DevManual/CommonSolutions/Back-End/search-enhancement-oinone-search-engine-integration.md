@@ -21,7 +21,7 @@ order: 20
 + boot 工程需要指定 ES 客户端包版本，不指定版本会隐性依赖顶层 spring-boot 依赖管理指定的低版本
 + boot 工程加入 pamris-channel 的工程依赖
 
-```xml
+``` xml
 <dependency>
   <groupId>org.elasticsearch.client</groupId>
   <artifactId>elasticsearch-rest-client</artifactId>
@@ -46,7 +46,7 @@ order: 20
 ## （二）api工程加入相关依赖包
 在 XXX-api 中增加入 pamirs-channel-api 的依赖
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-channel-api</artifactId>
@@ -57,7 +57,7 @@ order: 20
 ## （三）yml文件配置
 在 pamirs-demo-boot 的 application-dev.yml 文件中增加配置 pamirs.boot.modules 增加 channel，即在启动模块中增加 channel 模块。同时注意 es 的配置，是否跟 es 的服务一致
 
-```yaml
+``` yaml
 pamirs:
   record:
     sql:
@@ -77,12 +77,12 @@ pamirs:
 ## （四）项目的模块增加模块依赖
 XXXModule 增加对 ChannelModule 的依赖
 
-```java
+``` java
 @Module(dependencies = {ChannelModule.MODULE_MODULE})
 ```
 
 ## （五）增加增强模型(举例)
-```java
+``` java
 package pro.shushi.pamirs.demo.api.enhance;
 
 import pro.shushi.pamirs.channel.enmu.IncrementEnum;
@@ -113,7 +113,7 @@ public class ShardingModelEnhance extends ShardingModel {
 ## （一）重写 ShardingModelEnhance 模型的 synchronize 方法
 重写后，如果针对老数据记录需要把新增的字段都自动填充，可以进入【传输增强模型】应用，访问增强模型列表，找到对应的记录并点击【全量同步】
 
-```java
+``` java
 package pro.shushi.pamirs.demo.api.enhance;
 
 import pro.shushi.pamirs.channel.enmu.IncrementEnum;
@@ -153,7 +153,7 @@ public class ShardingModelEnhance extends ShardingModel {
 通常情况下，dump 逻辑往往存在个性化需求。在此情形下，我们可对模型的 synchronize 方法进行重写。关于函数重写这一特性，在 “面向对象 - 继承与多态” 章节已有详尽阐述。
 
 # 六、个性化 search 函数
-```java
+``` java
 @Function(
     summary = "搜索函数",
     openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API}
@@ -170,7 +170,7 @@ public  Pagination<ShardingModelEnhance> search(Pagination<ShardingModelEnhance>
 ```
 
 # 七、个性化 search 函数示例
-```java
+``` java
 @Override
 @SuppressWarnings({"rawtypes"})
 public <T> Pagination<T> search(Pagination<T> page, IWrapper<T> queryWrapper) {

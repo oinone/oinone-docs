@@ -26,7 +26,7 @@ order: 3
 
 ## （一）默认母版
 
-```xml
+``` xml
 <mask>
     <multi-tabs />
     <header>
@@ -55,7 +55,7 @@ order: 3
 
 ## （二）多选项卡内联母版
 
-```xml
+``` xml
 <mask>
     <header>
         <widget widget="app-switcher" />
@@ -130,7 +130,7 @@ order: 3
 
 ## （一）母版组件的注册可选项
 
-```xml
+``` xml
 /**
  * Mask组件注册可选项
  */
@@ -157,7 +157,7 @@ export interface BaseMaskOptions extends SPIOptions {
 
 以 `MaskBlockWidget` 为例：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'block'
@@ -168,7 +168,7 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 
 对于这个组件，在 `mask` 中通过 `block` 标签使用：
 
-```xml
+``` xml
 <block>
     ...
 </block>
@@ -176,7 +176,7 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 
 在浏览器中对应的 `DOM` 结构与 `Vue` 组件完全一致：
 
-```xml
+``` xml
 <div class="k-layout-block">
     ...
 </div>
@@ -186,7 +186,7 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 
 以 `AppSwitcherWidget` 为例：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'app-switcher'
@@ -197,13 +197,13 @@ export class AppSwitcherWidget extends MaskWidget
 
 对于这个组件，在 `mask` 中使用 `XML` 标签：
 
-```xml
+``` xml
 <widget widget="app-switcher" />
 ```
 
 在浏览器中对应的 `DOM` 结构会在 `Vue` 组件外侧包裹一个 `div` 标签，并且会声明 `class="k-layout-widget"` ：
 
-```xml
+``` xml
 <div class="k-layout-widget">
     <div class="k-oinone-application">
         ...
@@ -228,7 +228,7 @@ export class AppSwitcherWidget extends MaskWidget
 
 ## （一）母版的注册可选项
 
-```typescript
+``` typescript
 /**
  * 布局注册可选项
  */
@@ -308,8 +308,8 @@ export interface LayoutRegisterOptions extends SPIOptions {
 
 下面是我们在 “[探索前端框架 - Build a dashboard](/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)” 中注册的母版：
 
-```typescript
-import { registerMask, ViewType } from '@kunlun/dependencies';
+``` typescript
+import { registerMask, ViewType } from '@oinone/kunlun-dependencies';
 
 registerMask(
   `<mask>
@@ -357,7 +357,7 @@ registerMask(
 
 （建议遵循 [Environment - 自定义运行时配置](/zh-cn/DevManual/Reference/Front-EndFramework/environment.md#三、自定义运行时配置) 章节中介绍的最佳实践进行定义）
 
-```typescript
+``` typescript
 /**
  * 组织切换配置
  */
@@ -391,7 +391,7 @@ export class OrganizationSwitcherConfigManager {
 
 一个可能的实现可以是这样的：
 
-```typescript
+``` typescript
 @SPI.Service(MaskEditorToken, { priority: 100 })
 export class OrganizationSwitcherMaskEditor implements MaskEditor {
   @SPI.Autowired(MaskEditServiceToken)
@@ -454,7 +454,7 @@ export class OrganizationSwitcherMaskEditor implements MaskEditor {
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'widget'
@@ -482,7 +482,7 @@ export class MaskCommonWidget extends BaseMaskLayoutWidget<MaskCommonWidgetProps
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'breadcrumb'
@@ -548,7 +548,7 @@ export class BreadcrumbWidget extends MaskWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'nav-menu'
@@ -659,7 +659,7 @@ export class MenuWidget extends MaskWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'multi-tabs'
@@ -809,7 +809,7 @@ export class MultiTabsWidget extends MaskWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'app-switcher'
@@ -871,7 +871,7 @@ export class AppSwitcherWidget extends MaskWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'notification'
@@ -959,7 +959,7 @@ export class NotificationWidget extends MaskWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'language'
@@ -1007,7 +1007,7 @@ export class LanguageWidget extends MaskWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'user'
@@ -1061,7 +1061,7 @@ export class UserWidget extends MaskWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'block'
@@ -1078,7 +1078,7 @@ export class MaskBlockWidget extends BaseMaskLayoutWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'container'
@@ -1095,7 +1095,7 @@ export class MaskContainerWidget extends BaseMaskLayoutWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'content'
@@ -1112,7 +1112,7 @@ export class MaskContentWidget extends BaseMaskLayoutWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'header'
@@ -1129,7 +1129,7 @@ export class MaskHeaderWidget extends BaseMaskLayoutWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'mask'
@@ -1146,7 +1146,7 @@ export class MaskRootWidget extends BaseMaskLayoutWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     dslNodeType: 'sidebar'
@@ -1166,7 +1166,7 @@ export class MaskSidebarWidget extends BaseMaskLayoutWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   MaskWidget.Token({
     widget: 'divider'

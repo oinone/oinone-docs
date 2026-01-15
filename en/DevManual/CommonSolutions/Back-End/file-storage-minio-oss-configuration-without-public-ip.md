@@ -29,7 +29,7 @@ For detailed reference:
 ## \(Ⅰ\) OSS Configuration in the Project
 Configure the uploadUrl and downloadUrl as public network accessible addresses, which are not the actual addresses of MINIO. That is to say, for MINIO access operations, a externally accessible address needs to be used for conversion.
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: MINIO
@@ -50,7 +50,7 @@ cdn:
 
 ## \(Ⅱ\) NGINX Configuration (MINIO Configuration)
 
-```nginx
+``` nginx
 upstream minio {
   # Real MINIO address
   server xxx.xxx.xxx.xxx:9000 weight=100 max_fails=2 fail_timeout=30s;

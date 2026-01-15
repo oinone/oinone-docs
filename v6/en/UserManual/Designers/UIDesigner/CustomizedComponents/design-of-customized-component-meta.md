@@ -7,7 +7,7 @@ category:
 order: 3
 next:
   text: Application Menu
-  link: /en/UserManual/Designers/UIDesigner/application-menu.md
+  link: /v6/en/UserManual/Designers/UIDesigner/application-menu.md
 ---
 The design of components maintains consistency with page design, and its design interface is mainly divided into four functional areas: action bar, toolbar, canvas design area, and property panel. The difference is that component design adds two practical functions in the canvas design area: view switching and copying functions.
 

@@ -31,7 +31,7 @@ The keyword `activeRecord` in the expression represents the data object of the c
 # Ⅲ、Calling via Low-Code Approach in Custom Code
 Oinone provides a built-in function `executeViewAction` to implement this feature.
 
-```typescript
+``` typescript
 import {
   DefaultComparisonOperator,
   executeViewAction,

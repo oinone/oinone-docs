@@ -12,10 +12,10 @@ dir:
   order: 6
 prev:
   text: DSL
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/DSL.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/DSL.md
 next:
   text: Table
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/View/table.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/View/table.md
 
 ---
 In the "[Master the Front-end Framework - Front-end Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md)" chapter we studied earlier, we have already provided a brief overview of all metadata in Oinone. In this chapter, we will provide a more comprehensive introduction to the "view" class of components.
@@ -265,7 +265,7 @@ As seen in the example in the component lifecycle and component behavior section
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Table
@@ -282,7 +282,7 @@ export class TableView extends BaseListView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Search
@@ -348,7 +348,7 @@ export class SearchView extends BaseObjectView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Form
@@ -365,7 +365,7 @@ export class FormView extends BaseObjectView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Detail
@@ -378,7 +378,7 @@ export class DetailView extends BaseObjectView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Gallery
@@ -391,7 +391,7 @@ export class GalleryView extends BaseListView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Tree

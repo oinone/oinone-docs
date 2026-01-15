@@ -10,7 +10,7 @@ category:
 order: 1
 prev:
   text: View
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/View/README.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/View/README.md
 ---
 
 The document is currently in preparation, please stay tuned ...

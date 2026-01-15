@@ -31,7 +31,7 @@ Oinone 作为特定的业务系统或框架，其模型设计的优劣直接影�
 
 在 Oinone 模型设计中，遵循第三范式能够有效避免数据冗余。以一个客户关系管理系统为例，若每个销售记录都存储客户的详细信息（如地址、联系方式等），当客户信息发生变更时，需要对所有相关销售记录进行更新，这不仅增加了维护成本，还容易导致数据不一致。按照第三范式，应将客户信息单独设计为一个客户模型，销售记录模型通过关联字段引用客户模型。模型设计示例代码如下：
 
-```java
+``` java
 @Model.model(Customer.MODEL_MODEL)
 @Model
 public class Customer extends IdModel {
@@ -48,7 +48,7 @@ public class Customer extends IdModel {
 }
 ```
 
-```java
+``` java
 @Model.model(SalesRecord.MODEL_MODEL)
 @Model
 public class SalesRecord extends IdModel {
@@ -81,7 +81,7 @@ public class SalesRecord extends IdModel {
 
 项目管理系统 Oinone 模型设计示例代码
 
-```java
+``` java
 @Model.model(Member.MODEL_MODEL)
 @Model
 public class Member extends IdModel {
@@ -98,7 +98,7 @@ public class Member extends IdModel {
 }
 ```
 
-```java
+``` java
 @Model.model(Project.MODEL_MODEL)
 @Model
 public class Project extends IdModel {
@@ -116,7 +116,7 @@ public class Project extends IdModel {
 
 ```
 
-```java
+``` java
 @Model.model(Task.MODEL_MODEL)
 @Model
 public class Task extends IdModel {
@@ -147,7 +147,7 @@ public class Task extends IdModel {
 + **问题**：频繁查询订单总金额时，若每次通过关联的订单行计算，性能低。
 + **解决方案**：在订单模型中添加冗余字段`totalAmount`，通过计算字段或触发器更新。
 
-```java
+``` java
 @Model.model(SaleOrder.MODEL_MODEL)
 @Model
 public class SaleOrder extends IdModel {
@@ -210,7 +210,7 @@ public class SaleOrderAction {
 
 + **扩展继承**（直接添加字段）可能违反范式，但更高效。
 
-```java
+``` java
 @Model.model(CustomProduct.MODEL_MODEL)
 @Model
 public class CustomProduct extends Product {

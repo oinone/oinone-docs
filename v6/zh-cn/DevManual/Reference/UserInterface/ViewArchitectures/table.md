@@ -9,7 +9,7 @@ category:
 order: 1
 prev:
   text: 视图架构（View architectures）
-  link: /zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/README.md
+  link: /v6/zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/README.md
 ---
 # 一、视图特征
 

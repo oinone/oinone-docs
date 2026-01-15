@@ -18,7 +18,7 @@ Oinone 提供两种设计器部署方式，合作伙伴可以自行选择适合�
 
 `JVM_OPTIONS`和`PROGRAM_ARGS`参数说明
 
-```shell
+``` shell
 java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 ```
 
@@ -55,12 +55,12 @@ java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 + `-p`：指定端口映射
 + `-v`：指定挂载目录（挂载虚拟卷）
 
-```shell
+``` shell
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
 ## （五）`docker compose`启动常用配置
-```yaml
+``` yaml
 services:
   container:
     image: $IMAGE
@@ -84,7 +84,7 @@ services:
 ```
 
 ## （六）`docker compose`常用命令
-```shell
+``` shell
 # 使用docker-compose.yaml启动
 docker compose up -d
 
@@ -103,7 +103,7 @@ docker compose -f config.yaml down -v
 [oinone-boot-starter.zip](https://pamirs.oss-cn-hangzhou.aliyuncs.com/install/oinone-boot-starter.zip)
 
 ## （二）启动命令变化
-```shell
+``` shell
 # 原命令
 java -jar boot.jar
 

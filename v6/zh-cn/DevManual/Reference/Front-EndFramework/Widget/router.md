@@ -9,10 +9,10 @@ category:
 order: 11
 prev:
   text: Gallery Field
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
 next:
   text: Vue UI Antd
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.md
 ---
 路由组件是 Oinone 路由中的核心组件，与其他组件一样，都是通过 SPI 注册组件的方式实现的，下面将对这一类路由组件的注册以及内置路由组件进行介绍。
 

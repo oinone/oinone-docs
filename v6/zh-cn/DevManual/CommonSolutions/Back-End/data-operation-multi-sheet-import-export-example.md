@@ -19,7 +19,7 @@ order: 29
 [点击下载代码示例](https://doc.oinone.top/wp-content/uploads/2024/04/2024042409482459.zip)
 
 # 三、Material 模型
-```java
+``` java
 @Model.model(Material.MODEL_MODEL)
 @Model.Advanced(unique = {"code"})
 @Model(displayName = "物料", labelFields = {"name"})
@@ -40,7 +40,7 @@ public class Material extends IdModel {
 ```
 
 # 四、MaterialCategory模型
-```java
+``` java
 @Model.model(MaterialCategory.MODEL_MODEL)
 @Model.Advanced(unique = {"code"})
 @Model(displayName = "物料类别", labelFields = {"name"})
@@ -63,7 +63,7 @@ public class MaterialCategory extends IdModel {
 # 五、模板定义
 MaterialTemplate 模版定义
 
-```java
+``` java
 @Component
 public class MaterialTemplate implements ExcelTemplateInit {
 
@@ -112,7 +112,7 @@ public class MaterialTemplate implements ExcelTemplateInit {
 
 # 六、导入扩展点
 ## （一）MaterialImportExtPoint
-```java
+``` java
 @Component
 @Ext(ExcelImportTask.class)
 public class MaterialImportExtPoint implements ExcelImportDataExtPoint<List<Material>> {
@@ -132,7 +132,7 @@ public class MaterialImportExtPoint implements ExcelImportDataExtPoint<List<Mate
 上述示例使用了平台内置的批量创建或更新的方法，业务使用时可根据业务逻辑自行定义导入逻辑。
 
 ## （二）MaterialCategoryImportExtPoint
-```java
+``` java
 @Component
 @Ext(ExcelImportTask.class)
 public class MaterialCategoryImportExtPoint implements ExcelImportDataExtPoint<List<MaterialCategory>> {
@@ -166,7 +166,7 @@ public class MaterialCategoryImportExtPoint implements ExcelImportDataExtPoint<L
 
 # 八、导出扩展点
 ## （一）MaterialExportExtPoint
-```java
+``` java
 @Component
 @Ext(ExcelExportTask.class)
 public class MaterialExportExtPoint extends ExcelExportSameQueryPageTemplate<Object> implements ExcelExportFetchDataExtPoint {

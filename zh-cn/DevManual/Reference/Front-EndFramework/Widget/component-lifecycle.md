@@ -37,7 +37,7 @@ prev:
 
 Widget 框架提供了各种各样的内置函数。所有这些函数都在`VueWidget`基类中被声明。例如，如果你想在组件挂载时执行一些代码，你可以在当前组件重写`mounted`函数：
 
-```typescript
+``` typescript
 protected mounted() {
   super.mounted();
   // do something.
@@ -62,13 +62,13 @@ Widget 框架使用面向对象继承的特性，因此无法避免的是，部�
 
 **函数签名**
 
-```typescript
+``` typescript
 protected beforeCreated(): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 protected beforeCreated() {
   // do something.
 }
@@ -82,13 +82,13 @@ protected beforeCreated() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected created(): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 protected created() {
   // do something.
 }
@@ -102,13 +102,13 @@ protected created() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected beforeMount(): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 protected beforeMount() {
   // do something.
 }
@@ -122,13 +122,13 @@ protected beforeMount() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected mounted(): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 protected mounted() {
   // do something.
 }
@@ -142,13 +142,13 @@ protected mounted() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected beforeUpdate(): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 protected beforeUpdate() {
   // do something.
 }
@@ -162,7 +162,7 @@ protected beforeUpdate() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected updated(): void
 ```
 
@@ -173,7 +173,7 @@ protected updated(): void
 
 **使用示例**
 
-```typescript
+``` typescript
 protected updated() {
   // do something.
 }
@@ -187,13 +187,13 @@ protected updated() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected beforeUnmount(): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 protected beforeUnmount() {
   // do something.
 }
@@ -207,13 +207,13 @@ protected beforeUnmount() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected unmounted(): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 protected unmounted() {
   // do something.
 }
@@ -227,7 +227,7 @@ protected unmounted() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected activated(): void
 ```
 
@@ -238,7 +238,7 @@ protected activated(): void
 
 **使用示例**
 
-```typescript
+``` typescript
 protected activated() {
   // do something.
 }
@@ -252,7 +252,7 @@ protected activated() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected deactivated(): void
 ```
 
@@ -263,7 +263,7 @@ protected deactivated(): void
 
 **使用示例**
 
-```typescript
+``` typescript
 protected deactivated() {
   // do something.
 }
@@ -279,7 +279,7 @@ protected deactivated() {
 
 **函数签名**
 
-```typescript
+``` typescript
 protected initialize(props: VueProps): this
 ```
 
@@ -291,7 +291,7 @@ protected initialize(props: VueProps): this
 
 **使用示例**
 
-```typescript
+``` typescript
 protected initialize(props) {
   super.initialize(props);
   // do something.
@@ -307,13 +307,13 @@ Widget 组件绑定对应的 Vue 组件，只能在 `initialize` 中使用。
 
 **函数签名**
 
-```typescript
+``` typescript
 public setComponent(component: WidgetComponent): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 protected initialize(props) {
   super.initialize(props);
   this.setComponent(RedInput);
@@ -329,13 +329,13 @@ protected initialize(props) {
 
 **函数签名**
 
-```typescript
+``` typescript
 public dispose(): void
 ```
 
 **使用示例**
 
-```typescript
+``` typescript
 this.formWidget.dispose();
 ```
 

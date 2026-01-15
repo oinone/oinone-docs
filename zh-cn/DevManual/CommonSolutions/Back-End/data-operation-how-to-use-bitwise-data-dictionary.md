@@ -23,7 +23,7 @@ order: 31
 
 我们在编写SQL语句时，只需要通过“位”的与运算，就能简单的查询出想要数据。通过这样的处理方式既节省存储空间，查询时又简单方便。
 
-```sql
+``` sql
 //查询支持金卡打折的商家信息：
 select * from factory where MEMBERCARD & b'0001';
 // 或者：
@@ -39,7 +39,7 @@ select * from factory where MEMBERCARD & 2;
 可以通过 @Dict 注解设置数据字典的bit属性或者实现`BitEnum`接口来标识该枚举值为2的次幂。二进制枚举最大的区别在于值的序列化和反序列化方式是不一样的。
 
 ## （一）位运算的枚举定义示例
-```java
+``` java
 import pro.shushi.pamirs.meta.annotation.Dict;
 import pro.shushi.pamirs.meta.common.enmu.BitEnum;
 
@@ -82,7 +82,7 @@ public enum ClientTypeEnum implements BitEnum {
 ## （二）使用方法示例
 + API: addTo 和 removeFrom
 
-```java
+``` java
 List<ClientTypeEnum> clientTypes = module.getClientTypes();
 // addTo
 ClientTypeEnum.PC.addTo(clientTypes);
@@ -92,7 +92,7 @@ ClientTypeEnum.PC.removeFrom(clientTypes);
 
 + 在查询条件中的使用
 
-```java
+``` java
 List<Menu> moduleMenus = new Menu().queryListByWrapper(menuPage, LoaderUtils.authQuery(wrapper).eq(Menu::getClientTypes, ClientTypeEnum.PC));
 ```
 

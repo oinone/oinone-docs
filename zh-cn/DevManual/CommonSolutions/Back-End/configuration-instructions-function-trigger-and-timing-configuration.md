@@ -17,7 +17,7 @@ order: 68
 ## （一）项目中引入依赖
 1、项目的 API 工程引入依赖 pamirs-core-trigger 模块
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-trigger-api</artifactId>
@@ -26,7 +26,7 @@ order: 68
 
 2、DemoModule 在模块依赖定义中增加 `@Module(dependencies={TriggerModule.MODULE_MODULE})`
 
-```java
+``` java
 @Component
 @Module(
     name = DemoModule.MODULE_NAME,
@@ -44,7 +44,7 @@ public class DemoModule implements PamirsModule {
 
 3、项目的 boot 工程引入依赖
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-trigger-core</artifactId>
@@ -64,7 +64,7 @@ public class DemoModule implements PamirsModule {
 + 将配置参数 `pamris.event.enabled` 与 `pamris.event.schedule.enabled` 的值调整为 true。
 + 在 `pamirs_boot_modules` 中添加以下启动模块：trigger、sql_record。
 
-```yaml
+``` yaml
 pamirs:
   record:
     sql:
@@ -93,7 +93,7 @@ boot:
 ## （三）新建触发任务
 创建名为 `PetTalentTrigger` 的类。该类被设定为，当 `PetTalent` 模型中的数据记录完成新建操作之后，系统将自动触发并执行一系列相关事务。
 
-```java
+``` java
   package pro.shushi.pamirs.demo.core.trigger;
 
 import pro.shushi.pamirs.demo.api.model.PetTalent;
@@ -124,7 +124,7 @@ public class PetTalentTrigger {
 + `taskAction.setExecuteFun("execute")` 需与执行函数名 `execute` 保持一致。
 + `TaskType` 应配置为 `CYCLE_SCHEDULE_NO_TRANSACTION_TASK`，如此可将定时任务的 `schedule` 线程分离。否则，若存在一个执行时间较长的任务，将会致使普通异步任务或触发任务全部出现延时情况。
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -188,7 +188,7 @@ public class PetTalentAutoTask implements ScheduleAction {
 ## （二）修改 DemoModuleBizInit，进行定时任务初始化
 在模块进行更新操作时，调用 `petTalentAutoTask.initTask()` 方法。鉴于 `initTask` 自身具备幂等性，因而多次调用亦无妨。在《模块之生命周期》一文中，对 `InstallDataInit`、`UpgradeDataInit` 以及 `ReloadDataInit` 均有相关介绍。
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.init;
 
 import org.springframework.beans.factory.annotation.Autowired;

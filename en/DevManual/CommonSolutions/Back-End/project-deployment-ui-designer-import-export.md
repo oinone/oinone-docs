@@ -16,7 +16,7 @@ In oinone 5.1.0 and above, there are two ways to import and export designs:
 2. Use the metadata online publishing function provided by the platform.
 
 # II. Dependency Package
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.metadata.manager</groupId>
     <artifactId>pamirs-metadata-manager</artifactId>
@@ -30,7 +30,7 @@ Download address: [https://github.com/Kong/insomnia/releases](https://github.com
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/71715839574_.pic_.jpg)
 
 ## (Ⅰ) Example Call Code
-```graphql
+``` graphql
 mutation {
     pamirsUserTransientMutation {
         login(user: { login: "admin", password: "admin" }) {
@@ -49,7 +49,7 @@ Execute GraphQL to directly return export data, suitable for downloading files t
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/81715839618_.pic_-20250530144827397.jpg)
 
 ## (Ⅰ) Example Call Code by Module
-```graphql
+``` graphql
 Request example:
 mutation {
     uiDesignerExportReqMutation {
@@ -67,7 +67,7 @@ mutation {
 - **moduleBasics parameter**: This parameter determines whether to export only module basic data. If the parameter value is `true`, the system will only export built-in layouts, module menus, and actions associated with menus. If the value is `false`, in addition to the above basic data, it will also export all pages within the module, as well as detailed information such as action metadata and page design data associated with the pages. The default value of this parameter is set to `false`.
 
 ## (Ⅱ) Export by Menu
-```graphql
+``` graphql
 mutation {
     uiDesignerExportReqMutation {
         download/export(
@@ -88,7 +88,7 @@ mutation {
 - **relationViews parameter**: This parameter determines whether to export associated pages, with a default value of `false`, meaning only pages associated with the menu are exported by default. If this parameter is set to `true`, in addition to the menu-associated pages, the system will further export custom pages associated with the page through jump actions. This parameter setting provides flexibility for data export to meet the needs of obtaining associated page data in different business scenarios.
 
 ## (Ⅲ) Specified Page Export
-```graphql
+``` graphql
 mutation {
     uiDesignerExportReqMutation {
         download/export(
@@ -114,7 +114,7 @@ mutation {
 # VI. Export Components
 
 ## (Ⅰ) Export All Component Data
-```graphql
+``` graphql
 mutation {
     uiDesignerExportReqMutation {
         downloadWidget/exportWidget(data: { fileName: "demo_widget" }) {
@@ -130,7 +130,7 @@ mutation {
 ## (Ⅱ) Export All Component Files
 When the OSS (Object Storage Service) in the development environment and the import environment cannot communicate with each other, the following method can be used to export the CSS and JS file compression packages of custom components. During the import process, the system supports specifying a ZIP file to upload to OSS and correspondingly replacing the CSS and JS file paths in the imported component data.
 
-```graphql
+``` graphql
 mutation {
     uiDesignerExportReqMutation {
         downloadWidgetFile/exportWidgetFile(data: { fileName: "demo_widget" }) {
@@ -143,7 +143,7 @@ mutation {
 # VII. Example Code for Import in Business Projects
 Example code for importing metadata:
 
-```java
+``` java
 @Slf4j
 @Order(Integer.MAX_VALUE-1)
 @Component

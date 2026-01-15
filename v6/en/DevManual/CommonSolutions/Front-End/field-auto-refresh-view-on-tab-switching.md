@@ -8,8 +8,8 @@ order: 3
 # I. Scenario Overview
 In daily project development, the application scenario of multi-view tabs is quite common. In such scenarios, when users switch between different views, it is often necessary to refresh the view data or status within the currently active tab. This article will conduct a detailed analysis of the following code and explain how to precisely refresh the corresponding view during view switching with the help of this code. It should be particularly noted that the following code is located in the `main.ts` file of the `ss - boot` project.
 
-```javascript
-import { VueOioProvider } from '@kunlun/dependencies';
+``` javascript
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
 import { delay } from 'lodash-es';
 
 VueOioProvider(

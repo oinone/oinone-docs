@@ -9,7 +9,7 @@ category:
 order: 10
 next:
   text: Framework Overview
-  link: /en/DevManual/Reference/Front-EndFramework/framework-overview.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/framework-overview.md
 ---
 Oinone Business Common Tool Class API Documentation Guide
 
@@ -17,7 +17,7 @@ Oinone Business Common Tool Class API Documentation Guide
 
 ## (Ⅰ) Class Overview
 
-```java
+``` java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface IdGenerator<T>
 ```
@@ -36,7 +36,7 @@ public interface IdGenerator<T>
 + **Return Value**: `T` - The generated ID object
 + **Sample Code**: **java**
 
-```java
+``` java
 // Generate ID based on the model
 Long generate = (Long) Spider.getDefaultExtension(IdGenerator.class).generate(PamirsTableInfo.fetchKeyGenerator(TestModel.MODEL_MODEL));
 ```
@@ -45,7 +45,7 @@ Long generate = (Long) Spider.getDefaultExtension(IdGenerator.class).generate(Pa
 
 ## (Ⅰ) Class Overview
 
-```java
+``` java
 @SPI
 public interface UidGenerator
 ```
@@ -62,7 +62,7 @@ public interface UidGenerator
 + **Exception**: `UidGenerateException` - Thrown when ID generation fails
 + **Sample Code**: **java**
 
-```java
+``` java
 // Generate ID
 Long l = Long.valueOf(UidGeneratorFactory.getCachedUidGenerator().getUID());
 ```
@@ -75,7 +75,7 @@ Long l = Long.valueOf(UidGeneratorFactory.getCachedUidGenerator().getUID());
 + **Return Value**: `String` - Parsed information (such as `timestamp=1683214567, workerId=1, sequence=123`)
 + **Sample Code**: **java**
 
-```java
+``` java
 String parseResult = UidGeneratorFactory.getCachedUidGenerator().parseUID(1234567890L);
 System.out.println("UID Parsing Result: " + parseResult);
 ```
@@ -89,7 +89,7 @@ System.out.println("UID Parsing Result: " + parseResult);
 **Package Path**: `pro.shushi.pamirs.meta.api.core.compute.systems.type.gen`
 **Interface Definition**:
 
-```java
+``` java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface SequenceGenerator<T>
 ```
@@ -112,7 +112,7 @@ public interface SequenceGenerator<T>
 + **Return Value**: `T` (generic, specific type determined by the implementation class) - The generated sequence value, which may be a string, number, or other type depending on the specific implementation.
 + **Sample Code**:
 
-```java
+``` java
 // Get the sequence generator instance
 SequenceGenerator<Object> generator = CommonApiFactory.getSequenceGenerator();
 
@@ -126,7 +126,7 @@ String code = TypeUtils.stringValueOf(codeObj);
 
 ```
 
-```java
+``` java
 @Slf4j
 @Component
 public class DemoMetadataEditor implements MetaDataEditor {
@@ -156,7 +156,7 @@ public class DemoMetadataEditor implements MetaDataEditor {
 }
 ```
 
-```java
+``` java
 // Generate an auto-incrementing strong ordered order serial number
 Object orderSequence =  CommonApiFactory.getSequenceGenerator().generate(SequenceEnum.ORDERLY_SEQ.value(), SeqConstants.SAMPLE_ORDER_SEQ);
 String orderCode = "ORD" + TypeUtils.stringValueOf(orderSequence);
@@ -170,7 +170,7 @@ String dateCode = "DT" + TypeUtils.stringValueOf(dateSequence);
 
 `SequenceEnum` defines the supported sequence generator types, including multiple strategies:
 
-```java
+``` java
 public enum SequenceEnum implements IEnum<String> {
     SEQ("SEQ", "SEQ", "Auto-incrementing Serial Number"),
     ORDERLY_SEQ("ORDERLY_SEQ", "ORDERLY_SEQ", "Auto-incrementing Strong Ordered Serial Number"),
@@ -186,7 +186,7 @@ public enum SequenceEnum implements IEnum<String> {
 
 ## (Ⅰ) Class Overview
 
-```java
+``` java
 @Slf4j
 public class RSQLHelper
 ```
@@ -198,7 +198,7 @@ public class RSQLHelper
   - Provides expression calculation functions (judging whether data matches RSQL conditions)
 + **Constructor**: **java**
 
-```java
+``` java
 private RSQLHelper() {} // Private constructor, prohibits instantiation, all methods are static methods
 ```
 
@@ -206,7 +206,7 @@ private RSQLHelper() {} // Private constructor, prohibits instantiation, all met
 
 ### 1、getRsqlValues (String rsql, Getter<T, ?>... getters)
 
-```java
+``` java
 @SafeVarargs
 public static <T> Map<String, Object> getRsqlValues(String rsql, Getter<T, ?>... getters)
 ```
@@ -226,7 +226,7 @@ public static <T> Map<String, Object> getRsqlValues(String rsql, Getter<T, ?>...
   - Traverses the syntax tree nodes, and when a node field matches the target field, extracts its parameter value (only takes the first parameter, suitable for simple comparison scenarios)
 + **Sample Code: java**
 
-```java
+``` java
 // Use Lambda expressions to specify fields
 String rsql = "name==Alice;age>=18";
 Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, User::getName, User::getAge);
@@ -235,7 +235,7 @@ Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, User::getName, User:
 
 ### 2、getRsqlValues (String rsql, Set<`String`> fields)
 
-```java
+``` java
 public static Map<String, Object> getRsqlValues(String rsql, Set<`String`> fields)
 ```
 
@@ -253,7 +253,7 @@ public static Map<String, Object> getRsqlValues(String rsql, Set<`String`> field
   - `fields` is non-null; otherwise, an empty Map is directly returned.
 + **Sample Code: java**
 
-```java
+``` java
 Set<`String`> targetFields = new HashSet<>(Arrays.asList("name", "age"));
 String rsql = "name==Bob;age==25";
 Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, targetFields);
@@ -264,7 +264,7 @@ Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, targetFields);
 
 ## (Ⅰ) Class Overview
 
-```java
+``` java
 public class RsqlParseHelper
 ```
 
@@ -280,7 +280,7 @@ public class RsqlParseHelper
 + **Return Value**: `String` - Corresponding SQL WHERE clause (such as `WHERE name = 'Adamancy' AND age > 18`)
 + **Sample Code**: **java**
 
-```java
+``` java
 String sqlWhere = RsqlParseHelper.parseRsql2Sql(TestModel.MODEL_MODEL, "name==Adamancy;age>18");
 String sqlWhere = RsqlParseHelper.parseRsql2Sql(queryWrapper.getModel(), rsql);
 ```
@@ -289,7 +289,7 @@ String sqlWhere = RsqlParseHelper.parseRsql2Sql(queryWrapper.getModel(), rsql);
 
 ## (Ⅰ) Class Overview
 
-```java
+``` java
 public class ObjectUtils
 ```
 
@@ -307,7 +307,7 @@ public class ObjectUtils
 + **Generics**: `T extends Serializable`
 + **Sample Code**: **java**
 
-```java
+``` java
 User original = new User("Adamancy", 25);
 User cloned = ObjectUtils.clone(original);
 ```
@@ -321,7 +321,7 @@ User cloned = ObjectUtils.clone(original);
 + **Special Handling**: If the object implements the `IEnum` interface, compare its `value()` value
 + **Sample Code**: **java**
 
-```java
+``` java
 boolean isEqual = ObjectUtils.equals(EnumType.A, EnumType.A); // true
 ```
 
@@ -351,7 +351,7 @@ boolean isEqual = ObjectUtils.equals(EnumType.A, EnumType.A); // true
   - **Return Value**: The serialized JSON string.
   - **Sample Code**:
 
-```java
+``` java
 PamirsJsonUtils.toJSONString(nodes,
                              SerializerFeature.DisableCircularReferenceDetect,
                              SerializerFeature.WriteDateUseDateFormat,

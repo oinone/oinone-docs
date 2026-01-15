@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: Master the Front-End framework
-  link: /en/DevManual/Tutorials/MasterTheFront-endFramework/README.md
+  link: /v6/en/DevManual/Tutorials/MasterTheFront-endFramework/README.md
 ---
 
 In Oinone, we have abstracted Web front-end pages and the routing relationships between them. The data used to describe pages and their contents (fields, actions) is called "metadata". Understanding how to obtain metadata and the relationships between them is essential.

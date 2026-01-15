@@ -24,7 +24,7 @@ order: 9
 
 ### 1. Inherit from EnhanceModel
 
-```java
+``` java
 @Model(displayName = "测试EnhanceModel")
 @Model.model(TestModelEnhance.MODEL_MODEL)
 @Model.Advanced(type = ModelTypeEnum.PROXY, inherited = {EnhanceModel.MODEL_MODEL})
@@ -50,7 +50,7 @@ public class TestModelEnhance extends TestModel {
 
 ### 3. @Enhance Annotation Details
 
-```java
+``` java
 @Enhance(
     index = "custom_index",    // Custom index name
     shards = "5",              // Number of shards
@@ -69,7 +69,7 @@ public class TestModelEnhance extends TestModel {
 
 ## (Ⅱ) Custom Synchronization Logic
 
-```java
+``` java
 @Override
 @Function.Advanced(displayName = "同步数据", type = FunctionTypeEnum.UPDATE)
 @Function(summary = "数据同步函数")
@@ -83,7 +83,7 @@ public List<TestModelEnhance> synchronize(List<TestModelEnhance> data) {
 
 ## (Ⅲ) Custom Search Logic
 
-```java
+``` java
 @Override
 @Function(
     summary = "搜索函数",
@@ -102,7 +102,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 
 ## (Ⅳ) Using Native elasticsearchClient
 
-```java
+``` java
     @Override
     @SuppressWarnings({"rawtypes"})
     public <T> Pagination<T> search(Pagination<T> page, IWrapper<T> queryWrapper) {
@@ -219,7 +219,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 + The startup project needs to specify the version of the ES client package. Not specifying the version will implicitly depend on the lower version specified by the top-level spring-boot dependency management.
 + The startup project adds project dependencies of pamris-channel and pamirs-sql-record.
 
-```java
+``` java
 <dependency>
     <groupId>org.elasticsearch.client</groupId>
     <artifactId>elasticsearch-rest-client</artifactId>
@@ -245,7 +245,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 
 Add the dependency of pamirs-channel-api to XXX-api.
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-channel-api</artifactId>
@@ -258,7 +258,7 @@ Documentation related to this topic can be found in [Enhanced Model Configuratio
 
 Add the configuration pamirs.boot.modules in the application.yml file of the startup project to include channel and sql_record, that is, add the channel and sql_record modules to the startup module. At the same time, pay attention to the ES configuration to ensure it matches the ES service.
 
-```yaml
+``` yaml
 pamirs:
   record:
     sql:
@@ -277,7 +277,7 @@ pamirs:
 
 The definition class of xxxModule adds a dependency on ChannelModule.
 
-```java
+``` java
 @Module(dependencies = {ChannelModule.MODULE_MODULE})
 ```
 
@@ -299,7 +299,7 @@ java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExpression
 
 ### 3. Specific Error
 
-```powershell
+``` powershell
 at org.springframework.boot.loader.Launcher.launch(Launcher.java:107) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:58) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88) [pamirs-venus-boot.jar:na]
@@ -326,7 +326,7 @@ Caused by: java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExp
 
 #### Method 1: Configure the Channel's Scanning Path [Recommended]
 
-```yaml
+``` yaml
 pamirs:
   channel:
     packages:
@@ -343,7 +343,7 @@ Ensure that the jdk's lib directory and tools.jar have the corresponding classes
 
 If the startup error message is as follows:
 
-```powershell
+``` powershell
 Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
     at java.lang.ClassLoader.defineClass1(Native Method) ~[na:1.8.0_181]
     at java.lang.ClassLoader.defineClass(ClassLoader.java:763) ~[na:1.8.0_181]
@@ -357,7 +357,7 @@ The project only introduces `pamirs-channel-core` but does not introduce `elasti
 
 ### 3. Solution
 
-```xml
+``` xml
 <dependency>
   <groupId>org.elasticsearch.client</groupId>
   <artifactId>elasticsearch-rest-client</artifactId>

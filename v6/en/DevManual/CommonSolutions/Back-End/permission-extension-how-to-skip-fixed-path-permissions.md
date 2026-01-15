@@ -13,7 +13,7 @@ Business requirements may necessitate skipping permission control for all button
 
 Implement the `AuthFilterService` permission interface.
 
-```java
+``` java
 package pro.shushi.pamirs.top.api.spi;
 
 import org.apache.commons.lang3.StringUtils;

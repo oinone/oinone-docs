@@ -7,7 +7,7 @@ category:
 order: 7
 prev:
   text: 自定义组件-元件设计
-  link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/design-of-customized-component-meta.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/design-of-customized-component-meta.md
 ---
 &emsp;&emsp;设计完成的页面可以通过与菜单的绑定，在应用中得以展现。Oinone界面设计器内置了菜单管理功能，允许用户根据实际需求自定义菜单结构，确保各个视图与相应菜单项之间的精准绑定，进而提升应用的导航逻辑性和用户体验的流畅性。
 

@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: Combination of Customized Widget and Designer
-  link: /en/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md
+  link: /v6/en/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md
 ---
 # I. Overview
 

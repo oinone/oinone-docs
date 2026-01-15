@@ -13,7 +13,7 @@ order: 47
 
 代码示例：
 
-```java
+``` java
 public class demo {
 
     @Autowired

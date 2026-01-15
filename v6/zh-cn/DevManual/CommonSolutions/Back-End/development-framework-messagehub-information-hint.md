@@ -27,7 +27,7 @@ order: 63
 + 简洁易懂的错误信息
 
 # 四、不同信息类型的举例
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 
 import org.springframework.stereotype.Component;

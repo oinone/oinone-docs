@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: AI Integrated Designer
-  link: /zh-cn/UserManual/Designers/MicroflowDesigner/README.md
+  link: /en/UserManual/Designers/MicroflowDesigner/README.md
 ---
 The connector of the AI Integrated Designer builds a data channel between platform applications and external large models through a visual interface. Enterprise users can freely combine large model components with different capabilities based on their own business scenarios to quickly complete the design and deployment of customized AI application product packages.
 

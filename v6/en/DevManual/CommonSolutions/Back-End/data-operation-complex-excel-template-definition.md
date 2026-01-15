@@ -10,7 +10,7 @@ order: 27
 In some cases, simple template definitions cannot meet business requirements, and more complex Excel template definitions are needed. The following describes how to define complex-type templates.
 
 # Ⅱ、Code Example:
-```java
+``` java
 @Model.model(TestApply.MODEL_MODEL)
 @Model(displayName = "Test Application")
 public class TestApply extends IdModel {
@@ -36,7 +36,7 @@ public class TestApply extends IdModel {
 ```
 
 ## （Ⅰ）Template Definition
-```java
+``` java
 package pro.shushi.pamirs.top.core.temp;
 
 import org.springframework.stereotype.Component;

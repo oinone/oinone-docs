@@ -17,7 +17,7 @@ next:
 2. 使用平台提供的元数据在线发布功能。
 
 # 二、依赖包
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.metadata.manager</groupId>
     <artifactId>pamirs-metadata-manager</artifactId>
@@ -31,7 +31,7 @@ next:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/71715839574_.pic_.jpg)
 
 ## （一）示例调用代码
-```graphql
+``` graphql
 mutation {
     pamirsUserTransientMutation {
         login(user: { login: "admin", password: "admin" }) {
@@ -50,7 +50,7 @@ mutation {
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/81715839618_.pic_-20250530144827397.jpg)
 
 ## （一）按模块示例调用代码
-```graphql
+``` graphql
 请求示例：
 mutation {
     uiDesignerExportReqMutation {
@@ -68,7 +68,7 @@ mutation {
 + **moduleBasics 参数**：此参数用于确定是否仅导出模块基础数据。若该参数取值为 `true`，系统将仅导出内置布局、模块菜单以及菜单关联的动作；若取值为 `false`，除上述基础数据外，还会导出模块内的所有页面，以及页面关联的动作元数据、页面设计数据等详细信息。该参数的默认值设定为 `false`。
 
 ## （二）按菜单导出
-```graphql
+``` graphql
 mutation {
     uiDesignerExportReqMutation {
         download/export(
@@ -89,7 +89,7 @@ mutation {
 + **relationViews 参数**：该参数用于确定是否导出关联页面。其默认值为 `false`，即默认情况下仅导出菜单关联的页面。若将此参数设置为 `true`，除了菜单关联的页面外，系统还会进一步导出该页面通过跳转动作关联的自定义页面。这一参数的设置为数据导出提供了灵活性，满足不同业务场景下对关联页面数据获取的需求。
 
 ## （三）指定页⾯导出
-```graphql
+``` graphql
 mutation {
     uiDesignerExportReqMutation {
         download/export(
@@ -114,7 +114,7 @@ mutation {
 
 # 六、导出组件
 ## （一）导出全部组件数据
-```graphql
+``` graphql
 mutation {
     uiDesignerExportReqMutation {
         downloadWidget/exportWidget(data: { fileName: "demo_widget" }) {
@@ -131,7 +131,7 @@ mutation {
 ## （二）导出全部组件⽂件
 当开发环境与导入环境中的 OSS（对象存储服务）无法实现互通时，可借助以下方法导出自定义组件的 CSS 和 JS 文件压缩包。在导入过程中，系统支持指定 ZIP 文件上传至 OSS，并对导入组件数据中的 CSS 和 JS 文件路径进行相应替换。
 
-```graphql
+``` graphql
 mutation {
     uiDesignerExportReqMutation {
         downloadWidgetFile/exportWidgetFile(data: { fileName: "demo_widget" }) {
@@ -144,7 +144,7 @@ mutation {
 # 七、业务工程中导入示例代码
 导入元数据示例代码
 
-```java
+``` java
 @Slf4j
 @Order(Integer.MAX_VALUE-1)
 @Component

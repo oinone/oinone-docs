@@ -60,7 +60,7 @@ PamirsSession 是用于管理 Oinone 请求会话的类，继承自 PamirsReques
 + **返回值**：`String` 环境标识（如 `product`、`preview`）。
 + **示例**：**java**
 
-```java
+``` java
 String env = PamirsSession.getEnv();
 ```
 
@@ -70,7 +70,7 @@ String env = PamirsSession.getEnv();
 + **参数**：`env` - 环境标识（`product` 或 `preview`）。
 + **示例**：**java**
 
-```java
+``` java
 PamirsSession.setEnv(EnvEnum.preview.toString()); // 设置为预览环境
 ```
 
@@ -80,7 +80,7 @@ PamirsSession.setEnv(EnvEnum.preview.toString()); // 设置为预览环境
 + **返回值**：`String` 会话 ID。
 + **示例**：**java**
 
-```java
+``` java
 String sessionId = PamirsSession.getSessionId();
 ```
 
@@ -90,7 +90,7 @@ String sessionId = PamirsSession.getSessionId();
 + **返回值**：`<T extends Serializable> T` 用户 ID。
 + **示例**：**java**
 
-```java
+``` java
 Long userId = PamirsSession.getUserId(); // 假设用户 ID 为 Long 类型
 ```
 
@@ -100,7 +100,7 @@ Long userId = PamirsSession.getUserId(); // 假设用户 ID 为 Long 类型
 + **返回值**：`Boolean` 是否为管理员。
 + **示例**：**java**
 
-```java
+``` java
 if (PamirsSession.isAdmin()) {
     // 执行管理员操作
 }
@@ -114,7 +114,7 @@ if (PamirsSession.isAdmin()) {
 + **返回值**：`RequestContext` 上下文实例。
 + **示例**：**java**
 
-```java
+``` java
 RequestContext context = PamirsSession.getContext();
 ModelConfig modelConfig = context.getModelConfig(TestModel.MODEL_MODEL); // 获取模型配置
 ```
@@ -131,7 +131,7 @@ ModelConfig modelConfig = context.getModelConfig(TestModel.MODEL_MODEL); // 获�
 + **功能**：清除会话数据（包括缓存和属性）。
 + **示例**：**java**
 
-```java
+``` java
 PamirsSession.clear(); // 清除当前会话所有数据,在请求结束时自动调用
 ```
 
@@ -141,7 +141,7 @@ PamirsSession.clear(); // 清除当前会话所有数据,在请求结束时自�
 + **返回值**：`PamirsRequestVariables` 请求变量实例。
 + **示例**：**java**
 
-```java
+``` java
 PamirsRequestVariables variables = PamirsSession.getRequestVariables();
 String requestUrl = variables.getRequestUrl(); // 获取请求 URL
 ```
@@ -179,7 +179,7 @@ String requestUrl = variables.getRequestUrl(); // 获取请求 URL
 + **异常**：若模型不存在，抛出 `PamirsException`。
 + **示例**：**java**
 
-```java
+``` java
 ModelConfig testModelConfig = context.getModelConfig("test.TestModel");
 ```
 
@@ -193,7 +193,7 @@ ModelConfig testModelConfig = context.getModelConfig("test.TestModel");
 + **异常**：若函数不存在，抛出 `PamirsException`。
 + **示例**：**java**
 
-```java
+``` java
 Function userFunction = context.getFunction("pamirs", "getUserInfo");
 ```
 
@@ -208,7 +208,7 @@ Function userFunction = context.getFunction("pamirs", "getUserInfo");
 
 通过 `SessionPrepareTemplate` 解析 HTTP 请求，提取会话属性（如 Header、Cookie），并创建 `PamirsRequestVariables`。
 
-```java
+``` java
 // 框架内部调用示例（用户无需手动调用）
 SessionPrepareTemplate.prepare(request, moduleName, requestParam);
 ```
@@ -233,7 +233,7 @@ SessionPrepareTemplate.prepare(request, moduleName, requestParam);
 
 以下是一个简单的 `SessionInitApi` 实现类示例：
 
-```java
+``` java
 @Component
 public class CustomSessionInitApi implements SessionInitApi {
     @Override
@@ -263,7 +263,7 @@ public class CustomSessionInitApi implements SessionInitApi {
 
 ## （一）常见使用场景
 
-```java
+``` java
 // 获取当前会话用户 ID
 Long userId = PamirsSession.getUserId();
 
@@ -346,7 +346,7 @@ public class DepartmentSessionInitApi implements SessionInitApi {
 创建承载自定义数据的 POJO，使用 Oinone 平台提供的 `@Data` 注解（支持数据绑定与序列化）。
 **示例：存储登录用户信息**
 
-```java
+``` java
 @Data
 public class DemoSessionData {
     private PamirsUser user; // 业务专属字段：当前登录用户
@@ -362,7 +362,7 @@ public class DemoSessionData {
 + **读取**：提供线程安全的获取接口
 + **清理**：在请求结束时清除线程本地数据
 
-```java
+``` java
 public class DemoSessionCache {
     private static final ThreadLocal<DemoSessionData> BIZ_DATA_THREAD_LOCAL = new ThreadLocal<>();
 
@@ -399,7 +399,7 @@ public class DemoSessionCache {
 利用框架的钩子（Hook）在请求处理前自动初始化业务数据，支持模块级过滤（仅对特定模块生效）。
 **实现 **`HookBefore`** 接口并添加 **`@Hook`** 注解**：
 
-```java
+``` java
 @Component
 public class DemoSessionHook implements HookBefore {
     @Override
@@ -415,7 +415,7 @@ public class DemoSessionHook implements HookBefore {
 
 通过接口规范业务数据的访问方式，实现与基础会话的解耦。
 
-```java
+``` java
 public interface DemoSessionApi extends CommonApi {
     PamirsUser getUser(); // 定义业务专属接口：获取登录用户
 }
@@ -428,7 +428,7 @@ public interface DemoSessionApi extends CommonApi {
 + `XSessionApi`：提供业务数据访问入口
 + `SessionClearApi`：定义数据清理逻辑（框架自动调用）
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.session;
 
 import org.springframework.stereotype.Component;
@@ -453,7 +453,7 @@ public class DemoSessionHolder implements DemoSessionApi, SessionClearApi {
 
 通过静态方法封装自定义接口，简化业务调用。
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.session;
 
 import pro.shushi.pamirs.meta.api.CommonApiFactory;
@@ -473,13 +473,13 @@ public class DemoSession extends PamirsSession {
 在需要使用自定义数据的场景（如占位符解析、业务逻辑层）直接调用扩展后的 Session 接口。
 **示例：**
 
-```java
+``` java
 return DemoSession.getUser().getId().toString(); // 使用扩展Session获取用户ID
 ```
 
 ### 3、经典扩展设计图
 
-```plain
+``` plain
                           +-------------------+
                           |   PamirsSession    |  基础会话（提供通用能力）
                           +-------------------+

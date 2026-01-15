@@ -22,7 +22,7 @@ order: 2
 
 往往是提供公共能力和字段的模型，它本身不会直接用于构建协议和基础设施（如表结构等）。
 
-```java
+``` java
 @Model.Advanced(type = ModelTypeEnum.ABSTRACT)
 @Model.model(TestCommonItem.MODEL_MODEL)
 @Model(displayName = "测试抽象模型", summary = "测试抽象模型")
@@ -42,7 +42,7 @@ public class TestCommonItem extends IdModel {
 
 用于表现层和应用层之间的数据交互，本身不会存储，没有默认的数据管理器，只有数据构造器。
 
-```java
+``` java
 @Model.Advanced(type = ModelTypeEnum.TRANSIENT)
 @Model.model(TestRemark.MODEL_MODEL)
 @Model(displayName = "测试传输模型", summary = "测试传输模型")
@@ -66,7 +66,7 @@ public class TestRemark extends TransientModel {
 
 存储模型用于定义数据表结构和数据的增删改查（数据管理器）功能，是直接与连接器进行交互的数据容器。
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "测试模型",labelFields = {"name"})
 public class TestModel extends IdModel {
@@ -81,7 +81,7 @@ public class TestModel extends IdModel {
 
 用于代理存储模型的数据管理器能力的同时，扩展出非存储数据信息的交互功能的模型。
 
-```java
+``` java
 @Model.Advanced(type = ModelTypeEnum.PROXY)
 @Model.model(Context.MODEL_MODEL)
 @Model(displayName = "测试代理模型", summary = "测试代理模型")
@@ -158,7 +158,7 @@ public class TestProxyModel extends IdModel {
 
 :::
 
-```plsql
+``` plsql
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "测试模型",labelFields = {"name"})
 public class TestModel extends IdModel {
@@ -745,7 +745,7 @@ public class TestModel extends IdModel {
 + @PrimaryKey，请求 Oinone 在该列上创建数据库主健约束。
 + @Field.Advanced(columnDefinition)，请求 Oinone 在该列上创建数据库列定义。
 
-```yaml
+``` yaml
 @Field(displayName = "名称")
 @Field.Advanced(columnDefinition = "varchar(12) NOT NULL ")
 private String name;
@@ -759,7 +759,7 @@ SQL 约束是确保数据一致性的有效方法。然而，我们的应用程�
 
 校验约束被定义为一个使用 @Validation 注解的模型与字段，并在一个记录集上调用。当这些字段中的任何一个被修改时，约束会自动进行评估。如果约束规则不满足，该方法应抛出一个异常：
 
-```java
+``` java
 @Validation(ruleWithTips = {
         @Validation.Rule(value = "!IS_NULL(age)", error = "年龄为必填项"),
         @Validation.Rule(value = "age >=0 && age <= 200", error = "年龄只能在0-200之间"),
@@ -773,7 +773,7 @@ private Integer age;
 
 若需要开展更为复杂的检查工作，可在模型与字段定义时使用 `@Validation(check="X")`，其中 `X` 指代给定模型的一个函数。
 
-```yaml
+``` yaml
 ……
 @Model.model(TestConstraintsModel.MODEL_MODEL)
 @Model(displayName = "约束测试模型")
@@ -835,7 +835,7 @@ public class TestConstraintsModel extends IdModel {
 
 数据管理器中，默认读函数列表：
 
-```plsql
+``` plsql
 mysql> select method,fun,open_level,bean_name from base_function where namespace ='test.ExtendIdModel'and data_manager=1 and type&8=8;
 +--------------------------------+--------------------------------+------------+-----------------------+
 | method                         | fun                            | open_level | bean_name             |
@@ -861,7 +861,7 @@ mysql> select method,fun,open_level,bean_name from base_function where namespace
 
 数据管理器中，默认写函数列表：
 
-```plsql
+``` plsql
 mysql> select method,fun,open_level,bean_name from base_function where namespace ='test.ExtendIdModel'and data_manager=1 and type&8!=8;
 +---------------------------------------+---------------------------------------+------------+--------------------------+
 | method                                | fun                                   | open_level | bean_name                |
@@ -966,7 +966,7 @@ mysql> select method,fun,open_level,bean_name from base_function where namespace
 + **数据库类型**：TINYINT、BLOB
 + **规则**：此为二进制类型，同时前端交互默认不支持。不建议使用
 
-```java
+``` java
 @Field(displayName = "byteField")
 private Byte byteField;
 ```
@@ -979,7 +979,7 @@ private Byte byteField;
   - **数据库规则**：默认用 int；若 size 小于 6，用 smallint；size 超 6 用 int；size 超 10 位数字（含符号位），用长整数 bigint；size 超 19 位数字（含符号位），用大数 decimal。若未配置 size，按 Java 类型推测。
   - **前端交互规则**：整数用 Number 类型，长整数和大整数前后端协议用字符串类型。
 
-```java
+``` java
 @Field(displayName = "integerField")
 private Integer integerField;
 ```
@@ -998,7 +998,7 @@ private Integer integerField;
   - **数据库规则**：默认用单精度浮点数 float；size 超 7 位数字（即大于等于 8），用双精度浮点数 double；size 超 15 位数字（即大于等于 16），用大数 decimal。若未配置 size，按 Java 类型推测。
   - **前端交互规则**：单精度和双精度浮点数用 Number 类型（因都用 IEEE754 协议 64 位存储），大数前后端协议用字符串类型。
 
-```java
+``` java
 @Field(displayName = "floatField")
 private BigDecimal floatField;
 ```
@@ -1015,7 +1015,7 @@ private BigDecimal floatField;
 + **数据库类型**：tinyint(1)
 + **规则**：布尔类型，值为 1、true（真）或 0、false（假）。
 
-```java
+``` java
 @Field(displayName = "booleanField")
 private Boolean booleanField;
 ```
@@ -1035,7 +1035,7 @@ private Boolean booleanField;
 + **规则**：
   - **前端交互规则**：可选项从 ModelField 的 options 字段获取，该字段值是字段指定数据字典子集的 JSON 序列化字符串。前后端传递可选项的 name，数据库存储用可选项的 value。若 multi 属性为 true，用多选控件；multi 属性为 false，用单元控件。
 
-```java
+``` java
 @Field.Enum
 @Field(displayName = "testEnum")
 private TestEnum testEnum;
@@ -1070,7 +1070,7 @@ private List<String> testDictionaries;
 + **数据库类型**：varchar(size)
 + **规则**：字符串，size 是长度限制默认值参考，前端可在 view 中覆盖该配置。
 
-```java
+``` java
 @Field.String(size = 128,min = "3",max = "128")
 @Field(displayName = "stringField2")
 private String stringField2;
@@ -1091,7 +1091,7 @@ private String stringField;
 + **数据库类型**：text
 + **规则**：多行文本，编辑态组件是多行文本框，长度限制为配置项 min 值 与 max 值 。
 
-```java
+``` java
 @Field.Text(min = "3",max = "512")
 @Field(displayName = "textField")
 private String textField;
@@ -1109,7 +1109,7 @@ private String textField;
 + **数据库类型**：text
 + **规则**：使用富文本编辑器。
 
-```java
+``` java
 @Field.Html
 @Field(displayName = "htmlField")
 private String htmlField;
@@ -1129,7 +1129,7 @@ private String htmlField;
   - **数据库规则**：是日期和时间的组合，时间格式为 YYYY - MM - DD HH:MM:SS [.fraction]，默认精确到秒，可带小数，最多 6 位，即精确到 microseconds (6 digits) precision。可通过设置 fraction 设置精确小数位数，最终存储在字段的 decimal 属性上。
   - **前端交互规则**：前端默认用日期时间控件，按日期时间类型格式化格式 format 格式化日期时间。
 
-```java
+``` java
 @Field(displayName = "dateTimeField")
 private Date dateTimeField;
 ```
@@ -1148,7 +1148,7 @@ private Date dateTimeField;
   - **数据库规则**：默认以 “YYYY” 格式表示日期值。
   - **前端交互规则**：前端默认用年份控件，按日期类型格式化格式 format 格式化日期。
 
-```java
+``` java
 @Field.Date(type = DateTypeEnum.YEAR,format = DateFormatEnum.YEAR)
 @Field(displayName = "yearField")
 private Date yearField;
@@ -1168,7 +1168,7 @@ private Date yearField;
   - **数据库规则**：默认以 “YYYY - MM - DD” 格式表示日期值。
   - **前端交互规则**：前端默认用日期控件，按日期类型格式化格式 format 格式化日期。
 
-```java
+``` java
 @Field.Date(type = DateTypeEnum.DATE,format = DateFormatEnum.DATE)
 @Field(displayName = "dateField")
 private Date dateField;
@@ -1188,7 +1188,7 @@ private Date dateField;
   - **数据库规则**：默认以 “HH:MM:SS” 格式表示时间值。
   - **前端交互规则**：前端默认用时间控件，按日期类型格式化格式 format 格式化日期。
 
-```java
+``` java
 @Field.Date(type = DateTypeEnum.TIME,format = DateFormatEnum.TIME)
 @Field(displayName = "timeField")
 private Date timeField;
@@ -1210,7 +1210,7 @@ private Date timeField;
 
 #### 金额 MONEY
 
-```java
+``` java
 @Field.Money
 @Field(displayName = "testMoney")
 private BigDecimal testMoney;
@@ -1218,7 +1218,7 @@ private BigDecimal testMoney;
 
 #### 键值对 MAP
 
-```java
+``` java
 @Field(displayName = "testMapField")
 private Map<String,Object> testMapField;
 ```
@@ -1236,7 +1236,7 @@ private Map<String,Object> testMapField;
 | RELATED  | 基本类型或关系类型 | 不存储或varchar、text | 引用字段<br/>【数据库规则】：点表达式最后一级对应的字段类型；数据库字段值默认为Java字段的序列化值，默认使用JSON序列化<br/>【前端交互规则】：点表达式最后一级对应的字段控件类型 |
 
 
-```java
+``` java
 @Field(displayName = "stringField")
 private String stringField;
 
@@ -1299,7 +1299,7 @@ private String userName;
 + `@Field.Relation` 注解的 `relationFields` 属性：用于配置左端模型的属性作为关联字段，默认值为**当前字段名称**加上右端模型的主键属性。
 + `@Field.Relation` 注解的 `referenceFields` 属性：用于配置右端模型的属性作为关联字段，默认值为主键集合。
 
-```java
+``` java
 @Field.many2one
 @Field(displayName = "多对一测试字段")
 // 等同于配置 @Field.Relation(relationFields = {"rightModelId"},referenceFields = {"id"})
@@ -1316,7 +1316,7 @@ private TestRelationModel rightModel;
 + `@Field.Relation` 注解的 `relationFields` 属性：用于配置左端模型的属性作为关联字段，默认值为主键集合。
 + `@Field.Relation` 注解的 `referenceFields` 属性：用于配置右端模型的属性作为关联字段，默认值为左端模型的简单模型编码加主键属性。
 
-```java
+``` java
 @Field.one2many
 @Field(displayName = "一对多测试字段")
 // 等同于配置 @Field.Relation(relationFields = {"id"},referenceFields = {"testModelId"})
@@ -1333,7 +1333,7 @@ private List<TestRelationModel> rightModels;
 + `@Field.many2many` 注解的 `referenceFields` 属性：用于配置中间模型与右端模型关联的关系字段。若未配置，则使用关联关系字段配置的关联字段（`@Field.Relation` 注解的 `referenceFields` 配置值）作为默认值。
   若没有中间模型的 `Class` 且左右两端模型都配置了关联关系字段，系统会采用先加载的模型的关联关系字段配置来生成中间模型。使用模型作为中间模型时，建议使用 `BaseRelation` 基类构造中间模型。
 
-```java
+``` java
 @Field.many2many
 //	  等同与把 @Field.many2many 换成下面注释掉的配置
 //    @Field.many2many(through = "TestModelRelTestRelationModel",relationFields = {"testModelId"},referenceFields = {"testRelationModelId"})
@@ -1344,7 +1344,7 @@ private List<TestRelationModel> rightModelM2Ms;
 
 另一种配置：
 
-```java
+``` java
 @Model.model(TestModelRelTestRelationModel.MODEL_MODEL)
 @Model(displayName = "测试中间表")
 public class TestModelRelTestRelationModel extends BaseRelation {
@@ -1359,7 +1359,7 @@ public class TestModelRelTestRelationModel extends BaseRelation {
 }
 ```
 
-```java
+``` java
 @Field.many2many(throughClass = TestModelRelTestRelationModel.class,relationFields = {"testModelId"},referenceFields = {"testRelationModelId"})
 @Field.Relation(relationFields = {"id"},referenceFields = {"id"})
 @Field(displayName = "多对多测试字段")
@@ -1376,7 +1376,7 @@ private List<TestRelationModel> rightModelM2Ms;
 
 :::
 
-```java
+``` java
 @Field(displayName = "多对多")
 @Field.many2many(
         through = "TestModelRelTestRelationModel",
@@ -1434,7 +1434,7 @@ M代表精度，即有效长度（总位数）， D代表标度，即小数点�
 
 使用 `immutable` 属性可将字段标记为前后端均不可更新，系统会自动忽略针对此类不可变更字段的更新操作。此外，若字段添加了 `@Base` 注解，其 `immutable` 属性将自动设为 `true`。
 
-```plsql
+``` plsql
 @Field(displayName = "名称", immutable = true)
 private String name;
 ```
@@ -1443,7 +1443,7 @@ private String name;
 
 通过 `@Field.Sequence` 注解，可便捷地为字段配置编码生成规则。当字段编码为空时，系统将依据预设规则自动生成对应编码，实现数据编码的自动化管理 。如：
 
-```plsql
+``` plsql
 @Field.String
 @Field(displayName = "编码", unique = true)
 @Field.Sequence(sequence = SequenceNameConstants.SEQ, prefix = "C", size = 5, step = 1, initial = 10000)
@@ -1456,7 +1456,7 @@ private String code;
 
 :::
 
-```java
+``` java
 @Model.Code(sequence = SequenceNameConstants.DATE_ORDERLY_SEQ,prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
 public class TestModel extends CodeModel {}
 ```
@@ -1465,7 +1465,7 @@ public class TestModel extends CodeModel {}
 
 通过 `@Field` 注解的 `serialize` 属性，可灵活配置非字符串类型属性的序列化与反序列化策略。经处理后的数据将以序列化生成的字符串形式，持久化存储至系统中。如：
 
-```plsql
+``` plsql
 // 以逗号拼接集合元素序列化，允许存储，支持多值
 @Field(displayName = "商品标签", serialize = Field.serialize.COMMA, store = NullableBoolEnum.TRUE, multi = true)
 @Field.Advanced(columnDefinition = "varchar(1024)")
@@ -1500,7 +1500,7 @@ private List<TestRelationModel> list;
 
 若需自定义序列化逻辑，可通过实现`pro.shushi.pamirs.meta.api.core.orm.serialize.Serializer`接口创建专属序列化器。完成开发后，在字段配置中，将`@Field`注解的`serialize`属性指定为`X`（X为自定义序列化类型，如示例中为`custom`），即可应用该自定义序列化器。
 
-```java
+``` java
 @Component
 public class CustomSerializer implements Serializer<Object, Object> {
 
@@ -1536,7 +1536,7 @@ public class CustomSerializer implements Serializer<Object, Object> {
 
 多值字段特性仅适用于基础数据类型及枚举类型字段。如需将字段配置为多值模式，可通过设置字段的`multi`属性实现。
 
-```java
+``` java
 @Field(displayName = "名称组", multi = true)
 private List<String> name;
 ```
@@ -1545,7 +1545,7 @@ private List<String> name;
 
 通过字段的`defaultValue`配置项，能够为字段设定默认值，具体的反序列化规则可参考 “默认值的反序列化” 章节内容。
 
-```java
+``` java
 @Field(displayName = "名称", defaultValue = "默认值")
 private String name;
 ```
@@ -1860,7 +1860,7 @@ private String name;
 
 以下是父枚举 `ParentExtendEnum` 的定义代码，它继承自 `BaseEnum`，并使用 `@Dict` 注解进行配置。
 
-```java
+``` java
 @Dict(dictionary = ParentExtendEnum.DICTIONARY, displayName = "测试枚举继承父枚举", summary = "测试枚举继承父枚举")
 public class ParentExtendEnum extends BaseEnum<ParentExtendEnum, String> {
 
@@ -1876,7 +1876,7 @@ public class ParentExtendEnum extends BaseEnum<ParentExtendEnum, String> {
 
 下面是子枚举 `ChildExtendEnum` 的定义代码，它继承自 `ParentExtendEnum`，同样使用 `@Dict` 注解进行配置。
 
-```java
+``` java
 @Dict(dictionary = ChildExtendEnum.DICTIONARY, displayName = "测试枚举继承子枚举", summary = "测试枚举继承子枚举")
 public class ChildExtendEnum extends ParentExtendEnum {
 
@@ -1896,7 +1896,7 @@ public class ChildExtendEnum extends ParentExtendEnum {
 
 #### swithes 方法示例
 
-```java
+``` java
 BaseEnum.switches(比较变量, 比较方式/*系统默认提供两种方式：caseName()和caseValue()*/,
                   cases(枚举列表1).to(() -> {/*逻辑处理*/}),
                   cases(枚举列表2).to(() -> {/*逻辑处理*/}),
@@ -1908,7 +1908,7 @@ BaseEnum.switches(比较变量, 比较方式/*系统默认提供两种方式：c
 
 #### switchGet 方法示例
 
-```java
+``` java
 BaseEnum.<比较变量类型, 返回值类型>switchGet(比较变量,
                                   比较方式/*系统默认提供两种方式：caseName()和caseValue()*/,
                 cases(枚举列表1).to(() -> {/*return 逻辑处理的结果*/}),
@@ -1928,7 +1928,7 @@ BaseEnum.<比较变量类型, 返回值类型>switchGet(比较变量,
 
 以下逻辑展示了如何使用 `switchGet` 方法判断 `ttype` 的值。当 `ttype` 的值为 `O2O`、`O2M`、`M2O` 或 `M2M` 枚举值时返回 `true`，否则返回 `false`。
 
-```java
+``` java
 return BaseEnum.<String, Boolean>switchGet(ttype, caseValue(),
                 cases(O2O, O2M, M2O, M2M).to(() -> true),
                 defaults(() -> false)
@@ -1947,7 +1947,7 @@ return BaseEnum.<String, Boolean>switchGet(ttype, caseValue(),
 
 要定义二进制枚举，需要实现 `BitEnum` 接口。以下是一个示例代码，展示了如何定义一个名为 `TestBitEnum` 的二进制枚举：
 
-```java
+``` java
 @Dict(dictionary = TestBitEnum.DICTIONARY, displayName = "测试二进制枚举", summary = "测试二进制枚举")
 public class TestBitEnum extends BaseEnum<TestBitEnum, Long> implements BitEnum {
 
@@ -1974,7 +1974,7 @@ public class TestBitEnum extends BaseEnum<TestBitEnum, Long> implements BitEnum 
 
 以下是一个具体的代码示例，展示了如何声明一个名为 `TestEnum` 的兼容 Java Enum 的枚举：
 
-```java
+``` java
 @Dict(dictionary = TestEnum.dictionary, displayName = "测试枚举")
 public enum TestEnum implements IEnum<String> {
     enum1("enum1", "枚举1", "枚举1"),
@@ -2015,7 +2015,7 @@ public enum TestEnum implements IEnum<String> {
 + **使用枚举类声明字段类型**：直接以枚举类来定义字段类型。
 + **使用枚举项值类型声明字段类型**：若采用此方式，需设置 `@Field.Enum` 注解的 `dictionary` 属性，该属性值应为对应数据字典的编码。
 
-```java
+``` java
 @Field.Enum
 @Field(displayName = "testEnum")
 private TestEnum testEnum;
@@ -2034,7 +2034,7 @@ private String testDictionarie;
 
 #### 多选枚举
 
-```java
+``` java
 @Field(displayName = "testEnums",multi = true)
 private List<TestEnum> testEnums;
 ```
@@ -2043,7 +2043,7 @@ private List<TestEnum> testEnums;
 
 使用**#常量#**的形式可定义关联关系常量
 
-```java
+``` java
 @Field.one2many
 @Field.Relation(relationFields = {"id", "#DEMO#"}, referenceFields = {"testModelId", "type"})
 @Field(displayName = "关联模型")
@@ -2069,7 +2069,7 @@ private List<TestRelationModel> relationModel;
 
 以下是父模型的定义代码，使用 `@Model.Advanced(type = ModelTypeEnum.ABSTRACT)` 注解将其标记为抽象模型：
 
-```java
+``` java
 @Model.Advanced(type = ModelTypeEnum.ABSTRACT)
 @Model.model(PetCommonItem.MODEL_MODEL)
 @Model(displayName = "抽象商品", summary = "抽象商品")
@@ -2085,7 +2085,7 @@ public class PetCommonItem extends IdModel {
 
 子模型通过 `extends` 关键字继承父模型，示例代码如下：
 
-```java
+``` java
 @Model.model(PetItem.MODEL_MODEL)
 @Model(displayName = "宠物商品", summary = "宠物商品")
 public class PetItem extends PetCommonItem {
@@ -2111,7 +2111,7 @@ public class PetItem extends PetCommonItem {
 
 以下是父模型 `PetItem` 的定义代码：
 
-```java
+``` java
 @Model.model(PetItem.MODEL_MODEL)
 @Model(displayName = "宠物商品", summary = "宠物商品")
 public class PetItem extends PetCommonItem {
@@ -2125,7 +2125,7 @@ public class PetItem extends PetCommonItem {
 
 下面是子模型 `PetDogItem` 的定义代码，它继承自父模型 `PetItem`：
 
-```java
+``` java
 @Model.model(PetDogItem.MODEL_MODEL)
 @Model(displayName = "宠狗商品", summary = "宠狗商品")
 public class PetDogItem extends PetItem {
@@ -2145,7 +2145,7 @@ public class PetDogItem extends PetItem {
 
 父模型需使用 `@Model.MultiTable` 注解进行标识，示例如下：
 
-```java
+``` java
 @Model.MultiTable
 @Model.model(Context.MODEL_MODEL)
 @Model(displayName = "上下文", summary = "上下文")
@@ -2161,7 +2161,7 @@ public class Context extends IdModel {
 
 子模型需使用 `@Model.MultiTableInherited` 注解，继承自父模型，示例代码如下：
 
-```java
+``` java
 @Model.MultiTableInherited
 @Model.model(SubContext.MODEL_MODEL)
 @Model(displayName = "子上下文", summary = "子上下文")
@@ -2181,7 +2181,7 @@ public class SubContext extends Context {
 
 父模型可以是存储数据的普通模型，也可以是其他代理模型。以下是一个普通存储模型的示例：
 
-```java
+``` java
 @Model.model(PetItem.MODEL_MODEL)
 @Model(displayName = "宠物商品", summary = "宠物商品")
 public class PetItem extends PetCommonItem {
@@ -2194,7 +2194,7 @@ public class PetItem extends PetCommonItem {
 
 使用 `@Model.Advanced(type = ModelTypeEnum.PROXY)` 注解将子模型声明为代理模型，示例如下：
 
-```java
+``` java
 @Model.model(PetItemProxy.MODEL_MODEL)
 @Model.Advanced(type = ModelTypeEnum.PROXY)
 @Model(displayName = "宠物商品代理模型", summary = "宠物商品代理模型")
@@ -2219,7 +2219,7 @@ public class PetItemProxy extends PetItem {
 
 父模型需通过 `extends TransientModel` 来定义为传输模型，示例如下：
 
-```java
+``` java
 @Model.model(PetItemRemark.MODEL_MODEL)
 @Model(displayName = "宠物商品备注", summary = "宠物商品备注")
 public class PetItemRemark extends TransientModel {
@@ -2232,7 +2232,7 @@ public class PetItemRemark extends TransientModel {
 
 子模型通过 `extends` 关键字继承父模型，示例代码如下：
 
-```java
+``` java
 @Model.model(PetItemDetail.MODEL_MODEL)
 @Model(displayName = "宠物商品详细描述", summary = "宠物商品详细描述")
 public class PetItemDetail extends PetItemRemark {
@@ -2258,7 +2258,7 @@ public class PetItemDetail extends PetItemRemark {
 + **返回值**：创建后的模型实例。
 + **示例代码**：
 
-```java
+``` java
 // 假设 User 类继承自 AbstractModel
 User user = new User();
 user.setName("John");
@@ -2275,7 +2275,7 @@ System.out.println("Created user ID: " + createdUser.getId());
 + **返回值**：影响的行数。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setName("Charlie");
 user.setAge(30);
@@ -2292,7 +2292,7 @@ System.out.println("Rows affected: " + rows);
 + **返回值**：包含操作结果的 `Result` 对象。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setName("David");
 user.setAge(35);
@@ -2312,7 +2312,7 @@ if (result.isSuccess()) {
 + **返回值**：影响的行数。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 user.setName("Updated John");
@@ -2328,7 +2328,7 @@ System.out.println("Rows affected: " + rows);
 + **返回值**：影响的行数。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setUniqueField("unique_value");
 user.setName("Updated User");
@@ -2348,7 +2348,7 @@ System.out.println("Rows affected: " + rows);
 + **返回值**：影响的行数。
 + **示例代码**：
 
-```java
+``` java
 User updateEntity = new User();
 updateEntity.setName("New Name");
 
@@ -2371,7 +2371,7 @@ System.out.println("Rows affected: " + rows);
 + **返回值**：影响的行数。
 + **示例代码**：
 
-```java
+``` java
 User updateEntity = new User();
 updateEntity.setName("Updated Name");
 
@@ -2390,7 +2390,7 @@ System.out.println("Rows affected: " + rows);
 + **返回值**：删除成功返回 `true`，否则返回 `false`。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 boolean deleted = user.deleteByPk();
@@ -2405,7 +2405,7 @@ System.out.println("Delete success: " + deleted);
 + **返回值**：删除成功返回 `true`，否则返回 `false`。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setUniqueField("unique_value");
 boolean deleted = user.deleteByUnique();
@@ -2420,7 +2420,7 @@ System.out.println("Delete success: " + deleted);
 + **返回值**：删除的行数。
 + **示例代码**：
 
-```java
+``` java
 User queryEntity = new User();
 queryEntity.setAge(25);
 int rows = queryEntity.deleteByEntity();
@@ -2437,7 +2437,7 @@ System.out.println("Rows deleted: " + rows);
 + **返回值**：删除的行数。
 + **示例代码**：
 
-```java
+``` java
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
    .eq("age", 25);
 int rows = user.deleteByWrapper(queryWrapper);
@@ -2455,7 +2455,7 @@ System.out.println("Rows deleted: " + rows);
 + **返回值**：查询到的模型实例，如果未找到则返回 `null`。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser = user.queryByPk();
@@ -2475,7 +2475,7 @@ if (queriedUser != null) {
 + **返回值**：查询到的模型实例，如果未找到则返回 `null`。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setUniqueField("unique_value");
 User queriedUser = user.queryOne();
@@ -2496,7 +2496,7 @@ if (queriedUser != null) {
 + **返回值**：查询到的模型实例，如果未找到则返回 `null`。
 + **示例代码**：
 
-```java
+``` java
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
    .eq("age", 25);
 User queriedUser = user.queryOneByWrapper(queryWrapper);
@@ -2516,7 +2516,7 @@ if (queriedUser != null) {
 + **返回值**：满足条件的数据记录列表。
 + **示例代码**：
 
-```java
+``` java
 User queryEntity = new User();
 queryEntity.setAge(25);
 List<User> userList = queryEntity.queryList();
@@ -2535,7 +2535,7 @@ for (User user : userList) {
 + **返回值**：满足条件的数据记录列表。
 + **示例代码**：
 
-```java
+``` java
 User queryEntity = new User();
 queryEntity.setAge(25);
 List<User> userList = queryEntity.queryList(100);
@@ -2554,7 +2554,7 @@ for (User user : userList) {
 + **返回值**：满足条件的数据记录列表。
 + **示例代码**：
 
-```java
+``` java
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
    .eq("age", 25);
 List<User> userList = user.queryList(queryWrapper);
@@ -2575,7 +2575,7 @@ for (User user : userList) {
 + **返回值**：查询分页结果。
 + **示例代码**：
 
-```java
+``` java
 Pagination<User> page = new Pagination<>(1, 10);
 User queryEntity = new User();
 queryEntity.setAge(25);
@@ -2597,7 +2597,7 @@ for (User user : userList) {
 + **返回值**：查询分页结果。
 + **示例代码**：
 
-```java
+``` java
 Pagination<User> page = new Pagination<>(1, 10);
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
    .eq("age", 25);
@@ -2619,7 +2619,7 @@ for (User user : userList) {
 + **返回值**：包含分页信息的 `Pagination` 对象。
 + **示例代码**：
 
-```java
+``` java
 Pagination<User> page = new Pagination<>(1, 10);
 
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
@@ -2640,7 +2640,7 @@ for (User user : result.getRecords()) {
 + **返回值**：满足查询条件的记录数量。
 + **示例代码**：
 
-```java
+``` java
 User queryEntity = new User();
 queryEntity.setAge(25);
 long count = queryEntity.count();
@@ -2657,7 +2657,7 @@ System.out.println("Record count: " + count);
 + **返回值**：满足查询条件的记录数量。
 + **示例代码**：
 
-```java
+``` java
 IWrapper<User> queryWrapper = new QueryWrapper<User>().from(User.MODEL_MODEL)
    .eq("age", 25);
 long count = user.count(queryWrapper);
@@ -2676,7 +2676,7 @@ System.out.println("Record count: " + count);
 + **返回值**：包含查询字段值的模型数据。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser =  = user.queryByPk();
@@ -2696,7 +2696,7 @@ if (queriedUser.getRelationField() != null) {
 + **返回值**：包含查询字段值的模型数据。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser =  = user.queryByPk();
@@ -2716,7 +2716,7 @@ if (queriedUser.getRelationField() != null) {
 + **返回值**：包含更新字段值的模型数据。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setName("John");
 user.setAge(25);
@@ -2740,7 +2740,7 @@ user.fieldSave(User::getO2MField);
 + **返回值**：包含更新字段值的模型数据。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setName("John");
 user.setAge(25);
@@ -2764,7 +2764,7 @@ user.fieldSave("o2mField");
 + **返回值**：包含更新字段值的模型数据。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser =  = user.queryByPk();
@@ -2786,7 +2786,7 @@ queriedUser.fieldSaveOnCascade(User::getO2MField);
 + **返回值**：包含更新字段值的模型数据。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser =  = user.queryByPk();
@@ -2808,7 +2808,7 @@ queriedUser.fieldSaveOnCascade("o2MField");
 + **返回值**：模型数据。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser =  = user.queryByPk();
@@ -2826,7 +2826,7 @@ queriedUser.relationDelete(User::getO2MField);
 + **返回值**：模型数据。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser =  = user.queryByPk();
@@ -2846,7 +2846,7 @@ queriedUser.relationDelete("o2MField");
 + **返回值**：包含查询字段值的模型数据列表。
 + **示例代码**：
 
-```java
+``` java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setId(1L);
@@ -2876,7 +2876,7 @@ for (User queriedUser : queriedUsers) {
 + **返回值**：包含查询字段值的模型数据列表。
 + **示例代码**：
 
-```java
+``` java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setId(1L);
@@ -2906,7 +2906,7 @@ for (User queriedUser : queriedUsers) {
 + **返回值**：包含更新字段值的模型数据列表。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setName("John");
 user.setAge(25);
@@ -2934,7 +2934,7 @@ List<User> updatedUsers = new User().listFieldSave(userList, User::getO2MField);
 + **返回值**：包含更新字段值的模型数据列表。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setName("John");
 user.setAge(25);
@@ -2962,7 +2962,7 @@ List<User> updatedUsers = new User().listFieldSave(userList, "o2MField");
 + **返回值**：包含更新字段值的模型数据列表。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser =  = user.queryByPk();
@@ -2988,7 +2988,7 @@ new User().listFieldSaveOnCascade(userList,User::getO2MField);
 + **返回值**：包含更新字段值的模型数据列表。
 + **示例代码**：
 
-```java
+``` java
 User user = new User();
 user.setId(1L);
 User queriedUser =  = user.queryByPk();
@@ -3014,7 +3014,7 @@ new User().listFieldSaveOnCascade(userList,"o2MField");
 + **返回值**：创建后的模型列表。
 + **示例代码**：
 
-```java
+``` java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setName("Alice");
@@ -3040,7 +3040,7 @@ System.out.println("Created " + createdUsers.size() + " users.");
 + **返回值**：影响的行数。
 + **示例代码**：
 
-```java
+``` java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setName("Eve");
@@ -3066,7 +3066,7 @@ System.out.println("Rows affected: " + rows);
 + **返回值**：包含操作结果的 `Result` 对象，其中包含操作后的模型列表。
 + **示例代码**：
 
-```java
+``` java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setName("Grace");
@@ -3096,7 +3096,7 @@ if (result.isSuccess()) {
 + **返回值**：影响的行数。
 + **示例代码**：
 
-```java
+``` java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setId(1L);
@@ -3122,7 +3122,7 @@ System.out.println("Rows affected: " + rows);
 + **返回值**：删除成功返回 `true`，否则返回 `false`。
 + **示例代码**：
 
-```java
+``` java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setId(1L);
@@ -3146,7 +3146,7 @@ System.out.println("Delete success: " + deleted);
 + **返回值**：删除成功返回 `true`，否则返回 `false`。
 + **示例代码**：
 
-```java
+``` java
 List<User> userList = new ArrayList<>();
 User user1 = new User();
 user1.setUniqueField("unique_value_1");
@@ -3164,7 +3164,7 @@ System.out.println("Delete success: " + deleted);
 
 ### 1、初始化与链式调用
 
-```java
+``` java
 // 初始化 QueryWrapper（指定实体类型）、LambdaQueryWrapper（指定实体类型）
 // 没有传入模型对象的，一定要记住要用调用.from()来传递模型编码
 
@@ -3200,7 +3200,7 @@ wrapper1
 | `groupBy(columns)` | 分组             | `.groupBy("age","status")` |
 
 
-```java
+``` java
 // 示例：查询年龄 25 岁且姓名以 "张" 开头的用户
 QueryWrapper<User> wrapper = Pops.<User>query().from(User.MODEL_MODEL);
 wrapper.eq("age", 25).like("name", "张%");
@@ -3212,7 +3212,7 @@ List<User> users = new User().queryList(wrapper);
 
 ### 1、初始化与类型安全
 
-```java
+``` java
 // 初始化 LambdaQueryWrapper（避免字段名硬编码）
 LambdaQueryWrapper<User> lambdaWrapper = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
 
@@ -3226,7 +3226,7 @@ lambdaWrapper
 
 ### 2、复杂条件组合
 
-```java
+``` java
 // 嵌套条件：年龄 > 30 或 (姓名包含 "李" 且状态为激活)
 lambdaWrapper
     .gt(User::getAge, 30)
@@ -3238,7 +3238,7 @@ lambdaWrapper
 
 ### 3、动态条件构建
 
-```java
+``` java
 // 动态添加条件（根据业务逻辑）
 String searchName = "王";
 Integer minAge = 20;
@@ -3257,7 +3257,7 @@ List<User> users = new User().queryList(wrapper);
 
 ### 4、拼接 sql
 
-```java
+``` java
 // apply sql中要用数据库字段的column，而不是模型中的字段名
 LambdaQueryWrapper<User> wrapper = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
 // wrapper.apply("date_format(dateColumn,'%Y-%m-%d') = '2008-08-08'")
@@ -3270,7 +3270,7 @@ List<User> users = new User().queryList(wrapper);
 
 ### 1、基础分页
 
-```java
+``` java
 // 分页参数：第 2 页，每页 10 条
 Pagination<User> page = new Pagination<>(2, 10);
 
@@ -3289,7 +3289,7 @@ long total = page.getTotal();
 
 ### 2、分页 + 排序
 
-```java
+``` java
 LambdaQueryWrapper<User> wrapper = Pops.<User>lambdaQuery().from(User.MODEL_MODEL);
 
 wrapper
@@ -3303,14 +3303,14 @@ Pagination<User> page = new User().queryPage(page, wrapper);
 
 ### 3、**分页时关闭 count 查询（性能优化）**
 
-```java
+``` java
 Pagination<User> page = new Pagination<>(1, 10);
 page.setSearchCount(false); // 禁用 SELECT COUNT(*)
 ```
 
 ### 4、完整示例：多条件分页查询
 
-```java
+``` java
 // 1. 构建分页参数
 Pagination<User> page = new Pagination<>(1, 10);
 // page.setSearchCount(true); // 默认返回总记录数，不需要设置
@@ -3338,7 +3338,7 @@ long total = page.getTotal();
 
 在处理大量数据查询时，合理设置查询的批量数量可以优化性能，减少内存消耗和网络传输压力。比如在分页查询或批量数据处理场景中，根据数据量和系统资源情况，精确控制每次查询返回的数据量。
 
-```java
+``` java
 public static BatchSizeHintApi use(Integer batchSize) {
     // 具体实现
 }
@@ -3350,7 +3350,7 @@ public static BatchSizeHintApi use(Integer batchSize) {
 
 在`try`块内，所有查询操作都会按照指定的`batchSize`进行查询。
 
-```java
+``` java
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
     PetShopProxy data2 = data.queryById();
     data2.fieldQuery(PetShopProxy::getPetTalents);
@@ -3371,7 +3371,7 @@ try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
 + 乐观锁模型用 `useAndJudgeAffectRows`（逐条提交并校验行数，不一致则抛异常）。
   支持运行时修改提交方式：
 
-```java
+``` java
 Spider.getDefaultExtension(BatchApi.class).run(() -> {
     更新逻辑
 }, 批量提交类型枚举);
@@ -3403,7 +3403,7 @@ Spider.getDefaultExtension(BatchApi.class).run(() -> {
 
 若一个模型在某些场景下需要使用乐观锁更新数据，而在另一些场景下不需要，可以使用以下代码在特定场景下使乐观锁失效：
 
-```java
+``` java
 PamirsSession.directive().disableOptimisticLocker();
 try {
     // 更新逻辑
@@ -3416,7 +3416,7 @@ try {
 
 若不想抛出乐观锁异常，可将批量提交类型设置为 `useAffectRows`，这样就能由外层逻辑自主判断返回的实际影响行数。示例代码如下：
 
-```java
+``` java
 Spider.getDefaultExtension(BatchApi.class).run(() -> {
     // 更新逻辑，返回实际影响行数
 }, BatchCommitTypeEnum.useAffectRows);
@@ -3442,7 +3442,7 @@ Spider.getDefaultExtension(BatchApi.class).run(() -> {
 
 使用 `@Errors` 注解定义模块专属异常枚举，示例：
 
-```java
+``` java
 @Errors(displayName = "xxx模块错误枚举")
 public enum XxxxExpEnumerate implements ExpBaseEnum {
     CUSTOM_ERROR(ERROR_TYPE.SYSTEM_ERROR, xxxxxxxx,""),
@@ -3468,7 +3468,7 @@ public enum XxxxExpEnumerate implements ExpBaseEnum {
 
 通过 `PamirsException.construct` 方法抛出异常：
 
-```java
+``` java
 throw PamirsException.construct(XxxxExpEnumerate.CUSTOM_ERROR).appendMsg("异常附带必要的信息，非必须").errThrow();
 ```
 

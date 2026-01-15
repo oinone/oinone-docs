@@ -8,10 +8,10 @@ dir:
   order: 3
 prev:
   text: Low-Code and No-Code Integration
-  link: /en/UserManual/low-code-no-code-integration.md
+  link: /v6/en/UserManual/low-code-no-code-integration.md
 next:
   text: Tutorials
-  link: /en/DevManual/Tutorials/README.md
+  link: /v6/en/DevManual/Tutorials/README.md
 ---
 Welcome to the Oinone developer documentation! Whether you are an experienced developer or a novice, you can find all the technical guides and resources needed to develop Oinone applications here. We provide rich tutorials, operation guides, and reference materials to help you achieve your development goals.
 

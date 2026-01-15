@@ -30,7 +30,7 @@ Oinone 的一个强大之处在于其模块化特性。每个模块都专注于�
 
 在我们的费用管理模块中，我们无需开发任何特定的代码就能执行标准的 CRUD 操作。Oinone 框架提供了执行这些操作所需的工具。以`expenses.TestModel`模型中面向 API 开放的函数为例，我们可以看到这些方法定义的所在Java类。我们能够在`base_function`表中，清晰查看到这些方法的具体定义 。先别急着探究这些方法源自何处，待我们讲解到模型的继承部分时，关于这些方法的来龙去脉自然就会清晰明了。
 
-```plsql
+``` plsql
 mysql> use trutorials_base;
 Database changed
 mysql> select name,fun,bean_name from base_function where namespace ='expenses.TestModel'and open_level&8=8;
@@ -58,7 +58,7 @@ mysql> select name,fun,bean_name from base_function where namespace ='expenses.T
 
 重写 CRUD 函数的方式，与我们在前述章节中为模型添加函数的思路是一脉相承的。就如同在之前的实践里，我们基于业务需求对模型功能进行拓展那样，重写 CRUD 函数也是通过类似的操作逻辑来实现对数据操作行为的自定义。具体而言，如：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.core.action;
 
 import org.apache.commons.collections4.CollectionUtils;

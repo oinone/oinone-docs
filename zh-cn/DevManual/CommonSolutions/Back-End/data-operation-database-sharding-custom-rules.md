@@ -19,7 +19,7 @@ order: 26
 + 为 pamirsSharding 妥善配置数据源以及 sharding 规则 。
 
 ##  （一）指定模型对应数据源
-```yaml
+``` yaml
 pamirs:
   framework:
     system:
@@ -35,7 +35,7 @@ pamirs:
 ```
 
 ## （二）分库分表规则配置
-```yaml
+``` yaml
 pamirs:
   sharding:
     define:
@@ -78,7 +78,7 @@ pamirs:
 
 ## （一）自定义分表规则示例
 ### 1、按月份分表（DATE_MONTH ）
-```java
+``` java
 package pro.shushi.pamirs.demo.core.sharding;
 
 import cn.hutool.core.date.DateUtil;
@@ -166,7 +166,7 @@ public class DateMonthShardingAlgorithm implements StandardShardingAlgorithm<Dat
 ```
 
 ### 2、按特定字段截取去取模分表
-```java
+``` java
 package pro.shushi.pamirs.demo.core.sharding;
 
 import org.apache.shardingsphere.sharding.api.sharding.standard.PreciseShardingValue;
@@ -230,7 +230,7 @@ public class AppUserCodeShardingAlgorithm implements StandardShardingAlgorithm<S
 
 # 四、使用自定义分表策略
 ## （一）指定模型对应数据源
-```yaml
+``` yaml
 pamirs:
   framework:
     system:
@@ -247,7 +247,7 @@ pamirs:
 ```
 
 ## （二）分库分表规则配置
-```yaml
+``` yaml
 pamirs:
   sharding:
     define:
@@ -284,7 +284,7 @@ pamirs:
 
 在 `resources/META - INF/services` 路径下，对 `org.apache.shardingsphere.sharding.spi.ShardingAlgorithm` 进行配置 。
 
-```java
+``` java
 pro.shushi.pamirs.demo.core.sharding.AppUserCodeShardingAlgorithm
 pro.shushi.pamirs.demo.core.sharding.DateMonthShardingAlgorithm
 ```

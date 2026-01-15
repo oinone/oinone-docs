@@ -33,7 +33,7 @@ order: 8
     - AgentId（应用代理ID）
 
 ## （三）引入企业微信 SDK 依赖
-```xml
+``` xml
 <dependency>
   <groupId>com.github.binarywang</groupId>
   <artifactId>weixin-java-cp</artifactId>
@@ -45,7 +45,7 @@ order: 8
 ## （一）项目中增加企业微信的配置
 1、项目中application.yml配置（本文示例采用）
 
-```yaml
+``` yaml
 pamirs:
   wxcp:
     corpId: 应用的corpId
@@ -58,7 +58,7 @@ pamirs:
 2、后端配置方式参考钉钉对接中的说明
 
 ## （二）初始化企业微信客户端（WxCpService）
-```java
+``` java
 @Slf4j
 @Service
 public class WxBaseConfig {
@@ -117,7 +117,7 @@ public class WxBaseConfig {
 ```
 
 ## （三）构建授权链接（跳转企业微信）
-```java
+``` java
 /**
  * 获取重定向url，让企业微信跳到oauth2url并带上code参数
  *
@@ -145,7 +145,7 @@ public void oauth(HttpServletRequest request, HttpServletResponse response) {
 ## （四）处理企业微信回调
 获取 code 并换取用户 UserTicket；用 UserTicket 获取用户信息
 
-```java
+``` java
 /**
  * 根据企业微信的code获取用户信息
  *
@@ -203,7 +203,7 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
 ```
 
 ## （五）处理用户信息并设置登录态（Session + Cookie）
-```java
+``` java
     private PamirsUser handleUserInfo(WxCpOauth2UserInfo userInfo, WxCpUserDetail userDetail, HttpServletResponse response) {
         if (userDetail == null) {
             return null;
@@ -294,7 +294,7 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
 ## （二）在创建第三方用户时赋权
 在对接流程中的第六步：处理用户信息阶段，即根据第三方用户信息创建平台用户（如 `PamirsUser`）时，可通过调用系统接口，将上述定义好的角色直接分配给该用户，实现权限的静态绑定。
 
-```java
+``` java
 private void bindUserRole(PamirsUser pamirsUser) {
     AuthRole authRole = new AuthRole().setCode(THIRD_PARTY_USER_ROLE_CODE).queryOne();
     if (authRole != null) {
@@ -309,7 +309,7 @@ private void bindUserRole(PamirsUser pamirsUser) {
 
 本文示例采用的就是此方案，完整实现请参考附件中的代码文件：`ThirdPartyRoleCustom.java`
 
-```java
+``` java
 @Override
 public Set<Long> get() {
     Set<Long> roleIds = super.get();

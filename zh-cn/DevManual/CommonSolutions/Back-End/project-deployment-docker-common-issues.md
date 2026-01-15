@@ -17,7 +17,7 @@ order: 75
 
 查看 docker 的 systemd（docker.service）配置位置
 
-```shell
+``` shell
 systemctl status docker
 ```
 
@@ -27,7 +27,7 @@ systemctl status docker
 
 + 将下列参数进行修改
 
-```xml
+``` xml
 LimitNOFILE=65535
 LimitNPROC=65535
 LimitCORE=65535
@@ -35,7 +35,7 @@ LimitCORE=65535
 
 + 执行以下脚本
 
-```shell
+``` shell
 systemctl daemon-reload
 systemctl restart docker
 ```
@@ -53,19 +53,19 @@ systemctl restart docker
 
 在 ExecStart 命令后加上创建容器的默认 ulimit 配置，如下，设置容器启动时的 ulimit 为65535:65535
 
-```plain
+``` plain
 --default-ulimit nofile=65535:65535
 ```
 
 配置好后：
 
-```plain
+``` plain
 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-ulimit nofile=65535:65535
 ```
 
 执行以下脚本
 
-```shell
+``` shell
 systemctl daemon-reload
 systemctl restart docker
 ```
@@ -75,7 +75,7 @@ systemctl restart docker
 # 三、拉取设计器镜像报错：
 报错信息，拉取镜像 harbor.oinone.top 连不上。
 
-```plain
+``` plain
 docker login --username=schhsw_oinone harbor.oinone.top
 
 i Info → A Personal Access Token (PAT) can be used instead.

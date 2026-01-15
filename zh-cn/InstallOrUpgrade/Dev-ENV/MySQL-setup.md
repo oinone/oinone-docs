@@ -39,13 +39,13 @@ order: 7
 ### 1、获取glibc版本
 
 
-```properties
+``` properties
 ldd --version
 ```
 
 输出类似信息
 
-```properties
+``` properties
 ldd (Debian GLIBC 2.36-9+deb12u10) 2.36
 Copyright (C) 2022 自由软件基金会。这是一个自由软件；请见源代码的授权条款。本软件不含任何没有担保；甚至不保证适销性或者适合某些特殊目的。由 Roland McGrath 和 Ulrich Drepper 编写。
 ```
@@ -69,21 +69,21 @@ Copyright (C) 2022 自由软件基金会。这是一个自由软件；请见源�
 ## （一）解压
 解压到当前目录，为了方便操作可选择性建立软链
 
-```shell
+``` shell
 # macOS
 tar zxvf mysql-8.0.42-macos15-arm64.tar.gz -C ./
 # 建立软链
 ln -s mysql-8.0.42-macos15-arm64 mysql
 ```
 
-```shell
+``` shell
 # Linux
 tar Jxvf mysql-8.0.42-linux-glibc2.28-aarch64.tar.xz -C ./
 # 建立软链
 ln -s mysql-8.0.42-linux-glibc2.28-aarch64 mysql
 ```
 
-```powershell
+``` powershell
 # Windows
 Expand-Archive .\mysql-8.0.42-winx64.zip .\
 # 建立软链
@@ -93,7 +93,7 @@ New-Item -Path .\mysql\ -ItemType SymbolicLink -Target .\mysql-8.0.42-winx64\
 ## （二）配置
 macOS/Linux
 
-```sql
+``` sql
 # my.cnf
 [mysqld]
 # 表名存储与大小写敏感
@@ -104,7 +104,7 @@ default-time-zone           = '+08:00'
 
 Windows
 
-```sql
+``` sql
 # my.ini
 [mysqld]
 # 表名存储与大小写敏感
@@ -114,7 +114,7 @@ default-time-zone           = '+08:00'
 ```
 
 ## （三）安装
-```shell
+``` shell
 # macOS
 # 修改二进制文件运行权限
 xattr -r -d com.apple.quarantine mysql-8.0.42-macos15-arm64
@@ -124,7 +124,7 @@ cd mysql-8.0.42-macos15-arm64
 ./bin/mysqld --defaults-file=my.cnf --initialize
 ```
 
-```shell
+``` shell
 # Linux
 # 添加系统用户组
 groupadd mysql
@@ -140,7 +140,7 @@ chmod 750 mysql-files
 ./bin/mysqld --defaults-file=my.cnf --initialize --user=mysql
 ```
 
-```powershell
+``` powershell
 # Windows
 # 命令行进入mysql安装目录
 cd mysql-8.0.42-winx64
@@ -152,7 +152,7 @@ cd mysql-8.0.42-winx64
 ### 1、默认密码
 在命令中运行初始化mysql服务命令之后会输出类似信息。
 
-```shell
+``` shell
 2025-04-27T03:17:38.853843Z 0 [System] [MY-013169] [Server] /Volumes/sm/build/mysql-8.0.42-macos15-arm64/bin/mysqld (mysqld 8.0.42) initializing of server in progress as process 9742
 2025-04-27T03:17:38.855773Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /Volumes/sm/build/mysql-8.0.42-macos15-arm64/data/ is case insensitive
 2025-04-27T03:17:38.859938Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
@@ -165,28 +165,28 @@ cd mysql-8.0.42-winx64
 请注意，在信息中 `A temporary password is generated for root@localhost:` 后面的内容即为默认的 root 密码。
 
 ### 2、启动MySQL服务
-```properties
+``` properties
 # macOS
 nohup ./bin/mysqld --defaults-file=my.cnf >> mysql.nohup 2>&1 &
 ```
 
-```properties
+``` properties
 # Linux
 nohup ./bin/mysqld --defaults-file=my.cnf --user=mysql >> mysql.nohup 2>&1 &
 ```
 
-```powershell
+``` powershell
 # Windows
 .\bin\mysqld.exe --defaults-file=my.ini
 ```
 
 ### 3、登录命令行客户端
-```properties
+``` properties
 # macOS/Linux
 ./bin/mysql -uroot -p
 ```
 
-```powershell
+``` powershell
 # Windows
 .\bin\mysql.exe -uroot -p
 ```
@@ -202,7 +202,7 @@ nohup ./bin/mysqld --defaults-file=my.cnf --user=mysql >> mysql.nohup 2>&1 &
 
 :::
 
-```sql
+``` sql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'shushi@2019';
 ```
 
@@ -215,12 +215,12 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'shushi@2
 
 :::
 
-```shell
+``` shell
 # macOS/Linux
 ./bin/mysqladmin shutdown -uroot -pshushi@2019
 ```
 
-```powershell
+``` powershell
 # Windows
 .\bin\mysqladmin.exe shutdown -uroot -pshushi@2019
 ```
@@ -229,7 +229,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'shushi@2
 
 # 四、数据库配置常见问题
 ## （一）允许远程连接
-```sql
+``` sql
 # 打开远程连接
 use mysql;
 update user set host='%' where user='root';
@@ -244,7 +244,7 @@ quit;
 :::
 
 ## （二）时区问题
-```plsql
+``` plsql
 # 修改：my.cnf (macOS ) / my.ini (windows)
 default-time-zone= '+08:00'
 ```

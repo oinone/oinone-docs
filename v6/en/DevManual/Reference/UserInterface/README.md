@@ -10,8 +10,8 @@ dir:
   order: 3
 prev:
   text: Translate Service
-  link: /en/DevManual/Reference/Front-EndFramework/Services/translate-service.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Services/translate-service.md
 next:
   text: View records
-  link: /en/DevManual/Reference/UserInterface/view-records.md
+  link: /v6/en/DevManual/Reference/UserInterface/view-records.md
 ---

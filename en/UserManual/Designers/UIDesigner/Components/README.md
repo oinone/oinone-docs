@@ -9,5 +9,5 @@ dir:
    order: 5
 next:
   text: Layout
-  link: /zh-cn/UserManual/Designers/UIDesigner/Components/layout.md
+  link: /en/UserManual/Designers/UIDesigner/Components/layout.md
 ---

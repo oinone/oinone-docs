@@ -72,7 +72,7 @@ prev:
 暂未提供，请使用源码方式安装
 
 ### 企业版
-```shell
+``` shell
 ##oinone-designer-mini-v大版本.中版本:全版本
 ##这里的版本号6.2:6.2.1仅是示例，根据数式Oinone镜像的实际版本进行修改
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1
@@ -80,7 +80,7 @@ docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1
 
 如镜像拉取过慢，可在对应镜像Tag添加`-amd64`、`-arm64`后缀获取单一架构镜像。
 
-```shell
+``` shell
 ##oinone-designer-mini-v大版本.中版本:全版本-架构Tag
 ##这里的版本号6.2:6.2.1仅是示例，根据数式Oinone镜像的实际版本进行修改
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-amd64
@@ -91,7 +91,7 @@ docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-arm64
 ## （一）下载结构包
 + 先在服务器上建一个文件夹（推荐建在主目录下，方便查找），然后进入文件夹里。
 
-```plain
+``` plain
 #服务器上建好目录
 #进入主目录
 cd ~
@@ -103,7 +103,7 @@ cd oinone
 
 + 本地下载结构包[oinone-op-ds-all-full.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/oinone-op-ds-all-full.zip)，解压后从本地电脑上传结构包到服务器
 
-```plain
+``` plain
 #本地电脑上传结构包
 scp home/user/myfolder(替换成本地电脑解压后的实际地址) username@ip_address:/home/oinone(替换成想要上传在服务器上的具体地址)
 ```
@@ -136,7 +136,7 @@ scp home/user/myfolder(替换成本地电脑解压后的实际地址) username@i
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
-```shell
+``` shell
 #镜像目录结构都在/opt目录下
 ├── jdk
 ├── mq
@@ -170,7 +170,7 @@ scp home/user/myfolder(替换成本地电脑解压后的实际地址) username@i
 
 
 
-```shell
+``` shell
 #startup.sh文件内容
 #!/bin/bash
 configDir=$(pwd)
@@ -199,7 +199,7 @@ docker run -d --name designer-allinone \
 ### 1.修改startup.sh文件
 在文件中找到如下代码，修改`majorVersion`、`version`以及对应的IP为docker宿主机IP(即服务器ip)等配置项
 
-```plain
+``` plain
 configDir=$(pwd)
 majorVersion=6.2  # 根据数式Oinone镜像的实际版本进行修改
 version=6.2.1     # 根据数式Oinone镜像的实际版本进行修改
@@ -209,7 +209,7 @@ IP=192.168.0.121  # 改为服务器 IP
 ### 2.修改mq目录下的broker.conf文件
 在文件中找到如下代码，修改`namesrvAddr` 和 `brokerIP1` 的IP地址等配置项
 
-```plain
+``` plain
 namesrvAddr=127.0.0.1:9876   # 改成127.0.0.1:9876
 brokerIP1=192.168.0.121  # 改成宿主机IP
 ```
@@ -223,7 +223,7 @@ brokerIP1=192.168.0.121  # 改成宿主机IP
 ### 3.修改配置文件 config目录下的application.yml文件
 在文件中找到如下代码，修改数据库的IP、端口、用户名以及密码等配置项
 
-```yaml
+``` yaml
 # application.yml文件
 # 改成mysql所在服务器的ip、端口(端口号默认3306，使用服务器上mysql的端口一致)、username、password
 pamirs:
@@ -243,23 +243,23 @@ pamirs:
 ```
 
 ### 4.执行 `startup.sh` 并查看日志
-```plain
+``` plain
 sh startup.sh
 ```
 
 查看日志：先进入logs文件夹下，看是否产生了日志？
 
-```plain
+``` plain
 cd logs   # 进入logs文件夹
 ```
 
-```plain
+``` plain
 # 如果生成了！可以执行命令：
 tail -200f 2024.9.0.log(改成当天的日志文件名)
 # 第一次启动时间会相对长一些，等看到日志文件中输出" 启动成功"等字样，代表启动成功
 ```
 
-```plain
+``` plain
 # 如果没有生成，请先执行以下命令
 docker logs
 # 执行完了之后看看到底启动没有，如果出错了，实在解决不了，请把所有错误信息导出发到群里。

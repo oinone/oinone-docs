@@ -13,7 +13,7 @@ order: 8
 
 The Oinone platform extends based on Spring Data Redis, having completed the registration of `redisTemplate` and `stringRedisTemplate` in advance, and built-in the Oinone Cache Key construction logic. Developers can directly use dependency injection, and are prohibited from redefining Redis-related beans to ensure the consistency of cache services.
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.service;
 
 import org.springframework.stereotype.Component;
@@ -44,7 +44,7 @@ public class Test {
 
 **Usage Example**:
 
-```java
+``` java
 @Component
 public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
     @Autowired
@@ -86,7 +86,7 @@ public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
 
 **Dependency Adjustment**: Remove the Jedis dependency in `pom.xml` and introduce Lettuce and connection pool dependencies:
 
-```xml
+``` xml
 <lettuce.version>5.3.6.RELEASE</lettuce.version>
 <commons-pool2.version>2.8.1</commons-pool2.version>
 <dependencies>
@@ -115,7 +115,7 @@ public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
 
 **Configuration Modification**: Add Lettuce connection pool configuration in `application.yml`:
 
-```yaml
+``` yaml
 spring:
   redis:
     database: 0
@@ -143,7 +143,7 @@ This configuration class takes effect in the single Redis mode, responsible for 
 1. **Serialization Customization**: Add tenant prefixes to keys through `PamirsStringRedisSerializer`, and use Jackson2JsonRedisSerializer for JSON serialization of values, ensuring data compatibility in multi-tenant scenarios.
 2. **Template Injection**: Inject `RedisConnectionFactory` and custom serializers to complete Redis template configuration, simplifying the usage process for developers.
 
-```java
+``` java
 @Validated
 @Component
 @Conditional(RedisSimpleModeCondition.class)
@@ -194,7 +194,7 @@ A custom string serializer that implements automatic addition and parsing of ten
 + **Serialization**: Add tenant prefixes and global identifiers to keys to ensure key uniqueness in multi-tenant environments.
 + **Deserialization**: Automatically remove prefixes and identifiers to restore original key values, ensuring data read-write consistency.
 
-```java
+``` java
 public class PamirsStringRedisSerializer extends StringRedisSerializer {
     private final String prefix;
     private final int prefixLength;

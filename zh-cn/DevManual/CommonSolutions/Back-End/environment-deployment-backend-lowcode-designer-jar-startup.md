@@ -10,7 +10,7 @@ order: 61
 [oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip)
 
 ## （一） Mac OS平台启动
-```shell
+``` shell
 # 直接运行
 ./darwin-boot java -jar ./pamirs-designer-boot-4.7.0.jar
 
@@ -19,7 +19,7 @@ nohup ./darwin-boot java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>&1 &
 ```
 
 ## （二）Mac OS（arm64架构）平台启动
-```shell
+``` shell
 # 直接运行
 ./darwin-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar
 
@@ -28,7 +28,7 @@ nohup ./darwin-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2
 ```
 
 ## （三）Linux平台启动
-```shell
+``` shell
 # 直接运行
 ./linux-boot java -jar ./pamirs-designer-boot-4.7.0.jar
 
@@ -37,7 +37,7 @@ nohup ./linux-boot java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>&1 &
 ```
 
 ## （四）Linux（arm64架构）平台启动
-```shell
+``` shell
 # 直接运行
 ./linux-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar
 
@@ -46,7 +46,7 @@ nohup ./linux-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>
 ```
 
 ## （五）Windows平台启动
-```shell
+``` shell
 .\win-boot.exe java -jar .\pamirs-designer-boot-4.7.0.jar
 ```
 
@@ -55,7 +55,7 @@ nohup ./linux-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>
 2. Oinone 无代码设计器不支持使用`javaagent`参数。
 
 # 三、常用启动脚本
-```shell
+``` shell
 #!/bin/bash
 
 # 脚本所在目录

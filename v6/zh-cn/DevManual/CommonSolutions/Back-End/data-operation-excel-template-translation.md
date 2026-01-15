@@ -9,7 +9,7 @@ order: 22
 # 一、导出翻译项
 与翻译的导出全部翻译项类似，只是该操作目前没有加入到页面交互中，需要通过工具发起后端服务请求，拿到导入导出翻译Excel模版，添加模版翻译项。（查看路径：文件--导出任务）
 
-```graphql
+``` graphql
 mutation {
   excelExportTaskMutation {
     createExportTask(
@@ -41,7 +41,7 @@ variables.lang：用于指定翻译项的目标语言编码，与【资源】-�
 :::
 
 # 二、导入翻译项
-```graphql
+``` graphql
 mutation {
   excelImportTaskMutation {
     createImportTask(

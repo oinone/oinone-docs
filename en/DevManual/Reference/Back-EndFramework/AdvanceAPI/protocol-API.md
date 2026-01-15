@@ -13,7 +13,7 @@ prev:
 ---
 # Ⅰ、Request URL Specifications
 
-```plain
+``` plain
 http://127.0.0.1:8090/pamirs/DemoCore?scene=redirectListPage
 ```
 
@@ -52,7 +52,7 @@ Oinone extends and supports the following data types based on standard GraphQL:
 
 #### Query Example
 
-```graphql
+``` graphql
 query {
   testModelQuery {
     queryInfo(id: 123) {
@@ -67,7 +67,7 @@ The above query uses the `queryInfo` function under `testModelQuery`, passes the
 
 #### Pagination Query Example
 
-```graphql
+``` graphql
 query {
   testModelProxyQuery {
     queryPage(
@@ -90,7 +90,7 @@ This query uses the `queryPage` function for pagination query and passes the RSQ
 
 #### Data Modification Example
 
-```graphql
+``` graphql
 mutation {
   testModelMutation {
     create(data: { name: "testName" }) {
@@ -114,7 +114,7 @@ RSQL is a parameterized filtering language based on FIQL, with core features:
   - `,` or `or`: Logical OR
 + **Comparison Operators**: **plaintext**
 
-```plain
+``` plain
 == Equals
 != Not equals
 =lt= Less than
@@ -150,7 +150,7 @@ Oinone has added the following operators based on RSQL:
 
 In the GraphQL `queryPage` query, pass the RSQL filter condition through the `rsql` field of `queryWrapper`:
 
-```graphql
+``` graphql
 query {
   testModelProxyQuery {
     queryPage(
@@ -192,7 +192,7 @@ query {
 
 The front end can pass additional information through the `Variables` attribute of GraphQL, such as:
 
-```json
+``` json
 {
   "scene": "菜单入口"
 }
@@ -200,7 +200,7 @@ The front end can pass additional information through the `Variables` attribute 
 
 The back end obtains the variable value through `PamirsSession.getRequestVariables()`.
 
-```java
+``` java
 PamirsRequestVariables variables = PamirsSession.getRequestVariables();
 String scene = variables.getVariables().get("scene");
 ```
@@ -214,7 +214,7 @@ String scene = variables.getVariables().get("scene");
 | onlyValidate  | `true`<br/> / `false`                                       | Whether to only perform validation without submitting data             |
 
 
-```java
+``` java
 {
  	"requestStrategy": {
   	"checkStrategy": "RETURN_WHEN_COMPLETED",
@@ -233,7 +233,7 @@ In Oinone development, when encountering parameters that need to be passed by th
 
 Create a new class inheriting from `AbstractPlaceHolderParser` to define placeholders. For example, define the `currentUserId` placeholder:
 
-```java
+``` java
 @Component
 public class UserPlaceHolder extends AbstractPlaceHolderParser {
     @Override
@@ -262,7 +262,7 @@ public class UserPlaceHolder extends AbstractPlaceHolderParser {
 
 Use placeholders in scenarios such as setting filter conditions on the front end, for example, setting the `domain` filter condition in the `search` part of the table view:
 
-```html
+``` html
 <template slot="search"  cols="4">
   <field data="relatedItems"  label="关联项目"  domain="creatorId == $#{currentUserId}"/>
 </template>

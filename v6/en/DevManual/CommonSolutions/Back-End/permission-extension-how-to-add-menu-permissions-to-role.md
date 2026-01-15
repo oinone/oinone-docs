@@ -14,7 +14,7 @@ During permission docking with third parties, the third party will transmit menu
 
 Code example:
 
-```java
+``` java
 public class demo {
 
     @Autowired

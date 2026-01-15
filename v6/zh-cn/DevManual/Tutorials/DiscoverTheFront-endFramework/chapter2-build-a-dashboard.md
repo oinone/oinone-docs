@@ -8,7 +8,7 @@ category:
 order: 2
 next:
   text: 精通前段框架（Master the Front-End framework）
-  link: /zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/README.md
+  link: /v6/zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/README.md
 ---
 本教程的第一部分向你介绍了 Widget 框架的大部分理念。现在是时候更加深入的理解 Oinone 框架了，也就是 Web 客户端所使用的那个框架。
 
@@ -22,7 +22,7 @@ next:
 
 下面是一个平台提供的默认母版，一般情况下，你只需要根据需要进行修改即可。
 
-```xml
+``` xml
 <mask>
     <multi-tabs />
     <header>
@@ -128,8 +128,8 @@ registerMask(
 
 Oinone 框架提供了统一的发送请求方法，我们可以像这样定义一个向后端发起的请求，以获得“国家分组”的数据统计结果：
 
-```typescript
-import { GenericFunctionService } from '@kunlun/dependencies';
+``` typescript
+import { GenericFunctionService } from '@oinone/kunlun-dependencies';
 
 const MODEL_MODEL = 'resource.ResourceCountryGroup';
 
@@ -151,7 +151,7 @@ export class ResourceCountryGroupService {
 
 然后，我们可以在组件挂载时使用它，并将其获取的数据展示在页面中。
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected count: number = -1;
 
@@ -163,7 +163,7 @@ protected async mounted() {
 
 如果需要携带查询条件，我们这样通过函数的入参 `rsql` 对数据集进行过滤，以获取我们所需的统计结果。
 
-```typescript
+``` typescript
 protected async mounted() {
   super.mounted();
   this.count = await ResourceCountryGroupService.countByWrapper("code =like= 'a'");
@@ -200,7 +200,7 @@ protected async mounted() {
 
 一个看起来可行的布局（Layout）模板可以定义成这样：
 
-```xml
+``` xml
 <view type="TABLE">
     <div class="statistics-card-demo-groups">
         <element widget="StatisticsCard" title="国家的总数" modelModel="resource.ResourceCountry" />
@@ -248,7 +248,7 @@ protected async mounted() {
 
 对于结构化数据，在 `XML` 中的表现通常为多个相同子标签进行定义，一个看起来可行的布局（Layout）模板可以定义成这样：
 
-```xml
+``` xml
 <element widget="PieChart" title="用户统计" modelModel="user.PamirsUser">
     <series name="系统用户数" rsql="source == 'BUILD_IN'" />
     <series name="非系统用户数" rsql="source != 'BUILD_IN'" />

@@ -9,10 +9,10 @@ dir:
   order: 1
 prev:
   text: Installation and Upgrade
-  link: /en/InstallOrUpgrade/README.md
+  link: /v6/en/InstallOrUpgrade/README.md
 next:
   text: JDK Installation and Precautions
-  link: /en/InstallOrUpgrade/Dev-ENV/JDK-setup.md
+  link: /v6/en/InstallOrUpgrade/Dev-ENV/JDK-setup.md
 ---
 # I. Runtime Environment
 

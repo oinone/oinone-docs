@@ -7,7 +7,7 @@ category:
 order: 9
 next:
   text: 流程设计器(Process Designer)
-  link: /zh-cn/UserManual/Designers/WorkflowDesigner/README.md
+  link: /v6/zh-cn/UserManual/Designers/WorkflowDesigner/README.md
 ---
 本界面主要分为四个功能区域，分别为：操作栏、数据源信息、画布设计区、属性面板
 

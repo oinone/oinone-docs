@@ -7,7 +7,7 @@ category:
 order: 5
 prev:
   text: 集成接口 API（EIP API）
-  link: /zh-cn/DevManual/Reference/StandardModule/EIP-API.md
+  link: /v6/zh-cn/DevManual/Reference/StandardModule/EIP-API.md
 ---
 # 一、SPI 机制
 
@@ -39,7 +39,7 @@ prev:
 
 ### 4、调用方式
 
-```java
+``` java
 // 指定扩展名调用
 DemoApi ext = ExtensionServiceLoader.getExtension(DemoApi.class, "ext1");
 

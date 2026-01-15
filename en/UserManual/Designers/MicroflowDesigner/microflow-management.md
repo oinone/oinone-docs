@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Microflow Designer
-  link: /zh-cn/UserManual/Designers/MicroflowDesigner/README.md
+  link: /en/UserManual/Designers/MicroflowDesigner/README.md
 ---
 The microflow designer supports a series of convenient operations such as adding, editing, and deleting processes to meet various management needs.
 

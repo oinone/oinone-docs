@@ -28,7 +28,7 @@ This article uses `5.2.6` as an example for introduction.
 # III. Deployment Preparation
 
 ## (Ⅰ) Create a Deployment Directory in the Deployment Environment
-```shell
+``` shell
 mkdir -p /home/admin/oinone-designer
 ```
 
@@ -81,7 +81,7 @@ For example:
 # VI. Backend Service Deployment
 
 ## (Ⅰ) Move the Deployment JAR Package to the `backend` Directory and Rename It to `oinone-designer.jar`
-```shell
+``` shell
 mv pamirs-designer-boot-v5.2-5.2.6.jar backend/oinone-designer.jar
 ```
 
@@ -90,7 +90,7 @@ This name is the default value of the `startup.sh` script and can be modified ac
 :::
 
 ## (Ⅱ) Move the Pamirs License to the `backend/config` Directory and Rename It to `license.lic`
-```shell
+``` shell
 mv oinone-demo_1730163770607.lic backend/config/license.lic
 ```
 
@@ -98,7 +98,7 @@ mv oinone-demo_1730163770607.lic backend/config/license.lic
 Move the driver `jar` file to the `backend/lib` directory.
 
 Take the KDB8 database driver `kingbase8-8.6.0.jar` as an example:
-```shell
+``` shell
 mv kingbase8-8.6.0.jar backend/lib/
 ```
 
@@ -119,7 +119,7 @@ If you need to configure dialects or other parameters, you can directly modify t
 :::
 
 ## (Ⅴ) Execute the `startup.sh` Script to Start
-```shell
+``` shell
 sh startup.sh
 ```
 
@@ -131,7 +131,7 @@ After execution, three paths will be printed:
 # VII. Nginx Configuration
 
 ## (Ⅰ) Find `nginx.conf` in the local nginx service and add the Nginx configuration path as the loading directory
-```nginx
+``` nginx
 http {
     ...
     include /path/to/nginx/*.conf;
@@ -139,7 +139,7 @@ http {
 ```
 
 ## (Ⅱ) Modify the `root` configuration in Line 7 of `default.conf` in the structure package to the `frontend path` to the `dist` directory
-```nginx
+``` nginx
 server {
     ...
     root /path/to/frontend/dist;
@@ -147,7 +147,7 @@ server {
 ```
 
 ## (Ⅲ) Modify the `alias` configuration in Line 30 of `oss.conf` in the structure package to the `frontend path` to the `static` directory
-```nginx
+``` nginx
 server {
     ...
     location /static {

@@ -49,7 +49,7 @@ order: 6
 
 对于 `报销单模型（expenses.ExpenseBill）` ，我们需要在每个用户查询数据的时候都追加一段 `RSQL` 表达式对其进行过滤，一个可能有效的 `RSQL` 表达式应该是：
 
-```java
+``` java
 reporterId == ${currentUser}
 ```
 
@@ -105,7 +105,7 @@ reporterId == ${currentUser}
 
 在我们创建的报销单模型中，我们看到有一个 `项目Id（projectInfoId）` 字段，这个字段是关联项目的关系字段。根据需求我们可以得到这样一个有效的 RSQL 表达式：
 
-```java
+``` java
 projectInfoId =in= (id1, id2, id3...)
 ```
 
@@ -119,7 +119,7 @@ projectInfoId =in= (id1, id2, id3...)
 
 :::
 
-```java
+``` java
 @Component
 public class TestPlaceHolder extends AbstractPlaceHolderParser {
 

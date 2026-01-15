@@ -19,7 +19,7 @@ Preparations: Two models, Material and MaterialCategory.
 [Click to download the code example](https://doc.oinone.top/wp-content/uploads/2024/04/2024042409482459.zip)
 
 # Ⅲ、Material Model
-```java
+``` java
 @Model.model(Material.MODEL_MODEL)
 @Model.Advanced(unique = {"code"})
 @Model(displayName = "Material", labelFields = {"name"})
@@ -40,7 +40,7 @@ public class Material extends IdModel {
 ```
 
 # Ⅳ、MaterialCategory Model
-```java
+``` java
 @Model.model(MaterialCategory.MODEL_MODEL)
 @Model.Advanced(unique = {"code"})
 @Model(displayName = "Material Category", labelFields = {"name"})
@@ -63,7 +63,7 @@ public class MaterialCategory extends IdModel {
 # Ⅴ、Template Definition
 MaterialTemplate definition
 
-```java
+``` java
 @Component
 public class MaterialTemplate implements ExcelTemplateInit {
 
@@ -112,7 +112,7 @@ The above template defines a Workbook, creating two Sheets using `createrSheet()
 
 # Ⅵ、Import Extension Points
 ## （Ⅰ）MaterialImportExtPoint
-```java
+``` java
 @Component
 @Ext(ExcelImportTask.class)
 public class MaterialImportExtPoint implements ExcelImportDataExtPoint<List<Material>> {
@@ -132,7 +132,7 @@ public class MaterialImportExtPoint implements ExcelImportDataExtPoint<List<Mate
 The above example uses the platform's built-in batch creation or update method. Businesses can define import logic according to business requirements when using it.
 
 ## （Ⅱ）MaterialCategoryImportExtPoint
-```java
+``` java
 @Component
 @Ext(ExcelImportTask.class)
 public class MaterialCategoryImportExtPoint implements ExcelImportDataExtPoint<List<MaterialCategory>> {
@@ -166,7 +166,7 @@ In special cases, we can set the usage scope of the template through the `setTyp
 
 # Ⅷ、Export Extension Points
 ## （Ⅰ）MaterialExportExtPoint
-```java
+``` java
 @Component
 @Ext(ExcelExportTask.class)
 public class MaterialExportExtPoint extends ExcelExportSameQueryPageTemplate<Object> implements ExcelExportFetchDataExtPoint {

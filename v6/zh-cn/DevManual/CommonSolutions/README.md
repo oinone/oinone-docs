@@ -9,10 +9,10 @@ dir:
   order: 5
 prev:
   text: 软件公司：标准化与定制化共生的范式
-  link: /zh-cn/DevManual/R&DParadigm/the-paradigm-of-coexistence-between-standardization-and-customization.md
+  link: /v6/zh-cn/DevManual/R&DParadigm/the-paradigm-of-coexistence-between-standardization-and-customization.md
 next:
   text: 前端
-  link: /zh-cn/DevManual/CommonSolutions/Front-End/README.md
+  link: /v6/zh-cn/DevManual/CommonSolutions/Front-End/README.md
 ---
 ## 前端
 <div style="display: flex; gap: 20px; margin: 20px 0;">

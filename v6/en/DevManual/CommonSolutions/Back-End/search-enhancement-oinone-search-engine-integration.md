@@ -21,7 +21,7 @@ The enhanced model incrementally depends on real-time data change messages, so e
 + The boot project needs to specify the ES client package version; not specifying the version will implicitly depend on the lower version specified by the top-level spring-boot dependency management.
 + Add the project dependency of pamris-channel to the boot project.
 
-```xml
+``` xml
 <dependency>
   <groupId>org.elasticsearch.client</groupId>
   <artifactId>elasticsearch-rest-client</artifactId>
@@ -46,7 +46,7 @@ The enhanced model incrementally depends on real-time data change messages, so e
 ## (II) Adding Relevant Dependencies to the API Project
 Add the dependency on pamirs-channel-api in XXX-api.
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-channel-api</artifactId>
@@ -57,7 +57,7 @@ Add the dependency on pamirs-channel-api in XXX-api.
 ## (III) YML File Configuration
 Add the configuration in the application-dev.yml file of pamirs-demo-boot: add channel to pamirs.boot.modules, that is, add the channel module to the startup modules. Meanwhile, pay attention to the ES configuration to ensure it matches the ES service.
 
-```yaml
+``` yaml
 pamirs:
   record:
     sql:
@@ -77,12 +77,12 @@ Note: For more YAML configurations, please refer to [Module API](/en/DevManual/R
 ## (IV) Adding Module Dependencies to the Project's Modules
 XXXModule adds a dependency on ChannelModule.
 
-```java
+``` java
 @Module(dependencies = {ChannelModule.MODULE_MODULE})
 ```
 
 ## (V) Adding an Enhanced Model (Example)
-```java
+``` java
 package pro.shushi.pamirs.demo.api.enhance;
 
 import pro.shushi.pamirs.channel.enmu.IncrementEnum;
@@ -113,7 +113,7 @@ Generally, dump logic has personalized requirements, so we can override the sync
 ## (I) Overriding the synchronize Method of the ShardingModelEnhance Model
 After overriding, if old data records need to automatically fill in new fields, you can enter the [Transport Enhanced Model] application, visit the enhanced model list, find the corresponding record, and click [Full Synchronization].
 
-```java
+``` java
 package pro.shushi.pamirs.demo.api.enhance;
 
 import pro.shushi.pamirs.channel.enmu.IncrementEnum;
@@ -153,7 +153,7 @@ public class ShardingModelEnhance extends ShardingModel {
 In general, dump logic often has personalized requirements. In this case, we can override the synchronize method of the model. The function overriding feature has been described in detail in the "Object-Oriented - Inheritance and Polymorphism" section.
 
 # VI. Personalized Search Function
-```java
+``` java
 @Function(
     summary = "Search Function",
     openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API}
@@ -170,7 +170,7 @@ public Pagination<ShardingModelEnhance> search(Pagination<ShardingModelEnhance> 
 ```
 
 # VII. Example of Personalized Search Function
-```java
+``` java
 @Override
 @SuppressWarnings({"rawtypes"})
 public <T> Pagination<T> search(Pagination<T> page, IWrapper<T> queryWrapper) {

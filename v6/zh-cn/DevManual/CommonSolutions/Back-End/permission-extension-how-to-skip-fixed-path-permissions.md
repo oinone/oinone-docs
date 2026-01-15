@@ -13,7 +13,7 @@ order: 48
 
 实现`AuthFilterService`权限接口。
 
-```java
+``` java
 package pro.shushi.pamirs.top.api.spi;
 
 import org.apache.commons.lang3.StringUtils;

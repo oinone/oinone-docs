@@ -45,7 +45,7 @@ Oinone 平台为合作伙伴提供了多种部署方式，这篇文章将介绍�
 :::
 
 # 五、在部署环境创建部署目录
-```shell
+``` shell
 mkdir -p /home/admin/oinone-designer-full
 mkdir -p /home/admin/oinone-designer-full/images
 ```
@@ -54,7 +54,7 @@ mkdir -p /home/admin/oinone-designer-full/images
 确认部署环境是`amd64`还是`arm64`架构，若本文提供的查看方式无法正确执行，可自行搜索相关内容进行查看。
 
 ## （一）使用 uname 命令查看
-```shell
+``` shell
 uname -a
 ```
 
@@ -68,19 +68,19 @@ uname -a
 准备需要部署的镜像版本。
 
 ## （一）登录 Oinone 镜像仓库（若已登录，可忽略此步骤）
-```shell
+``` shell
 docker login https://harbor.oinone.top
 # input username
 # input password
 ```
 
 ## （二）获取 Oinone 平台镜像
-```shell
+``` shell
 docker pull harbor.oinone.top/oinone/oinone-designer-full-v5.2:5.2.20.1-amd64
 ```
 
 ## （三）保存镜像到`.tar`文件
-```shell
+``` shell
 docker save -o oinone-designer-full-v5-5.2.20.1-amd64.tar oinone-designer-full-v5.2:5.2.20.1-amd64
 
 若报错`Error response from daemon: reference does not exist`脚本改成下面这个：
@@ -90,7 +90,7 @@ docker save -o oinone-designer-full-v5-5.2.20.1-amd64.tar harbor.oinone.top/oino
 ```
 
 ## （四）上传`.tar`到部署环境
-```shell
+``` shell
 scp ./oinone-designer-full-v5-5.2.20.1-amd64.tar admin@127.0.0.1:/home/admin/oinone-full/images/
 ```
 
@@ -102,14 +102,14 @@ scp ./oinone-designer-full-v5-5.2.20.1-amd64.tar admin@127.0.0.1:/home/admin/oin
 
 # 八、在部署环境加载镜像
 ## （一）加载镜像文件到Docker中
-```shell
+``` shell
 cd /home/admin/oinone-full/images
 
 docker load -i oinone-designer-full-v5-5.2.20.1-amd64.tar
 ```
 
 ## （二）查看镜像是否正确加载
-```shell
+``` shell
 docker images
 ```
 
@@ -123,7 +123,7 @@ docker images
 [oinone-designer-full-standard-offline.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/oinone-designer-deploy/oinone-designer-full-standard-offline.zip)
 
 ## （二）将 Pamirs 许可证移动到`config`目录下，并重命名为`****-trial.lic`（实际文件名以 Oinone 颁发的许可证为准）
-```shell
+``` shell
 mv ****-trial.lic config/****-trial.lic
 ```
 
@@ -132,7 +132,7 @@ mv ****-trial.lic config/****-trial.lic
 
 以KDB8数据库驱动`kingbase8-8.6.0.jar`为例
 
-```shell
+``` shell
 mv kingbase8-8.6.0.jar lib/
 ```
 
@@ -146,7 +146,7 @@ mv kingbase8-8.6.0.jar lib/
 ### 1、修改启动脚本`startup.sh`
 修改对应的镜像版本号，  将 IP 从 192.168.0.121 改成宿主机IP
 
-```nginx
+``` nginx
 configDir=$(pwd)
 version=5.1.16
 IP=192.168.0.121
@@ -155,7 +155,7 @@ IP=192.168.0.121
 ### 2、修改 mq/broker.conf
 修改其中 brokerIP1 的 IP 从 192.168.0.121 改成宿主机 IP
 
-```nginx
+``` nginx
 brokerClusterName = DefaultCluster
 namesrvAddr=127.0.0.1:9876
 brokerIP1=192.168.0.121
@@ -177,7 +177,7 @@ diskSpaceCleanForciblyRatio=97
 ```
 
 ## （五）执行`startup.sh`脚本启动
-```shell
+``` shell
 sh startup.sh
 ```
 

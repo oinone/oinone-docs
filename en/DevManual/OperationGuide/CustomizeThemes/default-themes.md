@@ -7,12 +7,12 @@ category:
  - Custom Themes
 order: 1
 prev:
-    text: Custom Themes
-    link: /en/DevManual/OperationGuide/CustomizeThemes/README.md 
+  text: Custom Themes
+  link: /en/DevManual/OperationGuide/CustomizeThemes/README.md 
 ---
 ### 1、app-switch
 
-```typescript
+``` typescript
 {
     "app-switch-background-color": "var(--oio-primary-color)",
     "app-switch-border-color": "none",
@@ -27,7 +27,7 @@ prev:
 
 ### 2、button
 
-```typescript
+``` typescript
 {
     "button-background": "#ffffff",
     "button-border-width": "var(--oio-border-width)",
@@ -634,7 +634,7 @@ prev:
 
 ### 3、Checkbox
 
-```typescript
+``` typescript
 {
     "checkbox-color": "var(--oio-text-color)",
     "checkbox-background": "var(--oio-background)",
@@ -645,7 +645,7 @@ prev:
 
 ### 4、datetime
 
-```typescript
+``` typescript
 {
     "datetime-padding": "4px 12px"
 }
@@ -653,7 +653,7 @@ prev:
 
 ### 5、drawer
 
-```typescript
+``` typescript
 {
     "drawer-width-small": "20%",
     "drawer-width-medium": "40%",
@@ -666,7 +666,7 @@ prev:
 
 ### 6、dropdown
 
-```typescript
+``` typescript
 {
     "dropdown-background-color": "var(--oio-background)",
     "dropdown-border-color": "var(--oio-border-color)",
@@ -682,7 +682,7 @@ prev:
 
 ### 7、form-item
 
-```typescript
+``` typescript
 {
     "form-item-config": {
         "readonlyShowPlaceholder": false,
@@ -693,7 +693,7 @@ prev:
 
 ### 8、header
 
-```typescript
+``` typescript
 {
     "header-border-bottom": "1px solid rgba(0, 0, 0, 0.06)",
     "header-color": "rgba(0,0,0,0.65)"
@@ -702,7 +702,7 @@ prev:
 
 ### 9、input
 
-```typescript
+``` typescript
 {
     "input-background": "#ffffff",
     "input-background-color": "#ffffff",
@@ -748,7 +748,7 @@ prev:
 
 #### large
 
-```typescript
+``` typescript
 {
     "menu-background-color": "#ffffff",
     "menu-border-color": "#e3e7ee",
@@ -806,7 +806,7 @@ prev:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "menu-background-color": "#ffffff",
     "menu-border-color": "#e3e7ee",
@@ -864,7 +864,7 @@ prev:
 
 #### small
 
-```typescript
+``` typescript
 {
     "menu-background-color": "#ffffff",
     "menu-border-color": "#e3e7ee",
@@ -922,7 +922,7 @@ prev:
 
 ### 11、modal
 
-```typescript
+``` typescript
 {
     "modal-color": "rgba(0, 0, 0, 0.85)",
     "modal-width-small": "560px",
@@ -936,7 +936,7 @@ prev:
 
 ### 12、multi-tab
 
-```typescript
+``` typescript
 {
     "multi-tabs-background": "#e9e9e9",
     "multi-tabs-color": "var(--oio-text-color-secondary)",
@@ -975,7 +975,7 @@ prev:
 
 #### large
 
-```typescript
+``` typescript
 {
     "pagination-background": "var(--oio-background)",
     "pagination-border-color": "var(--oio-border-color)",
@@ -988,7 +988,7 @@ prev:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "pagination-background": "var(--oio-background)",
     "pagination-border-color": "var(--oio-border-color)",
@@ -1001,7 +1001,7 @@ prev:
 
 #### small
 
-```typescript
+``` typescript
 {
     "pagination-background": "var(--oio-background)",
     "pagination-border-color": "var(--oio-border-color)",
@@ -1014,7 +1014,7 @@ prev:
 
 ### 14、popconfirm
 
-```typescript
+``` typescript
 {
     "popconfirm-background": "var(--oio-background)",
     "popconfirm-color": "var(--oio-text-color)",
@@ -1025,7 +1025,7 @@ prev:
 
 ### 15、rich-text
 
-```typescript
+``` typescript
 {
     "rich-text-textarea-bg-color": "var(--oio-background)",
     "rich-text-textarea-color": "var(--oio-text-color)",
@@ -1051,7 +1051,7 @@ prev:
 
 ### 16、scrollbar
 
-```typescript
+``` typescript
 {
     "scrollbar-thumb-background-color": "#d9d9d9",
     "scrollbar-thumb-background-color-hover": "#cccccc"
@@ -1062,7 +1062,7 @@ prev:
 
 #### large
 
-```typescript
+``` typescript
 {
     "select-background": "#ffffff",
     "select-border-width": "var(--oio-border-width)",
@@ -1106,7 +1106,7 @@ prev:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "select-background": "#ffffff",
     "select-border-width": "var(--oio-border-width)",
@@ -1150,7 +1150,7 @@ prev:
 
 #### small
 
-```typescript
+``` typescript
 {
     "select-background": "#ffffff",
     "select-border-width": "var(--oio-border-width)",
@@ -1194,7 +1194,7 @@ prev:
 
 ### 18、switch
 
-```typescript
+``` typescript
 {
     "switch-background": "rgba(0, 0, 0, 0.25)"
 }
@@ -1204,7 +1204,7 @@ prev:
 
 #### large
 
-```typescript
+``` typescript
 {
     "table-thead-bg": "#f7f8fa",
     "table-body-bg": "#ffffff",
@@ -1232,7 +1232,7 @@ prev:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "table-thead-bg": "#f7f8fa",
     "table-body-bg": "#ffffff",
@@ -1260,7 +1260,7 @@ prev:
 
 #### small
 
-```typescript
+``` typescript
 {
     "table-thead-bg": "#f7f8fa",
     "table-body-bg": "#ffffff",
@@ -1290,7 +1290,7 @@ prev:
 
 #### large
 
-```typescript
+``` typescript
 {
     "tabs-font-size": "var(--oio-font-size-lg)"
 }
@@ -1298,7 +1298,7 @@ prev:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "tabs-font-size": "var(--oio-font-size)"
 }
@@ -1306,7 +1306,7 @@ prev:
 
 #### small
 
-```typescript
+``` typescript
 {
     "tabs-font-size": "var(--oio-font-size)"
 }
@@ -1314,7 +1314,7 @@ prev:
 
 ### 21、textarea
 
-```typescript
+``` typescript
 {
     "textarea-background": "#ffffff",
     "textarea-border-width": "var(--oio-border-width)",
@@ -1345,7 +1345,7 @@ prev:
 
 ### 22、transfer
 
-```typescript
+``` typescript
 {
     "transfer-background-color": "#f7f7f7",
     "transfer-header-border-color": "#e3e7ee"
@@ -1356,7 +1356,7 @@ prev:
 
 #### large
 
-```typescript
+``` typescript
 {
     "tree-select-selection-height": "24px",
     "tree-select-selection-line-height": "22px"
@@ -1365,7 +1365,7 @@ prev:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "tree-select-selection-height": "24px",
     "tree-select-selection-line-height": "22px"
@@ -1374,7 +1374,7 @@ prev:
 
 #### small
 
-```typescript
+``` typescript
 {
     "tree-select-selection-height": "16px",
     "tree-select-selection-line-height": "16px"
@@ -1383,7 +1383,7 @@ prev:
 
 ### 24、upload
 
-```typescript
+``` typescript
 {
     "upload-background": "#ffffff",
     "upload-border-width": "var(--oio-border-width)",

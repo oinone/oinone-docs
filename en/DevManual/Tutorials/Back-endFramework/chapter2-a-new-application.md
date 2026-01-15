@@ -35,7 +35,7 @@ The fourth tab lists the reimbursement forms associated with the project, includ
 ### 1. Build the Parent Module `trutorials-expenses`
 In the `oinone-backend-tutorials` directory, open a terminal and execute the following command to create a new module, taking `trutorials-expenses` as an example:
 
-```bash
+``` bash
 cd oinone-backend-tutorials
 mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=trutorials-expenses -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT
 ```
@@ -55,7 +55,7 @@ Here we will manually configure the pom.xml file.
 ### 2. Configure the Parent Module pom.xml File
 In the `trutorials-expenses` directory, find the `pom.xml` file, set its `packaging` tag to `pom` to indicate it's an aggregated module. Also, add the `modules` tag to include submodules:
 
-```bash
+``` bash
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -86,7 +86,7 @@ As a parent module (aggregated module), `trutorials-expenses` can have its usele
 ### 3. Create Submodules
 In the `trutorials-expenses` directory, create `api` and `core` submodules respectively:
 
-```bash
+``` bash
 cd trutorials-expenses
 mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=trutorials-expenses-api -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT
 mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=trutorials-expenses-core -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT
@@ -95,7 +95,7 @@ mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=truto
 ### 4. Configure Pom Dependencies for Each Module
 
 In the `pom.xml` file under the `oinone-backend-tutorials` directory, add dependency management in its `dependencyManagement` tag: `trutorials-expenses-api` and `trutorials-expenses-core`:
-```plain
+``` plain
 <dependencyManagement>
   <dependencies>
     <dependency>
@@ -113,7 +113,7 @@ In the `pom.xml` file under the `oinone-backend-tutorials` directory, add depend
 ```
 
 In the `pom.xml` file under the `trutorials-expenses` directory, add dependency management in its `dependencyManagement` tag: `trutorials-expenses-api` and `trutorials-expenses-core`:
-```plain
+``` plain
 <dependencyManagement>
   <dependencies>
     <dependency>
@@ -131,7 +131,7 @@ In the `pom.xml` file under the `trutorials-expenses` directory, add dependency 
 ```
 
 In the `pom.xml` file under the `trutorials-expenses-api` directory, add the dependency `pamirs-base-standard` in its `dependencies` tag:
-```plain
+``` plain
 <dependencies>
     <dependency>
         <groupId>pro.shushi.pamirs.boot</groupId>
@@ -141,7 +141,7 @@ In the `pom.xml` file under the `trutorials-expenses-api` directory, add the dep
 ```
 
 In the `pom.xml` file under the `trutorials-expenses-core` directory, add the dependency `trutorials-expenses-api` in its `dependencies` tag:
-```plain
+``` plain
 <dependencies>
   <dependency>
     <groupId>pro.shushi.oinone.trutorials</groupId>
@@ -151,7 +151,7 @@ In the `pom.xml` file under the `trutorials-expenses-core` directory, add the de
 ```
 
 In the `pom.xml` file under the `trutorials-boot` directory, add the dependency `trutorials-expenses-core` in its `dependencies` tag:
-```plain
+``` plain
 <dependencies>
   <dependency>
       <groupId>pro.shushi.oinone.trutorials</groupId>
@@ -170,7 +170,7 @@ In the `src/main/java` directory of the `trutorials-expenses-api` module, create
 ### 2. Create the `ExpensesModule` Class
 Create the `ExpensesModule` class under the `pro.shushi.oinone.trutorials.expenses.api` package. Here is the complete code:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api;
 
 import org.springframework.stereotype.Component;
@@ -238,7 +238,7 @@ The module package path is returned by the `packagePrefix` method. If different 
 ## (III) Configure the Startup Project's YAML File
 Add configurations related to the `expenses` module to the `application-dev.yml` configuration file provided in the `src/main/resource/config` directory of the `trutorials-boot` project. Append the `expenses` module to the `pamirs.boot.modules` list, and also add the corresponding data source mapping in `pamirs.framework.data.ds-map`.
 
-```java
+``` java
 pamirs:
   framework:
     data:

@@ -41,7 +41,7 @@ It is recommended to first establish a preliminary understanding through the fam
   - `logo`: Application logo, alias for `value`, default empty string `""`.
 + **Example**:
 
-```java
+``` java
 @UxAppLogo(logo = "path/to/your/app/logo.png")
 public class YourModuleClass {
     // Class content
@@ -57,7 +57,7 @@ public class YourModuleClass {
   - `value`: Routing configuration, type `UxRoute`.
 + **Example**:
 
-```java
+``` java
 @UxHomepage(actionName = "homepageAction", value = @UxRoute(model = TestModel.MODEL_MODEL))
 public class YourModuleClass {
     // Class content
@@ -86,7 +86,7 @@ public class YourModuleClass {
   - `clientTypes`: Client types applicable to the menu, default `{ClientTypeEnum.PC, ClientTypeEnum.MOBILE}`.
 + **Example**:
 
-```java
+``` java
 @UxMenus public class TestModuleMenus implements ViewActionConstants {
     @UxMenu("Basic Data")
     class TestModuleBaseMenu {
@@ -135,7 +135,7 @@ public class YourModuleClass {
     * **Attributes**: `showCreate`, default `true`; `showEdit`, default `true`; `showDetail`, default `true`; `showDelete`, default `true`.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "TestModel")
 @Model.Advanced(unique = {"code"})
@@ -174,7 +174,7 @@ public class TestModel extends IdModel {
     * **Attributes**: `value`, type `UxWidget`.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "TestModel", labelFields = "name")
 public class TestModel extends IdModel {
@@ -220,7 +220,7 @@ public class TestModel extends IdModel {
   - `priority`: Priority, default `MetaDefaultConstants.FAKE_PRIORITY_VALUE_INT`.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "TestModel")
 public class TestModel extends IdModel {
@@ -248,7 +248,7 @@ public class TestModel extends IdModel {
     * **Attributes**: `value`, an array of `UxClientButton`.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel Model")
 @UxClientButton(
@@ -278,7 +278,7 @@ public class TestButtonModel extends IdModel {
     * **Attributes**: `value`, an array of `UxLinkButton`.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel Model")
 @UxLinkButton(
@@ -313,7 +313,7 @@ public class TestButtonModel extends IdModel {
     * **Attributes**: `value`, an array of `UxRouteButton`.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel Model")
 @UxRouteButton(
@@ -358,7 +358,7 @@ public class TestButtonModel extends IdModel {
   - `props`: Extended attributes, type `Prop` array, default empty array `{}`.
 + **Example**: Illustrated in usage examples of `UxClientButton`, `UxLinkButton`, and `UxRouteButton`, such as:
 
-```java
+``` java
 @UxClientButton(
         value = @UxClient(ClientActionConstants.TableAddRow.fun),
         action = @UxAction(
@@ -383,7 +383,7 @@ public class TestButtonModel extends IdModel {
   - `context`: Context configuration, type `Prop` array, default empty array `{}`.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel Model")
 @UxClientButton(
@@ -417,7 +417,7 @@ For more example explanations, refer to the "Actions API" document's Client Acti
   - `context`: Context configuration, type `Prop` array, default empty array `{}`.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel Model")
 @UxLinkButton(
@@ -474,7 +474,7 @@ For more example explanations, refer to the "Actions API" document's Navigation 
   - `limit`: Initial page data quantity limit, default 20.
 + **Example**:
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel Model")
 @UxRouteButton(

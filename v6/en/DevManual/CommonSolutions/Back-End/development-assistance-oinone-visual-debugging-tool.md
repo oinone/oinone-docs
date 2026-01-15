@@ -27,13 +27,13 @@ Any standard request initiated by the Oinone platform can be checked using this 
 ## (Ⅲ) Expression Explanation
 For the convenience of expression, the following content includes backend model fields/methods or GQL request-related information, and the expression rule is:
 
-```plain
+``` plain
 {ClassSimpleName/GQLNamespace}#{field/method}
 ```
 
 For example, backend model fields/methods: (This example is not in the platform code, only for demonstration)
 
-```java
+``` java
 public class ModuleDefinition {
     private String module;
 
@@ -49,7 +49,7 @@ The `queryOne` method in this Java class can be expressed as `ModuleDefinition#q
 
 For example:
 
-```plain
+``` plain
 {
   viewActionQuery {
     load(
@@ -80,13 +80,13 @@ On the page that needs debugging, access the debugging tool page by modifying th
 
 If the URL of the page to be debugged is as follows:
 
-```plain
+``` plain
 http://127.0.0.1:9093/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
 Changing `page` to `debug` will take you to the debugging page of this page, as shown below:
 
-```plain
+``` plain
 http://127.0.0.1:9093/debug;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
@@ -230,14 +230,14 @@ Step 2: Go to the `Permissions` module, view the permission configurations of al
 **Step 1**: Obtain the user ID based on the currently logged-in user (developers need to view it themselves in the `user_pamirs_user` table through the current logged-in user information)
 **Step 2**: View the role list configured for the user and check if it includes the expected role.
 
-```sql
+``` sql
 -- Check the role list configured for the current user
 select id,name from auth_auth_role where id in (select role_id from auth_user_role_rel where user_id = {userId} and is_deleted = 0) and is_deleted = 0;
 ```
 
 **Step 3**: View field and action permission configuration information based on the role list
 
-```sql
+``` sql
 
 ```
 
@@ -251,7 +251,7 @@ If correctly returned, check according to the following steps:
 
 If not correctly returned, check the relevant content in the database according to the following SQL examples.
 
-```sql
+``` sql
 -- Check if the ViewAction corresponds to the expected view
 select id,res_model,res_view_name from base_view_action where model = '{URL#model}' and name = '{URL#action}' and is_deleted = 0;
 

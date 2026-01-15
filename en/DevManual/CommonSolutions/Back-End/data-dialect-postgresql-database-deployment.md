@@ -8,7 +8,7 @@ order: 41
 
 # I. Driver Configuration
 ## (Ⅰ) Maven Configuration (Suitable for Version 14.3)
-```xml
+``` xml
 <postgresql.version>42.6.0</postgresql.version>
 <dependency>
   <groupId>org.postgresql</groupId>
@@ -23,7 +23,7 @@ order: 41
 [postgresql-42.7.3.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/pgsql/postgresql-42.7.3.jar)
 
 # II. JDBC Connection Configuration
-```yaml
+``` yaml
 pamirs:
   datasource:
     base:
@@ -50,7 +50,7 @@ pamirs:
 No official documentation available currently.
 
 ## (Ⅱ) URL Format
-```plain
+``` plain
 jdbc:postgresql://${host}:${port}/${database}?currentSchema=${schema}
 ```
 
@@ -62,7 +62,7 @@ For other connection parameters, you can refer to relevant materials for optimiz
 
 # III. Dialect Configuration
 ## (Ⅰ) pamirs Dialect Configuration
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -87,7 +87,7 @@ Since the dialect development environment is Version 14.3, other similar version
 :::
 
 ## (Ⅱ) Schedule Dialect Configuration
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -109,7 +109,7 @@ As there are no obvious differences in the schedule dialect across multiple vers
 
 # IV. Other Configurations
 ## (Ⅰ) Logical Deletion Value Configuration
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -118,7 +118,7 @@ pamirs:
 ```
 
 ## (Ⅱ) PostgreSQL Database User Initialization and Authorization
-```sql
+``` sql
 -- init root user (user name can be modified by oneself)
 
 CREATE USER root WITH PASSWORD 'password';

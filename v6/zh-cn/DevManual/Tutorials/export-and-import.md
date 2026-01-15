@@ -44,7 +44,7 @@ order: 7
 
 如需要对 `文件模块` 进行一些自定义，按照 `JAVA` 特性需要引入对应依赖：
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-file2-api</artifactId>
@@ -53,7 +53,7 @@ order: 7
 
 在 Oinone 中，除了对应依赖的引入外，还需要在 `当前模块` 定义中声明对应的模块依赖：
 
-```java
+``` java
 ……
 @Module(
     name = ExpensesModule.MODULE_NAME,
@@ -78,7 +78,7 @@ public class ExpensesModule implements PamirsModule {
 
 :::
 
-```java
+``` java
 @Component
 public class TestModelImportTemplate implements ExcelTemplateInit {
 
@@ -111,7 +111,7 @@ public class TestModelImportTemplate implements ExcelTemplateInit {
 
 :::
 
-```java
+``` java
 @Component
 @Ext(ExcelImportTask.class)
 public class TestModelImportExtPoint implements ExcelImportDataExtPoint<TestModel> {
@@ -179,7 +179,7 @@ public class TestModelImportExtPoint implements ExcelImportDataExtPoint<TestMode
 
 :::
 
-```java
+``` java
 @Component
 public class TestModelExportTemplate implements ExcelTemplateInit {
 
@@ -210,7 +210,7 @@ public class TestModelExportTemplate implements ExcelTemplateInit {
 
 :::
 
-```java
+``` java
 @Component
 @Ext(ExcelExportTask.class)
 public class TestModelExportExtPoint extends ExcelExportSameQueryPageTemplate implements ExcelExportFetchDataExtPoint {

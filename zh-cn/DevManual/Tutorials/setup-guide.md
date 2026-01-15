@@ -24,7 +24,7 @@ prev:
 
 按照与 `oinone/oinone-backend-starter` 代码库相同的流程，在你的机器上克隆 `oinone/oinone-backend-tutorials` 代码库，命令如下：
 
-```shell
+``` shell
 git clone git@github.com:oinone/oinone-backend-tutorials.git
 ```
 
@@ -35,7 +35,7 @@ git clone git@github.com:oinone/oinone-backend-tutorials.git
 
 在下面的命令中，将 `<your_github_account>` 替换为你创建派生仓库时所使用的 GitHub 账户名。
 
-```shell
+``` shell
 cd /TutorialsPath
 git remote add dev git@github.com:<your_github_account>/oinone-backend-tutorials.git
 ```
@@ -47,7 +47,7 @@ git remote add dev git@github.com:<your_github_account>/oinone-backend-tutorials
 
 按照与 `oinone/oinone-frontend-starter` 代码库相同的流程，在你的机器上克隆 `oinone/oinone-frontend-tutorials` 代码库，命令如下：
 
-```shell
+``` shell
 git clone git@github.com:oinone/oinone-frontend-tutorials.git
 ```
 
@@ -58,7 +58,7 @@ git clone git@github.com:oinone/oinone-frontend-tutorials.git
 
 在下面的命令中，将 `<your_github_account>` 替换为你创建派生仓库时所使用的 GitHub 账户名。
 
-```shell
+``` shell
 cd /TutorialsPath
 git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorials.git
 ```

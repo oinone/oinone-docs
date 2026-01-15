@@ -10,9 +10,9 @@ order: 14
 
 # 二、解决方案
 ## （一）在 layout 目录下新增 copyTable 组件，组件代码如下
-```javascript
-import { BaseElementWidget, SPI, TableWidget, Widget } from '@kunlun/dependencies';
-import { OioNotification } from '@kunlun/vue-ui-antd';
+``` javascript
+import { BaseElementWidget, SPI, TableWidget, Widget } from '@oinone/kunlun-dependencies';
+import { OioNotification } from '@oinone/kunlun-vue-ui-antd';
 
 @SPI.ClassFactory(BaseElementWidget.Token({ widget: 'copy-table-row' }))
   export class CopyTableWidget extends TableWidget {
@@ -65,8 +65,8 @@ import { OioNotification } from '@kunlun/vue-ui-antd';
 ```
 
 ## （二）在 action 目录下覆盖新增按钮或者复制行按钮；代码如下
-```typescript
-import {ActionWidget, ClickResult, ReturnPromise, SPI, Widget} from "@kunlun/dependencies";
+``` typescript
+import {ActionWidget, ClickResult, ReturnPromise, SPI, Widget} from "@oinone/kunlun-dependencies";
 
 @SPI.ClassFactory(
   ActionWidget.Token({
@@ -109,7 +109,7 @@ import {ActionWidget, ClickResult, ReturnPromise, SPI, Widget} from "@kunlun/dep
 ```
 
 ## （三）替换对应的表格layout
-```typescript
+``` typescript
 // 替换第二个入参的模型和动作
 const registerGlobalTableLayout = () => {
   return registerLayout(`<view type="TABLE">

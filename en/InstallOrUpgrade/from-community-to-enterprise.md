@@ -36,7 +36,7 @@ Refer to:
 
 ## (I) Add Business Application Dependency Management (Main POM)
 
-```xml
+``` xml
 <properties>
     <!-- 可根据Oinone发布公告(https://doc.oinone.top/category/version)更新版本 -->
     <!-- 版本号需与部署企业版版本号保持一致，有疑问可联系数式Oinone员工 -->
@@ -66,7 +66,7 @@ Refer to:
 
 1. Basic packages that need to be imported for the Enterprise Edition
 
-```xml
+``` xml
 <!-- Common Package - Enterprise Edition -->
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>

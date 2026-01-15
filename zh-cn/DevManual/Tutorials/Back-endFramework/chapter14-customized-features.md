@@ -29,7 +29,7 @@ next:
 
 在 Oinone 体系中，我们可借助无代码设计器，或者通过新增模块的方式，在无需触碰产品源码的前提下满足客户个性化诉求。而本节将着重介绍一种更为先进的模式，即创建一个 “客户化模块”，使其继承自 “标准产品模块”。我们把客户的个性化需求整合至 “客户化模块”，而非直接作用于 “标准产品模块”。如此一来，在同一环境下，既能清晰对比 “客户化模块” 与 “标准产品模块” 的差异，又能够展示针对不同客户定制后的效果。如：
 
-```java
+``` java
 @Component
 @Module(
         name = CeExpensesModule.MODULE_NAME,
@@ -106,7 +106,7 @@ public class CeExpensesModule implements PamirsModule {
 
 Oinone所有的函数都提供了默认的前置扩展点、重载扩展点和后置扩展点，其技术名称的规则是所扩展函数的**函数编码fun**加上“Before”、“Override”和“After”后缀；如：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.ce.expenses.api.extpoint;
 
 import pro.shushi.oinone.trutorials.expenses.api.model.TestModel;
@@ -120,7 +120,7 @@ public interface TestModelExtpoint {
 }
 ```
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.ce.expenses.core.extpoint;
 
 import pro.shushi.oinone.trutorials.ce.expenses.api.extpoint.TestModelExtpoint;
@@ -180,7 +180,7 @@ public class TestModelExtpointImpl implements TestModelExtpoint {
 
 拦截器分为前置与后置两类。前置拦截器处理所拦截函数的入参，后置拦截器则针对所拦截函数的出参进行处理。如：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.ce.expenses.core.hook;
 
 import org.springframework.stereotype.Component;

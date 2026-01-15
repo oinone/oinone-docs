@@ -23,7 +23,7 @@ Nacos, SpringCloud, and SpringCloudAlibaba have strict dependency version requir
 ## (Ⅰ) Adding Dependencies to the Project
 Introduce compatible versions in the main pom:
 
-```xml
+``` xml
 <dependencyManagement>
   <dependency>
     <groupId>com.alibaba.cloud</groupId>
@@ -37,7 +37,7 @@ Introduce compatible versions in the main pom:
 
 Introduce dependencies in the pom of the used module:	
 
-```xml
+``` xml
 <dependency>
     <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -49,7 +49,7 @@ Introduce dependencies in the pom of the used module:
 ```
 
 ## (Ⅱ) Configuring application.yml
-```yaml
+``` yaml
 spring:
   cloud:
     nacos:
@@ -62,7 +62,7 @@ spring:
 Note: For more YAML configurations, please go to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md) for consultation.
 
 ## (Ⅲ) Adding Annotations to the Startup Class
-```java
+``` java
 @EnableDiscoveryClient
 @EnableFeignClients
 public class NacosConsumerApplication {
@@ -75,7 +75,7 @@ public class NacosConsumerApplication {
 ## (Ⅳ) Verification
 Create a Feign Client interface
 
-```java
+``` java
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -91,7 +91,7 @@ public interface ProviderClient {
 
 Create a Controller to invoke the Feign Client
 
-```java
+``` java
 @RestController
 public class ConsumerController {
 

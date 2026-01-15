@@ -10,7 +10,7 @@ order: 40
 ## （Ⅰ）Maven Configuration
 Download the driver package from Huawei official website: [gsjdbc4.jar](https://support.huaweicloud.com/mgtg-dws/dws_01_0032.html);
 
-```xml
+``` xml
 <dependency>
   <groupId>org.postgresql</groupId>
   <artifactId>gsjdbc</artifactId>
@@ -23,7 +23,7 @@ Download the driver package from Huawei official website: [gsjdbc4.jar](https://
 ```
 
 ## （Ⅱ）JDBC Connection Configuration
-```yaml
+``` yaml
 pamirs:
   datasource:
     pamirs:
@@ -64,7 +64,7 @@ pamirs:
 Click to view official documentation: [Official Documentation](https://docs-opengauss.osinfra.cn/zh/docs/5.0.0/docs/GettingStarted/%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93.html)
 
 ### 1、URL Format
-```xml
+``` xml
 jdbc:postgresql://${host}:${port}/${database}?currentSchema=${schema}
 ```
 
@@ -78,7 +78,7 @@ For other connection parameters, you can refer to relevant materials for optimiz
 
 ## （Ⅳ）Dialect Configuration
 ### 1、Pamirs Dialect Configuration
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -104,7 +104,7 @@ Since the dialect development environment uses version `5.0.1`, other similar ve
 :::
 
 ### 2、Schedule Dialect Configuration
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -131,7 +131,7 @@ Since there are no obvious differences in the schedule dialect across multiple v
 
 ## （Ⅴ）Other Configurations
 ### 1、Logical Delete Value Configuration
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -140,7 +140,7 @@ pamirs:
 ```
 
 # Ⅱ、Gauss Database User Initialization and Authorization
-```sql
+``` sql
 -- init root user (user name can be modified by oneself)
 -- Create user wangxian
 CREATE USER wangxian PASSWORD 'wx@123456';
@@ -165,7 +165,7 @@ Since the configuration of MySQL auto-increment IDs is in the table creation sta
 
 Demonstration of migration SQL, please modify the database name according to the actual situation. Skip executing corresponding SQL for modules without dependencies. For migrating business models, refer to the following SQL:
 
-```sql
+``` sql
 SELECT setval('demo_base.leaf_alloc_id_seq', (select id from demo_base.leaf_alloc order by id desc limit 1), true);
 
 SELECT setval('demo_base.base_worker_node_id_seq', (select id from demo_base.base_worker_node order by id desc limit 1), true);
@@ -189,13 +189,13 @@ The `setval` function directly sets the current value of a sequence, suitable fo
 Assume your full sequence name is `demo_pamirs.pamirs_schedule_0_id_seq`, where `demo_pamirs` is the database name. The specific steps are as follows:
 
 1. Reset the current value of the sequence:
-```sql
+``` sql
 # Set the sequence to 10
 SELECT setval('demo_pamirs.pamirs_schedule_0_id_seq', 10, true);
 ```
 
 2. Verify the new sequence value:
-```sql
+``` sql
 # The last_value field shows 10
 SELECT * FROM demo_pamirs.pamirs_schedule_0_id_seq;
 ```

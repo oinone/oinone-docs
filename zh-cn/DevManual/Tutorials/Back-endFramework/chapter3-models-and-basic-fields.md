@@ -17,7 +17,7 @@ order: 3
 
 :::
 
-```sql
+``` sql
 mysql> use trutorials_biz
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -42,7 +42,7 @@ Oinone 的一个关键组件是对象关系映射（ORM）层。该层避免了�
 
 :::
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 import pro.shushi.pamirs.meta.annotation.Model;
 import pro.shushi.pamirs.meta.base.IdModel;
@@ -71,7 +71,7 @@ public class TestModel extends IdModel {
 
 在启动过程中，你应该会看到以下信息：
 
-```bash
+``` bash
 CREATE TABLE IF NOT EXISTS `expenses_project_info`(
  `id` BIGINT NOT NULL COMMENT 'ID字段，唯一自增索引',
  `create_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -96,7 +96,7 @@ CREATE INDEX `expenses_project_info_create_date` ON `expenses_project_info`(`cre
 参考：与此主题相关的文档可在 “[字段 API](/zh-cn/DevManual/Reference/Back-EndFramework/ORM-API.md#二、字段-field)” 中找到。
 字段用于定义模型可以存储什么以及存储位置。字段在模型类中被定义为属性：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -116,7 +116,7 @@ public class TestModel extends IdModel {
 
 `name` 字段是一个 `STRING` 类型，在JAVA中表示为 Unicode 字符串，在SQL中表示为 `VARCHAR`。
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.enums;
 
 import pro.shushi.pamirs.meta.annotation.Dict;
@@ -153,7 +153,7 @@ public enum TestEnum implements IEnum<String> {
 }
 ```
 
-```java
+``` java
     @Field.Enum
     @Field(displayName = "测试枚举")
     private TestEnum testEnum;
@@ -181,7 +181,7 @@ public enum TestEnum implements IEnum<String> {
 
 :::
 
-```sql
+``` sql
 
 mysql> desc expenses_project_info;
 +-----------------------------------+---------------+------+-----+-------------------+-----------------------------------------------+
@@ -233,7 +233,7 @@ mysql> desc expenses_project_info;
 ## （二）常用属性（Common Attributes）
 和模型本身一样，字段可以通过传递配置属性作为参数来进行配置：
 
-```python
+``` python
 @Field(displayName = "名称", required = true)
 private String name;
 ```

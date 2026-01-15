@@ -7,7 +7,7 @@ category:
 order: 9
 next:
   text: Process Designer
-  link: /en/UserManual/Designers/WorkflowDesigner/README.md
+  link: /v6/en/UserManual/Designers/WorkflowDesigner/README.md
 ---
 This interface is mainly divided into four functional areas, namely: the operation bar, data source information, canvas design area, and property panel.
 

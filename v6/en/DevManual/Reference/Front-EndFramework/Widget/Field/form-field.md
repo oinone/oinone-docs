@@ -58,7 +58,7 @@ order: 3
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -92,7 +92,7 @@ export class FormStringInputFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -120,7 +120,7 @@ export class FormStringColorPickerFieldWidget extends FormFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -150,7 +150,7 @@ export class FormStringDownloadFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -165,7 +165,7 @@ export class FormStringEmailFieldWidget extends FormEmailFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -185,7 +185,7 @@ export class FormStringHyperlinksFieldWidget extends FormStringInputFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -205,7 +205,7 @@ export class FormStringIconSelectFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -220,7 +220,7 @@ export class FormStringIframeFieldWidget extends FormStringInputFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Form,
@@ -258,7 +258,7 @@ export class FormStringKeyboardInputFieldWidget extends FormFieldWidget<string>
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search, ViewType.Detail],
@@ -289,7 +289,7 @@ export class FormStringPasswordFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -304,7 +304,7 @@ export class FormStringPhoneFieldWidget extends FormPhoneFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Form,
@@ -368,7 +368,7 @@ export class FormStringSignatureFieldWidget extends FormStringInputFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -404,7 +404,7 @@ export class FormStringMultiTagFieldWidget extends FormFieldWidget<string, Runti
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -419,7 +419,7 @@ export class FormStringTextAreaFieldWidget extends FormTextFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Form,
@@ -475,7 +475,7 @@ export class FormStringUploadFieldWidget extends FormFieldWidget<string[], Runti
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Form,
@@ -490,7 +490,7 @@ export class FormStringUploadImgFieldWidget extends FormStringUploadFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Form,
@@ -512,7 +512,7 @@ export class FormStringUploadDraggableFieldWidget extends FormStringUploadFieldW
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormStringFieldWidget.Token({
     viewType: ViewType.Form,
@@ -539,7 +539,7 @@ export class FormStringVerificationCodeFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -565,7 +565,7 @@ export class FormStringMultiSelectFieldWidget extends FormEnumMultiSelectFieldWi
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -593,7 +593,7 @@ export class FormStringMultiSelectFieldWidget extends FormEnumMultiSelectFieldWi
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -622,7 +622,7 @@ export class FormTextFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -658,7 +658,7 @@ export class FormHtmlRichTextFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -682,7 +682,7 @@ export class FormPhoneFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -706,7 +706,7 @@ export class FormEmailFieldWidget extends FormStringFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -757,7 +757,7 @@ export class FormIntegerFieldWidget<
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -794,7 +794,7 @@ export class FormIntegerMultiFieldWidget extends FormIntegerFieldWidget<NumberVa
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Form,
@@ -809,7 +809,7 @@ export class FormIntegerTagFieldWidget extends FormStringMultiTagFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -836,7 +836,7 @@ export class FormIntegerSliderFieldWidget extends FormIntegerFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -879,7 +879,7 @@ export class FormFloatFieldWidget extends FormIntegerFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail],
@@ -901,7 +901,7 @@ export class FormFloatPlatFieldWidget extends FormRangeFieldsWidget<number>
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -917,7 +917,7 @@ export class FormMoneyFieldWidget extends FormFloatFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -939,7 +939,7 @@ export class FormBooleanSwitchFieldWidget extends FormFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search, ViewType.Detail],
@@ -962,7 +962,7 @@ export class FormBooleanCheckboxFieldWidget extends FormFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -990,7 +990,7 @@ export class FormBooleanRadioFieldWidget extends FormBooleanSelectFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1040,7 +1040,7 @@ export class FormBooleanSelectFieldWidget extends FormEnumFieldWidget<Enumeratio
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1056,7 +1056,7 @@ export class FormEnumFieldWidget<
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1077,7 +1077,7 @@ export class FormEnumRadioWidget extends FormEnumFieldAbstractWidget<Enumeration
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1092,7 +1092,7 @@ export class FormEnumMultiSelectFieldWidget extends FormEnumFieldAbstractWidget<
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1114,7 +1114,7 @@ export class FormEnumMultiCheckboxFieldWidget extends FormEnumFieldAbstractWidge
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Search, ViewType.Form],
@@ -1209,7 +1209,7 @@ export class FormDateTimeFieldWidget extends FormFieldWidget<string>
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Form,
@@ -1268,7 +1268,7 @@ export class FormDateTimeRangeFieldWidget extends FormRangeFieldsWidget<Standard
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Search, ViewType.Form],
@@ -1309,7 +1309,7 @@ export class FormDateFieldWidget extends FormDateTimeFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Form,
@@ -1333,7 +1333,7 @@ export class FormDateRangeFieldWidget extends FormDateTimeRangeFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Search, ViewType.Form],
@@ -1355,7 +1355,7 @@ export class FormTimeFieldWidget extends FormDateTimeFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Form,
@@ -1379,7 +1379,7 @@ export class FormTimeRangeFieldWidget extends FormDateTimeRangeFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Search, ViewType.Form],
@@ -1420,7 +1420,7 @@ export class FormYearFieldWidget extends FormDateTimeFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Form,
@@ -1444,7 +1444,7 @@ export class FormYearRangeFieldWidget extends FormDateTimeRangeFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -1519,7 +1519,7 @@ order: 3
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -1596,7 +1596,7 @@ export class FormM2OSelectFieldWidget extends FormSelectComplexFieldWidget<Activ
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1624,7 +1624,7 @@ export class FormM2ORadioFieldWidget extends FormRelationFieldRadioWidget<Runtim
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -1648,7 +1648,7 @@ export class FormM2OTreeSelectFieldWidget extends FormTreeSelectFieldWidget<Acti
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -1672,7 +1672,7 @@ export class FormM2OCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRe
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail, ViewType.Gallery, ViewType.Table],
@@ -1710,7 +1710,7 @@ export class FormM2OUploadFieldWidget extends AbstractFormM2OUploadFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail],
@@ -1752,7 +1752,7 @@ export class FormM2OUploadImgFieldWidget extends AbstractFormM2OUploadFieldWidge
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail, ViewType.Gallery],
@@ -1774,7 +1774,7 @@ export class FormM2OUploadDraggableFieldWidget extends FormM2OUploadFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1798,7 +1798,7 @@ export class FormM2OCompanyFieldWidget extends FormM2OTreeSelectFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1822,7 +1822,7 @@ export class FormM2ODepartmentFieldWidget extends FormM2OTreeSelectFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1846,7 +1846,7 @@ export class FormM2OEmployeeFieldWidget extends FormM2OTreeSelectFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -1916,7 +1916,7 @@ export class FormM2OAddressFieldWidget extends FormM2OCascaderFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail],
@@ -1933,7 +1933,7 @@ export class FormM2OFormFieldWidget extends FormSubviewObjectFieldWidget<Runtime
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -1978,7 +1978,7 @@ export class FormO2MSelectFieldWidget extends FormSelectComplexFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2003,7 +2003,7 @@ export class FormO2MCheckboxFieldWidget extends FormRelationFieldCheckboxWidget<
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2032,7 +2032,7 @@ export class FormO2MCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRe
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2061,7 +2061,7 @@ export class FormO2MTreeSelectFieldWidget extends FormTreeSelectFieldWidget<Acti
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail, ViewType.Gallery],
@@ -2081,7 +2081,7 @@ export class FormO2MUploadFieldWidget extends FormO2MFieldUploadBaseWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail],
@@ -2096,7 +2096,7 @@ export class FormO2MUploadImgFieldWidget extends FormO2MFieldUploadBaseWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail, ViewType.Gallery],
@@ -2118,7 +2118,7 @@ export class FormO2MUploadDraggableFieldWidget extends FormO2MUploadFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2155,7 +2155,7 @@ export class FormO2MTableFieldWidget extends FormSubviewListFieldWidget<RuntimeO
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -2194,7 +2194,7 @@ export class FormM2MFieldSelectWidget extends FormSelectComplexFieldWidget<Activ
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2219,7 +2219,7 @@ export class FormM2MCheckboxFieldWidget extends FormRelationFieldCheckboxWidget<
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2248,7 +2248,7 @@ export class FormM2MTreeSelectFieldWidget extends FormTreeSelectFieldWidget<Acti
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2277,7 +2277,7 @@ export class FormM2MCascaderFieldWidget extends FormCascaderFieldWidget<ActiveRe
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail, ViewType.Gallery, ViewType.Table],
@@ -2297,7 +2297,7 @@ export class FormM2MUploadFieldWidget extends FormM2MFieldUploadBaseWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail],
@@ -2312,7 +2312,7 @@ export class FormM2MUploadImgFieldWidget extends FormM2MFieldUploadBaseWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Detail, ViewType.Gallery],
@@ -2334,7 +2334,7 @@ export class FormM2MUploadDraggableFieldWidget extends FormM2MUploadFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2363,7 +2363,7 @@ export class FormM2MTreeFieldWidget extends FormTreeFieldWidget<ActiveRecord[], 
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -2387,7 +2387,7 @@ export class FormM2MCompanyFieldWidget extends FormM2MTreeSelectFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -2411,7 +2411,7 @@ export class FormM2MDepartmentFieldWidget extends FormM2MTreeSelectFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -2435,7 +2435,7 @@ export class FormM2MEmployeeFieldWidget extends FormM2MTreeSelectFieldWidget
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -2525,7 +2525,7 @@ export class FormM2MTableFieldWidget extends FormSubviewListFieldWidget<RuntimeM
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 export class FormNumberAbstractFieldWidget<
   Value extends NumberValue | NumberValue[] = NumberValue | NumberValue[]
 > extends FormInputAbstractFieldWidget<Value, RuntimeNumberField>

@@ -13,7 +13,7 @@ order: 54
 + sql-record：监听流程发布以后对应模型的增删改监听
 + trigger：异步任务调度模块
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.workflow</groupId>
     <artifactId>pamirs-workflow-api</artifactId>
@@ -38,7 +38,7 @@ order: 54
 ```
 
 ### 2、在 application.yml 中增加对应模块的依赖以及 sql-record 路径以及其他相关设置
-```yaml
+``` yaml
 pamirs:
 ...
 
@@ -94,7 +94,7 @@ pamirs:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2023110703554815-20250530144823528.png)
 
 ### 3、在代码中调用
-```java
+``` java
 /**
      * 触发⼯作流实例
      */

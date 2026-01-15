@@ -13,7 +13,7 @@ Oinone 所有的模型都会继承自 IdModel（包括直接或间接继承）�
 
 字段指定 PrimaryKey 的规则，`@Field.PrimaryKey(keyGenerator = KeyGeneratorEnum.AUTO_INCREMENT)`
 
-```java
+``` java
 @Model.model(ProjectInfo.MODEL_MODEL)
 @Model(displayName = "项目信息", labelFields = "projectName")
 @Model.Advanced(unique = {"projectCode"})
@@ -42,7 +42,7 @@ public class ProjectInfo extends IdModel {
 
 通过在`application.yml`中指定数据库的id生成规则（可全局配置，也可单个数据源配置）。 在 yml中查找关键字`key-generator`，默认为`DISTRIBUTION`(即分布式 id )，可修改为 `AUTO_INCREMENT`(自增 id )；若数据源下某些存储模型单独配置，则优先去模型上的规则。
 
-```yaml
+``` yaml
 pamirs:
   mapper:
     static-model-config-locations:
@@ -82,7 +82,7 @@ pamirs:
 
 # 三、手动方式获取 ID
 
-```java
+``` java
 /**
 * 在特定场景下需要手动获取Id
 */

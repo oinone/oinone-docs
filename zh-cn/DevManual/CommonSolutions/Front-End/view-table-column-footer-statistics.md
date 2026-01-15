@@ -9,7 +9,7 @@ order: 13
 可以通过扩展`TableWidget.ts`实现
 
 # 二、示例代码
-```typescript
+``` typescript
 import {
   BaseElementWidget,
   DslDefinitionType,

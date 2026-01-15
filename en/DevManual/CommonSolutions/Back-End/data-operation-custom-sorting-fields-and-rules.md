@@ -12,7 +12,7 @@ The platform's default sorting fields, refer to IdModel, sorted in descending or
 ## （Ⅰ）Specify Sorting in the Model
 Add sorting fields to the model definition. `@Model.Advanced(ordering = "xxxxx DESC, yyyy DESC")`
 
-```java
+``` java
 @Model.model(PetShop.MODEL_MODEL)
 @Model(displayName = "Pet Shop", summary="Pet Shop", labelFields ={"shopName"})
 @Model.Code(sequence = "DATE_ORDERLY_SEQ", prefix = "P", size=6, step=1, initial = 10000, format = "yyyyMMdd")
@@ -26,7 +26,7 @@ public class PetShop extends AbstractDemoIdModel {
 ## （Ⅱ）Custom Sorting Rules in Page Queries
 + API reference: `pro.shushi.pamirs.meta.api.dto.condition.Pagination#orderBy`
 
-```java
+``` java
 public <G, R> Pagination<T> orderBy(SortDirectionEnum direction, Getter<G, R> getter) {
     if (null == getSort()) {
         setSort(new Sort());
@@ -38,7 +38,7 @@ public <G, R> Pagination<T> orderBy(SortDirectionEnum direction, Getter<G, R> ge
 
 + Specific Example
 
-```java
+``` java
 @Function.Advanced(type= FunctionTypeEnum.QUERY)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.API})
@@ -52,7 +52,7 @@ public Pagination<PetShop> queryPage(Pagination<PetShop> page, IWrapper<PetShop>
 ## （Ⅲ）Specify in the Query Wrapper
 + API reference: `pro.shushi.pamirs.framework.connectors.data.sql.AbstractWrapper#orderBy`
 
-```java
+``` java
 @Override
 public Children orderBy(boolean condition, boolean isAsc, R... columns) {
     if (ArrayUtils.isEmpty(columns)) {
@@ -68,7 +68,7 @@ public Children orderBy(boolean condition, boolean isAsc, R... columns) {
 
 Specific Example
 
-```java
+``` java
 public List<PetShop> queryList(String name) {
     List<PetShop> petShops = Models.origin().queryListByWrapper(
         Pops.<PetShop>lambdaQuery().from(PetShop.MODEL_MODEL)
@@ -83,7 +83,7 @@ public List<PetShop> queryList(String name) {
 ## （Ⅰ）Turn Off the Platform's Default Sorting Fields by Setting the Model's Ordering to: `ordering = "1=1"`
 Add sorting fields to the model definition. `@Model.Advanced(ordering = "1=1")`
 
-```java
+``` java
 @Model.model(PetShop.MODEL_MODEL)
 @Model(displayName = "Pet Shop", summary="Pet Shop", labelFields ={"shopName"})
 @Model.Code(sequence = "DATE_ORDERLY_SEQ", prefix = "P", size=6, step=1, initial = 10000, format = "yyyyMMdd")
@@ -99,7 +99,7 @@ In `ORDER BY 1=1`, `1=1` is a conditional expression that always returns true (o
 So, `ORDER BY 1=1` is actually equivalent to not using an `ORDER BY` clause, or sorting in the default order.
 
 ## （Ⅱ）Set the Sortable Property During Query
-```java
+``` java
 // Example 1:
 LambdaQueryWrapper<PetShop> query = Pops.<PetShop>lambdaQuery();
 query.from(PetShop.MODEL_MODEL);

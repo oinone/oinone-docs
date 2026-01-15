@@ -9,7 +9,7 @@ category:
 order: 1
 prev:
   text: Vue UI
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI.md
 ---
 在 Oinone Kunlun 中，元数据是系统运行最重要的一部分。在 “[精通前端框架 - 前端框架概览](/zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#五、理论-元数据概览)” 中，我们已经对元数据概念有了初步的认识，在这一章节，我们将从前端框架的角度来进一步了解元数据在 Oinone 中的具体呈现。
 

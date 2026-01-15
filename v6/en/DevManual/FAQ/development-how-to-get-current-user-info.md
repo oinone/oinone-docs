@@ -13,7 +13,7 @@ order: 8
 
 
 # II. If More User Information Is Needed, Query the Database
-```java
+``` java
 // With caching, passive expiration in 30 seconds (recommended)
 PamirsUser user = UserInfoCache.queryUserById(PamirsSession.getUserId());
 // Without caching, get from DB

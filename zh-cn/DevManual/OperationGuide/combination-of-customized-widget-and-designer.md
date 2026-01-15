@@ -103,7 +103,7 @@ next:
 
 让我们先来看看之前注册 `RedInput` 表单和表格字段组件时使用的代码片段：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -116,7 +116,7 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 }
 ```
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Table,
@@ -199,7 +199,7 @@ export class TableRedInputWidget extends BaseTableFieldWidget<string> {
 
 然后通过 “下载模板工程” 就可以得到一个内置了组件注册信息的 “kunlun-sdk.zip” 压缩包，将它解压后，我们可以得到一个可以用来开发的前端工程，里面是类似于下面这样的目录结构：
 
-```shell
+``` shell
 ├── packages
 │   ├── kunlun-boot
 │   └── kunlun-plugin
@@ -232,7 +232,7 @@ export class TableRedInputWidget extends BaseTableFieldWidget<string> {
 
 在开发结束后，我们通过 `npm run build` 命令可以在 `kunlun-plugin` 目录下的到一个 `dist` 目录，在这个目录中包含了前端运行所需的 `kunlun-plugin.umd.js` 和 `kunlun-plugin.css` 文件。就像下面展示的目录结构一样：
 
-```shell
+``` shell
 ├── packages
 │   ├── kunlun-boot
 │   └── kunlun-plugin

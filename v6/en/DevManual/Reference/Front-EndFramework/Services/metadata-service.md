@@ -9,7 +9,7 @@ category:
 order: 1
 prev:
   text: Vue UI
-  link: /en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI.md
 ---
 In Oinone Kunlun, metadata is the most important part of the system operation. We have gained a preliminary understanding of the concept of metadata in "[Mastering the Frontend Framework - Frontend Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#v-theory-metadata-overview)". In this chapter, we will further explore the specific presentation of metadata in Oinone from the perspective of the frontend framework.
 

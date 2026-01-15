@@ -21,7 +21,7 @@ This article focuses on the approach of operating external data sources via prog
 # Ⅲ、Detailed Steps
 ## （Ⅰ）Data Source Configuration (application.yml)
 The configuration is similar to normal data sources:  
-```yaml
+``` yaml
 out_ds_name(alias_for_external_ds):
   driverClassName: com.mysql.cj.jdbc.Driver
   type: com.alibaba.druid.pool.DruidDataSource
@@ -43,7 +43,7 @@ out_ds_name(alias_for_external_ds):
 
 ## （Ⅱ）Additional Configurations for External Data Sources
 To restrict table structure creation for external data sources, configure:  
-```yaml
+``` yaml
 persistence:
   global:
     auto-create-database: true
@@ -63,7 +63,7 @@ persistence:
 ## （Ⅳ）Calling Mapper in Service/Action
 - The startup Application's `@MapperScan` must scan the corresponding package.  
 - Invoke the Mapper like a normal bean, with the only difference being using `DsHintApi` to specify the data source:  
-```java
+``` java
 @Autowired
 private ScheduleItemMapper scheduleItemMapper;
 

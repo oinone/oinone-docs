@@ -21,7 +21,7 @@ order: 7
 # 三、具体步骤
 ## （一）[后端] 建立模型和视图的关系设置的模型
 ### 1、创建模型和视图的关系设置的模型，用于配置列表模型和各记录即目标模型的视图关系
-```java
+``` java
 import pro.shushi.oinone.examples.simple.api.proxy.system.SimpleModel;
 import pro.shushi.oinone.examples.simple.api.proxy.system.SimpleModule;
 import pro.shushi.pamirs.boot.base.enmu.ActionTargetEnum;
@@ -110,7 +110,7 @@ public class ModelRelViewSetting extends IdModel {
 
 1. 示例中心模型SimpleModel
 
-```java
+``` java
 import pro.shushi.pamirs.meta.annotation.Model;
 import pro.shushi.pamirs.meta.domain.model.ModelDefinition;
 import pro.shushi.pamirs.meta.enmu.ModelTypeEnum;
@@ -128,7 +128,7 @@ public class SimpleModel extends ModelDefinition {
 
 2. 示例中心模块SimpleModule
 
-```java
+``` java
 import pro.shushi.pamirs.meta.annotation.Model;
 import pro.shushi.pamirs.meta.annotation.sys.Base;
 import pro.shushi.pamirs.meta.domain.module.ModuleDefinition;
@@ -147,7 +147,7 @@ public class SimpleModule extends ModuleDefinition {
 
 3. 动态页面菜单
 
-```java
+``` java
 @UxMenus
 public class DemoMenus implements ViewActionConstants {
 
@@ -159,7 +159,7 @@ public class DemoMenus implements ViewActionConstants {
 ```
 
 ### 2、模型和视图的关系设置动作重新，创建按钮元数据等
-```java
+``` java
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -358,7 +358,7 @@ public class ModelRelViewSettingAction {
 
 ## （三）[后端] 行操作对应的模型增强
 ### 1、行操作对应的模型增加目标模型和上下文扩展
-```java
+``` java
 import pro.shushi.oinone.examples.simple.api.model.custom.config.ModelRelViewSetting;
 import pro.shushi.pamirs.meta.annotation.Field;
 import pro.shushi.pamirs.meta.annotation.Model;
@@ -394,7 +394,7 @@ public class CustomTaskCenter extends IdModel {
 ```
 
 ### 2、行操作对应的模型重写queryPage，获取行记录的上下文扩展
-```java
+``` java
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import pro.shushi.oinone.examples.simple.api.model.custom.biz.CustomTaskCenter;
@@ -468,7 +468,7 @@ public class CustomTaskCenterAction {
 ## （五）[权限] 自定义动作权限扩展和配置
 1. 权限扩展，自定义动作的权限解析到权限树上
 
-```java
+``` java
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -560,7 +560,7 @@ public class CustomViewActionPermissionNodeLoadExtend implements PermissionNodeL
 3. 查看页面可以看到上下文参数已经有数据了，查看接口返回可以看到具体的viewAction数据。再配合前端代码实现跳转。![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219152825868-20250530144824237.png)
 
 ## （六）[前端] 前端根据列表模型和API名称自定义动作
-```javascript
+``` javascript
 import {
   ActionContextType,
   ActionType,

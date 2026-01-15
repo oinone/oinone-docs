@@ -6,21 +6,21 @@ category:
 order: 7
 prev:
   text: Maven安装与注意事项
-  link: /zh-cn/InstallOrUpgrade/Dev-ENV/Maven-setup.md
+  link: /v6/zh-cn/InstallOrUpgrade/Dev-ENV/Maven-setup.md
 next:
   text: 用户手册
-  link: /zh-cn/UserManual/README.md
+  link: /v6/zh-cn/UserManual/README.md
 ---
 # 一、网络不通：检查防火墙（以CentOS7为例）
 ## （一）查看防火墙是否开启
-```shell
+``` shell
 # 查看防火墙状态
 systemctl status firewalld
 ```
 
 ## （二）如防火墙处于开启状态，有两种处理方式
 ### 1、停止防火墙
-```shell
+``` shell
 # 停止防火墙
 systemctl stop firewalld
 ```
@@ -42,7 +42,7 @@ systemctl stop firewalld
 
 :::
 
-```plain
+``` plain
 # 防火墙新增开放端口示例：
 firewall-cmd --permanent --zone=public --add-port=88/tcp
 #新增以后生效需要重新加载防火墙

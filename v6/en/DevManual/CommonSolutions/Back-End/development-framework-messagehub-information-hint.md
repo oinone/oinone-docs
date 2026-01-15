@@ -27,7 +27,7 @@ Error prompting is a particularly important part of the user experience, and mos
 - Concise and easy-to-understand error messages
 
 # Ⅳ. Examples of Different Information Types
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 
 import org.springframework.stereotype.Component;

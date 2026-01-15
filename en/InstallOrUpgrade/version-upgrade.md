@@ -119,7 +119,7 @@ Due to some uncontrollable factors during the upgrade, the upgrade cannot be com
 ### Solution
 Force overwrite and install the current runtime version through the startup parameter `-PgoBack=true`:
 
-```plain
+``` plain
 java -jar xxx.jar -PgoBack=true [other parameters]
 ```
 

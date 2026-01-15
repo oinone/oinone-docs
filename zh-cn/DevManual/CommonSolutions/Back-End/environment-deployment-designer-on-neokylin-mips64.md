@@ -18,7 +18,7 @@ order: 60
 # 二、中间件安装
 + 手动安装中间件，需安装的中间件列表：
 
-```graphql
+``` graphql
 1、go的运行环境
 2、java1.8        版本：1.8_221+
 3、MySQL          版本：8.0+
@@ -34,7 +34,7 @@ order: 60
 golang官网：https://golang.google.cn/dl/ 提供了mips64架构的包；
 
 ## （二）安装JDK
-```shell
+``` shell
 sudo yum update
 
 # 使用yum命令来列出所有可用的JDK包
@@ -67,7 +67,7 @@ sudo yum install java-1.8.xxx
 #### 上传源码包并解压
 源码包请 选择自带 boost 的版本，例如：mysql-boost-5.7.33.tar.gz，我的路径是/opt/softapp/下
 
-```bash
+``` bash
 tar -zxvf mysql-boost-5.7.33.tar.gz
 cd mysql-5.7.33/
 ```
@@ -75,7 +75,7 @@ cd mysql-5.7.33/
 #### 编译 mysql 源代码
 注意下面的脚本中 DWITH_BOOST 需要改成自己本地的源码路径，请根据实际情况修改
 
-```bash
+``` bash
 cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 -DSYSCONFDIR=/etc \
 -DWITH_MYISAM_STORAGE_ENGINE=1 \
@@ -98,20 +98,20 @@ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 ```
 
 #### **创建数据库用户和数据目录**
-```bash
+``` bash
 useradd -M -s /sbin/nologin -r mysql
 mkdir -p /usr/local/mysql/data
 chown -R mysql.mysql /usr/local/mysql/
 ```
 
 #### 执行 Make 安装
-```bash
+``` bash
 make
 sudo make install
 ```
 
 #### 配置文件my.cnf
-```bash
+``` bash
 mv  /etc/my.cnf  /etc/my.cnf.bak
 vim /etc/my.cnf
 ```
@@ -122,7 +122,7 @@ vim /etc/my.cnf
 
 2）默 认 时 区： default-time-zone = '+08:00'
 
-```bash
+``` bash
 [mysql]
 default-character-set=utf8
 
@@ -148,12 +148,12 @@ default-time-zone = '+08:00'
 ```
 
 #### 配置启动脚本
-```bash
+``` bash
 cd /etc/systemd/system
 vim mysqld.service
 ```
 
-```bash
+``` bash
 [Unit]
 Description=MySQL DBMS
 
@@ -171,7 +171,7 @@ WantedBy=multi-user.target
 ```
 
 #### 添加权限并设置开机启动
-```bash
+``` bash
 chmod +x mysqld.service
 systemctl enable mysqld.service
 ```
@@ -179,13 +179,13 @@ systemctl enable mysqld.service
 #### 初始化数据库
 空密码，如果需要临时密码，把-insecure参数去掉
 
-```bash
+``` bash
 /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 ```
 
 初始化报错
 
-```plain
+``` plain
 [root@localhost system]# /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 2024-07-07T06:24:46.415658Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
 2024-07-07T06:24:46.433398Z 0 [ERROR] Could not open file '/var/log/mysql/mysql_err.log' for error logging: No such file or directory
@@ -194,7 +194,7 @@ systemctl enable mysqld.service
 
 解决：创建文件
 
-```bash
+``` bash
 mkdir  /var/log/mysql
 touch /var/log/mysql/mysql_err.log
 chown -R mysql:mysql /var/log/mysql
@@ -205,14 +205,14 @@ chown -R mysql:mysql /var/log/mysql
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1729519843649-8b7eb029-1c8b-4a05-b21b-089d1829088c-20250530144825526.png)
 
 #### 启动MySQL
-```bash
+``` bash
 systemctl start mysqld
 ```
 
 #### 登录MySQL
 无密码，输入密码的时候直接回车即可
 
-```bash
+``` bash
 mysql -u root -p
 ```
 
@@ -221,12 +221,12 @@ mysql -u root -p
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1729519892747-20a37465-eccf-461a-9565-200b018b3d4c-20250530144825545.png)
 
 #### 修改密码和允许外部连接
-```bash
+``` bash
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_password';
 FLUSH PRIVILEGES;
 ```
 
-```bash
+``` bash
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'your_password' WITH GRANT OPTION;
 ```
 
@@ -237,7 +237,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'your_password' WITH GRA
 + 需询问`Oinone客服`获取与后端设计器 Jar 包匹配的前端 dist 资源包；讲 dist 包上传到服务器上，用 Nginx 启动即可。
 + Nginx 的配置如下：
 
-```nginx
+``` nginx
 server {
   # 根据实际详情修改
   listen 8090;

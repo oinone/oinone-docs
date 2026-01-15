@@ -7,10 +7,10 @@ category:
 order: 8
 prev:
   text: Interface Logs
-  link: /zh-cn/UserManual/Designers/AIIntegratedDesigner/api-logs.md
+  link: /en/UserManual/Designers/AIIntegratedDesigner/api-logs.md
 next:
   text: Standard Modules
-  link: /zh-cn/UserManual/StandardModules/README.md
+  link: /en/UserManual/StandardModules/README.md
 ---
 To better meet the diverse configuration needs of users in real-world scenarios, the Oinone platform provides custom expression functionality in multiple places. When users find that the platform's default settings cannot meet their specific requirements, they can use these custom expressions for flexible adjustments to achieve configurations that better fit their business logic.
 

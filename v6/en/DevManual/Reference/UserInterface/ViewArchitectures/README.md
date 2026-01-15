@@ -11,10 +11,10 @@ dir:
   order: 2
 prev:
   text: Translate Service
-  link: /en/DevManual/Reference/Front-EndFramework/Services/translate-service.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Services/translate-service.md
 next:
   text: Table
-  link: /en/DevManual/Reference/UserInterface/ViewArchitectures/table.md
+  link: /v6/en/DevManual/Reference/UserInterface/ViewArchitectures/table.md
 ---
 In Oinone, whether it is `Master (Mask)`, `Layout`, or `View (DSL)`, they are uniformly defined and stored in `XML` format on the backend. After compilation via backend requests, the frontend receives template data in `JSON` format and renders it on the `Web Client`.
 

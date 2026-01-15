@@ -9,7 +9,7 @@ category:
 order: 5
 next:
   text: UI icons
-  link: /en/DevManual/Reference/UserInterface/UI-icons.md
+  link: /v6/en/DevManual/Reference/UserInterface/UI-icons.md
 ---
 # I. View Features
 

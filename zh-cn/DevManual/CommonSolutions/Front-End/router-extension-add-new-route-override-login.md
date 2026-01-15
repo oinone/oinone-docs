@@ -11,7 +11,7 @@ next:
 # 一、问题概述
 在 Oinone 平台内置路由中，默认了三种路由
 
-```plain
+``` plain
 /login //默认登录页
 /page //默认主逻辑页
 / //根页面，会自动发起查询优先级最高的应用，并跳转
@@ -30,7 +30,7 @@ next:
 
 1. 在项目目录`src/main.ts`下，添加自定义 router
 
-```typescript
+``` typescript
 import 'ant-design-vue/dist/antd.css';
 import 'element-plus/dist/index.css';
 
@@ -64,8 +64,8 @@ VueOioProvider(
 
 2. 定义`CustomLogin`, 定义方式同书籍中的自定义表单和自定义表格类似，精简版的代码为：
 
-```typescript
-import { RouterWidget, SPI } from "@kunlun/dependencies";
+``` typescript
+import { RouterWidget, SPI } from "@oinone/kunlun-dependencies";
 
 
 @SPI.ClassFactory(RouterWidget.Token({ widget: 'CustomLogin' })) // SPI注册，router得widget和此处的widgetshi对应的
@@ -83,7 +83,7 @@ import { RouterWidget, SPI } from "@kunlun/dependencies";
 
 1. 在`router`中增加路由
 
-```typescript
+``` typescript
 router: [{ path: '/login', widget: 'CustomLogin'}, { path: '/help', widget: 'Help'}]
 ```
 
@@ -92,7 +92,7 @@ router: [{ path: '/login', widget: 'CustomLogin'}, { path: '/help', widget: 'Hel
 # 四、定义个性化路径
 需要再所有访问路径前统一加标识，比如添加 Oinone，在`项目目录下`新建`.env`文件(若存在，可以复用)，在 env 文件中添加：
 
-```plain
+``` plain
 BASE_PATH=/Oinone
 ```
 

@@ -10,7 +10,7 @@ order: 13
 This feature can be implemented by extending `TableWidget.ts`.
 
 # II. Example Code
-```typescript
+``` typescript
 import {
   BaseElementWidget,
   DslDefinitionType,

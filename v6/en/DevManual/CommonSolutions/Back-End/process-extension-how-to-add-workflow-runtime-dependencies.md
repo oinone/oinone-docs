@@ -10,7 +10,7 @@ order: 51
 1. Add the dependency `@oinone/kunlun-workflow` in `package.json`, and use the same version as `@oinone/kunlun-dependencies`.
 2. Import the dependency in `src/main.ts`.
 
-```typescript
+``` typescript
 import 'reflect-metadata';
 import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
@@ -29,7 +29,7 @@ VueOioProvider({
 ## (Ⅰ) Add Dependencies to Parent pom
 The version numbers in the following example are for reference only. Please select the correct version according to the current framework version.
 
-```xml
+``` xml
 <!-- Platform foundation -->
 <oinone.version>5.3.5</oinone.version>
 
@@ -48,7 +48,7 @@ The version numbers in the following example are for reference only. Please sele
 
 ## (Ⅱ) Add Dependencies to the pom of the Boot Startup Project
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-sql-record-core</artifactId>
@@ -101,7 +101,7 @@ The version numbers in the following example are for reference only. Please sele
 
 ## (Ⅲ) Add Dependencies to application.yml Configuration
 
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:

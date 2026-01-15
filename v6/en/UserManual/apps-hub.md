@@ -6,7 +6,7 @@ category:
 order: 3
 prev:
   text: Integration Interface
-  link: /zh-cn/UserManual/StandardModules/integration-app.md
+  link: /v6/en/UserManual/StandardModules/integration-app.md
 ---
 The Oinone Application Center integrates various applications and modules, aiming to provide users with rich and diverse functional options to meet the needs in different scenarios. These applications cover multiple fields such as business collaboration, data analysis, and operation management. Users can easily find the required applications in the Application Center according to their actual needs and quickly put them into practical use through simple configuration.
 

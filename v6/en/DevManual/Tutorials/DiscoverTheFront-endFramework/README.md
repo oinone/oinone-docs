@@ -10,10 +10,10 @@ dir:
   order: 3
 prev:
   text: Chapter 14:Customized Features
-  link: /en/DevManual/Tutorials/Back-endFramework/chapter14-customized-features.md
+  link: /v6/en/DevManual/Tutorials/Back-endFramework/chapter14-customized-features.md
 next:
   text: Chapter 1:Widget
-  link: /en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md
+  link: /v6/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md
 ---
 
 This two-part tutorial aims to introduce you to the basics of this Web framework. Whether you are new to the framework or already have some experience with it, this tutorial will give you a solid foundation for using the Web framework in your projects.

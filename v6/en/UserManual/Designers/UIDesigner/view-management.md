@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: UI Designer
-  link: /en-us/UserManual/Designers/UIDesigner/README.md
+  link: /v6/en-us/UserManual/Designers/UIDesigner/README.md
 ---
 Pages serve as the entry points for data CRUD (Create, Read, Update, Delete) operations. Data entry and viewing can be presented and interacted with through pages. With the UI Designer, you can conveniently manage pages, including adding, deleting, modifying, and querying pages, as well as designing and laying out pages. By configuring various components on the page, you can implement a series of functions such as data entry, viewing, and filtering.
 

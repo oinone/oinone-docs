@@ -10,8 +10,8 @@ dir:
   order: 2
 prev:
   text: Routing Extension:Add New Routes, Such as Overriding the Default Login Page
-  link: /en/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
+  link: /v6/en/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
 next:
   text: Dependency Configuration:How to Add Data Visualization Runtime Dependencies
-  link: /en/DevManual/CommonSolutions/Back-End/dependency-configuration-how-to-add-data-visualization-dependencies.md
+  link: /v6/en/DevManual/CommonSolutions/Back-End/dependency-configuration-how-to-add-data-visualization-dependencies.md
 ---

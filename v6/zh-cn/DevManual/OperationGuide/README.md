@@ -9,8 +9,8 @@ dir:
   order: 2
 prev:
   text: 调试工具
-  link: /zh-cn/DevManual/Tutorials/debug-tools.md
+  link: /v6/zh-cn/DevManual/Tutorials/debug-tools.md
 next:
   text: 自定义字段
-  link: /zh-cn/DevManual/OperationGuide/customize-a-field-widget.md
+  link: /v6/zh-cn/DevManual/OperationGuide/customize-a-field-widget.md
 ---

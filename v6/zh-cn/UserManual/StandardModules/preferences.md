@@ -6,7 +6,7 @@ category:
 order: 3
 next:
   text: 用户
-  link: /zh-cn/UserManual/StandardModules/AdministrationCenter/user.md
+  link: /v6/zh-cn/UserManual/StandardModules/AdministrationCenter/user.md
 ---
 系统配置模块为企业平台提供了全面且灵活的个性化与安全管理配置方案，旨在精准契合各类业务需求，并充分彰显企业的文化特色。该模块包括两大核心组件：全局配置，用于统一管理和设定系统级别的基本配置；应用配置，用于启用翻译管理功能，使得企业能够管理多语言内容，提升国际化运营水平。
 

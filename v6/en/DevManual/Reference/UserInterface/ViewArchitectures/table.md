@@ -9,7 +9,7 @@ category:
 order: 1
 prev:
   text: View architectures
-  link: /en/DevManual/Reference/UserInterface/ViewArchitectures/README.md
+  link: /v6/en/DevManual/Reference/UserInterface/ViewArchitectures/README.md
 ---
 # Ⅰ. View Characteristics
 - View Type: TABLE

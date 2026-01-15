@@ -26,7 +26,7 @@ In the following text, `binding Host/Port` denotes the access address of the Net
 
 :::
 
-```yaml
+``` yaml
 dubbo:
   protocol:
     name: dubbo
@@ -43,7 +43,7 @@ When the server is in a container environment, due to the independence of the co
 
 The following example changes the host's accessible port from 20880 to 20881 when port 20880 cannot be used.
 
-```shell
+``` shell
 DUBBO_IP_TO_REGISTRY=192.168.1.100
 DUBBO_PORT_TO_REGISTRY=20881
 ```
@@ -59,7 +59,7 @@ Port mapping needs to be added to map port 20881 to port 20881 on the host. (The
 
 **docker-run**
 
-```shell
+``` shell
 IP=192.168.1.100
 
 docker run -d --name designer-allinone-full \
@@ -70,7 +70,7 @@ docker run -d --name designer-allinone-full \
 
 **docker-compose**
 
-```yaml
+``` yaml
 services:
   backend:
     container_name: designer-backend
@@ -86,7 +86,7 @@ services:
 ## (Ⅴ) Starting with Kubernetes
 **Workload (Deployment)**
 
-```yaml
+``` yaml
 kind: Deployment
 apiVersion: apps/v1
 spec:
@@ -109,7 +109,7 @@ spec:
 
 **Service (Services)**
 
-```yaml
+``` yaml
 kind: Service
 apiVersion: v1
 spec:
@@ -185,7 +185,7 @@ In the source code of `dubbo-v2.7.22`, the author found that the way `Host/Port`
 
 # V. Common Configurations
 ## (Ⅰ) YAML Configuration
-```yaml
+``` yaml
 dubbo:
   application:
     name: pamirs-test
@@ -219,7 +219,7 @@ dubbo:
 + dubbo.cloud.subscribed-services: Multi-provider configuration; The parameter is configured as empty in the example to avoid warning logs during startup, and generally does not require configuration.
 
 ## (Ⅱ) Environment Variable Configuration
-```shell
+``` shell
 DUBBO_IP_TO_REGISTRY=127.0.0.1
 DUBBO_PORT_TO_REGISTRY=20880
 ```
@@ -230,7 +230,7 @@ DUBBO_PORT_TO_REGISTRY=20880
 # VI. Source Code Reference
 + `org.apache.dubbo.config.ServiceConfig#findConfigedHosts`
 
-```java
+``` java
 private String findConfigedHosts(ProtocolConfig protocolConfig,
                                  List<URL> registryURLs,
                                  Map<String, String> map) {
@@ -274,7 +274,7 @@ private String findConfigedHosts(ProtocolConfig protocolConfig,
 
 + `org.apache.dubbo.config.ServiceConfig#findConfigedPorts`
 
-```java
+``` java
 private Integer findConfigedPorts(ProtocolConfig protocolConfig,
                                   String name,
                                   Map<String, String> map, int protocolConfigNum) {
@@ -323,7 +323,7 @@ private Integer findConfigedPorts(ProtocolConfig protocolConfig,
 
 + `org.apache.dubbo.config.ServiceConfig#getValueFromConfig`
 
-```java
+``` java
 private String getValueFromConfig(ProtocolConfig protocolConfig, String key) {
     String protocolPrefix = protocolConfig.getName().toUpperCase() + "_";
     String value = ConfigUtils.getSystemProperty(protocolPrefix + key);
@@ -336,7 +336,7 @@ private String getValueFromConfig(ProtocolConfig protocolConfig, String key) {
 
 + `org.apache.dubbo.common.utils.ConfigUtils#getSystemProperty`
 
-```java
+``` java
 public static String getSystemProperty(String key) {
     String value = System.getenv(key);
     if (StringUtils.isEmpty(value)) {

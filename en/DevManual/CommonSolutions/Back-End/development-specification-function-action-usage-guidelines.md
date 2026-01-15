@@ -14,7 +14,7 @@ The definition of Function must strictly follow Oinone's specifications:
 + If it is just a query and does not require a button on the page, define it as `@Function`.
 
 ## \(Ⅰ\) Overwrite Common Default Data Manager Definition Standards:
-```java
+``` java
 @Action.Advanced(name = FunctionConstants.create, managed = true)//The default is the method name
 @Action(displayName = "Confirm", summary = "Add", bindingType = ViewTypeEnum.FORM)
 public AuthRole create(AuthRole data) {}
@@ -43,7 +43,7 @@ public AuthRole queryOne(AuthRole query) {
 ```
 
 ## \(Ⅱ\) Custom Function Definition Standards
-```java
+``` java
 @Action(displayName = "Enable")
 @Action.Advanced(type = FunctionTypeEnum.UPDATE)
 public Teacher dataStatus(Teacher data) {}

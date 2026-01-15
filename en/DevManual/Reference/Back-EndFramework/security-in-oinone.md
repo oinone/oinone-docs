@@ -71,7 +71,7 @@ Let's look at the access path for a "Country Group - Create Action," as shown be
 
 The `sessionPath` attribute in the DSL obtained through the `viewAction#load` interface:
 
-```shell
+``` shell
 /resource/国家分组/ACTION#resource.ResourceCountryGroup#redirectCreatePage/ACTION#$$#create
 ```
 
@@ -123,7 +123,7 @@ Logging in with this user will trigger an exception: "Entry application not foun
 
 Register the custom permission filter service as a `Spring Bean` and override the `All Resource Access Control` method to complete module filtering. For example:
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomAuthFilterService implements AuthFilterService {
@@ -178,7 +178,7 @@ Using the above `module filtering`, we find all interfaces in this module can be
 
 Based on the previous example, require all interfaces in this module to require login:
 
-```java
+``` java
 @Override
 public Boolean isAccessModule(String module) {
     if ("mobile_demo".equals(module)) {
@@ -195,7 +195,7 @@ The `AuthVerificationHelper#checkLogin` method throws an exception with front-en
 
 You can obtain access resource information using the following method almost anywhere:
 
-```java
+``` java
 AccessResourceInfoSession.getInfo()
 ```
 
@@ -219,7 +219,7 @@ When certain actions/functions do not require authentication, we can filter them
 
 Configure the `pamirs.auth.fun-filter` attribute in `yaml` to allow the "Country Group - Create" action to be accessed directly without login:
 
-```yaml
+``` yaml
 pamirs:
   auth:
     fun-filter:
@@ -231,7 +231,7 @@ pamirs:
 
 Configure the `pamirs.auth.fun-filter-only-login` attribute in `yaml` to allow the "Country Group - Create" action to be accessed after login without worrying about corresponding permission configuration:
 
-```yaml
+``` yaml
 pamirs:
   auth:
     fun-filter-only-login:
@@ -247,7 +247,7 @@ Built-in whitelist configurations may not cover most business scenarios or may n
 
 Use `Spring Configuration` to add configuration items to `yaml`: (We typically recommend managing configuration items this way, but other methods are also possible)
 
-```java
+``` java
 @Configuration
 @ConfigurationProperties(prefix = "demo.auth.blacklist")
 public class AuthBlacklistConfiguration {
@@ -273,7 +273,7 @@ Let's try to implement the following:
 
 Below is an implementation of the filter service overriding some previous methods:
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomAuthFilterService implements AuthFilterService {
@@ -329,7 +329,7 @@ When using "Solution 1," the backend requires no special processing or modificat
 
 First, let's look at part of the `PermissionNodeLoadExtendApi` definition:
 
-```java
+``` java
 /**
  * Permission Node Extension API
  *
@@ -384,7 +384,7 @@ We need to override appropriate methods based on actual scenario requirements.
 
 Take the `mobile_demo` application as an example. To add corresponding submission actions under this application, process as follows:
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomPermissionNodeLoadExtend implements PermissionNodeLoadExtendApi {
@@ -428,7 +428,7 @@ public class CustomPermissionNodeLoadExtend implements PermissionNodeLoadExtendA
 
 For the "Country Group - Create" submission action added by the above code, the corresponding resource access path is:
 
-```plain
+``` plain
 /resource.ResourceCountryGroup/create
 ```
 
@@ -447,7 +447,7 @@ To simulate a frontend request, initiate this request via the GQL visualization 
 
 Similar to adding submission actions, we only need to change the action name to the corresponding navigation action name. Let's add the "Country Group - Create" navigation action to the node for authorization and see the difference in the resource access path.
 
-```java
+``` java
 @Override
 public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadContext, List<PermissionNode> nodes) {
     List<PermissionNode> newNodes = new ArrayList<>();
@@ -476,13 +476,13 @@ public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadConte
 
 For the "Country Group - Create" navigation action added by the above code, the corresponding resource access path is:
 
-```plain
+``` plain
 /resource.ResourceCountryGroup/redirectCreatePage
 ```
 
 According to our path rules, the resource access path for the create submission action is:
 
-```plain
+``` plain
 /resource.ResourceCountryGroup/redirectCreatePage/ACTION#resource.ResourceCountryGroup#create
 ```
 
@@ -519,7 +519,7 @@ Thus, a similar request could be:
 
 We can see that although we used this path, authentication still passes:
 
-```shell
+``` shell
 /resource.ResourceCountryGroup/redirectCreatePage
 ```
 
@@ -532,7 +532,7 @@ Similar to action/function filtering, data filtering is still implemented via Au
 
 Below is an implementation logic for reference:
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomAuthFilterService implements AuthFilterService {

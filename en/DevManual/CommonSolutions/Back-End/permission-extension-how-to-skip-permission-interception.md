@@ -10,7 +10,7 @@ order: 44
 ## (Ⅰ) Example:
 + Skip permission validation for `queryTea`
 
-```java
+``` java
 @Action(displayName = "queryTea", bindingType = ViewTypeEnum.FORM)
 @Action.Advanced(type = FunctionTypeEnum.UPDATE)
 public Teacher queryTea(Teacher data) {
@@ -19,7 +19,7 @@ public Teacher queryTea(Teacher data) {
 
 + Configure the function's `namespace` (model code) and function name in the YAML file:
 
-```yaml
+``` yaml
 pamirs:
   auth:
     fun-filter:
@@ -34,7 +34,7 @@ pamirs:
 ## (Ⅰ) Example:
 + Configure the function's `namespace` (model code) and function name in the YAML file:
 
-```yaml
+``` yaml
 pamirs:
   auth:
     fun-filter-only-login: # After login, skip permission validation for this function
@@ -50,7 +50,7 @@ pamirs:
 + The following example skips permissions by controlling the package path.
 + Inherit the `pro.shushi.pamirs.auth.api.spi.AuthFilterService` interface:
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomAuthFilterService implements AuthFilterService {

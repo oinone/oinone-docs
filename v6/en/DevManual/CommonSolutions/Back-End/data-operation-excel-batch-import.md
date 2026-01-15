@@ -10,7 +10,7 @@ order: 23
 In some scenarios, it is necessary to obtain the overall data imported from Excel for batch operations or validation. This can be achieved by implementing import extension points, where the input parameter `data` is the list of data imported from Excel. Businesses can perform data validation based on actual conditions.
 
 ## （Ⅰ）Excel Template Definition, Requiring `setEachImport(false)`
-```java
+``` java
 @Component
 public class PetTalentExportTemplate implements ExcelTemplateInit {
     public static final String TEMPLATE_NAME = "Pet Talent Export";
@@ -32,14 +32,14 @@ public class PetTalentExportTemplate implements ExcelTemplateInit {
 ```
 
 ## （Ⅱ）Import Extension Point API Definition
-```java
+``` java
 pro.shushi.pamirs.file.api.extpoint.ExcelImportDataExtPoint#importData
 ```
 
 ## （Ⅲ）Sample Code Reference:
 `pro.shushi.pamirs.translate.extpoint.ResourceTranslationImportExtPoint#importData`
 
-```java
+``` java
 @Slf4j
 @Component
 @Ext(ExcelImportTask.class)
@@ -63,7 +63,7 @@ public class ResourceTranslationImportExtPoint extends AbstractExcelImportDataEx
 Add transaction definitions to the template and set rollback on exception. Refer to the sample code:
 
 ## （Ⅰ）Excel Template Definition
-```java
+``` java
 @Component
 public class DemoItemImportTemplate implements ExcelTemplateInit {
 
@@ -96,7 +96,7 @@ public class DemoItemImportTemplate implements ExcelTemplateInit {
 ```
 
 ## （Ⅱ）Import Logic Processing
-```java
+``` java
 @Slf4j
 @Component
 @Ext(ExcelImportTask.class)

@@ -11,7 +11,7 @@ order: 11
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/Snipaste_2024-09-27_11-16-55.jpg)
 
 # 二、代码逻辑
-```java
+``` java
 @Order(Ordered.LOWEST_PRECEDENCE)
 @RestController
 public class HealthCheckController implements ApplicationListener<ApplicationStartedEvent> {

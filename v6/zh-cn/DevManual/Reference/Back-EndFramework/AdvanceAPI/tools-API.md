@@ -9,7 +9,7 @@ category:
 order: 10
 next:
   text: 框架概览（Framework Overview）
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/framework-overview.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/framework-overview.md
 ---
 Oinone 业务常用工具类 API 文档指南
 
@@ -17,7 +17,7 @@ Oinone 业务常用工具类 API 文档指南
 
 ## （一）类概述
 
-```java
+``` java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface IdGenerator<T>
 ```
@@ -36,7 +36,7 @@ public interface IdGenerator<T>
 + **返回值**：`T` - 生成的 ID 对象
 + **示例代码**：**java**
 
-```java
+``` java
 //根据模型生成id
 Long generate = (Long) Spider.getDefaultExtension(IdGenerator.class).generate(PamirsTableInfo.fetchKeyGenerator(TestModel.MODEL_MODEL));
 ```
@@ -45,7 +45,7 @@ Long generate = (Long) Spider.getDefaultExtension(IdGenerator.class).generate(Pa
 
 ## （一）类概述
 
-```java
+``` java
 @SPI
 public interface UidGenerator
 ```
@@ -62,7 +62,7 @@ public interface UidGenerator
 + **异常**：`UidGenerateException` - ID 生成失败时抛出
 + **示例代码**：**java**
 
-```java
+``` java
 //生成id
 Long l = Long.valueOf(UidGeneratorFactory.getCachedUidGenerator().getUID());
 ```
@@ -75,7 +75,7 @@ Long l = Long.valueOf(UidGeneratorFactory.getCachedUidGenerator().getUID());
 + **返回值**：`String` - 解析后的信息（如`timestamp=1683214567, workerId=1, sequence=123`）
 + **示例代码**：**java**
 
-```java
+``` java
 String parseResult = UidGeneratorFactory.getCachedUidGenerator().parseUID(1234567890L);
 System.out.println("UID解析结果: " + parseResult);
 ```
@@ -89,7 +89,7 @@ System.out.println("UID解析结果: " + parseResult);
 **包路径**：`pro.shushi.pamirs.meta.api.core.compute.systems.type.gen`
 **接口定义**：
 
-```java
+``` java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface SequenceGenerator<T>
 ```
@@ -112,7 +112,7 @@ public interface SequenceGenerator<T>
 + **返回值**：`T`（泛型，具体类型由实现类决定） - 生成的序列值，可能是字符串、数字或其他类型，取决于具体实现。
 + **示例代码**：
 
-```java
+``` java
 // 获取序列生成器实例
 SequenceGenerator<Object> generator = CommonApiFactory.getSequenceGenerator();
 
@@ -126,7 +126,7 @@ String code = TypeUtils.stringValueOf(codeObj);
 
 ```
 
-```java
+``` java
 @Slf4j
 @Component
 public class DemoMetadataEditor implements MetaDataEditor {
@@ -156,7 +156,7 @@ public class DemoMetadataEditor implements MetaDataEditor {
 }
 ```
 
-```java
+``` java
 // 生成订单流水号（自增强有序）
 Object orderSequence =  CommonApiFactory.getSequenceGenerator().generate(SequenceEnum.ORDERLY_SEQ.value(), SeqConstants.SAMPLE_ORDER_SEQ);
 String orderCode = "ORD" + TypeUtils.stringValueOf(orderSequence);
@@ -170,7 +170,7 @@ String dateCode = "DT" + TypeUtils.stringValueOf(dateSequence);
 
 `SequenceEnum` 定义了支持的序列生成器类型，包含多种策略：
 
-```java
+``` java
 public enum SequenceEnum implements IEnum<String> {
     SEQ("SEQ", "SEQ", "自增流水号"),
     ORDERLY_SEQ("ORDERLY_SEQ", "ORDERLY_SEQ", "自增强有序流水号"),
@@ -186,7 +186,7 @@ public enum SequenceEnum implements IEnum<String> {
 
 ## （一）类概述
 
-```java
+``` java
 @Slf4j
 public class RSQLHelper
 ```
@@ -198,7 +198,7 @@ public class RSQLHelper
   - 提供表达式计算功能（判断数据是否匹配 RSQL 条件）
 + **构造方法**：**java**
 
-```java
+``` java
 private RSQLHelper() {} // 私有构造，禁止实例化，所有方法均为静态方法
 ```
 
@@ -206,7 +206,7 @@ private RSQLHelper() {} // 私有构造，禁止实例化，所有方法均为�
 
 ### 1、getRsqlValues (String rsql, Getter<T, ?>... getters)
 
-```java
+``` java
 @SafeVarargs
 public static <T> Map<String, Object> getRsqlValues(String rsql, Getter<T, ?>... getters)
 ```
@@ -226,7 +226,7 @@ public static <T> Map<String, Object> getRsqlValues(String rsql, Getter<T, ?>...
   - 遍历语法树节点，当节点字段匹配目标字段时，提取其参数值（仅取第一个参数，适用于简单比较场景）
 + **示例代码：java**
 
-```java
+``` java
 // 使用Lambda表达式指定字段
 String rsql = "name==Alice;age>=18";
 Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, User::getName, User::getAge);
@@ -235,7 +235,7 @@ Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, User::getName, User:
 
 ### 2、getRsqlValues (String rsql, Set<`String`> fields)
 
-```java
+``` java
 public static Map<String, Object> getRsqlValues(String rsql, Set<`String`> fields)
 ```
 
@@ -253,7 +253,7 @@ public static Map<String, Object> getRsqlValues(String rsql, Set<`String`> field
   - `fields`非空，否则直接返回空 Map
 + **示例代码：java**
 
-```java
+``` java
 Set<`String`> targetFields = new HashSet<>(Arrays.asList("name", "age"));
 String rsql = "name==Bob;age==25";
 Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, targetFields);
@@ -264,7 +264,7 @@ Map<String, Object> values = RSQLHelper.getRsqlValues(rsql, targetFields);
 
 ## （一）类概述
 
-```java
+``` java
 public class RsqlParseHelper
 ```
 
@@ -280,7 +280,7 @@ public class RsqlParseHelper
 + **返回值**：`String` - 对应的 SQL WHERE 子句（如`WHERE name = 'Adamancy' AND age > 18`）
 + **示例代码**：**java**
 
-```java
+``` java
 String sqlWhere = RsqlParseHelper.parseRsql2Sql(TestModel.MODEL_MODEL, "name==Adamancy;age>18");
 String sqlWhere = RsqlParseHelper.parseRsql2Sql(queryWrapper.getModel(), rsql);
 ```
@@ -289,7 +289,7 @@ String sqlWhere = RsqlParseHelper.parseRsql2Sql(queryWrapper.getModel(), rsql);
 
 ## （一）类概述
 
-```java
+``` java
 public class ObjectUtils
 ```
 
@@ -307,7 +307,7 @@ public class ObjectUtils
 + **泛型**：`T extends Serializable`
 + **示例代码**：**java**
 
-```java
+``` java
 User original = new User("Adamancy", 25);
 User cloned = ObjectUtils.clone(original);
 ```
@@ -321,7 +321,7 @@ User cloned = ObjectUtils.clone(original);
 + **特殊处理**：若对象实现`IEnum`接口，比较其`value()`值
 + **示例代码**：**java**
 
-```java
+``` java
 boolean isEqual = ObjectUtils.equals(EnumType.A, EnumType.A); // true
 ```
 
@@ -351,7 +351,7 @@ boolean isEqual = ObjectUtils.equals(EnumType.A, EnumType.A); // true
   - **返回值**：序列化后的 JSON 字符串。
   - **示例代码**：
 
-```java
+``` java
 PamirsJsonUtils.toJSONString(nodes,
                              SerializerFeature.DisableCircularReferenceDetect,
                              SerializerFeature.WriteDateUseDateFormat,

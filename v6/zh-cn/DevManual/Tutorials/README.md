@@ -9,10 +9,10 @@ dir:
   order: 1
 prev:
   text: 研发手册
-  link: /zh-cn/DevManual/README.md
+  link: /v6/zh-cn/DevManual/README.md
 next:
   text: 设置指南（Setup Guide）
-  link: /zh-cn/DevManual/Tutorials/setup-guide.md
+  link: /v6/zh-cn/DevManual/Tutorials/setup-guide.md
 ---
 :::warning 小技巧
 

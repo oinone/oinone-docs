@@ -10,8 +10,8 @@ dir:
   order: 4
 prev:
   text: UI icons
-  link: /en/DevManual/Reference/UserInterface/UI-icons.md
+  link: /v6/en/DevManual/Reference/UserInterface/UI-icons.md
 next:
   text: User & Business API
-  link: /en/DevManual/Reference/StandardModule/user-business-API.md
+  link: /v6/en/DevManual/Reference/StandardModule/user-business-API.md
 ---

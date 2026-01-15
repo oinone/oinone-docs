@@ -51,7 +51,7 @@ Oinone 模块既可以为 Oinone 系统添加全新的业务逻辑，也可以�
 + 使用packagePrefix方法来配置模块需要扫描元数据的包路径
 
 ## （二）一个简化的模块目录结构：
-```plain
+``` plain
 Module
 ├── module-api  模块接口工程
 │   ├── model   模型

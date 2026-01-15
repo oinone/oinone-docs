@@ -15,7 +15,7 @@ order: 54
 - sql-record: Listens to additions, deletions, and modifications of the corresponding model after process publication
 - trigger: Asynchronous task scheduling module
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.workflow</groupId>
     <artifactId>pamirs-workflow-api</artifactId>
@@ -39,7 +39,7 @@ order: 54
 ```
 
 ### 2. Add dependencies on corresponding modules, sql-record path, and other related settings in application.yml
-```yaml
+``` yaml
 pamirs:
 ...
 
@@ -97,7 +97,7 @@ Set the trigger mode in the process designer. If the code trigger mode is set, a
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2023110703554815-20250530144823528.png)
 
 ### 3. Invoke in code
-```java
+``` java
 /**
      * Trigger workflow instance
      */

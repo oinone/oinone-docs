@@ -23,7 +23,7 @@ Nacos、SpringCloud、SpringCloudAlibaba是有依赖版本严格要求的：[点
 ## （一）项目中增加依赖
 主pom引入兼容的版本：
 
-```xml
+``` xml
 <dependencyManagement>
   <dependency>
     <groupId>com.alibaba.cloud</groupId>
@@ -38,7 +38,7 @@ Nacos、SpringCloud、SpringCloudAlibaba是有依赖版本严格要求的：[点
 
 使用模块的pom引入依赖：	
 
-```xml
+``` xml
 <dependency>
     <groupId>com.alibaba.cloud</groupId>
     <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -51,7 +51,7 @@ Nacos、SpringCloud、SpringCloudAlibaba是有依赖版本严格要求的：[点
 ```
 
 ## （二）配置 application.yml
-```yaml
+``` yaml
 spring:
   cloud:
     nacos:
@@ -64,7 +64,7 @@ spring:
 注：更多 YAML 配置请前往 [Module API](/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
 
 ## （三）启动类添加注解
-```java
+``` java
 @EnableDiscoveryClient
 @EnableFeignClients
 public class NacosConsumerApplication {
@@ -77,7 +77,7 @@ public class NacosConsumerApplication {
 ## （四）验证
 创建 Feign Client 接口
 
-```java
+``` java
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -93,7 +93,7 @@ public interface ProviderClient {
 
 创建 Controller 调用 Feign Client
 
-```java
+``` java
 @RestController
 public class ConsumerController {
 

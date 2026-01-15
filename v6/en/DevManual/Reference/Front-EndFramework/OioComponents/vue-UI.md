@@ -8,7 +8,7 @@ category:
 order: 3
 next:
   text: Metadata Service
-  link: /en/DevManual/Reference/Front-EndFramework/Services/metadata-service.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Services/metadata-service.md
 ---
 
 In Oinone Kunlun, some components are implemented based on independent third-party component libraries, such as `Vxe-Table`, `vuedreggable`, etc. These components can be used not only for Widget components, but also directly for any Vue component using Vue native writing. This article will provide a detailed introduction to the usage and API definitions of these components.

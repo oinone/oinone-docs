@@ -37,7 +37,7 @@ Node.js download address:
 ### 1、Unzip
 Use a visualization tool or the following command to unzip
 
-```shell
+``` shell
 # Unzip command
 # tar.gz package
 tar zxvf node-v20.16.0-darwin-arm64.tar.gz -C ./installation directory
@@ -47,7 +47,7 @@ tar Jxvf node-v20.16.0-darwin-arm64.tar.gz -C ./installation directory
 ```
 
 ### 2、Configure Environment Variables
-```shell
+``` shell
 # Configure environment variables
 cat >> replace the specific Shell configuration file << EOF
 export NODE_PATH="installation directory"
@@ -58,7 +58,7 @@ EOF
 ### 3、Verification
 Enter `node --version` in the terminal to verify
 
-```shell
+``` shell
 # Verify environment variables
 node --version
 v20.16.0
@@ -75,7 +75,7 @@ Press `Win + R` on the keyboard to bring up the following interface
 
 Enter the following code and click `OK`
 
-```shell
+``` shell
 # Call up the environment variable configuration interface
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
@@ -89,7 +89,7 @@ Configure `NODE_PATH` as the installation directory of node, and add the variabl
 ### 3、Verification
 Enter `node --version` in the Windows terminal to verify
 
-```shell
+``` shell
 # Verify environment variables
 node --version
 v20.16.0

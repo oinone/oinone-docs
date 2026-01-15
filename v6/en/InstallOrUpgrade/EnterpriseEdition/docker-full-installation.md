@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: Source Code Installation
-  link: /en/InstallOrUpgrade/CommunityEdition/source-code-installation.md
+  link: /v6/en/InstallOrUpgrade/CommunityEdition/source-code-installation.md
 ---
 # I. Overview
 Each build version is isolated in its own container (Linux namespace container). This document provides instructions on how to install the image containing "all middleware and front-end/back-end projects".
@@ -71,7 +71,7 @@ If the digital staff has already sent you a deployment package, use 'oinone-op-d
 Not currently provided, please use the source code installation method
 
 ### 2. Enterprise Edition
-```shell
+``` shell
 ##oinone-designer-mini-vMajorVersion.MediumVersion:FullVersion
 ## The version numbers 6.2:6.2.1 are just examples and will vary based on the actual version of the digital Oinone image
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1
@@ -79,7 +79,7 @@ docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1
 
 If the image pull is too slow, you can add `-amd64` or `-arm64` suffix to the corresponding image Tag to obtain a single-architecture image.
 
-```shell
+``` shell
 ##oinone-designer-mini-vMajorVersion.MediumVersion:FullVersion-ArchitectureTag
 ## The version numbers 6.2:6.2.1 are just examples and will vary based on the actual version of the digital Oinone image
 docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-amd64
@@ -90,7 +90,7 @@ docker pull harbor.oinone.top/oinone/oinone-designer-mini-v6.2:6.2.1-arm64
 ## (I) Download Structure Package
 + First, create a folder on the server (it is recommended to create it in the home directory for easy searching), then enter the folder.
 
-```plain
+``` plain
 # Create directory on server
 # Go to home directory
 cd ~
@@ -102,7 +102,7 @@ cd oinone
 
 + Download the structure package [oinone-op-ds-all-full.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/file-source/oinone-op-ds-all-full.zip) locally, unzip it, and upload the structure package from the local computer to the server
 
-```plain
+``` plain
 # Upload structure package from local computer
 scp home/user/myfolder(Replace with actual local unzip path) username@ip_address:/home/oinone(Replace with specific server path)
 ```
@@ -135,7 +135,7 @@ The following Oinone image-related directory structure and data volume (Volume) 
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
-```shell
+``` shell
 # Image directory structure is all under /opt
 ├── jdk
 ├── mq
@@ -169,7 +169,7 @@ The following Oinone image-related directory structure and data volume (Volume) 
 
 
 
-```shell
+``` shell
 # startup.sh file content
 #!/bin/bash
 configDir=$(pwd)
@@ -198,7 +198,7 @@ docker run -d --name designer-allinone \
 ### 1. Modify startup.sh File
 Find the following code in the file and modify `majorVersion`, `version`, and the corresponding IP to the Docker host IP (i.e., server IP) and other configuration items
 
-```plain
+``` plain
 configDir=$(pwd)
 majorVersion=6.2  # Modify according to the actual version of the Oinone image
 version=6.2.1     # Modify according to the actual version of the Oinone image
@@ -208,7 +208,7 @@ IP=192.168.0.121  # Change to server IP
 ### 2. Modify broker.conf File in mq Directory
 Find the following code in the file and modify the IP addresses of `namesrvAddr` and `brokerIP1` and other configuration items
 
-```plain
+``` plain
 namesrvAddr=127.0.0.1:9876   # Change to 127.0.0.1:9876
 brokerIP1=192.168.0.121  # Change to host IP
 ```
@@ -222,7 +222,7 @@ If you don't know what the IP is, execute the command: `ipconfig` or `ip a`
 ### 3. Modify application.yml File in config Directory
 Find the following code in the file and modify the IP, port, username, password, and other configuration items of the database
 
-```yaml
+``` yaml
 # application.yml file
 # Change to the IP, port (default port 3306, consistent with the port of MySQL on the server), username, password of the MySQL server
 pamirs:
@@ -242,23 +242,23 @@ pamirs:
 ```
 
 ### 4. Execute `startup.sh` and View Logs
-```plain
+``` plain
 sh startup.sh
 ```
 
 View logs: First enter the logs folder and check if logs are generated?
 
-```plain
+``` plain
 cd logs   # Enter logs folder
 ```
 
-```plain
+``` plain
 # If logs are generated! You can execute the command:
 tail -200f 2024.9.0.log(Change to the current day's log file name)
 # The first startup will take relatively longer. Wait until you see the words "Startup successful" in the log file, which means the startup is successful
 ```
 
-```plain
+``` plain
 # If logs are not generated, please first execute the following command
 docker logs
 # After execution, check whether it has started. If there is an error and you can't solve it, please export all error messages and send them to the group.

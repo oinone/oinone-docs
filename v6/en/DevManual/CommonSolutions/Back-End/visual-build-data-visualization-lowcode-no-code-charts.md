@@ -39,7 +39,7 @@ Data visualization provides the function of custom chart templates to meet busin
 This example implements a bar chart using the `echarts` library, while the framework's built-in bar chart uses the `G2` library.
 `demo-echarts-bar.vue`
 
-```vue
+``` vue
 <template>
   <div class="data-designer-chart-instance demo-echarts-bar" ref="designerChartViewRef">
     <div class="data-designer-chart-container" ref="designerChartViewInnerRef"></div>
@@ -202,8 +202,8 @@ This example implements a bar chart using the `echarts` library, while the frame
 
 ## (Ⅰ) Registering the Template
 
-```typescript
-import { ChartRenderEngine, ChartRenderType, registerChartComponent } from '@kunlun/data-designer-core';
+``` typescript
+import { ChartRenderEngine, ChartRenderType, registerChartComponent } from '@oinone/kunlun-data-designer-core';
 import component from './demo-echarts-bar.vue';
 
 registerChartComponent({

@@ -6,7 +6,7 @@ category:
 order: 5
 next:
   text: 研发手册
-  link: /zh-cn/DevManual/README.md
+  link: /v6/zh-cn/DevManual/README.md
 ---
 ### 1.功能介绍
 当利用平台无代码设计器生成的模块或应用无法满足实际需求时，可以利用低无一体功能为其完善与优化。低无一体是连接无代码设计器的桥梁，可以为一个模块或应用设计低代码的逻辑，可以在界面设计器或流程设计器等无代码设计器中使用。

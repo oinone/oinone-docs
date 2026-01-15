@@ -9,8 +9,8 @@ order: 9
 OioProvider 是平台的初始化入口。
 
 ## （一）示例入口 `main.ts`
-```typescript
-import { VueOioProvider } from '@kunlun/dependencies';
+``` typescript
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
 VueOioProvider();
 ```
@@ -24,14 +24,14 @@ VueOioProvider();
 + [graphql](https://github.com/graphql/graphql-js#readme)
 
 ## （一）配置方式
-```typescript
+``` typescript
 VueOioProvider({
   http?: OioHttpConfig
 });
 ```
 
 ## （二）OioHttpConfig
-```typescript
+``` typescript
 /**
  * OioHttp配置
  */
@@ -54,7 +54,7 @@ export interface OioHttpConfig {
 ```
 
 ## （三）内置拦截器可选项 `InterceptorOptions`
-```typescript
+``` typescript
 /**
  * 拦截器可选项
  */
@@ -113,7 +113,7 @@ export interface InterceptorOptions {
 + afterInterceptors：后置拦截器
 
 ## （四）NetworkInterceptor
-```typescript
+``` typescript
 /**
  * <h3>网络请求拦截器</h3>
  * <ul>
@@ -140,14 +140,14 @@ export interface NetworkInterceptor {
 
 # 三、自定义路由配置 `router`
 ## （一）配置方式
-```typescript
+``` typescript
 VueOioProvider({
   router?: RouterPath[]
 });
 ```
 
 ## （二）RouterPath
-```typescript
+``` typescript
 /**
  * 路由配置
  */
@@ -164,7 +164,7 @@ export interface RouterPath {
 ```
 
 ## （三）内置路由配置
-```typescript
+``` typescript
 [
   {
     path: '/login',
@@ -187,7 +187,7 @@ export interface RouterPath {
 
 # 四、外观配置
 ## （一）配置方式
-```typescript
+``` typescript
 VueOioProvider({
   copyrightStatus?: boolean;
   loginTheme?: OioLoginThemeConfig;
@@ -200,7 +200,7 @@ VueOioProvider({
 是否显示 copyright 信息，默认显示(true)
 
 ## （三）OioLoginThemeConfig
-```typescript
+``` typescript
 /**
  * 登录主题配置
  */
@@ -277,7 +277,7 @@ export enum OioLoginLogoPosition {
 ```
 
 ## （四）OioProviderBrowserProps
-```typescript
+``` typescript
 /**
  * 浏览器配置
  */
@@ -294,7 +294,7 @@ export interface OioProviderBrowserProps {
 ```
 
 ## （五）ThemeName
-```typescript
+``` typescript
 type ThemeName =
   | 'default-large'
   | 'default-medium'
@@ -314,7 +314,7 @@ type ThemeName =
 + 其他：自定义主题
 
 ## （六）定义自定义主题
-```typescript
+``` typescript
 export const themeName = 'customTheme';
 
 export const themeCssVars = {
@@ -325,8 +325,8 @@ export const themeCssVars = {
 主题变量参考文档：[OioThemeCssVars](缺少文档)
 
 ## （七）应用自定义主题
-```typescript
-import { registerTheme } from '@kunlun/dependencies';
+``` typescript
+import { registerTheme } from '@oinone/kunlun-dependencies';
 import { themeName, themeCssVars } from './theme';
 
 registerTheme(themeName, themeCssVars);
@@ -338,14 +338,14 @@ VueOioProvider({
 
 # 五、低无一体依赖配置 `dependencies`
 ## （一）配置方式
-```typescript
+``` typescript
 VueOioProvider({
   dependencies?: PluginLoadDependencies
 });
 ```
 
 ## （二）PluginLoadDependencies
-```typescript
+``` typescript
 /**
  * 插件加载依赖
  */

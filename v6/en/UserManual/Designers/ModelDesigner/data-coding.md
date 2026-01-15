@@ -7,7 +7,7 @@ category:
 order: 3
 next:
   text: UI Designer
-  link: /en-us/UserManual/Designers/UIDesigner/README.md
+  link: /v6/en-us/UserManual/Designers/UIDesigner/README.md
 ---
 When data fields need to follow specific encoding rules, you can design the encoding of models or fields in the Model Designer. After the settings are completed, the encoding will be displayed in real-time for easy viewing and adjustment at any time.
 

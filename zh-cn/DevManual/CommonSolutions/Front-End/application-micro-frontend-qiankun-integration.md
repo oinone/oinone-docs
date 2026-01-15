@@ -12,7 +12,7 @@ order: 6
 # 一、模版工程启动
 ## （一）工程结构目录介绍
 最外层`micro-front-end`用`pnpm`工作区来管理多工程仓库，维护统一的安装、运行、清除、构建等的脚本。`micro-main`是主应用，`micro-son`是子应用，模拟重构工作量巨大的老应用，`ss-front-modules`是`Oinone`应用。
-```text
+``` text
 micro-front-end/
 ├── packages/
 │   ├── micro-main/
@@ -45,7 +45,7 @@ micro-front-end/
 ### 1、微应用注册配置
 配置了一个`oinone`的子应用，`name`是`ss-boot`。
 
-```typescript
+``` typescript
 export const SUB_APP_CONFIG = {
   subApps: [
     {
@@ -75,7 +75,7 @@ export const SUB_APP_CONFIG = {
 ```
 
 ### 2、`main.ts` 执行注册逻辑
-```javascript
+``` javascript
 import { registerMicroApps } from "qiankun";
 
 function registerApps() {
@@ -114,7 +114,7 @@ createApp(App).use(router).mount("#micro-main");
 ### 3、主应用路由配置
 以`vue-router`举例，将所有 `/app/ss-boot` 路由全部重定向到使用 `Oinone` 微应用的组件
 
-```javascript
+``` javascript
 import { createWebHistory, createRouter } from "vue-router";
 
 const routes = [
@@ -153,7 +153,7 @@ export const router = createRouter({
 ### 4、主应用的某个组件使用`Oinone`微应用
 在挂载点 dom 生成之后启动乾坤
 
-```javascript
+``` javascript
 <template>
   <!-- 微应用挂载点，与注册配置里的container对应 -->
   <div id="app-oinone"></div>
@@ -183,7 +183,7 @@ export default defineComponent({
 ### 5、`dev`服务器配置
 这里以`vite`举例，如此启动后主应用就配置好了
 
-```javascript
+``` javascript
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
@@ -211,7 +211,7 @@ export default defineConfig({
 BASE_PATH 的作用是给 Oinone 应用的路由添加公共前缀，适配主应用的路由
 
 ### 2、`ss-boot`目录下`main.ts`暴露乾坤所需的生命周期
-```javascript
+``` javascript
 if (window.__POWERED_BY_QIANKUN__) {
   __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
 }

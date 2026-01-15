@@ -265,7 +265,7 @@ As seen in the example in the component lifecycle and component behavior section
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Table
@@ -282,7 +282,7 @@ export class TableView extends BaseListView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Search
@@ -348,7 +348,7 @@ export class SearchView extends BaseObjectView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Form
@@ -365,7 +365,7 @@ export class FormView extends BaseObjectView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Detail
@@ -378,7 +378,7 @@ export class DetailView extends BaseObjectView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Gallery
@@ -391,7 +391,7 @@ export class GalleryView extends BaseListView
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Tree

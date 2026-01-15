@@ -21,7 +21,7 @@ The frontend custom implementation, such as the "Filling" in the above legend, o
 # III. Specific Steps
 ## (I) [Backend] Establishing the Model for Model-View Relationship Settings
 ### 1. Creating a Model for Model-View Relationship Settings to Configure the View Relationship Between the List Model and Each Record (Target Model)
-```java
+``` java
 import pro.shushi.oinone.examples.simple.api.proxy.system.SimpleModel;
 import pro.shushi.oinone.examples.simple.api.proxy.system.SimpleModule;
 import pro.shushi.pamirs.boot.base.enmu.ActionTargetEnum;
@@ -109,7 +109,7 @@ To avoid affecting system modules and models, the modules and models referenced 
 
 1. Example Central Model SimpleModel
 
-```java
+``` java
 import pro.shushi.pamirs.meta.annotation.Model;
 import pro.shushi.pamirs.meta.domain.model.ModelDefinition;
 import pro.shushi.pamirs.meta.enmu.ModelTypeEnum;
@@ -127,7 +127,7 @@ public class SimpleModel extends ModelDefinition {
 
 2. Example Central Module SimpleModule
 
-```java
+``` java
 import pro.shushi.pamirs.meta.annotation.Model;
 import pro.shushi.pamirs.meta.annotation.sys.Base;
 import pro.shushi.pamirs.meta.domain.module.ModuleDefinition;
@@ -146,7 +146,7 @@ public class SimpleModule extends ModuleDefinition {
 
 3. Dynamic Page Menu
 
-```java
+``` java
 @UxMenus
 public class DemoMenus implements ViewActionConstants {
 
@@ -158,7 +158,7 @@ public class DemoMenus implements ViewActionConstants {
 ```
 
 ### 2. Overriding Actions for Model-View Relationship Settings, Creating Button Metadata, etc.
-```java
+``` java
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -357,7 +357,7 @@ Click Create to add the logic for the source model to jump to the target model.
 
 ## (III) [Backend] Model Enhancement for Row Operations
 ### 1. Adding Target Model and Context Extension to the Model Corresponding to Row Operations
-```java
+``` java
 import pro.shushi.oinone.examples.simple.api.model.custom.config.ModelRelViewSetting;
 import pro.shushi.pamirs.meta.annotation.Field;
 import pro.shushi.pamirs.meta.annotation.Model;
@@ -393,7 +393,7 @@ public class CustomTaskCenter extends IdModel {
 ```
 
 ### 2. Overriding queryPage for the Model Corresponding to Row Operations to Obtain Context Extensions of Row Records
-```java
+``` java
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import pro.shushi.oinone.examples.simple.api.model.custom.biz.CustomTaskCenter;
@@ -467,7 +467,7 @@ The "Page Opening Method" configured for the designer jump action (needing dynam
 ## (V) [Permission] Custom Action Permission Extension and Configuration
 1. Permission extension, parsing custom action permissions to the permission tree.
 
-```java
+``` java
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -559,7 +559,7 @@ Usage Steps
 3. On the view page, you can see that the context parameters already have data. Checking the interface return will show specific viewAction data. Then, cooperate with frontend code to implement the jump.![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/image-20250219152825868-20250530144824237.png)
 
 ## (VI) [Frontend] Frontend Custom Actions Based on List Model and API Name
-```javascript
+``` javascript
 import {
   ActionContextType,
   ActionType,

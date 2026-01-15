@@ -36,7 +36,7 @@ prev:
 
 （一）添加业务应用依赖管理(主pom)
 
-```xml
+``` xml
 <properties>
     <!-- 可根据Oinone发布公告(https://doc.oinone.top/category/version)更新版本 -->
     <!-- 版本号需与部署企业版版本号保持一致，有疑问可联系数式Oinone员工 -->
@@ -66,7 +66,7 @@ prev:
 
 1. 企业版需要引入的基础包
 
-```xml
+``` xml
 <!-- 公共包 - 企业版 -->
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>

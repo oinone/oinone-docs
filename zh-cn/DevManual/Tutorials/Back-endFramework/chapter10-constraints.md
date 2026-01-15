@@ -25,7 +25,7 @@ Oinone 提供了三种设置自动验证约束规则的方法：UI约束、JAVA 
 
 最常见的做法是：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -45,7 +45,7 @@ public class TestConstraintsModel extends IdModel {
 
 提交名称字段数据为空，你应该会看到以下信息：
 
-```shell
+``` shell
 Caused by: org.springframework.dao.DataIntegrityViolationException:
 ### Error updating database.  Cause: java.sql.SQLException: Field 'name' doesn't have a default value
 ### The error may exist in pro/shushi/pamirs/framework/connectors/data/mapper/GenericMapper.java (best guess)
@@ -58,7 +58,7 @@ Caused by: org.springframework.dao.DataIntegrityViolationException:
 
 提交数据长度不符要求，你应该会看到以下信息：
 
-```shell
+``` shell
 Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'name' at row 1
 ```
 
@@ -86,7 +86,7 @@ SQL 约束是确保数据一致性的有效方法。然而，我们的应用程�
 
 校验约束被定义为一个使用 @Validation 注解的模型与字段，并在一个记录集上调用。当这些字段中的任何一个被修改时，约束会自动进行评估。如果约束规则不满足，该方法应抛出一个异常：
 
-```java
+``` java
 @Validation(ruleWithTips = {
         @Validation.Rule(value = "!IS_NULL(age)", error = "年龄为必填项"),
         @Validation.Rule(value = "age >=0 && age <= 200", error = "年龄只能在0-200之间"),
@@ -97,7 +97,7 @@ private Integer age;
 
 若需要开展更为复杂的检查工作，可在模型与字段定义时使用 `@Validation(check="X")`，其中 `X` 指代给定模型的一个函数。
 
-```java
+``` java
 ……
 @Model.model(TestConstraintsModel.MODEL_MODEL)
 @Model(displayName = "约束测试模型")
@@ -141,7 +141,7 @@ public class TestConstraintsModel extends IdModel {
 
 最常见的做法是：
 
-```java
+``` java
 <field span="1" priority="102" data="age" label="年龄"
     validator="!IS_NULL(activeRecord.age) &amp;&amp; (activeRecord.age &gt;=0 &amp;&amp; activeRecord.age &lt;= 200)"
     validatorMessage="年龄为必填项，且年龄只能在0-200之间"/>

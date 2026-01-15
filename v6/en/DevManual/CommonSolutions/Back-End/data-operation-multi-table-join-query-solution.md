@@ -17,7 +17,7 @@ Scenario: On the page corresponding to Model A, the query conditions include fie
 
 Model A
 
-```java
+``` java
 @Model.model(YesOne.MODEL_MODEL)
 @Model(displayName = "YesOne", summary = "YesOne")
 public class YesOne extends IdModel {
@@ -46,7 +46,7 @@ public class YesOne extends IdModel {
 
 Model B
 
-```java
+``` java
 @Model.model(YesTwo.MODEL_MODEL)
 @Model(displayName = "YesTwo", summary = "YesTwo")
 public class YesTwo extends IdModel {
@@ -67,7 +67,7 @@ public class YesTwo extends IdModel {
 # Ⅱ. Query Using Wrapper
 Query all data IDs that meet the conditions through the query conditions of Model B, then use these IDs to query the required data in Model A.
 
-```java
+``` java
 @Function.Advanced(displayName = "Query List", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_PAGE, managed = true)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
 public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> queryWrapper) {
@@ -92,7 +92,7 @@ public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> qu
 # Ⅲ. Query Using Mapper
 Use SQL to directly query results, employing join query methods.
 
-```java
+``` java
 @Autowired
 private YesOneQueryMapper yesOneQueryMapper;
 
@@ -124,7 +124,7 @@ public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> qu
 
 Interface
 
-```java
+``` java
 package pro.shushi.pamirs.top.core.service;
 
 import org.apache.ibatis.annotations.Mapper;

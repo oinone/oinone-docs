@@ -19,7 +19,7 @@ order: 6
 ## （一）新建 PetShopService 和 PetShopServiceImpl
 + 新建 PetShopService 定义 updatePetShops 方法
 
-```java
+``` java
 package pro.shushi.pamirs.demo.api.service;
 
 import pro.shushi.pamirs.demo.api.model.PetShop;
@@ -39,7 +39,7 @@ public interface PetShopService {
 
 + PetShopServiceImpl 实现 PetShopService 接口并在 updatePetShops 增加 @XAsync 注解
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.service;
 
 import org.springframework.stereotype.Component;
@@ -73,7 +73,7 @@ f. delayTimeUnit，此参数用于定义任务延迟执行的时间单位，默�
 1. 引入 PetShopService
 2. 修改 conform 方法，调用`petShopService.updatePetShops`方法
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 @Model.model(PetShopBatchUpdate.MODEL_MODEL)
 @Component
@@ -98,7 +98,7 @@ public class PetShopBatchUpdateAction {
 1. 通过配置`pamirs.zookeeper.rootPath`，确保两组机器都能覆盖所有任务分片，这样不会漏数据。
 2. 通过`pamirs.event.schedule.ownSign`来隔离。确保两组机器只取各自产生的数据，这样不会重复执行数据。
 
-```yaml
+``` yaml
 pamirs:
   zookeeper:
     zkConnectString: 127.0.0.1:2181

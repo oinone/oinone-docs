@@ -11,8 +11,8 @@ dir:
   order: 5
 prev:
   text: Gallery Field
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
 next:
   text: Vue UI Antd
-  link: /en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.md
 ---

@@ -7,7 +7,7 @@ category:
 order: 2
 prev:
 text: roles and permissions
-link: /en/UserManual/StandardModules/AdministrationCenter/role-and-permission.md
+link: /v6/en/UserManual/StandardModules/AdministrationCenter/role-and-permission.md
 ---
 ## I. Module Overview
 

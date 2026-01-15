@@ -9,6 +9,6 @@ dir:
    order: 5
 next:
   text: 布局
-  link: /zh-cn/UserManual/Designers/UIDesigner/Components/layout.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/Components/layout.md
 ---
 

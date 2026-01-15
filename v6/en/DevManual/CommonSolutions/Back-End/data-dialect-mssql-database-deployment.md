@@ -8,7 +8,7 @@ order: 39
 
 # I. Driver Configuration
 ## (Ⅰ) Maven Configuration (Suitable for 2017 Version)
-```xml
+``` xml
 <mssql.version>9.4.0.jre8</mssql.version>
 <dependency>
   <groupId>com.microsoft.sqlserver</groupId>
@@ -23,7 +23,7 @@ order: 39
 [mssql-jdbc-12.2.0.jre8.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/mssql/mssql-jdbc-12.2.0.jre8.jar)
 
 # II. JDBC Connection Configuration
-```yaml
+``` yaml
 pamirs:
   datasource:
     base:
@@ -50,7 +50,7 @@ pamirs:
 No official documentation available currently.
 
 ## (Ⅱ) URL Format
-```plain
+``` plain
 jdbc:sqlserver://${host}:${port};DatabaseName=${database}
 ```
 
@@ -62,7 +62,7 @@ For other connection parameters, you can refer to relevant materials for optimiz
 
 # III. Dialect Configuration
 ## (Ⅰ) pamirs Dialect Configuration
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -87,7 +87,7 @@ Since the dialect development environment is the 2017 version, other similar ver
 :::
 
 ## (Ⅱ) Schedule Dialect Configuration
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -109,7 +109,7 @@ As there are no obvious differences in the schedule dialect across multiple vers
 
 # IV. Other Configurations
 ## (Ⅰ) Logical Deletion Value Configuration
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -118,7 +118,7 @@ pamirs:
 ```
 
 ## (Ⅱ) MSSQL Database User Initialization and Authorization
-```sql
+``` sql
 -- init root user (user name can be modified by oneself)
 
 CREATE LOGIN [root] WITH PASSWORD = 'password';

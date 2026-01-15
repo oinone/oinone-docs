@@ -24,7 +24,7 @@ Oinone 消息队列模块提供统一的 API 接口支持 RocketMQ/Kafka/RabbitM
 
 根据实际业务中所使用的消息队列，按需添加对应的依赖项。
 
-```xml
+``` xml
 <!-- RocketMQ -->
 <dependency>
   <groupId>pro.shushi.pamirs.framework</groupId>
@@ -50,7 +50,7 @@ Oinone 消息队列模块提供统一的 API 接口支持 RocketMQ/Kafka/RabbitM
 
 ### 1、基础配置
 
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -63,7 +63,7 @@ pamirs:
 
 ### 2、中间件配置
 
-```yaml
+``` yaml
 # RocketMQ
 spring:
   rocketmq:
@@ -91,7 +91,7 @@ spring:
 
 ## （一）NotifyProducer 接口
 
-```java
+``` java
 public interface NotifyProducer<TEMPLATE> {
 
     // 发送普通消息
@@ -117,7 +117,7 @@ public interface NotifyProducer<TEMPLATE> {
 
 返回值 `NotifySendResult` 结构：
 
-```java
+``` java
 public class NotifySendResult {
     private boolean success;   // 发送状态
     private Object notifyResult;  // 消息发送结果
@@ -127,7 +127,7 @@ public class NotifySendResult {
 
 ## （二）NotifyConsumer 接口
 
-```java
+``` java
 @FunctionalInterface
 public interface NotifyConsumer<T extends Serializable> {
     void consume(Message<T> event);
@@ -142,7 +142,7 @@ public interface NotifyConsumer<T extends Serializable> {
 
 #### 原始实现（硬编码方式）
 
-```java
+``` java
 @Autowired
 private RocketMQNotifyProducer rocketMQNotifyProducer;
 @Autowired
@@ -173,7 +173,7 @@ public void sendNormalMessage() {
 
 #### 优化实现（解耦动态化方案）
 
-```java
+``` java
 public void sendNormalMessage() {
     // 方式二：通过业务类型动态获取对应生产者（推荐）
     // 根据EventConstants中定义的业务键获取适配的生产者实例
@@ -198,7 +198,7 @@ public void sendNormalMessage() {
 
 ### 2、顺序消息发送
 
-```java
+``` java
 public void sendOrderlyMessage() {
     PaymentMessage payment = new PaymentMessage("PAY_202312");
     producer.sendOrderly("oinone-payment", "PAY", payment, payment.getOrderId());
@@ -207,7 +207,7 @@ public void sendOrderlyMessage() {
 
 ### 3、事务消息发送（RocketMQ）
 
-```java
+``` java
 @TransactionListener("txGroup")
 public class TransactionListenerImpl implements NotifyTransactionListener {
 
@@ -233,7 +233,7 @@ public void sendTransactionMessage() {
 
 #### 注解定义
 
-```java
+``` java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -259,7 +259,7 @@ public @interface Notify {
 
 #### 普通消息发送
 
-```java
+``` java
 //普通用法
 @Notify(
     topic = "order_created",
@@ -274,7 +274,7 @@ public Order createOrder(OrderRequest request) {
 
 #### 动态标签生成
 
-```java
+``` java
 // 自定义标签生成器
 public class OrderTagGenerator implements NotifyTagsGenerator {
     @Override
@@ -298,7 +298,7 @@ public void updateOrderStatus(String orderId, OrderStatus status) {
 
 #### 顺序消息发送
 
-```java
+``` java
 // 自定义队列选择器
 public class OrderQueueSelector implements NotifyQueueSelector {
     @Override
@@ -324,7 +324,7 @@ public void processOrderSequence(Order order) {
 
 ### 1、@NotifyListener 注解定义
 
-```java
+``` java
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -346,7 +346,7 @@ public @interface NotifyListener {
 
 ### 2、普通消费示例
 
-```java
+``` java
 @Bean
 @NotifyListener(
     topic = "oinone-trade",
@@ -363,7 +363,7 @@ public NotifyConsumer<OrderMessage> orderCreateConsumer() {
 
 ### 3、消费幂等处理示例
 
-```java
+``` java
 @Bean
 @NotifyListener(topic = "oinone-trade",tags = "CREATE")
 public NotifyConsumer<OrderMessage> orderCreateConsumer() {
@@ -384,7 +384,7 @@ public NotifyConsumer<OrderMessage> orderCreateConsumer() {
 
 ## （一）消息拦截器
 
-```java
+``` java
 // 发送前置处理
 @Component
 public class AuthCheckSendBefore implements NotifySendBefore {

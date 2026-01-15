@@ -8,10 +8,10 @@ category:
 order: 3
 prev:
   text: Tree
-  link: /en/DevManual/Reference/UserInterface/ViewArchitectures/tree.md
+  link: /v6/en/DevManual/Reference/UserInterface/ViewArchitectures/tree.md
 next:
   text: Standard Modules
-  link: /en/DevManual/Reference/StandardModule/README.md
+  link: /v6/en/DevManual/Reference/StandardModule/README.md
 ---
 
 Oinone provides an icon library and icon components based on iconfont, which you can use in any Vue component.

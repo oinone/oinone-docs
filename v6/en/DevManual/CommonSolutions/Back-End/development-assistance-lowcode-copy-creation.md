@@ -12,7 +12,7 @@ In the business scenarios of actual projects, there is a requirement for "duplic
 ## \(Ⅰ\) Define the Base Class Model
 1. Define a base class model for duplication (e.g., `AbstractCopyModel`), and all models with the duplication creation function inherit from this model:
 
-```java
+``` java
 @Model.model(AbstractCopyModel.MODEL_MODEL)
 @Model(displayName = "Base Class Providing Duplication Method")
 @Model.Advanced(type= ModelTypeEnum.ABSTRACT)
@@ -25,7 +25,7 @@ public abstract class AbstractCopyModel extends IdModel  {
 
 2. According to the Oinone model inheritance rules, submodels inherit all functions of the parent model; therefore, only the duplication logic for the base class `AbstractCopyModel` needs to be written:
 
-```java
+``` java
 @Component
 @Model.model(AbstractCopyModel.MODEL_MODEL)
 public class AbstractCopyModelAction {
@@ -52,7 +52,7 @@ public class AbstractCopyModelAction {
 ## \(Ⅱ\) Define the Business Model
 Models requiring the duplication creation function inherit from the "base class for duplication" defined above, i.e., inherit from `AbstractCopyModel`:
 
-```java
+``` java
 @Model.model(Employee.MODEL_MODEL)
 @Model(displayName = "Standard Product - Employee", labelFields = "name")
 public class Employee extends AbstractCopyModel {
@@ -74,7 +74,7 @@ public class Employee extends AbstractCopyModel {
 ## \(Ⅲ\) Initialize the "Duplicate" Button
 Initialize the "view action" when the system starts, i.e., add a "Duplicate" button to the row operations of the default page:
 
-```java
+``` java
 @Component
 public class HrSimpleModuleMetaDataEditor implements MetaDataEditor {
 

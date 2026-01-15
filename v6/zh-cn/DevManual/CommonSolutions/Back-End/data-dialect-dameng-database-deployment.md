@@ -12,7 +12,7 @@ order: 37
 当出现 “表 xx 中不能同时包含聚集 KEY 和大字段” 的报错时，在建表阶段应明确指定非聚集主键。可通过执行 `SELECT * FROM V$DM_INI WHERE PARA_NAME = 'PK_WITH_CLUSTER';` 语句查询相关配置信息，随后使用 `SP_SET_PARA_VALUE (1,'PK_WITH_CLUSTER',0)`语句进行参数设置。
 
 ## （一）Maven 配置 DM8（目前 maven 仓库最新版本）
-```xml
+``` xml
 <dm.version>8.1.2.192</dm.version>
 <dependency>
   <groupId>com.dameng</groupId>
@@ -29,7 +29,7 @@ order: 37
 :::
 
 ## （二）Maven配置 DM7
-```xml
+``` xml
 <dm7.version>7.6.1.120</dm7.version>
 <dependency>
   <groupId>com.dameng</groupId>
@@ -50,7 +50,7 @@ order: 37
 [DmJdbcDriver18-8.1.3.12.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/dm/DmJdbcDriver18-8.1.3.12.jar)
 
 # 二、JDBC 连接配置
-```yaml
+``` yaml
 pamirs:
   datasource:
     base:
@@ -80,7 +80,7 @@ pamirs:
 点击查看官方文档：[DM JDBC 编程指南](https://eco.dameng.com/document/dm/zh-cn/pm/jdbc-rogramming-guide.html)
 
 ### 1、连接串1
-```yaml
+``` yaml
 jdbc:dm://127.0.0.1:5236?schema=BASE&clobAsString=true&columnNameUpperCase=false&useUnicode=true&characterEncoding=utf8&compatibleMode=mysql
 ```
 
@@ -91,7 +91,7 @@ jdbc:dm://127.0.0.1:5236?schema=BASE&clobAsString=true&columnNameUpperCase=false
 :::
 
 ### 2、连接串2
-```yaml
+``` yaml
 jdbc:dm://127.0.0.1:5236/BASE?clobAsString=true&useUnicode=true&characterEncoding=utf8&compatibleMode=mysql
 ```
 
@@ -118,7 +118,7 @@ jdbc:dm://127.0.0.1:5236/BASE?clobAsString=true&useUnicode=true&characterEncodin
 
 # 三、方言配置
 ## （一）pamirs 方言配置
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -139,7 +139,7 @@ pamirs:
 
 
 ## （二）schedule方言配置
-```yaml
+``` yaml
 pamirs:
   event:
     schedule:
@@ -162,7 +162,7 @@ pamirs:
 
 # 四、其他配置
 ## （一）逻辑删除的值配置
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -171,7 +171,7 @@ pamirs:
 ```
 
 ## （二）达梦数据库用户初始化及授权
-```sql
+``` sql
 -- init oinone role (role name can be modified by oneself)
 
 CREATE ROLE OINONE;

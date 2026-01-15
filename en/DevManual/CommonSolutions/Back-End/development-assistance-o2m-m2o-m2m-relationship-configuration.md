@@ -7,7 +7,7 @@ order: 13
 ---
 
 # Ⅰ. M2O Relationship Field Configuration
-```java
+``` java
 @Field(displayName = "Teacher Associated Student")
 @Field.many2one
 @Field.Relation(relationFields = {"studentName"}, referenceFields = {"name"})
@@ -34,7 +34,7 @@ If an error occurs during startup, make targeted modifications based on the spec
 When a "Duplicate entry '******' for key 'PRIMARY'" error occurs during saving, the root cause is that `studentName` is set as a unique key. When the same `name` value from the `Student` model is assigned to the `studentName` field of the current model, it triggers a unique key conflict. This situation may also occur in other similar relationship operations.
 
 # Ⅱ. O2M Relationship Field Configuration
-```java
+``` java
 @Field(displayName = "Teacher Associated Pet")
 @Field.one2many
 @Field.Relation(relationFields = {"id"}, referenceFields = {"teacherId"})
@@ -54,7 +54,7 @@ Common Issues:
 
 # Ⅲ. M2M Relationship Field Configuration
 ## \(Ⅰ\) Configuration Example 1
-```java
+``` java
 @Field.many2many(through = OrderRelLogistics.MODEL_MODEL, relationFields = {"parentOrderId"}, referenceFields = {"logisticsBillId"})
 @Field.Relation(relationFields = {"id"}, referenceFields = {"id"})
 @Field(displayName = "Logistics Bill")
@@ -72,7 +72,7 @@ Common Issues:
 ## \(Ⅱ\) Configuration Example 2:
 1. Add `TalentTypeEnum`
 
-```java
+``` java
 @Dict(dictionary = TalentTypeEnum.DICTIONARY,displayName = "Talent Type")
 public class TalentTypeEnum extends BaseEnum<TalentTypeEnum,Integer> {
 
@@ -85,7 +85,7 @@ public class TalentTypeEnum extends BaseEnum<TalentTypeEnum,Integer> {
 
 2. Intermediate Table Definition
 
-```java
+``` java
 @Model.model(PetItemRelPetTalent.MODEL_MODEL)
 @Model(displayName = "Intermediate Table", summary = "Intermediate Table")
 public class PetItemRelPetTalent extends BaseRelation {
@@ -108,7 +108,7 @@ public class PetItemRelPetTalent extends BaseRelation {
 
 3. Relationship Field Definition (In the association relationship, use "##" to enclose the defined constant, here defining the constant "test")
 
-```java
+``` java
 @Field(displayName = "Recommended Talent")
 @Field.many2many(
     through = PetItemRelPetTalent.MODEL_MODEL,
@@ -128,7 +128,7 @@ Analysis:
 + Error: The associated field of the associated model needs to be configured. Reason: The `talentType` field is not defined in `PetTalent`.
 
 ## \(Ⅲ\) Configuration Example 3:
-```java
+``` java
 @Field(displayName = "Category")
 @Field.many2many(
     through = MaterialRelCategory.MODEL_MODEL,

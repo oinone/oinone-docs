@@ -10,7 +10,7 @@ order: 4
 ## 一、macOS安装Git
 命令行中输入一下命令
 
-```shell
+``` shell
 xcode-select --install
 ```
 

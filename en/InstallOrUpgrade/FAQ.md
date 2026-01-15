@@ -13,14 +13,14 @@ next:
 ---
 # I. Network Unreachable: Check Firewall (Take CentOS7 as an Example)
 ## (I) Check if the Firewall is Enabled
-```shell
+``` shell
 # Check firewall status
 systemctl status firewalld
 ```
 
 ## (II) If the Firewall is Enabled, There are Two Handling Methods
 ### 1. Stop the Firewall
-```shell
+``` shell
 # Stop the firewall
 systemctl stop firewalld
 ```
@@ -42,7 +42,7 @@ systemctl stop firewalld
 
 :::
 
-```plain
+``` plain
 # Example of adding an open port in the firewall:
 firewall-cmd --permanent --zone=public --add-port=88/tcp
 # After adding, the firewall needs to be reloaded to take effect

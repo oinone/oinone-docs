@@ -7,7 +7,7 @@ category:
 order: 2
 next:
   text: Content Guidelines
-  link: /en/Contribute/DocumentationContributions/content-guidelines.md
+  link: /v6/en/Contribute/DocumentationContributions/content-guidelines.md
 ---
 This article introduces the Oinone Coding Guidelines. These guidelines aim to improve the quality of Oinone application code. In fact, proper code can enhance readability, simplify maintenance, facilitate debugging, reduce complexity, and improve reliability.
 

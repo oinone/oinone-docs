@@ -9,7 +9,7 @@ category:
 order: 8
 prev:
   text: Tree
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/tree.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/tree.md
 ---
 通常我们将一些用来包裹其他组件的组件通过 Pack 组件进行注册，它们也被称为 `容器组件` 。在具备布局能力的视图中，这类组件通常是非常有意义的。
 
@@ -21,7 +21,7 @@ prev:
 
 ## （一）Pack 组件的注册可选项
 
-```typescript
+``` typescript
 /**
  * Pack组件注册可选项
  */
@@ -57,14 +57,14 @@ export interface BasePackOptions extends SPIOptions {
 
 在不指定 `widget` 属性时，该组件将注册为 Pack 默认组件。以 `DefaultGroupWidget` 为例：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(BasePackWidget.Token({}))
 export class DefaultGroupWidget extends BasePackWidget
 ```
 
 对于这个组件，在 DSL 中通过 pack 标签使用：
 
-```xml
+``` xml
 <pack>
   ...
 </pack>
@@ -74,7 +74,7 @@ export class DefaultGroupWidget extends BasePackWidget
 
 对于其他组件，我们通过 `widget` 来指定组件名称，这样就可以和其他组件进行区分。以 `DefaultBlockWidget` 组件为例：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'block'
@@ -85,7 +85,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 对于这个组件，在 `DSL` 中通过 `pack` 标签使用，并指定 `widget` 属性：
 
-```xml
+``` xml
 <pack widget="block">
   ...
 </pack>
@@ -101,7 +101,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 **一行三列（1:1:1）**
 
-```xml
+``` xml
 <pack widget="row" cols="3">
     <pack widget="col" span="1"></pack>
     <pack widget="col" span="1"></pack>
@@ -111,7 +111,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 **1:3**
 
-```xml
+``` xml
 <pack widget="row" cols="4">
     <pack widget="col" span="1"></pack>
     <pack widget="col" span="3"></pack>
@@ -120,7 +120,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 **两行（自动换行）**
 
-```xml
+``` xml
 <pack widget="row" cols="3">
     <!-- 第一行 -->
     <pack widget="col" span="1"></pack>
@@ -138,7 +138,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 **基本用法**
 
-```xml
+``` xml
 <pack widget="tabs">
     <pack widget="tab" title="Tab 1"></pack>
     <pack widget="tab" title="Tab 2"></pack>
@@ -152,7 +152,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 **分组中使用栅格布局**
 
-```xml
+``` xml
 <pack title="基础信息" cols="3">
     <field data="code" label="编码" span="1" />
     <field data="name" label="名称" span="2" />
@@ -162,7 +162,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 上面的 `DSL` 与 下面的 `DSL` 是等价的：
 
-```xml
+``` xml
 <pack title="基础信息">
     <pack widget="row" cols="3">
         <pack widget="col" span="1">
@@ -188,7 +188,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'block'
@@ -210,7 +210,7 @@ export class DefaultBlockWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'row'
@@ -236,7 +236,7 @@ export class DefaultRowWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'col'
@@ -258,7 +258,7 @@ export class DefaultColWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'containers'
@@ -297,7 +297,7 @@ export class DefaultContainersWidget extends DefaultRowWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'container'
@@ -340,7 +340,7 @@ export class DefaultContainerWidget extends DefaultRowWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({})
 )
@@ -359,7 +359,7 @@ export class DefaultGroupWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'tabs'
@@ -422,7 +422,7 @@ export class DefaultTabsWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'tab'
@@ -452,7 +452,7 @@ export class DefaultTabWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'MultiViewTabs'
@@ -480,7 +480,7 @@ export class DefaultMultiViewTabsWidget extends DefaultTabsWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'MultiViewTab'
@@ -547,7 +547,7 @@ export class DefaultMultiViewTabWidget extends DefaultTabWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'collapse'
@@ -591,7 +591,7 @@ export class DefaultCollapseWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: ['collapsePanel', 'collapse-panel', 'CollapsePanel']
@@ -614,7 +614,7 @@ export class DefaultCollapsePanelWidget extends BasePackWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BasePackWidget.Token({
     widget: 'spin'

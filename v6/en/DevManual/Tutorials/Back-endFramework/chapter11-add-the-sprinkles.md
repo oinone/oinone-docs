@@ -27,7 +27,7 @@ A specific project information list should be added to the project type view:
 
 In the expense management module, we added a reimbursement list to project information. We simply referred to the default view to add the `expenseBills` field:
 
-```xml
+``` xml
 <field widget="Table" priority="113" data="expenseBills" label="false">
     <view type="TABLE" cols="2" model="expenses.ExpenseBill" enableSequence="false">
         <template slot="actions">
@@ -69,7 +69,7 @@ In some cases, we want to define a specific list view for use only in form or de
 
 To achieve this, we can define an inline list view directly within the detail view. For example:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 //……
 @Model.model(TestLineMainModel.MODEL_MODEL)
@@ -87,7 +87,7 @@ public class TestLineMainModel extends IdModel {
 }
 ```
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 //……
 @Model.model(TestLineSubModel.MODEL_MODEL)
@@ -104,7 +104,7 @@ public class TestLineSubModel extends IdModel {
 }
 ```
 
-```java
+``` java
 <view name="detailView" type="DETAIL" cols="2" model="expenses.TestLineMainModel">
     <template slot="actions" autoFill="true"/>
     <template slot="fields">
@@ -184,7 +184,7 @@ By default, even without specifying a sort order, records are not retrieved in a
 
 The `ordering` attribute accepts a string containing the list of fields for sorting, which is converted to an SQL `order by` clause. For example:
 
-```java
+``` java
 ……
 @Model.Advanced(ordering = "code desc")
 public class TestModel extends IdModel {
@@ -211,7 +211,7 @@ Our records are sorted in descending order by `code`, meaning the record with th
 
 Sorting can be defined at the model level, ensuring consistent ordering wherever records are retrieved. However, you can also define a specific order directly in the view using the `ordering` attribute. For example:
 
-```java
+``` java
 <view name="detailView" type="DETAIL" cols="2" model="expenses.TestLineMainModel">
     <template slot="actions" autoFill="true"/>
     <template slot="fields">
@@ -239,7 +239,7 @@ Sorting can be defined at the model level, ensuring consistent ordering wherever
 
 To add attributes to the `Table` component (`Table widget`), you can add a `table` slot in the table view, as shown in the example:
 
-```html
+``` html
 <template slot="table" sortable="true" ordering="field1 desc"/>
 ```
 

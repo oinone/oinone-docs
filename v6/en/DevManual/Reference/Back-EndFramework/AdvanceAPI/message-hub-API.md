@@ -42,7 +42,7 @@ order: 5
 + **Return Value**: `MessageHub` instance (supports chaining).
 + **Example**: **java**
 
-```java
+``` java
 PamirsSession.getMessageHub()
     .msg(Message.init()
         .setLevel(InformationLevelEnum.ERROR)
@@ -68,7 +68,7 @@ PamirsSession.getMessageHub()
 
 **Example**:
 
-```java
+``` java
 // Quickly add a warning message
 messageHub.warn("连接即将超时");
 ```
@@ -117,7 +117,7 @@ messageHub.warn("连接即将超时");
 
 **Example**:
 
-```java
+``` java
 // Set the error path for the field "name"
 messageHub.appendPath("name");
 ```
@@ -167,7 +167,7 @@ messageHub.appendPath("name");
 
 ## (Ⅰ) Form Validation Scenario
 
-```java
+``` java
 @Function
 public Boolean checkData(TestConstraintsModel data) {
     String name = data.getName();
@@ -196,7 +196,7 @@ public Boolean checkData(TestConstraintsModel data) {
 
 ## (Ⅱ) Quickly Add a Success Message
 
-```java
+``` java
 messageHub.success("操作成功！")
           .directives("redirectToHome"); // Add front-end navigation directive
 ```
@@ -209,7 +209,7 @@ messageHub.success("操作成功！")
 
 # Ⅷ、Class Diagram (Simplified)
 
-```plain
+``` plain
 MessageHub
 ├─ success: boolean
 ├─ dataExtension: DataExtension

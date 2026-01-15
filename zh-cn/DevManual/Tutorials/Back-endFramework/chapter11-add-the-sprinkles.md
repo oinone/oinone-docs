@@ -26,7 +26,7 @@ order: 11
 
 在费用管理模块中，我们为项目信息添加了一个报销列表。我们只是简单地以默认视图作为参照来添加 `expenseBills` 字段：
 
-```xml
+``` xml
 <field widget="Table" priority="113" data="expenseBills" label="false">
     <view type="TABLE" cols="2" model="expenses.ExpenseBill" enableSequence="false">
         <template slot="actions">
@@ -68,7 +68,7 @@ order: 11
 
 为了实现这一点，我们可以定义内联列表视图。内联列表视图是直接在详细视图中定义的。例如：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 //……
 @Model.model(TestLineMainModel.MODEL_MODEL)
@@ -86,7 +86,7 @@ public class TestLineMainModel extends IdModel {
 }
 ```
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 //……
 @Model.model(TestLineSubModel.MODEL_MODEL)
@@ -103,7 +103,7 @@ public class TestLineSubModel extends IdModel {
 }
 ```
 
-```java
+``` java
 <view name="detailView" type="DETAIL" cols="2" model="expenses.TestLineMainModel">
     <template slot="actions" autoFill="true"/>
     <template slot="fields">
@@ -180,7 +180,7 @@ Oinone 提供了多种设置默认排序顺序的方式。其中，最为常用�
 
 `ordering` 属性接受一个字符串，该字符串包含用于排序的字段列表。它将被转换为 SQL 中的 `order by` 子句。例如：
 
-```java
+``` java
 ……
 @Model.Advanced(ordering = "code desc")
 public class TestModel extends IdModel {
@@ -207,7 +207,7 @@ public class TestModel extends IdModel {
 
 可以在模型级别进行排序。这样做的优点是，在检索记录列表的任何地方，顺序都是一致的。然而，也可以通过 `ordering` 属性直接在视图中定义特定的顺序。例如：
 
-```java
+``` java
 <view name="detailView" type="DETAIL" cols="2" model="expenses.TestLineMainModel">
     <template slot="actions" autoFill="true"/>
     <template slot="fields">
@@ -235,7 +235,7 @@ public class TestModel extends IdModel {
 
 为给 `Table` 组件（`Table widget`）添加属性，可通过在表格视图中增加 `table` 插槽来实现，示例代码如下：
 
-```html
+``` html
 <template slot="table" sortable="true" ordering="field1 desc"/>
 ```
 

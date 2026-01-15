@@ -22,7 +22,7 @@ order: 45
 
 遍历权限加载的节点，找到需要删除的模块首页节点。删除节点。
 
-```java
+``` java
 @Component
 @Order(88)
 @SPI.Service

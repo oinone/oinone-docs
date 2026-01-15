@@ -8,7 +8,7 @@ order: 5
 # 一、多值字段
 字段配置 `multi = true` 字段类型为 `List<>`
 
-```java
+``` java
 @Field.String
 @Field(displayName ="多值字段", multi = true)
 private List<String> multivaluedFile;

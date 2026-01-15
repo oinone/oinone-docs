@@ -14,7 +14,7 @@ order: 79
 2. 使用平台提供的元数据在线发布功能。
 
 # 二、依赖包
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.metadata.manager</groupId>
     <artifactId>pamirs-metadata-manager</artifactId>
@@ -28,7 +28,7 @@ order: 79
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/71715839574_.pic_.jpg)
 
 ## （一）示例调用代码
-```graphql
+``` graphql
 mutation {
     pamirsUserTransientMutation {
         login(user: { login: "admin", password: "admin" }) {
@@ -50,7 +50,7 @@ mutation {
 ## （一）全部导出
 请求示例：
 
-```graphql
+``` graphql
 mutation {
     dataDesignerExportReqMutation {
         export(data: { fileName: "datavi_data" }) {
@@ -63,7 +63,7 @@ mutation {
 ## （二）指定图表导出
 请求示例：
 
-```graphql
+``` graphql
 mutation {
     dataDesignerExportReqMutation {
         export(data: { chartCode: "CT00000000002000", fileName: "datavi_data" }) {
@@ -79,7 +79,7 @@ mutation {
 ## （三）指定报表导出
 请求示例：
 
-```graphql
+``` graphql
 mutation {
     dataDesignerExportReqMutation {
         export(data: { reportCode: "RP00001000", fileName: "datavi_data" }) {
@@ -95,7 +95,7 @@ mutation {
 ## （四）指定业务大屏导出
 请求示例：
 
-```graphql
+``` graphql
 mutation {
     dataDesignerExportReqMutation {
         export(data: { screenCode: "DS00001000", fileName: "datavi_data" }) {
@@ -111,7 +111,7 @@ mutation {
 # 六、业务工程中导入示例代码
 导入元数据示例代码
 
-```java
+``` java
 @Slf4j
 @Order(Integer.MAX_VALUE-1)
 @Component

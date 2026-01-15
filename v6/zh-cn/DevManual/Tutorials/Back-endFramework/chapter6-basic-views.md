@@ -28,7 +28,7 @@ order: 6
 
 表格视图，以表格形式展示记录。其根元素为 `<view>` 并且 `type="TABLE"`。最基本的表格视图会列出表格中要显示的所有字段（每个字段对应一列），示例如下：
 
-```xml
+``` xml
 <view name="tableView1" type="TABLE" cols="2" model="expenses.TestModel" enableSequence="false">
   <template slot="actions" autoFill="true"/>
   <template slot="rowActions" autoFill="true"/>
@@ -58,7 +58,7 @@ order: 6
 
 任何模型只要有访问路径则可以在数据库中找到一个简单示例，即该模型对应的默认视图。
 
-```sql
+``` sql
 mysql> use trutorials_base;
 Database changed
 mysql> select template from base_view where model='expenses.TestModel' and name ='tableView' and type='TABLE' and is_deleted = 0;
@@ -96,7 +96,7 @@ mysql> select template from base_view where model='expenses.TestModel' and name 
 
 表单视图用于创建和编辑单条记录。其根元素为 `<view>` 并且 `type="FORM"`，由高级结构元素（组和标签）和交互元素（按钮和字段）组成，示例如下：
 
-```xml
+``` xml
 <view name="formView1" type="FORM" cols="2" model="expenses.TestModel">
     <template slot="actions" autoFill="true"/>
     <template slot="fields">
@@ -124,7 +124,7 @@ mysql> select template from base_view where model='expenses.TestModel' and name 
 
 任何模型只要有访问路径则可以在数据库中找到一个简单示例，即该模型对应的默认视图。
 
-```sql
+``` sql
 mysql> select template from base_view where model='expenses.TestModel' and name ='formView' and type='FORM' and is_deleted = 0;
 ```
 
@@ -152,7 +152,7 @@ mysql> select template from base_view where model='expenses.TestModel' and name 
 
 详情视图用于查看单条记录。其根元素为 `<view>` 并且 `type="DETAIL"`，由高级结构元素（组和标签）和交互元素（按钮和字段）组成。与表单视图类似，同样任何模型只要有访问路径则可以在数据库中找到一个简单示例，即该模型对应的默认视图。
 
-```sql
+``` sql
 mysql> select template from base_view where model='expenses.TestModel' and name ='detailView' and type='DETAIL' and is_deleted = 0;
 ```
 

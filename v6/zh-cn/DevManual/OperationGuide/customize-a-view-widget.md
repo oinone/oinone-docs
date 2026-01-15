@@ -19,7 +19,7 @@ order: 3
 
 ## （一）元素组件的注册可选项
 
-```typescript
+``` typescript
 /**
  * Element组件注册可选项
  */
@@ -106,7 +106,7 @@ export interface BaseElementOptions extends SPIOptions {
 
 和所有的 `element` 组件一样，我们只需要继承 `TableWidget` 组件就可以获得默认表格组件的全部功能，就像这样：
 
-```typescript
+``` typescript
 import CustomTable from './CustomTable.vue';
 
 @SPI.ClassFactory(
@@ -126,7 +126,7 @@ export class CustomTableWidget extends TableWidget {
 
 让我们先写一个 `hello world` 吧：
 
-```vue
+``` vue
 <template>
   <div class="custom-table-demo">hello world</div>
 </template>
@@ -136,7 +136,7 @@ export class CustomTableWidget extends TableWidget {
 
 让我们通过 `registerLayout` 来切换组件，将 `widget="table"` 改为 `widget="CustomTable"` 来完成组件的切换：
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -172,7 +172,7 @@ export class CustomTableWidget extends TableWidget {
 
 让我们对 Vue 组件模板进行一些修改：
 
-```vue
+``` vue
 <template>
   <div class="custom-table-demo">
     <oio-table
@@ -190,7 +190,7 @@ export class CustomTableWidget extends TableWidget {
 
 对应的 `props` 声明可以是这样：
 
-```vue
+``` vue
 props: {
   setTableInstance: {
     type: Function as PropType<(tableInstance: OioTableInstance | undefined) => void>
@@ -211,7 +211,7 @@ props: {
 
 在这里，我们要保证表格的功能不出问题，一定要使用 `setTableInstance` 方法将 `OioTable` 组件实例传递到 Widget 组件，这样就可以让 Widget 组件直接操作 `OioTable` 实例。这一点和我们在 [聚焦输入框](/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#九、聚焦输入框) 教程中的操作类似，都是为了将逻辑转移到 Widget 组件以此提供可被重写或继承的具体的功能。我们可以这样处理一下：
 
-```vue
+``` vue
 setup(props) {
   const table = ref<OioTableInstance | undefined>();
 
@@ -237,7 +237,7 @@ setup(props) {
 
 Oops～，表格高度好像不太对，让我们写一个 `css` 调整一下：
 
-```css
+``` css
 .custom-table-demo {
   height: 100%;
 }
@@ -251,7 +251,7 @@ Oops～，表格高度好像不太对，让我们写一个 `css` 调整一下：
 
 让我们对 Vue 组件模板进行一些修改：
 
-```vue
+``` vue
 <template>
   <div class="custom-table-demo">
     ...
@@ -271,7 +271,7 @@ Oops～，表格高度好像不太对，让我们写一个 `css` 调整一下：
 
 对应的 `props` 声明可以是这样：
 
-```typescript
+``` typescript
 props: {
   pageSizeOptions: {
     type: Array as PropType<(number | string)[]>
@@ -294,7 +294,7 @@ props: {
 
 到了这里，我们发现分页器虽然已经渲染出来了，但样式又出了一点问题。现在我们希望表格可以按屏幕撑开，分页器总是在页面的最下方。我们可以用 `flex` 布局调整一下：
 
-```css
+``` css
 .custom-table-demo {
   height: 100%;
   display: flex;
@@ -334,7 +334,7 @@ props: {
 
 遵循我们对 Widget 组件和 Vue 组件的职责划分，我们应当在 `CustomTableWidget` 中调整这些参数，就像下面这样：
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected get pageSizeOptions(): number[] {
   return [1, 2, 3, 4, 5];
@@ -368,7 +368,7 @@ protected get defaultPageSize(): number {
 
 让我们对 Vue 组件模板进行一些修改：
 
-```vue
+``` vue
 <template>
   <div class="custom-table-demo">
     <oio-table
@@ -399,7 +399,7 @@ protected get defaultPageSize(): number {
 
 对应的 `props` 声明可以是这样：
 
-```vue
+``` vue
 props: {
   checkMethod: {
     type: Function
@@ -415,7 +415,7 @@ props: {
 
 到了这里，在不做任何其他处理的情况下，我们会发现这些方法并不能正常工作。这是因为 `OioTable` 组件发出的事件并不能直接被 `TableWidget` 组件进行处理。我们还需要在 `setup` 中做一个 “桥接” 处理，使得这些方法可以正常工作。对于具体方法的处理方式不同，我们需要根据 API 文档灵活处理。对于我们现在这个功能来说，我们可以像下面这样处理：
 
-```vue
+``` vue
 setup(props) {
   const onCheckedChange = (event: CheckedChangeEvent) => {
     const { records } = event;
@@ -450,7 +450,7 @@ setup(props) {
 
 在上面我们使用 `OioColumn` 组件添加了 `Checkbox` 列。除此之外，我们还可以通过在 `布局（Layout）` 中使用 `widget="checkbox-column"` 组件来添加 `Checkbox` 列，也可以达到相同的效果。
 
-```xml
+``` xml
 <element widget="checkbox-column" />
 ```
 
@@ -478,7 +478,7 @@ setup(props) {
 
 和自定义表格组件类似，我们可以通过继承 `FormWidget` 组件来创建 `CustomFormWidget` 组件来完成我们的练习内容。就像下面这样：
 
-```typescript
+``` typescript
 import CustomForm from './CustomForm.vue';
 
 @SPI.ClassFactory(
@@ -504,7 +504,7 @@ export class CustomFormWidget extends FormWidget {
 
 相比于表格组件，`OioForm` 组件使用起来就比较简单，功能也没有表格组件那么复杂。让我们对 Vue 组件模板进行一些修改：
 
-```vue
+``` vue
 <template>
   <div class="custom-form-demo">
     <oio-form ref="form" class="oio-default-form" :layout="layout" :label-col="labelCol" :wrapper-col="wrapperCol">
@@ -526,7 +526,7 @@ export class CustomFormWidget extends FormWidget {
 
 对应的 `props` 声明可以是这样：
 
-```vue
+``` vue
 props: {
   setFormInstance: {
     type: Function as PropType<(instance: OioFormInstance | undefined) => void>
@@ -567,7 +567,7 @@ props: {
 
 和自定义表格组件类似，我们可以通过继承 `GalleryWidget` 组件创建 `CustomGalleryWidget` 组件来完成我们的练习内容。就像下面这样：
 
-```typescript
+``` typescript
 import CustomGallery from './CustomGallery.vue';
 
 @SPI.ClassFactory(
@@ -595,7 +595,7 @@ export class CustomGalleryWidget extends GalleryWidget {
 
 让我们把 “[Customize a gallery view](/zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)” 中实现的卡片 “摘抄” 过来，对应的 Vue 组件模板应该是这样的：
 
-```vue
+``` vue
 <template>
   <div class="custom-gallery-demo">
     <oio-gallery
@@ -625,7 +625,7 @@ export class CustomGalleryWidget extends GalleryWidget {
 
 对应的 `props` 声明可以是这样：
 
-```vue
+``` vue
 props: {
   showDataSource: {
     type: Array as PropType<ActiveRecord[]>
@@ -641,7 +641,7 @@ props: {
 
 再 “摘抄” 一部分 `css` 样式：
 
-```css
+``` css
 .custom-card-demo {
   background-color: #ffffff;
   border: 1px solid #e3e7ee;
@@ -674,7 +674,7 @@ props: {
 
 按之前的方法直接切换组件的话，这里可能会丢失卡片中渲染的动作。有可能你是这样做的：
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -698,7 +698,7 @@ props: {
 
 其他地方的定义不变，让我们把 `CustomGallery` 这一段定义提取出来：
 
-```xml
+``` xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
     <element widget="expandColumn" slot="expandRow" />
     <xslot name="fields" slotSupport="field" />
@@ -708,7 +708,7 @@ props: {
 
 现在，让我们回想一下 “[带插槽的通用卡片](/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#五、带插槽的通用卡片)” 一节，在 `布局（Layout）` 中，我们使用了 `插槽（Slot）` 以及在 `拓展内容` 部分提及的 `具名插槽` 相关内容。一个正确的定义应该是这样的：
 
-```xml
+``` xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
     <xslot name="fields" slotSupport="field" />
     <template slot="rowActions" />
@@ -717,7 +717,7 @@ props: {
 
 最终合并 DSL 后的结果可能是这样的：
 
-```xml
+``` xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
     <field data="code" />
     <field data="name" />
@@ -742,7 +742,7 @@ props: {
 
 为了简单起见，我们在不使用 `OioGallery` 组件的情况下渲染出相同的页面，这样我们的 Vue 组件模板可以是这样的：
 
-```vue
+``` vue
 <template>
   <div class="custom-gallery-demo">
     <div class="custom-card-demo" v-for="(data, index) in showDataSource" :key="data.__draftId">
@@ -762,7 +762,7 @@ props: {
 
 之前的页面是通过 `oio-row` 和 `oio-col` 的组合实现的 `栅格布局` ，每行四个卡片。为了达到相同效果，让我们添加这样一段 css 样式来看看效果：
 
-```css
+``` css
 .custom-gallery-demo {
   display: flex;
   flex-wrap: wrap;

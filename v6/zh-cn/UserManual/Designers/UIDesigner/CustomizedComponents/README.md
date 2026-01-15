@@ -9,10 +9,10 @@ dir:
    order: 6
 prev:
   text: 动作
-  link: /zh-cn/UserManual/Designers/UIDesigner/Components/action.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/Components/action.md
 next:
   text: 自定义组件管理
-  link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/customized-component-management.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/customized-component-management.md
 ---
 # 组件化设计
 &emsp;&emsp;Oinone的界面设计器核心之一是其组件库，这里包含了丰富多样的预设组件，从基础的文本和按钮到复杂的图表和表单元素。通过简单的拖拽操作即可添加到画布上，构成完整的页面布局。这种基于组件的设计方法大大简化了开发流程，提高了设计效率，同时也保证了设计的一致性和可维护性。

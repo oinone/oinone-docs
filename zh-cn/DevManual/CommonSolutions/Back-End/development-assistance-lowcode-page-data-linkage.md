@@ -18,7 +18,7 @@ order: 15
 ## （一）配置 domain 表达式
 下面示例中，页面交互中部门`department`下拉列表中的数据，是所选择公司下的部门列表
 
-```java
+``` java
 @Field.many2one
 @Field.Relation(relationFields = {"corporationCode"}, referenceFields = {"code"})
 @Field(displayName = "公司", required = true)
@@ -50,7 +50,7 @@ private String departmentCode;
 
 总成本`totalCost`配置 compute 属性，`value = MULTIPLY(activeRecord.stock, activeRecord.unitPrice)`
 
-```java
+``` java
 @Field.Integer
 @Field(displayName = "采购数量",required = true)
 private Integer stock;
@@ -71,7 +71,7 @@ private BigDecimal totalCost;
 
 `value = "IF((activeRecord.stock=='0' || IS_NULL(activeRecord.stock)), 0, DIVIDE(activeRecord.totalCost, activeRecord.stock))"`，计算逻辑中考虑到了库存为0的特殊情况
 
-```java
+``` java
 @Field.Integer
 @Field(displayName = "库存数量",required = true)
 private Integer stock;
@@ -99,7 +99,7 @@ private BigDecimal unitPrice;
 ## （三）调用后端联动函数
 下面示例中，根据身份证号`idCard`计算生日和性别； 为字段身份证号`idCard`配置了联动函数`constructIdCardChange`，通过调用后端函数的方式实现数据联动
 
-```java
+``` java
 @Model.model(Employee.MODEL_MODEL)
 @Model(displayName = "标品-员工", labelFields = "name")
 @Model.Advanced(index = {"code", "departmentCode"})
@@ -169,7 +169,7 @@ public class Employee extends AbstractCopyModel {
 }
 ```
 
-```java
+``` java
 @Slf4j
 @Component
 @Model.model(Employee.MODEL_MODEL)

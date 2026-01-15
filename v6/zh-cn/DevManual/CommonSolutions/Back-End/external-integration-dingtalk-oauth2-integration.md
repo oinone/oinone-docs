@@ -41,7 +41,7 @@ order: 9
 - `AgentId`（微应用ID）
 
 ## （三）引入钉钉 SDK 依赖
-```xml
+``` xml
 <dependency>
     <groupId>com.aliyun</groupId>
     <artifactId>dingtalk</artifactId>
@@ -53,7 +53,7 @@ order: 9
 ## （一）项目中增加钉钉的配置
 1、项目中 application.yml 配置（本文示例采用）
 
-```yaml
+``` yaml
 pamirs:
   # 对接钉钉Auth（钉钉统一身份认证）
   dingtalk:
@@ -67,7 +67,7 @@ pamirs:
 
 2、后端配置方式
 
-```java
+``` java
 /**
  * 对接钉钉配置(页面可配置); 也可以改成yml文件配置的形式
  */
@@ -111,7 +111,7 @@ public class SimpleDingTalkConfig extends IdModel implements SingletonModel<Simp
 + 给配置模型 SimpleDingTalkConfig 挂上菜单；
 + 从配置 SimpleDingTalkConfig 类中获取属性值代码参考
 
-```java
+``` java
 SimpleDingTalkConfig dingTalkConfig = new SimpleDingTalkConfig().singletonModel();
 ……
 dingTalkConfig.getAppUrl();
@@ -126,7 +126,7 @@ dingTalkConfig.getAppUrl();
 | `com.aliyun.dingtalkcontact_1_0.Client` | 用于调用联系人接口，获取用户详细信息 |
 
 
-```java
+``` java
 package pro.shushi.pamirs.thirdparty.core.dingtalk.helper;
 
 import com.aliyun.teaopenapi.models.Config;
@@ -192,7 +192,7 @@ public class DingTalkHelper {
 ## （三）构建授权链接（跳转钉钉）
 oauth 方法负责生成钉钉 OAuth 授权链接，并重定向至该链接
 
-```java
+``` java
 @RequestMapping(value = "/ddAuth/oauth", method = RequestMethod.GET)
 public void oauth(HttpServletResponse response) throws IOException {
     String url = "https://login.dingtalk.com/oauth2/auth?" +
@@ -213,7 +213,7 @@ public void oauth(HttpServletResponse response) throws IOException {
 ## （四）处理钉钉回调，获取 authCode 并换取 accessToken
 + `handleCallback` 方法处理钉钉回调请求，从请求参数中获取 `authCode`，然后通过 `authCode` 换取 `accessToken`，并调用 `getUserinfo` 方法进一步获取用户详细信息。
 
-```java
+``` java
 @RequestMapping(value = "/ddAuth/oauth2url", method = RequestMethod.GET)
 public void handleCallback(@RequestParam(value = "authCode") String authCode, HttpServletResponse response) throws Exception {
     // 获取 AccessToken
@@ -235,7 +235,7 @@ public void handleCallback(@RequestParam(value = "authCode") String authCode, Ht
 ```
 
 ## （五）使用 accessToken 获取用户个人信息
-```java
+``` java
 /**
  * 使用 accessToken 获取用户个人信息
  */
@@ -254,7 +254,7 @@ public void getUserinfo(String accessToken) throws Exception {
 ## （六）处理用户信息并设置登录态（Session + Cookie）
 处理用户信息，包括创建或更新本地用户记录、初始化密码表、设置第三方登录记录以及设置用户的登录状态（Session 和 Cookie）。
 
-```java
+``` java
 /**
  * 第四步：处理用户信息并设置登录态（Session + Cookie）
  */
@@ -341,7 +341,7 @@ H5 应用配置信息，配置应用的首页地址和 PC 端首页地址。 下
 ## （二）在创建第三方用户时赋权
 在对接流程中的第六步：处理用户信息阶段，即根据第三方用户信息创建平台用户（如 `PamirsUser`）时，可通过调用系统接口，将上述定义好的角色直接分配给该用户，实现权限的静态绑定。
 
-```java
+``` java
 private void bindUserRole(PamirsUser pamirsUser) {
     AuthRole authRole = new AuthRole().setCode(THIRD_PARTY_USER_ROLE_CODE).queryOne();
     if (authRole != null) {
@@ -356,7 +356,7 @@ private void bindUserRole(PamirsUser pamirsUser) {
 
 本文示例采用的就是此方案，完整实现请参考附件中的代码文件：`ThirdPartyRoleCustom.java`
 
-```java
+``` java
 @Override
 public Set<Long> get() {
     Set<Long> roleIds = super.get();

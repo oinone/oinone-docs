@@ -12,7 +12,7 @@ In daily project development, we may encounter scenarios where the current view 
 
 This article guides you through implementing this feature. As shown in the images, both the table and card views are contained within the current view scope. Therefore, we need a view container to encapsulate both the table and card. Since the table can use the platform's default rendering, we only need to customize the card view. We'll use the country menu in the resource module as an example, with the corresponding URL:
 
-```plain
+``` plain
 http://localhost:8080/page;module=resource;viewType=TABLE;model=resource.ResourceCountry;action=resource%23%E5%9B%BD%E5%AE%B6;scene=resource%23%E5%9B%BD%E5%AE%B6;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
@@ -22,7 +22,7 @@ http://localhost:8080/page;module=resource;viewType=TABLE;model=resource.Resourc
 # II. Creating an Outer View Container
 As mentioned, both the table and card views reside within the current view, so we need a view container to wrap them, allowing the container to include both table and card components. First, create `TableWithCardViewWidget.ts`:
 
-```typescript
+``` typescript
 // TableWithCardViewWidget.ts
 import { BaseElementWidget, SPI, Widget } from '@oinone/kunlun-dependencies';
 import TableWithCardView from './TableWithCardView.vue';
@@ -55,7 +55,7 @@ enum ListViewType {
 
 In the `initialize` function of `TableWithCardViewWidget`, we define two slots: `tableWidget` and `cardWidget`, which need to be received in the corresponding Vue file:
 
-```vue
+``` vue
 <template>
   <div class="list-view-wrapper">
     <!-- Table slot -->
@@ -86,8 +86,8 @@ In the `initialize` function of `TableWithCardViewWidget`, we define two slots: 
 With the view container defined, we now register it via a custom layout.
 
 # III. Layout Registration
-```javascript
-import { registerLayout, ViewType } from '@kunlun/dependencies';
+``` javascript
+import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';
 
 registerLayout(
   `<view type="TABLE">
@@ -125,7 +125,7 @@ registerLayout(
 
 This layout is adapted from the platform's default table layout. Notice:
 
-```xml
+``` xml
 <element widget="TableWithCardViewWidget">
   <template slot="tableWidget">
     ...
@@ -138,7 +138,7 @@ This layout is adapted from the platform's default table layout. Notice:
 
 This template registers the custom view container `TableWithCardViewWidget` with two templates. The `slot` attributes in each template correspond to the `tableWidget` and `cardWidget` slots defined in the `initialize` function of `TableWithCardViewWidget`:
 
-```xml
+``` xml
 <template slot="tableWidget">
   <element widget="table" slot="table" datasource-provider="true">
     <element widget="expandColumn" slot="expandRow" />
@@ -150,7 +150,7 @@ This template registers the custom view container `TableWithCardViewWidget` with
 
 The first slot `tableWidget` contains the default table layout, which will render the platform's default table component at runtime.
 
-```xml
+``` xml
 <template slot="cardWidget">
   <element widget="CardListViewWidget" datasource-provider="true" />
 </template>
@@ -159,7 +159,7 @@ The first slot `tableWidget` contains the default table layout, which will rende
 The second slot `cardWidget` renders `CardListViewWidget`, which we need to customize as a custom view.
 
 # IV. Customizing the Card View
-```typescript
+``` typescript
 // CardListViewWidget.ts
 
 import {
@@ -231,7 +231,7 @@ import cardList from './card-list.vue';
   }
 ```
 
-```vue
+``` vue
 <template>
   <div v-if="showDataSource && showDataSource.length">
     <div v-for="data in showDataSource" :key="data.id">
@@ -280,7 +280,7 @@ After completing the card widget, we need a function to switch between card and 
 # V. View Type Switching
 Add the view switching function to the Vue file corresponding to `TableWithCardViewWidget`:
 
-```vue
+``` vue
 <template>
   <div class="list-view-wrapper">
     <!-- View type switch button -->
@@ -314,7 +314,7 @@ Add the view switching function to the Vue file corresponding to `TableWithCardV
 
 Finally, implement the `onChangeViewType` method in `TableWithCardViewWidget.ts`:
 
-```javascript
+``` javascript
 public resetSearch() {
     getRouterInstance()!.push({
       segments: [

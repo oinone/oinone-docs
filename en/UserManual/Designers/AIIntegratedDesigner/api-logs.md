@@ -7,7 +7,7 @@ category:
 order: 3
 next:
   text: Instructions for Using Expressions
-  link: /zh-cn/UserManual/Designers/expressions-guide.md
+  link: /en/UserManual/Designers/expressions-guide.md
 ---
 The interface log system is used to comprehensively record the call information of connectors. Users can view the interface call status to determine whether the call is successful. Through in-depth analysis of data such as interface execution results, response times, and parameter information, the call logic can be optimized to ensure the stability and efficiency of AI service operations.
 

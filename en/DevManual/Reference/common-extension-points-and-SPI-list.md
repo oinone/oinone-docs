@@ -39,7 +39,7 @@ Integrates three service discovery mechanisms to support dynamic component exten
 
 ### 4. Invocation Methods
 
-```java
+``` java
 // Invoke by specifying extension name
 DemoApi ext = ExtensionServiceLoader.getExtension(DemoApi.class, "ext1");
 

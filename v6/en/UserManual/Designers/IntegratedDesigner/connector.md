@@ -219,7 +219,14 @@ Editing operations are only allowed when APIs and files are in the disabled stat
 
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/connector/glAPI/bj.png)  
+
+In the SQL input area of the database API, a toggle button for 「Format」 and 「Compress」 is provided to help users view and edit SQL statements more clearly.
+
++ Format: After entering or pasting SQL in the input box, click 「Format」. The system will format the current SQL. Without changing the meaning of the SQL, it will re - format the SQL text to make it easier to read and maintain.
++ Compress: After entering or pasting SQL in the input box, click 「Compress」. The system will compress the current SQL. Without changing the meaning of the SQL, it will remove redundant spaces, line breaks, and indentations, and merge it into one line or very few lines.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Integrated%20Designer/Process%20log/1767922157116-f6a72f64-66d3-44c4-b532-a26c078f91b4.gif)
 
 ## (IV) Integrated Interface Testing
 
@@ -460,7 +467,7 @@ Select an API and click the "Publish Open API" button to publish it successfully
 
 ## (Ⅸ) Export API Documentation
 ### 1. Function Introduction
-It supports exporting API information as documentation.
+It supports the export of API information in applications and databases into document format. The document adopts a uniform structure, and different types display different information according to their own characteristics, which is used to describe the configured interface capabilities under an application, including interface purpose, call mode, parameter description and return data structure
 
 ### 2. Operation Method
 Select an API and click the "Export API Documentation" button to export it successfully.

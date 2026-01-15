@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 微流设计器(Microflow Designer)
-  link: /zh-cn/UserManual/Designers/MicroflowDesigner/README.md
+  link: /v6/zh-cn/UserManual/Designers/MicroflowDesigner/README.md
 ---
 微流设计器支持对流程进行新增、编辑、删除等一系列便捷操作，以满足多种管理需求。
 

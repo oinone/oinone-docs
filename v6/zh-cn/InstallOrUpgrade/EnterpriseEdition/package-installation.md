@@ -6,7 +6,7 @@ category:
 order: 4
 next:
   text: 从社区版转向企业版
-  link: /zh-cn/InstallOrUpgrade/from-community-to-enterprise.md
+  link: /v6/zh-cn/InstallOrUpgrade/from-community-to-enterprise.md
 ---
 # 一、概述
 :::info 注意
@@ -64,7 +64,7 @@ next:
 
 :::
 
-```plain
+``` plain
 #startup.sh
 #!/bin/bash
 # 脚本所在目录
@@ -112,7 +112,7 @@ Windows平台启动器切换为：win-boot.exe
 
 + Mysql
 
-```yaml
+``` yaml
 # application.yml文件
 # 改成mysql所在服务器的ip、端口(端口号默认3306，使用服务器上mysql的端口一致)、username、password
 pamirs:
@@ -134,7 +134,7 @@ pamirs:
 
 + Zookeeper
 
-```yaml
+``` yaml
 # application.yml文件
 dubbo:
   application:
@@ -163,7 +163,7 @@ pamirs:
 
 + Redis
 
-```yaml
+``` yaml
 # application.yml文件
 spring:
   redis:
@@ -186,7 +186,7 @@ spring:
 
 + RocketMQ
 
-```yaml
+``` yaml
 # application.yml文件
 spring:
   rocketmq:
@@ -195,7 +195,7 @@ spring:
 
 + 文件存储oss
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: MINIO

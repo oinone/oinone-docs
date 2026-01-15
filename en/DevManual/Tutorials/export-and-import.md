@@ -44,7 +44,7 @@ Reference: Documentation related to this topic can be found in "[Standard Module
 
 To customize the `file module`, the corresponding dependency needs to be introduced according to `JAVA` characteristics:
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-file2-api</artifactId>
@@ -53,7 +53,7 @@ To customize the `file module`, the corresponding dependency needs to be introdu
 
 In Oinone, in addition to introducing the corresponding dependency, the corresponding module dependency also needs to be declared in the `current module` definition:
 
-```java
+``` java
 ……
 @Module(
     name = ExpensesModule.MODULE_NAME,
@@ -78,7 +78,7 @@ The initialization of the `Excel` import template is automatically collected and
 
 :::
 
-```java
+``` java
 @Component
 public class TestModelImportTemplate implements ExcelTemplateInit {
 
@@ -111,7 +111,7 @@ With the `Excel` import template, we need to customize the import logic to meet 
 
 :::
 
-```java
+``` java
 @Component
 @Ext(ExcelImportTask.class)
 public class TestModelImportExtPoint implements ExcelImportDataExtPoint<TestModel> {
@@ -178,7 +178,7 @@ In the import template, we can define the field values of `many-to-one (M2O)` ty
 
 :::
 
-```java
+``` java
 @Component
 public class TestModelExportTemplate implements ExcelTemplateInit {
 
@@ -209,7 +209,7 @@ Although the export template is normally defined, some fields require special ca
 
 :::
 
-```java
+``` java
 @Component
 @Ext(ExcelExportTask.class)
 public class TestModelExportExtPoint extends ExcelExportSameQueryPageTemplate implements ExcelExportFetchDataExtPoint {

@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 环境准备
-  link: /zh-cn/InstallOrUpgrade/Dev-ENV/README.md
+  link: /v6/zh-cn/InstallOrUpgrade/Dev-ENV/README.md
 ---
 # 一、下载安装包
 :::warning 提示

@@ -6,14 +6,14 @@ category:
 order: 1
 prev:
   text: 路由扩展：添加新路由，比如覆盖默认的登录页
-  link: /zh-cn/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
+  link: /v6/zh-cn/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
 ---
 
 # 一、前端
 1. `package.json`中新增依赖 `@oinone/kunlun-data-designer-open-pc`,版本跟`@oinone/kunlun-dependencies`的填一样
 2. `src/main.ts`内导入依赖
 
-```typescript
+``` typescript
 import 'reflect-metadata';
 import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
@@ -28,7 +28,7 @@ VueOioProvider({
 
 # 二、后端
 ## （一）父pom新增依赖
-```xml
+``` xml
 <!-- 平台基础 -->
 <oinone.version>5.3.5</oinone.version>
 
@@ -46,7 +46,7 @@ VueOioProvider({
 ```
 
 ## （二）boot启动工程的pom新增依赖
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.data.visualization</groupId>
     <artifactId>pamirs-data-visualization-core</artifactId>
@@ -55,7 +55,7 @@ VueOioProvider({
 ```
 
 ## （三）application.yml配置新增依赖
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:

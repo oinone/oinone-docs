@@ -13,7 +13,7 @@ prev:
 ---
 # 一、请求 URL 规范
 
-```plain
+``` plain
 http://127.0.0.1:8090/pamirs/DemoCore?scene=redirectListPage
 ```
 
@@ -52,7 +52,7 @@ Oinone 在标准 GraphQL 基础上，扩展支持了以下数据类型：
 
 #### 查询示例
 
-```graphql
+``` graphql
 query {
   testModelQuery {
     queryInfo(id: 123) {
@@ -67,7 +67,7 @@ query {
 
 #### 分页查询示例
 
-```graphql
+``` graphql
 query {
   testModelProxyQuery {
     queryPage(
@@ -90,7 +90,7 @@ query {
 
 #### 修改数据示例
 
-```graphql
+``` graphql
 mutation {
   testModelMutation {
     create(data: { name: "testName" }) {
@@ -114,7 +114,7 @@ RSQL 是基于 FIQL 的参数化过滤语言，核心特性：
   - `,` 或 `or`：逻辑或
 + **比较运算符**：**plaintext**
 
-```plain
+``` plain
 == 等于
 != 不等于
 =lt= 小于
@@ -150,7 +150,7 @@ Oinone 在 RSQL 基础上，新增以下操作符：
 
 在 GraphQL 的`queryPage`查询中，通过`queryWrapper`的`rsql`字段传递 RSQL 过滤条件：
 
-```graphql
+``` graphql
 query {
   testModelProxyQuery {
     queryPage(
@@ -192,7 +192,7 @@ query {
 
 前端可通过 GraphQL 的`Variables`属性传递额外信息，如：
 
-```json
+``` json
 {
   "scene": "菜单入口"
 }
@@ -200,7 +200,7 @@ query {
 
 后端通过`PamirsSession.getRequestVariables()`获取变量值。
 
-```java
+``` java
 PamirsRequestVariables variables = PamirsSession.getRequestVariables();
 String scene = variables.getVariables().get("scene");
 ```
@@ -214,7 +214,7 @@ String scene = variables.getVariables().get("scene");
 | onlyValidate  | `true`<br/> / `false`                                       | 是否仅执行校验，不提交数据             |
 
 
-```java
+``` java
 {
  	"requestStrategy": {
   	"checkStrategy": "RETURN_WHEN_COMPLETED",
@@ -233,7 +233,7 @@ String scene = variables.getVariables().get("scene");
 
 新建一个类继承 `AbstractPlaceHolderParser`，定义占位符。例如定义 `currentUserId` 占位符：
 
-```java
+``` java
 @Component
 public class UserPlaceHolder extends AbstractPlaceHolderParser {
     @Override
@@ -262,7 +262,7 @@ public class UserPlaceHolder extends AbstractPlaceHolderParser {
 
 在前端设置过滤条件等场景中使用占位符，如在表格视图的 `search` 部分设置 `domain` 过滤条件：
 
-```html
+``` html
 <template slot="search"  cols="4">
   <field data="relatedItems"  label="关联项目"  domain="creatorId == $#{currentUserId}"/>
 </template>

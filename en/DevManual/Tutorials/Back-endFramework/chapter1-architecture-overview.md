@@ -61,7 +61,7 @@ When an Oinone module contains business objects, these files are organized under
 
 ## (II) Simplified Module Directory Structure  
 
-```plain
+``` plain
 Module
 ├── module-api  Module interface project
 │   ├── model   Models
@@ -69,7 +69,7 @@ Module
 └── module-core  Module implementation project
     ├── action  Actions
     └── init    Data initialization
-```  
+```
 
 
 # IV. Oinone Editions  

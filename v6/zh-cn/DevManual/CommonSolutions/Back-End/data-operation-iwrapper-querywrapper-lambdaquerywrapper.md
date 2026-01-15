@@ -9,7 +9,7 @@ order: 24
 # 一、条件更新（updateByWrapper）
 通常我们在更新的时候 new 一个对象出来在去更新，减少更新的字段
 
-```java
+``` java
 Integer update = new DemoUser().updateByWrapper(new DemoUser().setFirstLogin(Boolean.FALSE),
                                                 Pops.<DemoUser>lambdaUpdate().from(DemoUser.MODEL_MODEL).eq(IdModel::getId, userId)
 ```
@@ -18,7 +18,7 @@ Integer update = new DemoUser().updateByWrapper(new DemoUser().setFirstLogin(Boo
 
 + new 一下 update 对象出来，更新这个对象。
 
-```java
+``` java
 WorkflowUserTask userTaskUp = new WorkflowUserTask();
 userTaskUp.setId(userTask.getId());
 userTaskUp.setNodeContext(json);
@@ -26,7 +26,7 @@ userTaskUp.updateById();
 ```
 
 # 二、条件删除（updateByWrapper）
-```java
+``` java
 public List<T> delete(List<T> data) {
     List<Long> petTypeIdList = new ArrayList();
     for(T item:data){
@@ -40,7 +40,7 @@ public List<T> delete(List<T> data) {
 ## 三、构造条件查询数据
 + 示例1： LambdaQueryWrapper 拼接查询条件
 
-```java
+``` java
 private void queryPetShops() {
     LambdaQueryWrapper<PetShop> query = Pops.<PetShop>lambdaQuery();
     query.from(PetShop.MODEL_MODEL);
@@ -53,7 +53,7 @@ private void queryPetShops() {
 
 + 示例2： IWrapper 拼接查询条件
 
-```java
+``` java
 private void queryPetShops() {
     IWrapper<PetShop> wrapper = Pops.<PetShop>lambdaQuery()
     .from(PetShop.MODEL_MODEL).eq(PetShop::getId,1L);
@@ -64,7 +64,7 @@ private void queryPetShops() {
 
 + 示例3： QueryWrapper 拼接查询条件
 
-```java
+``` java
 private void queryPetShops() {
     //使用Lambda获取字段名，防止后面改字段名漏改
     String nameField = LambdaUtil.fetchFieldName(PetTalent::getName);
@@ -78,7 +78,7 @@ private void queryPetShops() {
 ```
 
 ## IWrapper 转为 LambdaQueryWrapper
-```java
+``` java
 @Function.Advanced(type= FunctionTypeEnum.QUERY)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.API})

@@ -12,7 +12,7 @@ order: 33
 ## （一）模型指定排序
 模型定义增加排序字段。`@Model.Advanced(ordering = "xxxxx DESC, yyyy DESC")`
 
-```java
+``` java
 @Model.model(PetShop.MODEL_MODEL)
 @Model(displayName = "宠物店铺",summary="宠物店铺",labelFields ={"shopName"})
 @Model.Code(sequence = "DATE_ORDERLY_SEQ",prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
@@ -26,7 +26,7 @@ public class PetShop extends AbstractDemoIdModel {
 ## （二）Page 查询中可以自定排序规则
 + API 参考 `pro.shushi.pamirs.meta.api.dto.condition.Pagination#orderBy`
 
-```java
+``` java
 public <G, R> Pagination<T> orderBy(SortDirectionEnum direction, Getter<G, R> getter) {
     if (null == getSort()) {
         setSort(new Sort());
@@ -38,7 +38,7 @@ public <G, R> Pagination<T> orderBy(SortDirectionEnum direction, Getter<G, R> ge
 
 + 具体示例
 
-```java
+``` java
 @Function.Advanced(type= FunctionTypeEnum.QUERY)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.API})
@@ -52,7 +52,7 @@ public Pagination<PetShop> queryPage(Pagination<PetShop> page, IWrapper<PetShop>
 ## （三）查询的 wapper 中指定
 + API参考：`pro.shushi.pamirs.framework.connectors.data.sql.AbstractWrapper#orderBy`
 
-```java
+``` java
 @Override
 public Children orderBy(boolean condition, boolean isAsc, R... columns) {
     if (ArrayUtils.isEmpty(columns)) {
@@ -68,7 +68,7 @@ public Children orderBy(boolean condition, boolean isAsc, R... columns) {
 
 具体示例
 
-```java
+``` java
 public List<PetShop> queryList(String name) {
     List<PetShop> petShops = Models.origin().queryListByWrapper(
         Pops.<PetShop>lambdaQuery().from(PetShop.MODEL_MODEL)
@@ -83,7 +83,7 @@ public List<PetShop> queryList(String name) {
 ## （一）关闭平台默认排序字段，设置模型的 ordering，改成：`ordering = "1=1"`
 模型定义增加排序字段。`@Model.Advanced(ordering = "1=1")`
 
-```java
+``` java
 @Model.model(PetShop.MODEL_MODEL)
 @Model(displayName = "宠物店铺",summary="宠物店铺",labelFields ={"shopName"})
 @Model.Code(sequence = "DATE_ORDERLY_SEQ",prefix = "P",size=6,step=1,initial = 10000,format = "yyyyMMdd")
@@ -99,7 +99,7 @@ public class PetShop extends AbstractDemoIdModel {
 所以，`ORDER BY 1=1`实际上等效于没有使用`ORDER BY`子句，或者说是按照默认顺序进行排序。
 
 ## （二）查询是设置 Sortable 属性
-```java
+``` java
 // 示例1：
 LambdaQueryWrapper<PetShop> query = Pops.<PetShop>lambdaQuery();
 query.from(PetShop.MODEL_MODEL);

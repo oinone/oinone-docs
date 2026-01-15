@@ -20,7 +20,7 @@ order: 21
 需着重指出的是，特定版本的 JDK 或许会出现缺少 tools.jar 文件的情况，这种缺失极有可能导致系统启动失败。
 
 ## （三）具体报错
-```java
+``` java
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:107) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:58) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88) [pamirs-venus-boot.jar:na]
@@ -46,7 +46,7 @@ Caused by: java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExp
 ## （四）解决办法
 + 方式一【推荐】、配置 channel 的扫描路径
 
-```yaml
+``` yaml
 pamirs:
   channel:
     packages:
@@ -59,7 +59,7 @@ pamirs:
 ## （一）具体报错
 如果启动报错信息如下：
 
-```java
+``` java
 Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
     at java.lang.ClassLoader.defineClass1(Native Method) ~[na:1.8.0_181]
     at java.lang.ClassLoader.defineClass(ClassLoader.java:763) ~[na:1.8.0_181]
@@ -71,7 +71,7 @@ Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
 项目中只引入了`pamirs-channel-core`，但未引入`elasticsearch`相关的包
 
 ## （三）解决办法
-```xml
+``` xml
 <dependency>
   <groupId>org.elasticsearch.client</groupId>
   <artifactId>elasticsearch-rest-client</artifactId>

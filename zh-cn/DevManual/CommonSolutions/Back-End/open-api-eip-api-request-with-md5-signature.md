@@ -13,7 +13,7 @@ order: 19
 
 :::
 
-```java
+``` java
 public class EipSignUtils {
 
     public static final String SIGN_METHOD_MD5 = "md5";

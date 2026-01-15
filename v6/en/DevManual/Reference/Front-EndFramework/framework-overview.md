@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: General Tools API
-  link: /en/DevManual/Reference/Back-EndFramework/AdvanceAPI/tools-API.md
+  link: /v6/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/tools-API.md
 ---
 The Oinone Kunlun framework provides a set of functionalities for Oinone Pamirs, aiding in building Oinone applications that run in browsers. As a single-page application (SPA), the Oinone Kunlun framework is based on the Vue framework and offers a set of features, commonly referred to as the Web client (accessible via URL/web).
 

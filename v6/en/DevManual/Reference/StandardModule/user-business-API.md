@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: UI icons
-  link: /en/DevManual/Reference/UserInterface/UI-icons.md
+  link: /v6/en/DevManual/Reference/UserInterface/UI-icons.md
 ---
 # I. Overview
 

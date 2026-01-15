@@ -30,17 +30,17 @@ For Linux and macOS users, replace `<version>` in the link with the actual versi
 # Ⅱ、Installation
 ## （Ⅰ）Linux/macOS Installation
 ### 1、Download
-```shell
+``` shell
 curl -L https://github.com/redis/redis/archive/refs/tags/7.4.2.tar.gz -o redis-7.4.2.tar.gz
 ```
 
 ### 2、Unzip
-```shell
+``` shell
 tar zxvf redis-7.4.2.tar.gz -C ./
 ```
 
 ### 3、Compile and Install
-```shell
+``` shell
 # Compile
 export REDIS_HOME=<replace with Redis installation directory>
 make PREFIX=${REDIS_HOME}
@@ -51,26 +51,26 @@ make PREFIX=${REDIS_HOME} install
 ### 4、Verification
 Enter in the command line  
 
-```shell
+``` shell
 ${REDIS_HOME}/bin/redis-server --version
 ```
 
 Output similar information indicates successful installation  
 
-```shell
+``` shell
 Redis server v=7.4.2 sha=00000000:1 malloc=libc bits=64 build=2e82a5cbb28cb878
 ```
 
 ## （Ⅱ）Windows Installation
 ### 1、Download
-```shell
+``` shell
 Invoke-WebRequest -Uri "https://github.com/tporadowski/redis/releases/download/v5.0.14.1/Redis-x64-5.0.14.1.zip" -OutFile "Redis-x64-5.0.14.1.zip"
 ```
 
 ### 2、Unzip
 Use a visualization tool or the following command to unzip  
 
-```shell
+``` shell
 # Windows
 Expand-Archive Redis-x64-5.0.14.1.zip <Redis installation directory>\redis
 ```
@@ -78,7 +78,7 @@ Expand-Archive Redis-x64-5.0.14.1.zip <Redis installation directory>\redis
 ## （Ⅲ）Configuration
 Reference configuration for Linux/macOS installation (Windows version can be ignored)  
 
-```properties
+``` properties
 # redis.conf
 bind * -::*
 port 6379
@@ -91,23 +91,23 @@ appendfilename "appendonly.aof"
 
 ## （Ⅳ）Run
 ### 1、Start
-```properties
+``` properties
 # Linux/macOS
 nohup ./bin/redis-server redis.conf >> redis.nohup 2>&1 &
 ```
 
-```shell
+``` shell
 # Windows
 Start-Process -FilePath ".\redis-server.exe" -WindowStyle Hidden
 ```
 
 ### 2、Stop
-```properties
+``` properties
 # Linux/macOS
 ./bin/redis-cli -p 6379 shutdown
 ```
 
-```shell
+``` shell
 # Windows
 .\redis-cli.exe -p 6379 shutdown
 ```

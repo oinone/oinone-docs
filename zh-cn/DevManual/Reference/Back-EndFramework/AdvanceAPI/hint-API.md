@@ -23,7 +23,7 @@ order: 4
 
 ## （二）API 定义
 
-```java
+``` java
 public static DsHintApi model(String model) {
     // 具体实现
 }
@@ -48,7 +48,7 @@ public DsHintApi(Object dsKey) {
 
 + **使用方式 1：通过模型编码指定数据源**
 
-```java
+``` java
 try (DsHintApi dsHintApi = DsHintApi.model(PetItem.MODEL_MODEL)) {
     List<PetItem> items = demoItemDAO.customSqlDemoItem();
     PetShopProxy data2 = data.queryById();
@@ -60,7 +60,7 @@ try (DsHintApi dsHintApi = DsHintApi.model(PetItem.MODEL_MODEL)) {
 
 + **使用方式 2：通过数据源名称指定数据源**
 
-```java
+``` java
 try (DsHintApi dsHintApi = DsHintApi.use("数据源名称")) {
     List<PetItem> items = demoItemDAO.customSqlDemoItem();
     PetShopProxy data2 = data.queryById();
@@ -80,7 +80,7 @@ try (DsHintApi dsHintApi = DsHintApi.use("数据源名称")) {
 
 ## （二）API 定义
 
-```java
+``` java
 public static BatchSizeHintApi use(Integer batchSize) {
     // 具体实现
 }
@@ -100,7 +100,7 @@ public static BatchSizeHintApi use(Integer batchSize) {
 
 + **指定不分页查询（batchSize = -1）**
 
-```java
+``` java
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
     PetShopProxy data2 = data.queryById();
     data2.fieldQuery(PetShopProxy::getPetTalents);

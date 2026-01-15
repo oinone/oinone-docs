@@ -9,14 +9,14 @@ order: 28
 若期望导出的字段来自该模型所关联对象中的某一字段，那么在创建模板时，需采用 “对象.字段” 的形式 。并且，在执行导出操作时，要手动设置该字段。举例而言，对于 PamirsEmployee 模型中的 company 关联对象，可通过 `company.name` 的方式创建对应的值用于导出。
 
 # 一、模型定义
-```java
+``` java
 @Field.many2one
 @Field.Relation(relationFields = {"companyCode"}, referenceFields = {"code"})
 @Field(displayName = "所属公司")
 private PamirsCompany company;
 ```
 
-```java
+``` java
 //定义员工导入导出模版
 @Component
 public class EmployeeTemplate implements ExcelTemplateInit {
@@ -42,7 +42,7 @@ public class EmployeeTemplate implements ExcelTemplateInit {
 ## （一）非存储字段的导出
 若期望导出的字段为非存储字段，鉴于默认情况下仅导出存储于数据库中的字段，因而针对非存储字段，需在导出时进行手动设置 。
 
-```java
+``` java
 @Slf4j
 @Component
 @Ext(ExcelExportTask.class)
@@ -69,7 +69,7 @@ public class EmpTemplateExportExtPoint extends DefaultExcelExportFetchDataExtPoi
 ## （二）多值字段导入
 若所需导入的字段存在多个值的情况，可创建一个代理模型。在此代理模型中，设置一个字段用于接收该多值字段。具体操作方式为，在 Excel 中，于一个单元格内填写多值字段，每个字段之间使用自定义符号（例如：“;”）进行分割。在创建模板时，使用该代理类对应的模板。在执行导入与导出操作时，再依据 “;” 对字段进行截取处理。
 
-```java
+``` java
 @Model.model(PamirsEmployeeProxy.MODEL_MODEL)
 @Model(displayName = "员工导出代理")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
@@ -87,13 +87,13 @@ public class PamirsEmployeeProxy extends PamirsEmployee {
 
 创建模版时创建代理模型的字段
 
-```java
+``` java
 .addColumn("departmentCodeList", "部门编码列表")
 ```
 
 导入操作：创建一个新类，将其作为导入功能的扩展点，该类需继承 `AbstractExcelImportDataExtPointImpl` 类 。
 
-```java
+``` java
 @Component
 @Ext(ExcelImportTask.class)
 @Slf4j
@@ -115,7 +115,7 @@ public class EmpTemplateImportExtPoint extends AbstractExcelImportDataExtPointIm
 
 导出操作：创建一个新类，将其作为导出功能的扩展点，该类需继承 `DefaultExcelExportFetchDataExtPoint` 类。
 
-```java
+``` java
 @Slf4j
 @Component
 @Ext(ExcelExportTask.class)

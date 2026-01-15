@@ -24,7 +24,7 @@ For more information on CSS variables, refer to: [CSS variable](https://www.w3sc
 
 Let's start by registering a `customTheme` that changes the primary color of Oinone pages to `black`:
 
-```typescript
+``` typescript
 export const customThemeName = 'customTheme';
 export const customThemeCssVars = {
   'primary-color': 'black'
@@ -43,7 +43,7 @@ Generally, we place theme variable definitions and registrations in the `src/the
 
 Let's specify the theme parameter in VueOioProvider to activate the theme variables:
 
-```typescript
+``` typescript
 VueOioProvider({
   theme: [customThemeName]
 });
@@ -69,7 +69,7 @@ Below, we list all existing system theme variables for reference, organized by t
 
 ### 1. Large
 
-```typescript
+``` typescript
 {
     "font-size": "14px",
     "font-size-lg": "16px",
@@ -106,7 +106,7 @@ Below, we list all existing system theme variables for reference, organized by t
 
 ### 2. Medium (Default Size)
 
-```typescript
+``` typescript
 {
     "font-size": "14px",
     "font-size-lg": "16px",
@@ -143,7 +143,7 @@ Below, we list all existing system theme variables for reference, organized by t
 
 ### 3. Small
 
-```typescript
+``` typescript
 {
     "font-size": "14px",
     "font-size-lg": "16px",
@@ -182,7 +182,7 @@ Below, we list all existing system theme variables for reference, organized by t
 
 ### 1. Default Theme
 
-```typescript
+``` typescript
 {
     "primary-color-rgb": "3, 93, 255",
     "primary-color": "#035DFF",
@@ -270,7 +270,7 @@ Below, we list all existing system theme variables for reference, organized by t
 
 ### 2. Dark Theme
 
-```typescript
+``` typescript
 {
     "primary-color-rgb": "3, 93, 255",
     "primary-color": "#035DFF",

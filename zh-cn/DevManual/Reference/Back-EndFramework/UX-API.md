@@ -41,7 +41,7 @@ Ux类注解只影响默认展示与交互逻辑。
   - `logo`：应用 logo，与`value`为别名，默认值为空字符串`""`。
 + **示例**：
 
-```java
+``` java
 @UxAppLogo(logo = "path/to/your/app/logo.png")
 public class YourModuleClass {
     // 类内容
@@ -57,7 +57,7 @@ public class YourModuleClass {
   - `value`：路由配置，类型为`UxRoute`。
 + **示例**：
 
-```java
+``` java
 @UxHomepage(actionName = "homepageAction", value = @UxRoute(model = TestModel.MODEL_MODEL))
 public class YourModuleClass {
     // 类内容
@@ -86,7 +86,7 @@ public class YourModuleClass {
   - `clientTypes`：菜单适用的客户端类型，默认值为`{ClientTypeEnum.PC, ClientTypeEnum.MOBILE}`。
 + **示例**：
 
-```java
+``` java
 @UxMenus public class TestModuleMenus implements ViewActionConstants {
     @UxMenu("基础数据")
     class TestModuleBaseMenu {
@@ -135,7 +135,7 @@ public class YourModuleClass {
     * **属性**：`showCreate`，默认值为`true`；`showEdit`，默认值为`true`；`showDetail`，默认值为`true`；`showDelete`，默认值为`true`。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "TestModel")
 @Model.Advanced(unique = {"code"})
@@ -174,7 +174,7 @@ public class TestModel extends IdModel {
     * **属性**：`value`，类型为`UxWidget`。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "TestModel", labelFields = "name")
 public class TestModel extends IdModel {
@@ -220,7 +220,7 @@ public class TestModel extends IdModel {
   - `priority`：优先级，默认值为`MetaDefaultConstants.FAKE_PRIORITY_VALUE_INT`。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "TestModel")
 public class TestModel extends IdModel {
@@ -248,7 +248,7 @@ public class TestModel extends IdModel {
     * **属性**：`value`，为`UxClientButton`数组。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel模型")
 @UxClientButton(
@@ -278,7 +278,7 @@ public class TestButtonModel extends IdModel {
     * **属性**：`value`，为`UxLinkButton`数组。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel模型")
 @UxLinkButton(
@@ -313,7 +313,7 @@ public class TestButtonModel extends IdModel {
     * **属性**：`value`，为`UxRouteButton`数组。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel模型")
 @UxRouteButton(
@@ -358,7 +358,7 @@ public class TestButtonModel extends IdModel {
   - `props`：扩展属性，类型为`Prop`数组，默认值为空数组`{}`。
 + **示例**：在`UxClientButton`、`UxLinkButton`、`UxRouteButton`的使用示例中均有体现，如：
 
-```java
+``` java
 @UxClientButton(
         value = @UxClient(ClientActionConstants.TableAddRow.fun),
         action = @UxAction(
@@ -383,7 +383,7 @@ public class TestButtonModel extends IdModel {
   - `context`：上下文配置，类型为`Prop`数组，默认值为空数组`{}`。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel模型")
 @UxClientButton(
@@ -417,7 +417,7 @@ public class TestButtonModel extends IdModel {
   - `context`：上下文配置，类型为`Prop`数组，默认值为空数组`{}`。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel模型")
 @UxLinkButton(
@@ -474,7 +474,7 @@ public class TestButtonModel extends IdModel {
   - `limit`：初始化页面数据数量限制，默认值为 20。
 + **示例**：
 
-```java
+``` java
 @Model.model(TestButtonModel.MODEL_MODEL)
 @Model(displayName = "TestButtonModel模型")
 @UxRouteButton(

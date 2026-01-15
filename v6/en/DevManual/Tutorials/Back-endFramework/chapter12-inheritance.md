@@ -31,7 +31,7 @@ Reference: Related documentation can be found in "[Data Manager](/en/DevManual/R
 
 In our expense management module, we can perform standard CRUD operations without writing specific code, as the Oinone framework provides the necessary tools. Take the API-exposed functions of the `expenses.TestModel` model as an example—we can view these methods in the `base_function` table. Before exploring their origins, let's first understand how to override them:
 
-```plsql
+``` plsql
 mysql> use trutorials_base;
 Database changed
 mysql> select name,fun,bean_name from base_function where namespace ='expenses.TestModel'and open_level&8=8;
@@ -59,7 +59,7 @@ mysql> select name,fun,bean_name from base_function where namespace ='expenses.T
 
 Overriding CRUD functions follows the same approach as adding functions to models in previous chapters. Here's an example of overriding CRUD operations:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.core.action;
 
 import org.apache.commons.collections4.CollectionUtils;

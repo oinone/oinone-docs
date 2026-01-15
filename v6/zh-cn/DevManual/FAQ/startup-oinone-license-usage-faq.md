@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: 项目部署：界面设计器的导入导出
-  link: /zh-cn/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md
+  link: /v6/zh-cn/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md
 ---
 # 一、如何获取许可证？
 联系数式运维人员获取许可证。（以下内容全部使用 <license.lic> 表示许可证文件路径）
@@ -31,7 +31,7 @@ prev:
 # 二、如何配置许可证？
 ## （一）在`yaml`中配置许可证
 ### 1、单个许可证配置
-```yaml
+``` yaml
 pamirs:
   license:
     subject: <subject>
@@ -40,7 +40,7 @@ pamirs:
 ```
 
 ### 2、多个许可证配置
-```yaml
+``` yaml
 pamirs:
   license:
     subject: <subject>
@@ -52,7 +52,7 @@ pamirs:
 `pamirs.license.path`可以是相对路径、绝对路径以及URL路径。
 
 ## （二）在`Program Arguments`中配置许可证
-```shell
+``` shell
 java -jar -Psubject=<subject> -Plicense=<license1.lic> -Plicense=<license1.lic> <boot.jar>
 ```
 
@@ -67,7 +67,7 @@ java -jar -Psubject=<subject> -Plicense=<license1.lic> -Plicense=<license1.lic> 
 
 # 六、如何获取CPU序列号和主板序列号
 ## （一）在Linux环境中使用`dmidecode`命令
-```shell
+``` shell
 # 获取CPU序列号
 dmidecode -s system-serial-number
 
@@ -88,7 +88,7 @@ dmidecode -s system-uuid
 ```
 
 ## （二）在Mac环境中使用`system_profiler`命令
-```shell
+``` shell
 # 获取CPU序列号
 system_profiler SPHardwareDataType | grep 'Serial Number' | awk -F ':' '{print $2}'
 
@@ -103,7 +103,7 @@ system_profiler SPHardwareDataType | grep 'Hardware UUID' | awk -F ':' '{print $
 ```
 
 ## （三）在Windows环境中使用`wmic`命令
-```shell
+``` shell
 # 获取CPU序列号
 wmic cpu get processorid
 
@@ -126,7 +126,7 @@ D0Exxxxx-xxxx-xxxx-xxxx-xxxxxxxx78B8
 # 七、在 Linux 环境出现`dmidecode`命令执行失败该如何处理？
 1. 命令未找到，可使用如下方式尝试安装
 
-```shell
+``` shell
 # debian (eg: Ubuntu)
 apt-get install dmidecode
 

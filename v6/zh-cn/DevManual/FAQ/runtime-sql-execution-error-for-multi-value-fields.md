@@ -8,7 +8,7 @@ order: 13
 # 一、场景复现
 保存多值字段时报函数执行错误：
 
-```dart
+``` dart
 2025-05-24 17:41:10.315  WARN 5908 --- [      Deferred6] f.g.g.j.r.DefaultRequestExceptionHandler : Exception while fetching data (/pamirsDemoMutation/create) : 函数执行错误
 pro.shushi.pamirs.meta.common.exception.PamirsException: 函数执行错误
 	at pro.shushi.pamirs.meta.common.exception.PamirsException$Builder.errThrow(PamirsException.java:203) ~[pamirs-meta-common-6.1.6.jar:6.1.6]
@@ -63,7 +63,7 @@ Caused by: java.sql.SQLException: Incorrect string value: '\xAC\xED\x00\x05sr...
 # 二、解决方案
 定义多值类型`multi = true`时，字段类型应该设置为 `List<>` 类型。
 
-```java
+``` java
 @Field.String
 @Field(displayName ="经费证明", multi = true, serialize = Field.serialize.JSON)
 private List<String> matchFund;

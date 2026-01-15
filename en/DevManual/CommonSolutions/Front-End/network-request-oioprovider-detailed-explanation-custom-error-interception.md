@@ -10,8 +10,8 @@ order: 9
 OioProvider serves as the initialization entry point of the platform.
 
 ## (Ⅰ) Example Entry `main.ts`
-```typescript
-import { VueOioProvider } from '@kunlun/dependencies';
+``` typescript
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
 VueOioProvider();
 ```
@@ -25,14 +25,14 @@ Reference documents:
 + [graphql](https://github.com/graphql/graphql-js#readme)
 
 ## (Ⅰ) Configuration Method
-```typescript
+``` typescript
 VueOioProvider({
   http?: OioHttpConfig
 });
 ```
 
 ## (Ⅱ) OioHttpConfig
-```typescript
+``` typescript
 /**
  * OioHttp configuration
  */
@@ -55,7 +55,7 @@ export interface OioHttpConfig {
 ```
 
 ## (Ⅲ) Built-in Interceptor Options `InterceptorOptions`
-```typescript
+``` typescript
 /**
  * Interceptor options
  */
@@ -114,7 +114,7 @@ Execution order of built-in interceptors:
 + afterInterceptors: Post-interceptors
 
 ## (Ⅳ) NetworkInterceptor
-```typescript
+``` typescript
 /**
  * <h3>Network request interceptor</h3>
  * <ul>
@@ -141,14 +141,14 @@ export interface NetworkInterceptor {
 
 # Ⅲ、Custom Routing Configuration `router`
 ## (Ⅰ) Configuration Method
-```typescript
+``` typescript
 VueOioProvider({
   router?: RouterPath[]
 });
 ```
 
 ## (Ⅱ) RouterPath
-```typescript
+``` typescript
 /**
  * Routing configuration
  */
@@ -165,7 +165,7 @@ export interface RouterPath {
 ```
 
 ## (Ⅲ) Built-in Routing Configuration
-```typescript
+``` typescript
 [
   {
     path: '/login',
@@ -188,7 +188,7 @@ export interface RouterPath {
 
 # Ⅳ、Appearance Configuration
 ## (Ⅰ) Configuration Method
-```typescript
+``` typescript
 VueOioProvider({
   copyrightStatus?: boolean;
   loginTheme?: OioLoginThemeConfig;
@@ -201,7 +201,7 @@ VueOioProvider({
 Whether to display copyright information, default is display (true)
 
 ## (Ⅲ) OioLoginThemeConfig
-```typescript
+``` typescript
 /**
  * Login theme configuration
  */
@@ -278,7 +278,7 @@ export enum OioLoginLogoPosition {
 ```
 
 ## (Ⅳ) OioProviderBrowserProps
-```typescript
+``` typescript
 /**
  * Browser configuration
  */
@@ -295,7 +295,7 @@ export interface OioProviderBrowserProps {
 ```
 
 ## (Ⅴ) ThemeName
-```typescript
+``` typescript
 type ThemeName =
   | 'default-large'
   | 'default-medium'
@@ -315,7 +315,7 @@ type ThemeName =
 + Others: Custom themes
 
 ## (Ⅵ) Define Custom Theme
-```typescript
+``` typescript
 export const themeName = 'customTheme';
 
 export const themeCssVars = {
@@ -326,8 +326,8 @@ export const themeCssVars = {
 Theme variable reference document: [OioThemeCssVars] (document missing)
 
 ## (Ⅶ) Apply Custom Theme
-```typescript
-import { registerTheme } from '@kunlun/dependencies';
+``` typescript
+import { registerTheme } from '@oinone/kunlun-dependencies';
 import { themeName, themeCssVars } from './theme';
 
 registerTheme(themeName, themeCssVars);
@@ -339,14 +339,14 @@ VueOioProvider({
 
 # Ⅴ、Low-Code Dependencies Configuration `dependencies`
 ## (Ⅰ) Configuration Method
-```typescript
+``` typescript
 VueOioProvider({
   dependencies?: PluginLoadDependencies
 });
 ```
 
 ## (Ⅱ) PluginLoadDependencies
-```typescript
+``` typescript
 /**
  * Plugin load dependencies
  */

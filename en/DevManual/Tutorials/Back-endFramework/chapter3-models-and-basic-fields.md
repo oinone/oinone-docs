@@ -17,7 +17,7 @@ Reference: Documentation related to this topic can be found in "[Model API](/en/
 
 :::
 
-```sql
+``` sql
 mysql> use trutorials_biz
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
@@ -42,7 +42,7 @@ Models can be configured by setting attributes in the model definition. The most
 
 :::
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 import pro.shushi.pamirs.meta.annotation.Model;
 import pro.shushi.pamirs.meta.base.IdModel;
@@ -71,7 +71,7 @@ This definition is sufficient for the ORM to generate a database table named `ex
 
 During startup, you should see the following information:
 
-```bash
+``` bash
 CREATE TABLE IF NOT EXISTS `expenses_project_info`(
  `id` BIGINT NOT NULL COMMENT 'ID字段，唯一自增索引',
  `create_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -96,7 +96,7 @@ If this occurs, you should be doing it correctly! To ensure accuracy, use the `m
 Reference: Documentation related to this topic can be found in "[Field API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#ii-field)".
 Fields define what a model can store and where. Fields are defined as attributes in the model class:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -116,7 +116,7 @@ public class TestModel extends IdModel {
 
 The `name` field is of `STRING` type, represented as a Unicode string in Java and as `VARCHAR` in SQL.
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.enums;
 
 import pro.shushi.pamirs.meta.annotation.Dict;
@@ -153,7 +153,7 @@ public enum TestEnum implements IEnum<String> {
 }
 ```
 
-```java
+``` java
     @Field.Enum
     @Field(displayName = "测试枚举")
     private TestEnum testEnum;
@@ -181,7 +181,7 @@ The `date` field is of `DATE` type, represented as a date in Java and as `DATE` 
 
 :::
 
-```sql
+``` sql
 
 mysql> desc expenses_project_info;
 +-----------------------------------+---------------+------+-----+-------------------+-----------------------------------------------+
@@ -233,7 +233,7 @@ Examples of simple fields include `BOOLEAN`, `INTEGER`, `FLOAT`, `STRING`, `TEXT
 ## (Ⅱ) Common Attributes
 Like the model itself, fields can be configured by passing configuration attributes as parameters:
 
-```python
+``` python
 @Field(displayName = "名称", required = true)
 private String name;
 ```

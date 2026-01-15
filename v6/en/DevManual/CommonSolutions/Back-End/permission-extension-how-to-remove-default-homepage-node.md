@@ -22,7 +22,7 @@ If you add the following code, you will need to remove it later if you need to u
 
 Traverse the loaded permission nodes, find the homepage node of the module to be deleted, and remove it.
 
-```java
+``` java
 @Component
 @Order(88)
 @SPI.Service

@@ -13,7 +13,7 @@ order: 8
 
 Oinone 平台基于 Spring Data Redis的扩展实现，已提前完成`redisTemplate`与`stringRedisTemplate`的注册，并内置 Oinone Cache Key 构建逻辑。开发者可直接通过依赖注入使用，禁止重复定义 Redis 相关 bean，确保缓存服务一致性。
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.service;
 
 import org.springframework.stereotype.Component;
@@ -44,7 +44,7 @@ public class Test {
 
 **使用示例**：
 
-```java
+``` java
 @Component
 public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
     @Autowired
@@ -86,7 +86,7 @@ public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
 
 **依赖调整**：在`pom.xml`中移除 Jedis 依赖，引入 Lettuce 及连接池依赖：
 
-```xml
+``` xml
 <lettuce.version>5.3.6.RELEASE</lettuce.version>
 <commons-pool2.version>2.8.1</commons-pool2.version>
 <dependencies>
@@ -115,7 +115,7 @@ public class DemoCacheService extends AbstractRedisCacheService<DemoModel> {
 
 **配置修改**：在`application.yml`中新增 Lettuce 连接池配置：
 
-```yaml
+``` yaml
 spring:
   redis:
     database: 0
@@ -143,7 +143,7 @@ spring:
 1. **序列化定制**：通过`PamirsStringRedisSerializer`为键添加租户前缀，并采用 Jackson2JsonRedisSerializer 实现值的 JSON 序列化，确保数据兼容多租户场景。
 2. **模板注入**：注入`RedisConnectionFactory`与自定义序列化器，完成 Redis 模板配置，简化开发者使用流程。
 
-```java
+``` java
 @Validated
 @Component
 @Conditional(RedisSimpleModeCondition.class)
@@ -194,7 +194,7 @@ public class RedisSimpleConfig {
 + **序列化**：为键添加租户前缀及全局标识，确保键在多租户环境下的唯一性。
 + **反序列化**：自动移除前缀与标识，还原原始键值，保证数据读写一致性。
 
-```java
+``` java
 public class PamirsStringRedisSerializer extends StringRedisSerializer {
     private final String prefix;
     private final int prefixLength;

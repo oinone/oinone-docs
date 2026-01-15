@@ -18,7 +18,7 @@ The `9.0.0` version mentioned in the official driver documentation has not been 
 
 :::
 
-```xml
+``` xml
 <kdb.version>8.6.0</kdb.version>
 <dependency>
   <groupId>cn.com.kingbase</groupId>
@@ -33,7 +33,7 @@ The `9.0.0` version mentioned in the official driver documentation has not been 
 
 # Ⅱ、JDBC Connection Configuration
 
-```yaml
+``` yaml
 pamirs:
   datasource:
     base:
@@ -69,7 +69,7 @@ The `validConnectionCheckerClassName` configuration is crucial. Connection liven
 
 ## （Ⅱ）URL Format
 
-```plain
+``` plain
 jdbc:kingbase8://${host}:${port}/${database}?currentSchema=${schema}&autosave=always&cleanupSavepoints=true
 ```
 
@@ -85,7 +85,7 @@ For other connection parameters, you can refer to relevant materials for optimiz
 
 ## （Ⅰ）Pamirs Dialect Configuration
 
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -113,7 +113,7 @@ Since the dialect development environment uses version `V009R001C001B0030`, othe
 
 ## （Ⅱ）Schedule Dialect Configuration
 
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -142,7 +142,7 @@ Since the schedule dialect does not differ significantly from the PostgreSQL dat
 
 ## （Ⅰ）Logical Delete Value Configuration
 
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -172,7 +172,7 @@ Recommended configuration: `enable_ci=off`
 
 Recommended configuration: `ora_statement_level_rollback = off`
 
-```sql
+``` sql
 show ora_statement_level_rollback;
 
 set ora_statement_level_rollback=off;
@@ -188,7 +188,7 @@ Inconsistencies may lead to abnormal functionality, such as errors when the proc
 
 Recommended configuration: `ora_input_emptystr_isnull = off`
 
-```sql
+``` sql
 show ora_input_emptystr_isnull;
 
 set ora_input_emptystr_isnull=off;
@@ -196,7 +196,7 @@ set ora_input_emptystr_isnull=off;
 
 # Ⅵ、KDB Database User Initialization and Authorization
 
-```sql
+``` sql
 -- Initialize root user (user name can be modified by oneself)
 
 CREATE USER root WITH PASSWORD 'password';
@@ -218,7 +218,7 @@ The following scripts can be directly executed in a Docker container. For other 
 
 :::
 
-```shell
+``` shell
 # Stop the database service
 /home/kingbase/install/kingbase/bin/sys_ctl -D /home/kingbase/userdata/data/ stop
 

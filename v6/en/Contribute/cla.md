@@ -6,10 +6,10 @@ category:
 order: 1
 prev:
   text: Contribution Manual
-  link: /en/Contribute/README.md
+  link: /v6/en/Contribute/README.md
 next:
   text: Git Guidelines
-  link: /en/Contribute/DevelopmentContributions/git-guidelines.md
+  link: /v6/en/Contribute/DevelopmentContributions/git-guidelines.md
 ---
 # Oinone Contributor License Agreement
 

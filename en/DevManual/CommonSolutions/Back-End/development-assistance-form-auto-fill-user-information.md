@@ -12,7 +12,7 @@ In practical project business scenarios, there is often a requirement to automat
 ## \(Ⅰ\) Define Base Class Model
 1. Define a base class model (e.g., AbstractDeptModel) containing attributes (fields) that need to be automatically filled; any model requiring automatic user information form filling inherits from this model:
 
-```java
+``` java
 @Model.model(AbstractDeptModel.MODEL_MODEL)
 @Model(displayName = "Abstract Model with Login User Information")
 @Model.Advanced(type= ModelTypeEnum.ABSTRACT)
@@ -51,7 +51,7 @@ In the example code below, both the registrant and affiliated department are obt
 
 :::
 
-```java
+``` java
 @Slf4j
 @Component
 @Model.model(AbstractDeptModel.MODEL_MODEL)
@@ -71,7 +71,7 @@ public class AbstractDeptModelAction {
 ## \(Ⅱ\) Define Business Model
 Models requiring automatic user information form filling inherit from this model, i.e., inherit from AbstractDeptModel:
 
-```java
+``` java
 @Model.model(UnitProjectFiling.MODEL_MODEL)
 @Model(displayName = "Project Filing Registration", labelFields = {"projectName"})
 @Model.Advanced(unique = {"projectNo"})

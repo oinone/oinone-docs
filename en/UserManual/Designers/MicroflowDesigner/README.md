@@ -9,10 +9,10 @@ dir:
   order: 6
 prev:
   text: Interface Logs
-  link: /zh-cn/UserManual/Designers/IntegratedDesigner/api-logs.md
+  link: /en/UserManual/Designers/IntegratedDesigner/api-logs.md
 next:
   text: Microflow Management
-  link: /zh-cn/UserManual/Designers/MicroflowDesigner/microflow-management.md
+  link: /en/UserManual/Designers/MicroflowDesigner/microflow-management.md
 ---
 In daily work, there are various business processes that can automatically complete according to preset logical rules without manual intervention. Based on this requirement, Oinone provides a Microflow Designer. Compared with traditional process designers, the Microflow Designer reduces nodes that require manual intervention, making the execution rhythm more efficient and better meeting the rapid response needs of modern work.
 

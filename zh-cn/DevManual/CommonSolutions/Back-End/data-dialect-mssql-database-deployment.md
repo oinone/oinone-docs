@@ -8,7 +8,7 @@ order: 39
 
 # 一、驱动配置
 ## （一）Maven 配置（2017版本可用）
-```xml
+``` xml
 <mssql.version>9.4.0.jre8</mssql.version>
 <dependency>
   <groupId>com.microsoft.sqlserver</groupId>
@@ -24,7 +24,7 @@ order: 39
 [mssql-jdbc-12.2.0.jre8.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/mssql/mssql-jdbc-12.2.0.jre8.jar)
 
 # 二、JDBC连接配置
-```yaml
+``` yaml
 pamirs:
   datasource:
     base:
@@ -51,7 +51,7 @@ pamirs:
 暂无官方资料
 
 ## （二）url 格式
-```plain
+``` plain
 jdbc:sqlserver://${host}:${port};DatabaseName=${database}
 ```
 
@@ -65,7 +65,7 @@ jdbc:sqlserver://${host}:${port};DatabaseName=${database}
 
 # 三、方言配置
 ## （一）pamirs 方言配置
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -93,7 +93,7 @@ pamirs:
 :::
 
 ## （二）schedule方言配置
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -118,7 +118,7 @@ pamirs:
 
 # 四、其他配置
 ## （一）逻辑删除的值配置
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -127,7 +127,7 @@ pamirs:
 ```
 
 ## （二）MSSQL 数据库用户初始化及授权
-```sql
+``` sql
 -- init root user (user name can be modified by oneself)
 
 CREATE LOGIN [root] WITH PASSWORD = 'password';

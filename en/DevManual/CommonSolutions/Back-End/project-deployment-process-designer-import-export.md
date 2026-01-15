@@ -13,7 +13,7 @@ In oinone 5.1.0 and above versions, there are two ways to import and export desi
 2. Use the metadata online publishing function provided by the platform.
 
 # II. Dependency Package
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.metadata.manager</groupId>
     <artifactId>pamirs-metadata-manager</artifactId>
@@ -27,7 +27,7 @@ Download from the official website: [https://github.com/Kong/insomnia/releases](
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/71715839574_.pic_.jpg)
 
 ## (I) Example Call Code
-```graphql
+``` graphql
 mutation {
     pamirsUserTransientMutation {
         login(user: { login: "admin", password: "admin" }) {
@@ -47,7 +47,7 @@ Execute GraphQL to directly return export data, suitable for downloading files d
 
 ## (I) Specify Module Export
 Request example:
-```graphql
+``` graphql
 mutation {
     workflowDesignerExportReqMutation {
         export(data: { module: "demo_core", fileName: "workflow_meta" }) {
@@ -59,7 +59,7 @@ mutation {
 
 ## (II) Specify Workflow Code Export
 Request example:
-```graphql
+``` graphql
 mutation {
     workflowDesignerExportReqMutation {
         export(data: { workflowCode: "WF0000000000132500", fileName: "workflow_meta" }) {
@@ -71,7 +71,7 @@ mutation {
 
 # VI. Import Example Code in Business Project
 Example code for importing metadata:
-```java
+``` java
 @Slf4j
 @Order(Integer.MAX_VALUE-1)
 @Component

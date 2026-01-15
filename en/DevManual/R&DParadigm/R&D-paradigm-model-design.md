@@ -31,7 +31,7 @@ The Third Normal Form stipulates that non-primary attributes in a database table
 
 Following the Third Normal Form in Oinone model design effectively avoids data redundancy. Take a customer relationship management system as an example: if each sales record stores detailed customer information (such as address and contact details), updating all related sales records when customer information changes increases maintenance costs and prone to data inconsistency. According to the Third Normal Form, customer information should be designed as a separate customer model, with the sales record model referencing it through an association field. Sample code for model design is as follows:
 
-```java
+``` java
 @Model.model(Customer.MODEL_MODEL)
 @Model
 public class Customer extends IdModel {
@@ -48,7 +48,7 @@ public class Customer extends IdModel {
 }
 ```
 
-```java
+``` java
 @Model.model(SalesRecord.MODEL_MODEL)
 @Model
 public class SalesRecord extends IdModel {
@@ -81,7 +81,7 @@ Suppose we need to design a project management system with three models: project
 
 Sample code for Oinone model design of the project management system:
 
-```java
+``` java
 @Model.model(Member.MODEL_MODEL)
 @Model
 public class Member extends IdModel {
@@ -98,7 +98,7 @@ public class Member extends IdModel {
 }
 ```
 
-```java
+``` java
 @Model.model(Project.MODEL_MODEL)
 @Model
 public class Project extends IdModel {
@@ -114,7 +114,7 @@ public class Project extends IdModel {
     private Date endDate;
 }
 
-```java
+``` java
 @Model.model(Task.MODEL_MODEL)
 @Model
 public class Task extends IdModel {
@@ -145,7 +145,7 @@ In this case, each model follows the Third Normal Form. The project model stores
 + **Problem**: When frequently querying the total order amount, calculating it through associated order lines each time is inefficient.
 + **Solution**: Add a redundant field `totalAmount` to the order model, updated via computed fields or triggers.
 
-```java
+``` java
 @Model.model(SaleOrder.MODEL_MODEL)
 @Model
 public class SaleOrder extends IdModel {
@@ -208,7 +208,7 @@ public class SaleOrderAction {
 
 + Extended inheritance (directly adding fields) may violate normal forms but is more efficient.
 
-```java
+``` java
 @Model.model(CustomProduct.MODEL_MODEL)
 @Model
 public class CustomProduct extends Product {

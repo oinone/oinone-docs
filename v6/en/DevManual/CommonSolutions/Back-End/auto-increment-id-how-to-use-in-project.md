@@ -13,7 +13,7 @@ In some scenarios, the primary key needs to be set as auto-increment. This artic
 
 Specify the PrimaryKey rule for the field with `@Field.PrimaryKey(keyGenerator = KeyGeneratorEnum.AUTO_INCREMENT)`.
 
-```java
+``` java
 @Model.model(ProjectInfo.MODEL_MODEL)
 @Model(displayName = "Project Information", labelFields = "projectName")
 @Model.Advanced(unique = {"projectCode"})
@@ -42,7 +42,7 @@ public class ProjectInfo extends IdModel {
 
 Specify the database ID generation rule in `application.yml` (can be configured globally or for a single data source). In the yml file, find the keyword `key-generator`, which defaults to `DISTRIBUTION` (i.e., distributed ID), and change it to `AUTO_INCREMENT` (auto-increment ID); if certain storage models under the data source are configured separately, the model-level rules take precedence.
 
-```yaml
+``` yaml
 pamirs:
   mapper:
     static-model-config-locations:
@@ -82,7 +82,7 @@ Note: For more YAML configurations, please refer to [Module API](/en/DevManual/R
 
 # Ⅲ、Manual Way to Obtain IDs
 
-```java
+``` java
 /**
 * Manually obtain IDs in specific scenarios
 */

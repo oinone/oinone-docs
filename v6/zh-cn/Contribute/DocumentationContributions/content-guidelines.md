@@ -7,10 +7,10 @@ category:
 order: 1
 prev:
   text: 文档贡献
-  link: /zh-cn/Contribute/DocumentationContributions/README.md
+  link: /v6/zh-cn/Contribute/DocumentationContributions/README.md
 next:
   text: 软件使用许可和合约
-  link: /zh-cn/software-licenses.md
+  link: /v6/zh-cn/software-licenses.md
 ---
 #### **一、文档类型与对应模板**
 
@@ -18,7 +18,7 @@ next:
 
 **模板示例**（Markdown格式）：
 
-```markdown
+``` markdown
 # [功能名称] 使用指南
 ## 概述
 - **功能定位**：一句话说明用途（如“用于实现跨部门审批流程配置”）。
@@ -33,7 +33,7 @@ next:
 1. **步骤1**：进入功能入口
    - 路径：`控制台 > 流程管理 > 新建流程`
 2. **步骤2**：配置流程规则
-   ```yaml
+   ``` yaml
    # 示例配置
    nodes:
      - type: approval
@@ -58,7 +58,7 @@ next:
 + **模板选择**：在Gitee/GitHub仓库的Issue页面选择“文档改进”模板。
 + **填写规范**：
 
-```markdown
+``` markdown
 ## 文档类型
 [用户指南/技术白皮书/API文档]
 

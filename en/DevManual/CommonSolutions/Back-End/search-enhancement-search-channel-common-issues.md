@@ -20,7 +20,7 @@ After introducing the Channel module, the system startup process will execute a 
 It should be emphasized that specific versions of the JDK may lack the tools.jar file, and this absence is highly likely to cause system startup failure.
 
 ## (Ⅲ) Specific Error Log
-```java
+``` java
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:107) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:58) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88) [pamirs-venus-boot.jar:na]
@@ -45,7 +45,7 @@ Caused by: java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExp
 
 ## (Ⅳ) Solutions
 + **Method 1 [Recommended]**: Configure the Channel scanning path
-```yaml
+``` yaml
 pamirs:
   channel:
     packages:
@@ -57,7 +57,7 @@ pamirs:
 # III. Class JsonProvider Not Found During Startup
 ## (Ⅰ) Specific Error Log
 If the startup error message is as follows:
-```java
+``` java
 Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
     at java.lang.ClassLoader.defineClass1(Native Method) ~[na:1.8.0_181]
     at java.lang.ClassLoader.defineClass(ClassLoader.java:763) ~[na:1.8.0_181]
@@ -69,7 +69,7 @@ Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
 The project only introduces `pamirs-channel-core` but does not introduce `elasticsearch`-related packages.
 
 ## (Ⅲ) Solutions
-```xml
+``` xml
 <dependency>
   <groupId>org.elasticsearch.client</groupId>
   <artifactId>elasticsearch-rest-client</artifactId>

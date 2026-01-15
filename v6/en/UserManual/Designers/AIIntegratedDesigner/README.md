@@ -9,10 +9,10 @@ dir:
    order: 7
 prev:
   text: Microflow Design
-  link: /zh-cn/UserManual/Designers/MicroflowDesigner/Microfluidic Design.md
+  link: /v6/en/UserManual/Designers/MicroflowDesigner/Microfluidic Design.md
 next:
   text: Connector
-  link: /zh-cn/UserManual/Designers/AIIntegratedDesigner/connector.md
+  link: /v6/en/UserManual/Designers/AIIntegratedDesigner/connector.md
 ---
 
 &emsp;&emsp;Oinone provides a one-stop AI large model integration and design platform that comprehensively covers multiple dimensions of AI technology fields such as voice processing, image generation, text creation, and video synthesis. It supports the rapid access to leading domestic and international large models such as OpenAI, DeepSeek, Tongyi Qianwen, and Stability, and also supports the flexible deployment of various open-source models, enabling enterprises to build an intelligent technology foundation integrating multiple technologies.

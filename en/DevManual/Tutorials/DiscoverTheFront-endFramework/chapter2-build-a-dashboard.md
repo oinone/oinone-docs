@@ -24,7 +24,7 @@ Remember the `registerLayout` method used in the previous chapter to register la
 
 Below is the default mask provided by the platform. Generally, you only need to modify it as needed:  
 
-```xml
+``` xml
 <mask>
     <multi-tabs />
     <header>
@@ -130,8 +130,8 @@ In practice, each component may initiate requests to the back-end to fetch neces
 
 The Oinone framework provides a unified method to send requests. We can define a request to the back-end like this to obtain statistical results of "country groups":  
 
-```typescript
-import { GenericFunctionService } from '@kunlun/dependencies';
+``` typescript
+import { GenericFunctionService } from '@oinone/kunlun-dependencies';
 
 const MODEL_MODEL = 'resource.ResourceCountryGroup';
 
@@ -155,7 +155,7 @@ For more information on custom requests, refer to: [Customize GraphQL Request](/
 
 Then, we can use it when the component is mounted and display the fetched data on the page:  
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected count: number = -1;
 
@@ -167,7 +167,7 @@ protected async mounted() {
 
 If query conditions need to be carried, we can filter the dataset through the function's input parameter `rsql` to obtain the required statistical results:  
 
-```typescript
+``` typescript
 protected async mounted() {
   super.mounted();
   this.count = await ResourceCountryGroupService.countByWrapper("code =like= 'a'");
@@ -205,7 +205,7 @@ Since we are practicing on the "Country Groups" page, readers can first comment 
 
 A feasible layout template can be defined as follows:  
 
-```xml
+``` xml
 <view type="TABLE">
     <div class="statistics-card-demo-groups">
         <element widget="StatisticsCard" title="国家的总数" modelModel="resource.ResourceCountry" />
@@ -252,7 +252,7 @@ To help readers better understand the readability of `Layout`, this section prov
 
 For structured data, the performance in `XML` is usually the definition of multiple identical sub-tags. A feasible layout template can be defined as follows:  
 
-```xml
+``` xml
 <element widget="PieChart" title="用户统计" modelModel="user.PamirsUser">
     <series name="系统用户数" rsql="source == 'BUILD_IN'" />
     <series name="非系统用户数" rsql="source != 'BUILD_IN'" />

@@ -28,20 +28,20 @@ GraphiQL 作为一款极为流行的交互式开发环境（IDE），专为浏�
 如果你想在本地环境使用 GraphiQL，你可以通过 `npm` 或 `yarn` 安装：
 如果下载不成功可以使用淘宝镜像源
 
-```bash
+``` bash
 npm install -g graphiql
 ```
 
 + **通过 npm 或 Yarn 安装为开发依赖**
 你也可以将 `GraphiQL` 作为开发依赖安装到项目中：
 
-```bash
+``` bash
 npm install graphiql
 ```
 
 + **生成您的文档！**
 
-```bash
+``` bash
 npx spectaql config.yml
 ```
 
@@ -63,7 +63,7 @@ pamirs/base是请求 base 模块下的接口，可以更换为业务模块返回
 
 :::
 
-```graphql
+``` graphql
 query IntrospectionQuery {
   __schema {
     queryType { ...FullType }
@@ -155,7 +155,7 @@ fragment TypeRef on __Type {
 
 将请求的响应保存为JSON文件，在`config.yml`中配置。配置参考：[https://github.com/anvilco/spectaql/blob/main/config-example.yml](https://github.com/anvilco/spectaql/blob/main/config-example.yml)
 
-```yaml
+``` yaml
 spectaql:
   # Optional path to the target build directory.
   # Set to null to not write the output to the filesystem, making it only available via the API (default: public)

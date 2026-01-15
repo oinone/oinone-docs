@@ -11,7 +11,7 @@ order: 34
 + 查询表达式的上下文变量扩展
 
 # 二、自定义 RSQL 模板
-```java
+``` java
 /**
  * 演示Placeholder占位符基本定义
  *
@@ -75,7 +75,7 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
 # 三、占位符使用时的优先级问题
 多个占位符在进行替换时，会根据`优先级`按升序顺序执行，如需要指定替换顺序，可使用`Spring`的`Order`注解对其进行排序。
 
-```java
+``` java
 import org.springframework.core.annotation.Order;
 
 @Order(0)
@@ -96,7 +96,7 @@ import org.springframework.core.annotation.Order;
 
 下面，我们将根据`当前用户`获取`当前员工ID`定义该上下文变量进行演示。
 
-```java
+``` java
 /**
  * 员工Session
  *
@@ -154,7 +154,7 @@ public class EmployeeSession implements HookBefore {
 # 七、`员工Session`在`placeholder`中使用
 将`DemoPlaceHolder`改写，使用`${currentEmployeeId}`获取`员工Session`中保存的`employeeId`。
 
-```java
+``` java
 /**
  * 演示Placeholder占位符使用员工Session
  *
@@ -216,7 +216,7 @@ public class DemoPlaceHolder extends AbstractPlaceHolderParser {
 当前系统中包含`部门`和`员工`两个模型，模型的基本定义如下所示：
 
 ### 1、部门
-```java
+``` java
 /**
  * 演示部门
  *
@@ -240,7 +240,7 @@ public class DemoDepartment extends IdModel {
 ```
 
 ### 2、员工
-```java
+``` java
 /**
  * 演示员工
  *

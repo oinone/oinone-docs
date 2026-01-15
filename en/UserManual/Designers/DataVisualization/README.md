@@ -9,10 +9,10 @@ dir:
   order: 4
 prev:
   text: Node Actions
-  link: /zh-cn/UserManual/Designers/WorkflowDesigner/node-actions.md
+  link: /en/UserManual/Designers/WorkflowDesigner/node-actions.md
 next:
   text: Chart Management
-  link: /zh-cn/UserManual/Designers/DataVisualization/chart-management.md
+  link: /en/UserManual/Designers/DataVisualization/chart-management.md
 ---
 &emsp;&emsp;Data visualization is one of the core features of Oinone. It enables enterprises to easily transform massive and complex data into intuitive and easy-to-understand charts, reports, and data dashboards. This feature not only significantly improves the readability of data but also makes data analysis more efficient and convenient.
 

@@ -20,7 +20,7 @@ order: 56
 1. 显隐:
    `invisible="$!{activeRecord.deadline}" / invisible = true`
 
-```java
+``` java
     @Field.String
     @Field(displayName = "视图/页面", invisible = true)
     private String viewName;
@@ -29,7 +29,7 @@ order: 56
 2. 过滤。
    `domain = " code == ${activeRecord.id} " / domain = "code == '111' "`
 
-```java
+``` java
     @Field.one2many
     @Field(displayName = "子订单列表", summary = "子订单列表")
     @Field.Relation(relationFields = {"code"}, referenceFields = {"code"}, domain = "code != '1234'")

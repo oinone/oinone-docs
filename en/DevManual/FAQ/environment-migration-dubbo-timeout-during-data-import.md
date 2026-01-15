@@ -8,7 +8,7 @@ order: 10
 # Ⅰ、Problem Description
 When starting the project for importing design data locally, a Dubbo call timeout occurs, causing the design data to fail to import completely.
 
-```plain
+``` plain
 org.apache.dubbo.remoting.TimeoutException
 ```
 
@@ -17,7 +17,7 @@ There is an issue with the package dependencies in the pom, leading to the incor
 
 The possible exception error stack information locally is as follows:
 
-```dart
+``` dart
 Exception in thread "fixed-1-thread-10" PamirsException level: ERROR, code: 10100025, type: SYSTEM_ERROR, msg: 函数执行错误, extra:, extend: null
   at pro.shushi.pamirs.meta.common.exception.PamirsException$Builder.errThrow(PamirsException.java:190)
   at pro.shushi.pamirs.framework.faas.fun.manage.ManagementAspect.around(ManagementAspect.java:118)
@@ -97,7 +97,7 @@ Comments indicate dependencies that must be removed
 
 :::
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.designer</groupId>
   <artifactId>pamirs-ui-designer-api</artifactId>
@@ -128,7 +128,7 @@ Comments indicate dependencies that must be removed
 
 :::
 
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:

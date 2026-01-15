@@ -9,7 +9,7 @@ order: 5
 # I. Scenario Description
 Implement the `ExcelWriteHandlerExtendApi` interface to achieve operations for adding complex functionalities to Excel, such as adding watermarks.
 
-```java
+``` java
 
 /**
  * Determine whether to execute based on the context
@@ -35,7 +35,7 @@ This example refers to the article: [Java Uses EasyExcel to Export with Watermar
 # II. Implementing the `ExcelWriteHandlerExtendApi` Interface
 Add dependency packages
 
-```xml
+``` xml
 <!-- eaysexcel -->
 <dependency>
   <groupId>com.alibaba</groupId>
@@ -59,7 +59,7 @@ Add dependency packages
 
 
 
-```java
+``` java
 package pro.shushi.pamirs.top.core.temp;
 
 import cn.hutool.core.img.ImgUtil;
@@ -166,7 +166,7 @@ public class CustomWaterMarkHandler implements ExcelWriteHandlerExtendApi {
 ```
 
 # III. Watermark Configuration Class
-```java
+``` java
 /**
  * Watermark configuration class
  */

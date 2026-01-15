@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: System Configuration
-  link: /zh-cn/UserManual/StandardModules/preferences.md
+  link: /en/UserManual/StandardModules/preferences.md
 ---
 ### 1. Feature Introduction
 Supports creating system users, facilitating system access and management.

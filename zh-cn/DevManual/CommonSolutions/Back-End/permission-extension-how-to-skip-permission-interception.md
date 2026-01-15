@@ -11,7 +11,7 @@ order: 44
 
 + 跳过 queryTea 的权限验证
 
-```java
+``` java
 @Action(displayName = "queryTea", bindingType = ViewTypeEnum.FORM)
 @Action.Advanced(type = FunctionTypeEnum.UPDATE)
 public Teacher queryTea(Teacher data) {
@@ -20,7 +20,7 @@ public Teacher queryTea(Teacher data) {
 
 + 在 yaml 文件里面配置上该函数的 namespace（模型编码）以及函数名字
 
-```yaml
+``` yaml
 pamirs:
   auth:
     fun-filter:
@@ -36,7 +36,7 @@ pamirs:
 
 + 在 yaml 文件里面配置上该函数的 namespace（模型编码）以及函数名字
 
-```yaml
+``` yaml
 pamirs:
   auth:
     fun-filter-only-login: #登录后不再校验该函数的权限
@@ -53,7 +53,7 @@ pamirs:
 + 以下示例通过控制包路径来跳过权限。
 + 继承`pro.shushi.pamirs.auth.api.spi.AuthFilterService`接口
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomAuthFilterService implements AuthFilterService {

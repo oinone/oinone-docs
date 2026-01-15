@@ -18,7 +18,7 @@ Hardware Overview: Domestic信创 (IT application innovation) server, Loongson C
 # Ⅱ. Middleware Installation
 + Manual middleware installation requires the following middleware list:
 
-```graphql
+``` graphql
 1. Go runtime environment
 2. Java 1.8        Version: 1.8_221+
 3. MySQL           Version: 8.0+
@@ -34,7 +34,7 @@ Hardware Overview: Domestic信创 (IT application innovation) server, Loongson C
 The golang official website: https://golang.google.cn/dl/ provides packages for the mips64 architecture.
 
 ## \(Ⅱ\) Install JDK
-```shell
+``` shell
 sudo yum update
 
 # Use the yum command to list all available JDK packages
@@ -67,7 +67,7 @@ The content of compiling MySQL5.7 comes from [Tencent Cloud] - [Developer Commun
 #### Upload and Extract the Source Package
 Please select a version with built-in boost for the source package, such as: mysql-boost-5.7.33.tar.gz, my path is under /opt/softapp/
 
-```bash
+``` bash
 tar -zxvf mysql-boost-5.7.33.tar.gz
 cd mysql-5.7.33/
 ```
@@ -75,7 +75,7 @@ cd mysql-5.7.33/
 #### Compile the MySQL Source Code
 Note that the DWITH_BOOST in the following script needs to be changed to your local source code path, please modify it according to the actual situation.
 
-```bash
+``` bash
 cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 -DSYSCONFDIR=/etc \
 -DWITH_MYISAM_STORAGE_ENGINE=1 \
@@ -98,20 +98,20 @@ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql \
 ```
 
 #### Create Database User and Data Directory
-```bash
+``` bash
 useradd -M -s /sbin/nologin -r mysql
 mkdir -p /usr/local/mysql/data
 chown -R mysql.mysql /usr/local/mysql/
 ```
 
 #### Execute Make Installation
-```bash
+``` bash
 make
 sudo make install
 ```
 
 #### Configuration File my.cnf
-```bash
+``` bash
 mv  /etc/my.cnf  /etc/my.cnf.bak
 vim /etc/my.cnf
 ```
@@ -122,7 +122,7 @@ Two items are added based on the configuration from Tencent Cloud - Developer Co
 
 2) Default time zone: default-time-zone = '+08:00'
 
-```bash
+``` bash
 [mysql]
 default-character-set=utf8
 
@@ -148,12 +148,12 @@ default-time-zone = '+08:00'
 ```
 
 #### Configure Startup Script
-```bash
+``` bash
 cd /etc/systemd/system
 vim mysqld.service
 ```
 
-```bash
+``` bash
 [Unit]
 Description=MySQL DBMS
 
@@ -171,7 +171,7 @@ WantedBy=multi-user.target
 ```
 
 #### Add Permissions and Set to Start on Boot
-```bash
+``` bash
 chmod +x mysqld.service
 systemctl enable mysqld.service
 ```
@@ -179,13 +179,13 @@ systemctl enable mysqld.service
 #### Initialize the Database
 No password, if a temporary password is needed, remove the -insecure parameter.
 
-```bash
+``` bash
 /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 ```
 
 Initialization error:
 
-```plain
+``` plain
 [root@localhost system]# /usr/local/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 2024-07-07T06:24:46.415658Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
 2024-07-07T06:24:46.433398Z 0 [ERROR] Could not open file '/var/log/mysql/mysql_err.log' for error logging: No such file or directory
@@ -194,7 +194,7 @@ Initialization error:
 
 Solution: Create the file
 
-```bash
+``` bash
 mkdir  /var/log/mysql
 touch /var/log/mysql/mysql_err.log
 chown -R mysql:mysql /var/log/mysql
@@ -205,14 +205,14 @@ Successful initialization:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1729519843649-8b7eb029-1c8b-4a05-b21b-089d1829088c-20250530144825526.png)
 
 #### Start MySQL
-```bash
+``` bash
 systemctl start mysqld
 ```
 
 #### Log in to MySQL
 No password, press Enter directly when entering the password.
 
-```bash
+``` bash
 mysql -u root -p
 ```
 
@@ -221,12 +221,12 @@ Result (successful login):
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1729519892747-20a37465-eccf-461a-9565-200b018b3d4c-20250530144825545.png)
 
 #### Modify Password and Allow External Connections
-```bash
+``` bash
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_password';
 FLUSH PRIVILEGES;
 ```
 
-```bash
+``` bash
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'your_password' WITH GRANT OPTION;
 ```
 
@@ -237,7 +237,7 @@ Refer to the documentation: Backend Code-Free Designer Jar Package Startup Metho
 + You need to ask the `Oinone customer service` for the frontend dist resource package that matches the backend designer Jar package; upload the dist package to the server and start it with Nginx.
 + Nginx configuration is as follows:
 
-```nginx
+``` nginx
 server {
   # Modify according to actual details
   listen 8090;

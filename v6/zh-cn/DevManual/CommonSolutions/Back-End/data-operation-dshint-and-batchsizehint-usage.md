@@ -12,7 +12,7 @@ order: 21
 
 # 二、API定义
 ## （一）DsHintApi
-```java
+``` java
 public static DsHintApi model(String model/**模型编码*/) {
     // 具体实现
 }
@@ -23,7 +23,7 @@ public DsHintApi(Object dsKey/***数据源名称*/) {
 ```
 
 ## （二）BatchSizeHintApi
-```java
+``` java
 public static BatchSizeHintApi use(Integer batchSize) {
     // 具体实现
 }
@@ -40,7 +40,7 @@ public static BatchSizeHintApi use(Integer batchSize) {
 + DsHintApi 使用示例
 包裹在 try 里面的所有查询都会强制使用指定的数据源
 
-```java
+``` java
   // 使用方式1：
   try (DsHintApi dsHintApi = DsHintApi.model(PetItem.MODEL_MODEL)) {
        List<PetItem> items = demoItemDAO.customSqlDemoItem();
@@ -59,7 +59,7 @@ public static BatchSizeHintApi use(Integer batchSize) {
 + 3、BatchSizeHintApi 使用示例
 包裹在 try 里面的所有查询都会按照指定的 batchSize 进行查询
 
-```java
+``` java
 // 查询指定每次查询500跳
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(500)) {
     PetShopProxy data2 = data.queryById();
@@ -67,7 +67,7 @@ try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(500)) {
 }
 ```
 
-```java
+``` java
 //  查询指定不分页(batchSize=-1)查询。 请注意，你必须在明确不需要分页查询的情况下使用；如果数据量超大不分页可能会卡死。默认不指定分页数的情况下下平台会进行分页查询
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
     PetShopProxy data2 = data.queryById();

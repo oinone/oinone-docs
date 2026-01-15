@@ -7,7 +7,7 @@ category:
 order: 4
 next:
   text: Layout
-  link: /zh-cn/UserManual/Designers/UIDesigner/Components/layout.md
+  link: /v6/en/UserManual/Designers/UIDesigner/Components/layout.md
 ---
 When designing pages, the component library consists of two parts: components and models. Components include system components and custom components. System components are mainly divided into four categories: layout, fields, media, and actions. Models include all fields under the page's model and system default actions.
 # I. Components

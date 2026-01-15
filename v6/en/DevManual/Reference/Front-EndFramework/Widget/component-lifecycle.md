@@ -9,7 +9,7 @@ category:
 order: 1
 prev:
   text: Widget
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/README.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/README.md
 ---
 In Oinone Kunlun, the component lifecycle is fully implemented following the Vue component lifecycle provided by the Vue framework. Moreover, since Oinone Kunlun is a rendering framework based on DSL Render, its management scope extends beyond just "components." It also needs to handle various data behaviors such as data fetching, rendering, and submission. Therefore, we have extended the component lifecycle to better support the entire system's operation.
 
@@ -37,7 +37,7 @@ A Widget component goes through many stages: it can be instantiated, rendered, m
 
 The Widget framework provides various built-in functions, all declared in the `VueWidget` base class. For example, if you want to execute some code when the component is mounted, you can override the `mounted` function in the current component:
 
-```typescript
+``` typescript
 protected mounted() {
   super.mounted();
   // do something.
@@ -62,13 +62,13 @@ Called before the instance is completely created. (Merged into `setup` in the ne
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected beforeCreated(): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected beforeCreated() {
   // do something.
 }
@@ -82,13 +82,13 @@ Called after the instance is created. (Merged into `setup` in the new Vue lifecy
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected created(): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected created() {
   // do something.
 }
@@ -102,13 +102,13 @@ Called before mounting begins.
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected beforeMount(): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected beforeMount() {
   // do something.
 }
@@ -122,13 +122,13 @@ Called after the component is mounted to the DOM.
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected mounted(): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected mounted() {
   // do something.
 }
@@ -142,13 +142,13 @@ Called before data updates cause the component to re-render. At this time, the c
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected beforeUpdate(): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected beforeUpdate() {
   // do something.
 }
@@ -162,7 +162,7 @@ Called after the component is re-rendered and the DOM is updated. At this time, 
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected updated(): void
 ```
 
@@ -173,7 +173,7 @@ protected updated(): void
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected updated() {
   // do something.
 }
@@ -187,13 +187,13 @@ Called before the component is unmounted. At this time, the component is still m
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected beforeUnmount(): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected beforeUnmount() {
   // do something.
 }
@@ -207,13 +207,13 @@ Called after the component is unmounted. At this time, the component's DOM has b
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected unmounted(): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected unmounted() {
   // do something.
 }
@@ -227,7 +227,7 @@ Called when the component is **activated** (applicable to components cached by `
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected activated(): void
 ```
 
@@ -238,7 +238,7 @@ protected activated(): void
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected activated() {
   // do something.
 }
@@ -252,7 +252,7 @@ Called when the component is **deactivated** (applicable to components cached by
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected deactivated(): void
 ```
 
@@ -263,7 +263,7 @@ protected deactivated(): void
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected deactivated() {
   // do something.
 }
@@ -279,7 +279,7 @@ Component initialization, called when the `TypeScript Class` is created, prior t
 
 **Function Signature**
 
-```typescript
+``` typescript
 protected initialize(props: VueProps): this
 ```
 
@@ -291,7 +291,7 @@ protected initialize(props: VueProps): this
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected initialize(props) {
   super.initialize(props);
   // do something.
@@ -307,13 +307,13 @@ Binds the Widget component to the corresponding Vue component, can only be used 
 
 **Function Signature**
 
-```typescript
+``` typescript
 public setComponent(component: WidgetComponent): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 protected initialize(props) {
   super.initialize(props);
   this.setComponent(RedInput);
@@ -329,12 +329,12 @@ Component destruction, used for scenarios where manually created Widget componen
 
 **Function Signature**
 
-```typescript
+``` typescript
 public dispose(): void
 ```
 
 **Usage Example**
 
-```typescript
+``` typescript
 this.formWidget.dispose();
 ```

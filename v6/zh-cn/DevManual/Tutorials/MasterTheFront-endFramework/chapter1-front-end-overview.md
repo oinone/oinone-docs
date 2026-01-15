@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: 精通前端框架（Master the Front-End framework）
-  link: /zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/README.md
+  link: /v6/zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/README.md
 ---
 在 Oinone 中，我们将一个 Web 前端页面以及页面与页面直接的路由关系做了一定的抽象，而这些用来描述页面以及页面内容（字段、动作）的数据被称为“元数据”。了解元数据的获取及它们之间的关系是非常有必要的。
 

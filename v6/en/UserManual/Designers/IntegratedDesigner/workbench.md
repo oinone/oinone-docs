@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Integrated Designer
-  link: /en-us/UserManual/Designers/IntegratedDesigner/README.md
+  link: /v6/en-us/UserManual/Designers/IntegratedDesigner/README.md
 ---
 The workbench is used to present integration-related statistical data:
 

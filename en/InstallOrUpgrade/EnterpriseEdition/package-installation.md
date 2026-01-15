@@ -64,7 +64,7 @@ Take the Linux platform as an example
 
 :::
 
-```plain
+``` plain
 #startup.sh
 #!/bin/bash
 # Directory where the script is located
@@ -112,7 +112,7 @@ If Mysql, Zookeeper, Redis, and RocketMQ are not on the same host, find the foll
 
 + Mysql
 
-```yaml
+``` yaml
 # application.yml file
 # Change to the IP, port (default port 3306, consistent with the port of MySQL on the server), username, password of the MySQL server
 pamirs:
@@ -134,7 +134,7 @@ pamirs:
 
 + Zookeeper
 
-```yaml
+``` yaml
 # application.yml file
 dubbo:
   application:
@@ -163,7 +163,7 @@ pamirs:
 
 + Redis
 
-```yaml
+``` yaml
 # application.yml file
 spring:
   redis:
@@ -186,7 +186,7 @@ spring:
 
 + RocketMQ
 
-```yaml
+``` yaml
 # application.yml file
 spring:
   rocketmq:
@@ -195,7 +195,7 @@ spring:
 
 + File storage OSS
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: MINIO

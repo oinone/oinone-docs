@@ -17,7 +17,7 @@ In numerous application scenarios, the trigger and scheduling mechanisms of func
 ## (Ⅰ) Introducing Dependencies in the Project
 1. The project's API engineering introduces the pamirs-core-trigger module dependency.
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-trigger-api</artifactId>
@@ -26,7 +26,7 @@ In numerous application scenarios, the trigger and scheduling mechanisms of func
 
 2. DemoModule adds `@Module(dependencies={TriggerModule.MODULE_MODULE})` in the module dependency definition.
 
-```java
+``` java
 @Component
 @Module(
     name = DemoModule.MODULE_NAME,
@@ -44,7 +44,7 @@ public class DemoModule implements PamirsModule {
 
 3. The project's boot engineering introduces dependencies.
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-trigger-core</artifactId>
@@ -63,7 +63,7 @@ public class DemoModule implements PamirsModule {
 + Adjust the values of configuration parameters `pamris.event.enabled` and `pamris.event.schedule.enabled` to true.
 + Add the following startup modules in `pamirs_boot_modules`: trigger, sql_record.
 
-```yaml
+``` yaml
 pamirs:
   record:
     sql:
@@ -92,7 +92,7 @@ Note: For more YAML configurations, please refer to [Module API](/en/DevManual/R
 ## (Ⅲ) Creating a New Trigger Task
 Create a class named `PetTalentTrigger`. This class is designed such that when a new data record is completed in the `PetTalent` model, the system will automatically trigger and execute a series of related transactions.
 
-```java
+``` java
   package pro.shushi.pamirs.demo.core.trigger;
 
 import pro.shushi.pamirs.demo.api.model.PetTalent;
@@ -123,7 +123,7 @@ Scheduled tasks are a very common pattern, so we won't introduce the concept her
 + `taskAction.setExecuteFun("execute")` needs to be consistent with the execution function name `execute`.
 + `TaskType` should be configured as `CYCLE_SCHEDULE_NO_TRANSACTION_TASK`, which can separate the `schedule` thread of the scheduled task. Otherwise, if there is a task with a long execution time, it will cause delays in all ordinary asynchronous tasks or trigger tasks.
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -189,7 +189,7 @@ public class PetTalentAutoTask implements ScheduleAction {
 ## (Ⅱ) Modifying DemoModuleBizInit for Scheduled Task Initialization
 When the module is updated, call the `petTalentAutoTask.initTask()` method. Since `initTask` itself is idempotent, multiple calls are harmless. The "Module Lifecycle" article introduces `InstallDataInit`, `UpgradeDataInit`, and `ReloadDataInit`.
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.init;
 
 import org.springframework.beans.factory.annotation.Autowired;

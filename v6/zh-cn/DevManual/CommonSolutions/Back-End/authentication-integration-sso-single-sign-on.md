@@ -15,7 +15,7 @@ order: 66
 
 执行 SSO 登录认证时，需采用 `grant_type=password` 的认证方式，并在请求中附带用户名与密码信息。具体的请求链接如下（采用 POST 请求方式）：
 
-```plain
+``` plain
 http://127.0.0.1:8190/pamirs/sso/authorize?redirect_uri=http://127.0.0.1:8193/page;module=ysps;model=ysps.notify.ProjectPosting;action=homepage;scene=homepage;target=OPEN_WINDOW;path=/ysps/homepage&response_type=code&client_id=替换为已创建的应用唯一标识&grant_type=password&username=admin&password=admin
 ```
 
@@ -31,7 +31,7 @@ http://127.0.0.1:8190/pamirs/sso/authorize?redirect_uri=http://127.0.0.1:8193/pa
 
 1. 请求服务端工程返回token信息：
 
-```http
+``` http
 curl --location --request POST 'http://127.0.0.1:8094/openapi/get/access-token' \
 --header 'User-Agent: Apifox/1.0.0 (https://apifox.com)' \
 --header 'Accept: */*' \
@@ -43,7 +43,7 @@ curl --location --request POST 'http://127.0.0.1:8094/openapi/get/access-token' 
 --data-urlencode 'appSecret=JNEyibFBIb2N3tdLmW/M9bnpf120/I6fFMMf86OQlP/wlL5qhJCF3KdAKHlJT0jECmXmJRfTCSlnmB5cWHRsenNGND+TMoXObzDPK7umxazCnaZYiW7JDeuZUOzqskhBPkEJSURAZR5xu1c6UYv542BlHAPsEi+ujnKeCYcKiFHyw7fIB1aijNyCz8d9teUEGYYTtYTXoNp/4Ts8AIJn8xkTjvEq6V9uYOExDEuYGxMgN76ZaiwpbT5387eZy4XCDIy0XWfZo/kv7X+s+rjwlsxWA7jp1w5dDaRmSd4rPO2GSEcL64Pje/Ct5xznhNwH6T5KDd2BLfbZikonh624nqW4hdlVxx/EQUpYp6Yc4Wet6b/DkggCVIZPpcO9pSuRJoC2jGPMrGHM3vYR0YtfFqCJ2/x3m/lQr2v+bP4pGzcRuuCy2tyOZA1uurA23xlssehz4geGiJArkpAUKKUkcafx+dLWODHOcgBKBz6wY38PAcbLkgn6gK6lmmR7cUiDmzmEEor6pYb64YG6tPmpm4AQeBoQYrsyCorA4Ds08nAiPFWUCXcHQCVUbHPTOwHHChFO1lXH/VjkfDv0OI1CD8mZI7ZeK794aIBZdvQGCI+ayQU+5CD1asDNg/M01nnNdWKB7rS9rMvbUOlSNguboAgRbiz3pEAxGJrZUPvkDHM='
 ```
 
-```json
+``` json
 {
     "access_token": "eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE3NDQyNTk2MTcsInN1YiI6IntcImNsaWVudElkXCI6XCJwYW1pcnNfMjc5YjcwMDBlNDE3NDMxMmFmNDAyMDM0YjhlZjFhOWRcIixcInJhbmRvbUFrSWRcIjpcIjM0MDBiYzY0Njk1MzQzODA4ZTlhNmZhNWRmZjU0MTc2XCIsXCJvcGVuSWRcIjpcIjEwMDAxXCJ9In0.iJ-meyxAGW189Y3aK9Z2rMbf9_MsTKVTfnf3XsDR4iq6qvCGYkiq5197r4A54wwdKAzPZ-iDgkQOjWDh8AYu4A",
     "token_type": null,
@@ -55,7 +55,7 @@ curl --location --request POST 'http://127.0.0.1:8094/openapi/get/access-token' 
 
 2. 发起客户端工程请求。注意：请求 Headers 中需携带 token 参数信息，token 为服务端工程返回token 信息，且请求时 Authorization 参数需加上标识 Bearer+空格。
 
-```shell
+``` shell
 curl --location --request POST 'http://127.0.0.1:8092/pamirs/base' \
 --header 'loginType: OAUTH' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE3NDQyMDYwNjUsInN1YiI6IntcImNsaWVudElkXCI6XCJwYW1pcnNfMjc5YjcwMDBlNDE3NDMxMmFmNDAyMDM0YjhlZjFhOWRcIixcInJhbmRvbUFrSWRcIjpcImEzZWZkNjZkMDNlNjQ5MDY4OGU4Y2FhYmIwNjZmZGU4XCIsXCJvcGVuSWRcIjpcIjEwMDAxXCJ9In0.gapCpvM8PCit1oSHv-zJ2tATkCuVQBzqWGebvBcUX2O0bqP9aAhVqQxdNLM19vCqP5s3CXoNk-xzMUu-mo-hSg' \
@@ -70,7 +70,7 @@ curl --location --request POST 'http://127.0.0.1:8092/pamirs/base' \
 
 ### 1、pom 依赖
 
-```xml
+``` xml
 <dependency>
      <groupId>pro.shushi.pamirs.core</groupId>
      <artifactId>pamirs-sso-oauth2-server</artifactId>
@@ -79,7 +79,7 @@ curl --location --request POST 'http://127.0.0.1:8092/pamirs/base' \
 
 ### 2、application.yml 配置文件里面添加 sso 启动模块。
 
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:
@@ -94,7 +94,7 @@ pamirs:
 
 ### 1、pom 依赖
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-sso-oauth2-client</artifactId>
@@ -103,7 +103,7 @@ pamirs:
 
 ### 2、application.yml 配置
 
-```yaml
+``` yaml
 pamirs:
   sso:
     enabled: true

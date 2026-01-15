@@ -9,10 +9,10 @@ category:
 order: 11
 prev:
   text: Gallery Field
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
 next:
   text: Vue UI Antd
-  link: /en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI-antd.md
 ---
 The Router component is the core component in Oinone's routing system. Like other components, it is implemented through the SPI (Service Provider Interface) component registration mechanism. This document will introduce the registration of such router components and the built-in router components.
 

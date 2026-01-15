@@ -10,7 +10,7 @@ When we need to display approval buttons in the list of a business model, we can
 
 # II. Solutions
 ## (Ⅰ) First, add the `userTaskList` field in the business data model to store the workflow to-do data of the record
-```java
+``` java
 @Model.model(DemoItem.MODEL_MODEL)
 @Model(displayName = "Test Product")
 public class DemoItem extends IdModel {
@@ -23,7 +23,7 @@ public class DemoItem extends IdModel {
 ```
 
 ## (Ⅱ) Query the data of the current logged-in user in workflow tasks within the query method of business data
-```java
+``` java
 @Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "Query List", timeout = 50000)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
@@ -62,7 +62,7 @@ public Pagination<DemoItem> queryPage(Pagination<DemoItem> page, QueryWrapper<De
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240509-175829-1024x472.png)
 
 ## (Ⅴ) Frontend custom action component for navigating to the workflow to-do detail page
-```typescript
+``` typescript
 import {
   ActionType,
   ActionWidget,

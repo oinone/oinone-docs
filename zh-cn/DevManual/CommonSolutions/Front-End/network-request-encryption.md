@@ -10,7 +10,7 @@ order: 10
 
 # 二、后端
 ## （一）继承平台的`RequestController`新增一个请求类，在里面处理加密逻辑
-```java
+``` java
 package pro.shushi.pamirs.demo.core.controller;
 
 import org.apache.commons.lang3.StringUtils;
@@ -74,7 +74,7 @@ public class DemoRequestController extends RequestController {
 ```
 
 ## （二）boot工程的启动类排除掉平台默认的`RequestController`类
-```java
+``` java
 @ComponentScan(
         excludeFilters = {
                 // 该注解排除平台的RequestController类
@@ -88,7 +88,7 @@ public class DemoApplication {
 ```
 
 ## （三）以下为实际项目中的启动类示例
-```java
+``` java
 package pro.shushi.pamirs.demo.boot;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -158,8 +158,8 @@ public class DemoApplication {
 
 # 二、前端
 ## （一）新增工具类`EncryptRequestUtil.ts`
-```typescript
-import { encrypt, NetworkMiddlewareHandler } from '@kunlun/dependencies';
+``` typescript
+import { encrypt, NetworkMiddlewareHandler } from '@oinone/kunlun-dependencies';
 
 export const encryptMiddleWare: NetworkMiddlewareHandler = (operation, forward) => {
   // 下面一行代码为默认的加密方法，可以替换为自己的算法
@@ -173,7 +173,7 @@ export const encryptMiddleWare: NetworkMiddlewareHandler = (operation, forward) 
 ## （二）`main.ts`注册加密的拦截器
 在`main.ts`的`VueOioProvider`方法内注册，以下代码仅演示了加密的关键配置，其他配置请按原有代码来
 
-```typescript
+``` typescript
 VueOioProvider(
   {
     http: {

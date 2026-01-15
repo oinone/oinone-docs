@@ -9,7 +9,7 @@ order: 71
 Implementing User Center Menu Replacement Using Extension Points
 
 # Ⅰ、Adding pamirs-user-api Dependency in the Project
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-user-api</artifactId>
@@ -21,7 +21,7 @@ Implementing User Center Menu Replacement Using Extension Points
 + Add the `@Hook` annotation to specify it as a post-extension for the `construct` function of the `TopBarUserBlock` model: `@Hook(model = {TopBarUserBlock.MODEL_MODEL}, fun = {"construct"})`
 
 ## （Ⅰ）Adding User Center Menu
-```java
+``` java
 @Component
 @Order(1)
 @SPI.Service
@@ -44,7 +44,7 @@ Implementation Effect
 ## （Ⅱ）Replacing Original User Center Menu
 1. Replacing Original Menu Redirection
 
-```java
+``` java
 @Component
 public class DemoTopBarUserBlockDataHookAfter implements HookAfter {
 
@@ -79,7 +79,7 @@ public class DemoTopBarUserBlockDataHookAfter implements HookAfter {
 
 2. Adding `ViewAction` Using `@UxRouteButton`
 
-```java
+``` java
 @Model.model(Dog.MODEL_MODEL)
 @Component
 @UxRouteButton(
@@ -92,7 +92,7 @@ public class DogAction {
 # Ⅲ、Replacing Original Profile Avatar Redirection
 1. Modifying the Redirection Logic Bound to Avatar Click
 
-```java
+``` java
 @Order(10)
 @Component
 @SPI.Service
@@ -116,7 +116,7 @@ public class DemoTopBarUserBlockDataApi implements TopBarUserBlockDataApi {
 
 2. Adding Permission Nodes for Permission Control
 
-```java
+``` java
 @Component
 @Order(88)
 @SPI.Service

@@ -8,7 +8,7 @@ category:
 order: 6
 next:
   text: Common Extension Points And SPI List
-  link: /en/DevManual/Reference/common-extension-points-and-SPI-list.md
+  link: /v6/en/DevManual/Reference/common-extension-points-and-SPI-list.md
 ---
 # I. Overview
 

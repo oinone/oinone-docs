@@ -7,12 +7,12 @@ category:
 order: 1
 prev:
   text: Debug Tools
-  link: /en/DevManual/Tutorials/debug-tools.md
+  link: /v6/en/DevManual/Tutorials/debug-tools.md
 ---
 
 Recall the components we created in the "[Explore the Front-end Framework](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)" chapter, all of which used a base class named `BaseElementWidget` and had distinct usage patterns. To help refresh our memory, here is part of the code for the previous "counter" component and its usage:
 
-```typescript
+``` typescript
 import Counter from './Counter.vue';
 
 @SPI.ClassFactory(
@@ -30,7 +30,7 @@ export class CounterWidget extends BaseElementWidget {
 }
 ```
 
-```xml
+``` xml
 <element widget="Counter" />
 ```
 
@@ -57,7 +57,7 @@ Boolean fields in form views can use switch components. Before starting the exer
 
 In the `FormBooleanSwitchFieldWidget` component, we extract the component registration code as follows:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -71,7 +71,7 @@ export class FormBooleanSwitchFieldWidget extends FormFieldWidget {
 
 Next, create a `FormCustomSwitchFieldWidget` component that inherits from `FormBooleanSwitchFieldWidget` with identical registration conditions. This allows us to retain all built-in functionalities while enabling customization:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -93,7 +93,7 @@ For more on field widget registration, refer to [Field Widgets](/en/DevManual/Re
 
 Next, declare two properties `checkedText` and `uncheckedText` to render text when the switch is on/off:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public get checkedText() {
   return this.getDsl().checkedText || '是';
@@ -109,7 +109,7 @@ Similar to the previous counter component, we need a Vue component to use these 
 
 We can also use built-in standard components to maintain theme and styling consistency with the platform. A valid Vue component template might look like:
 
-```vue
+``` vue
 <template>
   <oio-switch :checked="booleanValue" @change="onChange">
     <template v-if="checkedText" #checkedChildren>
@@ -140,7 +140,7 @@ Next, declare the built-in data interaction properties for form field widgets in
 + focus: Called when component gains focus.
 + blur: Called when component loses focus.
 
-```typescript
+``` typescript
 props: {
   value: {
     type: [Boolean, String],
@@ -166,13 +166,13 @@ Don't forget to declare `checkedText` and `uncheckedText` properties!
 
 The Vue template uses properties/methods not in `props`, so we need to declare them in `setup` to implement component functionality. In `FormBooleanSwitchFieldWidget`, `value` can be Boolean/String or null, but `oio-switch` and many third-party components don't accept such values. Use a computed property to handle this:
 
-```typescript
+``` typescript
 const booleanValue = computed(() => BooleanHelper.toBoolean(props.value));
 ```
 
 Additionally, to retain base functionality, handle value changes specially. For switch components, we expect the blur method to trigger immediately after a value change, not via browser blur events. Wrap the change method:
 
-```typescript
+``` typescript
 const onChange = (val: boolean | undefined) => {
   props.change?.(val);
   props.blur?.();
@@ -202,7 +202,7 @@ The Widget framework classifies components, allowing registration based on class
 
 ## (I) Field Widget Registration Options
 
-```typescript
+``` typescript
 /**
  * Field widget registration options
  */
@@ -242,7 +242,7 @@ Registration dimensions include view type, widget name, field type, multi-value 
 
 Take `FormBooleanSwitchFieldWidget` as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -295,7 +295,7 @@ After learning to customize existing components, let's create a red-text input f
 
 ## (I) Determine Base Class and Registration Conditions
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -312,7 +312,7 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 
 A valid Vue template:
 
-```vue
+``` vue
 <template>
   <oio-input class="red-input-demo" :value="value" @update:value="change" @focus="focus" @blur="blur" />
 </template>
@@ -326,7 +326,7 @@ See [Oio Components](/en/DevManual/Reference/Front-EndFramework/OioComponents/RE
 
 Use this CSS to turn input text red, considering CSS scoping:
 
-```css
+``` css
 .red-input-demo.oio-input .ant-input {
   color: red;
 }
@@ -334,7 +334,7 @@ Use this CSS to turn input text red, considering CSS scoping:
 
 ## (III) Use RedInput in DSL
 
-```xml
+``` xml
 <field data="name" widget="RedInput" />
 ```
 
@@ -354,7 +354,7 @@ This example creates a table field widget with:
 
 ## (I) Determine Base Class and Registration Conditions
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Table,
@@ -369,7 +369,7 @@ export class TableRedInputWidget extends BaseTableFieldWidget<string> {
 
 ## (II) Override renderDefaultSlot to Customize Cell Rendering
 
-```typescript
+``` typescript
 @Widget.Method()
 public renderDefaultSlot(context: RowContext): VNode[] | string {
   const currentValue = this.compute(context);
@@ -385,7 +385,7 @@ Table field widgets render per row, with `RowContext` containing row-level conte
 
 ## (III) Implement red-input-demo CSS
 
-```css
+``` css
 .oio-column-wrapper > .red-input-demo {
   color: red;
 }
@@ -399,7 +399,7 @@ Narrow CSS scope to avoid side effects, as component usage contexts are unpredic
 
 ## (IV) Use RedInput in DSL
 
-```xml
+``` xml
 <field data="name" widget="RedInput" />
 ```
 

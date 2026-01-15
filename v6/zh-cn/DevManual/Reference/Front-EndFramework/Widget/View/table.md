@@ -10,7 +10,7 @@ category:
 order: 1
 prev:
   text: View
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/README.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/README.md
 ---
 
 文档正在筹备中，敬请期待...

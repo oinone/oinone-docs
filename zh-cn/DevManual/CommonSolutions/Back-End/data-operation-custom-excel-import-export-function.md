@@ -13,7 +13,7 @@ order: 32
 下面以导入文件的时候加入`发布人`的字段作为示例讲解。
 
 ## （一）继承平台的导入任务模型，加上需要在导入的弹窗视图需要展示的字段。
-```java
+``` java
 package pro.shushi.pamirs.demo.api.model;
 
 import pro.shushi.pamirs.file.api.model.ExcelImportTask;
@@ -34,7 +34,7 @@ public class DemoItemImportTask extends ExcelImportTask {
 ```
 
 ## （二）编写自定义导入弹窗视图的数据初始化方法和导入提交的 action。
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 
 import org.springframework.stereotype.Component;
@@ -96,7 +96,7 @@ public class DemoItemExcelImportTaskAction extends ExcelImportTaskAction {
 ## （三）编写导入单行数据的处理逻辑。
 在此过程中，能够获取到导入弹窗内自定义字段所提交的值。基于这些值，可对自定义逻辑进行处理。例如，在本演示代码中，具体逻辑为将导入商品的发布人统一设置为自定义导入视图中所填写的发布人信息。
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.excel.extPoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,7 +146,7 @@ public class DemoItemImportExtPoint extends AbstractExcelImportDataExtPointImpl<
 ```
 
 ## （四）编写导入的视图 xml。
-```xml
+``` xml
 <view type="FORM" title="导入" name="import_dialog" widget="form" model="demo.DemoItemImportTask" width="small">
     <template slot="form" cols="1">
         <field data="model" invisible="true"/>
@@ -164,7 +164,7 @@ public class DemoItemImportExtPoint extends AbstractExcelImportDataExtPointImpl<
 ```
 
 ## （五）初始化导入的动作。
-```java
+``` java
 package pro.shushi.pamirs.demo.core.init;
 
 import org.springframework.stereotype.Component;
@@ -215,7 +215,7 @@ public class DemoModuleAppInstall implements MetaDataEditor, LifecycleCompletedA
 ## （六）导入功能完成，我们看导入弹窗页面的截图 。![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20231122-042634@2x-20250530144823169.png)
 # 三、导出功能示例
 ## （一）继承平台的导出任务模型，加上需要在导出的弹窗视图需要展示的字段
-```java
+``` java
 package pro.shushi.pamirs.demo.api.model;
 
 import pro.shushi.pamirs.file.api.model.ExcelExportTask;
@@ -236,7 +236,7 @@ public class DemoItemExportTask extends ExcelExportTask {
 ```
 
 ## （二）编写自定义导出弹窗视图的数据初始化方法和导出提交的 action
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 
 import org.springframework.stereotype.Component;
@@ -289,7 +289,7 @@ public class DemoItemExcelExportTaskAction extends ExcelExportTaskAction {
 ```
 
 ## （三）编写导出的数据处理逻辑，此处可以拿到导出弹窗内自定义的字段提交的值，然后根据这些值处理自定义逻辑
-```java
+``` java
 package pro.shushi.pamirs.demo.core.excel.extPoint;
 
 import org.springframework.stereotype.Component;
@@ -342,7 +342,7 @@ public class DemoItemExportExtPoint extends ExcelExportSameQueryPageTemplate imp
 ```
 
 ## （四）编写导出的视图xml
-```xml
+``` xml
 <view type="FORM" title="导出" name="export_dialog" widget="form" model="demo.DemoItemExportTask" width="small">
     <template slot="form" cols="1">
         <field data="model" invisible="true"/>
@@ -359,7 +359,7 @@ public class DemoItemExportExtPoint extends ExcelExportSameQueryPageTemplate imp
 ```
 
 ## （五）初始化导出的动作
-```java
+``` java
 package pro.shushi.pamirs.demo.core.init;
 
 import org.springframework.stereotype.Component;

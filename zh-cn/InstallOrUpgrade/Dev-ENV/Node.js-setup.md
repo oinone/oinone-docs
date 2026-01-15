@@ -37,7 +37,7 @@ Node.js下载地址：
 ### 1、解压
 可视化工具或者使用如下命令解压
 
-```shell
+``` shell
 # 解压命令
 # tar.gz包
 tar zxvf node-v20.16.0-darwin-arm64.tar.gz -C ./安装目录
@@ -47,7 +47,7 @@ tar Jxvf node-v20.16.0-darwin-arm64.tar.gz -C ./安装目录
 ```
 
 ### 2、配置环境变量
-```shell
+``` shell
 # 配置环境变量
 cat >> 替换具体Shell配置文件 << EOF
 export NODE_PATH="安装目录"
@@ -58,7 +58,7 @@ EOF
 ### 3、验证
 使用终端输入 `node --version` 进行验证
 
-```shell
+``` shell
 # 验证环境变量
 node --version
 v20.16.0
@@ -75,7 +75,7 @@ v20.16.0
 
 输入以下代码之后点击`确定`
 
-```shell
+``` shell
 # 呼出环境变量配置界面
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
@@ -89,7 +89,7 @@ rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ### 3、验证
 使用Windows终端输入 `node --version` 进行验证
 
-```shell
+``` shell
 # 验证环境变量
 node --version
 v20.16.0

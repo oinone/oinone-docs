@@ -18,7 +18,7 @@ order: 43
 
 
 # Ⅱ、OSS Universal YAML Configuration
-```yaml
+``` yaml
 cdn:
   oss:
     name: # Name
@@ -59,7 +59,7 @@ In `others`, use a custom `key` to specify the OSS service for file upload/downl
 
 # Ⅲ、OSS Configuration Examples
 ## （Ⅰ）Alibaba Cloud OSS
-```yaml
+``` yaml
 cdn:
   oss:
     name: Alibaba Cloud
@@ -79,7 +79,7 @@ cdn:
 ```
 
 ## （Ⅱ）Huawei Cloud OBS
-```yaml
+``` yaml
 cdn:
   oss:
     name: Huawei Cloud
@@ -100,7 +100,7 @@ cdn:
 
 Huawei Cloud OBS requires adding the following dependencies to the startup project:
 
-```xml
+``` xml
 <okhttp3.version>4.9.3</okhttp3.version>
 <dependency>
     <groupId>com.squareup.okhttp3</groupId>
@@ -116,7 +116,7 @@ For Huawei Cloud OBS anti-leech configuration, only requests with specific refer
 :::
 
 ## （Ⅲ）MINIO
-```yaml
+``` yaml
 File system, MinIO configuration:
 cdn:
   oss:
@@ -137,7 +137,7 @@ cdn:
 ```
 
 ## （Ⅳ）Upyun
-```yaml
+``` yaml
 cdn:
   oss:
     name: Upyun
@@ -156,7 +156,7 @@ cdn:
 ```
 
 ## （Ⅴ）Local File Storage
-```yaml
+``` yaml
 cdn:
   oss:
     name: Local File NG System
@@ -174,7 +174,7 @@ cdn:
 ```
 
 ## （Ⅵ）Tencent Cloud COS
-```yaml
+``` yaml
 cdn:
   oss:
     name: TENCENT_COS
@@ -198,7 +198,7 @@ Note: For more YAML configurations, please refer to [Module API](/en/DevManual/R
 # Ⅳ、OSS Code Examples
 To directly upload files to OSS in the background, obtain the file system client through `FileClientFactory.getClient()`:
 
-```java
+``` java
 // Get the file client
 // 1. Get the default file client
 FileClient fileClient = FileClientFactory.getClient();
@@ -215,7 +215,7 @@ FileClientFactory.getClient().uploadByFileName(fileName, is/**InputStream*/);
 
 A complete example:
 
-```java
+``` java
 private static Map<String, String> uploadFiles(File unzipDirectory) {
     Map<String, String> result = new HashMap<>();
     File[] files = unzipDirectory.listFiles();

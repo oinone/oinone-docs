@@ -16,7 +16,7 @@ By examining the error stack trace, it is clear that the system invoked the `Def
 
 # II. Startup Error: Dubbo Remote Invocation Cannot Find Service
 ## \(Ⅰ\) Error Message
-```dart
+``` dart
 Caused by: org.apache.dubbo.rpc.RpcException: No provider available from registry 183.224.180.166:32182 for service pamirs/eip.oio.5000:1.0.0 on consumer 172.17.0.1 use dubbo version 2.7.22, please check status of providers(disabled, not registered or in blacklist).
     at org.apache.dubbo.registry.integration.DynamicDirectory.doList(DynamicDirectory.java:177) ~[dubbo-2.7.22.jar!/:2.7.22]
     at org.apache.dubbo.rpc.cluster.directory.AbstractDirectory.list(AbstractDirectory.java:99) ~[dubbo-2.7.22.jar!/:2.7.22]
@@ -25,7 +25,7 @@ Caused by: org.apache.dubbo.rpc.RpcException: No provider available from registr
 ## \(Ⅱ\) Solution
 The error message indicates that the pamirs/eip service cannot be found. Therefore, check if the startup package includes a dependency on the eip package. Additionally, add `–eip` to the startup module configuration.
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-eip2-api</artifactId>
@@ -34,7 +34,7 @@ The error message indicates that the pamirs/eip service cannot be found. Therefo
 
 # III. Error: "not registered or in blacklist"
 ## \(Ⅰ\) Error Message
-```dart
+``` dart
 Exception while fetching data(/manageEmployeeBaseQuery/queryPage) :
 Noprovider available from registry 127.0.0.1:2181 for service
 pamirs/AkdsjManage_core.oi0.5000:1.0.0 onconsumer 172.17.0.3 use dubbo version 2.7.22,

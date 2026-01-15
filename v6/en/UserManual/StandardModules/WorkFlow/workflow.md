@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: Workflow Management
-  link: /en/UserManual/StandardModules/WorkFlow/workflow-management.md
+  link: /v6/en/UserManual/StandardModules/WorkFlow/workflow-management.md
 ---
 # I. Workflow
 Similar to the workbench, for details, please refer to the workbench documentation.

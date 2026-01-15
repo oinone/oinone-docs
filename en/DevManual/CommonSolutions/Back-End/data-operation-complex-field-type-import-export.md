@@ -9,14 +9,14 @@ order: 28
 If the field to be exported is from a related object of the model, when creating the template, you need to use the form of "object.field". Additionally, during the export operation, you must manually set this field. For example, for the company associated object in the PamirsEmployee model, you can create the corresponding value for export using `company.name`.
 
 # I. Model Definition
-```java
+``` java
 @Field.many2one
 @Field.Relation(relationFields = {"companyCode"}, referenceFields = {"code"})
 @Field(displayName = "Affiliated Company")
 private PamirsCompany company;
 ```
 
-```java
+``` java
 // Define the employee import/export template
 @Component
 public class EmployeeTemplate implements ExcelTemplateInit {
@@ -42,7 +42,7 @@ public class EmployeeTemplate implements ExcelTemplateInit {
 ## (Ⅰ) Export of Non-Stored Fields
 If the field to be exported is a non-stored field, since by default only fields stored in the database are exported, manual setting is required for non-stored fields during export.
 
-```java
+``` java
 @Slf4j
 @Component
 @Ext(ExcelExportTask.class)
@@ -69,7 +69,7 @@ public class EmpTemplateExportExtPoint extends DefaultExcelExportFetchDataExtPoi
 ## (Ⅱ) Multi-Value Field Import
 If the field to be imported has multiple values, you can create a proxy model. In this proxy model, set a field to receive the multi-value field. Specifically, in Excel, fill the multi-value field in a single cell, with each value separated by a custom symbol (e.g., ";"). When creating the template, use the template corresponding to this proxy class. During import and export operations, split the field based on ";".
 
-```java
+``` java
 @Model.model(PamirsEmployeeProxy.MODEL_MODEL)
 @Model(displayName = "Employee Export Proxy")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
@@ -87,13 +87,13 @@ public class PamirsEmployeeProxy extends PamirsEmployee {
 
 Create fields of the proxy model when creating the template
 
-```java
+``` java
 .addColumn("departmentCodeList", "Department Code List")
 ```
 
 Import operation: Create a new class as an extension point for the import function, which needs to inherit the `AbstractExcelImportDataExtPointImpl` class.
 
-```java
+``` java
 @Component
 @Ext(ExcelImportTask.class)
 @Slf4j
@@ -115,7 +115,7 @@ public class EmpTemplateImportExtPoint extends AbstractExcelImportDataExtPointIm
 
 Export operation: Create a new class as an extension point for the export function, which needs to inherit the `DefaultExcelExportFetchDataExtPoint` class.
 
-```java
+``` java
 @Slf4j
 @Component
 @Ext(ExcelExportTask.class)

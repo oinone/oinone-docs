@@ -8,8 +8,8 @@ order: 3
 # 一、场景概述
 在日常的项目开发进程中，多视图（Multi - View）标签的应用场景屡见不鲜。在此类场景下，当用户于不同视图间进行切换操作时，往往需要对当前处于活动状态标签内的视图数据或状态予以刷新。本文将对如下代码展开详尽剖析，并阐释如何借助这段代码，实现在视图切换之际，对相应视图进行精准刷新。需特别说明的是，下述代码位于 `ss - boot` 项目中的 `main.ts` 文件内。
 
-```javascript
-import { VueOioProvider } from '@kunlun/dependencies';
+``` javascript
+import { VueOioProvider } from '@oinone/kunlun-dependencies';
 import { delay } from 'lodash-es';
 
 VueOioProvider(

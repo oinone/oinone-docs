@@ -7,7 +7,7 @@ category:
 order: 2
 next:
   text: AI Integrated Designer
-  link: /zh-cn/UserManual/Designers/AIIntegratedDesigner/README.md
+  link: /v6/en/UserManual/Designers/AIIntegratedDesigner/README.md
 ---
 On the microflow design page, comprehensive microflow design and configuration can be carried out.
 

@@ -21,7 +21,7 @@ Visibility and filtering can both be defined in field annotations and `xml` defi
 1. Visibility:
    `invisible="$!{activeRecord.deadline}" / invisible = true`
 
-```java
+``` java
     @Field.String
     @Field(displayName = "View/Page", invisible = true)
     private String viewName;
@@ -30,7 +30,7 @@ Visibility and filtering can both be defined in field annotations and `xml` defi
 2. Filtering:
    `domain = " code == ${activeRecord.id} " / domain = "code == '111' "`
 
-```java
+``` java
     @Field.one2many
     @Field(displayName = "Child Order List", summary = "Child Order List")
     @Field.Relation(relationFields = {"code"}, referenceFields = {"code"}, domain = "code != '1234'")

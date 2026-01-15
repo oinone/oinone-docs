@@ -9,10 +9,10 @@ dir:
   order: 1
 prev:
   text: Designer
-  link: /en/UserManual/Designers/README.md
+  link: /v6/en/UserManual/Designers/README.md
 next:
   text: Model
-  link: /en/UserManual/Designers/ModelDesigner/model.md
+  link: /v6/en/UserManual/Designers/ModelDesigner/model.md
 ---
 The model designer is a core component of the Oinone platform, providing users with the ability to quickly design models through visual configuration. To meet the needs of users with different R & D backgrounds, the model designer supports switching between operation modes, including the no - code mode and the expert mode:
 

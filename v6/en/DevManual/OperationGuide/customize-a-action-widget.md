@@ -26,7 +26,7 @@ Here, we briefly explain the basics of action component registration to ensure e
 
 ## (Ⅰ) Registration Options for Action Components {#registration-options-for-action-components}
 
-```typescript
+``` typescript
 /**
  * Action component registration options
  */
@@ -66,7 +66,7 @@ From the above type declaration, it's evident that classification dimensions inc
 
 Take the `RouterViewActionWidget` component as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -105,7 +105,7 @@ The following lists some components and base classes categorized by action type:
 
 ## (Ⅲ) Using Action Components in DSL
 
-```typescript
+``` typescript
 <action name="redirectCreatePage" />
 ```
 
@@ -148,7 +148,7 @@ From `Vue DevTools`, we see the corresponding Widget component is `RouterViewAct
 
 Let's inherit `RouterViewActionWidget` to create `CustomRouterViewActionWidget` and register it for replacement, as shown below:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -182,7 +182,7 @@ Replacing components by model and action name has an inevitable issue: unintende
 
 Let's modify the registration criteria to replace components by view name and action name:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -212,7 +212,7 @@ In the previous section, we replaced a view action with `CustomRouterViewActionW
 
 We can append logic by overriding the `executeAction` method provided by `RouterViewActionWidget`, as follows:
 
-```typescript
+``` typescript
 protected executeAction(action: RuntimeViewAction, parameters: UrlQueryParameters): void {
   // Add custom processing.
   super.executeAction(action, parameters);
@@ -233,7 +233,7 @@ Let's see how to add processing before a server action (e.g., the "Delete" butto
 
 Using the replacement method mentioned above, inherit the `ServerActionWidget` component to create `CustomServerActionWidget` and register it, as shown below:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.Server,
@@ -248,7 +248,7 @@ export class CustomServerActionWidget extends ServerActionWidget {
 
 We can append logic via the `executeAction` method in `ServerActionWidget`, as follows:
 
-```typescript
+``` typescript
 protected async executeAction(action: RuntimeServerAction, submitValue: SubmitValue): Promise<ClickResult> {
   // Pre-action processing.
   const res = await super.executeAction(action, submitValue);
@@ -261,7 +261,7 @@ protected async executeAction(action: RuntimeServerAction, submitValue: SubmitVa
 
 Due to the特殊性 (particularity) of client actions, we can't provide default functionalities like other actions, but the button styles displayed on the page are consistent. We can implement such actions by inheriting the `ActionWidget` component, as follows:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: 'custom-action'
@@ -274,7 +274,7 @@ export class CustomClientActionWidget extends ActionWidget {
 
 We can implement any logic via the `clickAction` method in `ActionWidget`, as follows:
 
-```typescript
+``` typescript
 protected clickAction(): ReturnPromise<ClickResult> {
   // Implement custom logic.
   return true;
@@ -298,7 +298,7 @@ The `@click event` from the `OioButton` component rendered on the page in the Vu
 
 First, let's look at the `ClickResult` type definition in `TypeScript`:
 
-```typescript
+``` typescript
 export type ReturnVoid = null | undefined | void;
 
 export type ClickResult = ReturnVoid | boolean | Record<string, unknown> | Record<string, unknown>[];

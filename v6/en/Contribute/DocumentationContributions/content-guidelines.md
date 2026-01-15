@@ -7,10 +7,10 @@ category:
 order: 1
 prev:
   text: Documentation Contribution
-  link: /en/Contribute/DocumentationContributions/README.md
+  link: /v6/en/Contribute/DocumentationContributions/README.md
 next:
   text: Software Licenses and Agreements
-  link: /en/software-licenses.md
+  link: /v6/en/software-licenses.md
 ---
 
 #### **Ⅰ、Documentation Types and Corresponding Templates**
@@ -19,7 +19,7 @@ next:
 
 **Template Example** (Markdown format):
 
-```markdown
+``` markdown
 # [Feature Name] User Guide
 ## Overview
 - **Function Positioning**: One-sentence description of purpose (e.g., "Used to implement cross-department approval process configuration").
@@ -34,7 +34,7 @@ next:
 1. **Step 1**: Access the feature entry
    - Path: `Console > Process Management > New Process`
 2. **Step 2**: Configure process rules
-   ```yaml
+   ``` yaml
    # Example configuration
    nodes:
      - type: approval
@@ -59,7 +59,7 @@ next:
 + **Template Selection**: Choose the "Documentation Improvement" template on the Issue page of the Gitee/GitHub repository.
 + **Filling Specifications**:
 
-```markdown
+``` markdown
 ## Documentation Type
 [User Guide/Technical White Paper/API Documentation]
 

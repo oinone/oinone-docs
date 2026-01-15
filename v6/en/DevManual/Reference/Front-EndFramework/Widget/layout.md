@@ -17,7 +17,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 1. Standard Table
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -41,7 +41,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 2. Inline Table (Sub-table View)
 
-```xml
+``` xml
 <view type="TABLE">
     <view type="SEARCH">
         <element widget="search" slot="search" slotSupport="field">
@@ -61,7 +61,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 3. Tree on Left, Table on Right
 
-```xml
+``` xml
 <view type="TABLE">
     <pack title="" widget="group">
         <view type="search">
@@ -93,7 +93,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 4. Cascader on Left, Table on Right
 
-```xml
+``` xml
 <view type="table">
     <pack title="" widget="group">
         <view type="search">
@@ -123,7 +123,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 1. Standard Form
 
-```xml
+``` xml
 <view type="FORM">
     <element widget="actionBar" slot="actionBar" slotSupport="action">
         <xslot name="actions" slotSupport="action" />
@@ -136,7 +136,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 2. Inline Form (Sub-form View)
 
-```xml
+``` xml
 <view type="FORM">
     <element widget="form" slot="form">
         <xslot name="fields" slotSupport="pack,field" />
@@ -148,7 +148,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 1. Standard Detail
 
-```xml
+``` xml
 <view type="DETAIL">
     <element widget="actionBar" slot="actionBar" slotSupport="action">
         <xslot name="actions" slotSupport="action" />
@@ -161,7 +161,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 2. Inline Detail (Sub-detail View)
 
-```xml
+``` xml
 <view type="DETAIL">
     <element widget="detail" slot="detail">
         <xslot name="fields" slotSupport="pack,field" />
@@ -173,7 +173,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 1. Standard Gallery View
 
-```xml
+``` xml
 <view type="gallery">
     <view type="search">
         <element slot="search" widget="search" />
@@ -193,7 +193,7 @@ In Oinone Kunlun, `Layout` performs `secondary layout` in the `main content area
 
 ### 1. Standard Tree View
 
-```xml
+``` xml
 <view type="tree">
     <pack title="" widget="group">
         <element widget="actionBar" slot="actionBar" />
@@ -224,7 +224,7 @@ Similar to component registration, layouts can also be replaced through registra
 
 ## (Ⅰ) Layout Registration Options
 
-```typescript
+``` typescript
 /**
  * Layout registration options
  */
@@ -304,8 +304,8 @@ From the above type declaration, it can be seen that it is mainly divided into t
 
 Below is the layout registered in "[Exploring the Frontend Framework - Components](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)":
 
-```typescript
-import { registerLayout, ViewType } from '@kunlun/dependencies';
+``` typescript
+import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';
 
 registerLayout(
   `<view type="TABLE">

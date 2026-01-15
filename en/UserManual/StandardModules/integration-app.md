@@ -6,7 +6,7 @@ category:
 order: 11
 next:
   text: Application Center
-  link: /zh-cn/UserManual/apps-hub.md
+  link: /en/UserManual/apps-hub.md
 ---
 # I. Integration Management
 

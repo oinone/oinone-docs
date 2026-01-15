@@ -8,5 +8,5 @@ dir:
   order: 5
 next:
   text: Contributor License Agreement Template
-  link: /en/Contribute/cla.md
+  link: /v6/en/Contribute/cla.md
 ---

@@ -29,7 +29,7 @@ For detailed steps, refer to: [https://www.cnblogs.com/memoa/p/10250553.html](ht
 ## (Ⅱ) Solution Approach
 Parameters equivalent to `-Plifecycle=INSTALL` can be configured via YML file configuration:
 
-```yaml
+``` yaml
 pamirs:
   boot:
     init: true

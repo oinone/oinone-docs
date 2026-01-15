@@ -23,7 +23,7 @@ For each action type, built-in components support system operations. However, co
 
 ## (Ⅰ) Registration Options for Action Components  
 
-```typescript  
+``` typescript  
 /**  
  * Action component registration options  
  */  
@@ -57,7 +57,7 @@ export interface BaseActionOptions extends SPIOptions {
    */  
   widget?: string[] | string;  
 }  
-```  
+```
 
 The classification dimensions in the declaration above include action type, target type (for ViewAction), action name, model code, view type, and view name. These dimensions define where the component is used. More precise location descriptions grant higher rendering priority. If locations match exactly, later registrations override earlier ones.  
 
@@ -92,7 +92,7 @@ Unlike other components, action components are typically replaced by model actio
 
 Take the create navigation action in the country group table as an example, replacing the action by specifying `model` and `name`:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     actionType: ActionType.View,  
@@ -104,14 +104,14 @@ Take the create navigation action in the country group table as an example, repl
 export class CustomRouterViewActionWidget extends RouterViewActionWidget {  
   ...  
 }  
-```  
+```
 
 
 ### 2. Replace Components by View Name and Action Name  
 
 Take the create navigation action in the country group table as an example, replacing the action by specifying `viewName` and `name`:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     actionType: ActionType.View,  
@@ -123,7 +123,7 @@ Take the create navigation action in the country group table as an example, repl
 export class CustomRouterViewActionWidget extends RouterViewActionWidget {  
   ...  
 }  
-```  
+```
 
 
 # II. Reference List  
@@ -498,14 +498,14 @@ export class CustomRouterViewActionWidget extends RouterViewActionWidget {
 
 ### 1. ViewActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     actionType: ActionType.View  
   })  
 )  
 export class ViewActionWidget extends ActionWidget<RuntimeViewAction>  
-```  
+```
 
 **Methods**:  
 #### **clickAction**  
@@ -516,7 +516,7 @@ export class ViewActionWidget extends ActionWidget<RuntimeViewAction>
 
 ### 2. RouterViewActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     actionType: ActionType.View,  
@@ -524,7 +524,7 @@ export class ViewActionWidget extends ActionWidget<RuntimeViewAction>
   })  
 )  
 export class RouterViewActionWidget extends ViewActionWidget  
-```  
+```
 
 **Attributes**:  
 - matched: Current matched route information. (`Matched | undefined`)  
@@ -545,7 +545,7 @@ export class RouterViewActionWidget extends ViewActionWidget
 
 ### 3. OpenWindowViewActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     actionType: ActionType.View,  
@@ -553,7 +553,7 @@ export class RouterViewActionWidget extends ViewActionWidget
   })  
 )  
 export class OpenWindowViewActionWidget extends RouterViewActionWidget  
-```  
+```
 
 **Methods**:  
 #### **executeAction**  
@@ -566,7 +566,7 @@ export class OpenWindowViewActionWidget extends RouterViewActionWidget
 
 ### 4. DialogViewActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseActionWidget.Token({  
     actionType: ActionType.View,  
@@ -574,7 +574,7 @@ export class OpenWindowViewActionWidget extends RouterViewActionWidget
   })  
 )  
 export class DialogViewActionWidget extends PopupActionWidget  
-```  
+```
 
 **Attributes**:  
 - dialog: Dialog component instance. (`DialogWidget | undefined`)  
@@ -593,7 +593,7 @@ export class DialogViewActionWidget extends PopupActionWidget
 
 ### 5. DrawerViewActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseActionWidget.Token({  
     actionType: ActionType.View,  
@@ -601,7 +601,7 @@ export class DialogViewActionWidget extends PopupActionWidget
   })  
 )  
 export class DrawerViewActionWidget extends PopupActionWidget  
-```  
+```
 
 **Attributes**:  
 - drawer: Drawer component instance. (`DrawerWidget | undefined`)  
@@ -620,10 +620,10 @@ export class DrawerViewActionWidget extends PopupActionWidget
 
 ### 6. GotoM2MListDialogActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_GotoM2MListDialog }))  
 export class GotoM2MListDialogActionWidget extends DialogViewActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action label, prioritizing DSL/action configuration, default「添加」. (`string`)  
@@ -631,14 +631,14 @@ export class GotoM2MListDialogActionWidget extends DialogViewActionWidget
 
 ### 7. GotoO2MCreateDialogActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_GotoO2MCreateDialog  
   })  
 )  
 export class GotoO2MCreateDialogActionWidget extends DialogViewActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action label, prioritizing DSL/action configuration, default「创建」. (`string`)  
@@ -646,14 +646,14 @@ export class GotoO2MCreateDialogActionWidget extends DialogViewActionWidget
 
 ### 8. GotoO2MEditDialogActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_GotoO2MEditDialog  
   })  
 )  
 export class GotoO2MEditDialogActionWidget extends DialogViewActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action label, prioritizing DSL/action configuration, default「编辑」. (`string`)  
@@ -663,14 +663,14 @@ export class GotoO2MEditDialogActionWidget extends DialogViewActionWidget
 
 ### 1. ServerActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     actionType: ActionType.Server  
   })  
 )  
 export class ServerActionWidget extends ActionWidget<RuntimeServerAction>  
-```  
+```
 
 **Attributes**:  
 - formValidateCallChaining: Form validation chaining instance. (`CallChaining<FormValidateResult[]> | undefined`)  
@@ -788,14 +788,14 @@ export class ServerActionWidget extends ActionWidget<RuntimeServerAction>
 
 ### 2. BatchUpdateAction  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_BatchUpdate  
   })  
 )  
 export class BatchUpdateAction extends ServerActionWidget  
-```  
+```
 
 **Attributes**:  
 - disabled: Whether the action is disabled. (`boolean`)  
@@ -819,10 +819,10 @@ export class BatchUpdateAction extends ServerActionWidget
 
 ### 3. ExportWorkbookActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_ExportWorkbook }))  
 export class ExportWorkbookActionWidget extends AbstractTaskAction<ExcelExportTask>  
-```  
+```
 
 **Attributes**:  
 - moduleName: File module name. (`string`)  
@@ -876,10 +876,10 @@ export class ExportWorkbookActionWidget extends AbstractTaskAction<ExcelExportTa
 
 ### 4. ImportWorkbookActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_ImportWorkbook }))  
 export class ImportWorkbookActionWidget extends ServerActionWidget  
-```  
+```
 
 **Attributes**:  
 - list: Import data list. (`Record<string, any>[]`)  
@@ -912,10 +912,10 @@ export class ImportWorkbookActionWidget extends ServerActionWidget
 
 ### 5. PrintPdfDocumentActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_PrintPdfDocument }))  
 export class PrintPdfDocumentActionWidget extends AbstractTaskAction<PdfPrintTask>  
-```  
+```
 
 **Attributes**:  
 - moduleName: Print module name. (`string`)  
@@ -953,14 +953,14 @@ export class PrintPdfDocumentActionWidget extends AbstractTaskAction<PdfPrintTas
 
 ### 1. UrlActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     actionType: ActionType.URL  
   })  
 )  
 export class UrlActionWidget extends ActionWidget<RuntimeUrlAction>  
-```  
+```
 
 **Methods**:  
 #### **clickAction**  
@@ -1003,10 +1003,10 @@ export class UrlActionWidget extends ActionWidget<RuntimeUrlAction>
 
 ### 2. DownloadImportWorkbookActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_DownloadImportWorkbook }))  
 export class DownloadImportWorkbookActionWidget extends UrlActionWidget  
-```  
+```
 
 **Methods**:  
 #### **getUrl**  
@@ -1022,14 +1022,14 @@ export class DownloadImportWorkbookActionWidget extends UrlActionWidget
 
 ### 1. BackActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_GotoListTableRouter  
   })  
 )  
 export class BackActionWidget extends ActionWidget  
-```  
+```
 
 **Attributes**:  
 - confirmText: Confirmation text (`string | undefined`)  
@@ -1052,14 +1052,14 @@ export class BackActionWidget extends ActionWidget
 
 ### 2. ValidateFormActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_ValidateForm  
   })  
 )  
 export class ValidateFormActionWidget extends ActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action button text, prioritizing DSL configuration, then action display name, default「校验」. (`string`)  
@@ -1074,14 +1074,14 @@ export class ValidateFormActionWidget extends ActionWidget
 
 ### 3. ReloadViewActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_ReloadData  
   })  
 )  
 export class ReloadViewActionWidget extends ActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action button text, prioritizing DSL configuration, then action display name, default「刷新」. (`string`)  
@@ -1094,14 +1094,14 @@ export class ReloadViewActionWidget extends ActionWidget
 
 ### 4. PopupSubmitActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_DialogSubmit  
   })  
 )  
 export class PopupSubmitActionWidget extends ActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action button text, prioritizing DSL configuration, then action display name, default「确定」. (`string`)  
@@ -1130,14 +1130,14 @@ export class PopupSubmitActionWidget extends ActionWidget
 
 ### 5. PopupCancelActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_DialogCancel  
   })  
 )  
 export class PopupCancelActionWidget extends ActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action button text, prioritizing DSL configuration, then action display name, default「取消」. (`string`)  
@@ -1159,14 +1159,14 @@ export class PopupCancelActionWidget extends ActionWidget
 
 ### 6. TableAddOneAction  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_AddOne  
   })  
 )  
 export class TableAddOneAction extends ActionWidget  
-```  
+```
 
 **Methods**:  
 #### **clickAction**  
@@ -1176,14 +1176,14 @@ export class TableAddOneAction extends ActionWidget
 
 ### 7. TableCopyOneAction  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_CopyOne  
   })  
 )  
 export class TableCopyOneAction extends ActionWidget  
-```  
+```
 
 **Methods**:  
 #### **clickAction**  
@@ -1193,14 +1193,14 @@ export class TableCopyOneAction extends ActionWidget
 
 ### 8. DeleteOneActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_DeleteOne  
   })  
 )  
 export class DeleteOneActionWidget extends ActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action button text, prioritizing DSL configuration, then action display name, default「删除」. (`string`)  
@@ -1214,14 +1214,14 @@ export class DeleteOneActionWidget extends ActionWidget
 
 ### 9. DownloadActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_Download  
   })  
 )  
 export class DownloadActionWidget extends ActionWidget  
-```  
+```
 
 **Methods**:  
 #### **clickAction**  
@@ -1237,14 +1237,14 @@ export class DownloadActionWidget extends ActionWidget
 
 ### 10. ExportActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_GotoListExportDialog  
   })  
 )  
 export class ExportActionWidget extends ActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action button text, prioritizing DSL configuration, then action display name, default「导出」. (`string`)  
@@ -1267,14 +1267,14 @@ export class ExportActionWidget extends ActionWidget
 
 ### 11. ImportActionWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   ActionWidget.Token({  
     name: ModelDefaultActionName.$$internal_GotoListImportDialog  
   })  
 )  
 export class ImportActionWidget extends ActionWidget  
-```  
+```
 
 **Attributes**:  
 - label: Action button text, prioritizing DSL configuration, then action display name, default「导入」. (`string`)  

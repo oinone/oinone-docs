@@ -49,7 +49,7 @@ References: Relevant documentation for this topic can be found in "[Security Mec
 
 For the `报销单模型（expenses.ExpenseBill）` (ExpenseBill model), we need to append an `RSQL` expression to filter data for each user query. A potentially effective `RSQL` expression could be:
 
-```java
+``` java
 reporterId == ${currentUser}
 ```
 
@@ -105,7 +105,7 @@ Log in as user "test2" to view reimbursement forms:
 
 In the reimbursement form model we created, we see a `projectInfoId` field, which is a relational field linking to projects. Based on requirements, we can derive an effective RSQL expression:
 
-```java
+``` java
 projectInfoId =in= (id1, id2, id3...)
 ```
 
@@ -119,7 +119,7 @@ We can use a `自定义占位符 PlaceHolder` (custom placeholder) to dynamicall
 
 :::
 
-```java
+``` java
 @Component
 public class TestPlaceHolder extends AbstractPlaceHolderParser {
 

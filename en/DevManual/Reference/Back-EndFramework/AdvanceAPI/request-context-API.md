@@ -60,7 +60,7 @@ PamirsSession is a class used to manage Oinone request sessions, inheriting from
 + **Return Value**: `String` environment identifier (such as `product`, `preview`).
 + **Example**: **java**
 
-```java
+``` java
 String env = PamirsSession.getEnv();
 ```
 
@@ -70,7 +70,7 @@ String env = PamirsSession.getEnv();
 + **Parameter**: `env` - Environment identifier (`product` or `preview`).
 + **Example**: **java**
 
-```java
+``` java
 PamirsSession.setEnv(EnvEnum.preview.toString()); // Set to preview environment
 ```
 
@@ -80,7 +80,7 @@ PamirsSession.setEnv(EnvEnum.preview.toString()); // Set to preview environment
 + **Return Value**: `String` session ID.
 + **Example**: **java**
 
-```java
+``` java
 String sessionId = PamirsSession.getSessionId();
 ```
 
@@ -90,7 +90,7 @@ String sessionId = PamirsSession.getSessionId();
 + **Return Value**: `<T extends Serializable> T` user ID.
 + **Example**: **java**
 
-```java
+``` java
 Long userId = PamirsSession.getUserId(); // Assume the user ID is of Long type
 ```
 
@@ -100,7 +100,7 @@ Long userId = PamirsSession.getUserId(); // Assume the user ID is of Long type
 + **Return Value**: `Boolean` whether it is an admin.
 + **Example**: **java**
 
-```java
+``` java
 if (PamirsSession.isAdmin()) {
     // Perform admin operations
 }
@@ -114,7 +114,7 @@ if (PamirsSession.isAdmin()) {
 + **Return Value**: `RequestContext` context instance.
 + **Example**: **java**
 
-```java
+``` java
 RequestContext context = PamirsSession.getContext();
 ModelConfig modelConfig = context.getModelConfig(TestModel.MODEL_MODEL); // Get model configuration
 ```
@@ -131,7 +131,7 @@ ModelConfig modelConfig = context.getModelConfig(TestModel.MODEL_MODEL); // Get 
 + **Function**: Clear session data (including cache and attributes).
 + **Example**: **java**
 
-```java
+``` java
 PamirsSession.clear(); // Clear all data of the current session, automatically called at the end of the request
 ```
 
@@ -141,7 +141,7 @@ PamirsSession.clear(); // Clear all data of the current session, automatically c
 + **Return Value**: `PamirsRequestVariables` request variables instance.
 + **Example**: **java**
 
-```java
+``` java
 PamirsRequestVariables variables = PamirsSession.getRequestVariables();
 String requestUrl = variables.getRequestUrl(); // Get the request URL
 ```
@@ -179,7 +179,7 @@ String requestUrl = variables.getRequestUrl(); // Get the request URL
 + **Exception**: If the model does not exist, throw `PamirsException`.
 + **Example**: **java**
 
-```java
+``` java
 ModelConfig testModelConfig = context.getModelConfig("test.TestModel");
 ```
 
@@ -193,7 +193,7 @@ ModelConfig testModelConfig = context.getModelConfig("test.TestModel");
 + **Exception**: If the function does not exist, throw `PamirsException`.
 + **Example**: **java**
 
-```java
+``` java
 Function userFunction = context.getFunction("pamirs", "getUserInfo");
 ```
 
@@ -208,7 +208,7 @@ Function userFunction = context.getFunction("pamirs", "getUserInfo");
 
 Parse the HTTP request through `SessionPrepareTemplate`, extract session attributes (such as Header, Cookie), and create `PamirsRequestVariables`.
 
-```java
+``` java
 // Example of internal framework call (users do not need to call manually)
 SessionPrepareTemplate.prepare(request, moduleName, requestParam);
 ```
@@ -233,7 +233,7 @@ SessionPrepareTemplate.prepare(request, moduleName, requestParam);
 
 The following is a simple example of a `SessionInitApi` implementation class:
 
-```java
+``` java
 @Component
 public class CustomSessionInitApi implements SessionInitApi {
     @Override
@@ -263,7 +263,7 @@ After the request processing is completed, call `PamirsSession.clear()` to clear
 
 ## (Ⅰ) Common Usage Scenarios
 
-```java
+``` java
 // Get the current session user ID
 Long userId = PamirsSession.getUserId();
 
@@ -346,7 +346,7 @@ In different application scenarios, it is necessary to add exclusive business da
 Create a POJO to carry custom data, using the `@Data` annotation provided by the Oinone platform (supporting data binding and serialization).
 **Example: Storing logged-in user information**
 
-```java
+``` java
 @Data
 public class DemoSessionData {
     private PamirsUser user; // Business-exclusive field: current logged-in user
@@ -362,7 +362,7 @@ Implement thread-local storage of data through `ThreadLocal` to ensure data isol
 + **Reading**: Provide thread-safe acquisition interfaces
 + **Cleanup**: Clear thread-local data at the end of the request
 
-```java
+``` java
 public class DemoSessionCache {
     private static final ThreadLocal<DemoSessionData> BIZ_DATA_THREAD_LOCAL = new ThreadLocal<>();
 
@@ -399,7 +399,7 @@ public class DemoSessionCache {
 Use the framework's hook (Hook) to automatically initialize business data before request processing, supporting module-level filtering (only valid for specific modules).
 **Implement the `HookBefore` interface and add the `@Hook` annotation**:
 
-```java
+``` java
 @Component
 public class DemoSessionHook implements HookBefore {
     @Override
@@ -415,7 +415,7 @@ public class DemoSessionHook implements HookBefore {
 
 Standardize the access method of business data through the interface to achieve decoupling from the base session.
 
-```java
+``` java
 public interface DemoSessionApi extends CommonApi {
     PamirsUser getUser(); // Define business-exclusive interface: get logged-in user
 }
@@ -428,7 +428,7 @@ public interface DemoSessionApi extends CommonApi {
 + `XSessionApi`: Provide an entry for business data access
 + `SessionClearApi`: Define data cleanup logic (automatically called by the framework)
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.session;
 
 import org.springframework.stereotype.Component;
@@ -453,7 +453,7 @@ public class DemoSessionHolder implements DemoSessionApi, SessionClearApi {
 
 Encapsulate custom interfaces through static methods to simplify business calls.
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.session;
 
 import pro.shushi.pamirs.meta.api.CommonApiFactory;
@@ -473,13 +473,13 @@ public class DemoSession extends PamirsSession {
 Directly call the extended Session interface in scenarios where custom data is needed (such as placeholder parsing, business logic layer).
 **Example**:
 
-```java
+``` java
 return DemoSession.getUser().getId().toString(); // Use the extended Session to get the user ID
 ```
 
 ### 3. Classic Extension Design Diagram
 
-```plain
+``` plain
                           +-------------------+
                           |   PamirsSession    |  Base session (provides general capabilities)
                           +-------------------+

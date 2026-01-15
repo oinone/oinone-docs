@@ -38,7 +38,7 @@ order: 3
 本例子以`echarts`的图表库实现柱状图，框架自带的是以`G2`的库实现的柱状图
 `demo-echarts-bar.vue`
 
-```vue
+``` vue
 <template>
   <div class="data-designer-chart-instance demo-echarts-bar" ref="designerChartViewRef">
     <div class="data-designer-chart-container" ref="designerChartViewInnerRef"></div>
@@ -201,8 +201,8 @@ order: 3
 
 ## （一）注册该模板
 
-```typescript
-import { ChartRenderEngine, ChartRenderType, registerChartComponent } from '@kunlun/data-designer-core';
+``` typescript
+import { ChartRenderEngine, ChartRenderType, registerChartComponent } from '@oinone/kunlun-data-designer-core';
 import component from './demo-echarts-bar.vue';
 
 registerChartComponent({

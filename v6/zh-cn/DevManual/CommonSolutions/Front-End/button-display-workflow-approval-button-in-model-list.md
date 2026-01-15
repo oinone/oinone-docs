@@ -10,7 +10,7 @@ order: 7
 
 # 二、解决方案
 ## （一）先在业务数据模型中新增`userTaskList`字段存放该条数据的工作流待办数据
-```java
+``` java
 @Model.model(DemoItem.MODEL_MODEL)
 @Model(displayName = "测试商品")
 public class DemoItem extends IdModel {
@@ -23,7 +23,7 @@ public class DemoItem extends IdModel {
 ```
 
 ## （二）在业务数据的查询方法中查询当前登录用户在工作流任务中的数据
-```java
+``` java
 @Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "查询列表", timeout = 50000)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
@@ -62,7 +62,7 @@ public Pagination<DemoItem> queryPage(Pagination<DemoItem> page, QueryWrapper<De
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/WX20240509-175829-1024x472.png)
 
 ## （五）前端自定义跳转到工作流待办详情页的动作组件
-```typescript
+``` typescript
 import {
   ActionType,
   ActionWidget,

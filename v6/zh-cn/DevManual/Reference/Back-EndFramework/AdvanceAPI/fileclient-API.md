@@ -15,7 +15,7 @@ order: 6
 
 ## （一）获取实例
 
-```plain
+``` plain
 // 获取默认客户端
 FileClient fileClient = FileClientFactory.getClient();
 
@@ -25,7 +25,7 @@ FileClient fileClient = FileClientFactory.getClient("cdnKey");
 
 ## （二）配置示例：以阿里云OSS为例
 
-```yaml
+``` yaml
 cdn:
   oss:
     name: 阿里云
@@ -56,7 +56,7 @@ cdn:
 + **返回**: `CdnFile` 包含文件元数据和访问URL
 + **示例**:
 
-```java
+``` java
 byte[] data = ...; // 文件内容
 CdnFile cdnFile = fileClient.upload("path/file.txt", data);
 ```
@@ -70,7 +70,7 @@ CdnFile cdnFile = fileClient.upload("path/file.txt", data);
 + **返回**: `CdnFile`
 + **示例**:
 
-```java
+``` java
 try (InputStream is = new FileInputStream("local.txt")) {
     CdnFile cdnFile = fileClient.upload("path/file.txt", is);
 }
@@ -82,7 +82,7 @@ try (InputStream is = new FileInputStream("local.txt")) {
 + **返回**: 文件下载URL（String）
 + **示例**:
 
-```java
+``` java
 String url = fileClient.uploadByFileName("path/image.png", imageData);
 ```
 
@@ -91,7 +91,7 @@ String url = fileClient.uploadByFileName("path/image.png", imageData);
 + **描述**: 通过输入流上传文件并返回下载URL。
 + **示例**:
 
-```java
+``` java
 String url = fileClient.uploadByFileName("path/image.png", inputStream);
 ```
 
@@ -104,7 +104,7 @@ String url = fileClient.uploadByFileName("path/image.png", inputStream);
 + **返回**: 完整的下载URL
 + **示例**:
 
-```java
+``` java
 String url = fileClient.getDownloadUrl("path/image.png");
 ```
 
@@ -116,7 +116,7 @@ String url = fileClient.getDownloadUrl("path/image.png");
 + **参数**: `folder` - 文件夹路径
 + **示例**:
 
-```java
+``` java
 fileClient.deleteByFolder("temp/");
 ```
 
@@ -126,7 +126,7 @@ fileClient.deleteByFolder("temp/");
 + **参数**: `filename` - 完整文件名（含路径）
 + **示例**:
 
-```java
+``` java
 fileClient.deleteByFilename("path/file.txt");
 ```
 
@@ -138,7 +138,7 @@ fileClient.deleteByFilename("path/file.txt");
 + **返回**: `true` 存在，`false` 不存在
 + **示例**:
 
-```java
+``` java
 boolean exists = fileClient.isExistByFilename("path/file.txt");
 ```
 
@@ -150,7 +150,7 @@ boolean exists = fileClient.isExistByFilename("path/file.txt");
 + **返回**: URL字符串
 + **示例**:
 
-```java
+``` java
 String staticUrl = fileClient.getStaticUrl();
 ```
 
@@ -158,7 +158,7 @@ String staticUrl = fileClient.getStaticUrl();
 
 批量上传文件并获取URL
 
-```java
+``` java
 private static Map<String, String> uploadFiles(File directory) {
     Map<String, String> result = new HashMap<>();
     File[] files = directory.listFiles();

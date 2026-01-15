@@ -10,7 +10,7 @@ order: 53
 在业务流程处理中，涵盖了转交、抄送、加签、填写以及通知人等自定义函数。当平台所默认提供的审批人选择机制难以契合具有个性化特点的业务需求之际，我们能够借助自定义函数，对审批人的生成逻辑展开针对性处理。
 
 ## （一）编写自定义审批人函数
-```java
+``` java
 @Function(openLevel = {FunctionOpenEnum.API})
 @Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "报销单-证明人-审批", category = CUSTOM_DESIGNER)
 public List<NodePerson> bizZmrApprovePerson(List<NodePerson> nodePersonList, NodeModel nodeModel, WorkflowContext workflowContext) {
@@ -50,7 +50,7 @@ public List<NodePerson> bizZmrApprovePerson(List<NodePerson> nodePersonList, Nod
 执行时间：执行节点是在审批或填写待办任务初始化之后，审批或填写结果执行之前，执行该扩展
 >
 
-```java
+``` java
 /**
  * 审批节点初始化完成，执行前置函数
  * @param approvalNode
@@ -66,7 +66,7 @@ public void approvalCustomStartFun(ApprovalNode approvalNode, WorkflowContext co
 ```
 
 # 三、填写执行前执行函数
-```java
+``` java
 /**
 * 填写执行前置处理
 */
@@ -83,7 +83,7 @@ public void writeCustomStartFun(WorkflowTaskInstance taskInstance, WriteNode wri
 执行时间：执行节点是在保存待办任务之后，异步执行审批或填写结果之前，执行该扩展
 >
 
-```java
+``` java
 /**
  * 转交操作后置函数,再流程设计器中审批和填写节点中 扩展设置-填写操作提交后执行函数选择
  * @param userTask 用户待办记录
@@ -118,7 +118,7 @@ return userTask;
 执行时间：在审批或填写执行过程中审批同意或则填写提交后执行完业务数据保存后，执行该扩展
 >
 
-```java
+``` java
 /**
  * 审批后数据处理
  * @param approvalNode 审批节点

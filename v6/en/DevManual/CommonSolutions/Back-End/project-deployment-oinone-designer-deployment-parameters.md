@@ -18,7 +18,7 @@ Oinone provides two deployment methods for the designer, allowing partners to ch
 - PROGRAM_ARGS: Program parameters
 
 **Description of JVM_OPTIONS and PROGRAM_ARGS parameters**:
-```shell
+``` shell
 java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 ```
 
@@ -53,12 +53,12 @@ In the image environment, `/opt/pamirs` is specified as the working directory, a
 - `-p`: Specify port mapping
 - `-v`: Specify mount directory (mount virtual volume)
 
-```shell
+``` shell
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 ```
 
 ## (Ⅴ) Common Configurations for `docker compose` Startup
-```yaml
+``` yaml
 services:
   container:
     image: $IMAGE
@@ -82,7 +82,7 @@ services:
 ```
 
 ## (Ⅵ) Common `docker compose` Commands
-```shell
+``` shell
 # Start using docker-compose.yaml
 docker compose up -d
 
@@ -102,7 +102,7 @@ docker compose -f config.yaml down -v
 [oinone-boot-starter.zip](https://pamirs.oss-cn-hangzhou.aliyuncs.com/install/oinone-boot-starter.zip)
 
 ## (Ⅱ) Startup Command Changes
-```shell
+``` shell
 # Original command
 java -jar boot.jar
 

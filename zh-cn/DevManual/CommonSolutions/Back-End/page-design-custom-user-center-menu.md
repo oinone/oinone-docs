@@ -9,7 +9,7 @@ order: 71
 使用扩展点实现用户中心菜单替换
 
 # 一、工程中引起 pamirs-user-api
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-user-api</artifactId>
@@ -22,7 +22,7 @@ order: 71
 + `@Hook(model = {TopBarUserBlock.MODEL_MODEL}, fun = {"construct"})`添加Hook注解注明是`TopBarUserBlock`模型的`construct`函数的后置扩展。
 
 ## （一）增加用户中心菜单
-```java
+``` java
 @Component
 @Order(1)
 @SPI.Service
@@ -45,7 +45,7 @@ public class MyTopBarActionExt implements TopBarActionExtendApi {
 ## （二）替换原有的用户中心菜单
 1. 替换原有的菜单跳转
 
-```java
+``` java
 @Component
 public class DemoTopBarUserBlockDataHookAfter implements HookAfter {
 
@@ -80,7 +80,7 @@ public class DemoTopBarUserBlockDataHookAfter implements HookAfter {
 
 2. 使用`@UxRouteButton`方式新增`ViewAction`
 
-```java
+``` java
 @Model.model(Dog.MODEL_MODEL)
 @Component
 @UxRouteButton(
@@ -93,7 +93,7 @@ public class DogAction {
 # 三、替换原有的个人设置头像跳转
 1. 修改点击头像绑定的跳转逻辑
 
-```java
+``` java
 @Order(10)
 @Component
 @SPI.Service
@@ -117,7 +117,7 @@ public class DemoTopBarUserBlockDataApi implements TopBarUserBlockDataApi {
 
 2. 添加权限节点，用于控制权限。
 
-```java
+``` java
 @Component
 @Order(88)
 @SPI.Service

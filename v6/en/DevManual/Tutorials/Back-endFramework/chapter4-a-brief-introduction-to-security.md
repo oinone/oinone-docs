@@ -20,7 +20,7 @@ The topic of security is covered in more detail in "[Restrict Access to Data](/e
 
 To facilitate the introduction of resource permissions and data permissions in security control, first release the management entry for project information through menu configuration.
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.core.init;
 
 import pro.shushi.oinone.trutorials.expenses.api.model.ProjectInfo;

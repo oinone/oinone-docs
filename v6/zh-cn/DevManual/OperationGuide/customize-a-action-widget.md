@@ -26,7 +26,7 @@ Widget 框架对组件进行了分类，通过分类特征，我们在注册组�
 
 ## （一）动作组件的注册可选项{#动作组件的注册可选项}
 
-```typescript
+``` typescript
 /**
  * Action组件注册可选项
  */
@@ -66,7 +66,7 @@ export interface BaseActionOptions extends SPIOptions {
 
 以 `RouterViewActionWidget` 组件为例：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -155,7 +155,7 @@ export class RouterViewActionWidget extends ViewActionWidget {
 
 ## (三）在 DSL 中使用 Action 组件
 
-```typescript
+``` typescript
 <action name="redirectCreatePage" />
 ```
 
@@ -198,7 +198,7 @@ export class RouterViewActionWidget extends ViewActionWidget {
 
 让我们继承 `RouterViewActionWidget` 创建 `CustomRouterViewActionWidget` 并注册来完成我们的替换，就像下面这样：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -232,7 +232,7 @@ export class CustomRouterViewActionWidget extends RouterViewActionWidget {
 
 让我们修改一下注册条件，来通过视图名称和动作名称替换组件：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -262,7 +262,7 @@ export class CustomRouterViewActionWidget extends RouterViewActionWidget {
 
 我们可以通过重写 `RouterViewActionWidget` 组件提供的 `executeAction` 方法追加逻辑。就像下面这样：
 
-```typescript
+``` typescript
 protected executeAction(action: RuntimeViewAction, parameters: UrlQueryParameters): void {
   // do something.
   super.executeAction(action, parameters);
@@ -283,7 +283,7 @@ protected executeAction(action: RuntimeViewAction, parameters: UrlQueryParameter
 
 用上面提到的替换方法，让我们继承 `ServerActionWidget` 组件创建 `CustomServerActionWidget` 组件并注册来完成我们的替换，就像下面这样：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.Server,
@@ -298,7 +298,7 @@ export class CustomServerActionWidget extends ServerActionWidget {
 
 我们可以通过 `ServerActionWidget` 组件中提供的 `executeAction` 方法追加逻辑。就像下面这样：
 
-```typescript
+``` typescript
 protected async executeAction(action: RuntimeServerAction, submitValue: SubmitValue): Promise<ClickResult> {
   // do something before execute action.
   const res = await super.executeAction(action, submitValue);
@@ -311,7 +311,7 @@ protected async executeAction(action: RuntimeServerAction, submitValue: SubmitVa
 
 由于客户端动作的特殊性，我们无法像其他动作那样提供一些默认功能，但动作最终呈现在页面上的按钮样式是一致的。那么，我们可以通过继承 `ActionWidget` 组件来实现这个动作，就像下面这样：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: 'custom-action'
@@ -324,7 +324,7 @@ export class CustomClientActionWidget extends ActionWidget {
 
 我们可以通过 `ActionWidget` 组件提供的 `clickAction` 方法实现任何逻辑。就像下面这样：
 
-```typescript
+``` typescript
 protected clickAction(): ReturnPromise<ClickResult> {
   // do something.
   return true;
@@ -348,7 +348,7 @@ protected clickAction(): ReturnPromise<ClickResult> {
 
 让我们先来看一下在 `TypeScript` 中 `ClickResult` 类型定义：
 
-```typescript
+``` typescript
 export type ReturnVoid = null | undefined | void;
 
 export type ClickResult = ReturnVoid | boolean | Record<string, unknown> | Record<string, unknown>[];

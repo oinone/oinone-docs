@@ -21,7 +21,7 @@ order: 2
 ### 2、SearchStringSearchInputFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -30,7 +30,7 @@ order: 2
   })  
 )  
 export class SearchStringSearchInputFieldWidget extends FormStringInputFieldWidget  
-```  
+```
 
 **Methods**:  
 
@@ -42,7 +42,7 @@ export class SearchStringSearchInputFieldWidget extends FormStringInputFieldWidg
 ### 3、SearchStringEmailFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -51,13 +51,13 @@ export class SearchStringSearchInputFieldWidget extends FormStringInputFieldWidg
   })  
 )  
 export class SearchStringEmailFieldWidget extends SearchEmailFieldWidget  
-```  
+```
 
 
 ### 4、SearchStringPhoneFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -66,13 +66,13 @@ export class SearchStringEmailFieldWidget extends SearchEmailFieldWidget
   })  
 )  
 export class SearchStringPhoneFieldWidget extends SearchPhoneFieldWidget  
-```  
+```
 
 
 ### 5、SearchStringTagFieldWidget{#quote1}  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -87,7 +87,7 @@ export class SearchStringPhoneFieldWidget extends SearchPhoneFieldWidget
   })  
 )  
 export class SearchStringTagFieldWidget extends FormStringMultiTagFieldWidget  
-```  
+```
 
 
 ## (Ⅱ) Multi-line Text (Text)  
@@ -95,7 +95,7 @@ export class SearchStringTagFieldWidget extends FormStringMultiTagFieldWidget
 ### 1、SearchTextFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -103,7 +103,7 @@ export class SearchStringTagFieldWidget extends FormStringMultiTagFieldWidget
   })  
 )  
 export class SearchTextFieldWidget extends FormStringFieldWidget  
-```  
+```
 
 
 ### 2、SearchStringTagFieldWidget  
@@ -115,7 +115,7 @@ export class SearchTextFieldWidget extends FormStringFieldWidget
 ### 1、SearchHtmlFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -123,7 +123,7 @@ export class SearchTextFieldWidget extends FormStringFieldWidget
   })  
 )  
 export class SearchHtmlFieldWidget extends FormStringFieldWidget  
-```  
+```
 
 
 ### 2、SearchStringTagFieldWidget  
@@ -135,7 +135,7 @@ export class SearchHtmlFieldWidget extends FormStringFieldWidget
 ### 1、SearchPhoneFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -143,7 +143,7 @@ export class SearchHtmlFieldWidget extends FormStringFieldWidget
   })  
 )  
 export class SearchPhoneFieldWidget extends FormStringFieldWidget  
-```  
+```
 
 
 ### 2、SearchStringTagFieldWidget  
@@ -155,7 +155,7 @@ export class SearchPhoneFieldWidget extends FormStringFieldWidget
 ### 1、SearchEmailFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -163,7 +163,7 @@ export class SearchPhoneFieldWidget extends FormStringFieldWidget
   })  
 )  
 export class SearchEmailFieldWidget extends FormStringFieldWidget  
-```  
+```
 
 
 ### 2、SearchStringTagFieldWidget  
@@ -179,7 +179,7 @@ export class SearchEmailFieldWidget extends FormStringFieldWidget
 ### 2、SearchIntegerTagFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -188,13 +188,13 @@ export class SearchEmailFieldWidget extends FormStringFieldWidget
   })  
 )  
 export class SearchIntegerTagFieldWidget extends FormIntegerMultiFieldWidget  
-```  
+```
 
 
 ### 3、SearchIntegerInputRangeFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -203,7 +203,7 @@ export class SearchIntegerTagFieldWidget extends FormIntegerMultiFieldWidget
   })  
 )  
 export class SearchIntegerInputRangeFieldWidget extends SearchNumberRangeFieldWidget  
-```  
+```
 
 **Attributes**:  
 - precision: Precision, fixed at `0` (integers do not retain decimals). (`number | null | undefined`)  
@@ -218,7 +218,7 @@ export class SearchIntegerInputRangeFieldWidget extends SearchNumberRangeFieldWi
 ### 2、SearchFloatTagFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -227,13 +227,13 @@ export class SearchIntegerInputRangeFieldWidget extends SearchNumberRangeFieldWi
   })  
 )  
 export class SearchFloatTagFieldWidget extends FormIntegerMultiFieldWidget  
-```  
+```
 
 
 ### 3、SearchFloatInputRangeFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -242,7 +242,7 @@ export class SearchFloatTagFieldWidget extends FormIntegerMultiFieldWidget
   })  
 )  
 export class SearchFloatInputRangeFieldWidget extends SearchNumberRangeFieldWidget  
-```  
+```
 
 
 ## (Ⅷ) Money  
@@ -254,7 +254,7 @@ export class SearchFloatInputRangeFieldWidget extends SearchNumberRangeFieldWidg
 ### 2、SearchCurrencyTagFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -263,13 +263,13 @@ export class SearchFloatInputRangeFieldWidget extends SearchNumberRangeFieldWidg
   })  
 )  
 export class SearchCurrencyTagFieldWidget extends FormIntegerMultiFieldWidget  
-```  
+```
 
 
 ### 3、SearchCurrencyInputRangeFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -278,7 +278,7 @@ export class SearchCurrencyTagFieldWidget extends FormIntegerMultiFieldWidget
   })  
 )  
 export class SearchCurrencyInputRangeFieldWidget extends SearchFloatInputRangeFieldWidget  
-```  
+```
 
 
 ## (Ⅸ) Boolean  
@@ -286,7 +286,7 @@ export class SearchCurrencyInputRangeFieldWidget extends SearchFloatInputRangeFi
 ### 1、SearchBooleanSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -294,7 +294,7 @@ export class SearchCurrencyInputRangeFieldWidget extends SearchFloatInputRangeFi
   })  
 )  
 export class SearchBooleanSelectFieldWidget extends FormFieldWidget  
-```  
+```
 
 **Attributes**:  
 - options: Option list for boolean selection, including `true` and `false` with translated labels. (`{ value: boolean; label: string }[]`)  
@@ -317,7 +317,7 @@ export class SearchBooleanSelectFieldWidget extends FormFieldWidget
 ### 3、SearchEnumCheckboxFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -326,13 +326,13 @@ export class SearchBooleanSelectFieldWidget extends FormFieldWidget
   })  
 )  
 export class SearchEnumCheckboxFieldWidget extends FormEnumMultiCheckboxFieldWidget  
-```  
+```
 
 
 ### 4、SearchEnumMultiSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -341,13 +341,13 @@ export class SearchEnumCheckboxFieldWidget extends FormEnumMultiCheckboxFieldWid
   })  
 )  
 export class SearchEnumMultiSelectFieldWidget extends FormEnumMultiSelectFieldWidget  
-```  
+```
 
 
 ### 5、SearchEnumTabSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -356,7 +356,7 @@ export class SearchEnumMultiSelectFieldWidget extends FormEnumMultiSelectFieldWi
   })  
 )  
 export class SearchEnumTabSelectFieldWidget extends FormEnumFieldWidget  
-```  
+```
 
 **Methods**:  
 
@@ -374,7 +374,7 @@ export class SearchEnumTabSelectFieldWidget extends FormEnumFieldWidget
 ### 6、SearchEnumTagSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -383,7 +383,7 @@ export class SearchEnumTabSelectFieldWidget extends FormEnumFieldWidget
   })  
 )  
 export class SearchEnumTagSelectFieldWidget extends FormEnumFieldWidget  
-```  
+```
 
 **Methods**:  
 
@@ -403,7 +403,7 @@ export class SearchEnumTagSelectFieldWidget extends FormEnumFieldWidget
 ### 1、SearchDateTimeRangeFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -414,7 +414,7 @@ export class SearchDateTimeRangeFieldWidget extends SearchRangeFieldWidget<
   string | [string, string],  
   RuntimeSearchField  
 >  
-```  
+```
 
 **Attributes**:  
 - dateFormat: Date format, supports expressions and resource mapping. (`string | undefined`)  
@@ -442,7 +442,7 @@ export class SearchDateTimeRangeFieldWidget extends SearchRangeFieldWidget<
 ### 2、SearchDateTimeDateRangeFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -451,13 +451,13 @@ export class SearchDateTimeRangeFieldWidget extends SearchRangeFieldWidget<
   })  
 )  
 export class SearchDateTimeDateRangeFieldWidget extends SearchDateRangeFieldWidget  
-```  
+```
 
 
 ### 3、SearchDateTimeRangeElementWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Search,  
@@ -465,7 +465,7 @@ export class SearchDateTimeDateRangeFieldWidget extends SearchDateRangeFieldWidg
   })  
 )  
 export class SearchDateTimeRangeElementWidget extends FormRangeFieldsWidget<[string, string], RuntimeSearchField>  
-```  
+```
 
 **Attributes**:  
 - allowClear: Whether to allow clearing the value, default is `true`. (`boolean`)  
@@ -492,7 +492,7 @@ export class SearchDateTimeRangeElementWidget extends FormRangeFieldsWidget<[str
 ### 1、SearchDateRangeFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -500,7 +500,7 @@ export class SearchDateTimeRangeElementWidget extends FormRangeFieldsWidget<[str
   })  
 )  
 export class SearchDateRangeFieldWidget extends SearchDateTimeRangeFieldWidget  
-```  
+```
 
 **Methods**:  
 
@@ -513,7 +513,7 @@ export class SearchDateRangeFieldWidget extends SearchDateTimeRangeFieldWidget
 ### 2、SearchDateRangeElementWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Search,  
@@ -521,7 +521,7 @@ export class SearchDateRangeFieldWidget extends SearchDateTimeRangeFieldWidget
   })  
 )  
 export class SearchDateRangeElementWidget extends SearchDateTimeRangeElementWidget  
-```  
+```
 
 **Methods**:  
 
@@ -536,7 +536,7 @@ export class SearchDateRangeElementWidget extends SearchDateTimeRangeElementWidg
 ### 1、SearchTimeRangeFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -544,7 +544,7 @@ export class SearchDateRangeElementWidget extends SearchDateTimeRangeElementWidg
   })  
 )  
 export class SearchTimeRangeFieldWidget extends SearchDateTimeRangeFieldWidget  
-```  
+```
 
 **Methods**:  
 
@@ -557,7 +557,7 @@ export class SearchTimeRangeFieldWidget extends SearchDateTimeRangeFieldWidget
 ### 2、SearchTimeRangeElementWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Search,  
@@ -565,7 +565,7 @@ export class SearchTimeRangeFieldWidget extends SearchDateTimeRangeFieldWidget
   })  
 )  
 export class SearchTimeRangeElementWidget extends SearchDateTimeRangeElementWidget  
-```  
+```
 
 **Methods**:  
 
@@ -580,7 +580,7 @@ export class SearchTimeRangeElementWidget extends SearchDateTimeRangeElementWidg
 ### 1、SearchYearRangeFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -588,7 +588,7 @@ export class SearchTimeRangeElementWidget extends SearchDateTimeRangeElementWidg
   })  
 )  
 export class SearchYearRangeFieldWidget extends SearchDateTimeRangeFieldWidget  
-```  
+```
 
 **Methods**:  
 
@@ -601,7 +601,7 @@ export class SearchYearRangeFieldWidget extends SearchDateTimeRangeFieldWidget
 ### 2、SearchYearRangeElementWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Search,  
@@ -609,7 +609,7 @@ export class SearchYearRangeFieldWidget extends SearchDateTimeRangeFieldWidget
   })  
 )  
 export class SearchYearRangeElementWidget extends SearchDateTimeRangeElementWidget  
-```  
+```
 
 **Methods**:  
 
@@ -624,7 +624,7 @@ export class SearchYearRangeElementWidget extends SearchDateTimeRangeElementWidg
 ### 1、SearchM2OSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -632,7 +632,7 @@ export class SearchYearRangeElementWidget extends SearchDateTimeRangeElementWidg
   })  
 )  
 export class SearchM2OSelectFieldWidget extends FormM2OSelectFieldWidget  
-```  
+```
 
 **Attributes**:  
 - defaultSearchTrigger: Default search trigger, default is `MANUAL`. (`SearchTrigger[]`)  
@@ -654,7 +654,7 @@ export class SearchM2OSelectFieldWidget extends FormM2OSelectFieldWidget
 ### 2、SearchM2OMultiSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -663,7 +663,7 @@ export class SearchM2OSelectFieldWidget extends FormM2OSelectFieldWidget
   })  
 )  
 export class SearchM2OMultiSelectFieldWidget extends FormM2MFieldSelectWidget  
-```  
+```
 
 **Methods**:  
 
@@ -678,7 +678,7 @@ export class SearchM2OMultiSelectFieldWidget extends FormM2MFieldSelectWidget
 ### 3、SearchM2OTreeSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -690,7 +690,7 @@ export class SearchM2OTreeSelectFieldWidget extends FormTreeSelectFieldWidget<
   ActiveRecord | ActiveRecord[],  
   RuntimeM2OField & RuntimeSearchField  
 >  
-```  
+```
 
 **Attributes**:  
 - multipleCheckedStrategy: Display strategy for selected nodes in multi-select mode, default is `SHOW_ALL`. (`TreeSelectCheckedStrategy`)  
@@ -711,7 +711,7 @@ export class SearchM2OTreeSelectFieldWidget extends FormTreeSelectFieldWidget<
 ### 4、SearchM2OCascaderFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -723,7 +723,7 @@ export class SearchM2OCascaderFieldWidget extends FormCascaderFieldWidget<
   ActiveRecord | ActiveRecord[],  
   RuntimeM2OField & RuntimeSearchField  
 >  
-```  
+```
 
 **Attributes**:  
 - multipleCheckedStrategy: Display strategy for selected nodes in multi-select mode, default is `SHOW_ALL`. (`CascaderCheckedStrategy`)  
@@ -743,7 +743,7 @@ export class SearchM2OCascaderFieldWidget extends FormCascaderFieldWidget<
 ### 5、SearchM2OCheckboxFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -752,7 +752,7 @@ export class SearchM2OCascaderFieldWidget extends FormCascaderFieldWidget<
   })  
 )  
 export class SearchM2OCheckboxFieldWidget extends FormM2MCheckboxFieldWidget  
-```  
+```
 
 **Methods**:  
 
@@ -767,7 +767,7 @@ export class SearchM2OCheckboxFieldWidget extends FormM2MCheckboxFieldWidget
 ### 6、SearchM2OAddressFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -776,7 +776,7 @@ export class SearchM2OCheckboxFieldWidget extends FormM2MCheckboxFieldWidget
   })  
 )  
 export class SearchM2OAddressFieldWidget extends FormM2OAddressFieldWidget  
-```  
+```
 
 **Attributes**:  
 - changeOnSelect: Whether to trigger changes when selecting, default is `true`. (`boolean`)  
@@ -791,7 +791,7 @@ export class SearchM2OAddressFieldWidget extends FormM2OAddressFieldWidget
 ### 2、SearchO2MTreeSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -800,13 +800,13 @@ export class SearchM2OAddressFieldWidget extends FormM2OAddressFieldWidget
   })  
 )  
 export class SearchO2MTreeSelectFieldWidget extends FormO2MTreeSelectFieldWidget  
-```  
+```
 
 
 ### 3、SearchO2MCascaderFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -815,13 +815,13 @@ export class SearchO2MTreeSelectFieldWidget extends FormO2MTreeSelectFieldWidget
   })  
 )  
 export class SearchO2MCascaderFieldWidget extends FormO2MCascaderFieldWidget  
-```  
+```
 
 
 ### 4、SearchO2MCheckboxFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -830,7 +830,7 @@ export class SearchO2MCascaderFieldWidget extends FormO2MCascaderFieldWidget
   })  
 )  
 export class SearchO2MCheckboxFieldWidget extends FormO2MCheckboxFieldWidget  
-```  
+```
 
 
 ## (XVII) Many-to-Many (M2M)  
@@ -842,7 +842,7 @@ export class SearchO2MCheckboxFieldWidget extends FormO2MCheckboxFieldWidget
 ### 2、SearchM2MTreeSelectFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -851,13 +851,13 @@ export class SearchO2MCheckboxFieldWidget extends FormO2MCheckboxFieldWidget
   })  
 )  
 export class SearchM2MTreeSelectFieldWidget extends FormM2MTreeSelectFieldWidget  
-```  
+```
 
 
 ### 3、SearchM2MCascaderFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -866,13 +866,13 @@ export class SearchM2MTreeSelectFieldWidget extends FormM2MTreeSelectFieldWidget
   })  
 )  
 export class SearchM2MCascaderFieldWidget extends FormM2MCascaderFieldWidget  
-```  
+```
 
 
 ### 4、SearchM2MCheckboxFieldWidget  
 **Type Declaration**:  
 
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   FormFieldWidget.Token({  
     viewType: ViewType.Search,  
@@ -881,7 +881,7 @@ export class SearchM2MCascaderFieldWidget extends FormM2MCascaderFieldWidget
   })  
 )  
 export class SearchM2MCheckboxFieldWidget extends FormM2MCheckboxFieldWidget  
-```  
+```
 
 
 ### 5、FormM2MCompanyFieldWidget  

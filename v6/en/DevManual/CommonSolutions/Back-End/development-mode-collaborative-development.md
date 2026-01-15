@@ -39,18 +39,18 @@ Noun Explanations:
 
 Enables metadata protection, allowing only services with the same startup parameter to update metadata. This command is typically used for designer services and business engineering services, which must be started with the same `metadata protection marker (value)`. The local environment does not use this command to prevent accidental modification of testing environment metadata during collaborative development, which could cause metadata confusion.
 
-```java
+``` java
 java -jar boot.jar -PmetaProtected=pamirs
 ```
 
 ## (Ⅱ) Parameters for the Local Environment
 ### 1. Configure ownSign Using Commands (Recommended)
-```java
+``` java
 java -jar boot.jar --pamirs.distribution.session.ownSign=demo
 ```
 
 ### 2. Configure ownSign Using YAML
-```yaml
+``` yaml
 pamirs:
   distribution:
     session:
@@ -60,12 +60,12 @@ pamirs:
 
 # III. Start Designer Environment
 ## (Ⅰ) Start with docker-run
-```java
+``` java
 -e PROGRAM_ARGS=-PmetaProtected=pamirs
 ```
 
 ## (Ⅱ) Start with docker-compose
-```yaml
+``` yaml
 services:
   backend:
     container_name: designer-backend
@@ -96,7 +96,7 @@ Version 4.7.x already includes distributed support.
 
 ## (Ⅱ) Usage Steps
 ### 1. Introduce the Collaborative Development Package into the Business Backend Boot Project
-```java
+``` java
 <dependency>
     <groupId>pro.shushi.pamirs.distribution</groupId>
     <artifactId>pamirs-distribution-session-cd</artifactId>
@@ -104,7 +104,7 @@ Version 4.7.x already includes distributed support.
 ```
 
 ### 2. Configure ownSign in the YML File
-```yaml
+``` yaml
 pamirs:
   distribution:
     session:

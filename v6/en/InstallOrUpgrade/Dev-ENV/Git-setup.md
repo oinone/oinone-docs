@@ -10,7 +10,7 @@ order: 4
 ## I. Install Git on macOS
 Enter the following command in the command line:
 
-```shell
+``` shell
 xcode-select --install
 ```
 

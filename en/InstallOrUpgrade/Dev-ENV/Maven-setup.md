@@ -25,12 +25,12 @@ It is recommended to select versions from the `3.8.x` or `3.9.x` series for inst
 
 # II. Installation
 ## (I) Download
-```shell
+``` shell
 # Linux/macOS
 curl -L https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz -o apache-maven-3.9.9-bin.tar.gz
 ```
 
-```shell
+``` shell
 # Windows
 Invoke-WebRequest -Uri "https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip" -OutFile "apache-maven-3.9.9-bin.zip"
 ```
@@ -38,24 +38,24 @@ Invoke-WebRequest -Uri "https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/ap
 ## (II) Unzip
 Use visualization tools or the following commands to unzip:
 
-```shell
+``` shell
 # Linux/macOS
 tar zxvf apache-maven-3.9.9-bin.tar.gz -C <Maven installation directory>
 ```
 
-```shell
+``` shell
 # Windows
 Expand-Archive apache-maven-3.9.9-bin.zip <Maven installation directory>
 ```
 
 Create a soft link (optional):
 
-```shell
+``` shell
 # Linux/macOS
 ln -s apache-maven-3.9.9 maven
 ```
 
-```powershell
+``` powershell
 # Windows
 New-Item -Path .\maven\ -ItemType SymbolicLink -Target .\apache-maven-3.9.9
 ```
@@ -71,7 +71,7 @@ When configuring environment variables, the configuration path in the script nee
 
 :::
 
-```shell
+``` shell
 # Linux/macOS
 cat >> Replace with specific Shell configuration file << EOF
 export M2_HOME="<Maven installation directory>"
@@ -90,7 +90,7 @@ Trigger with keyboard `Win + R` to display the following interface:
 
 Enter the following code and click `OK`:
 
-```shell
+``` shell
 # Launch environment variable configuration interface
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
@@ -107,14 +107,14 @@ Append to `Path`: `;%M2_HOME%\bin`
 
 Run CMD, PowerShell, or Terminal:
 
-```powershell
+``` powershell
 # Set M2_HOME
 # Set M2_HOME to the absolute path of the default installation directory or a custom directory
 setx "M2_HOME" "<Maven installation directory>"
 # For example: setx "M2_HOME" C:\Users\yakir\Developer\apache-maven-3.9.9\
 ```
 
-```powershell
+``` powershell
 # Append to PATH
 setx "Path" "%Path%;%M2_HOME%\bin"
 ```
@@ -124,7 +124,7 @@ Enter in the command line:
 
 `mvn --version`
 
-```powershell
+``` powershell
 # Linux/macOS
 Apache Maven 3.9.9 (8e8579a9e76f7d015ee5ec7bfcdc97d260186937)
 Maven home: /Users/yakir/local/maven
@@ -133,7 +133,7 @@ Default locale: zh_CN, platform encoding: UTF-8
 OS name: "mac os x", version: "15.3.2", arch: "aarch64", family: "mac"
 ```
 
-```powershell
+``` powershell
 # Windows
 Apache Maven 3.9.9 (8e8579a9e76f7d015ee5ec7bfcdc97d260186937)
 Maven home: C:\Users\yakir\Developer\apache-maven-3.9.9

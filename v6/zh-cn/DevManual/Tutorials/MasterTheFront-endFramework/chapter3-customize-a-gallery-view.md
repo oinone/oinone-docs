@@ -8,7 +8,7 @@ category:
 order: 3
 next:
   text: 模块数据初始化（Init Module Data）
-  link: /zh-cn/DevManual/Tutorials/init-module-data.md
+  link: /v6/zh-cn/DevManual/Tutorials/init-module-data.md
 ---
 在 Oinone 中，画廊视图是一种通过卡片形式展示数据的视图类型。通过`界面设计器`或后端 `DSL` 同样可以对卡片内容进行设计，但这有时并不能满足我们的业务场景，毕竟并不是所有卡片都设计的那么“整齐”。那么，对画廊视图的卡片进行定制化开发，从某种程度上来说，这是非常有必要的。
 

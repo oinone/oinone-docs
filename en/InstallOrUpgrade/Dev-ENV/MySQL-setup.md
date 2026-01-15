@@ -39,13 +39,13 @@ If there is no existing database, you can download and install it from the offic
 
 ### 1. Check glibc Version
 
-```bash
+``` bash
 ldd --version
 ```
 
 Sample output:
 
-```bash
+``` bash
 ldd (Debian GLIBC 2.36-9+deb12u10) 2.36
 Copyright (C) 2022 Free Software Foundation. This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Written by Roland McGrath and Ulrich Drepper.
 ```
@@ -71,21 +71,21 @@ Install the `libaio` package:
 
 ## (Ⅰ) Extract Files
 
-```bash
+``` bash
 # macOS
 tar zxvf mysql-8.0.42-macos15-arm64.tar.gz -C ./
 # Create symbolic link
 ln -s mysql-8.0.42-macos15-arm64 mysql
 ```
 
-```bash
+``` bash
 # Linux
 tar Jxvf mysql-8.0.42-linux-glibc2.28-aarch64.tar.xz -C ./
 # Create symbolic link
 ln -s mysql-8.0.42-linux-glibc2.28-aarch64 mysql
 ```
 
-```powershell
+``` powershell
 # Windows
 Expand-Archive .\mysql-8.0.42-winx64.zip .\
 # Create symbolic link
@@ -96,7 +96,7 @@ New-Item -Path .\mysql\ -ItemType SymbolicLink -Target .\mysql-8.0.42-winx64\
 
 macOS/Linux:
 
-```ini
+``` ini
 # my.cnf
 [mysqld]
 # Case sensitivity for table names
@@ -107,7 +107,7 @@ default-time-zone           = '+08:00'
 
 Windows:
 
-```ini
+``` ini
 # my.ini
 [mysqld]
 # Case sensitivity for table names
@@ -118,7 +118,7 @@ default-time-zone           = '+08:00'
 
 ## (Ⅲ) Install MySQL
 
-```bash
+``` bash
 # macOS
 # Remove quarantine attribute
 xattr -r -d com.apple.quarantine mysql-8.0.42-macos15-arm64
@@ -128,7 +128,7 @@ cd mysql-8.0.42-macos15-arm64
 ./bin/mysqld --defaults-file=my.cnf --initialize
 ```
 
-```bash
+``` bash
 # Linux
 groupadd mysql
 useradd -r -g mysql -s /bin/false mysql
@@ -139,7 +139,7 @@ chmod 750 mysql-files
 ./bin/mysqld --defaults-file=my.cnf --initialize --user=mysql
 ```
 
-```powershell
+``` powershell
 # Windows
 cd mysql-8.0.42-winx64
 .\bin\mysqld.exe --defaults-file=my.ini --initialize --console
@@ -151,7 +151,7 @@ cd mysql-8.0.42-winx64
 
 After executing the initialization command, the log will contain output like:
 
-```text
+``` text
 ...
 A temporary password is generated for root@localhost: .u_p9JUy53Aj
 ...
@@ -161,29 +161,29 @@ The temporary root password is the value shown after `A temporary password is ge
 
 ### 2. Start MySQL Service
 
-```bash
+``` bash
 # macOS
 nohup ./bin/mysqld --defaults-file=my.cnf >> mysql.nohup 2>&1 &
 ```
 
-```bash
+``` bash
 # Linux
 nohup ./bin/mysqld --defaults-file=my.cnf --user=mysql >> mysql.nohup 2>&1 &
 ```
 
-```powershell
+``` powershell
 # Windows
 .\bin\mysqld.exe --defaults-file=my.ini
 ```
 
 ### 3. Login to MySQL CLI
 
-```bash
+``` bash
 # macOS/Linux
 ./bin/mysql -uroot -p
 ```
 
-```powershell
+``` powershell
 # Windows
 .\bin\mysql.exe -uroot -p
 ```
@@ -200,7 +200,7 @@ This is an example password; you can change it to your preferred password.
 
 :::
 
-```sql
+``` sql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'shushi@2019';
 ```
 
@@ -214,12 +214,12 @@ The password shown is an example and should be replaced with your own if changed
 
 :::
 
-```bash
+``` bash
 # macOS/Linux
 ./bin/mysqladmin shutdown -uroot -pshushi@2019
 ```
 
-```powershell
+``` powershell
 # Windows
 .\bin\mysqladmin.exe shutdown -uroot -pshushi@2019
 ```
@@ -228,7 +228,7 @@ The password shown is an example and should be replaced with your own if changed
 
 ## (Ⅰ) Enable Remote Access
 
-```sql
+``` sql
 -- Enable remote access for root
 USE mysql;
 UPDATE user SET host='%' WHERE user='root';
@@ -246,7 +246,7 @@ After installation, use your preferred tools to test the connection. If it fails
 
 ## (Ⅱ) Time Zone Issues
 
-```ini
+``` ini
 # Add in my.cnf (macOS) or my.ini (Windows)
 default-time-zone= '+08:00'
 ```

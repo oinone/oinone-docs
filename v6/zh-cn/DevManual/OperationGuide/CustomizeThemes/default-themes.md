@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: 自定义主题
-  link: /zh-cn/DevManual/OperationGuide/CustomizeThemes/README.md
+  link: /v6/zh-cn/DevManual/OperationGuide/CustomizeThemes/README.md
 ---
 ### 1、应用切换组件（app-switch）
 

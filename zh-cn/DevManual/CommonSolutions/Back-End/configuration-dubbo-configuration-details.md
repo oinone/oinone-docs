@@ -26,7 +26,7 @@ JAVA程序启动时，需要将`provider`的信息注册到`服务中心`，并�
 
 :::
 
-```yaml
+``` yaml
 dubbo:
   protocol:
     name: dubbo
@@ -43,7 +43,7 @@ dubbo:
 
 以下示例针对无法使用 20880 端口的情形，将宿主机可访问端口由 20880 变更为 20881。
 
-```shell
+``` shell
 DUBBO_IP_TO_REGISTRY=192.168.1.100
 DUBBO_PORT_TO_REGISTRY=20881
 ```
@@ -59,7 +59,7 @@ DUBBO_PORT_TO_REGISTRY=20881
 
 **docker-run**
 
-```shell
+``` shell
 IP=192.168.1.100
 
 docker run -d --name designer-allinone-full \
@@ -70,7 +70,7 @@ docker run -d --name designer-allinone-full \
 
 **docker-compose**
 
-```yaml
+``` yaml
 services:
   backend:
     container_name: designer-backend
@@ -86,7 +86,7 @@ services:
 ## （五）使用kubernetes启动
 **工作负载（Deployment）**
 
-```yaml
+``` yaml
 kind: Deployment
 apiVersion: apps/v1
 spec:
@@ -109,7 +109,7 @@ spec:
 
 **服务（Services）**
 
-```yaml
+``` yaml
 kind: Service
 apiVersion: v1
 spec:
@@ -185,7 +185,7 @@ spec:
 
 # 五、常用配置
 ## （一）yaml配置
-```yaml
+``` yaml
 dubbo:
   application:
     name: pamirs-test
@@ -219,7 +219,7 @@ dubbo:
 + dubbo.cloud.subscribed-services: 多提供者配置；示例中该参数配置为空是为了避免启动时的警告日志，一般无需配置。
 
 ## （二）环境变量配置
-```shell
+``` shell
 DUBBO_IP_TO_REGISTRY=127.0.0.1
 DUBBO_PORT_TO_REGISTRY=20880
 ```
@@ -230,7 +230,7 @@ DUBBO_PORT_TO_REGISTRY=20880
 # 六、源码参考
 + `org.apache.dubbo.config.ServiceConfig#findConfigedHosts`
 
-```java
+``` java
 private String findConfigedHosts(ProtocolConfig protocolConfig,
                                  List<URL> registryURLs,
                                  Map<String, String> map) {
@@ -274,7 +274,7 @@ private String findConfigedHosts(ProtocolConfig protocolConfig,
 
 + `org.apache.dubbo.config.ServiceConfig#findConfigedPorts`
 
-```java
+``` java
 private Integer findConfigedPorts(ProtocolConfig protocolConfig,
                                   String name,
                                   Map<String, String> map, int protocolConfigNum) {
@@ -323,7 +323,7 @@ private Integer findConfigedPorts(ProtocolConfig protocolConfig,
 
 + `org.apache.dubbo.config.ServiceConfig#getValueFromConfig`
 
-```java
+``` java
 private String getValueFromConfig(ProtocolConfig protocolConfig, String key) {
     String protocolPrefix = protocolConfig.getName().toUpperCase() + "_";
     String value = ConfigUtils.getSystemProperty(protocolPrefix + key);
@@ -336,7 +336,7 @@ private String getValueFromConfig(ProtocolConfig protocolConfig, String key) {
 
 + `org.apache.dubbo.common.utils.ConfigUtils#getSystemProperty`
 
-```java
+``` java
 public static String getSystemProperty(String key) {
     String value = System.getenv(key);
     if (StringUtils.isEmpty(value)) {

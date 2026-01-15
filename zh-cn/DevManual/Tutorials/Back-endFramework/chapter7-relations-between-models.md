@@ -39,13 +39,13 @@ order: 7
 
 多对一关系是指向另一个对象的简单链接。例如，为了在我们的测试模型中定义与 `user.PamirsUser` 的链接，我们可以有以下两种这样写：
 
-```java
+``` java
 @Field.many2one
 @Field(displayName = "用户")
 private PamirsUser user;
 ```
 
-```java
+``` java
 @Field.many2one
 @Field(displayName = "用户")
 @Field.Relation(relationFields = {"userId"},referenceFields = {"id"})
@@ -58,7 +58,7 @@ private Long userId;
 
 在未配置 `@Field.Relation` 的情况下，多对一（many2one）字段会在当前模型中默认创建一个以 `Id`（例如 `userId`）结尾的字段，该字段用于与目标模型的 `id` 建立关联。然后可以通过以下方式轻松访问关联对象（用户）的数据：
 
-```java
+``` java
 PamirsUser user =testModel.fieldQuery(TestModel::getUser).getUser();
 user.getName();
 ```
@@ -67,7 +67,7 @@ user.getName();
 
 :::
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-user-api</artifactId>
@@ -82,7 +82,7 @@ user.getName();
 
 :::
 
-```plain
+``` plain
 ……
 @Module(
     name = ExpensesModule.MODULE_NAME,
@@ -153,7 +153,7 @@ public class ExpensesModule implements PamirsModule {
 
 :::
 
-```java
+``` java
 mysql> desc expenses_project_info_rel_partner;
 +-----------------+----------+------+-----+-------------------+-----------------------------------------------+
 | Field           | Type     | Null | Key | Default           | Extra                                         |
@@ -183,7 +183,7 @@ mysql> desc expenses_project_info_rel_partner;
 
 ## （一）中间表使用系统默认生成的
 
-```java
+``` java
 @Field.many2many
 @Field(displayName = "合作伙伴列表")
 private List<PamirsPartner> partners;
@@ -197,7 +197,7 @@ private List<PamirsPartner> partners;
 
 这意味着可以向我们的测试模型中添加多个合作伙伴。它的行为类似于记录列表，这意味着访问数据时必须使用循环：
 
-```java
+``` java
 testModel.fieldQuery(TestModel::getPartners);
 for(PamirsPartner partner: testModel.getPartners()){
     partner.getName();
@@ -206,7 +206,7 @@ for(PamirsPartner partner: testModel.getPartners()){
 
 ## （二）中间表使用特定的模型
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -227,7 +227,7 @@ public class TestModelRelPartner extends BaseRelation {
 }
 ```
 
-```java
+``` java
 @Field(displayName = "合作伙伴列表")
 @Field.many2many(relationFields = {"testModelId"},referenceFields = {"partnerId"},throughClass =TestModelRelPartner.class)
 private List<PamirsPartner> partners;
@@ -282,7 +282,7 @@ private List<PamirsPartner> partners;
 
 一对多关系是多对一关系的反向关系。例如，我们在测试模型中通过 `userId` 字段定义了与 `user.PamirsUser` 模型的链接。我们可以定义反向关系，即与我们的用户相关联的测试模型列表：
 
-```java
+``` java
 @Field(displayName = "测试模型列表")
 @Field.one2many
 @Field.Relation(relationFields = {"id"},referenceFields = {"userId"})
@@ -298,7 +298,7 @@ private List<TestModel> testModels;
 
 按照惯例，一对多（One2many）字段通常是集合类型 `List` 。它们的行为类似于记录列表，这意味着访问数据时必须使用循环：
 
-```java
+``` java
 user.fieldQuery(PamirsUser::getTestModels);
 for(TestModel testModel: user.getTestModels()){
     testModel.getName();

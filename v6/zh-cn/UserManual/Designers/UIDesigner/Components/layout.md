@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 组件与模型总览
-  link: /zh-cn/UserManual/Designers/UIDesigner/widgets-and-model-overview.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/widgets-and-model-overview.md
 ---
 布局类组件主要用于页面的样式排版，它们相当于一个容器，可以容纳多个其他组件。同时，布局类组件之间支持互相嵌套，以便用户更灵活地构建页面结构和布局。
 

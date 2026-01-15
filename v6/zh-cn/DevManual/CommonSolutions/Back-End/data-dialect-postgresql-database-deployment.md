@@ -8,7 +8,7 @@ order: 41
 
 # 一、驱动配置
 ## （一）Maven配置（14.3版本可用）
-```xml
+``` xml
 <postgresql.version>42.6.0</postgresql.version>
 <dependency>
   <groupId>org.postgresql</groupId>
@@ -24,7 +24,7 @@ order: 41
 [postgresql-42.7.3.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/pgsql/postgresql-42.7.3.jar)
 
 # 二、JDBC连接配置
-```yaml
+``` yaml
 pamirs:
   datasource:
     base:
@@ -51,7 +51,7 @@ pamirs:
 暂无官方资料
 
 ## （二）url格式
-```plain
+``` plain
 jdbc:postgresql://${host}:${port}/${database}?currentSchema=${schema}
 ```
 
@@ -65,7 +65,7 @@ jdbc:postgresql://${host}:${port}/${database}?currentSchema=${schema}
 
 # 三、方言配置
 ## （一）pamirs方言配置
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -93,7 +93,7 @@ pamirs:
 :::
 
 ## （二）schedule方言配置
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -118,7 +118,7 @@ pamirs:
 
 # 四、其他配置
 ## （一）逻辑删除的值配置
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -127,7 +127,7 @@ pamirs:
 ```
 
 ## （二）PostgreSQL 数据库用户初始化及授权
-```sql
+``` sql
 -- init root user (user name can be modified by oneself)
 
 CREATE USER root WITH PASSWORD 'password';

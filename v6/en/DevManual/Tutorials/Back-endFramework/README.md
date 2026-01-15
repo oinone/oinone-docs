@@ -10,7 +10,7 @@ dir:
   order: 2
 next:
   text: Chapter 1:Architecture Overview
-  link: /en/DevManual/Tutorials/Back-endFramework/chapter1-architecture-overview.md
+  link: /v6/en/DevManual/Tutorials/Back-endFramework/chapter1-architecture-overview.md
 ---
 Welcome to the "Back-end Framework Tutorial"! If you're seeing this page, it means you're interested in developing your own Oinone modules. This might also indicate that you've recently joined Oinone in a technical role. Regardless, your journey in the Oinone technical domain starts here.
 

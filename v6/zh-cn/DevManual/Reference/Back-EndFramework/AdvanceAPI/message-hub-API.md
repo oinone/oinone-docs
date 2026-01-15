@@ -42,7 +42,7 @@ order: 5
 + **返回值**：`MessageHub` 实例（支持链式调用）。
 + **示例**：**java**
 
-```java
+``` java
 PamirsSession.getMessageHub()
     .msg(Message.init()
         .setLevel(InformationLevelEnum.ERROR)
@@ -68,7 +68,7 @@ PamirsSession.getMessageHub()
 
 **示例**：
 
-```java
+``` java
 // 快速添加警告消息
 messageHub.warn("连接即将超时");
 ```
@@ -117,7 +117,7 @@ messageHub.warn("连接即将超时");
 
 **示例**：
 
-```java
+``` java
 // 设置字段 "name" 的错误路径
 messageHub.appendPath("name");
 ```
@@ -167,7 +167,7 @@ messageHub.appendPath("name");
 
 ## （一）表单验证场景
 
-```java
+``` java
 @Function
 public Boolean checkData(TestConstraintsModel data) {
     String name = data.getName();
@@ -196,7 +196,7 @@ public Boolean checkData(TestConstraintsModel data) {
 
 ## （二）快速添加成功消息
 
-```java
+``` java
 messageHub.success("操作成功！")
           .directives("redirectToHome"); // 添加前端跳转指令
 ```
@@ -209,7 +209,7 @@ messageHub.success("操作成功！")
 
 # 八、类图（简略）
 
-```plain
+``` plain
 MessageHub
 ├─ success: boolean
 ├─ dataExtension: DataExtension

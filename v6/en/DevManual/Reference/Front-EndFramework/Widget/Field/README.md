@@ -12,7 +12,7 @@ dir:
   order: 10
 next:
   text: Table Field
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/Field/table-field.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/Field/table-field.md
 ---
 In Oinone Kunlun, fields are a very important type of metadata, which often determine the data content and display form of a page. The Widget framework classifies components, and through classification features, we can determine the scope of use of components when registering them. When using components, we can select the most suitable component from all registered components for rendering. Field components are a type of component used in DSL through the form of field tags.
 
@@ -20,7 +20,7 @@ In Oinone Kunlun, fields are a very important type of metadata, which often dete
 
 ## (Ⅰ) Registration Options for Field Components
 
-```typescript
+``` typescript
 /**
  * Field component registration options
  */
@@ -64,7 +64,7 @@ It is not difficult to find from the above type declaration that its classificat
 
 When the `widget` attribute is not specified, the component will be registered as the default component for the corresponding field business type. Take `FormStringInputFieldWidget` as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -76,7 +76,7 @@ export class FormStringInputFieldWidget extends FormStringFieldWidget
 
 For this component, use it through the `field` tag in `DSL`:
 
-```xml
+``` xml
 <field data="code" />
 ```
 
@@ -84,7 +84,7 @@ For this component, use it through the `field` tag in `DSL`:
 
 For components of the same field business type, we specify the component name through `widget` to distinguish them from other components. Take `FormStringHyperlinksFieldWidget` as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -97,7 +97,7 @@ export class FormStringHyperlinksFieldWidget extends FormStringInputFieldWidget
 
 For this component, use it through the `field` tag in `DSL` and specify the `widget` attribute:
 
-```xml
+``` xml
 <field data="url" widget="Hyperlinks" />
 ```
 

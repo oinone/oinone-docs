@@ -9,7 +9,7 @@ category:
 order: 11
 next:
   text: View architectures
-  link: /en/DevManual/Reference/UserInterface/ViewArchitectures/README.md
+  link: /v6/en/DevManual/Reference/UserInterface/ViewArchitectures/README.md
 ---
 In Oinone Kunlun, a "translation" module is built - in. Combined with the front - end "buried point" translation function, it can realize the translation function for any language. This article will introduce the use of the "translation" function and its implementation details.
 

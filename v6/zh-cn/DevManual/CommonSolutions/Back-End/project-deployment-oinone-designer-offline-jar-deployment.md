@@ -28,7 +28,7 @@ Oinone 平台为合作伙伴提供了多种部署方式，这篇文章将介绍�
 
 # 三、部署准备
 ## （一）在部署环境创建部署目录
-```shell
+``` shell
 mkdir -p /home/admin/oinone-designer
 ```
 
@@ -84,7 +84,7 @@ mkdir -p /home/admin/oinone-designer
 
 # 六、后端服务部署
 ## （一）将部署 JAR 包移动到`backend`目录下，并重命名为`oinone-designer.jar`
-```shell
+``` shell
 mv pamirs-designer-boot-v5.2-5.2.6.jar backend/oinone-designer.jar
 ```
 
@@ -95,7 +95,7 @@ mv pamirs-designer-boot-v5.2-5.2.6.jar backend/oinone-designer.jar
 :::
 
 ## （二）将 Pamirs 许可证移动到`backend/config`目录下，并重命名为`license.lic`
-```shell
+``` shell
 mv oinone-demo_1730163770607.lic backend/config/license.lic
 ```
 
@@ -104,7 +104,7 @@ mv oinone-demo_1730163770607.lic backend/config/license.lic
 
 以 KDB8 数据库驱动`kingbase8-8.6.0.jar`为例
 
-```shell
+``` shell
 mv kingbase8-8.6.0.jar backend/lib/
 ```
 
@@ -129,7 +129,7 @@ mv kingbase8-8.6.0.jar backend/lib/
 :::
 
 ## （五）执行`startup.sh`脚本启动
-```shell
+``` shell
 sh startup.sh
 ```
 
@@ -141,7 +141,7 @@ sh startup.sh
 
 # 七、Nginx 配置
 ## （一）在本地 nginx 服务中找到`nginx.conf`，并添加 Nginx 配置路径为加载目录
-```nginx
+``` nginx
 http {
     ...
     include /path/to/nginx/*.conf;
@@ -149,7 +149,7 @@ http {
 ```
 
 ## （二）修改结构包中的`default.conf`第7行`root`配置为`前端路径`到`dist`目录下
-```nginx
+``` nginx
 server {
     ...
     root /path/to/frontend/dist;
@@ -157,7 +157,7 @@ server {
 ```
 
 ## （三）修改结构包中的`oss.conf`第30行`alias`配置为`前端路径`到`static`目录下
-```nginx
+``` nginx
 server {
     ...
     location /static {

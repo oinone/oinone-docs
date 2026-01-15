@@ -37,7 +37,7 @@ Reference: Documentation related to this topic can be found in "[Actions](/en/De
 
 In our expense management module, we want to associate business logic with several buttons. The most common approach is:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.meta.annotation.Action;
@@ -66,7 +66,7 @@ public class TestActionModel extends IdModel {
 
 Alternatively, Actions can be defined in independent Java classes. During this process, simply use the `@Model.model(TestActionModel.MODEL_MODEL)` annotation to achieve association with the corresponding model.
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.core.action;
 
 import org.springframework.stereotype.Component;
@@ -107,7 +107,7 @@ From the perspective of Java project management, we strongly recommend the secon
 
 Add buttons in the view, for example, in the Form view:
 
-```xml
+``` xml
 <view name="formView" type="FORM" cols="2" model="expenses.TestActionModel">
   <template slot="actions" autoFill="true"/>
   <template slot="fields">
@@ -121,7 +121,7 @@ Add buttons in the view, for example, in the Form view:
 
 The view enables the autoFill mechanism by default, which can automatically filter and fill operations within the given model that meet specific requirements, eliminating the need for manual additional settings. Another approach is to use a whitelist mechanism, writing all operations to be displayed under the actions tag:
 
-```xml
+``` xml
 <view name="formView" type="FORM" cols="2" model="expenses.TestActionModel">
   <template slot="actions">
         <action name="actionDoSomething" type="primary"/>
@@ -160,7 +160,7 @@ The view enables the autoFill mechanism by default, which can automatically filt
 
 For batch operations, the corresponding method must first be able to handle multiple records. By declaring `contextType` as `ActionContextTypeEnum.SINGLE_AND_BATCH`, it indicates that the method supports selecting one or multiple records at the interaction level. Of course, declaring it as `ActionContextTypeEnum.BATCH` means the operation will only become clickable when multiple records are selected. The most common approach is:
 
-```java
+``` java
 @Action(
     displayName = "批量操作",
     label = "批量操作",

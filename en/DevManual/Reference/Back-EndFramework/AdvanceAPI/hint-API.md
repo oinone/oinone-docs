@@ -23,7 +23,7 @@ In such cases, the business functions can be implemented by using the native myb
 
 ## (Ⅱ) API Definition
 
-```java
+``` java
 public static DsHintApi model(String model) {
     // Specific implementation
 }
@@ -32,7 +32,6 @@ public DsHintApi(Object dsKey) {
     // Specific implementation
 }
 ```
-
 + `model(String model)`: Specify the data source by passing in the model code. The model code serves as the basis for data source selection, making it convenient for developers to associate with the corresponding data source according to the business model.
 + `DsHintApi(Object dsKey)`: Directly pass in the data source name to specify the data source. This method is more intuitive and suitable for scenarios where the data source name is clearly known.
 
@@ -48,7 +47,7 @@ Within the `try` block, all query operations will be forced to use the specified
 
 + **Usage Method 1: Specify the data source by model code**
 
-```java
+``` java
 try (DsHintApi dsHintApi = DsHintApi.model(PetItem.MODEL_MODEL)) {
     List<PetItem> items = demoItemDAO.customSqlDemoItem();
     PetShopProxy data2 = data.queryById();
@@ -60,7 +59,7 @@ In the above example, `DsHintApi.model(PetItem.MODEL_MODEL)` specifies the data 
 
 + **Usage Method 2: Specify the data source by data source name**
 
-```java
+``` java
 try (DsHintApi dsHintApi = DsHintApi.use("data source name")) {
     List<PetItem> items = demoItemDAO.customSqlDemoItem();
     PetShopProxy data2 = data.queryById();
@@ -79,7 +78,7 @@ In the Oinone development environment, `BatchSizeHintApi` is used to enforce the
 
 ## (Ⅱ) API Definition
 
-```java
+``` java
 public static BatchSizeHintApi use(Integer batchSize) {
     // Specific implementation
 }
@@ -99,7 +98,7 @@ Within the `try` block, all query operations will be performed according to the 
 
 + **Specify non-paged query (batchSize = -1)**
 
-```java
+``` java
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
     PetShopProxy data2 = data.queryById();
     data2.fieldQuery(PetShopProxy::getPetTalents);

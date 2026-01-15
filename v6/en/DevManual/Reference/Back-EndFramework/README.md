@@ -10,8 +10,8 @@ dir:
   order: 1
 prev:
   text: Reference
-  link: /en/DevManual/Reference/README.md
+  link: /v6/en/DevManual/Reference/README.md
 next:
   text: Module API
-  link: /en/DevManual/Reference/Back-EndFramework/module-API.md
+  link: /v6/en/DevManual/Reference/Back-EndFramework/module-API.md
 ---

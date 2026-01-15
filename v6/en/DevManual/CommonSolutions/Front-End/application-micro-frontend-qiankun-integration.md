@@ -12,7 +12,7 @@ To seamlessly integrate Oinone into existing projects and meet diverse requireme
 # I. Template Project Startup
 ## (Ⅰ) Introduction to Project Structure Directory
 The outermost `micro-front-end` uses a `pnpm` workspace to manage multi-project repositories, maintaining unified scripts for installation, running, cleaning, building, etc. `micro-main` is the main application, `micro-son` is the sub-application simulating a legacy application with huge refactoring workload, and `ss-front-modules` is the Oinone application.
-```text
+``` text
 micro-front-end/
 ├── packages/
 │   ├── micro-main/
@@ -45,7 +45,7 @@ Access the main application at `http://localhost:8888/`, and you can route to th
 ### 1. Micro-Application Registration Configuration
 A sub-application named `oinone` is configured with the `name` as `ss-boot`.
 
-```typescript
+``` typescript
 export const SUB_APP_CONFIG = {
   subApps: [
     {
@@ -75,7 +75,7 @@ export const SUB_APP_CONFIG = {
 ```
 
 ### 2. `main.ts` Executing Registration Logic
-```javascript
+``` javascript
 import { registerMicroApps } from "qiankun";
 
 function registerApps() {
@@ -114,7 +114,7 @@ createApp(App).use(router).mount("#micro-main");
 ### 3. Main Application Routing Configuration
 Taking `vue-router` as an example, all routes under `/app/ss-boot` are redirected to components using the Oinone micro-application.
 
-```javascript
+``` javascript
 import { createWebHistory, createRouter } from "vue-router";
 
 const routes = [
@@ -152,7 +152,7 @@ export const router = createRouter({
 ### 4. A Component of the Main Application Using the Oinone Micro-Application
 Start Qiankun after the mounting point DOM is generated.
 
-```javascript
+``` javascript
 <template>
   <!-- Micro-application mounting point, corresponding to the container in the registration configuration -->
   <div id="app-oinone"></div>
@@ -181,7 +181,7 @@ export default defineComponent({
 ### 5. `dev` Server Configuration
 Taking `vite` as an example, the main application is configured as follows after startup.
 
-```javascript
+``` javascript
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
@@ -208,7 +208,7 @@ export default defineConfig({
 The role of BASE_PATH is to add a public prefix to the routes of the Oinone application to adapt to the routes of the main application.
 
 ### 2. `main.ts` in the `ss-boot` Directory Exposing the Lifecycle Required by Qiankun
-```javascript
+``` javascript
 if (window.__POWERED_BY_QIANKUN__) {
   __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;
 }

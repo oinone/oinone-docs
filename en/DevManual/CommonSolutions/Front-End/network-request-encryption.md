@@ -11,7 +11,7 @@ In scenarios with high security requirements, Oinone provides the capability to 
 
 # II. Backend
 ## (Ⅰ) Inherit the platform's `RequestController` and add a new request class to handle encryption logic
-```java
+``` java
 package pro.shushi.pamirs.demo.core.controller;
 
 import org.apache.commons.lang3.StringUtils;
@@ -75,7 +75,7 @@ public class DemoRequestController extends RequestController {
 ```
 
 ## (Ⅱ) The boot project's startup class excludes the platform's default `RequestController` class
-```java
+``` java
 @ComponentScan(
         excludeFilters = {
                 // This annotation excludes the platform's RequestController class
@@ -89,7 +89,7 @@ public class DemoApplication {
 ```
 
 ## (Ⅲ) The following is an example of a startup class in an actual project
-```java
+``` java
 package pro.shushi.pamirs.demo.boot;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -159,8 +159,8 @@ public class DemoApplication {
 
 # III. Frontend
 ## (Ⅰ) Add a utility class `EncryptRequestUtil.ts`
-```typescript
-import { encrypt, NetworkMiddlewareHandler } from '@kunlun/dependencies';
+``` typescript
+import { encrypt, NetworkMiddlewareHandler } from '@oinone/kunlun-dependencies';
 
 export const encryptMiddleWare: NetworkMiddlewareHandler = (operation, forward) => {
   // The following line of code is the default encryption method and can be replaced with your own algorithm
@@ -174,7 +174,7 @@ export const encryptMiddleWare: NetworkMiddlewareHandler = (operation, forward) 
 ## (Ⅱ) Register the encryption interceptor in `main.ts`
 Register within the `VueOioProvider` method of `main.ts`. The following code only demonstrates the key configuration for encryption; other configurations should follow the original code.
 
-```typescript
+``` typescript
 VueOioProvider(
   {
     http: {

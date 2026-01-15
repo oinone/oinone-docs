@@ -9,5 +9,5 @@ dir:
   order: 7
 prev:
   text: Runtime:Context parameters configured but values not passed to navigation page
-  link: /en/DevManual/FAQ/runtime-context-parameters-not-passed-to-navigation.md
+  link: /v6/en/DevManual/FAQ/runtime-context-parameters-not-passed-to-navigation.md
 ---

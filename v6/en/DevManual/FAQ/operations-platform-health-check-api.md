@@ -11,7 +11,7 @@ To verify whether a service has started successfully, you can call the `********
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/Snipaste_2024-09-27_11-16-55.jpg)
 
 # Ⅱ、Code Logic
-```java
+``` java
 @Order(Ordered.LOWEST_PRECEDENCE)
 @RestController
 public class HealthCheckController implements ApplicationListener<ApplicationStartedEvent> {

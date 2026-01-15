@@ -7,7 +7,7 @@ category:
 order: 5
 prev:
   text: EIP API
-  link: /en/DevManual/Reference/StandardModule/EIP-API.md
+  link: /v6/en/DevManual/Reference/StandardModule/EIP-API.md
 ---
 # I. SPI Mechanism
 
@@ -39,7 +39,7 @@ Integrates three service discovery mechanisms to support dynamic component exten
 
 ### 4. Invocation Methods
 
-```java
+``` java
 // Invoke by specifying extension name
 DemoApi ext = ExtensionServiceLoader.getExtension(DemoApi.class, "ext1");
 

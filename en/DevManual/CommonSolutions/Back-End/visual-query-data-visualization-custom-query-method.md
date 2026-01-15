@@ -12,7 +12,7 @@ Summarize data based on test products and display aggregated test product statis
 - Statistics on the maximum inventory and average selling price of product categories
 
 # II. Test Product Model
-```java
+``` java
 @Model.model(DemoItem.MODEL_MODEL)
 @Model(displayName = "Test Product", labelFields = "name")
 @Model.Code(sequence = "SEQ", prefix = "IT", size = 8)
@@ -42,7 +42,7 @@ public class DemoItem extends CodeModel {
 ```
 
 # III. Test Product Statistics
-```java
+``` java
 @Model.model(DemoItemStatistics.MODEL_MODEL)
 @Model(displayName = "Test Product Statistics", labelFields = "name")
 public class DemoItemStatistics extends IdModel {
@@ -73,7 +73,7 @@ public class DemoItemStatistics extends IdModel {
 Interfaces accessible by the chart designer must specify `category = FunctionCategoryEnum.QUERY_PAGE`, and the input/output parameter types must match this example.
 :::
 
-```java
+``` java
 @Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "Product Statistics List", category = FunctionCategoryEnum.QUERY_PAGE)
 @Function.fun(FunctionConstants.queryPage)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
@@ -110,7 +110,7 @@ public Pagination<DemoItemStatistics> queryPage(Pagination<DemoItemStatistics> p
 # VI. Defining Custom Query Methods for Transfer Models
 
 ## (Ⅰ) Define Transfer Model
-```java
+``` java
 package pro.shushi.pamirs.demo.api.tmodel;
 
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -141,7 +141,7 @@ public class DemoItemTransient extends TransientModel {
 ```
 
 ## (Ⅱ) Define Query Data Method for Transfer Model
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 
 import org.springframework.stereotype.Component;

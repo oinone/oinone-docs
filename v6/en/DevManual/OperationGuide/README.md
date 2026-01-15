@@ -9,8 +9,8 @@ dir:
   order: 2
 prev:
   text: Debug Tools
-  link: /en/DevManual/Tutorials/debug-tools.md
+  link: /v6/en/DevManual/Tutorials/debug-tools.md
 next:
   text: Customize a Field Widget
-  link: /en/DevManual/OperationGuide/customize-a-field-widget.md
+  link: /v6/en/DevManual/OperationGuide/customize-a-field-widget.md
 ---

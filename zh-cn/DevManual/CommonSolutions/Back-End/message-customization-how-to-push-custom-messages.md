@@ -9,7 +9,7 @@ order: 55
 # 一、项目中添加消息依赖
 在 Boot 工程的`pom.xml`文件中，需添加相应的依赖配置项。
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-message-api</artifactId>
@@ -19,7 +19,7 @@ order: 55
 
 调用`pro.shushi.pamirs.message.engine.message.MessageSender#sendSystemMail`发送系统消息。
 
-```java
+``` java
 @Action(displayName = "发送消息")
 public Student sendMessage(Student data){
     MessageSender mailSender = (MessageSender) MessageEngine.get(MessageEngineTypeEnum.MAIL_SEND).get(null);

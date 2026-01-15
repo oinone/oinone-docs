@@ -22,7 +22,7 @@ order: 9
 
 ## （一）动作组件的注册可选项
 
-```typescript
+``` typescript
 /**
  * Action组件注册可选项
  */
@@ -143,7 +143,7 @@ export interface BaseActionOptions extends SPIOptions {
 
 以国家分组表格上创建跳转动作为例，通过指定 `model` 和 `name` 属性对指定动作进行替换：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -161,7 +161,7 @@ export class CustomRouterViewActionWidget extends RouterViewActionWidget {
 
 以国家分组表格上创建跳转动作为例，通过指定 `viewName` 和 `name` 属性对指定动作进行替换：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -600,7 +600,7 @@ export class CustomRouterViewActionWidget extends RouterViewActionWidget {
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View
@@ -621,7 +621,7 @@ export class ViewActionWidget extends ActionWidget<RuntimeViewAction>
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -655,7 +655,7 @@ export class RouterViewActionWidget extends ViewActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.View,
@@ -679,7 +679,7 @@ export class OpenWindowViewActionWidget extends RouterViewActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseActionWidget.Token({
     actionType: ActionType.View,
@@ -711,7 +711,7 @@ export class DialogViewActionWidget extends PopupActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseActionWidget.Token({
     actionType: ActionType.View,
@@ -743,7 +743,7 @@ export class DrawerViewActionWidget extends PopupActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_GotoM2MListDialog }))
 export class GotoM2MListDialogActionWidget extends DialogViewActionWidget
 ```
@@ -756,7 +756,7 @@ export class GotoM2MListDialogActionWidget extends DialogViewActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_GotoO2MCreateDialog
@@ -773,7 +773,7 @@ export class GotoO2MCreateDialogActionWidget extends DialogViewActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_GotoO2MEditDialog
@@ -792,7 +792,7 @@ export class GotoO2MEditDialogActionWidget extends DialogViewActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.Server
@@ -932,7 +932,7 @@ export class ServerActionWidget extends ActionWidget<RuntimeServerAction>
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_BatchUpdate
@@ -968,7 +968,7 @@ export class BatchUpdateAction extends ServerActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_ExportWorkbook }))
 export class ExportWorkbookActionWidget extends AbstractTaskAction<ExcelExportTask>
 ```
@@ -1035,7 +1035,7 @@ export class ExportWorkbookActionWidget extends AbstractTaskAction<ExcelExportTa
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_ImportWorkbook }))
 export class ImportWorkbookActionWidget extends ServerActionWidget
 ```
@@ -1078,7 +1078,7 @@ export class ImportWorkbookActionWidget extends ServerActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_PrintPdfDocument }))
 export class PrintPdfDocumentActionWidget extends AbstractTaskAction<PdfPrintTask>
 ```
@@ -1126,7 +1126,7 @@ export class PrintPdfDocumentActionWidget extends AbstractTaskAction<PdfPrintTas
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     actionType: ActionType.URL
@@ -1185,7 +1185,7 @@ export class UrlActionWidget extends ActionWidget<RuntimeUrlAction>
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(ActionWidget.Token({ name: ModelDefaultActionName.$$internal_DownloadImportWorkbook }))
 export class DownloadImportWorkbookActionWidget extends UrlActionWidget
 ```
@@ -1208,7 +1208,7 @@ export class DownloadImportWorkbookActionWidget extends UrlActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_GotoListTableRouter
@@ -1243,7 +1243,7 @@ export class BackActionWidget extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_ValidateForm
@@ -1269,7 +1269,7 @@ export class ValidateFormActionWidget extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_ReloadData
@@ -1293,7 +1293,7 @@ export class ReloadViewActionWidget extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_DialogSubmit
@@ -1335,7 +1335,7 @@ export class PopupSubmitActionWidget extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_DialogCancel
@@ -1369,7 +1369,7 @@ export class PopupCancelActionWidget extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_AddOne
@@ -1389,7 +1389,7 @@ export class TableAddOneAction extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_CopyOne
@@ -1409,7 +1409,7 @@ export class TableCopyOneAction extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_DeleteOne
@@ -1434,7 +1434,7 @@ export class DeleteOneActionWidget extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_Download
@@ -1461,7 +1461,7 @@ export class DownloadActionWidget extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_GotoListExportDialog
@@ -1501,7 +1501,7 @@ export class ExportActionWidget extends ActionWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   ActionWidget.Token({
     name: ModelDefaultActionName.$$internal_GotoListImportDialog

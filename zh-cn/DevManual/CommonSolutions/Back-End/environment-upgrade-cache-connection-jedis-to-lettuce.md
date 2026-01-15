@@ -18,14 +18,14 @@ boot 启动工程 pom.xml 改动
 
 properties
 
-```xml
+``` xml
 <lettuce.version>5.3.6.RELEASE</lettuce.version>
 <commons-pool2.version>2.8.1</commons-pool2.version>
 ```
 
 dependencies
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.framework</groupId>
   <artifactId>pamirs-connectors-data-api</artifactId>
@@ -52,7 +52,7 @@ dependencies
 
 application.yml 配置修改
 
-```yaml
+``` yaml
 spring:
   redis:
     database: 0

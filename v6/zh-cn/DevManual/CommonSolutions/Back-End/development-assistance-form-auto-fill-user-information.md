@@ -12,7 +12,7 @@ order: 18
 ## （一）定义基类模型
 1. 定义基类模型(如：AbstractDeptModel)，包含需要自动填充的属性(字段)；有需自动填充用户信息表单功能的模型都继承自该模型；
 
-```java
+``` java
 @Model.model(AbstractDeptModel.MODEL_MODEL)
 @Model(displayName = "带登录人信息的抽象模型")
 @Model.Advanced(type= ModelTypeEnum.ABSTRACT)
@@ -51,7 +51,7 @@ public abstract class AbstractDeptModel extends IdModel  {
 
 :::
 
-```java
+``` java
 @Slf4j
 @Component
 @Model.model(AbstractDeptModel.MODEL_MODEL)
@@ -71,7 +71,7 @@ public class AbstractDeptModelAction {
 ## （二）定义业务模型
 需自动填充用户信息表单功能的模型都继承自该模型；即继承 AbstractDeptModel
 
-```java
+``` java
 @Model.model(UnitProjectFiling.MODEL_MODEL)
 @Model(displayName = "项目备案登记", labelFields = {"projectName"})
 @Model.Advanced(unique = {"projectNo"})

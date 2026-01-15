@@ -12,7 +12,7 @@ order: 16
 ## （一）定义基类模型
 1. 定义复制基类模型(如：`AbstractCopyModel`)，有复制创建功能的模型都继承该模型；
 
-```java
+``` java
 @Model.model(AbstractCopyModel.MODEL_MODEL)
 @Model(displayName = "提供复制方法的基类")
 @Model.Advanced(type= ModelTypeEnum.ABSTRACT)
@@ -27,7 +27,7 @@ public abstract class AbstractCopyModel extends IdModel  {
 
 2. 根据 Oinone 模型继承规则，子模型拥有父模型所有的函数；因此只需写基类`AbstractCopyModel`的复制逻辑即可；
 
-```java
+``` java
 @Component
 @Model.model(AbstractCopyModel.MODEL_MODEL)
 public class AbstractCopyModelAction {
@@ -54,7 +54,7 @@ public class AbstractCopyModelAction {
 ## （二）定义业务模型
 需复制创建功能的模型都继承于上面定义的「复制基类」，即继承 AbstractCopyModel
 
-```java
+``` java
 @Model.model(Employee.MODEL_MODEL)
 @Model(displayName = "标品-员工", labelFields = "name")
 public class Employee extends AbstractCopyModel {
@@ -76,7 +76,7 @@ public class Employee extends AbstractCopyModel {
 ## （三）初始化"复制"按钮
 系统启动时初始化「视图动作」，即默认页面的行操作增加「复制」按钮
 
-```java
+``` java
 @Component
 public class HrSimpleModuleMetaDataEditor implements MetaDataEditor {
 

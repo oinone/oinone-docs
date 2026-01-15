@@ -201,7 +201,7 @@ When rendering a `view`, the corresponding `rootHandle` is generated; when rende
 
 ### GetModelResult
 
-```typescript
+``` typescript
 export type GetModelResult = {
   model: RuntimeModel;
   runtimeContext: RuntimeContext;
@@ -211,7 +211,7 @@ export type GetModelResult = {
 
 ### GetModelFieldResult
 
-```typescript
+``` typescript
 export type GetModelFieldResult = {
   modelField: RuntimeModelField;
   runtimeContext: RuntimeContext;
@@ -221,7 +221,7 @@ export type GetModelFieldResult = {
 
 ### RequestModelField
 
-```typescript
+``` typescript
 export interface RequestModelField {
   field: RuntimeModelField;
   referencesFields?: RequestModelField[];
@@ -230,7 +230,7 @@ export interface RequestModelField {
 
 ### GetRequestModelFieldsOptions
 
-```typescript
+``` typescript
 export interface GetRequestModelFieldsOptions {
   viewType?: ViewType;
   viewMode?: ViewMode;
@@ -242,7 +242,7 @@ export interface GetRequestModelFieldsOptions {
 
 ### RequestModelFieldFilterFunction
 
-```typescript
+``` typescript
 export type RequestModelFieldFilterFunction = (
   field: RuntimeModelField,
   viewType: ViewType,
@@ -254,7 +254,7 @@ export type RequestModelFieldFilterFunction = (
 
 ### QueryVariables
 
-```typescript
+``` typescript
 export interface QueryVariables extends Record<string, unknown> {
   scene?: string;
   metadata?: Record<string, VirtualModel>;

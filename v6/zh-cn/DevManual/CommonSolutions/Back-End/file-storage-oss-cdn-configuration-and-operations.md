@@ -18,7 +18,7 @@ order: 43
 
 
 # 二、OSS通用yaml配置
-```yaml
+``` yaml
 cdn:
   oss:
     name: # 名称
@@ -59,7 +59,7 @@ cdn:
 
 # 三、OSS 配置示例
 ## （一）阿里云OSS
-```yaml
+``` yaml
 cdn:
   oss:
     name: 阿里云
@@ -79,7 +79,7 @@ cdn:
 ```
 
 ## （二）华为云OBS
-```yaml
+``` yaml
 cdn:
   oss:
     name: 华为云
@@ -100,7 +100,7 @@ cdn:
 
 华为云 OBS 需要在启动工程增加以下依赖
 
-```xml
+``` xml
 <okhttp3.version>4.9.3</okhttp3.version>
 <dependency>
     <groupId>com.squareup.okhttp3</groupId>
@@ -117,7 +117,7 @@ cdn:
 :::
 
 ## （三）MINIO
-```yaml
+``` yaml
 文件系统，mino的配置：
 cdn:
   oss:
@@ -138,7 +138,7 @@ cdn:
 ```
 
 ## （四）又拍云
-```yaml
+``` yaml
 cdn:
   oss:
     name: 又拍云
@@ -157,7 +157,7 @@ cdn:
 ```
 
 ## （五）本地文件存储
-```yaml
+``` yaml
 cdn:
   oss:
     name: 本地文件NG系统
@@ -175,7 +175,7 @@ cdn:
 ```
 
 ## （六）腾讯云COS
-```yaml
+``` yaml
 cdn:
   oss:
     name: TENCENT_COS
@@ -199,7 +199,7 @@ cdn:
 # 四、OSS代码示例
 后台要直接上传文件到 OSS，通过`FileClientFactory.getClient()`获取系统配置的文件系统的客户端
 
-```java
+``` java
 // 获取文件客户端
 // 1、获取默认的文件客户端
 FileClient fileClient = FileClientFactory.getClient();
@@ -216,7 +216,7 @@ FileClientFactory.getClient().uploadByFileName(fileName, is/**InputStream*/);
 
 一个完整的示例：
 
-```java
+``` java
 private static Map<String, String> uploadFiles(File unzipDirectory) {
     Map<String, String> result = new HashMap<>();
     File[] files = unzipDirectory.listFiles();

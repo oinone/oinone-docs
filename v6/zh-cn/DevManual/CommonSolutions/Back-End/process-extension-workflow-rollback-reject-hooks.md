@@ -10,7 +10,7 @@ order: 52
 触发方式：当流程实例被撤销时
 调用入口：`pro.shushi.pamirs.workflow.app.core.service.impl.WorkflowInstanceServiceImpl#undoInstance`
 
-```java
+``` java
 /**
  * XXX为当前流程触发方式为模型触发时对应的触发模型、
  * 对应返回不影响流程上下文
@@ -31,7 +31,7 @@ public XXX recall(String data) {
 触发方式：流程待办进行回退操作时
 调用入口:`pro.shushi.pamirs.workflow.app.core.service.operator.ApprovalFallbackOperatorService`
 
-```java
+``` java
 /**
  * XXX为当前流程触发方式为模型触发时对应的触发模型
  * 对应返回不影响流程上下文
@@ -52,7 +52,7 @@ public XXX fallBack(String data) {
 `触发方式：流程待办进行拒绝操作时
 调用入口:`pro.shushi.pamirs.workflow.app.core.service.operator.ApprovalFallbackOperatorService`
 
-```java
+``` java
 /**
  * XXX为当前流程触发方式为模型触发时对应的触发模型
  * 对应返回不影响流程上下文
@@ -69,7 +69,7 @@ public XXX reject(String data) {
 ```
 
 # 四、回调钩子在业务系统中的调用示例
-```java
+``` java
 @Function(summary = "发起的流程撤销时会自动调用此方法")
 @Function.Advanced(displayName = "撤销流程")
 public PurchaseProjectProxy recall(String data) {
@@ -85,7 +85,7 @@ public PurchaseProjectProxy recall(String data) {
 # 五、自定义审批方式、自定义审批节点名称
 流程自定义函数需指定：`category = FunctionCategoryEnum.CUSTOM_DESIGNER`
 
-```java
+``` java
 @Model.model(审批模型.MODEL_MODEL)
 @Component
 public class 审批模型Action {

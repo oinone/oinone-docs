@@ -16,13 +16,13 @@ order: 9
 ## （二）清除 npm 缓存
 有时，npm 缓存中的问题会导致安装失败。尝试清除 npm 缓存：
 
-```bash
+``` bash
 npm cache clean –force
 ```
 
 然后重新尝试安装：
 
-```bash
+``` bash
 npm install
 ```
 
@@ -32,7 +32,7 @@ npm install
 ## （四）更改 npm 配置
 如果你的 npm 配置中设置了 `unsafe-perm` 或 `_authToken`，这可能会影响安装。尝试更改 npm 的配置，禁用 `unsafe-perm`：
 
-```bash
+``` bash
 npm config set unsafe-perm false
 ```
 
@@ -51,7 +51,7 @@ npm config set unsafe-perm false
 ## （九）检查 npm 日志
 查看 npm 的日志文件，这可以帮助你找到更详细的错误信息。日志文件的位置可以通过以下命令查询：
 
-```bash
+``` bash
 npm config get cache
 ```
 

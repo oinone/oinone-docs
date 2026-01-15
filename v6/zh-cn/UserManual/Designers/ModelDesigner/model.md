@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 模型设计器（Model Designer）
-  link: /zh-cn/UserManual/Designers/ModelDesigner/README.md
+  link: /v6/zh-cn/UserManual/Designers/ModelDesigner/README.md
 ---
 在模型设计器的模型页面中，可以对分组、模型、字段进行管理
 

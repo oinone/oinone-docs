@@ -19,7 +19,7 @@ order: 26
 + Properly configure data sources and sharding rules for pamirsSharding.
 
 ## （Ⅰ）Specify Data Source for Model
-```yaml
+``` yaml
 pamirs:
   framework:
     system:
@@ -35,7 +35,7 @@ pamirs:
 ```
 
 ## （Ⅱ）Sharding Rule Configuration
-```yaml
+``` yaml
 pamirs:
   sharding:
     define:
@@ -78,7 +78,7 @@ Note: For more YAML configurations, please refer to [Module API](/en/DevManual/R
 
 ## （Ⅰ）Custom Sharding Rule Examples
 ### 1、Table Sharding by Month (DATE_MONTH)
-```java
+``` java
 package pro.shushi.pamirs.demo.core.sharding;
 
 import cn.hutool.core.date.DateUtil;
@@ -166,7 +166,7 @@ public class DateMonthShardingAlgorithm implements StandardShardingAlgorithm<Dat
 ```
 
 ### 2、Table Sharding by Modulo Based on Specific Field Extraction
-```java
+``` java
 package pro.shushi.pamirs.demo.core.sharding;
 
 import org.apache.shardingsphere.sharding.api.sharding.standard.PreciseShardingValue;
@@ -230,7 +230,7 @@ public class AppUserCodeShardingAlgorithm implements StandardShardingAlgorithm<S
 
 # Ⅳ、Using Custom Sharding Strategies
 ## （Ⅰ）Specify Data Source for Model
-```yaml
+``` yaml
 pamirs:
   framework:
     system:
@@ -247,7 +247,7 @@ pamirs:
 ```
 
 ## （Ⅱ）Sharding Rule Configuration
-```yaml
+``` yaml
 pamirs:
   sharding:
     define:
@@ -284,7 +284,7 @@ Note: For more YAML configurations, please refer to [Module API](/en/DevManual/R
 
 Configure `org.apache.shardingsphere.sharding.spi.ShardingAlgorithm` under the `resources/META-INF/services` path.
 
-```java
+``` java
 pro.shushi.pamirs.demo.core.sharding.AppUserCodeShardingAlgorithm
 pro.shushi.pamirs.demo.core.sharding.DateMonthShardingAlgorithm
 ```

@@ -17,7 +17,7 @@ order: 74
 # II. Adding Dependencies to the Project
 Introduce dependencies in the project's main pom.
 
-```xml
+``` xml
 <dependency>
     <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-registry-nacos</artifactId>
@@ -27,7 +27,7 @@ Introduce dependencies in the project's main pom.
 
 Introduce dependencies in the pom of the project's boot engineering.
 
-```xml
+``` xml
 <dependency>
     <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-registry-nacos</artifactId>
@@ -41,7 +41,7 @@ Modify Dubbo service registration to Nacos.
 
 Configure in the bootstrap.yml file or modify Dubbo configuration in the application.yml file.
 
-```yaml
+``` yaml
 dubbo:
   application:
     name: pamirs-demo
@@ -80,7 +80,7 @@ module: Publish remote services by module dimension
 namespace: Publish remote services by Fun's namespace dimension
 By default, services are published by module dimension.
 
-```yaml
+``` yaml
 pamirs:
   distribution:
     service:
@@ -89,7 +89,7 @@ pamirs:
 ```
 
 ## (Ⅱ) Turning Off Dubbo Service Registration Metadata Reporting Logs
-```yaml
+``` yaml
 logging:
  level:
    root: info
@@ -121,7 +121,7 @@ It is mainly these three configurations (use-as-config-center, use-as-metadata-c
 
 :::
 
-```yaml
+``` yaml
 dubbo:
  application:
    name: pamirs-demo

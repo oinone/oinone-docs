@@ -23,7 +23,7 @@ The first login flag is already implemented by default in the platform frontend.
 
 ## (II) Extend PamirsUser (e.g., DemoUser)
 
-```java
+``` java
 /**
  * @author wangxian
  */
@@ -50,7 +50,7 @@ public class DemoUser extends PamirsUser {
 
 ## (III) Write Extension Point (e.g., DemoUserLoginExtPoint)
 
-```java
+``` java
 @Order(0)
 @Component
 @Ext(PamirsUserTransient.class)
@@ -129,7 +129,7 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
 
 The platform provides a built-in SPI: UserPatternCheckApi, which supports custom password, user Nick, email, and other validation rules. The built-in SPI interface is defined as follows:
 
-```java
+``` java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface UserPatternCheckApi {
 
@@ -251,7 +251,7 @@ The following example implements custom validation:
 1. User accounts do not check format, only ensure login is not empty;
 2. Passwords do not check format, only ensure length is 3 to 8 characters;
 
-```java
+``` java
 @Slf4j
 @SPI.Service
 @Order(50) // Default lowest priority, business configuration needs higher priority

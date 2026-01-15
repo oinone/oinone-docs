@@ -12,7 +12,7 @@ The server version of Dameng database must match the driver version. It is stron
 When encountering an error "Table xx cannot contain both clustered KEY and large fields", specify a non-clustered primary key during table creation. Query configuration via `SELECT * FROM V$DM_INI WHERE PARA_NAME = 'PK_WITH_CLUSTER';` and set parameters with `SP_SET_PARA_VALUE (1,'PK_WITH_CLUSTER',0)`.
 
 ## (Ⅰ) Maven Configuration for DM8 (Latest Version in Maven Repository)
-```xml
+``` xml
 <dm.version>8.1.2.192</dm.version>
 <dependency>
   <groupId>com.dameng</groupId>
@@ -28,7 +28,7 @@ The 8.1.3.12 driver version needs to be manually uploaded to the Nexus repositor
 :::
 
 ## (Ⅱ) Maven Configuration for DM7
-```xml
+``` xml
 <dm7.version>7.6.1.120</dm7.version>
 <dependency>
   <groupId>com.dameng</groupId>
@@ -48,7 +48,7 @@ The 7.6.1.120 driver version needs to be manually uploaded to the Nexus reposito
 [DmJdbcDriver18-8.1.3.12.jar](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/drivers/dm/DmJdbcDriver18-8.1.3.12.jar)
 
 # II. JDBC Connection Configuration
-```yaml
+``` yaml
 pamirs:
   datasource:
     base:
@@ -78,7 +78,7 @@ Note: For more YAML configurations, refer to [Module API](/en/DevManual/Referenc
 Click to view the official document: [DM JDBC Programming Guide](https://eco.dameng.com/document/dm/en/pm/jdbc-rogramming-guide.html)
 
 ### 1. Connection String 1
-```yaml
+``` yaml
 jdbc:dm://127.0.0.1:5236?schema=BASE&clobAsString=true&columnNameUpperCase=false&useUnicode=true&characterEncoding=utf8&compatibleMode=mysql
 ```
 
@@ -89,7 +89,7 @@ The `schema` parameter is case-sensitive in lower-version drivers and case-insen
 :::
 
 ### 2. Connection String 2
-```yaml
+``` yaml
 jdbc:dm://127.0.0.1:5236/BASE?clobAsString=true&useUnicode=true&characterEncoding=utf8&compatibleMode=mysql
 ```
 
@@ -115,7 +115,7 @@ Dameng database requires different connection strings for different driver versi
 
 # III. Dialect Configuration
 ## (Ⅰ) pamirs Dialect Configuration
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -136,7 +136,7 @@ pamirs:
 
 
 ## (Ⅱ) Schedule Dialect Configuration
-```yaml
+``` yaml
 pamirs:
   event:
     schedule:
@@ -159,7 +159,7 @@ As there are no significant differences in the schedule dialect across multiple 
 
 # IV. Other Configurations
 ## (Ⅰ) Logical Deletion Value Configuration
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -168,7 +168,7 @@ pamirs:
 ```
 
 ## (Ⅱ) Dameng Database User Initialization and Authorization
-```sql
+``` sql
 -- init oinone role (role name can be modified by oneself)
 
 CREATE ROLE OINONE;

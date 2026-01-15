@@ -13,7 +13,7 @@ In the application system, locate the [Single Sign-On] functional module and cre
 ## (Ⅱ) SSO Login Authentication Operations
 When performing SSO login authentication, the `grant_type=password` authentication method should be adopted, and the username and password information should be included in the request. The specific request link is as follows (using the POST request method):
 
-```plain
+``` plain
 http://127.0.0.1:8190/pamirs/sso/authorize?redirect_uri=http://127.0.0.1:8193/page;module=ysps;model=ysps.notify.ProjectPosting;action=homepage;scene=homepage;target=OPEN_WINDOW;path=/ysps/homepage&response_type=code&client_id=Replace with the created application unique identifier&grant_type=password&username=admin&password=admin
 ```
 
@@ -28,7 +28,7 @@ Request SSO login authentication from the server-side project, which will return
 
 1. Request the server-side project to return token information:
 
-```http
+``` http
 curl --location --request POST 'http://127.0.0.1:8094/openapi/get/access-token' \
 --header 'User-Agent: Apifox/1.0.0 (https://apifox.com)' \
 --header 'Accept: */*' \
@@ -40,7 +40,7 @@ curl --location --request POST 'http://127.0.0.1:8094/openapi/get/access-token' 
 --data-urlencode 'appSecret=JNEyibFBIb2N3tdLmW/M9bnpf120/I6fFMMf86OQlP/wlL5qhJCF3KdAKHlJT0jECmXmJRfTCSlnmB5cWHRsenNGND+TMoXObzDPK7umxazCnaZYiW7JDeuZUOzqskhBPkEJSURAZR5xu1c6UYv542BlHAPsEi+ujnKeCYcKiFHyw7fIB1aijNyCz8d9teUEGYYTtYTXoNp/4Ts8AIJn8xkTjvEq6V9uYOExDEuYGxMgN76ZaiwpbT5387eZy4XCDIy0XWfZo/kv7X+s+rjwlsxWA7jp1w5dDaRmSd4rPO2GSEcL64Pje/Ct5xznhNwH6T5KDd2BLfbZikonh624nqW4hdlVxx/EQUpYp6Yc4Wet6b/DkggCVIZPpcO9pSuRJoC2jGPMrGHM3vYR0YtfFqCJ2/x3m/lQr2v+bP4pGzcRuuCy2tyOZA1uurA23xlssehz4geGiJArkpAUKKUkcafx+dLWODHOcgBKBz6wY38PAcbLkgn6gK6lmmR7cUiDmzmEEor6pYb64YG6tPmpm4AQeBoQYrsyCorA4Ds08nAiPFWUCXcHQCVUbHPTOwHHChFO1lXH/VjkfDv0OI1CD8mZI7ZeK794aIBZdvQGCI+ayQU+5CD1asDNg/M01nnNdWKB7rS9rMvbUOlSNguboAgRbiz3pEAxGJrZUPvkDHM='
 ```
 
-```json
+``` json
 {
     "access_token": "eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE3NDQyNTk2MTcsInN1YiI6IntcImNsaWVudElkXCI6XCJwYW1pcnNfMjc5YjcwMDBlNDE3NDMxMmFmNDAyMDM0YjhlZjFhOWRcIixcInJhbmRvbUFrSWRcIjpcIjM0MDBiYzY0Njk1MzQzODA4ZTlhNmZhNWRmZjU0MTc2XCIsXCJvcGVuSWRcIjpcIjEwMDAxXCJ9In0.iJ-meyxAGW189Y3aK9Z2rMbf9_MsTKVTfnf3XsDR4iq6qvCGYkiq5197r4A54wwdKAzPZ-iDgkQOjWDh8AYu4A",
     "token_type": null,
@@ -52,7 +52,7 @@ curl --location --request POST 'http://127.0.0.1:8094/openapi/get/access-token' 
 
 2. Initiate a client-side project request. Note: The token parameter information needs to be carried in the request Headers. The token is the token information returned by the server-side project, and the Authorization parameter needs to add the identifier Bearer + space when requesting.
 
-```shell
+``` shell
 curl --location --request POST 'http://127.0.0.1:8092/pamirs/base' \
 --header 'loginType: OAUTH' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE3NDQyMDYwNjUsInN1YiI6IntcImNsaWVudElkXCI6XCJwYW1pcnNfMjc5YjcwMDBlNDE3NDMxMmFmNDAyMDM0YjhlZjFhOWRcIixcInJhbmRvbUFrSWRcIjpcImEzZWZkNjZkMDNlNjQ5MDY4OGU4Y2FhYmIwNjZmZGU4XCIsXCJvcGVuSWRcIjpcIjEwMDAxXCJ9In0.gapCpvM8PCit1oSHv-zJ2tATkCuVQBzqWGebvBcUX2O0bqP9aAhVqQxdNLM19vCqP5s3CXoNk-xzMUu-mo-hSg' \
@@ -67,7 +67,7 @@ curl --location --request POST 'http://127.0.0.1:8092/pamirs/base' \
 
 ### 1. pom Dependencies
 
-```xml
+``` xml
 <dependency>
      <groupId>pro.shushi.pamirs.core</groupId>
      <artifactId>pamirs-sso-oauth2-server</artifactId>
@@ -76,7 +76,7 @@ curl --location --request POST 'http://127.0.0.1:8092/pamirs/base' \
 
 ### 2. Add the sso startup module to the application.yml configuration file.
 
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:
@@ -90,7 +90,7 @@ The client-side project is the application that needs to join SSO.
 
 ### 1. pom Dependencies
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-sso-oauth2-client</artifactId>
@@ -99,7 +99,7 @@ The client-side project is the application that needs to join SSO.
 
 ### 2. application.yml Configuration
 
-```yaml
+``` yaml
 pamirs:
   sso:
     enabled: true

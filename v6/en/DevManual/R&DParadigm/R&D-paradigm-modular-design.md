@@ -21,7 +21,7 @@ Each module should have independent business functions to avoid functional overl
 
 Modules interact through well-defined interfaces rather than direct dependencies on internal implementations. Oinone complies with Java object-oriented and interface-oriented programming specifications, such as model inheritance, method overriding, RPC calls, etc. When dividing modules, public API interfaces should be designed to facilitate calling and extension by other modules. For example, a general "customer management" module can provide interfaces for creating, querying, and updating customer information for sales, service, and other modules to call, avoiding duplicate development. A simplified module directory structure is as follows:
 
-```java
+``` java
 Module
 ├── module-api  Module interface project
 │   ├── model   Models

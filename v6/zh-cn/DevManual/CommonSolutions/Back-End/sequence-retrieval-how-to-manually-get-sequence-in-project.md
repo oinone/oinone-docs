@@ -11,7 +11,7 @@ order: 10
 
 ## （一）获取方式示例1
 
-```java
+``` java
 /**
  * 在特定场景下需要手动code
  */
@@ -32,7 +32,7 @@ public void manualSetIdCode(){
 
 1、在系统启动的时初始化 SequenceConfig
 
-```java
+``` java
 public class SeqConstants {
     /**
      * 订单编码序列常量
@@ -47,7 +47,7 @@ public class SeqConstants {
 }
 ```
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.init;
 
 import org.springframework.stereotype.Component;
@@ -107,7 +107,7 @@ public class DemoMetadataEditor implements MetaDataEditor {
 
 2、在业务代码中获取序列的值
 
-```java
+``` java
 public class SequenceManager {
 
     public static String getSaleOrderCode(String prefix) {
@@ -125,7 +125,7 @@ public class SequenceManager {
 }
 ```
 
-```java
+``` java
 public SampleSaleOrder create(SampleSaleOrder data) {
     data.construct();
     data.setCode(SequenceManager.getSaleOrderCode(data.getOrderType().getValue()));

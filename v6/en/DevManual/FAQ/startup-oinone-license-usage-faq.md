@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: Project Deployment:Import and Export of UI Designer
-  link: /en/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md
+  link: /v6/en/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md
 ---
 # I. How to Obtain a License?
 Contact Shushi operation and maintenance personnel to obtain the license. (The following content uses <license.lic> to represent the license file path)
@@ -29,7 +29,7 @@ A set of environments refers to all JVMs sharing the Base library as a single se
 # II. How to Configure the License?
 ## (Ⅰ) Configure the License in `yaml`
 ### 1. Single License Configuration
-```yaml
+``` yaml
 pamirs:
   license:
     subject: <subject>
@@ -38,7 +38,7 @@ pamirs:
 ```
 
 ### 2. Multiple License Configuration
-```yaml
+``` yaml
 pamirs:
   license:
     subject: <subject>
@@ -50,7 +50,7 @@ pamirs:
 `pamirs.license.path` can be a relative path, absolute path, or URL path.
 
 ## (Ⅱ) Configure the License in `Program Arguments`
-```shell
+``` shell
 java -jar -Psubject=<subject> -Plicense=<license1.lic> -Plicense=<license1.lic> <boot.jar>
 ```
 
@@ -65,7 +65,7 @@ Add a mount volume mapping in the Docker runtime directory and configure the cor
 
 # VI. How to Obtain CPU and Motherboard Serial Numbers?
 ## (Ⅰ) Using the `dmidecode` Command in Linux Environment
-```shell
+``` shell
 # Get CPU serial number
 dmidecode -s system-serial-number
 
@@ -86,7 +86,7 @@ dmidecode -s system-uuid
 ```
 
 ## (Ⅱ) Using the `system_profiler` Command in Mac Environment
-```shell
+``` shell
 # Get CPU serial number
 system_profiler SPHardwareDataType | grep 'Serial Number' | awk -F ':' '{print $2}'
 
@@ -101,7 +101,7 @@ system_profiler SPHardwareDataType | grep 'Hardware UUID' | awk -F ':' '{print $
 ```
 
 ## (Ⅲ) Using the `wmic` Command in Windows Environment
-```shell
+``` shell
 # Get CPU serial number
 wmic cpu get processorid
 
@@ -124,7 +124,7 @@ D0Exxxxx-xxxx-xxxx-xxxx-xxxxxxxx78B8
 # VII. How to Handle `dmidecode` Command Execution Failure in Linux Environment?
 1. If the command is not found, try installing it using the following methods:
 
-```shell
+``` shell
 # debian (e.g., Ubuntu)
 apt-get install dmidecode
 

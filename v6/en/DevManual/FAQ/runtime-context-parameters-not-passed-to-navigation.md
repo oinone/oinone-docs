@@ -6,7 +6,7 @@ category:
 order: 21
 next:
   text: Design Principles
-  link: /en/DevManual/DesignPrinciple/README.md
+  link: /v6/en/DevManual/DesignPrinciple/README.md
 ---
 # I. Scenario Reproduction
 Context parameters are configured, but the redirected page fails to receive these values.

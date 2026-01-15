@@ -36,7 +36,7 @@ Before proceeding with view design, let's revisit our model definitions. We see 
 ## (Ⅰ) Default Values
 Any field can be given a default value. In the field definition, add the `defaultValue=X` option, where `X` can accept a Java literal (boolean, integer, floating-point number, string), and other requirements can use functions:
 
-```python
+``` python
 @Field(displayName = "名称", required = true, defaultValue = "Unknown")
 private String name;
 
@@ -50,7 +50,7 @@ The `defaultValue` attribute of a field only takes effect on the backend and is 
 The backend default value takes effect because when the frontend page loads, the system calls the model's `construct` method, which calculates and returns the default value of the field to the frontend. However, when the frontend发起请求 and the submitted field already has a value, the `construct` method ignores the `defaultValue` attribute. This indicates that the frontend XML configuration has a higher priority than the backend field attribute configuration.
 
 ## (Ⅱ) Field Code Generator
-```python
+``` python
 @Field.String
 @Field(displayName = "编码", unique = true)
 @Field.Sequence(sequence = "SEQ", prefix = "C", size = 5, step = 1, initial = 10000)
@@ -74,7 +74,7 @@ In Oinone: view XML attributes > UX annotation attributes > field attributes.
 
 :::
 
-```python
+``` python
 @UxTableSearch.FieldWidget(@UxWidget())
 @UxForm.FieldWidget(@UxWidget(config = {
         @Prop(name = "defaultValue", value = "Ux默认值优先于Unknown，但不支持函数")}))

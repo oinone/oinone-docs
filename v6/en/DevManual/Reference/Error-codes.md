@@ -7,7 +7,7 @@ category:
 order: 6
 next:
   text: R&D Paradigm:R&D Process
-  link: /en/DevManual/R&DParadigm/R&D-paradigm-R&D-process.md
+  link: /v6/en/DevManual/R&DParadigm/R&D-paradigm-R&D-process.md
 ---
 ## I. Built-in Platform Error Codes
 

@@ -12,7 +12,7 @@ order: 21
 
 # Ⅱ、API Definition
 ## (Ⅰ) DsHintApi
-```java
+``` java
 public static DsHintApi model(String model/**Model Code*/) {
     // Specific implementation
 }
@@ -23,7 +23,7 @@ public DsHintApi(Object dsKey/**Data Source Name*/) {
 ```
 
 ## (Ⅱ) BatchSizeHintApi
-```java
+``` java
 public static BatchSizeHintApi use(Integer batchSize) {
     // Specific implementation
 }
@@ -40,7 +40,7 @@ The try-with-resources syntax is used in the code; otherwise, data source confus
 + DsHintApi Usage Example
 All queries wrapped inside the try block will be forced to use the specified data source.
 
-```java
+``` java
   // Usage Mode 1:
   try (DsHintApi dsHintApi = DsHintApi.model(PetItem.MODEL_MODEL)) {
        List<PetItem> items = demoItemDAO.customSqlDemoItem();
@@ -59,7 +59,7 @@ All queries wrapped inside the try block will be forced to use the specified dat
 + 3、BatchSizeHintApi Usage Example
 All queries wrapped inside the try block will be executed according to the specified batchSize.
 
-```java
+``` java
 // Specify to query 500 records each time
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(500)) {
     PetShopProxy data2 = data.queryById();
@@ -67,7 +67,7 @@ try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(500)) {
 }
 ```
 
-```java
+``` java
 // Specify no pagination (batchSize=-1) for the query. Please note that you must use this when it is clear that pagination is not needed; if the data volume is extremely large and no pagination is used, it may cause a freeze. By default, the platform will perform pagination queries when the number of pages is not specified.
 try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
     PetShopProxy data2 = data.queryById();

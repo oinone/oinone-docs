@@ -16,7 +16,7 @@ order: 12
 ## （一）自定义 `widget`
 创建自定义的 `MergeTableWidget`，用于支持合并单元格和表头分组。
 
-```typescript
+``` typescript
 // MergeTableWidget.ts
 import { BaseElementWidget, SPI, ViewType, TableWidget, Widget, DslRender } from '@oinone/kunlun-dependencies';
 import MergeTable from './MergeTable.vue';
@@ -63,7 +63,7 @@ import MergeTable from './MergeTable.vue';
 ## （二）创建对应的 Vue 组件
 定义一个支持合并单元格与表头分组的 Vue 组件。
 
-```vue
+``` vue
 <!-- MergeTable.vue -->
 <template>
   <vxe-table
@@ -236,7 +236,7 @@ import MergeTable from './MergeTable.vue';
 ```
 
 ## （三）创建行内动作
-```vue
+``` vue
 <script lang="ts">
   import { ActionBar, RowActionBarWidget } from '@oinone/kunlun-dependencies';
   import { debounce } from 'lodash-es';
@@ -291,7 +291,7 @@ import MergeTable from './MergeTable.vue';
 ```
 
 ## （四）注册布局
-```javascript
+``` javascript
 // registry.ts
 
 import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';

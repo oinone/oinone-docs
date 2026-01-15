@@ -274,7 +274,7 @@ next:
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Table
@@ -291,7 +291,7 @@ export class TableView extends BaseListView
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Search
@@ -357,7 +357,7 @@ export class SearchView extends BaseObjectView
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Form
@@ -374,7 +374,7 @@ export class FormView extends BaseObjectView
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Detail
@@ -387,7 +387,7 @@ export class DetailView extends BaseObjectView
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Gallery
@@ -400,7 +400,7 @@ export class GalleryView extends BaseListView
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseView.Token({
     type: ViewType.Tree

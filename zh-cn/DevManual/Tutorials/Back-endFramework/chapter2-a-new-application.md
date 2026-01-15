@@ -33,7 +33,7 @@ order: 2
 ### 1、构建父模块trutorials-expenses
 在 `oinone-backend-tutorials` 目录中，在该目录下打开终端，执行以下命令创建新的模块，这里以 `trutorials-expenses` 为例：
 
-```bash
+``` bash
 cd oinone-backend-tutorials
 mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=trutorials-expenses -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT
 ```
@@ -53,7 +53,7 @@ mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=truto
 ### 2、配置父模块pom.xml文件
 在 `trutorials-expenses` 目录下找到 `pom.xml` 文件，将其 `packaging` 标签设置为 `pom`，表示这是一个聚合模块。同时添加 `modules` 标签来包含子模块：
 
-```bash
+``` bash
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -84,7 +84,7 @@ trutorials-expenses作为父模块即聚合模块，可以手动删除下无用�
 ### 3、创建子模块
 在 `trutorials-expenses` 目录下，分别创建 `api` 和 `core` 子模块：
 
-```bash
+``` bash
 cd trutorials-expenses
 mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=trutorials-expenses-api -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT
 mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=trutorials-expenses-core -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT
@@ -167,7 +167,7 @@ mvn archetype:generate -DgroupId=pro.shushi.oinone.trutorials -DartifactId=truto
 ### 2、创建 `ExpensesModule` 类
 在 `pro.shushi.oinone.trutorials.expenses.api` 这个 `package` 下创建 `ExpensesModule` 类，下面是完整的代码：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api;
 
 import org.springframework.stereotype.Component;
@@ -235,7 +235,7 @@ public class ExpensesModule implements PamirsModule {
 ## （三）配置启动工程的YAML文件
 在 `trutorials-boot`  工程的 `src/main/resource/config` 目录下提供的 `application-dev.yml` 配置文件中添加与 `expenses` 模块相关的配置。在 `pamirs.boot.modules` 列表里追加引入`expenses` 模块，同时在 `pamirs.framework.data.ds-map` 中也追加对应的数据源映射。
 
-```java
+``` java
 pamirs:
   framework:
     data:

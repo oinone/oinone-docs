@@ -33,7 +33,7 @@ For the tutorial on using server-side API identity authentication (password-free
     - AgentId (Application Proxy ID)
 
 ## （Ⅲ）Introduce Enterprise WeChat SDK Dependencies
-```xml
+``` xml
 <dependency>
   <groupId>com.github.binarywang</groupId>
   <artifactId>weixin-java-cp</artifactId>
@@ -45,7 +45,7 @@ For the tutorial on using server-side API identity authentication (password-free
 ## （Ⅰ）Add Enterprise WeChat Configuration to the Project
 1. Application.yml configuration in the project (adopted in this example)
 
-```yaml
+``` yaml
 pamirs:
   wxcp:
     corpId: Application's corpId
@@ -58,7 +58,7 @@ pamirs:
 2. The backend configuration method refers to the instructions in the DingTalk docking.
 
 ## （Ⅱ）Initialize the Enterprise WeChat Client (WxCpService)
-```java
+``` java
 @Slf4j
 @Service
 public class WxBaseConfig {
@@ -117,7 +117,7 @@ public class WxBaseConfig {
 ```
 
 ## （Ⅲ）Build the Authorization Link (Jump to Enterprise WeChat)
-```java
+``` java
 /**
  * Get the redirect URL to make Enterprise WeChat jump to the oauth2url and bring the code parameter
  *
@@ -145,7 +145,7 @@ public void oauth(HttpServletRequest request, HttpServletResponse response) {
 ## （Ⅳ）Handle the Enterprise WeChat Callback
 Obtain the code and exchange it for the user's UserTicket; use the UserTicket to obtain user information
 
-```java
+``` java
 /**
  * Obtain user information based on the code of Enterprise WeChat
  *
@@ -203,7 +203,7 @@ public void oauth2url(@RequestParam("code") String code, HttpServletRequest requ
 ```
 
 ## （Ⅴ）Process User Information and Set the Login State (Session + Cookie)
-```java
+``` java
     private PamirsUser handleUserInfo(WxCpOauth2UserInfo userInfo, WxCpUserDetail userDetail, HttpServletResponse response) {
         if (userDetail == null) {
             return null;
@@ -294,7 +294,7 @@ By default, users who first enter the system through third-party password-free l
 ## （Ⅱ）Grant Permissions When Creating Third-Party Users
 In the sixth step of the docking process: the user information processing stage, that is, when creating platform users (such as `PamirsUser`) based on third-party user information, you can directly assign the above-defined role to the user by calling the system interface to achieve static binding of permissions.
 
-```java
+``` java
 private void bindUserRole(PamirsUser pamirsUser) {
     AuthRole authRole = new AuthRole().setCode(THIRD_PARTY_USER_ROLE_CODE).queryOne();
     if (authRole != null) {
@@ -309,7 +309,7 @@ If role assignment is not completed during the user creation stage, you can also
 
 This example uses this solution. For the complete implementation, please refer to the code file in the attachment: `ThirdPartyRoleCustom.java`
 
-```java
+``` java
 @Override
 public Set<Long> get() {
     Set<Long> roleIds = super.get();

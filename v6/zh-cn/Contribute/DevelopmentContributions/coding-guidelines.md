@@ -7,7 +7,7 @@ category:
 order: 2
 next:
   text: Content guidelines
-  link: /zh-cn/Contribute/DocumentationContributions/content-guidelines.md
+  link: /v6/zh-cn/Contribute/DocumentationContributions/content-guidelines.md
 ---
 本文介绍 Oinone 编码指南。这些指南旨在提高 Oinone 应用代码的质量。事实上，正确的代码可以提高可读性、简化维护、帮助调试、降低复杂性并提高可靠性。
 

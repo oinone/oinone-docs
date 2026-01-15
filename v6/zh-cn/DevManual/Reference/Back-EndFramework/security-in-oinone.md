@@ -8,7 +8,7 @@ category:
 order: 6
 next:
   text: 网关协议 API（Protocol API）
-  link: /zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md
+  link: /v6/zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md
 ---
 在学习这篇文章之前，你首先需要对 Oinone 安全相关内容进行一个初步了解，以便于理解本文所介绍的自定义相关内容。参考：[后端框架 - 安全简介](/zh-cn/DevManual/Tutorials/Back-endFramework/chapter4-a-brief-introduction-to-security.md)
 
@@ -71,7 +71,7 @@ next:
 
 通过 `viewAction#load` 接口获取的 `DSL` 中 的 `sessionPath` 属性：
 
-```shell
+``` shell
 /resource/国家分组/ACTION#resource.ResourceCountryGroup#redirectCreatePage/ACTION#$$#create
 ```
 
@@ -123,7 +123,7 @@ PS：“$$” 是指模型编码与上一级模型编码相同，由于路径过
 
 将自定义的权限过滤服务注册为 `Spring Bean` ，并重写 `所有资源访问控制` 方法即可完成模块过滤。例如：
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomAuthFilterService implements AuthFilterService {
@@ -178,7 +178,7 @@ public class CustomAuthFilterService implements AuthFilterService {
 
 让我们在之前的示例代码基础之上，要求这个模块的所有接口都需要通过登录才能访问。可以这样处理一下：
 
-```java
+``` java
 @Override
 public Boolean isAccessModule(String module) {
     if ("mobile_demo".equals(module)) {
@@ -195,7 +195,7 @@ public Boolean isAccessModule(String module) {
 
 你几乎可以在任何地方使用下面的方法获得访问资源信息：
 
-```java
+``` java
 AccessResourceInfoSession.getInfo()
 ```
 
@@ -219,7 +219,7 @@ AccessResourceInfoSession.getInfo()
 
 在 `yaml` 中配置 `pamirs.auth.fun-filter` 属性让 “国家分组 - 创建” 动作可以在没有登录的情况下直接访问：
 
-```yaml
+``` yaml
 pamirs:
   auth:
     fun-filter:
@@ -231,7 +231,7 @@ pamirs:
 
 在 `yaml` 中配置 `pamirs.auth.fun-filter-only-login` 属性让 “国家分组 - 创建” 动作可以在登录后直接访问而不关心是否配置相应的权限：
 
-```yaml
+``` yaml
 pamirs:
   auth:
     fun-filter-only-login:
@@ -247,7 +247,7 @@ pamirs:
 
 使用 `Spring Configuration` 为 `yaml` 增加配置项：（通常我们建议这样管理配置项，也可以使用其他方式）
 
-```java
+``` java
 @Configuration
 @ConfigurationProperties(prefix = "demo.auth.blacklist")
 public class AuthBlacklistConfiguration {
@@ -273,7 +273,7 @@ public class AuthBlacklistConfiguration {
 
 下面是重写了上面部分方法的过滤服务后的一种实现方式：
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomAuthFilterService implements AuthFilterService {
@@ -329,7 +329,7 @@ public class CustomAuthFilterService implements AuthFilterService {
 
 让我们先来看一下 `PermissionNodeLoadExtendApi` 的部分定义：
 
-```java
+``` java
 /**
  * 权限节点扩展API
  *
@@ -384,7 +384,7 @@ public interface PermissionNodeLoadExtendApi {
 
 以 `mobile_demo` 应用为例，如果需要将对应的提交动作添加在这个应用下，我们可以这样处理：
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomPermissionNodeLoadExtend implements PermissionNodeLoadExtendApi {
@@ -428,7 +428,7 @@ public class CustomPermissionNodeLoadExtend implements PermissionNodeLoadExtendA
 
 对于上述代码添加的 “国家分组 - 创建” 提交动作，对应的资源访问路径是：
 
-```plain
+``` plain
 /resource.ResourceCountryGroup/create
 ```
 
@@ -447,7 +447,7 @@ public class CustomPermissionNodeLoadExtend implements PermissionNodeLoadExtendA
 
 与提交动作的添加类似，我们只需要将动作的名称换成跳转动作对应的名称即可，让我们将 “国家分组 - 创建” 跳转动作加入到节点中进行授权，看看资源访问路径有什么不同。
 
-```java
+``` java
 @Override
 public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadContext, List<PermissionNode> nodes) {
     List<PermissionNode> newNodes = new ArrayList<>();
@@ -476,13 +476,13 @@ public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadConte
 
 对于上述代码添加的 “国家分组 - 创建” 跳转动作，对应的资源访问路径是：
 
-```plain
+``` plain
 /resource.ResourceCountryGroup/redirectCreatePage
 ```
 
 按照我们的路径规则，创建 提交动作，对应的资源访问路径是：
 
-```plain
+``` plain
 /resource.ResourceCountryGroup/redirectCreatePage/ACTION#resource.ResourceCountryGroup#create
 ```
 
@@ -519,7 +519,7 @@ public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadConte
 
 我们可以看到，虽然我们使用了这样的路径，但鉴权还是通过的：
 
-```shell
+``` shell
 /resource.ResourceCountryGroup/redirectCreatePage
 ```
 
@@ -532,7 +532,7 @@ public List<PermissionNode> buildRootPermissions(PermissionLoadContext loadConte
 
 下面是一种实现逻辑仅供参考：
 
-```java
+``` java
 @Order(88)
 @Component
 public class CustomAuthFilterService implements AuthFilterService {

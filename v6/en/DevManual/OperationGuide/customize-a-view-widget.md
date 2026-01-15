@@ -19,7 +19,7 @@ In the Widget framework, element components are defined as general components th
 
 ## (Ⅰ) Registration Options for Element Components
 
-```typescript
+``` typescript
 /**
  * Element component registration options
  */
@@ -106,7 +106,7 @@ Let's get started～
 
 Like all `element` components, we can obtain all the functions of the default table component by inheriting the `TableWidget` component, just like this:
 
-```typescript
+``` typescript
 import CustomTable from './CustomTable.vue';
 
 @SPI.ClassFactory(
@@ -126,7 +126,7 @@ export class CustomTableWidget extends TableWidget {
 
 Let's start with a `hello world`:
 
-```vue
+``` vue
 <template>
   <div class="custom-table-demo">hello world</div>
 </template>
@@ -136,7 +136,7 @@ Let's start with a `hello world`:
 
 Let's switch components through `registerLayout` by changing `widget="table"` to `widget="CustomTable"` to complete the component switch:
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -172,7 +172,7 @@ Well, our page should now look like this:
 
 Let's make some modifications to the Vue component template:
 
-```vue
+``` vue
 <template>
   <div class="custom-table-demo">
     <oio-table
@@ -190,7 +190,7 @@ Let's make some modifications to the Vue component template:
 
 The corresponding `props` declaration can be like this:
 
-```vue
+``` vue
 props: {
   setTableInstance: {
     type: Function as PropType<(tableInstance: OioTableInstance | undefined) => void>
@@ -211,7 +211,7 @@ These two data source objects are completely the same when front-end search and 
 
 Here, to ensure the table functions properly, we must use the `setTableInstance` method to pass the `OioTable` component instance to the Widget component, allowing the Widget component to directly operate on the `OioTable` instance. This is similar to our operation in the [Focus on Input Box](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#ix-focus-on-input-box) tutorial, both aiming to transfer logic to the Widget component to provide specific functions that can be overridden or inherited. We can handle it like this:
 
-```vue
+``` vue
 setup(props) {
   const table = ref<OioTableInstance | undefined>();
 
@@ -237,7 +237,7 @@ Up to this point, we can see a table display on the page that is "almost" identi
 
 Oops～, the table height doesn't seem right. Let's write some `css` to adjust it:
 
-```css
+``` css
 .custom-table-demo {
   height: 100%;
 }
@@ -251,7 +251,7 @@ Thus, our basic table is completed～
 
 Let's make some modifications to the Vue component template:
 
-```vue
+``` vue
 <template>
   <div class="custom-table-demo">
     ...
@@ -271,7 +271,7 @@ Let's make some modifications to the Vue component template:
 
 The corresponding `props` declaration can be like this:
 
-```typescript
+``` typescript
 props: {
   pageSizeOptions: {
     type: Array as PropType<(number | string)[]>
@@ -294,7 +294,7 @@ These attributes have the following meanings:
 
 At this point, we find that although the paginator has been rendered, there is a slight issue with the styling. Now we want the table to expand according to the screen, and the paginator should always be at the bottom of the page. We can adjust it with `flex` layout:
 
-```css
+``` css
 .custom-table-demo {
   height: 100%;
   display: flex;
@@ -334,7 +334,7 @@ To allow us to quickly test the pagination function, let's adjust the `paginatio
 
 Following our division of responsibilities between Widget components and Vue components, we should adjust these parameters in `CustomTableWidget` as follows:
 
-```typescript
+``` typescript
 @Widget.Reactive()
 protected get pageSizeOptions(): number[] {
   return [1, 2, 3, 4, 5];
@@ -368,7 +368,7 @@ In the first column of the table, we notice the lack of the default table's Chec
 
 Let's make some modifications to the Vue component template:
 
-```vue
+``` vue
 <template>
   <div class="custom-table-demo">
     <oio-table
@@ -399,7 +399,7 @@ Let's make some modifications to the Vue component template:
 
 The corresponding `props` declaration can be like this:
 
-```vue
+``` vue
 props: {
   checkMethod: {
     type: Function
@@ -415,7 +415,7 @@ props: {
 
 At this point, without any other processing, we will find that these methods do not work properly. This is because events emitted by the `OioTable` component cannot be directly processed by the `TableWidget` component. We also need to do a "bridging" process in `setup` to make these methods work properly. For different processing methods of specific methods, we need to handle them flexibly according to the API documentation. For our current function, we can handle it as follows:
 
-```vue
+``` vue
 setup(props) {
   const onCheckedChange = (event: CheckedChangeEvent) => {
     const { records } = event;
@@ -450,7 +450,7 @@ Of course, there are some exceptions. Due to different understandings of this ab
 
 In the above, we added a `Checkbox` column using the `OioColumn` component. In addition, we can also add a `Checkbox` column by using the `widget="checkbox-column"` component in the `layout (Layout)`, which can achieve the same effect.
 
-```xml
+``` xml
 <element widget="checkbox-column" />
 ```
 
@@ -478,7 +478,7 @@ Let's get started～
 
 Similar to the custom table component, we can create the `CustomFormWidget` component by inheriting the `FormWidget` component to complete our exercise content. Just like below:
 
-```typescript
+``` typescript
 import CustomForm from './CustomForm.vue';
 
 @SPI.ClassFactory(
@@ -504,7 +504,7 @@ In the following sections, the template for the `registerLayout` method will no 
 
 Compared to the table component, the `OioForm` component is easier to use and has fewer complex functions than the table component. Let's make some modifications to the Vue component template:
 
-```vue
+``` vue
 <template>
   <div class="custom-form-demo">
     <oio-form ref="form" class="oio-default-form" :layout="layout" :label-col="labelCol" :wrapper-col="wrapperCol">
@@ -526,7 +526,7 @@ For more content related to the Pack component, please refer to: [Pack](/en/DevM
 
 The corresponding `props` declaration can be like this:
 
-```vue
+``` vue
 props: {
   setFormInstance: {
     type: Function as PropType<(instance: OioFormInstance | undefined) => void>
@@ -567,7 +567,7 @@ In this exercise, you will display the table view as a gallery view instead of d
 
 Similar to the custom table component, we can create the `CustomGalleryWidget` component by inheriting the `GalleryWidget` component to complete our exercise content. Just like below:
 
-```typescript
+``` typescript
 import CustomGallery from './CustomGallery.vue';
 
 @SPI.ClassFactory(
@@ -595,7 +595,7 @@ It should be noted that here we use the view type `Table (TABLE)`, not `Gallery 
 
 Let's "extract" the card implemented in "[Customize a gallery view](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter3-customize-a-gallery-view.md)"过来, the corresponding Vue component template should be like this:
 
-```vue
+``` vue
 <template>
   <div class="custom-gallery-demo">
     <oio-gallery
@@ -625,7 +625,7 @@ Let's "extract" the card implemented in "[Customize a gallery view](/en/DevManua
 
 The corresponding `props` declaration can be like this:
 
-```vue
+``` vue
 props: {
   showDataSource: {
     type: Array as PropType<ActiveRecord[]>
@@ -641,7 +641,7 @@ props: {
 
 Then "extract" a part of the `css` style:
 
-```css
+``` css
 .custom-card-demo {
   background-color: #ffffff;
   border: 1px solid #e3e7ee;
@@ -674,7 +674,7 @@ Combined with the definition of the Vue component template, if you do not proces
 
 If you directly switch components according to the previous method, the actions rendered in the card may be lost. Maybe you did this:
 
-```xml
+``` xml
 <view type="TABLE">
     <pack widget="group">
         <view type="SEARCH">
@@ -698,7 +698,7 @@ If you directly switch components according to the previous method, the actions 
 
 The definition of other places remains unchanged. Let's extract the `CustomGallery` paragraph definition:
 
-```xml
+``` xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
     <element widget="expandColumn" slot="expandRow" />
     <xslot name="fields" slotSupport="field" />
@@ -708,7 +708,7 @@ The definition of other places remains unchanged. Let's extract the `CustomGalle
 
 Now, let's recall the section "[Universal Card with Slots](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#v-universal-card-with-slots)", in the `layout (Layout)`, we used `slots (Slot)` and the content related to `named slots` mentioned in the `extended content` section. A correct definition should be like this:
 
-```xml
+``` xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
     <xslot name="fields" slotSupport="field" />
     <template slot="rowActions" />
@@ -717,7 +717,7 @@ Now, let's recall the section "[Universal Card with Slots](/en/DevManual/Tutoria
 
 The final merged DSL result may be like this:
 
-```xml
+``` xml
 <element widget="CustomGallery" slot="table" slotSupport="field">
     <field data="code" />
     <field data="name" />
@@ -742,7 +742,7 @@ When using the `OioGallery` component, we can only achieve one layout form rende
 
 For simplicity, we render the same page without using the `OioGallery` component, so our Vue component template can be like this:
 
-```vue
+``` vue
 <template>
   <div class="custom-gallery-demo">
     <div class="custom-card-demo" v-for="(data, index) in showDataSource" :key="data.__draftId">
@@ -762,7 +762,7 @@ For simplicity, we render the same page without using the `OioGallery` component
 
 The previous page achieved a `grid layout` with four cards per row through the combination of `oio-row` and `oio-col`. To achieve the same effect, let's add such a paragraph of css style to see the effect:
 
-```css
+``` css
 .custom-gallery-demo {
   display: flex;
   flex-wrap: wrap;

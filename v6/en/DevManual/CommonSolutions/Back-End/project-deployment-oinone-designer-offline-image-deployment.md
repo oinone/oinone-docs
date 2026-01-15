@@ -45,7 +45,7 @@ If you need to copy all deployment files to the deployment environment at one ti
 :::
 
 # V. Create a Deployment Directory in the Deployment Environment
-```shell
+``` shell
 mkdir -p /home/admin/oinone-designer-full
 mkdir -p /home/admin/oinone-designer-full/images
 ```
@@ -54,7 +54,7 @@ mkdir -p /home/admin/oinone-designer-full/images
 Confirm whether the deployment environment is of `amd64` or `arm64` architecture. If the viewing method provided in this article cannot be executed correctly, you can search for relevant content by yourself.
 
 ## (I) Use the uname command to view
-```shell
+``` shell
 uname -a
 ```
 
@@ -68,19 +68,19 @@ This step is very important. If the server architecture of the deployment enviro
 Prepare the image version to be deployed.
 
 ## (I) Log in to the Oinone image repository (if already logged in, this step can be ignored)
-```shell
+``` shell
 docker login https://harbor.oinone.top
 # input username
 # input password
 ```
 
 ## (II) Obtain the Oinone platform image
-```shell
+``` shell
 docker pull harbor.oinone.top/oinone/oinone-designer-full-v5.2:5.2.20.1-amd64
 ```
 
 ## (III) Save the image to a .tar file
-```shell
+``` shell
 docker save -o oinone-designer-full-v5-5.2.20.1-amd64.tar oinone-designer-full-v5.2:5.2.20.1-amd64
 
 If an error "Error response from daemon: reference does not exist" is reported, change the script to the following:
@@ -90,7 +90,7 @@ docker save -o oinone-designer-full-v5-5.2.20.1-amd64.tar harbor.oinone.top/oino
 ```
 
 ## (IV) Upload the .tar to the deployment environment
-```shell
+``` shell
 scp ./oinone-designer-full-v5-5.2.20.1-amd64.tar admin@127.0.0.1:/home/admin/oinone-full/images/
 ```
 
@@ -102,14 +102,14 @@ If the scp method cannot be used for uploading, the image file can be uploaded t
 
 # VIII. Load the Image in the Deployment Environment
 ## (I) Load the image file into Docker
-```shell
+``` shell
 cd /home/admin/oinone-full/images
 
 docker load -i oinone-designer-full-v5-5.2.20.1-amd64.tar
 ```
 
 ## (II) Check whether the image is loaded correctly
-```shell
+``` shell
 docker images
 ```
 
@@ -122,7 +122,7 @@ For convenience, it is not convenient to operate files on the server. Therefore,
 [oinone-designer-full-standard-offline.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/oinone-designer-deploy/oinone-designer-full-standard-offline.zip)
 
 ## (II) Move the Pamirs license to the `config` directory and rename it to `****-trial.lic` (the actual file name is subject to the license issued by Oinone)
-```shell
+``` shell
 mv ****-trial.lic config/****-trial.lic
 ```
 
@@ -130,7 +130,7 @@ mv ****-trial.lic config/****-trial.lic
 Move the driver `jar` file to the `lib` directory.
 
 Take the KDB8 database driver `kingbase8-8.6.0.jar` as an example:
-```shell
+``` shell
 mv kingbase8-8.6.0.jar lib/
 ```
 
@@ -143,7 +143,7 @@ The `lib` directory is an external loading directory (external library) for non-
 ## (IV) Modify the configuration in the script
 ### 1. Modify the startup script `startup.sh`
 Modify the corresponding image version number and change the IP from 192.168.0.121 to the host IP.
-```nginx
+``` nginx
 configDir=$(pwd)
 version=5.1.16
 IP=192.168.0.121
@@ -151,7 +151,7 @@ IP=192.168.0.121
 
 ### 2. Modify mq/broker.conf
 Modify the brokerIP1 in it, changing the IP from 192.168.0.121 to the host IP.
-```nginx
+``` nginx
 brokerClusterName = DefaultCluster
 namesrvAddr=127.0.0.1:9876
 brokerIP1=192.168.0.121
@@ -173,7 +173,7 @@ diskSpaceCleanForciblyRatio=97
 ```
 
 ## (V) Execute the `startup.sh` script to start
-```shell
+``` shell
 sh startup.sh
 ```
 

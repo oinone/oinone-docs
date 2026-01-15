@@ -9,10 +9,10 @@ dir:
   order: 1
 prev:
   text: 设计器
-  link: /zh-cn/UserManual/Designers/README.md
+  link: /v6/zh-cn/UserManual/Designers/README.md
 next:
   text: 模型
-  link: /zh-cn/UserManual/Designers/ModelDesigner/model.md
+  link: /v6/zh-cn/UserManual/Designers/ModelDesigner/model.md
 ---
 模型设计器是Oinone平台中的一个核心组件，通过可视化配置的方式为用户提供快速设计模型的功能。为了满足不同研发背景的用户使用需求，在模型设计器中，支持切换操作模式，包括无代码模式与专家模式：
 

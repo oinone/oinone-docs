@@ -20,7 +20,7 @@ Oinone 提供了多种环境配置和方法注解，用于规范模型方法行�
 
 在模型类中定义函数时，需通过注解明确其功能属性：
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "TestModel")
 public class TestModel extends IdModel {
@@ -41,7 +41,7 @@ public class TestModel extends IdModel {
 
 **接口定义**：在接口方法上添加 `@Function` 注解，确保其他模块依赖 API 包时，自动注册远程服务消费者。
 
-```java
+``` java
 @Fun(TestModel.MODEL_MODEL)
 // 可二选一使用@Model.model注解指定命名空间
 // @Model.model(TestModel.MODEL_MODEL)
@@ -53,7 +53,7 @@ public interface TestModelHelloService {
 
 **实现类配置**：实现类需同步添加 `@Fun` 和 `@Function` 注解，继承接口功能属性：
 
-```java
+``` java
 @Fun(TestModel.MODEL_MODEL)
 // 可二选一使用@Model.model注解指定命名空间
 // @Model.model(TestModel.MODEL_MODEL)
@@ -75,7 +75,7 @@ public class TestModelHelloServiceImpl implements TestModelHelloService {
 
 若函数作为独立公共逻辑单元，可通过命名空间区分：
 
-```java
+``` java
 @Fun(TestModelHelloService.FUN_NAMESPACE)
 public interface TestModelHelloService {
     String FUN_NAMESPACE = "test.TestModelHelloService";
@@ -108,7 +108,7 @@ public class TestModelHelloServiceImpl implements TestModelHelloService {
 
 扩展点函数用于对已有功能进行扩展，通过接口和实现类实现。
 
-```java
+``` java
 @Ext(TestModel.class)
 public interface TestModelExtpoint {
     @ExtPoint(displayName = "TestModel的create函数前置扩展点")
@@ -130,7 +130,7 @@ public class TestModelExtpointImpl implements TestModelExtpoint {
 
 拦截器函数可在函数执行前后进行拦截处理。
 
-```java
+``` java
 @Component
 public class TestModelCreateBeforeHook implements HookBefore {
 
@@ -148,7 +148,7 @@ public class TestModelCreateBeforeHook implements HookBefore {
 
 服务器动作函数可在页面上触发特定操作。
 
-```java
+``` java
 @Model.model(TestActionModel.MODEL_MODEL)
 public class TestActionModelAction {
 
@@ -176,7 +176,7 @@ public class TestActionModelAction {
 
 :::
 
-```java
+``` java
 Models.directive().run(() -> {
     return Fun.run(namespace, fun, 参数);
 }, SystemDirectiveEnum.HOOK, SystemDirectiveEnum.EXT_POINT);
@@ -214,7 +214,7 @@ Models.directive().run(() -> {
 
 #### 数据构造函数 construct 重载
 
-```java
+``` java
 /**
  * 在打开新增页面的时候，前端默认会调用给定模型的 construct
  */
@@ -230,7 +230,7 @@ public TestModel construct(TestModel data) {
 
 #### 创建（create）重载
 
-```java
+``` java
 @Transactional(rollbackFor = {Throwable.class})
 @Action.Advanced(name = FunctionConstants.create, type = {FunctionTypeEnum.CREATE}, managed = true, invisible = ExpConstants.idValueExist, check = true)
 @Action( displayName = "创建", label = "确定", summary = "添加", bindingType = {ViewTypeEnum.FORM})
@@ -257,7 +257,7 @@ public TestModel create(TestModel data) {
 :::
 #### 删除（delete）重载
 
-```java
+``` java
 @Transactional(rollbackFor = Throwable.class)
 @Action.Advanced(name = FunctionConstants.delete, type = FunctionTypeEnum.DELETE, managed = true, priority = 66)
 @Action(displayName = "删除", label = "删除", contextType = ActionContextTypeEnum.SINGLE_AND_BATCH)
@@ -278,7 +278,7 @@ public List<TestModel> delete(List<TestModel> dataList) {
 
 #### 更新（update）重载
 
-```java
+``` java
 @Transactional(rollbackFor = {Throwable.class} )
 @Action.Advanced(name = FunctionConstants.update,type = {FunctionTypeEnum.UPDATE},managed = true, invisible = ExpConstants.idValueNotExist, check = true)
 @Action(displayName = "更新",label = "确定",summary = "修改",bindingType = {ViewTypeEnum.FORM})
@@ -303,7 +303,7 @@ public TestModel update(TestModel data) {
 :::
 #### 分页查询（queryPage）重载
 
-```java
+``` java
 /**
  * 在表格视图在点击搜索时，前端默认会调用给定模型的 queryPage
  */
@@ -322,7 +322,7 @@ public Pagination<TestModel> queryPage(Pagination<TestModel> page, IWrapper<Test
 
 #### 单条查询（queryOne）重载
 
-```java
+``` java
 @Function.Advanced(displayName = "查询单条记录", type = {FunctionTypeEnum.QUERY}, category = FunctionCategoryEnum.QUERY_ONE)
 @Function.fun(FunctionConstants.queryByEntity)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
@@ -746,7 +746,7 @@ Oinone所有的函数都提供了默认的前置扩展点、重载扩展点和�
 
 ### 1、扩展点定义示例
 
-```java
+``` java
 @Ext(TestModel.class)
 public interface TestModelExtpoint {
     @ExtPoint(displayName = "TestModel的create函数前置扩展点")
@@ -767,7 +767,7 @@ public class TestModelExtpointImpl implements TestModelExtpoint {
 
 ### 2、快捷定义方式：
 
-```java
+``` java
 @Ext(TestModel.class)
 public class TestModelExtpointImpl implements CreateBeforeExtPoint<TestModel> {
     @Override
@@ -816,7 +816,7 @@ public class TestModelExtpointImpl implements CreateBeforeExtPoint<TestModel> {
 
 ### 1、定义自定义扩展点
 
-```java
+``` java
 @Ext
 public interface TestModelDoSomethingExtpoint {
 
@@ -839,7 +839,7 @@ public class TestModelDoSomethingExtpointImpl implements TestModelDoSomethingExt
 
 在业务方法中，使用`Ext.run`通过函数式接口触发扩展点逻辑：
 
-```java
+``` java
 //通过Ext.run 去掉用
 public List<TestModel> includeCallExtpoint(){
     //前置业务逻辑
@@ -856,7 +856,7 @@ public List<TestModel> includeCallExtpoint(){
 
 一个扩展点可设多个扩展点实现，Oinone最终会按条件与优先级，只选择一个执行。其中，优先级默认值为 99，数字越小优先级越高。例如：
 
-```java
+``` java
 @Ext(TestModelDoSomethingExtpoint.class)
 public class TestModelDoSomethingExtpointImpl2 implements TestModelDoSomethingExtpoint {
     @Override
@@ -882,7 +882,7 @@ public class TestModelDoSomethingExtpointImpl2 implements TestModelDoSomethingEx
 
 对于后端编程调用的函数扩展点，默认不生效，可通过手动设置元位指令使其生效，示例如下：
 :::
-```java
+``` java
 Models.directive().run(() -> {
     return Fun.run(namespace, fun, 参数);
 }, SystemDirectiveEnum.EXT_POINT);
@@ -910,7 +910,7 @@ Models.directive().run(() -> {
 
 其出入参为所拦截函数的入参。通过实现 `HookBefore` 接口，在函数执行前进行逻辑处理。例如：
 
-```java
+``` java
 @Component
 public class BeforeXXXHook implements HookBefore {
 
@@ -928,7 +928,7 @@ public class BeforeXXXHook implements HookBefore {
 
 其出入参为所拦截函数的出参。通过实现 `HookAfter` 接口，在函数执行后对返回值进行处理。例如：
 
-```java
+``` java
 @Component
 public class AfterXXXHook implements HookAfter {
 
@@ -961,7 +961,7 @@ public class AfterXXXHook implements HookAfter {
 
 对于后端编程调用的函数拦截器，默认不生效，可通过手动设置元位指令使其生效，示例如下：
 :::
-```java
+``` java
 Models.directive().run(() -> {
     return Fun.run(namespace, fun, 参数);
 }, SystemDirectiveEnum.HOOK);
@@ -977,7 +977,7 @@ Models.directive().run(() -> {
 
 需完成[事件配置](/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md#3、配置中心-pamirs-zookeeper)，[数据记录配置](/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md#十-数据记录配置-pamirs-record-sql)，并添加 `sql_record` 和 `trigger` 两个模块依赖，具体配置如下：
 
-```yaml
+``` yaml
 spring:
   rocketmq:
     name-server: 127.0.0.1:9876 # RocketMQ NameServer地址，用于生产者与消费者定位集群
@@ -1015,13 +1015,13 @@ pamirs:
 
 在启动工程中引入以下依赖：
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-sql-record-core</artifactId>
 </dependency>
 ```
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-trigger-core</artifactId>
@@ -1043,7 +1043,7 @@ pamirs:
 
 **使用示例**：
 
-```java
+``` java
 @Fun("test.TestModel")
 public class TestModelFunction {
 
@@ -1077,7 +1077,7 @@ public class TestModelFunction {
 
 业务模块工程需引入 `trigger` 模块的 api 包：
 
-```xml
+``` xml
 <dependency>
 		<groupId>pro.shushi.pamirs.core</groupId>
 		<artifactId>pamirs-trigger-api</artifactId>
@@ -1092,7 +1092,7 @@ Oinone XSchedule 是 Oinone 框架提供的一个用于实现定时任务调度�
 
 通过在方法上添加 `@XSchedule` 注解来定义定时任务。`@XSchedule` 注解目前只支持通过 `cron` 属性来配置任务的执行时间，示例如下：
 
-```java
+``` java
 @Component
 @Fun(CronJobExample.FUN_NAMESPACE)
 public class CronJobExample {
@@ -1174,7 +1174,7 @@ Cron 表达式是用于定义定时任务执行时间的字符串，由 **6 个�
 
 通过注解与接口实现定义异步任务，示例如下：
 
-```java
+``` java
 @Fun(XAsyncService.FUN_NAMESPACE)
 public interface XAsyncService {
     String FUN_NAMESPACE = "test.XAsyncService";
@@ -1209,7 +1209,7 @@ public class XAsyncServiceImpl implements XAsyncService {
 
 在多模块独立启动（boot）的分布式环境中，为避免异步任务重复执行，需通过配置实现任务数据隔离：
 
-```yaml
+``` yaml
 pamirs:
   event:
     schedule:
@@ -1390,7 +1390,7 @@ pamirs:
 
 在 Oinone 中开发表达式函数，其基本流程与定义普通函数类似，唯一关键区别在于**函数命名空间**的指定：需将`namespace`设置为`NamespaceConstants.expression`，以此明确该函数用于表达式计算场景。以下为具体示例：
 
-```java
+``` java
 @Fun(NamespaceConstants.expression)
 public class TestExpressionFunctions {
     //获取当前用户语言
@@ -1493,7 +1493,7 @@ Oinone 无缝对接 Spring 的声明式与编程式事务，为开发者提供�
 
 通过`@PamirsTransactional`注解，开发者可以轻松地将事务管理应用到类或方法上。该注解与 Spring 的`@Transactional`功能完全兼容，以下是一个示例：
 
-```java
+``` java
 @Fun(TestModelHelloService.FUN_NAMESPACE)
 @Component
 public class TestModelHelloServiceImpl implements TestModelHelloService {
@@ -1514,7 +1514,7 @@ public class TestModelHelloServiceImpl implements TestModelHelloService {
 
 Oinone 提供的`PamirsTransactionTemplate`与 Spring 的`TransactionTemplate`具有一致的编程接口。在高并发场景下，编程式事务开发模式具有显著的性能优势，它允许开发者对事务的开启长度进行精细化控制，尽可能在事务开启前完成费时的查询工作和数据准备。以下是基本的使用套路：
 
-```java
+``` java
 Tx.build(new TxConfig().setPropagation(Propagation.REQUIRED.value())).executeWithoutResult(status -> {
     // 执行逻辑
 });

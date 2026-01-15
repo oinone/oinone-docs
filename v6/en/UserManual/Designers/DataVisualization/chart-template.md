@@ -7,7 +7,7 @@ category:
 order: 7
 next:
   text: Integrated Designer
-  link: /en-us/UserManual/Designers/IntegratedDesigner/README.md
+  link: /v6/en-us/UserManual/Designers/IntegratedDesigner/README.md
 ---
 When the chart types provided by the system cannot meet actual requirements temporarily, you don't have to be limited by the existing options. You can add custom chart types independently. With this feature, you can introduce more diverse chart types according to specific business needs or data presentation requirements, thereby enriching the forms of data visualization and making data presentation more appropriate and intuitive.
 

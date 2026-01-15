@@ -7,7 +7,7 @@ category:
 order: 2
 prev:
   text: 角色与权限
-  link: /zh-cn/UserManual/StandardModules/AdministrationCenter/role-and-permission.md
+  link: /v6/zh-cn/UserManual/StandardModules/AdministrationCenter/role-and-permission.md
 ---
 ## 一、模块总览
 

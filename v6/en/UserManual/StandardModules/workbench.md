@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: Standard Modules
-  link: /en-us/UserManual/StandardModules/README.md
+  link: /v6/en-us/UserManual/StandardModules/README.md
 ---
 The workbench is the core interface for users to perform task operations and management. Its design features an intuitive and user-friendly interface layout, enabling users to quickly handle various tasks and easily manage applications. Oinone's workbench displays the quantities of pending tasks, initiated tasks, copied tasks, completed tasks, and in-site messages. Additionally, it provides quick access to favorite applications.
 

@@ -6,7 +6,7 @@ category:
 order: 6
 prev:
   text: Third-Party Open-Source Software and License Notice
-  link: /en/Third-Party-Open-Source-Software-And-License-Notice.md
+  link: /v6/en/Third-Party-Open-Source-Software-And-License-Notice.md
 ---
 # I. Oinone 6 Community Edition  
 

@@ -24,7 +24,7 @@ In the Oinone system, Server Actions are core components for implementing backen
 
 Server actions can be quickly created using the `@Action` annotation. Here is a configuration example:
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 public class Demo {
     @Action(
@@ -60,7 +60,7 @@ Key configuration item analysis:
 
 In Oinone, data validation can be set not only at the model or field level but also for Server Actions through the `@Validation` annotation. For example:
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 public class Demo {
     @Validation(ruleWithTips = {
@@ -120,7 +120,7 @@ View Actions can be defined through the button `UxRouteButton` or the menu `UxMe
 
 Here is a detailed example of defining a View Action using the `UxRouteButton` annotation:
 
-```java
+``` java
 @UxRouteButton(
     value = @UxRoute(
         model = TestButtonModel.MODEL_MODEL, // Target model, clarifies the target model for navigation
@@ -165,7 +165,7 @@ public class TestButtonModel extends IdModel {
 
 ## (Ⅱ) Definition via Menu `UxMenu`
 
-```java
+``` java
 @UxMenus
 public class TestMenus implements ViewActionConstants {
     @UxMenu("Test Menu")
@@ -220,7 +220,7 @@ Url Actions focus on implementing external link navigation, guiding users to acc
 
 The `UxLinkButton` annotation can be used to create custom external link buttons. An example is as follows:
 
-```java
+``` java
 @UxLinkButton(
     value = @UxLink(
         // URL supports expressions and can dynamically拼接 (concatenate) parameters
@@ -266,7 +266,7 @@ In Oinone, the `compute` function has a higher priority than the `value` attribu
 
 Menu links can be quickly created through the `UxMenu` annotation. An example is as follows:
 
-```java
+``` java
 @UxMenus
 public class TestMenus implements ViewActionConstants {
     // Define a menu link named "Oinone Official Website"
@@ -281,7 +281,7 @@ Client Actions are used to execute frontend interaction logic and can define tri
 
 ## (Ⅰ) Definition of ClientAction
 
-```java
+``` java
 @UxClientButton(
     // Associate with specific client function
     value = @UxClient(ClientActionConstants.Import.fun),

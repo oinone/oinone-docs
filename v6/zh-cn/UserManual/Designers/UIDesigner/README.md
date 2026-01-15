@@ -9,10 +9,10 @@ dir:
    order: 2
 prev:
   text: 数据编码
-  link: /zh-cn/UserManual/Designers/ModelDesigner/data-coding.md
+  link: /v6/zh-cn/UserManual/Designers/ModelDesigner/data-coding.md
 next:
   text: 视图管理
-  link: /zh-cn/UserManual/Designers/UIDesigner/view-management.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/view-management.md
 ---
 &emsp;&emsp;界面设计器是Oinone平台设计器的重要组成部分，它提供了直观的可视化界面，允许用户通过拖拽和配置组件的方式来构建应用界面，而无需依赖传统的手写大量代码的方式。这种设计器旨在简化界面开发过程，提高开发效率，同时确保界面的美观和易用性。通过界面设计器，用户可以根据业务需求快速定制界面布局、样式和功能，满足不同场景下的应用需求。
 

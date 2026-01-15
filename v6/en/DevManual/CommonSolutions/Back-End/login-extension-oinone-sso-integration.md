@@ -16,7 +16,7 @@ In an enterprise internal environment, if a complete Single Sign-On (SSO) system
 
 2. Example of docking with SSO
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.sso;
 
 import com.alibaba.fastjson.JSON;

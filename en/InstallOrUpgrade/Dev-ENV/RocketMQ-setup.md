@@ -26,12 +26,12 @@ On Linux/macOS, use the default terminal; on Windows, use PowerShell (**unless C
 
 Visualize or decompress using the following command
 
-```shell
+``` shell
 # Linux/macOS
 unzip rocketmq-all-4.5.2-bin-release.zip -d <RocketMQ installation directory>
 ```
 
-```shell
+``` shell
 # Windows
 Expand-Archive .\rocketmq-all-4.5.2-bin-release.zip <RocketMQ installation directory>
 ```
@@ -44,12 +44,12 @@ For convenience, you can create symbolic links to the RocketMQ installation dire
 
 Create symbolic link (optional)
 
-```shell
+``` shell
 # Linux/macOS
 ln -s rocketmq-all-4.5.2-bin-release rocketmq
 ```
 
-```powershell
+``` powershell
 # Windows
 New-Item -Path .\rocketmq\ -ItemType SymbolicLink -Target .\rocketmq-all-4.5.2-bin-release
 ```
@@ -70,7 +70,7 @@ The default JVM runtime memory settings of RocketMQ are too large for the local 
 
 Modify NameServer Running Memory
 
-```shell
+``` shell
 # Linux/macOS
 awk '
 {
@@ -87,14 +87,14 @@ awk '
 ' ./bin/runserver.sh > ./bin/tmp && mv ./bin/tmp ./bin/runserver.sh
 ```
 
-```powershell
+``` powershell
 # Windows
 (Get-Content .\bin\runserver.cmd) | ForEach-Object { $_ -replace '-Xms2g -Xmx2g -Xmn1g', '-Xms1g -Xmx1g -Xmn1g' } | Set-Content .\bin\runserver.cmd
 ```
 
 Modify Broker Run Memory
 
-```shell
+``` shell
 # Linux/macOS
 awk '
 {
@@ -113,14 +113,14 @@ awk '
 ' ./bin/runbroker.sh > ./bin/tmp && mv ./bin/tmp bin/runbroker.sh
 ```
 
-```powershell
+``` powershell
 # Windows
 (Get-Content .\bin\runbroker.cmd) | ForEach-Object { $_ -replace '-Xms2g -Xmx2g -Xmn1g', '-Xms1g -Xmx1g -Xmn1g' } | Set-Content .\bin\runbroker.cmd
 ```
 
 Modify Broker Configuration
 
-```shell
+``` shell
 # Linux/macOS
 cat > ./conf/broker.conf << EOF
 brokerClusterName = DefaultCluster
@@ -135,7 +135,7 @@ brokerIP1 = 127.0.0.1
 EOF
 ```
 
-```shell
+``` shell
 # Windows
 Set-Content -Path .\conf\broker.conf -Value @(
     "brokerClusterName = DefaultCluster"
@@ -154,25 +154,25 @@ Set-Content -Path .\conf\broker.conf -Value @(
 
 Linux/macOS
 
-```shell
+``` shell
 # NameServer
 nohup ./bin/mqnamesrv start >> ./namesrv.nohup 2>&1 &
 ```
 
-```shell
+``` shell
 # Broker
 nohup ./bin/mqbroker -c ./conf/broker.conf >> ./broker.nohup 2>&1 &
 ```
 
 Windows
 
-```powershell
+``` powershell
 # NameServer
 $env:ROCKETMQ_HOME = <RocketMQ installation directory>
 Start-Process -FilePath ".\bin\mqnamesrv.cmd" -ArgumentList "start" -WindowStyle Hidden
 ```
 
-```powershell
+``` powershell
 # Broker
 $env:ROCKETMQ_HOME = <RocketMQ installation directory>
 Start-Process -FilePath ".\bin\mqbroker.cmd" -ArgumentList "-c .\conf\broker.conf" -WindowStyle Hidden
@@ -182,7 +182,7 @@ Start-Process -FilePath ".\bin\mqbroker.cmd" -ArgumentList "-c .\conf\broker.con
 
 Type `jps -l` in the command line
 
-```powershell
+``` powershell
 59205 org.apache.rocketmq.namesrv.NamesrvStartup
 59306 org.apache.rocketmq.broker.BrokerStartup
 ```
@@ -191,13 +191,13 @@ The command line should output similar information.
 
 # V. Stop
 
-```shell
+``` shell
 # Linux/macOS
 ./bin/mqshutdown broker
 ./bin/mqshutdown namesrv
 ```
 
-```shell
+``` shell
 # Windows
 .\bin\mqshutdown.cmd broker
 .\bin\mqshutdown.cmd namesrv

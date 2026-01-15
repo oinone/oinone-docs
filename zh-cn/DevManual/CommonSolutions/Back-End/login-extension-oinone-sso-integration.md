@@ -15,7 +15,7 @@ order: 62
 
 2、对接SSO示例
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.sso;
 
 import com.alibaba.fastjson.JSON;

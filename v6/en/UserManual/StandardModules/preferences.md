@@ -6,7 +6,7 @@ category:
 order: 3
 next:
   text: Users
-  link: /en/UserManual/StandardModules/AdministrationCenter/user.md
+  link: /v6/en/UserManual/StandardModules/AdministrationCenter/user.md
 ---
 The system configuration module provides a comprehensive and flexible solution for personalized and security management configuration on the enterprise platform. It aims to precisely meet various business needs and fully showcase the enterprise's cultural characteristics. This module consists of two core components: Global Configuration, used for unified management and setting of basic system-level configurations; and Application Configuration, used to enable the translation management function, allowing enterprises to manage multilingual content and improve their internationalization operation capabilities.
 

@@ -14,7 +14,7 @@ This signature method is only available in pamirs-core version 5.0.16 and above.
 
 :::
 
-```java
+``` java
 public class EipSignUtils {
 
     public static final String SIGN_METHOD_MD5 = "md5";

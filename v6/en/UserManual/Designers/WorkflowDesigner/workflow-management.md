@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Process Designer
-  link: /zh-cn/UserManual/Designers/WorkflowDesigner/README.md
+  link: /v6/en/UserManual/Designers/WorkflowDesigner/README.md
 ---
 The process designer supports a series of convenient operations such as adding, editing, and deleting processes. Using different display modes can meet users' different view preferences and management needs, realizing users' flexible and diverse process management requirements.
 

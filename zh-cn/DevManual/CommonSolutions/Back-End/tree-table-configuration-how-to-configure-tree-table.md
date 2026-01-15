@@ -10,7 +10,7 @@ order: 49
 举例 A 模型为类目 B 模型为类目属性
 模型代码实例：
 
-```java
+``` java
 @Model.model(AriesPlatformCategory.MODEL_MODEL)
 @Model(displayName = "平台后台类目", labelFields = "name")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
@@ -30,7 +30,7 @@ public class AriesPlatformCategory extends AriesCategory {
 }
 ```
 
-```java
+``` java
 @Model.model(AriesPlatformCategoryAttr.MODEL_MODEL)
 @Model(displayName = "Aries_平台类目属性", labelFields = "name")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
@@ -47,7 +47,7 @@ public class AriesPlatformCategoryAttr extends CategoryAttr {
 
 在设计器设计左树右表之前，需要在模型中配置好关联关系 。如下部分代码配置好类目与父类目的关联关系。
 
-```java
+``` java
 @Field.many2one
 @Field.Relation(relationFields = {"parentCateCode"}, referenceFields = {"code"},store = true)
 @Field(displayName = "平台父类目")
@@ -56,7 +56,7 @@ private AriesPlatformCategory platformCategory;
 
 配置好类目与类目属性的关联关系。一个类目可以有多个类目属性，一对多 one2many
 
-```java
+``` java
 @Field.one2many
 @Field(displayName = "类目属性")
 @Field.Relation(relationFields = "code", referenceFields = "categoryCode", store = true)
@@ -65,7 +65,7 @@ private List<AriesPlatformCategoryAttr> platformCategoryAttrs;
 
 在类目属性模型中，配置好属性与类目的关联关系，一个类目属性只属于一个类目，一个类目可以有多个类目属性。类目属性对类目多对一many2one
 
-```java
+``` java
 @Field.many2one
 @Field(displayName = "平台后台类目")
 @Field.Relation(relationFields = "categoryCode", referenceFields = "code", store = true)
@@ -86,7 +86,7 @@ private AriesPlatformCategory platformCategory;
 
 ## （一）模型代码实例：
 
-```java
+``` java
 @Model.model(BasicOrg.MODEL_MODEL)
 @Model(displayName = "组织结构管理", summary = "组织结构管理", labelFields = {"orgName"})
 @Model.Code(sequence = "ORDERLY_SEQ", prefix = "Org", size = 5, initial = 0)
@@ -147,7 +147,7 @@ public class BasicOrg {
 
 配置好自我关联
 
-```java
+``` java
 @Field(displayName = "上级组织")
 @Field.many2one
 @Field.Relation(relationFields = {"parentCode"}, referenceFields = {"code"})

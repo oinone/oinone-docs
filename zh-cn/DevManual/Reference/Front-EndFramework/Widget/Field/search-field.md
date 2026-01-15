@@ -22,7 +22,7 @@ order: 2
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -44,7 +44,7 @@ export class SearchStringSearchInputFieldWidget extends FormStringInputFieldWidg
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -59,7 +59,7 @@ export class SearchStringEmailFieldWidget extends SearchEmailFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -74,7 +74,7 @@ export class SearchStringPhoneFieldWidget extends SearchPhoneFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Search,
@@ -97,7 +97,7 @@ export class SearchStringTagFieldWidget extends FormStringMultiTagFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -117,7 +117,7 @@ export class SearchTextFieldWidget extends FormStringFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -137,7 +137,7 @@ export class SearchHtmlFieldWidget extends FormStringFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -157,7 +157,7 @@ export class SearchPhoneFieldWidget extends FormStringFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -181,7 +181,7 @@ export class SearchEmailFieldWidget extends FormStringFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -196,7 +196,7 @@ export class SearchIntegerTagFieldWidget extends FormIntegerMultiFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -221,7 +221,7 @@ export class SearchIntegerInputRangeFieldWidget extends SearchNumberRangeFieldWi
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -236,7 +236,7 @@ export class SearchFloatTagFieldWidget extends FormIntegerMultiFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -257,7 +257,7 @@ export class SearchFloatInputRangeFieldWidget extends SearchNumberRangeFieldWidg
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -272,7 +272,7 @@ export class SearchCurrencyTagFieldWidget extends FormIntegerMultiFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -289,7 +289,7 @@ export class SearchCurrencyInputRangeFieldWidget extends SearchFloatInputRangeFi
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -321,7 +321,7 @@ export class SearchBooleanSelectFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -336,7 +336,7 @@ export class SearchEnumCheckboxFieldWidget extends FormEnumMultiCheckboxFieldWid
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -351,7 +351,7 @@ export class SearchEnumMultiSelectFieldWidget extends FormEnumMultiSelectFieldWi
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -380,7 +380,7 @@ export class SearchEnumTabSelectFieldWidget extends FormEnumFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -411,7 +411,7 @@ export class SearchEnumTagSelectFieldWidget extends FormEnumFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -453,7 +453,7 @@ export class SearchDateTimeRangeFieldWidget extends SearchRangeFieldWidget<
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -468,7 +468,7 @@ export class SearchDateTimeDateRangeFieldWidget extends SearchDateRangeFieldWidg
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Search,
@@ -505,7 +505,7 @@ export class SearchDateTimeRangeElementWidget extends FormRangeFieldsWidget<[str
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -527,7 +527,7 @@ export class SearchDateRangeFieldWidget extends SearchDateTimeRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Search,
@@ -551,7 +551,7 @@ export class SearchDateRangeElementWidget extends SearchDateTimeRangeElementWidg
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -573,7 +573,7 @@ export class SearchTimeRangeFieldWidget extends SearchDateTimeRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Search,
@@ -597,7 +597,7 @@ export class SearchTimeRangeElementWidget extends SearchDateTimeRangeElementWidg
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -619,7 +619,7 @@ export class SearchYearRangeFieldWidget extends SearchDateTimeRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Search,
@@ -643,7 +643,7 @@ export class SearchYearRangeElementWidget extends SearchDateTimeRangeElementWidg
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -676,7 +676,7 @@ export class SearchM2OSelectFieldWidget extends FormM2OSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -701,7 +701,7 @@ export class SearchM2OMultiSelectFieldWidget extends FormM2MFieldSelectWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -736,7 +736,7 @@ export class SearchM2OTreeSelectFieldWidget extends FormTreeSelectFieldWidget<
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -770,7 +770,7 @@ export class SearchM2OCascaderFieldWidget extends FormCascaderFieldWidget<
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -795,7 +795,7 @@ export class SearchM2OCheckboxFieldWidget extends FormM2MCheckboxFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -820,7 +820,7 @@ export class SearchM2OAddressFieldWidget extends FormM2OAddressFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -835,7 +835,7 @@ export class SearchO2MTreeSelectFieldWidget extends FormO2MTreeSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -850,7 +850,7 @@ export class SearchO2MCascaderFieldWidget extends FormO2MCascaderFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -871,7 +871,7 @@ export class SearchO2MCheckboxFieldWidget extends FormO2MCheckboxFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -886,7 +886,7 @@ export class SearchM2MTreeSelectFieldWidget extends FormM2MTreeSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,
@@ -901,7 +901,7 @@ export class SearchM2MCascaderFieldWidget extends FormM2MCascaderFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Search,

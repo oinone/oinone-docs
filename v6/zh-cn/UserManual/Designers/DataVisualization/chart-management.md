@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 数据可视化(Data Visualization)
-  link: /zh-cn/UserManual/Designers/DataVisualization/README.md
+  link: /v6/zh-cn/UserManual/Designers/DataVisualization/README.md
 ---
 图表可以直观的展示模型中数据，在数据可视化中，提供图表管理界面，该界面支持用户自定义图表信息，实现信息的灵活配置。
 

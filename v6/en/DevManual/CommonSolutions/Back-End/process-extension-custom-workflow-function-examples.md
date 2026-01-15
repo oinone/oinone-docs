@@ -10,7 +10,7 @@ order: 53
 In business process handling, custom functions for handover, cc, additional signature, filling, and notifiers are included. When the default approver selection mechanism provided by the platform cannot meet personalized business requirements, we can use custom functions to specifically process the generation logic of approvers.
 
 ## (Ⅰ) Writing a Custom Approver Function
-```java
+``` java
 @Function(openLevel = {FunctionOpenEnum.API})
 @Function.Advanced(type = FunctionTypeEnum.QUERY, displayName = "Reimbursement Form - Certifier - Approval", category = CUSTOM_DESIGNER)
 public List<NodePerson> bizZmrApprovePerson(List<NodePerson> nodePersonList, NodeModel nodeModel, WorkflowContext workflowContext) {
@@ -49,7 +49,7 @@ public List<NodePerson> bizZmrApprovePerson(List<NodePerson> nodePersonList, Nod
 Execution time: This extension is executed after the initialization of the approval or filling to-do task and before the execution of the approval or filling result
 >
 
-```java
+``` java
 /**
  * Execute pre-function after approval node initialization is completed
  * @param approvalNode
@@ -64,7 +64,7 @@ public void approvalCustomStartFun(ApprovalNode approvalNode, WorkflowContext co
 ```
 
 # III. Function Executed Before Filling
-```java
+``` java
 /**
 * Pre-processing for filling execution
 */
@@ -80,7 +80,7 @@ public void writeCustomStartFun(WorkflowTaskInstance taskInstance, WriteNode wri
 Execution time: This extension is executed after saving the to-do task and before asynchronously executing the approval or filling result
 >
 
-```java
+``` java
 /**
  * Post-handover operation function, selected in the extension settings of approval and filling nodes in the process designer - function executed after filling operation submission
  * @param userTask User to-do record
@@ -115,7 +115,7 @@ return userTask;
 Execution time: This extension is executed after the business data is saved following approval agreement or filling submission during approval or filling execution
 >
 
-```java
+``` java
 /**
  * Data processing after approval
  * @param approvalNode Approval node

@@ -123,7 +123,7 @@ order: 5
 ### 解决方式
 通过启动参数 `-PgoBack=true` 强制覆盖安装当前运行时版本
 
-```plain
+``` plain
 java -jar xxx.jar -PgoBack=true [其他参数]
 ```
 

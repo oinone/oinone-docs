@@ -14,7 +14,7 @@ Function 的定义需要严格遵循 Oinone 的规范：
 + 如果只是查询，不需要在页面有按钮，定义为`@Function`就可以了。
 
 ## （一）覆写常用默认数据管理器定义标准：
-```java
+``` java
 @Action.Advanced(name = FunctionConstants.create, managed = true)//默认取的是方法名
 @Action(displayName = "确定", summary = "添加", bindingType = ViewTypeEnum.FORM)
 public AuthRole create(AuthRole data) {}
@@ -43,7 +43,7 @@ public AuthRole queryOne(AuthRole query) {
 ```
 
 ## （二）自定义函数定义标准
-```java
+``` java
 @Action(displayName = "启用")
 @Action.Advanced(type = FunctionTypeEnum.UPDATE)
 public Teacher dataStatus(Teacher data) {}

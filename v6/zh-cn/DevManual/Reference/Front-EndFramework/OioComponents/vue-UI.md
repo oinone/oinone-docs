@@ -8,7 +8,7 @@ category:
 order: 3
 next:
   text: Metadata Service
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/Services/metadata-service.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Services/metadata-service.md
 ---
 
 在 Oinone Kunlun 中，有一部分组件是基于一些独立功能的第三方组件库实现的，比如：`Vxe-Table`、`vuedraggable` 等。这些组件不仅可以用于 Widget 组件，也可以直接通过 Vue 原生写法用于任何一个 Vue 组件。这篇文章将详细介绍这些组件的用法及 API 定义。

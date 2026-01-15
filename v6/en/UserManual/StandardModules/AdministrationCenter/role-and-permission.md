@@ -6,7 +6,7 @@ category:
 order: 4
 next:
   text: Workflow
-  link: /zh-cn/UserManual/StandardModules/workflow.md
+  link: /v6/en/UserManual/StandardModules/workflow.md
 ---
 # I. Role Types
 ### 1. Function Introduction

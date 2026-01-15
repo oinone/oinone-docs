@@ -25,7 +25,7 @@ order: 6
 ## （一）解压
 可视化工具或者使用如下命令解压
 
-```shell
+``` shell
 # Linux/macOS
 tar zxvf apache-zookeeper-3.8.4-bin.tar.gz -C <Zookeeper安装目录>
 ```
@@ -40,12 +40,12 @@ Windows可以尝试使用以上命令，如果没有tar命令可使用Windows`�
 
 建立软链(可选)
 
-```shell
+``` shell
 # Linux/macOS
 ln -s apache-zookeeper-3.8.4-bin zookeeper
 ```
 
-```powershell
+``` powershell
 # Windows
 New-Item -Path .\zookeeper\ -ItemType SymbolicLink -Target .\apache-zookeeper-3.8.4-bin
 ```
@@ -53,14 +53,14 @@ New-Item -Path .\zookeeper\ -ItemType SymbolicLink -Target .\apache-zookeeper-3.
 ## （二）配置
 创建数据存储目录
 
-```powershell
+``` powershell
 # Linux/macOS/Windows
 mkdir data
 ```
 
 修改Zookeeper配置
 
-```shell
+``` shell
 # Linux/macOS
 cat > ./conf/zoo.cfg << EOF
 tickTime=2000
@@ -76,7 +76,7 @@ admin.enableServer=false
 EOF
 ```
 
-```shell
+``` shell
 # Windows
 Set-Content -Path ./conf/zoo.cfg -Value @(
     "tickTime=2000"
@@ -93,23 +93,23 @@ Set-Content -Path ./conf/zoo.cfg -Value @(
 ```
 
 # 三、运行
-```shell
+``` shell
 # Linux/macOS
 ./bin/zkServer.sh start
 ```
 
-```powershell
+``` powershell
 # Windows
 .\bin\zkServer.cmd
 ```
 
 # 四、停止
-```shell
+``` shell
 # Linux/macOS
 ./bin/zkServer.sh stop
 ```
 
-```powershell
+``` powershell
 # Windows
 关闭运行的终端
 ```

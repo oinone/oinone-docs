@@ -11,7 +11,7 @@ In practical projects, there may be scenarios where manual sequence acquisition 
 
 ## (I) Example 1 of Acquisition Method
 
-```java
+``` java
 /**
  * Manual code generation required in specific scenarios
  */
@@ -32,7 +32,7 @@ When acquiring more complex sequence rules manually, define the sequence rules f
 
 1. Initialize SequenceConfig during system startup
 
-```java
+``` java
 public class SeqConstants {
     /**
      * Constant for order code sequence
@@ -47,7 +47,7 @@ public class SeqConstants {
 }
 ```
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.init;
 
 import org.springframework.stereotype.Component;
@@ -107,7 +107,7 @@ public class DemoMetadataEditor implements MetaDataEditor {
 
 2. Obtain sequence values in business code
 
-```java
+``` java
 public class SequenceManager {
 
     public static String getSaleOrderCode(String prefix) {
@@ -125,7 +125,7 @@ public class SequenceManager {
 }
 ```
 
-```java
+``` java
 public SampleSaleOrder create(SampleSaleOrder data) {
     data.construct();
     data.setCode(SequenceManager.getSaleOrderCode(data.getOrderType().getValue()));

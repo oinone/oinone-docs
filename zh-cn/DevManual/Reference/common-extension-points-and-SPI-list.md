@@ -39,7 +39,7 @@ prev:
 
 ### 4、调用方式
 
-```java
+``` java
 // 指定扩展名调用
 DemoApi ext = ExtensionServiceLoader.getExtension(DemoApi.class, "ext1");
 

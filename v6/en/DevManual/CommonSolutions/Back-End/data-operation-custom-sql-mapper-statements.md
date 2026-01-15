@@ -17,7 +17,7 @@ In such cases, we can leverage native MyBatis/MyBatis-Plus and use custom Mapper
 # II. Writing the Required Mapper
 > There are no restrictions on how to write SQL Mappers. The usage is the same as native MyBatis/MyBatis-Plus. Mappers (i.e., DAOs) and SQL can be written in a single file or separated into two files.
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -36,7 +36,7 @@ public interface DemoItemMapper {
 
 # III. Invoking the Mapper
 ## (Ⅰ) Example Code for Invoking the Mapper
-```java
+``` java
 package pro.shushi.pamirs.demo.core.map;
 
 import com.google.api.client.util.Lists;
@@ -69,7 +69,7 @@ public class DemoItemDAO {
 
 ## (Ⅱ) Notes on Invoking the Mapper
 + The startup class needs to configure the Mapper scan package.
-```java
+``` java
 @MapperScan(value = "pro.shushi", annotationClass = Mapper.class)
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, FreeMarkerAutoConfiguration.class})
 public class DemoApplication {

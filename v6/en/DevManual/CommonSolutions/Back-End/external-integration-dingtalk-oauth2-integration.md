@@ -41,7 +41,7 @@ Tutorial on using server-side API identity authentication (single sign-on) to im
 - `AgentId` (Micro Application ID)
 
 ## \(Ⅲ\) Introducing DingTalk SDK Dependencies
-```xml
+``` xml
 <dependency>
     <groupId>com.aliyun</groupId>
     <artifactId>dingtalk</artifactId>
@@ -53,7 +53,7 @@ Tutorial on using server-side API identity authentication (single sign-on) to im
 ## \(Ⅰ\) Adding DingTalk Configuration to the Project
 1. Project application.yml configuration (example used in this article)
 
-```yaml
+``` yaml
 pamirs:
   # DingTalk Auth docking (DingTalk unified identity authentication)
   dingtalk:
@@ -67,7 +67,7 @@ pamirs:
 
 2. Backend configuration method
 
-```java
+``` java
 /**
  * DingTalk docking configuration (configurable on the page); can also be changed to yml file configuration form
  */
@@ -111,7 +111,7 @@ public class SimpleDingTalkConfig extends IdModel implements SingletonModel<Simp
 + Attach a menu to the configuration model SimpleDingTalkConfig;
 + Code reference for obtaining attribute values from the configuration SimpleDingTalkConfig class
 
-```java
+``` java
 SimpleDingTalkConfig dingTalkConfig = new SimpleDingTalkConfig().singletonModel();
 ……
 dingTalkConfig.getAppUrl();
@@ -126,7 +126,7 @@ DingTalk client classes and functions. The following two clients are official en
 | `com.aliyun.dingtalkcontact_1_0.Client` | For calling contact interfaces to obtain detailed user information |
 
 
-```java
+``` java
 package pro.shushi.pamirs.thirdparty.core.dingtalk.helper;
 
 import com.aliyun.teaopenapi.models.Config;
@@ -191,7 +191,7 @@ public class DingTalkHelper {
 ## \(Ⅲ\) Building the Authorization Link (Jumping to DingTalk)
 The oauth method is responsible for generating the DingTalk OAuth authorization link and redirecting to it.
 
-```java
+``` java
 @RequestMapping(value = "/ddAuth/oauth", method = RequestMethod.GET)
 public void oauth(HttpServletResponse response) throws IOException {
     String url = "https://login.dingtalk.com/oauth2/auth?" +
@@ -212,7 +212,7 @@ public void oauth(HttpServletResponse response) throws IOException {
 ## \(Ⅳ\) Handling DingTalk Callback, Obtaining authCode and Exchanging for accessToken
 + The `handleCallback` method processes the DingTalk callback request, obtains the `authCode` from the request parameters, then exchanges the `authCode` for an `accessToken`, and calls the `getUserinfo` method to further obtain detailed user information.
 
-```java
+``` java
 @RequestMapping(value = "/ddAuth/oauth2url", method = RequestMethod.GET)
 public void handleCallback(@RequestParam(value = "authCode") String authCode, HttpServletResponse response) throws Exception {
     // Get AccessToken
@@ -234,7 +234,7 @@ public void handleCallback(@RequestParam(value = "authCode") String authCode, Ht
 ```
 
 ## \(Ⅴ\) Using accessToken to Get User Personal Information
-```java
+``` java
 /**
  * Use accessToken to get user personal information
  */
@@ -253,7 +253,7 @@ public void getUserinfo(String accessToken) throws Exception {
 ## \(Ⅵ\) Processing User Information and Setting Login Status (Session + Cookie)
 Process user information, including creating or updating local user records, initializing the password table, setting third-party login records, and setting the user's login status (Session and Cookie).
 
-```java
+``` java
 /**
  * Step 4: Process user information and set login status (Session + Cookie)
  */
@@ -340,7 +340,7 @@ By default, users who first enter the system through third-party single sign-on 
 ## \(Ⅱ\) Granting Permissions When Creating Third-party Users
 In the sixth step of the docking process: during the user information processing stage, that is, when creating platform users (such as `PamirsUser`) based on third-party user information, you can call system interfaces to directly assign the above-defined roles to the user, achieving static binding of permissions.
 
-```java
+``` java
 private void bindUserRole(PamirsUser pamirsUser) {
     AuthRole authRole = new AuthRole().setCode(THIRD_PARTY_USER_ROLE_CODE).queryOne();
     if (authRole != null) {
@@ -355,7 +355,7 @@ If role assignment is not completed during user creation, you can also use the r
 
 This article's example uses this solution. For the complete implementation, please refer to the attached code file: `ThirdPartyRoleCustom.java`
 
-```java
+``` java
 @Override
 public Set<Long> get() {
     Set<Long> roleIds = super.get();

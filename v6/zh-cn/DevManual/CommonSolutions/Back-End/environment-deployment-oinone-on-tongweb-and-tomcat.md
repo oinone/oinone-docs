@@ -29,7 +29,7 @@ order: 59
 ## （二）解法办法
 通过 yml 文件的配置，可以配置等同于`-Plifecycle=INSTALL`的参数
 
-```yaml
+``` yaml
 pamirs:
   boot:
     init: true

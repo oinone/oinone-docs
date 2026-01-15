@@ -17,7 +17,7 @@ order: 74
 # 二、项目中增加依赖
 项目主 pom 引入依赖。
 
-```xml
+``` xml
 <dependency>
     <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-registry-nacos</artifactId>
@@ -28,7 +28,7 @@ order: 74
 
 项目的 boot 工程的 pom 引入依赖
 
-```xml
+``` xml
 <dependency>
     <groupId>org.apache.dubbo</groupId>
     <artifactId>dubbo-registry-nacos</artifactId>
@@ -43,7 +43,7 @@ order: 74
 
 bootstrap.yml 文件的配置，或者 application.yml 文件中修改 dubbo 的配置
 
-```yaml
+``` yaml
 dubbo:
   application:
     name: pamirs-demo
@@ -82,7 +82,7 @@ module：按模块维度发布远程服务
 namespace：按 Fun 的 namespace 维度发布远程服务
 默认按 module 维度发布服务
 
-```yaml
+``` yaml
 pamirs:
   distribution:
     service:
@@ -91,7 +91,7 @@ pamirs:
 ```
 
 ## （二）关闭Dubbo服务注册元数据上报日志
-```yaml
+``` yaml
 logging:
  level:
    root: info
@@ -123,7 +123,7 @@ dubbo 集成 nacos 注册中心，会出现多余的配置，详细参考：
 
 :::
 
-```yaml
+``` yaml
 dubbo:
  application:
    name: pamirs-demo

@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Environment Preparation
-  link: /en/InstallOrUpgrade/Dev-ENV/README.md
+  link: /v6/en/InstallOrUpgrade/Dev-ENV/README.md
 ---
 
 # Ⅰ. Download the Installer
@@ -56,7 +56,7 @@ When configuring environment variables, make sure to update the profile path acc
 
 Set environment variables:
 
-```shell
+``` shell
 cat >> REPLACE_WITH_SHELL_PROFILE_FILE << EOF
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home"
 export PATH=\$JAVA_HOME/bin:\$PATH
@@ -65,22 +65,22 @@ EOF
 
 ### 2. Verify Installation
 
-```shell
+``` shell
 # Verify Java installation
 /usr/libexec/java_home -V
 ```
 
-```shell
+``` shell
 # Sample verification output
 1.8.0_451 (arm64) "Oracle Corporation" - "Java SE 8" /Library/Java/JavaVirtualMachines/jdk-1.8.jdk/Contents/Home
 ```
 
-```shell
+``` shell
 # Verify environment variable setup
 java -version
 ```
 
-```shell
+``` shell
 # Sample environment variable output
 % java -version
 java version "1.8.0_451"
@@ -106,7 +106,7 @@ Press `Win + R` to open the dialog shown below:
 
 Then enter:
 
-```shell
+``` shell
 # Open environment variables settings window
 rundll32.exe sysdm.cpl,EditEnvironmentVariables
 ```
@@ -127,12 +127,12 @@ Append the following to `Path`: `;%JAVA_HOME%\bin`
 
 Open CMD, PowerShell, or Terminal:
 
-```powershell
+``` powershell
 # Set JAVA_HOME
 setx "JAVA_HOME" "C:\Program Files\Java\jdk-1.8"
 ```
 
-```powershell
+``` powershell
 # Append to PATH
 setx "Path" "%Path%;%JAVA_HOME%\bin"
 ```
@@ -141,12 +141,12 @@ setx "Path" "%Path%;%JAVA_HOME%\bin"
 
 Open the terminal and run:
 
-```shell
+``` shell
 # Verify environment variable setup
 java -version
 ```
 
-```shell
+``` shell
 # Sample output
 java version "1.8.0_441"
 Java(TM) SE Runtime Environment (build 1.8.0_441-b07)
@@ -161,21 +161,21 @@ Oracle provides `.rpm` and `.tar.gz` formats for Linux.
 
 ### 1. Install via RPM (Red Hat Package Manager)
 
-```shell
+``` shell
 # RPM package installation
 rpm -ivh jdk-8u441-linux-aarch64.rpm  # Actual filename may vary
 ```
 
 ### 2. Install via tar.gz
 
-```shell
+``` shell
 # Extract tar.gz to target directory
 tar zxvf jdk-8u441-linux-aarch64.tar.gz -C "target-install-dir"
 ```
 
 ### 3. Configure Environment Variables
 
-```shell
+``` shell
 # Set JAVA_HOME and update PATH
 cat >> REPLACE_WITH_SHELL_PROFILE_FILE << EOF
 export JAVA_HOME="ACTUAL_JDK_INSTALL_DIR"
@@ -193,12 +193,12 @@ After modifying the environment variable configuration, you need to open a new t
 
 Open the command line and enter the following code
 
-```shell
+``` shell
 # Check Java version
 java -version
 ```
 
-```shell
+``` shell
 # Sample output
 java version "1.8.0_441"
 Java(TM) SE Runtime Environment (build 1.8.0_441-b07)

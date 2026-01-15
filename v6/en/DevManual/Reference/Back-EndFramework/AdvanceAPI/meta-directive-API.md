@@ -39,7 +39,7 @@ Request context directives are set through the non-persistent `META_BIT` attribu
 
 ## (Ⅰ) Normal Mode
 
-```java
+``` java
 PamirsSession.directive().disableOptimisticLocker();
 try {
     // Update logic
@@ -50,6 +50,6 @@ try {
 
 ## (Ⅱ) Batch Setting Mode
 
-```java
+``` java
 Models.directive().run(() -> { /* Add logic here */}, SystemDirectiveEnum.AUTHENTICATE);
 ```

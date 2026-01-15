@@ -16,7 +16,7 @@ order: 73
 ## （一）分布式包依赖
 + 父pom的依赖管理中先加入 pamirs-distribution 的依赖
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs</groupId>
     <artifactId>pamirs-distribution</artifactId>
@@ -28,7 +28,7 @@ order: 73
 
 + 启动的 boot 工程中增加 pamirs-distribution 相关包
 
-```xml
+``` xml
 <!-- 分布式服务发布 -->
 <dependency>
     <groupId>pro.shushi.pamirs.distribution</groupId>
@@ -47,7 +47,7 @@ order: 73
 
 + 启动工程的 Application 中增加类注解 @EnableDubbo
 
-```java
+``` java
 @EnableDubbo
 public class XXXStdApplication {
 
@@ -65,7 +65,7 @@ public class XXXStdApplication {
 
  以下只是一个示例（ zk 为注册中心），注册中心支持 zk 和 Nacos；
 
-```yaml
+``` yaml
 spring:
   profiles:
     active: dev
@@ -125,7 +125,7 @@ dubbo:
 注：更多 YAML 配置请前往 [Module API](/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
 
 ## （三）模块启动的最⼩集
-```yaml
+``` yaml
 pamirs:
   boot:
    init: true
@@ -142,7 +142,7 @@ pamirs:
 + **服务调用方（Client 端）在项目 pom 配置方面**：服务调用方（即 Client 端）的项目 pom 文件中，仅应依赖服务提供方的 API，也就是仅依赖服务提供方所定义的模型以及 API 接口。通过这种方式，Client 端能够明确界定依赖范围，专注于与服务提供方进行交互所需的核心接口部分，减少不必要的依赖带来的潜在风险，增强项目的可维护性与可扩展性。
 + **服务调用方（Client 端）在项目模块定义方面**：服务调用方（即 Client 端）在进行项目模块定义（即模型 Module 定义）时，需在 `dependencies` 配置中增添服务提供方的 Module。例如，如同下面示例代码中的 `FileModule`。这一操作能够使 Client 端在自身模块体系内，合理整合服务提供方相关功能模块，确保项目功能的完整性与连贯性，以实现与服务提供方的有效对接与协同工作。
 
-```java
+``` java
 @Module(
     name = DemoModule.MODULE_NAME,
     displayName = "oinoneDemo工程",
@@ -155,7 +155,7 @@ pamirs:
 
 + **服务调用方（Client 端）在启动类方面**，启动类的`ComponentScan`需要配置服务提供方API定义所在的包. 如下面示例中的：pro.shushi.pamirs.second
 
-```java
+``` java
 @ComponentScan(
     basePackages = {"pro.shushi.pamirs.meta",
                     "pro.shushi.pamirs.framework",
@@ -185,7 +185,7 @@ public class DemoApplication {
 ## **（六）Dubbo日志相关**
 关闭 Dubbo 元数据上报
 
-```yaml
+``` yaml
 dubbo:
   metadata-report:
     disabled: true
@@ -193,7 +193,7 @@ dubbo:
 
 关闭元数据上报，还有错误日志打印出来的话，可以在 log 中配置
 
-```yaml
+``` yaml
 logging:
   level:
     root: info

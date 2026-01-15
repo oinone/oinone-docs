@@ -16,21 +16,21 @@ After installing Docker on different operating systems, the container runtime en
 + Edit the `/etc/systemd/system/docker.service` file. In some systems, the file is located at `/lib/systemd/system/docker.service`.
 
 View the location of Docker's systemd (docker.service) configuration:
-```shell
+``` shell
 systemctl status docker
 ```
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/2025032602015086-1024x237-20250530144825593.jpg)
 
 + Modify the following parameters:
-```xml
+``` xml
 LimitNOFILE=65535
 LimitNPROC=65535
 LimitCORE=65535
 ```
 
 + Execute the following scripts:
-```shell
+``` shell
 systemctl daemon-reload
 systemctl restart docker
 ```
@@ -46,17 +46,17 @@ How to handle the exception `library initialization failed - unable to allocate 
 View the location of Docker's systemd (docker.service) configuration using the method in [Issue 1].
 
 Add the default ulimit configuration for container creation after the ExecStart command, as follows, setting the container's ulimit to 65535:65535 when starting:
-```plain
+``` plain
 --default-ulimit nofile=65535:65535
 ```
 
 After configuration:
-```plain
+``` plain
 ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --default-ulimit nofile=65535:65535
 ```
 
 Execute the following scripts:
-```shell
+``` shell
 systemctl daemon-reload
 systemctl restart docker
 ```
@@ -66,7 +66,7 @@ Reference: [https://blog.csdn.net/weixin_42241322/article/details/137122868](htt
 # III. Error Pulling Designer Image:
 Error message: Failed to connect to the image harbor.oinone.top.
 
-```plain
+``` plain
 docker login --username=schhsw_oinone harbor.oinone.top
 
 i Info → A Personal Access Token (PAT) can be used instead.

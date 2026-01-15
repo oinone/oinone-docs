@@ -16,7 +16,7 @@ order: 46
 1. 创建授权节点
    实现权限节点扩展接口：`pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
 
-```java
+``` java
 @Component
 @Order(88)
 public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
@@ -60,7 +60,7 @@ public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {
    "permissionExtension"是自定义的`viewAction`的`name`，用于下面拼`path`路径鉴权。
    因为这里只需要在系统权限那边利用这个`viewAction`创建出授权节点。所以”权限扩展form“可以随意定义名字，系统会拿默认视图。
 
-```java
+``` java
 @Model.model(AuthTest.MODEL_MODEL)
 @Component
 @UxRouteButton(
@@ -79,7 +79,7 @@ public class AuthTestAction {
 2. 创建授权节点
    实现权限节点扩展接口：`pro.shushi.pamirs.auth.api.extend.load.PermissionNodeLoadExtendApi#buildRootPermissions`
 
-```java
+``` java
 @Component
 @Order(88)
 public class MyTestNodeLoadExtend implements PermissionNodeLoadExtendApi {

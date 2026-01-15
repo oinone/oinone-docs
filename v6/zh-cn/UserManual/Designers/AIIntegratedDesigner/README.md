@@ -9,10 +9,10 @@ dir:
    order: 7
 prev:
   text: 微流设计
-  link: /zh-cn/UserManual/Designers/MicroflowDesigner/Microfluidic Design.md
+  link: /v6/zh-cn/UserManual/Designers/MicroflowDesigner/Microfluidic Design.md
 next:
   text: 连接器
-  link: /zh-cn/UserManual/Designers/AIIntegratedDesigner/connector.md
+  link: /v6/zh-cn/UserManual/Designers/AIIntegratedDesigner/connector.md
 ---
 
 &emsp;&emsp;Oinone 提供一站式AI大模型集成设计平台，全面覆盖语音处理、图像生成、文本创作、视频合成等多维度 AI 技术领域。支持 OpenAI、DeepSeek、通义千问、Stability 等国内外头部大模型的快速接入，同时支持各类开源模型的灵活部署，为企业构建 多技术融合的智能技术底座。

@@ -39,13 +39,13 @@ One project can have one type, but the same type can be assigned to multiple pro
 
 A many-to-one relationship is a simple link to another object. For example, to define a link to `user.PamirsUser` in our test model, we can write it in two ways:
 
-```java
+``` java
 @Field.many2one
 @Field(displayName = "用户")
 private PamirsUser user;
 ```
 
-```java
+``` java
 @Field.many2one
 @Field(displayName = "用户")
 @Field.Relation(relationFields = {"userId"},referenceFields = {"id"})
@@ -58,7 +58,7 @@ private Long userId;
 
 Without configuring `@Field.Relation`, a many-to-one (many2one) field will default to creating a field ending with `Id` (e.g., `userId`) in the current model, which is used to associate with the `id` of the target model. You can then easily access data of the associated object (user) as follows:
 
-```java
+``` java
 PamirsUser user =testModel.fieldQuery(TestModel::getUser).getUser();
 user.getName();
 ```
@@ -67,7 +67,7 @@ user.getName();
 
 :::
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-user-api</artifactId>
@@ -82,7 +82,7 @@ user.getName();
 
 :::
 
-```plain
+``` plain
 ……
 @Module(
     name = ExpensesModule.MODULE_NAME,
@@ -151,7 +151,7 @@ The `expenses_project_info_rel_partner` table should be created and several fiel
 
 :::
 
-```java
+``` java
 mysql> desc expenses_project_info_rel_partner;
 +-----------------+----------+------+-----+-------------------+-----------------------------------------------+
 | Field           | Type     | Null | Key | Default           | Extra                                         |
@@ -181,7 +181,7 @@ A many-to-many relationship is a two-way multiple relationship: any record on on
 
 ## (Ⅰ) Intermediate table using system default generation
 
-```java
+``` java
 @Field.many2many
 @Field(displayName = "合作伙伴列表")
 private List<PamirsPartner> partners;
@@ -195,7 +195,7 @@ This intermediate table will contain two fields, `pamirs_partner_id` and `test_m
 
 This means multiple partners can be added to our test model. It behaves like a list of records, meaning you must use a loop when accessing data:
 
-```java
+``` java
 testModel.fieldQuery(TestModel::getPartners);
 for(PamirsPartner partner: testModel.getPartners()){
     partner.getName();
@@ -204,7 +204,7 @@ for(PamirsPartner partner: testModel.getPartners()){
 
 ## (Ⅱ) Intermediate table using a specific model
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -225,7 +225,7 @@ public class TestModelRelPartner extends BaseRelation {
 }
 ```
 
-```java
+``` java
 @Field(displayName = "合作伙伴列表")
 @Field.many2many(relationFields = {"testModelId"},referenceFields = {"partnerId"},throughClass =TestModelRelPartner.class)
 private List<PamirsPartner> partners;
@@ -280,7 +280,7 @@ One expense bill corresponds to one project, but the same project can have multi
 
 A one-to-many relationship is the reverse of a many-to-one relationship. For example, we defined a link to the `user.PamirsUser` model through the `userId` field in the test model. We can define the reverse relationship, i.e., the list of test models associated with our user:
 
-```java
+``` java
 @Field(displayName = "测试模型列表")
 @Field.one2many
 @Field.Relation(relationFields = {"id"},referenceFields = {"userId"})
@@ -296,7 +296,7 @@ Because a one-to-many (one2many) relationship is a virtual relationship, it esse
 
 According to convention, one-to-many (one2many) fields are typically of the collection type `List`. They behave like a list of records, meaning you must use a loop when accessing data:
 
-```java
+``` java
 user.fieldQuery(PamirsUser::getTestModels);
 for(TestModel testModel: user.getTestModels()){
     testModel.getName();

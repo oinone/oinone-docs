@@ -23,7 +23,7 @@ In this way, the "MEMBERCARD" field still uses an integer type. When a merchant 
 
 When writing SQL statements, we can simply query the desired data through "bitwise" AND operations. This approach not only saves storage space but also simplifies query operations.
 
-```sql
+``` sql
 // Query merchants supporting gold card discounts:
 select * from factory where MEMBERCARD & b'0001';
 // Or:
@@ -39,7 +39,7 @@ select * from factory where MEMBERCARD & 2;
 You can set the bit attribute of the data dictionary through the @Dict annotation or implement the BitEnum interface to mark that the enumeration value is a power of 2. The biggest difference of binary enumerations lies in the different serialization and deserialization methods of values.
 
 ## （Ⅰ）Example of Bitwise Operation Enumeration Definition
-```java
+``` java
 import pro.shushi.pamirs.meta.annotation.Dict;
 import pro.shushi.pamirs.meta.common.enmu.BitEnum;
 
@@ -82,7 +82,7 @@ public enum ClientTypeEnum implements BitEnum {
 ## （Ⅱ）Example of Usage Methods
 + API: addTo and removeFrom
 
-```java
+``` java
 List<ClientTypeEnum> clientTypes = module.getClientTypes();
 // addTo
 ClientTypeEnum.PC.addTo(clientTypes);
@@ -92,6 +92,6 @@ ClientTypeEnum.PC.removeFrom(clientTypes);
 
 + Usage in Query Conditions
 
-```java
+``` java
 List<Menu> moduleMenus = new Menu().queryListByWrapper(menuPage, LoaderUtils.authQuery(wrapper).eq(Menu::getClientTypes, ClientTypeEnum.PC));
 ```

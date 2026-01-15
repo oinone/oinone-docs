@@ -18,7 +18,7 @@ These linkage mechanisms achieve dynamic response and consistency of data throug
 ## （Ⅰ）Configuring domain Expressions
 In the following example, the data in the department `department` drop-down list during page interaction is the list of departments under the selected company.
 
-```java
+``` java
 @Field.many2one
 @Field.Relation(relationFields = {"corporationCode"}, referenceFields = {"code"})
 @Field(displayName = "Company", required = true)
@@ -50,7 +50,7 @@ Example 1: Total cost = stock quantity * unit price;
 
 The total cost `totalCost` is configured with the compute attribute, `value = MULTIPLY(activeRecord.stock, activeRecord.unitPrice)`
 
-```java
+``` java
 @Field.Integer
 @Field(displayName = "Purchase Quantity", required = true)
 private Integer stock;
@@ -71,7 +71,7 @@ Example 2: Unit price = total cost / stock quantity; the unit price `unitPrice` 
 
 `value = "IF((activeRecord.stock=='0' || IS_NULL(activeRecord.stock)), 0, DIVIDE(activeRecord.totalCost, activeRecord.stock))", and the calculation logic considers the special case where stock is 0.
 
-```java
+``` java
 @Field.Integer
 @Field(displayName = "Stock Quantity", required = true)
 private Integer stock;
@@ -99,7 +99,7 @@ It can be visually configured in the UI designer, UI Designer Form -> Select Fie
 ## （Ⅲ）Calling Back-end Linkage Functions
 In the following example, the birthday and gender are calculated based on the ID card number `idCard`; the linkage function `constructIdCardChange` is configured for the ID card number `idCard` field, and data linkage is achieved by calling the back-end function.
 
-```java
+``` java
 @Model.model(Employee.MODEL_MODEL)
 @Model(displayName = "Standard Product - Employee", labelFields = "name")
 @Model.Advanced(index = {"code", "departmentCode"})
@@ -169,7 +169,7 @@ public class Employee extends AbstractCopyModel {
 }
 ```
 
-```java
+``` java
 @Slf4j
 @Component
 @Model.model(Employee.MODEL_MODEL)

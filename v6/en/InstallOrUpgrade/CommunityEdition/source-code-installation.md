@@ -6,10 +6,10 @@ category:
 order: 3
 prev:
   text: Maven Installation and Precautions
-  link: /en/InstallOrUpgrade/Dev-ENV/Maven-setup.md
+  link: /v6/en/InstallOrUpgrade/Dev-ENV/Maven-setup.md
 next:
   text: Quick Experience:Installation in docker-full Mode
-  link: /en/InstallOrUpgrade/EnterpriseEdition/docker-full-installation.md
+  link: /v6/en/InstallOrUpgrade/EnterpriseEdition/docker-full-installation.md
 ---
 
 # Ⅰ. Overview

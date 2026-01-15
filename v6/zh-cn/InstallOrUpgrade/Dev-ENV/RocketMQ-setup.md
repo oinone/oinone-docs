@@ -23,12 +23,12 @@ order: 5
 ## （一）解压
 可视化工具或者使用如下命令解压
 
-```shell
+``` shell
 # Linux/macOS
 unzip rocketmq-all-4.5.2-bin-release.zip -d <RocketMQ安装目录>
 ```
 
-```shell
+``` shell
 # Windows
 Expand-Archive .\rocketmq-all-4.5.2-bin-release.zip <RocketMQ安装目录>
 ```
@@ -41,12 +41,12 @@ Expand-Archive .\rocketmq-all-4.5.2-bin-release.zip <RocketMQ安装目录>
 
 建立软链(可选)
 
-```shell
+``` shell
 # Linux/macOS
 ln -s rocketmq-all-4.5.2-bin-release rocketmq
 ```
 
-```powershell
+``` powershell
 # Windows
 New-Item -Path .\rocketmq\ -ItemType SymbolicLink -Target .\rocketmq-all-4.5.2-bin-release
 ```
@@ -66,7 +66,7 @@ RocketMQ 默认的 JVM 运行时内存设置对本地开发环境来说过大，
 
 修改NameServer运行内存
 
-```shell
+``` shell
 # Linux/macOS
 awk '
 {
@@ -84,14 +84,14 @@ awk '
 
 ```
 
-```powershell
+``` powershell
 # Windows
 (Get-Content .\bin\runserver.cmd) | ForEach-Object { $_ -replace '-Xms2g -Xmx2g -Xmn1g', '-Xms1g -Xmx1g -Xmn1g' } | Set-Content .\bin\runserver.cmd
 ```
 
 修改Broker运行内存
 
-```shell
+``` shell
 # Linux/macOS
 awk '
 {
@@ -111,14 +111,14 @@ awk '
 
 ```
 
-```powershell
+``` powershell
 # Windows
 (Get-Content .\bin\runbroker.cmd) | ForEach-Object { $_ -replace '-Xms2g -Xmx2g -Xmn1g', '-Xms1g -Xmx1g -Xmn1g' } | Set-Content .\bin\runbroker.cmd
 ```
 
 修改Broker配置
 
-```shell
+``` shell
 # Linux/macOS
 cat > ./conf/broker.conf << EOF
 brokerClusterName = DefaultCluster
@@ -133,7 +133,7 @@ brokerIP1 = 127.0.0.1
 EOF
 ```
 
-```shell
+``` shell
 # Windows
 Set-Content -Path .\conf\broker.conf -Value @(
     "brokerClusterName = DefaultCluster"
@@ -151,12 +151,12 @@ Set-Content -Path .\conf\broker.conf -Value @(
 # 三、运行
 Linux/macOS
 
-```shell
+``` shell
 # NameServer
 nohup ./bin/mqnamesrv start >> ./namesrv.nohup 2>&1 &
 ```
 
-```shell
+``` shell
 # Broker
 nohup ./bin/mqbroker -c ./conf/broker.conf >> ./broker.nohup 2>&1 &
 ```
@@ -165,13 +165,13 @@ nohup ./bin/mqbroker -c ./conf/broker.conf >> ./broker.nohup 2>&1 &
 
 Windows
 
-```powershell
+``` powershell
 # NameServer
 $env:ROCKETMQ_HOME = <RocketMQ安装目录>
 Start-Process -FilePath ".\bin\mqnamesrv.cmd" -ArgumentList "start" -WindowStyle Hidden
 ```
 
-```powershell
+``` powershell
 # Broker
 $env:ROCKETMQ_HOME = <RocketMQ安装目录>
 Start-Process -FilePath ".\bin\mqbroker.cmd" -ArgumentList "-c .\conf\broker.conf" -WindowStyle Hidden
@@ -180,7 +180,7 @@ Start-Process -FilePath ".\bin\mqbroker.cmd" -ArgumentList "-c .\conf\broker.con
 # 四、验证
 命令行输入 `jps -l`
 
-```powershell
+``` powershell
 59205 org.apache.rocketmq.namesrv.NamesrvStartup
 59306 org.apache.rocketmq.broker.BrokerStartup
 ```
@@ -188,13 +188,13 @@ Start-Process -FilePath ".\bin\mqbroker.cmd" -ArgumentList "-c .\conf\broker.con
 命令行输出类似信息
 
 # 五、停止
-```shell
+``` shell
 # Linux/macOS
 ./bin/mqshutdown broker
 ./bin/mqshutdown namesrv
 ```
 
-```shell
+``` shell
 # Windows
 .\bin\mqshutdown.cmd broker
 .\bin\mqshutdown.cmd namesrv

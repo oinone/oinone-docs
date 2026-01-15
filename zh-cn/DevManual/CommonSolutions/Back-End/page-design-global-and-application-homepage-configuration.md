@@ -30,7 +30,7 @@ order: 69
 # 二、配置`全局首页`
 使用应用优先级设置全局首页
 
-```java
+``` java
 /**
  * 演示模块
  *
@@ -72,7 +72,7 @@ public class DemoModule implements PamirsModule {
 # 三、配置`应用首页`
 ## （一）使用`@UxHomepage`配置应用首页
 ### 1、指定模型的默认表格视图作为应用首页
-```java
+``` java
 @UxHomepage(@UxRoute(DemoDepartment.MODEL_MODEL))
 ```
 
@@ -84,7 +84,7 @@ public class DemoModule implements PamirsModule {
 ### 2、指定模型对应的菜单作为应用首页
 在当前应用下有如下菜单定义：
 
-```java
+``` java
 /**
  * 演示模块菜单
  *
@@ -111,7 +111,7 @@ public class DemoMenus {
 
 因此，我们可以使用如下方式指定应用首页为`演示部门`这个菜单：
 
-```java
+``` java
 @UxHomepage(actionName = "DemoMenus_DepartmentManagement", value = @UxRoute(DemoDepartment.MODEL_MODEL))
 ```
 

@@ -10,7 +10,7 @@ order: 23
 在有些场景，需要获取 Excel 导入的整体数据，进行批量的操作或者校验，可以通过实现导入扩展点的方式实现，入参 data 是导入 Excel 的数据列表；业务可以根据实际情况进行数据校验
 
 ## （一）Excel模板定义，需要设置`setEachImport(false)`
-```java
+``` java
 @Component
 public class PetTalentExportTemplate implements ExcelTemplateInit {
     public static final String TEMPLATE_NAME = "宠物达人导出";
@@ -32,14 +32,14 @@ public class PetTalentExportTemplate implements ExcelTemplateInit {
 ```
 
 ## （二）导入扩展点API定义
-```java
+``` java
 pro.shushi.pamirs.file.api.extpoint.ExcelImportDataExtPoint#importData
 ```
 
 ## （三）示例代码参考：
 `pro.shushi.pamirs.translate.extpoint.ResourceTranslationImportExtPoint#importData`
 
-```java
+``` java
 @Slf4j
 @Component
 @Ext(ExcelImportTask.class)
@@ -63,7 +63,7 @@ public class ResourceTranslationImportExtPoint extends AbstractExcelImportDataEx
 在模板中定义中增加事务的定义，并设置异常后回滚。参加示例代码：
 
 ## （一）excel模板定义
-```java
+``` java
 @Component
 public class DemoItemImportTemplate implements ExcelTemplateInit {
 
@@ -96,7 +96,7 @@ public class DemoItemImportTemplate implements ExcelTemplateInit {
 ```
 
 ## （二）导入逻辑处理
-```java
+``` java
 @Slf4j
 @Component
 @Ext(ExcelImportTask.class)

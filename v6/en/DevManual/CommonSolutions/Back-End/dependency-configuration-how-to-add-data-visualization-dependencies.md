@@ -6,14 +6,14 @@ category:
 order: 1
 prev:
   text: Routing Extension:Add New Routes, Such as Overriding the Default Login Page
-  link: /en/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
+  link: /v6/en/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
 ---
 
 # Ⅰ、Frontend
 1. Add the dependency `@oinone/kunlun-data-designer-open-pc` in `package.json` with the same version as `@oinone/kunlun-dependencies`.
 2. Import the dependency in `src/main.ts`:
 
-```typescript
+``` typescript
 import 'reflect-metadata';
 import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
@@ -28,7 +28,7 @@ VueOioProvider({
 
 # Ⅱ、Backend
 ## （Ⅰ）Add Dependencies to Parent pom
-```xml
+``` xml
 <!-- Platform Basics -->
 <oinone.version>5.3.5</oinone.version>
 
@@ -46,7 +46,7 @@ VueOioProvider({
 ```
 
 ## （Ⅱ）Add Dependencies to pom of Boot Startup Project
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.data.visualization</groupId>
     <artifactId>pamirs-data-visualization-core</artifactId>
@@ -54,7 +54,7 @@ VueOioProvider({
 ```
 
 ## （Ⅲ）Add Dependencies to application.yml Configuration
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:

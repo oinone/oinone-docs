@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 界面设计器(UI Designer)
-  link: /zh-cn/UserManual/Designers/UIDesigner/README.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/README.md
 ---
 页面是数据增删改查的操作入口，数据信息的填写与查看可以通过页面来呈现与交互。利用界面设计器，可以便捷地管理页面，包括进行页面的增加、删除、修改和查询操作，同时还可对页面进行设计布局。通过配置页面上的各组件，即可实现数据的录入、查看、筛选等一系列功能。
 

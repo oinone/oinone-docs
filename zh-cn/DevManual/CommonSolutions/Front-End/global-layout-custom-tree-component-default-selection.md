@@ -19,8 +19,8 @@ prev:
 完成视图配置后，我们能够对左侧的树组件进行重写操作。在 Oinone 平台中，默认的树组件为 `TableSearchTreeWidget`，通过运用自定义手段，我们能够实现更为高级的功能特性，以契合特定的业务场景需求。
 
 ## （二）重写 `TableSearchTreeWidget`
-```typescript
-import { BaseElementWidget, SPI, TableSearchTreeWidget, ViewType } from '@kunlun/dependencies';
+``` typescript
+import { BaseElementWidget, SPI, TableSearchTreeWidget, ViewType } from '@oinone/kunlun-dependencies';
 import CustomTableSearchTree from './CustomTableSearchTree.vue';
 
 @SPI.ClassFactory(
@@ -42,7 +42,7 @@ import CustomTableSearchTree from './CustomTableSearchTree.vue';
 ## （三）定义 Vue 树组件
 接下来，我们来实现 `CustomTableSearchTree.vue` 组件。这个组件将处理树的数据加载、节点选中等逻辑。你可以根据项目的需要修改其中的交互逻辑或 UI 设计。
 
-```vue
+``` vue
 <template>
   <a-tree :load-data="onLoadData" :tree-data="treeData" @select="onSelected" />
 </template>
@@ -101,7 +101,7 @@ import CustomTableSearchTree from './CustomTableSearchTree.vue';
 # 二、默认选择第一条数据
 有时在使用树结构时，我们希望页面加载后默认选中第一条数据。为此，我们可以监听 `treeData` 的变化，并在数据加载完成时，自动触发选中第一条记录的操作。
 
-```javascript
+``` javascript
 const stop = watch(
   () => treeData.value.length,
   async (len) => {
@@ -127,7 +127,7 @@ const stop = watch(
 
 操作步骤为，新建一个名为 `TreeActionWidget.ts` 的 `action` 文件，以此为基础展开后续的功能开发与逻辑编写。
 
-```typescript
+``` typescript
 
 import { ActionType, ActionWidget, SPI, ViewActionTarget, RouterViewActionWidget } from '@oinone/kunlun-dependencies';
 import { OioNotification } from '@oinone/kunlun-vue-ui-antd';

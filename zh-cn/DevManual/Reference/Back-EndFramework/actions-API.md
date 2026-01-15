@@ -24,7 +24,7 @@ order: 4
 
 通过`@Action`注解可快速创建服务器动作，以下是配置示例：
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 public class Demo {
     @Action(
@@ -60,7 +60,7 @@ public class Demo {
 
 在 Oinone 中，数据校验不仅支持在模型或字段层面设置，服务器动作（ServerAction）同样可通过`@Validation`注解添加校验约束。例如：
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 public class Demo {
     @Validation(ruleWithTips = {
@@ -120,7 +120,7 @@ public class Demo {
 
 以下是使用 `UxRouteButton` 注解定义窗口动作的详细示例：
 
-```java
+``` java
 @UxRouteButton(
     value = @UxRoute(
         model = TestButtonModel.MODEL_MODEL, // 目标模型，明确跳转的目标模型
@@ -165,7 +165,7 @@ public class TestButtonModel extends IdModel {
 
 ## （二）通过菜单 `UxMenu` 定义
 
-```java
+``` java
 @UxMenus
 public class TestMenus implements ViewActionConstants {
     @UxMenu("测试菜单")
@@ -220,7 +220,7 @@ public class TestMenus implements ViewActionConstants {
 
 使用`UxLinkButton`注解可创建自定义外部链接按钮，示例如下：
 
-```java
+``` java
 @UxLinkButton(
     value = @UxLink(
         // URL支持表达式，可动态拼接参数
@@ -266,7 +266,7 @@ public class TestButtonModel extends IdModel {
 
 通过`UxMenu`注解可快速创建菜单链接，示例如下：
 
-```java
+``` java
 @UxMenus
 public class TestMenus implements ViewActionConstants {
     // 定义名为"Oinone官网"的菜单链接
@@ -281,7 +281,7 @@ public class TestMenus implements ViewActionConstants {
 
 ## （一）ClientAction的定义
 
-```java
+``` java
 @UxClientButton(
     // 关联具体的客户端函数
     value = @UxClient(ClientActionConstants.Import.fun),

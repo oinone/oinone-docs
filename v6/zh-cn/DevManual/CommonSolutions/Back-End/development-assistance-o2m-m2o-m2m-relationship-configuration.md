@@ -7,7 +7,7 @@ order: 13
 ---
 
 # 一、M2O关系字段配置
-```java
+``` java
 @Field(displayName = "教师关联学生")
 @Field.many2one
 @Field.Relation(relationFields = {"studentName"}, referenceFields = {"name"})
@@ -34,7 +34,7 @@ private Student students;
 当保存操作出现 “Duplicate entry '******' for key 'PRIMARY'” 报错时，其根源在于 `studentName` 被设定为唯一键。在将 `Student` 模型中相同的 `name` 值赋给本模型的 `studentName` 字段时，触发了唯一键冲突。此情形在其他类似关系操作中同样可能出现。
 
 # 二、O2M关系字段配置
-```java
+``` java
 @Field(displayName = "教师关联宠物")
 @Field.one2many
 @Field.Relation(relationFields = {"id"}, referenceFields = {"teacherId"})
@@ -54,7 +54,7 @@ private List<PetShop> studentsCode;
 
 # 三、M2M关系字段配置
 ## （一）配置示例1
-```java
+``` java
 @Field.many2many(through = OrderRelLogistics.MODEL_MODEL, relationFields = {"parentOrderId"}, referenceFields = {"logisticsBillId"})
 @Field.Relation(relationFields = {"id"}, referenceFields = {"id"})
 @Field(displayName = "物流单")
@@ -72,7 +72,7 @@ private List<LogisticsBill> logisticsBillList;
 ##    （二）配置示例2：
 1. 新增`TalentTypeEnum`
 
-```java
+``` java
 @Dict(dictionary = TalentTypeEnum.DICTIONARY,displayName = "达人类型")
 public class TalentTypeEnum extends BaseEnum<TalentTypeEnum,Integer> {
 
@@ -85,7 +85,7 @@ public class TalentTypeEnum extends BaseEnum<TalentTypeEnum,Integer> {
 
 2. 中间表定义
 
-```java
+``` java
 @Model.model(PetItemRelPetTalent.MODEL_MODEL)
 @Model(displayName = "中间表", summary = "中间表")
 public class PetItemRelPetTalent extends BaseRelation {
@@ -108,7 +108,7 @@ public class PetItemRelPetTalent extends BaseRelation {
 
 3.关系字段定义（关联关系中，使用”##“包括定义常量，这里定义常量"test"）
 
-```java
+``` java
 @Field(displayName = "推荐达人")
 @Field.many2many(
     through = PetItemRelPetTalent.MODEL_MODEL,
@@ -128,7 +128,7 @@ private List<PetTalent> petTalents;
 + 报错：需要配置关联模型的关联字段：原因是在`PetTalent`中没有定义`talentType`字段
 
 ##    （三）配置示例3：
-```java
+``` java
 @Field(displayName = "类目")
 @Field.many2many(
     through = MaterialRelCategory.MODEL_MODEL,

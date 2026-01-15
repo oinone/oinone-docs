@@ -44,7 +44,7 @@ In the "[Customize a View](/en/DevManual/OperationGuide/customize-a-view-widget.
 
 ## (Ⅰ) Registration Options for Element Components
 
-```typescript
+``` typescript
 /**
  * Element component registration options
  */
@@ -78,7 +78,7 @@ From the above type declaration, it is not difficult to find that the classifica
 
 When registering element components, we usually distinguish them through the `viewType` and `widget` attributes. Take `FormWidget` as an example:
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Form,
@@ -791,7 +791,7 @@ When using the widget attribute, you can specify multiple component names as "al
 
 **Type Declaration**:
 
-```typescript
+``` typescript
 export class BaseSearchWidget extends BaseElementWidget
 ```
 
@@ -1276,7 +1276,7 @@ export class BaseSearchWidget extends BaseElementWidget
 
 ### 1. TableWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Table,  
@@ -1284,7 +1284,7 @@ export class BaseSearchWidget extends BaseElementWidget
   })  
 )  
 export class TableWidget<Props extends TableWidgetProps = TableWidgetProps> extends BaseTableWidget<Props>  
-```  
+```
 
 **Attributes**:  
 - activeCount: Number of active items.  
@@ -1468,7 +1468,7 @@ export class TableWidget<Props extends TableWidgetProps = TableWidgetProps> exte
 
 ### 2. SearchWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Search,  
@@ -1476,7 +1476,7 @@ export class TableWidget<Props extends TableWidgetProps = TableWidgetProps> exte
   })  
 )  
 export class SearchWidget extends BaseSearchWidget  
-```  
+```
 
 **Attributes**:  
 - cateFields: Array of category fields, parsed from DSL configuration, defaulting to a single or double field array. (`string[]`)  
@@ -1544,7 +1544,7 @@ export class SearchWidget extends BaseSearchWidget
 
 ### 3. FormWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Form,  
@@ -1552,12 +1552,12 @@ export class SearchWidget extends BaseSearchWidget
   })  
 )  
 export class FormWidget extends BaseFormWidget  
-```  
+```
 
 
 ### 4. DetailWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Detail,  
@@ -1565,12 +1565,12 @@ export class FormWidget extends BaseFormWidget
   })  
 )  
 export class DetailWidget extends BaseFormWidget  
-```  
+```
 
 
 ### 5. GalleryWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Gallery,  
@@ -1578,7 +1578,7 @@ export class DetailWidget extends BaseFormWidget
   })  
 )  
 export class GalleryWidget extends BaseElementListViewWidget  
-```  
+```
 
 **Attributes**:  
 - cols: Number of columns.  
@@ -1596,7 +1596,7 @@ export class GalleryWidget extends BaseElementListViewWidget
 
 ### 6. TreeWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Tree,  
@@ -1604,7 +1604,7 @@ export class GalleryWidget extends BaseElementListViewWidget
   })  
 )  
 export class TreeWidget extends AbstractTreeElementWidget  
-```  
+```
 
 **Attributes**:  
 - showContent: Whether to display content.  
@@ -1633,7 +1633,7 @@ export class TreeWidget extends AbstractTreeElementWidget
 
 ### 7. CardCascaderWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Tree,  
@@ -1641,7 +1641,7 @@ export class TreeWidget extends AbstractTreeElementWidget
   })  
 )  
 export class CardCascaderWidget extends AbstractCardCascaderElementWidget  
-```  
+```
 
 **Methods**:  
 #### **onClearSearch**  
@@ -1675,14 +1675,14 @@ export class CardCascaderWidget extends AbstractCardCascaderElementWidget
 
 ### 1. ActionBarWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     widget: ['actionBar', 'action-bar', 'ActionBar']  
   })  
 )  
 export class ActionBarWidget<Props extends ActionBarWidgetProps = ActionBarWidgetProps> extends BaseActionGroupWidget<Props>  
-```  
+```
 
 **Attributes**:  
 - activeCount: Number of current active items, obtained from DSL configuration; if not set, attempts to get from the view template, supporting enum values. (`number | undefined`)  
@@ -1713,7 +1713,7 @@ export class ActionBarWidget<Props extends ActionBarWidgetProps = ActionBarWidge
 
 ### 2. RowActionBarWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     widget: [  
@@ -1734,7 +1734,7 @@ export class ActionBarWidget<Props extends ActionBarWidgetProps = ActionBarWidge
   })  
 )  
 export class RowActionBarWidget<Props extends RowActionBarWidgetProps = RowActionBarWidgetProps> extends ActionBarWidget<Props>  
-```  
+```
 
 **Attributes**:  
 - activeCount: Number of current active items, preferring inline configuration from the parent, then parent regular configuration, and finally inheriting from the base class. (`number | undefined`)  
@@ -1748,7 +1748,7 @@ export class RowActionBarWidget<Props extends RowActionBarWidgetProps = RowActio
 
 ### 3. TreeNodeActionsWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     widget: 'TreeNodeActions',  
@@ -1756,7 +1756,7 @@ export class RowActionBarWidget<Props extends RowActionBarWidgetProps = RowActio
   })  
 )  
 export class TreeNodeActionsWidget<V extends TreeData = TreeData> extends ActionBarWidget<TreeNodeActionsWidgetProps<V>>  
-```  
+```
 
 **Attributes**:  
 - node: Current tree node data. (`TreeNode<V> | undefined`)  
@@ -1764,7 +1764,7 @@ export class TreeNodeActionsWidget<V extends TreeData = TreeData> extends Action
 
 ### 4. CardRowActionsWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     widget: 'CardRowActions',  
@@ -1772,12 +1772,12 @@ export class TreeNodeActionsWidget<V extends TreeData = TreeData> extends Action
   })  
 )  
 export class CardRowActionsWidget extends RowActionBarWidget  
-```  
+```
 
 
 ### 5. TableUserPreferWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Table,  
@@ -1785,7 +1785,7 @@ export class CardRowActionsWidget extends RowActionBarWidget
   })  
 )  
 export class TableUserPreferWidget extends BaseElementWidget  
-```  
+```
 
 **Attributes**:  
 - invisible: Whether the component is invisible, always `true` when user preference data does not exist. (`boolean`)  
@@ -1807,7 +1807,7 @@ export class TableUserPreferWidget extends BaseElementWidget
 
 ### 6. TableSearchTreeWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: [ViewType.Table, ViewType.Form],  
@@ -1815,7 +1815,7 @@ export class TableUserPreferWidget extends BaseElementWidget
   })  
 )  
 export class TableSearchTreeWidget extends AbstractTreeElementWidget  
-```  
+```
 
 **Attributes**:  
 - dropMode: Discard mode when exceeding the maximum check count, default `DropMode.DropEarliest`. (`string`)  
@@ -1850,7 +1850,7 @@ export class TableSearchTreeWidget extends AbstractTreeElementWidget
 
 ### 7. TableSearchCardCascaderWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BaseElementWidget.Token({  
     viewType: ViewType.Table,  
@@ -1858,7 +1858,7 @@ export class TableSearchTreeWidget extends AbstractTreeElementWidget
   })  
 )  
 export class TableSearchCardCascaderWidget extends AbstractCardCascaderElementWidget  
-```  
+```
 
 **Methods**:  
 #### **onClickLoadData**  
@@ -1890,7 +1890,7 @@ export class TableSearchCardCascaderWidget extends AbstractCardCascaderElementWi
 
 ### 8. CardWidget  
 **Type Declaration**:  
-```typescript  
+``` typescript  
 @SPI.ClassFactory(  
   BasePackWidget.Token({  
     viewType: ViewType.Gallery,  
@@ -1904,7 +1904,7 @@ export class TableSearchCardCascaderWidget extends AbstractCardCascaderElementWi
   })  
 )  
 export class CardWidget extends BaseElementWidget  
-```  
+```
 
 **Attributes**:  
 - allowClick: Whether clicking the card is allowed, determined by DSL configuration and click action definitions. (`boolean`)  

@@ -9,10 +9,10 @@ dir:
   order: 5
 prev:
   text: Chart Template
-  link: /zh-cn/UserManual/Designers/DataVisualization/chart-template.md
+  link: /en/UserManual/Designers/DataVisualization/chart-template.md
 next:
   text: Workbench
-  link: /zh-cn/UserManual/Designers/IntegratedDesigner/workbench.md
+  link: /en/UserManual/Designers/IntegratedDesigner/workbench.md
 ---
 Oinone's Integrated Designer is a highly efficient tool focused on integrated interface management and business orchestration. With its visual operation interface, it greatly simplifies the originally complex integration process, successfully achieving standardization of interface management, visualization of business orchestration, and standardization of interface opening. Here are several core functional highlights of the Oinone Integrated Designer:
 

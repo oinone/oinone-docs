@@ -11,7 +11,7 @@ dir:
   order: 4
 next:
   text: component-lifecycle
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/component-lifecycle.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/component-lifecycle.md
 ---
 The Oinone Kunlun framework uses a self-developed Widget framework. It is a declarative component system whose design is roughly inspired by `Vue` and `React`. Components are defined through `TypeScript Class` and registered via `SPI` decorators. Widgets feature a complete `component lifecycle`, `properties`, `reactive properties`, `computed properties`, etc., similar to the Vue framework.
 

@@ -8,5 +8,5 @@ dir:
   order: 5
 next:
   text: 贡献者许可协议模板
-  link: /zh-cn/Contribute/cla.md
+  link: /v6/zh-cn/Contribute/cla.md
 ---

@@ -10,7 +10,7 @@ category:
 order: 5
 next:
   text: Router
-  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/router.md
+  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/router.md
 ---
 # 一、Reference List
 
@@ -20,7 +20,7 @@ next:
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -38,7 +38,7 @@ export class GalleryStringFieldWidget extends DetailStringFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -53,7 +53,7 @@ export class GalleryStringColorPickerFieldWidget extends DetailStringColorPicker
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -73,7 +73,7 @@ export class GalleryStringHyperlinksFieldWidget extends FormStringHyperlinksFiel
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -88,7 +88,7 @@ export class GalleryStringIframeFieldWidget extends DetailStringIframeFieldWidge
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -107,7 +107,7 @@ export class GalleryStringMediaPlayerWidget extends FormInputAbstractFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -127,7 +127,7 @@ export class GalleryStringUploadFieldWidget extends DetailStringUploadFieldWidge
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -142,7 +142,7 @@ export class GalleryStringUploadImgFieldWidget extends DetailStringUploadImgFiel
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -163,7 +163,7 @@ export class GalleryStringTagFieldWidget extends DetailStringTagFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -189,7 +189,7 @@ export class GalleryCommonFieldWidget extends DetailCommonFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -221,7 +221,7 @@ export class GalleryHtmlFieldWidget extends DetailHtmlFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -249,7 +249,7 @@ export class GalleryNumberWidget extends DetailNumberWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -263,7 +263,7 @@ export class GalleryBooleanFieldWidget extends DetailBooleanFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -280,7 +280,7 @@ export class GalleryBooleanSelectFieldWidget extends DetailBooleanSelectFieldWid
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -298,7 +298,7 @@ export class GalleryEnumFieldWidget extends DetailEnumFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -318,7 +318,7 @@ export class GalleryEnumTagFieldWidget extends DetailEnumFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -339,7 +339,7 @@ export class GalleryEnumMultiFieldWidget extends DetailEnumMultiFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -353,7 +353,7 @@ export class GalleryDateTimeFieldWidget extends DetailDateTimeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -368,7 +368,7 @@ export class GalleryDateTimeCountdownWidget extends GalleryDateTimeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Gallery,
@@ -384,7 +384,7 @@ export class GalleryDateTimeRangeFieldWidget extends DetailDateTimeRangeFieldWid
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -398,7 +398,7 @@ export class GalleryDateFieldWidget extends DetailDateFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -413,7 +413,7 @@ export class GalleryDateCountdownWidget extends GalleryDateFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Gallery,
@@ -429,7 +429,7 @@ export class GalleryDateRangeFieldWidget extends DetailDateRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -443,7 +443,7 @@ export class GalleryTimeFieldWidget extends DetailTimeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Gallery,
@@ -459,7 +459,7 @@ export class GalleryTimeRangeFieldWidget extends DetailTimeRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -473,7 +473,7 @@ export class GalleryYearFieldWidget extends DetailYearFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Gallery,
@@ -489,7 +489,7 @@ export class GalleryYearRangeFieldWidget extends DetailYearRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Gallery,
@@ -505,7 +505,7 @@ export class GalleryMapFieldWidget extends DetailMapFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -521,7 +521,7 @@ export class GalleryM2OSelectFieldWidget extends DetailM2OSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],
@@ -541,7 +541,7 @@ export class GalleryO2MSelectFieldWidget extends DetailO2MSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Gallery],

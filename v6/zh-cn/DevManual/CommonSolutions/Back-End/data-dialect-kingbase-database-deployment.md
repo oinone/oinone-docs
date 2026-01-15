@@ -18,7 +18,7 @@ order: 38
 
 :::
 
-```xml
+``` xml
 <kdb.version>8.6.0</kdb.version>
 <dependency>
   <groupId>cn.com.kingbase</groupId>
@@ -34,7 +34,7 @@ order: 38
 
 # 二、JDBC连接配置
 
-```yaml
+``` yaml
 pamirs:
   datasource:
     base:
@@ -70,7 +70,7 @@ pamirs:
 
 ## （二）url格式
 
-```plain
+``` plain
 jdbc:kingbase8://${host}:${port}/${database}?currentSchema=${schema}&autosave=always&cleanupSavepoints=true
 ```
 
@@ -86,7 +86,7 @@ jdbc:kingbase8://${host}:${port}/${database}?currentSchema=${schema}&autosave=al
 
 ## （一）pamirs方言配置
 
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -114,7 +114,7 @@ pamirs:
 
 ## （二）schedule方言配置
 
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -143,7 +143,7 @@ pamirs:
 
 ## （一）逻辑删除的值配置
 
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -173,7 +173,7 @@ pamirs:
 
 推荐配置：`ora_statement_level_rollback = off`
 
-```sql
+``` sql
 show ora_statement_level_rollback;
 
 set ora_statement_level_rollback=off;
@@ -189,7 +189,7 @@ Oinone 平台在最初开发时使用的是基于 mysql 数据库的事务特性
 
 推荐配置：`ora_input_emptystr_isnull = off`
 
-```sql
+``` sql
 show ora_input_emptystr_isnull;
 
 set ora_input_emptystr_isnull=off;
@@ -197,7 +197,7 @@ set ora_input_emptystr_isnull=off;
 
 # 六、KDB 数据库用户初始化及授权
 
-```sql
+``` sql
 -- init root user (user name can be modified by oneself)
 
 CREATE USER root WITH PASSWORD 'password';
@@ -219,7 +219,7 @@ GRANT CREATE ON DATABASE kingbase TO root;
 
 :::
 
-```shell
+``` shell
 # 停止数据库服务
 /home/kingbase/install/kingbase/bin/sys_ctl -D /home/kingbase/userdata/data/ stop
 

@@ -11,7 +11,7 @@ prev:
 ---
 回想一下我们在 “[探索前端框架](/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)” 章节中创建的组件，无一例外的都使用了一个被命名为 `BaseElementWidget` 的基类，并且它们的使用方式也都不尽相同。为了便于我们回忆之前的内容，下面是之前“计数器”组件的部分代码和它的使用方式。
 
-```typescript
+``` typescript
 import Counter from './Counter.vue';
 
 @SPI.ClassFactory(
@@ -29,7 +29,7 @@ export class CounterWidget extends BaseElementWidget {
 }
 ```
 
-```xml
+``` xml
 <element widget="Counter" />
 ```
 
@@ -57,7 +57,7 @@ export class CounterWidget extends BaseElementWidget {
 
 在`FormBooleanSwitchFieldWidget`组件中，我们提取出组件注册相关内容的代码，如下所示：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -71,7 +71,7 @@ export class FormBooleanSwitchFieldWidget extends FormFieldWidget {
 
 接下来，我们可以创建一个 `FormCustomSwitchFieldWidget` 组件，并继承 `FormBooleanSwitchFieldWidget` 组件，并保持注册条件完全一致，这样我们就可以得到内置组件的全部功能，并对其功能进行定制化。
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -93,7 +93,7 @@ export class FormCustomSwitchFieldWidget extends FormBooleanSwitchFieldWidget {
 
 接下来让我们声明两个属性 `checkedText` 和 `uncheckedText`，用来获取关闭时和开启时需要渲染的文本内容。
 
-```typescript
+``` typescript
 @Widget.Reactive()
 public get checkedText() {
   return this.getDsl().checkedText || '是';
@@ -113,7 +113,7 @@ public get uncheckedText() {
 
 一个有效的 `Vue` 组件模板可能是这样的：
 
-```vue
+``` vue
 <template>
   <oio-switch :checked="booleanValue" @change="onChange">
     <template v-if="checkedText" #checkedChildren>
@@ -145,7 +145,7 @@ public get uncheckedText() {
 + focus：当组件获取聚焦时调用。
 + blur：当组件失去焦点时调用。
 
-```typescript
+``` typescript
 props: {
   value: {
     type: [Boolean, String],
@@ -173,7 +173,7 @@ props: {
 
 在 `FormBooleanSwitchFieldWidget` 组件中，它将 `value` 处理为 `Boolean` 或 `String`，并且有可能为空。但在 `oio-switch` 组件甚至很多第三方组件都不会接受这样的值，因此我们需要将 `props.value` 处理为 `booleanValue` 使得标准组件可以正常使用。用我们熟悉的 `computed` 声明一个`计算属性`来解决这个问题吧。
 
-```typescript
+``` typescript
 const booleanValue = computed(() => BooleanHelper.toBoolean(props.value));
 ```
 
@@ -181,7 +181,7 @@ const booleanValue = computed(() => BooleanHelper.toBoolean(props.value));
 
 开关组件我们通常认为在值发生变更后就会立刻响应失焦方法，而不是在用户点击其他地方后通过浏览器发出的失焦事件来触发。因此我们需要包装变更方法，让它能像我们预期一样工作。
 
-```typescript
+``` typescript
 const onChange = (val: boolean | undefined) => {
   props.change?.(val);
   props.blur?.();
@@ -216,7 +216,7 @@ Widget 框架对组件进行了分类，通过分类特征，我们在注册组�
 
 ## （一）字段组件的注册可选项
 
-```typescript
+``` typescript
 /**
  * Field组件注册可选项
  */
@@ -256,7 +256,7 @@ export interface BaseFieldOptions extends SPIOptions {
 
 以`FormBooleanSwitchFieldWidget`组件为例：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Form, ViewType.Search],
@@ -327,7 +327,7 @@ export class FormBooleanSwitchFieldWidget extends FormFieldWidget {
 
 ## （一）确定组件的基类和注册条件
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Form,
@@ -344,7 +344,7 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 
 一个有效的 `Vue` 组件模板可能是这样的：
 
-```vue
+``` vue
 <template>
   <oio-input class="red-input-demo" :value="value" @update:value="change" @focus="focus" @blur="blur" />
 </template>
@@ -358,7 +358,7 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 
 由于 css 作用域的问题可能使得我们的样式生效不那么容易，你可以用下面这段 css 让输入框的内容变成红色：
 
-```css
+``` css
 .red-input-demo.oio-input .ant-input {
   color: red;
 }
@@ -366,7 +366,7 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 
 ## （三）在 DSL 中使用 RedInput 组件
 
-```xml
+``` xml
 <field data="name" widget="RedInput" />
 ```
 
@@ -386,7 +386,7 @@ export class FormRedInputWidget extends FormFieldWidget<string> {
 
 ## （一）确定组件的基类和注册条件
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Table,
@@ -401,7 +401,7 @@ export class TableRedInputWidget extends BaseTableFieldWidget<string> {
 
 ## （二）重写 renderDefaultSlot 方法定制单元格渲染内容
 
-```typescript
+``` typescript
 @Widget.Method()
 public renderDefaultSlot(context: RowContext): VNode[] | string {
   const currentValue = this.compute(context);
@@ -417,7 +417,7 @@ public renderDefaultSlot(context: RowContext): VNode[] | string {
 
 ## （三）实现 red-input-demo 的 css 样式
 
-```css
+``` css
 .oio-column-wrapper > .red-input-demo {
   color: red;
 }
@@ -431,7 +431,7 @@ public renderDefaultSlot(context: RowContext): VNode[] | string {
 
 ## （四）在 DSL 中使用 RedInput 组件
 
-```xml
+``` xml
 <field data="name" widget="RedInput" />
 ```
 

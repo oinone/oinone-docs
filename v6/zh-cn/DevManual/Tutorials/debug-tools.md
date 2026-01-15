@@ -7,7 +7,7 @@ category:
 order: 9
 next:
   text: 自定义字段
-  link: /zh-cn/DevManual/OperationGuide/customize-a-field-widget.md
+  link: /v6/zh-cn/DevManual/OperationGuide/customize-a-field-widget.md
 ---
 # 一、概述
 
@@ -21,13 +21,13 @@ Oinone 提供的调试工具是一款支持在浏览器页面直接进行 **页�
 
 如需要调试的页面的URL如下所示：
 
-```plain
+``` plain
 http://127.0.0.1:9093/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
 将 `page` 改为 `debug` 后即可进入该页面的调试页面，如下所示：
 
-```plain
+``` plain
 http://127.0.0.1:9093/debug;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
@@ -212,7 +212,7 @@ PS：一般情况下，所有 Oinone 请求的 Http 状态都为 `200`，错误�
 
 在前端运行时环境配置中，可以通过调试配置关闭调试页面的路由，可参考：[前端 API - 环境](/zh-cn/DevManual/Reference/Front-EndFramework/environment.md)
 
-```javascript
+``` javascript
 runtimeConfigResolve({
   debug: {
     enabled: true
@@ -224,7 +224,7 @@ runtimeConfigResolve({
 
 在 Yaml 中配置 `pamirs.framework.debug.enabled` 为 `false` 可关闭调试接口，可参考：[后端 API - 模块 API](/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md)
 
-```yaml
+``` yaml
 pamirs:
   framework:
     debug:

@@ -28,7 +28,7 @@ Reference: Related documentation can be found in "[Table View](/en/DevManual/Ref
 
 A table view displays records in a table format. Its root element is `<view>` with `type="TABLE"`. The most basic table view lists all fields to display in the table (each field corresponds to a column), as shown in the example below:
 
-```xml
+``` xml
 <view name="tableView1" type="TABLE" cols="2" model="expenses.TestModel" enableSequence="false">
   <template slot="actions" autoFill="true"/>
   <template slot="rowActions" autoFill="true"/>
@@ -58,7 +58,7 @@ In the search field definition, add an `operator=X` option where `X` accepts a s
 
 Any model with an access path has a simple example in the database: the default view corresponding to that model.
 
-```sql
+``` sql
 mysql> use trutorials_base;
 Database changed
 mysql> select template from base_view where model='expenses.TestModel' and name ='tableView' and type='TABLE' and is_deleted = 0;
@@ -97,7 +97,7 @@ Reference: Related documentation can be found in "[Form View](/en/DevManual/Refe
 
 A form view is used to create and edit single records. Its root element is `<view>` with `type="FORM"`, composed of advanced structural elements (groups and tabs) and interactive elements (buttons and fields), as shown in the example below:
 
-```xml
+``` xml
 <view name="formView1" type="FORM" cols="2" model="expenses.TestModel">
     <template slot="actions" autoFill="true"/>
     <template slot="fields">
@@ -125,7 +125,7 @@ A form view is used to create and edit single records. Its root element is `<vie
 
 Any model with an access path has a simple example in the database: the default view corresponding to that model.
 
-```sql
+``` sql
 mysql> select template from base_view where model='expenses.TestModel' and name ='formView' and type='FORM' and is_deleted = 0;
 ```
 
@@ -154,7 +154,7 @@ Restart the server and refresh the browser to view the results.
 
 A detail view is used to view single records. Its root element is `<view>` with `type="DETAIL"`, composed of advanced structural elements (groups and tabs) and interactive elements (buttons and fields). Similar to the form view, any model with an access path has a simple example in the database: the default view corresponding to that model.
 
-```sql
+``` sql
 mysql> select template from base_view where model='expenses.TestModel' and name ='detailView' and type='DETAIL' and is_deleted = 0;
 ```
 

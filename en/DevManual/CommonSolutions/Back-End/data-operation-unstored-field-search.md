@@ -15,7 +15,7 @@ The unstored field is of basic string type (String).
 
 1. Code Definition: The unstored field is a basic wrapper data type
 
-```java
+``` java
 @Field(displayName = "Confirm Password", store = NullableBoolEnum.FALSE)
 private String confirmPassword;
 ```
@@ -26,7 +26,7 @@ private String confirmPassword;
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1692579279272-cf0b669a-963d-4e78-b9b7-cc302be9e0ad.png)
 4. Backend logic processing code example:
 
-```java
+``` java
 Map<String, Object> queryData = queryWrapper.getQueryData();
 if (null != queryData) {
     Object productIdObj = queryData.get(PRODUCT_ID);
@@ -42,7 +42,7 @@ The unstored field is an unstored object.
 
 1. Defined as unstored
 
-```java
+``` java
 @Field(displayName = "Style", store = NullableBoolEnum.FALSE)
 @Field.many2one
 @Field.Relation(store = false)
@@ -54,7 +54,7 @@ private MesProduct product;
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/1692601763717-658fb442-7948-465f-9b61-41363ddc2430.png)
 3. Backend logic processing code example:
 
-```java
+``` java
 try {
     if (null != queryData && !queryData.isEmpty()) {
         List<Long> detailId = null;
@@ -104,7 +104,7 @@ If defined as:
 
 :::
 
-```java
+``` java
 @Field(displayName = "Style",store = NullableBoolEnum.FALSE)
 @Field.Relation(relationFields = "produceId", referenceFields = "id",store = false)
 @Field.many2one
@@ -123,7 +123,7 @@ private Long produceId;
 `pro.shushi.pamirs.framework.gateways.rsql.RSQLHelper`
 
 # Ⅲ、Rsql Reference Code
-```java
+``` java
 /**
      * Rsql parsing: Extract attribute field values from the Rsql in the originRsql attribute of QueryWrapper
      * Replace original conditions with '1'=='1'

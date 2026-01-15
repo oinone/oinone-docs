@@ -31,7 +31,7 @@ order: 70
 # 三、通过低代码方式在自定义代码中调用
 oinone提供了内置函数`executeViewAction`实现该功能
 
-```typescript
+``` typescript
 import {
   DefaultComparisonOperator,
   executeViewAction,

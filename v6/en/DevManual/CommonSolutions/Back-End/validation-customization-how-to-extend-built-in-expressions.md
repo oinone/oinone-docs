@@ -13,7 +13,7 @@ When needing to perform NULL validation on a specific parameter within a List-ty
 
 Common code scenarios are as follows:
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 
 ......Imported classes
@@ -52,7 +52,7 @@ Create a `CustomCollectionFunctions` class
 
 :::
 
-```java
+``` java
 package xxx.xxx.xxx;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -117,7 +117,7 @@ Create the `CustomFaasScriptAllowListApi` class, where the `@Order` priority mus
 
 :::
 
-```java
+``` java
 package xxx.xxx.xxx;
 
 import org.apache.commons.collections4.SetUtils;
@@ -177,7 +177,7 @@ Demo usage scenario:
 
 :::
 
-```java
+``` java
 /**
      * Note: The [field] parameter of the custom function is a text, so quotes must be added to indicate the parameter is text; otherwise, data cannot be parsed. The same applies to other scenarios.
      *

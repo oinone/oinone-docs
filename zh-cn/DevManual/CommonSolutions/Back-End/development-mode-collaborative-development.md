@@ -39,18 +39,18 @@ Oinone平台为开发人员提供了`本地环境 - 测试环境`之间的协同
 
 启用元数据保护，只有配置相同启动参数的服务才允许对元数据进行更新。通常该命令用于`设计器服务`和`业务工程服务`，并且两个环境需使用相同的`元数据保护标记（value）`进行启动。`本地环境`不使用该命令，以防止本地环境在协同开发时意外修改测试环境元数据，导致元数据混乱。
 
-```java
+``` java
 java -jar boot.jar -PmetaProtected=pamirs
 ```
 
 ## （二）用于`本地环境`的参数
 ### 1、使用命令配置ownSign（推荐）
-```java
+``` java
 java -jar boot.jar --pamirs.distribution.session.ownSign=demo
 ```
 
 ### 2、使用yaml配置ownSign
-```yaml
+``` yaml
 pamirs:
   distribution:
     session:
@@ -60,12 +60,12 @@ pamirs:
 
 # 三、启动设计器环境
 ## （一）docker-run启动
-```java
+``` java
 -e PROGRAM_ARGS=-PmetaProtected=pamirs
 ```
 
 ## （二）docker-compose启动
-```yaml
+``` yaml
 services:
   backend:
     container_name: designer-backend
@@ -96,7 +96,7 @@ java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 
 ## （二）使用步骤
 ### 1、业务后端boot工程引入协同开发包
-```java
+``` java
 <dependency>
     <groupId>pro.shushi.pamirs.distribution</groupId>
     <artifactId>pamirs-distribution-session-cd</artifactId>
@@ -104,7 +104,7 @@ java [JVM_OPTIONS?] -jar boot.jar [PROGRAM_ARGS?]
 ```
 
 ### 2、yml文件配置ownSign
-```yaml
+``` yaml
 pamirs:
   distribution:
     session:

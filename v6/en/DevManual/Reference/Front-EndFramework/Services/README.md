@@ -11,8 +11,8 @@ dir:
   order: 6
 prev:
   text: Vue UI
-  link: /en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI.md
 next:
   text: Metadata Service
-  link: /en/DevManual/Reference/Front-EndFramework/Services/metadata-service.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Services/metadata-service.md
 ---

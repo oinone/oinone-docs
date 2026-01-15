@@ -24,7 +24,7 @@ The Oinone Message Queue module provides unified API interfaces supporting three
 
 Add corresponding dependencies as needed based on the message queue used in the actual business.
 
-```xml
+``` xml
 <!-- RocketMQ -->
 <dependency>
   <groupId>pro.shushi.pamirs.framework</groupId>
@@ -44,13 +44,13 @@ Add corresponding dependencies as needed based on the message queue used in the 
 </dependency>
 ```
 
-## \(Ⅱ\) YAML Configuration
+## (Ⅱ) YAML Configuration
 
 Documentation related to this topic can be found in [Event Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅸ-event-configuration-pamirsevent).
 
 ### 1. Basic Configuration
 
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -63,7 +63,7 @@ pamirs:
 
 ### 2. Middleware Configuration
 
-```yaml
+``` yaml
 # RocketMQ
 spring:
   rocketmq:
@@ -91,7 +91,7 @@ spring:
 
 ## (Ⅰ) NotifyProducer Interface
 
-```java
+``` java
 public interface NotifyProducer<TEMPLATE> {
 
     // Send normal message
@@ -117,7 +117,7 @@ Parameter Description:
 
 Return value `NotifySendResult` structure:
 
-```java
+``` java
 public class NotifySendResult {
     private boolean success;   // Sending status
     private Object notifyResult;  // Message sending result
@@ -125,9 +125,9 @@ public class NotifySendResult {
 }
 ```
 
-## \(Ⅱ\) NotifyConsumer Interface
+## (Ⅱ) NotifyConsumer Interface
 
-```java
+``` java
 @FunctionalInterface
 public interface NotifyConsumer<T extends Serializable> {
     void consume(Message<T> event);
@@ -142,7 +142,7 @@ public interface NotifyConsumer<T extends Serializable> {
 
 #### Original Implementation (Hardcoding Approach)
 
-```java
+``` java
 @Autowired
 private RocketMQNotifyProducer rocketMQNotifyProducer;
 @Autowired
@@ -173,7 +173,7 @@ public void sendNormalMessage() {
 
 #### Optimized Implementation (Decoupled Dynamic Solution)
 
-```java
+``` java
 public void sendNormalMessage() {
     // Method 2: Dynamically obtain the corresponding producer based on business type (recommended)
     // Obtain the adapted producer instance based on the business key defined in EventConstants
@@ -198,7 +198,7 @@ public void sendNormalMessage() {
 
 ### 2. Ordered Message Sending
 
-```java
+``` java
 public void sendOrderlyMessage() {
     PaymentMessage payment = new PaymentMessage("PAY_202312");
     producer.sendOrderly("oinone-payment", "PAY", payment, payment.getOrderId());
@@ -207,7 +207,7 @@ public void sendOrderlyMessage() {
 
 ### 3. Transactional Message Sending (RocketMQ)
 
-```java
+``` java
 @TransactionListener("txGroup")
 public class TransactionListenerImpl implements NotifyTransactionListener {
 
@@ -233,7 +233,7 @@ public void sendTransactionMessage() {
 
 #### Annotation Definition
 
-```java
+``` java
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -259,7 +259,7 @@ public @interface Notify {
 
 #### Normal Message Sending
 
-```java
+``` java
 // Normal usage
 @Notify(
     topic = "order_created",
@@ -274,7 +274,7 @@ public Order createOrder(OrderRequest request) {
 
 #### Dynamic Tag Generation
 
-```java
+``` java
 // Custom tag generator
 public class OrderTagGenerator implements NotifyTagsGenerator {
     @Override
@@ -298,7 +298,7 @@ public void updateOrderStatus(String orderId, OrderStatus status) {
 
 #### Ordered Message Sending
 
-```java
+``` java
 // Custom queue selector
 public class OrderQueueSelector implements NotifyQueueSelector {
     @Override
@@ -320,11 +320,11 @@ public void processOrderSequence(Order order) {
 }
 ```
 
-## \(Ⅱ\) Consumer Examples
+## (Ⅱ) Consumer Examples
 
 ### 1. @NotifyListener Annotation Definition
 
-```java
+``` java
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -346,7 +346,7 @@ public @interface NotifyListener {
 
 ### 2. Normal Consumption Example
 
-```java
+``` java
 @Bean
 @NotifyListener(
     topic = "oinone-trade",
@@ -363,7 +363,7 @@ public NotifyConsumer<OrderMessage> orderCreateConsumer() {
 
 ### 3. Idempotent Consumption Handling Example
 
-```java
+``` java
 @Bean
 @NotifyListener(topic = "oinone-trade",tags = "CREATE")
 public NotifyConsumer<OrderMessage> orderCreateConsumer() {
@@ -384,7 +384,7 @@ public NotifyConsumer<OrderMessage> orderCreateConsumer() {
 
 ## (Ⅰ) Message Interceptors
 
-```java
+``` java
 // Pre-sending processing
 @Component
 public class AuthCheckSendBefore implements NotifySendBefore {

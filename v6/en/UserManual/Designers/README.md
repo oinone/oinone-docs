@@ -9,10 +9,10 @@ dir:
   order: 1
 prev:
   text: User Manual
-  link: /en/UserManual/README.md
+  link: /v6/en/UserManual/README.md
 next:
   text: Model Designer
-  link: /en/UserManual/Designers/ModelDesigner/README.md
+  link: /v6/en/UserManual/Designers/ModelDesigner/README.md
 ---
 # I. Function
 The designer is the core component of the Oinone low-code platform. It builds a visual and convenient operation interface, significantly lowering the technical threshold for application development. Whether it's professional R & D personnel or business personnel without a technical background, they can efficiently complete application construction with the help of the designer. Professional R & D personnel can use the designer to accelerate the implementation of business logic and improve development efficiency; business personnel can participate in the development of simple or emergency applications to promote rapid business innovation. The designer serves as a bridge between business requirements and technical implementation in the Oinone platform, enabling people with different backgrounds to leverage their expertise in the low-code development model and jointly advance the enterprise's digital project process.

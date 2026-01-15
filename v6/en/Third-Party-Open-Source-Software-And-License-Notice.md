@@ -6,10 +6,10 @@ category:
 order: 5
 prev:
   text: Content guidelines
-  link: /en/Contribute/DocumentationContributions/content-guidelines.md
+  link: /v6/en/Contribute/DocumentationContributions/content-guidelines.md
 next:
   text: Software License and Contract
-  link: /en/software-licenses.md
+  link: /v6/en/software-licenses.md
 ---
 #  Third-Party Open Source Software Statement for Oinone Frontend
 

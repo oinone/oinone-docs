@@ -26,7 +26,7 @@ In the "[Models and Basic Fields](/en/DevManual/Tutorials/Back-endFramework/chap
 
 The most common approach is:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.meta.annotation.Field;
@@ -46,7 +46,7 @@ public class TestConstraintsModel extends IdModel {
 
 When submitting empty data for the name field, you should see the following error:
 
-```shell
+``` shell
 Caused by: org.springframework.dao.DataIntegrityViolationException:
 ### Error updating database.  Cause: java.sql.SQLException: Field 'name' doesn't have a default value
 ### The error may exist in pro/shushi/pamirs/framework/connectors/data/mapper/GenericMapper.java (best guess)
@@ -59,7 +59,7 @@ Caused by: org.springframework.dao.DataIntegrityViolationException:
 
 When submitting data that exceeds the length limit, you should see:
 
-```shell
+``` shell
 Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'name' at row 1
 ```
 
@@ -88,7 +88,7 @@ SQL constraints effectively ensure data consistency, but our application may req
 
 Validation constraints are defined using the @Validation annotation on models and fields, evaluated automatically when related fields are modified. If constraints are not met, an exception should be thrown:
 
-```java
+``` java
 @Validation(ruleWithTips = {
         @Validation.Rule(value = "!IS_NULL(age)", error = "年龄为必填项"),
         @Validation.Rule(value = "age >=0 && age <= 200", error = "年龄只能在0-200之间"),
@@ -99,7 +99,7 @@ private Integer age;
 
 For more complex checks, use `@Validation(check="X")` during model and field definition, where `X` refers to a function of the given model:
 
-```java
+``` java
 ……
 @Model.model(TestConstraintsModel.MODEL_MODEL)
 @Model(displayName = "约束测试模型")
@@ -142,7 +142,7 @@ public class TestConstraintsModel extends IdModel {
 
 The most common approach is:
 
-```java
+``` java
 <field span="1" priority="102" data="age" label="年龄"
     validator="!IS_NULL(activeRecord.age) &amp;&amp; (activeRecord.age &gt;=0 &amp;&amp; activeRecord.age &lt;= 200)"
     validatorMessage="年龄为必填项，且年龄只能在0-200之间"/>

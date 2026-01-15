@@ -7,7 +7,7 @@ category:
 order: 3
 next:
   text: 应用菜单
-  link: /zh-cn/UserManual/Designers/UIDesigner/application-menu.md
+  link: /v6/zh-cn/UserManual/Designers/UIDesigner/application-menu.md
 ---
 元件的设计与页面设计保持一致性，其设计界面主要划分为四个功能区域：操作栏、工具栏、画布设计区以及属性面板。不同之处在于，元件设计在画布设计区中新增了两项实用功能：视图切换与复制功能。
 

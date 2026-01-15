@@ -10,7 +10,7 @@ order: 61
 [oinone-boot-starter.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/install/oinone-boot-starter.zip)
 
 ## (Ⅰ) Mac OS Platform Startup
-```shell
+``` shell
 # Direct run
 ./darwin-boot java -jar ./pamirs-designer-boot-4.7.0.jar
 
@@ -19,7 +19,7 @@ nohup ./darwin-boot java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>&1 &
 ```
 
 ## (Ⅱ) Mac OS (arm64 Architecture) Platform Startup
-```shell
+``` shell
 # Direct run
 ./darwin-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar
 
@@ -28,7 +28,7 @@ nohup ./darwin-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2
 ```
 
 ## (Ⅲ) Linux Platform Startup
-```shell
+``` shell
 # Direct run
 ./linux-boot java -jar ./pamirs-designer-boot-4.7.0.jar
 
@@ -37,7 +37,7 @@ nohup ./linux-boot java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>&1 &
 ```
 
 ## (Ⅳ) Linux (arm64 Architecture) Platform Startup
-```shell
+``` shell
 # Direct run
 ./linux-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar
 
@@ -46,7 +46,7 @@ nohup ./linux-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>
 ```
 
 ## (Ⅴ) Windows Platform Startup
-```shell
+``` shell
 .\win-boot.exe java -jar .\pamirs-designer-boot-4.7.0.jar
 ```
 
@@ -55,7 +55,7 @@ nohup ./linux-boot-arm64 java -jar ./pamirs-designer-boot-4.7.0.jar > out.log 2>
 2. The Oinone no-code designer does not support the use of `javaagent` parameters.
 
 # III. Common Startup Scripts
-```shell
+``` shell
 #!/bin/bash
 
 # Directory where the script is located

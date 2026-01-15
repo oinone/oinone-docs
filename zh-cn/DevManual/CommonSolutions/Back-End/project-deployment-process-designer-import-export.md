@@ -14,7 +14,7 @@ order: 80
 2. 使用平台提供的元数据在线发布功能。
 
 # 二、依赖包
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.metadata.manager</groupId>
     <artifactId>pamirs-metadata-manager</artifactId>
@@ -28,7 +28,7 @@ order: 80
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/CommonSolutions/71715839574_.pic_.jpg)
 
 ## （一）示例调用代码
-```graphql
+``` graphql
 mutation {
     pamirsUserTransientMutation {
         login(user: { login: "admin", password: "admin" }) {
@@ -50,7 +50,7 @@ mutation {
 ## （一）指定模块导出
 请求示例：
 
-```graphql
+``` graphql
 mutation {
     workflowDesignerExportReqMutation {
         export(data: { module: "demo_core", fileName: "workflow_meta" }) {
@@ -63,7 +63,7 @@ mutation {
 ## （二）指定流程编码导出
 请求示例：
 
-```graphql
+``` graphql
 mutation {
     workflowDesignerExportReqMutation {
         export(data: { workflowCode: "WF0000000000132500", fileName: "workflow_meta" }) {
@@ -76,7 +76,7 @@ mutation {
 # 六、业务工程中导入示例代码
 导入元数据示例代码
 
-```java
+``` java
 @Slf4j
 @Order(Integer.MAX_VALUE-1)
 @Component

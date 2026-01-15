@@ -17,7 +17,7 @@ order: 30
 
  A 模型
 
-```java
+``` java
 @Model.model(YesOne.MODEL_MODEL)
 @Model(displayName = "YesOne", summary = "YesOne")
 public class YesOne extends IdModel {
@@ -46,7 +46,7 @@ public class YesOne extends IdModel {
 
 B模型
 
-```java
+``` java
 @Model.model(YesTwo.MODEL_MODEL)
 @Model(displayName = "YesTwo", summary = "YesTwo")
 public class YesTwo extends IdModel {
@@ -67,7 +67,7 @@ public class YesTwo extends IdModel {
 # 二、使用 wrapper 的方式查询
 通过 B 模型的查询条件查询出符合条件的所有数据 ID，再根据这个 ID 去 A模型里面查询出所需的数据。
 
-```java
+``` java
 @Function.Advanced(displayName = "查询列表", type = FunctionTypeEnum.QUERY, category = FunctionCategoryEnum.QUERY_PAGE, managed = true)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
 public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> queryWrapper) {
@@ -92,7 +92,7 @@ public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> qu
 # 三、使用 mapper的方式查询
 利用 SQL 的方式去直接查询出结果。使用联表查询的方式查询
 
-```java
+``` java
 @Autowired
 private YesOneQueryMapper yesOneQueryMapper;
 
@@ -124,7 +124,7 @@ public Pagination<YesOne> queryPage(Pagination<YesOne> page, IWrapper<YesOne> qu
 
 接口
 
-```java
+``` java
 package pro.shushi.pamirs.top.core.service;
 
 import org.apache.ibatis.annotations.Mapper;

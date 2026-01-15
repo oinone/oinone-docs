@@ -27,20 +27,21 @@ If your GraphQL API server does not have built-in GraphiQL, you can use a standa
 + **Global Installation of GraphiQL**  
 If you want to use GraphiQL in a local environment, you can install it via `npm` or `yarn`:  
 (Use Taobao mirror source if download fails)
-```bash
+``` bash
 npm install -g graphiql
 ```
 
 + **Installation as a Development Dependency via npm or Yarn**  
 You can also install `GraphiQL` as a development dependency in your project:
-```bash
+``` bash
 npm install graphiql
 ```
 
 + **Generate Your Documentation!**
-```bash
+``` bash
 npx spectaql config.yml
 ```
+
 Running this command requires a `config.yml` file. For specific usage, refer to [https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options](https://github.com/anvilco/spectaql?tab=readme-ov-file#yaml-options)
 
 
@@ -58,7 +59,7 @@ The following is an example of an introspection query to help you obtain the sch
 
 :::
 
-```graphql
+``` graphql
 query IntrospectionQuery {
   __schema {
     queryType { ...FullType }
@@ -150,7 +151,7 @@ You can place this query in GraphiQL (development tool) or tools like Postman an
 
 Save the request response as a JSON file and configure it in `config.yml`. Configuration reference: [https://github.com/anvilco/spectaql/blob/main/config-example.yml](https://github.com/anvilco/spectaql/blob/main/config-example.yml)
 
-```yaml
+``` yaml
 spectaql:
   # Optional path to the target build directory.
   # Set to null to not write the output to the filesystem, making it only available via the API (default: public)

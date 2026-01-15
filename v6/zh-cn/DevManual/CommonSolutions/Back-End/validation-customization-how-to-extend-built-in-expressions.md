@@ -13,7 +13,7 @@ order: 50
 
 常见的一些代码场景，如下：
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.action;
 
 ……引用类
@@ -52,7 +52,7 @@ public class PetShopProxyAction extends DataStatusBehavior<PetShopProxy> {
 
 :::
 
-```java
+``` java
 package xxx.xxx.xxx;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -118,7 +118,7 @@ public class CustomCollectionFunctions {
 
 :::
 
-```java
+``` java
 package xxx.xxx.xxx;
 
 import org.apache.commons.collections4.SetUtils;
@@ -178,7 +178,7 @@ public class CustomFaasScriptAllowListApi implements FaasScriptAllowListApi {
 
 :::
 
-```java
+``` java
 /**
      * 注意点：自定义函数的 [field]字段是个文本，一定要加个引号代表参数是文本，不然无法解析到数据，其他场景类似
      *

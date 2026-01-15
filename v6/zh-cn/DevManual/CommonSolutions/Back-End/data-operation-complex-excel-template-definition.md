@@ -10,7 +10,7 @@ order: 27
 在某些情形下，简单的模板定义难以契合业务需求，此时需要更为复杂的 Excel 模板定义。下文将阐述如何进行复杂类型模板的定义。
 
 # 二、代码示例：
-```java
+``` java
 @Model.model(TestApply.MODEL_MODEL)
 @Model(displayName = "测试申请")
 public class TestApply extends IdModel {
@@ -36,7 +36,7 @@ public class TestApply extends IdModel {
 ```
 
 ## （一）模版定义
-```java
+``` java
 package pro.shushi.pamirs.top.core.temp;
 
 import org.springframework.stereotype.Component;

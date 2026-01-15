@@ -6,7 +6,7 @@ category:
 order: 21
 next:
   text: 设计原理
-  link: /zh-cn/DevManual/DesignPrinciple/README.md
+  link: /v6/zh-cn/DevManual/DesignPrinciple/README.md
 ---
 # 一、场景复现
 配置了上下文参数，但是跳转的页面没有拿到这个字段。

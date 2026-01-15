@@ -20,7 +20,7 @@ Oinone provides various environment configurations and method annotations to sta
 
 When defining functions in a model class, use annotations to clarify their functional attributes:
 
-```java
+``` java
 @Model.model(TestModel.MODEL_MODEL)
 @Model(displayName = "TestModel")
 public class TestModel extends IdModel {
@@ -41,7 +41,7 @@ public class TestModel extends IdModel {
 
 **Interface Definition**: Add the `@Function` annotation to interface methods to ensure automatic registration of remote service consumers when other modules depend on the API package.
 
-```java
+``` java
 @Fun(TestModel.MODEL_MODEL)
 // You can alternatively use the @Model.model annotation to specify the namespace
 // @Model.model(TestModel.MODEL_MODEL)
@@ -53,7 +53,7 @@ public interface TestModelHelloService {
 
 **Implementation Class Configuration**: The implementation class must add `@Fun` and `@Function` annotations simultaneously to inherit interface functional attributes:
 
-```java
+``` java
 @Fun(TestModel.MODEL_MODEL)
 // You can alternatively use the @Model.model annotation to specify the namespace
 // @Model.model(TestModel.MODEL_MODEL)
@@ -75,7 +75,7 @@ These functions are independent of model definitions but are associated with mod
 
 If a function serves as an independent public logic unit, differentiate it through namespaces:
 
-```java
+``` java
 @Fun(TestModelHelloService.FUN_NAMESPACE)
 public interface TestModelHelloService {
     String FUN_NAMESPACE = "test.TestModelHelloService";
@@ -108,7 +108,7 @@ Such functions exist as general public logic, not bound to specific models, and 
 
 Extension point functions are used to extend existing functions, implemented through interfaces and implementation classes.
 
-```java
+``` java
 @Ext(TestModel.class)
 public interface TestModelExtpoint {
     @ExtPoint(displayName = "Pre-extension point for TestModel's create function")
@@ -130,7 +130,7 @@ public class TestModelExtpointImpl implements TestModelExtpoint {
 
 Interceptor functions can intercept processing before and after function execution.
 
-```java
+``` java
 @Component
 public class TestModelCreateBeforeHook implements HookBefore {
 
@@ -148,7 +148,7 @@ public class TestModelCreateBeforeHook implements HookBefore {
 
 Server action functions trigger specific operations on the page.
 
-```java
+``` java
 @Model.model(TestActionModel.MODEL_MODEL)
 public class TestActionModelAction {
 
@@ -176,7 +176,7 @@ Backend programming-invoked function interceptors and extension points are not e
 
 :::
 
-```java
+``` java
 Models.directive().run(() -> {
     return Fun.run(namespace, fun, parameters);
 }, SystemDirectiveEnum.HOOK, SystemDirectiveEnum.EXT_POINT);
@@ -213,7 +213,7 @@ Function type semantics include create, delete, update, and query. When the `Fun
 
 #### Data Construction Function construct Overloading
 
-```java
+``` java
 /**
  * When opening the new page, the frontend will default to calling the construct of the given model
  */
@@ -229,7 +229,7 @@ public TestModel construct(TestModel data) {
 
 #### Create (create) Overloading
 
-```java
+``` java
 @Transactional(rollbackFor = {Throwable.class})
 @Action.Advanced(name = FunctionConstants.create, type = {FunctionTypeEnum.CREATE}, managed = true, invisible = ExpConstants.idValueExist, check = true)
 @Action( displayName = "Create", label = "Confirm", summary = "Add", bindingType = {ViewTypeEnum.FORM})
@@ -256,7 +256,7 @@ public TestModel create(TestModel data) {
 :::
 #### Delete (delete) Overloading
 
-```java
+``` java
 @Transactional(rollbackFor = Throwable.class)
 @Action.Advanced(name = FunctionConstants.delete, type = FunctionTypeEnum.DELETE, managed = true, priority = 66)
 @Action(displayName = "Delete", label = "Delete", contextType = ActionContextTypeEnum.SINGLE_AND_BATCH)
@@ -277,7 +277,7 @@ public List<TestModel> delete(List<TestModel> dataList) {
 
 #### Update (update) Overloading
 
-```java
+``` java
 @Transactional(rollbackFor = {Throwable.class} )
 @Action.Advanced(name = FunctionConstants.update, type = {FunctionTypeEnum.UPDATE}, managed = true, invisible = ExpConstants.idValueNotExist, check = true)
 @Action(displayName = "Update", label = "Confirm", summary = "Modify", bindingType = {ViewTypeEnum.FORM})
@@ -302,7 +302,7 @@ public TestModel update(TestModel data) {
 :::
 #### Paged Query (queryPage) Overloading
 
-```java
+``` java
 /**
  * When the table view clicks search, the frontend will default to calling the queryPage of the given model
  */
@@ -321,7 +321,7 @@ public Pagination<TestModel> queryPage(Pagination<TestModel> page, IWrapper<Test
 
 #### Single Query (queryOne) Overloading
 
-```java
+``` java
 @Function.Advanced(displayName = "Query a single record", type = {FunctionTypeEnum.QUERY}, category = FunctionCategoryEnum.QUERY_ONE)
 @Function.fun(FunctionConstants.queryByEntity)
 @Function(openLevel = {FunctionOpenEnum.LOCAL, FunctionOpenEnum.REMOTE, FunctionOpenEnum.API})
@@ -745,7 +745,7 @@ All functions in Oinone provide default pre-extension points, override extension
 
 ### 1、Extension Point Definition Example
 
-```java
+``` java
 @Ext(TestModel.class)
 public interface TestModelExtpoint {
     @ExtPoint(displayName = "Pre-extension point for TestModel's create function")
@@ -766,7 +766,7 @@ Use `@Ext(TestModel.class)` to mark the class where the extended function is loc
 
 ### 2、Quick Definition Method:
 
-```java
+``` java
 @Ext(TestModel.class)
 public class TestModelExtpointImpl implements CreateBeforeExtPoint<TestModel> {
     @Override
@@ -815,7 +815,7 @@ During daily development, as our understanding of business deepens, we often res
 
 ### 1、Define Custom Extension Points
 
-```java
+``` java
 @Ext
 public interface TestModelDoSomethingExtpoint {
 
@@ -838,7 +838,7 @@ public class TestModelDoSomethingExtpointImpl implements TestModelDoSomethingExt
 
 In business methods, use `Ext.run` to trigger extension point logic through functional interfaces:
 
-```java
+``` java
 // Trigger using Ext.run
 public List<TestModel> includeCallExtpoint(){
     // Pre-business logic
@@ -855,7 +855,7 @@ Through the above steps, you can complete the creation and invocation of custom 
 
 An extension point can have multiple extension point implementations, and Oinone will ultimately select only one to execute based on conditions and priority. The default priority is 99, and the smaller the number, the higher the priority. For example:
 
-```java
+``` java
 @Ext(TestModelDoSomethingExtpoint.class)
 public class TestModelDoSomethingExtpointImpl2 implements TestModelDoSomethingExtpoint {
     @Override
@@ -881,7 +881,7 @@ Sub-models not only inherit fields and functions from the parent model but also 
 
 Backend programming-invoked function extension points are not enabled by default. You can manually set meta directives to enable them, as shown in the example:
 :::
-```java
+``` java
 Models.directive().run(() -> {
     return Fun.run(namespace, fun, parameters);
 }, SystemDirectiveEnum.EXT_POINT);
@@ -909,7 +909,7 @@ Interceptors are mainly divided into two categories: pre-interceptors and post-i
 
 Its input and output parameters are the input parameters of the intercepted function. By implementing the `HookBefore` interface, logic processing is performed before function execution. For example:
 
-```java
+``` java
 @Component
 public class BeforeXXXHook implements HookBefore {
 
@@ -927,7 +927,7 @@ public class BeforeXXXHook implements HookBefore {
 
 Its input and output parameters are the output parameters of the intercepted function. By implementing the `HookAfter` interface, the return value is processed after function execution. For example:
 
-```java
+``` java
 @Component
 public class AfterXXXHook implements HookAfter {
 
@@ -960,7 +960,7 @@ Since interceptors intercept all functions, if there are too many interceptors, 
 
 Backend programming-invoked function interceptors are not enabled by default. You can manually set meta directives to enable them, as shown in the example:
 :::
-```java
+``` java
 Models.directive().run(() -> {
     return Fun.run(namespace, fun, parameters);
 }, SystemDirectiveEnum.HOOK);
@@ -976,7 +976,7 @@ A trigger is a mechanism that drives logic execution based on function execution
 
 Complete [event configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#3、配置中心-pamirs-zookeeper), [data record configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅹ-data-record-configuration-pamirsrecordsql), and add dependencies on the `sql_record` and `trigger` modules. The specific configuration is as follows:
 
-```yaml
+``` yaml
 spring:
   rocketmq:
     name-server: 127.0.0.1:9876 # RocketMQ NameServer address for producers and consumers to locate the cluster
@@ -1014,13 +1014,13 @@ The example uses rocketmq as the message queue, which can be switched to other m
 
 Introduce the following dependencies in the startup project:
 
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-sql-record-core</artifactId>
 </dependency>
 ```
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-trigger-core</artifactId>
@@ -1042,7 +1042,7 @@ Introduce the following dependencies in the startup project:
 
 **Usage Example**:
 
-```java
+``` java
 @Fun("test.TestModel")
 public class TestModelFunction {
 
@@ -1076,7 +1076,7 @@ public class TestModelFunction {
 
 The business module project needs to introduce the api package of the `trigger` module:
 
-```xml
+``` xml
 <dependency>
 		<groupId>pro.shushi.pamirs.core</groupId>
 		<artifactId>pamirs-trigger-api</artifactId>
@@ -1091,7 +1091,7 @@ Oinone XSchedule is a functional module provided by the Oinone framework for imp
 
 Define scheduled tasks by adding the `@XSchedule` annotation to methods. The `@XSchedule` annotation currently only supports configuring task execution time through the `cron` attribute, as shown in the example:
 
-```java
+``` java
 @Component
 @Fun(CronJobExample.FUN_NAMESPACE)
 public class CronJobExample {
@@ -1173,7 +1173,7 @@ Asynchronous tasks are commonly used patterns in distributed development, widely
 
 Define asynchronous tasks through annotations and interface implementations, as shown in the example:
 
-```java
+``` java
 @Fun(XAsyncService.FUN_NAMESPACE)
 public interface XAsyncService {
     String FUN_NAMESPACE = "test.XAsyncService";
@@ -1208,7 +1208,7 @@ public class XAsyncServiceImpl implements XAsyncService {
 
 In a distributed environment with multiple modules started independently (boot), to avoid repeated execution of asynchronous tasks, implement task data isolation through configuration:
 
-```yaml
+``` yaml
 pamirs:
   event:
     schedule:
@@ -1390,7 +1390,7 @@ View implementation code: pro.shushi.pamirs.framework.faas.fun.builtin.ContextFu
 
 Developing expression functions in Oinone follows a similar process to defining regular functions, with the key difference being the specification of the **function namespace**: the `namespace` must be set to `NamespaceConstants.expression` to clarify that the function is for expression calculation scenarios. The specific example is as follows:
 
-```java
+``` java
 @Fun(NamespaceConstants.expression)
 public class TestExpressionFunctions {
     // Get current user language
@@ -1493,7 +1493,7 @@ Oinone seamlessly integrates with Spring's declarative and programmatic transact
 
 Developers can easily apply transaction management to classes or methods through the `@PamirsTransactional` annotation, which is fully compatible with Spring's `@Transactional` annotation. The following is an example:
 
-```java
+``` java
 @Fun(TestModelHelloService.FUN_NAMESPACE)
 @Component
 public class TestModelHelloServiceImpl implements TestModelHelloService {
@@ -1514,7 +1514,7 @@ public class TestModelHelloServiceImpl implements TestModelHelloService {
 
 Oinone's `PamirsTransactionTemplate` has a consistent programming interface with Spring's `TransactionTemplate`. In high-concurrency scenarios, the programmatic transaction development mode has significant performance advantages, allowing developers to finely control the duration of transaction opening and complete time-consuming query work and data preparation as much as possible before transaction opening. The basic usage pattern is as follows:
 
-```java
+``` java
 Tx.build(new TxConfig().setPropagation(Propagation.REQUIRED.value())).executeWithoutResult(status -> {
     // Execution logic
 });

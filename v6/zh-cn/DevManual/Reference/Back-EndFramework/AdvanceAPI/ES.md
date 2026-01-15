@@ -24,7 +24,7 @@ order: 9
 
 ### 1、继承 EnhanceModel
 
-```java
+``` java
 @Model(displayName = "测试EnhanceModel")
 @Model.model(TestModelEnhance.MODEL_MODEL)
 @Model.Advanced(type = ModelTypeEnum.PROXY, inherited = {EnhanceModel.MODEL_MODEL})
@@ -50,7 +50,7 @@ public class TestModelEnhance extends TestModel {
 
 ### 3、@Enhance 注解详解
 
-```java
+``` java
 @Enhance(
     index = "custom_index",    // 自定义索引名
     shards = "5",              // 分片数
@@ -69,7 +69,7 @@ public class TestModelEnhance extends TestModel {
 
 ## （二）自定义同步逻辑
 
-```java
+``` java
 @Override
 @Function.Advanced(displayName = "同步数据", type = FunctionTypeEnum.UPDATE)
 @Function(summary = "数据同步函数")
@@ -83,7 +83,7 @@ public List<TestModelEnhance> synchronize(List<TestModelEnhance> data) {
 
 ## （三）自定义搜索逻辑
 
-```java
+``` java
 @Override
 @Function(
     summary = "搜索函数",
@@ -102,7 +102,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 
 ## （四）使用原生elasticsearchClient
 
-```java
+``` java
     @Override
     @SuppressWarnings({"rawtypes"})
     public <T> Pagination<T> search(Pagination<T> page, IWrapper<T> queryWrapper) {
@@ -219,7 +219,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 + 启动工程需要指定ES客户端包版本，不指定版本会隐性依赖顶层spring-boot依赖管理指定的低版本
 + 启动工程加入pamris-channel和pamirs-sql-record的工程依赖
 
-```java
+``` java
 <dependency>
     <groupId>org.elasticsearch.client</groupId>
     <artifactId>elasticsearch-rest-client</artifactId>
@@ -245,7 +245,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 
 在XXX-api中增加入pamirs-channel-api的依赖
 
-```xml
+``` xml
 <dependency>
   <groupId>pro.shushi.pamirs.core</groupId>
   <artifactId>pamirs-channel-api</artifactId>
@@ -258,7 +258,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 
 在启动工程的application.yml文件中增加配置pamirs.boot.modules增加channel和sql_record，即在启动模块中增加channel和sql_record模块。同时注意es的配置，是否跟es的服务一致
 
-```yaml
+``` yaml
 pamirs:
   record:
     sql:
@@ -277,7 +277,7 @@ pamirs:
 
 xxxModule的定义类增加对ChannelModule的依赖
 
-```java
+``` java
 @Module(dependencies = {ChannelModule.MODULE_MODULE})
 ```
 
@@ -300,7 +300,7 @@ java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExpression
 
 ### 3、具体报错
 
-```powershell
+``` powershell
 at org.springframework.boot.loader.Launcher.launch(Launcher.java:107) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.Launcher.launch(Launcher.java:58) [pamirs-venus-boot.jar:na]
     at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88) [pamirs-venus-boot.jar:na]
@@ -327,7 +327,7 @@ Caused by: java.lang.NoClassDefFoundError: com/sun/tools/javac/tree/JCTree$JCExp
 
 #### 方式一：配置channel的扫描路径【推荐】
 
-```yaml
+``` yaml
 pamirs:
   channel:
     packages:
@@ -344,7 +344,7 @@ pamirs:
 
 如果启动报错信息如下：
 
-```powershell
+``` powershell
 Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
     at java.lang.ClassLoader.defineClass1(Native Method) ~[na:1.8.0_181]
     at java.lang.ClassLoader.defineClass(ClassLoader.java:763) ~[na:1.8.0_181]
@@ -358,7 +358,7 @@ Caused by: java.lang.NoClassDefFoundError: jakarta/json/spi/JsonProvider
 
 ### 3、解决办法
 
-```xml
+``` xml
 <dependency>
   <groupId>org.elasticsearch.client</groupId>
   <artifactId>elasticsearch-rest-client</artifactId>

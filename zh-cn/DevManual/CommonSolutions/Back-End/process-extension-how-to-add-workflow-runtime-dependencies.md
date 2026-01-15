@@ -10,7 +10,7 @@ order: 51
 1. `package.json`中新增依赖 `@oinone/kunlun-workflow`,版本跟`@oinone/kunlun-dependencies`的填一样
 2. `src/main.ts`内导入依赖
 
-```typescript
+``` typescript
 import 'reflect-metadata';
 import { VueOioProvider } from '@oinone/kunlun-dependencies';
 
@@ -26,7 +26,7 @@ VueOioProvider({
 
 # 二、后端
 ## （一）父 pom 新增依赖，下面例子中的版本号仅供参考，请根据当前框架版本正确选择版本
-```xml
+``` xml
 <!-- 平台基础 -->
 <oinone.version>5.3.5</oinone.version>
 
@@ -44,7 +44,7 @@ VueOioProvider({
 ```
 
 ## （二）boot启动工程的pom新增依赖
-```xml
+``` xml
 <dependency>
     <groupId>pro.shushi.pamirs.core</groupId>
     <artifactId>pamirs-sql-record-core</artifactId>
@@ -97,7 +97,7 @@ VueOioProvider({
 ```
 
 ## （三）application.yml配置新增依赖
-```yaml
+``` yaml
 pamirs:
   boot:
     modules:

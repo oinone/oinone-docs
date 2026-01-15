@@ -19,7 +19,7 @@ order: 4
 
 为了方便介绍安全控制中资源权限和数据权限，先把项目信息的管理入口，通过菜单配置先放出来。
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.core.init;
 
 import pro.shushi.oinone.trutorials.expenses.api.model.ProjectInfo;

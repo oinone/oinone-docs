@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: Gallery Field
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
 ---
 
 In Oinone Kunlun, most components are implemented based on the third-party component library "[Ant Design Vue](https://3x.antdv.com/components/overview)". These components can be used not only for Widget components, but also directly for any Vue component using Vue native writing. This article will provide a detailed introduction to the usage and API definitions of these components.

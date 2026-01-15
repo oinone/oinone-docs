@@ -11,7 +11,7 @@ Usage: Place this method under the Action of the XXX model or use `@Fun(XXX.MODE
 Trigger Condition: When the process instance is undone
 Invocation Entry Point: `pro.shushi.pamirs.workflow.app.core.service.impl.WorkflowInstanceServiceImpl#undoInstance`
 
-```java
+``` java
 /**
  * XXX corresponds to the trigger model when the current workflow trigger method is model-triggered.
  * The return value does not affect the process context.
@@ -32,7 +32,7 @@ Usage: Place this method under the Action of the XXX model or use `@Fun(XXX.MODE
 Trigger Condition: When a workflow task is rolled back
 Invocation Entry Point: `pro.shushi.pamirs.workflow.app.core.service.operator.ApprovalFallbackOperatorService`
 
-```java
+``` java
 /**
  * XXX corresponds to the trigger model when the current workflow trigger method is model-triggered.
  * The return value does not affect the process context.
@@ -53,7 +53,7 @@ Usage: Place this method under the Action of the XXX model or use `@Fun(XXX.MODE
 Trigger Condition: When a workflow task is rejected
 Invocation Entry Point: `pro.shushi.pamirs.workflow.app.core.service.operator.ApprovalFallbackOperatorService`
 
-```java
+``` java
 /**
  * XXX corresponds to the trigger model when the current workflow trigger method is model-triggered.
  * The return value does not affect the process context.
@@ -70,7 +70,7 @@ public XXX reject(String data) {
 ```
 
 # IV. Example of Callback Hook Invocation in Business System
-```java
+``` java
 @Function(summary = "This method is automatically called when the initiated workflow is undone.")
 @Function.Advanced(displayName = "Undo Workflow")
 public PurchaseProjectProxy recall(String data) {
@@ -86,7 +86,7 @@ public PurchaseProjectProxy recall(String data) {
 # V. Custom Approval Methods and Custom Approval Node Names
 Custom workflow functions must specify: `category = FunctionCategoryEnum.CUSTOM_DESIGNER`
 
-```java
+``` java
 @Model.model(ApprovalModel.MODEL_MODEL)
 @Component
 public class ApprovalModelAction {

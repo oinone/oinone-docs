@@ -10,7 +10,7 @@ order: 49
 Take Model A as Category and Model B as Category Attributes as an example.
 Model code example:
 
-```java
+``` java
 @Model.model(AriesPlatformCategory.MODEL_MODEL)
 @Model(displayName = "Platform Background Category", labelFields = "name")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
@@ -30,7 +30,7 @@ public class AriesPlatformCategory extends AriesCategory {
 }
 ```
 
-```java
+``` java
 @Model.model(AriesPlatformCategoryAttr.MODEL_MODEL)
 @Model(displayName = "Aries_Platform Category Attributes", labelFields = "name")
 @Model.Advanced(type = ModelTypeEnum.PROXY)
@@ -47,7 +47,7 @@ public class AriesPlatformCategoryAttr extends CategoryAttr {
 
 Before designing the left tree-right table in the designer, the association relationships need to be configured in the model. The following code configures the association between categories and parent categories.
 
-```java
+``` java
 @Field.many2one
 @Field.Relation(relationFields = {"parentCateCode"}, referenceFields = {"code"},store = true)
 @Field(displayName = "Platform Parent Category")
@@ -56,7 +56,7 @@ private AriesPlatformCategory platformCategory;
 
 Configure the association between categories and category attributes. One category can have multiple category attributes, a one-to-many (one2many) relationship.
 
-```java
+``` java
 @Field.one2many
 @Field(displayName = "Category Attributes")
 @Field.Relation(relationFields = "code", referenceFields = "categoryCode", store = true)
@@ -65,7 +65,7 @@ private List<AriesPlatformCategoryAttr> platformCategoryAttrs;
 
 In the category attribute model, configure the association between attributes and categories. One category attribute belongs to only one category, while one category can have multiple category attributes. Category attributes have a many-to-one (many2one) relationship with categories.
 
-```java
+``` java
 @Field.many2one
 @Field(displayName = "Platform Background Category")
 @Field.Relation(relationFields = "categoryCode", referenceFields = "code", store = true)
@@ -86,7 +86,7 @@ Take Model A as Organizational Structure Management for both left and right as a
 
 ## (I) Model Code Example:
 
-```java
+``` java
 @Model.model(BasicOrg.MODEL_MODEL)
 @Model(displayName = "Organizational Structure Management", summary = "Organizational Structure Management", labelFields = {"orgName"})
 @Model.Code(sequence = "ORDERLY_SEQ", prefix = "Org", size = 5, initial = 0)
@@ -147,7 +147,7 @@ public class BasicOrg {
 
 Configure self-association:
 
-```java
+``` java
 @Field(displayName = "Parent Organization")
 @Field.many2one
 @Field.Relation(relationFields = {"parentCode"}, referenceFields = {"code"})

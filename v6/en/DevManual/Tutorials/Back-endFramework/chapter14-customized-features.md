@@ -7,7 +7,7 @@ category:
 order: 14
 next:
   text: Discover the Front-end Framework
-  link: /en/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
+  link: /v6/en/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
 ---
 In the previous chapter, we gained a deeper understanding of Oinone modular development. In actual business operations, besides product research and development, we frequently need to address personalized needs of different customers. These needs are diverse, involving multiple dimensions such as menu layout, operational logic, interaction methods, and table field settings of the application. According to traditional development ideas, meeting such needs usually requires modifying the product source code. Today, we will explore how Oinone can precisely meet customer personalized demands without altering the product source code.
 
@@ -29,7 +29,7 @@ Reference: Documentation related to this topic can be found in "[Module API](/en
 
 In the Oinone system, we can use no-code designers or add modules to meet customer personalization needs without touching the product source code. This section focuses on a more advanced model: creating a "customized module" that inherits from the "standard product module". We integrate customer personalized needs into the "customized module" rather than directly modifying the "standard product module". This allows clear comparison between the "customized module" and the "standard product module" in the same environment, while demonstrating the customized effects for different customers. For example:
 
-```java
+``` java
 @Component
 @Module(
         name = CeExpensesModule.MODULE_NAME,
@@ -105,7 +105,7 @@ Reference: Documentation related to this topic can be found in "[Extpoints](/en/
 
 All functions in Oinone provide default pre-extpoints, override extpoints, and post-extpoints. The technical naming rule is to add "Before", "Override", and "After" suffixes to the **function code fun** of the extended function. For example:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.ce.expenses.api.extpoint;
 
 import pro.shushi.oinone.trutorials.expenses.api.model.TestModel;
@@ -119,7 +119,7 @@ public interface TestModelExtpoint {
 }
 ```
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.ce.expenses.core.extpoint;
 
 import pro.shushi.oinone.trutorials.ce.expenses.api.extpoint.TestModelExtpoint;
@@ -179,7 +179,7 @@ When adding a new project type in the customized module, the Java backend will p
 
 Hooks are divided into two types: pre-hooks and post-hooks. Pre-hooks process the input parameters of the intercepted function, while post-hooks process the output parameters of the intercepted function. For example:
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.ce.expenses.core.hook;
 
 import org.springframework.stereotype.Component;

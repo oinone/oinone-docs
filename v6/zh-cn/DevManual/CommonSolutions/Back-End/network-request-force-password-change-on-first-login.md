@@ -23,7 +23,7 @@ order: 64
 
 ## （二）扩展PamirsUser(例如：DemoUser)
 
-```java
+``` java
 /**
  * @author wangxian
  */
@@ -50,7 +50,7 @@ public class DemoUser extends PamirsUser {
 
 ## （三）编写扩展点(例如：DemoUserLoginExtPoint)
 
-```java
+``` java
 @Order(0)
 @Component
 @Ext(PamirsUserTransient.class)
@@ -130,7 +130,7 @@ public class DemoUserLoginExtPoint implements PamirsUserTransientExtPoint {
 
 平台已提供内置SPI：UserPatternCheckApi 支持用户自定义密码、用户 Nick、邮箱等指定以校验规则。内置 SPI 接口定义如下：
 
-```java
+``` java
 @SPI(factory = SpringServiceLoaderFactory.class)
 public interface UserPatternCheckApi {
 
@@ -253,7 +253,7 @@ public interface UserPatternCheckApi {
 1、用户账号不检验格式，只检验登录 login 不为空；
 2、密码不检验格式，只校验长度是 3 到 8位；
 
-```java
+``` java
 @Slf4j
 @SPI.Service
 @Order(50) //默认优先级最低，业务配置需要配置成为优先级高

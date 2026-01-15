@@ -9,10 +9,10 @@ dir:
   order: 1
 prev:
   text: 安装与升级
-  link: /zh-cn/InstallOrUpgrade/README.md
+  link: /v6/zh-cn/InstallOrUpgrade/README.md
 next:
   text: JDK安装与注意事项
-  link: /zh-cn/InstallOrUpgrade/Dev-ENV/JDK-setup.md
+  link: /v6/zh-cn/InstallOrUpgrade/Dev-ENV/JDK-setup.md
 ---
 # 一、运行环境
 

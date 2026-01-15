@@ -11,7 +11,7 @@ order: 8
 `PamirsSession.getUserName()`
 
 # 二、如果需要获取更多的用户信息，则需要查表
-```java
+``` java
 // 带缓存，30秒被动失效（建议使用）
 PamirsUser user = UserInfoCache.queryUserById(PamirsSession.getUserId());
 // 不带缓存，从DB中获取

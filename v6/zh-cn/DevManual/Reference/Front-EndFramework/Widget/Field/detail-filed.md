@@ -18,7 +18,7 @@ order: 4
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -37,7 +37,7 @@ export class DetailStringFieldWidget extends FormInputAbstractFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -56,7 +56,7 @@ export class DetailStringColorPickerFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -71,7 +71,7 @@ export class DetailStringDownloadFieldWidget extends FormStringDownloadFieldWidg
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -91,7 +91,7 @@ export class DetailStringHyperlinksFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -106,7 +106,7 @@ export class DetailStringIframeFieldWidget extends FormStringFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -121,7 +121,7 @@ export class DetailStringMediaPlayerFieldWidget extends FormStringFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -141,7 +141,7 @@ export class DetailStringSignatureFieldWidget extends FormStringSignatureFieldWi
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -162,7 +162,7 @@ export class DetailStringTagFieldWidget extends FormFieldWidget<string[], Runtim
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -182,7 +182,7 @@ export class DetailStringUploadFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -199,7 +199,7 @@ export class DetailStringUploadImgFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -219,7 +219,7 @@ export class DetailCommonFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -251,7 +251,7 @@ export class DetailHtmlFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -283,7 +283,7 @@ export class DetailNumberWidget extends FormNumberAbstractFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -297,7 +297,7 @@ export class DetailBooleanFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -321,7 +321,7 @@ export class DetailBooleanSelectFieldWidget extends FormBooleanSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -340,7 +340,7 @@ export class DetailEnumFieldWidget extends FormEnumFieldAbstractWidget<Enumerati
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -362,7 +362,7 @@ export class DetailEnumMultiFieldWidget extends FormEnumFieldAbstractWidget<Enum
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -413,7 +413,7 @@ export class DetailDateTimeFieldWidget extends FormFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Detail,
@@ -466,7 +466,7 @@ export class DetailDateTimeRangeFieldWidget extends FormRangeFieldsWidget<Standa
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -496,7 +496,7 @@ export class DetailDateFieldWidget extends DetailDateTimeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Detail,
@@ -528,7 +528,7 @@ export class DetailDateRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -558,7 +558,7 @@ export class DetailTimeFieldWidget extends DetailDateTimeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Detail,
@@ -590,7 +590,7 @@ export class DetailTimeRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -612,7 +612,7 @@ export class DetailYearFieldWidget extends DetailDateTimeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseElementWidget.Token({
     viewType: ViewType.Detail,
@@ -636,7 +636,7 @@ export class DetailYearRangeFieldWidget extends DetailDateTimeRangeFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -652,7 +652,7 @@ export class DetailMapFieldWidget extends FormMapFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -666,7 +666,7 @@ export class DetailM2OSelectFieldWidget extends DetailRelationSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -688,7 +688,7 @@ export class DetailM2OUploadWidget extends DetailRelationSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -707,7 +707,7 @@ export class DetailO2MSelectFieldWidget extends DetailRelationSelectFieldWidget<
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Detail,
@@ -735,7 +735,7 @@ export class DetailO2MTableFieldWidget extends FormSubviewListFieldWidget<Runtim
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   FormFieldWidget.Token({
     viewType: [ViewType.Detail],
@@ -750,7 +750,7 @@ export class DetailM2MSelectFieldWidget extends DetailO2MSelectFieldWidget
 
 **类型声明**：
 
-```typescript
+``` typescript
 @SPI.ClassFactory(
   BaseFieldWidget.Token({
     viewType: ViewType.Detail,

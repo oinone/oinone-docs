@@ -9,10 +9,10 @@ dir:
    order: 6
 prev:
   text: Actions
-  link: /en/UserManual/Designers/UIDesigner/Components/action.md
+  link: /v6/en/UserManual/Designers/UIDesigner/Components/action.md
 next:
   text: Custom Component Management
-  link: /en/UserManual/Designers/UIDesigner/CustomizedComponents/customized-component-management.md
+  link: /v6/en/UserManual/Designers/UIDesigner/CustomizedComponents/customized-component-management.md
 ---
 # Component-based Design
 &emsp;&emsp;One of the cores of Oinone's interface designer is its component library, which includes a rich variety of preset components, ranging from basic texts and buttons to complex charts and form elements. They can be added to the canvas through simple drag-and-drop operations to form a complete page layout. This component-based design approach greatly simplifies the development process, improves design efficiency, and ensures design consistency and maintainability.

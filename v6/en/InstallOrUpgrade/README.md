@@ -8,7 +8,7 @@ dir:
   order: 1
 next:
   text: Environment Preparation
-  link: /en/InstallOrUpgrade/Dev-ENV/README.md
+  link: /v6/en/InstallOrUpgrade/Dev-ENV/README.md
 ---
 These guides provide instructions on how to install, maintain, and upgrade Oinone products.
 

@@ -7,7 +7,7 @@ category:
 order: 9
 next:
   text: Customize a Field Widget
-  link: /en/DevManual/OperationGuide/customize-a-field-widget.md
+  link: /v6/en/DevManual/OperationGuide/customize-a-field-widget.md
 ---
 # I. Overview
 
@@ -21,13 +21,13 @@ Access the debug tools page by modifying the browser URL on the page to be debug
 
 Suppose the URL of the page to be debugged is as follows:
 
-```plain
+``` plain
 http://127.0.0.1:9093/page;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
 Change `page` to `debug` to enter the debug page for this page, as shown below:
 
-```plain
+``` plain
 http://127.0.0.1:9093/debug;module=resource;viewType=TABLE;model=resource.ResourceCountryGroup;action=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;scene=resource%23%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84;target=OPEN_WINDOW;menu=%7B%22selectedKeys%22:%5B%22%E5%9B%BD%E5%AE%B6%E5%88%86%E7%BB%84%22%5D,%22openKeys%22:%5B%22%E5%9C%B0%E5%9D%80%E5%BA%93%22,%22%E5%9C%B0%E5%8C%BA%22%5D%7D
 ```
 
@@ -212,7 +212,7 @@ When environment configuration issues occur, you can obtain server configuration
 
 In the front-end runtime environment configuration, you can disable the debug page route through debug configuration. Refer to: [Front-End API - Environment](/en/DevManual/Reference/Front-EndFramework/environment.md)
 
-```javascript
+``` javascript
 runtimeConfigResolve({
   debug: {
     enabled: true
@@ -224,7 +224,7 @@ runtimeConfigResolve({
 
 Configuring `pamirs.framework.debug.enabled` as `false` in Yaml disables debug APIs. Refer to: [Back-End API - Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md)
 
-```yaml
+``` yaml
 pamirs:
   framework:
     debug:

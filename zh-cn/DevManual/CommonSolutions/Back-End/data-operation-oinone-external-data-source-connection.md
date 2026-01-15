@@ -21,7 +21,7 @@ order: 25
 
 # 三、详细步骤
 ## （一）数据源配置(application.yml), 与正常的数据源配置一样
-```yaml
+``` yaml
 out_ds_name(外部数据源别名):
   driverClassName: com.mysql.cj.jdbc.Driver
   type: com.alibaba.druid.pool.DruidDataSource
@@ -45,7 +45,7 @@ out_ds_name(外部数据源别名):
 ## （二）外部数据源其他配置
 外部数据源限制创建表结构的执行，可以通过配置指定【不创建DB，不创建数据表】
 
-```yaml
+``` yaml
 persistence:
   global:
     auto-create-database: true
@@ -66,7 +66,7 @@ persistence:
 + 启动的 Application 中 @MapperScan 需要扫描到对应的包。
 + 用是与普通 bean 一样（即调用方式跟传统的方式样），唯一的区别就是加上 DsHintApi，即指定 Mapper 所使用的数据源。
 
-```java
+``` java
 @Autowired
 private ScheduleItemMapper scheduleItemMapper;
 

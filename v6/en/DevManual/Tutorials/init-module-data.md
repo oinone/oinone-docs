@@ -27,7 +27,7 @@ Reference: Documentation related to this topic can be found in "[Module Lifecycl
 
 Master data typically forms part of a module's technical or business requirements. In other words, such data is often critical for the normal operation of the module, installed alongside the module itself. We have previously encountered technical data when defining views and actions, which constitutes a type of master data. In addition to technical data, business data can also be defined, such as countries, currencies, units of measurement, and complete national localization data (statutory reports, tax definitions, chart of accounts), etc. For example:
 
-```java
+``` java
 @Component
 public class ExpensesModuleBizDataInit implements InstallDataInit, UpgradeDataInit, ReloadDataInit {
 

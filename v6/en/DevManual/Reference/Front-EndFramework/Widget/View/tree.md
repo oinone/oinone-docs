@@ -10,7 +10,7 @@ category:
 order: 5
 next:
   text: Element
-  link: /en/DevManual/Reference/Front-EndFramework/Widget/element.md
+  link: /v6/en/DevManual/Reference/Front-EndFramework/Widget/element.md
 ---
 
 The document is currently in preparation, please stay tuned ...

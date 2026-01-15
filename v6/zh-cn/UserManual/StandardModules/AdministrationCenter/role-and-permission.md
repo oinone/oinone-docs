@@ -6,7 +6,7 @@ category:
 order: 4
 next:
   text: 工作流
-  link: /zh-cn/UserManual/StandardModules/workflow.md
+  link: /v6/zh-cn/UserManual/StandardModules/workflow.md
 ---
 # 一、角色类型
 ### 1.功能介绍

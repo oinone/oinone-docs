@@ -2,17 +2,17 @@
 title: Dark Themes
 index: true
 category:
- - Development Manual
- - Operation Guide
- - Custom Themes
+  - Development Manual
+  - Operation Guide
+  - Custom Themes
 order: 2
 next:
-    text: Custom Components Integration with Designer
-    link: /en/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md
+  text: Custom Components Integration with Designer
+  link: /en/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md
 ---
 ### 1、app-switch
 
-```typescript
+``` typescript
 {
     "app-switch-background-color": "#333E4C",
     "app-switch-border-color": "var(--oio-border-color)",
@@ -27,7 +27,7 @@ next:
 
 ### 2、button
 
-```typescript
+``` typescript
 {
     "button-background": "var(--oio-background)",
     "button-border-width": "var(--oio-border-width)",
@@ -634,7 +634,7 @@ next:
 
 ### 3、Checkbox
 
-```typescript
+``` typescript
 {
     "checkbox-color": "var(--oio-text-color)",
     "checkbox-background": "var(--oio-background)",
@@ -645,7 +645,7 @@ next:
 
 ### 4、datetime
 
-```typescript
+``` typescript
 {
     "datetime-padding": "4px 12px"
 }
@@ -653,7 +653,7 @@ next:
 
 ### 5、drawer
 
-```typescript
+``` typescript
 {
     "drawer-width-small": "560px",
     "drawer-width-medium": "890px",
@@ -666,7 +666,7 @@ next:
 
 ### 6、dropdown
 
-```typescript
+``` typescript
 {
     "dropdown-background-color": "var(--oio-background)",
     "dropdown-border-color": "var(--oio-border-color)",
@@ -682,7 +682,7 @@ next:
 
 ### 7、form-item
 
-```typescript
+``` typescript
 {
     "form-item-config": {
         "readonlyShowPlaceholder": false,
@@ -693,7 +693,7 @@ next:
 
 ### 8、header
 
-```typescript
+``` typescript
 {
     "header-border-bottom": "var(--oio-border-color)",
     "header-color": "rgba(255,255,255,0.65)"
@@ -702,7 +702,7 @@ next:
 
 ### 9、input
 
-```typescript
+``` typescript
 {
     "input-background": "#15232E",
     "input-background-color": "#15232E",
@@ -748,7 +748,7 @@ next:
 
 #### large
 
-```typescript
+``` typescript
 {
     "menu-background-color": "#ffffff",
     "menu-border-color": "#e3e7ee",
@@ -806,7 +806,7 @@ next:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "menu-background-color": "#ffffff",
     "menu-border-color": "#e3e7ee",
@@ -864,7 +864,7 @@ next:
 
 #### small
 
-```typescript
+``` typescript
 {
     "menu-background-color": "#ffffff",
     "menu-border-color": "#e3e7ee",
@@ -922,7 +922,7 @@ next:
 
 ### 11、modal
 
-```typescript
+``` typescript
 {
     "modal-color": "rgba(255, 255, 255, 0.85)",
     "modal-width-small": "560px",
@@ -936,7 +936,7 @@ next:
 
 ### 12、multi-tab
 
-```typescript
+``` typescript
 {
     "multi-tabs-background": "var(--oio-body-background)",
     "multi-tabs-color": "var(--oio-text-color)",
@@ -975,7 +975,7 @@ next:
 
 #### large
 
-```typescript
+``` typescript
 {
     "pagination-background": "var(--oio-background)",
     "pagination-border-color": "var(--oio-border-color)",
@@ -988,7 +988,7 @@ next:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "pagination-background": "var(--oio-background)",
     "pagination-border-color": "var(--oio-border-color)",
@@ -1001,7 +1001,7 @@ next:
 
 #### small
 
-```typescript
+``` typescript
 {
     "pagination-background": "var(--oio-background)",
     "pagination-border-color": "var(--oio-border-color)",
@@ -1014,7 +1014,7 @@ next:
 
 ### 14、popconfirm
 
-```typescript
+``` typescript
 {
     "popconfirm-background": "var(--oio-background)",
     "popconfirm-color": "var(--oio-text-color)",
@@ -1025,7 +1025,7 @@ next:
 
 ### 15、rich-text
 
-```typescript
+``` typescript
 {
     "rich-text-textarea-bg-color": "var(--oio-background)",
     "rich-text-textarea-color": "var(--oio-text-color)",
@@ -1051,7 +1051,7 @@ next:
 
 ### 16、scrollbar
 
-```typescript
+``` typescript
 {
     "scrollbar-thumb-background-color": "#7e7e7e",
     "scrollbar-thumb-background-color-hover": "#999999"
@@ -1062,7 +1062,7 @@ next:
 
 #### large
 
-```typescript
+``` typescript
 {
     "select-background": "#15232E",
     "select-border-width": "var(--oio-border-width)",
@@ -1106,7 +1106,7 @@ next:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "select-background": "#15232E",
     "select-border-width": "var(--oio-border-width)",
@@ -1150,7 +1150,7 @@ next:
 
 #### small
 
-```typescript
+``` typescript
 {
     "select-background": "#15232E",
     "select-border-width": "var(--oio-border-width)",
@@ -1194,7 +1194,7 @@ next:
 
 ### 18、switch
 
-```typescript
+``` typescript
 {
     "switch-background": "rgba(255,255,255,0.25)"
 }
@@ -1204,7 +1204,7 @@ next:
 
 #### large
 
-```typescript
+``` typescript
 {
     "table-thead-bg": "var(--oio-background)",
     "table-body-bg": "var(--oio-background)",
@@ -1232,7 +1232,7 @@ next:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "table-thead-bg": "var(--oio-background)",
     "table-body-bg": "var(--oio-background)",
@@ -1260,7 +1260,7 @@ next:
 
 #### small
 
-```typescript
+``` typescript
 {
     "table-thead-bg": "var(--oio-background)",
     "table-body-bg": "var(--oio-background)",
@@ -1290,7 +1290,7 @@ next:
 
 #### large
 
-```typescript
+``` typescript
 {
     "tabs-font-size": "var(--oio-font-size-lg)"
 }
@@ -1298,7 +1298,7 @@ next:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "tabs-font-size": "var(--oio-font-size)"
 }
@@ -1306,7 +1306,7 @@ next:
 
 #### small
 
-```typescript
+``` typescript
 {
     "tabs-font-size": "var(--oio-font-size)"
 }
@@ -1314,7 +1314,7 @@ next:
 
 ### 21、textarea
 
-```typescript
+``` typescript
 {
     "textarea-background": "#15232E",
     "textarea-border-width": "var(--oio-border-width)",
@@ -1345,7 +1345,7 @@ next:
 
 ### 22、transfer
 
-```typescript
+``` typescript
 {
     "transfer-background-color": "var(--oio-background)",
     "transfer-header-border-color": "var(--oio-border-color)"
@@ -1356,7 +1356,7 @@ next:
 
 #### large
 
-```typescript
+``` typescript
 {
     "tree-select-selection-height": "24px",
     "tree-select-selection-line-height": "22px"
@@ -1365,7 +1365,7 @@ next:
 
 #### medium
 
-```typescript
+``` typescript
 {
     "tree-select-selection-height": "24px",
     "tree-select-selection-line-height": "22px"
@@ -1374,7 +1374,7 @@ next:
 
 #### small
 
-```typescript
+``` typescript
 {
     "tree-select-selection-height": "16px",
     "tree-select-selection-line-height": "16px"
@@ -1383,7 +1383,7 @@ next:
 
 ### 24、upload
 
-```typescript
+``` typescript
 {
     "upload-background": "var(--oio-background)",
     "upload-border-width": "var(--oio-border-width)",

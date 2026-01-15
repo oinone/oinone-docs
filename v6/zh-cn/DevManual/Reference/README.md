@@ -9,10 +9,10 @@ dir:
   order: 3
 prev:
   text: 自定义组件与设计器结合
-  link: /zh-cn/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md
+  link: /v6/zh-cn/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md
 next:
   text: 后端API（Back-End framework）
-  link: /zh-cn/DevManual/Reference/Back-EndFramework/README.md
+  link: /v6/zh-cn/DevManual/Reference/Back-EndFramework/README.md
 ---
 <div style="display: flex; gap: 20px; margin: 20px 0;">
 

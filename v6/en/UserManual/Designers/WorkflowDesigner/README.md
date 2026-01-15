@@ -9,10 +9,10 @@ dir:
   order: 3
 prev:
   text: Print Template Design
-  link: /zh-cn/UserManual/Designers/UIDesigner/print-template-design.md
+  link: /v6/en/UserManual/Designers/UIDesigner/print-template-design.md
 next:
   text: Workflow Management
-  link: /zh-cn/UserManual/Designers/WorkflowDesigner/workflow-management.md
+  link: /v6/en/UserManual/Designers/WorkflowDesigner/workflow-management.md
 ---
 &emsp;&emsp;Oinone's Workflow Designer, as a core module of the Oinone low-code platform, is dedicated to helping users efficiently build and manage various business workflows in an intuitive and visual way. In daily work, we often encounter a variety of workflow requirements, such as approval processes, workflow management, project management, order processing, and customer service. The Workflow Designer can help enterprises digitize these workflows, standardize workflow operations, and ensure operation traceability, thereby significantly improving work efficiency and security.
 

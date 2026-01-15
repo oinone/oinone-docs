@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: Customized Components
-  link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
+  link: /en/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
 ---
 In the page designer, the component list is presented in the form of cards by default. You can preview the basic information of the components on the component cards, including the component name, component icon, and component description.
 

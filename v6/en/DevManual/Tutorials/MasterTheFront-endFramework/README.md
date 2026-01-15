@@ -10,10 +10,10 @@ dir:
   order: 4
 prev:
   text: Chapter 2：Build a Dashboard
-  link: /en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md
+  link: /v6/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md
 next:
   text: Chapter 1：Front-End Overview
-  link: /en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md
+  link: /v6/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md
 ---
 This tutorial is designed for those who have completed the "Explore the Front-End Framework" tutorial and wish to gain an in-depth understanding of the front-end framework. It consists of two independent projects, each focusing on different functions of the `Oinone` framework.
 

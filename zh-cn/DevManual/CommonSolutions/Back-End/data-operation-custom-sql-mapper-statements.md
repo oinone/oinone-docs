@@ -19,7 +19,7 @@ order: 35
 > SQL Mapper 的撰写方式并无限制，用法与原生的 MyBatis/MyBatis-Plus 一致。Mapper（也就是 DAO）和 SQL 既可以整合在一个文件内书写，也能够分开，分别置于两个文件里撰写。
 >
 
-```java
+``` java
 package pro.shushi.pamirs.demo.core.map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -39,7 +39,7 @@ public interface DemoItemMapper {
 
 # 三、调用mapper
 ## （一）调用Mapper代码示例
-```java
+``` java
 package pro.shushi.pamirs.demo.core.map;
 
 import com.google.api.client.util.Lists;
@@ -73,7 +73,7 @@ public class DemoItemDAO {
 ## （二）调用Mapper一些说明
 + 启动类需要配置扫描包MapperScan
 
-```java
+``` java
 @MapperScan(value = "pro.shushi", annotationClass = Mapper.class)
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, FreeMarkerAutoConfiguration.class})
 public class DemoApplication {

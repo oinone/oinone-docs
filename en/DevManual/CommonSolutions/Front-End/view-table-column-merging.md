@@ -17,7 +17,7 @@ This article explains how to implement table cell merging and header grouping th
 ## (Ⅰ) Customize `widget`
 Create a custom `MergeTableWidget` to support cell merging and header grouping.
 
-```typescript
+``` typescript
 // MergeTableWidget.ts
 import { BaseElementWidget, SPI, ViewType, TableWidget, Widget, DslRender } from '@oinone/kunlun-dependencies';
 import MergeTable from './MergeTable.vue';
@@ -63,7 +63,7 @@ import MergeTable from './MergeTable.vue';
 ## (Ⅱ) Create Corresponding Vue Component
 Define a Vue component that supports cell merging and header grouping.
 
-```vue
+``` vue
 <!-- MergeTable.vue -->
 <template>
   <vxe-table
@@ -235,7 +235,7 @@ Define a Vue component that supports cell merging and header grouping.
 ```
 
 ## (Ⅲ) Create In-Row Actions
-```vue
+``` vue
 <script lang="ts">
   import { ActionBar, RowActionBarWidget } from '@oinone/kunlun-dependencies';
   import { debounce } from 'lodash-es';
@@ -289,7 +289,7 @@ Define a Vue component that supports cell merging and header grouping.
 ```
 
 ## (Ⅳ) Register Layout
-```javascript
+``` javascript
 // registry.ts
 
 import { registerLayout, ViewType } from '@oinone/kunlun-dependencies';

@@ -12,7 +12,7 @@ prev:
 
 #### 1. **Code Submission Specifications**
 
-```markdown
+``` markdown
 # Oinone Code Submission Specifications
 - **Branch Naming**:
   - `feature/[module-name]-[feature-brief]` (e.g., `feature/auth-oauth2-support`)
@@ -25,13 +25,13 @@ Example:
 feat(auth): Add OAuth2.0 authentication support
 fix(core): Fix thread pool memory leak issue (#456)
 
-```markdown
+``` markdown
 - **Type Tags**: `feat|fix|docs|style|refactor|test|chore`
 ```
 
 #### 2. **Issue Template Example**
 
-```markdown
+``` markdown
 # Bug Report
 ## Environment
 - Oinone Version: [e.g., v1.2.0]
@@ -53,7 +53,7 @@ fix(core): Fix thread pool memory leak issue (#456)
 
 #### 3. **PR Review Process**
 
-```markdown
+``` markdown
 # Oinone PR Review Rules
 1. **Admission Conditions**:
    - Pass basic CI tests (unit test coverage ≥80%).

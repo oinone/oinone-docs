@@ -10,7 +10,7 @@ order: 40
 ## （一）Maven 配置
 去华为官网下周驱动包：[gsjdbc4.jar](https://support.huaweicloud.com/mgtg-dws/dws_01_0032.html)；
 
-```xml
+``` xml
 <dependency>
   <groupId>org.postgresql</groupId>
   <artifactId>gsjdbc</artifactId>
@@ -24,7 +24,7 @@ order: 40
 ```
 
 ## （二）JDBC连接配置
-```yaml
+``` yaml
 pamirs:
   datasource:
     pamirs:
@@ -65,7 +65,7 @@ pamirs:
 点击查看官方文档：[官方文档](https://docs-opengauss.osinfra.cn/zh/docs/5.0.0/docs/GettingStarted/%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93.html)
 
 ### 1、  url格式
-```xml
+``` xml
 jdbc:postgresql://${host}:${port}/${database}?currentSchema=${schema}
 ```
 
@@ -79,7 +79,7 @@ jdbc:postgresql://${host}:${port}/${database}?currentSchema=${schema}
 
 ## （四）方言配置
 ### 1、pamirs方言配置
-```yaml
+``` yaml
 pamirs:
   dialect:
     ds:
@@ -105,7 +105,7 @@ pamirs:
 :::
 
 ### 2、schedule方言配置
-```yaml
+``` yaml
 pamirs:
   event:
     enabled: true
@@ -132,7 +132,7 @@ pamirs:
 
 ## （五）其他配置
 ### 1、逻辑删除的值配置
-```yaml
+``` yaml
 pamirs:
   mapper:
     global:
@@ -141,7 +141,7 @@ pamirs:
 ```
 
 # 二、Gauss 数据库用户初始化及授权
-```sql
+``` sql
 -- init root user (user name can be modified by oneself)
 -- 创建用户root
 CREATE USER wangxian PASSWORD 'wx@123456';
@@ -166,7 +166,7 @@ GRANT CREATE ON DATABASE pamirs TO root;
 
 迁移 sql 示范，其中的库名请根据实际情况修改，没有依赖的模块也无需执行对应 sql，业务模型如需迁移也可参考该 sql
 
-```sql
+``` sql
 SELECT setval('demo_base.leaf_alloc_id_seq', (select id from demo_base.leaf_alloc order by id desc limit 1), true);
 
 SELECT setval('demo_base.base_worker_node_id_seq', (select id from demo_base.base_worker_node order by id desc limit 1), true);
@@ -191,14 +191,14 @@ SELECT setval('demo_pamirs.common_model_meta_change_record_id_seq', (select id f
 
 1. 重置序列的当前值
 
-```sql
+``` sql
 # 设置序列为10
 SELECT setval('demo_pamirs.pamirs_schedule_0_id_seq', 10, true);
 ```
 
 2. 验证序列的新值：
 
-```sql
+``` sql
 # last_value字段的值为10
 SELECT * FROM demo_pamirs.pamirs_schedule_0_id_seq;
 ```

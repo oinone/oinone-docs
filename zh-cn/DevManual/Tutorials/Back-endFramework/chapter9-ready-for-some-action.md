@@ -37,7 +37,7 @@ order: 9
 
 在我们的费用管理模块中，我们希望将业务逻辑与一些按钮关联起来。最常见的做法是：
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.api.model;
 
 import pro.shushi.pamirs.meta.annotation.Action;
@@ -66,7 +66,7 @@ public class TestActionModel extends IdModel {
 
 或者，可通过独立的 JAVA 类来定义 Action。在此过程中，仅需运用`@Model.model(TestActionModel.MODEL_MODEL)`注解，即可实现与相应模型的关联 。
 
-```java
+``` java
 package pro.shushi.oinone.trutorials.expenses.core.action;
 
 import org.springframework.stereotype.Component;
@@ -107,7 +107,7 @@ public class TestActionModelAction {
 
 在视图中添加按钮，例如在Form视图中：
 
-```xml
+``` xml
 <view name="formView" type="FORM" cols="2" model="expenses.TestActionModel">
   <template slot="actions" autoFill="true"/>
   <template slot="fields">
@@ -121,7 +121,7 @@ public class TestActionModelAction {
 
 视图默认启用 autoFill 机制，该机制能够自动筛选并填充给定模型内符合特定要求的操作，无需我们手动进行额外设置。另一种写法就是采用白名单机制，需要展示的操作都写着 actions 标签下
 
-```xml
+``` xml
 <view name="formView" type="FORM" cols="2" model="expenses.TestActionModel">
   <template slot="actions">
         <action name="actionDoSomething" type="primary"/>
@@ -160,7 +160,7 @@ public class TestActionModelAction {
 
 进行批量操作时，首先要求对应的方法能够对多条记录进行调用。同时，通过将`contextType`声明为`ActionContextTypeEnum.SINGLE_AND_BATCH`，可表明该方法在交互层面支持选择一条或多条记录。当然，若将其声明为`ActionContextTypeEnum.BATCH`，则意味着仅当选中多条数据记录时，该操作才会变为可点击状态 。最常见的做法是：
 
-```java
+``` java
 @Action(
     displayName = "批量操作",
     label = "批量操作",

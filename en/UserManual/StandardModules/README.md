@@ -9,10 +9,10 @@ dir:
   order: 2
 prev:
   text: Instructions for Using Expressions
-  link: /zh-cn/UserManual/Designers/expressions-guide.md
+  link: /en/UserManual/Designers/expressions-guide.md
 next:
   text: Workbench
-  link: /zh-cn/UserManual/StandardModules/workbench.md
+  link: /en/UserManual/StandardModules/workbench.md
 ---
 The standard modules of the Oinone low-code platform build the core functional matrix of the platform. Each module works in a division of labor and deep collaboration, providing comprehensive support for the digital transformation of enterprises:
 + Workbench: As the core operation hub for users, it adopts the design concept of minimalist interaction, intuitively presenting core functions such as task management and application operation through a visual interface, helping users efficiently handle various types of business and significantly improving work efficiency.

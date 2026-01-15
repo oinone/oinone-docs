@@ -10,8 +10,8 @@ dir:
   order: 4
 prev:
   text: UI icons
-  link: /zh-cn/DevManual/Reference/UserInterface/UI-icons.md
+  link: /v6/zh-cn/DevManual/Reference/UserInterface/UI-icons.md
 next:
   text: 用户与商业主体 API（User & Business API）
-  link: /zh-cn/DevManual/Reference/StandardModule/user-business-API.md
+  link: /v6/zh-cn/DevManual/Reference/StandardModule/user-business-API.md
 ---

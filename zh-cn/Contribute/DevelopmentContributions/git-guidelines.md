@@ -11,7 +11,7 @@ prev:
 ---
 #### 1. **代码提交规范**
 
-```markdown
+``` markdown
 # Oinone 代码提交规范
 - **分支命名**：
   - `feature/[模块名]-[功能简述]`（如 `feature/auth-oauth2-support`）
@@ -24,13 +24,13 @@ prev:
 feat(auth): 新增OAuth2.0认证支持
 fix(core): 修复线程池内存泄漏问题 (#456)
 
-```markdown
+``` markdown
 - **类型标签**：`feat|fix|docs|style|refactor|test|chore`
 ```
 
 #### 2. **Issue模板示例**
 
-```markdown
+``` markdown
 # Bug Report
 ## 环境
 - Oinone版本: [如v1.2.0]
@@ -52,7 +52,7 @@ fix(core): 修复线程池内存泄漏问题 (#456)
 
 #### 3. **PR审核流程**
 
-```markdown
+``` markdown
 # Oinone PR审核规则
 1. **准入条件**：
    - 通过基础CI测试（单元测试覆盖率≥80%）。
