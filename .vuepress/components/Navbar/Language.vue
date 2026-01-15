@@ -16,14 +16,10 @@ import { useRoute } from "vue-router"
 import { useSiteData } from "vuepress/client"
 import NavbarDropdown from "vuepress-theme-hope/navbar/components/NavbarDropdown.js"
 import { I18nIcon } from "vuepress-theme-hope/navbar/components/icons/i18nIcon.js"
+import { versions } from "../../versionConfig"
 
 const route = useRoute()
 const siteData = useSiteData()
-
-const versions = [
-  { text: "6.0", prefix: "/v6" },
-  { text: "7.0", prefix: "" },
-]
 
 const languages = computed(() => {
   if (!siteData.value || !siteData.value.locales) return []
@@ -47,13 +43,11 @@ const languages = computed(() => {
     en: "English",
   }
 
-  // 2. 过滤出属于当前版本的 locales
+  // 只展示当前路径相匹配的语言版本， 当前多语言要求吧所有的都展示出来，所以我们要把所有的多语言路径都配置上，然后根据version进行匹配相关的语言
   const currentVersionLocales = Object.entries(locales).filter(([p]) => {
     if (matchedVersion.prefix === "") {
-      // 默认版本，排除所有带版本前缀的路径
       return !versions.some(v => v.prefix !== "" && p.startsWith(v.prefix))
     }
-    // 指定版本，只保留带该前缀的路径
     return p.startsWith(matchedVersion.prefix)
   })
 
@@ -67,12 +61,10 @@ const currentLanguage = computed(() => {
   const path = route.path
   if (!siteData.value || !siteData.value.locales) return languages.value[0]
 
-  // 查找最长匹配的 locale 路径
   const matchedPath = Object.keys(siteData.value.locales)
     .sort((a, b) => b.length - a.length)
     .find(p => path.startsWith(p))
 
-  // 在过滤后的 languages 中查找
   return languages.value.find(l => l.path === matchedPath) || languages.value[0]
 })
 
@@ -83,7 +75,6 @@ const getLanguageLink = (lang: { text: string; path: string }) => {
 
   if (currentLangPath === targetLangPath) return path
 
-  // 普通路径替换
   const newPath = path.replace(currentLangPath, targetLangPath)
   return newPath.startsWith(targetLangPath) ? newPath : targetLangPath
 }

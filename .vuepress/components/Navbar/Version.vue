@@ -15,38 +15,30 @@ import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { useSiteData } from "vuepress/client"
 import NavbarDropdown from "vuepress-theme-hope/navbar/components/NavbarDropdown.js"
+import { versions } from "../../versionConfig"
 
 const route = useRoute()
 const siteData = useSiteData()
 
-const versions = [
-  { text: "6.0", prefix: "/v6" },
-  { text: "7.0", prefix: "" }, // 7.0 是默认版本，没有前缀
-]
-
 const defaultLanguage = "/zh-cn/"
 
-// 获取当前语言路径（例如 /zh-cn/ 或 /en/）
 const currentLanguagePath = computed(() => {
   const path = route.path
   if (!siteData.value || !siteData.value.locales) return defaultLanguage
 
   const locales = siteData.value.locales
 
-  // 1. 找到当前页面匹配的完整 locale 路径 (例如 /v6/zh-cn/ 或 /zh-cn/)
   const matchedLocalePath = Object.keys(locales)
     .sort((a, b) => b.length - a.length)
     .find(p => path.startsWith(p))
 
   if (!matchedLocalePath) return defaultLanguage
 
-  // 2. 识别当前页面所属的版本前缀
   const matchedVersion = versions
     .filter(v => v.prefix !== "")
     .sort((a, b) => b.prefix.length - a.prefix.length)
     .find(v => path.startsWith(v.prefix))
 
-  // 3. 从完整 locale 路径中剥离版本前缀，提取出纯粹的语言路径
   if (matchedVersion && matchedLocalePath.startsWith(matchedVersion.prefix)) {
     return matchedLocalePath.substring(matchedVersion.prefix.length) || "/"
   }
@@ -73,13 +65,11 @@ const getVersionLink = (targetVersion: { text: string; prefix: string }) => {
 
   if (current.text === targetVersion.text) return path
 
-  // 1. 提取当前路径中除版本前缀外的相对部分
   let relativePath = path
   if (current.prefix && path.startsWith(current.prefix)) {
     relativePath = path.substring(current.prefix.length)
   }
 
-  // 2. 如果相对路径是根路径 "/" 或仅包含语言路径，跳转到目标版本的对应语言首页
   if (
     relativePath === "/" ||
     relativePath === "" ||
@@ -88,7 +78,6 @@ const getVersionLink = (targetVersion: { text: string; prefix: string }) => {
     return `${targetVersion.prefix}${currentLanguagePath.value}`
   }
 
-  // 3. 否则，尝试保持当前相对路径进行跳转
   return `${targetVersion.prefix}${relativePath}`
 }
 
