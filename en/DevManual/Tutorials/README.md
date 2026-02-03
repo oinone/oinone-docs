@@ -8,8 +8,8 @@ dir:
   link: true
   order: 1
 prev:
-  text: Development Manual
-  link: /en/DevManual/README.md
+  text: Best Practices of VibeCoding When Oinone Meets Trae (Backend)
+  link: /en/DevManual/VibeCodingPracticalCombat/Trae_VibeCoding_Backend.md
 next:
   text: Setup Guide
   link: /en/DevManual/Tutorials/setup-guide.md
