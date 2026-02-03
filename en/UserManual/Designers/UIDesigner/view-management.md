@@ -13,7 +13,7 @@ Pages serve as the entry points for data CRUD (Create, Read, Update, Delete) ope
 
 In the UI Designer, the page list is presented in card form by default. You can preview the basic information of the page on the page card, including the page title, page thumbnail, view, the model name corresponding to the page, and the page description.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626152202908.png)
 
 + Page Title and Page Description: Define the name of the page and provide a detailed description of the page in text.
 + Page Thumbnail: Preview the general layout style of the current page through an image in the page list. You can upload your own image. If no image is uploaded, the system default image will be displayed.
@@ -30,7 +30,7 @@ When selecting the application/module filter option in the dropdown menu, it onl
 ### 2. Operation Method
 Select or enter conditions in the filtering area to filter pages.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/shaixuan.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626152635889.png)
 
 # II. Group Management
 ### 1. Function Introduction
@@ -39,11 +39,11 @@ You can use the grouping function to classify and manage pages (including adding
 ### 2. Operation Method
 + Manage Groups: Click "Manage Groups" and manage groups in the pop-up window.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/group/guanli.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626152753018.png)
 
 + Add a Group: Click "+ Page Group", enter the group name, and press Enter; or select a group used in other applications.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/group/tianjia.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626152824416.png)
 
 + Modify a Group: Double-click the group label, make modifications, and press Enter to save.
 
@@ -57,7 +57,7 @@ If the group is also used in other applications, the name will be updated synchr
 If there are models under the group, it cannot be deleted.
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/group/shanchu%20.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626152915571.png)
 
 # III. Add a Page
 ### 1. Function Introduction
@@ -66,9 +66,9 @@ Use the UI Designer to create a page. You can edit page information during the c
 ### 2. Operation Method
 Click "Add Page" - "Create Directly", fill in the information correctly in the pop-up window, and click "OK" to successfully create the page.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/tianjia1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626153022672.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/tj.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626153939502.png)
 
 :::warning Tip
 When creating a page, if you enable the "Use Default View" option, the system will automatically generate a default view based on the model information and view type, simplifying the page design process. After enabling this option, you can also select the default width, which sets the default size of the components in the generated default view on the page.
@@ -89,13 +89,13 @@ The thumbnail in the page card can only be edited and modified through "Method 2
 
 Method 1: Click "Edit" and edit the page in the pop-up editing window.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/bianji1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626154251755.png)
 
 Method 2: Click the main body of the page card or click "Design Page" to enter the page design interface, and then enter "Page Settings" to edit it.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/bianji2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626154601427.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/bianji3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626154713637.png)
 
 # V. Design a Page
 ### 1. Function Introduction
@@ -104,7 +104,7 @@ When designing the page interface, you can perform page settings, construction, 
 ### 2. Operation Method
 Click the main body of the page card or the "Design Page" section to enter the page design interface (see the page design documentation for details).
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/sheji.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626154601427.png)
 
 # VI. View Reference Information
 ### 1. Function Introduction
@@ -113,7 +113,7 @@ Through this function, you can view various elements that have a reference relat
 ### 2. Operation Method
 Click the "View Referenced Information" icon to view the reference information.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/yinyong.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626155029183.png)
 
 # VII. Copy a Page
 ### 1. Function Introduction
@@ -127,7 +127,7 @@ When you need to design multiple pages with similar content or want to copy a pa
 ### 2. Operation Method
 Click "Copy", edit the information in the pop-up page copying window, and click "OK" to complete the copying.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/fuzhi.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626155119044.png)
 
 # VIII. Hide/Show a Page
 ### 1. Function Introduction
@@ -140,12 +140,12 @@ Hidden pages will no longer be displayed in the optional list when binding pages
 ### 2. Operation Method
 Click "Hide" to set the page to the hidden state, and the button will change to "Set to Visible"; click it again to set the page to the visible state.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/yincang1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626155251700.png)
 
 :::warning Tip
 If you need to operate on a hidden page but cannot find it in the list, switch the "Visibility" filter option. The page list displays all "visible" pages by default. Switch to "All" or "Hidden" to find the hidden page.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/yincang2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626155343147.png)
 :::
 
 # IX. Delete a Page
@@ -163,4 +163,4 @@ Once a page is deleted, it cannot be recovered. Please operate with caution!
 ### 2. Operation Method
 Click the "Delete" icon and confirm the deletion to delete the page.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/view-management/shanchu.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/ViewManagement/image-20250626155426702.png)

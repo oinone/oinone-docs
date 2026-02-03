@@ -37,11 +37,11 @@ Components with similar business meanings can be grouped together to achieve cat
 
 Design example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/fenzu1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627144852722.png)
 
 Displayed page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/fenzu2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627145012226.png)
 
 :::
 
@@ -50,7 +50,7 @@ Specific attributes of the grouping component:
 + Title: This is the name of the component displayed on the current page.
 + Description: Used to describe the component information. The description of the grouping is on the left side of the title.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/fenzu3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627145511569.png)
 
 ## (Ⅱ) Layout Container
 Similar to a table structure, users can flexibly add or delete a row or a column, and can also customize the settings of a specific container.
@@ -66,11 +66,11 @@ Similar to a table structure, users can flexibly add or delete a row or a column
 
 Design example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/rongqi1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627145957820.png)
 
 Displayed page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/rongqi2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627150048068.png)
 
 :::
 
@@ -88,7 +88,7 @@ Specific attributes of the layout container:
 + If no components are added to the layout container, the border will not be displayed even if it is set.
 + You can set borders for both the layout container and individual containers. The layout container border will be applied globally, while the individual container border will only be applied to that specific container.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/rongqi3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627150315743.png)
 
 :::
 
@@ -115,13 +115,13 @@ Multiple tab pages can be added to each tab. Users can configure different compo
 
 Design example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627151734234.png)
 
 Displayed page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627151850596.png)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka3.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627151927797.png)
 
 :::
 
@@ -129,11 +129,11 @@ Specific attributes of the tab:
 
 + Tab Title Position: Supports two positions: top or left.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka4.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/xxk-wz.gif)
 
 + Sorting: Supports dragging tab pages to change their positions.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/xuanxiangka5.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/xxk-tz.gif)
 
 + Tab Page
     - Default Activation: A tab page can be set as the default active page, and activation conditions can also be set. The tab page will be activated when the conditions are met.
@@ -145,11 +145,11 @@ Various components can be configured in the panel. Users can expand or collapse 
 
 Design example:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/zhedie1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627162305133.png)
 
 Displayed page:
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/zhedie2.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/image-20250627162406807.png)
 
 :::
 
@@ -168,8 +168,8 @@ This function is invalid if the accordion mode is enabled.
 + Accordion Mode: When this mode is enabled, if there are multiple collapsible panel items, only one item can be expanded at a time. When trying to expand another panel item, the currently open panel item will automatically collapse.
 + Collapse Method: Two collapse methods are available. You can collapse the panel by clicking on the header area or the title to meet different user interaction habits.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/zhedie3.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/zdmb-sfq.gif)
 
 + Sorting: Supports dragging collapsible panel items to change their positions.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Component%20Introduction/layout/zhedie4.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/Component/Layout/zdmb-tz.gif)

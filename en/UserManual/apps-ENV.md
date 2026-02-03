@@ -38,19 +38,19 @@ Once an environment is deleted, it cannot be restored. Please operate with cauti
 
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsENV/image-20250625113525824.png)
 
 :::tip Example
 
 Configuring the deployment environment
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E4%B8%BE%E4%BE%8B1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsENV/image-20250625113741363.png)
 
 To obtain the API Key and API Secret in the configuration environment, go to the "Integration Interface - Open Management - Applications" page, enter "Metadata" in the search box, and perform a search. The search results will list the relevant data. View the key section of the data to obtain the required API Key and API Secret.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E4%B8%BE%E4%BE%8B2.png)
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E4%B8%BE%E4%BE%8B3.png)
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83%E4%B8%BE%E4%BE%8B4.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsENV/image-20250625145901215.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsENV/image-20250625153140634.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsENV/image-20250625153616941.png))
 
 :::
 
@@ -61,7 +61,7 @@ Displays the design import/export logs in the application center. Through the lo
 ### 2. Operation Method
 Click "Details" to view the detailed information of import/export.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E8%AE%BE%E8%AE%A1%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsENV/image-20250625155911418.png)
 
 # III. Deployment Tasks
 ### 1. Function Introduction
@@ -70,4 +70,4 @@ Displays the synchronous deployment logs in the application center. By viewing t
 ### 2. Operation Method
 Click "Details" to view the detailed information of the deployment task.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E7%8E%AF%E5%A2%83/%E9%83%A8%E7%BD%B2%E4%BB%BB%E5%8A%A1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsENV/image-20250625160225517.png)

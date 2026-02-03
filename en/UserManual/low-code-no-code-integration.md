@@ -20,7 +20,7 @@ The dropdown menu only shows the applications or modules that have been installe
 
 :::
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/low-no-one/1.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Low-CodeNo-CodeIntegration/image-20250625162339747.png)
 
 + Click "Generate SDK" to generate the current model state of the selected module or application into an SDK package. A prompt saying "SDK generated successfully" indicates that the operation is completed.
 

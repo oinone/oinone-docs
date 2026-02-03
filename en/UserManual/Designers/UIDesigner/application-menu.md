@@ -4,106 +4,175 @@ index: true
 category:
   - User Manual
   - Designer
-order: 2
+order: 7
+prev:
+  text: Custom Components - Meta Design
+  link: /en/UserManual/Designers/UIDesigner/CustomizedComponents/design-of-customized-component-meta.md
 ---
-The data dictionary is a collection of fixed dictionary items that can be used as options for multiple-choice or single-choice selections.
-# Ⅰ. Filter
+&emsp;&emsp;Pages designed can be displayed in the application by binding to menus. The Oinone UI Designer has built-in menu management functionality, allowing users to customize the menu structure according to actual needs, ensuring precise binding between each view and corresponding menu item, thereby enhancing the navigational logic of the application and the smoothness of the user experience.
+
+&emsp;&emsp;In the application, menu configuration can be completed through the **Menu** page after entering the UI Designer, mainly consisting of three core sections: the filter area, the menu list, and menu information.
+
++ Filter Area: Provides convenient menu filtering functionality to help users quickly find the required menu items for configuration and adjustment.
++ Menu List: Clearly displays the order of menus, allowing an intuitive understanding of the menu structure and hierarchy.
++ Menu Information: Displays detailed information about each menu item, including name, type, icon, etc., to facilitate comprehensive understanding and management of menus.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/1.png)
+
+&emsp;&emsp;When designing pages in the UI Designer, if the master mode display is selected, the system will intuitively show the association between menus and pages. Users can perform operations such as binding pages to menus, adding new menu items, deleting existing menu items, and editing menu items in this mode. These specific operations are consistent with those in the menu management page, making it easy for users to get started and flexibly manage the association between menus and pages.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/2.png)
+
+# I. Filter Area
 ### 1. Function Introduction
-According to actual needs, select applications/modules, data dictionary types, or enter names to customize filter conditions to accurately filter data dictionaries. It supports one-click clearing of all filter conditions.
-:::info Note
-In the drop-down selection of application/module filter items, it is only a preliminary filter for the applications or modules on the platform. In the actual filtering operation, you still need to further select specific applications or modules to complete the configuration. Similarly, only when all filter items are configured correctly can the correct data dictionary be filtered out.
-:::
+The menu management page provides efficient and convenient filtering functionality to help users quickly locate and find the required menu items for flexible configuration and adjustment. The filter area mainly includes two core parts: one is filtering by application, allowing users to quickly filter menu items according to application needs; the other is searching by menu name, where entering keywords can accurately find the target menu, greatly improving the efficiency and convenience of menu management.
+
 ### 2. Operation Method
-+ Select or enter conditions in the filter area to complete the filtering of the data dictionary
-+ Click "Reset Filter" to clear all existing filter conditions
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E7%AD%9B%E9%80%89.png)
-# Ⅱ. Import Data Dictionary
+Select or enter conditions in the filter area to complete the filtering of menus.
+
+:::info Note
+
+The application is a mandatory key item. The menu list and menu information are both displayed and configured based on the selected application.
+
+:::
+
+:::warning Tip
+
+If the required application is not found in the current list, users can go to the Application Center to create a new application or install an existing application, after which it can be found and selected in the application filter.
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/sxq.png)
+
+# II. Menu List
 ### 1. Function Introduction
-Importing a data dictionary is an efficient way to add a data dictionary. You can download the import template provided by the platform, fill in the relevant information according to the established rules, and import the file into the system to quickly complete the addition of the data dictionary.
-+ Import Template: The platform provides a model import template, and the templates provided under different operation modes are different, and the operation mode can be switched
+The menu list intuitively displays the structure and hierarchy of menus. In the menu list, operations such as adding, modifying, and deleting menus can be performed to achieve flexible menu management and meet diverse needs.
+
 :::info Note
-The import templates provided in No-Code Mode and Expert Mode are different:
-+ In No-Code Mode, the template only provides basic model information, with a small quantity and easy to fill in
-+ In Expert Mode, the template provides rich model information, detailed content, and more professional information
+
+Built-in menu items cannot be edited, deleted, or bound to views; only hide or show operations can be performed on them.
+
 :::
-+ Import Instructions: It elaborates the meaning and filling rules of each item in the import template, which can help users fill in the import file accurately. According to different operation modes, corresponding import instructions are provided to ensure that users can successfully complete the import process.
-+ Upload File: Only files with extensions .xlsx, .xls, .xlsm are supported
+
+### 2. Operation Methods
++ Adding a Menu Item: At the bottom of the menu, click **Add Menu Item**, enter the menu name, and it will be created successfully. By default, the menu is created at the bottom.
+
+:::warning Tip
+
+You can select a menu item, click **Add Menu Item**, enter the menu name, and create it under that menu item.
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/lb1.png)
+
++ Modifying the Menu Name: Select the target menu, click the menu name to display the input box, enter the new name, and press Enter or click anywhere outside the input box to complete the modification.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/lb2.png)
+
++ Deleting a Menu Item: Select the target menu, click the **Delete** icon to delete it successfully.
+
 :::info Note
-When uploading a file, you should upload a file corresponding to the current operation mode.
+
+When a menu has submenus that have not been deleted, the menu cannot be deleted.
+
 :::
-### 2. Operation Method
-+ Click "Import Data Dictionary" and select the所属 application
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%AF%BC%E5%85%A51.png)
-+ Click the "Current Mode" button to switch the operation mode
-+ Click "Click to Download Import Data Dictionary Template" to download the import template in the corresponding mode
-+ Click "Import Instructions" to view the import instructions in the corresponding mode
-+ Click "Click to Upload" or drag the file to the specified location to upload the file
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%AF%BC%E5%85%A52.png)
-# Ⅲ. Add Data Dictionary
-### 1. Function Introduction
-You can create a no-code dictionary through the model designer. Adding a data dictionary in Expert Mode and No-Code Mode is different:
-+ Adding a data dictionary in Expert Mode: You need to fill in the dictionary name, dictionary code, dictionary item type, and add dictionary items. Other filling contents can be left blank, and some contents will be assigned default values by the system
-:::info Note
-+ There are three types of dictionary items, namely: Binary, Text, and Integer.
-    - When selecting Binary, the dictionary item value needs to select which bit is stored in the database binary. The system will find the dictionary item name according to the dictionary item value area, so the dictionary item values cannot be repeated.
-    - When selecting Text/Integer, the data dictionary item value can only input text/integer
-+ The dictionary code can set an English-led code in Expert Mode, and the default in No-Code Mode is "Module Code.k2.Dick + ten-digit number"
-:::
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E6%B7%BB%E5%8A%A01.png)
-+ Adding a data dictionary in No-Code Mode: Fill in the dictionary name and add dictionary items
-:::info Note
-The system will automatically set the dictionary item type to "Binary" and set the number of digits of the dictionary item value in the order of creation
-:::
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E6%B7%BB%E5%8A%A02.png)
-### 2. Operation Method
-Click "Add Data Dictionary", select the所属 application/module to add, click "Add" to display the pop-up window, and click "OK" after filling in to successfully create the data dictionary.
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E6%B7%BB%E5%8A%A03.png)
-:::info Note
-When adding data dictionary items, there are at most 30 items
-:::
-# Ⅳ. Modify Data Dictionary
-### 1. Function Introduction
-The successfully created data dictionary can be modified
-:::info Note
-+ Only part of the information supports modification, and part of the information is fixed when created, so please fill in carefully when creating
-+ If the data dictionary has been referenced, the dictionary items cannot be deleted
-:::
-### 2. Operation Method
-Click the "Modify Icon" to modify the data dictionary
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E4%BF%AE%E6%94%B9.png)
-# Ⅴ. View Reference Relationship
-### 1. Function Introduction
-Through this function, you can view various elements that have a reference relationship with the data dictionary, including other fields and views. Each relationship is displayed through a list, and the list items are links that can be linked to the corresponding design page; the content is the corresponding content.
-:::tip Example
-The list items of the fields with reference relationships display the names of the fields, and the list items link to the design page of the corresponding field.
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%BC%95%E7%94%A81.png)
-:::
-### 2. Operation Method
-Click the "View Referenced Information" icon to view the reference relationship
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%BC%95%E7%94%A82.png)
-# Ⅵ. Discard/Enable Data Dictionary
-### 1. Function Introduction
-For data dictionaries that are not currently in use, you can perform the discard operation. If needed in the future, you only need to set the discarded data dictionary to the available state to put it back into use. In addition, the discarded data dictionary still supports operations such as editing.
-:::info Note
-The discarded data dictionary will no longer be displayed in the optional list when referenced by other designers.
-:::
-### 2. Operation Method
-Click "Discard" to set the data dictionary to the discarded state, and the button becomes "Set to Available"; click again to set the data dictionary to the available state
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%BA%9F%E5%BC%83.png)
-# Ⅶ. Delete Data Dictionary
-### 1. Function Introduction
-When the data dictionary is no longer used, you can choose to delete it. Low-code dictionaries are not allowed to be deleted.
-:::info Note
-Before deleting, make sure that the data dictionary is not referenced by other designers, otherwise the deletion operation will not be possible.
-:::
+
 :::danger Warning
-The deleted data dictionary will no longer appear in the dictionary list, and this operation is irreversible. Please perform it with caution!
+
+Deleted menus cannot be recovered. Please operate with caution!
+
 :::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/lb3.png)
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/lb4.png)
+
++ Hiding/Showing Menus: Select the target menu, click the **Hide/Show** icon to change the menu status successfully.
+
+:::info Note
+
+When a menu has submenus, changing the status of the menu will automatically apply the status to the menu and all its submenus, enabling unified status management and quick adjustment.
+
+:::
+
+:::warning Tip
+
+If a designed menu is visible but not displayed in the application, you can check whether permissions are configured for the menu in the Management Center.
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/lb5.png)
+
++ Moving Menu Items: Select the target menu, long-press to move the menu, and choose to move it to the same level or as a submenu of another menu.
+
+:::info Note
+
+When a menu has sub-levels, moving the menu will also move its submenus.
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/lb6.png)
+
+# III. Menu Information
+### 1. Function Introduction
+Displays detailed information about each menu item. When creating or editing a menu, you can edit its detailed information.
+
+:::info Note
+
+The application selected in the filter area is the application to which the menu belongs. The application to which the menu belongs is determined when the menu is created and cannot be modified later. All models and views that the menu can bind to belong to this application.
+
+:::
+
++ Menu Name: The display name of the menu on the interface.
++ Menu Owned Application: Refers to the application to which the menu belongs, and the menu will be displayed under this application.
++ Icon: The identification icon located before the menu name, enhancing menu visualization and recognition.
++ Display Devices: Defines on which devices the menu can be displayed, including PC, mobile, and PAD, meeting multi-device adaptation needs.
++ Binding Type: Provides different binding options, which can be bound to different view types, including "Bind to View" and "Bind to Link".
+    - Menu Application Model: When the binding type is Bind to View, this attribute is displayed. Allows selecting models included in the current application.
+    - Bound View: When the binding type is Bind to View, this attribute is displayed. Allows selecting views included in the current model.
+
+    :::warning Tip
+
+    If the desired view is not found, a quick entry is provided to create a page, which will be automatically bound to the menu.
+
+    :::
+
+    - Bound URL: When the binding type is Bind to URL, this attribute is displayed. Allows entering the URL of the page to jump to.
+    - Opening Method: When the binding type is Bind to URL, this attribute is displayed. You can select the page opening method, including routing opening and opening in a new page.
+        * Routing Opening: Open the URL page directly within the current page.
+        * Opening in a New Page: Open the URL page in a new window.
++ Auto-refresh When Switching Menus: When users make modifications on other pages and switch back to this menu, the system will automatically refresh the menu content to ensure real-time information.
++ Preset Filter Conditions: After setting filter conditions in the configuration interface, they will be automatically applied when querying data on the page. Once configured, the preset filter conditions will remain in effect when the page is running and will not be cleared or reset.
+
+:::tip Example
+Current data on the **Assets** page
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/yzgltj1.png)
+
+Set the preset filter condition to: Asset Name equals Laptop
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/yzgltj2.png)
+
+The **Assets** page only displays data where the asset name is Laptop
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/yzgltj3.png)
+:::
+
+
++ Interface Design: When the binding type is a view type and has been bound to a view, the interface design function can be used to enter the page design interface of the view to adjust and optimize the page.
+
 ### 2. Operation Method
-Click "Delete" to delete the data dictionary.
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E5%99%A8/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8/%E5%88%A0%E9%99%A4.png)
-# Ⅷ. Attachment: Noun Explanation
-| Noun | Description |
-| --- | --- |
-| No-Code Dictionary | A dictionary designed through a no-code designer (such as a model designer, interface designer) is called a no-code dictionary |
-| Low-Code Dictionary | A dictionary written through a low-code R&D framework or automatically generated during no-code design is called a low-code dictionary |
+After entering or selecting information, click **Save** to complete the editing of the information.
+
+:::info Note
+
++ If the user does not fill in the required information, the system will prompt that the items are not completed, and the menu item information will not be saved.
++ If the bound view has not been published or there are unpublished modifications, the system will prompt "The bound view page has not been published" or "There are the latest but unpublished pages in the view binding".
+
+:::
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/xx1.png)
+
+Click **Interface Design** to jump to the page design interface of the bound page.
+
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Application%20Menu/xx2.png)
