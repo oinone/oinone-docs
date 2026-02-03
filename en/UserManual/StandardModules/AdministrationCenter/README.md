@@ -9,5 +9,5 @@ dir:
   order: 4
 next:
   text: 'User'
-  link: '/zh-cn/UserManual/StandardModules/AdministrationCenter/user.md'
+  link: '/en/UserManual/StandardModules/AdministrationCenter/user.md'
 ---
