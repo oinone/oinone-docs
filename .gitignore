@@ -12,6 +12,6 @@ node_modules/
 .theme2/.vuepress/.cache/
 .theme2/.vuepress/.temp/
 .theme2/.vuepress/dist/
-.DS_Stored
+.DS_Store
 
 .vuepress/dist/
