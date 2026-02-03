@@ -46,7 +46,8 @@ When configuring field components, if the field already exists in the model, bin
 Cascader Selection and Tree Selection actually have the same function for business scenarios but have different interaction experiences.
 - Cascader Selection: When selecting an option in the selection box, the component dynamically expands the sub-options of that option to its right.
 - Tree Selection: When selecting an option in the selection box, the component dynamically expands the sub-options of that option below it.
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/jilian.png)![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/shu.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/WidgetsAndModelOverview/image-20250627101510978.png){width=50%, height=300px}
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/WidgetsAndModelOverview/image-20250627113015197.png){width=50%, height=300px}
 :::
 - Key-Value Pair: Displays structured information in a clear and intuitive way, very suitable for scenarios such as product detail display and user configuration option settings.
 - Range: Supports specifying a range for time, facilitating flexible application in scenarios such as time interval prompts.
@@ -116,29 +117,29 @@ Server Actions defined in code form will also be displayed in the actions of the
 System default actions:
 - Business Process: A shortcut for the Navigation Action, which can navigate to the business process drawer and requires selecting only one piece of data.
 :::tip Example
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/yewuliucheng.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/WidgetsAndModelOverview/ywlc.gif)
 :::
 - Import: A shortcut for the Navigation Action, which can navigate to the import pop-up window, download the corresponding template, fill it in, and import it.
 :::tip Example
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/daoru.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/WidgetsAndModelOverview/dr.gif)
 :::
 - Export: A shortcut for the Navigation Action, which can navigate to the export pop-up window and export data after selecting an export template.
 :::tip Example
 Export according to the template:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/daochu1.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/WidgetsAndModelOverview/dc1.gif)
 Export by selecting fields according to the model:
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/daochu2.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/WidgetsAndModelOverview/dc2.gif)
 :::
 - Log Record: A shortcut for the Navigation Action, which can navigate to the log record page to view log information and requires selecting only one piece of data.
 :::info Note
 This action can only take effect after defining an audit rule for the page model in business auditing.
 :::
 :::tip Example
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/rizhijilu.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/WidgetsAndModelOverview/rzjl.gif)
 :::
 - Share: A shortcut for the Navigation Action, which can navigate to the share pop-up window and provide a share link.
 :::tip Example
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/UI%20Designer/Widgets%20And%20Model%20Overview/fenxiang.gif)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/Designers/UIDesigner/WidgetsAndModelOverview/fx.gif)
 :::
 - Create: A shortcut for the Submission Action, which can create a single piece of data.
 - Delete: A shortcut for the Submission Action, which can delete a single or multiple pieces of data.

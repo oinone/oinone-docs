@@ -5,7 +5,7 @@ category:
   - User Manual
 order: 3
 prev:
-  text: Integration Interface
+  text: Integration App
   link: /zh-cn/UserManual/StandardModules/integration-app.md
 ---
 The Oinone Application Center integrates various applications and modules, aiming to provide users with rich and diverse functional options to meet the needs in different scenarios. These applications cover multiple fields such as business collaboration, data analysis, and operation management. Users can easily find the required applications in the Application Center according to their actual needs and quickly put them into practical use through simple configuration.
@@ -18,17 +18,17 @@ The Oinone platform provides App Finder, which displays the installed applicatio
 + Designers: Designer applications provided by the platform, i.e., the platform's no-code capabilities, including: Model Designer, Interface Designer, Process Designer, Integration Designer, AI Integration Designer, Data Visualization, and Microflow Designer.
 + My Favorite Applications: Applications favorited in the Application Center.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/APP%20Finder.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/QQ_1750814597580.png)
 
 ### 2. Operation Method
 Click the blue area in each application to enter App Finder.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E8%BF%9B%E5%85%A5APP%20Finder.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/QQ_1750815765528.png)
 
 # II. Application List
 In the application list, you can manage all applications on the platform, providing functions such as search, creation, favorite, installation, uninstallation, and editing of applications.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83%E5%88%97%E8%A1%A8.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/QQ_1750816638961.png)
 
 ## (I) Search
 ### 1. Function Introduction
@@ -41,11 +41,11 @@ For commonly used filter option combinations, you can add them to the filter sch
 ### 2. Operation Method
 + Filter: Select or enter conditions in the filter area and click "Search" to filter applications or modules.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E7%AD%9B%E9%80%89.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/image-20250625101155039.png)
 
 + Clear All: Click the "Clear" icon to clear all conditions in the current filter area with one click.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E4%B8%80%E9%94%AE%E6%B8%85%E9%99%A4.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/image-20250625100919810.png)
 
 + Manage Filter Schemes: Move the mouse to the "Filter Schemes" icon to manage filter schemes.
     - Add: After selecting or entering filter conditions in the filter area, click "Favorite Current Conditions" and enter the scheme name in the pop-up window to add the current filter condition combination to the filter scheme.
@@ -53,7 +53,7 @@ For commonly used filter option combinations, you can add them to the filter sch
     - Modify: Click "Manage Filter Schemes", select a scheme in the pop-up window, and click the scheme name to modify the scheme name.
     - Delete: Select a scheme in the scheme list and click the "Delete" icon to delete the filter scheme.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E7%AE%A1%E7%90%86%E7%AD%9B%E9%80%89%E6%96%B9%E6%A1%88.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/image-20250625101306766.png)
 
 ## (II) Create
 ### 1. Function Introduction
@@ -72,7 +72,7 @@ It supports creating applications or modules according to specific business need
 ### 2. Operation Method
 Click "Create", fill in the information in the pop-up page, and confirm to create successfully.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E5%88%9B%E5%BB%BA.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/image-20250625101602963.png)
 
 ## (III) Edit
 ### 1. Function Introduction
@@ -100,7 +100,7 @@ For the created applications or modules, you can choose whether to install them 
 ### 2. Operation Method
 + Install: In the application list, select the application or module to be installed and click "Install" to install successfully.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E5%AE%89%E8%A3%85.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/image-20250625104941389.png)
 
 + Uninstall: In the application list, select the application or module to be uninstalled and click "Uninstall" to uninstall successfully.
 
@@ -114,14 +114,14 @@ For frequently used applications, you can choose to favorite them. The favorited
 This function can only be used after the application is successfully installed.
 :::
 
-![App Finder](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E6%94%B6%E8%97%8F-APP%20Finder.png)
+![App Finder](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/image-20250625105219671.png)
 
-![Workbench](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E6%94%B6%E8%97%8F-%E5%B7%A5%E4%BD%9C%E5%8F%B0.png)
+![Workbench](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/image-20250625110355021.png)
 
 ### 2. Operation Method
 Select an application and click the star icon in the upper right corner of the application card to favorite or unfavorite the application.
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BF%83/%E6%94%B6%E8%97%8F.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/en/UserManual/AppsHub/image-20250625110657860.png)
 
 ## (VI) Set Home Page
 ### 1. Function Introduction
