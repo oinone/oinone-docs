@@ -108,7 +108,7 @@ Remarks: It will be more effective if there is an example project in the enginee
 ## (I) Basic Configuration
 ### 1. Configuration of Oinone
 
-+ (Required) Install the `trae` plugin of Oinone [oinone-pamirs-plugin-1.0.1.vsix.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2026/zip/317547/1770108932839-579c5a93-88eb-43de-91d2-6d37f334e133.zip)
++ (Required) Install the `trae` plugin of Oinone [oinone-pamirs-plugin-1.0.1.vsix.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/oinone-pamirs-plugin-1.0.1.vsix.zip)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1770108891617-8461168b-f404-4aaa-ae03-e3499d24bbc5.png)
 
@@ -127,7 +127,7 @@ Remarks: It will be more effective if there is an example project in the enginee
 
 ### 2. Configuration of Trae
 
-**Step 1**: Download `.trae` [.trae.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2026/zip/317547/1770119429654-c3593123-47e0-47b2-b591-cd1a594d6e14.zip)
+**Step 1**: Download `.trae` [.trae.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/trae.zip)
 
 **Step 2**: Copy `.trae` to the root directory of the project.
 

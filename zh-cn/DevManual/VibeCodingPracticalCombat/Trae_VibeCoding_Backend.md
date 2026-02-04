@@ -108,7 +108,7 @@ next:
 ## （一）基础配置
 ### 1、Oinone的配置
 
-+ （必须）安装Oinone 的 `trae`插件 [oinone-pamirs-plugin-1.0.1.vsix.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2026/zip/317547/1770108932839-579c5a93-88eb-43de-91d2-6d37f334e133.zip)
++ （必须）安装Oinone 的 `trae`插件 [oinone-pamirs-plugin-1.0.1.vsix.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/oinone-pamirs-plugin-1.0.1.vsix.zip)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1770108891617-8461168b-f404-4aaa-ae03-e3499d24bbc5.png)
 
@@ -127,9 +127,9 @@ next:
 
 ### 2、Trae的配置
 
-**第一步**：下载` `.trae` `[.trae.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2026/zip/317547/1770119429654-c3593123-47e0-47b2-b591-cd1a594d6e14.zip)
+**第一步**：下载`.trae`[.trae.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/trae.zip)
 
-**第二步**： ``.trae``拷贝工程根目录下
+**第二步**： `.trae`拷贝工程根目录下
 
 **第三步**：下载 `Oinone` 源码
 
