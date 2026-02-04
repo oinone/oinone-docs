@@ -127,7 +127,7 @@ Remarks: It will be more effective if there is an example project in the enginee
 
 ### 2. Configuration of Trae
 
-**Step 1**: Download `.trae` [.trae.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2026/zip/317547/1770108726345-f321153a-5540-448c-bf6d-55cff668dabf.zip)
+**Step 1**: Download `.trae` [.trae.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2026/zip/317547/1770119429654-c3593123-47e0-47b2-b591-cd1a594d6e14.zip)
 
 **Step 2**: Copy `.trae` to the root directory of the project.
 

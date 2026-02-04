@@ -127,7 +127,7 @@ next:
 
 ### 2、Trae的配置
 
-**第一步**：下载` `.trae` `[.trae.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2026/zip/317547/1770108726345-f321153a-5540-448c-bf6d-55cff668dabf.zip)
+**第一步**：下载` `.trae` `[.trae.zip](https://gounixiangxiang.yuque.com/attachments/yuque/0/2026/zip/317547/1770119429654-c3593123-47e0-47b2-b591-cd1a594d6e14.zip)
 
 **第二步**： ``.trae``拷贝工程根目录下
 
