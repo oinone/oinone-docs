@@ -31,10 +31,12 @@ order: 2
 参考[MySQL安装与注意事项](/zh-cn/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
 
 # 三、其他中间件部署
-| RocketMQ | 必须 | 4.7.1以上 |
+| 中间件 | 是否必须 | 版本 |
 | --- | --- | --- |
+| RocketMQ | 必须 | 4.7.1以上 |
 | Redis | 必须 | 5.0.2以上 |
 | Zookeeper | 必须 | 3.5.8以上 |
+
 
 
 # 四、安装docker
@@ -42,9 +44,9 @@ order: 2
 
 :::warning 提示
 
-在中国境内安装如果 `<code>docker</code>` 源异常，可以把官方源改成阿里云的源:
-从 https://download.docker.com/linux/centos/docker-ce.repo 换成 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-命令：yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+在中国境内安装如果 `<code>docker</code>` 源异常，可以把官方源改成阿里云的源:  
+从 https://download.docker.com/linux/centos/docker-ce.repo 换成 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  
+命令：yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  
 :::
 
 # 五、下载镜像

@@ -31,10 +31,11 @@ If there is no existing database, you can download and install it from the offic
 Refer to [MySQL Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
 
 # III. Deploy Other Middleware
-| RocketMQ | Mandatory | 4.7.1+ |
+| Middleware | Required | Version |
 | --- | --- | --- |
-| Redis | Mandatory | 5.0.2+ |
-| Zookeeper | Mandatory | 3.5.8+ |
+| RocketMQ | Yes | Above 4.7.1 |
+| Redis | Yes | Above 5.0.2 |
+| Zookeeper | Yes | Above 3.5.8 |
 
 
 # IV. Install Docker
@@ -42,9 +43,9 @@ If Docker is not installed, please download and install it from the official web
 
 :::warning Tip
 
-When installing within China, if the `<code>docker</code>` repository is abnormal, you can change the official repository to Alibaba Cloud's repository:
-Change from https://download.docker.com/linux/centos/docker-ce.repo to http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-Command: yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+When installing within China, if the `<code>docker</code>` repository is abnormal, you can change the official repository to Alibaba Cloud's repository:  
+Change from https://download.docker.com/linux/centos/docker-ce.repo to http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  
+Command: yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  
 :::
 
 # V. Download Image
