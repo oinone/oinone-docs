@@ -43,8 +43,8 @@ If Docker is not installed, please download and install it from the official web
 
 :::warning Tip
 
-When installing within China, if the `<code>docker</code>` repository is abnormal, you can change the official repository to Alibaba Cloud's repository:
-Change from https://download.docker.com/linux/centos/docker-ce.repo to http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+When installing within China, if the `<code>docker</code>` repository is abnormal, you can change the official repository to Alibaba Cloud's repository:  
+Change from https://download.docker.com/linux/centos/docker-ce.repo to http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  
 Command: yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 :::
 

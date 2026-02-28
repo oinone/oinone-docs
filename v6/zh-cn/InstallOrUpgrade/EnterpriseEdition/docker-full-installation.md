@@ -43,8 +43,8 @@ prev:
 
 :::warning 提示
 
-在中国境内安装如果 `<code>docker</code>` 源异常，可以把官方源改成阿里云的源:
-从 https://download.docker.com/linux/centos/docker-ce.repo 换成 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+在中国境内安装如果 `<code>docker</code>` 源异常，可以把官方源改成阿里云的源:  
+从 https://download.docker.com/linux/centos/docker-ce.repo 换成 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  
 命令：yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 :::
 
