@@ -7,7 +7,7 @@ order: 5
 
 ---
 # I. Overview
-Upgrading involves moving Oinone Math from an old version to a new supported version (e.g., from Oinone Math 5.0.0 to Oinone Math 6.0.0). Regular upgrades are crucial because each version provides new features, bug fixes, and security patches. It is highly recommended to use ``:doc: `supported versions<supported_versions>` ``. Each major version has a support period of three years.
+Upgrading involves moving Oinone Math from an old version to a new supported version (e.g., from Oinone Math 5.0.0 to Oinone Math 6.0.0). Regular upgrades are crucial because each version provides new features, bug fixes, and security patches. It is highly recommended to use:doc: `supported versions<supported_versions>`. Each major version has a support period of three years.
 
 For Oinone Math:
 + If using a major version (e.g., 4.0.0, 5.0.0, 6.0.0), upgrade at least once every two years, typically one version per year.
