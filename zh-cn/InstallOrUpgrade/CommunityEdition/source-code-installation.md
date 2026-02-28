@@ -36,8 +36,9 @@ next:
 参考[MySQL安装与注意事项](/zh-cn/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
 
 # 三、其他中间件部署
-| RocketMQ | 必须 | 4.7.1以上 |
+| 中间件 | 是否必须 | 版本 |
 | --- | --- | --- |
+| RocketMQ | 必须 | 4.7.1以上 |
 | Redis | 必须 | 5.0.2以上 |
 | Zookeeper | 必须 | 3.5.8以上 |
 
