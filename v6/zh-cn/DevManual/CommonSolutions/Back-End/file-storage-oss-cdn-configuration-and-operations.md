@@ -15,7 +15,7 @@ order: 43
 | HUAWEI_OBS | 华为云OBS |
 | LOCAL | 本地NGINX文件存储 |
 | TENCENT_COS | 腾讯云COS |
-
+| CTYUN_ZOS | 天翼云ZOS |
 
 # 二、OSS通用yaml配置
 ``` yaml
@@ -192,6 +192,37 @@ cdn:
     image-resize-parameter:
     allowedOrigin: https://test.oinone.com,http://127.0.0.1:88
     referer:
+```
+
+## （七）天翼云ZOS
+```yaml
+cdn:
+  oss:
+    name: 天翼云
+    type: CTYUN_ZOS
+    bucket: pamirs(根据实际情况修改)
+    uploadUrl: xxxx.zos.ctyun.cn
+    downloadUrl:  xxxx.zos.ctyun.cn
+    accessKeyId: 你的accessKeyId
+    accessKeySecret: 你的accessKeySecret
+    # 根据实际情况修改
+    mainDir: upload/
+    validTime: 3600000
+    timeout: 600000
+    active: true
+    # 根据实际情况修改
+    allowedOrigin: http://192.168.95.31:8888,https://xxxx.xxxxx.com
+    referer:
+```
+天翼云ZOS需要在启动工程增加以下依赖
+```yaml
+<okhttp3.version>4.9.3</okhttp3.version>
+<dependency>
+    <groupId>com.squareup.okhttp3</groupId>
+    <artifactId>okhttp</artifactId>
+    <version>${okhttp3.version}</version>
+</dependency>
+
 ```
 
 注：更多 YAML 配置请前往 [Module API](/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。

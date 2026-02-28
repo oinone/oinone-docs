@@ -15,7 +15,7 @@ order: 43
 | HUAWEI_OBS | Huawei Cloud OBS |
 | LOCAL | Local NGINX File Storage |
 | TENCENT_COS | Tencent Cloud COS |
-
+| CTYUN_ZOS | Tianyi Cloud ZOS |
 
 # Ⅱ、OSS Universal YAML Configuration
 ``` yaml
@@ -191,6 +191,37 @@ cdn:
     image-resize-parameter:
     allowedOrigin: https://test.oinone.com,http://127.0.0.1:88
     referer:
+```
+
+## (VII) Telecom Cloud ZOS
+```yaml
+cdn:
+  oss:
+    name: China Telecom Cloud
+    type: CTYUN_ZOS
+    bucket: pamirs (Modify according to the actual situation)
+    uploadUrl: xxxx.zos.ctyun.cn
+    downloadUrl:  xxxx.zos.ctyun.cn
+    accessKeyId: Your accessKeyId
+    accessKeySecret: Your accessKeySecret
+    # Modify according to the actual situation
+    mainDir: upload/
+    validTime: 3600000
+    timeout: 600000
+    active: true
+    # Modify according to the actual situation
+    allowedOrigin: http://192.168.95.31:8888,https://xxxx.xxxxx.com
+    referer:
+```
+The following dependencies need to be added when starting the project for China Telecom Cloud ZOS:
+```yaml
+<okhttp3.version>4.9.3</okhttp3.version>
+<dependency>
+    <groupId>com.squareup.okhttp3</groupId>
+    <artifactId>okhttp</artifactId>
+    <version>${okhttp3.version}</version>
+</dependency>
+
 ```
 
 Note: For more YAML configurations, please refer to [Module API](/en/DevManual/Reference/Back-EndFramework/module-API.md).
