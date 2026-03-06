@@ -1,146 +1,508 @@
 ---
-title: From Community to Enterprise
+title: Transition from Community Edition to Enterprise Edition
 index: true
 category:
   - Installation and Upgrade
-order: 4
+order: 3
 prev:
-  text: Installation via Running Package
+  text: Installation via Package
   link: /en/InstallOrUpgrade/EnterpriseEdition/package-installation.md
+next:
+  text: Oinone Designer Configuration Guide
+  link: /en/InstallOrUpgrade/setup-oinone-designer.md
 ---
-When the Oinone framework source code has not been modified, you can switch from the Community Edition to the Enterprise Edition.
+# I. Preparation
 
-:::warning Tip
++ Obtain the Enterprise Edition license <font style="color:#DF2A3F;">(Required)</font>
++ Obtain the private Maven/NPM repository address and account (for developers only)
 
-For information related to accounts, License permissions, etc., please contact Oinone staff.
+# II. Upgrade the Oinone Designer to the Enterprise Edition
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1749644175194-053883e1-63e3-40ed-9f9f-9b9541ec832f.png)
+The reference steps for the upgrade are as follows:
+
++ Create a `pks` directory in the same level directory as `docker-compose.yml` and put the Enterprise Edition license in it.
++ Use `volumes` to mount the license into the `pks` directory.
++ Modify the `.env` file to configure the license information.
++ Restart the `Oinone` designer.
+
+## (I) Modify docker-compose.yml to Mount the License
+
+```yaml
+services:
+  backend:
+    container_name: oinone-backend
+    volumes:
+      - ./pks:/opt/pamirs/pks
+```
+
+## (II) Modify the .env File to Configure License Information
+
+```shell
+# Enter your subject name
+LIC_SUBJECT=<subject>
+# Enter your license file name
+LIC_FILE=pks/<license.lic>
+```
+
+:::warning Note:
+
+For more information about the `.env` file, please refer to: [Oinone Designer Configuration Guide](/en/InstallOrUpgrade/setup-oinone-designer.md)
 
 :::
 
-# I. Preparation
+## (III) Restart the Oinone Designer
 
-+ Back up your Community Edition application database (this step is optional)
-+ Enterprise Edition Maven repository and account
-+ Container image repository and account
-+ Enterprise Edition license certificate
+```shell
+# MacOS/Linux
+docker compose down -v
+docker compose up -d
 
-# II. Install Enterprise Edition
+# Windows
+docker compose -p oinone down -v
+docker compose -p oinone up -d
+```
 
-Refer to:
+# III. Upgrade the Business Application to the Enterprise Edition
 
-+ [Quick Experience: Installation via docker-full Method](/en/InstallOrUpgrade/EnterpriseEdition/docker-full-installation.md)
-+ [Installation via docker-mini Method](/en/InstallOrUpgrade/EnterpriseEdition/docker-mini-installation.md)
+## (I) Add Enterprise Edition Dependencies to the Business Application
 
-# III. Dependencies for Business Application Upgrade
+### Remove Community Edition Dependency Management
 
-## (I) Add Business Application Dependency Management (Main POM)
-
-``` xml
+```xml
 <properties>
-    <!-- 可根据Oinone发布公告(https://doc.oinone.top/category/version)更新版本 -->
-    <!-- 版本号需与部署企业版版本号保持一致，有疑问可联系数式Oinone员工 -->
-    <oinone-bom.version>6.2.10</oinone-bom.version>
+  <!-- oinone -->
+  <oinone-pamirs.version>7.2.0</oinone-pamirs.version>
+
+  <!-- distribution -->
+  <pamirs.distribution.version>7.2.0</pamirs.distribution.version>
 </properties>
 
 <dependencyManagement>
-    <!-- 去掉开源版本pro.shushi.pamirs的依赖 -->
-    <!-- 统一替换下面的oinone bom依赖 -->
-    <!-- 注意MySQL驱动的依赖不要去掉 -->
-  
-    <!-- 添加oinone bom-->
+  <dependencies>
     <dependency>
-        <groupId>pro.shushi</groupId>
-        <artifactId>oinone-bom</artifactId>
-        <version>${oinone-bom.version}</version>
+        <groupId>pro.shushi.pamirs</groupId>
+        <artifactId>pamirs-k2</artifactId>
+        <version>${oinone-pamirs.version}</version>
         <type>pom</type>
         <scope>import</scope>
     </dependency>
-  
-    <!-- 其他依赖管理 -->
-    <!-- ... -->
+    <dependency>
+        <groupId>pro.shushi.pamirs</groupId>
+        <artifactId>pamirs-framework</artifactId>
+        <version>${oinone-pamirs.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency>
+    <dependency>
+        <groupId>pro.shushi.pamirs.boot</groupId>
+        <artifactId>pamirs-boot-dependencies</artifactId>
+        <version>${oinone-pamirs.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency>
+    <dependency>
+        <groupId>pro.shushi.pamirs.core</groupId>
+        <artifactId>pamirs-core-dependencies</artifactId>
+        <version>${oinone-pamirs.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency>
+    <dependency>
+        <groupId>pro.shushi.pamirs.middleware</groupId>
+        <artifactId>pamirs-middleware-dependencies</artifactId>
+        <version>${oinone-pamirs.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency>
+    <dependency>
+        <groupId>pro.shushi.pamirs</groupId>
+        <artifactId>pamirs-distribution</artifactId>
+        <version>${pamirs.distribution.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency>
+  </dependencies>
 </dependencyManagement>
 ```
 
-## (II) Upgrade Dependencies of the Business Application (POM of the Boot Project)
+### Add Enterprise Edition Dependency Management
 
-1. Basic packages that need to be imported for the Enterprise Edition
-
-``` xml
-<!-- Common Package - Enterprise Edition -->
-<dependency>
-  <groupId>pro.shushi.pamirs.core</groupId>
-  <artifactId>pamirs-core-common-ee</artifactId>
-</dependency>
-
-<!-- Application Center - Enterprise Edition -->
-<dependency>
-  <groupId>pro.shushi.pamirs.core</groupId>
-  <artifactId>pamirs-apps-ee</artifactId>
-</dependency>
-
-<!-- Authentication - Enterprise Edition -->
-<dependency>
-  <groupId>pro.shushi.pamirs.core</groupId>
-  <artifactId>pamirs-auth3-ee-core</artifactId>
-</dependency>
-<dependency>
-  <groupId>pro.shushi.pamirs.core</groupId>
-  <artifactId>pamirs-auth3-ee-view</artifactId>
-</dependency>
-<dependency>
-  <groupId>pro.shushi.pamirs.core</groupId>
-  <artifactId>pamirs-auth3-ee-rbac-core</artifactId>
-</dependency>
-<dependency>
-  <groupId>pro.shushi.pamirs.core</groupId>
-  <artifactId>pamirs-auth3-ee-rbac-view</artifactId>
-</dependency>
-
-<!-- Remote Invocation (Publish and Subscribe to Dubbo Services) -->
-<dependency>
-    <groupId>pro.shushi.pamirs.distribution</groupId>
-    <artifactId>pamirs-distribution-faas</artifactId>
-</dependency>
-```
-
-2. Startup Acceleration Package, used to improve startup speed
+You can click to view the latest version: [Oinone Version Update Log](https://doc.oinone.top/ban-ben-geng-xin-ri-zhi)
 
 ```xml
-<!-- Startup Acceleration -->
-<dependency>
+<properties>
+  <!-- oinone -->
+  <oinone-bom.version>7.2.0</oinone-bom.version>
+</properties>
+
+<dependencyManagement>
+  <dependency>
+    <groupId>pro.shushi</groupId>
+    <artifactId>oinone-bom</artifactId>
+    <version>${oinone-bom.version}</version>
+    <type>pom</type>
+    <scope>import</scope>
+  </dependency>
+</dependencyManagement>
+```
+
+### Add Enterprise Edition Dependencies to the Startup Project
+
+#### Available Dependencies for the Seed Edition
+
+```xml
+<dependencies>
+  <!-- seed version -->
+  <dependency>
     <groupId>pro.shushi.pamirs.framework</groupId>
     <artifactId>pamirs-framework-turbo-ee</artifactId>
-</dependency>
+  </dependency>
+
+  <!-- sys_setting enterprise version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-sys-setting-ee</artifactId>
+  </dependency>
+</dependencies>
 ```
 
-3. Packages related to distributed caching. After import, metadata is cached via Redis, which is suitable for scenarios where local projects and the designer are linked in real time
+#### Available Dependencies for the Standard Edition
 
 ```xml
-<!-- Distributed Caching -->
-<dependency>
-    <groupId>pro.shushi.pamirs.distribution</groupId>
-    <artifactId>pamirs-distribution-gateway</artifactId>
-</dependency>
-<dependency>
-    <groupId>pro.shushi.pamirs.distribution</groupId>
-    <artifactId>pamirs-distribution-session</artifactId>
-</dependency>
-<dependency>
-    <groupId>pro.shushi.pamirs.distribution</groupId>
-    <artifactId>pamirs-distribution-session-cd</artifactId>
-</dependency>
+<dependencies>
+  <!-- seed version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.framework</groupId>
+    <artifactId>pamirs-framework-turbo-ee</artifactId>
+  </dependency>
+
+  <!-- sys_setting enterprise version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-sys-setting-ee</artifactId>
+  </dependency>
+
+  <!-- standard version -->
+  <!-- auth -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-core</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-view</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-rbac-core</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-rbac-view</artifactId>
+  </dependency>
+
+  <!-- apps enterprise version -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-apps-ee</artifactId>
+  </dependency>
+
+  <!-- designer_metadata -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.designer</groupId>
+      <artifactId>pamirs-designer-metadata-core</artifactId>
+  </dependency>
+</dependencies>
+```
+
+#### Available Dependencies for the Professional Edition
+
+PS: All dependencies of the `Seed Edition` and `Standard Edition` can be used.
+
+```xml
+<dependencies>
+  <!-- seed version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.framework</groupId>
+    <artifactId>pamirs-framework-turbo-ee</artifactId>
+  </dependency>
+
+  <!-- sys_setting enterprise version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-sys-setting-ee</artifactId>
+  </dependency>
+
+  <!-- standard version -->
+  <!-- auth -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-core</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-view</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-rbac-core</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-rbac-view</artifactId>
+  </dependency>
+
+  <!-- apps enterprise version -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-apps-ee</artifactId>
+  </dependency>
+
+  <!-- designer_metadata -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.designer</groupId>
+      <artifactId>pamirs-designer-metadata-core</artifactId>
+  </dependency>
+
+  <!-- professional version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.framework</groupId>
+    <artifactId>pamirs-framework-meta-virtual</artifactId>
+  </dependency>
+
+  <!-- data_audit -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-data-audit-core</artifactId>
+  </dependency>
+
+  <!-- print -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-print-core</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-print-view</artifactId>
+  </dependency>
+</dependencies>
+```
+
+#### Available Dependencies for the Enterprise Edition
+
+PS: All dependencies of the `Seed Edition`, `Standard Edition`, and `Professional Edition` can be used.
+
+```xml
+<dependencies>
+  <!-- seed version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.framework</groupId>
+    <artifactId>pamirs-framework-turbo-ee</artifactId>
+  </dependency>
+
+  <!-- sys_setting enterprise version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-sys-setting-ee</artifactId>
+  </dependency>
+
+  <!-- standard version -->
+  <!-- auth -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-core</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-view</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-rbac-core</artifactId>
+  </dependency>
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-auth3-ee-rbac-view</artifactId>
+  </dependency>
+
+  <!-- apps enterprise version -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.core</groupId>
+      <artifactId>pamirs-apps-ee</artifactId>
+  </dependency>
+
+  <!-- designer_metadata -->
+  <dependency>
+      <groupId>pro.shushi.pamirs.designer</groupId>
+      <artifactId>pamirs-designer-metadata-core</artifactId>
+  </dependency>
+
+  <!-- professional version -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.framework</groupId>
+    <artifactId>pamirs-framework-meta-virtual</artifactId>
+  </dependency>
+
+  <!-- data_audit -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-data-audit-core</artifactId>
+  </dependency>
+
+  <!-- print -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-print-core</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-print-view</artifactId>
+  </dependency>
+
+  <!-- enterprise version -->
+  <!-- fusion -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.fusion</groupId>
+    <artifactId>pamirs-fusion-lite-core</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>pro.shushi.pamirs.fusion</groupId>
+    <artifactId>pamirs-fusion-view</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>pro.shushi.pamirs.fusion</groupId>
+    <artifactId>pamirs-fusion-orm-client</artifactId>
+  </dependency>
+
+  <!-- sso -->
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-sso-server</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>pro.shushi.pamirs.core</groupId>
+    <artifactId>pamirs-sso-client</artifactId>
+  </dependency>
+</dependencies>
+```
+
+## (II) Modify the application.yml Configuration
+
+### Place the License in the Project Root Directory
+
+Taking the `oinone-backend-tutorials` provided in the tutorial as an example, its directory structure is as follows:
+
+```shell
+.
+├── docker
+│   └── docker-compose.yml
+├── oinone-tutorials-boot
+│   ├── pom.xml
+│   └── src
+│       └── main
+│           ├── java
+│           └── resources
+│               ├── application.yml
+│               └── config
+│                   └── application-dev.yml
+├── pom.xml
+├── pks
+│   └── license.lic
+├── LICENSE.txt
+└── README.md
+```
+
+### Configure License Information
+
+Configure the license information in `application.yml`:
+
+:::warning Note:
+
+Here, the configuration in `application.yml` is modified, not `application-dev.yml`.
+
+:::
+
+```yaml
+pamirs:
+  license:
+    # Enter your subject name
+    subject: <subject>
+    # Enter your license file name
+    path: pks/<license.lic>
+```
+
+For more license configurations, please refer to: [Common Questions about Using the Oinone License](https://doc.oinone.top/install/backendinstall/13760.html)
+
+:::warning Note:
+
+If the license file cannot be read correctly due to the directory hierarchy or relative position, it is recommended to specify your license using an absolute path.
+
+:::
+
+### Configure the Startup Modules
+
+Add the corresponding modules of the corresponding dependencies according to the license version in `application.yml`. The following are the module configurations available for different versions, which need to be configured in combination with the new dependencies you added.
+
+:::warning Note:
+
+Here, the configuration in `application.yml` is modified, not `application-dev.yml`.
+
+:::
+
+#### New Available Modules for the Standard Edition
+
+```yaml
+pamirs:
+  boot:
+    modules:
+      # other modules
+      # ...
+      # standard version modules
+      - designer_metadata
+```
+
+#### New Available Modules for the Professional Edition
+
+```yaml
+pamirs:
+  boot:
+    modules:
+      # other modules
+      # ...
+      # standard version modules
+      - designer_metadata
+      # professional version modules
+      - data_audit
+      - print
+```
+
+#### Available Modules for the Enterprise Edition
+
+```yaml
+pamirs:
+  boot:
+    modules:
+      # other modules
+      # ...
+      # standard version modules
+      - designer_metadata
+      # professional version modules
+      - data_audit
+      - print
+      # enterprise version modules
+      - fusion
+      - sso
 ```
 
 # IV. IDEA Development Verification
 
-Verify the IDEA Development Certificate
+Click in sequence: Settings -> Oinone and enter the license code.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1751511410221-7ea9c089-6599-4467-b44b-a4167c04885a.png)
 
-:::warning Tip
+:::warning Note:
 
-If the IDEA plugin activation fails on the Windows operating system (including no response when clicking Activate), you can first check whether WMIC is activated. If it is not activated, you can refer to the instructions in the figure below to install and activate WMIC.
+If the IDEA plugin fails to activate on the Windows operating system (including no response when clicking the activation button), you can pre - judge whether wmic is activated. If it is not activated, you can refer to the instructions in the following figure to install and activate wmic.
 
 :::
 
@@ -149,41 +511,3 @@ If the IDEA plugin activation fails on the Windows operating system (including n
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1756949757891-a09cade0-0909-4439-8e76-91e50d9ec1f5.png)
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1756949763318-31436010-2a10-43df-91e3-60d006cd2d77.png)
-
-# V. Business Application YAML Modification
-
-## (I) Add License Configuration
-
-The License file is located in the "license" folder of the Enterprise Edition deployment package released by Shushi. For the configuration in the YML file, please refer to "Deployment Instructions.md";
-
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Installation-and-Upgrade/from-community-to-enterprise/1756949792869-e9614909-6733-49ef-8d29-8bcc6cce38ff.png)
-
-## (II) Middleware Configuration for Business Applications
-
-The **middleware (ZK/Redis/RocketMQ) configuration of the business system must be consistent with that of the deployed Enterprise Edition designer**;
-
-## (III) Database Configuration for Business Applications
-
-The database configuration of the business system must be **consistent with that of the deployed Enterprise Edition designer**;
-
-## (IV) New Configuration for Business Projects
-
-```plain
-logging:
-  level:
-    org.apache.dubbo.registry.client.metadata.store.RemoteMetadataServiceImpl: off
-```
-
-:::warning Tip
-
-Inconsistent middleware and versions under the same base database and same Redis will cause startup verification failure.
-
-:::
-
-# VI. Startup/Experience
-
-Now you can enjoy the Oinone Enterprise Edition happily 😀.
-
-# VII. Reference Materials
-
-[Common Issues with Backend Deployment and Startup](/en/DevManual/FAQ/startup-frequently-asked-questions-about-backend-startup.md)

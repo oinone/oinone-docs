@@ -4,7 +4,12 @@ index: true
 category:
   - Installation and Upgrade
 order: 6
-
+prev:
+  text: Oinone Designer Configuration Guide
+  link: /en/InstallOrUpgrade/setup-oinone-designer.md
+next:
+  text: Version Upgrade
+  link: /en/InstallOrUpgrade/version-upgrade.md
 ---
 # I. Overview
 Oinone Math provides support and bug fixes for the latest 3 major versions. The following table shows the support status of each version.

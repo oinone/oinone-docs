@@ -7,7 +7,7 @@ category:
 order: 8
 next:
   text: Source Code Installation
-  link: /en/InstallOrUpgrade/CommunityEdition/source-code-installation.md
+  link: /en/InstallOrUpgrade/CommunityEdition.md
 ---
 # I. Download Installation Package
 Download address: [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)

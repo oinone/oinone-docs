@@ -5,8 +5,8 @@ category:
   - Installation and Upgrade
 order: 7
 prev:
-  text: Maven Installation and Precautions
-  link: /en/InstallOrUpgrade/Dev-ENV/Maven-setup.md
+  text: Version Upgrade
+  link: /en/InstallOrUpgrade/version-upgrade.md
 next:
   text: User Manual
   link: /en/UserManual/README.md

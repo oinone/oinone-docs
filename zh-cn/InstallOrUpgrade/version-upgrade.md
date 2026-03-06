@@ -4,7 +4,12 @@ index: true
 category:
   - 安装与升级
 order: 5
-
+prev:
+  text: 版本清单
+  link: /zh-cn/InstallOrUpgrade/version-list.md
+next:
+  text: FAQ
+  link: /zh-cn/InstallOrUpgrade/FAQ.md
 ---
 # 一、概述
 升级涉及将数式Oinone从旧版本移动到新的支持版本（例如，从 数式Oinone 5.0.0 到 数式Oinone 6.0.0）。定期升级至关重要，因为每个版本都会提供新功能、错误修复和安全补丁。强烈建议使用:doc: `支持的版本<supported_versions>` 。每个主要版本的支持期为三年。

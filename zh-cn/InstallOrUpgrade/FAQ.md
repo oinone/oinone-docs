@@ -5,8 +5,8 @@ category:
   - 安装与升级
 order: 7
 prev:
-  text: Maven安装与注意事项
-  link: /zh-cn/InstallOrUpgrade/Dev-ENV/Maven-setup.md
+  text: 版本升级
+  link: /zh-cn/InstallOrUpgrade/version-upgrade.md
 next:
   text: 用户手册
   link: /zh-cn/UserManual/README.md

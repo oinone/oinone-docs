@@ -4,7 +4,12 @@ index: true
 category:
   - 安装与升级
 order: 6
-
+prev:
+  text: Oinone 设计器配置指南
+  link: /zh-cn/InstallOrUpgrade/setup-oinone-designer.md
+next:
+  text: 版本升级
+  link: /zh-cn/InstallOrUpgrade/version-upgrade.md
 ---
 # 一、概述
 数式Oinone对最近3个主要版本提供支持和错误修复。下表是每个版本的支持状态。
