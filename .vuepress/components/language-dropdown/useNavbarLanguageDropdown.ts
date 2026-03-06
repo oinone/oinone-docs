@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useSiteData, useSiteLocaleData } from '@vuepress/client';
+import { useRouteLocale, useSiteData, useSiteLocaleData } from '@vuepress/client';
 import { currentVersion, versions } from '../../state';
 
 const languageNames: { [key: string]: string } = {
@@ -12,14 +12,33 @@ export const useNavbarLanguageDropdown = () => {
   const route = useRoute();
   const siteData = useSiteData();
   const siteLocale = useSiteLocaleData();
+  const routeLocale = useRouteLocale();
 
-  const currentLocalePath = computed(() => {
-    for (const path in siteData.value.locales) {
-      if (siteData.value.locales[path].lang === siteLocale.value.lang) {
-        return path;
+  // A computed variable that returns all locale paths for the current version.
+  const versionedLocalePaths = computed(() => {
+    const allLocales = siteData.value.locales;
+    const versionPrefix = currentVersion.value.prefix;
+    const otherVersionPrefixes = versions
+      .map(v => v.prefix)
+      .filter(p => p && p !== versionPrefix);
+
+    return Object.keys(allLocales).filter(path => {
+      if (versionPrefix) {
+        return path.startsWith(versionPrefix);
       }
-    }
-    return '/';
+      return !otherVersionPrefixes.some(p => path.startsWith(p));
+    });
+  });
+
+  // The current locale path, filtered by version.
+  const currentLocalePath = computed(() => {
+    const matchingLocales = versionedLocalePaths.value.filter(path => {
+      const locale = siteData.value.locales[path];
+      return locale && locale.lang === siteLocale.value.lang;
+    });
+
+    matchingLocales.sort((a, b) => b.length - a.length);
+    return matchingLocales[0] || routeLocale.value;
   });
 
   const getLanguageLink = (targetLocalePath: string) => {
@@ -27,19 +46,7 @@ export const useNavbarLanguageDropdown = () => {
   };
 
   return computed(() => {
-    const allLocales = siteData.value.locales;
-    const versionPrefix = currentVersion.value.prefix;
-    const otherVersionPrefixes = versions
-      .map(v => v.prefix)
-      .filter(p => p && p !== versionPrefix);
-
-    const localePathsForVersion = Object.keys(allLocales).filter(path => {
-      if (versionPrefix) {
-        return path.startsWith(versionPrefix);
-      } else {
-        return !otherVersionPrefixes.some(p => path.startsWith(p));
-      }
-    });
+    const localePathsForVersion = versionedLocalePaths.value;
 
     if (localePathsForVersion.length < 2) {
       return null;
@@ -48,14 +55,17 @@ export const useNavbarLanguageDropdown = () => {
     return {
       text: languageNames[siteLocale.value.lang] || siteLocale.value.lang,
       ariaLabel: 'Select language',
-      children: localePathsForVersion.map(path => {
-        const locale = allLocales[path];
-        return {
-          text: languageNames[locale.lang] || locale.lang,
-          link: getLanguageLink(path),
-          active: path === currentLocalePath.value
-        };
-      })
+      children: localePathsForVersion
+        .map(path => {
+          const locale = siteData.value.locales[path];
+          if (!locale) return null;
+          return {
+            text: (locale.lang && languageNames[locale.lang]) || locale.lang,
+            link: getLanguageLink(path),
+            active: path === currentLocalePath.value
+          };
+        })
+        .filter(Boolean)
     };
   });
 };
