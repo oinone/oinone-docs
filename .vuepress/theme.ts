@@ -146,6 +146,7 @@ export default hopeTheme(
     // hotReload: true,
     // 在这里配置主题提供的插件
     plugins: {
+      redirect: false,
       icon: {
         assets: "fontawesome-with-brands",
       },
