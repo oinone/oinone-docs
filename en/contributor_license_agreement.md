@@ -1,6 +1,6 @@
 ---
 title: 贡献者许可协议模板（CLA）
-index: fals
+index: false
 category:
   - CLA
 ---
