@@ -4,8 +4,10 @@ index: true
 category:
   - 安装与升级
   - 环境准备
-order: 2
-
+order: 4
+next:
+  text: 设置指南
+  link: /zh-cn/DevManual/Tutorials/setup-guide.md
 ---
 # 一、下载安装包
 :::warning 提示

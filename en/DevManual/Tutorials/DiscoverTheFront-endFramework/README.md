@@ -7,7 +7,7 @@ category:
   - Discover Front-end Framework
 dir:
   link: true
-  order: 3
+  order: 4
 prev:
   text: Chapter 14:Customized Features
   link: /en/DevManual/Tutorials/Back-endFramework/chapter14-customized-features.md

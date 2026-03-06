@@ -4,8 +4,10 @@ index: true
 category:
   - 安装与升级
   - 环境准备
-order: 4
-
+order: 1
+prev:
+  text: 环境准备
+  link: /zh-cn/DevManual/Tutorials/Dev-ENV/README.md
 ---
 ## 一、macOS安装Git
 命令行中输入一下命令

@@ -4,8 +4,10 @@ index: true
 category:
   - Installation and Upgrade
   - Environment Preparation
-order: 4
-
+order: 1
+prev:
+  text: Dev ENV
+  link: /en/DevManual/Tutorials/Dev-ENV/README.md
 ---
 ## I. Install Git on macOS
 Enter the following command in the command line:

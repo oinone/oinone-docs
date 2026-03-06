@@ -7,7 +7,7 @@ category:
   - 后端框架
 dir:
   link: true
-  order: 2
+  order: 3
 next:
   text: 章节 1：整体介绍（Architecture Overview）
   link: /zh-cn/DevManual/Tutorials/Back-endFramework/chapter1-architecture-overview.md

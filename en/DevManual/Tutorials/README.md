@@ -11,8 +11,8 @@ prev:
   text: Best Practices of VibeCoding When Oinone Meets Trae (Backend)
   link: /en/DevManual/VibeCodingPracticalCombat/Trae_VibeCoding_Backend.md
 next:
-  text: Setup Guide
-  link: /en/DevManual/Tutorials/setup-guide.md
+  text: Dev Env
+  link: /en/DevManual/Tutorials/Dev-ENV/README.md
 ---
 :::warning Tip
 

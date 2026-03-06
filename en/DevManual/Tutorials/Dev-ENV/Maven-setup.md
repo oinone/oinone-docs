@@ -4,10 +4,8 @@ index: true
 category:
   - Installation and Upgrade
   - Environment Preparation
-order: 8
-next:
-  text: Source Code Installation
-  link: /en/InstallOrUpgrade/CommunityEdition.md
+order: 3
+
 ---
 # I. Download Installation Package
 Download address: [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)

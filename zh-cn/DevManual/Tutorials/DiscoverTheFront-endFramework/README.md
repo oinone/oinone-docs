@@ -7,7 +7,7 @@ category:
   - 探索前端框架
 dir:
   link: true
-  order: 3
+  order: 4
 prev:
   text: 章节 14：产品的个性化开发（Customized Features）
   link: /zh-cn/DevManual/Tutorials/Back-endFramework/chapter14-customized-features.md

@@ -4,8 +4,10 @@ index: true
 category:
   - Installation and Upgrade
   - Environment Preparation
-order: 2
-
+order: 4
+next:
+  text: Setup Guide
+  link: /en/DevManual/Tutorials/setup-guide.md
 ---
 # Ⅰ、Download Installation Package
 :::warning Tip

@@ -7,7 +7,7 @@ category:
   - 精通前端框架
 dir:
   link: true
-  order: 4
+  order: 5
 prev:
   text: 章节 2：构建仪表盘（Build a dashboard）
   link: /zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md

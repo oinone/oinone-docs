@@ -4,10 +4,8 @@ index: true
 category:
   - 安装与升级
   - 环境准备
-order: 8
-next:
-  text: 源码安装
-  link: /zh-cn/InstallOrUpgrade/CommunityEdition/source-code-installation.md
+order: 3
+
 ---
 # 一、下载安装包
 下载地址 [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)

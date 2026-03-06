@@ -7,7 +7,7 @@ category:
   - Back-end Framework
 dir:
   link: true
-  order: 2
+  order: 3
 next:
   text: Chapter 1:Architecture Overview
   link: /en/DevManual/Tutorials/Back-endFramework/chapter1-architecture-overview.md

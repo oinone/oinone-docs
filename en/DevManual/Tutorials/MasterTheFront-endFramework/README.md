@@ -7,7 +7,7 @@ category:
   - Master the Front-End Framework
 dir:
   link: true
-  order: 4
+  order: 5
 prev:
   text: Chapter 2：Build a Dashboard
   link: /en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md

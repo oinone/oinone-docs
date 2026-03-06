@@ -8,11 +8,11 @@ dir:
   link: true
   order: 1
 prev:
-  text: Installation and Upgrade
-  link: /en/InstallOrUpgrade/README.md
+  text: Tutorials
+  link: /en/DevManual/Tutorials/README.md
 next:
-  text: JDK Installation and Precautions
-  link: /en/InstallOrUpgrade/Dev-ENV/JDK-setup.md
+  text: Git Installation and Precautions
+  link: /en/DevManual/Tutorials/Dev-ENV/Git-setup.md
 ---
 # I. Runtime Environment
 
