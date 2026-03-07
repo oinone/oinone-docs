@@ -1,81 +1,53 @@
 import {defineClientConfig} from "vuepress/client";
-import {ref, provide} from "vue";
+import {provide, ref} from "vue";
 
 let currentApp;
-const WELCOME_WEBSITE_URL = "https://www.oinone.top";
 
 function providerOS() {
-  if (!__VUEPRESS_SSR__) {
-    const os = ref("pc");
-    const OS = (function () {
-      var a = navigator.userAgent,
-        b = /(?:Android)/.test(a),
-        d = /(?:Firefox)/.test(a),
-        e = /(?:Mobile)/.test(a),
-        f = b && e,
-        g = b && !f,
-        c = /(?:iPad.*OS)/.test(a),
-        h = !c && /(?:iPhone\sOS)/.test(a),
-        k = c || g || /(?:PlayBook)/.test(a) || (d && /(?:Tablet)/.test(a)),
-        a =
-          !k &&
-          (b ||
-            h ||
-            /(?:(webOS|hpwOS)[\s\/]|BlackBerry.*Version\/|BB10.*Version\/|CriOS\/)/.test(
-              a
-            ) ||
-            (d && e));
-      return {
-        android: b,
-        androidPad: g,
-        androidPhone: f,
-        ipad: c,
-        iphone: h,
-        tablet: k,
-        phone: a,
-      };
-    })();
-    if (OS.phone) {
-      os.value = "phone";
-    } else if (OS.ipad) {
-      os.value = "ipad";
+    if (__VUEPRESS_SSR__) {
+        provide("os", ref("pc"));
+        return;
     }
-    provide("os", os);
-  } else {
-    provide("os", ref("pc"));
-  }
+
+    const userAgent = navigator.userAgent;
+    const isAndroid = /Android/.test(userAgent);
+    const isMobile = /Mobile/.test(userAgent);
+    const isIpad = /iPad.*OS/.test(userAgent);
+    const isIphone = !isIpad && /iPhone\sOS/.test(userAgent);
+    const isTablet = isIpad || (isAndroid && !isMobile) || /PlayBook/.test(userAgent) || (/Firefox/.test(userAgent) && /Tablet/.test(userAgent));
+    const isPhone = !isTablet && (isAndroid || isIphone || /(webOS|hpwOS)[\s\/]|BlackBerry.*Version\/|BB10.*Version\/|CriOS\//.test(userAgent) || (/Firefox/.test(userAgent) && isMobile));
+
+    let device = "pc";
+    if (isPhone) {
+        device = "phone";
+    } else if (isTablet) {
+        device = "ipad"; // Assuming tablet should be treated as ipad
+    }
+
+    provide("os", ref(device));
 }
 
 export default defineClientConfig({
-  enhance({app, router, siteData}) {
-    currentApp = app;
-    router.beforeEach((to, from, next) => {
-      next();
-      if (!__VUEPRESS_SSR__) {
-        if (
-          !to.fullPath.startsWith("/en") &&
-          !to.fullPath.startsWith("/zh-cn")
-        ) {
-          if (to.fullPath === "" || to.fullPath === "/") {
-            window.location.href = WELCOME_WEBSITE_URL + "/document";
-          }
-        } else {
-          const indexPathArr = ["/en/", "/zh-cn/", "/en", "/zh-cn"];
-          if (indexPathArr.includes(to.fullPath)) {
-            window.location.href = WELCOME_WEBSITE_URL + "/document";
-          } else {
-            next();
-          }
+    enhance({app, router}) {
+        currentApp = app;
+        if (!__VUEPRESS_SSR__) {
+            router.isReady().then(() => {
+                const {path} = router.currentRoute.value;
+                if (path === '/') {
+                    const lang = navigator.language;
+                    if (lang.toLowerCase().startsWith('zh')) {
+                        router.replace('/zh-cn/DevManual/');
+                    } else {
+                        router.replace('/en/DevManual/');
+                    }
+                }
+            });
         }
-      } else {
-        next();
-      }
-    });
-  },
-  setup() {
-    provide("app", currentApp);
-    providerOS();
-  },
-  layouts: {},
-  rootComponents: [],
+    },
+    setup() {
+        provide("app", currentApp);
+        providerOS();
+    },
+    layouts: {},
+    rootComponents: [],
 });
