@@ -39,7 +39,6 @@
           </div>
           <a class="nav-link" :href="localePath('/use-cases')">{{ $t('nav.useCases') }}</a>
           <a class="nav-link" :href="localePath('/pricing')">{{ $t('nav.pricing') }}</a>
-          <a class="nav-link" :href="localePath('/blogs')">{{ $t('nav.blog') }}</a>
           <a class="nav-link" href="https://doc.oinone.top/" target="_blank">{{ $t('nav.community') }}</a>
           <!-- Resources Dropdown -->
           <div class="nav-dropdown-wrap">
