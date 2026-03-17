@@ -1,9 +1,9 @@
 ---
-title: Best Practices of VibeCoding When Oinone Meets Trae (Backend)
+title: Best Practices of AI Coding When Oinone Meets Trae (Backend)
 index: true
 category:
   - R&D Manual
-  - VibeCoding Practical Combat
+  - AI Coding Practical Combat
 order: 1
 prev:
   text: R&D Manual

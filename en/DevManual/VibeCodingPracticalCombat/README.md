@@ -1,10 +1,9 @@
 ---
-title: VibeCoding Practical Combat
+title: AI Coding Practical Combat
 index: false
 category:
   - DevManual
-  - VibeCoding Practical Combat
+  - AI Coding Practical Combat
 dir:
   link: false
-  order: 1
 ---
