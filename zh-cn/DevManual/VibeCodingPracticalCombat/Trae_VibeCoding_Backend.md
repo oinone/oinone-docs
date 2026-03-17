@@ -1,9 +1,9 @@
 ---
-title: Oinone遇上Trae的VibeCoding最佳实践（后端）
+title: Oinone遇上Trae的AI Coding最佳实践（后端）
 index: true
 category:
   - 研发手册
-  - VibeCoding 实战
+  - AI Coding 实战
 order: 1
 prev:
   text: 研发手册
