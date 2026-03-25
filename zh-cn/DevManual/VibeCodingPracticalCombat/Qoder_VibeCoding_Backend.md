@@ -1,100 +1,100 @@
 ---
-title: Oinone遇上Trae的AI Coding最佳实践（后端）
+title: Oinone遇上Qoder的AI Coding最佳实践（后端）
 index: true
 category:
   - 研发手册
   - AI Coding 实战
-order: 1
-prev:
-  text: 研发手册
-  link: /zh-cn/DevManual/README.md
+order: 2
+next:
+  text: 教程
+  link: /zh-cn/DevManual/Tutorials/README.md
 ---
 # 一、心态
 
-我们是在让它给我们干活，不是验证它聪明。AI在一些环节会显得很笨，所以我们不要纠结。手工纠正下会比较快，也会有益于`AI`后续学习。同时我们需要给他正常的工作流程，尽可能地规避问题。我们是跟与AI结队编程，不是甩手掌柜，当然你越知道怎么配合，AI能做的就会越多
+我们是在让`AI`给我们干活，不是验证它聪明。AI在一些环节会显得很笨，所以我们不要纠结。手工纠正下会比较快，也会有益于`AI`后续学习。同时我们需要给他正常的工作流程，尽可能地规避问题。我们是跟与AI结队编程，不是甩手掌柜，当然你越知道怎么配合，AI能做的就会越多
 
 ## （一）与AI结队编程的经验
 
-1. 工程环境：工程依赖导致报错，虽然我们在`.trae`目录下放有源码，AI会自动扫描代码并增加依赖。但是非常耗时而且扫描的文件多了容易出错。如果我们自己手工做一下，就会降低`AI`的理解成本。跟初学者一样，通常会卡在环境搭建上，`AI`也一样。如果环境搭建好。那么`AI`也会给你更好的反馈
+1. 工程环境：工程依赖导致报错，虽然我们在`.qoder`目录下放有源码，AI会自动扫描代码并增加依赖。但是非常耗时而且扫描的文件多了容易出错。如果我们自己手工做一下，就会降低`AI`的理解成本。跟初学者一样，通常会卡在环境搭建上，`AI`也一样。如果环境搭建好。那么`AI`也会给你更好的反馈
 2. 不要指望一次完成，把大任务拆成小任务，同时把任务分层。最终按分层分批执行。比如先建模型与菜单、再写`service`与`Action`
 3. 不要指望一次完美，完美的代码是多次任务叠加的效果。比如`Action` 正常执行完以后，再让对所有`Action`按`Oinone`规范再检查（如命名规范，入参出参数规范），最后还得让`Action`按`Oinone`特有的交互建代理模型与修改新增`Action`（如多个模型入参，可以合并进代理模型或传输模型，把对应的方法放到传输模型中）
 
 # 二、我们有什么
 
-也就是`.trae`下面我们有开源`opsx`的工作流（`commands`、`skills`）、我们沉淀的`rules`、以及`Oinone`开源的`source`（文档`oinone-docs`、源码`oinone-pamirs`）
+也就是`.qoder`下面我们有开源`opsx`的工作流（`commands`、`skills`）、我们沉淀的`rules`、以及`Oinone`开源的`source`（文档`oinone-docs`、源码`oinone-pamirs`）
 
-<table border="1" style="border-collapse: collapse; width: 100%; text-align: left;">
+<table border="1" cellpadding="8" cellspacing="0" style="width:100%;border-collapse:collapse;">
   <thead>
     <tr>
-      <th style="padding: 8px;">物料</th>
-      <th style="padding: 8px;">子物料</th>
-      <th style="padding: 8px;">说明</th>
-      <th style="padding: 8px;">备注</th>
+      <th>物料</th>
+      <th>子物料</th>
+      <th>说明</th>
+      <th>备注</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3" style="padding: 8px; vertical-align: top;">commands</td>
-      <td style="padding: 8px;">opsx-new</td>
-      <td style="padding: 8px;">干活</td>
-      <td style="padding: 8px;">常规操作（新手使用）</td>
+      <td rowspan="3" valign="top">commands</td>
+      <td>opsx-new</td>
+      <td>干活</td>
+      <td>常规操作（新手使用）</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">opsx-verify</td>
-      <td style="padding: 8px;">校验</td>
-      <td style="padding: 8px;">常规检查（新手使用）</td>
+      <td>opsx-verify</td>
+      <td>校验</td>
+      <td>常规检查（新手使用）</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">opsx-explore</td>
-      <td style="padding: 8px;">探索</td>
-      <td style="padding: 8px;">可能有奇效</td>
+      <td>opsx-explore</td>
+      <td>探索</td>
+      <td>可能有奇效</td>
     </tr>
     <tr>
-      <td rowspan="7" style="padding: 8px; vertical-align: top;">rules</td>
-      <td style="padding: 8px;">project_rules</td>
-      <td style="padding: 8px;">默认规则</td>
-      <td style="padding: 8px;">基础规则</td>
+      <td rowspan="7" valign="top">rules</td>
+      <td>project_rules</td>
+      <td>默认规则</td>
+      <td>基础规则</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">oinone-action-service-rules</td>
-      <td style="padding: 8px;">action- service的基础规则</td>
-      <td style="padding: 8px;">用于action和service生存后二次改进工作</td>
+      <td>oinone-action-service-rules</td>
+      <td>action- service的基础规则</td>
+      <td>用于action和service生存后二次改进工作</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">oinone-action-ux-rules</td>
-      <td style="padding: 8px;">从action的入参数分析出跳转逻辑。补齐默认跳转逻辑、传输模型</td>
-      <td style="padding: 8px;">让Action符合Oinone的前后端交互规范</td>
+      <td>oinone-action-ux-rules</td>
+      <td>从action的入参数分析出跳转逻辑。补齐默认跳转逻辑、传输模型</td>
+      <td>让Action符合Oinone的前后端交互规范</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">oinone-exception-rules</td>
-      <td style="padding: 8px;">异常规范</td>
-      <td style="padding: 8px;">放最后执行</td>
+      <td>oinone-exception-rules</td>
+      <td>异常规范</td>
+      <td>放最后执行</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">oinone-business-data-init-rules</td>
-      <td style="padding: 8px;">测试数据初始化</td>
-      <td style="padding: 8px;">测试数据初始化</td>
+      <td>oinone-business-data-init-rules</td>
+      <td>测试数据初始化</td>
+      <td>测试数据初始化</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">oinone-dataPermission-extends-rules</td>
-      <td style="padding: 8px;">业务权限扩展的一种示例</td>
-      <td style="padding: 8px;">业务权限扩展的一种示例</td>
+      <td>oinone-dataPermission-extends-rules</td>
+      <td>业务权限扩展的一种示例</td>
+      <td>业务权限扩展的一种示例</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">oinone-menu-rules</td>
-      <td style="padding: 8px;">菜单规整</td>
-      <td style="padding: 8px;">让默认菜单按业务顺序排列，同时让菜单加上icon</td>
+      <td>oinone-menu-rules</td>
+      <td>菜单规整</td>
+      <td>让默认菜单按业务顺序排列，同时让菜单加上icon</td>
     </tr>
     <tr>
-      <td rowspan="2" style="padding: 8px; vertical-align: top;">source</td>
-      <td style="padding: 8px;">oinone-docs</td>
-      <td style="padding: 8px;">文档</td>
-      <td style="padding: 8px;">Oinone文档帮助AI快速理解</td>
+      <td rowspan="2" valign="top">source</td>
+      <td>oinone-docs</td>
+      <td>文档</td>
+      <td>Oinone文档帮助AI快速理解</td>
     </tr>
     <tr>
-      <td style="padding: 8px;">oinone-pamirs</td>
-      <td style="padding: 8px;">内核源码</td>
-      <td style="padding: 8px;">源码方便AI识别深层原理，在单一问题回答会更专业</td>
+      <td>oinone-pamirs</td>
+      <td>内核源码</td>
+      <td>源码方便AI识别深层原理，在单一问题回答会更专业</td>
     </tr>
   </tbody>
 </table>
@@ -102,12 +102,14 @@ prev:
 备注：如何工程中有示例工程效果更加，示例工程要作为子模块加进去，AI会优先参考示例工程
 
 # 三、工作方式
+
 ## （一）基础配置
+
 ### 1、Oinone的配置
 
-+ （必须）安装Oinone 的 `trae`插件 [oinone-pamirs-plugin-1.0.1.vsix.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/oinone-pamirs-plugin-1.0.1.vsix.zip)
++ （必须）安装Oinone 的 `Qoder`插件 [oinone-pamirs-plugin-1.0.1.vsix.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/oinone-pamirs-plugin-1.0.1.vsix%20(3).zip)
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1770108891617-8461168b-f404-4aaa-ae03-e3499d24bbc5.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/1770108891617-8461168b-f404-4aaa-ae03-e3499d24bbc5-20260325101634222.png)
 
 + （可选）手工安装`docker` 
 + （可选）利用`Oinone`的插件安装中间件（目前提供 mac，windows环境请参考`Oinone`[官方文档](https://guide.oinone.top/zh-cn/InstallOrUpgrade/Dev-ENV/)）
@@ -122,18 +124,18 @@ prev:
 | RocketMQ      | 无账号密码（默认未启用 ACL）                          |
 
 
-### 2、Trae的配置
+### 2、Qoder的配置
 
-**第一步**：下载`.trae`[.trae.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/trae%20(3).zip)
+**第一步**：下载` `.qoder` `[qoder.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/qoder.zip)
 
-**第二步**： `.trae`拷贝工程根目录下
+**第二步**： ``.qoder``拷贝工程根目录下
 
 **第三步**：下载 `Oinone` 源码
 
-运行 `.trae/source/git-clone.sh` 脚本：
+运行 `.qoder/source/git-clone.sh` 脚本：
 
 ```plain
-sh .trae/source/git-clone.sh
+sh .qoder/source/git-clone.sh
 ```
 
 该脚本会自动克隆以下仓库：
@@ -141,31 +143,32 @@ sh .trae/source/git-clone.sh
 + `https://gitee.com/oinone/oinone-pamirs.git` （Oinone 框架源码）
 + `https://gitee.com/oinone/oinone-docs.git` （Oinone 官方文档）
 
-**第四步**：配置 `Trae` 项目规则
+**第四步**：配置 `Qoder` 项目规则
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1769753589312-a6ab78c0-5d7a-45a1-b8dc-371b186b29f6.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/1774359807226-4d849b77-5599-4027-8e59-156a3dff3545-20260325101642173.png)
 
-### 3、在`Trae`选什么模型比较好
+### 3、在`Qoder`选什么模型比较好
 
-选择 `GLM-4.7`，打开 `MAX-MODE` 模式， 选择`Builder with MCP`模式
+通常打开 智能体，选择 Auto 模式；如果想省token，可以参考：规划用全球顶尖模型，执行用轻量模型。
 
 ## （二）操作示例（实际操作按工作流程进行）
 
 基础操作方式就是：把工作流文件、`prd`或`tasks`，拖到AI的对话框中，比如：
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1769748880248-24d4f38a-0225-484e-a7cf-1c0ed5de50ef.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/1774360168340-47d085d3-dbb8-4f6e-988b-b7511803c4bd-20260325101647083.png)
 
 正常会生成概要（`proposal`）以及产品需求理解（`specs`）、详细设计（`design`）、任务清单（`tasks`）。如下：
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1769748899535-7bc940a1-4f28-42e2-bfce-55409bf14d38.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/1769748899535-7bc940a1-4f28-42e2-bfce-55409bf14d38-20260325101654047.png)
 
 有了任务就可以开始执行了，可以执行按照：任务编码或阶段，进行分批执行。如下：
 
-![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1769749141154-484686ef-3e7f-47f2-bc75-03bb9a40ca2c.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/1774360317351-d5ea8062-0cf9-4be2-ba41-9ec4142d2273-20260325101657629.png)
 
 
 
 # 四、工作流程
+
 ## （一）跟AI探索设计方案（可选）
 
 使用工作流为：`opsx-explore`，可以让AI做好工程规划，并且完成工程搭建。为了减少AI的难度，可以认为检查建好的工程依赖，比如在 api工程中加上如下依赖
@@ -199,6 +202,7 @@ sh .trae/source/git-clone.sh
 + `opsx-new.md``tasks.md` `oinone-action-ux-rules`请检查任务对应的action和service是否符合规范，并进行调整
 
 ### 3、人为再检查一次
+
 ## （三）按任务列表分批执行
 
 使用工作流为：`opsx-new`，控制每次产出代码量，太长AI就犯傻了。建议按下面顺序分层执行，每层中可以分批执行：
@@ -220,9 +224,10 @@ sh .trae/source/git-clone.sh
 这一步需要把`opsx-new.md`，`tasks.md` 和 `oinone-action-ux-rules`规则拖入对话框。话术：请检查Action是否符合Oinone Action的开发规范
 
 ## （四）校验执行结果
+
 ### 1、整体检查
 
-使用工作流为：`opsx-verify`，同时把需要校验的`tasks`也拖到`trae`对话框中
+使用工作流为：`opsx-verify`，同时把需要校验的`tasks`也拖到`qoder`对话框中
 
 ### 2、单点检查
 
@@ -231,6 +236,7 @@ sh .trae/source/git-clone.sh
 
 
 ## （五）额外可以放最后执行
+
 ### 1、菜单
 
 `oinone-menu-rules.md`，请按Oinone的菜单规则帮我调整
@@ -244,6 +250,7 @@ sh .trae/source/git-clone.sh
 `tasks.md` `oinone-business-data-init-rules.md`，帮我初始化业务测试数据
 
 # 五、常见问题
+
 ## （一）文件建错路径
 
 这种看上去很傻的行为，你可以认为`AI`手抖的不小心。可以手动删除或者移动位置

@@ -8,9 +8,6 @@ order: 1
 prev:
   text: R&D Manual
   link: /zh-cn/DevManual/README.md
-next:
-  text: Tutorial
-  link: /zh-cn/DevManual/Tutorials/README.md
 ---
 # I. Mindset
 
@@ -113,7 +110,7 @@ Remarks: It will be more effective if there is an example project in the enginee
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1770108891617-8461168b-f404-4aaa-ae03-e3499d24bbc5.png)
 
 + (Optional) Manually install `docker` 
-+ (Optional) Use the Oinone plugin to install middleware (currently available for the mac environment. For the windows environment, please refer to the official Oinone documentation [https://guide.oinone.top/zh-cn/InstallOrUpgrade/Dev-ENV/](https://guide.oinone.top/zh-cn/InstallOrUpgrade/Dev-ENV/))
++ (Optional) Use the Oinone plugin to install middleware (currently available for the mac environment. For the windows environment, please refer to the official Oinone documentation [Oinone documentation](https://guide.oinone.top/en/InstallOrUpgrade/Dev-ENV/))
 
 | Middleware        | Username and Password                                            |
 | ------------- | ----------------------------------------------------- |
@@ -127,7 +124,7 @@ Remarks: It will be more effective if there is an example project in the enginee
 
 ### 2. Configuration of Trae
 
-**Step 1**: Download `.trae` [.trae.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/trae.zip)
+**Step 1**: Download `.trae` [.trae.zip](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/trae%20(3).zip)
 
 **Step 2**: Copy `.trae` to the root directory of the project.
 
