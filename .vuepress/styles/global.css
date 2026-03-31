@@ -1,0 +1,84 @@
+/* ===== Global Base Styles ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== Chinese Text Optimization ===== */
+/* 中文使用思源黑体 */
+:lang(zh),
+:lang(zh-CN) {
+  font-family: 'Source Han Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  font-variant-east-asian: normal;
+  letter-spacing: 0.01em;
+}
+
+/* ===== Gradient Text Utility ===== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--aino-start), var(--aino-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ===== Reveal Animation Base ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* ===== Divider ===== */
+.divider {
+  height: 1px;
+  background: var(--border-light);
+}
+
+/* ===== Responsive Image ===== */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(0, 102, 255, 0.15);
+  color: var(--text-primary);
+}
+
+/* ===== Scrollbar (WebKit) ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}

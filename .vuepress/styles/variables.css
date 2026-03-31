@@ -1,0 +1,42 @@
+/* ===== Brand & Design Token Variables ===== */
+:root {
+  /* Brand Colors */
+  --brand: #0066FF;
+  --brand-hover: #0052CC;
+  --brand-glow: rgba(0, 102, 255, 0.35);
+
+  /* Aino Gradient */
+  --aino-start: #0066FF;
+  --aino-end: #00D4AA;
+  --aino-glow: rgba(0, 212, 170, 0.25);
+
+  /* Backgrounds */
+  --bg-white: #FFFFFF;
+  --bg-off: #F8F9FA;
+  --bg-black: #000000;
+
+  /* Text */
+  --text-primary: #1A1A1A;
+  --text-secondary: #5F6368;
+  --text-tertiary: #9AA0A6;
+  --text-white: #F8FAFC;
+
+  /* Borders */
+  --border-light: rgba(0, 0, 0, 0.08);
+
+  /* Layout */
+  --max-w: 88vw;
+  --side-pad: 6vw;
+  --nav-h: 64px;
+
+  /* Easing */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --side-pad: 20px;
+    --max-w: calc(100vw - 40px);
+  }
+}

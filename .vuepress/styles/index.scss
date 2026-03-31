@@ -1,5 +1,8 @@
 // place your custom styles here
 
+@import "./variables.css";
+@import "./global.css";
+
 @import "./icons.scss";
 
 @mixin hide-scrollbar() {
