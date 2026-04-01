@@ -23,10 +23,10 @@ next:
 
 ```shell
 # 从 Github 下载 docker-compose.yml
-curl -L https://pamirs.oss-cn-hangzhou.aliyuncs.com/oinone/installer/docker-compose.yml -o docker-compose.yml
+curl -L https://raw.githubusercontent.com/oinone/oinone-docker-shared/refs/heads/master/oinone/docker-compose.yml -o docker-compose.yml
 
 # 从 Gitee 下载 docker-compose.yml
-curl -L https://pamirs.oss-cn-hangzhou.aliyuncs.com/oinone/installer/docker-compose.yml -o docker-compose.yml
+curl -L https://gitee.com/oinone/oinone-docker-shared/raw/master/oinone/docker-compose.yml -o docker-compose.yml
 ```
 
 ## （二）修改 docker-compose.yml 挂载许可证

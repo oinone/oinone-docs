@@ -17,10 +17,10 @@ next:
 
 ```shell
 # 从 Github 下载 docker-compose.yml
-curl -L https://pamirs.oss-cn-hangzhou.aliyuncs.com/oinone/installer/docker-compose.yml -o docker-compose.yml
+curl -L https://raw.githubusercontent.com/oinone/oinone-docker-shared/refs/heads/master/oinone/docker-compose.yml -o docker-compose.yml
 
 # 从 Gitee 下载 docker-compose.yml
-curl -L https://pamirs.oss-cn-hangzhou.aliyuncs.com/oinone/installer/docker-compose.yml -o docker-compose.yml
+curl -L https://gitee.com/oinone/oinone-docker-shared/raw/master/oinone/docker-compose.yml -o docker-compose.yml
 ```
 
 ## （二）启动 Oinone 设计器
@@ -40,12 +40,6 @@ PS：首次启动时间较长，请耐心等待，此时可以打开新的终端
 ```shell
 docker logs -f oinone-backend
 ```
-
-:::warning 提示：
-
-此处修改的是 `application.yml` 而不是 `application-dev.yml` 配置。
-
-:::
 
 ## （四）访问 Oinone 设计器
 

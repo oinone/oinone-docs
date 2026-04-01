@@ -17,10 +17,10 @@ This section will introduce how to use `Docker Compose` to quickly deploy the `O
 
 ```shell
 # Download docker-compose.yml from Github
-curl -L https://pamirs.oss-cn-hangzhou.aliyuncs.com/oinone/installer/docker-compose.yml -o docker-compose.yml
+curl -L https://raw.githubusercontent.com/oinone/oinone-docker-shared/refs/heads/master/oinone/docker-compose.yml -o docker-compose.yml
 
 # Download docker-compose.yml from Gitee
-curl -L https://pamirs.oss-cn-hangzhou.aliyuncs.com/oinone/installer/docker-compose.yml -o docker-compose.yml
+curl -L https://gitee.com/oinone/oinone-docker-shared/raw/master/oinone/docker-compose.yml -o docker-compose.yml
 ```
 
 ## (II) Start the Oinone Designer
@@ -40,12 +40,6 @@ PS: The first startup takes a long time. Please be patient. You can open a new t
 ```shell
 docker logs -f oinone-backend
 ```
-
-:::warning Note:
-
-Here, the configuration in `application.yml` is modified, not `application-dev.yml`.
-
-:::
 
 ## (IV) Access the Oinone Designer
 
