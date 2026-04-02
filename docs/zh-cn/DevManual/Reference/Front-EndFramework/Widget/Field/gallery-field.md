@@ -10,7 +10,7 @@ category:
 order: 5
 next:
   text: Router
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/router.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/router.md
 ---
 # 一、Reference List
 

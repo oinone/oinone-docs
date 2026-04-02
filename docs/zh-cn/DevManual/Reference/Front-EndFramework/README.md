@@ -10,8 +10,8 @@ dir:
   order: 2
 prev:
   text: 通用工具 API（Tools API）
-  link: /v6/zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/tools-API.md
+  link: /zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/tools-API.md
 next:
   text: 框架概览（Framework Overview）
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/framework-overview.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/framework-overview.md
 ---

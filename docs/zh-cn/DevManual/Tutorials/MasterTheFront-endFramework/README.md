@@ -7,13 +7,13 @@ category:
   - 精通前端框架
 dir:
   link: true
-  order: 4
+  order: 5
 prev:
   text: 章节 2：构建仪表盘（Build a dashboard）
-  link: /v6/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md
+  link: /zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md
 next:
   text: 章节 1：前端框架概览（Front-End Overview）
-  link: /v6/zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md
+  link: /zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md
 ---
 本教程是为那些已经完成了 “探索前端框架” 教程，并且希望深入了解该前端框架的人而设计的。它由两个独立的项目组成，每个项目都专注于 `Oinone` 框架的不同功能。
 

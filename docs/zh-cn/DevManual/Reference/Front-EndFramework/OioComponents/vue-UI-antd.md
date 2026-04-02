@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: Gallery Field
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/gallery-field.md
 ---
 
 在 Oinone Kunlun 中，大部分组件都是基于第三方组件库 “[Ant Design Vue](https://3x.antdv.com/components/overview-cn)” 实现的。这些组件不仅可以用于 Widget 组件，也可以直接通过 Vue 原生写法用于任何一个 Vue 组件。这篇文章将详细介绍这些组件的用法及 API 定义。

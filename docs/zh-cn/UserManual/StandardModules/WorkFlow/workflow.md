@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 工作流管理
-  link: /v6/zh-cn/UserManual/StandardModules/WorkFlow/workflow-management.md
+  link: /zh-cn/UserManual/StandardModules/WorkFlow/workflow-management.md
 ---
 # 一、工作流
 同工作台，详情可见工作台文档

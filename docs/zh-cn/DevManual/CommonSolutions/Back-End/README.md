@@ -10,8 +10,8 @@ dir:
   order: 2
 prev:
   text: 路由扩展：添加新路由，比如覆盖默认的登录页
-  link: /v6/zh-cn/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
+  link: /zh-cn/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
 next:
   text: 依赖配置：如何添加数据可视化运行时依赖
-  link: /v6/zh-cn/DevManual/CommonSolutions/Back-End/dependency-configuration-how-to-add-data-visualization-dependencies.md
+  link: /zh-cn/DevManual/CommonSolutions/Back-End/dependency-configuration-how-to-add-data-visualization-dependencies.md
 ---

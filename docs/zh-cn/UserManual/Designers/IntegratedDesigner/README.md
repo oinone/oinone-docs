@@ -9,10 +9,10 @@ dir:
   order: 5
 prev:
   text: 图表模板
-  link: /v6/zh-cn/UserManual/Designers/DataVisualization/chart-template.md
+  link: /zh-cn/UserManual/Designers/DataVisualization/chart-template.md
 next:
   text: 工作台
-  link: /v6/zh-cn/UserManual/Designers/IntegratedDesigner/workbench.md
+  link: /zh-cn/UserManual/Designers/IntegratedDesigner/workbench.md
 ---
 Oinone的集成设计器是一款高效专注于集成接口管理与业务编排的工具，它凭借可视化的操作界面，极大地简化了原本复杂的集成流程，成功实现了接口管理的规范化、业务编排的可视化，以及接口开放的标准化。以下是Oinone集成设计器的几大核心功能亮点：
 

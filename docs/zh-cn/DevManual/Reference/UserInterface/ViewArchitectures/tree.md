@@ -9,7 +9,7 @@ category:
 order: 5
 next:
   text: UI icons
-  link: /v6/zh-cn/DevManual/Reference/UserInterface/UI-icons.md
+  link: /zh-cn/DevManual/Reference/UserInterface/UI-icons.md
 ---
 # 一、视图特征
 

@@ -12,10 +12,10 @@ dir:
   order: 6
 prev:
   text: DSL
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/DSL.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/DSL.md
 next:
   text: Table
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/table.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/table.md
 
 ---
 在我们之前学习的 “[精通前端框架 - 前端框架概览](/zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md)” 章节中，我们已经对 Oinone 中所有的元数据进行了简单的概述。那么，在这一章节中，我们将对 “视图” 这一类组件进行较为完整的介绍。

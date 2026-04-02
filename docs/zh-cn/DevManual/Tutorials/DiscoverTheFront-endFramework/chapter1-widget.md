@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: 探索前端框架（Discover the Front-end Framework）
-  link: /v6/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
+  link: /zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
 ---
 本章介绍了 Widget 框架，它是为 Oinone 量身定制的组件系统。Widget 组件的主要组成部分是 `TypeScript` 组件和 `Vue` 组件。
 

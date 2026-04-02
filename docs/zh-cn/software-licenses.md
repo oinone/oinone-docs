@@ -6,7 +6,7 @@ category:
 order: 6
 prev:
   text: 第三方开源软件及许可说明
-  link: /v6/zh-cn/Third-Party-Open-Source-Software-And-License-Notice.md
+  link: /zh-cn/Third-Party-Open-Source-Software-And-License-Notice.md
 ---
 # 一、Oinone 6 社区版
 

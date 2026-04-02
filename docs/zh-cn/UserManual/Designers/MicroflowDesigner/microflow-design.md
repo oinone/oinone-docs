@@ -7,7 +7,7 @@ category:
 order: 2
 next:
   text: AI集成设计器（AI Integrated Designer）
-  link: /v6/zh-cn/UserManual/Designers/AIIntegratedDesigner/README.md
+  link: /zh-cn/UserManual/Designers/AIIntegratedDesigner/README.md
 ---
 在微流设计页面中，可以进行全面的微流设计与微流配置。
 

@@ -10,7 +10,7 @@ dir:
   order: 5
 next:
   text: 组件默认主题变量
-  link: /v6/zh-cn/DevManual/OperationGuide/CustomizeThemes/default-themes.md
+  link: /zh-cn/DevManual/OperationGuide/CustomizeThemes/default-themes.md
 ---
 在 Oinone 中的 `主题` 是通过 `CSS variable` 实现的，通过 `registerTheme` 注册主题，并使用 `VueOioProvider` 应用主题到系统中。
 

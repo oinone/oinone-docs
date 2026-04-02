@@ -7,7 +7,7 @@ category:
 order: 3
 next:
   text: 数据可视化(Data Visualization)
-  link: /v6/zh-cn/UserManual/Designers/DataVisualization/README.md
+  link: /zh-cn/UserManual/Designers/DataVisualization/README.md
 ---
 # 一、触发节点
 新增的流程设计页面默认包含两个核心节点：一个是流程的触发节点，用于明确流程启动的条件；另一个是流程的结束节点，用于标识流程的终止。

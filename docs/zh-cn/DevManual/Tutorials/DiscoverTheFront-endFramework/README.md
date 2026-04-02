@@ -7,13 +7,13 @@ category:
   - 探索前端框架
 dir:
   link: true
-  order: 3
+  order: 4
 prev:
   text: 章节 14：产品的个性化开发（Customized Features）
-  link: /v6/zh-cn/DevManual/Tutorials/Back-endFramework/chapter14-customized-features.md
+  link: /zh-cn/DevManual/Tutorials/Back-endFramework/chapter14-customized-features.md
 next:
   text: 章节 1：组件（Widget）
-  link: /v6/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md
+  link: /zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md
 ---
 本教程分为两个部分，旨在向你介绍该 Web 框架的基础知识。无论你是初次接触这个框架，还是已经有一定的使用经验，本教程都将为你在项目中使用该 Web 框架奠定坚实的基础。  
 

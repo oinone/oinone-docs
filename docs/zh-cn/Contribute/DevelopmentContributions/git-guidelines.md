@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 贡献者许可协议模板
-  link: /v6/zh-cn/Contribute/cla.md
+  link: /zh-cn/Contribute/cla.md
 ---
 #### 1. **代码提交规范**
 

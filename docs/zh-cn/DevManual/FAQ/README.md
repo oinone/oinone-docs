@@ -8,10 +8,10 @@ dir:
   order: 6
 prev:
   text: 项目部署：界面设计器的导入导出
-  link: /v6/zh-cn/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md
+  link: /zh-cn/DevManual/CommonSolutions/Back-End/project-deployment-ui-designer-import-export.md
 next:
   text: 启动时：Oinone License 许可证使用常见问题
-  link: /v6/zh-cn/DevManual/FAQ/startup-oinone-license-usage-faq.md
+  link: /zh-cn/DevManual/FAQ/startup-oinone-license-usage-faq.md
 ---
 <div style="display: flex; gap: 20px; margin: 20px 0;">
 

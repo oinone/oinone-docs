@@ -6,7 +6,7 @@ category:
 order: 81
 next:
   text: 启动时：Oinone License 许可证使用常见问题
-  link: /v6/zh-cn/DevManual/FAQ/startup-oinone-license-usage-faq.md
+  link: /zh-cn/DevManual/FAQ/startup-oinone-license-usage-faq.md
 ---
 
 # 一、简介

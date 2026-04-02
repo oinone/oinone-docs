@@ -8,7 +8,7 @@ category:
 order: 2
 next:
   text: 精通前段框架（Master the Front-End framework）
-  link: /v6/zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/README.md
+  link: /zh-cn/DevManual/Tutorials/MasterTheFront-endFramework/README.md
 ---
 本教程的第一部分向你介绍了 Widget 框架的大部分理念。现在是时候更加深入的理解 Oinone 框架了，也就是 Web 客户端所使用的那个框架。
 

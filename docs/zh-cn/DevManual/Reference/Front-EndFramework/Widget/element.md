@@ -9,7 +9,7 @@ category:
 order: 7
 next:
   text: View
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/README.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/README.md
 ---
 在 Oinone Kunlun 中，有这样一类组件无法在一个具体的分类中被描述，它们被称为 `元素组件`。它可以用来实现任何你想实现的功能，并把它放在页面中的任何地方。
 

@@ -8,7 +8,7 @@ category:
 order: 6
 next:
   text: 通用扩展点与平台SPI清单（Common Extension Points And SPI List）
-  link: /v6/zh-cn/DevManual/Reference/common-extension-points-and-SPI-list.md
+  link: /zh-cn/DevManual/Reference/common-extension-points-and-SPI-list.md
 ---
 # 一、概述
 

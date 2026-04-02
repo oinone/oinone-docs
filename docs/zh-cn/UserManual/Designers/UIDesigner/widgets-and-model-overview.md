@@ -7,7 +7,7 @@ category:
 order: 4
 next:
   text: 布局
-  link: /v6/zh-cn/UserManual/Designers/UIDesigner/Components/layout.md
+  link: /zh-cn/UserManual/Designers/UIDesigner/Components/layout.md
 ---
 在设计页面时，组件库包含为组件与模型两个部分。在组件中，包含系统组件与自定义组件，系统组件主要分为四类，分别是布局、字段、媒体、动作；在模型中，包含页面所在模型下所有字段及系统默认动作。
 

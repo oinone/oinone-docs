@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: 通用工具 API（Tools API）
-  link: /v6/zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/tools-API.md
+  link: /zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/tools-API.md
 ---
 Oinone Kunlun 框架是针对 Oinone Pamirs 提供的一组功能，用于帮助构建在浏览器中运行的 Oinone 应用程序。同时，Oinone Kunlun 框架是一个单页应用程序，并基于 Vue 框架提供了一组功能，通常称为 Web 客户端（可通过 URL/web 访问）。
 

@@ -7,10 +7,10 @@ category:
 order: 1
 prev:
   text: 文档贡献
-  link: /v6/zh-cn/Contribute/DocumentationContributions/README.md
+  link: /zh-cn/Contribute/DocumentationContributions/README.md
 next:
   text: 软件使用许可和合约
-  link: /v6/zh-cn/software-licenses.md
+  link: /zh-cn/software-licenses.md
 ---
 #### **一、文档类型与对应模板**
 

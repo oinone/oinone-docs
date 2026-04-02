@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 调试工具（Debug Tools）
-  link: /v6/zh-cn/DevManual/Tutorials/debug-tools.md
+  link: /zh-cn/DevManual/Tutorials/debug-tools.md
 ---
 回想一下我们在 “[探索前端框架](/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md)” 章节中创建的组件，无一例外的都使用了一个被命名为 `BaseElementWidget` 的基类，并且它们的使用方式也都不尽相同。为了便于我们回忆之前的内容，下面是之前“计数器”组件的部分代码和它的使用方式。
 

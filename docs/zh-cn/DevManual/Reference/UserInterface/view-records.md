@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: User interface
-  link: /v6/zh-cn/DevManual/Reference/UserInterface/README.md
+  link: /zh-cn/DevManual/Reference/UserInterface/README.md
 ---
 
 文档正在筹备中，敬请期待...

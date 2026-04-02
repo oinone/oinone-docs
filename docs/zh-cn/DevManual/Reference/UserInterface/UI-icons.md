@@ -8,10 +8,10 @@ category:
 order: 3
 prev:
   text: 树（Tree）
-  link: /v6/zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/tree.md
+  link: /zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/tree.md
 next:
   text: 标准模块（Standard Modules）
-  link: /v6/zh-cn/DevManual/Reference/StandardModule/README.md
+  link: /zh-cn/DevManual/Reference/StandardModule/README.md
 ---
 
 Oinone 提供了基于 iconfont 实现的图标库及图标组件，你可以在任何 Vue 组件中使用他们。

@@ -8,11 +8,11 @@ dir:
   link: true
   order: 1
 prev:
-  text: 研发手册
-  link: /v6/zh-cn/DevManual/README.md
+  text: Oinone遇上Trae的VibeCoding最佳实践（后端）
+  link: /zh-cn/DevManual/VibeCodingPracticalCombat/Trae_VibeCoding_Backend.md
 next:
-  text: 设置指南（Setup Guide）
-  link: /v6/zh-cn/DevManual/Tutorials/setup-guide.md
+  text: 环境准备
+  link: /zh-cn/DevManual/Tutorials/Dev-ENV/README.md
 ---
 :::warning 小技巧
 

@@ -7,7 +7,7 @@ category:
 order: 8
 next:
   text: 微流设计器(Microflow Designer)
-  link: /v6/zh-cn/UserManual/Designers/MicroflowDesigner/README.md
+  link: /zh-cn/UserManual/Designers/MicroflowDesigner/README.md
 ---
 接口日志用于记录接口调用情况。在连接集成资源并使用接口时，可以在接口日志中查看该接口是否成功被调用，并根据接口的执行情况做出相应的调整和优化。
 

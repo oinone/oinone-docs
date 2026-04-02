@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: 软件公司：标准化与定制化共生的范式
-  link: /v6/zh-cn/DevManual/R&DParadigm/the-paradigm-of-coexistence-between-standardization-and-customization.md
+  link: /zh-cn/DevManual/R&DParadigm/the-paradigm-of-coexistence-between-standardization-and-customization.md
 ---
 在 Oinone 平台架构体系下，系统预设了标准的左树右表视图模式，此模式为用户提供了基础的数据展示与交互界面。用户基于自身业务需求，可借助平台所提供的界面设计器进行相应配置。然而，应当认识到，该默认的树视图在某些特定场景下，难以全方位满足各类复杂的业务需求。特别是当业务逻辑涉及到高度定制化的功能开发，或是需要实现复杂的用户交互操作时，默认视图的局限性便凸显出来。
 

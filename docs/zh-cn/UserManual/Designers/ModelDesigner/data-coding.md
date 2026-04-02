@@ -7,7 +7,7 @@ category:
 order: 3
 next:
   text: 界面设计器（UI Designer）
-  link: /v6/zh-cn/UserManual/Designers/UIDesigner/README.md
+  link: /zh-cn/UserManual/Designers/UIDesigner/README.md
 ---
 当数据字段需要遵循特定编码规则时，可以在模型设计器中设计模型或字段的编码，设置完成后，编码将实时展示，方便随时查看与调整。
 

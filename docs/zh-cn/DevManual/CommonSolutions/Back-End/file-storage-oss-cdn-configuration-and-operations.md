@@ -17,6 +17,7 @@ order: 43
 | TENCENT_COS | 腾讯云COS |
 | CTYUN_ZOS | 天翼云ZOS |
 
+
 # 二、OSS通用yaml配置
 ``` yaml
 cdn:
@@ -224,6 +225,7 @@ cdn:
 </dependency>
 
 ```
+
 
 注：更多 YAML 配置请前往 [Module API](/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md) 查阅。
 

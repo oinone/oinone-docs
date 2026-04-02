@@ -7,10 +7,10 @@ category:
 order: 8
 prev:
   text: 接口日志
-  link: /v6/zh-cn/UserManual/Designers/AIIntegratedDesigner/api-logs.md
+  link: /zh-cn/UserManual/Designers/AIIntegratedDesigner/api-logs.md
 next:
   text: 标准模块
-  link: /v6/zh-cn/UserManual/StandardModules/README.md
+  link: /zh-cn/UserManual/StandardModules/README.md
 ---
 为了更好地满足用户在实际场景中的多样化配置需求，Oinone平台在多处提供了自定义表达式的功能。当用户发现平台的默认设置无法满足其特定需求时，可以利用这些自定义表达式进行灵活调整，以实现更贴合自身业务逻辑的配置。
 

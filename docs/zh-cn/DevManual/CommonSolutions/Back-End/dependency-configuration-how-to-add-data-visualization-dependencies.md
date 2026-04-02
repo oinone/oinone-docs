@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: 路由扩展：添加新路由，比如覆盖默认的登录页
-  link: /v6/zh-cn/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
+  link: /zh-cn/DevManual/CommonSolutions/Front-End/router-extension-add-new-route-override-login.md
 ---
 
 # 一、前端

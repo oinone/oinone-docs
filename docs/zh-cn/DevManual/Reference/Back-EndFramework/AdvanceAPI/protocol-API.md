@@ -9,7 +9,7 @@ category:
 order: 1
 prev:
   text: 安全机制（Security in Oinone）
-  link: /v6/zh-cn/DevManual/Reference/Back-EndFramework/security-in-oinone.md
+  link: /zh-cn/DevManual/Reference/Back-EndFramework/security-in-oinone.md
 ---
 # 一、请求 URL 规范
 

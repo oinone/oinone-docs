@@ -9,7 +9,7 @@ category:
 order: 10
 next:
   text: 框架概览（Framework Overview）
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/framework-overview.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/framework-overview.md
 ---
 Oinone 业务常用工具类 API 文档指南
 

@@ -8,7 +8,7 @@ category:
 order: 6
 next:
   text: 网关协议 API（Protocol API）
-  link: /v6/zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md
+  link: /zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md
 ---
 在学习这篇文章之前，你首先需要对 Oinone 安全相关内容进行一个初步了解，以便于理解本文所介绍的自定义相关内容。参考：[后端框架 - 安全简介](/zh-cn/DevManual/Tutorials/Back-endFramework/chapter4-a-brief-introduction-to-security.md)
 

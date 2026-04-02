@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 自定义组件
-  link: /v6/zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
+  link: /zh-cn/UserManual/Designers/UIDesigner/CustomizedComponents/README.md
 ---
 在页面设计器中，默认以卡片形式呈现组件列表。组件卡片上可预览到组件的基本信息，包括组件名称、组件图标以及组件描述。
 

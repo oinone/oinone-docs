@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: 后端框架（Back-end framework）
-  link: /v6/zh-cn/DevManual/Tutorials/Back-endFramework/README.md
+  link: /zh-cn/DevManual/Tutorials/Back-endFramework/README.md
 ---
 # 一、前后端分离架构
 在软件开发中，前后端分离架构是一种高效的模式，将用户界面（前端）与业务逻辑、数据处理（后端）明确分开，使它们能独立开发、测试与部署。

@@ -9,7 +9,7 @@ category:
 order: 11
 next:
   text: 视图架构（View architectures）
-  link: /v6/zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/README.md
+  link: /zh-cn/DevManual/Reference/UserInterface/ViewArchitectures/README.md
 ---
 在 Oinone Kunlun 中，内置了 “翻译” 模块，其配合前端 “埋点” 翻译函数可以实现任何语言的翻译功能。这篇文章将介绍 “翻译” 函数的使用以及其实现细节。
 

@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: 系统配置
-  link: /v6/zh-cn/UserManual/StandardModules/preferences.md
+  link: /zh-cn/UserManual/StandardModules/preferences.md
 ---
 ### 1.功能介绍
 支持创建系统用户，方便对系统进行访问和管理。

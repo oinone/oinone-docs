@@ -10,7 +10,7 @@ category:
 order: 1
 prev:
   text: Field
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/README.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/README.md
 ---
 # 一、Reference List
 

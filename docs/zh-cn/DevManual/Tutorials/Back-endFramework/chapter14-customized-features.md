@@ -7,7 +7,7 @@ category:
 order: 14
 next:
   text: 探索前端框架（Discover the Front-end Framework）
-  link: /v6/zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
+  link: /zh-cn/DevManual/Tutorials/DiscoverTheFront-endFramework/README.md
 ---
 在上一章的学习中，我们对 Oinone 模块化开发有了更深入的认识。在实际业务开展过程中，除了产品研发工作，我们还需频繁应对不同客户的个性化需求。这些需求丰富多样，涉及应用程序的菜单布局、操作逻辑、交互方式以及表字段设置等多个维度。依照传统研发思路，满足此类需求通常需要对产品源码进行修改。而今天，我们将探讨 Oinone 如何在不改动产品源码的情况下，精准满足客户的个性化诉求。
 

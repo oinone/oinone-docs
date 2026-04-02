@@ -11,7 +11,7 @@ dir:
   order: 4
 next:
   text: component-lifecycle
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/component-lifecycle.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/component-lifecycle.md
 ---
 Oinone Kunlun 框架使用自研的 Widget 框架。它是一个声明式组件系统，其设计大致受到 `Vue` 和 `React` 的启发。组件通过 `TypeScript Class` 定义，并通过 `SPI` 装饰器进行组件注册。Widget 具备完整的与 Vue 框架类似的 `组件生命周期`、`属性`、`响应式属性`、`计算属性`等等。
 

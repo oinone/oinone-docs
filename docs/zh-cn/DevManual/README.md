@@ -8,10 +8,10 @@ dir:
   order: 3
 prev:
   text: 低无一体
-  link: /v6/zh-cn/UserManual/low-code-no-code-integration.md
+  link: /zh-cn/UserManual/low-code-no-code-integration.md
 next:
   text: 教程
-  link: /v6/zh-cn/DevManual/Tutorials/README.md
+  link: /zh-cn/DevManual/Tutorials/README.md
 ---
 欢迎访问 Oinone 开发者文档！无论您是经验丰富的开发者，还是刚入门的新手，都能在此找到开发 Oinone 应用所需的全部技术指南和资源。我们提供了丰富的教程、操作指南和参考资料，助您实现开发目标。
 

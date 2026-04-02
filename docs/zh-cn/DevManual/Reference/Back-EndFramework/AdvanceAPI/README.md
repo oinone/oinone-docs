@@ -11,5 +11,5 @@ dir:
   order: 7
 next:
   text: 网关协议 API（Protocol API）
-  link: /v6/zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md
+  link: /zh-cn/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md
 ---

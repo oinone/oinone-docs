@@ -9,10 +9,10 @@ dir:
   order: 2
 prev:
   text: 表达式的使用说明
-  link: /v6/zh-cn/UserManual/Designers/expressions-guide.md
+  link: /zh-cn/UserManual/Designers/expressions-guide.md
 next:
   text: 工作台
-  link: /v6/zh-cn/UserManual/StandardModules/workbench.md
+  link: /zh-cn/UserManual/StandardModules/workbench.md
 ---
 Oinone 低代码平台的标准模块构建起平台的核心功能矩阵，各模块分工协作、深度协同，为企业数字化转型提供全方位支撑：
 + 工作台：作为用户的核心操作中枢，采用极简交互设计理念，以可视化界面直观呈现任务管理、应用操作等核心功能，助力用户高效处理各类业务，显著提升工作效率。

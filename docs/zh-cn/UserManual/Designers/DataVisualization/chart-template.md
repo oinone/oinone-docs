@@ -7,7 +7,7 @@ category:
 order: 7
 next:
   text: 集成设计器(Integrated Designer)
-  link: /v6/zh-cn/UserManual/Designers/IntegratedDesigner/README.md
+  link: /zh-cn/UserManual/Designers/IntegratedDesigner/README.md
 ---
 当系统提供的图表类型暂时无法满足实际需求时，不必受限于现有的选项，可以自主增加图表类型。通过这一功能，可以根据特定的业务需求或数据展示需求，引入更多样化的图表类型，从而丰富数据可视化的表现形式，让数据展示更加贴切、直观。
 

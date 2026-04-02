@@ -8,10 +8,10 @@ dir:
   order: 3
 prev:
   text: 常见问题
-  link: /v6/zh-cn/InstallOrUpgrade/FAQ.md
+  link: /zh-cn/InstallOrUpgrade/FAQ.md
 next:
   text: 设计器
-  link: /v6/zh-cn/UserManual/Designers/README.md
+  link: /zh-cn/UserManual/Designers/README.md
 ---
 &emsp;&emsp;本手册旨在帮助用户高效掌握数式 Oinone 平台核心功能，无论是业务人员快速搭建简易应用，还是开发者构建复杂系统，都能将抽象功能转化为可落地的操作步骤。通过循序渐进的学习，用户能够逐步积累经验，提升数字化开发能力。
 &emsp;&emsp;数式 Oinone 作为企业级低代码开发平台，深度整合设计器、标准模块、低无一体、应用中心与应用环境五大核心模块，构建起完整的数字化应用开发生态。其核心架构设计实现了技术能力与业务需求的深度融合，能够覆盖从简单表单设计到复杂业务系统搭建的全场景开发需求：

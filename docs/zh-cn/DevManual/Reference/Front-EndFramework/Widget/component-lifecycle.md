@@ -9,7 +9,7 @@ category:
 order: 1
 prev:
   text: 组件（Widget）
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/README.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/README.md
 ---
 在 Oinone Kunlun 中，其组件的生命周期完全遵照 Vue 框架提供的 Vue 组件生命周期进行实现。不仅如此，由于 Oinone Kunlun 是一套基于 DSL Render 实现的渲染框架，其管理范围不仅仅止步于 “组件”。它还需要对数据获取、数据渲染、数据提交等诸多数据行为进行处理，因此，我们还对其组件生命周期进行了扩展，以此来更好的支持整个系统的运行。
 

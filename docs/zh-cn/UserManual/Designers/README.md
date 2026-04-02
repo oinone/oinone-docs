@@ -9,10 +9,10 @@ dir:
   order: 1
 prev:
   text: 用户手册
-  link: /v6/zh-cn/UserManual/README.md
+  link: /zh-cn/UserManual/README.md
 next:
   text: 模型设计器
-  link: /v6/zh-cn/UserManual/Designers/ModelDesigner/README.md
+  link: /zh-cn/UserManual/Designers/ModelDesigner/README.md
 ---
 # 一、作用
 设计器是 Oinone 低代码平台的核心组件，它构建起可视化、便捷化的操作界面，显著降低应用开发的技术门槛。无论是专业研发人员，还是缺乏技术背景的业务人员，都能借助设计器高效完成应用构建。专业研发人员可利用设计器加速业务逻辑实现，提升开发效率；业务人员则能参与简单或应急应用开发，推动业务快速创新。设计器在 Oinone 平台中如同连接业务需求与技术实现的桥梁，助力不同背景人员在低代码开发模式下发挥专长，共同推进企业数字化项目进程。

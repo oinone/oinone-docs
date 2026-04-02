@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: 流程设计器(Process Designer)
-  link: /v6/zh-cn/UserManual/Designers/WorkflowDesigner/README.md
+  link: /zh-cn/UserManual/Designers/WorkflowDesigner/README.md
 ---
 流程设计器支持对流程进行新增、编辑、删除等一系列便捷操作，使用不同的展示模式，可以满足用户不同的视图偏好和管理需求，实现用户灵活多样的流程管理需求。
 

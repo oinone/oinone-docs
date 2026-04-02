@@ -9,8 +9,8 @@ dir:
   order: 4
 prev:
   text: 平台错误码
-  link: /v6/zh-cn/DevManual/Reference/Error-codes.md
+  link: /zh-cn/DevManual/Reference/Error-codes.md
 next:
   text: 研发范式：研发流程
-  link: /v6/zh-cn/DevManual/R&DParadigm/R&D-paradigm-R&D-process.md
+  link: /zh-cn/DevManual/R&DParadigm/R&D-paradigm-R&D-process.md
 ---

@@ -10,8 +10,8 @@ dir:
   order: 1
 prev:
   text: 参考目录（Reference）
-  link: /v6/zh-cn/DevManual/Reference/README.md
+  link: /zh-cn/DevManual/Reference/README.md
 next:
   text: 模块 API（Module API）
-  link: /v6/zh-cn/DevManual/Reference/Back-EndFramework/module-API.md
+  link: /zh-cn/DevManual/Reference/Back-EndFramework/module-API.md
 ---

@@ -9,10 +9,10 @@ dir:
   order: 6
 prev:
   text: 接口日志
-  link: /v6/zh-cn/UserManual/Designers/IntegratedDesigner/api-logs.md
+  link: /zh-cn/UserManual/Designers/IntegratedDesigner/api-logs.md
 next:
   text: 微流管理
-  link: /v6/zh-cn/UserManual/Designers/MicroflowDesigner/microflow-management.md
+  link: /zh-cn/UserManual/Designers/MicroflowDesigner/microflow-management.md
 ---
 在日常工作中，存在着多种多样的业务流程，这些流程能够自动依据预设的逻辑规则顺利完成，无需人工进行干预。基于这一需求，Oinone提供了微流设计器。相较于传统的流程设计器，微流设计器通过减少人工干预的节点，使得执行节奏更加高效快捷，能够更好地满足现代化工作的快速响应需求。
 

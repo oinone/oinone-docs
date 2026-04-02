@@ -12,7 +12,7 @@ dir:
   order: 10
 next:
   text: Table Field
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/table-field.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/Field/table-field.md
 ---
 在 Oinone Kunlun 中，字段是非常重要的一类元数据，它们往往决定了一个页面展示的数据内容以及展示形式。Widget 框架对组件进行了分类，通过分类特征，我们在注册组件时可以根据这些特征来决定组件的使用范围，使用时可以在所有注册的组件中选择一个最合适的组件进行渲染。字段组件就是通过 field 标签的形式在 DSL 中进行使用的一类组件。
 

@@ -6,7 +6,7 @@ category:
 order: 1
 prev:
   text: 标准模块
-  link: /v6/zh-cn/UserManual/StandardModules/README.md
+  link: /zh-cn/UserManual/StandardModules/README.md
 ---
 工作台是用户进行任务操作与管理的核心界面。其设计采用了直观且易用的界面布局，使用户能够迅速处理各项任务并轻松管理应用。Oinone的工作台展示了待办、发起任务、抄送任务、已办结任务以及站内信的数量，同时还提供了收藏应用的快捷入口。
 

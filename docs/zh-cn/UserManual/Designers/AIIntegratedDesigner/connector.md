@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: AI集成设计器（AI Integrated Designer）
-  link: /v6/zh-cn/UserManual/Designers/MicroflowDesigner/README.md
+  link: /zh-cn/UserManual/Designers/MicroflowDesigner/README.md
 ---
 AI集成设计器的连接器，通过可视化界面，构建平台应用与外部大模型的数据通道。企业用户可基于自身业务场景，自由组合不同能力的大模型组件，快速完成定制化 AI 应用产品包的设计与部署。
 

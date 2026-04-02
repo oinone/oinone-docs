@@ -9,7 +9,7 @@ category:
 order: 8
 prev:
   text: Tree
-  link: /v6/zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/tree.md
+  link: /zh-cn/DevManual/Reference/Front-EndFramework/Widget/View/tree.md
 ---
 通常我们将一些用来包裹其他组件的组件通过 Pack 组件进行注册，它们也被称为 `容器组件` 。在具备布局能力的视图中，这类组件通常是非常有意义的。
 

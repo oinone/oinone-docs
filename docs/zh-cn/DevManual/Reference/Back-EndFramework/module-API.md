@@ -8,7 +8,7 @@ category:
 order: 1
 prev:
   text: 自定义组件与设计器结合
-  link: /v6/zh-cn/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md
+  link: /zh-cn/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md
 ---
 # 一、概述
 

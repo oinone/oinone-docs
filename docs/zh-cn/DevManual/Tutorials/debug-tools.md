@@ -7,7 +7,7 @@ category:
 order: 9
 next:
   text: 自定义字段
-  link: /v6/zh-cn/DevManual/OperationGuide/customize-a-field-widget.md
+  link: /zh-cn/DevManual/OperationGuide/customize-a-field-widget.md
 ---
 # 一、概述
 

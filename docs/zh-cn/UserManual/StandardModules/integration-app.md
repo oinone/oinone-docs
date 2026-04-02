@@ -6,7 +6,7 @@ category:
 order: 11
 next:
   text: 应用中心
-  link: /v6/zh-cn/UserManual/apps-hub.md
+  link: /zh-cn/UserManual/apps-hub.md
 ---
 # 一、集成管理
 
