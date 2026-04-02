@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "product": "Products",
+    "oinoneFramework": "Oinone Framework",
+    "oinoneFrameworkDesc": "Enterprise Low-code Framework",
+    "aino": "Aino",
+    "ainoDesc": "Intelligent AI Platform",
+    "useCases": "Use Cases",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "community": "Community",
+    "resources": "Resources",
+    "documentation": "Documentation",
+    "documentationDesc": "Guides and API References",
+    "support": "Support",
+    "supportDesc": "Get Technical Support",
+    "changelog": "Changelog",
+    "changelogDesc": "Latest Release Notes",
+    "about": "About",
+    "aboutDesc": "Our Team and Vision"
+  }
+}

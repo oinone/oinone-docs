@@ -1,0 +1,147 @@
+:root {
+  --vp-c-brand: #1a73e8;
+  --vp-c-brand-light: #4285f4;
+  --vp-c-brand-lighter: #8ab4f8;
+  --vp-c-brand-dark: #1967d2;
+  --vp-c-brand-darker: #174ea6;
+
+  --vp-font-family-base: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --vp-font-family-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Backgrounds */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f8f9fa;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f1f3f4;
+
+  /* Text Colors */
+  --vp-c-text-1: #202124;
+  --vp-c-text-2: #5f6368;
+  --vp-c-text-3: #80868b;
+
+  /* Borders */
+  --vp-c-divider: #dadce0;
+  --vp-c-divider-light: #e8eaed;
+
+  /* Button styling */
+  --vp-button-brand-bg: var(--vp-c-brand);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-dark);
+  --vp-button-brand-active-bg: var(--vp-c-brand-darker);
+
+  /* Layout tweaks */
+  --vp-sidebar-width: 280px;
+  --vp-layout-max-width: 1440px;
+}
+
+.dark {
+  --vp-c-brand: #8ab4f8;
+  --vp-c-brand-light: #aecbfa;
+  --vp-c-brand-lighter: #d2e3fc;
+  --vp-c-brand-dark: #669df6;
+  --vp-c-brand-darker: #4285f4;
+
+  /* Backgrounds */
+  --vp-c-bg: #202124;
+  --vp-c-bg-alt: #303134;
+  --vp-c-bg-elv: #28292c;
+  --vp-c-bg-soft: #3c4043;
+
+  /* Text Colors */
+  --vp-c-text-1: #e8eaed;
+  --vp-c-text-2: #9aa0a6;
+  --vp-c-text-3: #80868b;
+
+  /* Borders */
+  --vp-c-divider: #3c4043;
+  --vp-c-divider-light: #5f6368;
+}
+
+/* Custom layout adjustments matching Google Docs */
+.VPDoc {
+  padding-top: 32px !important;
+  padding-bottom: 96px !important;
+}
+
+.VPDoc h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+  color: var(--vp-c-text-1);
+}
+
+.VPDoc h2 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vp-c-divider-light);
+}
+
+.VPDoc h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* Sidebar adjustments */
+.VPSidebar {
+  background-color: var(--vp-c-bg-alt);
+  border-right: 1px solid var(--vp-c-divider);
+  padding-top: var(--vp-nav-height);
+}
+
+.VPSidebarItem.level-0 > .item {
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+}
+
+.VPSidebarItem.is-active > .item {
+  color: var(--vp-c-brand);
+  background-color: rgba(26, 115, 232, 0.08);
+  border-radius: 0 16px 16px 0;
+  margin-right: 16px;
+}
+
+.dark .VPSidebarItem.is-active > .item {
+  background-color: rgba(138, 180, 248, 0.12);
+}
+
+/* Code blocks */
+div[class*="language-"] {
+  background-color: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.dark div[class*="language-"] {
+  background-color: var(--vp-c-bg-elv);
+  border: 1px solid var(--vp-c-divider);
+}
+
+/* Top Nav Overrides */
+#mainNav {
+  border-bottom: 1px solid var(--vp-c-divider);
+  background-color: var(--vp-c-bg) !important;
+}
+
+.nav.scrolled {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(8px);
+}
+
+.dark .nav.scrolled {
+  background-color: rgba(32, 33, 36, 0.9) !important;
+}
+
+.nav-link {
+  color: var(--vp-c-text-2) !important;
+}
+
+.nav-link:hover {
+  color: var(--vp-c-brand) !important;
+}
+
+/* 隐藏 VitePress 默认导航栏中的站点标题 (a.title)，避免遮挡页面内容或自定义表头 */
+.VPNavBarTitle {
+  display: none !important;
+}
