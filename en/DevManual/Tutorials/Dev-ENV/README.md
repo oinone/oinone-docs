@@ -27,7 +27,7 @@ next:
 
 Java basic runtime environment. Used for compiling and starting the designer and business applications.
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/JDK-setup.md)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/JDK-setup.md)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -39,7 +39,7 @@ Java basic runtime environment. Used for compiling and starting the designer and
 
 Used to store model-related metadata and business data.
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/MySQL-setup.md)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -51,7 +51,7 @@ Used to store model-related metadata and business data.
 
 A high-throughput, low-latency distributed message queue middleware developed by Apache. Used for scenarios such as asynchronous decoupling and event-driven.
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/RocketMQ-setup.md)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/RocketMQ-setup.md)
   </div>
 </div>
 
@@ -66,7 +66,7 @@ A high-throughput, low-latency distributed message queue middleware developed by
 
 High-performance in-memory database, used for caching hot metadata and business data, and can also be used for distributed locks.
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Redis-setup.md)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Redis-setup.md)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -78,7 +78,7 @@ High-performance in-memory database, used for caching hot metadata and business 
 
 Distributed coordination service. Used for scenarios such as registering and distributing remote services, distributed locks, and event listening.
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Zookeeper-setup.md)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Zookeeper-setup.md)
   </div>
 
 </div>
@@ -106,10 +106,9 @@ Java integrated development environment, which can choose Ultimate or Community 
 1. Disable the Lombok plugin
 
 2. Install the oinone plugin
-
 :::
 
-[Installation and Precautions](/en/DevManual/Tutorials/setup-guide.md#III. Additional Backend Tools)
+[Installation and Precautions](/en/DevManual/Tutorials/setup-guide.md#appendix-1-idea-environment-configuration)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -121,7 +120,7 @@ Java integrated development environment, which can choose Ultimate or Community 
 
 Source code version management tool
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Git-setup.md)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Git-setup.md)
 
   </div>
 
@@ -134,7 +133,7 @@ Source code version management tool
 
 Project, build, and dependency management tool
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Maven-setup.md)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Maven-setup.md)
 
   </div>
 
@@ -179,7 +178,7 @@ Insomnia, Postman, or other tools that support发起GQL requests.
 
 A high-performance JavaScript runtime based on the Chrome V8 engine, supporting non-blocking I/O, widely used to build highly concurrent backend services and microservice architectures.
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Node.js-setup.md)
 
   </div>
 
@@ -193,7 +192,7 @@ Vue scaffolding tool
 
 The official scaffolding tool provided by Vue.js, which supports rapid project initialization, configuration management, and plugin extension, simplifying the development and construction process of Vue projects.
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#III. Advanced)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Node.js-setup.md#ⅲadvanced)
 
   </div>
 
@@ -207,7 +206,7 @@ Convenient Node.js version management
 
 Node.js version management tool, which supports installing, switching, and managing multiple Node.js versions on the same device.
 
-[Installation and Precautions](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#III. Advanced)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Node.js-setup.md#ⅲadvanced)
 
   </div>
 
