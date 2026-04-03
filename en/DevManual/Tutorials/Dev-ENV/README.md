@@ -39,7 +39,7 @@ Java basic runtime environment. Used for compiling and starting the designer and
 
 Used to store model-related metadata and business data.
 
-[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/MySQL-setup.md)
+[Installation and Precautions](/v6/en/InstallOrUpgrade/Dev-ENV/MySQL-setup.md)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -51,7 +51,7 @@ Used to store model-related metadata and business data.
 
 A high-throughput, low-latency distributed message queue middleware developed by Apache. Used for scenarios such as asynchronous decoupling and event-driven.
 
-[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/RocketMQ-setup.md)
+[Installation and Precautions](/v6/en/InstallOrUpgrade/Dev-ENV/RocketMQ-setup.md)
   </div>
 </div>
 
@@ -66,7 +66,7 @@ A high-throughput, low-latency distributed message queue middleware developed by
 
 High-performance in-memory database, used for caching hot metadata and business data, and can also be used for distributed locks.
 
-[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Redis-setup.md)
+[Installation and Precautions](/v6/en/InstallOrUpgrade/Dev-ENV/Redis-setup.md)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -78,7 +78,7 @@ High-performance in-memory database, used for caching hot metadata and business 
 
 Distributed coordination service. Used for scenarios such as registering and distributing remote services, distributed locks, and event listening.
 
-[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Zookeeper-setup.md)
+[Installation and Precautions](/v6/en/InstallOrUpgrade/Dev-ENV/Zookeeper-setup.md)
   </div>
 
 </div>
