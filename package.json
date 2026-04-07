@@ -10,9 +10,15 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
+    "mark.js": "^8.11.1",
+    "pagefind": "^1.5.0",
     "sass-embedded": "^1.89.0",
     "vitepress": "^1.6.4",
+    "vitepress-plugin-pagefind": "^0.4.19",
     "vue": "^3.4.21",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "medium-zoom": "^1.1.0"
   }
 }

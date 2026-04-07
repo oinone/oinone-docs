@@ -15,3 +15,6 @@ node_modules/
 .DS_Store
 
 .vuepress/dist/
+.vitepress/cache/
+.vitepress/dist/
+.npm-cache

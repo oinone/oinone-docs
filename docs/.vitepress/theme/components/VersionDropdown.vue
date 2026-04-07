@@ -1,9 +1,37 @@
 
 <script setup>
-import { useData } from 'vitepress'
-import { computed } from 'vue'
+import { useData, withBase } from 'vitepress'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 
-const { page } = useData()
+const { page, site, theme } = useData()
+
+// State for dropdown
+const isOpen = ref(false)
+let isTouch = false
+
+// Close dropdown when clicking outside
+const closeDropdown = (e) => {
+  if (!e.target.closest('.version-dropdown-wrapper')) {
+    isOpen.value = false
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('touchstart', () => { isTouch = true }, { once: true })
+  document.addEventListener('click', closeDropdown)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', closeDropdown)
+})
+
+const onMouseEnter = () => {
+  if (!isTouch) isOpen.value = true
+}
+
+const onMouseLeave = () => {
+  if (!isTouch) isOpen.value = false
+}
 
 // Compute the current version string from filePath
 const currentVersion = computed(() => {
@@ -18,49 +46,69 @@ const versions = [
   { text: '6.0', prefix: '/v6/' }
 ]
 
-function onVersionChange(event) {
-  const targetVersion = event.target.value
+function onVersionChange(targetVersion) {
+  isOpen.value = false
   if (targetVersion === currentVersion.value) return
 
   // Determine current language from filePath
   const isEn = page.value.filePath.includes('/en/') || page.value.filePath.startsWith('en/')
-  const langPath = isEn ? 'en/' : 'zh-cn/'
+  const langKey = isEn ? 'en' : 'zh-cn'
 
-  let newPath = '/'
+  // Get first links from theme config
+  const firstLinks = site.value.themeConfig?.firstLinks || theme.value.firstLinks || {}
+
+  let targetLocaleKey = ''
   if (targetVersion === '6.0') {
-    newPath = '/v6/' + langPath
+    targetLocaleKey = `v6/${langKey}`
   } else {
-    newPath = '/' + langPath
+    targetLocaleKey = langKey
   }
 
-  window.location.href = newPath
+  const newPath = firstLinks[targetLocaleKey] || '/'
+
+  window.location.href = withBase(newPath)
+}
+
+function toggleDropdown() {
+  isOpen.value = !isOpen.value
 }
 </script>
 
 <template>
-  <div class="version-dropdown-wrapper">
-    <select class="version-dropdown" @change="onVersionChange" :value="currentVersion">
-      <option v-for="version in versions" :key="version.text" :value="version.text">
-        {{ version.text }}
-      </option>
-    </select>
+  <div 
+    class="version-dropdown-wrapper custom-dropdown-wrap" 
+    :class="{ open: isOpen }"
+    @mouseenter="onMouseEnter" 
+    @mouseleave="onMouseLeave"
+  >
+    <button class="custom-dropdown-button" @click="toggleDropdown">
+      <span>v{{ currentVersion }}</span>
+      <svg class="icon-arrow" viewBox="0 0 10 10" width="10" height="10">
+        <path d="M2.5 4l2.5 2.5L7.5 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+      </svg>
+    </button>
+
+    <transition name="fade-slide">
+      <div v-show="isOpen" class="custom-dropdown">
+        <a 
+          v-for="version in versions" 
+          :key="version.text" 
+          class="custom-dropdown-item" 
+          :class="{ active: currentVersion === version.text }"
+          @click="onVersionChange(version.text)"
+        >
+          <span>v{{ version.text }}</span>
+          <svg v-if="currentVersion === version.text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </a>
+      </div>
+    </transition>
   </div>
 </template>
 
 <style scoped>
 .version-dropdown-wrapper {
-  display: flex;
-  align-items: center;
   margin-right: 1rem;
-}
-.version-dropdown {
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--vp-c-divider);
-  background-color: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-1);
-  font-size: 0.9rem;
-  cursor: pointer;
-  outline: none;
 }
 </style>

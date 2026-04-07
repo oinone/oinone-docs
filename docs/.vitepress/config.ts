@@ -1,73 +1,82 @@
+import { defineConfig } from 'vitepress';
+import { getSidebar } from './auto-sidebar';
+import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
 
-import { defineConfig } from 'vitepress'
-import sidebarRoot from './sidebar-root.json'
-import sidebarEn from './sidebar-en.json'
-import sidebarV6Zh from './sidebar-v6-zh.json'
-import sidebarV6En from './sidebar-v6-en.json'
+function getFirstLink(sidebar: any[]): string {
+  if (!sidebar || !Array.isArray(sidebar)) return '';
+  for (const item of sidebar) {
+    if (item.link) return item.link;
+    if (item.items && item.items.length > 0) {
+      const link = getFirstLink(item.items);
+      if (link) return link;
+    }
+  }
+  return '';
+}
+
+const zhSidebar = getSidebar('zh-cn', '/zh-cn/');
+const enSidebar = getSidebar('en', '/en/');
+const v6ZhSidebar = getSidebar('v6/zh-cn', '/v6/zh-cn/');
+const v6EnSidebar = getSidebar('v6/en', '/v6/en/');
 
 export default defineConfig({
+  ignoreDeadLinks: true,
   title: 'Oinone Docs',
   base: '/',
-  head: [
-    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
-    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
-    ['link', { href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap', rel: 'stylesheet' }]
-  ],
-
+  vite: {
+    plugins: [
+    ]
+  },
   themeConfig: {
+    outline: [1, 6],
     // https://vitepress.dev/reference/default-theme-config
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/oinone/oinone-pamirs' },
+      { icon: 'gitee', link: 'https://gitee.com/oinone/oinone-pamirs' }
     ],
-    search: {
-      provider: 'local'
+    firstLinks: {
+      'zh-cn': getFirstLink(zhSidebar),
+      'en': getFirstLink(enSidebar),
+      'v6/zh-cn': getFirstLink(v6ZhSidebar),
+      'v6/en': getFirstLink(v6EnSidebar)
     }
   },
-
   locales: {
     root: {
       label: '中文',
       lang: 'zh-CN',
-      link: '/zh-cn/',
+      link: getFirstLink(zhSidebar) || '/zh-cn/',
       themeConfig: {
-        nav: [
-          { text: '服务中心', link: '/zh-cn/' },
-        ],
-        sidebar: sidebarRoot
+        sidebar: zhSidebar,
+        outlineTitle: '本页目录'
       }
     },
     en: {
       label: 'English',
       lang: 'en-US',
-      link: '/en/',
+      link: getFirstLink(enSidebar) || '/en/',
       themeConfig: {
-        nav: [
-          { text: 'Service Center', link: '/en/' },
-        ],
-        sidebar: sidebarEn
+        sidebar: enSidebar,
+        outlineTitle: 'On this page'
       }
     },
     v6_zh: {
-        label: 'v6-中文',
-        lang: 'zh-CN',
-        link: '/v6/zh-cn/',
-        themeConfig: {
-          nav: [
-            { text: '服务中心', link: '/v6/zh-cn/' },
-          ],
-          sidebar: sidebarV6Zh
-        }
+      label: 'v6-中文',
+      lang: 'zh-CN',
+      link: getFirstLink(v6ZhSidebar) || '/v6/zh-cn/',
+      themeConfig: {
+        sidebar: v6ZhSidebar,
+        outlineTitle: '本页目录'
+      }
     },
     v6_en: {
-        label: 'v6-English',
-        lang: 'en-US',
-        link: '/v6/en/',
-        themeConfig: {
-          nav: [
-            { text: 'Service Center', link: '/v6/en/' },
-          ],
-          sidebar: sidebarV6En
-        }
+      label: 'v6-English',
+      lang: 'en-US',
+      link: getFirstLink(v6EnSidebar) || '/v6/en/',
+      themeConfig: {
+        sidebar: v6EnSidebar,
+        outlineTitle: 'On this page'
+      }
     }
   }
-})
+});

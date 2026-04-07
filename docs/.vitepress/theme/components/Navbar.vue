@@ -1,7 +1,13 @@
-
 <template>
   <nav class="nav" :class="{ scrolled }" id="mainNav">
     <div class="nav-inner">
+      <div class="VPNavBarHamburger" @click="$emit('toggle-sidebar')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </div>
       <a class="nav-link nav-logo" :href="localePath('/')">
         <img src="http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo.webp"
              alt="Oinone" width="120" height="32" style="height:32px;width:auto">
@@ -82,9 +88,33 @@
       </div>
       <div class="vp-navbar-end">
         <VPLocalSearchBox v-if="theme.localSearch" :options="theme.localSearch.options" />
-        <VersionDropdown />
-        <LangDropdown />
-        <VPSocialLinks class="social-links" :links="theme.socialLinks" />
+        
+        <!-- Mobile "More" Button -->
+        <div class="mobile-more-wrap" v-if="isMobile" :class="{ open: isMoreOpen }">
+          <div class="mobile-more-btn" @click.stop="isMoreOpen = !isMoreOpen">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="1"></circle>
+              <circle cx="12" cy="12" r="1"></circle>
+              <circle cx="12" cy="19" r="1"></circle>
+            </svg>
+          </div>
+          <transition name="fade-slide">
+            <div v-show="isMoreOpen" class="mobile-more-dropdown custom-dropdown">
+              <div class="mobile-dropdown-item"><VersionDropdown /></div>
+              <div class="mobile-dropdown-item"><LangDropdown /></div>
+              <div class="mobile-dropdown-item social-container">
+                <VPSocialLinks class="social-links" :links="theme.socialLinks" />
+              </div>
+            </div>
+          </transition>
+        </div>
+
+        <!-- Desktop Action Area -->
+        <div class="desktop-navbar-end" v-else>
+          <VersionDropdown />
+          <LangDropdown />
+          <VPSocialLinks class="social-links" :links="theme.socialLinks" />
+        </div>
       </div>
     </div>
   </nav>
@@ -99,9 +129,13 @@ import { useTranslate } from '../../plugins/useTranslate';
 import VPLocalSearchBox from 'vitepress/dist/client/theme-default/components/VPLocalSearchBox.vue'
 import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSocialLinks.vue'
 
+defineEmits(['toggle-sidebar']);
+
 const { theme, lang } = useData();
 
 const scrolled = ref(false);
+const isMobile = ref(false);
+const isMoreOpen = ref(false);
 
 const WELCOME_WEBSITE_URL = 'https://www.oinone.top';
 
@@ -121,12 +155,31 @@ const onScroll = () => {
   scrolled.value = window.scrollY > 10;
 };
 
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 960;
+  if (!isMobile.value) {
+    isMoreOpen.value = false;
+  }
+};
+
+const closeMoreDropdown = (e: Event) => {
+  const target = e.target as HTMLElement;
+  if (!target.closest('.mobile-more-wrap')) {
+    isMoreOpen.value = false;
+  }
+};
+
 onMounted(() => {
   window.addEventListener('scroll', onScroll);
+  window.addEventListener('resize', checkMobile);
+  document.addEventListener('click', closeMoreDropdown);
+  checkMobile();
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', onScroll);
+  window.removeEventListener('resize', checkMobile);
+  document.removeEventListener('click', closeMoreDropdown);
 });
 </script>
 
@@ -156,10 +209,24 @@ onUnmounted(() => {
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 4px 24px rgba(0, 0, 0, 0.04);
 }
 
+@media (min-width: 960px) {
+  .nav {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .nav {
+    padding-left: max(32px, calc((100vw - (1440px - 64px)) / 2));
+    padding-right: max(32px, calc((100vw - (1440px - 64px)) / 2));
+  }
+}
+
 .nav-inner {
   width: 100%;
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
 .nav-logo {
@@ -168,16 +235,16 @@ onUnmounted(() => {
   gap: 0;
   text-decoration: none;
   transition: opacity .2s;
-  margin-right: 48px
+  margin-right: 48px;
 }
 
 .nav-logo:hover {
-  opacity: .75
+  opacity: .75;
 }
 
 .nav-logo img {
   height: 32px;
-  width: auto
+  width: auto;
 }
 
 .nav-links {
@@ -299,6 +366,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 1rem;
+  z-index: 2; /* keep above absolute logo */
 }
 
 @media(max-width: 768px) {
@@ -307,6 +375,96 @@ onUnmounted(() => {
   }
   .vp-navbar-end {
       margin-left: auto;
+  }
+}
+
+/* Fix mobile menu integration */
+.VPNavBarHamburger {
+  display: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--vp-c-text-1);
+  transition: color 0.2s;
+  z-index: 2; /* keep above absolute logo */
+}
+
+.VPNavBarHamburger:hover {
+  color: var(--vp-c-brand);
+}
+
+.desktop-navbar-end {
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile "More" Dropdown specific styles */
+.mobile-more-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mobile-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--vp-c-text-1);
+  transition: color 0.2s;
+  margin-left: 8px;
+}
+
+.mobile-more-btn:hover, .mobile-more-wrap.open .mobile-more-btn {
+  color: var(--vp-c-brand);
+}
+
+.mobile-more-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  top: calc(100% + 12px);
+  right: 0;
+  transform-origin: top right;
+}
+
+.mobile-dropdown-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.social-container {
+  padding-top: 8px;
+  border-top: 1px solid var(--vp-c-divider);
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 960px) {
+  .VPNavBarHamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-inner {
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 1;
+  }
+
+  .vp-navbar-end {
+    margin-left: 0;
   }
 }
 </style>
