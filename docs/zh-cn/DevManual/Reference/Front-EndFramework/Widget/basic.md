@@ -154,7 +154,7 @@ order: 2
 
 **继承**：DslRenderWidget
 
-**属****性**：
+**属性**：
 
 + allInvisible：判断组件及其子组件是否全部不可见。（`boolean | undefined`）
 + automatic：是否为自动组件。（`boolean`）
