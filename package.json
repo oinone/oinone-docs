@@ -10,7 +10,6 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
-    "mark.js": "^8.11.1",
     "pagefind": "^1.5.0",
     "sass-embedded": "^1.89.0",
     "vitepress": "^1.6.4",
