@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { getSidebar } from './auto-sidebar';
-import { pagefindPlugin, chineseSearchOptimize } from 'vitepress-plugin-pagefind';
+// import { SearchPlugin } from 'vitepress-plugin-search';
 
 function getFirstLink(sidebar: any[]): string {
   if (!sidebar || !Array.isArray(sidebar)) return '';
@@ -25,11 +25,17 @@ export default defineConfig({
   base: '/',
   vite: {
     plugins: [
+      // SearchPlugin({
+      //   encode: false,
+      //   tokenize: 'full',
+      //   previewLength: 62,
+      //   buttonLabel: 'Search / 搜索',
+      //   placeholder: 'Search docs / 搜索文档'
+      // })
     ]
   },
   themeConfig: {
     outline: [1, 6],
-    // https://vitepress.dev/reference/default-theme-config
     socialLinks: [
       { icon: 'github', link: 'https://github.com/oinone/oinone-pamirs' },
       { icon: 'gitee', link: 'https://gitee.com/oinone/oinone-pamirs' }
@@ -78,5 +84,17 @@ export default defineConfig({
         outlineTitle: 'On this page'
       }
     }
-  }
+  },
+  // build: {
+  //   maxWorkers: 4,
+  //   chunkSizeWarningLimit: 1500,
+  //   rollupOptions: {
+  //     output: {
+  //       manualChunks: {
+  //         vendor: ['vue', '@vueuse/core'],
+  //         markdown: ['markdown-it', 'prismjs']
+  //       }
+  //     }
+  //   }
+  // }
 });

@@ -14,7 +14,6 @@ node_modules/
 .theme2/.vuepress/dist/
 .DS_Store
 
-.vuepress/dist/
-.vitepress/cache/
-.vitepress/dist/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
 .npm-cache
