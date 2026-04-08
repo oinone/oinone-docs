@@ -1,13 +1,15 @@
 <template>
   <nav class="nav" :class="{ scrolled }" id="mainNav">
     <div class="nav-inner">
-      <div class="VPNavBarHamburger" @click="$emit('toggle-sidebar')">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
+      <div class="nav-left">
+        <div class="VPNavBarHamburger" @click="$emit('toggle-sidebar')">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </div>
       </div>
       <a class="nav-link nav-logo" :href="localePath('/')">
         <img src="http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo.webp"
@@ -88,8 +90,8 @@
         </div>
       </div>
       <div class="vp-navbar-end">
-        <VPNavBarSearch />
-
+        <Search />
+        
         <!-- Mobile "More" Button -->
         <div class="mobile-more-wrap" v-if="isMobile" :class="{ open: isMoreOpen }">
           <div class="mobile-more-btn" @click.stop="isMoreOpen = !isMoreOpen">
@@ -111,6 +113,9 @@
               <div class="mobile-dropdown-item social-container">
                 <VPSocialLinks class="social-links" :links="theme.socialLinks" />
               </div>
+              <div class="mobile-dropdown-item appearance-container">
+                <VPSwitchAppearance />
+              </div>
             </div>
           </transition>
         </div>
@@ -120,6 +125,9 @@
           <VersionDropdown />
           <LangDropdown />
           <VPSocialLinks class="social-links" :links="theme.socialLinks" />
+          <div class="nav-appearance-wrap">
+            <VPSwitchAppearance />
+          </div>
         </div>
       </div>
     </div>
@@ -131,9 +139,10 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useData } from 'vitepress';
 import VersionDropdown from './VersionDropdown.vue';
 import LangDropdown from './LangDropdown.vue';
+import Search from './Search.vue';
 import { useTranslate } from '../../plugins/useTranslate';
-import VPNavBarSearch from 'vitepress-plugin-search/Search.vue';
 import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSocialLinks.vue';
+import VPSwitchAppearance from 'vitepress/dist/client/theme-default/components/VPSwitchAppearance.vue';
 
 defineEmits(['toggle-sidebar']);
 
@@ -215,6 +224,15 @@ onUnmounted(() => {
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 4px 24px rgba(0, 0, 0, 0.04);
 }
 
+:deep(html.dark) .nav.scrolled,
+:global(html.dark) .nav.scrolled {
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom-color: rgba(84, 84, 84, 0.3);
+  box-shadow: 0 1px 0 0 rgba(84, 84, 84, 0.2) inset, 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
 @media (min-width: 960px) {
   .nav {
     padding-left: 32px;
@@ -251,6 +269,17 @@ onUnmounted(() => {
 .nav-logo img {
   height: 32px;
   width: auto;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-appearance-wrap {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
 }
 
 .nav-links {
@@ -448,7 +477,35 @@ onUnmounted(() => {
   justify-content: center;
 }
 
+.appearance-container {
+  padding-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 960px) {
+  .nav {
+    background: transparent !important;
+    border-bottom-color: transparent !important;
+  }
+
+  .nav.scrolled {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(240, 248, 255, 0.7) 100%) !important;
+    backdrop-filter: blur(40px) saturate(2) brightness(1.05) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(2) brightness(1.05) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 4px 24px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  :deep(html.dark) .nav.scrolled,
+  :global(html.dark) .nav.scrolled {
+    background: rgba(24, 24, 27, 0.7) !important;
+    backdrop-filter: blur(20px) saturate(1.5) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.5) !important;
+    border-bottom-color: rgba(84, 84, 84, 0.3) !important;
+    box-shadow: 0 1px 0 0 rgba(84, 84, 84, 0.2) inset, 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+  }
+
   .VPNavBarHamburger {
     display: flex;
     align-items: center;
