@@ -18,5 +18,10 @@
     "changelogDesc": "Latest Release Notes",
     "about": "About",
     "aboutDesc": "Our Team and Vision"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "desc": "Sorry, the page you visited does not exist or has been moved",
+    "button": "Go back home"
   }
 }

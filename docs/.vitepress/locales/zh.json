@@ -18,5 +18,10 @@
     "changelogDesc": "查看最新版本特性",
     "about": "关于",
     "aboutDesc": "了解我们的团队与愿景"
+  },
+  "notFound": {
+    "title": "找不到页面",
+    "desc": "抱歉，您访问的页面不存在或已移至他处",
+    "button": "返回首页"
   }
 }
