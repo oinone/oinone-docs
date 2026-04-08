@@ -2,17 +2,31 @@
 import { computed } from 'vue';
 import { useData } from 'vitepress';
 import { useTranslate } from '../plugins';
-import { defaultLanguage, useLanguage, useVersion, Version } from '../state';
+import { supportedLanguages, useLanguage, useVersion, Version } from '../state';
 
-const { lang, page } = useData();
+const { theme } = useData();
 const { t: $t } = useTranslate();
 const { currentVersion } = useVersion();
-const { currentLanguage } = useLanguage();
+const { defaultLanguage, currentLanguage } = useLanguage();
 
-// 自动根据当前路径决定跳转首页的链接
+// 自动根据当前路径决定跳转首页的链接，若当前语言下无文档则跳转至当前版本的默认语言
 const homeLink = computed(() => {
-  if (typeof window === 'undefined') return `/${defaultLanguage.baseLang || defaultLanguage.lang}`;
-  let path = `${currentLanguage.value.baseLang || currentLanguage.value.lang}`;
+  const curr = defaultLanguage.value.baseLang || defaultLanguage.value.lang;
+  if (typeof window === 'undefined') return `/${curr}`;
+
+  const firstLinks = theme.value.firstLinks || {};
+  const currentLang = currentLanguage.value;
+  const currentFirstLink = firstLinks[currentLang.lang];
+
+  // 预判断文档是否存在（如果首个链接不存在或为根路径，说明该语言版本下没有文档）
+  let targetLang = currentLang;
+  if (!currentFirstLink || currentFirstLink === currentLang.path) {
+    targetLang = supportedLanguages.find(
+      l => l.version === currentVersion.value && (l.baseLang || l.lang) === curr
+    ) || defaultLanguage.value;
+  }
+
+  let path = `${targetLang.baseLang || targetLang.lang}`;
   if (currentVersion.value !== Version.latest) {
     path = `${currentVersion.value}/${path}`;
   }
