@@ -17,7 +17,7 @@
   font-size: 24px;
   line-height: 25.92px;
   letter-spacing: -0.13px;
-  font-weight: 450;
+  font-weight: 500;
   margin-top: 24px; /* 减小上边距使布局更紧凑 */
   border-top: none; /* 移除 VitePress 默认的 H2 顶部横线 */
   border-bottom: none; /* 确保无多余边框 */
