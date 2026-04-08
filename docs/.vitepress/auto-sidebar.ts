@@ -21,21 +21,10 @@ function parseFrontmatter(content: string) {
   let hasIndex = false;
   let hasDirLink = false;
 
-  const contentTrimmed = content.trim();
   // Extract only the frontmatter section enclosed by ---
-  const fmMatch = contentTrimmed.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/);
-  
-  // Check if document has content (excluding frontmatter)
-  let hasContent = false;
-  if (fmMatch) {
-    const withoutFm = contentTrimmed.substring(fmMatch[0].length).trim();
-    hasContent = withoutFm.length > 0;
-  } else {
-    hasContent = contentTrimmed.length > 0;
-  }
-
+  const fmMatch = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/);
   if (!fmMatch) {
-    return { title, order, index, dirLink, hasIndex, hasDirLink, hasContent };
+    return { title, order, index, dirLink, hasIndex, hasDirLink };
   }
 
   const fmContent = fmMatch[1];
@@ -69,7 +58,7 @@ function parseFrontmatter(content: string) {
     }
   }
 
-  return { title, order, index, dirLink, hasIndex, hasDirLink, hasContent };
+  return { title, order, index, dirLink, hasIndex, hasDirLink };
 }
 
 export function getSidebar(relativePath: string, linkPrefix: string, depth: number = 1): SidebarItem[] {
@@ -93,7 +82,6 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
       let order = 9999;
       let index = true;
       let dirLink = false;
-      let readmeHasContent = false;
 
       if (fs.existsSync(readmePath)) {
         const content = fs.readFileSync(readmePath, 'utf-8');
@@ -102,17 +90,11 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
         order = fm.order;
         index = fm.index;
         dirLink = fm.dirLink;
-        readmeHasContent = fm.hasContent;
       }
 
       const children = getSidebar(path.join(relativePath, file), `${linkPrefix}${file}/`, depth + 1);
 
       if (!index && !dirLink && children.length === 0) {
-        continue;
-      }
-      
-      // If the directory has no children and its README has no content, skip it entirely
-      if (children.length === 0 && !readmeHasContent) {
         continue;
       }
 
@@ -143,16 +125,13 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
             }
           }
 
-          // Only link to the README if it actually has content
-          if (shouldLink && readmeFm.hasContent) {
+          if (shouldLink) {
             // For directories with README.md, the path in VitePress is to the README
             item.link = `${linkPrefix}${file}/README`;
           }
         } else if (dirLink || index) {
-          // If there is no README but dirLink or index is true, we only link if we are not strictly filtering empty content.
-          // However, since we are filtering out empty content, linking to a non-existent README is essentially linking to empty content.
-          // For safety and to preserve original behavior if it was relied upon, we won't add a link if there is no README.
-          // We will only link if the directory explicitly had a README with content (handled above).
+          // If there is no README but dirLink or index is true, allow linking
+          item.link = `${linkPrefix}${file}/README`;
         }
 
         if (children.length > 0) {
@@ -165,7 +144,7 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
       const content = fs.readFileSync(fullPath, 'utf-8');
       const fm = parseFrontmatter(content);
 
-      if (!fm.index || !fm.hasContent) {
+      if (!fm.index) {
         continue;
       }
 
