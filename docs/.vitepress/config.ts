@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { getSidebar } from './auto-sidebar';
-// import { SearchPlugin } from 'vitepress-plugin-search';
+import { SearchPlugin } from 'vitepress-plugin-search';
 
 function getFirstLink(sidebar: any[]): string {
   if (!sidebar || !Array.isArray(sidebar)) return '';
@@ -23,19 +23,36 @@ export default defineConfig({
   ignoreDeadLinks: true,
   title: 'Oinone Docs',
   base: '/',
+  buildConcurrency: 8,
   vite: {
     plugins: [
-      // SearchPlugin({
-      //   encode: false,
-      //   tokenize: 'full',
-      //   previewLength: 62,
-      //   buttonLabel: 'Search / 搜索',
-      //   placeholder: 'Search docs / 搜索文档'
-      // })
+      SearchPlugin({
+        encode: false,
+        tokenize: 'full',
+        previewLength: 62,
+        buttonLabel: 'Search / 搜索',
+        placeholder: 'Search docs / 搜索文档',
+        ignore: ['v6']
+      })
     ],
+    build: {
+      chunkSizeWarningLimit: 1500,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+          }
+        }
+      }
+    },
     ssr: {
       noExternal: ['mark.js']
     }
+  },
+  markdown: {
+    lineNumbers: true
   },
   themeConfig: {
     outline: [1, 6],
@@ -87,17 +104,5 @@ export default defineConfig({
         outlineTitle: 'On this page'
       }
     }
-  },
-  // build: {
-  //   maxWorkers: 4,
-  //   chunkSizeWarningLimit: 1500,
-  //   rollupOptions: {
-  //     output: {
-  //       manualChunks: {
-  //         vendor: ['vue', '@vueuse/core'],
-  //         markdown: ['markdown-it', 'prismjs']
-  //       }
-  //     }
-  //   }
-  // }
+  }
 });

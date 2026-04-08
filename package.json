@@ -14,8 +14,10 @@
     "medium-zoom": "^1.1.0"
   },
   "devDependencies": {
+    "flexsearch": "^0.8.212",
     "sass-embedded": "^1.89.0",
     "vitepress": "^1.6.4",
+    "vitepress-plugin-search": "^1.0.4-alpha.22",
     "vue": "^3.4.21",
     "vue-router": "^4.2.5"
   }
