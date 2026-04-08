@@ -55,9 +55,7 @@ const initCollapseState = (items: any[], level = 0) => {
 
 const currentSidebar = computed(() => {
   const sidebars = theme.value.sidebar;
-  console.log(sidebars);
   if (!sidebars) return [];
-
 
   // Find the matching sidebar based on the current path
   const path = route.path;
