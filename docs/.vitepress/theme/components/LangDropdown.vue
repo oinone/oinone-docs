@@ -3,7 +3,7 @@ import { useData, withBase } from 'vitepress';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useVersion } from '../../state';
 
-const { page } = useData();
+const { lang } = useData();
 const { currentVersion } = useVersion();
 
 // State for dropdown
@@ -36,13 +36,9 @@ const onMouseLeave = () => {
   if (!isTouch) isOpen.value = false;
 };
 
-// Detect current language from filePath
+// Detect current language from global lang config
 const currentLang = computed(() => {
-  const fp = page.value.filePath || (typeof window !== 'undefined' ? window.location.pathname : '');
-  if (fp.includes('/en/')) {
-    return 'en';
-  }
-  return 'zh-cn';
+  return lang.value === 'en' ? 'en' : 'zh-cn';
 });
 
 const langs = [
