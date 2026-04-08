@@ -217,20 +217,22 @@ const onAfterLeave = (el: Element) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
+  padding: 0 12px;
   border-left: 3px solid transparent;
   border-radius: 4px;
-  color: #45474D;
+  color: var(--vp-c-text-2);
   transition: all 0.2s ease;
   cursor: pointer;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 32px;
   margin-bottom: 2px;
   user-select: none;
+  font-weight: 400;
 }
 
 .item-content:hover {
-  background: #E6EAF0;
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg-soft);
 }
 
 .text-link, .text-label {
@@ -275,21 +277,20 @@ const onAfterLeave = (el: Element) => {
 
 /* Active State Styles */
 .sidebar-item.is-active > .item-content {
-  color: #121317;
-  background: rgba(3, 93, 255, 0.1);
-  font-weight: 500;
-  border-left-color: #035dff;
+  color: var(--vp-c-brand);
+  background: var(--vp-c-brand-soft);
+  border-left-color: var(--vp-c-brand);
 }
 
 .sidebar-item.is-active > .item-content .active-link {
-  color: #035dff;
+  color: var(--vp-c-brand);
 }
 
 .sidebar-item.is-active > .item-content:hover {
-  background: rgba(50, 121, 249, 0.12);
+  background: var(--vp-c-brand-soft);
 }
 
 .active-link {
-  color: #121317;
+  color: var(--vp-c-text-1);
 }
 </style>

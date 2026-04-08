@@ -10,6 +10,7 @@
     letter-spacing: -0.26px;
     font-weight: 700;
     margin-top: 32px; /* 在一级标题上方增加留白 */
+    color: var(--vp-c-text-1);
 }
 
 /* H2 样式 */
@@ -22,6 +23,7 @@
     border-top: none; /* 移除 VitePress 默认的 H2 顶部横线 */
     border-bottom: none; /* 确保无多余边框 */
     padding-top: 0; /* 移除 VitePress 默认的内边距 */
+    color: var(--vp-c-text-1);
 }
 
 /* H3 样式 */
@@ -29,6 +31,7 @@
     font-size: 22px;
     line-height: 24.64px;
     font-weight: 500;
+    color: var(--vp-c-text-1);
 }
 
 /* H4 样式 */
@@ -36,24 +39,25 @@
     font-size: 20px;
     line-height: 26px;
     font-weight: 450;
+    color: var(--vp-c-text-1);
 }
 
 /* 链接优化 */
 .vp-doc a {
-    color: #1a73e8;
+    color: var(--vp-c-brand);
     text-decoration: underline;
     text-underline-offset: 2px;
 }
 
 .vp-doc a:hover {
-    color: #1152a8;
+    color: var(--vp-c-brand-dark);
 }
 
 /* 内联代码块优化 */
 .vp-doc p code,
 .vp-doc li code {
     font-family: var(--vp-font-family-mono);
-    background-color: #0000000d;
+    background-color: var(--vp-c-bg-soft);
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 14.5px;

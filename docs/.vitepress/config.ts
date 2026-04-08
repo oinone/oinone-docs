@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { getSidebar } from './auto-sidebar';
-import { SearchPlugin } from 'vitepress-plugin-search';
+import { pagefindPlugin } from 'vitepress-plugin-pagefind';
 
 function getFirstLink(sidebar: any[]): string {
   if (!sidebar || !Array.isArray(sidebar)) return '';
@@ -29,12 +29,45 @@ export default defineConfig({
   buildConcurrency: 8,
   vite: {
     plugins: [
-      SearchPlugin({
-        encode: false,
-        tokenize: 'forward',
-        previewLength: 62,
-        buttonLabel: 'Search / 搜索',
-        placeholder: 'Search docs / 搜索文档'
+      pagefindPlugin({
+        customSearchQuery(input) {
+          // 支持多语言/多版本下的中文分词和基础搜索
+          return input.replace(/[\u4e00-\u9fa5]/g, ' $& ')
+            .replace(/\s+/g, ' ')
+            .trim();
+        },
+        locales: {
+          root: {
+            btnPlaceholder: '搜索',
+            placeholder: '搜索文档',
+            emptyText: '没有找到结果',
+            heading: '共找到 {{searchResult}} 个结果'
+          },
+          'zh-cn': {
+            btnPlaceholder: '搜索',
+            placeholder: '搜索文档',
+            emptyText: '没有找到结果',
+            heading: '共找到 {{searchResult}} 个结果'
+          },
+          'v6/zh-cn': {
+            btnPlaceholder: '搜索',
+            placeholder: '搜索文档',
+            emptyText: '没有找到结果',
+            heading: '共找到 {{searchResult}} 个结果'
+          },
+          'en': {
+            btnPlaceholder: 'Search',
+            placeholder: 'Search docs',
+            emptyText: 'No results found',
+            heading: 'Total: {{searchResult}} results'
+          },
+          'v6/en': {
+            btnPlaceholder: 'Search',
+            placeholder: 'Search docs',
+            emptyText: 'No results found',
+            heading: 'Total: {{searchResult}} results'
+          }
+        }
       })
     ],
     build: {
@@ -48,9 +81,6 @@ export default defineConfig({
           }
         }
       }
-    },
-    ssr: {
-      noExternal: ['mark.js', 'vitepress-plugin-search']
     }
   },
   markdown: {
