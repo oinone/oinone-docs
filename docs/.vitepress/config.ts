@@ -120,6 +120,7 @@ export default defineConfig({
     plugins: [
       {
         name: 'rewrite-zh-cn',
+        enforce: 'pre',
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
             if (req.url && req.url.includes('/zh-cn/')) {
@@ -127,6 +128,14 @@ export default defineConfig({
             }
             next();
           });
+        },
+        transform(code, id) {
+          if (id.includes('vitepress/dist/client/app/router.js')) {
+            return code.replace(
+              'history.replaceState({}, \'\', href);',
+              'if (!window.location.pathname.includes("/zh-cn/")) { history.replaceState({}, "", href); }'
+            );
+          }
         }
       },
       pagefindPlugin({

@@ -15,8 +15,12 @@ onMounted(() => {
   const firstLinks = site.value.themeConfig?.firstLinks || theme.value?.firstLinks || {};
   const targetLink = firstLinks[props.locale] || `/${props.locale}/`;
 
-  const fullPath = withBase(targetLink);
+  let fullPath = withBase(targetLink);
   const currentPath = window.location.pathname.replace(/\.html$/, '');
+
+  if (currentPath.includes('/zh-cn/')) {
+    fullPath = fullPath.replace('/zh/', '/zh-cn/');
+  }
 
   if (currentPath !== fullPath) {
     window.location.replace(fullPath);
