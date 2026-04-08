@@ -5,6 +5,7 @@ import { useRoute } from 'vitepress';
 import mediumZoom from 'medium-zoom';
 import './custom.css';
 import './markdown-style.css';
+import PDF from './components/PDF.vue';
 
 export default {
   extends: DefaultTheme,
@@ -32,5 +33,6 @@ export default {
   },
   enhanceApp({ app, router, siteData }) {
     // any custom app enhancements
+    app.component('PDF', PDF);
   }
 };

@@ -70,7 +70,7 @@ export default defineConfig({
     // 顺序决定了解析顺序，因此，具备包含关系的 key 必须放在最下面进行定义
     root: {
       label: '中文',
-      lang: 'zh-CN',
+      lang: 'zh',
       link: getFirstLink(zhSidebar) || '/zh-cn/',
       themeConfig: {
         sidebar: zhSidebar,
@@ -79,7 +79,7 @@ export default defineConfig({
     },
     'v6/zh-cn': {
       label: 'v6-中文',
-      lang: 'zh-CN',
+      lang: 'zh',
       link: getFirstLink(v6ZhSidebar) || '/v6/zh-cn/',
       themeConfig: {
         sidebar: v6ZhSidebar,
@@ -88,7 +88,7 @@ export default defineConfig({
     },
     'v6/en': {
       label: 'v6-English',
-      lang: 'en-US',
+      lang: 'en',
       link: getFirstLink(v6EnSidebar) || '/v6/en/',
       themeConfig: {
         sidebar: v6EnSidebar,
@@ -97,7 +97,7 @@ export default defineConfig({
     },
     'zh-cn': {
       label: '中文',
-      lang: 'zh-CN',
+      lang: 'zh',
       link: getFirstLink(zhSidebar) || '/zh-cn/',
       themeConfig: {
         sidebar: zhSidebar,
@@ -106,7 +106,7 @@ export default defineConfig({
     },
     en: {
       label: 'English',
-      lang: 'en-US',
+      lang: 'en',
       link: getFirstLink(enSidebar) || '/en/',
       themeConfig: {
         sidebar: enSidebar,
