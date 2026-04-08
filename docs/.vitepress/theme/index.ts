@@ -20,8 +20,14 @@ export default {
       if (zoom) {
         zoom.detach();
       }
+      
+      const isTouchDevice = typeof window !== 'undefined' && ('ontouchstart' in window || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0));
+      
       // 提供点击预览功能
-      zoom = mediumZoom('.vp-doc img', { background: 'var(--vp-c-bg)' });
+      zoom = mediumZoom('.vp-doc img', { 
+        background: 'var(--vp-c-bg)',
+        scrollOffset: isTouchDevice ? 10000000 : 40
+      });
     };
 
     onMounted(() => {
