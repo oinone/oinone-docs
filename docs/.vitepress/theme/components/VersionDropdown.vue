@@ -50,21 +50,49 @@ function onVersionChange(targetVersion) {
   isOpen.value = false
   if (targetVersion === currentVersion.value) return
 
-  // Determine current language from filePath
-  const isEn = page.value.filePath.includes('/en/') || page.value.filePath.startsWith('en/')
-  const langKey = isEn ? 'en' : 'zh-cn'
-
-  // Get first links from theme config
-  const firstLinks = site.value.themeConfig?.firstLinks || theme.value.firstLinks || {}
-
-  let targetLocaleKey = ''
-  if (targetVersion === '6.0') {
-    targetLocaleKey = `v6/${langKey}`
-  } else {
-    targetLocaleKey = langKey
+  // Use window.location.pathname to get the exact current URL path
+  let currentPath = window.location.pathname
+  
+  // Remove base if it exists (assuming withBase adds it, we need to handle raw path)
+  // For standard VitePress, base is usually handled, but let's just work with the path
+  const base = site.value.base || '/'
+  if (base !== '/' && currentPath.startsWith(base)) {
+    currentPath = currentPath.slice(base.length - 1)
   }
 
-  const newPath = firstLinks[targetLocaleKey] || '/'
+  // Determine current language from path
+  const isEn = currentPath.includes('/en/') || currentPath.startsWith('/en/')
+  const langKey = isEn ? 'en' : 'zh-cn'
+
+  // Check if URL specifies no document path (root of the language/version)
+  const isRoot = currentPath === '/zh-cn/' || currentPath === '/en/' || currentPath === '/v6/zh-cn/' || currentPath === '/v6/en/' || currentPath === '/' || currentPath === '/v6/' || currentPath === '/zh-cn' || currentPath === '/en' || currentPath === '/v6/zh-cn' || currentPath === '/v6/en' || currentPath === '/v6'
+
+  let newPath = currentPath
+
+  if (isRoot) {
+    // Get first links from theme config
+    const firstLinks = site.value.themeConfig?.firstLinks || theme.value.firstLinks || {}
+
+    let targetLocaleKey = ''
+    if (targetVersion === '6.0') {
+      targetLocaleKey = `v6/${langKey}`
+    } else {
+      targetLocaleKey = langKey
+    }
+
+    newPath = firstLinks[targetLocaleKey] || '/'
+  } else {
+    // Keep current document path but switch version
+    if (targetVersion === '6.0') {
+      // Add /v6 prefix
+      if (!newPath.startsWith('/v6/')) {
+        newPath = '/v6' + newPath
+      }
+    } else {
+      // Remove /v6 prefix
+      newPath = newPath.replace(/^\/v6\//, '/')
+    }
+  }
 
   window.location.href = withBase(newPath)
 }

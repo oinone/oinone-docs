@@ -87,12 +87,13 @@
         </div>
       </div>
       <div class="vp-navbar-end">
-        <VPNavBarSearch />
-        
+<!--        <VPNavBarSearch />-->
+
         <!-- Mobile "More" Button -->
         <div class="mobile-more-wrap" v-if="isMobile" :class="{ open: isMoreOpen }">
           <div class="mobile-more-btn" @click.stop="isMoreOpen = !isMoreOpen">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="5" r="1"></circle>
               <circle cx="12" cy="12" r="1"></circle>
               <circle cx="12" cy="19" r="1"></circle>
@@ -100,8 +101,12 @@
           </div>
           <transition name="fade-slide">
             <div v-show="isMoreOpen" class="mobile-more-dropdown custom-dropdown">
-              <div class="mobile-dropdown-item"><VersionDropdown /></div>
-              <div class="mobile-dropdown-item"><LangDropdown /></div>
+              <div class="mobile-dropdown-item">
+                <VersionDropdown />
+              </div>
+              <div class="mobile-dropdown-item">
+                <LangDropdown />
+              </div>
               <div class="mobile-dropdown-item social-container">
                 <VPSocialLinks class="social-links" :links="theme.socialLinks" />
               </div>
@@ -126,12 +131,21 @@ import { useData } from 'vitepress';
 import VersionDropdown from './VersionDropdown.vue';
 import LangDropdown from './LangDropdown.vue';
 import { useTranslate } from '../../plugins/useTranslate';
-import VPNavBarSearch from 'vitepress-plugin-search/Search.vue';
+// import VPNavBarSearch from 'vitepress-plugin-search/Search.vue';
 import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSocialLinks.vue';
 
 defineEmits(['toggle-sidebar']);
 
-const { theme, lang } = useData();
+const { theme, lang, localeIndex } = useData();
+
+// Set localeIndex correctly based on the current URL
+if (typeof window !== 'undefined') {
+  const currentPath = window.location.pathname;
+  if (currentPath.includes('/v6/en/')) localeIndex.value = '/v6/en';
+  else if (currentPath.includes('/v6/zh-cn/')) localeIndex.value = '/v6/zh-cn';
+  else if (currentPath.includes('/en/')) localeIndex.value = '/en';
+  else if (currentPath.includes('/zh-cn/')) localeIndex.value = '/zh-cn';
+}
 
 const scrolled = ref(false);
 const isMobile = ref(false);
@@ -374,7 +388,7 @@ onUnmounted(() => {
     display: none
   }
   .vp-navbar-end {
-      margin-left: auto;
+    margin-left: auto;
   }
 }
 
@@ -449,7 +463,7 @@ onUnmounted(() => {
     align-items: center;
     justify-content: center;
   }
-  
+
   .nav-inner {
     justify-content: space-between;
     position: relative;

@@ -19,6 +19,8 @@ const enSidebar = getSidebar('en', '/en/');
 const v6ZhSidebar = getSidebar('v6/zh-cn', '/v6/zh-cn/');
 const v6EnSidebar = getSidebar('v6/en', '/v6/en/');
 
+console.log(zhSidebar, v6ZhSidebar);
+
 export default defineConfig({
   ignoreDeadLinks: true,
   title: 'Oinone Docs',
@@ -31,8 +33,7 @@ export default defineConfig({
         tokenize: 'forward',
         previewLength: 62,
         buttonLabel: 'Search / 搜索',
-        placeholder: 'Search docs / 搜索文档',
-        ignore: ['v6']
+        placeholder: 'Search docs / 搜索文档'
       })
     ],
     build: {
@@ -47,9 +48,9 @@ export default defineConfig({
         }
       }
     },
-    // ssr: {
-    //   noExternal: ['mark.js', 'vitepress-plugin-search']
-    // }
+    ssr: {
+      noExternal: ['mark.js', 'vitepress-plugin-search']
+    }
   },
   markdown: {
     lineNumbers: true
@@ -86,7 +87,7 @@ export default defineConfig({
         outlineTitle: 'On this page'
       }
     },
-    v6_zh: {
+    'v6/zh-cn': {
       label: 'v6-中文',
       lang: 'zh-CN',
       link: getFirstLink(v6ZhSidebar) || '/v6/zh-cn/',
@@ -95,7 +96,7 @@ export default defineConfig({
         outlineTitle: '本页目录'
       }
     },
-    v6_en: {
+    'v6/en': {
       label: 'v6-English',
       lang: 'en-US',
       link: getFirstLink(v6EnSidebar) || '/v6/en/',
