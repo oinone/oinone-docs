@@ -27,6 +27,10 @@ body {
   padding-top: 0 !important;
 }
 
+.VPDoc.has-aside .content-container {
+  max-width: 800px !important;
+}
+
 /* ------------------------------------
  * Custom Sidebar Styling 
  * Note: We're using our own CustomSidebar component now, 
