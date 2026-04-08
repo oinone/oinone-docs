@@ -1,9 +1,16 @@
 
 <script setup>
 import { useData, withBase } from 'vitepress'
-import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
+import { useVersion } from '../composables/useVersion'
 
 const { page, site, theme } = useData()
+const { currentVersion: globalCurrentVersion, setVersion } = useVersion()
+
+// 同步初始状态
+watch(globalCurrentVersion, (newVal) => {
+  setVersion(newVal)
+}, { immediate: true })
 
 // State for dropdown
 const isOpen = ref(false)
@@ -33,12 +40,8 @@ const onMouseLeave = () => {
   if (!isTouch) isOpen.value = false
 }
 
-// Compute the current version string from filePath
 const currentVersion = computed(() => {
-  if (page.value.filePath.startsWith('v6/')) {
-    return '6.0'
-  }
-  return '7.0'
+  return globalCurrentVersion.value === 'v6' ? '6.0' : '7.0'
 })
 
 const versions = [
@@ -76,19 +79,23 @@ function onVersionChange(targetVersion) {
     let targetLocaleKey = ''
     if (targetVersion === '6.0') {
       targetLocaleKey = `v6/${langKey}`
+      setVersion('v6')
     } else {
       targetLocaleKey = langKey
+      setVersion('v7')
     }
 
     newPath = firstLinks[targetLocaleKey] || '/'
   } else {
     // Keep current document path but switch version
     if (targetVersion === '6.0') {
+      setVersion('v6')
       // Add /v6 prefix
       if (!newPath.startsWith('/v6/')) {
         newPath = '/v6' + newPath
       }
     } else {
+      setVersion('v7')
       // Remove /v6 prefix
       newPath = newPath.replace(/^\/v6\//, '/')
     }

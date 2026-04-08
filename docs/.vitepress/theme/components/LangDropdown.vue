@@ -1,8 +1,10 @@
 <script setup>
 import { useData, withBase } from 'vitepress'
 import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { useVersion } from '../composables/useVersion'
 
 const { page } = useData()
+const { currentVersion } = useVersion()
 
 // State for dropdown
 const isOpen = ref(false)
@@ -34,8 +36,8 @@ const onMouseLeave = () => {
 
 // Detect current language from filePath
 const currentLang = computed(() => {
-  const fp = page.value.filePath
-  if (fp.startsWith('en/') || fp.startsWith('v6/en/')) {
+  const fp = page.value.filePath || window.location.pathname
+  if (fp.includes('/en/')) {
     return 'en'
   }
   return 'zh-cn'
@@ -50,23 +52,28 @@ const langs = [
 const getLangPath = (targetLang) => {
   if (currentLang.value === targetLang) return '#'
 
-  const fp = page.value.filePath // e.g. "zh-cn/DevManual/index.md" or "v6/en/index.md"
-  
-  // Replace language segment in path
-  let newPath = '/' + fp.replace(/\.md$/, '')
-  if (newPath.endsWith('/index')) {
-    newPath = newPath.replace(/\/index$/, '/')
-  }
-  
+  // 始终从当前的完整 URL 中进行替换，保证带有 hash 时也能处理，并确保只改变语言，不改变版本
+  let newPath = window.location.pathname
+
   if (targetLang === 'en') {
-    // Change zh-cn -> en
-    newPath = newPath.replace(/^\/zh-cn\//, '/en/').replace(/^\/v6\/zh-cn\//, '/v6/en/')
+    // 切换为英文
+    // 当前为中文
+    if (currentVersion.value === 'v6') {
+      newPath = newPath.replace(/^\/v6\/zh-cn\//, '/v6/en/')
+    } else {
+      newPath = newPath.replace(/^\/zh-cn\//, '/en/')
+    }
   } else {
-    // Change en -> zh-cn
-    newPath = newPath.replace(/^\/en\//, '/zh-cn/').replace(/^\/v6\/en\//, '/v6/zh-cn/')
+    // 切换为中文
+    // 当前为英文
+    if (currentVersion.value === 'v6') {
+      newPath = newPath.replace(/^\/v6\/en\//, '/v6/zh-cn/')
+    } else {
+      newPath = newPath.replace(/^\/en\//, '/zh-cn/')
+    }
   }
   
-  return newPath
+  return newPath + window.location.hash
 }
 
 function changeLang(targetLang) {

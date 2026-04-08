@@ -1,6 +1,6 @@
 ---
 title: 产品特性说明
-index: false
+index: true
 category:
   - 产品特性说明
 order: 1

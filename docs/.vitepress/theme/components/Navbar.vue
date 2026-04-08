@@ -138,14 +138,7 @@ defineEmits(['toggle-sidebar']);
 
 const { theme, lang, localeIndex } = useData();
 
-// Set localeIndex correctly based on the current URL
-if (typeof window !== 'undefined') {
-  const currentPath = window.location.pathname;
-  if (currentPath.includes('/v6/en/')) localeIndex.value = '/v6/en';
-  else if (currentPath.includes('/v6/zh-cn/')) localeIndex.value = '/v6/zh-cn';
-  else if (currentPath.includes('/en/')) localeIndex.value = '/en';
-  else if (currentPath.includes('/zh-cn/')) localeIndex.value = '/zh-cn';
-}
+console.log(localeIndex.value);
 
 const scrolled = ref(false);
 const isMobile = ref(false);

@@ -1,6 +1,6 @@
 ---
 title: Description Of Product Characteristics
-index: false
+index: true
 category:
   - Description Of Product Characteristics
 order: 1

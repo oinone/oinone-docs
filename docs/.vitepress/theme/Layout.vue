@@ -6,6 +6,7 @@ import VPDocAside from 'vitepress/dist/client/theme-default/components/VPDocAsid
 import Navbar from './components/Navbar.vue';
 import Sidebar from './components/Sidebar.vue';
 import Breadcrumb from './components/Breadcrumb.vue';
+import NotFound from './NotFound.vue';
 
 const { page, frontmatter } = useData();
 
@@ -19,7 +20,8 @@ const toggleSidebar = () => {
 <template>
   <div class="Layout">
     <Navbar @toggle-sidebar="toggleSidebar" />
-    <div class="docs-page">
+    <NotFound v-if="page.isNotFound" />
+    <div class="docs-page" v-else>
       <div class="docs-main-container">
         <!-- Left Sidebar -->
         <div class="docs-nav docs-section-nav" :class="{ 'is-open': isSidebarOpen }">

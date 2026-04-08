@@ -61,7 +61,7 @@ function parseFrontmatter(content: string) {
   return { title, order, index, dirLink, hasIndex, hasDirLink };
 }
 
-export function getSidebar(relativePath: string, linkPrefix: string): SidebarItem[] {
+export function getSidebar(relativePath: string, linkPrefix: string, depth: number = 1): SidebarItem[] {
   const dirPath = path.resolve(__dirname, '../', relativePath);
   if (!fs.existsSync(dirPath)) return [];
 
@@ -92,7 +92,7 @@ export function getSidebar(relativePath: string, linkPrefix: string): SidebarIte
         dirLink = fm.dirLink;
       }
 
-      const children = getSidebar(path.join(relativePath, file), `${linkPrefix}${file}/`);
+      const children = getSidebar(path.join(relativePath, file), `${linkPrefix}${file}/`, depth + 1);
       
       if (!index && !dirLink && children.length === 0) {
         continue;
@@ -101,7 +101,7 @@ export function getSidebar(relativePath: string, linkPrefix: string): SidebarIte
       if (children.length > 0 || dirLink || index) {
         const item: SidebarItem = {
           text: title,
-          collapsed: false,
+          collapsed: depth > 1,
           order
         };
         

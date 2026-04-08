@@ -19,8 +19,6 @@ const enSidebar = getSidebar('en', '/en/');
 const v6ZhSidebar = getSidebar('v6/zh-cn', '/v6/zh-cn/');
 const v6EnSidebar = getSidebar('v6/en', '/v6/en/');
 
-console.log(zhSidebar, v6ZhSidebar);
-
 export default defineConfig({
   ignoreDeadLinks: true,
   title: 'Oinone Docs',
@@ -69,6 +67,7 @@ export default defineConfig({
     }
   },
   locales: {
+    // 顺序决定了解析顺序，因此，具备包含关系的 key 必须放在最下面进行定义
     root: {
       label: '中文',
       lang: 'zh-CN',
@@ -76,15 +75,6 @@ export default defineConfig({
       themeConfig: {
         sidebar: zhSidebar,
         outlineTitle: '本页目录'
-      }
-    },
-    en: {
-      label: 'English',
-      lang: 'en-US',
-      link: getFirstLink(enSidebar) || '/en/',
-      themeConfig: {
-        sidebar: enSidebar,
-        outlineTitle: 'On this page'
       }
     },
     'v6/zh-cn': {
@@ -102,6 +92,24 @@ export default defineConfig({
       link: getFirstLink(v6EnSidebar) || '/v6/en/',
       themeConfig: {
         sidebar: v6EnSidebar,
+        outlineTitle: 'On this page'
+      }
+    },
+    'zh-cn': {
+      label: '中文',
+      lang: 'zh-CN',
+      link: getFirstLink(zhSidebar) || '/zh-cn/',
+      themeConfig: {
+        sidebar: zhSidebar,
+        outlineTitle: '本页目录'
+      }
+    },
+    en: {
+      label: 'English',
+      lang: 'en-US',
+      link: getFirstLink(enSidebar) || '/en/',
+      themeConfig: {
+        sidebar: enSidebar,
         outlineTitle: 'On this page'
       }
     }
