@@ -4,14 +4,6 @@ package-lock.json
 .vuepress/.temp/
 .vuepress/.cache/
 node_modules/
-.theme/.vuepress/.cache/
-.theme/.vuepress/.temp/
-.theme/.vuepress/dist/
-
-node_modules/
-.theme2/.vuepress/.cache/
-.theme2/.vuepress/.temp/
-.theme2/.vuepress/dist/
 .DS_Store
 
 docs/.vitepress/cache/
