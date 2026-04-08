@@ -2,12 +2,12 @@
 title: Workflow Management
 index: true
 category:
-- User manual
-- Workflow
+  - User manual
+  - Workflow
 order: 2
 prev:
-text: roles and permissions
-link: /en/UserManual/StandardModules/AdministrationCenter/role-and-permission.md
+  text: roles and permissions
+  link: /en/UserManual/StandardModules/AdministrationCenter/role-and-permission.md
 ---
 ## I. Module Overview
 

@@ -32,7 +32,10 @@ export default defineConfig({
       //   buttonLabel: 'Search / 搜索',
       //   placeholder: 'Search docs / 搜索文档'
       // })
-    ]
+    ],
+    ssr: {
+      noExternal: ['mark.js']
+    }
   },
   themeConfig: {
     outline: [1, 6],
