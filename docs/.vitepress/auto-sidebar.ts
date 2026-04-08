@@ -20,15 +20,15 @@ function parseFrontmatter(content: string) {
   let dirLink = false;
   let hasIndex = false;
   let hasDirLink = false;
-  
+
   // Extract only the frontmatter section enclosed by ---
   const fmMatch = content.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---/);
   if (!fmMatch) {
     return { title, order, index, dirLink, hasIndex, hasDirLink };
   }
-  
+
   const fmContent = fmMatch[1];
-  
+
   const titleMatch = fmContent.match(/^title:\s*(.+)$/m);
   if (titleMatch) {
     title = titleMatch[1].trim().replace(/^['"]|['"]$/g, '');
@@ -82,7 +82,7 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
       let order = 9999;
       let index = true;
       let dirLink = false;
-      
+
       if (fs.existsSync(readmePath)) {
         const content = fs.readFileSync(readmePath, 'utf-8');
         const fm = parseFrontmatter(content);
@@ -93,7 +93,7 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
       }
 
       const children = getSidebar(path.join(relativePath, file), `${linkPrefix}${file}/`, depth + 1);
-      
+
       if (!index && !dirLink && children.length === 0) {
         continue;
       }
@@ -104,27 +104,27 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
           collapsed: depth > 1,
           order
         };
-        
+
         if (fs.existsSync(readmePath)) {
           const readmeContent = fs.readFileSync(readmePath, 'utf-8');
           const readmeFm = parseFrontmatter(readmeContent);
-          
+
           const isIndexAllowed = readmeFm.hasIndex ? readmeFm.index : true;
           const isDirLinkExplicit = readmeFm.hasDirLink ? readmeFm.dirLink : null;
-          
+
           let shouldLink = false;
           if (isDirLinkExplicit !== null) {
             shouldLink = isDirLinkExplicit; // dir.link overrides everything
           } else {
             // fallback to index logic
             if (readmeFm.hasIndex) {
-              shouldLink = isIndexAllowed; 
+              shouldLink = isIndexAllowed;
             } else {
               // If neither dir.link nor index is explicitly set, fallback to whether the parent parsed it
               shouldLink = index; // Fallback to the current directory's index value, NOT just true
             }
           }
-          
+
           if (shouldLink) {
             // For directories with README.md, the path in VitePress is to the README
             item.link = `${linkPrefix}${file}/README`;
@@ -133,21 +133,21 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
           // If there is no README but dirLink or index is true, allow linking
           item.link = `${linkPrefix}${file}/README`;
         }
-        
+
         if (children.length > 0) {
           item.items = children;
         }
-        
+
         items.push(item);
       }
     } else if (file.endsWith('.md')) {
       const content = fs.readFileSync(fullPath, 'utf-8');
       const fm = parseFrontmatter(content);
-      
+
       if (!fm.index) {
         continue;
       }
-      
+
       const title = fm.title || file.replace(/\.md$/, '');
       const order = fm.order;
 

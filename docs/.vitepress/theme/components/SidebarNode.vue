@@ -13,14 +13,14 @@ const props = defineProps<{
 
 const onClick = (item: any, e: MouseEvent) => {
   props.toggleCollapse(item, e);
-  
+
   const target = e.currentTarget as HTMLElement;
   const sidebar = target.closest('.sidebar');
   if (sidebar) {
     const paddingLeft = 12 + props.level * 19;
     const scrollRightAlign = target.scrollWidth - sidebar.clientWidth;
     const targetScrollLeft = Math.max(0, Math.min(scrollRightAlign, paddingLeft));
-    
+
     sidebar.scrollTo({
       left: targetScrollLeft,
       behavior: 'smooth'
@@ -30,15 +30,19 @@ const onClick = (item: any, e: MouseEvent) => {
 </script>
 
 <template>
-  <div class="sidebar-item" :class="[`level-${level}`, { 'is-active': isActive(item), 'has-children': item.items?.length }]">
-    <div class="item-content" :style="{ paddingLeft: 12 + level * 19 + 'px', width: 'max-content', minWidth: '100%' }" @click="onClick(item, $event)">
+  <div class="sidebar-item"
+       :class="[`level-${level}`, { 'is-active': isActive(item), 'has-children': item.items?.length }]">
+    <div class="item-content" :style="{ paddingLeft: 12 + level * 19 + 'px', width: 'max-content', minWidth: '100%' }"
+         @click="onClick(item, $event)">
       <a v-if="item.link" :href="item.link" class="text-link" :class="{ 'active-link': isActive(item) }">
         {{ item.text }}
       </a>
       <span v-else class="text-label">{{ item.text }}</span>
 
       <span v-if="item.items?.length" class="caret" :class="{ collapsed: isCollapsed(item) }">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline
+          points="6 9 12 15 18 9"></polyline></svg>
       </span>
     </div>
   </div>
@@ -50,7 +54,8 @@ const onClick = (item: any, e: MouseEvent) => {
     @leave="onLeave"
     @after-leave="onAfterLeave"
   >
-    <div v-if="item.items?.length" v-show="!isCollapsed(item)" class="nested-group" :class="[`level-${level + 1}-group`]">
+    <div v-if="item.items?.length" v-show="!isCollapsed(item)" class="nested-group"
+         :class="[`level-${level + 1}-group`]">
       <SidebarNode
         v-for="child in item.items"
         :key="child.text"

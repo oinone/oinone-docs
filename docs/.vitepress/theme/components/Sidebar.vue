@@ -104,7 +104,7 @@ const toggleCollapse = (item: any, e?: Event) => {
 
   const key = item.text + (item.link || '');
   collapsedMap.value[key] = !collapsedMap.value[key];
-  
+
   // If the user clicked the arrow/caret specifically, we prevent default so it doesn't trigger navigation
   if (e) {
     const target = e.target as HTMLElement;
@@ -131,10 +131,10 @@ const onEnter = (el: Element) => {
   element.style.height = '0';
   element.style.overflow = 'hidden';
   element.style.willChange = 'height';
-  
+
   // Force a reflow so the starting height is calculated
   void element.offsetHeight;
-  
+
   requestAnimationFrame(() => {
     element.style.height = `${element.scrollHeight}px`;
   });
@@ -152,10 +152,10 @@ const onLeave = (el: Element) => {
   element.style.height = `${element.scrollHeight}px`;
   element.style.overflow = 'hidden';
   element.style.willChange = 'height';
-  
+
   // Force a reflow so the starting height is calculated
   void element.offsetHeight;
-  
+
   requestAnimationFrame(() => {
     element.style.height = '0';
   });

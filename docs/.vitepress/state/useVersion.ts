@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useData } from 'vitepress';
 
 // 全局状态，支持持久化或跨组件共享
@@ -18,7 +18,7 @@ export const useVersion = () => {
   const setVersion = (newVersion: string) => {
     globalVersion.value = newVersion;
   };
-  
+
   return {
     globalVersion,
     currentVersion,

@@ -32,7 +32,7 @@ const normalizePath = (p: string) => {
 const breadcrumbs = computed(() => {
   const targetPath = normalizePath(route.path);
   const path: { text: string; link?: string }[] = [];
-  
+
   const homeLink = (() => {
     if (route.path.startsWith('/v6/zh-cn/')) return '/v6/zh-cn/';
     if (route.path.startsWith('/v6/en/')) return '/v6/en/';
@@ -40,18 +40,18 @@ const breadcrumbs = computed(() => {
     if (route.path.startsWith('/en/')) return '/en/';
     return '/';
   })();
-  
+
   const homeText = route.path.includes('/en/') ? 'Home' : '首页';
-  
+
   const findPath = (items: any[], currentPath: { text: string; link?: string }[]): boolean => {
     for (const item of items) {
       const newPath = [...currentPath, { text: item.text, link: item.link }];
-      
+
       if (item.link && normalizePath(item.link) === targetPath) {
         path.push({ text: homeText, link: homeLink }, ...newPath);
         return true;
       }
-      
+
       if (item.items && item.items.length > 0) {
         if (findPath(item.items, newPath)) {
           return true;
@@ -60,9 +60,9 @@ const breadcrumbs = computed(() => {
     }
     return false;
   };
-  
+
   findPath(currentSidebar.value, []);
-  
+
   return path;
 });
 </script>

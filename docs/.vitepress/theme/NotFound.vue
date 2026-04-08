@@ -63,8 +63,14 @@ const homeLink = computed(() => {
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .image-wrapper {
@@ -109,13 +115,18 @@ const homeLink = computed(() => {
 :deep(.dark) .svg-smile {
   stroke: var(--vp-c-text-1, #fff);
 }
+
 :deep(.dark) .svg-eye {
   fill: var(--vp-c-text-1, #fff);
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .title {
