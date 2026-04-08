@@ -159,9 +159,9 @@ const localePath = (uri: string) => {
 };
 
 const docUrl = computed(() =>
-  lang.value === 'en-US' || lang.value === 'en'
-    ? 'https://guide.oinone.top/en/DevManual/Tutorials/'
-    : 'https://guide.oinone.top/zh/DevManual/Tutorials/'
+  lang.value === 'zh' || lang.value === 'zh-cn'
+    ? 'https://guide.oinone.top/zh/DevManual/README.html'
+    : 'https://guide.oinone.top/en/DevManual/README.html'
 );
 
 const { t: $t } = useTranslate();
