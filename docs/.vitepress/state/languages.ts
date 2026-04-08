@@ -30,42 +30,42 @@ export const supportedLanguages: SupportedLanguage[] = [
     path: '/en/',
     version: Version.latest,
     outlineTitle: 'On this page'
-  },
-  {
-    label: 'Español',
-    lang: 'es',
-    path: '/es/',
-    version: Version.latest,
-    outlineTitle: 'En esta página'
-  },
-  {
-    label: 'Français',
-    lang: 'fr',
-    path: '/fr/',
-    version: Version.latest,
-    outlineTitle: 'Sur cette page'
-  },
-  {
-    label: 'Deutsch',
-    lang: 'de',
-    path: '/de/',
-    version: Version.latest,
-    outlineTitle: 'Auf dieser Seite'
-  },
-  {
-    label: '한국어',
-    lang: 'ko',
-    path: '/ko/',
-    version: Version.latest,
-    outlineTitle: '이 페이지의 내용'
-  },
-  {
-    label: '日本語',
-    lang: 'ja',
-    path: '/ja/',
-    version: Version.latest,
-    outlineTitle: 'このページの内容'
   }
+  // {
+  //   label: 'Español',
+  //   lang: 'es',
+  //   path: '/es/',
+  //   version: Version.latest,
+  //   outlineTitle: 'En esta página'
+  // },
+  // {
+  //   label: 'Français',
+  //   lang: 'fr',
+  //   path: '/fr/',
+  //   version: Version.latest,
+  //   outlineTitle: 'Sur cette page'
+  // },
+  // {
+  //   label: 'Deutsch',
+  //   lang: 'de',
+  //   path: '/de/',
+  //   version: Version.latest,
+  //   outlineTitle: 'Auf dieser Seite'
+  // },
+  // {
+  //   label: '한국어',
+  //   lang: 'ko',
+  //   path: '/ko/',
+  //   version: Version.latest,
+  //   outlineTitle: '이 페이지의 내용'
+  // },
+  // {
+  //   label: '日本語',
+  //   lang: 'ja',
+  //   path: '/ja/',
+  //   version: Version.latest,
+  //   outlineTitle: 'このページの内容'
+  // }
   // {
   //   label: 'ภาษาไทย',
   //   lang: 'th',
