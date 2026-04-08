@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "product": "Produits",
+    "oinoneFramework": "Framework Oinone",
+    "oinoneFrameworkDesc": "Framework Low-code d'Entreprise",
+    "aino": "Aino",
+    "ainoDesc": "Plateforme d'IA Intelligente",
+    "useCases": "Cas d'utilisation",
+    "pricing": "Tarifs",
+    "blog": "Blog",
+    "community": "Communauté",
+    "resources": "Ressources",
+    "documentation": "Documentation",
+    "documentationDesc": "Guides et Références API",
+    "support": "Support",
+    "supportDesc": "Obtenir un Support Technique",
+    "changelog": "Journal des Modifications",
+    "changelogDesc": "Dernières Notes de Mise à Jour",
+    "about": "À propos",
+    "aboutDesc": "Notre Équipe et Notre Vision"
+  },
+  "notFound": {
+    "title": "Page Introuvable",
+    "desc": "Désolé, la page que vous avez visitée n'existe pas ou a été déplacée",
+    "button": "Retour à l'accueil"
+  }
+}

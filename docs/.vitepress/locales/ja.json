@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "product": "製品",
+    "oinoneFramework": "Oinone フレームワーク",
+    "oinoneFrameworkDesc": "エンタープライズ ローコードフレームワーク",
+    "aino": "Aino",
+    "ainoDesc": "インテリジェントAIプラットフォーム",
+    "useCases": "導入事例",
+    "pricing": "料金",
+    "blog": "ブログ",
+    "community": "コミュニティ",
+    "resources": "リソース",
+    "documentation": "ドキュメント",
+    "documentationDesc": "ガイドとAPIリファレンス",
+    "support": "サポート",
+    "supportDesc": "テクニカルサポートを利用する",
+    "changelog": "変更履歴",
+    "changelogDesc": "最新のリリースノート",
+    "about": "私たちについて",
+    "aboutDesc": "チームとビジョン"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "desc": "申し訳ありませんが、お探しのページは存在しないか、移動した可能性があります",
+    "button": "ホームに戻る"
+  }
+}

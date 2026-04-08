@@ -91,7 +91,7 @@
       </div>
       <div class="vp-navbar-end">
         <Search />
-        
+
         <!-- Mobile "More" Button -->
         <div class="mobile-more-wrap" v-if="isMobile" :class="{ open: isMoreOpen }">
           <div class="mobile-more-btn" @click.stop="isMoreOpen = !isMoreOpen">
@@ -108,7 +108,7 @@
                 <VersionDropdown />
               </div>
               <div class="mobile-dropdown-item">
-                <LangDropdown />
+                <LanguageDropdown />
               </div>
               <div class="mobile-dropdown-item social-container">
                 <VPSocialLinks class="social-links" :links="theme.socialLinks" />
@@ -123,7 +123,7 @@
         <!-- Desktop Action Area -->
         <div class="desktop-navbar-end" v-else>
           <VersionDropdown />
-          <LangDropdown />
+          <LanguageDropdown />
           <VPSocialLinks class="social-links" :links="theme.socialLinks" />
           <div class="nav-appearance-wrap">
             <VPSwitchAppearance />
@@ -138,7 +138,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useData } from 'vitepress';
 import VersionDropdown from './VersionDropdown.vue';
-import LangDropdown from './LangDropdown.vue';
+import LanguageDropdown from './LanguageDropdown.vue';
 import Search from './Search.vue';
 import { useTranslate } from '../../plugins/useTranslate';
 import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSocialLinks.vue';
@@ -161,7 +161,7 @@ const localePath = (uri: string) => {
 const docUrl = computed(() =>
   lang.value === 'en-US' || lang.value === 'en'
     ? 'https://guide.oinone.top/en/DevManual/Tutorials/'
-    : 'https://guide.oinone.top/zh-cn/DevManual/Tutorials/'
+    : 'https://guide.oinone.top/zh/DevManual/Tutorials/'
 );
 
 const { t: $t } = useTranslate();
@@ -217,20 +217,37 @@ onUnmounted(() => {
 }
 
 .nav.scrolled {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(240, 248, 255, 0.5) 100%);
-  backdrop-filter: blur(40px) saturate(2) brightness(1.05);
-  -webkit-backdrop-filter: blur(40px) saturate(2) brightness(1.05);
+  background: transparent;
   border-bottom-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 4px 24px rgba(0, 0, 0, 0.04);
 }
 
+.nav.scrolled::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(240, 248, 255, 0.5) 100%);
+  backdrop-filter: blur(40px) saturate(2) brightness(1.05);
+  -webkit-backdrop-filter: blur(40px) saturate(2) brightness(1.05);
+  pointer-events: none;
+}
+
+:deep(html.dark) .nav.scrolled::before,
+:global(html.dark) .nav.scrolled::before {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(40px) saturate(1.5);
+  -webkit-backdrop-filter: blur(40px) saturate(1.5);
+}
+
 :deep(html.dark) .nav.scrolled,
 :global(html.dark) .nav.scrolled {
-  background: rgba(24, 24, 27, 0.7);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  border-bottom-color: rgba(84, 84, 84, 0.3);
-  box-shadow: 0 1px 0 0 rgba(84, 84, 84, 0.2) inset, 0 4px 24px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 @media (min-width: 960px) {
@@ -490,20 +507,29 @@ onUnmounted(() => {
   }
 
   .nav.scrolled {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(240, 248, 255, 0.7) 100%) !important;
-    backdrop-filter: blur(40px) saturate(2) brightness(1.05) !important;
-    -webkit-backdrop-filter: blur(40px) saturate(2) brightness(1.05) !important;
+    background: transparent !important;
     border-bottom-color: rgba(255, 255, 255, 0.5) !important;
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset, 0 4px 24px rgba(0, 0, 0, 0.04) !important;
   }
 
+  .nav.scrolled::before {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(240, 248, 255, 0.7) 100%) !important;
+    backdrop-filter: blur(40px) saturate(2) brightness(1.05) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(2) brightness(1.05) !important;
+  }
+
+  :deep(html.dark) .nav.scrolled::before,
+  :global(html.dark) .nav.scrolled::before {
+    background: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(40px) saturate(1.5) !important;
+    -webkit-backdrop-filter: blur(40px) saturate(1.5) !important;
+  }
+
   :deep(html.dark) .nav.scrolled,
   :global(html.dark) .nav.scrolled {
-    background: rgba(24, 24, 27, 0.7) !important;
-    backdrop-filter: blur(20px) saturate(1.5) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(1.5) !important;
-    border-bottom-color: rgba(84, 84, 84, 0.3) !important;
-    box-shadow: 0 1px 0 0 rgba(84, 84, 84, 0.2) inset, 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+    background: transparent !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 4px 24px rgba(0, 0, 0, 0.4) !important;
   }
 
   .VPNavBarHamburger {

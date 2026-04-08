@@ -7,7 +7,7 @@ category:
 order: 2
 next:
   text: Tutorial
-  link: /zh-cn/DevManual/Tutorials/README.md
+  link: /zh/DevManual/Tutorials/README.md
 ---
 # I. Mindset
 

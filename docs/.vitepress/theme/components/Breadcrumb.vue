@@ -34,9 +34,9 @@ const breadcrumbs = computed(() => {
   const path: { text: string; link?: string }[] = [];
 
   const homeLink = (() => {
-    if (route.path.startsWith('/v6/zh-cn/')) return '/v6/zh-cn/';
+    if (route.path.startsWith('/v6/zh/')) return '/v6/zh/';
     if (route.path.startsWith('/v6/en/')) return '/v6/en/';
-    if (route.path.startsWith('/zh-cn/')) return '/zh-cn/';
+    if (route.path.startsWith('/zh/')) return '/zh/';
     if (route.path.startsWith('/en/')) return '/en/';
     return '/';
   })();

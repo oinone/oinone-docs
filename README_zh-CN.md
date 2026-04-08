@@ -39,20 +39,20 @@ Oinone 是一个企业级产品化引擎，专注于业务软件产品构建及�
 - 【[⚡ 后端框架-中文](https://gitee.com/oinone/oinone-pamirs) | [⚡ 前端框架-中文](https://gitee.com/oinone/oinone-kunlun) | [⚡ Back-end Framework](https://github.com/oinone/oinone-pamirs) | [⚡ Front-end Framework](https://github.com/oinone/oinone-kunlun)】
 
 ### 6、目录结构
-- [安装与升级](https://guide.oinone.top/zh-cn/InstallOrUpgrade)
-- [用户手册](https://guide.oinone.top/zh-cn/UserHandbook)
-- [研发手册](https://guide.oinone.top/zh-cn/Development)
+- [安装与升级](https://guide.oinone.top/zh/InstallOrUpgrade)
+- [用户手册](https://guide.oinone.top/zh/UserHandbook)
+- [研发手册](https://guide.oinone.top/zh/Development)
 - [产品白皮书](https://www.oinone.top/whitePaper)
-- [最佳范式](https://guide.oinone.top/zh-cn/DevManual/R_DParadigm)
-- [常见解决方案](https://guide.oinone.top/zh-cn/DevManual/CommonSolutions)
-- [常见问题](https://guide.oinone.top/zh-cn/DevManual/FAQ)
+- [最佳范式](https://guide.oinone.top/zh/DevManual/R_DParadigm)
+- [常见解决方案](https://guide.oinone.top/zh/DevManual/CommonSolutions)
+- [常见问题](https://guide.oinone.top/zh/DevManual/FAQ)
 
 ### 7、许可协议
 - Oinone 遵循 AGPL-3.0 协议，详情请参考各代码仓 License 声明。
 
 ### 8、如何参与
 - 参与社区：您可以前往[[Oinone 社区](https://doc.oinone.top/)]与大家互动哦❤️
-- [参与贡献](https://guide.oinone.top/zh-cn/Contribute)
+- [参与贡献](https://guide.oinone.top/zh/Contribute)
 
 ### 9、联系我们
 - 官网：https://www.oinone.top

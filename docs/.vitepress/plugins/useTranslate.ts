@@ -1,13 +1,31 @@
-import { useData } from 'vitepress';
+import { useLanguage } from '../state';
 import zh from '../locales/zh.json';
 import en from '../locales/en.json';
+import es from '../locales/es.json';
+import fr from '../locales/fr.json';
+import de from '../locales/de.json';
+import ko from '../locales/ko.json';
+import ja from '../locales/ja.json';
+import th from '../locales/th.json';
+
+const locales: Record<string, any> = {
+  zh,
+  en,
+  es,
+  fr,
+  de,
+  ko,
+  ja,
+  th
+};
 
 export function useTranslate() {
-  const { lang } = useData();
+  const { currentLanguage } = useLanguage();
 
   const t = (key: string) => {
     const keys = key.split('.');
-    const locale = lang.value === 'en-US' || lang.value === 'en' ? en : zh;
+    const baseLang = currentLanguage.value.lang.replace('v6/', '');
+    const locale = locales[baseLang] || en;
     let val: any = locale;
     for (const k of keys) {
       if (val && typeof val === 'object') {

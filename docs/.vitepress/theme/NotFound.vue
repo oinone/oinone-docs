@@ -1,22 +1,22 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from 'vue';
 import { useData } from 'vitepress';
-import { useTranslate } from '../plugins/useTranslate';
+import { useTranslate } from '../plugins';
+import { defaultLanguage, useLanguage, useVersion, Version } from '../state';
 
-const { localeIndex } = useData();
+const { lang, page } = useData();
 const { t: $t } = useTranslate();
+const { currentVersion } = useVersion();
+const { currentLanguage } = useLanguage();
 
-// 自动根据当前 localeIndex 决定跳转首页的链接
+// 自动根据当前路径决定跳转首页的链接
 const homeLink = computed(() => {
-  const currentLocale = localeIndex.value;
-  if (currentLocale === 'v6/en') {
-    return '/v6/en/';
-  } else if (currentLocale === 'v6/zh-cn') {
-    return '/v6/zh-cn/';
-  } else if (currentLocale === 'en') {
-    return '/en/';
+  if (typeof window === 'undefined') return `/${defaultLanguage.baseLang || defaultLanguage.lang}`;
+  let path = `${currentLanguage.value.baseLang || currentLanguage.value.lang}`;
+  if (currentVersion.value !== Version.latest) {
+    path = `${currentVersion.value}/${path}`;
   }
-  return '/zh-cn/';
+  return `/${path}`;
 });
 </script>
 

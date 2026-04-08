@@ -7,7 +7,7 @@ category:
 order: 1
 prev:
   text: R&D Manual
-  link: /zh-cn/DevManual/README.md
+  link: /zh/DevManual/README.md
 ---
 # I. Mindset
 

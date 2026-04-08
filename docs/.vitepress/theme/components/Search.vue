@@ -22,8 +22,8 @@ import SearchBox from 'vitepress-plugin-pagefind/Search.vue';
 }
 
 /* 移动端图标按钮显示调整 */
-@media (max-width: 960px) {
-  :deep(.DocSearch-Button) {
+@media (max-width: 759px) {
+  :deep(.nav-search-btn-wait) {
     width: auto !important;
     height: auto !important;
     padding: 8px !important;
@@ -32,23 +32,28 @@ import SearchBox from 'vitepress-plugin-pagefind/Search.vue';
     border-radius: 4px;
     color: var(--vp-c-text-1) !important;
     transition: color 0.2s ease !important;
+    border: none !important;
   }
-  
-  :deep(.DocSearch-Button:hover),
-  :deep(.DocSearch-Button:active) {
+
+  :deep(.nav-search-btn-wait:hover),
+  :deep(.nav-search-btn-wait:active) {
     color: var(--vp-c-brand) !important;
   }
-  
-  :deep(.DocSearch-Search-Icon) {
+
+  :deep(.nav-search-btn-wait svg) {
     width: 22px !important;
     height: 22px !important;
     color: currentColor !important;
     margin: 0 !important;
   }
 
-  :deep(.DocSearch-Button-Placeholder),
-  :deep(.DocSearch-Button-Keys) {
+  :deep(.search-tip),
+  :deep(.metaKey) {
     display: none !important;
+  }
+
+  :deep(.blog-search) {
+    padding-left: 0;
   }
 }
 </style>

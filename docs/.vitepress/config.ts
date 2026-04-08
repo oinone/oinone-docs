@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 import { getSidebar } from './auto-sidebar';
 import { pagefindPlugin } from 'vitepress-plugin-pagefind';
+import { defaultLanguage, supportedLanguages } from './state/languages';
 
 function getFirstLink(sidebar: any[]): string {
   if (!sidebar || !Array.isArray(sidebar)) return '';
@@ -14,16 +15,104 @@ function getFirstLink(sidebar: any[]): string {
   return '';
 }
 
-const zhSidebar = getSidebar('zh-cn', '/zh-cn/');
-const enSidebar = getSidebar('en', '/en/');
-const v6ZhSidebar = getSidebar('v6/zh-cn', '/v6/zh-cn/');
-const v6EnSidebar = getSidebar('v6/en', '/v6/en/');
+const firstLinks: Record<string, string> = {};
+const localesConfig: Record<string, any> = {};
+const searchLocales: Record<string, any> = {
+  root: {
+    btnPlaceholder: 'Search',
+    placeholder: 'Search docs',
+    emptyText: 'No results found',
+    heading: 'Total: {{searchResult}} results'
+  },
+  'zh': {
+    btnPlaceholder: '搜索',
+    placeholder: '搜索文档',
+    emptyText: '没有找到结果',
+    heading: '共找到 {{searchResult}} 个结果'
+  },
+  'en': {
+    btnPlaceholder: 'Search',
+    placeholder: 'Search docs',
+    emptyText: 'No results found',
+    heading: 'Total: {{searchResult}} results'
+  },
+  'es': {
+    btnPlaceholder: 'Buscar',
+    placeholder: 'Buscar documentos',
+    emptyText: 'No se encontraron resultados',
+    heading: 'Total: {{searchResult}} resultados'
+  },
+  'fr': {
+    btnPlaceholder: 'Rechercher',
+    placeholder: 'Rechercher dans les documents',
+    emptyText: 'Aucun résultat trouvé',
+    heading: 'Total : {{searchResult}} résultats'
+  },
+  'de': {
+    btnPlaceholder: 'Suchen',
+    placeholder: 'Dokumente durchsuchen',
+    emptyText: 'Keine Ergebnisse gefunden',
+    heading: 'Insgesamt: {{searchResult}} Ergebnisse'
+  },
+  'ko': {
+    btnPlaceholder: '검색',
+    placeholder: '문서 검색',
+    emptyText: '결과를 찾을 수 없습니다',
+    heading: '총 {{searchResult}}개의 결과'
+  },
+  'ja': {
+    btnPlaceholder: '検索',
+    placeholder: 'ドキュメントを検索',
+    emptyText: '結果が見つかりません',
+    heading: '合計 {{searchResult}} 件の結果'
+  },
+  'th': {
+    btnPlaceholder: 'ค้นหา',
+    placeholder: 'ค้นหาเอกสาร',
+    emptyText: 'ไม่พบผลลัพธ์',
+    heading: 'พบทั้งหมด {{searchResult}} รายการ'
+  }
+};
+
+// Set up root locale
+const sidebar = getSidebar(defaultLanguage.lang, defaultLanguage.path);
+localesConfig.root = {
+  label: defaultLanguage.label,
+  lang: defaultLanguage.lang,
+  link: getFirstLink(sidebar) || defaultLanguage.path,
+  themeConfig: {
+    sidebar,
+    outlineTitle: defaultLanguage.outlineTitle
+  }
+};
+
+// Set up other locales based on supportedLanguages
+supportedLanguages.forEach(langInfo => {
+  const { lang, label, path, outlineTitle } = langInfo;
+  const sidebar = getSidebar(lang, path);
+  const link = getFirstLink(sidebar) || path;
+
+  firstLinks[lang] = link;
+
+  localesConfig[lang] = {
+    label,
+    lang,
+    link,
+    themeConfig: {
+      sidebar,
+      outlineTitle
+    }
+  };
+});
 
 export default defineConfig({
   ignoreDeadLinks: true,
   title: 'Oinone Docs',
   head: [
-    ['link', { rel: 'icon', href: 'https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo-100.webp' }]
+    ['link', {
+      rel: 'icon',
+      href: 'https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo-100.webp'
+    }]
   ],
   base: '/',
   buildConcurrency: 8,
@@ -36,38 +125,7 @@ export default defineConfig({
             .replace(/\s+/g, ' ')
             .trim();
         },
-        locales: {
-          root: {
-            btnPlaceholder: '搜索',
-            placeholder: '搜索文档',
-            emptyText: '没有找到结果',
-            heading: '共找到 {{searchResult}} 个结果'
-          },
-          'zh-cn': {
-            btnPlaceholder: '搜索',
-            placeholder: '搜索文档',
-            emptyText: '没有找到结果',
-            heading: '共找到 {{searchResult}} 个结果'
-          },
-          'v6/zh-cn': {
-            btnPlaceholder: '搜索',
-            placeholder: '搜索文档',
-            emptyText: '没有找到结果',
-            heading: '共找到 {{searchResult}} 个结果'
-          },
-          'en': {
-            btnPlaceholder: 'Search',
-            placeholder: 'Search docs',
-            emptyText: 'No results found',
-            heading: 'Total: {{searchResult}} results'
-          },
-          'v6/en': {
-            btnPlaceholder: 'Search',
-            placeholder: 'Search docs',
-            emptyText: 'No results found',
-            heading: 'Total: {{searchResult}} results'
-          }
-        }
+        locales: searchLocales
       })
     ],
     build: {
@@ -92,59 +150,7 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/oinone/oinone-pamirs' },
       { icon: 'gitee', link: 'https://gitee.com/oinone/oinone-pamirs' }
     ],
-    firstLinks: {
-      'zh-cn': getFirstLink(zhSidebar),
-      'en': getFirstLink(enSidebar),
-      'v6/zh-cn': getFirstLink(v6ZhSidebar),
-      'v6/en': getFirstLink(v6EnSidebar)
-    }
+    firstLinks
   },
-  locales: {
-    // 顺序决定了解析顺序，因此，具备包含关系的 key 必须放在最下面进行定义
-    root: {
-      label: '中文',
-      lang: 'zh',
-      link: getFirstLink(zhSidebar) || '/zh-cn/',
-      themeConfig: {
-        sidebar: zhSidebar,
-        outlineTitle: '本页目录'
-      }
-    },
-    'v6/zh-cn': {
-      label: 'v6-中文',
-      lang: 'zh',
-      link: getFirstLink(v6ZhSidebar) || '/v6/zh-cn/',
-      themeConfig: {
-        sidebar: v6ZhSidebar,
-        outlineTitle: '本页目录'
-      }
-    },
-    'v6/en': {
-      label: 'v6-English',
-      lang: 'en',
-      link: getFirstLink(v6EnSidebar) || '/v6/en/',
-      themeConfig: {
-        sidebar: v6EnSidebar,
-        outlineTitle: 'On this page'
-      }
-    },
-    'zh-cn': {
-      label: '中文',
-      lang: 'zh',
-      link: getFirstLink(zhSidebar) || '/zh-cn/',
-      themeConfig: {
-        sidebar: zhSidebar,
-        outlineTitle: '本页目录'
-      }
-    },
-    en: {
-      label: 'English',
-      lang: 'en',
-      link: getFirstLink(enSidebar) || '/en/',
-      themeConfig: {
-        sidebar: enSidebar,
-        outlineTitle: 'On this page'
-      }
-    }
-  }
+  locales: localesConfig
 });

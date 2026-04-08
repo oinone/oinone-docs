@@ -1,0 +1,3 @@
+div [command-dialog-mask] {
+    z-index: 1200 !important;
+}

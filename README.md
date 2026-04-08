@@ -42,20 +42,20 @@ Oinone is an enterprise-grade productization engine that focuses on business sof
 - 【[⚡ 后端框架-中文](https://gitee.com/oinone/oinone-pamirs) | [⚡ 前端框架-中文](https://gitee.com/oinone/oinone-kunlun) | [⚡ Back-end Framework](https://github.com/oinone/oinone-pamirs) | [⚡ Front-end Framework](https://github.com/oinone/oinone-kunlun)】
 
 ### 6. Documents
-- [Installation Or Upgrade](https://guide.oinone.top/zh-cn/InstallOrUpgrade)
-- [User Manual](https://guide.oinone.top/zh-cn/UserManual)
-- [DEV Manual](https://guide.oinone.top/zh-cn/DevManual)
+- [Installation Or Upgrade](https://guide.oinone.top/zh/InstallOrUpgrade)
+- [User Manual](https://guide.oinone.top/zh/UserManual)
+- [DEV Manual](https://guide.oinone.top/zh/DevManual)
 - [White Paper](https://www.oinone.top/whitePaper)
-- [R&D Paradigm](https://guide.oinone.top/zh-cn/DevManual/R_DParadigm)
-- [Common Solutions](https://guide.oinone.top/zh-cn/DevManual/CommonSolutions)
-- [FAQ](https://guide.oinone.top/zh-cn/DevManual/FAQ)
+- [R&D Paradigm](https://guide.oinone.top/zh/DevManual/R_DParadigm)
+- [Common Solutions](https://guide.oinone.top/zh/DevManual/CommonSolutions)
+- [FAQ](https://guide.oinone.top/zh/DevManual/FAQ)
 
 ### 7. License
 - Oinone repository is licensed under AGPL-3.0.
 
 ### 8. Community Participation
 - Join the community: Go to [[Oinone Community](https://doc.oinone.top)] ❤️
-- [How to contribute](https://guide.oinone.top/zh-cn/Contribute)
+- [How to contribute](https://guide.oinone.top/zh/Contribute)
 
 ### 9. Contact Us
 - Website：https://www.oinone.top

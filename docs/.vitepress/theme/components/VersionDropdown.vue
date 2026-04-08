@@ -1,15 +1,15 @@
-<script setup>
-import { useData, withBase } from 'vitepress';
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
-import { useVersion } from '../../state';
+<script lang="ts" setup>
+import { useData } from 'vitepress';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { useLanguage, useVersion, Version, versionOptions } from '../../state';
 
 const { page, site, theme } = useData();
-const { currentVersion: globalCurrentVersion, setVersion } = useVersion();
+const { currentVersion } = useVersion();
+const { currentLanguage } = useLanguage();
 
-// 同步初始状态
-watch(globalCurrentVersion, (newVal) => {
-  setVersion(newVal);
-}, { immediate: true });
+const currentVersionLabel = computed(() => {
+  return versionOptions.find(v => v.version === currentVersion.value).label;
+});
 
 // State for dropdown
 const isOpen = ref(false);
@@ -41,68 +41,30 @@ const onMouseLeave = () => {
   if (!isTouch) isOpen.value = false;
 };
 
-const currentVersion = computed(() => {
-  return globalCurrentVersion.value === 'v6' ? '6.0' : '7.0';
-});
+function getLang() {
+  return currentLanguage.value.baseLang || currentLanguage.value.lang;
+}
 
-const versions = [
-  { text: '7.0', prefix: '/' },
-  { text: '6.0', prefix: '/v6/' }
-];
-
-function onVersionChange(targetVersion) {
+function onVersionChange(targetVersion: Version) {
   isOpen.value = false;
   if (targetVersion === currentVersion.value) return;
 
-  // Use window.location.pathname to get the exact current URL path
   let currentPath = window.location.pathname;
-
-  // Remove base if it exists (assuming withBase adds it, we need to handle raw path)
-  // For standard VitePress, base is usually handled, but let's just work with the path
   const base = site.value.base || '/';
   if (base !== '/' && currentPath.startsWith(base)) {
     currentPath = currentPath.slice(base.length - 1);
   }
 
-  // Determine current language from path
-  const isEn = currentPath.includes('/en/') || currentPath.startsWith('/en/');
-  const langKey = isEn ? 'en' : 'zh-cn';
-
-  // Check if URL specifies no document path (root of the language/version)
-  const isRoot = currentPath === '/zh-cn/' || currentPath === '/en/' || currentPath === '/v6/zh-cn/' || currentPath === '/v6/en/' || currentPath === '/' || currentPath === '/v6/' || currentPath === '/zh-cn' || currentPath === '/en' || currentPath === '/v6/zh-cn' || currentPath === '/v6/en' || currentPath === '/v6';
-
-  let newPath = currentPath;
-
-  if (isRoot) {
-    // Get first links from theme config
-    const firstLinks = site.value.themeConfig?.firstLinks || theme.value.firstLinks || {};
-
-    let targetLocaleKey = '';
-    if (targetVersion === '6.0') {
-      targetLocaleKey = `v6/${langKey}`;
-      setVersion('v6');
-    } else {
-      targetLocaleKey = langKey;
-      setVersion('v7');
-    }
-
-    newPath = firstLinks[targetLocaleKey] || '/';
-  } else {
-    // Keep current document path but switch version
-    if (targetVersion === '6.0') {
-      setVersion('v6');
-      // Add /v6 prefix
-      if (!newPath.startsWith('/v6/')) {
-        newPath = '/v6' + newPath;
-      }
-    } else {
-      setVersion('v7');
-      // Remove /v6 prefix
-      newPath = newPath.replace(/^\/v6\//, '/');
-    }
+  let currentPathPrefix = `/${getLang()}`;
+  if (currentVersion.value !== Version.latest) {
+    currentPathPrefix = `/${currentVersion.value}/${getLang()}`;
   }
-
-  window.location.href = withBase(newPath);
+  let newPathPrefix = `/${getLang()}`;
+  if (targetVersion !== Version.latest) {
+    newPathPrefix = `/${targetVersion}/${getLang()}`;
+  }
+  const newPath = currentPath.replace(currentPathPrefix, newPathPrefix);
+  window.location.assign(`${window.location.origin}${newPath}`);
 }
 
 function toggleDropdown() {
@@ -118,7 +80,7 @@ function toggleDropdown() {
     @mouseleave="onMouseLeave"
   >
     <button class="custom-dropdown-button" @click="toggleDropdown">
-      <span>v{{ currentVersion }}</span>
+      <span>{{ currentVersionLabel }}</span>
       <svg class="icon-arrow" viewBox="0 0 10 10" width="10" height="10">
         <path d="M2.5 4l2.5 2.5L7.5 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
       </svg>
@@ -127,14 +89,15 @@ function toggleDropdown() {
     <transition name="fade-slide">
       <div v-show="isOpen" class="custom-dropdown">
         <a
-          v-for="version in versions"
-          :key="version.text"
+          v-for="version in versionOptions"
+          :key="version.version"
           class="custom-dropdown-item"
-          :class="{ active: currentVersion === version.text }"
-          @click="onVersionChange(version.text)"
+          :class="{ active: currentVersion === version.version }"
+          @click="onVersionChange(version.version)"
         >
-          <span>v{{ version.text }}</span>
-          <svg v-if="currentVersion === version.text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16"
+          <span>{{ version.label }}</span>
+          <svg v-if="currentVersion === version.version" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               width="16"
                height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>

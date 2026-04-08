@@ -3,9 +3,11 @@ import Layout from './Layout.vue';
 import { nextTick, onMounted, watch } from 'vue';
 import { useRoute } from 'vitepress';
 import mediumZoom from 'medium-zoom';
-import './custom.css';
-import './markdown-style.css';
 import PDF from './components/PDF.vue';
+
+import './style/global.css';
+import './style/markdown.css';
+import './style/serach.css';
 
 export default {
   extends: DefaultTheme,
