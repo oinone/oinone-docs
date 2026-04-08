@@ -118,6 +118,17 @@ export default defineConfig({
   buildConcurrency: 8,
   vite: {
     plugins: [
+      {
+        name: 'rewrite-zh-cn',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            if (req.url && req.url.includes('/zh-cn/')) {
+              req.url = req.url.replace('/zh-cn/', '/zh/');
+            }
+            next();
+          });
+        }
+      },
       pagefindPlugin({
         customSearchQuery(input) {
           // 支持多语言/多版本下的中文分词和基础搜索
