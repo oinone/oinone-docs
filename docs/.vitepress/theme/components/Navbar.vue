@@ -137,9 +137,7 @@ import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSoci
 
 defineEmits(['toggle-sidebar']);
 
-const { theme, lang, localeIndex } = useData();
-
-console.log(localeIndex.value);
+const { theme, lang } = useData();
 
 const scrolled = ref(false);
 const isMobile = ref(false);
