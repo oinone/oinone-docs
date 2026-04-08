@@ -1,13 +1,11 @@
-<script setup>
+<script lang="ts" setup>
+import { useData } from 'vitepress';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
-import { supportedLanguages, useLanguage, useVersion } from '../../state';
+import { useLanguage, useVersion, Version } from '../../state';
 
+const { site } = useData();
 const { currentVersion } = useVersion();
-const { currentLanguage, changeLang } = useLanguage();
-
-const languageOptions = computed(() => {
-  return supportedLanguages.filter(v => v.version === currentVersion.value);
-});
+const { currentLanguage, languageOptions } = useLanguage();
 
 // State for dropdown
 const isOpen = ref(false);
@@ -40,11 +38,27 @@ const onMouseLeave = () => {
   if (!isTouch) isOpen.value = false;
 };
 
-async function handleLangChange(targetLang) {
+function getLang() {
+  return currentLanguage.value.baseLang || currentLanguage.value.lang;
+}
+
+async function onLanguageChange(targetLanguage: string) {
   isOpen.value = false;
-  isLoading.value = true;
-  await changeLang(targetLang);
-  isLoading.value = false;
+  const curr = getLang();
+  if (targetLanguage === curr) return;
+  let currentPath = window.location.pathname;
+  const base = site.value.base || '/';
+  if (base !== '/' && currentPath.startsWith(base)) {
+    currentPath = currentPath.slice(base.length - 1);
+  }
+  let currentPathPrefix = `/${curr}`;
+  let newPathPrefix = `/${targetLanguage}`;
+  if (currentVersion.value !== Version.latest) {
+    currentPathPrefix = `/${currentVersion.value}/${curr}`;
+    newPathPrefix = `/${currentVersion.value}/${targetLanguage}`;
+  }
+  const newPath = currentPath.replace(currentPathPrefix, newPathPrefix);
+  window.location.assign(`${window.location.origin}${newPath}`);
 }
 
 function toggleDropdown() {
@@ -94,7 +108,7 @@ const currentLangLabel = computed(() => {
           :key="lang.lang"
           class="custom-dropdown-item"
           :class="{ active: currentLanguage.lang === lang.lang }"
-          @click="handleLangChange(lang.lang)"
+          @click="onLanguageChange(lang.baseLang || lang.lang)"
         >
           <span>{{ lang.label }}</span>
           <svg v-if="currentLanguage.lang === lang.lang" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"

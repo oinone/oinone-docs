@@ -3,7 +3,7 @@ import { useData } from 'vitepress';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useLanguage, useVersion, Version, versionOptions } from '../../state';
 
-const { page, site, theme } = useData();
+const { site } = useData();
 const { currentVersion } = useVersion();
 const { currentLanguage } = useLanguage();
 
@@ -41,10 +41,6 @@ const onMouseLeave = () => {
   if (!isTouch) isOpen.value = false;
 };
 
-function getLang() {
-  return currentLanguage.value.baseLang || currentLanguage.value.lang;
-}
-
 function onVersionChange(targetVersion: Version) {
   isOpen.value = false;
   if (targetVersion === currentVersion.value) return;
@@ -55,13 +51,14 @@ function onVersionChange(targetVersion: Version) {
     currentPath = currentPath.slice(base.length - 1);
   }
 
-  let currentPathPrefix = `/${getLang()}`;
+  const curr = currentLanguage.value.baseLang || currentLanguage.value.lang;
+  let currentPathPrefix = `/${curr}`;
   if (currentVersion.value !== Version.latest) {
-    currentPathPrefix = `/${currentVersion.value}/${getLang()}`;
+    currentPathPrefix = `/${currentVersion.value}/${curr}`;
   }
-  let newPathPrefix = `/${getLang()}`;
+  let newPathPrefix = `/${curr}`;
   if (targetVersion !== Version.latest) {
-    newPathPrefix = `/${targetVersion}/${getLang()}`;
+    newPathPrefix = `/${targetVersion}/${curr}`;
   }
   const newPath = currentPath.replace(currentPathPrefix, newPathPrefix);
   window.location.assign(`${window.location.origin}${newPath}`);
