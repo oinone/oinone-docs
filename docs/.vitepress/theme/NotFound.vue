@@ -55,7 +55,7 @@ const homeLink = computed(() => {
 }
 
 .not-found-content {
-  max-width: 600px;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -130,7 +130,6 @@ const homeLink = computed(() => {
   font-size: 1.1rem;
   color: var(--vp-c-text-2);
   margin-bottom: 2.5rem;
-  max-width: 90%;
   line-height: 1.6;
 }
 
