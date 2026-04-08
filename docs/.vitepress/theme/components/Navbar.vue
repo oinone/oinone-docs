@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="vp-navbar-end">
-        <VPLocalSearchBox v-if="theme.localSearch" :options="theme.localSearch.options" />
+        <VPNavBarSearch />
         
         <!-- Mobile "More" Button -->
         <div class="mobile-more-wrap" v-if="isMobile" :class="{ open: isMoreOpen }">
@@ -126,8 +126,8 @@ import { useData } from 'vitepress';
 import VersionDropdown from './VersionDropdown.vue';
 import LangDropdown from './LangDropdown.vue';
 import { useTranslate } from '../../plugins/useTranslate';
-import VPLocalSearchBox from 'vitepress/dist/client/theme-default/components/VPLocalSearchBox.vue'
-import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSocialLinks.vue'
+import VPNavBarSearch from 'vitepress-plugin-search/Search.vue';
+import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSocialLinks.vue';
 
 defineEmits(['toggle-sidebar']);
 

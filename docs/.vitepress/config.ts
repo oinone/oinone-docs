@@ -28,7 +28,7 @@ export default defineConfig({
     plugins: [
       SearchPlugin({
         encode: false,
-        tokenize: 'full',
+        tokenize: 'forward',
         previewLength: 62,
         buttonLabel: 'Search / 搜索',
         placeholder: 'Search docs / 搜索文档',
@@ -47,9 +47,9 @@ export default defineConfig({
         }
       }
     },
-    ssr: {
-      noExternal: ['mark.js']
-    }
+    // ssr: {
+    //   noExternal: ['mark.js', 'vitepress-plugin-search']
+    // }
   },
   markdown: {
     lineNumbers: true
