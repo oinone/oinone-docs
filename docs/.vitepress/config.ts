@@ -22,6 +22,9 @@ const v6EnSidebar = getSidebar('v6/en', '/v6/en/');
 export default defineConfig({
   ignoreDeadLinks: true,
   title: 'Oinone Docs',
+  head: [
+    ['link', { rel: 'icon', href: 'https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo-100.webp' }]
+  ],
   base: '/',
   buildConcurrency: 8,
   vite: {

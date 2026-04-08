@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="vp-navbar-end">
-        <!--        <VPNavBarSearch />-->
+        <VPNavBarSearch />
 
         <!-- Mobile "More" Button -->
         <div class="mobile-more-wrap" v-if="isMobile" :class="{ open: isMoreOpen }">
@@ -132,7 +132,7 @@ import { useData } from 'vitepress';
 import VersionDropdown from './VersionDropdown.vue';
 import LangDropdown from './LangDropdown.vue';
 import { useTranslate } from '../../plugins/useTranslate';
-// import VPNavBarSearch from 'vitepress-plugin-search/Search.vue';
+import VPNavBarSearch from 'vitepress-plugin-search/Search.vue';
 import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSocialLinks.vue';
 
 defineEmits(['toggle-sidebar']);
@@ -418,7 +418,6 @@ onUnmounted(() => {
   padding: 8px;
   color: var(--vp-c-text-1);
   transition: color 0.2s;
-  margin-left: 8px;
 }
 
 .mobile-more-btn:hover, .mobile-more-wrap.open .mobile-more-btn {

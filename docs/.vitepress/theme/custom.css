@@ -205,5 +205,39 @@ html {
     z-index: 1001 !important;
 }
 
+/* ==========================================================================
+   移动端搜索按钮样式优化
+   ========================================================================== */
+@media (max-width: 960px) {
+    .VPNavBarSearch .DocSearch-Button {
+        width: auto !important;
+        height: auto !important;
+        padding: 8px !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border-radius: 4px;
+        color: var(--vp-c-text-1) !important;
+        transition: color 0.2s ease !important;
+    }
+    
+    .VPNavBarSearch .DocSearch-Button:hover,
+    .VPNavBarSearch .DocSearch-Button:active {
+        color: var(--vp-c-brand) !important;
+    }
+    
+    .VPNavBarSearch .DocSearch-Search-Icon {
+        width: 22px !important;
+        height: 22px !important;
+        color: currentColor !important;
+        margin: 0 !important;
+    }
+
+    /* 确保移动端下只展示纯图标 */
+    .VPNavBarSearch .DocSearch-Button-Placeholder,
+    .VPNavBarSearch .DocSearch-Button-Keys {
+        display: none !important;
+    }
+}
+
 
 

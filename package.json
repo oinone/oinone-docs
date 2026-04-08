@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf .npm-cache node_modules package-lock.json docs/.vitepress/cache docs/.vitepress/dist",
     "docs:dev": "vitepress dev docs --host",
-    "docs:build": "vitepress build docs",
+    "docs:build": "NODE_OPTIONS=--max-old-space-size=8192 vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
