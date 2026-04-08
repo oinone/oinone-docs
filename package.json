@@ -5,23 +5,20 @@
   "description": "Oinone API使用文档",
   "type": "module",
   "scripts": {
-    "clean": "rm -rf ./node_modules && rm -rf ./vuepress/.cache && rm -rf ./vuepress/.temp && rm -rf ./vuepress/dist",
-    "docs:build": "node --max_old_space_size=10000 ./node_modules/.bin/vuepress build .",
-    "docs:clean-dev": "vuepress dev . --clean-cache",
-    "docs:dev": "vuepress dev .",
-    "docs:update-package": "npx vp-update"
+    "clean": "rimraf .npm-cache node_modules package-lock.json docs/.vitepress/cache docs/.vitepress/dist",
+    "docs:dev": "vitepress dev docs --host",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "medium-zoom": "^1.1.0"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.22",
-    "@vuepress/client": "2.0.0-rc.22",
-    "@vuepress/core": "2.0.0-rc.22",
-    "@vuepress/plugin-slimsearch": "2.0.0-rc.105",
-    "@vuepress/theme-default": "2.0.0-rc.105",
-    "@vuepress/helper": "2.0.0-rc.105",
+    "flexsearch": "^0.8.212",
     "sass-embedded": "^1.89.0",
+    "vitepress": "^1.6.4",
+    "vitepress-plugin-search": "^1.0.4-alpha.22",
     "vue": "^3.4.21",
-    "vue-router": "^4.2.5",
-    "vuepress": "2.0.0-rc.22",
-    "vuepress-theme-hope": "2.0.0-rc.82"
+    "vue-router": "^4.2.5"
   }
 }

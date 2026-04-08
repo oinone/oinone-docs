@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "product": "产品",
+    "oinoneFramework": "Oinone 框架",
+    "oinoneFrameworkDesc": "企业级低代码开发框架",
+    "aino": "Aino",
+    "ainoDesc": "智能AI开发平台",
+    "useCases": "案例",
+    "pricing": "定价",
+    "blog": "博客",
+    "community": "社区",
+    "resources": "资源",
+    "documentation": "文档",
+    "documentationDesc": "开发指南与API参考",
+    "support": "支持",
+    "supportDesc": "获取技术支持与服务",
+    "changelog": "更新日志",
+    "changelogDesc": "查看最新版本特性",
+    "about": "关于",
+    "aboutDesc": "了解我们的团队与愿景"
+  },
+  "notFound": {
+    "title": "找不到页面",
+    "desc": "抱歉，您访问的页面不存在或已移至他处",
+    "button": "返回首页"
+  }
+}
