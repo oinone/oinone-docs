@@ -38,7 +38,7 @@ const onMouseLeave = () => {
 
 // Detect current language from filePath
 const currentLang = computed(() => {
-  const fp = page.value.filePath || window.location.pathname;
+  const fp = page.value.filePath || (typeof window !== 'undefined' ? window.location.pathname : '');
   if (fp.includes('/en/')) {
     return 'en';
   }
