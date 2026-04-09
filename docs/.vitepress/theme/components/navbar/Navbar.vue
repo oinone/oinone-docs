@@ -12,7 +12,7 @@
         </div>
       </div>
       <a class="nav-link nav-logo" :href="localePath('/')">
-        <img src="https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo.webp"
+        <img :src="`${Globals.OSS_URL}/welcome-document/website/oinone-logo.webp`"
              alt="Oinone" width="120" height="32" style="height:32px;width:auto">
       </a>
       <div class="nav-links">
@@ -27,7 +27,7 @@
           <div class="nav-dropdown">
             <a class="nav-link" :href="localePath('/product/framework')">
               <div class="dd-icon oinone"><img
-                src="https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo-100.webp"
+                :src="`${Globals.OSS_URL}/welcome-document/website/oinone-logo-100.webp`"
                 alt="Oinone" class="dd-icon-img"></div>
               <div>
                 <div class="dd-title">{{ $t('nav.oinoneFramework') }}</div>
@@ -36,7 +36,7 @@
             </a>
             <a class="nav-link" :href="localePath('/product/aino')">
               <div class="dd-icon aino"><img
-                src="https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/aino-logo-100.webp"
+                :src="`${Globals.OSS_URL}/welcome-document/website/aino-logo-100.webp`"
                 alt="Aino" class="dd-icon-img"></div>
               <div>
                 <div class="dd-title">{{ $t('nav.aino') }}</div>
@@ -134,6 +134,7 @@
   </nav>
 </template>
 <script setup lang="ts">
+import { Globals } from '../../../constants';
 import VersionDropdown from '../VersionDropdown.vue';
 import LanguageDropdown from '../LanguageDropdown.vue';
 import Search from '../Search.vue';

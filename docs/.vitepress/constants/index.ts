@@ -41,5 +41,11 @@ export const Globals = {
   },
   get GUIDE_WEBSITE_URL() {
     return `https://guide.${SITE_DOMAIN.value}`;
+  },
+  get OSS_URL() {
+    if (Globals.isInternal) {
+      return 'https://oinone-oversea.oss-ap-southeast-1.aliyuncs.com';
+    }
+    return 'https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com';
   }
 };
