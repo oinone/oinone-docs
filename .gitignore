@@ -1,11 +1,9 @@
 package-lock.json
-.idea/
-.vscode/
-.vuepress/.temp/
-.vuepress/.cache/
-node_modules/
+.idea
+.vscode
+node_modules
 .DS_Store
 
-docs/.vitepress/cache/
-docs/.vitepress/dist/
+docs/.vitepress/cache
+docs/.vitepress/dist
 .npm-cache
