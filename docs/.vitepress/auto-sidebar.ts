@@ -127,11 +127,11 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
 
           if (shouldLink) {
             // For directories with README.md, the path in VitePress is to the README
-            item.link = `${linkPrefix}${file}/README`;
+            item.link = `${linkPrefix}${file}/README.html`;
           }
         } else if (dirLink || index) {
           // If there is no README but dirLink or index is true, allow linking
-          item.link = `${linkPrefix}${file}/README`;
+          item.link = `${linkPrefix}${file}/README.html`;
         }
 
         if (children.length > 0) {
@@ -153,7 +153,7 @@ export function getSidebar(relativePath: string, linkPrefix: string, depth: numb
 
       items.push({
         text: title,
-        link: `${linkPrefix}${file.replace(/\.md$/, '')}`,
+        link: `${linkPrefix}${file.replace(/\.md$/, '.html')}`,
         order
       });
     }

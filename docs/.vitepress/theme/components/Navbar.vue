@@ -141,6 +141,7 @@ import VersionDropdown from './VersionDropdown.vue';
 import LanguageDropdown from './LanguageDropdown.vue';
 import Search from './Search.vue';
 import { useTranslate } from '../../plugins/useTranslate';
+import { GUIDE_WEBSITE_URL, WELCOME_WEBSITE_URL } from '../../constants';
 import VPSocialLinks from 'vitepress/dist/client/theme-default/components/VPSocialLinks.vue';
 import VPSwitchAppearance from 'vitepress/dist/client/theme-default/components/VPSwitchAppearance.vue';
 
@@ -152,16 +153,14 @@ const scrolled = ref(false);
 const isMobile = ref(false);
 const isMoreOpen = ref(false);
 
-const WELCOME_WEBSITE_URL = 'https://www.oinone.top';
-
 const localePath = (uri: string) => {
   return `${WELCOME_WEBSITE_URL}${uri}`;
 };
 
 const docUrl = computed(() =>
   lang.value === 'zh' || lang.value === 'zh-cn'
-    ? 'https://guide.oinone.top/zh/DevManual/README.html'
-    : 'https://guide.oinone.top/en/DevManual/README.html'
+    ? `${GUIDE_WEBSITE_URL}/zh/DevManual/README.html`
+    : `${GUIDE_WEBSITE_URL}/en/DevManual/README.html`
 );
 
 const { t: $t } = useTranslate();
@@ -198,7 +197,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .nav {
   position: fixed;
   top: 0;
@@ -236,15 +235,13 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-:deep(html.dark) .nav.scrolled::before,
-:global(html.dark) .nav.scrolled::before {
+html.dark .nav.scrolled::before {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(40px) saturate(1.5);
   -webkit-backdrop-filter: blur(40px) saturate(1.5);
 }
 
-:deep(html.dark) .nav.scrolled,
-:global(html.dark) .nav.scrolled {
+html.dark .nav.scrolled {
   background: transparent;
   border-bottom-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 4px 24px rgba(0, 0, 0, 0.4);
@@ -518,15 +515,13 @@ onUnmounted(() => {
     -webkit-backdrop-filter: blur(40px) saturate(2) brightness(1.05) !important;
   }
 
-  :deep(html.dark) .nav.scrolled::before,
-  :global(html.dark) .nav.scrolled::before {
+  html.dark .nav.scrolled::before {
     background: rgba(0, 0, 0, 0.6) !important;
     backdrop-filter: blur(40px) saturate(1.5) !important;
     -webkit-backdrop-filter: blur(40px) saturate(1.5) !important;
   }
 
-  :deep(html.dark) .nav.scrolled,
-  :global(html.dark) .nav.scrolled {
+  html.dark .nav.scrolled {
     background: transparent !important;
     border-bottom-color: rgba(255, 255, 255, 0.1) !important;
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 4px 24px rgba(0, 0, 0, 0.4) !important;

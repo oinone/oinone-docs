@@ -172,5 +172,28 @@ export default defineConfig({
     ],
     firstLinks
   },
-  locales: localesConfig
+  locales: localesConfig,
+  async buildEnd(siteConfig) {
+    const fs = await import('fs/promises');
+    const path = await import('path');
+
+    // 遍历生成的所有 html 文件
+    const walk = async (dir) => {
+      const files = await fs.readdir(dir);
+      for (const file of files) {
+        const filePath = path.join(dir, file);
+        const stat = await fs.stat(filePath);
+        if (stat.isDirectory()) {
+          await walk(filePath);
+        } else if (filePath.endsWith('.html')) {
+          let content = await fs.readFile(filePath, 'utf-8');
+          // 替换 VitePress 默认生成的 preload stylesheet 为阻塞式 stylesheet，以解决闪屏抖动问题
+          content = content.replace(/<link rel="preload stylesheet"([^>]+)>/g, '<link rel="stylesheet"$1>');
+          await fs.writeFile(filePath, content, 'utf-8');
+        }
+      }
+    };
+
+    await walk(siteConfig.outDir);
+  }
 });
