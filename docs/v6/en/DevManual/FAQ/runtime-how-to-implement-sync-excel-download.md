@@ -11,4 +11,4 @@ How to implement synchronous Excel file download when clicking the export button
 # II. Solution
 Configure the export button in the interface designer and enable the synchronous export switch.
 
-![](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/1748080435801-db186dc1-ccfa-4678-a9fb-ffe52e88a67c.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/1748080435801-db186dc1-ccfa-4678-a9fb-ffe52e88a67c.png)

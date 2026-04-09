@@ -166,7 +166,7 @@ yum install dmidecode
 + `docker`启动的服务需通过`docker logs`查看许可证信息。
 + `kubernetes`启动的服务需通过`kubectl logs`查看许可证信息。
 
-![](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/image-20250529201712947.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/image-20250529201712947.png)
 
 + 检查`Type`是否为所需类型。一般用于设计器启动的许可证为`TRIAL`。
 + 检查`Modules`是否为`ALL`或`模块编码`，`ALL`表示所有设计器模块。

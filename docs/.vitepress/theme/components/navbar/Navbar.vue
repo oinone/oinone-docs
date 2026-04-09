@@ -12,7 +12,7 @@
         </div>
       </div>
       <a class="nav-link nav-logo" :href="localePath('/')">
-        <img src="http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo.webp"
+        <img src="https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/website/oinone-logo.webp"
              alt="Oinone" width="120" height="32" style="height:32px;width:auto">
       </a>
       <div class="nav-links">

@@ -6,7 +6,7 @@ category:
 order: 19
 ---
 # I. Scenario Reproduction
-![](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/1748058278545-4e74dfd9-2a2e-4758-b6e5-8236404ca11e.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/1748058278545-4e74dfd9-2a2e-4758-b6e5-8236404ca11e.png)
 
 # II. Solutions
 1. **Module Dependency Check**  

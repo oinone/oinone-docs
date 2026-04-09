@@ -162,7 +162,7 @@ Check the startup log for logs related to the `pamirs-lic` keyword. If there are
 + For services started with `docker`, view license information using `docker logs`.
 + For services started with `kubernetes`, view license information using `kubectl logs`.
 
-![](http://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/image-20250529201712947.png)
+![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/FAQ/image-20250529201712947.png)
 
 + Check if the `Type` is the required type. Licenses used for designer startup are generally `TRIAL`.
 + Check if `Modules` are `ALL` or `module codes`; `ALL` indicates all designer modules.
