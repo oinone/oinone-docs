@@ -3,12 +3,13 @@ import { ref } from 'vue';
 import { useData } from 'vitepress';
 import Content from 'vitepress/dist/client/theme-default/components/VPContent.vue';
 import VPDocAside from 'vitepress/dist/client/theme-default/components/VPDocAside.vue';
-import Navbar from './components/Navbar.vue';
+import { InternalNavbar, Navbar } from './components/navbar';
 import Sidebar from './components/Sidebar.vue';
 import Breadcrumb from './components/Breadcrumb.vue';
 import NotFound from './NotFound.vue';
+import { Globals } from '../constants';
 
-const { page, frontmatter } = useData();
+const { page } = useData();
 
 // Mobile sidebar toggle state
 const isSidebarOpen = ref(false);
@@ -19,7 +20,8 @@ const toggleSidebar = () => {
 
 <template>
   <div class="Layout">
-    <Navbar @toggle-sidebar="toggleSidebar" />
+    <InternalNavbar v-if="Globals.isInternal" @toggle-sidebar="toggleSidebar" />
+    <Navbar v-else @toggle-sidebar="toggleSidebar" />
     <NotFound v-if="page.isNotFound" />
     <div class="docs-page" v-else>
       <div class="docs-main-container">

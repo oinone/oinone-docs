@@ -124,10 +124,6 @@ const currentLangLabel = computed(() => {
 </template>
 
 <style scoped>
-.lang-dropdown-wrapper {
-  margin-right: 0.5rem;
-}
-
 .icon-translate {
   margin-right: 2px;
 }

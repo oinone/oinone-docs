@@ -6,7 +6,6 @@ import fr from '../locales/fr.json';
 import de from '../locales/de.json';
 import ko from '../locales/ko.json';
 import ja from '../locales/ja.json';
-import th from '../locales/th.json';
 
 const locales: Record<string, any> = {
   zh,
@@ -15,8 +14,7 @@ const locales: Record<string, any> = {
   fr,
   de,
   ko,
-  ja,
-  th
+  ja
 };
 
 export function useTranslate() {

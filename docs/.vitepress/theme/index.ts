@@ -6,6 +6,7 @@ import mediumZoom from 'medium-zoom';
 import PDF from './components/PDF.vue';
 
 import './style/global.css';
+import './style/navbar.css';
 import './style/markdown.css';
 import './style/serach.css';
 

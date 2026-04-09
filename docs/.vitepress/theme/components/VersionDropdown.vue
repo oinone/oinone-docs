@@ -104,9 +104,3 @@ function toggleDropdown() {
     </transition>
   </div>
 </template>
-
-<style scoped>
-.version-dropdown-wrapper {
-  margin-right: 1rem;
-}
-</style>
