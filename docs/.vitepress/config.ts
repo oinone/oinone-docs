@@ -118,26 +118,26 @@ export default defineConfig({
   buildConcurrency: 8,
   vite: {
     plugins: [
-      {
-        name: 'rewrite-zh-cn',
-        enforce: 'pre',
-        configureServer(server) {
-          server.middlewares.use((req, res, next) => {
-            if (req.url && req.url.includes('/zh-cn/')) {
-              req.url = req.url.replace('/zh-cn/', '/zh/');
-            }
-            next();
-          });
-        },
-        transform(code, id) {
-          if (id.includes('vitepress/dist/client/app/router.js')) {
-            return code.replace(
-              'history.replaceState({}, \'\', href);',
-              'if (!window.location.pathname.includes("/zh-cn/")) { history.replaceState({}, "", href); }'
-            );
-          }
-        }
-      },
+      // {
+      //   name: 'rewrite-zh-cn',
+      //   enforce: 'pre',
+      //   configureServer(server) {
+      //     server.middlewares.use((req, res, next) => {
+      //       if (req.url && req.url.includes('/zh-cn/')) {
+      //         req.url = req.url.replace('/zh-cn/', '/zh/');
+      //       }
+      //       next();
+      //     });
+      //   },
+      //   transform(code, id) {
+      //     if (id.includes('vitepress/dist/client/app/router.js')) {
+      //       return code.replace(
+      //         'history.replaceState({}, \'\', href);',
+      //         'if (!window.location.pathname.includes("/zh-cn/")) { history.replaceState({}, "", href); }'
+      //       );
+      //     }
+      //   }
+      // },
       pagefindPlugin({
         customSearchQuery(input) {
           // 支持多语言/多版本下的中文分词和基础搜索
