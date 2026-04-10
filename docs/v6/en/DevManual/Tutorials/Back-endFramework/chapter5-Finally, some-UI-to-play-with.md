@@ -99,7 +99,7 @@ private String code;
 
 :::warning Tip: Default Value Calculation
 
-In addition to passing the defaultValue attribute to the component through @Prop, the [compute](/en/DevManual/Tutorials/Back-endFramework/chapter8-field-interlinkage.md#i-compute) attribute can also be used to handle more complex scenarios.
+In addition to passing the defaultValue attribute to the component through @Prop, the [compute](/en/DevManual/Tutorials/Back-endFramework/chapter8-field-interlinkage.md#1757ce8e) attribute can also be used to handle more complex scenarios.
 
 :::
 

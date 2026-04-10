@@ -44,7 +44,7 @@ Oinone Kunlun 框架使用自研的 Widget 框架。它是一个声明式组件�
 
 # 二、组件注册
 
-以字段组件为例，我们可以通过 SPI 注册一个特殊的输入框，用它输入的内容将以红色字体展示：（这就是我们在 [Customize a field widget](/zh/DevManual/OperationGuide/customize-a-field-widget.md#三、创建一个新的表单字段组件) 章节中的示例）
+以字段组件为例，我们可以通过 SPI 注册一个特殊的输入框，用它输入的内容将以红色字体展示：（这就是我们在 [Customize a field widget](/zh/DevManual/OperationGuide/customize-a-field-widget.md#bb99fbde) 章节中的示例）
 
 ``` typescript
 @SPI.ClassFactory(

@@ -74,7 +74,7 @@ For different "analysis types", the design scope varies slightly:
 
 :::warning Tip:
 
-For more content about the "file module" related APIs, please refer to: [Reference List - Model](#quote1)
+For more content about the "file module" related APIs, please refer to: [Reference List - Model](#bdce6a4a)
 
 :::
 

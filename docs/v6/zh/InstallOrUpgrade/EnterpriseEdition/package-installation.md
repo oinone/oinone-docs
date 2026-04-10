@@ -219,7 +219,7 @@ cdn:
 
 :::
 
-更多oss配置请参考：[文件存储配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#十四-文件存储配置-pamirs-file)
+更多oss配置请参考：[文件存储配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#b3796c8c)
 
 # 六、运行数式Oinone标准前端应用
 # 七、常见问题

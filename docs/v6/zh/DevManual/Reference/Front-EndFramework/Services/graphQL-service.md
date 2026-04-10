@@ -13,7 +13,7 @@ order: 4
 
 本章内容是 Oinone Kunlun 中所有关于 `GraphQL Service` 的内容，除了本章内容之外，你还可以在下面这些章节中找到关于 `GraphQL` 部分内容。
 
-+ “[精通前端框架 - 前端框架概览](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#二、graphql协议)” 中 GraphQL 协议部分
++ “[精通前端框架 - 前端框架概览](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#a74eed2c)” 中 GraphQL 协议部分
 + [自定义 GraphQL 请求](/zh/DevManual/OperationGuide/customize-graphQL-request.md) 中 GraphQL 协议部分
 
 :::
@@ -28,7 +28,7 @@ GraphQL 协议是 Oinone 中前后端交互使用的标准协议，理解并学�
 
 更多参考资料：
 
-+ [Oinone 网关协议 API](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#一-graphql-协议详解)
++ [Oinone 网关协议 API](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#11ffc4c3)
 + [How to GraphQL](https://www.howtographql.com/)
 + [GraphQL 入门](https://graphql.cn/learn/)
 
@@ -437,7 +437,7 @@ variables 参数的获取：右键点击 variables，选中 “`复制对象（C
 
 +  queryByWrapper 和 queryOneByWrapper调用的是同一个函数，只是 fun 和 name 不同。
 
-更多关于函数入参、出参等详细内容请参考：[ORM API - Common ORM Methods](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#五、common-orm-methods)
+更多关于函数入参、出参等详细内容请参考：[ORM API - Common ORM Methods](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#261b1eaf)
 
 :::
 
@@ -463,7 +463,7 @@ variables 参数的获取：右键点击 variables，选中 “`复制对象（C
 
 在 `countByWrapper` 函数的声明中，其返回值为 `Long` 类型，这也就说明我们需要通过 `Number()` 函数将其转换为 `number` 类型进行返回。虽然这样的处理会有一定程度的瑕疵，但对于现有场景来说，`countByWrapper` 返回的整数最大值一般不会超过 `JavaScript` 整数的安全值，如业务场景已经明确超出安全值范畴，需通过 `bignumber.js` 等封装数据类型的工具集进行处理。
 
-更多类型映射相关的内容请参考：[数据类型的映射](#九-数据类型的映射)
+更多类型映射相关的内容请参考：[数据类型的映射](#d4dafa20)
 
 :::
 
@@ -550,7 +550,7 @@ export class GanttDemoModelAction {
 
 更多关于 RSQL 相关的内容请参考：[RSQL Service](/zh/DevManual/Reference/Front-EndFramework/Services/RSQL-service.md)
 
-更多类型映射相关的内容请参考：[数据类型的映射](#九-数据类型的映射)
+更多类型映射相关的内容请参考：[数据类型的映射](#d4dafa20)
 
 :::
 
@@ -747,7 +747,7 @@ Required<IdModel> 等价于
   - 一对多：需按数组对象的格式传入，必须传入主键（id），未传入的值不会更新。
   - 多对多：需按数组对象的格式传入，必须传入主键（id），其他值传入无意义。
 
-更多关于关联关系类型的定义请参考：[ORM API - 关系类型](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#4、关系类型)
+更多关于关联关系类型的定义请参考：[ORM API - 关系类型](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#cc347a8a)
 
 :::
 

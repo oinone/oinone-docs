@@ -974,7 +974,7 @@ A trigger is a mechanism that drives logic execution based on function execution
 
 ### 1、YMAL Configuration
 
-Complete [event configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#3、配置中心-pamirs-zookeeper), [data record configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅹ-data-record-configuration-pamirsrecordsql), and add dependencies on the `sql_record` and `trigger` modules. The specific configuration is as follows:
+Complete [event configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#fd47cf3e), [data record configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#6b0f9228), and add dependencies on the `sql_record` and `trigger` modules. The specific configuration is as follows:
 
 ``` yaml
 spring:

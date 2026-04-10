@@ -254,7 +254,7 @@ Add the dependency of pamirs-channel-api to XXX-api.
 
 ## (Ⅲ) YAML File Configuration
 
-Documentation related to this topic can be found in [Enhanced Model Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅻ-enhanced-model-configuration-pamirschannel) and [Data Record Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅹ-data-record-configuration-pamirsrecordsql).
+Documentation related to this topic can be found in [Enhanced Model Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#006f15ab) and [Data Record Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#6b0f9228).
 
 Add the configuration pamirs.boot.modules in the application.yml file of the startup project to include channel and sql_record, that is, add the channel and sql_record modules to the startup module. At the same time, pay attention to the ES configuration to ensure it matches the ES service.
 

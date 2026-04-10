@@ -196,27 +196,7 @@ public class TestCompanyQueryServiceImpl implements TestCompanyQueryService {
 
 #### Step 2: Session Context Integration
 
-Reference: Documentation related to this topic can be found in "[Extending PamirsSession](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/request-context-API.md#2-extending-pamirssession".
-
-**Objective**: Establish the association of user→employee→company during login and store it in the Session.
-
-**Extend the Session Data Model**
-
-Modify `DemoSessionData` to add company attributes:
-
-``` java
-public class DemoSessionData {
-    private PamirsUser user;
-    private TestCompany company; // Add company attribute
-    // getters and setters
-}
-```
-
-**Modify the DemoSessionCache Cache Logic**
-
-``` java
-public class DemoSessionCache {
-    private static final ThreadLocal<DemoSessionData> BIZ_DATA_THREAD_LOCAL = new ThreadLocal<>();
+Reference: Documentation related to this topic can be found in "[Extending PamirsSession](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/request-context-API.md#e47ef61d);
 
     // Get the current user
     public static PamirsUser getUser() { /* ... */ }
@@ -369,7 +349,7 @@ Other fields are as detailed in the source code
 
 ## (Ⅳ) Common Examples
 
-To extend user-related APIs, you can use Oinone's "[Default Extension Points](/en/DevManual/Reference/Back-EndFramework/functions-API.md#ⅰ-default-extension-points)" and [SPI](/en/DevManual/Reference/common-extension-points-and-SPI-list.md#i-spi-mechanism) mechanisms.
+To extend user-related APIs, you can use Oinone's "[Default Extension Points](/en/DevManual/Reference/Back-EndFramework/functions-API.md#1a7f7290)" and [SPI](/en/DevManual/Reference/common-extension-points-and-SPI-list.md#4bb74602) mechanisms.
 
 ### 1. Modify Password on First Login
 

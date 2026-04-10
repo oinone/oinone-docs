@@ -17,7 +17,7 @@ prev:
 
 在开启本章教程之前，你至少需要安装 Docker 环境在你的机器上，并且成功部署了 Oinone 设计器。
 
-+ [使用 Docker Compose 运行 Oinone](/zh/InstallOrUpgrade/CommunityEdition.md#一-特别说明)
++ [使用 Docker Compose 运行 Oinone](/zh/InstallOrUpgrade/CommunityEdition.md#795dae5b)
 
 :::
 
@@ -58,7 +58,7 @@ OINONE_BIZ_OPENAPI_SERVER=http://192.168.1.100:8193
 + 8191：业务工程 Spring Server 默认端口
 + 8193：业务工程 EIP 默认端口
 
-默认端口可通过 [教程提供的后端工程](#三、搭建后端开发环境) 中的 `application.yml` 配置获取。
+默认端口可通过 [教程提供的后端工程](#7596bcb8) 中的 `application.yml` 配置获取。
 
 更多关于 `.env` 文件的信息，可参考：[Oinone 设计器配置指南](/zh/InstallOrUpgrade/setup-oinone-designer.md)
 
@@ -182,7 +182,7 @@ spring:
 
 :::warning 小贴士
 
-首次使用 IDEA 打开工程后，需要配置 Maven、JDK 等内容，可参考：[附录1：IDEA 环境配置](#附录1-idea-环境配置)
+首次使用 IDEA 打开工程后，需要配置 Maven、JDK 等内容，可参考：[附录1：IDEA 环境配置](#6c34e009)
 
 配置完成后，通过 IDEA 打开 `TutorialsApplication.java` 左侧启动图标点击运行 `Run 'TutorialsAppli....main()'`，但是这样直接运行是无法正常启动的。
 
@@ -243,7 +243,7 @@ spring:
 
 :::warning 注意
 
-+ 89：在 [使用 Oinone 设计器的前端连接业务工程后端](#二-使用-oinone-设计器的前端访问业务工程后端) 中配置的端口
++ 89：在 [使用 Oinone 设计器的前端连接业务工程后端](#4401f2c7) 中配置的端口
 
 :::
 
@@ -273,7 +273,7 @@ git clone git@gitee.com:oinone/oinone-frontend-tutorials.git
 
 :::warning 小贴士
 
-首次使用 WebStorm 打开工程后，需要配置 Prettier、ESLint 等内容，可参考：[附录2：WebStorm 环境配置](#附录2-webstorm-环境配置)
+首次使用 WebStorm 打开工程后，需要配置 Prettier、ESLint 等内容，可参考：[附录2：WebStorm 环境配置](#8aeaf9f0)
 
 :::
 

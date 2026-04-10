@@ -160,6 +160,7 @@ body {
 
 /* Firefox 支持 */
 html {
+    scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: rgba(144, 147, 153, 0.3) transparent;
 }

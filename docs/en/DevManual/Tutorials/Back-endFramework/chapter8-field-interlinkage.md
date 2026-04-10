@@ -45,7 +45,7 @@ private List<PamirsPartner> partners;
 
 Configure the Ux `clearFields` attribute to specify fields to clear when the `partnerType` field changes.
 
-In the relation field definition, add a `domain=X` option where `X` accepts an [RSQL](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#1、rsql-基础概念) expression. `activeRecord` represents the current view object.
+In the relation field definition, add a `domain=X` option where `X` accepts an [RSQL](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#bd46e12f) expression. `activeRecord` represents the current view object.
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-8/domain2.gif)
 

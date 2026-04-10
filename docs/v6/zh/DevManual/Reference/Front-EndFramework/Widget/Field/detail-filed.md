@@ -211,7 +211,7 @@ export class DetailCommonFieldWidget extends FormFieldWidget
 
 ### 2、DetailStringDownloadFieldWidget
 
-**引用**：文本（String）- [DetailStringDownloadFieldWidget](#quote1)
+**引用**：文本（String）- [DetailStringDownloadFieldWidget](#bdce6a4a)
 
 ## （三）富文本（Html）
 
@@ -237,13 +237,13 @@ export class DetailHtmlFieldWidget extends FormFieldWidget
 
 ### 1、DetailStringFieldWidget
 
-**引用**：文本（String）- [DetailStringFieldWidget](#quote2)
+**引用**：文本（String）- [DetailStringFieldWidget](#8bff8678)
 
 ## （五）邮箱（Email）
 
 ### 1、DetailStringFieldWidget
 
-**引用**：文本（String）- [DetailStringFieldWidget](#quote2)
+**引用**：文本（String）- [DetailStringFieldWidget](#8bff8678)
 
 ## （六）整数（Integer）
 
@@ -269,13 +269,13 @@ export class DetailNumberWidget extends FormNumberAbstractFieldWidget
 
 ### 1、DetailNumberWidget
 
-**引用**：整数（Integer）- [DetailNumberWidget](#quote3)
+**引用**：整数（Integer）- [DetailNumberWidget](#30d78833)
 
 ## （八）金额（Money）
 
 ### 1、DetailNumberWidget
 
-**引用**：整数（Integer）- [DetailNumberWidget](#quote3)
+**引用**：整数（Integer）- [DetailNumberWidget](#30d78833)
 
 ## （九）布尔（Boolean）
 

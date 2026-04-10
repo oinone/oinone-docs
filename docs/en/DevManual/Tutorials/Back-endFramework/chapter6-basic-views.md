@@ -54,7 +54,7 @@ A table view displays records in a table format. Its root element is `<view>` wi
 </view>
 ```
 
-In the search field definition, add an `operator=X` option where `X` accepts a supported [RSQL](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#1、rsql-基础概念) operator. The default for strings is "=like=", and "==" represents exact match filtering.
+In the search field definition, add an `operator=X` option where `X` accepts a supported [RSQL](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#bd46e12f) operator. The default for strings is "=like=", and "==" represents exact match filtering.
 
 Any model with an access path has a simple example in the database: the default view corresponding to that model.
 

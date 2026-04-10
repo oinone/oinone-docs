@@ -312,7 +312,7 @@ export class ResourceCountryGroupService {
 
 更多表达式的内容请参考：[Expression Service](/zh/DevManual/Reference/Front-EndFramework/Services/expression-service.md)
 
-更多内置函数的内容请参考：[Function API - 内置函数](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#五、内置函数)
+更多内置函数的内容请参考：[Function API - 内置函数](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#12385d7c)
 
 :::
 

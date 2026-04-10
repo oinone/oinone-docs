@@ -73,7 +73,7 @@ public age = 18
 
 ### 1. Class Names
 
-For platform model naming conventions, refer to: [Model Naming Conventions](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#5-model-naming-conventions). Ordinary POJO class names use PascalCase.
+For platform model naming conventions, refer to: [Model Naming Conventions](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#8d2a4bef). Ordinary POJO class names use PascalCase.
 
 ### 2. Property Names
 

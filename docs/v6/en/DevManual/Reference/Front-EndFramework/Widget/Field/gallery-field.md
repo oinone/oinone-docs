@@ -207,13 +207,13 @@ export class GalleryHtmlFieldWidget extends DetailHtmlFieldWidget
 
 ### 1、GalleryStringFieldWidget
 
-**Reference**: Text (String) - [GalleryStringFieldWidget](#quote1)
+**Reference**: Text (String) - [GalleryStringFieldWidget](#bdce6a4a)
 
 ## （Ⅴ）Email (Email)
 
 ### 1、GalleryStringFieldWidget
 
-**Reference**: Text (String) - [GalleryStringFieldWidget](#quote1)
+**Reference**: Text (String) - [GalleryStringFieldWidget](#bdce6a4a)
 
 ## （Ⅵ）Integer (Integer)
 
@@ -235,13 +235,13 @@ export class GalleryNumberWidget extends DetailNumberWidget
 
 ### 1、GalleryNumberWidget
 
-**Reference**: Integer (Integer) - [GalleryNumberWidget](#quote2)
+**Reference**: Integer (Integer) - [GalleryNumberWidget](#8bff8678)
 
 ## （Ⅷ）Amount (Money)
 
 ### 1、GalleryNumberWidget
 
-**Reference**: Integer (Integer) - [GalleryNumberWidget](#quote2)
+**Reference**: Integer (Integer) - [GalleryNumberWidget](#8bff8678)
 
 ## （Ⅸ）Boolean (Boolean)
 

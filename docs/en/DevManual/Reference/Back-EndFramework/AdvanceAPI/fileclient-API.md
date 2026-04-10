@@ -41,7 +41,7 @@ cdn:
     active: true
 ```
 
-For more configuration references: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#xiv-file-storage-configuration-pamirsfile)
+For more configuration references: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#a6e5558d)
 
 # II. Method Descriptions
 

@@ -355,7 +355,7 @@ registerMask(
 
 让我们先通过 运行时配置 定义这样一个可以获取是否开启的运行时配置管理器：
 
-（建议遵循 [Environment - 自定义运行时配置](/zh/DevManual/Reference/Front-EndFramework/environment.md#三、自定义运行时配置) 章节中介绍的最佳实践进行定义）
+（建议遵循 [Environment - 自定义运行时配置](/zh/DevManual/Reference/Front-EndFramework/environment.md#07d30c0e) 章节中介绍的最佳实践进行定义）
 
 ``` typescript
 /**

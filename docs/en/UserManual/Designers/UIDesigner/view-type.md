@@ -22,7 +22,7 @@ In the canvas design area, the form view will default to providing a form compon
 The extended carrying forms of the form include pop - up windows and drawers. Both can complete form interactions in the current scenario. The specific choice can be determined based on the amount of content and the usage scenario:
 + The pop - up window appears as a pop - up in the center of the screen and is suitable for operations with fewer form items that need to be completed quickly.
 + The drawer slides out from the edge of the screen and is suitable for scenarios with more form items where detailed information needs to be supplemented.
-For detailed configuration and interaction rules, please refer to the description in "Jump Action Component": [Jump Action](/en/UserManual/Designers/UIDesigner/Components/action.md#2. Jump Action)
+For detailed configuration and interaction rules, please refer to the description in "Jump Action Component": [Jump Action](/en/UserManual/Designers/UIDesigner/Components/action.md#44dea6df)
 
 :::
 

@@ -6,7 +6,7 @@ category:
   - 操作指南
 order: 4
 ---
-让我们回想一下在 “[Build a dashboard](/zh/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)” 章节我们初步接触的 “[发起一个后端请求](/zh/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md#三、理论-发起一个后端请求)” 的理论内容，我们通过 `GenericFunctionService` 服务实例较为方便的发起了一个后端请求。在本章内容中，我们将对 GraphQL 请求进行较为详细的介绍。
+让我们回想一下在 “[Build a dashboard](/zh/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md)” 章节我们初步接触的 “[发起一个后端请求](/zh/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter2-build-a-dashboard.md#281b6b21)” 的理论内容，我们通过 `GenericFunctionService` 服务实例较为方便的发起了一个后端请求。在本章内容中，我们将对 GraphQL 请求进行较为详细的介绍。
 
 为了方便描述，以下内容将 GraphQL 简称为 GQL。
 
@@ -24,7 +24,7 @@ order: 4
 
 在学习本章内容之前，你需要对 `GQL` 有一个初步的认识：
 
-+ 参考 “[Front-End Overview](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#二、graphql协议)” GraphQL协议部分。
++ 参考 “[Front-End Overview](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#a74eed2c)” GraphQL协议部分。
 + 参考 “[GraphQL 学习](https://graphql.cn/learn)” 官方文档。
 + 参考 “[GraphQL 和 REST 之间有何区别](https://aws.amazon.com/cn/compare/the-difference-between-graphql-and-rest/)” 进一步了解。
 
@@ -58,9 +58,9 @@ order: 4
 
 :::warning 提示
 
-更多关于模型的概述内容请参考：[Front-End Overview](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#三-模型)
+更多关于模型的概述内容请参考：[Front-End Overview](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#e5020d9e)
 
-更多关于模型字段类型的内容请参考：[字段 Field](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#二、字段-field)
+更多关于模型字段类型的内容请参考：[字段 Field](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#0d964e66)
 
 :::
 
@@ -140,7 +140,7 @@ order: 4
 
 +  queryByWrapper 和 queryOneByWrapper调用的是同一个函数，只是 fun 和 name 不同。
 
-更多关于函数入参、出参等详细内容请参考：[ORM API - Common ORM Methods](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#五、common-orm-methods)
+更多关于函数入参、出参等详细内容请参考：[ORM API - Common ORM Methods](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#261b1eaf)
 
 :::
 
@@ -193,7 +193,7 @@ ${query/mutation} {
 
 在 `countByWrapper` 函数的声明中，其返回值为 `Long` 类型，这也就说明我们需要通过 `Number()` 函数将其转换为 `number` 类型进行返回。虽然这样的处理会有一定程度的瑕疵，但对于现有场景来说，`countByWrapper` 返回的整数最大值一般不会超过 `JavaScript` 整数的安全值，如业务场景已经明确超出安全值范畴，需通过 `bignumber.js` 等封装数据类型的工具集进行处理。
 
-更多类型映射相关的内容请参考：[数据类型的映射](#十-数据类型的映射)
+更多类型映射相关的内容请参考：[数据类型的映射](#89c8bfc3)
 
 :::
 
@@ -280,7 +280,7 @@ export class GanttDemoModelAction {
 
 更多关于 RSQL 相关的内容请参考：[RSQL Service](/zh/DevManual/Reference/Front-EndFramework/Services/RSQL-service.md)
 
-更多类型映射相关的内容请参考：[数据类型的映射](#十-数据类型的映射)
+更多类型映射相关的内容请参考：[数据类型的映射](#89c8bfc3)
 
 :::
 
@@ -477,7 +477,7 @@ Required<IdModel> 等价于
   - 一对多：需按数组对象的格式传入，必须传入主键（id），未传入的值不会更新。
   - 多对多：需按数组对象的格式传入，必须传入主键（id），其他值传入无意义。
 
-更多关于关联关系类型的定义请参考：[ORM API - 关系类型](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#4、关系类型)
+更多关于关联关系类型的定义请参考：[ORM API - 关系类型](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#cc347a8a)
 
 :::
 
@@ -1140,7 +1140,7 @@ public static queryListByWrapperByGQLBuilder(): Promise<GanttDemoModel[]> {
 
 :::warning 提示
 
-更多关于 GQLBuilder 的使用示例和 API 请参考：[GraphQL Service - GQLBuilder](/zh/DevManual/Reference/Front-EndFramework/Services/graphQL-service.md#一-gqlbuilder)
+更多关于 GQLBuilder 的使用示例和 API 请参考：[GraphQL Service - GQLBuilder](/zh/DevManual/Reference/Front-EndFramework/Services/graphQL-service.md#93149d98)
 
 :::
 
@@ -1162,7 +1162,7 @@ public static queryListByWrapper(): Promise<GanttDemoModel[] | undefined> {
 
 :::warning 提示
 
-更多关于 GenericFunctionService 的 API 和使用示例请参考：[GraphQL Service - GenericFunctionService](/zh/DevManual/Reference/Front-EndFramework/Services/graphQL-service.md#二-genericfunctionservice)
+更多关于 GenericFunctionService 的 API 和使用示例请参考：[GraphQL Service - GenericFunctionService](/zh/DevManual/Reference/Front-EndFramework/Services/graphQL-service.md#4e39b4c4)
 
 :::
 

@@ -17,7 +17,7 @@ The content of this chapter will guide developers to set up a local development 
 
 Before starting the tutorial in this chapter, you need to have at least installed the Docker environment on your machine and successfully deployed the Oinone Designer.
 
-+ [Run Oinone Using Docker Compose](/en/InstallOrUpgrade/CommunityEdition.md#I.-Special-Notes)
++ [Run Oinone Using Docker Compose](/en/InstallOrUpgrade/CommunityEdition.md#3cb40e95)
 
 :::
 
@@ -58,7 +58,7 @@ OINONE_BIZ_OPENAPI_SERVER=http://192.168.1.100:8193
 + 8191: The default port of the Spring Server for the business project
 + 8193: The default port of the EIP for the business project
 
-The default ports can be obtained from the `application.yml` configuration in the [backend project provided in the tutorial](#iii-set-up-the-backend-development-environment).
+The default ports can be obtained from the `application.yml` configuration in the [backend project provided in the tutorial](#49c0cf29).
 
 For more information about the `.env` file, please refer to: [Oinone Designer Configuration Guide](/en/InstallOrUpgrade/setup-oinone-designer.md)
 
@@ -182,7 +182,7 @@ spring:
 
 :::warning Tip
 
-After opening the project in IDEA for the first time, you need to configure Maven, JDK, etc. You can refer to: [Appendix 1: IDEA Environment Configuration](#appendix-1-idea-environment-configuration)
+After opening the project in IDEA for the first time, you need to configure Maven, JDK, etc. You can refer to: [Appendix 1: IDEA Environment Configuration](#159a112f)
 
 After the configuration is completed, open `TutorialsApplication.java` in IDEA and click the startup icon on the left to run `Run 'TutorialsAppli....main()'`. However, it cannot be started normally in this way.
 
@@ -243,7 +243,7 @@ At this point, you can start learning all the content of the backend framework.
 
 :::warning Note
 
-+ 89: The port configured in [Use the Front-End of the Oinone Designer to Connect to the Back-End of the Business Project](#ii-use-the-front-end-of-the-oinone-designer-to-access-the-back-end-of-the-business-project)
++ 89: The port configured in [Use the Front-End of the Oinone Designer to Connect to the Back-End of the Business Project](#b97e2274)
 
 :::
 
@@ -273,7 +273,7 @@ git clone git@gitee.com:oinone/oinone-frontend-tutorials.git
 
 :::warning Tip
 
-After opening the project in WebStorm for the first time, you need to configure Prettier, ESLint, etc. You can refer to: [Appendix 2: WebStorm Environment Configuration](#appendix-2-webstorm-environment-configuration)
+After opening the project in WebStorm for the first time, you need to configure Prettier, ESLint, etc. You can refer to: [Appendix 2: WebStorm Environment Configuration](#ee0e1c96)
 
 :::
 

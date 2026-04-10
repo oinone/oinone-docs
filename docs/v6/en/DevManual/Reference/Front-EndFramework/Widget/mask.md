@@ -355,7 +355,7 @@ Let's look at a scenario that may be encountered in actual business: when the "O
 
 Let's first define a runtime configuration manager that can obtain whether it is enabled through the runtime configuration:
 
-(It is recommended to follow the best practices introduced in the [Environment - Custom Runtime Configuration](/en/DevManual/Reference/Front-EndFramework/environment.md#iii-custom-runtime-configuration) section for definition)
+(It is recommended to follow the best practices introduced in the [Environment - Custom Runtime Configuration](/en/DevManual/Reference/Front-EndFramework/environment.md#40073871) section for definition)
 
 ``` typescript
 /**

@@ -306,7 +306,7 @@ cdn:
 
 :::
 
-更多oss配置请参考：[文件存储配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#十四-文件存储配置-pamirs-file)
+更多oss配置请参考：[文件存储配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#b3796c8c)
 
 ## （二）启动后端服务
 ### 1. 使用Maven启动

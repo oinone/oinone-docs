@@ -72,7 +72,7 @@ Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Da
 
 # 二、校验约束
 
-参考：与此主题相关的文档可在 “[Validation](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#2、校验约束-validation)” 中找到。
+参考：与此主题相关的文档可在 “[Validation](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#aa51d9a6)” 中找到。
 
 :::info 目标：在本节结束时
 

@@ -11,7 +11,7 @@ order: 3
 At the end of the previous chapter, we successfully created an Oinone module. But it's still an empty shell, unable to store any data. In our expense module, we want to store project information related to expenses (name, description, project type, department, etc.) in the database. The Oinone framework provides tools for convenient database interaction.
 
 # I. Object-Relational Mapping
-Reference: Documentation related to this topic can be found in "[Model API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#i-model)".
+Reference: Documentation related to this topic can be found in "[Model API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#7f79b17a)".
 
 :::info Objective: By the end of this section, the `expenses_project_info` table should be created:
 
@@ -93,7 +93,7 @@ If this occurs, you should be doing it correctly! To ensure accuracy, use the `m
 >
 
 # II. Model fields
-Reference: Documentation related to this topic can be found in "[Field API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#ii-field)".
+Reference: Documentation related to this topic can be found in "[Field API](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#9bc9c61f)".
 Fields define what a model can store and where. Fields are defined as attributes in the model class:
 
 ``` java

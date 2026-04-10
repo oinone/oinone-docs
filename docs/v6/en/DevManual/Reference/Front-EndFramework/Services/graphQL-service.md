@@ -13,7 +13,7 @@ order: 4
 
 This chapter covers all content related to `GraphQL Service` in Oinone Kunlun. In addition to this chapter, you can also find content about `GraphQL` in the following chapters:
 
-+ The GraphQL Protocol section in "[Mastering the Frontend Framework - Frontend Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#ii-graphql-protocol)"
++ The GraphQL Protocol section in "[Mastering the Frontend Framework - Frontend Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#b9d4625a)"
 + The GraphQL Protocol section in [Customize GraphQL Request](/en/DevManual/OperationGuide/customize-graphQL-request.md)
 
 :::
@@ -25,7 +25,7 @@ The GraphQL protocol is the standard protocol used for frontend-backend interact
 `GraphQL` is a **graph query language** represented by **structured text**. It is not tied to any specific database or storage engine; instead, it is supported by your existing code and data.
 
 For more reference materials:
-+ [Oinone Gateway Protocol API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#i-detailed-explanation-of-graphql-protocol)
++ [Oinone Gateway Protocol API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#9a15f93f)
 + [How to GraphQL](https://www.howtographql.com/)
 + [GraphQL Introduction](https://graphql.cn/learn/)
 
@@ -383,7 +383,7 @@ Any model inherited from `IdModel` has some basic built-in `CRUD` functions. As 
 Here, we list some commonly used default functions that can be called by the frontend. All functions are ultimately initiated via the **Function Name (name)**. Note a special case here:
 + `queryByWrapper` and `queryOneByWrapper` call the same function, but their `fun` and `name` are different.
 
-For more details about function input parameters, output parameters, etc., please refer to: [ORM API - Common ORM Methods](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#v-common-orm-methods)
+For more details about function input parameters, output parameters, etc., please refer to: [ORM API - Common ORM Methods](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#3cae0c86)
 :::
 
 ## (III) GQL Syntax with countByWrapper as an Example
@@ -406,7 +406,7 @@ It is worth mentioning that for numeric types, the backend type definitions incl
 :::warning Tips
 In the declaration of the `countByWrapper` function, its return value is of `Long` type. This means we need to convert it to a `number` type using the `Number()` function before returning. Although this processing has certain flaws, in existing scenarios, the maximum integer value returned by `countByWrapper` generally does not exceed the safe integer value of `JavaScript`. If the business scenario clearly exceeds the safe value range, tools like `bignumber.js` (which encapsulate data types) should be used for processing.
 
-For more content about type mapping, please refer to: [Data Type Mapping](#ix-data-type-mapping)
+For more content about type mapping, please refer to: [Data Type Mapping](#8f5905a0)
 :::
 
 **Theory: Function Definition and GQL Syntax**
@@ -486,7 +486,7 @@ Functions are defined by the backend. As the caller, the frontend uses GQL to sp
 
 For more content about RSQL, please refer to: [RSQL Service](/en/DevManual/Reference/Front-EndFramework/Services/RSQL-service.md)
 
-For more content about type mapping, please refer to: [Data Type Mapping](#ix-data-type-mapping)
+For more content about type mapping, please refer to: [Data Type Mapping](#8f5905a0)
 :::
 
 
@@ -671,7 +671,7 @@ Update logic of the default data manager function:
   - One-to-many: Must be passed as an array of objects; the primary key (id) is mandatory; unpassed values remain unchanged.
   - Many-to-many: Must be passed as an array of objects; the primary key (id) is mandatory; other passed values are meaningless.
 
-For more content about association types, please refer to: [ORM API - Relationship Types](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#4-relation-types)
+For more content about association types, please refer to: [ORM API - Relationship Types](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#559dbe40)
 :::
 
 

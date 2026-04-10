@@ -15,7 +15,7 @@ This tutorial extends the "Back-end Framework Tutorial". Please ensure you have 
 
 # I. Business Data Initialization
 
-Reference: Documentation related to this topic can be found in "[Module Lifecycle](/en/DevManual/Reference/Back-EndFramework/module-API.md#III-Module-Lifecycle)".
+Reference: Documentation related to this topic can be found in "[Module Lifecycle](/en/DevManual/Reference/Back-EndFramework/module-API.md#86204319)".
 
 :::info Objectives: By the end of this section:
 

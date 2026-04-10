@@ -769,7 +769,7 @@ private Integer age;
 ```
 
 + **多规则配置**：通过 `ruleWithTips` 数组可声明多条校验规则，每条规则由 `@Validation.Rule` 定义，包含 `value`（校验表达式）和 `error`（错误提示）两个参数。
-+ **内置函数支持**：支持 `IS_BLANK`（判断文本是否为空）、`LEN`（获取文本长度）等内置函数，完整函数列表与使用方法详见[内置函数](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#六、表达式)
++ **内置函数支持**：支持 `IS_BLANK`（判断文本是否为空）、`LEN`（获取文本长度）等内置函数，完整函数列表与使用方法详见[内置函数](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#f092c4a2)
 
 若需要开展更为复杂的检查工作，可在模型与字段定义时使用 `@Validation(check="X")`，其中 `X` 指代给定模型的一个函数。
 
@@ -1576,7 +1576,7 @@ private String name;
 
 ├── requestSerialize 前端序列化函数 SerializeEnum 或者 自定义序列化函数
 
-├── defaultValue  默认值，支持[内置函数](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#六、表达式)
+├── defaultValue  默认值，支持[内置函数](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#f092c4a2)
 
 ├── required	    必填，默认值为false
 
@@ -1841,7 +1841,7 @@ private String name;
 
 ### 4、校验约束 Validation
 
-关于此主题的详细内容，可参考 模型的[**校验约束（Validation）**](#qkm8t) 相关文档。
+关于此主题的详细内容，可参考 模型的[**校验约束（Validation）**](#04f81ba8) 相关文档。
 
 # 三、**枚举与数据字典**
 
@@ -3361,7 +3361,7 @@ try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
 
 ## （一）批量操作
 
-批量操作涵盖**批量创建**与**批量更新**两种模式，系统默认采用 `batchCommit` 作为提交类型。目前支持以下四种提交类型，配置参考：[批量操作配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#3、批量操作配置)。
+批量操作涵盖**批量创建**与**批量更新**两种模式，系统默认采用 `batchCommit` 作为提交类型。目前支持以下四种提交类型，配置参考：[批量操作配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#99bdbe57)。
 
 ### 1、运行时配置
 

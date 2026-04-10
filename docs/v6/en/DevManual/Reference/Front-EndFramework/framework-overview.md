@@ -312,7 +312,7 @@ Almost all expressions include context variables like `activeRecord`, `rootRecor
 
 For more on expressions, refer to: [Expression Service](/en/DevManual/Reference/Front-EndFramework/Services/expression-service.md)
 
-For more on built-in functions, refer to: [Function API - Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#v-built-in-functions)
+For more on built-in functions, refer to: [Function API - Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#b2e5fbb6)
 
 :::
 

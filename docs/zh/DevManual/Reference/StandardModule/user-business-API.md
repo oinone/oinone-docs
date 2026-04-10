@@ -196,7 +196,7 @@ public class TestCompanyQueryServiceImpl implements TestCompanyQueryService {
 
 #### 步骤 2：Session 上下文集成
 
-参考：与此主题相关的文档可在 “[扩展PamirsSession](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/request-context-API.md#二-扩展pamirssession)” 中找到。
+参考：与此主题相关的文档可在 “[扩展PamirsSession](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/request-context-API.md#77d83a2a)” 中找到。
 
 **目标**：登录时建立用户→员工→公司的关联，存储于 Session。
 
@@ -369,7 +369,7 @@ List<TestEmployee> queryByUserId(Long userId);
 
 ## （四）常见示例
 
-对用户相关的API进行扩展，可以利用Oinone的 “[ 默认扩展点](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#一-默认扩展点)”和 [SPI](/zh/DevManual/Reference/common-extension-points-and-SPI-list.md#一、spi-机制) 机制进行。
+对用户相关的API进行扩展，可以利用Oinone的 “[ 默认扩展点](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#b82e2c27)”和 [SPI](/zh/DevManual/Reference/common-extension-points-and-SPI-list.md#57d806f9) 机制进行。
 
 ### 1、首次登录修改密码
 

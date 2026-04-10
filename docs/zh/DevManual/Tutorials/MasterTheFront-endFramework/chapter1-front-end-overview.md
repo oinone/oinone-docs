@@ -261,7 +261,7 @@ http://127.0.0.1:8080/page;module=resource;viewType=TABLE;model=resource.Resourc
 
 :::warning 提示
 
-这一部分内容需要结合第四节理论中关于 [跳转动作（ViewAction）](#viewaction) 的介绍对照学习，可以更好的理解这些参数的含义。
+这一部分内容需要结合第四节理论中关于 [跳转动作（ViewAction）](#b68ecb57) 的介绍对照学习，可以更好的理解这些参数的含义。
 
 :::
 

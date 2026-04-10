@@ -138,7 +138,7 @@ When the expression is passed an object with such a structure, the value of "nam
 
 :::warning Note:
 
-For more content about built-in functions, please refer to: [Function API](/en/DevManual/Reference/Back-EndFramework/functions-API.md#v-built-in-functions)
+For more content about built-in functions, please refer to: [Function API](/en/DevManual/Reference/Back-EndFramework/functions-API.md#b2e5fbb6)
 
 :::
 

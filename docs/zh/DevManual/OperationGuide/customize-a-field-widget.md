@@ -446,4 +446,4 @@ public renderDefaultSlot(context: RowContext): VNode[] | string {
 如果你有时间的话，这里有一些你可以尝试进行的练习内容：
 
 1. 在详情和画廊中定义一个红色的只读输入框组件，并在页面中使用它。
-2. 结合界面设计器的自定义组件，将我们在本次练习中实现的组件作为自定义组件，让它可以用界面设计器放置在任何有效字段上进行使用。参考：[自定义组件与设计器结合 - 字段组件](/zh/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md#二、自定义字段组件)
+2. 结合界面设计器的自定义组件，将我们在本次练习中实现的组件作为自定义组件，让它可以用界面设计器放置在任何有效字段上进行使用。参考：[自定义组件与设计器结合 - 字段组件](/zh/DevManual/OperationGuide/combination-of-customized-widget-and-designer.md#25f8d372)

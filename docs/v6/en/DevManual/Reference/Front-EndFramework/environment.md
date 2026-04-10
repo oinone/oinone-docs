@@ -274,7 +274,7 @@ VueOioProvider({
 
 :::warning Note:
 
-For more configuration parameters, refer to: [API](#III-OioProviderProps)
+For more configuration parameters, refer to: [API](#f4cdf262)
 
 :::
 

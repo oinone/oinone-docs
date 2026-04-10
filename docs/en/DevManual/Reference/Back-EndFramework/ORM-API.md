@@ -708,7 +708,7 @@ private Integer age;
 ```
 
 - **Multi-rule configuration**: Declare multiple validation rules via the `ruleWithTips` array, each defined by `@Validation.Rule` with `value` (validation expression) and `error` (error message).
-- **Built-in function support**: Supports functions like `IS_BLANK` (check if text is empty) and `LEN` (get text length); see [Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#vi-expressions) for the full list.
+- **Built-in function support**: Supports functions like `IS_BLANK` (check if text is empty) and `LEN` (get text length); see [Built-in Functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#4f415c74) for the full list.
 
 For complex checks, use `@Validation(check="X")` in model/field definitions, where `X` refers to a function of the given model.
 
@@ -1500,7 +1500,7 @@ Use the following attributes in the `@Field` annotation to configure front-end d
 ├── priority Database field priority
 ├── serialize Back-end serialization function SerializeEnum or custom serialization function
 ├── requestSerialize Front-end serialization function SerializeEnum or custom serialization function
-├── defaultValue Default value, supporting [built-in functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#vi-expressions)
+├── defaultValue Default value, supporting [built-in functions](/en/DevManual/Reference/Back-EndFramework/functions-API.md#4f415c74)
 ├── required Mandatory, default is false
 ├── invisible Invisible, default is false
 ├── immutable Unchangeable, default is false
@@ -1704,7 +1704,7 @@ When creating association relation fields, use the `onUpdate` and `onDelete` att
 
 ### 4. Validation Constraints
 
-For detailed content on this topic, refer to the [Validation Constraints](#qkm8t) documentation for models.
+For detailed content on this topic, refer to the [Validation Constraints](#04f81ba8) documentation for models.
 
 # III. Enums and Data Dictionaries
 
@@ -3224,7 +3224,7 @@ try (BatchSizeHintApi batchSizeHintApi = BatchSizeHintApi.use(-1)) {
 
 ## (I) Batch Operations  
 
-Batch operations cover two modes: **batch creation** and **batch update**. The system uses `batchCommit` as the default submission type. Currently, four submission types are supported. For configuration references, see: [Batch Operation Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#3、批量操作配置).  
+Batch operations cover two modes: **batch creation** and **batch update**. The system uses `batchCommit` as the default submission type. Currently, four submission types are supported. For configuration references, see: [Batch Operation Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#99bdbe57).  
 
 ### 1. Runtime Configuration  
 

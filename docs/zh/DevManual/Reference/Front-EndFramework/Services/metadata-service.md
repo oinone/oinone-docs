@@ -11,7 +11,7 @@ prev:
   text: Vue UI
   link: /zh/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI.md
 ---
-在 Oinone Kunlun 中，元数据是系统运行最重要的一部分。在 “[精通前端框架 - 前端框架概览](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#五、理论-元数据概览)” 中，我们已经对元数据概念有了初步的认识，在这一章节，我们将从前端框架的角度来进一步了解元数据在 Oinone 中的具体呈现。
+在 Oinone Kunlun 中，元数据是系统运行最重要的一部分。在 “[精通前端框架 - 前端框架概览](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#8c828a5f)” 中，我们已经对元数据概念有了初步的认识，在这一章节，我们将从前端框架的角度来进一步了解元数据在 Oinone 中的具体呈现。
 
 # 一、元数据图示
 
@@ -53,7 +53,7 @@ const model = await ModelCache.get('resource.ResourceCountryGroup');
 :::warning
 提示：
 
-更多关于 获取运行时元数据方法 的内容请参考：[API](#四-获取运行时元数据方法)
+更多关于 获取运行时元数据方法 的内容请参考：[API](#42fbc059)
 
 :::
 

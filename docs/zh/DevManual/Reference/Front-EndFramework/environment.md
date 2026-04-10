@@ -275,7 +275,7 @@ VueOioProvider({
 
 :::warning 提示：
 
-更多配置参数请参考：[API](#三-oioproviderprops)
+更多配置参数请参考：[API](#3a290b70)
 
 :::
 

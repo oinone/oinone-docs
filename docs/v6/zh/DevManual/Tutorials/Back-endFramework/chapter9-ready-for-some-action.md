@@ -17,7 +17,7 @@ order: 9
 
 # 一、单记录操作
 
-参考：与此主题相关的文档可在 “[操作](/zh/DevManual/Reference/Back-EndFramework/actions-API.md)与[错误管理](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#七、异常处理)” 中找到。
+参考：与此主题相关的文档可在 “[操作](/zh/DevManual/Reference/Back-EndFramework/actions-API.md)与[错误管理](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#420ce0f3)” 中找到。
 
 :::info 目标：在本节结束时，你应该能够：
 

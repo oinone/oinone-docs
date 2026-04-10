@@ -254,7 +254,7 @@ public Pagination<TestModelEnhance> search(Pagination<TestModelEnhance> page, IW
 
 ## （三）YAML文件配置
 
-与此主题相关的文档可在 [增强模型配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#十二-增强模型配置-pamirs-channel)和[数据记录配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#十-数据记录配置-pamirs-record-sql) 中找到。
+与此主题相关的文档可在 [增强模型配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#9d84931b)和[数据记录配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#2195c1d2) 中找到。
 
 在启动工程的application.yml文件中增加配置pamirs.boot.modules增加channel和sql_record，即在启动模块中增加channel和sql_record模块。同时注意es的配置，是否跟es的服务一致
 

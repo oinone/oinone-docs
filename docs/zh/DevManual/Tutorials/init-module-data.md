@@ -15,7 +15,7 @@ order: 6
 
 # 一、业务数据初始化
 
-参考：与此主题相关的文档可在 “[模块生命周期](/zh/DevManual/Reference/Back-EndFramework/module-API.md#三、模块生命周期)” 中找到。
+参考：与此主题相关的文档可在 “[模块生命周期](/zh/DevManual/Reference/Back-EndFramework/module-API.md#05780b76)” 中找到。
 
 :::info 目标：在本节结束时：
 

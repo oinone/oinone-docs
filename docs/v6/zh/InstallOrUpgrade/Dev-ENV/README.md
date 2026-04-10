@@ -109,7 +109,7 @@ Java集成开发环境, 可选用Ultimate或者Community版本。
 
 :::
 
-[安装与注意事项](/v6/zh/DevManual/Tutorials/setup-guide.md#三、后端额外工具)
+[安装与注意事项](/v6/zh/DevManual/Tutorials/setup-guide.md#31d06053)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -193,7 +193,7 @@ vue脚手架工具
 
 Vue.js 官方提供的脚手架工具，支持项目快速初始化、配置管理和插件扩展，简化 Vue 项目的开发与构建流程
 
-[安装与注意事项](/v6/zh/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#三、进阶)
+[安装与注意事项](/v6/zh/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#3806460d)
 
   </div>
 
@@ -207,7 +207,7 @@ Vue.js 官方提供的脚手架工具，支持项目快速初始化、配置管�
 
 Node.js 版本管理工具，支持在同一设备上安装、切换和管理多个 Node.js 版本。
 
-[安装与注意事项](/v6/zh/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#三、进阶)
+[安装与注意事项](/v6/zh/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#3806460d)
 
   </div>
 

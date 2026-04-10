@@ -1549,11 +1549,11 @@ pamirs:
 
 ### 1、Message Queue Connection Configuration
 
-Reference: [Message Queue Connection Configuration](#消息队列连接配置) in Event Configuration
+Reference: [Message Queue Connection Configuration](#4efefdc2) in Event Configuration
 
 ### 2、Elasticsearch Configuration
 
-Reference: [Search Engine Configuration](#搜索引擎配置) in Enhanced Model
+Reference: [Search Engine Configuration](#f9c0bcd1) in Enhanced Model
 
 ### 3、Configuration Center pamirs.zookeeper
 

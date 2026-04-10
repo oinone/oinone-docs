@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress';
+import { createHash } from 'node:crypto';
 import { getSidebar } from './auto-sidebar';
 import { pagefindPlugin } from 'vitepress-plugin-pagefind';
 import { defaultLanguage, supportedLanguages } from './state/languages';
@@ -162,7 +163,12 @@ export default defineConfig({
     }
   },
   markdown: {
-    lineNumbers: true
+    lineNumbers: true,
+    anchor: {
+      slugify(str) {
+        return createHash('md5').update(str).digest('hex').slice(0, 8);
+      }
+    }
   },
   themeConfig: {
     outline: [1, 6],

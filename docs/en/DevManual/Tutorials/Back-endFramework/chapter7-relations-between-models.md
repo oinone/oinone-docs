@@ -19,7 +19,7 @@ In our expense management module, for a project information model, we also need 
 
 # I. Many-to-One Relationship (many2one)
 
-Reference: Documentation related to this topic can be found in "[Many-to-One Relationship](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#many-to-one-relationship-many2one)".
+Reference: Documentation related to this topic can be found in "[Many-to-One Relationship](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#a6d036db)".
 
 :::info Objective: By the end of this section:
 
@@ -143,7 +143,7 @@ Now let's look at other types of associations.
 
 # II. Many-to-Many Relationship (many2many)
 
-Reference: Documentation related to this topic can be found in "[Many-to-Many Relationship](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#多对多关系many2many)".
+Reference: Documentation related to this topic can be found in "[Many-to-Many Relationship](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#8f24458e)".
 
 :::info Objective: By the end of this section:
 

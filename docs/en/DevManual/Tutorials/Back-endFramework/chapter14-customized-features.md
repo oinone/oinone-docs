@@ -92,7 +92,7 @@ By default, extpoints and hooks only take effect for requests initiated from pag
 
 ## (Ⅰ) Extpoints
 
-Reference: Documentation related to this topic can be found in "[Extpoints](/en/DevManual/Reference/Back-EndFramework/functions-API.md#ii-extpoint-extension-points)".
+Reference: Documentation related to this topic can be found in "[Extpoints](/en/DevManual/Reference/Back-EndFramework/functions-API.md#2848cf63)".
 
 :::info Objectives: By the end of this section:
 
@@ -165,7 +165,7 @@ Submodels not only inherit fields and functions from the parent model but also s
 
 ## (Ⅱ) Hooks
 
-Reference: Documentation related to this topic can be found in "[Hook](/en/DevManual/Reference/Back-EndFramework/functions-API.md#iii-hook-interceptors)".
+Reference: Documentation related to this topic can be found in "[Hook](/en/DevManual/Reference/Back-EndFramework/functions-API.md#7a9d36d1)".
 
 :::info Objectives: By the end of this section
 

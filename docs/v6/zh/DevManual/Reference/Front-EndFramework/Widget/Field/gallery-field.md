@@ -207,13 +207,13 @@ export class GalleryHtmlFieldWidget extends DetailHtmlFieldWidget
 
 ### 1、GalleryStringFieldWidget
 
-**引用**：文本（String）- [GalleryStringFieldWidget](#quote1)
+**引用**：文本（String）- [GalleryStringFieldWidget](#bdce6a4a)
 
 ## （五）邮箱（Email）
 
 ### 1、GalleryStringFieldWidget
 
-**引用**：文本（String）- [GalleryStringFieldWidget](#quote1)
+**引用**：文本（String）- [GalleryStringFieldWidget](#bdce6a4a)
 
 ## （六）整数（Integer）
 
@@ -235,13 +235,13 @@ export class GalleryNumberWidget extends DetailNumberWidget
 
 ### 1、GalleryNumberWidget
 
-**引用**：整数（Integer）- [GalleryNumberWidget](#quote2)
+**引用**：整数（Integer）- [GalleryNumberWidget](#8bff8678)
 
 ## （八）金额（Money）
 
 ### 1、GalleryNumberWidget
 
-**引用**：整数（Integer）- [GalleryNumberWidget](#quote2)
+**引用**：整数（Integer）- [GalleryNumberWidget](#8bff8678)
 
 ## （九）布尔（Boolean）
 

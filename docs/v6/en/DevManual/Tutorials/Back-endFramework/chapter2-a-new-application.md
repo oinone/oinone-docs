@@ -9,7 +9,7 @@ order: 2
 
 ---
 # I. Overview
-Reference: Documentation related to this topic can be found in "[Module Definition](/en/DevManual/Reference/Back-EndFramework/module-API.md#1、moduledefinition)".
+Reference: Documentation related to this topic can be found in "[Module Definition](/en/DevManual/Reference/Back-EndFramework/module-API.md#841e2484)".
 
 The purpose of this chapter is to lay the foundation for creating a brand-new Oinone module. We will start from scratch, using only the minimum elements required for Oinone to recognize our module. In the following chapters, we will gradually add features to build a practical business case.
 

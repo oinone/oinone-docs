@@ -46,7 +46,7 @@ Oinone 消息队列模块提供统一的 API 接口支持 RocketMQ/Kafka/RabbitM
 
 ## （二）YAML配置
 
-与此主题相关的文档可在 [事件配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#九-事件配置-pamirs-event) 中找到。
+与此主题相关的文档可在 [事件配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#43ee8bb9) 中找到。
 
 ### 1、基础配置
 

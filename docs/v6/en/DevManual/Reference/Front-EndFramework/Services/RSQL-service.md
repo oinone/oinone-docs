@@ -20,13 +20,13 @@ The RSQL protocol is a standard protocol in Oinone that provides query condition
 
 For more reference materials:
 
-+ [Oinone Gateway Protocol API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#ii-detailed-explanation-of-rsql-protocol)
++ [Oinone Gateway Protocol API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#c3954c45)
 + [RSQL Parser (Backend)](https://github.com/jirutka/rsql-parser)
 + [RSQL Parser (Frontend)](https://github.com/piotr-oles/rsql)
 
 :::warning Note
 
-For information about RSQL logical operators and comparison operators, please refer to: [Oinone Gateway Protocol API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#ii-detailed-explanation-of-rsql-protocol)
+For information about RSQL logical operators and comparison operators, please refer to: [Oinone Gateway Protocol API](/en/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#c3954c45)
 
 :::
 

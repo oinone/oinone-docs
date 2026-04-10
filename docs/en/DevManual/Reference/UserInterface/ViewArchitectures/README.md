@@ -24,7 +24,7 @@ This chapter provides a comprehensive introduction to the architectural design, 
 
 Before studying this chapter, you need to have a basic understanding of Oinone metadata and Views. Please refer to:
 
-+ [Frontend Framework Overview - Metadata Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#五、理论-元数据概览)
++ [Frontend Framework Overview - Metadata Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#a86b38ab)
 + [XML Baidu Encyclopedia](https://baike.baidu.com/item/%E5%8F%AF%E6%89%A9%E5%B1%95%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80)
 + [XML Syntax Reference](https://www.runoob.com/xml/xml-syntax.html)
 + [JSON Baidu Encyclopedia](https://baike.baidu.com/item/JSON/2462549)

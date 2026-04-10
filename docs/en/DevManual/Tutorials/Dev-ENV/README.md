@@ -108,7 +108,7 @@ Java integrated development environment, which can choose Ultimate or Community 
 2. Install the oinone plugin
 :::
 
-[Installation and Precautions](/en/DevManual/Tutorials/setup-guide.md#appendix-1-idea-environment-configuration)
+[Installation and Precautions](/en/DevManual/Tutorials/setup-guide.md#159a112f)
   </div>
 
   <div style="flex: 1; background: #f8f9fa; border-radius: 8px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
@@ -192,7 +192,7 @@ Vue scaffolding tool
 
 The official scaffolding tool provided by Vue.js, which supports rapid project initialization, configuration management, and plugin extension, simplifying the development and construction process of Vue projects.
 
-[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Node.js-setup.md#ⅲadvanced)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Node.js-setup.md#79f5a33f)
 
   </div>
 
@@ -206,7 +206,7 @@ Convenient Node.js version management
 
 Node.js version management tool, which supports installing, switching, and managing multiple Node.js versions on the same device.
 
-[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Node.js-setup.md#ⅲadvanced)
+[Installation and Precautions](/en/DevManual/Tutorials/Dev-ENV/Node.js-setup.md#79f5a33f)
 
   </div>
 

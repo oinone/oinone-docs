@@ -20,13 +20,13 @@ RSQL 协议是 Oinone 中负责提供查询条件的标准协议，理解并学�
 
 更多参考资料：
 
-+ [Oinone 网关协议 API](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#二-rsql-协议详解)
++ [Oinone 网关协议 API](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#da17c467)
 + [RSQL Parser（后端）](https://github.com/jirutka/rsql-parser)
 + [RSQL Parser（前端）](https://github.com/piotr-oles/rsql)
 
 :::warning 提示
 
-关于 RSQL 逻辑运算符和比较运算符的相关内容请参考：[Oinone 网关协议 API](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#二-rsql-协议详解)
+关于 RSQL 逻辑运算符和比较运算符的相关内容请参考：[Oinone 网关协议 API](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#da17c467)
 
 :::
 

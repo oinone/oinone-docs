@@ -15,7 +15,7 @@ Before diving into Oinone-specific inheritance, let's first explore how to alter
 
 # I. Function Override
 
-Reference: Related documentation can be found in "[Data Manager](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#2-Data-Manager)".
+Reference: Related documentation can be found in "[Data Manager](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#7e13f79e)".
 
 :::info Objectives: By the end of this section
 
@@ -184,7 +184,7 @@ public class TestModelAction {
 
 # II. Model Inheritance
 
-Reference: Related documentation can be found in "[Inheritance and Extension](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#IV-Model-Inheritance)".
+Reference: Related documentation can be found in "[Inheritance and Extension](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#da15fb10)".
 
 The ability to perform standard CRUD operations in our expense management module without writing specific code, along with default inherited fields and override capabilities, stems from Oinone's metadata design following object-oriented principles. In Oinone, models serve as the carrier for data and behavior, similar to objects in Java.
 

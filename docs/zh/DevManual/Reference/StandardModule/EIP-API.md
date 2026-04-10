@@ -31,7 +31,7 @@ Oinone 集成平台通过注解 `@Integrate` 和 `@Open` 提供灵活的接口�
 
 ### 1、开放平台配置
 
-与此主题相关的文档可在 “[集成平台配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#十六-集成平台配置-pamirs-eip)” 中找到。
+与此主题相关的文档可在 “[集成平台配置](/zh/DevManual/Reference/Back-EndFramework/module-API.md#2d873280)” 中找到。
 
 ### 2、启动eip模块
 
@@ -444,7 +444,7 @@ public class TestIntegrateServiceImpl implements TestIntegrateService {
 
 ## （一）扫描并注册所有标注 `@Open` 和 `@Integrate` 的接口
 
-在模块启动生命周期中调用，与此主题相关的文档可在 “[模块生命周期](/zh/DevManual/Reference/Back-EndFramework/module-API.md#三、模块生命周期)” 中找到。
+在模块启动生命周期中调用，与此主题相关的文档可在 “[模块生命周期](/zh/DevManual/Reference/Back-EndFramework/module-API.md#05780b76)” 中找到。
 
 ``` java
 EipResolver.resolver(TestModule.MODULE_MODULE,null);

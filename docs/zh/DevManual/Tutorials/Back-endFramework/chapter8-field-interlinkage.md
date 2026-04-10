@@ -44,7 +44,7 @@ private List<PamirsPartner> partners;
 
 通过Ux的 `clearFields`属性配置，当`partnerType` 字段发生变化时，需要清空的字段列表。
 
-在关系字段定义中，添加 `domain=X` 选项，其中 `X` 可以接受一个[RSQL](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#1、rsql-基础概念)的表达式，activeRecord代表视图的当前对象
+在关系字段定义中，添加 `domain=X` 选项，其中 `X` 可以接受一个[RSQL](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#bd46e12f)的表达式，activeRecord代表视图的当前对象
 
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/BackendFramework/chapter-8/domain2.gif)
 

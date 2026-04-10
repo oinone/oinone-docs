@@ -209,7 +209,7 @@ props: {
 
 :::
 
-在这里，我们要保证表格的功能不出问题，一定要使用 `setTableInstance` 方法将 `OioTable` 组件实例传递到 Widget 组件，这样就可以让 Widget 组件直接操作 `OioTable` 实例。这一点和我们在 [聚焦输入框](/zh/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#九、聚焦输入框) 教程中的操作类似，都是为了将逻辑转移到 Widget 组件以此提供可被重写或继承的具体的功能。我们可以这样处理一下：
+在这里，我们要保证表格的功能不出问题，一定要使用 `setTableInstance` 方法将 `OioTable` 组件实例传递到 Widget 组件，这样就可以让 Widget 组件直接操作 `OioTable` 实例。这一点和我们在 [聚焦输入框](/zh/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#153feb8e) 教程中的操作类似，都是为了将逻辑转移到 Widget 组件以此提供可被重写或继承的具体的功能。我们可以这样处理一下：
 
 ``` vue
 setup(props) {
@@ -706,7 +706,7 @@ props: {
 </element>
 ```
 
-现在，让我们回想一下 “[带插槽的通用卡片](/zh/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#五、带插槽的通用卡片)” 一节，在 `布局（Layout）` 中，我们使用了 `插槽（Slot）` 以及在 `拓展内容` 部分提及的 `具名插槽` 相关内容。一个正确的定义应该是这样的：
+现在，让我们回想一下 “[带插槽的通用卡片](/zh/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#ee031c1f)” 一节，在 `布局（Layout）` 中，我们使用了 `插槽（Slot）` 以及在 `拓展内容` 部分提及的 `具名插槽` 相关内容。一个正确的定义应该是这样的：
 
 ``` xml
 <element widget="CustomGallery" slot="table" slotSupport="field">

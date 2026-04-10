@@ -31,7 +31,7 @@ This document helps you quickly grasp core concepts and basic logic. However, du
 
 ### 1. Open Platform Configuration
 
-Related documentation on this topic can be found in "[Integration Platform Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#xvi-integration-platform-configuration-pamirseip)".
+Related documentation on this topic can be found in "[Integration Platform Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#72277955)".
 
 ### 2. Start the eip Module
 
@@ -444,7 +444,7 @@ Perform md5 and encryption/decryption processing in `IEipInOutConverter`
 
 ## (Ⅰ) Scan and Register All Interfaces Marked with `@Open` and `@Integrate`
 
-Called during module startup lifecycle, related documentation on this topic can be found in "[Module Lifecycle](/en/DevManual/Reference/Back-EndFramework/module-API.md#Ⅲ、模块生命周期)".
+Called during module startup lifecycle, related documentation on this topic can be found in "[Module Lifecycle](/en/DevManual/Reference/Back-EndFramework/module-API.md#c217d3fc)".
 
 ``` java
 EipResolver.resolver(TestModule.MODULE_MODULE,null);

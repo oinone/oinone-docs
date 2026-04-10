@@ -11,7 +11,7 @@ prev:
   text: Vue UI
   link: /v6/en/DevManual/Reference/Front-EndFramework/OioComponents/vue-UI.md
 ---
-In Oinone Kunlun, metadata is the most important part of the system operation. We have gained a preliminary understanding of the concept of metadata in "[Mastering the Frontend Framework - Frontend Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#v-theory-metadata-overview)". In this chapter, we will further explore the specific presentation of metadata in Oinone from the perspective of the frontend framework.
+In Oinone Kunlun, metadata is the most important part of the system operation. We have gained a preliminary understanding of the concept of metadata in "[Mastering the Frontend Framework - Frontend Framework Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#130bb2ab)". In this chapter, we will further explore the specific presentation of metadata in Oinone from the perspective of the frontend framework.
 
 # Ⅰ. Metadata Diagram
 
@@ -52,7 +52,7 @@ const model = await ModelCache.get('resource.ResourceCountryGroup');
 
 :::warning Tip:
 
-For more information about methods to obtain runtime metadata, please refer to: [API](#iv-methods-for-obtaining-runtime-metadata)
+For more information about methods to obtain runtime metadata, please refer to: [API](#62e8a0dc)
 
 :::
 

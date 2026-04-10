@@ -168,7 +168,7 @@ This replaces all actions named `redirectCreatePage` under the `resource.Resourc
 
 Generally, replacing components by model and action name meets our requirements. For a model's actions, the same name implies the same functionality. In special cases, the same action name may have different functionalities based on placement, though it's challenging to provide a suitable example.
 
-To address such cases, flexibly use other parameters from [Action Component Registration Options](#registration-options-for-action-components), as demonstrated in the next section for replacing components by view name and action name.
+To address such cases, flexibly use other parameters from [Action Component Registration Options](#b09255c0), as demonstrated in the next section for replacing components by view name and action name.
 
 :::
 

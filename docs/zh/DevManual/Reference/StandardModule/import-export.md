@@ -74,7 +74,7 @@ Excel 导入/导出模板通过多区块设计简化了单个工作表在业务�
 
 :::warning 提示：
 
-更多关于 “文件模块” 相关 API 的内容请参考：[Reference List - 模型](#quote1)
+更多关于 “文件模块” 相关 API 的内容请参考：[Reference List - 模型](#bdce6a4a)
 
 :::
 

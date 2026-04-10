@@ -128,4 +128,4 @@ When using these tools, you can combine the Environment and placeholder function
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/setup-guide/Graph.gif)
 
 # IV. Additional Frontend Tools
-Refer to the frontend [Environment Configuration Advanced](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#ⅲadvanced)
+Refer to the frontend [Environment Configuration Advanced](/en/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#79f5a33f)

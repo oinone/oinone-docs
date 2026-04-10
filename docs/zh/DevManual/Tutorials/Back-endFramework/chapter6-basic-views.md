@@ -54,7 +54,7 @@ order: 6
 </view>
 ```
 
-在搜索字段定义中，添加 `operator=X` 选项，其中 `X` 可以接受一个支持的[RSQL](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#1、rsql-基础概念)的操作符，字符串默认为"=like="，"=="表示全匹配过滤。
+在搜索字段定义中，添加 `operator=X` 选项，其中 `X` 可以接受一个支持的[RSQL](/zh/DevManual/Reference/Back-EndFramework/AdvanceAPI/protocol-API.md#bd46e12f)的操作符，字符串默认为"=like="，"=="表示全匹配过滤。
 
 任何模型只要有访问路径则可以在数据库中找到一个简单示例，即该模型对应的默认视图。
 

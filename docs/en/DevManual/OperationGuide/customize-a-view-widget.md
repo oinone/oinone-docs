@@ -209,7 +209,7 @@ These two data source objects are completely the same when front-end search and 
 
 :::
 
-Here, to ensure the table functions properly, we must use the `setTableInstance` method to pass the `OioTable` component instance to the Widget component, allowing the Widget component to directly operate on the `OioTable` instance. This is similar to our operation in the [Focus on Input Box](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#ix-focus-on-input-box) tutorial, both aiming to transfer logic to the Widget component to provide specific functions that can be overridden or inherited. We can handle it like this:
+Here, to ensure the table functions properly, we must use the `setTableInstance` method to pass the `OioTable` component instance to the Widget component, allowing the Widget component to directly operate on the `OioTable` instance. This is similar to our operation in the [Focus on Input Box](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#6e73580b) tutorial, both aiming to transfer logic to the Widget component to provide specific functions that can be overridden or inherited. We can handle it like this:
 
 ``` vue
 setup(props) {
@@ -706,7 +706,7 @@ The definition of other places remains unchanged. Let's extract the `CustomGalle
 </element>
 ```
 
-Now, let's recall the section "[Universal Card with Slots](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#v-universal-card-with-slots)", in the `layout (Layout)`, we used `slots (Slot)` and the content related to `named slots` mentioned in the `extended content` section. A correct definition should be like this:
+Now, let's recall the section "[Universal Card with Slots](/en/DevManual/Tutorials/DiscoverTheFront-endFramework/chapter1-widget.md#c6440898)", in the `layout (Layout)`, we used `slots (Slot)` and the content related to `named slots` mentioned in the `extended content` section. A correct definition should be like this:
 
 ``` xml
 <element widget="CustomGallery" slot="table" slotSupport="field">

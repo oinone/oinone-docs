@@ -127,5 +127,5 @@ git remote add dev git@github.com:<your_github_account>/oinone-frontend-tutorial
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/Tutorial/setup-guide/Graph.gif)
 
 #  四、前端额外工具
-参照前端[环境配置之进阶](/zh/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#三、进阶)
+参照前端[环境配置之进阶](/zh/InstallOrUpgrade/Dev-ENV/Node.js-setup.md#3806460d)
 

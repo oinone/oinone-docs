@@ -93,7 +93,7 @@ public class CeExpensesModule implements PamirsModule {
 
 ## （一）扩展点
 
-参考：与此主题相关的文档可在 “[扩展点](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#二、extpoint-扩展点)” 中找到。
+参考：与此主题相关的文档可在 “[扩展点](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#a1f678f2)” 中找到。
 
 :::info 目标：在本节结束时：
 
@@ -166,7 +166,7 @@ public class TestModelExtpointImpl implements TestModelExtpoint {
 
 ## （二）拦截器
 
-参考：与此主题相关的文档可在 “[Hook](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#三、hook-拦截器)” 中找到。
+参考：与此主题相关的文档可在 “[Hook](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#5ca91714)” 中找到。
 
 :::info 目标：在本节结束时
 

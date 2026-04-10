@@ -138,7 +138,7 @@ LIST_GET(activeRecords, 0).partner.name
 
 :::warning 提示：
 
-更多 内置函数 的内容请参考：[函数 API](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#五、内置函数)
+更多 内置函数 的内容请参考：[函数 API](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#12385d7c)
 
 :::
 

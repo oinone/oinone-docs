@@ -249,7 +249,7 @@ public class CustomSessionInitApi implements SessionInitApi {
 
 ### 2、通过函数的Hook进行扩展
 
-参考 [Hook 拦截器文档](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#三、hook-拦截器)，可参考示例代码 `pro.shushi.pamirs.user.api.hook.UserHook`。在该示例中，借助 `UserHook` 可判断用户是否登录。若用户已登录，会自动设置与用户相关的信息，如此一来，后续使用 `PamirsSession.getUserId()` 方法就能顺利获取用户 ID 值。
+参考 [Hook 拦截器文档](/zh/DevManual/Reference/Back-EndFramework/functions-API.md#5ca91714)，可参考示例代码 `pro.shushi.pamirs.user.api.hook.UserHook`。在该示例中，借助 `UserHook` 可判断用户是否登录。若用户已登录，会自动设置与用户相关的信息，如此一来，后续使用 `PamirsSession.getUserId()` 方法就能顺利获取用户 ID 值。
 
 ## （三）上下文：
 

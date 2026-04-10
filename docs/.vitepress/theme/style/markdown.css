@@ -26,6 +26,10 @@
     color: var(--vp-c-text-1);
 }
 
+.vp-doc h2 .header-anchor {
+    top: 0 !important;
+}
+
 /* H3 样式 */
 .vp-doc h3 {
     font-size: 22px;
@@ -47,10 +51,50 @@
     color: var(--vp-c-brand);
     text-decoration: underline;
     text-underline-offset: 2px;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease, transform 0.2s ease;
 }
 
 .vp-doc a:hover {
     color: var(--vp-c-brand-dark);
+    text-decoration-color: var(--vp-c-brand-dark);
+}
+
+/* 锚点滚动和高亮动画 */
+.vp-doc [id] {
+    scroll-margin-top: calc(var(--vp-nav-height, 64px) + 24px);
+}
+
+@keyframes highlight-target {
+    0% {
+        background-color: var(--vp-c-brand-soft);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.vp-doc [id]:target {
+    animation: highlight-target 1.5s ease-out;
+    border-radius: 4px;
+    padding: 2px 4px;
+    margin: -2px -4px;
+}
+
+/* 标题锚点 Hover 动画 */
+.vp-doc .header-anchor {
+    transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.vp-doc h1:hover .header-anchor,
+.vp-doc h2:hover .header-anchor,
+.vp-doc h3:hover .header-anchor,
+.vp-doc h4:hover .header-anchor,
+.vp-doc h5:hover .header-anchor,
+.vp-doc h6:hover .header-anchor {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* 内联代码块优化 */
@@ -62,6 +106,13 @@
     border-radius: 4px;
     font-size: 14.5px;
     color: inherit;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.vp-doc p code:hover,
+.vp-doc li code:hover {
+    background-color: var(--vp-c-brand-soft);
+    color: var(--vp-c-brand-dark);
 }
 
 /* 图片点击预览和背景优化 */
@@ -69,6 +120,12 @@
     background-color: #ffffff; /* 为透明背景的图片添加白色背景 */
     border-radius: 4px; /* 可选：增加一点圆角让图片看起来更平滑 */
     cursor: zoom-in; /* 提示可点击预览 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vp-doc img:not(.medium-zoom-image--opened):hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* 响应式调整 (Mobile) */
@@ -95,16 +152,23 @@
 }
 
 /* ==========================================================================
-   自定义块 (Custom Blocks) 图标美化
+   自定义块 (Custom Blocks) 图标美化及动画
    ========================================================================== */
 .vp-doc .custom-block {
     border-radius: 8px; /* 增加圆角使视觉更柔和 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vp-doc .custom-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .vp-doc .custom-block-title {
     display: flex;
     align-items: center;
     gap: 6px;
+    transition: color 0.3s ease;
 }
 
 .vp-doc .custom-block-title::before {
@@ -160,4 +224,29 @@
     background-color: #6b7280; /* Tailwind gray-500 */
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'%3E%3C/path%3E%3Cpolyline points='14 2 14 8 20 8'%3E%3C/polyline%3E%3Cline x1='16' y1='13' x2='8' y2='13'%3E%3C/line%3E%3Cline x1='16' y1='17' x2='8' y2='17'%3E%3C/line%3E%3Cpolyline points='10 9 9 9 8 9'%3E%3C/polyline%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'%3E%3C/path%3E%3Cpolyline points='14 2 14 8 20 8'%3E%3C/polyline%3E%3Cline x1='16' y1='13' x2='8' y2='13'%3E%3C/line%3E%3Cline x1='16' y1='17' x2='8' y2='17'%3E%3C/line%3E%3Cpolyline points='10 9 9 9 8 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* 表格悬浮动画 */
+.vp-doc table tr {
+    transition: background-color 0.3s ease;
+}
+
+.vp-doc table tr:hover {
+    background-color: var(--vp-c-bg-soft);
+}
+
+/* 页面内容淡入动画 */
+.vp-doc {
+    animation: fade-in 0.6s ease-out forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

@@ -21,7 +21,7 @@ In addition to initiating requests using `GenericFunctionService` instances, we 
 In Oinone, all functionalities are driven by a series of metadata, with **GQL** serving as the frontend-backend interaction protocol. Compared to **RESTFul**, GQL offers a distinct advantage: the frontend can define the response data set through GQL.
 
 Before learning the content of this chapter, you need to have a basic understanding of GQL:
-- Refer to the "GraphQL Protocol" section in "[Front-End Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#二、graphql协议)".
+- Refer to the "GraphQL Protocol" section in "[Front-End Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#4370e595)".
 - Refer to the official documentation "[GraphQL 学习](https://graphql.cn/learn)" (GraphQL Learn).
 - Refer to "[GraphQL 和 REST 之间有何区别](https://aws.amazon.com/cn/compare/the-difference-between-graphql-and-rest/)" (What’s the Difference Between GraphQL and REST) for further understanding.
 
@@ -49,8 +49,8 @@ In most cases, the model name is automatically generated from the model code. Th
 :::
 
 :::warning Note
-For more overview content about models, please refer to: [Front-End Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#三-模型) (Model Section).  
-For more content about model field types, please refer to: [Field](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#ii-field) (Field Section).
+For more overview content about models, please refer to: [Front-End Overview](/en/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#17d461d4) (Model Section).  
+For more content about model field types, please refer to: [Field](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#9bc9c61f) (Field Section).
 :::
 
 
@@ -128,7 +128,7 @@ Any model that inherits from `IdModel` is equipped with basic **CRUD** built-in 
 The table above lists some commonly used default functions that can be called by the frontend. All functions are ultimately initiated via their **function name (name)**. Note the following special case:
 - `queryByWrapper` and `queryOneByWrapper` call the same function, but differ in their `fun` (function code) and `name` (function name).
 
-For more detailed content about function input parameters, output parameters, etc., please refer to: [ORM API - Common ORM Methods](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#v-common-orm-methods).
+For more detailed content about function input parameters, output parameters, etc., please refer to: [ORM API - Common ORM Methods](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#3cae0c86).
 :::
 
 
@@ -177,7 +177,7 @@ Notably, for numeric types, the backend type definitions include `Integer`, `Lon
 :::warning Note
 In the declaration of the `countByWrapper` function, its return value is of type `Long`. This means we need to convert it to a `number` type using the `Number()` function before returning. Although this approach has minor flaws, in most existing scenarios, the maximum integer value returned by `countByWrapper` generally does not exceed the safe integer limit of JavaScript. If the business scenario explicitly involves values beyond this limit, use toolkits like `bignumber.js` (which encapsulate data types) for processing.
 
-For more content about type mapping, please refer to: [Data Type Mapping](#x-data-type-mapping).
+For more content about type mapping, please refer to: [Data Type Mapping](#c9fba4a9).
 :::
 
 ### Theory: Function Definition and GQL Syntax
@@ -257,7 +257,7 @@ Notably, for datetime types, the backend transmits data to the frontend as **sta
 Functions are defined by the backend. As the caller, the frontend needs to use GQL to specify the model, function, and the input/output parameters of the function.
 
 For more content about RSQL, please refer to: [RSQL Service](/en/DevManual/Reference/Front-EndFramework/Services/RSQL-service.md).  
-For more content about type mapping, please refer to: [Data Type Mapping](#x-data-type-mapping).
+For more content about type mapping, please refer to: [Data Type Mapping](#c9fba4a9).
 :::
 
 
@@ -442,7 +442,7 @@ The rule "a primary key (id) must be passed for the update to succeed" is part o
   - **One-to-Many**: Must be passed in the format of an array of objects; a primary key (id) is required; fields not passed will not be updated.
   - **Many-to-Many**: Must be passed in the format of an array of objects; a primary key (id) is required; passing other values is meaningless.
 
-For more content about association type definitions, please refer to: [ORM API - Relation Types](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#4-relation-types) (Association Types Section).
+For more content about association type definitions, please refer to: [ORM API - Relation Types](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#559dbe40) (Association Types Section).
 :::
 
 
@@ -1036,7 +1036,7 @@ public static queryListByWrapperByGQLBuilder(): Promise<GanttDemoModel[]> {
 A key challenge with raw GQL string concatenation is handling complex types like **objects** or **arrays**. `GQLBuilder` eliminates this hassle by providing built-in methods to process various data types. You no longer need to manually manage parameter splicing logic. This approach is the closest to direct `HttpClient` usage while remaining user-friendly.  
 
 :::warning Note  
-For more usage examples and API details about `GQLBuilder`, refer to: [GraphQL Service - GQLBuilder](/en/DevManual/Reference/Front-EndFramework/Services/graphQL-service.md#i-gqlbuilder)  
+For more usage examples and API details about `GQLBuilder`, refer to: [GraphQL Service - GQLBuilder](/en/DevManual/Reference/Front-EndFramework/Services/graphQL-service.md#c53caa9f)  
 :::
 
 
@@ -1063,7 +1063,7 @@ A standard `Ajax/Axios` request includes a **request path (URL)**, **request met
 
 
 :::warning Note  
-For more API details and usage examples of `GenericFunctionService`, refer to: [GraphQL Service - GenericFunctionService](/en/DevManual/Reference/Front-EndFramework/Services/graphQL-service.md#ii-genericfunctionservice)  
+For more API details and usage examples of `GenericFunctionService`, refer to: [GraphQL Service - GenericFunctionService](/en/DevManual/Reference/Front-EndFramework/Services/graphQL-service.md#384f6ae1)  
 :::
 
 

@@ -19,7 +19,7 @@ order: 7
 
 # 一、多对一关系（many2one）
 
-参考：与此主题相关的文档可在 “[多对一关系](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#多对一关系many2one)” 中找到。
+参考：与此主题相关的文档可在 “[多对一关系](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#9cdf8601)” 中找到。
 
 :::info 目标：在本节结束时：
 
@@ -145,7 +145,7 @@ public class ExpensesModule implements PamirsModule {
 
 # 二、多对多关系（many2many）
 
-参考：与此主题相关的文档可在 “[多对多关系](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#多对多关系many2many)” 中找到。
+参考：与此主题相关的文档可在 “[多对多关系](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#8f24458e)” 中找到。
 
 :::info 目标：在本节结束时：
 

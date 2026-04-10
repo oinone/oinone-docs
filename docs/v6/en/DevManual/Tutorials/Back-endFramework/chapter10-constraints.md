@@ -74,7 +74,7 @@ Defining fields or constraints via `columnDefinition` creates a strong binding t
 
 # II. Validation Constraints
 
-Reference: Related documentation can be found in "[Validation](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#2-Validation-Constraints)".
+Reference: Related documentation can be found in "[Validation](/en/DevManual/Reference/Back-EndFramework/ORM-API.md#72ab9c86)".
 
 :::info Objectives: By the end of this section
 

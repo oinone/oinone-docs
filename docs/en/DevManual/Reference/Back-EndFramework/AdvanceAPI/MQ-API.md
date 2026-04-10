@@ -46,7 +46,7 @@ Add corresponding dependencies as needed based on the message queue used in the 
 
 ## (Ⅱ) YAML Configuration
 
-Documentation related to this topic can be found in [Event Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#ⅸ-event-configuration-pamirsevent).
+Documentation related to this topic can be found in [Event Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#d558ded0).
 
 ### 1. Basic Configuration
 

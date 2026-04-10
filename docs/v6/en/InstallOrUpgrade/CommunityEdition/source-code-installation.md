@@ -293,7 +293,7 @@ For enterprise edition trials, Shushi provides default CDN configuration. In pro
 
 :::
 
-For more OSS configurations, see: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#14-File-Storage-Configuration-pamirs-file)
+For more OSS configurations, see: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#5f4bd3c9)
 
 ## (Ⅱ) Start the Back-end Service
 

@@ -67,7 +67,7 @@ Oinone's event mechanism and Hook functions provide a loosely coupled solution f
 
 # III. Understanding the "Link" Module
 
-Reference: Related documentation on this topic can be found in "[Link Module](/en/DevManual/Tutorials/Back-endFramework/chapter13-interact-with-other-modules.md#i-link-module)".
+Reference: Related documentation on this topic can be found in "[Link Module](/en/DevManual/Tutorials/Back-endFramework/chapter13-interact-with-other-modules.md#30204371)".
 
 Whenever we interact with other modules, we need to keep in mind Oinone's modular characteristics. Suppose you are working on both an expense management module and an accounting module. If we plan to sell the application to enterprise customers, some may need to transfer expense data to the accounting system for financial processing and generate corresponding accounting vouchers, while others may not.
 

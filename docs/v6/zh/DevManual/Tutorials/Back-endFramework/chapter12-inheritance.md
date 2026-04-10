@@ -14,7 +14,7 @@ Oinone 的一个强大之处在于其模块化特性。每个模块都专注于�
 
 # 一、函数的重写
 
-参考：与此主题相关的文档可在 “[数据管理器](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#2、数据管理器)” 中找到。
+参考：与此主题相关的文档可在 “[数据管理器](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#b927f5fa)” 中找到。
 
 :::info 目标：在本节结束时
 
@@ -188,7 +188,7 @@ public class TestModelAction {
 
 # 二、模型的继承
 
-参考：与本主题相关的文档可以在 “[继承与扩展](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#四、模型继承)” 中找到。
+参考：与本主题相关的文档可以在 “[继承与扩展](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#91899192)” 中找到。
 
 在我们的费用管理模块中，之所以无需编写任何特定代码，即可执行标准的 CRUD 操作，以及有一些默认的继承字段，同时可以重写覆盖。这得益于 Oinone 的元数据设计完全符合面向对象特征。在Java语言设计中，万物皆对象，一切都以对象为基础。而Oinone的元数据设计则是以模型为出发点，作为数据和行为的承载体。
 

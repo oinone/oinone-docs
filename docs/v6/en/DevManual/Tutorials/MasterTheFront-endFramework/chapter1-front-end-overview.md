@@ -262,7 +262,7 @@ From the converted URL, we can obtain the following information:
 
 :::warning Tip
 
-This content should be studied in conjunction with the introduction to [ViewAction](#viewaction) in the theoretical section of Section IV to better understand the meaning of these parameters.
+This content should be studied in conjunction with the introduction to [ViewAction](#b68ecb57) in the theoretical section of Section IV to better understand the meaning of these parameters.
 
 :::
 

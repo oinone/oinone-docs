@@ -211,7 +211,7 @@ export class DetailCommonFieldWidget extends FormFieldWidget
 
 ### 2、DetailStringDownloadFieldWidget
 
-**Reference**: String - [DetailStringDownloadFieldWidget](#quote1)
+**Reference**: String - [DetailStringDownloadFieldWidget](#bdce6a4a)
 
 ## (Ⅲ) Html
 
@@ -237,13 +237,13 @@ export class DetailHtmlFieldWidget extends FormFieldWidget
 
 ### 1、DetailStringFieldWidget
 
-**Reference**: String - [DetailStringFieldWidget](#quote2)
+**Reference**: String - [DetailStringFieldWidget](#8bff8678)
 
 ## (Ⅴ) Email
 
 ### 1、DetailStringFieldWidget
 
-**Reference**: String - [DetailStringFieldWidget](#quote2)
+**Reference**: String - [DetailStringFieldWidget](#8bff8678)
 
 ## (Ⅵ) Integer
 
@@ -269,13 +269,13 @@ export class DetailNumberWidget extends FormNumberAbstractFieldWidget
 
 ### 1、DetailNumberWidget
 
-**Reference**: Integer - [DetailNumberWidget](#quote3)
+**Reference**: Integer - [DetailNumberWidget](#30d78833)
 
 ## (Ⅷ) Money
 
 ### 1、DetailNumberWidget
 
-**Reference**: Integer - [DetailNumberWidget](#quote3)
+**Reference**: Integer - [DetailNumberWidget](#30d78833)
 
 ## (Ⅸ) Boolean
 

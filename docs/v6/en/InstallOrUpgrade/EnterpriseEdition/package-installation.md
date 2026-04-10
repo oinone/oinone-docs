@@ -219,7 +219,7 @@ When experiencing the Enterprise Edition, Oinone will provide default configurat
 
 :::
 
-For more OSS configurations, please refer to: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#XIV-File-Storage-Configuration-pamirs-file)
+For more OSS configurations, please refer to: [File Storage Configuration](/en/DevManual/Reference/Back-EndFramework/module-API.md#6740bbb4)
 
 # VI. Run Oinone Standard Frontend Application
 # VII. Common Issues

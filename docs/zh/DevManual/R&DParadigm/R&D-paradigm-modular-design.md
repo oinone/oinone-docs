@@ -67,7 +67,7 @@ Oinone 的事件机制和Hook函数为模块间的通信提供了松耦合的解
 
 # 三、理解 “链接” 模块
 
-参考：与此主题相关的文档可在 “[Link 模块](/zh/DevManual/Tutorials/Back-endFramework/chapter13-interact-with-other-modules.md#一、link模块)” 中找到。
+参考：与此主题相关的文档可在 “[Link 模块](/zh/DevManual/Tutorials/Back-endFramework/chapter13-interact-with-other-modules.md#780127ba)” 中找到。
 
 每当我们与其他模块进行交互时，都需要牢记 Oinone 的模块化特性。假设，你同时做了费用管理模块和会计模块。如果我们打算将应用程序出售给企业客户，有些客户可能会需要将费用数据传递给会计系统进行财务处理，生成相应的会计凭证。而有些则可能不需要。
 对于这类使用场景，常见的做法是创建一个 “链接” 模块。在我们的例子中，这个模块将依赖于 `expenses`（费用管理）模块和 `account`（会计）模块，并包含费用管理中针对报销单创建会计凭证逻辑。通过这种方式，费用管理模块和会计模块可以独立安装。当两个模块都安装后，再安装链接模块就会提供新的功能。

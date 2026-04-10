@@ -100,7 +100,7 @@ private String code;
 
 :::warning 提示：默认值计算
 
-除了通过@Prop给组件传递defaultValue属性，还可以通过[compute](/zh/DevManual/Tutorials/Back-endFramework/chapter8-field-interlinkage.md#一、compute)属性来应对更为复杂的场景。
+除了通过@Prop给组件传递defaultValue属性，还可以通过[compute](/zh/DevManual/Tutorials/Back-endFramework/chapter8-field-interlinkage.md#5e26ad4e)属性来应对更为复杂的场景。
 
 :::
 

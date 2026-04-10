@@ -24,7 +24,7 @@ next:
 
 在学习本章节之前，你需要对 Oinone 元数据以及视图的基础知识有一定的了解。请参考：
 
-+ [前端框架概览 - 元数据概览](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#五、理论-元数据概览)
++ [前端框架概览 - 元数据概览](/zh/DevManual/Tutorials/MasterTheFront-endFramework/chapter1-front-end-overview.md#8c828a5f)
 + [XML 百度百科](https://baike.baidu.com/item/%E5%8F%AF%E6%89%A9%E5%B1%95%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80)
 + [XML 语法参考](https://www.runoob.com/xml/xml-syntax.html)
 + [JSON 百度百科](https://baike.baidu.com/item/JSON/2462549)

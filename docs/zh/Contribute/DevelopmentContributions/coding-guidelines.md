@@ -73,7 +73,7 @@ public age = 18
 
 ### 1、 类名
 
-平台模型命名规范参考: [模型命名规范](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#5、模型命名规范) ，普通POJO类名以大写驼峰命名。
+平台模型命名规范参考: [模型命名规范](/zh/DevManual/Reference/Back-EndFramework/ORM-API.md#1c798768) ，普通POJO类名以大写驼峰命名。
 
 ### 2、属性名
 
