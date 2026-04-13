@@ -5,7 +5,7 @@ category:
   - 用户手册
 dir:
   link: true
-  order: 3
+  order: 2
 prev:
   text: 常见问题
   link: /zh/InstallOrUpgrade/FAQ.md

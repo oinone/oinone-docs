@@ -5,7 +5,7 @@ category:
   - User Manual
 dir:
   link: true
-  order: 3
+  order: 2
 prev:
   text: Frequently Asked Questions
   link: /en/InstallOrUpgrade/FAQ.md
