@@ -112,7 +112,7 @@ next:
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/1770108891617-8461168b-f404-4aaa-ae03-e3499d24bbc5-20260325101634222.png)
 
 + （可选）手工安装`docker` 
-+ （可选）利用`Oinone`的插件安装中间件（目前提供 mac，windows环境请参考`Oinone`[官方文档](https://guide.oinone.top/zh/InstallOrUpgrade/Dev-ENV/)）
++ （可选）利用`Oinone`的插件安装中间件（目前提供 mac，windows环境请参考`Oinone`[官方文档](zh/DevManual/Tutorials/Dev-ENV/README.html)）
 
 | 中间件        | 用户名密码                                            |
 | ------------- | ----------------------------------------------------- |

@@ -112,7 +112,7 @@ Remarks: If there is an example project in the project, the effect will be bette
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Qoder/1770108891617-8461168b-f404-4aaa-ae03-e3499d24bbc5-20260325101634222.png)
 
 + (Optional) Manually install `docker` 
-+ (Optional) Use the Oinone plugin to install middleware (currently available for the Mac environment. For the Windows environment, please refer to the [official documentation](https://guide.oinone.top/en/InstallOrUpgrade/Dev-ENV/) of Oinone)
++ (Optional) Use the Oinone plugin to install middleware (currently available for the Mac environment. For the Windows environment, please refer to the [Official Documentation](/en/DevManual/Tutorials/setup-guide.html) of Oinone)
 
 | Middleware        | Username and password                                            |
 | ------------- | ----------------------------------------------------- |

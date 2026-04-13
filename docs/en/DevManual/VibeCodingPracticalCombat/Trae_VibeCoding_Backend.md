@@ -110,7 +110,7 @@ Remarks: It will be more effective if there is an example project in the enginee
 ![](https://oinone-jar.oss-cn-zhangjiakou.aliyuncs.com/welcome-document/Development/VibeCodingPracticalCombat/Trae_VibeCoding_Backend/1770108891617-8461168b-f404-4aaa-ae03-e3499d24bbc5.png)
 
 + (Optional) Manually install `docker` 
-+ (Optional) Use the Oinone plugin to install middleware (currently available for the mac environment. For the windows environment, please refer to the official Oinone documentation [Oinone documentation](https://guide.oinone.top/en/InstallOrUpgrade/Dev-ENV/))
++ (Optional) Use the Oinone plugin to install middleware (currently available for the mac environment. For the windows environment, please refer to the official Oinone documentation [Oinone Documentation](/en/DevManual/Tutorials/setup-guide.html))
 
 | Middleware        | Username and Password                                            |
 | ------------- | ----------------------------------------------------- |

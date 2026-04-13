@@ -116,7 +116,7 @@ services:
 
 ## (II) OSS Configuration
 
-For details, click to view: [OSS Configuration Reference](https://guide.oinone.top/en/DevManual/Reference/Back-EndFramework/module-API.html#%E5%8D%81%E5%9B%9B-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E9%85%8D%E7%BD%AE-pamirs-file)
+For details, click to view: [OSS Configuration Reference](/en/DevManual/Reference/Back-EndFramework/module-API.html#e33ac4d3)
 
 ```yaml
 spring:
@@ -144,7 +144,7 @@ cdn:
 
 PS: This feature is only applicable to some commercial licenses. Please pay attention to the license information before configuration.
 
-For details, click to view: [Database Dialect Configuration Reference](https://guide.oinone.top/en/DevManual/Reference/Back-EndFramework/module-API.html#%E5%9B%9B-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B9%E8%A8%80-pamirs-dialect-ds)
+For details, click to view: [Database Dialect Configuration Reference](/en/DevManual/Reference/Back-EndFramework/module-API.html#2d50fefe)
 
 ```yaml
 spring:

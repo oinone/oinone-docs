@@ -116,7 +116,7 @@ services:
 
 ## （二）OSS 配置
 
-详情可点击查看：[OSS 配置参考](https://guide.oinone.top/zh/DevManual/Reference/Back-EndFramework/module-API.html#%E5%8D%81%E5%9B%9B-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E9%85%8D%E7%BD%AE-pamirs-file)
+详情可点击查看：[OSS 配置参考](/zh/DevManual/Reference/Back-EndFramework/module-API.html#b3796c8c)
 
 ```yaml
 spring:
@@ -144,7 +144,7 @@ cdn:
 
 PS：此特性仅适用于部分商业许可，配置前请关注许可信息。
 
-详情可点击查看：[数据库方言配置参考](https://guide.oinone.top/zh/DevManual/Reference/Back-EndFramework/module-API.html#%E5%9B%9B-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%B9%E8%A8%80-pamirs-dialect-ds)
+详情可点击查看：[数据库方言配置参考](/zh/DevManual/Reference/Back-EndFramework/module-API.html#c3f4b33c)
 
 ```yaml
 spring:
