@@ -94,7 +94,7 @@ services:
       ARG_ENV: dev
     volumes:
       # Mount the config directory to the external configuration file directory
-      - ./config:/opt/pamirs/config/ext
+      - ./config:/opt/pamirs/ext
 ```
 
 **config/application-dev.yml**

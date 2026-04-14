@@ -94,7 +94,7 @@ services:
       ARG_ENV: dev
     volumes:
       # 将 config 目录挂载到外部配置文件目录
-      - ./config:/opt/pamirs/config/ext
+      - ./config:/opt/pamirs/ext
 ```
 
 **config/application-dev.yml**
